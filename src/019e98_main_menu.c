@@ -172,25 +172,20 @@ void MainMenuTask_8c019e98(Task *task) {
                     var_game_mode_8c1bb8fc = menuState_8c1bc7a8.selected_0x38;
                     var_8c1bb8c0 = 1;
                     FUN_8c017e18(task);
-                    return;
                 }
 
                 // Option
                 case 2: {
                     FUN_8c01b122();
-                    return;
                 }
 
                 // VM Game
                 case 3: {
                     FUN_8c01c880();
-                    return;
-                }
-
-                default: {
-                    return;
                 }
             }
+
+            return;
         }
     }
 
