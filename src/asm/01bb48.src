@@ -43,7 +43,7 @@
           .IMPORT     _const_8c038498
           .IMPORT     _const_8c0384b0
           .IMPORT     _const_8c0384e8
-          .IMPORT     _interpolated_8c016d2c
+          .IMPORT     _interpolateCursor_8c016d2c
           .IMPORT     _promptHandleBinary_16caa
           .IMPORT     _const_8c03866c
           .IMPORT     _var_8c1bc454
@@ -1341,7 +1341,7 @@ LP_GEN_25641:
           .DATA.L _const_8c0384e8 ; H'8C01C464
           .DATA.L _push_fadeout_8c022b60 ; H'8C01C468
           .DATA.L _const_8c038498 ; H'8C01C46C
-          .DATA.L _interpolated_8c016d2c ; H'8C01C470
+          .DATA.L _interpolateCursor_8c016d2c ; H'8C01C470
           .DATA.L _promptHandleBinary_16caa ; H'8C01C474
 LAB_8c01c478:
           MOV         #H'6c,R0

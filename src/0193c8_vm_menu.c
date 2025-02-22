@@ -344,9 +344,9 @@ STATIC void initCursorLerp_19788(int drive)
 {
     menuState_8c1bc7a8.pos.vmSelect.cursorTarget_0x28.x = init_vmIconsPositions_8c044d7c[drive].x;
     menuState_8c1bc7a8.pos.vmSelect.cursorTarget_0x28.y = init_vmIconsPositions_8c044d7c[drive].y;
-    menuState_8c1bc7a8.uknX_0x30 =
+    menuState_8c1bc7a8.cursorVelocity_0x30.x =
         (init_vmIconsPositions_8c044d7c[drive].x - menuState_8c1bc7a8.pos.vmSelect.cursor_0x20.x) / 6;
-    menuState_8c1bc7a8.uknY_0x34 =
+    menuState_8c1bc7a8.cursorVelocity_0x30.y =
         (init_vmIconsPositions_8c044d7c[drive].y - menuState_8c1bc7a8.pos.vmSelect.cursor_0x20.y) / 6;
 }
 
@@ -567,7 +567,7 @@ STATIC void VmMenuTask_198a0(Task* task, void *actionState)
 
         /* Cursor animating */
         case VM_MENU_STATE_CURSOR_ANIMATING: {
-            if (interpolated_8c016d2c()) {
+            if (interpolateCursor_8c016d2c()) {
                 CHANGE_STATE(VM_MENU_STATE_IDLE);
                 swapMessageBoxFor_8c02aefc(init_vmuStatusMessages_8c044dc4[var_vmuStatus_8c226048[slot]]);
             }

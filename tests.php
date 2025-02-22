@@ -154,6 +154,16 @@ return [
                 "build/output/019e98_main_menu_src.obj",
                 "build/output/019e98_main_menu_c.obj",
             ]
+        ],
+        [
+            "tests" => [
+                "tests/016d2c/8c016d2c_interpolated.php",
+                "tests/016d2c/8c016dc6_FUN.php",
+            ],
+            "objects" => [
+                "build/output/016d2c_src.obj",
+                "build/output/016d2c_c.obj",
+            ]
         ]
     ],
 ];

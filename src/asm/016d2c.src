@@ -24,7 +24,6 @@
           .IMPORT     _var_tasks_8c1ba3c8
           .IMPORT     _pushTask_8c014ae8
           .IMPORT     _init_8c044c08
-          .IMPORT     _var_peripheral_8c1ba35c
           .IMPORT     _FUN_8c010bae
           .IMPORT     _var_8c1ba25c
           .IMPORT     _var_8c225fd4
@@ -86,7 +85,7 @@
           .IMPORT     _AsqRequestPvm_11ac0
           .IMPORT     _AsqReleaseAndFreeTexlist_11e3c
           .IMPORT     _syFree
-          .EXPORT     _interpolated_8c016d2c
+          .EXPORT     _interpolateCursor_8c016d2c
           .EXPORT     _FUN_8c016dc6
           .EXPORT     _FUN_8c016e6c
           .EXPORT     _FUN_8c016ed2
@@ -113,7 +112,7 @@
           .EXPORT     _requestSysResgrp_8c018568
           .EXPORT     _freeResourceGroup_8c0185c4
           .SECTION     P, CODE, ALIGN=4
-_interpolated_8c016d2c:
+_interpolateCursor_8c016d2c:
           MOV.L       LP_GEN_57345+2,R4
           MOV         #H'30,R1
           MOV         #H'20,R0
@@ -264,8 +263,8 @@ LAB_8c016e00:
 LP_GEN_57345:
           .DATA.W H'008C ; H'8C016E42
           .DATA.L _menuState_8c1bc7a8 ; H'8C016E44
-          .DATA.L _var_8c1bc7d4 ; H'8C016E48
-          .DATA.L _var_8c1bc7cc ; H'8C016E4C
+          .DATA.L _menuState_8c1bc7a8 + 44 ; H'8C016E48
+          .DATA.L _menuState_8c1bc7a8 + 36 ; H'8C016E4C
           .DATA.L __quick_evn_mvn ; H'8C016E50
           .DATA.L _init_8c04442c ; H'8C016E54
           .DATA.L H'40C00000 ; H'8C016E58
@@ -1618,7 +1617,7 @@ LAB_8c017892:
           BRA         LAB_8c01798a
           NOP
 LAB_8c01789a:
-          BSR         _interpolated_8c016d2c
+          BSR         _interpolateCursor_8c016d2c
           NOP
           TST         R0,R0
           BT          LAB_8c01798a
@@ -2015,7 +2014,7 @@ LAB_8c017ba2:
           BRA         LAB_8c017cb8
           NOP
 LAB_8c017baa:
-          BSR         _interpolated_8c016d2c
+          BSR         _interpolateCursor_8c016d2c
           NOP
           TST         R0,R0
           BF          LAB_8c017bb6

@@ -13,7 +13,7 @@
           .IMPORT     _FUN_8c010bae
           .IMPORT     _push_fadeout_8c022b60
           .IMPORT     _init_8c045170
-          .IMPORT     _interpolated_8c016d2c
+          .IMPORT     _interpolateCursor_8c016d2c
           .IMPORT     _init_8c03bd80
           .IMPORT     _FUN_8c016182
           .IMPORT     _FUN_8c017ef2
@@ -676,7 +676,7 @@ LP_GEN_43132:
           .DATA.L _sdMidiPlay ; H'8C01D740
           .DATA.L _FUN_8c010bae ; H'8C01D744
           .DATA.L _push_fadeout_8c022b60 ; H'8C01D748
-          .DATA.L _interpolated_8c016d2c ; H'8C01D74C
+          .DATA.L _interpolateCursor_8c016d2c ; H'8C01D74C
           .DATA.L H'C0000000 ; H'8C01D750
           .DATA.L H'C0400000 ; H'8C01D754
           .DATA.L _drawSprite_8c014f54 ; H'8C01D758

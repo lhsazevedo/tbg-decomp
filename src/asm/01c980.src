@@ -28,7 +28,7 @@
           .IMPORT     _isFading_8c226568
           .IMPORT     _getUknPvmBool_8c01432a
           .IMPORT     _AsqFreeQueues_11f7e
-          .IMPORT     _interpolated_8c016d2c
+          .IMPORT     _interpolateCursor_8c016d2c
           .IMPORT     _promptHandleMultiple_16c58
           .IMPORT     _FUN_8c016182
           .IMPORT     _FUN_8c017ef2
@@ -814,7 +814,7 @@ LP_GEN_45604:
           .DATA.L _AsqFreeQueues_11f7e ; H'8C01CF68
           .DATA.L H'42400000 ; H'8C01CF6C
           .DATA.L H'40C00000 ; H'8C01CF70
-          .DATA.L _interpolated_8c016d2c ; H'8C01CF74
+          .DATA.L _interpolateCursor_8c016d2c ; H'8C01CF74
           .DATA.L _promptHandleMultiple_16c58 ; H'8C01CF78
 LAB_8c01cf7c:
           MOV.L       @(H'10,R13),R3

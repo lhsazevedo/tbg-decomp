@@ -26,7 +26,7 @@
           .IMPORT     _var_midiHandles_8c0fcd28
           .IMPORT     _var_peripheral_8c1ba35c
           .IMPORT     _sdMidiPlay
-          .IMPORT     _interpolated_8c016d2c
+          .IMPORT     _interpolateCursor_8c016d2c
           .IMPORT     _promptHandleBinary_16caa
           .IMPORT     _var_selectedVm_8c1ba34c
           .IMPORT     _push_fadeout_8c022b60
@@ -1167,7 +1167,7 @@ LP_GEN_27695:
           .DATA.L _const_8c037f0c ; H'8C019BF4
           .DATA.L _var_midiHandles_8c0fcd28 ; H'8C019BF8
           .DATA.L _init_vmuStatusMessages_8c044dc4 ; H'8C019BFC
-          .DATA.L _interpolated_8c016d2c ; H'8C019C00
+          .DATA.L _interpolateCursor_8c016d2c ; H'8C019C00
 LAB_8c019c04:
           MOV.L       LP_GEN_17403+4,R3
           MOV         R12,R4
