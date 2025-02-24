@@ -159,6 +159,9 @@ return [
             "tests" => [
                 "tests/016d2c/8c016d2c_interpolated.php",
                 "tests/016d2c/8c016dc6_FUN.php",
+                "tests/016d2c/8c016e6c_FUN.php",
+                "tests/016d2c/8c016ed2_FUN.php",
+                "tests/016d2c/8c016ee6_FUN.php",
             ],
             "objects" => [
                 "build/output/016d2c_src.obj",
