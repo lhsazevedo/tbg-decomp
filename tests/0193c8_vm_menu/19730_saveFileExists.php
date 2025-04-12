@@ -27,7 +27,7 @@ return new class extends TestCase {
 
         $this->singleCall('_saveFileExists_19730')
             ->with($drive, $saveName)
-            ->shouldReturn(0)
+            ->singleShouldReturn(0)
             ->run();
     }
 
@@ -51,7 +51,7 @@ return new class extends TestCase {
 
         $this->singleCall('_saveFileExists_19730')
             ->with($drive, $saveName)
-            ->shouldReturn(0)
+            ->singleShouldReturn(0)
             ->run();
     }
 
@@ -75,7 +75,7 @@ return new class extends TestCase {
 
         $this->singleCall('_saveFileExists_19730')
             ->with($drive, $saveName)
-            ->shouldReturn(0)
+            ->singleShouldReturn(0)
             ->run();
     }
 
@@ -100,7 +100,7 @@ return new class extends TestCase {
 
         $this->singleCall('_saveFileExists_19730')
             ->with($drive, $saveName)
-            ->shouldReturn(1)
+            ->singleShouldReturn(1)
             ->run();
     }
 
@@ -125,7 +125,7 @@ return new class extends TestCase {
 
         $this->singleCall('_saveFileExists_19730')
             ->with($drive, $saveName)
-            ->shouldReturn(0)
+            ->singleShouldReturn(0)
             ->run();
     }
 
@@ -150,7 +150,7 @@ return new class extends TestCase {
 
         $this->singleCall('_saveFileExists_19730')
             ->with($drive, $saveName)
-            ->shouldReturn(0)
+            ->singleShouldReturn(0)
             ->run();
     }
 

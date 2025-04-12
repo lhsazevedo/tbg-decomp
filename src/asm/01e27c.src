@@ -27,11 +27,9 @@
           .IMPORT     _var_8c226410
           .IMPORT     _FUN_8c013310
           .IMPORT     _setTaskAction_8c014b3e
-          .IMPORT     _var_8c1bc7c0
           .IMPORT     _AsqInitQueues_11f36
           .IMPORT     _AsqResetQueues_11f6c
           .IMPORT     _init_8c044284
-          .IMPORT     _var_8c1bc7b4
           .IMPORT     _requestSysResgrp_8c018568
           .IMPORT     _setUknPvmBool_8c014330
           .IMPORT     _resetUknPvmBool_8c014322
@@ -54,7 +52,7 @@
           .IMPORT     __modls
           .IMPORT     __divls
           .IMPORT     _FUN_8c010d8a
-          .IMPORT     _FUN_8c0170c6
+          .IMPORT     _FUN_pushDialogTask_8c0170c6
           .IMPORT     _var_8c225fb4
           .IMPORT     _const_8c038988
           .IMPORT     _var_8c225fb8
@@ -543,11 +541,11 @@ LP_GEN_38636:
           .DATA.L _FUN_8c013310 ; H'8C01E608
           .DATA.L _FUN_8c01e27c ; H'8C01E60C
           .DATA.L _setTaskAction_8c014b3e ; H'8C01E610
-          .DATA.L _var_8c1bc7c0 ; H'8C01E614
+          .DATA.L _menuState_8c1bc7a8 + H'18 ; H'8C01E614
           .DATA.L _AsqInitQueues_11f36 ; H'8C01E618
           .DATA.L _AsqResetQueues_11f6c ; H'8C01E61C
           .DATA.L _init_8c044284 ; H'8C01E620
-          .DATA.L _var_8c1bc7b4 ; H'8C01E624
+          .DATA.L _menuState_8c1bc7a8 + H'0C ; H'8C01E624
           .DATA.L _requestSysResgrp_8c018568 ; H'8C01E628
           .DATA.L _setUknPvmBool_8c014330 ; H'8C01E62C
           .DATA.L _resetUknPvmBool_8c014322 ; H'8C01E630
@@ -1563,7 +1561,7 @@ LP_GEN_52292:
           .DATA.L _snd_8c010cd6 ; H'8C01EE0C
           .DATA.L _push_fadein_8c022a9c ; H'8C01EE10
           .DATA.L _var_8c226414 ; H'8C01EE14
-          .DATA.L _FUN_8c0170c6 ; H'8C01EE18
+          .DATA.L _FUN_pushDialogTask_8c0170c6 ; H'8C01EE18
           .DATA.L _var_8c225fb4 ; H'8C01EE1C
           .DATA.L _const_8c038984 ; H'8C01EE20
           .DATA.L _push_fadeout_8c022b60 ; H'8C01EE24

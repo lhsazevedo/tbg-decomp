@@ -60,14 +60,12 @@
           .IMPORT     _task_8c012f44
           .IMPORT     _var_tasks_8c1ba3c8
           .IMPORT     _pushTask_8c014ae8
-          .IMPORT     _var_8c1bc7c0
           .IMPORT     _var_tex_8c157af8
           .IMPORT     _njGarbageTexture
           .IMPORT     _FUN_8c02ae3e
           .IMPORT     _AsqInitQueues_11f36
           .IMPORT     _AsqResetQueues_11f6c
           .IMPORT     _titleResourceGroup_8c044254
-          .IMPORT     _var_8c1bc7b4
           .IMPORT     _requestSysResgrp_8c018568
           .IMPORT     _requestCommonResources_8c01852c
           .IMPORT     _var_8c1ba344
@@ -1157,7 +1155,7 @@ LP_GEN_43538:
           .DATA.L _var_tasks_8c1ba3c8 ; H'8C01E05C
           .DATA.L _pushTask_8c014ae8 ; H'8C01E060
           .DATA.L _task_8c01d8e0 ; H'8C01E064
-          .DATA.L _var_8c1bc7c0 ; H'8C01E068
+          .DATA.L _menuState_8c1bc7a8 + H'18 ; H'8C01E068
           .DATA.L _var_tex_8c157af8 ; H'8C01E06C
           .DATA.L _njGarbageTexture ; H'8C01E070
           .DATA.L H'C0000000 ; H'8C01E074
@@ -1165,7 +1163,7 @@ LP_GEN_43538:
           .DATA.L _AsqInitQueues_11f36 ; H'8C01E07C
           .DATA.L _AsqResetQueues_11f6c ; H'8C01E080
           .DATA.L _titleResourceGroup_8c044254 ; H'8C01E084
-          .DATA.L _var_8c1bc7b4 ; H'8C01E088
+          .DATA.L _menuState_8c1bc7a8 + H'0C ; H'8C01E088
           .DATA.L _requestSysResgrp_8c018568 ; H'8C01E08C
           .DATA.L _requestCommonResources_8c01852c ; H'8C01E090
           .DATA.L _var_8c1ba344 ; H'8C01E094

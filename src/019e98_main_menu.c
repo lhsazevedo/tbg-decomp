@@ -54,7 +54,6 @@ extern void FUN_8c01bfec(Task* task, void* state);
 extern void push_fadein_8c022a9c();
 extern void push_fadeout_8c022b60();
 extern ResourceGroupInfo init_mainMenuResourceGroup_8c044264;
-extern int *init_8c044c08;
 extern ResourceGroupInfo init_8c044e90;
 extern SDMIDI var_midiHandles_8c0fcd28[7];
 extern NJS_TEXMEMLIST var_tex_8c157af8[TEX_NUM];
@@ -63,7 +62,6 @@ extern int var_8c1bb8c0;
 extern int var_demo_8c1bb8d0;
 extern int var_game_mode_8c1bb8fc;
 extern void* var_8c1bc454;
-extern int var_8c225fb8;
 extern void* var_resourceGroup_8c2263a8;
 extern Bool isFading_8c226568;
 
@@ -171,17 +169,20 @@ void MainMenuTask_8c019e98(Task *task) {
                     menuState_8c1bc7a8.field_0x40 = 0;
                     var_game_mode_8c1bb8fc = menuState_8c1bc7a8.selected_0x38;
                     var_8c1bb8c0 = 1;
-                    FUN_8c017e18(task);
+                    CourseMenuSwitchFromTask_8c017e18(task);
+                    break;
                 }
 
                 // Option
                 case 2: {
                     FUN_8c01b122();
+                    break;
                 }
 
                 // VM Game
                 case 3: {
                     FUN_8c01c880();
+                    break;
                 }
             }
 

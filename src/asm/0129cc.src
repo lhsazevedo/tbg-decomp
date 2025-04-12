@@ -28,7 +28,6 @@
           .IMPORT     _njDrawPolygon
           .IMPORT     _FUN_8c017ef2
           .IMPORT     _var_8c22640c
-          .IMPORT     _var_8c1bc7e0
           .IMPORT     _FUN_8c01f21c
           .IMPORT     _var_resetRequested_8c157a78
           .IMPORT     _var_8c157a7c
@@ -614,7 +613,7 @@ LP_GEN_43727:
           .DATA.L _njDrawPolygon
           .DATA.L _FUN_8c017ef2
           .DATA.L _var_8c22640c
-          .DATA.L _var_8c1bc7e0
+          .DATA.L _menuState_8c1bc7a8 + H'38
           .DATA.L _FUN_8c01f21c
           .DATA.L _var_resetRequested_8c157a78
           .DATA.L _var_8c157a7c

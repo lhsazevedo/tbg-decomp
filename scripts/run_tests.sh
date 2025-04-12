@@ -71,3 +71,4 @@ compile  src/019e98_main_menu.c
 assemble  src/asm/016d2c.src
 compile  src/incomplete/016d2c.c
 
+$sh4objtest suite -s tests.php -c /app/tests/016d2c

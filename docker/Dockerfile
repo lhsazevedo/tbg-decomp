@@ -42,7 +42,7 @@ COPY --from=gdibuilder /app/GDIbuilder/buildgdi/bin/Release/net6.0/linux-x64/pub
 RUN ln -s /opt/buildgdi/buildgdi /usr/local/bin/buildgdi
 
 USER user
-RUN composer global require lhsazevedo/sh4objtest:v0.1.14
+RUN composer global require lhsazevedo/sh4objtest:v0.1.16
 
 ENV PATH="${PATH}:/home/user/.composer/vendor/bin"
 ENV DC_SDK=/sdk

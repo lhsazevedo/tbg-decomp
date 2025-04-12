@@ -49,7 +49,7 @@ return new class extends TestCase {
 
         $this->singleCall('_TxtPrepareTextBoxLayout_8c01543a')
             ->with($box, $text)
-            ->shouldReturn(0)
+            ->singleShouldReturn(0)
             ->run();
     }
 
@@ -68,7 +68,7 @@ return new class extends TestCase {
 
         $this->singleCall('_TxtPrepareTextBoxLayout_8c01543a')
             ->with($box, $text)
-            ->shouldReturn(0)
+            ->singleShouldReturn(0)
             ->run();
     }
 
@@ -118,7 +118,7 @@ return new class extends TestCase {
 
         $this->singleCall('_TxtPrepareTextBoxLayout_8c01543a')
             ->with($box, $text)
-            ->shouldReturn(19)
+            ->singleShouldReturn(19)
             ->run();
     }
 
@@ -173,7 +173,7 @@ return new class extends TestCase {
 
         $this->singleCall('_TxtPrepareTextBoxLayout_8c01543a')
             ->with($box, $text)
-            ->shouldReturn(44)
+            ->singleShouldReturn(44)
             ->run();
     }
 
@@ -233,7 +233,7 @@ return new class extends TestCase {
 
         $this->singleCall('_TxtPrepareTextBoxLayout_8c01543a')
             ->with($box, $text)
-            ->shouldReturn(45)
+            ->singleShouldReturn(45)
             ->run();
     }
 
@@ -294,7 +294,7 @@ return new class extends TestCase {
 
         $this->singleCall('_TxtPrepareTextBoxLayout_8c01543a')
             ->with($box, $text)
-            ->shouldReturn(46)
+            ->singleShouldReturn(46)
             ->run();
     }
 
@@ -348,7 +348,7 @@ return new class extends TestCase {
 
         $this->singleCall('_TxtPrepareTextBoxLayout_8c01543a')
             ->with($box, $text)
-            ->shouldReturn(43)
+            ->singleShouldReturn(43)
             ->run();
     }
 
@@ -406,7 +406,7 @@ return new class extends TestCase {
 
         $this->singleCall('_TxtPrepareTextBoxLayout_8c01543a')
             ->with($box, $text)
-            ->shouldReturn(72)
+            ->singleShouldReturn(72)
             ->run();
     }
 

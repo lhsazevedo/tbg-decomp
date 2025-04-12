@@ -350,7 +350,6 @@ extern void* var_8c227e20;
 extern void* var_8c227e24;
 extern void* var_8c2288f8;
 extern void* var_8c1bc438;
-extern void* var_8c1bc7b4;
 extern void* var_resourceGroup_8c2263a8;
 extern void* var_8c1ba2e0;
 extern void* var_8c1ba348;
@@ -386,7 +385,7 @@ extern Uint32 var_vibport_8c1ba354;
 extern int init_8c03bd80;
 extern int init_8c03bd84;
 
-extern setUknPvmBool_8c014330;
+extern setUknPvmBool_8c014330();
 extern int var_gdErr_8c18ad14;
 
 extern NJS_FOG_TABLE var_fogTable_8c18aaf8;

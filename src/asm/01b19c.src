@@ -82,7 +82,7 @@
           .IMPORT     _syFree
           .IMPORT     _var_8c22606c
           .IMPORT     _FUN_8c0187d0
-          .IMPORT     _FUN_8c017e18
+          .IMPORT     _CourseMenuSwitchFromTask_8c017e18
           .IMPORT     _setTaskAction_8c014b3e
           .IMPORT     _push_fadein_8c022a9c
           .IMPORT     _AsqInitQueues_11f36
@@ -1137,7 +1137,7 @@ LP_GEN_14610:
           .DATA.L _push_fadeout_8c022b60 ; H'8C01B9EC
           .DATA.L _var_8c22606c ; H'8C01B9F0
           .DATA.L _FUN_8c0187d0 ; H'8C01B9F4
-          .DATA.L _FUN_8c017e18 ; H'8C01B9F8
+          .DATA.L _CourseMenuSwitchFromTask_8c017e18 ; H'8C01B9F8
           .DATA.L _FUN_8c016182 ; H'8C01B9FC
           .DATA.L _pushTitle_8c015fd6 ; H'8C01BA00
 LAB_8c01ba04:

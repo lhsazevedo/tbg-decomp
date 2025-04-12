@@ -1,11 +1,5 @@
 ; 8c0fcd20
           .EXPORT     _menuState_8c1bc7a8
-          .EXPORT     _var_8c1bc7b4
-          .EXPORT     _var_8c1bc7c0
-          .EXPORT     _var_8c1bc7cc
-          .EXPORT     _var_8c1bc7d4
-          .EXPORT     _var_8c1bc7e0
-          .EXPORT     _var_8c1bc808
           .EXPORT     _var_8c1bc824
           .EXPORT     _var_8c1bc828
           .EXPORT     _var_8c225fa8
@@ -13,7 +7,7 @@
           .EXPORT     _var_8c225fb0
           .EXPORT     _var_8c225fb4
           .EXPORT     _var_8c225fb8
-          .EXPORT     _var_8c225fbc
+          .EXPORT     _var_dialog_8c225fbc
           .EXPORT     _var_8c225fd4
           .EXPORT     _var_8c225fe0
           .EXPORT     _var_8c225fe4
@@ -247,19 +241,7 @@
           .EXPORT     _var_8c235c84             ; 02fb50
           .SECTION    B,DATA,ALIGN=4
 _menuState_8c1bc7a8:
-          .RES.B      12
-_var_8c1bc7b4:
-          .RES.B      12
-_var_8c1bc7c0:
-          .RES.B      12
-_var_8c1bc7cc:
-          .RES.B      8
-_var_8c1bc7d4:
-          .RES.B      12
-_var_8c1bc7e0:
-          .RES.B      40
-_var_8c1bc808:
-          .RES.B      28
+          .RES.L      31
 _var_8c1bc824:
           .RES.B      4
 _var_8c1bc828:
@@ -274,7 +256,7 @@ _var_8c225fb4:
           .RES.B      4
 _var_8c225fb8:
           .RES.B      4
-_var_8c225fbc:
+_var_dialog_8c225fbc:
           .RES.B      24
 _var_8c225fd4:
           .RES.B      12

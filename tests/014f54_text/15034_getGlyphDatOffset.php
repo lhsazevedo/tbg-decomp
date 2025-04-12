@@ -486,7 +486,7 @@ return new class extends TestCase {
 
     $this->singleCall('_getGlyphIndex_8c015034')
         ->with($code)
-        ->shouldReturn($offset)
+        ->singleShouldReturn($offset)
         ->run();
     }
 

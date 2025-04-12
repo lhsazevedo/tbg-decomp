@@ -997,7 +997,7 @@ return new class extends TestCase {
         
         $this->shouldCall('_execTasks_8c014b42')->with($this->addressOf('_var_tasks_8c1ba3c8'));
 
-        $this->singleCall('_njUserMain_8c01392e')->shouldReturn(0)->run();
+        $this->singleCall('_njUserMain_8c01392e')->singleShouldReturn(0)->run();
     }
 
     public function test_njUserMain_8c01392e_block1_ok()
@@ -1009,7 +1009,7 @@ return new class extends TestCase {
 
         $this->shouldCall('_execTasks_8c014b42')->with($this->addressOf('_var_tasks_8c1ba3c8'));
 
-        $this->singleCall('_njUserMain_8c01392e')->shouldReturn(0)->run();
+        $this->singleCall('_njUserMain_8c01392e')->singleShouldReturn(0)->run();
     }
 
     public function test_njUserMain_8c01392e_block1_fail_noVib()
@@ -1022,7 +1022,7 @@ return new class extends TestCase {
         $this->initUint32($this->addressOf('_var_vibport_8c1ba354'), -1 & 0xffffffff);
 
         // FIXME: -1 & 0xffffffff
-        $this->singleCall('_njUserMain_8c01392e')->shouldReturn(-1 & 0xffffffff)->run();
+        $this->singleCall('_njUserMain_8c01392e')->singleShouldReturn(-1 & 0xffffffff)->run();
     }
 
     public function test_njUserMain_8c01392e_block1_fail_vib()
@@ -1040,7 +1040,7 @@ return new class extends TestCase {
         $this->shouldCall('_pdVibMxStop')->with(0xbebacafe);
 
         // FIXME: -1 & 0xffffffff
-        $this->singleCall('_njUserMain_8c01392e')->shouldReturn(-1 & 0xffffffff)->run();
+        $this->singleCall('_njUserMain_8c01392e')->singleShouldReturn(-1 & 0xffffffff)->run();
     }
 
     // public function test_njUserMain_8c01392e_0_0_0_idle_open_vib()
@@ -1067,7 +1067,7 @@ return new class extends TestCase {
     //     $this->shouldCall('_pdVibMxStop')->with(0xbebacafe);
 
     //     // FIXME: -1 & 0xffffffff
-    //     $this->singleCall('_njUserMain_8c01392e')->shouldReturn(-1 & 0xffffffff)->run();
+    //     $this->singleCall('_njUserMain_8c01392e')->singleShouldReturn(-1 & 0xffffffff)->run();
     // }
 
     // public function test_njUserMain_8c01392e_0_0_0_idle_open()
@@ -1093,7 +1093,7 @@ return new class extends TestCase {
     //     $this->shouldRead($var_vibport_8c1ba354Ptr, -1);
 
     //     // FIXME: -1 & 0xffffffff
-    //     $this->singleCall('_njUserMain_8c01392e')->shouldReturn(-1 & 0xffffffff)->run();
+    //     $this->singleCall('_njUserMain_8c01392e')->singleShouldReturn(-1 & 0xffffffff)->run();
     // }
 
     private function resolveNjUserMain()

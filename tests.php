@@ -162,6 +162,9 @@ return [
                 "tests/016d2c/8c016e6c_FUN.php",
                 "tests/016d2c/8c016ed2_FUN.php",
                 "tests/016d2c/8c016ee6_FUN.php",
+                "tests/016d2c/8c016f98_FUN.php",
+                "tests/016d2c/8c0170c6_FUN_pushDialogTask.php",
+                "tests/016d2c/8c017e18_CourseMenuSwitchFromTask.php",
             ],
             "objects" => [
                 "build/output/016d2c_src.obj",

@@ -93,7 +93,6 @@
           .IMPORT     _FUN_8c01614c
           .IMPORT     _push_fadein_8c022a9c
           .IMPORT     _var_8c2285d0
-          .IMPORT     _var_8c1bc7e0
           .IMPORT     _FUN_8c01e0b4
           .EXPORT     _FUN_8c02b464
           .EXPORT     _FUN_8c02b578
@@ -2681,5 +2680,5 @@ LP_GEN_25024:
           .DATA.L _push_fadein_8c022a9c ; H'8C02C874
           .DATA.L _var_8c2285d0 ; H'8C02C878
           .DATA.L _var_8c22640c ; H'8C02C87C
-          .DATA.L _var_8c1bc7e0 ; H'8C02C880
+          .DATA.L _menuState_8c1bc7a8 + H'38 ; H'8C02C880
           .END

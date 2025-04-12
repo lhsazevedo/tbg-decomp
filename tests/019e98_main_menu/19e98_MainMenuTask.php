@@ -1010,14 +1010,14 @@ return new class extends TestCase {
         $this->initUint32($this->addressOf('_init_8c044c08'), $init_8c044c08);
         $this->initUint32($init_8c044c08 + 2 * 4, 0xcafe0002);
         // Used as index for init_8c044c08
-        $this->initUint32($this->addressOf('_var_8c225fbc'), 2);
+        $this->initUint32($this->addressOf('_var_dialog_8c225fbc'), 2);
 
         $this->shouldWriteLong($this->addressOf('_menuState_8c1bc7a8') + 0x3c, 2);
         $this->shouldWriteLong($this->addressOf('_menuState_8c1bc7a8') + 0x40, 0);
         $this->shouldWriteLongTo('_var_game_mode_8c1bb8fc', 1);
         $this->shouldWriteLongTo('_var_8c1bb8c0', 1);
 
-        $this->shouldCall('_FUN_8c017e18');
+        $this->shouldCall('_CourseMenuSwitchFromTask_8c017e18');
 
         $this->singleCall('_MainMenuTask_8c019e98')->with(0xbebacafe)->run();
     }
@@ -1038,14 +1038,14 @@ return new class extends TestCase {
         $this->initUint32($this->addressOf('_init_8c044c08'), $init_8c044c08);
         $this->initUint32($init_8c044c08 + 2 * 4, 0xcafe0002);
         // Used as index for init_8c044c08
-        $this->initUint32($this->addressOf('_var_8c225fbc'), 2);
+        $this->initUint32($this->addressOf('_var_dialog_8c225fbc'), 2);
 
         $this->shouldWriteLong($this->addressOf('_menuState_8c1bc7a8') + 0x3c, 2);
         $this->shouldWriteLong($this->addressOf('_menuState_8c1bc7a8') + 0x40, 0);
         $this->shouldWriteLongTo('_var_game_mode_8c1bb8fc', 0);
         $this->shouldWriteLongTo('_var_8c1bb8c0', 1);
 
-        $this->shouldCall('_FUN_8c017e18')->with(0xbebacafe);
+        $this->shouldCall('_CourseMenuSwitchFromTask_8c017e18')->with(0xbebacafe);
 
         $this->singleCall('_MainMenuTask_8c019e98')->with(0xbebacafe)->run();
     }
@@ -1107,7 +1107,7 @@ return new class extends TestCase {
         // Functions
         $this->setSize('_drawSprite_8c014f54', 0x4);
         $this->setSize('_sdMidiPlay', 0x4);
-        $this->setSize('_FUN_8c017e18', 0x4);
+        $this->setSize('_CourseMenuSwitchFromTask_8c017e18', 0x4);
         $this->setSize('_FUN_8c017420', 0x4);
         $this->setSize('_FUN_8c017d54', 0x4);
         $this->setSize('_FUN_8c01b122', 0x4);

@@ -11,7 +11,7 @@ return new class extends TestCase
         $this->initUint32($this->addressOf('_var_pvmQueueIsIdle_8c157ac8'), 42);
 
         $this->singleCall('_pvmQueueIsIdle_8c011e22')
-            ->shouldReturn(42)
+            ->singleShouldReturn(42)
             ->run();
     }
 };
