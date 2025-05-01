@@ -1,7 +1,7 @@
 ; 8c016d2c
           .IMPORT     _menuState_8c1bc7a8
           .IMPORT     __quick_evn_mvn
-          .IMPORT     _init_8c04442c
+          .IMPORT     _init_runStruct_8c04442c
           .IMPORT     _var_midiHandles_8c0fcd28
           .IMPORT     _sdMidiPlay
           .IMPORT     _const_8c03628c
@@ -99,7 +99,7 @@
           .EXPORT     _FUN_8c016e6c
           .EXPORT     _FUN_8c016ed2
           .EXPORT     _FUN_dialog_8c016f98
-          .EXPORT     _FUN_8c017108
+          .EXPORT     _FUN_swapDialogMessageBox_8c017108
           .EXPORT     _FUN_8c017126
           .EXPORT     _FUN_8c017420
           .EXPORT     _drawCoursesButtons_8c017590
@@ -266,7 +266,7 @@ LP_GEN_57345:
           .DATA.L _menuState_8c1bc7a8 + 44 ; H'8C016E48
           .DATA.L _menuState_8c1bc7a8 + 36 ; H'8C016E4C
           .DATA.L __quick_evn_mvn ; H'8C016E50
-          .DATA.L _init_8c04442c ; H'8C016E54
+          .DATA.L _init_runStruct_8c04442c ; H'8C016E54
           .DATA.L H'40C00000 ; H'8C016E58
           .DATA.L _var_midiHandles_8c0fcd28 ; H'8C016E5C
           .DATA.L _sdMidiPlay ; H'8C016E60
@@ -611,7 +611,7 @@ _FUN_pushDialogTask_8c0170c6:
           LDS.L       @R15+,PR
           RTS
           NOP
-_FUN_8c017108:
+_FUN_swapDialogMessageBox_8c017108:
           STS.L       PR,@-R15
           ADD         #-H'4,R15
           MOV.L       LP_GEN_21301+46,R0
@@ -692,7 +692,7 @@ LP_GEN_21301:
           .DATA.L _init_8c044c08 ; H'8C0171B4
           .DATA.L _var_8c225fb4 ; H'8C0171B8
           .DATA.L _swapMessageBoxFor_8c02aefc ; H'8C0171BC
-          .DATA.L _init_8c04442c ; H'8C0171C0
+          .DATA.L _init_runStruct_8c04442c ; H'8C0171C0
           .DATA.L H'10+_var_peripheral_8c1ba35c ; H'8C0171C4
           .DATA.L _FUN_8c010bae ; H'8C0171C8
           .DATA.L _var_midiHandles_8c0fcd28 ; H'8C0171CC
@@ -705,7 +705,7 @@ LAB_8c0171d4:
           MOV         #H'2,R6
           JSR         @R1
           MOV.L       @R4,R4
-          BSR         _FUN_8c017108
+          BSR         _FUN_swapDialogMessageBox_8c017108
           MOV         #H'f,R4
 LAB_8c0171e6:
           MOV.L       LP_GEN_93380+10,R2
@@ -1352,7 +1352,7 @@ LP_GEN_35911:
           .DATA.L _drawSprite_8c014f54 ; H'8C017688
           .DATA.L _menuState_8c1bc7a8 ; H'8C01768C
           .DATA.L H'C0400000 ; H'8C017690
-          .DATA.L _init_8c04442c ; H'8C017694
+          .DATA.L _init_runStruct_8c04442c ; H'8C017694
           .DATA.L H'C0800000 ; H'8C017698
           .DATA.L H'43700000 ; H'8C01769C
           .DATA.L H'42BA0000 ; H'8C0176A0
@@ -1847,7 +1847,7 @@ LAB_8c017a38:
 LP_GEN_86103:
           .RES.W 1 ; H'8C017A46
           .DATA.L _var_8c225fb4 ; H'8C017A48
-          .DATA.L _init_8c04442c ; H'8C017A4C
+          .DATA.L _init_runStruct_8c04442c ; H'8C017A4C
           .DATA.L _var_8c1ba210 ; H'8C017A50
           .DATA.L _var_midiHandles_8c0fcd28 + 20 ; H'8C017A54
           .DATA.L _sdMidiPlay ; H'8C017A58
@@ -2209,7 +2209,7 @@ LP_GEN_85439:
           .DATA.W H'008C ; H'8C017D28
           .RES.W 1 ; H'8C017D2A
           .DATA.L _var_8c225fb0 ; H'8C017D2C
-          .DATA.L _init_8c04442c ; H'8C017D30
+          .DATA.L _init_runStruct_8c04442c ; H'8C017D30
           .DATA.L _MainMenuSwitchFromTask_8c01a09a ; H'8C017D34
           .DATA.L H'C0A00000 ; H'8C017D38
           .DATA.L _drawSprite_8c014f54 ; H'8C017D3C
@@ -2345,7 +2345,7 @@ LP_GEN_59651:
           .DATA.W H'008C ; H'8C017E3A
           .DATA.L _menuState_8c1bc7a8 ; H'8C017E3C
           .DATA.L __quick_evn_mvn ; H'8C017E40
-          .DATA.L _init_8c04442c ; H'8C017E44
+          .DATA.L _init_runStruct_8c04442c ; H'8C017E44
           .DATA.L _var_8c1ba1cc ; H'8C017E48
           .DATA.L _var_game_mode_8c1bb8fc ; H'8C017E4C
           .DATA.L _StoryMenuTask_8c017718 ; H'8C017E50

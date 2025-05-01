@@ -23,7 +23,7 @@ typedef struct {
 extern void snd_8c010cd6(int p1, int p2);
 extern void setUknPvmBool_8c014330();
 extern int requestSysResgrp_8c018568(ResourceGroup* dds, ResourceGroupInfo* rg);
-extern RunStruct init_8c04442c[15];
+extern RunStruct init_runStruct_8c04442c[15];
 extern void* const_8c03628c;
 extern SDMIDI var_midiHandles_8c0fcd28[7];
 extern char var_8c1ba1cc[];
@@ -93,8 +93,8 @@ int FUN_8c016dc6()
     float x;
 
     selected = menuState_8c1bc7a8.field_0x3c + menuState_8c1bc7a8.field_0x40 * 5;
-    x = init_8c04442c[selected].x_0x08;
-    y = init_8c04442c[selected].y_0x0c;
+    x = init_runStruct_8c04442c[selected].x_0x08;
+    y = init_runStruct_8c04442c[selected].y_0x0c;
     if (
         (menuState_8c1bc7a8.pos.cursor.cursor_0x20.x == x)
         && (menuState_8c1bc7a8.pos.cursor.cursor_0x20.y == y)
@@ -281,6 +281,79 @@ void FUN_pushDialogTask_8c0170c6(int dialog_index, int *p2)
     state->state_0x00 = 0;
     state->dialog_0x04 = init_8c044c08[dialog_index];
     var_8c225fb4 = 1;
+}
+
+void FUN_swapDialogMessageBox_8c017108(int dialog_index)
+{
+    var_8c225fb8 = swapMessageBoxFor_8c02aefc(init_8c044c08[dialog_index]->text_0x00);
+}
+
+void FUN_8c017126()
+{
+    if (var_peripheral_8c1ba35c[0].press & 1 << PDD_DGT_TA) {
+        if (
+            init_runStruct_8c04442c[
+                menuState_8c1bc7a8.field_0x3c
+                + menuState_8c1bc7a8.field_0x40 * 5
+            ]
+            .field_0x04 == 0
+        ) {
+            sdMidiPlay(var_midiHandles_8c0fcd28[0], 1, 2, 0);
+            FUN_swapDialogMessageBox_8c017108(15);
+        } else {
+            FUN_8c010bae(0);
+            FUN_8c010bae(1);
+            sdMidiPlay(var_midiHandles_8c0fcd28[0], 1, 0, 0);
+            menuState_8c1bc7a8.state_0x18 = 5;
+            menuState_8c1bc7a8.logo_timer_0x68 = 0;
+        }
+    }
+
+    if (var_peripheral_8c1ba35c[0].press & PDD_DGT_KU) {
+        do {
+            if (--menuState_8c1bc7a8.field_0x40 < 0) {
+                menuState_8c1bc7a8.field_0x40 = 2;
+            }
+        } while (
+            init_runStruct_8c04442c[
+                menuState_8c1bc7a8.field_0x40 * 5 + menuState_8c1bc7a8.field_0x3c
+            ].field_0x00 == 0
+        );
+    } else if (var_peripheral_8c1ba35c[0].press & PDD_DGT_KD) {
+        do {
+            if (++menuState_8c1bc7a8.field_0x40 > 2) {
+                menuState_8c1bc7a8.field_0x40 = 0;
+            }
+        } while (
+            init_runStruct_8c04442c[
+                menuState_8c1bc7a8.field_0x40 * 5 + menuState_8c1bc7a8.field_0x3c
+            ].field_0x00 == 0
+        );
+    } else if (var_peripheral_8c1ba35c[0].press & PDD_DGT_KL) {
+        do {
+            if (--menuState_8c1bc7a8.field_0x3c < 0) {
+                menuState_8c1bc7a8.field_0x3c = 4;
+            }
+        } while (
+            init_runStruct_8c04442c[
+                menuState_8c1bc7a8.field_0x40 * 5 + menuState_8c1bc7a8.field_0x3c
+            ].field_0x00 == 0
+        );
+    } else if (var_peripheral_8c1ba35c[0].press & PDD_DGT_KR) {
+        do {
+            if (++menuState_8c1bc7a8.field_0x3c > 4) {
+                menuState_8c1bc7a8.field_0x3c = 0;
+            }
+        } while (
+            init_runStruct_8c04442c[
+                menuState_8c1bc7a8.field_0x40 * 5 + menuState_8c1bc7a8.field_0x3c
+            ].field_0x00 == 0
+        );
+    }
+
+    if (FUN_8c016dc6()) {
+        menuState_8c1bc7a8.state_0x18 = 4;
+    }
 }
 
 void FUN_8c017d54();

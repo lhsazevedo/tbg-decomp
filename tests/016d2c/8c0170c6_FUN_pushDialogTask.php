@@ -3,7 +3,6 @@
 declare(strict_types=1);
 
 use Lhsazevedo\Sh4ObjTest\TestCase;
-use Lhsazevedo\Sh4ObjTest\Simulator\Arguments\WildcardArgument;
 use Lhsazevedo\Sh4ObjTest\Simulator\Types\U32;
 
 if (!function_exists('fdec')) {
@@ -27,6 +26,7 @@ return new class extends TestCase {
         $this->initUint32($dialogs2 + 0x00, $text2);
         $this->initUint32($dialogs2 + 0x04, 42);
 
+        $this->setSize('_init_8c044c08', 0x8);
         $this->initUint32($this->addressOf('_init_8c044c08') + 0x00, $dialogs1);
         $this->initUint32($this->addressOf('_init_8c044c08') + 0x04, $dialogs2);
 
