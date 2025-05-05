@@ -1,27 +1,31 @@
-FROM bitnami/dotnet-sdk:6 AS gdibuilder
+FROM bitnami/dotnet-sdk:8 AS gdibuilder-builder
 
-COPY gdibuilder.patch /app/gdibuilder.patch
+# COPY gdibuilder.patch /app/gdibuilder.patch
 
 RUN apt-get update && apt-get install -y \
     clang \
     zlib1g-dev \
     libkrb5-dev \
     libtinfo5 \
+    wget \
     && rm -rf /var/lib/apt/lists/*
 
 RUN cd /app \
-    && git clone https://github.com/Sappharad/GDIbuilder.git \
-    && cd GDIbuilder \
-    && git checkout 43d0a81a55bbce67ac7f64d7e8ef101d11f26c9b \
-    && git apply /app/gdibuilder.patch \
-    && cd buildgdi \
+    && wget -O gdibuilder.tar.gz \
+        https://github.com/Sappharad/GDIbuilder/archive/refs/tags/v2.1.1.tar.gz \
+    && tar -xzvf gdibuilder.tar.gz \
+    && cd GDIbuilder-2.1.1/buildgdi \
+    && sed -i '/<add key="dotnet-core".*\/>/d' nuget.config \
     && dotnet publish --configuration Release -r linux-x64 --self-contained
 
-
-FROM php:8.3-cli
+FROM php:8.4-cli
 
 RUN addgroup --gid 1000 user \
-    && useradd --create-home --home-dir /home/user --shell /bin/bash --uid 1000 --gid user user
+    && useradd --create-home \
+        --home-dir /home/user \
+        --shell /bin/bash \
+        --uid 1000 \
+        --gid user user
 
 RUN dpkg --add-architecture i386 \
     && apt-get update && apt-get install -y --no-install-recommends \
@@ -38,7 +42,9 @@ RUN chmod uga+x /usr/local/bin/install-php-extensions && sync \
     @composer \
     && rm /usr/local/bin/install-php-extensions
 
-COPY --from=gdibuilder /app/GDIbuilder/buildgdi/bin/Release/net6.0/linux-x64/publish /opt/buildgdi
+COPY --from=gdibuilder-builder \
+    /app/GDIbuilder-2.1.1/buildgdi/bin/Release/net8.0/linux-x64/publish \
+    /opt/buildgdi
 RUN ln -s /opt/buildgdi/buildgdi /usr/local/bin/buildgdi
 
 USER user

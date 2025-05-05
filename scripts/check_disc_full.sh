@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# This script was used to before rebuild mode was added to GDIBuilder.
+
 if [ -z "$TBG_DISC" ]; then
     echo "============="
     echo " Disc: ERROR"
