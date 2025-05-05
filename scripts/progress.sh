@@ -31,7 +31,7 @@ readme_file="README.md"
 svg_file="progress.svg"
 svg_bar_width=$(echo "scale=2; 300 * $progress_percentage / 100" | bc)
 
-sed -i -E "s/(<rect rx=\"4\" x=\"0\" width=\")[0-9.]+/\1$svg_bar_width/" "$svg_file"
+sed -i -E "s|(<rect rx=\"4\" x=\"0\" width=\")[0-9.]+(\" height=\"20\" fill=\"teal\")|\1$svg_bar_width\2|" "$svg_file"
 sed -i -E "s/(<text x=\"150.0\" y=\"15\"[^>]*>)[0-9.]+/\1$progress_percentage/" "$svg_file"
 sed -i -E "s/(<text x=\"150.0\" y=\"14\">)[0-9.]+/\1$progress_percentage/" "$svg_file"
 
