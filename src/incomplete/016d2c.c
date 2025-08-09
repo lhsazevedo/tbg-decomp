@@ -86,7 +86,7 @@ int interpolateCursor_8c016d2c()
     return 1;
 }
 
-int FUN_8c016dc6()
+int cursorOffTarget_8c016dc6()
 {
     int selected;
     float y;
@@ -288,9 +288,9 @@ void FUN_swapDialogMessageBox_8c017108(int dialog_index)
     var_8c225fb8 = swapMessageBoxFor_8c02aefc(init_8c044c08[dialog_index]->text_0x00);
 }
 
-void FUN_8c017126()
+void FUN_handleCourseMenuCursor_8c017126()
 {
-    if (var_peripheral_8c1ba35c[0].press & 1 << PDD_DGT_TA) {
+    if (var_peripheral_8c1ba35c[0].press & PDD_DGT_TA) {
         if (
             init_runStruct_8c04442c[
                 menuState_8c1bc7a8.field_0x3c
@@ -319,6 +319,10 @@ void FUN_8c017126()
                 menuState_8c1bc7a8.field_0x40 * 5 + menuState_8c1bc7a8.field_0x3c
             ].field_0x00 == 0
         );
+
+        if (cursorOffTarget_8c016dc6()) {
+            menuState_8c1bc7a8.state_0x18 = 4;
+        }
     } else if (var_peripheral_8c1ba35c[0].press & PDD_DGT_KD) {
         do {
             if (++menuState_8c1bc7a8.field_0x40 > 2) {
@@ -329,6 +333,10 @@ void FUN_8c017126()
                 menuState_8c1bc7a8.field_0x40 * 5 + menuState_8c1bc7a8.field_0x3c
             ].field_0x00 == 0
         );
+
+        if (cursorOffTarget_8c016dc6()) {
+            menuState_8c1bc7a8.state_0x18 = 4;
+        }
     } else if (var_peripheral_8c1ba35c[0].press & PDD_DGT_KL) {
         do {
             if (--menuState_8c1bc7a8.field_0x3c < 0) {
@@ -339,6 +347,10 @@ void FUN_8c017126()
                 menuState_8c1bc7a8.field_0x40 * 5 + menuState_8c1bc7a8.field_0x3c
             ].field_0x00 == 0
         );
+
+        if (cursorOffTarget_8c016dc6()) {
+            menuState_8c1bc7a8.state_0x18 = 4;
+        }
     } else if (var_peripheral_8c1ba35c[0].press & PDD_DGT_KR) {
         do {
             if (++menuState_8c1bc7a8.field_0x3c > 4) {
@@ -349,10 +361,10 @@ void FUN_8c017126()
                 menuState_8c1bc7a8.field_0x40 * 5 + menuState_8c1bc7a8.field_0x3c
             ].field_0x00 == 0
         );
-    }
 
-    if (FUN_8c016dc6()) {
-        menuState_8c1bc7a8.state_0x18 = 4;
+        if (cursorOffTarget_8c016dc6()) {
+            menuState_8c1bc7a8.state_0x18 = 4;
+        }
     }
 }
 

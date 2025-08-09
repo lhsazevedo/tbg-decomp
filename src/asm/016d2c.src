@@ -95,12 +95,12 @@
           .EXPORT     _freeResourceGroup_8c0185c4
 
           .AIFDEF UNIT_TESTING
-          .EXPORT     _FUN_8c016dc6
+          .EXPORT     _cursorOffTarget_8c016dc6
           .EXPORT     _FUN_8c016e6c
           .EXPORT     _FUN_8c016ed2
           .EXPORT     _FUN_dialog_8c016f98
           .EXPORT     _FUN_swapDialogMessageBox_8c017108
-          .EXPORT     _FUN_8c017126
+          .EXPORT     _FUN_handleCourseMenuCursor_8c017126
           .EXPORT     _FUN_8c017420
           .EXPORT     _drawCoursesButtons_8c017590
           .EXPORT     _StoryMenuTask_8c017718
@@ -196,7 +196,7 @@ LAB_8c016dbe:
           LDS.L       @R15+,PR
           RTS
           NOP
-_FUN_8c016dc6:
+_cursorOffTarget_8c016dc6:
           MOV.L       LP_GEN_57345+2,R4
           MOV         #H'40,R0
           MOV.W       LP_GEN_57345,R3
@@ -627,7 +627,7 @@ _FUN_swapDialogMessageBox_8c017108:
           LDS.L       @R15+,PR
           RTS
           NOP
-_FUN_8c017126:
+_FUN_handleCourseMenuCursor_8c017126:
           MOV.L       R14,@-R15
           MOV.L       R13,@-R15
           MOV.L       R12,@-R15
@@ -765,7 +765,7 @@ LAB_8c017236:
           TST         R1,R1
           BT          LAB_8c017226
 LAB_8c01724c:
-          BSR         _FUN_8c016dc6
+          BSR         _cursorOffTarget_8c016dc6
           NOP
           TST         R0,R0
           BT          LAB_8c0172be
@@ -824,7 +824,7 @@ LAB_8c01729e:
           TST         R1,R1
           BT          LAB_8c01728e
 LAB_8c0172b4:
-          BSR         _FUN_8c016dc6
+          BSR         _cursorOffTarget_8c016dc6
           NOP
           TST         R0,R0
           BT          LAB_8c0172be
@@ -1612,7 +1612,7 @@ LAB_8c017886:
           BRA         LAB_8c01798a
           NOP
 LAB_8c017892:
-          BSR         _FUN_8c017126
+          BSR         _FUN_handleCourseMenuCursor_8c017126
           NOP
           BRA         LAB_8c01798a
           NOP
@@ -2009,7 +2009,7 @@ LAB_8c017b94:
           BRA         LAB_8c017cb8
           NOP
 LAB_8c017ba2:
-          BSR         _FUN_8c017126
+          BSR         _FUN_handleCourseMenuCursor_8c017126
           NOP
           BRA         LAB_8c017cb8
           NOP
@@ -2229,7 +2229,7 @@ _FUN_8c017d54:
           MOV.L       LP_GEN_59651+2,R14
           MOV         #H'48,R0
           MOV         #H'1,R11
-          BSR         _FUN_8c016dc6
+          BSR         _cursorOffTarget_8c016dc6
           MOV.L       R11,@(R0,R14)
           MOV         R14,R2
           MOV.L       LP_GEN_59651+6,R3
