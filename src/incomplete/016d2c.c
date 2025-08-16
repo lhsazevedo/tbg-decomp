@@ -390,53 +390,54 @@ void FUN_checkCourses_8c0172dc()
     int i = 0;
     int j = 0;
     for (; i < 9; i++) {
-        if (!var_8c1ba1cc.field_0x44[i].field_0x00) {
-            switch (i) {
-                case 0:
+        if (var_8c1ba1cc.field_0x44[i].field_0x00)
+            continue;
+
+        switch (i) {
+            case 0:
+                continue;
+
+            case 1:
+                if (var_8c1ba1cc.field_0x00 < 8 || var_score_8c1ba25c < 4000)
                     continue;
+                break;
 
-                case 1:
-                    if (var_8c1ba1cc.field_0x00 < 8 || var_score_8c1ba25c < 4000)
-                        continue;
-                    break;
-
-                case 2:
-                    if (var_8c1ba1cc.field_0x00 < 9 || var_score_8c1ba25c < 5500)
-                        continue;
-                    break;
-
-                case 3:
-                    if (var_8c1ba1cc.field_0x00 < 5 || var_score_8c1ba25c < 2000)
-                        continue;
-                    break;
-
-                case 4:
-                    if (var_8c1ba1cc.field_0x00 < 11 || var_score_8c1ba25c < 8000)
-                        continue;
-                    break;
-
-                case 5:
-                    if (var_8c1ba1cc.field_0x00 < 13 || var_score_8c1ba25c < 12000)
-                        continue;
-                    break;
-
-                case 6:
+            case 2:
+                if (var_8c1ba1cc.field_0x00 < 9 || var_score_8c1ba25c < 5500)
                     continue;
+                break;
 
-                case 7:
-                    if (var_8c1ba1cc.field_0x00 < 3 || var_score_8c1ba25c < 500)
-                        continue;
-                    break;
+            case 3:
+                if (var_8c1ba1cc.field_0x00 < 5 || var_score_8c1ba25c < 2000)
+                    continue;
+                break;
 
-                case 8:
-                    if (var_8c1ba1cc.field_0x00 < 6 || var_score_8c1ba25c < 3000)
-                        continue;
-                    break;
-            }
+            case 4:
+                if (var_8c1ba1cc.field_0x00 < 11 || var_score_8c1ba25c < 8000)
+                    continue;
+                break;
 
-            var_8c225fd4[j] = i;
-            j++;
+            case 5:
+                if (var_8c1ba1cc.field_0x00 < 13 || var_score_8c1ba25c < 12000)
+                    continue;
+                break;
+
+            case 6:
+                continue;
+
+            case 7:
+                if (var_8c1ba1cc.field_0x00 < 3 || var_score_8c1ba25c < 500)
+                    continue;
+                break;
+
+            case 8:
+                if (var_8c1ba1cc.field_0x00 < 6 || var_score_8c1ba25c < 3000)
+                    continue;
+                break;
         }
+
+        var_8c225fd4[j] = i;
+        j++;
     }
 
     var_8c225fd4[j] = -1;
