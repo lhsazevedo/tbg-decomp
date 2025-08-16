@@ -23,7 +23,8 @@ typedef struct {
 
 typedef struct {
     char field_0x00;
-    char field_0x01[7];
+    char field_0x01;
+    char field_0x02[6];
 } Struct_1cc_Nested;
 
 typedef struct {
@@ -441,6 +442,16 @@ void FUN_checkCourses_8c0172dc()
     }
 
     var_8c225fd4[j] = -1;
+}
+
+void FUN_8c0173e6(void)
+{
+  int i = 0;
+  for (; var_8c225fd4[i] != -1; i++) {
+    int j = var_8c225fd4[i];
+    var_8c1ba1cc.field_0x44[j].field_0x00 = 1;
+    var_8c1ba1cc.field_0x44[j].field_0x01 = 1;
+  }
 }
 
 void FUN_8c017d54();
