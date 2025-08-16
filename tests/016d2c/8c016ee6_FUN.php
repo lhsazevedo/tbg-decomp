@@ -18,7 +18,7 @@ return new class extends TestCase {
         $this->resolveSymbols();
 
         $this->initUint32($this->addressOf('_var_8c1ba1cc'), 9);
-        $this->initUint32($this->addressOf('_var_8c1ba25c'), 1337);
+        $this->initUint32($this->addressOf('_var_score_8c1ba25c'), 1337);
         $this->initUint32($this->addressOf('_var_8c1ba1cc') + 0x90, 0xcafe0001);
 
         $this->call('_FUN_8c016ee6');
@@ -42,7 +42,7 @@ return new class extends TestCase {
         $this->resolveSymbols();
 
         $this->initUint32($this->addressOf('_var_8c1ba1cc'), 10);
-        $this->initUint32($this->addressOf('_var_8c1ba25c'), 1337);
+        $this->initUint32($this->addressOf('_var_score_8c1ba25c'), 1337);
         $this->initUint32($this->addressOf('_var_8c1ba1cc') + 0x90, 0xcafe0001);
 
         $this->call('_FUN_8c016ee6');
@@ -66,7 +66,7 @@ return new class extends TestCase {
         $this->resolveSymbols();
 
         $this->initUint32($this->addressOf('_var_8c1ba1cc'), 15);
-        $this->initUint32($this->addressOf('_var_8c1ba25c'), 1337);
+        $this->initUint32($this->addressOf('_var_score_8c1ba25c'), 1337);
         $this->initUint32($this->addressOf('_var_8c1ba1cc') + 0x90, 0xcafe0001);
 
         $this->call('_FUN_8c016ee6');
@@ -89,7 +89,7 @@ return new class extends TestCase {
         $this->resolveSymbols();
 
         $this->initUint32($this->addressOf('_var_8c1ba1cc'), 23);
-        $this->initUint32($this->addressOf('_var_8c1ba25c'), 1337);
+        $this->initUint32($this->addressOf('_var_score_8c1ba25c'), 1337);
         $this->initUint32($this->addressOf('_var_8c1ba1cc') + 0x90, 0xcafe0001);
 
         $this->call('_FUN_8c016ee6');
@@ -112,7 +112,7 @@ return new class extends TestCase {
         $this->resolveSymbols();
 
         $this->initUint32($this->addressOf('_var_8c1ba1cc'), 24);
-        $this->initUint32($this->addressOf('_var_8c1ba25c'), 1337);
+        $this->initUint32($this->addressOf('_var_score_8c1ba25c'), 1337);
         $this->initUint32($this->addressOf('_var_8c1ba1cc') + 0x90, 0xcafe0001);
 
         $this->call('_FUN_8c016ee6');
@@ -132,7 +132,7 @@ return new class extends TestCase {
     public function resolveSymbols()
     {
         $this->setSize('_var_8c1ba1cc', 4);
-        $this->setSize('_var_8c1ba25c', 4);
+        $this->setSize('_var_score_8c1ba25c', 4);
         // Functions
         $this->setSize('__modlu', 4);
     }

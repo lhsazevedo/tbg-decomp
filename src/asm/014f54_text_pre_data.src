@@ -27,7 +27,7 @@
           .EXPORT     _var_8c1ba1d0
           .EXPORT     _var_8c1ba1e4
           .EXPORT     _var_8c1ba210          ; 016d2c
-          .EXPORT     _var_8c1ba25c          ; 016d2c
+          .EXPORT     _var_score_8c1ba25c          ; 016d2c
           .EXPORT     _var_8c1ba264          ; 01e27c
           .EXPORT     _var_8c1ba290          ; 013ae8
           .EXPORT     _var_8c1ba291          ; 012f44
@@ -215,7 +215,7 @@ _var_8c1ba1e4:
           .RES.B      44
 _var_8c1ba210:
           .RES.B      76
-_var_8c1ba25c:
+_var_score_8c1ba25c:
           .RES.B      8
 _var_8c1ba264:
           .RES.B      44

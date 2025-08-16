@@ -52,7 +52,7 @@
           .IMPORT     _syFree
           .IMPORT     _FUN_8c016182
           .IMPORT     _FUN_8c017ef2
-          .IMPORT     _FUN_8c0172dc
+          .IMPORT     _FUN_checkCourses_8c0172dc
           .IMPORT     _FUN_8c0173e6
           .IMPORT     _pushTitle_8c015fd6
           .IMPORT     _njSetBackColor
@@ -1001,7 +1001,7 @@ LP_GEN_50614:
           .DATA.L _FUN_8c016182 ; H'8C01DF18
           .DATA.L _var_8c1ba1cc ; H'8C01DF1C
           .DATA.L _FUN_8c017ef2 ; H'8C01DF20
-          .DATA.L _FUN_8c0172dc ; H'8C01DF24
+          .DATA.L _FUN_checkCourses_8c0172dc ; H'8C01DF24
           .DATA.L _FUN_8c0173e6 ; H'8C01DF28
           .DATA.L _FUN_8c01f954 ; H'8C01DF2C
           .DATA.L _pushTitle_8c015fd6 ; H'8C01DF30

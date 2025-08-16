@@ -22,7 +22,7 @@
           .IMPORT     _pushTask_8c014ae8
           .IMPORT     _init_8c044c08
           .IMPORT     _FUN_8c010bae
-          .IMPORT     _var_8c1ba25c
+          .IMPORT     _var_score_8c1ba25c
           .IMPORT     _var_8c225fd4
           .IMPORT     _var_8c1bb8b8
           .IMPORT     _var_8c1bb8bc
@@ -85,7 +85,7 @@
           .EXPORT     _interpolateCursor_8c016d2c
           .EXPORT     _FUN_8c016ee6
           .EXPORT     _FUN_pushDialogTask_8c0170c6
-          .EXPORT     _FUN_8c0172dc
+          .EXPORT     _FUN_checkCourses_8c0172dc
           .EXPORT     _FUN_8c0173e6
           .EXPORT     _CourseMenuSwitchFromTask_8c017e18
           .EXPORT     _FUN_8c017ef2
@@ -844,7 +844,7 @@ LP_GEN_93380:
           .DATA.L _var_midiHandles_8c0fcd28 ; H'8C0172D0
           .DATA.L _sdMidiPlay ; H'8C0172D4
           .DATA.L H'10+_var_peripheral_8c1ba35c ; H'8C0172D8
-_FUN_8c0172dc:
+_FUN_checkCourses_8c0172dc:
           MOV         #H'0,R4
           MOV.L       R14,@-R15
           MOV         R4,R7
@@ -951,7 +951,7 @@ LP_GEN_30863:
           .DATA.W H'1F40 ; H'8C017398
           .DATA.W H'2EE0 ; H'8C01739A
           .DATA.L _var_8c1ba1cc ; H'8C01739C
-          .DATA.L _var_8c1ba25c ; H'8C0173A0
+          .DATA.L _var_score_8c1ba25c ; H'8C0173A0
 LAB_8c0173a4:
           MOV         #H'3,R6
           CMP/GE      R6,R4
@@ -1091,7 +1091,7 @@ LP_GEN_89119:
           .DATA.W H'01F4 ; H'8C017496
           .DATA.W H'0BB8 ; H'8C017498
           .DATA.W H'00FF ; H'8C01749A
-          .DATA.L _var_8c1ba25c ; H'8C01749C
+          .DATA.L _var_score_8c1ba25c ; H'8C01749C
           .DATA.L _var_8c225fd4 ; H'8C0174A0
           .DATA.L _var_8c1ba1cc ; H'8C0174A4
           .DATA.L _var_8c1bb8b8 ; H'8C0174A8
@@ -1139,7 +1139,7 @@ LAB_8c0174ea:
           BRA         LAB_8c01754c
           MOV.L       R5,@(R0,R4)
 LAB_8c0174f6:
-          BSR         _FUN_8c0172dc
+          BSR         _FUN_checkCourses_8c0172dc
           NOP
           TST         R0,R0
           BT          LAB_8c01754c

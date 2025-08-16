@@ -7,6 +7,8 @@
 #include "014a9c_tasks.h"
 #include "stdio.h"
 
+extern char var_8c1ba1cc[];
+
 /* ====================
  * Compiler Definitions
  * ====================

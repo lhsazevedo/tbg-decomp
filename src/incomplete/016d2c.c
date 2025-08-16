@@ -1,6 +1,7 @@
 #include <shinobi.h>
 #include <sg_sd.h>
 #include <njdef.h>
+#include <sg_xpt.h>
 #include "015ab8_title.h"
 #include "014a9c_tasks.h"
 #include "011120_asset_queues.h"
@@ -20,14 +21,29 @@ typedef struct {
     int field_0x04;
 } MenuDialog;
 
+typedef struct {
+    char field_0x00;
+    char field_0x01[7];
+} Struct_1cc_Nested;
+
+typedef struct {
+    int field_0x00;
+    char field_0x04[0x40];
+    Struct_1cc_Nested field_0x44[8];
+    int field_0x84;
+    int field_0x88;
+    int field_0x8c;
+    int field_0x90;
+} Struct_1cc;
+
 extern void snd_8c010cd6(int p1, int p2);
 extern void setUknPvmBool_8c014330();
 extern int requestSysResgrp_8c018568(ResourceGroup* dds, ResourceGroupInfo* rg);
 extern RunStruct init_runStruct_8c04442c[15];
 extern void* const_8c03628c;
 extern SDMIDI var_midiHandles_8c0fcd28[7];
-extern char var_8c1ba1cc[];
-extern int var_8c1ba25c;
+extern Struct_1cc var_8c1ba1cc;
+extern int var_score_8c1ba25c;
 extern int var_8c225fb4;
 extern int var_8c225fb8;
 extern PDS_PERIPHERAL var_peripheral_8c1ba35c[2];
@@ -36,6 +52,7 @@ extern ResourceGroupInfo init_mainMenuResourceGroup_8c044264;
 extern MenuDialog *init_8c044c08[];
 extern int var_game_mode_8c1bb8fc;
 extern int var_dialog_8c225fbc;
+extern Sint8 var_8c225fd4[];
 extern int var_demo_8c1bb8d0;
 extern void resetUknPvmBool_8c014322();
 extern NJS_TEXMEMLIST var_tex_8c157af8[];
@@ -126,7 +143,7 @@ void FUN_8c016e6c(int sprite_id, float x, float y)
 
 unsigned int FUN_8c016ed2()
 {
-    unsigned int r = *((int *) var_8c1ba1cc) + 1;
+    unsigned int r = var_8c1ba1cc.field_0x00 + 1;
     return r % 7;
 }
 
@@ -135,7 +152,7 @@ void FUN_8c016ee6()
     float x;
     int a, sprite_id;
 
-    a = *((int *) var_8c1ba1cc);
+    a = var_8c1ba1cc.field_0x00;
     if (a < 10) {
         x = 84.0;
     } else {
@@ -159,7 +176,7 @@ void FUN_8c016ee6()
         -4.0
     );
 
-    FUN_8c016e6c(((int*) var_8c1ba1cc)[0x24], 534.0, 82.0);
+    FUN_8c016e6c(var_8c1ba1cc.field_0x90, 534.0, 82.0);
 }
 
 typedef struct {
@@ -366,6 +383,63 @@ void FUN_handleCourseMenuCursor_8c017126()
             menuState_8c1bc7a8.state_0x18 = 4;
         }
     }
+}
+
+void FUN_checkCourses_8c0172dc()
+{
+    int i = 0;
+    int j = 0;
+    for (; i < 9; i++) {
+        if (!var_8c1ba1cc.field_0x44[i].field_0x00) {
+            switch (i) {
+                case 0:
+                    continue;
+
+                case 1:
+                    if (var_8c1ba1cc.field_0x00 < 8 || var_score_8c1ba25c < 4000)
+                        continue;
+                    break;
+
+                case 2:
+                    if (var_8c1ba1cc.field_0x00 < 9 || var_score_8c1ba25c < 5500)
+                        continue;
+                    break;
+
+                case 3:
+                    if (var_8c1ba1cc.field_0x00 < 5 || var_score_8c1ba25c < 2000)
+                        continue;
+                    break;
+
+                case 4:
+                    if (var_8c1ba1cc.field_0x00 < 11 || var_score_8c1ba25c < 8000)
+                        continue;
+                    break;
+
+                case 5:
+                    if (var_8c1ba1cc.field_0x00 < 13 || var_score_8c1ba25c < 12000)
+                        continue;
+                    break;
+
+                case 6:
+                    continue;
+
+                case 7:
+                    if (var_8c1ba1cc.field_0x00 < 3 || var_score_8c1ba25c < 500)
+                        continue;
+                    break;
+
+                case 8:
+                    if (var_8c1ba1cc.field_0x00 < 6 || var_score_8c1ba25c < 3000)
+                        continue;
+                    break;
+            }
+
+            var_8c225fd4[j] = i;
+            j++;
+        }
+    }
+
+    var_8c225fd4[j] = -1;
 }
 
 void FUN_8c017d54();

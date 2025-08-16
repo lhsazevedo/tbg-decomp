@@ -27,7 +27,6 @@ typedef struct {
    =====================
  */
 
-extern char var_8c1ba1cc[];
 extern Task var_tasks_8c1ba3c8[];
 /* TODO: DRY */
 extern Sint8 var_texbuf_8c277ca0[];

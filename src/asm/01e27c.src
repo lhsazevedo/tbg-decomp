@@ -58,7 +58,7 @@
           .IMPORT     _var_8c225fb8
           .IMPORT     _var_8c22642c
           .IMPORT     _FUN_8c017ef2
-          .IMPORT     _FUN_8c0172dc
+          .IMPORT     _FUN_checkCourses_8c0172dc
           .IMPORT     _FUN_8c0173e6
           .IMPORT     _var_demo_8c1bb8d0
           .IMPORT     _init_8c044c08
@@ -1784,7 +1784,7 @@ LAB_8c01efcc:
           ADD         #H'1,R5
 LP_GEN_11122:
           .RES.W 1 ; H'8C01EFD2
-          .DATA.L _FUN_8c0172dc ; H'8C01EFD4
+          .DATA.L _FUN_checkCourses_8c0172dc ; H'8C01EFD4
           .DATA.L _FUN_8c0173e6 ; H'8C01EFD8
           .DATA.L _FUN_8c01f954 ; H'8C01EFDC
           .DATA.L H'C0A00000 ; H'8C01EFE0
