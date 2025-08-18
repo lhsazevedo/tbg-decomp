@@ -168,6 +168,7 @@ return [
                 "tests/016d2c/8c017126_FUN.php",
                 "tests/016d2c/8c0172dc_FUN.php",
                 "tests/016d2c/8c0173e6_FUN.php",
+                "tests/016d2c/8c017420_FUN.php",
                 "tests/016d2c/8c017e18_CourseMenuSwitchFromTask.php",
             ],
             "objects" => [

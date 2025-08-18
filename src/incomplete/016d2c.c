@@ -29,7 +29,8 @@ typedef struct {
 
 typedef struct {
     int field_0x00;
-    char field_0x04[0x40];
+    char field_0x04[0x28];
+    int field_0x2c[6]; // This size is probably wrong
     Struct_1cc_Nested field_0x44[8];
     int field_0x84;
     int field_0x88;
@@ -52,7 +53,7 @@ extern ResourceGroupInfo init_mainMenuResourceGroup_8c044264;
 
 extern MenuDialog *init_8c044c08[];
 extern int var_game_mode_8c1bb8fc;
-extern int var_dialog_8c225fbc;
+extern int var_dialog_8c225fbc[4]; // TODO: Confirm length
 extern Sint8 var_8c225fd4[];
 extern int var_demo_8c1bb8d0;
 extern void resetUknPvmBool_8c014322();
@@ -386,7 +387,7 @@ void FUN_handleCourseMenuCursor_8c017126()
     }
 }
 
-void FUN_checkCourses_8c0172dc()
+int FUN_checkCourses_8c0172dc()
 {
     int i = 0;
     int j = 0;
@@ -442,20 +443,220 @@ void FUN_checkCourses_8c0172dc()
     }
 
     var_8c225fd4[j] = -1;
+    return j;
 }
 
 void FUN_8c0173e6(void)
 {
-  int i = 0;
-  for (; var_8c225fd4[i] != -1; i++) {
-    int j = var_8c225fd4[i];
-    var_8c1ba1cc.field_0x44[j].field_0x00 = 1;
-    var_8c1ba1cc.field_0x44[j].field_0x01 = 1;
-  }
+    int i = 0;
+    for (; var_8c225fd4[i] != -1; i++) {
+        int j = var_8c225fd4[i];
+        var_8c1ba1cc.field_0x44[j].field_0x00 = 1;
+        var_8c1ba1cc.field_0x44[j].field_0x01 = 1;
+    }
 }
 
+extern int var_8c1bb8b8;
+extern int var_8c1bb8bc;
+extern int var_8c1bb8dc;
+extern int var_award_8c1bb8f8;
+
+enum {
+    SEQ_INTRO_BRIEFING            = 0,
+    SEQ_CHOOSE_COURSE             = 6,
+    SEQ_SUCCESS_2                 = 7,
+    SEQ_SUCCESS                   = 8,
+    SEQ_AWARD_BADGE_GOLD          = 9,
+    SEQ_AWARD_BADGE_SILVER        = 10,
+    SEQ_AWARD_BADGE_BRONZE        = 11,
+    SEQ_FAILURE                   = 12,
+    SEQ_COURSE_UNLOCKED           = 13,
+    SEQ_PASSENGER_LETTER_RECEIVED = 14
+};
+
+// This function has been refactored.
+void buildCourseMenuDialogFlow_8c017420(void)
+{
+    int cur = 0;
+
+    // Default choose course
+    if (var_8c1bb8b8 == 0) {
+        var_dialog_8c225fbc[cur++] = SEQ_CHOOSE_COURSE;
+        var_dialog_8c225fbc[cur]   = -1;
+        return;
+    }
+
+    // Intro first, then choose course, then finish
+    if (var_8c1ba1cc.field_0x00 == 1) {
+        var_dialog_8c225fbc[cur++] = SEQ_INTRO_BRIEFING;
+        var_dialog_8c225fbc[cur++] = SEQ_CHOOSE_COURSE;
+        var_dialog_8c225fbc[cur]   = -1;
+        return;
+    }
+
+    // Special Success
+    if (var_8c1bb8bc != 0) {
+        var_dialog_8c225fbc[cur++] = SEQ_SUCCESS_2;
+        var_dialog_8c225fbc[cur++] = SEQ_CHOOSE_COURSE;
+        var_dialog_8c225fbc[cur]   = -1;
+        return;
+    }
+
+    // Result
+    if (var_8c1bb8dc == 0) {
+        var_dialog_8c225fbc[cur++] = SEQ_FAILURE;
+    } else {
+        int award_seq = SEQ_SUCCESS;
+        if      (var_award_8c1bb8f8 == 1) award_seq = SEQ_AWARD_BADGE_BRONZE;
+        else if (var_award_8c1bb8f8 == 2) award_seq = SEQ_AWARD_BADGE_SILVER;
+        else if (var_award_8c1bb8f8 == 3) award_seq = SEQ_AWARD_BADGE_GOLD;
+        var_dialog_8c225fbc[cur++] = award_seq;
+    }
+
+    // Course unlocked
+    if (FUN_checkCourses_8c0172dc() != 0) {
+        var_dialog_8c225fbc[cur++] = SEQ_COURSE_UNLOCKED;
+    }
+
+    // Passenger letter received
+    if (((var_8c1ba1cc.field_0x00 + 1) % 7) == 0) {
+        int r = AsqGetRandomInRangeB_121be(6);
+        if (var_8c1ba1cc.field_0x2c[r] == 0) {
+            var_8c1ba1cc.field_0x2c[r] = 1;
+            var_dialog_8c225fbc[cur++] = SEQ_PASSENGER_LETTER_RECEIVED;
+        }
+    }
+
+    var_dialog_8c225fbc[cur++] = SEQ_CHOOSE_COURSE;
+
+    var_dialog_8c225fbc[cur] = -1;
+}
+
+
+/*
+This is the original code for the function above. 
+void buildCourseMenuDialogFlow_8c017420()
+{
+    bool bVar1_done;
+    int iVar2;
+    int iVar3_index;
+    int iVar4_curDialog;
+
+    iVar4_curDialog = 0;
+    bVar1_done = false;
+    iVar3_index = 0;
+    do
+    {
+        if ((4 < iVar3_index) || (bVar1_done))
+        {
+            var_dialog_8c225fbc[iVar4_curDialog] = -1;
+            return;
+        }
+        if (iVar3_index == 0)
+        {
+            // This path always marks and done,
+            // except if the loop is explicitly continued
+            iVar2 = iVar4_curDialog;
+            if (var_8c1bb8b8 != 0)
+            {
+                if (var_8c1ba1cc.field_0x00 == 1)
+                {
+                    iVar2 = iVar4_curDialog + 1;
+                    // SEQ_INTRO_BRIEFING
+                    var_dialog_8c225fbc[iVar4_curDialog] = 0;
+                }
+                else
+                {
+
+                    if (var_8c1bb8bc == 0)
+                    {
+                        // This is the only path that can lead to a loop continue
+                        if (var_8c1bb8dc == 0)
+                        {
+                            // SEQ_FAILURE
+                            var_dialog_8c225fbc[iVar4_curDialog] = 12;
+                            iVar4_curDialog = iVar4_curDialog + 1;
+                        }
+                        else
+                        {
+                            if (var_award_8c1bb8f8 == 0)
+                            {
+                                // SEQ_SUCCESS
+                                iVar2 = 8;
+                            }
+                            else if (var_award_8c1bb8f8 == 1)
+                            {
+                                // SEQ_AWARD_BADGE_BRONZE
+                                iVar2 = 11;
+                            }
+                            else if (var_award_8c1bb8f8 == 2)
+                            {
+                                // SEQ_AWARD_BADGE_SILVER
+                                iVar2 = 10;
+                            }
+                            else
+                            {
+                                if (var_award_8c1bb8f8 != 3)
+                                    goto LAB_8c01754c;
+                                // SEQ_AWARD_BADGE_GOLD
+                                iVar2 = 9;
+                            }
+                            var_dialog_8c225fbc[iVar4_curDialog] = iVar2;
+                            iVar4_curDialog = iVar4_curDialog + 1;
+                        }
+                        goto LAB_8c01754c;
+                    }
+                    // SEQ_SUCCESS_2
+                    var_dialog_8c225fbc[iVar4_curDialog] = 7;
+                    iVar2 = iVar4_curDialog + 1;
+                }
+            }
+            // SEQ_CHOOSE_COURSE
+            var_dialog_8c225fbc[iVar2] = 6;
+            bVar1_done = true;
+            iVar4_curDialog = iVar2 + 1;
+        }
+        else if (iVar3_index != 1)
+        {
+            if (iVar3_index == 2)
+            {
+                iVar2 = FUN_checkCourses_8c0172dc();
+                if (iVar2 != 0)
+                {
+                    // SEQ_COURSE_UNLOCKED
+                    var_dialog_8c225fbc[iVar4_curDialog] = 13;
+                    iVar4_curDialog = iVar4_curDialog + 1;
+                }
+            }
+            else if (iVar3_index == 3)
+            {
+                iVar2 = (var_8c1ba1cc.field_0x00 + 1) % 7;
+                if (iVar2 == 0)
+                {
+                    iVar2 = AsqGetRandomInRangeB_121be(6);
+                    if (var_8c1ba1cc.field_0x2c[iVar2] == 0)
+                    {
+                        var_8c1ba1cc.field_0x2c[iVar2] = 1;
+                        // SEQ_PASSENGER_LETTER_RECEIVED
+                        var_dialog_8c225fbc[iVar4_curDialog] = 14;
+                        iVar4_curDialog = iVar4_curDialog + 1;
+                    }
+                }
+            }
+            else if (iVar3_index == 4)
+            {
+                // SEQ_CHOOSE_COURSE
+                var_dialog_8c225fbc[iVar4_curDialog] = 6;
+                iVar4_curDialog = iVar4_curDialog + 1;
+            }
+        }
+    LAB_8c01754c:
+        iVar3_index = iVar3_index + 1;
+    } while (true);
+} */
+
 void FUN_8c017d54();
-void FUN_8c017420();
+void buildCourseMenuDialogFlow_8c017420();
 void StoryMenuTask_8c017718();
 void FUN_8c017a20();
 void FreeRunMenuTask_8c017ada();
@@ -464,13 +665,13 @@ void CourseMenuSwitchFromTask_8c017e18(Task *task)
 {
     if (var_game_mode_8c1bb8fc == 0) {
         setTaskAction_8c014b3e(task, StoryMenuTask_8c017718);
-        FUN_8c017420();
+        buildCourseMenuDialogFlow_8c017420();
     } else {
         setTaskAction_8c014b3e(task, FreeRunMenuTask_8c017ada);
         FUN_8c017a20();
     }
 
-    menuState_8c1bc7a8.field_0x60 = init_8c044c08[var_dialog_8c225fbc]->field_0x04;
+    menuState_8c1bc7a8.field_0x60 = init_8c044c08[var_dialog_8c225fbc[0]]->field_0x04;
     task->field_0x08 = 0;
     var_8c225fb8 = 0;
     var_demo_8c1bb8d0 = 0;

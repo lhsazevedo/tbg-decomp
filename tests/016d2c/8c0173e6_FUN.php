@@ -5,7 +5,7 @@ declare(strict_types=1);
 use Lhsazevedo\Sh4ObjTest\TestCase;
 
 return new class extends TestCase {
-    public function test_1()
+    public function test_basic_test()
     {
         $this->setSize('_var_8c225fd4', 4 * 9);
         $this->setSize('_var_8c1ba1cc', 0x94);

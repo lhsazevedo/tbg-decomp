@@ -3,7 +3,7 @@
           .IMPORT     _var_8c1bb8b8
           .IMPORT     _var_8c1bb8bc
           .IMPORT     _var_8c1bb8dc
-          .IMPORT     _var_8c1bb8f8
+          .IMPORT     _var_award_8c1bb8f8
           .IMPORT     __modls
           .IMPORT     __divls
           .IMPORT     _var_8c226098
@@ -195,7 +195,7 @@ LP_GEN_63917:
           .DATA.L _var_8c1bb8b8 ; H'8C01B244
           .DATA.L _var_8c1bb8bc ; H'8C01B248
           .DATA.L _var_8c1bb8dc ; H'8C01B24C
-          .DATA.L _var_8c1bb8f8 ; H'8C01B250
+          .DATA.L _var_award_8c1bb8f8 ; H'8C01B250
           .DATA.L __modls ; H'8C01B254
           .DATA.L __divls ; H'8C01B258
           .DATA.L _var_8c226098 ; H'8C01B25C
@@ -320,7 +320,7 @@ LP_GEN_27906:
           .DATA.L _var_8c1bb8b8 ; H'8C01B350
           .DATA.L _var_8c1bb8bc ; H'8C01B354
           .DATA.L _var_8c1bb8dc ; H'8C01B358
-          .DATA.L _var_8c1bb8f8 ; H'8C01B35C
+          .DATA.L _var_award_8c1bb8f8 ; H'8C01B35C
           .DATA.L _FUN_8c01c980 ; H'8C01B360
           .DATA.L _var_8c2263a4 ; H'8C01B364
           .DATA.L _var_8c1ba2e4 ; H'8C01B368

@@ -150,7 +150,7 @@ return new class extends TestCase {
         $this->shouldCall('_setTaskAction_8c014b3e')->with(
             $task, $this->addressOf('_StoryMenuTask_8c017718')
         );
-        $this->shouldCall('_FUN_8c017420');
+        $this->shouldCall('_buildCourseMenuDialogFlow_8c017420');
 
         $this->shouldWriteLong(
             $this->addressOf('_menuState_8c1bc7a8') + 0x60, 42
@@ -208,7 +208,7 @@ return new class extends TestCase {
         $this->shouldCall('_setTaskAction_8c014b3e')->with(
             $task, $this->addressOf('_StoryMenuTask_8c017718')
         );
-        $this->shouldCall('_FUN_8c017420');
+        $this->shouldCall('_buildCourseMenuDialogFlow_8c017420');
 
         $this->shouldWriteLong(
             $this->addressOf('_menuState_8c1bc7a8') + 0x60, 42

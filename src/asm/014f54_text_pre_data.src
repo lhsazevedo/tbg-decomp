@@ -82,7 +82,7 @@
           .EXPORT     _var_8c1bb8ec
           .EXPORT     _var_8c1bb8f0
           .EXPORT     _var_8c1bb8f4
-          .EXPORT     _var_8c1bb8f8
+          .EXPORT     _var_award_8c1bb8f8
           .EXPORT     _var_game_mode_8c1bb8fc
           .EXPORT     _var_8c1bb900
           .EXPORT     _var_8c1bb904
@@ -325,7 +325,7 @@ _var_8c1bb8f0:
           .RES.B      4
 _var_8c1bb8f4:
           .RES.B      4
-_var_8c1bb8f8:
+_var_award_8c1bb8f8:
           .RES.B      4
 _var_game_mode_8c1bb8fc:
           .RES.B      4

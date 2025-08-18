@@ -47,7 +47,7 @@
           .IMPORT     _var_8c1ba1cc
           .IMPORT     _init_8c045208
           .IMPORT     _var_8c1bb8dc
-          .IMPORT     _var_8c1bb8f8
+          .IMPORT     _var_award_8c1bb8f8
           .IMPORT     _var_8c226414
           .IMPORT     __modls
           .IMPORT     __divls
@@ -1246,7 +1246,7 @@ LP_GEN_88702:
           .DATA.L _init_8c045208 ; H'8C01EB98
           .DATA.L _var_8c1bb8ec ; H'8C01EB9C
           .DATA.L _var_8c1bb8dc ; H'8C01EBA0
-          .DATA.L _var_8c1bb8f8 ; H'8C01EBA4
+          .DATA.L _var_award_8c1bb8f8 ; H'8C01EBA4
           .DATA.L _var_8c226414 ; H'8C01EBA8
           .DATA.L H'40C00000 ; H'8C01EBAC
           .DATA.L H'43B50000 ; H'8C01EBB0
@@ -2034,7 +2034,7 @@ LP_GEN_22524:
           .DATA.L _setTaskAction_8c014b3e ; H'8C01F1D0
           .DATA.L _menuState_8c1bc7a8 ; H'8C01F1D4
           .DATA.L _var_8c22642c ; H'8C01F1D8
-          .DATA.L _var_8c1bb8f8 ; H'8C01F1DC
+          .DATA.L _var_award_8c1bb8f8 ; H'8C01F1DC
           .DATA.L _var_8c226414 ; H'8C01F1E0
           .DATA.L _init_8c044c08 ; H'8C01F1E4
           .DATA.L _njSetBackColor ; H'8C01F1E8
@@ -2098,7 +2098,7 @@ LAB_8c01f264:
 LP_GEN_80134:
           .RES.W 1 ; H'8C01F272
           .DATA.L _menuState_8c1bc7a8 ; H'8C01F274
-          .DATA.L _var_8c1bb8f8 ; H'8C01F278
+          .DATA.L _var_award_8c1bb8f8 ; H'8C01F278
           .DATA.L _var_8c226414 ; H'8C01F27C
           .DATA.L _var_8c1bb8bc ; H'8C01F280
           .DATA.L _var_8c1bb8dc ; H'8C01F284

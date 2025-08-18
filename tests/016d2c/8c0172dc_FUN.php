@@ -238,5 +238,7 @@ return new class extends TestCase {
         foreach ($writes as $offset => $value) {
             $this->shouldWriteByte($this->addressOf('_var_8c225fd4') + $offset, $value);
         }
+
+        $this->shouldReturn(count($writes) - 1);
     }
 };

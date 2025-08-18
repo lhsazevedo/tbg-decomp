@@ -27,7 +27,7 @@
           .IMPORT     _var_8c1bb8b8
           .IMPORT     _var_8c1bb8bc
           .IMPORT     _var_8c1bb8dc
-          .IMPORT     _var_8c1bb8f8
+          .IMPORT     _var_award_8c1bb8f8
           .IMPORT     _AsqGetRandomInRangeB_121be
           .IMPORT     _var_dialog_8c225fbc
           .IMPORT     _var_game_mode_8c1bb8fc
@@ -101,7 +101,7 @@
           .EXPORT     _FUN_dialog_8c016f98
           .EXPORT     _FUN_swapDialogMessageBox_8c017108
           .EXPORT     _FUN_handleCourseMenuCursor_8c017126
-          .EXPORT     _FUN_8c017420
+          .EXPORT     _buildCourseMenuDialogFlow_8c017420
           .EXPORT     _drawCoursesButtons_8c017590
           .EXPORT     _StoryMenuTask_8c017718
           .EXPORT     _FUN_8c017a20
@@ -1022,7 +1022,7 @@ LAB_8c017410:
           MOV.L       @R15+,R12
           RTS
           MOV.L       @R15+,R13
-_FUN_8c017420:
+_buildCourseMenuDialogFlow_8c017420:
           MOV.L       R14,@-R15
           MOV.L       R13,@-R15
           MOV.L       R12,@-R15
@@ -1213,7 +1213,7 @@ LAB_8c017560:
 LP_GEN_78741:
           .RES.W 1 ; H'8C01757A
           .DATA.L _var_8c1bb8dc ; H'8C01757C
-          .DATA.L _var_8c1bb8f8 ; H'8C017580
+          .DATA.L _var_award_8c1bb8f8 ; H'8C017580
           .DATA.L __modls ; H'8C017584
           .DATA.L _AsqGetRandomInRangeB_121be ; H'8C017588
           .DATA.L _var_dialog_8c225fbc ; H'8C01758C
@@ -2337,7 +2337,7 @@ _CourseMenuSwitchFromTask_8c017e18:
           MOV.L       LP_GEN_59651+22,R5
           JSR         @R3
           MOV         R12,R4
-          BSR         _FUN_8c017420
+          BSR         _buildCourseMenuDialogFlow_8c017420
           NOP
           BRA         LAB_8c017e64
           NOP
@@ -2463,7 +2463,7 @@ _FUN_8c017ef2:
           ADD         #H'8,R7
           JSR         @R14
           ADD         #H'4,R6
-          BSR         _FUN_8c017420
+          BSR         _buildCourseMenuDialogFlow_8c017420
           ADD         #H'4,R15
           BRA         LAB_8c017fb4
           NOP

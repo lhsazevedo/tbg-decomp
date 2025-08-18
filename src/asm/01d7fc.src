@@ -18,7 +18,7 @@
           .IMPORT     _midiResetFxAndPlay_8c010846
           .IMPORT     _var_midiHandles_8c0fcd28
           .IMPORT     _sdMidiPlay
-          .IMPORT     _var_8c1bb8f8
+          .IMPORT     _var_award_8c1bb8f8
           .IMPORT     _var_8c226404
           .IMPORT     _var_8c226400
           .IMPORT     _var_8c2263fc
@@ -537,7 +537,7 @@ LP_GEN_73625:
           .DATA.L _midiResetFxAndPlay_8c010846 ; H'8C01DB5C
           .DATA.L _var_midiHandles_8c0fcd28+16 ; H'8C01DB60
           .DATA.L _sdMidiPlay ; H'8C01DB64
-          .DATA.L _var_8c1bb8f8 ; H'8C01DB68
+          .DATA.L _var_award_8c1bb8f8 ; H'8C01DB68
           .DATA.L _var_8c226404 ; H'8C01DB6C
           .DATA.L H'439C0000 ; H'8C01DB70
           .DATA.L _var_8c226400 ; H'8C01DB74
@@ -1304,7 +1304,7 @@ LP_GEN_76652:
           .DATA.L _var_8c1bb8e0 ; H'8C01E1A0
           .DATA.L _var_8c2285d0 ; H'8C01E1A4
           .DATA.L _var_8c2263f4 ; H'8C01E1A8
-          .DATA.L _var_8c1bb8f8 ; H'8C01E1AC
+          .DATA.L _var_award_8c1bb8f8 ; H'8C01E1AC
           .DATA.L _var_8c2263f8 ; H'8C01E1B0
           .DATA.L _var_8c1ba1cc ; H'8C01E1B4
 LAB_8c01e1b8:
