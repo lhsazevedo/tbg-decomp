@@ -13,7 +13,7 @@ typedef struct {
     float y_0x0c;
     int field_0x10;
     void *field_0x14;
-    int field_0x18c;
+    int field_0x18;
 } RunStruct;
 
 typedef struct {
@@ -24,7 +24,10 @@ typedef struct {
 typedef struct {
     char field_0x00;
     char field_0x01;
-    char field_0x02[6];
+    char field_0x02;
+    char field_0x03;
+    char field_0x04;
+    char field_0x05[3];
 } Struct_1cc_Nested;
 
 typedef struct {
@@ -534,7 +537,7 @@ void buildCourseMenuDialogFlow_8c017420(void)
 
 
 /*
-This is the original code for the function above. 
+This is the original code for the function above. (with some gotos to be removed)
 void buildCourseMenuDialogFlow_8c017420()
 {
     bool bVar1_done;
@@ -654,6 +657,140 @@ void buildCourseMenuDialogFlow_8c017420()
         iVar3_index = iVar3_index + 1;
     } while (true);
 } */
+
+// This function has been refactored.
+void drawCoursesButtons_8c017590()
+{
+    int i;
+
+    if (menuState_8c1bc7a8.field_0x48) {
+        drawSprite_8c014f54(
+            &menuState_8c1bc7a8.resourceGroupB_0x0c,
+            0x18,
+            menuState_8c1bc7a8.pos.cursor.cursor_0x20.x,
+            menuState_8c1bc7a8.pos.cursor.cursor_0x20.y,
+            -3.0
+        );
+    }
+
+    // TODO: Extract length constant
+    for (i = 0; i < 15; i++) {
+        RunStruct *rs = &init_runStruct_8c04442c[i];
+
+        if (rs->field_0x00 == 0 || rs->field_0x10 == 0)
+            continue;
+
+        drawSprite_8c014f54(
+            &menuState_8c1bc7a8.resourceGroupB_0x0c,
+            rs->field_0x10,
+            0.0,
+            0.0,
+            -4.0
+        );
+    }
+
+    // TODO: Extract length constant
+    for (i = 0; i < 9; i++) {
+        RunStruct *rs = &init_runStruct_8c04442c[i];
+
+        char spriteNo = var_game_mode_8c1bb8fc == 0
+            ? var_8c1ba1cc.field_0x44[i].field_0x03
+            : var_8c1ba1cc.field_0x44[i].field_0x04;
+
+        if (!spriteNo)
+            continue;
+
+        drawSprite_8c014f54(
+            &menuState_8c1bc7a8.resourceGroupB_0x0c,
+            0x18 - spriteNo,
+            240.0 + (i % 3) * 93.0,
+            106.0 + (i / 3) * 74.0,
+            -3.5
+        );
+    }
+}
+
+/* This is the original code for the function above.
+void drawCoursesButtons_8c017590()
+{
+    int iVar1;
+    int iVar2;
+    RunStruct *pRVar3;
+    RunStruct *pRVar4;
+    int iVar5;
+    float x;
+    float fVar6;
+    float y;
+    float fVar7;
+    float priority;
+
+    if (menuState_8c1bc7a8.field_0x48 != 0) {
+        drawSprite_8c014f54(
+            &menuState_8c1bc7a8.resourceGroupB_0x0c,
+            0x18,
+            menuState_8c1bc7a8.pos.cursor.cursor_0x20.x,
+            menuState_8c1bc7a8.pos.cursor.cursor_0x20.y,
+            -3.0
+        );
+    }
+    pRVar3 = init_runStruct_8c04442c;
+    fVar7 = -4.0;
+    fVar6 = 0.0;
+    do {
+        iVar2 = 0;
+        pRVar4 = pRVar3;
+        do {
+            if ((pRVar4->field_0x04 != 0) && (pRVar4->field_0x10 != 0)) {
+                drawSprite_8c014f54(
+                    &menuState_8c1bc7a8.resourceGroupB_0x0c,
+                    pRVar4->field_0x10,
+                    fVar6,
+                    fVar6,
+                    fVar7
+                );
+            }
+            iVar2 = iVar2 + 1;
+            pRVar4 = pRVar4 + 1;
+        } while (iVar2 < 5);
+        pRVar3 = pRVar3 + 5;
+    } while (pRVar3 < &init_runStruct_8c04442c[15]); // TODO: Extract length constant
+    fVar7 = 240.0;
+    fVar6 = 93.0;
+    priority = -3.5;
+    iVar2 = 0;
+    do {
+        iVar1 = iVar2 * 3;
+        iVar5 = 0;
+        y = (float)iVar2 * 74.0 + 106.0;
+        do {
+            x = fVar6 * (float)iVar5 + fVar7;
+            if (var_game_mode_8c1bb8fc == 0) { // TODO: Extract constant
+                if (var_8c1ba1cc.field_0x44[iVar1 + iVar5].field_0x03 != 0) {
+                    drawSprite_8c014f54(
+                        &menuState_8c1bc7a8.resourceGroupB_0x0c,
+                        0x18 - var_8c1ba1cc.field_0x44[iVar1 + iVar5].field_0x03,
+                        x,
+                        y,
+                        priority
+                    );
+                }
+            }
+            else if (var_8c1ba1cc.field_0x44[iVar1 + iVar5].field_0x04[0] != 0) {
+                drawSprite_8c014f54(
+                    &menuState_8c1bc7a8.resourceGroupB_0x0c,
+                    0x18 - var_8c1ba1cc.field_0x44[iVar1 + iVar5].field_0x04[0],
+                    x,
+                    y,
+                    priority
+                );
+            }
+            iVar5++;
+        } while (iVar5 < 3);
+        iVar2++;
+    } while (iVar2 < 3);
+    return;
+}
+*/
 
 void FUN_8c017d54();
 void buildCourseMenuDialogFlow_8c017420();

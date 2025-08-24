@@ -1,0 +1,112 @@
+<?php declare(strict_types=1);
+
+use Lhsazevedo\Sh4ObjTest\TestCase;
+
+if (!function_exists('fdec')) {
+    function fdec(float $value) {
+        return unpack('L', pack('f', $value))[1];
+    }
+}
+
+return new Class extends TestCase {
+    public function test_mode_0()
+    {
+        $this->resolveSymbols();
+
+        $this->initUint32($this->addressOf('_var_game_mode_8c1bb8fc'), 0);
+
+        $this->initMenuStateUint32(0x20, fdec(64.0));
+        $this->initMenuStateUint32(0x24, fdec(42.0));
+        $this->initMenuStateUint32(0x48, 1);
+
+        $this->initRunStructs([[1, 21], [1, 32]]);
+        $this->initVarCourseSettings8c1ba1cc([[1, 0], [2, 0]]);
+
+        $this->call('_drawCoursesButtons_8c017590');
+
+        // Unknown sprite
+        $this->shouldDrawSprite(0x18, 64.0, 42.0, -3.0);
+
+        // Unknown sprites: first loop
+        $this->shouldDrawSprite(21, 0.0, 0.0, -4.0);
+        $this->shouldDrawSprite(32, 0.0, 0.0, -4.0);
+
+        // Unknown sprites: second loop
+        $this->shouldDrawSprite(0x17, 240.0, 106.0, -3.5);
+        $this->shouldDrawSprite(0x16, 333.0, 106.0, -3.5);
+    }
+
+    public function test_mode_1_no_first_sprite()
+    {
+        $this->resolveSymbols();
+
+        $this->initUint32($this->addressOf('_var_game_mode_8c1bb8fc'), 1);
+
+        $this->initMenuStateUint32(0x20, fdec(64.0));
+        $this->initMenuStateUint32(0x24, fdec(42.0));
+        $this->initMenuStateUint32(0x48, 0);
+
+        $this->initRunStructs([[1, 21], [1, 32]]);
+        $this->initVarCourseSettings8c1ba1cc([[0, 1], [0, 2]]);
+
+        $this->call('_drawCoursesButtons_8c017590');
+
+        // Unknown sprite
+        // $this->shouldDrawSprite(0x18, 64.0, 42.0, -3.0);
+
+        // Unknown sprites: first loop
+        $this->shouldDrawSprite(21, 0.0, 0.0, -4.0);
+        $this->shouldDrawSprite(32, 0.0, 0.0, -4.0);
+
+        // Unknown sprites: second loop
+        $this->shouldDrawSprite(0x17, 240.0, 106.0, -3.5);
+        $this->shouldDrawSprite(0x16, 333.0, 106.0, -3.5);
+    }
+
+    private function initMenuStateUint32($offset, $value) {
+        $this->initUint32($this->addressOf('_menuState_8c1bc7a8') + $offset, $value);
+    }
+
+    private function initRunStructs(array $values) {
+        $base = $this->addressOf('_init_runStruct_8c04442c');
+        array_push($values, ...array_fill(0, 15 - count($values), [0, 0]));
+
+        foreach ($values as $i => $struct) {
+            $this->initUint32($base + $i * 0x1c + 0x04, $struct[0]);
+            $this->initUint32($base + $i * 0x1c + 0x10, $struct[1]);
+        }
+    }
+
+    private function initVarCourseSettings8c1ba1cc(array $values)
+    {
+        array_push($values, ...array_fill(0, 9 - count($values), [0, 0]));
+
+        foreach ($values as $index => $value) {
+            $this->initUint8(
+                $this->addressOf('_var_8c1ba1cc') + 0x44 + $index * 8 + 3,
+                $value[0],
+            );
+            $this->initUint8(
+                $this->addressOf('_var_8c1ba1cc') + 0x44 + $index * 8 + 4,
+                $value[1],
+            );
+        }
+    }
+
+    private function shouldDrawSprite(int $spriteNo, float $x, float $y, float $priority) {
+        $this->shouldCall('_drawSprite_8c014f54')->with(
+            $this->addressOf('_menuState_8c1bc7a8') + 0x0c,
+            $spriteNo,
+            $x,
+            $y,
+            $priority,
+        );
+    }
+
+    private function resolveSymbols() {
+        $this->setSize('_init_runStruct_8c04442c', 0x1c * 15);
+        $this->setSize('_var_8c1ba1cc', 0x94);
+        $this->setSize('__modls', 0x04);
+        $this->setSize('__divls', 0x04);
+    }
+};
