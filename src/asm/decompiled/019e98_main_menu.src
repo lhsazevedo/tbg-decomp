@@ -5,7 +5,7 @@
           .IMPORT     _AsqFreeQueues_11f7e
           .IMPORT     _push_fadein_8c022a9c
           .IMPORT     _sdMidiPlay
-          .IMPORT     _var_peripheral_8c1ba35c
+          .IMPORT     _var_peripherals_8c1ba35c
           .IMPORT     _var_midiHandles_8c0fcd28
           .IMPORT     _push_fadeout_8c022b60
           .IMPORT     _var_game_mode_8c1bb8fc
@@ -162,7 +162,7 @@ LP_GEN_56609:
           .DATA.L _AsqFreeQueues_11f7e ; H'8C019F90
           .DATA.L _push_fadein_8c022a9c ; H'8C019F94
           .DATA.L _sdMidiPlay ; H'8C019F98
-          .DATA.L H'10+_var_peripheral_8c1ba35c ; H'8C019F9C
+          .DATA.L H'10+_var_peripherals_8c1ba35c ; H'8C019F9C
           .DATA.L _var_midiHandles_8c0fcd28 ; H'8C019FA0
           .DATA.L _push_fadeout_8c022b60 ; H'8C019FA4
 LAB_8c019fa8:

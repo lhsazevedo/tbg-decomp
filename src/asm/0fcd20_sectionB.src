@@ -7,8 +7,8 @@
           .EXPORT     _var_8c225fb0
           .EXPORT     _var_8c225fb4
           .EXPORT     _var_8c225fb8
-          .EXPORT     _var_dialogSequences_8c225fbc
-          .EXPORT     _var_8c225fd4
+          .EXPORT     _var_dialogQueue_8c225fbc
+          .EXPORT     _var_coursesToUnlock_8c225fd4
           .EXPORT     _var_8c225fe0
           .EXPORT     _var_8c225fe4
           .EXPORT     _var_8c22600c
@@ -256,9 +256,9 @@ _var_8c225fb4:
           .RES.B      4
 _var_8c225fb8:
           .RES.B      4
-_var_dialogSequences_8c225fbc:
+_var_dialogQueue_8c225fbc:
           .RES.B      24
-_var_8c225fd4:
+_var_coursesToUnlock_8c225fd4:
           .RES.B      12
 _var_8c225fe0:
           .RES.B      4

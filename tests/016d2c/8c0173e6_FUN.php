@@ -7,25 +7,25 @@ use Lhsazevedo\Sh4ObjTest\TestCase;
 return new class extends TestCase {
     public function test_basic_test()
     {
-        $this->setSize('_var_8c225fd4', 4 * 9);
-        $this->setSize('_var_8c1ba1cc', 0x94);
+        $this->setSize('_var_coursesToUnlock_8c225fd4', 4 * 9);
+        $this->setSize('_var_progress_8c1ba1cc', 0x94);
 
-        $this->initUint8($this->addressOf('_var_8c225fd4') + 0, 6);
-        $this->initUint8($this->addressOf('_var_8c225fd4') + 1, 4);
-        $this->initUint8($this->addressOf('_var_8c225fd4') + 2, 5);
-        $this->initUint8($this->addressOf('_var_8c225fd4') + 3, 2);
-        $this->initUint8($this->addressOf('_var_8c225fd4') + 4, 3);
-        $this->initUint8($this->addressOf('_var_8c225fd4') + 5, 1);
-        $this->initUint8($this->addressOf('_var_8c225fd4') + 6, -1);
+        $this->initUint8($this->addressOf('_var_coursesToUnlock_8c225fd4') + 0, 6);
+        $this->initUint8($this->addressOf('_var_coursesToUnlock_8c225fd4') + 1, 4);
+        $this->initUint8($this->addressOf('_var_coursesToUnlock_8c225fd4') + 2, 5);
+        $this->initUint8($this->addressOf('_var_coursesToUnlock_8c225fd4') + 3, 2);
+        $this->initUint8($this->addressOf('_var_coursesToUnlock_8c225fd4') + 4, 3);
+        $this->initUint8($this->addressOf('_var_coursesToUnlock_8c225fd4') + 5, 1);
+        $this->initUint8($this->addressOf('_var_coursesToUnlock_8c225fd4') + 6, -1);
 
-        $this->call('_FUN_8c0173e6');
+        $this->call('_applyUnlocks_8c0173e6');
 
         $shouldWriteBoth = function (int $index, int $value) {
             $this->shouldWriteByte(
-                $this->addressOf('_var_8c1ba1cc') + 0x44 + $index * 8 + 0, $value
+                $this->addressOf('_var_progress_8c1ba1cc') + 0x44 + $index * 8 + 0, $value
             );
             $this->shouldWriteByte(
-                $this->addressOf('_var_8c1ba1cc') + 0x44 + $index * 8 + 1, $value
+                $this->addressOf('_var_progress_8c1ba1cc') + 0x44 + $index * 8 + 1, $value
             );
         };
 

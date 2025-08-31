@@ -22,7 +22,7 @@ return new Class extends TestCase {
         $this->initCourseMenuButtons([[1, 21], [1, 32]]);
         $this->initVarCourseSettings8c1ba1cc([[1, 0], [2, 0]]);
 
-        $this->call('_drawCoursesButtons_8c017590');
+        $this->call('_drawCourseButtons_8c017590');
 
         // Unknown sprite
         $this->shouldDrawSprite(0x18, 64.0, 42.0, -3.0);
@@ -49,7 +49,7 @@ return new Class extends TestCase {
         $this->initCourseMenuButtons([[1, 21], [1, 32]]);
         $this->initVarCourseSettings8c1ba1cc([[0, 1], [0, 2]]);
 
-        $this->call('_drawCoursesButtons_8c017590');
+        $this->call('_drawCourseButtons_8c017590');
 
         // Unknown sprite
         // $this->shouldDrawSprite(0x18, 64.0, 42.0, -3.0);
@@ -83,11 +83,11 @@ return new Class extends TestCase {
 
         foreach ($values as $index => $value) {
             $this->initUint8(
-                $this->addressOf('_var_8c1ba1cc') + 0x44 + $index * 8 + 3,
+                $this->addressOf('_var_progress_8c1ba1cc') + 0x44 + $index * 8 + 3,
                 $value[0],
             );
             $this->initUint8(
-                $this->addressOf('_var_8c1ba1cc') + 0x44 + $index * 8 + 4,
+                $this->addressOf('_var_progress_8c1ba1cc') + 0x44 + $index * 8 + 4,
                 $value[1],
             );
         }
@@ -105,7 +105,7 @@ return new Class extends TestCase {
 
     private function resolveSymbols() {
         $this->setSize('_init_courseMenuButtons_8c04442c', 0x1c * 15);
-        $this->setSize('_var_8c1ba1cc', 0x94);
+        $this->setSize('_var_progress_8c1ba1cc', 0x94);
         $this->setSize('__modls', 0x04);
         $this->setSize('__divls', 0x04);
     }

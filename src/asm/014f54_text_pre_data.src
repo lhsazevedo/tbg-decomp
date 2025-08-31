@@ -23,11 +23,11 @@
           .EXPORT     _gdfswork              ; 0149b0
           .EXPORT     _gdfscurdir            ; 0149b0
           .EXPORT     _var_busFont_8c1ba1c8          ; 014f54
-          .EXPORT     _var_8c1ba1cc          ; 016d2c
+          .EXPORT     _var_progress_8c1ba1cc          ; 016d2c
           .EXPORT     _var_8c1ba1d0
           .EXPORT     _var_8c1ba1e4
           .EXPORT     _var_8c1ba210          ; 016d2c
-          .EXPORT     _var_score_8c1ba25c          ; 016d2c
+          .EXPORT     _var_exp_8c1ba25c          ; 016d2c
           .EXPORT     _var_8c1ba264          ; 01e27c
           .EXPORT     _var_8c1ba290          ; 013ae8
           .EXPORT     _var_8c1ba291          ; 012f44
@@ -47,7 +47,7 @@
           .EXPORT     _var_8c1ba350
           .EXPORT     _var_vibport_8c1ba354
           .EXPORT     _var_peripheral_8c1ba358
-          .EXPORT     _var_peripheral_8c1ba35c
+          .EXPORT     _var_peripherals_8c1ba35c
           .EXPORT     _var_8c1ba374
           .EXPORT     _var_8c1ba376
           .EXPORT     _var_demoBuf_8c1ba3c4
@@ -207,7 +207,7 @@ _gdfscurdir:
           .RES.B      90160
 _var_busFont_8c1ba1c8:
           .RES.B      4
-_var_8c1ba1cc:
+_var_progress_8c1ba1cc:
           .RES.B      4
 _var_8c1ba1d0:
           .RES.B      20
@@ -215,7 +215,7 @@ _var_8c1ba1e4:
           .RES.B      44
 _var_8c1ba210:
           .RES.B      76
-_var_score_8c1ba25c:
+_var_exp_8c1ba25c:
           .RES.B      8
 _var_8c1ba264:
           .RES.B      44
@@ -255,7 +255,7 @@ _var_vibport_8c1ba354:
           .RES.B      4
 _var_peripheral_8c1ba358:
           .RES.B      4
-_var_peripheral_8c1ba35c:
+_var_peripherals_8c1ba35c:
           .RES.B      24
 _var_8c1ba374:
           .RES.B      2

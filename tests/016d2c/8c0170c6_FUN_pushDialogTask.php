@@ -35,14 +35,14 @@ return new class extends TestCase {
         $createdTask = $this->alloc(0x20);
         $createdState = $this->alloc(0x1c);
 
-        $this->call('_FUN_pushDialogTask_8c0170c6')
+        $this->call('_pushDialogTask_8c0170c6')
             ->with(1, 0xcafe0002);
 
 
         $this->shouldCall('_pushTask_8c014ae8')
             ->with(
                 $this->addressOf('_var_tasks_8c1ba3c8'),
-                $this->addressOf('_FUN_dialog_8c016f98'),
+                $this->addressOf('_dialogSequenceTask_8c016f98'),
                 $createdTaskLocal,
                 $createdStateLocal,
                 0x18,

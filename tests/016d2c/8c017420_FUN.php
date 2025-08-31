@@ -16,8 +16,8 @@ return new class extends TestCase {
 
     public function test_choose_course()
     {
-        $this->setSize('_var_dialogSequences_8c225fbc', 4 * 4);
-        $this->setSize('_var_8c1ba1cc', 0x94);
+        $this->setSize('_var_dialogQueue_8c225fbc', 4 * 4);
+        $this->setSize('_var_progress_8c1ba1cc', 0x94);
 
         $this->initUint32($this->addressOf('_var_8c1bb8b8'), 0);
 
@@ -28,11 +28,11 @@ return new class extends TestCase {
 
     public function test_intro_briefing()
     {
-        $this->setSize('_var_dialogSequences_8c225fbc', 4 * 4);
-        $this->setSize('_var_8c1ba1cc', 0x94);
+        $this->setSize('_var_dialogQueue_8c225fbc', 4 * 4);
+        $this->setSize('_var_progress_8c1ba1cc', 0x94);
 
         $this->initUint32($this->addressOf('_var_8c1bb8b8'), 1);
-        $this->initUint32($this->addressOf('_var_8c1ba1cc') + 0, 1);
+        $this->initUint32($this->addressOf('_var_progress_8c1ba1cc') + 0, 1);
 
         $this->call('_buildCourseMenuDialogFlow_8c017420');
         $this->shouldPushSequence(self::SEQ_INTRO_BRIEFING);
@@ -42,11 +42,11 @@ return new class extends TestCase {
 
     public function test_success_2()
     {
-        $this->setSize('_var_dialogSequences_8c225fbc', 4 * 4);
-        $this->setSize('_var_8c1ba1cc', 0x94);
+        $this->setSize('_var_dialogQueue_8c225fbc', 4 * 4);
+        $this->setSize('_var_progress_8c1ba1cc', 0x94);
 
         $this->initUint32($this->addressOf('_var_8c1bb8b8'), 1);
-        $this->initUint32($this->addressOf('_var_8c1ba1cc') + 0, 0);
+        $this->initUint32($this->addressOf('_var_progress_8c1ba1cc') + 0, 0);
         $this->initUint32($this->addressOf('_var_8c1bb8bc'), 1);
 
         $this->call('_buildCourseMenuDialogFlow_8c017420');
@@ -57,42 +57,42 @@ return new class extends TestCase {
 
     public function test_success_without_unlocked_without_letter()
     {
-        $this->setSize('_var_dialogSequences_8c225fbc', 4 * 4);
-        $this->setSize('_var_8c1ba1cc', 0x94);
+        $this->setSize('_var_dialogQueue_8c225fbc', 4 * 4);
+        $this->setSize('_var_progress_8c1ba1cc', 0x94);
         $this->setSize('__modls', 4);
 
         $this->initUint32($this->addressOf('_var_8c1bb8b8'), 1);
-        $this->initUint32($this->addressOf('_var_8c1ba1cc') + 0, 0);
+        $this->initUint32($this->addressOf('_var_progress_8c1ba1cc') + 0, 0);
         $this->initUint32($this->addressOf('_var_8c1bb8bc'), 0);
         $this->initUint32($this->addressOf('_var_8c1bb8dc'), 1);
         $this->initUint32($this->addressOf('_var_award_8c1bb8f8'), 0);
 
         $this->call('_buildCourseMenuDialogFlow_8c017420');
         $this->shouldPushSequence(self::SEQ_SUCCESS);
-        $this->shouldCall('_FUN_checkCourses_8c0172dc')->andReturn(0);
+        $this->shouldCall('_buildCourseUnlockList_8c0172dc')->andReturn(0);
         $this->shouldPushSequence(self::SEQ_CHOOSE_COURSE);
         $this->shouldPushSequence(-1);
     }
 
     public function test_success_without_unlocked_with_letter()
     {
-        $this->setSize('_var_dialogSequences_8c225fbc', 4 * 4);
-        $this->setSize('_var_8c1ba1cc', 0x94);
+        $this->setSize('_var_dialogQueue_8c225fbc', 4 * 4);
+        $this->setSize('_var_progress_8c1ba1cc', 0x94);
         $this->setSize('__modls', 4);
 
         $this->initUint32($this->addressOf('_var_8c1bb8b8'), 1);
-        $this->initUint32($this->addressOf('_var_8c1ba1cc') + 0, 6);
-        $this->initUint32($this->addressOf('_var_8c1ba1cc') + 0x2c + 5 * 4, 0);
+        $this->initUint32($this->addressOf('_var_progress_8c1ba1cc') + 0, 6);
+        $this->initUint32($this->addressOf('_var_progress_8c1ba1cc') + 0x2c + 5 * 4, 0);
         $this->initUint32($this->addressOf('_var_8c1bb8bc'), 0);
         $this->initUint32($this->addressOf('_var_8c1bb8dc'), 1);
         $this->initUint32($this->addressOf('_var_award_8c1bb8f8'), 0);
 
         $this->call('_buildCourseMenuDialogFlow_8c017420');
         $this->shouldPushSequence(self::SEQ_SUCCESS);
-        $this->shouldCall('_FUN_checkCourses_8c0172dc')->andReturn(0);
+        $this->shouldCall('_buildCourseUnlockList_8c0172dc')->andReturn(0);
         $this->shouldCall('_AsqGetRandomInRangeB_121be')->andReturn(5);
         $this->shouldWriteLong(
-            $this->addressOf('_var_8c1ba1cc') + 0x2c + 5 * 4 + 0, 1
+            $this->addressOf('_var_progress_8c1ba1cc') + 0x2c + 5 * 4 + 0, 1
         );
         $this->shouldPushSequence(self::SEQ_PASSENGER_LETTER_RECEIVED);
         $this->shouldPushSequence(self::SEQ_CHOOSE_COURSE);
@@ -101,19 +101,19 @@ return new class extends TestCase {
 
     public function test_success_with_unlocked_without_letter()
     {
-        $this->setSize('_var_dialogSequences_8c225fbc', 4 * 4);
-        $this->setSize('_var_8c1ba1cc', 0x94);
+        $this->setSize('_var_dialogQueue_8c225fbc', 4 * 4);
+        $this->setSize('_var_progress_8c1ba1cc', 0x94);
         $this->setSize('__modls', 4);
 
         $this->initUint32($this->addressOf('_var_8c1bb8b8'), 1);
-        $this->initUint32($this->addressOf('_var_8c1ba1cc') + 0, 0);
+        $this->initUint32($this->addressOf('_var_progress_8c1ba1cc') + 0, 0);
         $this->initUint32($this->addressOf('_var_8c1bb8bc'), 0);
         $this->initUint32($this->addressOf('_var_8c1bb8dc'), 1);
         $this->initUint32($this->addressOf('_var_award_8c1bb8f8'), 0);
 
         $this->call('_buildCourseMenuDialogFlow_8c017420');
         $this->shouldPushSequence(self::SEQ_SUCCESS);
-        $this->shouldCall('_FUN_checkCourses_8c0172dc')->andReturn(1);
+        $this->shouldCall('_buildCourseUnlockList_8c0172dc')->andReturn(1);
         $this->shouldPushSequence(self::SEQ_COURSE_UNLOCKED);
         $this->shouldPushSequence(self::SEQ_CHOOSE_COURSE);
         $this->shouldPushSequence(-1);
@@ -121,24 +121,24 @@ return new class extends TestCase {
 
     public function test_success_with_unlocked_with_letter()
     {
-        $this->setSize('_var_dialogSequences_8c225fbc', 4 * 4);
-        $this->setSize('_var_8c1ba1cc', 0x94);
+        $this->setSize('_var_dialogQueue_8c225fbc', 4 * 4);
+        $this->setSize('_var_progress_8c1ba1cc', 0x94);
         $this->setSize('__modls', 4);
 
         $this->initUint32($this->addressOf('_var_8c1bb8b8'), 1);
-        $this->initUint32($this->addressOf('_var_8c1ba1cc') + 0, 6);
-        $this->initUint32($this->addressOf('_var_8c1ba1cc') + 0x2c + 5 * 4, 0);
+        $this->initUint32($this->addressOf('_var_progress_8c1ba1cc') + 0, 6);
+        $this->initUint32($this->addressOf('_var_progress_8c1ba1cc') + 0x2c + 5 * 4, 0);
         $this->initUint32($this->addressOf('_var_8c1bb8bc'), 0);
         $this->initUint32($this->addressOf('_var_8c1bb8dc'), 1);
         $this->initUint32($this->addressOf('_var_award_8c1bb8f8'), 0);
 
         $this->call('_buildCourseMenuDialogFlow_8c017420');
         $this->shouldPushSequence(self::SEQ_SUCCESS);
-        $this->shouldCall('_FUN_checkCourses_8c0172dc')->andReturn(1);
+        $this->shouldCall('_buildCourseUnlockList_8c0172dc')->andReturn(1);
         $this->shouldPushSequence(self::SEQ_COURSE_UNLOCKED);
         $this->shouldCall('_AsqGetRandomInRangeB_121be')->andReturn(5);
         $this->shouldWriteLong(
-            $this->addressOf('_var_8c1ba1cc') + 0x2c + 5 * 4 + 0, 1
+            $this->addressOf('_var_progress_8c1ba1cc') + 0x2c + 5 * 4 + 0, 1
         );
         $this->shouldPushSequence(self::SEQ_PASSENGER_LETTER_RECEIVED);
         $this->shouldPushSequence(self::SEQ_CHOOSE_COURSE);
@@ -147,41 +147,41 @@ return new class extends TestCase {
 
     public function test_failure_without_unlocked_without_letter()
     {
-        $this->setSize('_var_dialogSequences_8c225fbc', 4 * 4);
-        $this->setSize('_var_8c1ba1cc', 0x94);
+        $this->setSize('_var_dialogQueue_8c225fbc', 4 * 4);
+        $this->setSize('_var_progress_8c1ba1cc', 0x94);
         $this->setSize('__modls', 4);
 
         $this->initUint32($this->addressOf('_var_8c1bb8b8'), 1);
-        $this->initUint32($this->addressOf('_var_8c1ba1cc') + 0, 0);
+        $this->initUint32($this->addressOf('_var_progress_8c1ba1cc') + 0, 0);
         $this->initUint32($this->addressOf('_var_8c1bb8bc'), 0);
         $this->initUint32($this->addressOf('_var_8c1bb8dc'), 0);
 
         $this->call('_buildCourseMenuDialogFlow_8c017420');
         $this->shouldPushSequence(self::SEQ_FAILURE);
-        $this->shouldCall('_FUN_checkCourses_8c0172dc')->andReturn(0);
+        $this->shouldCall('_buildCourseUnlockList_8c0172dc')->andReturn(0);
         $this->shouldPushSequence(self::SEQ_CHOOSE_COURSE);
         $this->shouldPushSequence(-1);
     }
 
     public function test_failure_without_unlocked_with_letter()
     {
-        $this->setSize('_var_dialogSequences_8c225fbc', 4 * 4);
-        $this->setSize('_var_8c1ba1cc', 0x94);
+        $this->setSize('_var_dialogQueue_8c225fbc', 4 * 4);
+        $this->setSize('_var_progress_8c1ba1cc', 0x94);
         $this->setSize('__modls', 4);
         $this->setSize('_AsqGetRandomInRangeB_121be', 4);
 
         $this->initUint32($this->addressOf('_var_8c1bb8b8'), 1);
-        $this->initUint32($this->addressOf('_var_8c1ba1cc') + 0, 6);
-        $this->initUint32($this->addressOf('_var_8c1ba1cc') + 0x2c + 5 * 4, 0);
+        $this->initUint32($this->addressOf('_var_progress_8c1ba1cc') + 0, 6);
+        $this->initUint32($this->addressOf('_var_progress_8c1ba1cc') + 0x2c + 5 * 4, 0);
         $this->initUint32($this->addressOf('_var_8c1bb8bc'), 0);
         $this->initUint32($this->addressOf('_var_8c1bb8dc'), 0);
 
         $this->call('_buildCourseMenuDialogFlow_8c017420');
         $this->shouldPushSequence(self::SEQ_FAILURE);
-        $this->shouldCall('_FUN_checkCourses_8c0172dc')->andReturn(0);
+        $this->shouldCall('_buildCourseUnlockList_8c0172dc')->andReturn(0);
         $this->shouldCall('_AsqGetRandomInRangeB_121be')->andReturn(5);
         $this->shouldWriteLong(
-            $this->addressOf('_var_8c1ba1cc') + 0x2c + 5 * 4 + 0, 1
+            $this->addressOf('_var_progress_8c1ba1cc') + 0x2c + 5 * 4 + 0, 1
         );
         $this->shouldPushSequence(self::SEQ_PASSENGER_LETTER_RECEIVED);
         $this->shouldPushSequence(self::SEQ_CHOOSE_COURSE);
@@ -190,18 +190,18 @@ return new class extends TestCase {
 
     public function test_failure_with_unlocked_without_letter()
     {
-        $this->setSize('_var_dialogSequences_8c225fbc', 4 * 4);
-        $this->setSize('_var_8c1ba1cc', 0x94);
+        $this->setSize('_var_dialogQueue_8c225fbc', 4 * 4);
+        $this->setSize('_var_progress_8c1ba1cc', 0x94);
         $this->setSize('__modls', 4);
 
         $this->initUint32($this->addressOf('_var_8c1bb8b8'), 1);
-        $this->initUint32($this->addressOf('_var_8c1ba1cc') + 0, 0);
+        $this->initUint32($this->addressOf('_var_progress_8c1ba1cc') + 0, 0);
         $this->initUint32($this->addressOf('_var_8c1bb8bc'), 0);
         $this->initUint32($this->addressOf('_var_8c1bb8dc'), 0);
 
         $this->call('_buildCourseMenuDialogFlow_8c017420');
         $this->shouldPushSequence(self::SEQ_FAILURE);
-        $this->shouldCall('_FUN_checkCourses_8c0172dc')->andReturn(1);
+        $this->shouldCall('_buildCourseUnlockList_8c0172dc')->andReturn(1);
         $this->shouldPushSequence(self::SEQ_COURSE_UNLOCKED);
         $this->shouldPushSequence(self::SEQ_CHOOSE_COURSE);
         $this->shouldPushSequence(-1);
@@ -209,24 +209,24 @@ return new class extends TestCase {
 
     public function test_failure_with_unlocked_with_letter()
     {
-        $this->setSize('_var_dialogSequences_8c225fbc', 4 * 4);
-        $this->setSize('_var_8c1ba1cc', 0x94);
+        $this->setSize('_var_dialogQueue_8c225fbc', 4 * 4);
+        $this->setSize('_var_progress_8c1ba1cc', 0x94);
         $this->setSize('__modls', 4);
         $this->setSize('_AsqGetRandomInRangeB_121be', 4);
 
         $this->initUint32($this->addressOf('_var_8c1bb8b8'), 1);
-        $this->initUint32($this->addressOf('_var_8c1ba1cc') + 0, 6);
-        $this->initUint32($this->addressOf('_var_8c1ba1cc') + 0x2c + 5 * 4, 0);
+        $this->initUint32($this->addressOf('_var_progress_8c1ba1cc') + 0, 6);
+        $this->initUint32($this->addressOf('_var_progress_8c1ba1cc') + 0x2c + 5 * 4, 0);
         $this->initUint32($this->addressOf('_var_8c1bb8bc'), 0);
         $this->initUint32($this->addressOf('_var_8c1bb8dc'), 0);
 
         $this->call('_buildCourseMenuDialogFlow_8c017420');
         $this->shouldPushSequence(self::SEQ_FAILURE);
-        $this->shouldCall('_FUN_checkCourses_8c0172dc')->andReturn(1);
+        $this->shouldCall('_buildCourseUnlockList_8c0172dc')->andReturn(1);
         $this->shouldPushSequence(self::SEQ_COURSE_UNLOCKED);
         $this->shouldCall('_AsqGetRandomInRangeB_121be')->andReturn(5);
         $this->shouldWriteLong(
-            $this->addressOf('_var_8c1ba1cc') + 0x2c + 5 * 4 + 0, 1
+            $this->addressOf('_var_progress_8c1ba1cc') + 0x2c + 5 * 4 + 0, 1
         );
         $this->shouldPushSequence(self::SEQ_PASSENGER_LETTER_RECEIVED);
         $this->shouldPushSequence(self::SEQ_CHOOSE_COURSE);
@@ -360,7 +360,7 @@ return new class extends TestCase {
     {
         static $index = 0;
         $this->shouldWriteLong(
-            $this->addressOf('_var_dialogSequences_8c225fbc') + $index++ * 4, $sequence
+            $this->addressOf('_var_dialogQueue_8c225fbc') + $index++ * 4, $sequence
         );
 
         if ($sequence === -1) {
@@ -370,21 +370,21 @@ return new class extends TestCase {
 
     private function initDialog8c225fbc(array $values): void
     {
-        $this->setSize('_var_dialogSequences_8c225fbc', 4 * 4);
+        $this->setSize('_var_dialogQueue_8c225fbc', 4 * 4);
         foreach ($values as $index => $value) {
-            $this->initUint32($this->addressOf('_var_dialogSequences_8c225fbc') + $index * 4, $value);
+            $this->initUint32($this->addressOf('_var_dialogQueue_8c225fbc') + $index * 4, $value);
         }
     }
 
     public function generalSuccessTest(int $award, int $sequence, bool $unlocked, bool $letter)
     {
-        $this->setSize('_var_dialogSequences_8c225fbc', 4 * 4);
-        $this->setSize('_var_8c1ba1cc', 0x94);
+        $this->setSize('_var_dialogQueue_8c225fbc', 4 * 4);
+        $this->setSize('_var_progress_8c1ba1cc', 0x94);
         $this->setSize('__modls', 4);
 
         $this->initUint32($this->addressOf('_var_8c1bb8b8'), 1);
-        $this->initUint32($this->addressOf('_var_8c1ba1cc') + 0, $letter ? 6 : 0);
-        $this->initUint32($this->addressOf('_var_8c1ba1cc') + 0x2c + 5 * 4, 0);
+        $this->initUint32($this->addressOf('_var_progress_8c1ba1cc') + 0, $letter ? 6 : 0);
+        $this->initUint32($this->addressOf('_var_progress_8c1ba1cc') + 0x2c + 5 * 4, 0);
         $this->initUint32($this->addressOf('_var_8c1bb8bc'), 0);
         $this->initUint32($this->addressOf('_var_8c1bb8dc'), 1);
         $this->initUint32($this->addressOf('_var_award_8c1bb8f8'), $award);
@@ -392,7 +392,7 @@ return new class extends TestCase {
         $this->call('_buildCourseMenuDialogFlow_8c017420');
         $this->shouldPushSequence($sequence);
 
-        $this->shouldCall('_FUN_checkCourses_8c0172dc')->andReturn($unlocked ? 1 : 0);
+        $this->shouldCall('_buildCourseUnlockList_8c0172dc')->andReturn($unlocked ? 1 : 0);
         if ($unlocked) {
             $this->shouldPushSequence(self::SEQ_COURSE_UNLOCKED);
         }
@@ -400,7 +400,7 @@ return new class extends TestCase {
         if ($letter) {
             $this->shouldCall('_AsqGetRandomInRangeB_121be')->andReturn(5);
             $this->shouldWriteLong(
-                $this->addressOf('_var_8c1ba1cc') + 0x2c + 5 * 4 + 0, 1
+                $this->addressOf('_var_progress_8c1ba1cc') + 0x2c + 5 * 4 + 0, 1
             );
             $this->shouldPushSequence(self::SEQ_PASSENGER_LETTER_RECEIVED);
         }

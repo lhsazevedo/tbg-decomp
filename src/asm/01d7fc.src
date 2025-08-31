@@ -9,7 +9,7 @@
           .IMPORT     _swapMessageBoxFor_8c02aefc
           .IMPORT     _var_8c1ba350
           .IMPORT     _init_saveNames_8c044d50
-          .IMPORT     _var_peripheral_8c1ba35c
+          .IMPORT     _var_peripherals_8c1ba35c
           .IMPORT     _VmMenuUpdateVmuStatus_1967c
           .IMPORT     _getUknPvmBool_8c01432a
           .IMPORT     _AsqFreeQueues_11f7e
@@ -27,7 +27,7 @@
           .IMPORT     _var_8c2263f0
           .IMPORT     _var_8c2263ec
           .IMPORT     _var_game_mode_8c1bb8fc
-          .IMPORT     _var_8c1ba1cc
+          .IMPORT     _var_progress_8c1ba1cc
           .IMPORT     _push_fadeout_8c022b60
           .IMPORT     _var_vmuStatus_8c226048
           .IMPORT     _const_8c0387fc
@@ -52,8 +52,8 @@
           .IMPORT     _syFree
           .IMPORT     _FUN_8c016182
           .IMPORT     _FUN_8c017ef2
-          .IMPORT     _FUN_checkCourses_8c0172dc
-          .IMPORT     _FUN_8c0173e6
+          .IMPORT     _buildCourseUnlockList_8c0172dc
+          .IMPORT     _applyUnlocks_8c0173e6
           .IMPORT     _pushTitle_8c015fd6
           .IMPORT     _njSetBackColor
           .IMPORT     _FUN_8c0128cc
@@ -257,7 +257,7 @@ LP_GEN_44131:
           .DATA.L _menuState_8c1bc7a8 ; H'8C01D954
           .DATA.L _var_8c1ba350 ; H'8C01D958
           .DATA.L _init_saveNames_8c044d50 ; H'8C01D95C
-          .DATA.L H'10+_var_peripheral_8c1ba35c ; H'8C01D960
+          .DATA.L H'10+_var_peripherals_8c1ba35c ; H'8C01D960
           .DATA.W H'0044 ; H'8C01D964
           .DATA.W H'0094 ; H'8C01D966
           .DATA.W H'00AC ; H'8C01D968
@@ -551,7 +551,7 @@ LP_GEN_73625:
           .DATA.L _var_8c2263f0 ; H'8C01DB94
           .DATA.L _var_8c2263ec ; H'8C01DB98
           .DATA.L _var_game_mode_8c1bb8fc ; H'8C01DB9C
-          .DATA.L _var_8c1ba1cc ; H'8C01DBA0
+          .DATA.L _var_progress_8c1ba1cc ; H'8C01DBA0
           .DATA.L _push_fadeout_8c022b60 ; H'8C01DBA4
           .DATA.L _drawSprite_8c014f54 ; H'8C01DBA8
 LAB_8c01dbac:
@@ -691,7 +691,7 @@ LP_GEN_38701:
           .DATA.L _const_8c0388b8 ; H'8C01DCA8
           .DATA.L _var_midiHandles_8c0fcd28 ; H'8C01DCAC
           .DATA.L _sdMidiPlay ; H'8C01DCB0
-          .DATA.L H'10+_var_peripheral_8c1ba35c ; H'8C01DCB4
+          .DATA.L H'10+_var_peripherals_8c1ba35c ; H'8C01DCB4
           .DATA.L _const_8c0388f0 ; H'8C01DCB8
           .DATA.L _menuTextboxText_8c02af1c ; H'8C01DCBC
 caseD_6_2:
@@ -999,10 +999,10 @@ LP_GEN_50614:
           .DATA.L _syFree ; H'8C01DF10
           .DATA.L _const_8c0388f0 ; H'8C01DF14
           .DATA.L _FUN_8c016182 ; H'8C01DF18
-          .DATA.L _var_8c1ba1cc ; H'8C01DF1C
+          .DATA.L _var_progress_8c1ba1cc ; H'8C01DF1C
           .DATA.L _FUN_8c017ef2 ; H'8C01DF20
-          .DATA.L _FUN_checkCourses_8c0172dc ; H'8C01DF24
-          .DATA.L _FUN_8c0173e6 ; H'8C01DF28
+          .DATA.L _buildCourseUnlockList_8c0172dc ; H'8C01DF24
+          .DATA.L _applyUnlocks_8c0173e6 ; H'8C01DF28
           .DATA.L _FUN_8c01f954 ; H'8C01DF2C
           .DATA.L _pushTitle_8c015fd6 ; H'8C01DF30
 LAB_8c01df34:
@@ -1306,7 +1306,7 @@ LP_GEN_76652:
           .DATA.L _var_8c2263f4 ; H'8C01E1A8
           .DATA.L _var_award_8c1bb8f8 ; H'8C01E1AC
           .DATA.L _var_8c2263f8 ; H'8C01E1B0
-          .DATA.L _var_8c1ba1cc ; H'8C01E1B4
+          .DATA.L _var_progress_8c1ba1cc ; H'8C01E1B4
 LAB_8c01e1b8:
           MOV.W       LP_GEN_78959,R2
           BRA         LAB_8c01e1c6

@@ -18,10 +18,10 @@ return new class extends TestCase {
         $this->resolveSymbols();
 
         // Nothing pressed.
-        $this->initUint32($this->addressOf('_var_peripheral_8c1ba35c') + 16, 0);
+        $this->initUint32($this->addressOf('_var_peripherals_8c1ba35c') + 16, 0);
 
         // -- Act ----------------------
-        $this->call('_FUN_handleCourseMenuCursor_8c017126');
+        $this->call('_handleCourseMenuInput_8c017126');
 
         // -- Assert -------------------
         // No asserts for this test
@@ -76,11 +76,11 @@ return new class extends TestCase {
 
         // A button pressed
         $this->initUint32(
-            $this->addressOf('_var_peripheral_8c1ba35c') + 16, 1 << 2
+            $this->addressOf('_var_peripherals_8c1ba35c') + 16, 1 << 2
         );
 
         // -- Act ----------------------
-        $this->call('_FUN_handleCourseMenuCursor_8c017126');
+        $this->call('_handleCourseMenuInput_8c017126');
 
         // -- Assert -------------------
         $this->shouldCall('_FUN_8c010bae')->with(0);
@@ -110,11 +110,11 @@ return new class extends TestCase {
 
         // A button pressed
         $this->initUint32(
-            $this->addressOf('_var_peripheral_8c1ba35c') + 16, 1 << 2
+            $this->addressOf('_var_peripherals_8c1ba35c') + 16, 1 << 2
         );
 
         // -- Act ----------------------
-        $this->call('_FUN_handleCourseMenuCursor_8c017126');
+        $this->call('_handleCourseMenuInput_8c017126');
 
         // -- Assert -------------------
         $this->shouldCall('_FUN_8c010bae')->with(0);
@@ -144,11 +144,11 @@ return new class extends TestCase {
 
         // Up button pressed
         $this->initUint32(
-            $this->addressOf('_var_peripheral_8c1ba35c') + 16, 1 << 4
+            $this->addressOf('_var_peripherals_8c1ba35c') + 16, 1 << 4
         );
 
         // -- Act ----------------------
-        $this->call('_FUN_handleCourseMenuCursor_8c017126');
+        $this->call('_handleCourseMenuInput_8c017126');
 
         // -- Assert -------------------
         $this->shouldWriteLong(
@@ -176,11 +176,11 @@ return new class extends TestCase {
 
         // Up button pressed
         $this->initUint32(
-            $this->addressOf('_var_peripheral_8c1ba35c') + 16, 1 << 4
+            $this->addressOf('_var_peripherals_8c1ba35c') + 16, 1 << 4
         );
 
         // -- Act ----------------------
-        $this->call('_FUN_handleCourseMenuCursor_8c017126');
+        $this->call('_handleCourseMenuInput_8c017126');
 
         // -- Assert -------------------
         $this->shouldWriteLong(
@@ -214,11 +214,11 @@ return new class extends TestCase {
 
         // Down button pressed
         $this->initUint32(
-            $this->addressOf('_var_peripheral_8c1ba35c') + 16, 1 << 5
+            $this->addressOf('_var_peripherals_8c1ba35c') + 16, 1 << 5
         );
 
         // -- Act ----------------------
-        $this->call('_FUN_handleCourseMenuCursor_8c017126');
+        $this->call('_handleCourseMenuInput_8c017126');
 
         // -- Assert -------------------
         $this->shouldWriteLong(
@@ -246,11 +246,11 @@ return new class extends TestCase {
 
         // Down button pressed
         $this->initUint32(
-            $this->addressOf('_var_peripheral_8c1ba35c') + 16, 1 << 5
+            $this->addressOf('_var_peripherals_8c1ba35c') + 16, 1 << 5
         );
 
         // -- Act ----------------------
-        $this->call('_FUN_handleCourseMenuCursor_8c017126');
+        $this->call('_handleCourseMenuInput_8c017126');
 
         // -- Assert -------------------
         $this->shouldWriteLong(
@@ -284,11 +284,11 @@ return new class extends TestCase {
 
         // Left button pressed
         $this->initUint32(
-            $this->addressOf('_var_peripheral_8c1ba35c') + 16, 1 << 6
+            $this->addressOf('_var_peripherals_8c1ba35c') + 16, 1 << 6
         );
 
         // -- Act ----------------------
-        $this->call('_FUN_handleCourseMenuCursor_8c017126');
+        $this->call('_handleCourseMenuInput_8c017126');
 
         // -- Assert -------------------
         $this->shouldWriteLong(
@@ -316,11 +316,11 @@ return new class extends TestCase {
 
         // Left button pressed
         $this->initUint32(
-            $this->addressOf('_var_peripheral_8c1ba35c') + 16, 1 << 6
+            $this->addressOf('_var_peripherals_8c1ba35c') + 16, 1 << 6
         );
 
         // -- Act ----------------------
-        $this->call('_FUN_handleCourseMenuCursor_8c017126');
+        $this->call('_handleCourseMenuInput_8c017126');
 
         // -- Assert -------------------
         $this->shouldWriteLong(
@@ -357,11 +357,11 @@ return new class extends TestCase {
 
         // Right button pressed
         $this->initUint32(
-            $this->addressOf('_var_peripheral_8c1ba35c') + 16, 1 << 7
+            $this->addressOf('_var_peripherals_8c1ba35c') + 16, 1 << 7
         );
 
         // -- Act ----------------------
-        $this->call('_FUN_handleCourseMenuCursor_8c017126');
+        $this->call('_handleCourseMenuInput_8c017126');
 
         // -- Assert -------------------
         $this->shouldWriteLong(
@@ -389,11 +389,11 @@ return new class extends TestCase {
 
         // Right button pressed
         $this->initUint32(
-            $this->addressOf('_var_peripheral_8c1ba35c') + 16, 1 << 7
+            $this->addressOf('_var_peripherals_8c1ba35c') + 16, 1 << 7
         );
 
         // -- Act ----------------------
-        $this->call('_FUN_handleCourseMenuCursor_8c017126');
+        $this->call('_handleCourseMenuInput_8c017126');
 
         // -- Assert -------------------
         $this->shouldWriteLong(
@@ -430,11 +430,11 @@ return new class extends TestCase {
 
         // Up button pressed
         $this->initUint32(
-            $this->addressOf('_var_peripheral_8c1ba35c') + 16, 1 << 4
+            $this->addressOf('_var_peripherals_8c1ba35c') + 16, 1 << 4
         );
 
         // -- Act ----------------------
-        $this->call('_FUN_handleCourseMenuCursor_8c017126');
+        $this->call('_handleCourseMenuInput_8c017126');
 
         // -- Assert -------------------
         $this->shouldWriteLong(
@@ -445,7 +445,7 @@ return new class extends TestCase {
 
     public function resolveSymbols()
     {
-        $this->setSize('_var_peripheral_8c1ba35c', 52 * 2);
+        $this->setSize('_var_peripherals_8c1ba35c', 52 * 2);
         $this->setSize('_init_courseMenuButtons_8c04442c', 0x1c * 15);
         $this->setSize('_menuState_8c1bc7a8', 0x6c);
     }

@@ -1,8 +1,8 @@
 ; 8c01d290
           .IMPORT     _menuState_8c1bc7a8
-          .IMPORT     _var_8c1ba1cc
+          .IMPORT     _var_progress_8c1ba1cc
           .IMPORT     _drawSprite_8c014f54
-          .IMPORT     _var_peripheral_8c1ba35c
+          .IMPORT     _var_peripherals_8c1ba35c
           .IMPORT     _isFading_8c226568
           .IMPORT     _getUknPvmBool_8c01432a
           .IMPORT     _AsqFreeQueues_11f7e
@@ -227,11 +227,11 @@ LAB_8c01d3c8:
 LP_GEN_16673:
           .RES.W 1 ; H'8C01D3EE
           .DATA.L _menuState_8c1bc7a8 ; H'8C01D3F0
-          .DATA.L _var_8c1ba1cc ; H'8C01D3F4
+          .DATA.L _var_progress_8c1ba1cc ; H'8C01D3F4
           .DATA.L _drawSprite_8c014f54 ; H'8C01D3F8
           .DATA.L H'C0800000 ; H'8C01D3FC
           .DATA.L H'C0A00000 ; H'8C01D400
-          .DATA.L _var_peripheral_8c1ba35c ; H'8C01D404
+          .DATA.L _var_peripherals_8c1ba35c ; H'8C01D404
           .DATA.L _isFading_8c226568 ; H'8C01D408
           .DATA.L _getUknPvmBool_8c01432a ; H'8C01D40C
           .DATA.L _AsqFreeQueues_11f7e ; H'8C01D410
@@ -353,7 +353,7 @@ LAB_8c01d4d8:
 LP_GEN_75259:
           .DATA.W H'270F ; H'8C01D4EC
           .RES.W 1 ; H'8C01D4EE
-          .DATA.L _var_8c1ba1cc ; H'8C01D4F0
+          .DATA.L _var_progress_8c1ba1cc ; H'8C01D4F0
 LAB_8c01d4f4:
           MOV.L       @(H'10,R9),R0
           TST         #H'10,R0
@@ -687,7 +687,7 @@ LP_GEN_43132:
           .DATA.L _setTaskAction_8c014b3e ; H'8C01D76C
           .DATA.L _menuState_8c1bc7a8 ; H'8C01D770
           .DATA.L _init_8c045170 ; H'8C01D774
-          .DATA.L _var_8c1ba1cc ; H'8C01D778
+          .DATA.L _var_progress_8c1ba1cc ; H'8C01D778
 LAB_8c01d77c:
           MOV         #H'1,R3
           MOV.L       R3,@(H'8,R13)

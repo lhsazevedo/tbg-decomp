@@ -19,7 +19,7 @@ return new class extends TestCase {
 
         $this->initUint32($this->addressOf('_menuState_8c1bc7a8') + 0x00, 0xcafe0001);
 
-        $this->call('_FUN_8c016e6c')->with(
+        $this->call('_drawInteger_8c016e6c')->with(
             100,
             42.0,
             69.0,

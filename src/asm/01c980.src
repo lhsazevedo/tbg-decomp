@@ -24,7 +24,7 @@
           .IMPORT     _sdMidiPlay
           .IMPORT     _push_fadein_8c022a9c
           .IMPORT     _push_fadeout_8c022b60
-          .IMPORT     _var_peripheral_8c1ba35c
+          .IMPORT     _var_peripherals_8c1ba35c
           .IMPORT     _isFading_8c226568
           .IMPORT     _getUknPvmBool_8c01432a
           .IMPORT     _AsqFreeQueues_11f7e
@@ -519,7 +519,7 @@ LP_GEN_41643:
           .DATA.L _push_fadeout_8c022b60 ; H'8C01CD50
           .DATA.L _sdMidiPlay ; H'8C01CD54
           .DATA.L _var_midiHandles_8c0fcd28 ; H'8C01CD58
-          .DATA.L _var_peripheral_8c1ba35c ; H'8C01CD5C
+          .DATA.L _var_peripherals_8c1ba35c ; H'8C01CD5C
           .DATA.L _menuState_8c1bc7a8 ; H'8C01CD60
           .DATA.L _isFading_8c226568 ; H'8C01CD64
           .DATA.W H'003E ; H'8C01CD68

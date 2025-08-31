@@ -44,13 +44,13 @@
           .IMPORT     _njPointCameraInterest
           .IMPORT     _var_8c227dac
           .IMPORT     _njSin
-          .IMPORT     _var_peripheral_8c1ba35c
+          .IMPORT     _var_peripherals_8c1ba35c
           .IMPORT     _var_8c1bbc84
           .IMPORT     _njInitCamera
           .IMPORT     _njSetCameraAngle
           .IMPORT     _var_8c227dd0
           .IMPORT     _njSetCameraDepth
-          .IMPORT     _var_8c1ba1cc
+          .IMPORT     _var_progress_8c1ba1cc
           .IMPORT     _njSetMatrix
           .IMPORT     _atan2f
           .IMPORT     _njRollCameraInterest
@@ -1023,7 +1023,7 @@ LP_GEN_48962:
           .DATA.W H'27D2 ; H'8C0252DA
           .DATA.W H'00C8 ; H'8C0252DC
           .RES.W 1 ; H'8C0252DE
-          .DATA.L H'10+_var_peripheral_8c1ba35c ; H'8C0252E0
+          .DATA.L H'10+_var_peripherals_8c1ba35c ; H'8C0252E0
           .DATA.L _var_8c1bbc84 ; H'8C0252E4
           .DATA.L _var_8c227d9c ; H'8C0252E8
           .DATA.L _var_8c1bb904 ; H'8C0252EC
@@ -1031,7 +1031,7 @@ LP_GEN_48962:
           .DATA.L _njSetCameraAngle ; H'8C0252F4
           .DATA.L _var_8c227dd0 ; H'8C0252F8
           .DATA.L _njSetCameraDepth ; H'8C0252FC
-          .DATA.L _var_8c1ba1cc ; H'8C025300
+          .DATA.L _var_progress_8c1ba1cc ; H'8C025300
           .DATA.L H'43B40000 ; H'8C025304
           .DATA.L H'47800000 ; H'8C025308
           .DATA.L H'C1000000 ; H'8C02530C

@@ -56,11 +56,11 @@ return new Class extends TestCase {
         $this->initMenuStateUint32(0x60, 42);
         $this->initUint32($this->addressOf('_isFading_8c226568'), 0);
         $this->initUint32($this->addressOf('_var_8c225fb8'), 21);
-        $this->initUint32($this->addressOf('_var_dialogSequences_8c225fbc') + 4 * 0, 32);
+        $this->initUint32($this->addressOf('_var_dialogQueue_8c225fbc') + 4 * 0, 32);
 
         $this->call('_StoryMenuTask_8c017718');
 
-        $this->shouldCall('_FUN_pushDialogTask_8c0170c6')->with(32);
+        $this->shouldCall('_pushDialogTask_8c0170c6')->with(32);
         $this->shouldWriteLong($this->addressOf('_menuState_8c1bc7a8') + 0x18, 2);
 
         $this->shouldRenderFrame(
@@ -104,7 +104,7 @@ return new Class extends TestCase {
         $this->initUint32($this->addressOf('_var_8c225fb8'), 21);
 
         // Dialog sequence table
-        $seqBase = $this->addressOf('_var_dialogSequences_8c225fbc');
+        $seqBase = $this->addressOf('_var_dialogQueue_8c225fbc');
         $this->initUint32($seqBase + 0, 0x0d); // SEQ_COURSE_UNLOCKED
         $this->initUint32($seqBase + 4, -1);
 
@@ -120,7 +120,7 @@ return new Class extends TestCase {
 
         $this->call('_StoryMenuTask_8c017718')->with($task, 0);
 
-        $this->shouldCall('_FUN_8c0173e6');
+        $this->shouldCall('_applyUnlocks_8c0173e6');
 
         $btnBase = $this->addressOf('_init_courseMenuButtons_8c04442c');
 
@@ -158,7 +158,7 @@ return new Class extends TestCase {
         // current != SEQ_COURSE_UNLOCKED to avoid unlock branch,
         // next != -1 to indicate there's more dialogs,
         // next also != SEQ_COURSE_UNLOCKED so no midiReset call.
-        $seqBase = $this->addressOf('_var_dialogSequences_8c225fbc');
+        $seqBase = $this->addressOf('_var_dialogQueue_8c225fbc');
         $this->initUint32($seqBase + 0, 0x05); // current
         $this->initUint32($seqBase + 4, 0x22); // next (pushed)
 
@@ -169,7 +169,7 @@ return new Class extends TestCase {
 
         // Effects (no course-unlock branch, just advance + push next)
         $this->shouldWriteLong($task + 0x08, 1);                // ++dialogSequenceIndex
-        $this->shouldCall('_FUN_pushDialogTask_8c0170c6')->with(0x22, 0); // start next sequence
+        $this->shouldCall('_pushDialogTask_8c0170c6')->with(0x22, 0); // start next sequence
 
         $this->shouldRenderFrame(
             spriteNo: 42,
@@ -192,7 +192,7 @@ return new Class extends TestCase {
         // Dialog sequences:
         // current != SEQ_COURSE_UNLOCKED (skip unlock branch),
         // next == SEQ_COURSE_UNLOCKED (so midiResetFxAndPlay should trigger).
-        $seqBase = $this->addressOf('_var_dialogSequences_8c225fbc');
+        $seqBase = $this->addressOf('_var_dialogQueue_8c225fbc');
         $this->initUint32($seqBase + 0, 0x05); // current (non-unlock)
         $this->initUint32($seqBase + 4, 0x0d); // next is SEQ_COURSE_UNLOCKED
 
@@ -205,7 +205,7 @@ return new Class extends TestCase {
         // No course-unlock processing for the "current" (we deliberately avoided it)
         // Increment index, then push next dialog, then reset+play midi because next == unlock
         $this->shouldWriteLong($task + 0x08, 1);
-        $this->shouldCall('_FUN_pushDialogTask_8c0170c6')->with(0x0d, 0);
+        $this->shouldCall('_pushDialogTask_8c0170c6')->with(0x0d, 0);
         $this->shouldCall('_midiResetFxAndPlay_8c010846')->with(0, 0);
 
         $this->shouldRenderFrame(
@@ -228,7 +228,7 @@ return new Class extends TestCase {
         $this->initUint32($this->addressOf('_var_8c225fb8'), 21);
 
         // Dialog sequences: current == unlock, next == non-unlock
-        $seqBase = $this->addressOf('_var_dialogSequences_8c225fbc');
+        $seqBase = $this->addressOf('_var_dialogQueue_8c225fbc');
         $this->initUint32($seqBase + 0, 0x0d); // SEQ_COURSE_UNLOCKED
         $this->initUint32($seqBase + 4, 0x22); // next sequence (not unlock)
 
@@ -245,7 +245,7 @@ return new Class extends TestCase {
         $this->call('_StoryMenuTask_8c017718')->with($task, 0);
 
         // Current == unlock: do the loop + jingle
-        $this->shouldCall('_FUN_8c0173e6');
+        $this->shouldCall('_applyUnlocks_8c0173e6');
 
         $this->shouldWriteCourseButtonValues(0xB0);
 
@@ -255,7 +255,7 @@ return new Class extends TestCase {
         $this->shouldWriteLong($task + 0x08, 1);
 
         // Next is not -1: push next dialog (not unlock, so no midiReset)
-        $this->shouldCall('_FUN_pushDialogTask_8c0170c6')->with(0x22, 0);
+        $this->shouldCall('_pushDialogTask_8c0170c6')->with(0x22, 0);
 
         $this->shouldRenderFrame(
             spriteNo: 42,
@@ -274,7 +274,7 @@ return new Class extends TestCase {
         $this->initUint32($this->addressOf('_var_8c225fb8'), 21);
 
         // Dialog sequences: current == unlock, next == unlock
-        $seqBase = $this->addressOf('_var_dialogSequences_8c225fbc');
+        $seqBase = $this->addressOf('_var_dialogQueue_8c225fbc');
         $this->initUint32($seqBase + 0, 0x0d); // SEQ_COURSE_UNLOCKED
         $this->initUint32($seqBase + 4, 0x0d); // next also unlock
 
@@ -291,7 +291,7 @@ return new Class extends TestCase {
         $this->call('_StoryMenuTask_8c017718')->with($task, 0);
 
         // Current == unlock: run loop + jingle
-        $this->shouldCall('_FUN_8c0173e6');
+        $this->shouldCall('_applyUnlocks_8c0173e6');
 
         $this->shouldWriteCourseButtonValues(0xC0);
 
@@ -301,7 +301,7 @@ return new Class extends TestCase {
         $this->shouldWriteLong($task + 0x08, 1);
 
         // Next == unlock: push dialog, then midiResetFxAndPlay
-        $this->shouldCall('_FUN_pushDialogTask_8c0170c6')->with(0x0d, 0);
+        $this->shouldCall('_pushDialogTask_8c0170c6')->with(0x0d, 0);
         $this->shouldCall('_midiResetFxAndPlay_8c010846')->with(0, 0);
 
         $this->shouldRenderFrame(
@@ -323,7 +323,7 @@ return new Class extends TestCase {
 
         $this->call('_StoryMenuTask_8c017718')->with($task, 0);
 
-        $this->shouldCall('_FUN_handleCourseMenuCursor_8c017126');
+        $this->shouldCall('_handleCourseMenuInput_8c017126');
         $this->shouldRenderFrame(spriteNo: 42, textboxIndex: 21, menuTextboxReturns: 1);
     }
 
@@ -638,22 +638,22 @@ return new Class extends TestCase {
     private function resolveSymbols(): void
     {
         $this->setSize('_menuState_8c1bc7a8', 0x6c);
-        $this->setSize('_var_dialogSequences_8c225fbc', 4 * 4);
+        $this->setSize('_var_dialogQueue_8c225fbc', 4 * 4);
         $this->setSize('_init_8c03bd80', 4);
         $this->setSize('_isFading_8c226568', 4);
         $this->setSize('_var_8c225fb4', 4); // dialog-running flag
         $this->setSize('_const_8c03628c', 4);
         $this->setSize('_init_courseMenuButtons_8c04442c', 0x1c * 15);
-        $this->setSize('_var_8c1ba1cc', 0x94);
+        $this->setSize('_var_progress_8c1ba1cc', 0x94);
     }
 
     /**
-     * Seed 9 course button values in var_8c1ba1cc.field_0x44.
+     * Seed 9 course button values in var_progress_8c1ba1cc.courses_0x44.
      * Values will be base, base+1, c base+8.
      */
     private function seedCourseButtonValues(int $baseVal): void
     {
-        $src = $this->addressOf('_var_8c1ba1cc') + 0x44;
+        $src = $this->addressOf('_var_progress_8c1ba1cc') + 0x44;
         for ($i = 0; $i < 9; $i++) {
             $this->initUint8($src + $i * 8, $baseVal + $i);
         }
@@ -675,8 +675,8 @@ return new Class extends TestCase {
 
     private function shouldRenderFrame(int $spriteNo, int $textboxIndex, int $menuTextboxReturns = 1): void
     {
-        $this->shouldCall('_FUN_8c016ee6');
-        $this->shouldCall('_drawCoursesButtons_8c017590');
+        $this->shouldCall('_drawDateAndExp_8c016ee6');
+        $this->shouldCall('_drawCourseButtons_8c017590');
         $this->shouldDrawSprite(0x0c, 0x0a, 0.0, 0.0, -5.0);
         $this->shouldDrawSprite(0x00, 0x2b, 0.0, 0.0, -4.0);
         $this->shouldCall('_menuTextboxText_8c02af1c')->with($textboxIndex)->andReturn($menuTextboxReturns);

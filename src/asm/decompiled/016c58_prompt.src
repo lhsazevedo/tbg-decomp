@@ -1,7 +1,7 @@
 ; 8c016c58
           .IMPORT     _sdMidiPlay
           .IMPORT     _var_midiHandles_8c0fcd28
-          .IMPORT     _var_peripheral_8c1ba35c
+          .IMPORT     _var_peripherals_8c1ba35c
           .EXPORT     _promptHandleMultiple_16c58
           .EXPORT     _promptHandleBinary_16caa
           .SECTION    P,CODE,ALIGN=4
@@ -117,8 +117,8 @@ L9:
           MOV.L       @R15+,R14
 L10:                               
           .DATA.W     H'0080 ; H'8C016D1A
-          .DATA.L     H'00000010+_var_peripheral_8c1ba35c ; H'8C016D1C
+          .DATA.L     H'00000010+_var_peripherals_8c1ba35c ; H'8C016D1C
           .DATA.L     _var_midiHandles_8c0fcd28 ; H'8C016D20
           .DATA.L     _sdMidiPlay ; H'8C016D24
-          .DATA.L     _var_peripheral_8c1ba35c ; H'8C016D28
+          .DATA.L     _var_peripherals_8c1ba35c ; H'8C016D28
           .END

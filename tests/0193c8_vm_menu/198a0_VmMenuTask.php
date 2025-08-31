@@ -383,7 +383,7 @@ return new class extends TestCase {
 
         $this->initUint32($this->addressOf('_menuState_8c1bc7a8') + 0x18, 2); // state
         $this->initUint32($this->addressOf('_menuState_8c1bc7a8') + 0x38, 1); // slot
-        $this->initUint32($this->addressOf('_var_peripheral_8c1ba35c') + 0x10, PDD_DGT_TA);
+        $this->initUint32($this->addressOf('_var_peripherals_8c1ba35c') + 0x10, PDD_DGT_TA);
         // Init slots
         $this->initUint32Array($this->addressOf('_var_vmuStatus_8c226048'), [
             0, 4, 0, 0,
@@ -414,7 +414,7 @@ return new class extends TestCase {
 
         $this->initUint32($this->addressOf('_menuState_8c1bc7a8') + 0x18, 2); // state
         $this->initUint32($this->addressOf('_menuState_8c1bc7a8') + 0x38, 1); // slot
-        $this->initUint32($this->addressOf('_var_peripheral_8c1ba35c') + 0x10, PDD_DGT_TA);
+        $this->initUint32($this->addressOf('_var_peripherals_8c1ba35c') + 0x10, PDD_DGT_TA);
         // Init slots
         $this->initUint32Array($this->addressOf('_var_vmuStatus_8c226048'), [
             0, 5, 0, 0,
@@ -445,7 +445,7 @@ return new class extends TestCase {
 
         $this->initUint32($this->addressOf('_menuState_8c1bc7a8') + 0x18, 2); // state
         $this->initUint32($this->addressOf('_menuState_8c1bc7a8') + 0x38, 1); // slot
-        $this->initUint32($this->addressOf('_var_peripheral_8c1ba35c') + 0x10, PDD_DGT_TA);
+        $this->initUint32($this->addressOf('_var_peripherals_8c1ba35c') + 0x10, PDD_DGT_TA);
         // Init slots
         $this->initUint32Array($this->addressOf('_var_vmuStatus_8c226048'), [
             0, 6, 0, 0,
@@ -476,7 +476,7 @@ return new class extends TestCase {
 
         $this->initUint32($this->addressOf('_menuState_8c1bc7a8') + 0x18, 2); // state
         $this->initUint32($this->addressOf('_menuState_8c1bc7a8') + 0x38, 8); // slot
-        $this->initUint32($this->addressOf('_var_peripheral_8c1ba35c') + 0x10, PDD_DGT_TA);
+        $this->initUint32($this->addressOf('_var_peripherals_8c1ba35c') + 0x10, PDD_DGT_TA);
         // Init slots
         $this->initUint32Array($this->addressOf('_var_vmuStatus_8c226048'), [
             0, 4, 0, 0,
@@ -504,7 +504,7 @@ return new class extends TestCase {
 
         $this->initUint32($this->addressOf('_menuState_8c1bc7a8') + 0x18, 2); // state
         $this->initUint32($this->addressOf('_menuState_8c1bc7a8') + 0x38, 1); // slot
-        $this->initUint32($this->addressOf('_var_peripheral_8c1ba35c') + 0x10, PDD_DGT_TA);
+        $this->initUint32($this->addressOf('_var_peripherals_8c1ba35c') + 0x10, PDD_DGT_TA);
         // Init slots
         $this->initUint32Array($this->addressOf('_var_vmuStatus_8c226048'), [
             0, 2, 0, 0,
@@ -1164,7 +1164,7 @@ return new class extends TestCase {
     private function resolveSymbols(): void
     {
         $this->setSize('_menuState_8c1bc7a8', 0x6c);
-        $this->setSize('_var_peripheral_8c1ba35c', 0x34 * 2);
+        $this->setSize('_var_peripherals_8c1ba35c', 0x34 * 2);
         $this->setSize('_init_saveNames_8c044d50', 4 * 11);
         $this->setSize('_isFading_8c226568', 4);
         $this->setSize('_var_vmuStatus_8c226048', 0x24);
@@ -1224,7 +1224,7 @@ return new class extends TestCase {
 
         $this->initUint32($this->addressOf('_menuState_8c1bc7a8') + 0x18, 2); // state
         $this->initUint32($this->addressOf('_menuState_8c1bc7a8') + 0x38, $initialSlot);
-        $this->initUint32($this->addressOf('_var_peripheral_8c1ba35c') + 0x10, $press);
+        $this->initUint32($this->addressOf('_var_peripherals_8c1ba35c') + 0x10, $press);
         // Init slots
         $this->initUint32Array($this->addressOf('_var_vmuStatus_8c226048'), $slots);
 

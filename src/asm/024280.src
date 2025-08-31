@@ -2,7 +2,7 @@
           .IMPORT     _var_busState_8c1bb9d0
           .IMPORT     _var_tasks_8c1bac28
           .IMPORT     _var_8c1bb8c8
-          .IMPORT     _var_peripheral_8c1ba35c
+          .IMPORT     _var_peripherals_8c1ba35c
           .IMPORT     _var_8c1ba374
           .IMPORT     _var_8c1ba29c
           .IMPORT     _var_midiHandles_8c0fcd28
@@ -18,8 +18,8 @@
           .IMPORT     _var_8c2285c4
           .IMPORT     _var_8c227d8c
           .IMPORT     __divls
-          .IMPORT     _var_peripheral_8c1ba35c
-          .IMPORT     _var_8c1ba1cc
+          .IMPORT     _var_peripherals_8c1ba35c
+          .IMPORT     _var_progress_8c1ba1cc
           .IMPORT     _vib_8c010f7a
           .IMPORT     _var_vibport_8c1ba354
           .IMPORT     _pdVibMxStop
@@ -114,7 +114,7 @@ LP_GEN_37903:
           .DATA.L H'BE3DA12F ; H'8C024310
           .DATA.L _var_tasks_8c1bac28 ; H'8C024314
           .DATA.L _var_8c1bb8c8 ; H'8C024318
-          .DATA.L H'10+_var_peripheral_8c1ba35c ; H'8C02431C
+          .DATA.L H'10+_var_peripherals_8c1ba35c ; H'8C02431C
 _FUN_8c024320:
           MOV.L       LP_GEN_79582+8,R3
           MOVA        LP_GEN_79582+16,R0
@@ -673,9 +673,9 @@ LP_GEN_30719:
           .DATA.W H'0080 ; H'8C02477A
           .DATA.L __divls ; H'8C02477C
           .DATA.L _var_8c2285c4 ; H'8C024780
-          .DATA.L _var_peripheral_8c1ba35c ; H'8C024784
+          .DATA.L _var_peripherals_8c1ba35c ; H'8C024784
           .DATA.L _var_busState_8c1bb9d0 ; H'8C024788
-          .DATA.L _var_8c1ba1cc ; H'8C02478C
+          .DATA.L _var_progress_8c1ba1cc ; H'8C02478C
           .DATA.L _vib_8c010f7a ; H'8C024790
 LAB_8c024794:
           MOV.W       LP_GEN_66287,R0

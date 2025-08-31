@@ -20,7 +20,7 @@ extern char* init_saveNames_8c044d50[11];
 extern Bool init_8c03bd80;
 extern Bool var_8c1bb8c4;
 extern ResourceGroupInfo titleResourceGroup_8c044254;
-extern PDS_PERIPHERAL var_peripheral_8c1ba35c[2];
+extern PDS_PERIPHERAL var_peripherals_8c1ba35c[2];
 extern Task var_tasks_8c1ba3c8[16];
 extern void task_8c012f44(Task* task, void* state);
 extern NJS_TEXMEMLIST var_tex_8c157af8;
@@ -40,11 +40,11 @@ void task_title_8c015ab8(Task* task, void *state) {
 
     if (menuState_8c1bc7a8.state_0x18 >= TITLE_STATE_0X0B_BUS_SLIDE /* 8c015aec */
         && menuState_8c1bc7a8.state_0x18 <= TITLE_STATE_0X0C_FLAG_REVEAL) { /* 8c015af6 */
-            if (var_peripheral_8c1ba35c[0].press & PDD_DGT_ST) { /* 8c015afa */
+            if (var_peripherals_8c1ba35c[0].press & PDD_DGT_ST) { /* 8c015afa */
                 /* 8c015b00 */
                 sdMidiPlay(var_midiHandles_8c0fcd28[0], 1, 0, 0);
 
-                var_peripheral_8c1ba35c[0].press = 0;
+                var_peripherals_8c1ba35c[0].press = 0;
                 menuState_8c1bc7a8.state_0x18 = TITLE_STATE_0X0E_PRESS_START;
                 LOG_DEBUG(("[TITLE] State changed: 0X0E_PRESS_START\n"));
                 isFading_8c226568 = FALSE;
@@ -200,7 +200,7 @@ void task_title_8c015ab8(Task* task, void *state) {
         /* 0x8c015ca8 (0x8c015b32 + 4 + 0x172) */
         case TITLE_STATE_0X08_VMU_WARNING: {
             if (
-                var_peripheral_8c1ba35c[0].press & (PDD_DGT_TA | PDD_DGT_ST)
+                var_peripherals_8c1ba35c[0].press & (PDD_DGT_TA | PDD_DGT_ST)
                 || VmMenuUpdateVmusStatus_19550(init_saveNames_8c044d50, 3)
             ) {
                 sdMidiPlay(var_midiHandles_8c0fcd28[0], 1, 0, 0);
@@ -314,7 +314,7 @@ void task_title_8c015ab8(Task* task, void *state) {
 
         /* 0x8c015e18 (0x8c015b32 + 4 + 0x2E2) */
         case TITLE_STATE_0X0E_PRESS_START: {
-            if (var_peripheral_8c1ba35c[0].press & PDD_DGT_ST) {
+            if (var_peripherals_8c1ba35c[0].press & PDD_DGT_ST) {
                 /* 8c015e20 */
                 FUN_8c010bae(0);
                 FUN_8c010bae(1);

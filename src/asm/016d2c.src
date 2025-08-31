@@ -9,9 +9,9 @@
           .IMPORT     _drawSprite_8c014f54
           .IMPORT     __modls
           .IMPORT     __divls
-          .IMPORT     _var_8c1ba1cc
+          .IMPORT     _var_progress_8c1ba1cc
           .IMPORT     __modlu
-          .IMPORT     _var_peripheral_8c1ba35c
+          .IMPORT     _var_peripherals_8c1ba35c
           .IMPORT     _var_8c225fb4
           .IMPORT     _freeTask_8c014b66
           .IMPORT     _snd_8c010cd6
@@ -22,14 +22,14 @@
           .IMPORT     _pushTask_8c014ae8
           .IMPORT     _init_8c044c08
           .IMPORT     _FUN_8c010bae
-          .IMPORT     _var_score_8c1ba25c
-          .IMPORT     _var_8c225fd4
+          .IMPORT     _var_exp_8c1ba25c
+          .IMPORT     _var_coursesToUnlock_8c225fd4
           .IMPORT     _var_8c1bb8b8
           .IMPORT     _var_8c1bb8bc
           .IMPORT     _var_8c1bb8dc
           .IMPORT     _var_award_8c1bb8f8
           .IMPORT     _AsqGetRandomInRangeB_121be
-          .IMPORT     _var_dialogSequences_8c225fbc
+          .IMPORT     _var_dialogQueue_8c225fbc
           .IMPORT     _var_game_mode_8c1bb8fc
           .IMPORT     _init_8c03bd80
           .IMPORT     _isFading_8c226568
@@ -82,10 +82,10 @@
           .IMPORT     _AsqReleaseAndFreeTexlist_11e3c
           .IMPORT     _syFree
           .EXPORT     _interpolateCursor_8c016d2c
-          .EXPORT     _FUN_8c016ee6
-          .EXPORT     _FUN_pushDialogTask_8c0170c6
-          .EXPORT     _FUN_checkCourses_8c0172dc
-          .EXPORT     _FUN_8c0173e6
+          .EXPORT     _drawDateAndExp_8c016ee6
+          .EXPORT     _pushDialogTask_8c0170c6
+          .EXPORT     _buildCourseUnlockList_8c0172dc
+          .EXPORT     _applyUnlocks_8c0173e6
           .EXPORT     _CourseMenuSwitchFromTask_8c017e18
           .EXPORT     _FUN_8c017ef2
           .EXPORT     _FUN_8c0184cc
@@ -95,13 +95,13 @@
 
           .AIFDEF UNIT_TESTING
           .EXPORT     _cursorOffTarget_8c016dc6
-          .EXPORT     _FUN_8c016e6c
-          .EXPORT     _FUN_8c016ed2
-          .EXPORT     _FUN_dialog_8c016f98
+          .EXPORT     _drawInteger_8c016e6c
+          .EXPORT     _getWeekDayIndex_8c016ed2
+          .EXPORT     _dialogSequenceTask_8c016f98
           .EXPORT     _FUN_swapDialogMessageBox_8c017108
-          .EXPORT     _FUN_handleCourseMenuCursor_8c017126
+          .EXPORT     _handleCourseMenuInput_8c017126
           .EXPORT     _buildCourseMenuDialogFlow_8c017420
-          .EXPORT     _drawCoursesButtons_8c017590
+          .EXPORT     _drawCourseButtons_8c017590
           .EXPORT     _StoryMenuTask_8c017718
           .EXPORT     _FUN_8c017a20
           .EXPORT     _FreeRunMenuTask_8c017ada
@@ -271,7 +271,7 @@ LP_GEN_57345:
           .DATA.L _sdMidiPlay ; H'8C016E60
           .DATA.L _const_8c03628c ; H'8C016E64
           .DATA.L _swapMessageBoxFor_8c02aefc ; H'8C016E68
-_FUN_8c016e6c:
+_drawInteger_8c016e6c:
           MOV.L       R14,@-R15
           MOVA        LP_GEN_56413+10,R0
           MOV.L       R13,@-R15
@@ -324,7 +324,7 @@ LAB_8c016e94:
           MOV.L       @R15+,R13
           RTS
           MOV.L       @R15+,R14
-_FUN_8c016ed2:
+_getWeekDayIndex_8c016ed2:
           MOV.L       LP_GEN_56413+26,R3
           STS.L       PR,@-R15
           MOV.L       @R3,R1
@@ -335,7 +335,7 @@ _FUN_8c016ed2:
           LDS.L       @R15+,PR
           RTS
           NOP
-_FUN_8c016ee6:
+_drawDateAndExp_8c016ee6:
           MOV.L       R14,@-R15
           MOV         #H'a,R3
           MOV.L       R13,@-R15
@@ -359,7 +359,7 @@ LAB_8c016f0a:
           FMOV        FR15,FR5
           FMOV.S      @R0,FR4
 LAB_8c016f10:
-          BSR         _FUN_8c016e6c
+          BSR         _drawInteger_8c016e6c
           NOP
           MOVA        LP_GEN_56413+10,R0
           MOV.L       LP_GEN_56413+2,R12
@@ -381,7 +381,7 @@ LAB_8c016f32:
           BRA         LAB_8c016f3e
           MOV         #H'e,R5
 LAB_8c016f36:
-          BSR         _FUN_8c016ed2
+          BSR         _getWeekDayIndex_8c016ed2
           NOP
           MOV         R0,R5
           ADD         #H'6,R5
@@ -402,7 +402,7 @@ LAB_8c016f3e:
           FMOV.S      @R15+,FR15
           MOV.L       @R15+,R12
           MOV.L       @R15+,R13
-          BRA         _FUN_8c016e6c
+          BRA         _drawInteger_8c016e6c
           MOV.L       @R15+,R14
 LP_GEN_56413:
           .DATA.W H'0090 ; H'8C016F62
@@ -412,14 +412,14 @@ LP_GEN_56413:
           .DATA.L H'41200000 ; H'8C016F70
           .DATA.L __modls ; H'8C016F74
           .DATA.L __divls ; H'8C016F78
-          .DATA.L _var_8c1ba1cc ; H'8C016F7C
+          .DATA.L _var_progress_8c1ba1cc ; H'8C016F7C
           .DATA.L __modlu ; H'8C016F80
           .DATA.L H'42A40000 ; H'8C016F84
           .DATA.L H'42A80000 ; H'8C016F88
           .DATA.L H'42BE0000 ; H'8C016F8C
           .DATA.L H'42E00000 ; H'8C016F90
           .DATA.L H'44058000 ; H'8C016F94
-_FUN_dialog_8c016f98:
+_dialogSequenceTask_8c016f98:
           MOV.L       R14,@-R15
           MOV         R5,R14
           MOV.L       R13,@-R15
@@ -529,7 +529,7 @@ LAB_8c01705a:
           BRA         LAB_8c0170b4
           MOV.L       R2,@R14
 LP_GEN_49323:
-          .DATA.L _var_peripheral_8c1ba35c ; H'8C017060
+          .DATA.L _var_peripherals_8c1ba35c ; H'8C017060
           .DATA.L _var_8c225fb4 ; H'8C017064
           .DATA.L _freeTask_8c014b66 ; H'8C017068
           .DATA.L _snd_8c010cd6 ; H'8C01706C
@@ -576,7 +576,7 @@ LAB_8c0170b4:
           MOV.L       @R15+,R13
           RTS
           MOV.L       @R15+,R14
-_FUN_pushDialogTask_8c0170c6:
+_pushDialogTask_8c0170c6:
           STS.L       PR,@-R15
           ADD         #-H'10,R15
           MOV         #H'18,R3
@@ -626,7 +626,7 @@ _FUN_swapDialogMessageBox_8c017108:
           LDS.L       @R15+,PR
           RTS
           NOP
-_FUN_handleCourseMenuCursor_8c017126:
+_handleCourseMenuInput_8c017126:
           MOV.L       R14,@-R15
           MOV.L       R13,@-R15
           MOV.L       R12,@-R15
@@ -685,14 +685,14 @@ LP_GEN_21301:
           .DATA.L _menuState_8c1bc7a8 ; H'8C01719C
           .DATA.L _drawSprite_8c014f54 ; H'8C0171A0
           .DATA.L _var_8c225fb8 ; H'8C0171A4
-          .DATA.L _FUN_dialog_8c016f98 ; H'8C0171A8
+          .DATA.L _dialogSequenceTask_8c016f98 ; H'8C0171A8
           .DATA.L _var_tasks_8c1ba3c8 ; H'8C0171AC
           .DATA.L _pushTask_8c014ae8 ; H'8C0171B0
           .DATA.L _init_8c044c08 ; H'8C0171B4
           .DATA.L _var_8c225fb4 ; H'8C0171B8
           .DATA.L _swapMessageBoxFor_8c02aefc ; H'8C0171BC
           .DATA.L _init_courseMenuButtons_8c04442c ; H'8C0171C0
-          .DATA.L H'10+_var_peripheral_8c1ba35c ; H'8C0171C4
+          .DATA.L H'10+_var_peripherals_8c1ba35c ; H'8C0171C4
           .DATA.L _FUN_8c010bae ; H'8C0171C8
           .DATA.L _var_midiHandles_8c0fcd28 ; H'8C0171CC
           .DATA.L _sdMidiPlay ; H'8C0171D0
@@ -842,8 +842,8 @@ LP_GEN_93380:
           .DATA.W H'0080 ; H'8C0172CE
           .DATA.L _var_midiHandles_8c0fcd28 ; H'8C0172D0
           .DATA.L _sdMidiPlay ; H'8C0172D4
-          .DATA.L H'10+_var_peripheral_8c1ba35c ; H'8C0172D8
-_FUN_checkCourses_8c0172dc:
+          .DATA.L H'10+_var_peripherals_8c1ba35c ; H'8C0172D8
+_buildCourseUnlockList_8c0172dc:
           MOV         #H'0,R4
           MOV.L       R14,@-R15
           MOV         R4,R7
@@ -949,8 +949,8 @@ LP_GEN_30863:
           .DATA.W H'07D0 ; H'8C017396
           .DATA.W H'1F40 ; H'8C017398
           .DATA.W H'2EE0 ; H'8C01739A
-          .DATA.L _var_8c1ba1cc ; H'8C01739C
-          .DATA.L _var_score_8c1ba25c ; H'8C0173A0
+          .DATA.L _var_progress_8c1ba1cc ; H'8C01739C
+          .DATA.L _var_exp_8c1ba25c ; H'8C0173A0
 LAB_8c0173a4:
           MOV         #H'3,R6
           CMP/GE      R6,R4
@@ -989,7 +989,7 @@ LAB_8c0173d0:
           MOV.L       @R15+,R13
           RTS
           MOV.L       @R15+,R14
-_FUN_8c0173e6:
+_applyUnlocks_8c0173e6:
           MOV.L       R13,@-R15
           MOV         #H'0,R6
           MOV.L       R12,@-R15
@@ -1090,9 +1090,9 @@ LP_GEN_89119:
           .DATA.W H'01F4 ; H'8C017496
           .DATA.W H'0BB8 ; H'8C017498
           .DATA.W H'00FF ; H'8C01749A
-          .DATA.L _var_score_8c1ba25c ; H'8C01749C
-          .DATA.L _var_8c225fd4 ; H'8C0174A0
-          .DATA.L _var_8c1ba1cc ; H'8C0174A4
+          .DATA.L _var_exp_8c1ba25c ; H'8C01749C
+          .DATA.L _var_coursesToUnlock_8c225fd4 ; H'8C0174A0
+          .DATA.L _var_progress_8c1ba1cc ; H'8C0174A4
           .DATA.L _var_8c1bb8b8 ; H'8C0174A8
           .DATA.L _var_8c1bb8bc ; H'8C0174AC
 LAB_8c0174b0:
@@ -1138,7 +1138,7 @@ LAB_8c0174ea:
           BRA         LAB_8c01754c
           MOV.L       R5,@(R0,R4)
 LAB_8c0174f6:
-          BSR         _FUN_checkCourses_8c0172dc
+          BSR         _buildCourseUnlockList_8c0172dc
           NOP
           TST         R0,R0
           BT          LAB_8c01754c
@@ -1215,8 +1215,8 @@ LP_GEN_78741:
           .DATA.L _var_award_8c1bb8f8 ; H'8C017580
           .DATA.L __modls ; H'8C017584
           .DATA.L _AsqGetRandomInRangeB_121be ; H'8C017588
-          .DATA.L _var_dialogSequences_8c225fbc ; H'8C01758C
-_drawCoursesButtons_8c017590:
+          .DATA.L _var_dialogQueue_8c225fbc ; H'8C01758C
+_drawCourseButtons_8c017590:
           MOV.L       R14,@-R15
           MOV.L       R13,@-R15
           MOV.L       R12,@-R15
@@ -1356,7 +1356,7 @@ LP_GEN_35911:
           .DATA.L H'43700000 ; H'8C01769C
           .DATA.L H'42BA0000 ; H'8C0176A0
           .DATA.L H'C0600000 ; H'8C0176A4
-          .DATA.L _var_8c1ba1cc ; H'8C0176A8
+          .DATA.L _var_progress_8c1ba1cc ; H'8C0176A8
           .DATA.L H'42D40000 ; H'8C0176AC
           .DATA.L H'42940000 ; H'8C0176B0
           .DATA.L _var_game_mode_8c1bb8fc ; H'8C0176B4
@@ -1508,7 +1508,7 @@ LAB_8c0177ba:
 LAB_8c0177c4:
           MOV.L       @R15,R3
           MOV         #H'0,R5
-          BSR         _FUN_pushDialogTask_8c0170c6
+          BSR         _pushDialogTask_8c0170c6
           MOV.L       @R3,R4
           MOV         #H'2,R1
           BRA         LAB_8c01798a
@@ -1518,7 +1518,7 @@ LP_GEN_90654:
           .DATA.L _menuState_8c1bc7a8 ; H'8C0177D4
           .DATA.L _init_8c03bd80 ; H'8C0177D8
           .DATA.L _isFading_8c226568 ; H'8C0177DC
-          .DATA.L _var_dialogSequences_8c225fbc ; H'8C0177E0
+          .DATA.L _var_dialogQueue_8c225fbc ; H'8C0177E0
           .DATA.L _getUknPvmBool_8c01432a ; H'8C0177E4
           .DATA.L _AsqFreeQueues_11f7e ; H'8C0177E8
           .DATA.L _FUN_8c010d8a ; H'8C0177EC
@@ -1538,7 +1538,7 @@ LAB_8c017804:
           MOV.L       @(R0,R2),R0
           CMP/EQ      #H'd,R0
           BF          LAB_8c017852
-          BSR         _FUN_8c0173e6
+          BSR         _applyUnlocks_8c0173e6
           NOP
           MOV.L       LP_GEN_86103+6,R9
           BRA         LAB_8c01783e
@@ -1587,7 +1587,7 @@ LAB_8c017852:
           MOV.L       @(H'8,R12),R0
           MOV         #H'0,R5
           SHLL2       R0
-          BSR         _FUN_pushDialogTask_8c0170c6
+          BSR         _pushDialogTask_8c0170c6
           MOV.L       @(R0,R8),R4
           MOV.L       @(H'8,R12),R0
           SHLL2       R0
@@ -1611,7 +1611,7 @@ LAB_8c017886:
           BRA         LAB_8c01798a
           NOP
 LAB_8c017892:
-          BSR         _FUN_handleCourseMenuCursor_8c017126
+          BSR         _handleCourseMenuInput_8c017126
           NOP
           BRA         LAB_8c01798a
           NOP
@@ -1745,9 +1745,9 @@ LAB_8c01795c:
           JMP         @R2
           MOV.L       @R15+,R14
 LAB_8c01798a:
-          BSR         _FUN_8c016ee6
+          BSR         _drawDateAndExp_8c016ee6
           NOP
-          BSR         _drawCoursesButtons_8c017590
+          BSR         _drawCourseButtons_8c017590
           NOP
           MOVA        LP_GEN_86103+58,R0
           MOV         R14,R4
@@ -1847,7 +1847,7 @@ LP_GEN_86103:
           .RES.W 1 ; H'8C017A46
           .DATA.L _var_8c225fb4 ; H'8C017A48
           .DATA.L _init_courseMenuButtons_8c04442c ; H'8C017A4C
-          .DATA.L H'44+_var_8c1ba1cc ; H'8C017A50
+          .DATA.L H'44+_var_progress_8c1ba1cc ; H'8C017A50
           .DATA.L _var_midiHandles_8c0fcd28 + 20 ; H'8C017A54
           .DATA.L _sdMidiPlay ; H'8C017A58
           .DATA.L _midiResetFxAndPlay_8c010846 ; H'8C017A5C
@@ -1868,7 +1868,7 @@ LP_GEN_86103:
           .DATA.L H'C0E00000 ; H'8C017A98
           .DATA.L _AsqGetRandomA_12166 ; H'8C017A9C
           .DATA.L _var_8c1bb8c0 ; H'8C017AA0
-          .DATA.L _var_dialogSequences_8c225fbc ; H'8C017AA4
+          .DATA.L _var_dialogQueue_8c225fbc ; H'8C017AA4
 LAB_8c017aa8:
           MOV.L       @R14,R3
           TST         R3,R3
@@ -1971,7 +1971,7 @@ LAB_8c017b54:
           NOP
 LAB_8c017b5e:
           MOV         #H'0,R5
-          BSR         _FUN_pushDialogTask_8c0170c6
+          BSR         _pushDialogTask_8c0170c6
           MOV.L       @R12,R4
           MOV         #H'2,R2
           BRA         LAB_8c017cb8
@@ -1995,7 +1995,7 @@ LAB_8c017b76:
           MOV.L       @(H'8,R13),R0
           MOV         #H'0,R5
           SHLL2       R0
-          BSR         _FUN_pushDialogTask_8c0170c6
+          BSR         _pushDialogTask_8c0170c6
           MOV.L       @(R0,R12),R4
           BRA         LAB_8c017cb8
           NOP
@@ -2008,7 +2008,7 @@ LAB_8c017b94:
           BRA         LAB_8c017cb8
           NOP
 LAB_8c017ba2:
-          BSR         _FUN_handleCourseMenuCursor_8c017126
+          BSR         _handleCourseMenuInput_8c017126
           NOP
           BRA         LAB_8c017cb8
           NOP
@@ -2041,7 +2041,7 @@ LAB_8c017bbc:
 LP_GEN_86246:
           .DATA.L _menuState_8c1bc7a8 ; H'8C017BD8
           .DATA.L _init_8c03bd80 ; H'8C017BDC
-          .DATA.L _var_dialogSequences_8c225fbc ; H'8C017BE0
+          .DATA.L _var_dialogQueue_8c225fbc ; H'8C017BE0
           .DATA.L _isFading_8c226568 ; H'8C017BE4
           .DATA.L _getUknPvmBool_8c01432a ; H'8C017BE8
           .DATA.L _AsqFreeQueues_11f7e ; H'8C017BEC
@@ -2146,7 +2146,7 @@ LAB_8c017c98:
           JMP         @R3
           MOV.L       @R15+,R14
 LAB_8c017cb8:
-          BSR         _drawCoursesButtons_8c017590
+          BSR         _drawCourseButtons_8c017590
           NOP
           MOVA        LP_GEN_85439+16,R0
           MOV         R14,R4
@@ -2345,7 +2345,7 @@ LP_GEN_59651:
           .DATA.L _menuState_8c1bc7a8 ; H'8C017E3C
           .DATA.L __quick_evn_mvn ; H'8C017E40
           .DATA.L _init_courseMenuButtons_8c04442c ; H'8C017E44
-          .DATA.L _var_8c1ba1cc ; H'8C017E48
+          .DATA.L _var_progress_8c1ba1cc ; H'8C017E48
           .DATA.L _var_game_mode_8c1bb8fc ; H'8C017E4C
           .DATA.L _StoryMenuTask_8c017718 ; H'8C017E50
           .DATA.L _setTaskAction_8c014b3e ; H'8C017E54
@@ -2472,7 +2472,7 @@ LP_GEN_67544:
           .DATA.L _FreeRunMenuTask_8c017ada ; H'8C017F3C
           .DATA.L _setTaskAction_8c014b3e ; H'8C017F40
           .DATA.L _menuState_8c1bc7a8 ; H'8C017F44
-          .DATA.L _var_dialogSequences_8c225fbc ; H'8C017F48
+          .DATA.L _var_dialogQueue_8c225fbc ; H'8C017F48
           .DATA.L _init_8c044c08 ; H'8C017F4C
           .DATA.L _var_8c225fb8 ; H'8C017F50
           .DATA.L _var_demo_8c1bb8d0 ; H'8C017F54
@@ -2641,7 +2641,7 @@ LP_GEN_56170:
           .DATA.W H'0180 ; H'8C0180B6
           .DATA.L _FreeRunMenuTask_8c017ada ; H'8C0180B8
           .DATA.L _menuState_8c1bc7a8 ; H'8C0180BC
-          .DATA.L _var_dialogSequences_8c225fbc ; H'8C0180C0
+          .DATA.L _var_dialogQueue_8c225fbc ; H'8C0180C0
           .DATA.L _init_8c044c08 ; H'8C0180C4
           .DATA.L _var_8c225fb8 ; H'8C0180C8
           .DATA.L _var_tex_8c157af8 ; H'8C0180CC
@@ -2965,10 +2965,10 @@ LAB_8c018322:
 LP_GEN_82242:
           .RES.W 1 ; H'8C018342
           .DATA.L H'42D80000 ; H'8C018344
-          .DATA.L _var_8c1ba1cc ; H'8C018348
+          .DATA.L _var_progress_8c1ba1cc ; H'8C018348
           .DATA.L H'435B0000 ; H'8C01834C
           .DATA.L _menuState_8c1bc7a8 ; H'8C018350
-          .DATA.L _FUN_8c016ed2 ; H'8C018354
+          .DATA.L _getWeekDayIndex_8c016ed2 ; H'8C018354
           .DATA.L H'C0800000 ; H'8C018358
           .DATA.L H'42DC0000 ; H'8C01835C
           .DATA.L H'438C8000 ; H'8C018360

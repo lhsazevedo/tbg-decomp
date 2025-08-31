@@ -16,7 +16,7 @@
           .IMPORT     _var_8c1bb8c4
           .IMPORT     _titleResourceGroup_8c044254
           .IMPORT     _menuState_8c1bc7a8
-          .IMPORT     _var_peripheral_8c1ba35c
+          .IMPORT     _var_peripherals_8c1ba35c
           .IMPORT     _var_tasks_8c1ba3c8
           .IMPORT     _task_8c012f44
           .IMPORT     _var_tex_8c157af8
@@ -64,7 +64,7 @@ _task_title_8c015ab8:            ; function: task_title_8c015ab8
           MOVA        L3+10,R0
           MOV         #11,R3
           MOV.L       L3+26,R12; _isFading_8c226568
-          MOV.L       L3+22,R9 ; _var_peripheral_8c1ba35c
+          MOV.L       L3+22,R9 ; _var_peripherals_8c1ba35c
           FMOV.S      @R0,FR14
           MOV.L       R4,@R15
           MOV.L       @(24,R14),R4
@@ -116,7 +116,7 @@ L3:
           .DATA.L     H'C0A00000 ; -5.0 H'8c015b40
           .DATA.L     _drawSprite_8c014f54
           .DATA.L     _menuState_8c1bc7a8
-          .DATA.L     _var_peripheral_8c1ba35c
+          .DATA.L     _var_peripherals_8c1ba35c
           .DATA.L     _isFading_8c226568 ; H'8c015b50
           .DATA.L     _var_midiHandles_8c0fcd28
           .DATA.L     _sdMidiPlay

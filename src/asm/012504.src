@@ -4,7 +4,7 @@
           .IMPORT     _var_resetRequested_8c157a78
           .IMPORT     _var_peripheral_8c1ba358
           .IMPORT     _var_8c157a70
-          .IMPORT     _var_peripheral_8c1ba35c
+          .IMPORT     _var_peripherals_8c1ba35c
           .IMPORT     _init_8c03be80
           .IMPORT     _init_8c03bef0
           .IMPORT     _var_8c1bbc4c
@@ -168,7 +168,7 @@ LP_GEN_80518:
           .DATA.L _var_peripheral_8c1ba358
           .DATA.L H'000F06FE
           .DATA.L _var_8c157a70
-          .DATA.L _var_peripheral_8c1ba35c
+          .DATA.L _var_peripherals_8c1ba35c
           .DATA.L H'000700FE
           .DATA.L _init_8c03be80
           .DATA.L _init_8c03bef0
@@ -450,7 +450,7 @@ LP_GEN_64371:
           .DATA.L _var_resetRequested_8c157a78
           .DATA.L _var_peripheral_8c1ba358
           .DATA.L H'000F06FE
-          .DATA.L _var_peripheral_8c1ba35c
+          .DATA.L _var_peripherals_8c1ba35c
           .DATA.L H'000700FE
           .DATA.L _var_8c157a70
           .DATA.L _init_8c03beb8

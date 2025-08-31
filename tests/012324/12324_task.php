@@ -7,7 +7,7 @@ use Lhsazevedo\Sh4ObjTest\TestCase;
 return new class extends TestCase {
     public function test_controller_0xf06fe_no_stick()
     {
-        $this->setSize('_var_peripheral_8c1ba35c', 0x34 * 2);
+        $this->setSize('_var_peripherals_8c1ba35c', 0x34 * 2);
         $this->setSize('_var_8c157a70', 4);
 
         $per = $this->alloc(0x34);
@@ -60,7 +60,7 @@ return new class extends TestCase {
 
     public function test_controller_0xf06fe_stick_left()
     {
-        $this->setSize('_var_peripheral_8c1ba35c', 0x34 * 2);
+        $this->setSize('_var_peripherals_8c1ba35c', 0x34 * 2);
         $this->setSize('_var_8c157a70', 4);
 
         $per = $this->alloc(0x34);
@@ -103,8 +103,8 @@ return new class extends TestCase {
 
         $this->shouldWriteLongTo('_var_8c157a70', 0xf06fe);
 
-        $this->shouldWriteLong($this->addressOf('_var_peripheral_8c1ba35c') + 0x08, 0x40);
-        $this->shouldWriteLong($this->addressOf('_var_peripheral_8c1ba35c') + 0x10, 0x40);
+        $this->shouldWriteLong($this->addressOf('_var_peripherals_8c1ba35c') + 0x08, 0x40);
+        $this->shouldWriteLong($this->addressOf('_var_peripherals_8c1ba35c') + 0x10, 0x40);
         $this->shouldWriteLongTo('_var_8c157ae4', 0x40);
 
         $this->shouldWriteLongTo('_var_8c157ae8', 0);
@@ -118,7 +118,7 @@ return new class extends TestCase {
 
     public function test_controller_0xf06fe_stick_left_hold()
     {
-        $this->setSize('_var_peripheral_8c1ba35c', 0x34 * 2);
+        $this->setSize('_var_peripherals_8c1ba35c', 0x34 * 2);
         $this->setSize('_var_8c157a70', 4);
 
         $per = $this->alloc(0x34);
@@ -161,7 +161,7 @@ return new class extends TestCase {
 
         $this->shouldWriteLongTo('_var_8c157a70', 0xf06fe);
 
-        $this->shouldWriteLong($this->addressOf('_var_peripheral_8c1ba35c') + 0x08, 0x40);
+        $this->shouldWriteLong($this->addressOf('_var_peripherals_8c1ba35c') + 0x08, 0x40);
         $this->shouldWriteLongTo('_var_8c157ae4', 0x40);
 
         $this->shouldWriteLongTo('_var_8c157ae8', 0);
@@ -175,7 +175,7 @@ return new class extends TestCase {
 
     public function test_controller_0xf06fe_stick_right()
     {
-        $this->setSize('_var_peripheral_8c1ba35c', 0x34 * 2);
+        $this->setSize('_var_peripherals_8c1ba35c', 0x34 * 2);
         $this->setSize('_var_8c157a70', 4);
 
         $per = $this->alloc(0x34);
@@ -218,8 +218,8 @@ return new class extends TestCase {
 
         $this->shouldWriteLongTo('_var_8c157a70', 0xf06fe);
 
-        $this->shouldWriteLong($this->addressOf('_var_peripheral_8c1ba35c') + 0x08, 0x80);
-        $this->shouldWriteLong($this->addressOf('_var_peripheral_8c1ba35c') + 0x10, 0x80);
+        $this->shouldWriteLong($this->addressOf('_var_peripherals_8c1ba35c') + 0x08, 0x80);
+        $this->shouldWriteLong($this->addressOf('_var_peripherals_8c1ba35c') + 0x10, 0x80);
         $this->shouldWriteLongTo('_var_8c157ae4', 0x80);
 
         $this->shouldWriteLongTo('_var_8c157ae8', 0);
@@ -233,7 +233,7 @@ return new class extends TestCase {
 
     public function test_controller_0xf06fe_stick_up()
     {
-        $this->setSize('_var_peripheral_8c1ba35c', 0x34 * 2);
+        $this->setSize('_var_peripherals_8c1ba35c', 0x34 * 2);
         $this->setSize('_var_8c157a70', 4);
 
         $per = $this->alloc(0x34);
@@ -278,8 +278,8 @@ return new class extends TestCase {
 
         $this->shouldWriteLongTo('_var_8c157ae4', 0);
 
-        $this->shouldWriteLong($this->addressOf('_var_peripheral_8c1ba35c') + 0x08, 0x10);
-        $this->shouldWriteLong($this->addressOf('_var_peripheral_8c1ba35c') + 0x10, 0x10);
+        $this->shouldWriteLong($this->addressOf('_var_peripherals_8c1ba35c') + 0x08, 0x10);
+        $this->shouldWriteLong($this->addressOf('_var_peripherals_8c1ba35c') + 0x10, 0x10);
         $this->shouldWriteLongTo('_var_8c157ae8', 0x10);
 
         $this->shouldCall('_vmsLcd_8c01c910');
@@ -291,7 +291,7 @@ return new class extends TestCase {
 
     public function test_controller_0xf06fe_stick_up_hold()
     {
-        $this->setSize('_var_peripheral_8c1ba35c', 0x34 * 2);
+        $this->setSize('_var_peripherals_8c1ba35c', 0x34 * 2);
         $this->setSize('_var_8c157a70', 4);
 
         $per = $this->alloc(0x34);
@@ -336,7 +336,7 @@ return new class extends TestCase {
 
         $this->shouldWriteLongTo('_var_8c157ae4', 0);
 
-        $this->shouldWriteLong($this->addressOf('_var_peripheral_8c1ba35c') + 0x08, 0x10);
+        $this->shouldWriteLong($this->addressOf('_var_peripherals_8c1ba35c') + 0x08, 0x10);
         $this->shouldWriteLongTo('_var_8c157ae8', 0x10);
 
         $this->shouldCall('_vmsLcd_8c01c910');
@@ -348,7 +348,7 @@ return new class extends TestCase {
 
     public function test_controller_0xf06fe_stick_down()
     {
-        $this->setSize('_var_peripheral_8c1ba35c', 0x34 * 2);
+        $this->setSize('_var_peripherals_8c1ba35c', 0x34 * 2);
         $this->setSize('_var_8c157a70', 4);
 
         $per = $this->alloc(0x34);
@@ -393,8 +393,8 @@ return new class extends TestCase {
 
         $this->shouldWriteLongTo('_var_8c157ae4', 0);
 
-        $this->shouldWriteLong($this->addressOf('_var_peripheral_8c1ba35c') + 0x08, 0x20);
-        $this->shouldWriteLong($this->addressOf('_var_peripheral_8c1ba35c') + 0x10, 0x20);
+        $this->shouldWriteLong($this->addressOf('_var_peripherals_8c1ba35c') + 0x08, 0x20);
+        $this->shouldWriteLong($this->addressOf('_var_peripherals_8c1ba35c') + 0x10, 0x20);
         $this->shouldWriteLongTo('_var_8c157ae8', 0x20);
 
         $this->shouldCall('_vmsLcd_8c01c910');
@@ -406,7 +406,7 @@ return new class extends TestCase {
 
     public function test_controller_0xf06fe_start_abxy()
     {
-        $this->setSize('_var_peripheral_8c1ba35c', 0x34 * 2);
+        $this->setSize('_var_peripherals_8c1ba35c', 0x34 * 2);
         $this->setSize('_var_8c157a70', 4);
 
         $per = $this->alloc(0x34);
@@ -462,7 +462,7 @@ return new class extends TestCase {
 
     public function test_controller_0x700fe_nothing()
     {
-        $this->setSize('_var_peripheral_8c1ba35c', 0x34 * 2);
+        $this->setSize('_var_peripherals_8c1ba35c', 0x34 * 2);
         $this->setSize('_var_8c157a70', 4);
 
         $per = $this->alloc(0x34);
@@ -514,7 +514,7 @@ return new class extends TestCase {
 
     public function test_controller_0x700fe_pressed()
     {
-        $this->setSize('_var_peripheral_8c1ba35c', 0x34 * 2);
+        $this->setSize('_var_peripherals_8c1ba35c', 0x34 * 2);
         $this->setSize('_var_8c157a70', 4);
 
         $per = $this->alloc(0x34);
@@ -566,7 +566,7 @@ return new class extends TestCase {
 
     public function test_unsuported_controller()
     {
-        $this->setSize('_var_peripheral_8c1ba35c', 0x34 * 2);
+        $this->setSize('_var_peripherals_8c1ba35c', 0x34 * 2);
         $this->setSize('_const_peripheral_8c033318', 0x34);
         $this->setSize('_var_8c157a70', 4);
 
@@ -619,7 +619,7 @@ return new class extends TestCase {
 
     public function test_second_part_zero_nothing()
     {
-        $this->setSize('_var_peripheral_8c1ba35c', 0x34 * 2);
+        $this->setSize('_var_peripherals_8c1ba35c', 0x34 * 2);
         $this->setSize('_const_peripheral_8c033318', 0x34);
         $this->initUint32Array(
             $this->addressOf('_const_peripheral_8c033318'),
@@ -675,7 +675,7 @@ return new class extends TestCase {
 
     public function test_second_part_zero_up()
     {
-        $this->setSize('_var_peripheral_8c1ba35c', 0x34 * 2);
+        $this->setSize('_var_peripherals_8c1ba35c', 0x34 * 2);
         $this->setSize('_const_peripheral_8c033318', 0x34);
         $this->initUint32Array(
             $this->addressOf('_const_peripheral_8c033318'),
@@ -737,7 +737,7 @@ return new class extends TestCase {
 
     public function test_second_part_one_nothing()
     {
-        $this->setSize('_var_peripheral_8c1ba35c', 0x34 * 2);
+        $this->setSize('_var_peripherals_8c1ba35c', 0x34 * 2);
         $this->setSize('_const_peripheral_8c033318', 0x34);
         $this->initUint32Array(
             $this->addressOf('_const_peripheral_8c033318'),
@@ -799,7 +799,7 @@ return new class extends TestCase {
 
     public function test_second_part_one_up()
     {
-        $this->setSize('_var_peripheral_8c1ba35c', 0x34 * 2);
+        $this->setSize('_var_peripherals_8c1ba35c', 0x34 * 2);
         $this->setSize('_const_peripheral_8c033318', 0x34);
         $this->initUint32Array(
             $this->addressOf('_const_peripheral_8c033318'),
@@ -862,7 +862,7 @@ return new class extends TestCase {
 
     public function test_second_part_one_path_a()
     {
-        $this->setSize('_var_peripheral_8c1ba35c', 0x34 * 2);
+        $this->setSize('_var_peripherals_8c1ba35c', 0x34 * 2);
         $this->setSize('_const_peripheral_8c033318', 0x34);
         $this->initUint32Array(
             $this->addressOf('_const_peripheral_8c033318'),
@@ -917,7 +917,7 @@ return new class extends TestCase {
         $this->shouldWriteLong($this->addressOf('_var_8c157ad4') + 1 * 0x4, 43);
         $this->shouldWriteLong($this->addressOf('_var_8c157ad4') + 1 * 0x4, 0);
         $this->shouldWriteLong($this->addressOf('_var_8c157ad4') + 2 * 0x4, 6);
-        $this->shouldWriteLong($this->addressOf('_var_peripheral_8c1ba35c') + 0x10, 0xf1);
+        $this->shouldWriteLong($this->addressOf('_var_peripherals_8c1ba35c') + 0x10, 0xf1);
         $this->shouldWriteLong($this->addressOf('_var_8c157ad4') + 3 * 0x4, 6);
 
         $this->shouldCall('_vmsLcd_8c01c910');
@@ -928,7 +928,7 @@ return new class extends TestCase {
 
     public function test_second_part_one_path_b()
     {
-        $this->setSize('_var_peripheral_8c1ba35c', 0x34 * 2);
+        $this->setSize('_var_peripherals_8c1ba35c', 0x34 * 2);
         $this->setSize('_const_peripheral_8c033318', 0x34);
         $this->initUint32Array(
             $this->addressOf('_const_peripheral_8c033318'),

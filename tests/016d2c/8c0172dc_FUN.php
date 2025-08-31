@@ -176,33 +176,33 @@ return new class extends TestCase {
 
         $this->initVarCourseSettings8c1ba1cc([0, 0, 0, 0, 0, 0, 0, 0, 0]);
         // Unknown check
-        $this->initUint32($this->addressOf('_var_8c1ba1cc'), 127);
+        $this->initUint32($this->addressOf('_var_progress_8c1ba1cc'), 127);
         // Score check
-        $this->initUint32($this->addressOf('_var_score_8c1ba25c'), 1_000_000);
+        $this->initUint32($this->addressOf('_var_exp_8c1ba25c'), 1_000_000);
 
         // -- Act ----------------------
-        $this->call('_FUN_checkCourses_8c0172dc');
+        $this->call('_buildCourseUnlockList_8c0172dc');
 
         // -- Assert -------------------
         foreach ([1, 2, 3, 4, 5, 7, 8, -1] as $offset => $value) {
-            $this->shouldWriteByte($this->addressOf('_var_8c225fd4') + $offset, $value);
+            $this->shouldWriteByte($this->addressOf('_var_coursesToUnlock_8c225fd4') + $offset, $value);
         }
     }
 
     public function resolveSymbols()
     {
-        $this->setSize('_var_8c225fd4', 4 * 9);
-        $this->setSize('_var_8c1ba1cc', 0x94);
+        $this->setSize('_var_coursesToUnlock_8c225fd4', 4 * 9);
+        $this->setSize('_var_progress_8c1ba1cc', 0x94);
     }
 
     private function initVarCourseSettings8c1ba1cc(array $values)
     {
         if (count($values) !== 9) {
-            throw new \InvalidArgumentException('Expected exactly 9 values for _var_8c1ba1cc.');
+            throw new \InvalidArgumentException('Expected exactly 9 values for _var_progress_8c1ba1cc.');
         }
 
         foreach ($values as $index => $value) {
-            $this->initUint8($this->addressOf('_var_8c1ba1cc') + 0x44 + $index * 8, $value);
+            $this->initUint8($this->addressOf('_var_progress_8c1ba1cc') + 0x44 + $index * 8, $value);
         }
     }
 
@@ -227,16 +227,16 @@ return new class extends TestCase {
             $course === 8 ? 0 : 1
         ]);
         // Unknown check
-        $this->initUint32($this->addressOf('_var_8c1ba1cc'), $unknown);
+        $this->initUint32($this->addressOf('_var_progress_8c1ba1cc'), $unknown);
         // Score check
-        $this->initUint32($this->addressOf('_var_score_8c1ba25c'), $score);
+        $this->initUint32($this->addressOf('_var_exp_8c1ba25c'), $score);
 
         // -- Act ----------------------
-        $this->call('_FUN_checkCourses_8c0172dc');
+        $this->call('_buildCourseUnlockList_8c0172dc');
 
         // -- Assert -------------------
         foreach ($writes as $offset => $value) {
-            $this->shouldWriteByte($this->addressOf('_var_8c225fd4') + $offset, $value);
+            $this->shouldWriteByte($this->addressOf('_var_coursesToUnlock_8c225fd4') + $offset, $value);
         }
 
         $this->shouldReturn(count($writes) - 1);

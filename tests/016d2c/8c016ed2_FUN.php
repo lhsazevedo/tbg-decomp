@@ -17,8 +17,8 @@ return new class extends TestCase {
     {
         $this->resolveSymbols();
 
-        $this->initUint32($this->addressOf('_var_8c1ba1cc'), 264);
-        $this->call('_FUN_8c016ed2');
+        $this->initUint32($this->addressOf('_var_progress_8c1ba1cc'), 264);
+        $this->call('_getWeekDayIndex_8c016ed2');
         $this->shouldReturn(6);
     }
 
@@ -26,14 +26,14 @@ return new class extends TestCase {
     {
         $this->resolveSymbols();
 
-        $this->initUint32($this->addressOf('_var_8c1ba1cc'), 265);
-        $this->call('_FUN_8c016ed2');
+        $this->initUint32($this->addressOf('_var_progress_8c1ba1cc'), 265);
+        $this->call('_getWeekDayIndex_8c016ed2');
         $this->shouldReturn(0);
     }
 
     public function resolveSymbols()
     {
-        $this->setSize('_var_8c1ba1cc', 4);
+        $this->setSize('_var_progress_8c1ba1cc', 4);
         // Functions
         $this->setSize('__modlu', 4);
     }

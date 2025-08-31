@@ -1,7 +1,7 @@
 ; 8c01f3c0
-          .IMPORT     _var_8c1ba1cc
+          .IMPORT     _var_progress_8c1ba1cc
           .IMPORT     _var_8c226430
-          .IMPORT     _var_dialogSequences_8c225fbc
+          .IMPORT     _var_dialogQueue_8c225fbc
           .IMPORT     _init_8c04522c
           .IMPORT     _init_8c045244
           .IMPORT     _init_8c04525c
@@ -22,7 +22,7 @@
           .IMPORT     _getUknPvmBool_8c01432a
           .IMPORT     _AsqFreeQueues_11f7e
           .IMPORT     _push_fadein_8c022a9c
-          .IMPORT     _FUN_pushDialogTask_8c0170c6
+          .IMPORT     _pushDialogTask_8c0170c6
           .IMPORT     _var_8c225fb4
           .IMPORT     _push_fadeout_8c022b60
           .IMPORT     _free_8c1bc404_8c02af32
@@ -335,9 +335,9 @@ LAB_8c01f5a6:
           MOV.L       R2,@(R0,R14)
 LP_GEN_39506:
           .RES.W 1 ; H'8C01F5BA
-          .DATA.L _var_8c1ba1cc ; H'8C01F5BC
+          .DATA.L _var_progress_8c1ba1cc ; H'8C01F5BC
           .DATA.L _var_8c226430 ; H'8C01F5C0
-          .DATA.L _var_dialogSequences_8c225fbc ; H'8C01F5C4
+          .DATA.L _var_dialogQueue_8c225fbc ; H'8C01F5C4
           .DATA.L _init_8c04522c ; H'8C01F5C8
           .DATA.L _init_8c045244 ; H'8C01F5CC
           .DATA.L _init_8c04525c ; H'8C01F5D0
@@ -513,8 +513,8 @@ LP_GEN_79838:
           .DATA.L H'42C80000 ; H'8C01F740
           .DATA.L _push_fadein_8c022a9c ; H'8C01F744
           .DATA.L _var_8c226430 ; H'8C01F748
-          .DATA.L _var_dialogSequences_8c225fbc ; H'8C01F74C
-          .DATA.L _FUN_pushDialogTask_8c0170c6 ; H'8C01F750
+          .DATA.L _var_dialogQueue_8c225fbc ; H'8C01F74C
+          .DATA.L _pushDialogTask_8c0170c6 ; H'8C01F750
 LAB_8c01f754:
           MOV.L       LP_GEN_41910+10,R2
           MOV.L       @R2,R1
@@ -870,7 +870,7 @@ LP_GEN_38893:
           .DATA.W H'0240 ; H'8C01FA14
           .DATA.W H'0180 ; H'8C01FA16
           .DATA.L _menuState_8c1bc7a8 ; H'8C01FA18
-          .DATA.L _var_dialogSequences_8c225fbc ; H'8C01FA1C
+          .DATA.L _var_dialogQueue_8c225fbc ; H'8C01FA1C
           .DATA.L _init_8c044c08 ; H'8C01FA20
           .DATA.L _FUN_8c0128cc ; H'8C01FA24
           .DATA.L _task_8c012f44 ; H'8C01FA28

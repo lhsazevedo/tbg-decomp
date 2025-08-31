@@ -81,7 +81,7 @@
           .IMPORT     _var_8c1bb8bc
           .IMPORT     _FUN_8c016182
           .IMPORT     _var_game_mode_8c1bb8fc
-          .IMPORT     _var_8c1ba1cc
+          .IMPORT     _var_progress_8c1ba1cc
           .IMPORT     _var_8c1bb8dc
           .IMPORT     _FUN_8c017ef2
           .IMPORT     _isFading_8c226568
@@ -2662,7 +2662,7 @@ LP_GEN_25024:
           .DATA.L _var_8c1bb8bc ; H'8C02C82C
           .DATA.L _FUN_8c016182 ; H'8C02C830
           .DATA.L _var_game_mode_8c1bb8fc ; H'8C02C834
-          .DATA.L _var_8c1ba1cc ; H'8C02C838
+          .DATA.L _var_progress_8c1ba1cc ; H'8C02C838
           .DATA.L _var_8c1bb8dc ; H'8C02C83C
           .DATA.L _FUN_8c01e0b4 ; H'8C02C840
           .DATA.L _FUN_8c017ef2 ; H'8C02C844
