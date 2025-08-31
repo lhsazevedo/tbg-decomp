@@ -1,6 +1,7 @@
 #include <shinobi.h>
 // #include <njdef.h>
 #include <sg_sd.h>
+#include "019e98_main_menu.h"
 #include "014a9c_tasks.h"
 #include "015ab8_title.h"
 #include "011120_asset_queues.h"

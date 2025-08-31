@@ -27,7 +27,7 @@ return new class extends TestCase {
         // No asserts for this test
     }
 
-    private function initRunStructArray()
+    private function initCourseMenuButtonArray()
     {
         $runStructBytes = [
             0x01, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x34, 0x42, 0x00, 0x00, 0xda, 0x42, 0x00, 0x00, 0x00, 0x00, 0x14, 0xf1, 0x01, 0x8c, 0x00, 0x00, 0x00, 0x00,
@@ -49,7 +49,7 @@ return new class extends TestCase {
 
         foreach ($runStructBytes as $key => $value) {
             $this->initUint8(
-                $this->addressOf('_init_runStruct_8c04442c') + $key, $value
+                $this->addressOf('_init_courseMenuButtons_8c04442c') + $key, $value
             );
         }
     }
@@ -65,7 +65,7 @@ return new class extends TestCase {
         // -- Arrange ------------------
         $this->resolveSymbols();
 
-        $this->initRunStructArray();
+        $this->initCourseMenuButtonArray();
         // MIDI handles
         $this->initUint32(
             $this->addressOf('_var_midiHandles_8c0fcd28'), 0xd1d1d1d1
@@ -99,7 +99,7 @@ return new class extends TestCase {
         // -- Arrange ------------------
         $this->resolveSymbols();
 
-        $this->initRunStructArray();
+        $this->initCourseMenuButtonArray();
         // MIDI handles
         $this->initUint32(
             $this->addressOf('_var_midiHandles_8c0fcd28'), 0xd1d1d1d1
@@ -133,7 +133,7 @@ return new class extends TestCase {
         // -- Arrange ------------------
         $this->resolveSymbols();
 
-        $this->initRunStructArray();
+        $this->initCourseMenuButtonArray();
         // MIDI handles
         $this->initUint32(
             $this->addressOf('_var_midiHandles_8c0fcd28'), 0xd1d1d1d1
@@ -165,7 +165,7 @@ return new class extends TestCase {
         // -- Arrange ------------------
         $this->resolveSymbols();
 
-        $this->initRunStructArray();
+        $this->initCourseMenuButtonArray();
         // MIDI handles
         $this->initUint32(
             $this->addressOf('_var_midiHandles_8c0fcd28'), 0xd1d1d1d1
@@ -203,7 +203,7 @@ return new class extends TestCase {
         // -- Arrange ------------------
         $this->resolveSymbols();
 
-        $this->initRunStructArray();
+        $this->initCourseMenuButtonArray();
         // MIDI handles
         $this->initUint32(
             $this->addressOf('_var_midiHandles_8c0fcd28'), 0xd1d1d1d1
@@ -235,7 +235,7 @@ return new class extends TestCase {
         // -- Arrange ------------------
         $this->resolveSymbols();
 
-        $this->initRunStructArray();
+        $this->initCourseMenuButtonArray();
         // MIDI handles
         $this->initUint32(
             $this->addressOf('_var_midiHandles_8c0fcd28'), 0xd1d1d1d1
@@ -273,7 +273,7 @@ return new class extends TestCase {
         // -- Arrange ------------------
         $this->resolveSymbols();
 
-        $this->initRunStructArray();
+        $this->initCourseMenuButtonArray();
         // MIDI handles
         $this->initUint32(
             $this->addressOf('_var_midiHandles_8c0fcd28'), 0xd1d1d1d1
@@ -305,7 +305,7 @@ return new class extends TestCase {
         // -- Arrange ------------------
         $this->resolveSymbols();
 
-        $this->initRunStructArray();
+        $this->initCourseMenuButtonArray();
         // MIDI handles
         $this->initUint32(
             $this->addressOf('_var_midiHandles_8c0fcd28'), 0xd1d1d1d1
@@ -346,7 +346,7 @@ return new class extends TestCase {
         // -- Arrange ------------------
         $this->resolveSymbols();
 
-        $this->initRunStructArray();
+        $this->initCourseMenuButtonArray();
         // MIDI handles
         $this->initUint32(
             $this->addressOf('_var_midiHandles_8c0fcd28'), 0xd1d1d1d1
@@ -378,7 +378,7 @@ return new class extends TestCase {
         // -- Arrange ------------------
         $this->resolveSymbols();
 
-        $this->initRunStructArray();
+        $this->initCourseMenuButtonArray();
         // MIDI handles
         $this->initUint32(
             $this->addressOf('_var_midiHandles_8c0fcd28'), 0xd1d1d1d1
@@ -419,7 +419,7 @@ return new class extends TestCase {
         // -- Arrange ------------------
         $this->resolveSymbols();
 
-        $this->initRunStructArray();
+        $this->initCourseMenuButtonArray();
         // MIDI handles
         $this->initUint32(
             $this->addressOf('_var_midiHandles_8c0fcd28'), 0xd1d1d1d1
@@ -446,7 +446,7 @@ return new class extends TestCase {
     public function resolveSymbols()
     {
         $this->setSize('_var_peripheral_8c1ba35c', 52 * 2);
-        $this->setSize('_init_runStruct_8c04442c', 0x1c * 15);
+        $this->setSize('_init_courseMenuButtons_8c04442c', 0x1c * 15);
         $this->setSize('_menuState_8c1bc7a8', 0x6c);
     }
 };

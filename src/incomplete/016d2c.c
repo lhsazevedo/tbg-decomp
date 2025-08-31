@@ -5,6 +5,7 @@
 #include "015ab8_title.h"
 #include "014a9c_tasks.h"
 #include "011120_asset_queues.h"
+#include "019e98_main_menu.h"
 
 typedef struct {
     int field_0x00;
@@ -12,9 +13,9 @@ typedef struct {
     float x_0x08;
     float y_0x0c;
     int field_0x10;
-    void *field_0x14;
+    void (*field_0x14)(Task *task);
     int field_0x18;
-} RunStruct;
+} CourseMenuButton;
 
 typedef struct {
     char *text_0x00;
@@ -22,12 +23,12 @@ typedef struct {
 } MenuDialog;
 
 typedef struct {
-    char field_0x00;
-    char field_0x01;
-    char field_0x02;
-    char field_0x03;
-    char field_0x04;
-    char field_0x05[3];
+    Uint8 field_0x00;
+    Uint8 field_0x01;
+    Uint8 field_0x02;
+    Uint8 field_0x03;
+    Uint8 field_0x04;
+    Uint8 field_0x05[3];
 } Struct_1cc_Nested;
 
 typedef struct {
@@ -44,7 +45,7 @@ typedef struct {
 extern void snd_8c010cd6(int p1, int p2);
 extern void setUknPvmBool_8c014330();
 extern int requestSysResgrp_8c018568(ResourceGroup* dds, ResourceGroupInfo* rg);
-extern RunStruct init_runStruct_8c04442c[15];
+extern CourseMenuButton init_courseMenuButtons_8c04442c[15];
 extern void* const_8c03628c;
 extern SDMIDI var_midiHandles_8c0fcd28[7];
 extern Struct_1cc var_8c1ba1cc;
@@ -56,7 +57,7 @@ extern ResourceGroupInfo init_mainMenuResourceGroup_8c044264;
 
 extern MenuDialog *init_8c044c08[];
 extern int var_game_mode_8c1bb8fc;
-extern int var_dialog_8c225fbc[4]; // TODO: Confirm length
+extern int var_dialogSequences_8c225fbc[4]; // TODO: Confirm length
 extern Sint8 var_8c225fd4[];
 extern int var_demo_8c1bb8d0;
 extern void resetUknPvmBool_8c014322();
@@ -115,8 +116,8 @@ int cursorOffTarget_8c016dc6()
     float x;
 
     selected = menuState_8c1bc7a8.field_0x3c + menuState_8c1bc7a8.field_0x40 * 5;
-    x = init_runStruct_8c04442c[selected].x_0x08;
-    y = init_runStruct_8c04442c[selected].y_0x0c;
+    x = init_courseMenuButtons_8c04442c[selected].x_0x08;
+    y = init_courseMenuButtons_8c04442c[selected].y_0x0c;
     if (
         (menuState_8c1bc7a8.pos.cursor.cursor_0x20.x == x)
         && (menuState_8c1bc7a8.pos.cursor.cursor_0x20.y == y)
@@ -310,11 +311,22 @@ void FUN_swapDialogMessageBox_8c017108(int dialog_index)
     var_8c225fb8 = swapMessageBoxFor_8c02aefc(init_8c044c08[dialog_index]->text_0x00);
 }
 
+enum {
+    STORY_MENU_STATE_INIT = 0,
+    STORY_MENU_STATE_FADE_IN = 1,
+    STORY_MENU_STATE_DIALOG = 2,
+    STORY_MENU_STATE_IDLE = 3,
+    STORY_MENU_STATE_ANIMATING = 4,
+    STORY_MENU_STATE_COURSE_SELECTED = 5,
+    STORY_MENU_STATE_FADE_OUT = 6,
+    STORY_MENU_STATE_FADE_OUT_TO_MAIN_MENU = 7
+};
+
 void FUN_handleCourseMenuCursor_8c017126()
 {
     if (var_peripheral_8c1ba35c[0].press & PDD_DGT_TA) {
         if (
-            init_runStruct_8c04442c[
+            init_courseMenuButtons_8c04442c[
                 menuState_8c1bc7a8.field_0x3c
                 + menuState_8c1bc7a8.field_0x40 * 5
             ]
@@ -337,7 +349,7 @@ void FUN_handleCourseMenuCursor_8c017126()
                 menuState_8c1bc7a8.field_0x40 = 2;
             }
         } while (
-            init_runStruct_8c04442c[
+            init_courseMenuButtons_8c04442c[
                 menuState_8c1bc7a8.field_0x40 * 5 + menuState_8c1bc7a8.field_0x3c
             ].field_0x00 == 0
         );
@@ -351,7 +363,7 @@ void FUN_handleCourseMenuCursor_8c017126()
                 menuState_8c1bc7a8.field_0x40 = 0;
             }
         } while (
-            init_runStruct_8c04442c[
+            init_courseMenuButtons_8c04442c[
                 menuState_8c1bc7a8.field_0x40 * 5 + menuState_8c1bc7a8.field_0x3c
             ].field_0x00 == 0
         );
@@ -365,7 +377,7 @@ void FUN_handleCourseMenuCursor_8c017126()
                 menuState_8c1bc7a8.field_0x3c = 4;
             }
         } while (
-            init_runStruct_8c04442c[
+            init_courseMenuButtons_8c04442c[
                 menuState_8c1bc7a8.field_0x40 * 5 + menuState_8c1bc7a8.field_0x3c
             ].field_0x00 == 0
         );
@@ -379,7 +391,7 @@ void FUN_handleCourseMenuCursor_8c017126()
                 menuState_8c1bc7a8.field_0x3c = 0;
             }
         } while (
-            init_runStruct_8c04442c[
+            init_courseMenuButtons_8c04442c[
                 menuState_8c1bc7a8.field_0x40 * 5 + menuState_8c1bc7a8.field_0x3c
             ].field_0x00 == 0
         );
@@ -484,41 +496,41 @@ void buildCourseMenuDialogFlow_8c017420(void)
 
     // Default choose course
     if (var_8c1bb8b8 == 0) {
-        var_dialog_8c225fbc[cur++] = SEQ_CHOOSE_COURSE;
-        var_dialog_8c225fbc[cur]   = -1;
+        var_dialogSequences_8c225fbc[cur++] = SEQ_CHOOSE_COURSE;
+        var_dialogSequences_8c225fbc[cur]   = -1;
         return;
     }
 
     // Intro first, then choose course, then finish
     if (var_8c1ba1cc.field_0x00 == 1) {
-        var_dialog_8c225fbc[cur++] = SEQ_INTRO_BRIEFING;
-        var_dialog_8c225fbc[cur++] = SEQ_CHOOSE_COURSE;
-        var_dialog_8c225fbc[cur]   = -1;
+        var_dialogSequences_8c225fbc[cur++] = SEQ_INTRO_BRIEFING;
+        var_dialogSequences_8c225fbc[cur++] = SEQ_CHOOSE_COURSE;
+        var_dialogSequences_8c225fbc[cur]   = -1;
         return;
     }
 
     // Special Success
     if (var_8c1bb8bc != 0) {
-        var_dialog_8c225fbc[cur++] = SEQ_SUCCESS_2;
-        var_dialog_8c225fbc[cur++] = SEQ_CHOOSE_COURSE;
-        var_dialog_8c225fbc[cur]   = -1;
+        var_dialogSequences_8c225fbc[cur++] = SEQ_SUCCESS_2;
+        var_dialogSequences_8c225fbc[cur++] = SEQ_CHOOSE_COURSE;
+        var_dialogSequences_8c225fbc[cur]   = -1;
         return;
     }
 
     // Result
     if (var_8c1bb8dc == 0) {
-        var_dialog_8c225fbc[cur++] = SEQ_FAILURE;
+        var_dialogSequences_8c225fbc[cur++] = SEQ_FAILURE;
     } else {
         int award_seq = SEQ_SUCCESS;
         if      (var_award_8c1bb8f8 == 1) award_seq = SEQ_AWARD_BADGE_BRONZE;
         else if (var_award_8c1bb8f8 == 2) award_seq = SEQ_AWARD_BADGE_SILVER;
         else if (var_award_8c1bb8f8 == 3) award_seq = SEQ_AWARD_BADGE_GOLD;
-        var_dialog_8c225fbc[cur++] = award_seq;
+        var_dialogSequences_8c225fbc[cur++] = award_seq;
     }
 
     // Course unlocked
     if (FUN_checkCourses_8c0172dc() != 0) {
-        var_dialog_8c225fbc[cur++] = SEQ_COURSE_UNLOCKED;
+        var_dialogSequences_8c225fbc[cur++] = SEQ_COURSE_UNLOCKED;
     }
 
     // Passenger letter received
@@ -526,18 +538,17 @@ void buildCourseMenuDialogFlow_8c017420(void)
         int r = AsqGetRandomInRangeB_121be(6);
         if (var_8c1ba1cc.field_0x2c[r] == 0) {
             var_8c1ba1cc.field_0x2c[r] = 1;
-            var_dialog_8c225fbc[cur++] = SEQ_PASSENGER_LETTER_RECEIVED;
+            var_dialogSequences_8c225fbc[cur++] = SEQ_PASSENGER_LETTER_RECEIVED;
         }
     }
 
-    var_dialog_8c225fbc[cur++] = SEQ_CHOOSE_COURSE;
+    var_dialogSequences_8c225fbc[cur++] = SEQ_CHOOSE_COURSE;
 
-    var_dialog_8c225fbc[cur] = -1;
+    var_dialogSequences_8c225fbc[cur] = -1;
 }
 
 
-/*
-This is the original code for the function above. (with some gotos to be removed)
+/* This is the original code for the function above. (with some gotos to be removed)
 void buildCourseMenuDialogFlow_8c017420()
 {
     bool bVar1_done;
@@ -552,7 +563,7 @@ void buildCourseMenuDialogFlow_8c017420()
     {
         if ((4 < iVar3_index) || (bVar1_done))
         {
-            var_dialog_8c225fbc[iVar4_curDialog] = -1;
+            var_dialogSequences_8c225fbc[iVar4_curDialog] = -1;
             return;
         }
         if (iVar3_index == 0)
@@ -566,7 +577,7 @@ void buildCourseMenuDialogFlow_8c017420()
                 {
                     iVar2 = iVar4_curDialog + 1;
                     // SEQ_INTRO_BRIEFING
-                    var_dialog_8c225fbc[iVar4_curDialog] = 0;
+                    var_dialogSequences_8c225fbc[iVar4_curDialog] = 0;
                 }
                 else
                 {
@@ -577,7 +588,7 @@ void buildCourseMenuDialogFlow_8c017420()
                         if (var_8c1bb8dc == 0)
                         {
                             // SEQ_FAILURE
-                            var_dialog_8c225fbc[iVar4_curDialog] = 12;
+                            var_dialogSequences_8c225fbc[iVar4_curDialog] = 12;
                             iVar4_curDialog = iVar4_curDialog + 1;
                         }
                         else
@@ -604,18 +615,18 @@ void buildCourseMenuDialogFlow_8c017420()
                                 // SEQ_AWARD_BADGE_GOLD
                                 iVar2 = 9;
                             }
-                            var_dialog_8c225fbc[iVar4_curDialog] = iVar2;
+                            var_dialogSequences_8c225fbc[iVar4_curDialog] = iVar2;
                             iVar4_curDialog = iVar4_curDialog + 1;
                         }
                         goto LAB_8c01754c;
                     }
                     // SEQ_SUCCESS_2
-                    var_dialog_8c225fbc[iVar4_curDialog] = 7;
+                    var_dialogSequences_8c225fbc[iVar4_curDialog] = 7;
                     iVar2 = iVar4_curDialog + 1;
                 }
             }
             // SEQ_CHOOSE_COURSE
-            var_dialog_8c225fbc[iVar2] = 6;
+            var_dialogSequences_8c225fbc[iVar2] = 6;
             bVar1_done = true;
             iVar4_curDialog = iVar2 + 1;
         }
@@ -627,7 +638,7 @@ void buildCourseMenuDialogFlow_8c017420()
                 if (iVar2 != 0)
                 {
                     // SEQ_COURSE_UNLOCKED
-                    var_dialog_8c225fbc[iVar4_curDialog] = 13;
+                    var_dialogSequences_8c225fbc[iVar4_curDialog] = 13;
                     iVar4_curDialog = iVar4_curDialog + 1;
                 }
             }
@@ -641,7 +652,7 @@ void buildCourseMenuDialogFlow_8c017420()
                     {
                         var_8c1ba1cc.field_0x2c[iVar2] = 1;
                         // SEQ_PASSENGER_LETTER_RECEIVED
-                        var_dialog_8c225fbc[iVar4_curDialog] = 14;
+                        var_dialogSequences_8c225fbc[iVar4_curDialog] = 14;
                         iVar4_curDialog = iVar4_curDialog + 1;
                     }
                 }
@@ -649,7 +660,7 @@ void buildCourseMenuDialogFlow_8c017420()
             else if (iVar3_index == 4)
             {
                 // SEQ_CHOOSE_COURSE
-                var_dialog_8c225fbc[iVar4_curDialog] = 6;
+                var_dialogSequences_8c225fbc[iVar4_curDialog] = 6;
                 iVar4_curDialog = iVar4_curDialog + 1;
             }
         }
@@ -675,7 +686,7 @@ void drawCoursesButtons_8c017590()
 
     // TODO: Extract length constant
     for (i = 0; i < 15; i++) {
-        RunStruct *rs = &init_runStruct_8c04442c[i];
+        CourseMenuButton *rs = &init_courseMenuButtons_8c04442c[i];
 
         if (rs->field_0x00 == 0 || rs->field_0x10 == 0)
             continue;
@@ -691,7 +702,7 @@ void drawCoursesButtons_8c017590()
 
     // TODO: Extract length constant
     for (i = 0; i < 9; i++) {
-        RunStruct *rs = &init_runStruct_8c04442c[i];
+        CourseMenuButton *rs = &init_courseMenuButtons_8c04442c[i];
 
         char spriteNo = var_game_mode_8c1bb8fc == 0
             ? var_8c1ba1cc.field_0x44[i].field_0x03
@@ -715,8 +726,8 @@ void drawCoursesButtons_8c017590()
 {
     int iVar1;
     int iVar2;
-    RunStruct *pRVar3;
-    RunStruct *pRVar4;
+    CourseMenuButton *pRVar3;
+    CourseMenuButton *pRVar4;
     int iVar5;
     float x;
     float fVar6;
@@ -733,7 +744,7 @@ void drawCoursesButtons_8c017590()
             -3.0
         );
     }
-    pRVar3 = init_runStruct_8c04442c;
+    pRVar3 = init_courseMenuButtons_8c04442c;
     fVar7 = -4.0;
     fVar6 = 0.0;
     do {
@@ -753,7 +764,7 @@ void drawCoursesButtons_8c017590()
             pRVar4 = pRVar4 + 1;
         } while (iVar2 < 5);
         pRVar3 = pRVar3 + 5;
-    } while (pRVar3 < &init_runStruct_8c04442c[15]); // TODO: Extract length constant
+    } while (pRVar3 < &init_courseMenuButtons_8c04442c[15]); // TODO: Extract length constant
     fVar7 = 240.0;
     fVar6 = 93.0;
     priority = -3.5;
@@ -792,9 +803,148 @@ void drawCoursesButtons_8c017590()
 }
 */
 
+extern Bool isFading_8c226568;
+extern int init_8c03bd80;
+extern void *var_8c225fb0;
+
+void StoryMenuTask_8c017718(Task * task, void *state)
+{
+    switch (menuState_8c1bc7a8.state_0x18) {
+        case STORY_MENU_STATE_INIT: {
+            if (getUknPvmBool_8c01432a())
+                return;
+
+            AsqFreeQueues_11f7e();
+            menuState_8c1bc7a8.state_0x18 = STORY_MENU_STATE_FADE_IN;
+            FUN_8c010d8a();
+            snd_8c010cd6(0, 15);
+            push_fadein_8c022a9c(10);
+            return;
+        }
+
+        case STORY_MENU_STATE_FADE_IN: {
+            if (isFading_8c226568 == 0) {
+                FUN_pushDialogTask_8c0170c6(var_dialogSequences_8c225fbc[0], 0);
+                menuState_8c1bc7a8.state_0x18 = 2;
+            }
+            break;
+        }
+
+        case STORY_MENU_STATE_DIALOG: {
+            // Dialog still running
+            if (var_8c225fb4) break;
+
+            if (var_dialogSequences_8c225fbc[task->field_0x08] == SEQ_COURSE_UNLOCKED) {
+                int row;
+                FUN_8c0173e6();
+                for (row = 0; row < 3; row++) {
+                    int col;
+                    for (col = 0; col < 3; col++) {
+                        // We offset by 2 because the first two entries
+                        // of each row are not courses buttons.
+                        init_courseMenuButtons_8c04442c[2 + row * 5 + col].field_0x04 =
+                            var_8c1ba1cc.field_0x44[row * 3 + col].field_0x00;
+                    }
+                }
+                sdMidiPlay(var_midiHandles_8c0fcd28[5], 1, 0x16, 0);
+            }
+
+            // TODO: Rename to dialogSequenceIndex
+            task->field_0x08++;
+
+            // If we finished the last dialog sequence
+            if (var_dialogSequences_8c225fbc[task->field_0x08] == -1) {
+                menuState_8c1bc7a8.state_0x18 = 3;
+                // This is probably a empty string literal
+                swapMessageBoxFor_8c02aefc(&const_8c03628c);
+            }
+            // Otherwise, start the next dialog sequence
+            else {
+                FUN_pushDialogTask_8c0170c6(var_dialogSequences_8c225fbc[task->field_0x08], 0);
+                if (var_dialogSequences_8c225fbc[task->field_0x08] == SEQ_COURSE_UNLOCKED) {
+                    midiResetFxAndPlay_8c010846(0, 0);
+                }
+            }
+            break;
+        }
+
+        case STORY_MENU_STATE_IDLE: {
+            FUN_handleCourseMenuCursor_8c017126();
+            break;
+        }
+
+        case STORY_MENU_STATE_ANIMATING: {
+            if (!interpolateCursor_8c016d2c())
+                break;
+
+            menuState_8c1bc7a8.state_0x18 = STORY_MENU_STATE_IDLE;
+            break;
+        }
+
+        case STORY_MENU_STATE_COURSE_SELECTED: {
+            if (++menuState_8c1bc7a8.logo_timer_0x68 > 10) {
+                menuState_8c1bc7a8.state_0x18 = STORY_MENU_STATE_FADE_OUT;
+                push_fadeout_8c022b60(10);
+            }
+            menuState_8c1bc7a8.field_0x48 = menuState_8c1bc7a8.logo_timer_0x68 & 1;
+            break;
+        }
+
+        case STORY_MENU_STATE_FADE_OUT: {
+            int buttonIndex;
+
+            if (isFading_8c226568) {
+                menuState_8c1bc7a8.field_0x48 = ++menuState_8c1bc7a8.logo_timer_0x68 & 1;
+                break;
+            }
+
+            if (init_8c03bd80)
+                return;
+
+            if (menuState_8c1bc7a8.field_0x3c != 1 || menuState_8c1bc7a8.field_0x40 != 0) {
+                freeResourceGroup_8c0185c4(&menuState_8c1bc7a8.resourceGroupB_0x0c);
+                var_8c225fb0 = (void *) -1;
+            }
+
+            menuState_8c1bc7a8.selected_0x38 = 0;
+            buttonIndex = menuState_8c1bc7a8.field_0x40 * 5 + menuState_8c1bc7a8.field_0x3c;
+            menuState_8c1bc7a8.field_0x50 =
+                init_courseMenuButtons_8c04442c[buttonIndex].field_0x18;
+
+            var_8c1bb8dc = 1;
+            var_8c1bb8b8 = 0;
+            var_8c1bb8bc = 1;
+
+            init_courseMenuButtons_8c04442c[buttonIndex].field_0x14(task);
+            return;
+        }
+
+        case STORY_MENU_STATE_FADE_OUT_TO_MAIN_MENU: {
+            if (isFading_8c226568)
+                break;
+
+            if (init_8c03bd80)
+                return;
+
+            var_8c1bb8b8 = 0;
+            MainMenuSwitchFromTask_8c01a09a(task);
+            return;
+        }
+    }
+
+    FUN_8c016ee6();
+    drawCoursesButtons_8c017590();
+    drawSprite_8c014f54(&menuState_8c1bc7a8.resourceGroupB_0x0c,10,0.0,0.0,-5.0);
+    drawSprite_8c014f54(&menuState_8c1bc7a8.resourceGroupA_0x00,0x2b,0.0,0.0,-4.0);
+    if (menuTextboxText_8c02af1c(var_8c225fb8) ) {
+        drawSprite_8c014f54(&menuState_8c1bc7a8.resourceGroupA_0x00,1,0.0,0.0,-5.0);
+    }
+    drawSprite_8c014f54(&menuState_8c1bc7a8.resourceGroupB_0x0c,menuState_8c1bc7a8.field_0x60,0.0,0.0,-6.0);
+    drawSprite_8c014f54(&menuState_8c1bc7a8.resourceGroupA_0x00, 0, 0.0, 0.0, -7.0);
+    AsqGetRandomA_12166();
+}
+
 void FUN_8c017d54();
-void buildCourseMenuDialogFlow_8c017420();
-void StoryMenuTask_8c017718();
 void FUN_8c017a20();
 void FreeRunMenuTask_8c017ada();
 
@@ -808,7 +958,7 @@ void CourseMenuSwitchFromTask_8c017e18(Task *task)
         FUN_8c017a20();
     }
 
-    menuState_8c1bc7a8.field_0x60 = init_8c044c08[var_dialog_8c225fbc[0]]->field_0x04;
+    menuState_8c1bc7a8.field_0x60 = init_8c044c08[var_dialogSequences_8c225fbc[0]]->field_0x04;
     task->field_0x08 = 0;
     var_8c225fb8 = 0;
     var_demo_8c1bb8d0 = 0;

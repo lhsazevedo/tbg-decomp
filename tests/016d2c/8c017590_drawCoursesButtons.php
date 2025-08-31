@@ -19,7 +19,7 @@ return new Class extends TestCase {
         $this->initMenuStateUint32(0x24, fdec(42.0));
         $this->initMenuStateUint32(0x48, 1);
 
-        $this->initRunStructs([[1, 21], [1, 32]]);
+        $this->initCourseMenuButtons([[1, 21], [1, 32]]);
         $this->initVarCourseSettings8c1ba1cc([[1, 0], [2, 0]]);
 
         $this->call('_drawCoursesButtons_8c017590');
@@ -46,7 +46,7 @@ return new Class extends TestCase {
         $this->initMenuStateUint32(0x24, fdec(42.0));
         $this->initMenuStateUint32(0x48, 0);
 
-        $this->initRunStructs([[1, 21], [1, 32]]);
+        $this->initCourseMenuButtons([[1, 21], [1, 32]]);
         $this->initVarCourseSettings8c1ba1cc([[0, 1], [0, 2]]);
 
         $this->call('_drawCoursesButtons_8c017590');
@@ -67,8 +67,8 @@ return new Class extends TestCase {
         $this->initUint32($this->addressOf('_menuState_8c1bc7a8') + $offset, $value);
     }
 
-    private function initRunStructs(array $values) {
-        $base = $this->addressOf('_init_runStruct_8c04442c');
+    private function initCourseMenuButtons(array $values) {
+        $base = $this->addressOf('_init_courseMenuButtons_8c04442c');
         array_push($values, ...array_fill(0, 15 - count($values), [0, 0]));
 
         foreach ($values as $i => $struct) {
@@ -104,7 +104,7 @@ return new Class extends TestCase {
     }
 
     private function resolveSymbols() {
-        $this->setSize('_init_runStruct_8c04442c', 0x1c * 15);
+        $this->setSize('_init_courseMenuButtons_8c04442c', 0x1c * 15);
         $this->setSize('_var_8c1ba1cc', 0x94);
         $this->setSize('__modls', 0x04);
         $this->setSize('__divls', 0x04);

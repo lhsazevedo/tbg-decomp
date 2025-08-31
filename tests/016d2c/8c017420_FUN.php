@@ -16,7 +16,7 @@ return new class extends TestCase {
 
     public function test_choose_course()
     {
-        $this->setSize('_var_dialog_8c225fbc', 4 * 4);
+        $this->setSize('_var_dialogSequences_8c225fbc', 4 * 4);
         $this->setSize('_var_8c1ba1cc', 0x94);
 
         $this->initUint32($this->addressOf('_var_8c1bb8b8'), 0);
@@ -28,7 +28,7 @@ return new class extends TestCase {
 
     public function test_intro_briefing()
     {
-        $this->setSize('_var_dialog_8c225fbc', 4 * 4);
+        $this->setSize('_var_dialogSequences_8c225fbc', 4 * 4);
         $this->setSize('_var_8c1ba1cc', 0x94);
 
         $this->initUint32($this->addressOf('_var_8c1bb8b8'), 1);
@@ -42,7 +42,7 @@ return new class extends TestCase {
 
     public function test_success_2()
     {
-        $this->setSize('_var_dialog_8c225fbc', 4 * 4);
+        $this->setSize('_var_dialogSequences_8c225fbc', 4 * 4);
         $this->setSize('_var_8c1ba1cc', 0x94);
 
         $this->initUint32($this->addressOf('_var_8c1bb8b8'), 1);
@@ -57,7 +57,7 @@ return new class extends TestCase {
 
     public function test_success_without_unlocked_without_letter()
     {
-        $this->setSize('_var_dialog_8c225fbc', 4 * 4);
+        $this->setSize('_var_dialogSequences_8c225fbc', 4 * 4);
         $this->setSize('_var_8c1ba1cc', 0x94);
         $this->setSize('__modls', 4);
 
@@ -76,7 +76,7 @@ return new class extends TestCase {
 
     public function test_success_without_unlocked_with_letter()
     {
-        $this->setSize('_var_dialog_8c225fbc', 4 * 4);
+        $this->setSize('_var_dialogSequences_8c225fbc', 4 * 4);
         $this->setSize('_var_8c1ba1cc', 0x94);
         $this->setSize('__modls', 4);
 
@@ -101,7 +101,7 @@ return new class extends TestCase {
 
     public function test_success_with_unlocked_without_letter()
     {
-        $this->setSize('_var_dialog_8c225fbc', 4 * 4);
+        $this->setSize('_var_dialogSequences_8c225fbc', 4 * 4);
         $this->setSize('_var_8c1ba1cc', 0x94);
         $this->setSize('__modls', 4);
 
@@ -121,7 +121,7 @@ return new class extends TestCase {
 
     public function test_success_with_unlocked_with_letter()
     {
-        $this->setSize('_var_dialog_8c225fbc', 4 * 4);
+        $this->setSize('_var_dialogSequences_8c225fbc', 4 * 4);
         $this->setSize('_var_8c1ba1cc', 0x94);
         $this->setSize('__modls', 4);
 
@@ -147,7 +147,7 @@ return new class extends TestCase {
 
     public function test_failure_without_unlocked_without_letter()
     {
-        $this->setSize('_var_dialog_8c225fbc', 4 * 4);
+        $this->setSize('_var_dialogSequences_8c225fbc', 4 * 4);
         $this->setSize('_var_8c1ba1cc', 0x94);
         $this->setSize('__modls', 4);
 
@@ -165,7 +165,7 @@ return new class extends TestCase {
 
     public function test_failure_without_unlocked_with_letter()
     {
-        $this->setSize('_var_dialog_8c225fbc', 4 * 4);
+        $this->setSize('_var_dialogSequences_8c225fbc', 4 * 4);
         $this->setSize('_var_8c1ba1cc', 0x94);
         $this->setSize('__modls', 4);
         $this->setSize('_AsqGetRandomInRangeB_121be', 4);
@@ -190,7 +190,7 @@ return new class extends TestCase {
 
     public function test_failure_with_unlocked_without_letter()
     {
-        $this->setSize('_var_dialog_8c225fbc', 4 * 4);
+        $this->setSize('_var_dialogSequences_8c225fbc', 4 * 4);
         $this->setSize('_var_8c1ba1cc', 0x94);
         $this->setSize('__modls', 4);
 
@@ -209,7 +209,7 @@ return new class extends TestCase {
 
     public function test_failure_with_unlocked_with_letter()
     {
-        $this->setSize('_var_dialog_8c225fbc', 4 * 4);
+        $this->setSize('_var_dialogSequences_8c225fbc', 4 * 4);
         $this->setSize('_var_8c1ba1cc', 0x94);
         $this->setSize('__modls', 4);
         $this->setSize('_AsqGetRandomInRangeB_121be', 4);
@@ -360,7 +360,7 @@ return new class extends TestCase {
     {
         static $index = 0;
         $this->shouldWriteLong(
-            $this->addressOf('_var_dialog_8c225fbc') + $index++ * 4, $sequence
+            $this->addressOf('_var_dialogSequences_8c225fbc') + $index++ * 4, $sequence
         );
 
         if ($sequence === -1) {
@@ -370,15 +370,15 @@ return new class extends TestCase {
 
     private function initDialog8c225fbc(array $values): void
     {
-        $this->setSize('_var_dialog_8c225fbc', 4 * 4);
+        $this->setSize('_var_dialogSequences_8c225fbc', 4 * 4);
         foreach ($values as $index => $value) {
-            $this->initUint32($this->addressOf('_var_dialog_8c225fbc') + $index * 4, $value);
+            $this->initUint32($this->addressOf('_var_dialogSequences_8c225fbc') + $index * 4, $value);
         }
     }
 
     public function generalSuccessTest(int $award, int $sequence, bool $unlocked, bool $letter)
     {
-        $this->setSize('_var_dialog_8c225fbc', 4 * 4);
+        $this->setSize('_var_dialogSequences_8c225fbc', 4 * 4);
         $this->setSize('_var_8c1ba1cc', 0x94);
         $this->setSize('__modls', 4);
 

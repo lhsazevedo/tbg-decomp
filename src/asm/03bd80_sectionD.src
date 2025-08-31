@@ -810,7 +810,7 @@
           .EXPORT     _init_8c044284 ; 01e27c
           .EXPORT     _init_8c044294 ; 01614c
           .EXPORT     _init_8c04429c ; 01614c
-          .EXPORT     _init_runStruct_8c04442c ; 016d2c
+          .EXPORT     _init_courseMenuButtons_8c04442c ; 016d2c
           .EXPORT     _titleResourceGroup_8c044254
           .EXPORT     _init_8c044680
           .EXPORT     _init_8c0446b8
@@ -1691,7 +1691,7 @@ _init_8c0442b0:        ; from ghidra
           .DATA.B      H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00
           .DATA.L      _const_8c03616c ; ukn
           .DATA.B      H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00
-_init_runStruct_8c04442c:        ; from defines
+_init_courseMenuButtons_8c04442c:        ; from defines
           .DATA.B      H'01, H'00, H'00, H'00
 _init_8c044430:        ; from ghidra
           .DATA.B      H'01, H'00, H'00, H'00, H'00, H'00, H'34, H'42, H'00, H'00, H'DA, H'42

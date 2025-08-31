@@ -32,7 +32,7 @@ return new class extends TestCase {
 
         $this->initUint32($this->addressOf('_init_8c044c08') + 0x00, $dialogs1);
         $this->initUint32($this->addressOf('_init_8c044c08') + 0x04, $dialogs2);
-        $this->initUint32($this->addressOf('_var_dialog_8c225fbc'), 1);
+        $this->initUint32($this->addressOf('_var_dialogSequences_8c225fbc'), 1);
 
         $this->call('_CourseMenuSwitchFromTask_8c017e18')->with($task);
 
@@ -90,7 +90,7 @@ return new class extends TestCase {
 
         $this->initUint32($this->addressOf('_init_8c044c08') + 0x00, $dialogs1);
         $this->initUint32($this->addressOf('_init_8c044c08') + 0x04, $dialogs2);
-        $this->initUint32($this->addressOf('_var_dialog_8c225fbc'), 1);
+        $this->initUint32($this->addressOf('_var_dialogSequences_8c225fbc'), 1);
 
         $this->call('_CourseMenuSwitchFromTask_8c017e18')->with($task);
 
@@ -143,7 +143,7 @@ return new class extends TestCase {
 
         $this->initUint32($this->addressOf('_init_8c044c08') + 0x00, $dialogs1);
         $this->initUint32($this->addressOf('_init_8c044c08') + 0x04, $dialogs2);
-        $this->initUint32($this->addressOf('_var_dialog_8c225fbc'), 1);
+        $this->initUint32($this->addressOf('_var_dialogSequences_8c225fbc'), 1);
 
         $this->call('_CourseMenuSwitchFromTask_8c017e18')->with($task);
 
@@ -201,7 +201,7 @@ return new class extends TestCase {
 
         $this->initUint32($this->addressOf('_init_8c044c08') + 0x00, $dialogs1);
         $this->initUint32($this->addressOf('_init_8c044c08') + 0x04, $dialogs2);
-        $this->initUint32($this->addressOf('_var_dialog_8c225fbc'), 1);
+        $this->initUint32($this->addressOf('_var_dialogSequences_8c225fbc'), 1);
 
         $this->call('_CourseMenuSwitchFromTask_8c017e18')->with($task);
 

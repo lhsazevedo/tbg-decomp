@@ -1010,7 +1010,7 @@ return new class extends TestCase {
         $this->initUint32($this->addressOf('_init_8c044c08'), $init_8c044c08);
         $this->initUint32($init_8c044c08 + 2 * 4, 0xcafe0002);
         // Used as index for init_8c044c08
-        $this->initUint32($this->addressOf('_var_dialog_8c225fbc'), 2);
+        $this->initUint32($this->addressOf('_var_dialogSequences_8c225fbc'), 2);
 
         $this->shouldWriteLong($this->addressOf('_menuState_8c1bc7a8') + 0x3c, 2);
         $this->shouldWriteLong($this->addressOf('_menuState_8c1bc7a8') + 0x40, 0);
@@ -1038,7 +1038,7 @@ return new class extends TestCase {
         $this->initUint32($this->addressOf('_init_8c044c08'), $init_8c044c08);
         $this->initUint32($init_8c044c08 + 2 * 4, 0xcafe0002);
         // Used as index for init_8c044c08
-        $this->initUint32($this->addressOf('_var_dialog_8c225fbc'), 2);
+        $this->initUint32($this->addressOf('_var_dialogSequences_8c225fbc'), 2);
 
         $this->shouldWriteLong($this->addressOf('_menuState_8c1bc7a8') + 0x3c, 2);
         $this->shouldWriteLong($this->addressOf('_menuState_8c1bc7a8') + 0x40, 0);

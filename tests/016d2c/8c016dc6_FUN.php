@@ -26,8 +26,8 @@ return new class extends TestCase {
         $this->initUint32($this->addressOf('_menuState_8c1bc7a8') + 0x24, fdec(69.0));
 
         // target
-        $this->initUint32($this->addressOf('_init_runStruct_8c04442c') + 0x1c * 7 + 0x08, fdec(42.0));
-        $this->initUint32($this->addressOf('_init_runStruct_8c04442c') + 0x1c * 7 + 0x0c, fdec(69.0));
+        $this->initUint32($this->addressOf('_init_courseMenuButtons_8c04442c') + 0x1c * 7 + 0x08, fdec(42.0));
+        $this->initUint32($this->addressOf('_init_courseMenuButtons_8c04442c') + 0x1c * 7 + 0x0c, fdec(69.0));
 
         $this->call('_cursorOffTarget_8c016dc6');
         $this->shouldReturn(0);
@@ -46,8 +46,8 @@ return new class extends TestCase {
         $this->initUint32($this->addressOf('_menuState_8c1bc7a8') + 0x24, fdec(9.0));
 
         // target
-        $this->initUint32($this->addressOf('_init_runStruct_8c04442c') + 0x1c * 7 + 0x08, fdec(42.0));
-        $this->initUint32($this->addressOf('_init_runStruct_8c04442c') + 0x1c * 7 + 0x0c, fdec(69.0));
+        $this->initUint32($this->addressOf('_init_courseMenuButtons_8c04442c') + 0x1c * 7 + 0x08, fdec(42.0));
+        $this->initUint32($this->addressOf('_init_courseMenuButtons_8c04442c') + 0x1c * 7 + 0x0c, fdec(69.0));
 
         $this->call('_cursorOffTarget_8c016dc6');
 
@@ -64,7 +64,7 @@ return new class extends TestCase {
     public function resolveSymbols()
     {
         $this->setSize('_menuState_8c1bc7a8', 0x6c);
-        $this->setSize('_init_runStruct_8c04442c', 0x1c * 15);
+        $this->setSize('_init_courseMenuButtons_8c04442c', 0x1c * 15);
 
         // Functions
         $this->setSize('__quick_evn_mvn', 4);
