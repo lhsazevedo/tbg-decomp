@@ -171,6 +171,7 @@ return [
                 "tests/016d2c/8c017420_FUN.php",
                 "tests/016d2c/8c017590_drawCoursesButtons.php",
                 "tests/016d2c/8c017718_StoryMenuTask.php",
+                "tests/016d2c/8c017a20_FUN.php",
                 "tests/016d2c/8c017e18_CourseMenuSwitchFromTask.php",
             ],
             "objects" => [

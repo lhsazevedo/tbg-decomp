@@ -19,7 +19,7 @@ typedef struct {
 
 typedef struct {
     char *text_0x00;
-    int field_0x04;
+    int instructorSpriteNo_0x04;
 } MenuDialog;
 
 typedef struct {
@@ -35,9 +35,7 @@ typedef struct {
     int days_0x00;
     char field_0x04[0x28];
     int letters_0x2c[6];
-    CourseProgress courses_0x44[8]; // Should this be 9?
-    int field_0x84;
-    int field_0x88;
+    CourseProgress courses_0x44[9];
     int field_0x8c;
     int field_0x90;
 } PlayerProgress;
@@ -55,13 +53,90 @@ extern int var_8c225fb8;
 extern PDS_PERIPHERAL var_peripherals_8c1ba35c[2];
 extern ResourceGroupInfo init_mainMenuResourceGroup_8c044264;
 
-extern MenuDialog *init_8c044c08[];
+extern MenuDialog *init_dialogSequences_8c044c08[];
 extern int var_game_mode_8c1bb8fc;
 extern int var_dialogQueue_8c225fbc[4]; // TODO: Confirm length
 extern Sint8 var_coursesToUnlock_8c225fd4[];
 extern int var_demo_8c1bb8d0;
 extern void resetUknPvmBool_8c014322();
 extern NJS_TEXMEMLIST var_tex_8c157af8[];
+
+enum {
+    // --- Story / Training ---
+    SEQ_STORY_INTRO           = 0,
+    // SEQ_SUCCESS_PERFECT       = 1,
+    // SEQ_SUCCESS_HIGH          = 2,
+    // SEQ_SUCCESS_NORMAL        = 3,
+    // SEQ_FAILURE_FINAL         = 4,
+    // SEQ_FREE_RUN_INTRO        = 5,
+    SEQ_STORY_CHOOSE_COURSE   = 6,
+    SEQ_GOOD_PRACTICE         = 7,
+    SEQ_SUCCESS               = 8,
+
+    // --- Awards / Unlocks ---
+    SEQ_AWARD_BADGE_GOLD      = 9,
+    SEQ_AWARD_BADGE_SILVER    = 10,
+    SEQ_AWARD_BADGE_BRONZE    = 11,
+    SEQ_FAILURE_RETRY         = 12,
+    SEQ_COURSE_UNLOCKED       = 13,
+    SEQ_PASSENGER_LETTER      = 14,
+    SEQ_COURSE_LOCKED         = 15,
+    // SEQ_FORCE_PRACTICE        = 16,
+    // SEQ_FINAL_DAY             = 17,
+
+    // --- Lesson Mode ---
+    // SEQ_LESSON_INTRO          = 18,
+    // SEQ_LESSON_COMPLETE       = 19,
+    // SEQ_LESSON_NEXT           = 20,
+    // SEQ_LESSON_RETRY          = 21,
+    // SEQ_LESSON_TIPS           = 22,
+    // SEQ_LESSON_WARNING        = 23,
+    // SEQ_LESSON_CHOOSE         = 24,
+    // SEQ_SCORE_RECORD          = 25,
+    // SEQ_LESSON_FINAL_DAY      = 26,
+    // SEQ_LESSON_PERFECT        = 27,
+    // SEQ_LESSON_GOOD           = 28,
+    // SEQ_LESSON_PASS           = 29,
+    // SEQ_LESSON_FAIL_MINOR     = 30,
+    // SEQ_LESSON_FAIL_MAJOR     = 31,
+
+    // --- Driving Mistakes / Penalties ---
+    // SEQ_COLLISION_CAR_MINOR   = 32,
+    // SEQ_COLLISION_CAR_MEDIUM  = 33,
+    // SEQ_COLLISION_CAR_SEVERE  = 34,
+    // SEQ_COLLISION_CAR_FATAL   = 35,
+    // SEQ_COLLISION_WALL_MINOR  = 36,
+    // SEQ_COLLISION_WALL_MEDIUM = 37,
+    // SEQ_COLLISION_WALL_SEVERE = 38,
+    // SEQ_NEAR_MISS_PEDESTRIAN  = 39,
+    // SEQ_OFF_COURSE_MINOR      = 40,
+    // SEQ_OFF_COURSE_MEDIUM     = 41,
+    // SEQ_OFF_COURSE_MAJOR      = 42,
+    // SEQ_SPEEDING_MINOR        = 43,
+    // SEQ_SPEEDING_MAJOR        = 44,
+    // SEQ_WRONG_LANE            = 45,
+    // SEQ_LANE_STRADDLE         = 46,
+    // SEQ_NO_SIGNAL             = 47,
+    // SEQ_NO_SIGNAL_TURN        = 48,
+    // SEQ_SIGNAL_VIOLATION      = 50,
+    // SEQ_BAD_STOP_LINE         = 51,
+    // SEQ_ILLEGAL_LANE_CHANGE   = 52,
+    // SEQ_BLOCK_INTERSECTION    = 53,
+    // SEQ_WRONG_WAY             = 54,
+    // SEQ_RAPID_ACCEL           = 55,
+    // SEQ_HARD_BRAKE            = 56,
+    // SEQ_SWERVING              = 57,
+    // SEQ_MISSED_STOP           = 58,
+    // SEQ_BAD_STOP_POSITION_1   = 59,
+    // SEQ_BAD_STOP_POSITION_2   = 60,
+    // SEQ_TIME_MANAGEMENT       = 61,
+    // SEQ_ANNOUNCEMENT          = 62,
+    // SEQ_DOOR_OPERATION        = 63,
+
+    // --- Free Run Mode ---
+    SEQ_FREE_RUN_INTRO         = 64,
+    SEQ_FREE_RUN_CHOOSE_COURSE = 65,
+};
 
 /**
  * Returns 1 if the cursor has reached its target position, 0 otherwise.
@@ -226,7 +301,7 @@ void dialogSequenceTask_8c016f98(DialogSequenceTask *task, DialogSequenceTaskSta
             }
 
             state->field_0x08 = swapMessageBoxFor_8c02aefc(state->dialog_0x04->text_0x00);
-            menuState_8c1bc7a8.field_0x60 = state->dialog_0x04->field_0x04;
+            menuState_8c1bc7a8.field_0x60 = state->dialog_0x04->instructorSpriteNo_0x04;
             state->field_0x0c = 1;
             state->field_0x10 = 0;
             state->state_0x00 = 1;
@@ -304,13 +379,15 @@ void pushDialogTask_8c0170c6(int dialog_index, int *p2)
 
     task->field_0x18 = p2;
     state->state_0x00 = 0;
-    state->dialog_0x04 = init_8c044c08[dialog_index];
+    state->dialog_0x04 = init_dialogSequences_8c044c08[dialog_index];
     var_8c225fb4 = 1;
 }
 
-void FUN_swapDialogMessageBox_8c017108(int dialog_index)
+void FUN_swapDialogMessageBox_8c017108(int sequence)
 {
-    var_8c225fb8 = swapMessageBoxFor_8c02aefc(init_8c044c08[dialog_index]->text_0x00);
+    var_8c225fb8 = swapMessageBoxFor_8c02aefc(
+        init_dialogSequences_8c044c08[sequence]->text_0x00
+    );
 }
 
 enum {
@@ -335,9 +412,7 @@ void handleCourseMenuInput_8c017126()
             .unlocked_0x04 == 0
         ) {
             sdMidiPlay(var_midiHandles_8c0fcd28[0], 1, 2, 0);
-            // 残念だがそのコースはまだ走れないよ<E>もっと経験を積んでからだな
-            // Sorry, but you can’t drive that course yet.<E>You’ll need more experience first.
-            FUN_swapDialogMessageBox_8c017108(15);
+            FUN_swapDialogMessageBox_8c017108(SEQ_COURSE_LOCKED);
         } else {
             FUN_8c010bae(0);
             FUN_8c010bae(1);
@@ -419,27 +494,42 @@ int buildCourseUnlockList_8c0172dc()
                 continue;
 
             case 1:
-                if (var_progress_8c1ba1cc.days_0x00 < 8 || var_exp_8c1ba25c < 4000)
+                if (
+                    var_progress_8c1ba1cc.days_0x00 < 8 ||
+                    var_exp_8c1ba25c < 4000
+                )
                     continue;
                 break;
 
             case 2:
-                if (var_progress_8c1ba1cc.days_0x00 < 9 || var_exp_8c1ba25c < 5500)
+                if (
+                    var_progress_8c1ba1cc.days_0x00 < 9 ||
+                    var_exp_8c1ba25c < 5500
+                )
                     continue;
                 break;
 
             case 3:
-                if (var_progress_8c1ba1cc.days_0x00 < 5 || var_exp_8c1ba25c < 2000)
+                if (
+                    var_progress_8c1ba1cc.days_0x00 < 5 ||
+                    var_exp_8c1ba25c < 2000
+                )
                     continue;
                 break;
 
             case 4:
-                if (var_progress_8c1ba1cc.days_0x00 < 11 || var_exp_8c1ba25c < 8000)
+                if (
+                    var_progress_8c1ba1cc.days_0x00 < 11 ||
+                    var_exp_8c1ba25c < 8000
+                )
                     continue;
                 break;
 
             case 5:
-                if (var_progress_8c1ba1cc.days_0x00 < 13 || var_exp_8c1ba25c < 12000)
+                if (
+                    var_progress_8c1ba1cc.days_0x00 < 13 ||
+                    var_exp_8c1ba25c < 12000
+                )
                     continue;
                 break;
 
@@ -447,12 +537,18 @@ int buildCourseUnlockList_8c0172dc()
                 continue;
 
             case 7:
-                if (var_progress_8c1ba1cc.days_0x00 < 3 || var_exp_8c1ba25c < 500)
+                if (
+                    var_progress_8c1ba1cc.days_0x00 < 3 ||
+                    var_exp_8c1ba25c < 500
+                )
                     continue;
                 break;
 
             case 8:
-                if (var_progress_8c1ba1cc.days_0x00 < 6 || var_exp_8c1ba25c < 3000)
+                if (
+                    var_progress_8c1ba1cc.days_0x00 < 6 ||
+                    var_exp_8c1ba25c < 3000
+                )
                     continue;
                 break;
         }
@@ -480,19 +576,6 @@ extern int var_8c1bb8bc;
 extern int var_8c1bb8dc;
 extern int var_award_8c1bb8f8;
 
-enum {
-    SEQ_INTRO_BRIEFING            = 0,
-    SEQ_CHOOSE_COURSE             = 6,
-    SEQ_SUCCESS_2                 = 7,
-    SEQ_SUCCESS                   = 8,
-    SEQ_AWARD_BADGE_GOLD          = 9,
-    SEQ_AWARD_BADGE_SILVER        = 10,
-    SEQ_AWARD_BADGE_BRONZE        = 11,
-    SEQ_FAILURE                   = 12,
-    SEQ_COURSE_UNLOCKED           = 13,
-    SEQ_PASSENGER_LETTER_RECEIVED = 14
-};
-
 // This function has been refactored.
 void buildCourseMenuDialogFlow_8c017420(void)
 {
@@ -500,30 +583,30 @@ void buildCourseMenuDialogFlow_8c017420(void)
 
     // Default choose course
     if (var_8c1bb8b8 == 0) {
-        var_dialogQueue_8c225fbc[cur++] = SEQ_CHOOSE_COURSE;
+        var_dialogQueue_8c225fbc[cur++] = SEQ_STORY_CHOOSE_COURSE;
         var_dialogQueue_8c225fbc[cur]   = -1;
         return;
     }
 
     // On the first day, show the intro briefing
     if (var_progress_8c1ba1cc.days_0x00 == 1) {
-        var_dialogQueue_8c225fbc[cur++] = SEQ_INTRO_BRIEFING;
-        var_dialogQueue_8c225fbc[cur++] = SEQ_CHOOSE_COURSE;
+        var_dialogQueue_8c225fbc[cur++] = SEQ_STORY_INTRO;
+        var_dialogQueue_8c225fbc[cur++] = SEQ_STORY_CHOOSE_COURSE;
         var_dialogQueue_8c225fbc[cur]   = -1;
         return;
     }
 
     // Special Success
     if (var_8c1bb8bc != 0) {
-        var_dialogQueue_8c225fbc[cur++] = SEQ_SUCCESS_2;
-        var_dialogQueue_8c225fbc[cur++] = SEQ_CHOOSE_COURSE;
+        var_dialogQueue_8c225fbc[cur++] = SEQ_GOOD_PRACTICE;
+        var_dialogQueue_8c225fbc[cur++] = SEQ_STORY_CHOOSE_COURSE;
         var_dialogQueue_8c225fbc[cur]   = -1;
         return;
     }
 
     // Result
     if (var_8c1bb8dc == 0) {
-        var_dialogQueue_8c225fbc[cur++] = SEQ_FAILURE;
+        var_dialogQueue_8c225fbc[cur++] = SEQ_FAILURE_RETRY;
     } else {
         int award_seq = SEQ_SUCCESS;
         if      (var_award_8c1bb8f8 == 1) award_seq = SEQ_AWARD_BADGE_BRONZE;
@@ -542,11 +625,11 @@ void buildCourseMenuDialogFlow_8c017420(void)
         int r = AsqGetRandomInRangeB_121be(6);
         if (var_progress_8c1ba1cc.letters_0x2c[r] == 0) {
             var_progress_8c1ba1cc.letters_0x2c[r] = 1;
-            var_dialogQueue_8c225fbc[cur++] = SEQ_PASSENGER_LETTER_RECEIVED;
+            var_dialogQueue_8c225fbc[cur++] = SEQ_PASSENGER_LETTER;
         }
     }
 
-    var_dialogQueue_8c225fbc[cur++] = SEQ_CHOOSE_COURSE;
+    var_dialogQueue_8c225fbc[cur++] = SEQ_STORY_CHOOSE_COURSE;
 
     var_dialogQueue_8c225fbc[cur] = -1;
 }
@@ -580,7 +663,7 @@ void buildCourseMenuDialogFlow_8c017420()
                 if (var_progress_8c1ba1cc.field_0x00 == 1)
                 {
                     iVar2 = iVar4_curDialog + 1;
-                    // SEQ_INTRO_BRIEFING
+                    // SEQ_STORY_INTRO
                     var_dialogQueue_8c225fbc[iVar4_curDialog] = 0;
                 }
                 else
@@ -591,7 +674,7 @@ void buildCourseMenuDialogFlow_8c017420()
                         // This is the only path that can lead to a loop continue
                         if (var_8c1bb8dc == 0)
                         {
-                            // SEQ_FAILURE
+                            // SEQ_FAILURE_RETRY
                             var_dialogQueue_8c225fbc[iVar4_curDialog] = 12;
                             iVar4_curDialog = iVar4_curDialog + 1;
                         }
@@ -629,7 +712,7 @@ void buildCourseMenuDialogFlow_8c017420()
                     iVar2 = iVar4_curDialog + 1;
                 }
             }
-            // SEQ_CHOOSE_COURSE
+            // SEQ_STORY_CHOOSE_COURSE
             var_dialogQueue_8c225fbc[iVar2] = 6;
             bVar1_done = true;
             iVar4_curDialog = iVar2 + 1;
@@ -655,7 +738,7 @@ void buildCourseMenuDialogFlow_8c017420()
                     if (var_progress_8c1ba1cc.field_0x2c[iVar2] == 0)
                     {
                         var_progress_8c1ba1cc.field_0x2c[iVar2] = 1;
-                        // SEQ_PASSENGER_LETTER_RECEIVED
+                        // SEQ_PASSENGER_LETTER
                         var_dialogQueue_8c225fbc[iVar4_curDialog] = 14;
                         iVar4_curDialog = iVar4_curDialog + 1;
                     }
@@ -663,7 +746,7 @@ void buildCourseMenuDialogFlow_8c017420()
             }
             else if (iVar3_index == 4)
             {
-                // SEQ_CHOOSE_COURSE
+                // SEQ_STORY_CHOOSE_COURSE
                 var_dialogQueue_8c225fbc[iVar4_curDialog] = 6;
                 iVar4_curDialog = iVar4_curDialog + 1;
             }
@@ -936,17 +1019,75 @@ void StoryMenuTask_8c017718(Task * task, void *state)
 
     drawDateAndExp_8c016ee6();
     drawCourseButtons_8c017590();
-    drawSprite_8c014f54(&menuState_8c1bc7a8.resourceGroupB_0x0c,10,0.0,0.0,-5.0);
-    drawSprite_8c014f54(&menuState_8c1bc7a8.resourceGroupA_0x00,0x2b,0.0,0.0,-4.0);
+    drawSprite_8c014f54(
+        &menuState_8c1bc7a8.resourceGroupB_0x0c, 10, 0.0, 0.0, -5.0
+    );
+    drawSprite_8c014f54(
+        &menuState_8c1bc7a8.resourceGroupA_0x00, 0x2b, 0.0, 0.0, -4.0
+    );
     if (menuTextboxText_8c02af1c(var_8c225fb8) ) {
-        drawSprite_8c014f54(&menuState_8c1bc7a8.resourceGroupA_0x00,1,0.0,0.0,-5.0);
+        drawSprite_8c014f54(
+            &menuState_8c1bc7a8.resourceGroupA_0x00, 1, 0.0, 0.0, -5.0
+        );
     }
-    drawSprite_8c014f54(&menuState_8c1bc7a8.resourceGroupB_0x0c,menuState_8c1bc7a8.field_0x60,0.0,0.0,-6.0);
-    drawSprite_8c014f54(&menuState_8c1bc7a8.resourceGroupA_0x00, 0, 0.0, 0.0, -7.0);
+
+    // Draw instructor
+    drawSprite_8c014f54(
+        &menuState_8c1bc7a8.resourceGroupB_0x0c,
+        menuState_8c1bc7a8.field_0x60,
+        0.0,
+        0.0,
+        -6.0
+    );
+
+    drawSprite_8c014f54(
+        &menuState_8c1bc7a8.resourceGroupA_0x00, 0, 0.0, 0.0, -7.0
+    );
     AsqGetRandomA_12166();
 }
 
-void FUN_8c017a20();
+extern int var_8c1bb8c0;
+
+// This function has been refactored.
+void buildFreeRunMenuDialogFlow_8c017a20(void)
+{
+    int idx = 0;
+
+    if (var_8c1bb8c0) {
+        var_dialogQueue_8c225fbc[idx++] = SEQ_FREE_RUN_INTRO;
+    }
+
+    var_dialogQueue_8c225fbc[idx++] = SEQ_FREE_RUN_CHOOSE_COURSE;
+    var_dialogQueue_8c225fbc[idx]   = -1;
+
+    var_8c1bb8c0 = 0;
+}
+
+// This is the original code for the function above.
+/*
+void buildFreeRunMenuDialogFlow_8c017a20(void)
+{
+    int queueIndex = 0;
+    int step = 0;
+
+    for (step = 0; step < 2; step++) {
+        if (step == 0) {
+            if (var_8c1bb8c0 != 0) {
+                var_dialogQueue_8c225fbc[queueIndex] = SEQ_FREE_RUN_INTRO;
+                queueIndex++;
+            }
+        }
+        else if (step == 1) {
+            var_dialogQueue_8c225fbc[queueIndex] = SEQ_FREE_RUN_CHOOSE_COURSE;
+            queueIndex++;
+        }
+    }
+
+    var_dialogQueue_8c225fbc[queueIndex] = -1;
+    var_8c1bb8c0 = 0;
+}
+*/
+
 void FUN_8c017d54();
 void FreeRunMenuTask_8c017ada();
 
@@ -957,10 +1098,14 @@ void CourseMenuSwitchFromTask_8c017e18(Task *task)
         buildCourseMenuDialogFlow_8c017420();
     } else {
         setTaskAction_8c014b3e(task, FreeRunMenuTask_8c017ada);
-        FUN_8c017a20();
+        buildFreeRunMenuDialogFlow_8c017a20();
     }
 
-    menuState_8c1bc7a8.field_0x60 = init_8c044c08[var_dialogQueue_8c225fbc[0]]->field_0x04;
+    // Get instructor sprite from the first dialog entry
+    menuState_8c1bc7a8.field_0x60 =
+        init_dialogSequences_8c044c08[
+            var_dialogQueue_8c225fbc[0]
+        ]->instructorSpriteNo_0x04;
     task->field_0x08 = 0;
     var_8c225fb8 = 0;
     var_demo_8c1bb8d0 = 0;

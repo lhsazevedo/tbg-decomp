@@ -61,7 +61,7 @@
           .IMPORT     _buildCourseUnlockList_8c0172dc
           .IMPORT     _applyUnlocks_8c0173e6
           .IMPORT     _var_demo_8c1bb8d0
-          .IMPORT     _init_8c044c08
+          .IMPORT     _init_dialogSequences_8c044c08
           .IMPORT     _var_tex_8c157af8
           .IMPORT     _njGarbageTexture
           .IMPORT     _var_8c1ba264
@@ -2036,7 +2036,7 @@ LP_GEN_22524:
           .DATA.L _var_8c22642c ; H'8C01F1D8
           .DATA.L _var_award_8c1bb8f8 ; H'8C01F1DC
           .DATA.L _var_8c226414 ; H'8C01F1E0
-          .DATA.L _init_8c044c08 ; H'8C01F1E4
+          .DATA.L _init_dialogSequences_8c044c08 ; H'8C01F1E4
           .DATA.L _njSetBackColor ; H'8C01F1E8
           .DATA.L _var_tex_8c157af8 ; H'8C01F1EC
           .DATA.L _njGarbageTexture ; H'8C01F1F0
@@ -2217,7 +2217,7 @@ LP_GEN_37649:
           .DATA.L _var_tasks_8c1ba3c8 ; H'8C01F370
           .DATA.L _pushTask_8c014ae8 ; H'8C01F374
           .DATA.L LAB_8c01ebf2 ; H'8C01F378
-          .DATA.L _init_8c044c08 ; H'8C01F37C
+          .DATA.L _init_dialogSequences_8c044c08 ; H'8C01F37C
           .DATA.L _var_tex_8c157af8 ; H'8C01F380
           .DATA.L _njGarbageTexture ; H'8C01F384
           .DATA.L H'C0000000 ; H'8C01F388

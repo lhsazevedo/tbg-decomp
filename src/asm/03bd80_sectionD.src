@@ -876,7 +876,7 @@
           .EXPORT     _init_8c044bd0
           .EXPORT     _init_8c044be0
           .EXPORT     _init_8c044bf8
-          .EXPORT     _init_8c044c08
+          .EXPORT     _init_dialogSequences_8c044c08
           .EXPORT     _init_8c044d10
           .EXPORT     _init_8c044d2e
           .EXPORT     _init_8c044d2f
@@ -2215,7 +2215,7 @@ _init_8c044bf8:        ; aggressive search
           .DATA.B      H'00, H'00, H'00, H'00
           .DATA.L      _const_8c03628c ; ukn
           .DATA.B      H'00, H'00, H'00, H'00
-_init_8c044c08:        ; from defines
+_init_dialogSequences_8c044c08:        ; from defines
           .DATA.L      _init_8c0445d0
           .DATA.L      _init_8c044620
           .DATA.L      _init_8c044650

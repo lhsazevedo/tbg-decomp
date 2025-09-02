@@ -1006,10 +1006,10 @@ return new class extends TestCase {
 
         $this->initUint32($this->addressOf('_isFading_8c226568'), 0);
 
-        $init_8c044c08 = $this->alloc(64 * 4);
-        $this->initUint32($this->addressOf('_init_8c044c08'), $init_8c044c08);
-        $this->initUint32($init_8c044c08 + 2 * 4, 0xcafe0002);
-        // Used as index for init_8c044c08
+        $init_dialogSequences_8c044c08 = $this->alloc(64 * 4);
+        $this->initUint32($this->addressOf('_init_dialogSequences_8c044c08'), $init_dialogSequences_8c044c08);
+        $this->initUint32($init_dialogSequences_8c044c08 + 2 * 4, 0xcafe0002);
+        // Used as index for init_dialogSequences_8c044c08
         $this->initUint32($this->addressOf('_var_dialogQueue_8c225fbc'), 2);
 
         $this->shouldWriteLong($this->addressOf('_menuState_8c1bc7a8') + 0x3c, 2);
@@ -1034,10 +1034,10 @@ return new class extends TestCase {
 
         $this->initUint32($this->addressOf('_isFading_8c226568'), 0);
 
-        $init_8c044c08 = $this->alloc(64 * 4);
-        $this->initUint32($this->addressOf('_init_8c044c08'), $init_8c044c08);
-        $this->initUint32($init_8c044c08 + 2 * 4, 0xcafe0002);
-        // Used as index for init_8c044c08
+        $init_dialogSequences_8c044c08 = $this->alloc(64 * 4);
+        $this->initUint32($this->addressOf('_init_dialogSequences_8c044c08'), $init_dialogSequences_8c044c08);
+        $this->initUint32($init_dialogSequences_8c044c08 + 2 * 4, 0xcafe0002);
+        // Used as index for init_dialogSequences_8c044c08
         $this->initUint32($this->addressOf('_var_dialogQueue_8c225fbc'), 2);
 
         $this->shouldWriteLong($this->addressOf('_menuState_8c1bc7a8') + 0x3c, 2);
@@ -1101,7 +1101,7 @@ return new class extends TestCase {
         $this->setSize('_menuState_8c1bc7a8', 0x6c);
         $this->setSize('_isFading_8c226568', 4);
         $this->setSize('_var_peripherals_8c1ba35c', 52 * 2);
-        $this->setSize('_init_8c044c08', 4);
+        $this->setSize('_init_dialogSequences_8c044c08', 4);
         $this->initUint32($this->addressOf('_var_midiHandles_8c0fcd28'), 0xbeef0000);
 
         // Functions

@@ -20,7 +20,7 @@
           .IMPORT     _var_8c225fb8
           .IMPORT     _var_tasks_8c1ba3c8
           .IMPORT     _pushTask_8c014ae8
-          .IMPORT     _init_8c044c08
+          .IMPORT     _init_dialogSequences_8c044c08
           .IMPORT     _FUN_8c010bae
           .IMPORT     _var_exp_8c1ba25c
           .IMPORT     _var_coursesToUnlock_8c225fd4
@@ -103,7 +103,7 @@
           .EXPORT     _buildCourseMenuDialogFlow_8c017420
           .EXPORT     _drawCourseButtons_8c017590
           .EXPORT     _StoryMenuTask_8c017718
-          .EXPORT     _FUN_8c017a20
+          .EXPORT     _buildFreeRunMenuDialogFlow_8c017a20
           .EXPORT     _FreeRunMenuTask_8c017ada
           .EXPORT     _FUN_8c017d54
           .EXPORT     _FUN_8c0181b6
@@ -688,7 +688,7 @@ LP_GEN_21301:
           .DATA.L _dialogSequenceTask_8c016f98 ; H'8C0171A8
           .DATA.L _var_tasks_8c1ba3c8 ; H'8C0171AC
           .DATA.L _pushTask_8c014ae8 ; H'8C0171B0
-          .DATA.L _init_8c044c08 ; H'8C0171B4
+          .DATA.L _init_dialogSequences_8c044c08 ; H'8C0171B4
           .DATA.L _var_8c225fb4 ; H'8C0171B8
           .DATA.L _swapMessageBoxFor_8c02aefc ; H'8C0171BC
           .DATA.L _init_courseMenuButtons_8c04442c ; H'8C0171C0
@@ -1822,7 +1822,7 @@ LAB_8c017a08:
           MOV.L       @R15+,R13
           RTS
           MOV.L       @R15+,R14
-_FUN_8c017a20:
+_buildFreeRunMenuDialogFlow_8c017a20:
           MOV.L       R14,@-R15
           MOV         #H'2,R7
           MOV.L       R13,@-R15
@@ -2354,7 +2354,7 @@ LAB_8c017e58:
           MOV.L       LP_GEN_67544+4,R5
           JSR         @R1
           MOV         R12,R4
-          BSR         _FUN_8c017a20
+          BSR         _buildFreeRunMenuDialogFlow_8c017a20
           NOP
 LAB_8c017e64:
           MOV.L       LP_GEN_67544+16,R2
@@ -2473,7 +2473,7 @@ LP_GEN_67544:
           .DATA.L _setTaskAction_8c014b3e ; H'8C017F40
           .DATA.L _menuState_8c1bc7a8 ; H'8C017F44
           .DATA.L _var_dialogQueue_8c225fbc ; H'8C017F48
-          .DATA.L _init_8c044c08 ; H'8C017F4C
+          .DATA.L _init_dialogSequences_8c044c08 ; H'8C017F4C
           .DATA.L _var_8c225fb8 ; H'8C017F50
           .DATA.L _var_demo_8c1bb8d0 ; H'8C017F54
           .DATA.L _var_tex_8c157af8 ; H'8C017F58
@@ -2503,7 +2503,7 @@ LAB_8c017fa0:
           ADD         #H'8,R7
           JSR         @R14
           ADD         #H'4,R6
-          BSR         _FUN_8c017a20
+          BSR         _buildFreeRunMenuDialogFlow_8c017a20
           ADD         #H'4,R15
 LAB_8c017fb4:
           MOV.L       LP_GEN_56170+14,R2
@@ -2642,7 +2642,7 @@ LP_GEN_56170:
           .DATA.L _FreeRunMenuTask_8c017ada ; H'8C0180B8
           .DATA.L _menuState_8c1bc7a8 ; H'8C0180BC
           .DATA.L _var_dialogQueue_8c225fbc ; H'8C0180C0
-          .DATA.L _init_8c044c08 ; H'8C0180C4
+          .DATA.L _init_dialogSequences_8c044c08 ; H'8C0180C4
           .DATA.L _var_8c225fb8 ; H'8C0180C8
           .DATA.L _var_tex_8c157af8 ; H'8C0180CC
           .DATA.L _njGarbageTexture ; H'8C0180D0
