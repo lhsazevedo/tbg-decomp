@@ -106,8 +106,8 @@
           .EXPORT     _buildFreeRunMenuDialogFlow_8c017a20
           .EXPORT     _FreeRunMenuTask_8c017ada
           .EXPORT     _FUN_8c017d54
-          .EXPORT     _FUN_8c0181b6
           .EXPORT     _FUN_8c01803e
+          .EXPORT     _FUN_8c0181b6
           .EXPORT     _FUN_8c018118
           .AENDI
           .SECTION     P, CODE, ALIGN=4

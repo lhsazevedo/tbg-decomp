@@ -301,7 +301,7 @@ void dialogSequenceTask_8c016f98(DialogSequenceTask *task, DialogSequenceTaskSta
             }
 
             state->field_0x08 = swapMessageBoxFor_8c02aefc(state->dialog_0x04->text_0x00);
-            menuState_8c1bc7a8.field_0x60 = state->dialog_0x04->instructorSpriteNo_0x04;
+            menuState_8c1bc7a8.instructorSprite_0x60 = state->dialog_0x04->instructorSpriteNo_0x04;
             state->field_0x0c = 1;
             state->field_0x10 = 0;
             state->state_0x00 = 1;
@@ -391,14 +391,14 @@ void FUN_swapDialogMessageBox_8c017108(int sequence)
 }
 
 enum {
-    STORY_MENU_STATE_INIT = 0,
-    STORY_MENU_STATE_FADE_IN = 1,
-    STORY_MENU_STATE_DIALOG = 2,
-    STORY_MENU_STATE_IDLE = 3,
-    STORY_MENU_STATE_ANIMATING = 4,
-    STORY_MENU_STATE_COURSE_SELECTED = 5,
-    STORY_MENU_STATE_FADE_OUT = 6,
-    STORY_MENU_STATE_FADE_OUT_TO_MAIN_MENU = 7
+    COURSE_MENU_STATE_INIT = 0,
+    COURSE_MENU_STATE_FADE_IN = 1,
+    COURSE_MENU_STATE_DIALOG = 2,
+    COURSE_MENU_STATE_IDLE = 3,
+    COURSE_MENU_STATE_ANIMATING = 4,
+    COURSE_MENU_STATE_COURSE_SELECTED = 5,
+    COURSE_MENU_STATE_FADE_OUT = 6,
+    COURSE_MENU_STATE_FADE_OUT_TO_MAIN_MENU = 7
 };
 
 void handleCourseMenuInput_8c017126()
@@ -895,19 +895,19 @@ extern void *var_8c225fb0;
 void StoryMenuTask_8c017718(Task * task, void *state)
 {
     switch (menuState_8c1bc7a8.state_0x18) {
-        case STORY_MENU_STATE_INIT: {
+        case COURSE_MENU_STATE_INIT: {
             if (getUknPvmBool_8c01432a())
                 return;
 
             AsqFreeQueues_11f7e();
-            menuState_8c1bc7a8.state_0x18 = STORY_MENU_STATE_FADE_IN;
+            menuState_8c1bc7a8.state_0x18 = COURSE_MENU_STATE_FADE_IN;
             FUN_8c010d8a();
             snd_8c010cd6(0, 15);
             push_fadein_8c022a9c(10);
             return;
         }
 
-        case STORY_MENU_STATE_FADE_IN: {
+        case COURSE_MENU_STATE_FADE_IN: {
             if (isFading_8c226568 == 0) {
                 pushDialogTask_8c0170c6(var_dialogQueue_8c225fbc[0], 0);
                 menuState_8c1bc7a8.state_0x18 = 2;
@@ -915,7 +915,7 @@ void StoryMenuTask_8c017718(Task * task, void *state)
             break;
         }
 
-        case STORY_MENU_STATE_DIALOG: {
+        case COURSE_MENU_STATE_DIALOG: {
             // Dialog still running
             if (var_8c225fb4) break;
 
@@ -953,29 +953,29 @@ void StoryMenuTask_8c017718(Task * task, void *state)
             break;
         }
 
-        case STORY_MENU_STATE_IDLE: {
+        case COURSE_MENU_STATE_IDLE: {
             handleCourseMenuInput_8c017126();
             break;
         }
 
-        case STORY_MENU_STATE_ANIMATING: {
+        case COURSE_MENU_STATE_ANIMATING: {
             if (!interpolateCursor_8c016d2c())
                 break;
 
-            menuState_8c1bc7a8.state_0x18 = STORY_MENU_STATE_IDLE;
+            menuState_8c1bc7a8.state_0x18 = COURSE_MENU_STATE_IDLE;
             break;
         }
 
-        case STORY_MENU_STATE_COURSE_SELECTED: {
+        case COURSE_MENU_STATE_COURSE_SELECTED: {
             if (++menuState_8c1bc7a8.logo_timer_0x68 > 10) {
-                menuState_8c1bc7a8.state_0x18 = STORY_MENU_STATE_FADE_OUT;
+                menuState_8c1bc7a8.state_0x18 = COURSE_MENU_STATE_FADE_OUT;
                 push_fadeout_8c022b60(10);
             }
             menuState_8c1bc7a8.field_0x48 = menuState_8c1bc7a8.logo_timer_0x68 & 1;
             break;
         }
 
-        case STORY_MENU_STATE_FADE_OUT: {
+        case COURSE_MENU_STATE_FADE_OUT: {
             int buttonIndex;
 
             if (isFading_8c226568) {
@@ -1004,7 +1004,7 @@ void StoryMenuTask_8c017718(Task * task, void *state)
             return;
         }
 
-        case STORY_MENU_STATE_FADE_OUT_TO_MAIN_MENU: {
+        case COURSE_MENU_STATE_FADE_OUT_TO_MAIN_MENU: {
             if (isFading_8c226568)
                 break;
 
@@ -1034,7 +1034,7 @@ void StoryMenuTask_8c017718(Task * task, void *state)
     // Draw instructor
     drawSprite_8c014f54(
         &menuState_8c1bc7a8.resourceGroupB_0x0c,
-        menuState_8c1bc7a8.field_0x60,
+        menuState_8c1bc7a8.instructorSprite_0x60,
         0.0,
         0.0,
         -6.0
@@ -1045,6 +1045,161 @@ void StoryMenuTask_8c017718(Task * task, void *state)
     );
     AsqGetRandomA_12166();
 }
+
+void FreeRunMenuTask_8c017ada(Task * task, void *state)
+{
+    switch (menuState_8c1bc7a8.state_0x18) {
+        case COURSE_MENU_STATE_INIT: {
+            if (getUknPvmBool_8c01432a())
+                return;
+
+            AsqFreeQueues_11f7e();
+            menuState_8c1bc7a8.state_0x18 = COURSE_MENU_STATE_FADE_IN;
+            FUN_8c010d8a();
+            snd_8c010cd6(0, 15);
+            push_fadein_8c022a9c(10);
+            return;
+        }
+
+        case COURSE_MENU_STATE_FADE_IN: {
+            if (isFading_8c226568 == 0) {
+                pushDialogTask_8c0170c6(var_dialogQueue_8c225fbc[0], 0);
+                menuState_8c1bc7a8.state_0x18 = 2;
+            }
+            break;
+        }
+
+        case COURSE_MENU_STATE_DIALOG: {
+            // Dialog still running
+            if (var_8c225fb4) break;
+
+            if (var_dialogQueue_8c225fbc[task->field_0x08] == SEQ_COURSE_UNLOCKED) {
+                int row;
+                applyUnlocks_8c0173e6();
+                for (row = 0; row < 3; row++) {
+                    int col;
+                    for (col = 0; col < 3; col++) {
+                        // We offset by 2 because the first two entries
+                        // of each row are not courses buttons.
+                        init_courseMenuButtons_8c04442c[2 + row * 5 + col].unlocked_0x04 =
+                            var_progress_8c1ba1cc.courses_0x44[row * 3 + col].unlocked_0x00;
+                    }
+                }
+                sdMidiPlay(var_midiHandles_8c0fcd28[5], 1, 0x16, 0);
+            }
+
+            // TODO: Rename to dialogSequenceIndex
+            task->field_0x08++;
+
+            // If we finished the last dialog sequence
+            if (var_dialogQueue_8c225fbc[task->field_0x08] == -1) {
+                menuState_8c1bc7a8.state_0x18 = 3;
+                // This is probably a empty string literal
+                swapMessageBoxFor_8c02aefc(&const_8c03628c);
+            }
+            // Otherwise, start the next dialog sequence
+            else {
+                pushDialogTask_8c0170c6(var_dialogQueue_8c225fbc[task->field_0x08], 0);
+                if (var_dialogQueue_8c225fbc[task->field_0x08] == SEQ_COURSE_UNLOCKED) {
+                    midiResetFxAndPlay_8c010846(0, 0);
+                }
+            }
+            break;
+        }
+
+        case COURSE_MENU_STATE_IDLE: {
+            handleCourseMenuInput_8c017126();
+            break;
+        }
+
+        case COURSE_MENU_STATE_ANIMATING: {
+            if (!interpolateCursor_8c016d2c())
+                break;
+
+            menuState_8c1bc7a8.state_0x18 = COURSE_MENU_STATE_IDLE;
+            break;
+        }
+
+        case COURSE_MENU_STATE_COURSE_SELECTED: {
+            if (++menuState_8c1bc7a8.logo_timer_0x68 > 10) {
+                menuState_8c1bc7a8.state_0x18 = COURSE_MENU_STATE_FADE_OUT;
+                push_fadeout_8c022b60(10);
+            }
+            menuState_8c1bc7a8.field_0x48 = menuState_8c1bc7a8.logo_timer_0x68 & 1;
+            break;
+        }
+
+        case COURSE_MENU_STATE_FADE_OUT: {
+            int buttonIndex;
+
+            if (isFading_8c226568) {
+                menuState_8c1bc7a8.field_0x48 = ++menuState_8c1bc7a8.logo_timer_0x68 & 1;
+                break;
+            }
+
+            if (init_8c03bd80)
+                return;
+
+            if (menuState_8c1bc7a8.field_0x3c != 1 || menuState_8c1bc7a8.field_0x40 != 0) {
+                freeResourceGroup_8c0185c4(&menuState_8c1bc7a8.resourceGroupB_0x0c);
+                var_8c225fb0 = (void *) -1;
+            }
+
+            menuState_8c1bc7a8.selected_0x38 = 0;
+            buttonIndex = menuState_8c1bc7a8.field_0x40 * 5 + menuState_8c1bc7a8.field_0x3c;
+            menuState_8c1bc7a8.field_0x50 =
+                init_courseMenuButtons_8c04442c[buttonIndex].courseId_0x18;
+
+            // var_8c1bb8dc = 1;
+            // var_8c1bb8b8 = 0;
+            // var_8c1bb8bc = 1;
+
+            init_courseMenuButtons_8c04442c[buttonIndex].onSelect_0x14(task);
+            return;
+        }
+
+        case COURSE_MENU_STATE_FADE_OUT_TO_MAIN_MENU: {
+            if (isFading_8c226568)
+                break;
+
+            if (init_8c03bd80)
+                return;
+
+            // var_8c1bb8b8 = 0;
+            MainMenuSwitchFromTask_8c01a09a(task);
+            return;
+        }
+    }
+
+    // drawDateAndExp_8c016ee6();
+    drawCourseButtons_8c017590();
+    drawSprite_8c014f54(
+        &menuState_8c1bc7a8.resourceGroupB_0x0c, 9, 0.0, 0.0, -5.0
+    );
+    // drawSprite_8c014f54(
+    //     &menuState_8c1bc7a8.resourceGroupA_0x00, 0x2b, 0.0, 0.0, -4.0
+    // );
+    if (menuTextboxText_8c02af1c(var_8c225fb8) ) {
+        drawSprite_8c014f54(
+            &menuState_8c1bc7a8.resourceGroupA_0x00, 1, 0.0, 0.0, -5.0
+        );
+    }
+
+    // Draw instructor
+    drawSprite_8c014f54(
+        &menuState_8c1bc7a8.resourceGroupB_0x0c,
+        menuState_8c1bc7a8.instructorSprite_0x60,
+        0.0,
+        0.0,
+        -6.0
+    );
+
+    drawSprite_8c014f54(
+        &menuState_8c1bc7a8.resourceGroupA_0x00, 0, 0.0, 0.0, -7.0
+    );
+    AsqGetRandomA_12166();
+}
+
 
 extern int var_8c1bb8c0;
 
@@ -1091,6 +1246,40 @@ void buildFreeRunMenuDialogFlow_8c017a20(void)
 void FUN_8c017d54();
 void FreeRunMenuTask_8c017ada();
 
+void FUN_8c017d54(void)
+{
+    int enabled;
+    int row;
+    int game_mode = var_game_mode_8c1bb8fc;
+
+    // Enable cursor
+    menuState_8c1bc7a8.field_0x48 = 1;
+
+    // Update cursor target/velocity if off-target
+    cursorOffTarget_8c016dc6();
+
+    // Snap current cursor position to its target
+    menuState_8c1bc7a8.pos.cursor.cursor_0x20 = menuState_8c1bc7a8.pos.cursor.cursorTarget_0x28;
+
+    // Event and Album buttons: enabled in Story Mode, disabled in Free Run
+    enabled = game_mode == 0 ? 1 : 0;
+    init_courseMenuButtons_8c04442c[5].enabled_0x00 = enabled;
+    init_courseMenuButtons_8c04442c[6].enabled_0x00 = enabled;
+
+    // Refresh the 3x3 grid of course buttons from PlayerProgress
+    for (row = 0; row < 3; row++) {
+        int col;
+        for (col = 0; col < 3; col++) {
+            int courseIdx = row * 3 + col;
+            int buttonIdx = 2 + row * 5 + col; // offset by 2 each row
+            init_courseMenuButtons_8c04442c[buttonIdx].unlocked_0x04 =
+                game_mode == 0
+                    ? var_progress_8c1ba1cc.courses_0x44[courseIdx].unlocked_0x00
+                    : var_progress_8c1ba1cc.courses_0x44[courseIdx].new_0x01;
+        }
+    }
+}
+
 void CourseMenuSwitchFromTask_8c017e18(Task *task)
 {
     if (var_game_mode_8c1bb8fc == 0) {
@@ -1102,7 +1291,7 @@ void CourseMenuSwitchFromTask_8c017e18(Task *task)
     }
 
     // Get instructor sprite from the first dialog entry
-    menuState_8c1bc7a8.field_0x60 =
+    menuState_8c1bc7a8.instructorSprite_0x60 =
         init_dialogSequences_8c044c08[
             var_dialogQueue_8c225fbc[0]
         ]->instructorSpriteNo_0x04;
@@ -1127,5 +1316,65 @@ void CourseMenuSwitchFromTask_8c017e18(Task *task)
 
     setUknPvmBool_8c014330();
     AsqProcessQueues_11fe0(AsqNop_11120, 0, 0, 0, resetUknPvmBool_8c014322);
+    menuState_8c1bc7a8.state_0x18 = 0;
+}
+
+// Extra externs used by FUN_8c017ef2
+extern void FUN_8c0128cc(void);
+extern void task_8c012f44(Task *task, void *state);
+extern void requestCommonResources_8c01852c(void);
+extern FUN_8c02ae3e(int p1, int p2, float fp1, int p3, int p4, int p5, int p6, int p7);
+
+void FUN_8c017ef2(void)
+{
+    Task *createdTask;
+    void *createdState;
+
+    FUN_8c0128cc();
+
+    pushTask_8c014ae8(
+        var_tasks_8c1ba3c8,
+        &task_8c012f44,
+        &createdTask,
+        &createdState,
+        0
+    );
+
+    pushTask_8c014ae8(
+        var_tasks_8c1ba3c8,
+        &StoryMenuTask_8c017718,
+        &createdTask,
+        &createdState,
+        0
+    );
+
+    buildCourseMenuDialogFlow_8c017420();
+
+    menuState_8c1bc7a8.instructorSprite_0x60 =
+        init_dialogSequences_8c044c08[
+            var_dialogQueue_8c225fbc[0]
+        ]->instructorSpriteNo_0x04;
+
+    createdTask->field_0x08 = 0;
+
+    var_8c225fb8 = 0;
+
+    njGarbageTexture(&var_tex_8c157af8, 0xc00);
+    FUN_8c02ae3e(0x20, 0x180, -2.0, 0x240, 0x40, 0, 0, -1);
+    swapMessageBoxFor_8c02aefc(&const_8c03628c);
+    var_demo_8c1bb8d0 = 0;
+
+    FUN_8c017d54();
+    AsqInitQueues_11f36(8, 0, 0, 8);
+    AsqResetQueues_11f6c();
+
+    requestSysResgrp_8c018568(
+        &menuState_8c1bc7a8.resourceGroupB_0x0c,
+        &init_mainMenuResourceGroup_8c044264
+    );
+    requestCommonResources_8c01852c();
+    setUknPvmBool_8c014330();
+    AsqProcessQueues_11fe0(AsqNop_11120, 0, 0, 0, resetUknPvmBool_8c014322);
+
     menuState_8c1bc7a8.state_0x18 = 0;
 }

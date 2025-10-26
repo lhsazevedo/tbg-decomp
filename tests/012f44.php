@@ -307,7 +307,7 @@ return new class extends TestCase {
         $this->shouldCall('_AsqRequestDat_11182')->with("\\SOUND", "manatee.drv", $this->addressOf('_var_memblkSource_8c0fcd48'));
         $this->shouldCall('_AsqRequestDat_11182')->with("\\SOUND", "bus.mlt", $this->addressOf('_var_memblkSource_8c0fcd4c'));
         $this->shouldCall('_resetUknPvmBool_8c014322');
-        $this->shouldCall('_AsqProcessQueues_11fe0')->with($this->addressOf('_AsqNop_11120'), 0, 0, 0, $this->addressOf('_setUknPvmBool_8c014330'));;
+        $this->shouldCall('_AsqProcessQueues_11fe0')->with($this->addressOf('_AsqNop_11120'), 0, 0, 0, $this->addressOf('_setUknPvmBool_8c014330'));
 
         $this->singleCall('_task_8c013388')
             ->with($taskPtr, 0)

@@ -172,7 +172,10 @@ return [
                 "tests/016d2c/8c017590_drawCoursesButtons.php",
                 "tests/016d2c/8c017718_StoryMenuTask.php",
                 "tests/016d2c/8c017a20_FUN.php",
+                "tests/016d2c/8c017ada_FreeRunMenuTask.php",
+                "tests/016d2c/8c017d54_FUN.php",
                 "tests/016d2c/8c017e18_CourseMenuSwitchFromTask.php",
+                "tests/016d2c/8c017ef2_FUN.php",
             ],
             "objects" => [
                 "build/output/016d2c_src.obj",

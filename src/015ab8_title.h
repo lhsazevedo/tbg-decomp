@@ -72,7 +72,7 @@ struct MenuState {
     int field_0x54;
     int field_0x58;
     int field_0x5c;
-    int field_0x60;
+    int instructorSprite_0x60;
     int startTimer_0x64;
     int logo_timer_0x68;
     int selectedVmuSlot_0x6c;
