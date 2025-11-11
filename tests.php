@@ -176,6 +176,7 @@ return [
                 "tests/016d2c/8c017d54_FUN.php",
                 "tests/016d2c/8c017e18_CourseMenuSwitchFromTask.php",
                 "tests/016d2c/8c017ef2_FUN.php",
+                "tests/016d2c/8c01803e_FUN.php",
             ],
             "objects" => [
                 "build/output/016d2c_src.obj",

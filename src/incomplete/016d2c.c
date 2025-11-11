@@ -1378,3 +1378,21 @@ void FUN_8c017ef2(void)
 
     menuState_8c1bc7a8.state_0x18 = 0;
 }
+
+void drawFixedInteger_8c01803e(float x, float y, int value, int digits)
+{
+    float tracking = 19.0;
+    do {
+        do {
+            drawSprite_8c014f54(
+                &menuState_8c1bc7a8.resourceGroupB_0x0c,
+                12 + value % 10,
+                x,
+                y,
+                -4.0
+            );
+            x -= tracking;
+            digits--;
+        } while (value /= 10);
+    } while (digits > 0);
+}
