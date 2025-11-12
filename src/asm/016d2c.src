@@ -106,7 +106,7 @@
           .EXPORT     _buildFreeRunMenuDialogFlow_8c017a20
           .EXPORT     _FreeRunMenuTask_8c017ada
           .EXPORT     _FUN_8c017d54
-          .EXPORT     _FUN_8c01803e
+          .EXPORT     _drawFixedInteger_8c01803e
           .EXPORT     _FUN_8c0181b6
           .EXPORT     _FUN_8c018118
           .AENDI
@@ -2575,7 +2575,7 @@ LAB_8c017fb4:
           MOV.L       @R15+,R13
           RTS
           MOV.L       @R15+,R14
-_FUN_8c01803e:
+_drawFixedInteger_8c01803e:
           MOV.L       R14,@-R15
           MOVA        LP_GEN_56170+86,R0
           MOV.L       R13,@-R15
@@ -2674,7 +2674,7 @@ _FUN_8c018118:
           MOVA        LP_GEN_82242+10,R0
           MOV.L       @R3,R4
           FMOV        FR15,FR5
-          BSR         _FUN_8c01803e
+          BSR         _drawFixedInteger_8c01803e
           FMOV.S      @R0,FR4
           MOV.L       LP_GEN_82242+18,R3
           MOV.L       LP_GEN_82242+14,R14
@@ -2708,7 +2708,7 @@ _FUN_8c018118:
           MOV.B       @(R0,R4),R4
           MOVA        LP_GEN_82242+42,R0
           EXTU.B      R4,R4
-          BSR         _FUN_8c01803e
+          BSR         _drawFixedInteger_8c01803e
           FMOV.S      @R0,FR4
           MOV         #H'40,R0
           MOV.L       @(H'3c,R14),R2
@@ -2726,7 +2726,7 @@ _FUN_8c018118:
           MOV.B       @(R0,R4),R4
           MOVA        LP_GEN_82242+50,R0
           EXTU.B      R4,R4
-          BSR         _FUN_8c01803e
+          BSR         _drawFixedInteger_8c01803e
           FMOV.S      @R0,FR4
           MOV         #H'40,R0
           FLDI0       FR15

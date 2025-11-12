@@ -60,6 +60,8 @@ extern Sint8 var_coursesToUnlock_8c225fd4[];
 extern int var_demo_8c1bb8d0;
 extern void resetUknPvmBool_8c014322();
 extern NJS_TEXMEMLIST var_tex_8c157af8[];
+extern Uint8 init_8c044d2e[];
+extern Uint8 init_8c044d2f[];
 
 enum {
     // --- Story / Training ---
@@ -1395,4 +1397,32 @@ void drawFixedInteger_8c01803e(float x, float y, int value, int digits)
             digits--;
         } while (value /= 10);
     } while (digits > 0);
+}
+
+void FUN_8c018118(void)
+{
+    int index = menuState_8c1bc7a8.field_0x40 * 6 + (menuState_8c1bc7a8.field_0x3c - 2) * 2;
+    int weekday;
+
+    drawFixedInteger_8c01803e(219.0, 108.0, var_progress_8c1ba1cc.days_0x00, 0);
+
+    weekday = getWeekDayIndex_8c016ed2();
+    drawSprite_8c014f54(
+        &menuState_8c1bc7a8.resourceGroupB_0x0c,
+        weekday + 0x16,
+        281.0,
+        110.0,
+        -4.0
+    );
+
+    drawFixedInteger_8c01803e(421.0, 108.0, init_8c044d2e[index], 2);
+    drawFixedInteger_8c01803e(471.0, 108.0, init_8c044d2f[index], 2);
+
+    drawSprite_8c014f54(
+        &menuState_8c1bc7a8.resourceGroupB_0x0c,
+        menuState_8c1bc7a8.field_0x40 + 9,
+        0.0,
+        0.0,
+        -7.0
+    );
 }
