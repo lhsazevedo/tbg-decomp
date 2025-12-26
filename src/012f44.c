@@ -592,7 +592,7 @@ void FUN_8c01328c() {
 }
 
 /* Matched :) */
-void FUN_8c013310(int p1) {
+void pushLoadingTask_8c013310(int p1) {
     Task *created_task;
     void* created_state;
   

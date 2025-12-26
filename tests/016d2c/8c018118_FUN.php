@@ -24,7 +24,7 @@ return new class extends TestCase {
         $this->initUint8($digitsATable + $index, 0x2a);
         $this->initUint8($digitsBTable + $index, 0x37);
 
-        $this->call('_FUN_8c018118');
+        $this->call('_drawRouteInfo_8c018118');
 
         $this->shouldCall('_drawFixedInteger_8c01803e')->with(219.0, 108.0, $dayCount, 0);
         $this->shouldCall('_getWeekDayIndex_8c016ed2')->andReturn(5);

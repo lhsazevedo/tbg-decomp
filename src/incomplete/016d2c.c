@@ -7,6 +7,12 @@
 #include "011120_asset_queues.h"
 #include "019e98_main_menu.h"
 
+// TODO:
+// - Review static functions
+// - Prefix functions
+// - Review comments
+// - Split file in sections
+
 typedef struct {
     int enabled_0x00;
     int unlocked_0x04;
@@ -52,6 +58,16 @@ extern int var_8c225fb4;
 extern int var_8c225fb8;
 extern PDS_PERIPHERAL var_peripherals_8c1ba35c[2];
 extern ResourceGroupInfo init_mainMenuResourceGroup_8c044264;
+extern int var_8c1bb8e0;
+extern int var_8c1bb8e4;
+extern int var_8c1bb8e8;
+extern int var_8c1bb8ec;
+extern int var_8c1bb8f0;
+extern int var_8c1bb8f4;
+extern int var_8c1ba2b8[5];
+extern int var_8c1ba2cc[5];
+extern Uint8 init_8c044d10[30];
+extern void pushLoadingTask_8c013310(int p1);
 
 extern MenuDialog *init_dialogSequences_8c044c08[];
 extern int var_game_mode_8c1bb8fc;
@@ -1399,7 +1415,7 @@ void drawFixedInteger_8c01803e(float x, float y, int value, int digits)
     } while (digits > 0);
 }
 
-void FUN_8c018118(void)
+void drawRouteInfo_8c018118(void)
 {
     int index = menuState_8c1bc7a8.field_0x40 * 6 + (menuState_8c1bc7a8.field_0x3c - 2) * 2;
     int weekday;
@@ -1421,6 +1437,177 @@ void FUN_8c018118(void)
     drawSprite_8c014f54(
         &menuState_8c1bc7a8.resourceGroupB_0x0c,
         menuState_8c1bc7a8.field_0x40 + 9,
+        0.0,
+        0.0,
+        -7.0
+    );
+}
+
+// Original prompt handler used in the dialog state
+extern int promptHandleBinary_16caa(int *promptState);
+
+enum {
+    COURSE_CONFIRM_STATE_INIT = 0,
+    COURSE_CONFIRM_STATE_FADE_IN = 1,
+    COURSE_CONFIRM_STATE_PROMPT = 2,
+    COURSE_CONFIRM_STATE_FADE_OUT = 3,
+    COURSE_CONFIRM_STATE_ROUTE_INFO_FADE_IN = 4,
+    COURSE_CONFIRM_STATE_ROUTE_INFO_DISPLAY = 5,
+    COURSE_CONFIRM_STATE_START_LOADING = 6,
+    COURSE_CONFIRM_STATE_FADE_OUT_TO_COURSE_MENU = 7
+};
+
+void CourseConfirmMenuTask_8c0181b6(Task * task, void *state)
+{
+    switch (menuState_8c1bc7a8.state_0x18) {
+        case COURSE_CONFIRM_STATE_INIT: {
+            if (getUknPvmBool_8c01432a())
+                return;
+
+            AsqFreeQueues_11f7e();
+            menuState_8c1bc7a8.state_0x18 = COURSE_CONFIRM_STATE_FADE_IN;
+            push_fadein_8c022a9c(10);
+            snd_8c010cd6(0, 15);
+            return;
+        }
+
+        case COURSE_CONFIRM_STATE_FADE_IN: {
+            if (isFading_8c226568 == 0) {
+                menuState_8c1bc7a8.state_0x18 = COURSE_CONFIRM_STATE_PROMPT;
+            }
+            break;
+        }
+
+        case COURSE_CONFIRM_STATE_PROMPT: {
+            int r = promptHandleBinary_16caa(&menuState_8c1bc7a8.selected_0x38);
+            if (r == 1) {
+                menuState_8c1bc7a8.state_0x18 = COURSE_CONFIRM_STATE_FADE_OUT;
+                push_fadeout_8c022b60(10);
+            } else if (r == 2) {
+                menuState_8c1bc7a8.state_0x18 = COURSE_CONFIRM_STATE_FADE_OUT_TO_COURSE_MENU;
+                FUN_8c010bae(0);
+                FUN_8c010bae(1);
+                push_fadeout_8c022b60(10);
+            }
+            break;
+        }
+
+        case COURSE_CONFIRM_STATE_FADE_OUT: {
+            if (isFading_8c226568 == 0) {
+                menuState_8c1bc7a8.state_0x18 = COURSE_CONFIRM_STATE_ROUTE_INFO_FADE_IN;
+                push_fadein_8c022a9c(0x14);
+            }
+            break;
+        }
+
+        case COURSE_CONFIRM_STATE_ROUTE_INFO_FADE_IN: {
+            if (isFading_8c226568 == 0) {
+                menuState_8c1bc7a8.state_0x18 = COURSE_CONFIRM_STATE_ROUTE_INFO_DISPLAY;
+                menuState_8c1bc7a8.logo_timer_0x68 = 0;
+            }
+            // State 4 uses drawRouteInfo instead of epilogue rendering
+            drawRouteInfo_8c018118();
+            return;
+        }
+
+        case COURSE_CONFIRM_STATE_ROUTE_INFO_DISPLAY: {
+            menuState_8c1bc7a8.logo_timer_0x68++;
+            if (menuState_8c1bc7a8.logo_timer_0x68 > 30) {
+                menuState_8c1bc7a8.state_0x18 = COURSE_CONFIRM_STATE_START_LOADING;
+                FUN_8c010bae(0);
+                FUN_8c010bae(1);
+                push_fadeout_8c022b60(20);
+            }
+            // State 5 uses drawRouteInfo instead of epilogue rendering
+            drawRouteInfo_8c018118();
+            return;
+        }
+
+        case COURSE_CONFIRM_STATE_START_LOADING: {
+            if (isFading_8c226568 == 0) {
+                int i = 0;
+                int courseIndex = menuState_8c1bc7a8.field_0x50 / 3;
+
+                if (init_8c03bd80 != 0) {
+                    // init is busy, just return early
+                    return;
+                }
+                // Step 1: Initialize game systems
+                FUN_8c016182();
+
+                // Step 2: Get course index and check if unlocked
+                if (var_progress_8c1ba1cc.courses_0x44[courseIndex].field_0x02 == 0) {
+                    // Course not unlocked, mark it
+                    var_8c1bb8e0 = 1;
+                    var_progress_8c1ba1cc.courses_0x44[courseIndex].field_0x02 = 1;
+                } else {
+                    var_8c1bb8e0 = 0;
+                }
+
+                // Step 3: Initialize various game state variables
+                var_8c1bb8e8 = 0;
+                var_8c1bb8e4 = 0;
+                var_8c1bb8f0 = 0;
+                var_8c1bb8ec = 0x1d;
+                var_8c1bb8f4 = 0;
+
+                // Step 4: Copy progress data to two arrays (5 uint32 values each)
+                for (i = 0; i < 5; i++) {
+                    var_8c1ba2b8[i] = ((int*)(&var_progress_8c1ba1cc.field_0x04))[i];
+                    var_8c1ba2cc[i] = ((int*)(&var_progress_8c1ba1cc.field_0x04))[i + 5];
+                }
+
+                // Step 5: Update field_0x50 by adding day-based lookup value
+                menuState_8c1bc7a8.field_0x50 += 
+                    init_8c044d10[var_progress_8c1ba1cc.days_0x00 - 1];
+
+                // Step 6: Initialize game and push loading task
+                pushLoadingTask_8c013310(menuState_8c1bc7a8.field_0x50);
+                return;
+            }
+            // State 6 uses drawRouteInfo instead of epilogue rendering
+            drawRouteInfo_8c018118();
+            return;
+        }
+
+        case COURSE_CONFIRM_STATE_FADE_OUT_TO_COURSE_MENU: {
+            if (isFading_8c226568 == 0) {
+                if (init_8c03bd80 != 0) {
+                    // init is busy, just return early
+                    return;
+                }
+
+                freeResourceGroup_8c0185c4(&menuState_8c1bc7a8.resourceGroupB_0x0c);
+                var_8c225fb0 = (void *) -1;
+                CourseMenuSwitchFromTask_8c017e18(task);
+                return;
+            }
+            break; // State 7 uses normal epilogue rendering
+        }
+    }
+
+    // Epilogue rendering that runs every frame for this task
+    drawSprite_8c014f54(
+        &menuState_8c1bc7a8.resourceGroupB_0x0c,
+        menuState_8c1bc7a8.field_0x50 / 3,
+        0.0,
+        0.0,
+        -4.0
+    );
+
+    // 2) Draw confirm/cancel prompt (sprite id = field_0x38 + 2)
+    drawSprite_8c014f54(
+        &menuState_8c1bc7a8.resourceGroupA_0x00,
+        menuState_8c1bc7a8.selected_0x38 + 2,
+        376.0,
+        378.0,
+        -4.0
+    );
+
+    // 3) Foreground overlay
+    drawSprite_8c014f54(
+        &menuState_8c1bc7a8.resourceGroupA_0x00,
+        0,
         0.0,
         0.0,
         -7.0

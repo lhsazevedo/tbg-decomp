@@ -71,7 +71,7 @@
           .IMPORT     _var_8c1ba2cc
           .IMPORT     _var_8c1ba2b8
           .IMPORT     _init_8c044d10
-          .IMPORT     _FUN_8c013310
+          .IMPORT     _pushLoadingTask_8c013310
           .IMPORT     _init_8c044d40
           .IMPORT     _const_8c036290
           .IMPORT     _const_8c036298
@@ -107,8 +107,8 @@
           .EXPORT     _FreeRunMenuTask_8c017ada
           .EXPORT     _FUN_8c017d54
           .EXPORT     _drawFixedInteger_8c01803e
-          .EXPORT     _FUN_8c0181b6
-          .EXPORT     _FUN_8c018118
+          .EXPORT     _drawRouteInfo_8c018118
+          .EXPORT     _CourseConfirmMenuTask_8c0181b6
           .AENDI
           .SECTION     P, CODE, ALIGN=4
 _interpolateCursor_8c016d2c:
@@ -2663,7 +2663,7 @@ LP_GEN_56170:
           .DATA.L H'41980000 ; H'8C01810C
           .DATA.L __modls ; H'8C018110
           .DATA.L __divls ; H'8C018114
-_FUN_8c018118:
+_drawRouteInfo_8c018118:
           MOV.L       R14,@-R15
           MOVA        LP_GEN_82242+2,R0
           MOV.L       LP_GEN_82242+6,R3
@@ -2743,7 +2743,7 @@ _FUN_8c018118:
           FMOV.S      @R0,FR6
           JMP         @R3
           MOV.L       @R15+,R14
-_FUN_8c0181b6:
+_CourseConfirmMenuTask_8c0181b6:
           MOV.L       R14,@-R15
           MOV.L       R13,@-R15
           MOV.L       R12,@-R15
@@ -3045,7 +3045,7 @@ LAB_8c018412:
           MOV.L       @R15+,R11
           MOV.L       @R15+,R12
           MOV.L       @R15+,R13
-          BRA         _FUN_8c018118
+          BRA         _drawRouteInfo_8c018118
           MOV.L       @R15+,R14
 LAB_8c018426:
           MOV.L       @R4,R3
@@ -3117,7 +3117,7 @@ LAB_8c018494:
           MOV.L       @R15+,R14
 LP_GEN_86610:
           .DATA.L _init_8c044d10 ; H'8C0184A8
-          .DATA.L _FUN_8c013310 ; H'8C0184AC
+          .DATA.L _pushLoadingTask_8c013310 ; H'8C0184AC
           .DATA.L _var_8c225fb0 ; H'8C0184B0
           .DATA.L H'C0800000 ; H'8C0184B4
           .DATA.L _drawSprite_8c014f54 ; H'8C0184B8
@@ -3282,7 +3282,7 @@ LP_GEN_93008:
           .RES.W 1 ; H'8C0185EE
           .DATA.L _var_tex_8c157af8 ; H'8C0185F0
           .DATA.L _njGarbageTexture ; H'8C0185F4
-          .DATA.L _FUN_8c0181b6 ; H'8C0185F8
+          .DATA.L _CourseConfirmMenuTask_8c0181b6 ; H'8C0185F8
           .DATA.L _setTaskAction_8c014b3e ; H'8C0185FC
           .DATA.L _menuState_8c1bc7a8 ; H'8C018600
           .DATA.L _AsqInitQueues_11f36 ; H'8C018604

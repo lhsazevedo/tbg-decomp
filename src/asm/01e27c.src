@@ -25,7 +25,7 @@
           .IMPORT     _var_8c1bb8f4
           .IMPORT     _init_8c0451c0
           .IMPORT     _var_8c226410
-          .IMPORT     _FUN_8c013310
+          .IMPORT     _pushLoadingTask_8c013310
           .IMPORT     _setTaskAction_8c014b3e
           .IMPORT     _AsqInitQueues_11f36
           .IMPORT     _AsqResetQueues_11f6c
@@ -538,7 +538,7 @@ LP_GEN_38636:
           .DATA.L _var_8c1bb8f4 ; H'8C01E5FC
           .DATA.L _init_8c0451c0 ; H'8C01E600
           .DATA.L _var_8c226410 ; H'8C01E604
-          .DATA.L _FUN_8c013310 ; H'8C01E608
+          .DATA.L _pushLoadingTask_8c013310 ; H'8C01E608
           .DATA.L _FUN_8c01e27c ; H'8C01E60C
           .DATA.L _setTaskAction_8c014b3e ; H'8C01E610
           .DATA.L _menuState_8c1bc7a8 + H'18 ; H'8C01E614
