@@ -6,17 +6,47 @@
 #include "014a9c_tasks.h"
 #include "011120_asset_queues.h"
 #include "019e98_main_menu.h"
+#include "serial_debug.h"
 
 // TODO:
-// - Review static functions
-// - Prefix functions
 // - Review comments
-// - Split file in sections
 
 /* ====================
  * Compiler Definitions
  * ====================
  */
+
+#ifdef SERIAL_DEBUG
+char *DEBUG_courseMenuStateNames[] = {
+    "INIT",
+    "FADE_IN",
+    "DIALOG",
+    "IDLE",
+    "ANIMATING",
+    "COURSE_SELECTED",
+    "FADE_OUT",
+    "FADE_OUT_TO_MAIN_MENU"
+};
+
+char *DEBUG_courseConfirmStateNames[] = {
+    "INIT",
+    "FADE_IN",
+    "PROMPT",
+    "FADE_OUT",
+    "ROUTE_INFO_FADE_IN",
+    "ROUTE_INFO_DISPLAY",
+    "START_LOADING",
+    "FADE_OUT_TO_COURSE_MENU"
+};
+#endif
+
+#ifdef SERIAL_DEBUG
+#define CHANGE_STATE(x) menuState_8c1bc7a8.state_0x18 = x; LOG_DEBUG(("[COURSE_MENU] State changed: %s\n", DEBUG_courseMenuStateNames[x]))
+#define CHANGE_CONFIRM_STATE(x) menuState_8c1bc7a8.state_0x18 = x; LOG_DEBUG(("[COURSE_MENU] Confirm state changed: %s\n", DEBUG_courseConfirmStateNames[x]))
+#else
+#define CHANGE_STATE(x) menuState_8c1bc7a8.state_0x18 = x
+#define CHANGE_CONFIRM_STATE(x) menuState_8c1bc7a8.state_0x18 = x
+#endif
 
 /* =================
  * Type Declarations
@@ -493,7 +523,7 @@ STATIC void handleCourseMenuInput_8c017126()
             FUN_8c010bae(0);
             FUN_8c010bae(1);
             sdMidiPlay(var_midiHandles_8c0fcd28[0], 1, 0, 0);
-            menuState_8c1bc7a8.state_0x18 = 5;
+            CHANGE_STATE(COURSE_MENU_STATE_COURSE_SELECTED);
             menuState_8c1bc7a8.logo_timer_0x68 = 0;
         }
     }
@@ -510,7 +540,7 @@ STATIC void handleCourseMenuInput_8c017126()
         );
 
         if (cursorOffTarget_8c016dc6()) {
-            menuState_8c1bc7a8.state_0x18 = 4;
+            CHANGE_STATE(COURSE_MENU_STATE_ANIMATING);
         }
     } else if (var_peripherals_8c1ba35c[0].press & PDD_DGT_KD) {
         do {
@@ -524,7 +554,7 @@ STATIC void handleCourseMenuInput_8c017126()
         );
 
         if (cursorOffTarget_8c016dc6()) {
-            menuState_8c1bc7a8.state_0x18 = 4;
+            CHANGE_STATE(COURSE_MENU_STATE_ANIMATING);
         }
     } else if (var_peripherals_8c1ba35c[0].press & PDD_DGT_KL) {
         do {
@@ -538,7 +568,7 @@ STATIC void handleCourseMenuInput_8c017126()
         );
 
         if (cursorOffTarget_8c016dc6()) {
-            menuState_8c1bc7a8.state_0x18 = 4;
+            CHANGE_STATE(COURSE_MENU_STATE_ANIMATING);
         }
     } else if (var_peripherals_8c1ba35c[0].press & PDD_DGT_KR) {
         do {
@@ -552,7 +582,7 @@ STATIC void handleCourseMenuInput_8c017126()
         );
 
         if (cursorOffTarget_8c016dc6()) {
-            menuState_8c1bc7a8.state_0x18 = 4;
+            CHANGE_STATE(COURSE_MENU_STATE_ANIMATING);
         }
     }
 }
@@ -966,7 +996,7 @@ void CourseMenuStoryMenuTask_8c017718(Task * task, void *state)
                 return;
 
             AsqFreeQueues_11f7e();
-            menuState_8c1bc7a8.state_0x18 = COURSE_MENU_STATE_FADE_IN;
+            CHANGE_STATE(COURSE_MENU_STATE_FADE_IN);
             FUN_8c010d8a();
             snd_8c010cd6(0, 15);
             push_fadein_8c022a9c(10);
@@ -976,7 +1006,7 @@ void CourseMenuStoryMenuTask_8c017718(Task * task, void *state)
         case COURSE_MENU_STATE_FADE_IN: {
             if (isFading_8c226568 == 0) {
                 CourseMenuPushDialogTask_8c0170c6(var_dialogQueue_8c225fbc[0], 0);
-                menuState_8c1bc7a8.state_0x18 = 2;
+                CHANGE_STATE(COURSE_MENU_STATE_DIALOG);
             }
             break;
         }
@@ -1005,7 +1035,7 @@ void CourseMenuStoryMenuTask_8c017718(Task * task, void *state)
 
             // If we finished the last dialog sequence
             if (var_dialogQueue_8c225fbc[task->field_0x08] == -1) {
-                menuState_8c1bc7a8.state_0x18 = 3;
+                CHANGE_STATE(COURSE_MENU_STATE_IDLE);
                 // This is probably a empty string literal
                 swapMessageBoxFor_8c02aefc(&const_8c03628c);
             }
@@ -1028,13 +1058,13 @@ void CourseMenuStoryMenuTask_8c017718(Task * task, void *state)
             if (!CourseMenuInterpolateCursor_8c016d2c())
                 break;
 
-            menuState_8c1bc7a8.state_0x18 = COURSE_MENU_STATE_IDLE;
+            CHANGE_STATE(COURSE_MENU_STATE_IDLE);
             break;
         }
 
         case COURSE_MENU_STATE_COURSE_SELECTED: {
             if (++menuState_8c1bc7a8.logo_timer_0x68 > 10) {
-                menuState_8c1bc7a8.state_0x18 = COURSE_MENU_STATE_FADE_OUT;
+                CHANGE_STATE(COURSE_MENU_STATE_FADE_OUT);
                 push_fadeout_8c022b60(10);
             }
             menuState_8c1bc7a8.field_0x48 = menuState_8c1bc7a8.logo_timer_0x68 & 1;
@@ -1120,7 +1150,7 @@ void CourseMenuFreeRunMenuTask_8c017ada(Task * task, void *state)
                 return;
 
             AsqFreeQueues_11f7e();
-            menuState_8c1bc7a8.state_0x18 = COURSE_MENU_STATE_FADE_IN;
+            CHANGE_STATE(COURSE_MENU_STATE_FADE_IN);
             FUN_8c010d8a();
             snd_8c010cd6(0, 15);
             push_fadein_8c022a9c(10);
@@ -1130,7 +1160,7 @@ void CourseMenuFreeRunMenuTask_8c017ada(Task * task, void *state)
         case COURSE_MENU_STATE_FADE_IN: {
             if (isFading_8c226568 == 0) {
                 CourseMenuPushDialogTask_8c0170c6(var_dialogQueue_8c225fbc[0], 0);
-                menuState_8c1bc7a8.state_0x18 = 2;
+                CHANGE_STATE(COURSE_MENU_STATE_DIALOG);
             }
             break;
         }
@@ -1159,7 +1189,7 @@ void CourseMenuFreeRunMenuTask_8c017ada(Task * task, void *state)
 
             // If we finished the last dialog sequence
             if (var_dialogQueue_8c225fbc[task->field_0x08] == -1) {
-                menuState_8c1bc7a8.state_0x18 = 3;
+                CHANGE_STATE(COURSE_MENU_STATE_IDLE);
                 // This is probably a empty string literal
                 swapMessageBoxFor_8c02aefc(&const_8c03628c);
             }
@@ -1182,13 +1212,13 @@ void CourseMenuFreeRunMenuTask_8c017ada(Task * task, void *state)
             if (!CourseMenuInterpolateCursor_8c016d2c())
                 break;
 
-            menuState_8c1bc7a8.state_0x18 = COURSE_MENU_STATE_IDLE;
+            CHANGE_STATE(COURSE_MENU_STATE_IDLE);
             break;
         }
 
         case COURSE_MENU_STATE_COURSE_SELECTED: {
             if (++menuState_8c1bc7a8.logo_timer_0x68 > 10) {
-                menuState_8c1bc7a8.state_0x18 = COURSE_MENU_STATE_FADE_OUT;
+                CHANGE_STATE(COURSE_MENU_STATE_FADE_OUT);
                 push_fadeout_8c022b60(10);
             }
             menuState_8c1bc7a8.field_0x48 = menuState_8c1bc7a8.logo_timer_0x68 & 1;
@@ -1343,6 +1373,8 @@ STATIC void FUN_8c017d54(void)
 
 void CourseMenuSwitchFromTask_8c017e18(Task *task)
 {
+    LOG_INFO(("[COURSE_MENU] Initializing course menu (mode=%d)\n", var_game_mode_8c1bb8fc));
+
     if (var_game_mode_8c1bb8fc == 0) {
         setTaskAction_8c014b3e(task, CourseMenuStoryMenuTask_8c017718);
         buildCourseMenuDialogFlow_8c017420();
@@ -1369,7 +1401,7 @@ void CourseMenuSwitchFromTask_8c017e18(Task *task)
         &init_mainMenuResourceGroup_8c044264
     )) {
         AsqFreeQueues_11f7e();
-        menuState_8c1bc7a8.state_0x18 = 1;
+        CHANGE_STATE(COURSE_MENU_STATE_FADE_IN);
         push_fadein_8c022a9c(10);
         snd_8c010cd6(0, 15);
         return;
@@ -1377,13 +1409,15 @@ void CourseMenuSwitchFromTask_8c017e18(Task *task)
 
     setUknPvmBool_8c014330();
     AsqProcessQueues_11fe0(AsqNop_11120, 0, 0, 0, resetUknPvmBool_8c014322);
-    menuState_8c1bc7a8.state_0x18 = 0;
+    CHANGE_STATE(COURSE_MENU_STATE_INIT);
 }
 
 void CourseMenuFUN_8c017ef2(void)
 {
     Task *createdTask;
     void *createdState;
+
+    LOG_INFO(("[COURSE_MENU] Setting up story course menu\n"));
 
     FUN_8c0128cc();
 
@@ -1431,7 +1465,7 @@ void CourseMenuFUN_8c017ef2(void)
     setUknPvmBool_8c014330();
     AsqProcessQueues_11fe0(AsqNop_11120, 0, 0, 0, resetUknPvmBool_8c014322);
 
-    menuState_8c1bc7a8.state_0x18 = 0;
+    CHANGE_STATE(COURSE_MENU_STATE_INIT);
 }
 
 STATIC void drawFixedInteger_8c01803e(float x, float y, int value, int digits)
@@ -1488,7 +1522,7 @@ STATIC void CourseConfirmMenuTask_8c0181b6(Task * task, void *state)
                 return;
 
             AsqFreeQueues_11f7e();
-            menuState_8c1bc7a8.state_0x18 = COURSE_CONFIRM_STATE_FADE_IN;
+            CHANGE_CONFIRM_STATE(COURSE_CONFIRM_STATE_FADE_IN);
             push_fadein_8c022a9c(10);
             snd_8c010cd6(0, 15);
             return;
@@ -1496,7 +1530,7 @@ STATIC void CourseConfirmMenuTask_8c0181b6(Task * task, void *state)
 
         case COURSE_CONFIRM_STATE_FADE_IN: {
             if (isFading_8c226568 == 0) {
-                menuState_8c1bc7a8.state_0x18 = COURSE_CONFIRM_STATE_PROMPT;
+                CHANGE_CONFIRM_STATE(COURSE_CONFIRM_STATE_PROMPT);
             }
             break;
         }
@@ -1504,10 +1538,10 @@ STATIC void CourseConfirmMenuTask_8c0181b6(Task * task, void *state)
         case COURSE_CONFIRM_STATE_PROMPT: {
             int r = promptHandleBinary_16caa(&menuState_8c1bc7a8.selected_0x38);
             if (r == 1) {
-                menuState_8c1bc7a8.state_0x18 = COURSE_CONFIRM_STATE_FADE_OUT;
+                CHANGE_CONFIRM_STATE(COURSE_CONFIRM_STATE_FADE_OUT);
                 push_fadeout_8c022b60(10);
             } else if (r == 2) {
-                menuState_8c1bc7a8.state_0x18 = COURSE_CONFIRM_STATE_FADE_OUT_TO_COURSE_MENU;
+                CHANGE_CONFIRM_STATE(COURSE_CONFIRM_STATE_FADE_OUT_TO_COURSE_MENU);
                 FUN_8c010bae(0);
                 FUN_8c010bae(1);
                 push_fadeout_8c022b60(10);
@@ -1517,7 +1551,7 @@ STATIC void CourseConfirmMenuTask_8c0181b6(Task * task, void *state)
 
         case COURSE_CONFIRM_STATE_FADE_OUT: {
             if (isFading_8c226568 == 0) {
-                menuState_8c1bc7a8.state_0x18 = COURSE_CONFIRM_STATE_ROUTE_INFO_FADE_IN;
+                CHANGE_CONFIRM_STATE(COURSE_CONFIRM_STATE_ROUTE_INFO_FADE_IN);
                 push_fadein_8c022a9c(0x14);
             }
             break;
@@ -1525,7 +1559,7 @@ STATIC void CourseConfirmMenuTask_8c0181b6(Task * task, void *state)
 
         case COURSE_CONFIRM_STATE_ROUTE_INFO_FADE_IN: {
             if (isFading_8c226568 == 0) {
-                menuState_8c1bc7a8.state_0x18 = COURSE_CONFIRM_STATE_ROUTE_INFO_DISPLAY;
+                CHANGE_CONFIRM_STATE(COURSE_CONFIRM_STATE_ROUTE_INFO_DISPLAY);
                 menuState_8c1bc7a8.logo_timer_0x68 = 0;
             }
             // State 4 uses drawRouteInfo instead of epilogue rendering
@@ -1536,7 +1570,7 @@ STATIC void CourseConfirmMenuTask_8c0181b6(Task * task, void *state)
         case COURSE_CONFIRM_STATE_ROUTE_INFO_DISPLAY: {
             menuState_8c1bc7a8.logo_timer_0x68++;
             if (menuState_8c1bc7a8.logo_timer_0x68 > 30) {
-                menuState_8c1bc7a8.state_0x18 = COURSE_CONFIRM_STATE_START_LOADING;
+                CHANGE_CONFIRM_STATE(COURSE_CONFIRM_STATE_START_LOADING);
                 FUN_8c010bae(0);
                 FUN_8c010bae(1);
                 push_fadeout_8c022b60(20);
@@ -1639,9 +1673,11 @@ STATIC void CourseConfirmMenuTask_8c0181b6(Task * task, void *state)
 
 void CourseMenuFUN_8c0184cc(Task *task)
 {
+    LOG_INFO(("[COURSE_MENU] Initializing course confirmation menu\n"));
+
     njGarbageTexture(&var_tex_8c157af8, 0xc00);
     setTaskAction_8c014b3e(task, CourseConfirmMenuTask_8c0181b6);
-    menuState_8c1bc7a8.state_0x18 = 0;
+    CHANGE_CONFIRM_STATE(COURSE_CONFIRM_STATE_INIT);
     menuState_8c1bc7a8.selected_0x38 = 0;
     AsqInitQueues_11f36(8, 0, 0, 8);
     AsqResetQueues_11f6c();
@@ -1651,7 +1687,7 @@ void CourseMenuFUN_8c0184cc(Task *task)
     );
     setUknPvmBool_8c014330();
     AsqProcessQueues_11fe0(AsqNop_11120, 0, 0, 0, resetUknPvmBool_8c014322);
-    menuState_8c1bc7a8.state_0x18 = 0;
+    CHANGE_CONFIRM_STATE(COURSE_CONFIRM_STATE_INIT);
     return;
 }
 
