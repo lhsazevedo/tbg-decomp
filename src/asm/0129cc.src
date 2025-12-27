@@ -43,6 +43,7 @@
           .IMPORT     _FUN_adxVol_8c010a40
           .IMPORT     _FUN_8c010bae
           .IMPORT     _var_peripherals_8c1ba35c
+          .IMPORT     _menuState_8c1bc7a8
           .EXPORT     _FUN_8c0129cc
           .EXPORT     _task_8c012cbc
           .EXPORT     _task_8c012d06

@@ -94,6 +94,7 @@
           .IMPORT     _push_fadein_8c022a9c
           .IMPORT     _var_8c2285d0
           .IMPORT     _FUN_8c01e0b4
+          .IMPORT     _menuState_8c1bc7a8
           .EXPORT     _FUN_8c02b464
           .EXPORT     _FUN_8c02b578
           .EXPORT     _FUN_8c02b6d4

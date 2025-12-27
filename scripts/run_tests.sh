@@ -68,7 +68,7 @@ assemble  src/asm/decompiled/019e98_main_menu.src
 compile  src/019e98_main_menu.c
 
 # 019e98
-assemble  src/asm/016d2c.src
-compile  src/incomplete/016d2c.c
+assemble  src/asm/decompiled/016d2c.src
+compile  src/016d2c.c
 
 $sh4objtest suite -s tests.php "$@"
