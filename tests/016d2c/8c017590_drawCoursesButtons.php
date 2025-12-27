@@ -104,6 +104,7 @@ return new Class extends TestCase {
     }
 
     private function resolveSymbols() {
+        $this->setSize('_menuState_8c1bc7a8', 0x84);
         $this->setSize('_init_courseMenuButtons_8c04442c', 0x1c * 15);
         $this->setSize('_var_progress_8c1ba1cc', 0x94);
         $this->setSize('__modls', 0x04);

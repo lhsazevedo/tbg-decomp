@@ -78,6 +78,7 @@ extern void resetUknPvmBool_8c014322();
 extern NJS_TEXMEMLIST var_tex_8c157af8[];
 extern Uint8 init_8c044d2e[];
 extern Uint8 init_8c044d2f[];
+extern ResourceGroupInfo init_8c044d40;
 
 enum {
     // --- Story / Training ---
@@ -910,6 +911,8 @@ extern Bool isFading_8c226568;
 extern int init_8c03bd80;
 extern void *var_8c225fb0;
 
+void freeResourceGroup_8c0185c4(ResourceGroup *res_group);
+
 void StoryMenuTask_8c017718(Task * task, void *state)
 {
     switch (menuState_8c1bc7a8.state_0x18) {
@@ -1340,8 +1343,10 @@ void CourseMenuSwitchFromTask_8c017e18(Task *task)
 // Extra externs used by FUN_8c017ef2
 extern void FUN_8c0128cc(void);
 extern void task_8c012f44(Task *task, void *state);
-extern void requestCommonResources_8c01852c(void);
 extern FUN_8c02ae3e(int p1, int p2, float fp1, int p3, int p4, int p5, int p6, int p7);
+
+// Forward declarations
+void requestCommonResources_8c01852c(void);
 
 void FUN_8c017ef2(void)
 {
@@ -1612,4 +1617,78 @@ void CourseConfirmMenuTask_8c0181b6(Task * task, void *state)
         0.0,
         -7.0
     );
+}
+
+void FUN_8c0184cc(Task *task)
+{
+    njGarbageTexture(&var_tex_8c157af8, 0xc00);
+    setTaskAction_8c014b3e(task, CourseConfirmMenuTask_8c0181b6);
+    menuState_8c1bc7a8.state_0x18 = 0;
+    menuState_8c1bc7a8.selected_0x38 = 0;
+    AsqInitQueues_11f36(8, 0, 0, 8);
+    AsqResetQueues_11f6c();
+    requestSysResgrp_8c018568(
+        &menuState_8c1bc7a8.resourceGroupB_0x0c,
+        &init_8c044d40
+    );
+    setUknPvmBool_8c014330();
+    AsqProcessQueues_11fe0(AsqNop_11120, 0, 0, 0, resetUknPvmBool_8c014322);
+    menuState_8c1bc7a8.state_0x18 = 0;
+    return;
+}
+
+void requestCommonResources_8c01852c(void)
+{
+    AsqRequestDat_11182(
+        "\\SYSTEM",
+        "common_parts.dat",
+        &menuState_8c1bc7a8.resourceGroupA_0x00.tanim_0x04
+    );
+    AsqRequestDat_11182(
+        "\\SYSTEM",
+        "common.dat",
+        &menuState_8c1bc7a8.resourceGroupA_0x00.contents_0x08
+    );
+    AsqRequestPvm_11ac0("\\SYSTEM", "common.pvm", &menuState_8c1bc7a8, 1, 0);
+    return;
+}
+
+int requestSysResgrp_8c018568(ResourceGroup *res_group, ResourceGroupInfo *res_group_info)
+{
+    if (var_8c225fb0 == res_group_info) {
+        return 0;
+    }
+
+    var_8c225fb0 = res_group_info;
+
+    if (res_group->tlist_0x00 != (void *) -1) {
+        freeResourceGroup_8c0185c4(res_group);
+    }
+
+    AsqRequestDat_11182(
+        "\\SYSTEM", res_group_info->parts, &res_group->tanim_0x04
+    );
+    AsqRequestDat_11182(
+        "\\SYSTEM", res_group_info->dat, &res_group->contents_0x08
+    );
+    AsqRequestPvm_11ac0(
+        "\\SYSTEM",
+        res_group_info->pvm, 
+        res_group,
+        res_group_info->tex_count,
+        0
+    );
+
+    return 1;
+}
+
+void freeResourceGroup_8c0185c4(ResourceGroup *res_group)
+{
+    if (res_group->tlist_0x00 == (void *) -1) {
+        return;
+    }
+    AsqReleaseAndFreeTexlist_11e3c(res_group->tlist_0x00);
+    syFree(res_group->contents_0x08);
+    syFree(res_group->tanim_0x04);
+    res_group->tlist_0x00 = (void *) -1;
 }
