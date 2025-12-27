@@ -18,7 +18,7 @@
           .IMPORT     _AsqInitQueues_11f36
           .IMPORT     _AsqResetQueues_11f6c
           .IMPORT     _init_mainMenuResourceGroup_8c044264
-          .IMPORT     _requestSysResgrp_8c018568
+          .IMPORT     _CourseMenuRequestSysResgrp_8c018568
           .IMPORT     _setUknPvmBool_8c014330
           .IMPORT     _resetUknPvmBool_8c014322
           .IMPORT     _AsqNop_11120
@@ -361,7 +361,7 @@ LP_GEN_13822:
           .DATA.L _AsqInitQueues_11f36 ; H'8C01A128
           .DATA.L _AsqResetQueues_11f6c ; H'8C01A12C
           .DATA.L _init_mainMenuResourceGroup_8c044264 ; H'8C01A130
-          .DATA.L _requestSysResgrp_8c018568 ; H'8C01A134
+          .DATA.L _CourseMenuRequestSysResgrp_8c018568 ; H'8C01A134
           .DATA.L _setUknPvmBool_8c014330 ; H'8C01A138
           .DATA.L _resetUknPvmBool_8c014322 ; H'8C01A13C
           .DATA.L _AsqNop_11120 ; H'8C01A140

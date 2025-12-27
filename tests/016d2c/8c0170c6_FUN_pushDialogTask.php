@@ -35,7 +35,7 @@ return new class extends TestCase {
         $createdTask = $this->alloc(0x20);
         $createdState = $this->alloc(0x1c);
 
-        $this->call('_pushDialogTask_8c0170c6')
+        $this->call('_CourseMenuPushDialogTask_8c0170c6')
             ->with(1, 0xcafe0002);
 
 

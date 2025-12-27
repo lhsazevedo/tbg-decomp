@@ -181,7 +181,7 @@ return new class extends TestCase {
         $this->initUint32($this->addressOf('_var_exp_8c1ba25c'), 1_000_000);
 
         // -- Act ----------------------
-        $this->call('_buildCourseUnlockList_8c0172dc');
+        $this->call('_CourseMenuBuildCourseUnlockList_8c0172dc');
 
         // -- Assert -------------------
         foreach ([1, 2, 3, 4, 5, 7, 8, -1] as $offset => $value) {
@@ -232,7 +232,7 @@ return new class extends TestCase {
         $this->initUint32($this->addressOf('_var_exp_8c1ba25c'), $score);
 
         // -- Act ----------------------
-        $this->call('_buildCourseUnlockList_8c0172dc');
+        $this->call('_CourseMenuBuildCourseUnlockList_8c0172dc');
 
         // -- Assert -------------------
         foreach ($writes as $offset => $value) {

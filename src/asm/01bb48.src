@@ -43,7 +43,7 @@
           .IMPORT     _const_8c038498
           .IMPORT     _const_8c0384b0
           .IMPORT     _const_8c0384e8
-          .IMPORT     _interpolateCursor_8c016d2c
+          .IMPORT     _CourseMenuInterpolateCursor_8c016d2c
           .IMPORT     _promptHandleBinary_16caa
           .IMPORT     _const_8c03866c
           .IMPORT     _var_8c1bc454
@@ -62,7 +62,7 @@
           .IMPORT     _const_8c0385f8
           .IMPORT     _push_fadein_8c022a9c
           .IMPORT     _var_8c22606c
-          .IMPORT     _freeResourceGroup_8c0185c4
+          .IMPORT     _CourseMenuFreeResourceGroup_8c0185c4
           .IMPORT     _syFree
           .IMPORT     _MainMenuSwitchFromTask_8c01a09a
           .IMPORT     _menuTextboxText_8c02af1c
@@ -70,7 +70,7 @@
           .IMPORT     _AsqInitQueues_11f36
           .IMPORT     _AsqResetQueues_11f6c
           .IMPORT     _init_8c044e90
-          .IMPORT     _requestSysResgrp_8c018568
+          .IMPORT     _CourseMenuRequestSysResgrp_8c018568
           .IMPORT     _const_8c038660
           .IMPORT     _const_8c038658
           .IMPORT     _AsqRequestDat_11182
@@ -1341,7 +1341,7 @@ LP_GEN_25641:
           .DATA.L _const_8c0384e8 ; H'8C01C464
           .DATA.L _push_fadeout_8c022b60 ; H'8C01C468
           .DATA.L _const_8c038498 ; H'8C01C46C
-          .DATA.L _interpolateCursor_8c016d2c ; H'8C01C470
+          .DATA.L _CourseMenuInterpolateCursor_8c016d2c ; H'8C01C470
           .DATA.L _promptHandleBinary_16caa ; H'8C01C474
 LAB_8c01c478:
           MOV         #H'6c,R0
@@ -1857,7 +1857,7 @@ LP_GEN_33412:
           .DATA.L _push_fadein_8c022a9c ; H'8C01C858
           .DATA.L _var_8c22606c ; H'8C01C85C
           .DATA.L _var_resourceGroup_8c2263a8 ; H'8C01C860
-          .DATA.L _freeResourceGroup_8c0185c4 ; H'8C01C864
+          .DATA.L _CourseMenuFreeResourceGroup_8c0185c4 ; H'8C01C864
           .DATA.L _var_8c1bc454 ; H'8C01C868
           .DATA.L _syFree ; H'8C01C86C
           .DATA.L _MainMenuSwitchFromTask_8c01a09a ; H'8C01C870
@@ -1957,7 +1957,7 @@ LP_GEN_73212:
           .DATA.L _AsqResetQueues_11f6c ; H'8C01C930
           .DATA.L _init_8c044e90 ; H'8C01C934
           .DATA.L _var_resourceGroup_8c2263a8 ; H'8C01C938
-          .DATA.L _requestSysResgrp_8c018568 ; H'8C01C93C
+          .DATA.L _CourseMenuRequestSysResgrp_8c018568 ; H'8C01C93C
           .DATA.L _var_8c1bc454 ; H'8C01C940
           .DATA.L _const_8c038660 ; H'8C01C944
           .DATA.L _const_8c038658 ; H'8C01C948

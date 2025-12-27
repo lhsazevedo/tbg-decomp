@@ -49,8 +49,8 @@ enum MAIN_MENU_STATE {
 
 extern void resetUknPvmBool_8c014322();
 extern void drawSprite_8c014f54(ResourceGroup *r4, int r5, float fr4, float fr5, float fr6);
-extern void StoryMenuTask_8c017718(Task* task, void* state);
-extern void FreeRunMenuTask_8c017ada(Task* task, void* state);
+extern void CourseMenuStoryMenuTask_8c017718(Task* task, void* state);
+extern void CourseMenuFreeRunMenuTask_8c017ada(Task* task, void* state);
 extern void FUN_8c01bfec(Task* task, void* state);
 extern void push_fadein_8c022a9c();
 extern void push_fadeout_8c022b60();
@@ -223,7 +223,7 @@ void MainMenuSwitchFromTask_8c01a09a(Task* task) {
     menuState_8c1bc7a8.field_0x5c = 0;
     AsqInitQueues_11f36(8, 0, 0, 8);
     AsqResetQueues_11f6c();
-    requestSysResgrp_8c018568(
+    CourseMenuRequestSysResgrp_8c018568(
         &menuState_8c1bc7a8.resourceGroupB_0x0c,
         &init_mainMenuResourceGroup_8c044264
     );

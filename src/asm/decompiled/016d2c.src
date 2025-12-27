@@ -81,19 +81,19 @@
           .IMPORT     _AsqRequestPvm_11ac0
           .IMPORT     _AsqReleaseAndFreeTexlist_11e3c
           .IMPORT     _syFree
-          .EXPORT     _interpolateCursor_8c016d2c
-          .EXPORT     _drawDateAndExp_8c016ee6
-          .EXPORT     _pushDialogTask_8c0170c6
-          .EXPORT     _buildCourseUnlockList_8c0172dc
-          .EXPORT     _applyUnlocks_8c0173e6
-          .EXPORT     _StoryMenuTask_8c017718
-          .EXPORT     _FreeRunMenuTask_8c017ada
+          .EXPORT     _CourseMenuInterpolateCursor_8c016d2c
+          .EXPORT     _CourseMenuDrawDateAndExp_8c016ee6
+          .EXPORT     _CourseMenuPushDialogTask_8c0170c6
+          .EXPORT     _CourseMenuBuildCourseUnlockList_8c0172dc
+          .EXPORT     _CourseMenuApplyUnlocks_8c0173e6
+          .EXPORT     _CourseMenuStoryMenuTask_8c017718
+          .EXPORT     _CourseMenuFreeRunMenuTask_8c017ada
           .EXPORT     _CourseMenuSwitchFromTask_8c017e18
-          .EXPORT     _FUN_8c017ef2
-          .EXPORT     _FUN_8c0184cc
-          .EXPORT     _requestCommonResources_8c01852c
-          .EXPORT     _requestSysResgrp_8c018568
-          .EXPORT     _freeResourceGroup_8c0185c4
+          .EXPORT     _CourseMenuFUN_8c017ef2
+          .EXPORT     _CourseMenuFUN_8c0184cc
+          .EXPORT     _CourseMenuRequestCommonResources_8c01852c
+          .EXPORT     _CourseMenuRequestSysResgrp_8c018568
+          .EXPORT     _CourseMenuFreeResourceGroup_8c0185c4
 
           .AIFDEF UNIT_TESTING
           .EXPORT     _cursorOffTarget_8c016dc6
@@ -111,7 +111,7 @@
           .EXPORT     _CourseConfirmMenuTask_8c0181b6
           .AENDI
           .SECTION     P, CODE, ALIGN=4
-_interpolateCursor_8c016d2c:
+_CourseMenuInterpolateCursor_8c016d2c:
           MOV.L       LP_GEN_57345+2,R4
           MOV         #H'30,R1
           MOV         #H'20,R0
@@ -335,7 +335,7 @@ _getWeekDayIndex_8c016ed2:
           LDS.L       @R15+,PR
           RTS
           NOP
-_drawDateAndExp_8c016ee6:
+_CourseMenuDrawDateAndExp_8c016ee6:
           MOV.L       R14,@-R15
           MOV         #H'a,R3
           MOV.L       R13,@-R15
@@ -576,7 +576,7 @@ LAB_8c0170b4:
           MOV.L       @R15+,R13
           RTS
           MOV.L       @R15+,R14
-_pushDialogTask_8c0170c6:
+_CourseMenuPushDialogTask_8c0170c6:
           STS.L       PR,@-R15
           ADD         #-H'10,R15
           MOV         #H'18,R3
@@ -843,7 +843,7 @@ LP_GEN_93380:
           .DATA.L _var_midiHandles_8c0fcd28 ; H'8C0172D0
           .DATA.L _sdMidiPlay ; H'8C0172D4
           .DATA.L H'10+_var_peripherals_8c1ba35c ; H'8C0172D8
-_buildCourseUnlockList_8c0172dc:
+_CourseMenuBuildCourseUnlockList_8c0172dc:
           MOV         #H'0,R4
           MOV.L       R14,@-R15
           MOV         R4,R7
@@ -989,7 +989,7 @@ LAB_8c0173d0:
           MOV.L       @R15+,R13
           RTS
           MOV.L       @R15+,R14
-_applyUnlocks_8c0173e6:
+_CourseMenuApplyUnlocks_8c0173e6:
           MOV.L       R13,@-R15
           MOV         #H'0,R6
           MOV.L       R12,@-R15
@@ -1138,7 +1138,7 @@ LAB_8c0174ea:
           BRA         LAB_8c01754c
           MOV.L       R5,@(R0,R4)
 LAB_8c0174f6:
-          BSR         _buildCourseUnlockList_8c0172dc
+          BSR         _CourseMenuBuildCourseUnlockList_8c0172dc
           NOP
           TST         R0,R0
           BT          LAB_8c01754c
@@ -1410,7 +1410,7 @@ LAB_8c0176ec:
           MOV.L       @R15+,R13
           RTS
           MOV.L       @R15+,R14
-_StoryMenuTask_8c017718:
+_CourseMenuStoryMenuTask_8c017718:
           MOV.L       R14,@-R15
           MOV.L       R13,@-R15
           MOV.L       R12,@-R15
@@ -1508,7 +1508,7 @@ LAB_8c0177ba:
 LAB_8c0177c4:
           MOV.L       @R15,R3
           MOV         #H'0,R5
-          BSR         _pushDialogTask_8c0170c6
+          BSR         _CourseMenuPushDialogTask_8c0170c6
           MOV.L       @R3,R4
           MOV         #H'2,R1
           BRA         LAB_8c01798a
@@ -1538,7 +1538,7 @@ LAB_8c017804:
           MOV.L       @(R0,R2),R0
           CMP/EQ      #H'd,R0
           BF          LAB_8c017852
-          BSR         _applyUnlocks_8c0173e6
+          BSR         _CourseMenuApplyUnlocks_8c0173e6
           NOP
           MOV.L       LP_GEN_86103+6,R9
           BRA         LAB_8c01783e
@@ -1587,7 +1587,7 @@ LAB_8c017852:
           MOV.L       @(H'8,R12),R0
           MOV         #H'0,R5
           SHLL2       R0
-          BSR         _pushDialogTask_8c0170c6
+          BSR         _CourseMenuPushDialogTask_8c0170c6
           MOV.L       @(R0,R8),R4
           MOV.L       @(H'8,R12),R0
           SHLL2       R0
@@ -1616,7 +1616,7 @@ LAB_8c017892:
           BRA         LAB_8c01798a
           NOP
 LAB_8c01789a:
-          BSR         _interpolateCursor_8c016d2c
+          BSR         _CourseMenuInterpolateCursor_8c016d2c
           NOP
           TST         R0,R0
           BT          LAB_8c01798a
@@ -1656,7 +1656,7 @@ LAB_8c0178d2:
           BT          LAB_8c0178ec
 LAB_8c0178e0:
           MOV         R14,R4
-          BSR         _freeResourceGroup_8c0185c4
+          BSR         _CourseMenuFreeResourceGroup_8c0185c4
           ADD         #H'c,R4
           MOV.L       LP_GEN_86103+38,R3
           MOV         #-H'1,R2
@@ -1745,7 +1745,7 @@ LAB_8c01795c:
           JMP         @R2
           MOV.L       @R15+,R14
 LAB_8c01798a:
-          BSR         _drawDateAndExp_8c016ee6
+          BSR         _CourseMenuDrawDateAndExp_8c016ee6
           NOP
           BSR         _drawCourseButtons_8c017590
           NOP
@@ -1897,7 +1897,7 @@ LAB_8c017ac0:
           MOV.L       @R15+,R13
           RTS
           MOV.L       @R15+,R14
-_FreeRunMenuTask_8c017ada:
+_CourseMenuFreeRunMenuTask_8c017ada:
           MOV.L       R14,@-R15
           MOV.L       R13,@-R15
           MOV         R4,R13
@@ -1971,7 +1971,7 @@ LAB_8c017b54:
           NOP
 LAB_8c017b5e:
           MOV         #H'0,R5
-          BSR         _pushDialogTask_8c0170c6
+          BSR         _CourseMenuPushDialogTask_8c0170c6
           MOV.L       @R12,R4
           MOV         #H'2,R2
           BRA         LAB_8c017cb8
@@ -1995,7 +1995,7 @@ LAB_8c017b76:
           MOV.L       @(H'8,R13),R0
           MOV         #H'0,R5
           SHLL2       R0
-          BSR         _pushDialogTask_8c0170c6
+          BSR         _CourseMenuPushDialogTask_8c0170c6
           MOV.L       @(R0,R12),R4
           BRA         LAB_8c017cb8
           NOP
@@ -2013,7 +2013,7 @@ LAB_8c017ba2:
           BRA         LAB_8c017cb8
           NOP
 LAB_8c017baa:
-          BSR         _interpolateCursor_8c016d2c
+          BSR         _CourseMenuInterpolateCursor_8c016d2c
           NOP
           TST         R0,R0
           BF          LAB_8c017bb6
@@ -2071,7 +2071,7 @@ LAB_8c017c1c:
           BT          LAB_8c017c36
 LAB_8c017c2a:
           MOV         R14,R4
-          BSR         _freeResourceGroup_8c0185c4
+          BSR         _CourseMenuFreeResourceGroup_8c0185c4
           ADD         #H'c,R4
           MOV.L       LP_GEN_85439+4,R3
           MOV         #-H'1,R2
@@ -2347,7 +2347,7 @@ LP_GEN_59651:
           .DATA.L _init_courseMenuButtons_8c04442c ; H'8C017E44
           .DATA.L _var_progress_8c1ba1cc ; H'8C017E48
           .DATA.L _var_game_mode_8c1bb8fc ; H'8C017E4C
-          .DATA.L _StoryMenuTask_8c017718 ; H'8C017E50
+          .DATA.L _CourseMenuStoryMenuTask_8c017718 ; H'8C017E50
           .DATA.L _setTaskAction_8c014b3e ; H'8C017E54
 LAB_8c017e58:
           MOV.L       LP_GEN_67544+8,R1
@@ -2389,7 +2389,7 @@ LAB_8c017e64:
           NOP
           MOV.L       LP_GEN_67544+48,R5
           MOV         R14,R4
-          BSR         _requestSysResgrp_8c018568
+          BSR         _CourseMenuRequestSysResgrp_8c018568
           ADD         #H'c,R4
           TST         R0,R0
           BT          LAB_8c017ec8
@@ -2430,7 +2430,7 @@ LAB_8c017ee8:
           MOV.L       @R15+,R13
           RTS
           MOV.L       @R15+,R14
-_FUN_8c017ef2:
+_CourseMenuFUN_8c017ef2:
           MOV.L       R14,@-R15
           MOV.L       R13,@-R15
           STS.L       PR,@-R15
@@ -2469,7 +2469,7 @@ _FUN_8c017ef2:
 LP_GEN_67544:
           .DATA.W H'0C00 ; H'8C017F38
           .RES.W 1 ; H'8C017F3A
-          .DATA.L _FreeRunMenuTask_8c017ada ; H'8C017F3C
+          .DATA.L _CourseMenuFreeRunMenuTask_8c017ada ; H'8C017F3C
           .DATA.L _setTaskAction_8c014b3e ; H'8C017F40
           .DATA.L _menuState_8c1bc7a8 ; H'8C017F44
           .DATA.L _var_dialogQueue_8c225fbc ; H'8C017F48
@@ -2493,7 +2493,7 @@ LP_GEN_67544:
           .DATA.L _task_8c012f44 ; H'8C017F90
           .DATA.L _var_tasks_8c1ba3c8 ; H'8C017F94
           .DATA.L _var_game_mode_8c1bb8fc ; H'8C017F98
-          .DATA.L _StoryMenuTask_8c017718 ; H'8C017F9C
+          .DATA.L _CourseMenuStoryMenuTask_8c017718 ; H'8C017F9C
 LAB_8c017fa0:
           MOV         #H'0,R1
           MOV.L       LP_GEN_56170+6,R5
@@ -2554,9 +2554,9 @@ LAB_8c017fb4:
           NOP
           MOV.L       LP_GEN_56170+62,R5
           MOV         R13,R4
-          BSR         _requestSysResgrp_8c018568
+          BSR         _CourseMenuRequestSysResgrp_8c018568
           ADD         #H'c,R4
-          BSR         _requestCommonResources_8c01852c
+          BSR         _CourseMenuRequestCommonResources_8c01852c
           NOP
           MOV.L       LP_GEN_56170+66,R2
           JSR         @R2
@@ -2639,7 +2639,7 @@ LP_GEN_56170:
           .DATA.W H'0C00 ; H'8C0180B2
           .DATA.W H'0240 ; H'8C0180B4
           .DATA.W H'0180 ; H'8C0180B6
-          .DATA.L _FreeRunMenuTask_8c017ada ; H'8C0180B8
+          .DATA.L _CourseMenuFreeRunMenuTask_8c017ada ; H'8C0180B8
           .DATA.L _menuState_8c1bc7a8 ; H'8C0180BC
           .DATA.L _var_dialogQueue_8c225fbc ; H'8C0180C0
           .DATA.L _init_dialogSequences_8c044c08 ; H'8C0180C4
@@ -3055,7 +3055,7 @@ LAB_8c018426:
           TST         R3,R3
           BF          LAB_8c018494
           MOV         R14,R4
-          BSR         _freeResourceGroup_8c0185c4
+          BSR         _CourseMenuFreeResourceGroup_8c0185c4
           ADD         #H'c,R4
           MOV.L       LP_GEN_86610+8,R3
           MOV         #-H'1,R2
@@ -3125,7 +3125,7 @@ LP_GEN_86610:
           .DATA.L H'43BD0000 ; H'8C0184C0
           .DATA.L H'43BC0000 ; H'8C0184C4
           .DATA.L H'C0E00000 ; H'8C0184C8
-_FUN_8c0184cc:
+_CourseMenuFUN_8c0184cc:
           MOV.L       R14,@-R15
           MOV.L       R13,@-R15
           STS.L       PR,@-R15
@@ -3155,7 +3155,7 @@ _FUN_8c0184cc:
           NOP
           MOV.L       LP_GEN_93008+32,R5
           MOV         R14,R4
-          BSR         _requestSysResgrp_8c018568
+          BSR         _CourseMenuRequestSysResgrp_8c018568
           ADD         #H'c,R4
           MOV.L       LP_GEN_93008+36,R3
           JSR         @R3
@@ -3174,7 +3174,7 @@ _FUN_8c0184cc:
           MOV.L       @R15+,R13
           RTS
           MOV.L       @R15+,R14
-_requestCommonResources_8c01852c:
+_CourseMenuRequestCommonResources_8c01852c:
           MOV.L       R14,@-R15
           MOV.L       R13,@-R15
           MOV.L       LP_GEN_93008+20,R13
@@ -3205,7 +3205,7 @@ _requestCommonResources_8c01852c:
           MOV.L       @R15+,R13
           RTS
           MOV.L       @R15+,R14
-_requestSysResgrp_8c018568:
+_CourseMenuRequestSysResgrp_8c018568:
           MOV.L       R14,@-R15
           MOV         R5,R14
           MOV.L       R13,@-R15
@@ -3220,7 +3220,7 @@ _requestSysResgrp_8c018568:
           MOV.L       @R13,R0
           CMP/EQ      #-H'1,R0
           BT          LAB_8c018588
-          BSR         _freeResourceGroup_8c0185c4
+          BSR         _CourseMenuFreeResourceGroup_8c0185c4
           MOV         R13,R4
 LAB_8c018588:
           MOV.L       LP_GEN_93008+60,R3
@@ -3255,7 +3255,7 @@ LAB_8c0185ba:
           MOV.L       @R15+,R13
           RTS
           MOV.L       @R15+,R14
-_freeResourceGroup_8c0185c4:
+_CourseMenuFreeResourceGroup_8c0185c4:
           MOV.L       R14,@-R15
           MOV         R4,R14
           STS.L       PR,@-R15

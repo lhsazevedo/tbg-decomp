@@ -13,18 +13,18 @@
           .IMPORT     _FUN_8c010bae
           .IMPORT     _push_fadeout_8c022b60
           .IMPORT     _init_8c045170
-          .IMPORT     _interpolateCursor_8c016d2c
+          .IMPORT     _CourseMenuInterpolateCursor_8c016d2c
           .IMPORT     _init_8c03bd80
           .IMPORT     _FUN_8c016182
-          .IMPORT     _FUN_8c017ef2
+          .IMPORT     _CourseMenuFUN_8c017ef2
           .IMPORT     _setTaskAction_8c014b3e
-          .IMPORT     _freeResourceGroup_8c0185c4
+          .IMPORT     _CourseMenuFreeResourceGroup_8c0185c4
           .IMPORT     _var_tex_8c157af8
           .IMPORT     _njGarbageTexture
           .IMPORT     _AsqInitQueues_11f36
           .IMPORT     _AsqResetQueues_11f6c
           .IMPORT     _init_8c045160
-          .IMPORT     _requestSysResgrp_8c018568
+          .IMPORT     _CourseMenuRequestSysResgrp_8c018568
           .IMPORT     _setUknPvmBool_8c014330
           .IMPORT     _resetUknPvmBool_8c014322
           .IMPORT     _AsqNop_11120
@@ -676,13 +676,13 @@ LP_GEN_43132:
           .DATA.L _sdMidiPlay ; H'8C01D740
           .DATA.L _FUN_8c010bae ; H'8C01D744
           .DATA.L _push_fadeout_8c022b60 ; H'8C01D748
-          .DATA.L _interpolateCursor_8c016d2c ; H'8C01D74C
+          .DATA.L _CourseMenuInterpolateCursor_8c016d2c ; H'8C01D74C
           .DATA.L H'C0000000 ; H'8C01D750
           .DATA.L H'C0400000 ; H'8C01D754
           .DATA.L _drawSprite_8c014f54 ; H'8C01D758
           .DATA.L _init_8c03bd80 ; H'8C01D75C
           .DATA.L _FUN_8c016182 ; H'8C01D760
-          .DATA.L _FUN_8c017ef2 ; H'8C01D764
+          .DATA.L _CourseMenuFUN_8c017ef2 ; H'8C01D764
           .DATA.L _FUN_8c01d300 ; H'8C01D768
           .DATA.L _setTaskAction_8c014b3e ; H'8C01D76C
           .DATA.L _menuState_8c1bc7a8 ; H'8C01D770
@@ -733,13 +733,13 @@ LAB_8c01d780:
           MOV.L       @R15+,R14
 LP_GEN_20271:
           .DATA.W H'0C00 ; H'8C01D7CE
-          .DATA.L _freeResourceGroup_8c0185c4 ; H'8C01D7D0
+          .DATA.L _CourseMenuFreeResourceGroup_8c0185c4 ; H'8C01D7D0
           .DATA.L _var_tex_8c157af8 ; H'8C01D7D4
           .DATA.L _njGarbageTexture ; H'8C01D7D8
           .DATA.L _AsqInitQueues_11f36 ; H'8C01D7DC
           .DATA.L _AsqResetQueues_11f6c ; H'8C01D7E0
           .DATA.L _init_8c045160 ; H'8C01D7E4
-          .DATA.L _requestSysResgrp_8c018568 ; H'8C01D7E8
+          .DATA.L _CourseMenuRequestSysResgrp_8c018568 ; H'8C01D7E8
           .DATA.L _setUknPvmBool_8c014330 ; H'8C01D7EC
           .DATA.L _resetUknPvmBool_8c014322 ; H'8C01D7F0
           .DATA.L _AsqNop_11120 ; H'8C01D7F4

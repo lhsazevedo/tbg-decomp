@@ -21,7 +21,7 @@ return new class extends TestCase {
         $this->initVelocity(0.0, 0.0);
         $this->initTarget(6.0, 7.0);
 
-        $this->call('_interpolateCursor_8c016d2c');
+        $this->call('_CourseMenuInterpolateCursor_8c016d2c');
 
         $this->shouldWriteCursor(4, 5);
 
@@ -36,15 +36,15 @@ return new class extends TestCase {
         $this->initVelocity(1.0, 1.0);
         $this->initTarget(6.0, 7.0);
 
-        $this->call('_interpolateCursor_8c016d2c');
+        $this->call('_CourseMenuInterpolateCursor_8c016d2c');
         $this->shouldWriteCursor(5.0, 6.0);
         $this->shouldReturn(0);
 
-        $this->call('_interpolateCursor_8c016d2c');
+        $this->call('_CourseMenuInterpolateCursor_8c016d2c');
         $this->shouldWriteCursor(6.0, 7.0);
         $this->shouldReturn(0);
 
-        $this->call('_interpolateCursor_8c016d2c');
+        $this->call('_CourseMenuInterpolateCursor_8c016d2c');
         $this->shouldWriteCursor(7.0, 8.0);
         // TODO: Assert arguments
         $this->shouldCall('__quick_evn_mvn');
@@ -59,15 +59,15 @@ return new class extends TestCase {
         $this->initVelocity(0.0, 1.0);
         $this->initTarget(4.0, 7.0);
 
-        $this->call('_interpolateCursor_8c016d2c');
+        $this->call('_CourseMenuInterpolateCursor_8c016d2c');
         $this->shouldWriteCursor(4.0, 6.0);
         $this->shouldReturn(0);
 
-        $this->call('_interpolateCursor_8c016d2c');
+        $this->call('_CourseMenuInterpolateCursor_8c016d2c');
         $this->shouldWriteCursor(4.0, 7.0);
         $this->shouldReturn(0);
 
-        $this->call('_interpolateCursor_8c016d2c');
+        $this->call('_CourseMenuInterpolateCursor_8c016d2c');
         $this->shouldWriteCursor(4.0, 8.0);
         $this->shouldCall('__quick_evn_mvn');
         $this->shouldReturn(1);
@@ -81,15 +81,15 @@ return new class extends TestCase {
         $this->initVelocity(1.0, 0.0);
         $this->initTarget(6.0, 5.0);
 
-        $this->call('_interpolateCursor_8c016d2c');
+        $this->call('_CourseMenuInterpolateCursor_8c016d2c');
         $this->shouldWriteCursor(5.0, 5.0);
         $this->shouldReturn(0);
 
-        $this->call('_interpolateCursor_8c016d2c');
+        $this->call('_CourseMenuInterpolateCursor_8c016d2c');
         $this->shouldWriteCursor(6.0, 5.0);
         $this->shouldReturn(0);
 
-        $this->call('_interpolateCursor_8c016d2c');
+        $this->call('_CourseMenuInterpolateCursor_8c016d2c');
         $this->shouldWriteCursor(7.0, 5.0);
         $this->shouldCall('__quick_evn_mvn');
         $this->shouldReturn(1);
@@ -103,11 +103,11 @@ return new class extends TestCase {
         $this->initVelocity(-1.0, -1.0);
         $this->initTarget(4.0, 5.0);
 
-        $this->call('_interpolateCursor_8c016d2c');
+        $this->call('_CourseMenuInterpolateCursor_8c016d2c');
         $this->shouldWriteCursor(5.0, 6.0);
         $this->shouldReturn(0);
 
-        $this->call('_interpolateCursor_8c016d2c');
+        $this->call('_CourseMenuInterpolateCursor_8c016d2c');
         $this->shouldWriteCursor(4.0, 5.0);
         $this->shouldCall('__quick_evn_mvn');
         $this->shouldReturn(1);
@@ -121,11 +121,11 @@ return new class extends TestCase {
         $this->initVelocity(0.0, -1.0);
         $this->initTarget(4.0, 5.0);
 
-        $this->call('_interpolateCursor_8c016d2c');
+        $this->call('_CourseMenuInterpolateCursor_8c016d2c');
         $this->shouldWriteCursor(4.0, 6.0);
         $this->shouldReturn(0);
 
-        $this->call('_interpolateCursor_8c016d2c');
+        $this->call('_CourseMenuInterpolateCursor_8c016d2c');
         $this->shouldWriteCursor(4.0, 5.0);
         $this->shouldCall('__quick_evn_mvn');
         $this->shouldReturn(1);
@@ -139,11 +139,11 @@ return new class extends TestCase {
         $this->initVelocity(-1.0, 0.0);
         $this->initTarget(4.0, 5.0);
 
-        $this->call('_interpolateCursor_8c016d2c');
+        $this->call('_CourseMenuInterpolateCursor_8c016d2c');
         $this->shouldWriteCursor(5.0, 5.0);
         $this->shouldReturn(0);
 
-        $this->call('_interpolateCursor_8c016d2c');
+        $this->call('_CourseMenuInterpolateCursor_8c016d2c');
         $this->shouldWriteCursor(4.0, 5.0);
         $this->shouldCall('__quick_evn_mvn');
         $this->shouldReturn(1);

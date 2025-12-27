@@ -30,14 +30,14 @@
           .IMPORT     _AsqInitQueues_11f36
           .IMPORT     _AsqResetQueues_11f6c
           .IMPORT     _init_8c044284
-          .IMPORT     _requestSysResgrp_8c018568
+          .IMPORT     _CourseMenuRequestSysResgrp_8c018568
           .IMPORT     _setUknPvmBool_8c014330
           .IMPORT     _resetUknPvmBool_8c014322
           .IMPORT     _AsqNop_11120
           .IMPORT     _AsqProcessQueues_11fe0
           .IMPORT     _init_8c0451ec
           .IMPORT     _var_game_mode_8c1bb8fc
-          .IMPORT     _drawDateAndExp_8c016ee6
+          .IMPORT     _CourseMenuDrawDateAndExp_8c016ee6
           .IMPORT     _init_8c0451f8
           .IMPORT     _njUserClipping
           .IMPORT     _const_8c038984
@@ -52,14 +52,14 @@
           .IMPORT     __modls
           .IMPORT     __divls
           .IMPORT     _FUN_8c010d8a
-          .IMPORT     _pushDialogTask_8c0170c6
+          .IMPORT     _CourseMenuPushDialogTask_8c0170c6
           .IMPORT     _var_8c225fb4
           .IMPORT     _const_8c038988
           .IMPORT     _var_8c225fb8
           .IMPORT     _var_8c22642c
-          .IMPORT     _FUN_8c017ef2
-          .IMPORT     _buildCourseUnlockList_8c0172dc
-          .IMPORT     _applyUnlocks_8c0173e6
+          .IMPORT     _CourseMenuFUN_8c017ef2
+          .IMPORT     _CourseMenuBuildCourseUnlockList_8c0172dc
+          .IMPORT     _CourseMenuApplyUnlocks_8c0173e6
           .IMPORT     _var_demo_8c1bb8d0
           .IMPORT     _init_dialogSequences_8c044c08
           .IMPORT     _var_tex_8c157af8
@@ -72,7 +72,7 @@
           .IMPORT     _pushTask_8c014ae8
           .IMPORT     _FUN_8c02ae3e
           .IMPORT     _var_8c225fb0
-          .IMPORT     _requestCommonResources_8c01852c
+          .IMPORT     _CourseMenuRequestCommonResources_8c01852c
           .IMPORT     _FUN_8c01f954
           .EXPORT     _FUN_8c01e27c
           .EXPORT     _FUN_8c01e576
@@ -546,7 +546,7 @@ LP_GEN_38636:
           .DATA.L _AsqResetQueues_11f6c ; H'8C01E61C
           .DATA.L _init_8c044284 ; H'8C01E620
           .DATA.L _menuState_8c1bc7a8 + H'0C ; H'8C01E624
-          .DATA.L _requestSysResgrp_8c018568 ; H'8C01E628
+          .DATA.L _CourseMenuRequestSysResgrp_8c018568 ; H'8C01E628
           .DATA.L _setUknPvmBool_8c014330 ; H'8C01E62C
           .DATA.L _resetUknPvmBool_8c014322 ; H'8C01E630
           .DATA.L _AsqNop_11120 ; H'8C01E634
@@ -906,7 +906,7 @@ LAB_8c01e8cc:
 LP_GEN_46961:
           .DATA.W H'00FF ; H'8C01E8DE
           .DATA.L _var_game_mode_8c1bb8fc ; H'8C01E8E0
-          .DATA.L _drawDateAndExp_8c016ee6 ; H'8C01E8E4
+          .DATA.L _CourseMenuDrawDateAndExp_8c016ee6 ; H'8C01E8E4
           .DATA.L H'C0800000 ; H'8C01E8E8
           .DATA.L _drawSprite_8c014f54 ; H'8C01E8EC
           .DATA.L _init_8c0451f8 ; H'8C01E8F0
@@ -1231,7 +1231,7 @@ LP_GEN_88702:
           .DATA.L _AsqInitQueues_11f36 ; H'8C01EB5C
           .DATA.L _AsqResetQueues_11f6c ; H'8C01EB60
           .DATA.L _init_8c044274 ; H'8C01EB64
-          .DATA.L _requestSysResgrp_8c018568 ; H'8C01EB68
+          .DATA.L _CourseMenuRequestSysResgrp_8c018568 ; H'8C01EB68
           .DATA.L _setUknPvmBool_8c014330 ; H'8C01EB6C
           .DATA.L _resetUknPvmBool_8c014322 ; H'8C01EB70
           .DATA.L _AsqNop_11120 ; H'8C01EB74
@@ -1561,7 +1561,7 @@ LP_GEN_52292:
           .DATA.L _snd_8c010cd6 ; H'8C01EE0C
           .DATA.L _push_fadein_8c022a9c ; H'8C01EE10
           .DATA.L _var_8c226414 ; H'8C01EE14
-          .DATA.L _pushDialogTask_8c0170c6 ; H'8C01EE18
+          .DATA.L _CourseMenuPushDialogTask_8c0170c6 ; H'8C01EE18
           .DATA.L _var_8c225fb4 ; H'8C01EE1C
           .DATA.L _const_8c038984 ; H'8C01EE20
           .DATA.L _push_fadeout_8c022b60 ; H'8C01EE24
@@ -1718,7 +1718,7 @@ LP_GEN_95699:
           .DATA.L _var_8c22642c ; H'8C01EF50
           .DATA.L H'0001869F ; H'8C01EF54
           .DATA.L _FUN_8c016182 ; H'8C01EF58
-          .DATA.L _FUN_8c017ef2 ; H'8C01EF5C
+          .DATA.L _CourseMenuFUN_8c017ef2 ; H'8C01EF5C
 LAB_8c01ef60:
           MOV.L       LP_GEN_11122+2,R2
           JSR         @R2
@@ -1784,14 +1784,14 @@ LAB_8c01efcc:
           ADD         #H'1,R5
 LP_GEN_11122:
           .RES.W 1 ; H'8C01EFD2
-          .DATA.L _buildCourseUnlockList_8c0172dc ; H'8C01EFD4
-          .DATA.L _applyUnlocks_8c0173e6 ; H'8C01EFD8
+          .DATA.L _CourseMenuBuildCourseUnlockList_8c0172dc ; H'8C01EFD4
+          .DATA.L _CourseMenuApplyUnlocks_8c0173e6 ; H'8C01EFD8
           .DATA.L _FUN_8c01f954 ; H'8C01EFDC
           .DATA.L H'C0A00000 ; H'8C01EFE0
           .DATA.L H'43A00000 ; H'8C01EFE4
           .DATA.L H'43640000 ; H'8C01EFE8
           .DATA.L _var_game_mode_8c1bb8fc ; H'8C01EFEC
-          .DATA.L _drawDateAndExp_8c016ee6 ; H'8C01EFF0
+          .DATA.L _CourseMenuDrawDateAndExp_8c016ee6 ; H'8C01EFF0
           .DATA.L H'42D80000 ; H'8C01EFF4
           .DATA.L H'42400000 ; H'8C01EFF8
           .DATA.L H'C0900000 ; H'8C01EFFC
@@ -2043,7 +2043,7 @@ LP_GEN_22524:
           .DATA.L _AsqInitQueues_11f36 ; H'8C01F1F4
           .DATA.L _AsqResetQueues_11f6c ; H'8C01F1F8
           .DATA.L _init_8c044274 ; H'8C01F1FC
-          .DATA.L _requestSysResgrp_8c018568 ; H'8C01F200
+          .DATA.L _CourseMenuRequestSysResgrp_8c018568 ; H'8C01F200
           .DATA.L _setUknPvmBool_8c014330 ; H'8C01F204
           .DATA.L _resetUknPvmBool_8c014322 ; H'8C01F208
           .DATA.L _AsqNop_11120 ; H'8C01F20C
@@ -2228,8 +2228,8 @@ LP_GEN_37649:
           .DATA.L _AsqResetQueues_11f6c ; H'8C01F39C
           .DATA.L _var_8c225fb0 ; H'8C01F3A0
           .DATA.L _init_8c044274 ; H'8C01F3A4
-          .DATA.L _requestSysResgrp_8c018568 ; H'8C01F3A8
-          .DATA.L _requestCommonResources_8c01852c ; H'8C01F3AC
+          .DATA.L _CourseMenuRequestSysResgrp_8c018568 ; H'8C01F3A8
+          .DATA.L _CourseMenuRequestCommonResources_8c01852c ; H'8C01F3AC
           .DATA.L _setUknPvmBool_8c014330 ; H'8C01F3B0
           .DATA.L _resetUknPvmBool_8c014322 ; H'8C01F3B4
           .DATA.L _AsqNop_11120 ; H'8C01F3B8

@@ -11,7 +11,7 @@ return new class extends TestCase {
 
         $menuStateBase = $this->addressOf('_menuState_8c1bc7a8');
 
-        $this->call('_requestCommonResources_8c01852c');
+        $this->call('_CourseMenuRequestCommonResources_8c01852c');
 
         // Step 1: Request common_parts.dat
         $this->shouldCall('_AsqRequestDat_11182')->with(

@@ -2,7 +2,7 @@
           .IMPORT     _FUN_8c016636
           .IMPORT     _FUN_8c0167c0
           .IMPORT     _FUN_8c016b4c
-          .IMPORT     _FUN_8c0184cc
+          .IMPORT     _CourseMenuFUN_8c0184cc
           .IMPORT     _MainMenuSwitchFromTask_8c01a09a
           .IMPORT     _FUN_8c01a3c0
           .IMPORT     _FUN_8c01a89c
@@ -1705,16 +1705,16 @@ _init_8c04444c:        ; from ghidra
           .DATA.B      H'00, H'00, H'00, H'00, H'01, H'00, H'00, H'00
 _init_8c044468:        ; from ghidra
           .DATA.B      H'01, H'00, H'00, H'00, H'00, H'00, H'3E, H'43, H'00, H'00, H'DA, H'42, H'0B, H'00, H'00, H'00
-          .DATA.L      _FUN_8c0184cc ; ukn
+          .DATA.L      _CourseMenuFUN_8c0184cc ; ukn
           .DATA.B      H'00, H'00, H'00, H'00, H'01, H'00, H'00, H'00
 _init_8c044484:        ; from ghidra
           .DATA.B      H'01, H'00, H'00, H'00, H'00, H'00, H'8E, H'43, H'00, H'00, H'DA, H'42, H'0C, H'00, H'00, H'00
-          .DATA.L      _FUN_8c0184cc ; ukn
+          .DATA.L      _CourseMenuFUN_8c0184cc ; ukn
           .DATA.B      H'03, H'00, H'00, H'00
 _init_8c04449c:        ; from ghidra
           .DATA.B      H'01, H'00, H'00, H'00, H'01, H'00, H'00, H'00, H'00, H'80, H'BC, H'43, H'00, H'00, H'DA, H'42
           .DATA.B      H'0D, H'00, H'00, H'00
-          .DATA.L      _FUN_8c0184cc ; ukn
+          .DATA.L      _CourseMenuFUN_8c0184cc ; ukn
           .DATA.B      H'06, H'00, H'00, H'00
 _init_8c0444b8:        ; from ghidra
           .DATA.B      H'01, H'00, H'00, H'00
@@ -1727,13 +1727,13 @@ _init_8c0444bc:        ; from ghidra
           .DATA.B      H'00, H'00, H'00, H'00, H'01, H'00, H'00, H'00
 _init_8c0444f4:        ; from ghidra
           .DATA.B      H'01, H'00, H'00, H'00, H'00, H'00, H'3E, H'43, H'00, H'00, H'36, H'43, H'0E, H'00, H'00, H'00
-          .DATA.L      _FUN_8c0184cc ; ukn
+          .DATA.L      _CourseMenuFUN_8c0184cc ; ukn
           .DATA.B      H'09, H'00, H'00, H'00, H'01, H'00, H'00, H'00, H'01, H'00, H'00, H'00, H'00, H'80, H'8E, H'43
           .DATA.B      H'00, H'00, H'36, H'43, H'0F, H'00, H'00, H'00
-          .DATA.L      _FUN_8c0184cc ; ukn
+          .DATA.L      _CourseMenuFUN_8c0184cc ; ukn
           .DATA.B      H'0C, H'00, H'00, H'00, H'01, H'00, H'00, H'00, H'01, H'00, H'00, H'00, H'00, H'00, H'BD, H'43
           .DATA.B      H'00, H'00, H'36, H'43, H'10, H'00, H'00, H'00
-          .DATA.L      _FUN_8c0184cc ; ukn
+          .DATA.L      _CourseMenuFUN_8c0184cc ; ukn
           .DATA.B      H'0F, H'00, H'00, H'00
 _init_8c044544:        ; from ghidra
           .DATA.B      H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'30, H'42, H'00, H'00, H'80, H'43
@@ -1741,13 +1741,13 @@ _init_8c044544:        ; from ghidra
           .DATA.B      H'00, H'00, H'00, H'00, H'00, H'00, H'D8, H'42, H'00, H'00, H'80, H'43, H'00, H'00, H'00, H'00
           .DATA.B      H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'01, H'00, H'00, H'00, H'01, H'00, H'00, H'00
           .DATA.B      H'00, H'00, H'3F, H'43, H'00, H'00, H'80, H'43, H'11, H'00, H'00, H'00
-          .DATA.L      _FUN_8c0184cc ; ukn
+          .DATA.L      _CourseMenuFUN_8c0184cc ; ukn
           .DATA.B      H'12, H'00, H'00, H'00, H'01, H'00, H'00, H'00, H'01, H'00, H'00, H'00, H'00, H'80, H'8E, H'43
           .DATA.B      H'00, H'00, H'80, H'43, H'12, H'00, H'00, H'00
-          .DATA.L      _FUN_8c0184cc ; ukn
+          .DATA.L      _CourseMenuFUN_8c0184cc ; ukn
           .DATA.B      H'15, H'00, H'00, H'00, H'01, H'00, H'00, H'00, H'01, H'00, H'00, H'00, H'00, H'00, H'BD, H'43
           .DATA.B      H'00, H'00, H'80, H'43, H'13, H'00, H'00, H'00
-          .DATA.L      _FUN_8c0184cc ; ukn
+          .DATA.L      _CourseMenuFUN_8c0184cc ; ukn
           .DATA.B      H'18, H'00, H'00, H'00
 _init_8c0445d0:        ; from ghidra
           .DATA.L      _const_8c0362c4 ; ukn

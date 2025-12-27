@@ -14,7 +14,7 @@ return new class extends TestCase {
         // Allocate task parameter
         $task = $this->alloc(0x20);
 
-        $this->call('_FUN_8c0184cc')->with($task);
+        $this->call('_CourseMenuFUN_8c0184cc')->with($task);
 
         // Step 1: Garbage texture
         $this->shouldCall('_njGarbageTexture')->with(
@@ -40,7 +40,7 @@ return new class extends TestCase {
         $this->shouldCall('_AsqResetQueues_11f6c');
 
         // Step 6: Request course parts resource group
-        $this->shouldCall('_requestSysResgrp_8c018568')->with(
+        $this->shouldCall('_CourseMenuRequestSysResgrp_8c018568')->with(
             $menuStateBase + 0x0c,
             $this->addressOf('_init_8c044d40')
         );

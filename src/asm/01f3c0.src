@@ -22,7 +22,7 @@
           .IMPORT     _getUknPvmBool_8c01432a
           .IMPORT     _AsqFreeQueues_11f7e
           .IMPORT     _push_fadein_8c022a9c
-          .IMPORT     _pushDialogTask_8c0170c6
+          .IMPORT     _CourseMenuPushDialogTask_8c0170c6
           .IMPORT     _var_8c225fb4
           .IMPORT     _push_fadeout_8c022b60
           .IMPORT     _free_8c1bc404_8c02af32
@@ -46,8 +46,8 @@
           .IMPORT     _AsqInitQueues_11f36
           .IMPORT     _AsqResetQueues_11f6c
           .IMPORT     _init_8c045324
-          .IMPORT     _requestSysResgrp_8c018568
-          .IMPORT     _requestCommonResources_8c01852c
+          .IMPORT     _CourseMenuRequestSysResgrp_8c018568
+          .IMPORT     _CourseMenuRequestCommonResources_8c01852c
           .IMPORT     _setUknPvmBool_8c014330
           .IMPORT     _resetUknPvmBool_8c014322
           .IMPORT     _AsqNop_11120
@@ -514,7 +514,7 @@ LP_GEN_79838:
           .DATA.L _push_fadein_8c022a9c ; H'8C01F744
           .DATA.L _var_8c226430 ; H'8C01F748
           .DATA.L _var_dialogQueue_8c225fbc ; H'8C01F74C
-          .DATA.L _pushDialogTask_8c0170c6 ; H'8C01F750
+          .DATA.L _CourseMenuPushDialogTask_8c0170c6 ; H'8C01F750
 LAB_8c01f754:
           MOV.L       LP_GEN_41910+10,R2
           MOV.L       @R2,R1
@@ -887,8 +887,8 @@ LP_GEN_38893:
           .DATA.L _AsqInitQueues_11f36 ; H'8C01FA54
           .DATA.L _AsqResetQueues_11f6c ; H'8C01FA58
           .DATA.L _init_8c045324 ; H'8C01FA5C
-          .DATA.L _requestSysResgrp_8c018568 ; H'8C01FA60
-          .DATA.L _requestCommonResources_8c01852c ; H'8C01FA64
+          .DATA.L _CourseMenuRequestSysResgrp_8c018568 ; H'8C01FA60
+          .DATA.L _CourseMenuRequestCommonResources_8c01852c ; H'8C01FA64
           .DATA.L _setUknPvmBool_8c014330 ; H'8C01FA68
           .DATA.L _resetUknPvmBool_8c014322 ; H'8C01FA6C
           .DATA.L _AsqNop_11120 ; H'8C01FA70

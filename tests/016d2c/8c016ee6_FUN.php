@@ -21,7 +21,7 @@ return new class extends TestCase {
         $this->initUint32($this->addressOf('_var_exp_8c1ba25c'), 1337);
         $this->initUint32($this->addressOf('_var_progress_8c1ba1cc') + 0x90, 0xcafe0001);
 
-        $this->call('_drawDateAndExp_8c016ee6');
+        $this->call('_CourseMenuDrawDateAndExp_8c016ee6');
 
         $this->shouldCall('_drawInteger_8c016e6c')->with(9, 84.0, 82.0);
         $this->shouldCall('_getWeekDayIndex_8c016ed2')->andReturn(2);
@@ -45,7 +45,7 @@ return new class extends TestCase {
         $this->initUint32($this->addressOf('_var_exp_8c1ba25c'), 1337);
         $this->initUint32($this->addressOf('_var_progress_8c1ba1cc') + 0x90, 0xcafe0001);
 
-        $this->call('_drawDateAndExp_8c016ee6');
+        $this->call('_CourseMenuDrawDateAndExp_8c016ee6');
 
         $this->shouldCall('_drawInteger_8c016e6c')->with(10, 95.0, 82.0);
         $this->shouldCall('_getWeekDayIndex_8c016ed2')->andReturn(4);
@@ -69,7 +69,7 @@ return new class extends TestCase {
         $this->initUint32($this->addressOf('_var_exp_8c1ba25c'), 1337);
         $this->initUint32($this->addressOf('_var_progress_8c1ba1cc') + 0x90, 0xcafe0001);
 
-        $this->call('_drawDateAndExp_8c016ee6');
+        $this->call('_CourseMenuDrawDateAndExp_8c016ee6');
 
         $this->shouldCall('_drawInteger_8c016e6c')->with(15, 95.0, 82.0);
         $this->shouldCall('_drawSprite_8c014f54')->with(
@@ -92,7 +92,7 @@ return new class extends TestCase {
         $this->initUint32($this->addressOf('_var_exp_8c1ba25c'), 1337);
         $this->initUint32($this->addressOf('_var_progress_8c1ba1cc') + 0x90, 0xcafe0001);
 
-        $this->call('_drawDateAndExp_8c016ee6');
+        $this->call('_CourseMenuDrawDateAndExp_8c016ee6');
 
         $this->shouldCall('_drawInteger_8c016e6c')->with(23, 95.0, 82.0);
         $this->shouldCall('_drawSprite_8c014f54')->with(
@@ -115,7 +115,7 @@ return new class extends TestCase {
         $this->initUint32($this->addressOf('_var_exp_8c1ba25c'), 1337);
         $this->initUint32($this->addressOf('_var_progress_8c1ba1cc') + 0x90, 0xcafe0001);
 
-        $this->call('_drawDateAndExp_8c016ee6');
+        $this->call('_CourseMenuDrawDateAndExp_8c016ee6');
 
         $this->shouldCall('_drawInteger_8c016e6c')->with(24, 95.0, 82.0);
         $this->shouldCall('_getWeekDayIndex_8c016ed2')->andReturn(3);

@@ -544,7 +544,7 @@ return new class extends TestCase {
         $this->initUint32($this->addressOf('_menuState_8c1bc7a8') + 0x18, 3); // state
         $this->initUint32($this->addressOf('_menuState_8c1bc7a8') + 0x38, 1); // slot
 
-        $this->shouldCall('_interpolateCursor_8c016d2c')->andReturn(0);
+        $this->shouldCall('_CourseMenuInterpolateCursor_8c016d2c')->andReturn(0);
 
         $this->shouldCall('_drawVmMenu_197c0');
         $this->shouldCall('_menuTextboxText_8c02af1c')->with(0x20);
@@ -565,7 +565,7 @@ return new class extends TestCase {
             0, 0, 0, 0, 3,
         ]);
 
-        $this->shouldCall('_interpolateCursor_8c016d2c')->andReturn(1);
+        $this->shouldCall('_CourseMenuInterpolateCursor_8c016d2c')->andReturn(1);
 
         $this->shouldWriteMenuState(2);
         $this->shouldCall('_swapMessageBoxFor_8c02aefc')->with(0xcafe0004);

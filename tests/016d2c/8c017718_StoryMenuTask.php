@@ -9,7 +9,7 @@ return new Class extends TestCase {
 
         $this->initMenuStateUint32(0x18, 0);
 
-        $this->call('_StoryMenuTask_8c017718');
+        $this->call('_CourseMenuStoryMenuTask_8c017718');
 
         $this->shouldCall('_getUknPvmBool_8c01432a')->andReturn(1);
     }
@@ -20,7 +20,7 @@ return new Class extends TestCase {
 
         $this->initMenuStateUint32(0x18, 0);
 
-        $this->call('_StoryMenuTask_8c017718');
+        $this->call('_CourseMenuStoryMenuTask_8c017718');
 
         $this->shouldCall('_getUknPvmBool_8c01432a')->andReturn(0);
         $this->shouldCall('_AsqFreeQueues_11f7e');
@@ -39,7 +39,7 @@ return new Class extends TestCase {
         $this->initUint32($this->addressOf('_isFading_8c226568'), 1);
         $this->initUint32($this->addressOf('_var_8c225fb8'), 21);
 
-        $this->call('_StoryMenuTask_8c017718');
+        $this->call('_CourseMenuStoryMenuTask_8c017718');
 
         $this->shouldRenderFrame(
             spriteNo: 42,
@@ -58,9 +58,9 @@ return new Class extends TestCase {
         $this->initUint32($this->addressOf('_var_8c225fb8'), 21);
         $this->initUint32($this->addressOf('_var_dialogQueue_8c225fbc') + 4 * 0, 32);
 
-        $this->call('_StoryMenuTask_8c017718');
+        $this->call('_CourseMenuStoryMenuTask_8c017718');
 
-        $this->shouldCall('_pushDialogTask_8c0170c6')->with(32);
+        $this->shouldCall('_CourseMenuPushDialogTask_8c0170c6')->with(32);
         $this->shouldWriteLong($this->addressOf('_menuState_8c1bc7a8') + 0x18, 2);
 
         $this->shouldRenderFrame(
@@ -82,7 +82,7 @@ return new Class extends TestCase {
 
         $this->initUint32($this->addressOf('_var_8c225fb8'), 21);
 
-        $this->call('_StoryMenuTask_8c017718');
+        $this->call('_CourseMenuStoryMenuTask_8c017718');
 
         // End-of-frame rendering should always run
         $this->shouldRenderFrame(
@@ -118,9 +118,9 @@ return new Class extends TestCase {
         $task = $this->alloc(0x10);
         $this->initUint32($task + 0x08, 0);
 
-        $this->call('_StoryMenuTask_8c017718')->with($task, 0);
+        $this->call('_CourseMenuStoryMenuTask_8c017718')->with($task, 0);
 
-        $this->shouldCall('_applyUnlocks_8c0173e6');
+        $this->shouldCall('_CourseMenuApplyUnlocks_8c0173e6');
 
         $btnBase = $this->addressOf('_init_courseMenuButtons_8c04442c');
 
@@ -165,11 +165,11 @@ return new Class extends TestCase {
         $task = $this->alloc(0x10);
         $this->initUint32($task + 0x08, 0);
 
-        $this->call('_StoryMenuTask_8c017718')->with($task, 0);
+        $this->call('_CourseMenuStoryMenuTask_8c017718')->with($task, 0);
 
         // Effects (no course-unlock branch, just advance + push next)
         $this->shouldWriteLong($task + 0x08, 1);                // ++dialogSequenceIndex
-        $this->shouldCall('_pushDialogTask_8c0170c6')->with(0x22, 0); // start next sequence
+        $this->shouldCall('_CourseMenuPushDialogTask_8c0170c6')->with(0x22, 0); // start next sequence
 
         $this->shouldRenderFrame(
             spriteNo: 42,
@@ -199,13 +199,13 @@ return new Class extends TestCase {
         $task = $this->alloc(0x10);
         $this->initUint32($task + 0x08, 0); // dialogSequenceIndex
 
-        $this->call('_StoryMenuTask_8c017718')->with($task, 0);
+        $this->call('_CourseMenuStoryMenuTask_8c017718')->with($task, 0);
 
         // Effects:
         // No course-unlock processing for the "current" (we deliberately avoided it)
         // Increment index, then push next dialog, then reset+play midi because next == unlock
         $this->shouldWriteLong($task + 0x08, 1);
-        $this->shouldCall('_pushDialogTask_8c0170c6')->with(0x0d, 0);
+        $this->shouldCall('_CourseMenuPushDialogTask_8c0170c6')->with(0x0d, 0);
         $this->shouldCall('_midiResetFxAndPlay_8c010846')->with(0, 0);
 
         $this->shouldRenderFrame(
@@ -242,10 +242,10 @@ return new Class extends TestCase {
         $task = $this->alloc(0x10);
         $this->initUint32($task + 0x08, 0);
 
-        $this->call('_StoryMenuTask_8c017718')->with($task, 0);
+        $this->call('_CourseMenuStoryMenuTask_8c017718')->with($task, 0);
 
         // Current == unlock: do the loop + jingle
-        $this->shouldCall('_applyUnlocks_8c0173e6');
+        $this->shouldCall('_CourseMenuApplyUnlocks_8c0173e6');
 
         $this->shouldWriteCourseButtonValues(0xB0);
 
@@ -255,7 +255,7 @@ return new Class extends TestCase {
         $this->shouldWriteLong($task + 0x08, 1);
 
         // Next is not -1: push next dialog (not unlock, so no midiReset)
-        $this->shouldCall('_pushDialogTask_8c0170c6')->with(0x22, 0);
+        $this->shouldCall('_CourseMenuPushDialogTask_8c0170c6')->with(0x22, 0);
 
         $this->shouldRenderFrame(
             spriteNo: 42,
@@ -288,10 +288,10 @@ return new Class extends TestCase {
         $task = $this->alloc(0x10);
         $this->initUint32($task + 0x08, 0);
 
-        $this->call('_StoryMenuTask_8c017718')->with($task, 0);
+        $this->call('_CourseMenuStoryMenuTask_8c017718')->with($task, 0);
 
         // Current == unlock: run loop + jingle
-        $this->shouldCall('_applyUnlocks_8c0173e6');
+        $this->shouldCall('_CourseMenuApplyUnlocks_8c0173e6');
 
         $this->shouldWriteCourseButtonValues(0xC0);
 
@@ -301,7 +301,7 @@ return new Class extends TestCase {
         $this->shouldWriteLong($task + 0x08, 1);
 
         // Next == unlock: push dialog, then midiResetFxAndPlay
-        $this->shouldCall('_pushDialogTask_8c0170c6')->with(0x0d, 0);
+        $this->shouldCall('_CourseMenuPushDialogTask_8c0170c6')->with(0x0d, 0);
         $this->shouldCall('_midiResetFxAndPlay_8c010846')->with(0, 0);
 
         $this->shouldRenderFrame(
@@ -321,7 +321,7 @@ return new Class extends TestCase {
         $task = $this->alloc(0x10);
         $this->initUint32($task + 0x08, 0);
 
-        $this->call('_StoryMenuTask_8c017718')->with($task, 0);
+        $this->call('_CourseMenuStoryMenuTask_8c017718')->with($task, 0);
 
         $this->shouldCall('_handleCourseMenuInput_8c017126');
         $this->shouldRenderFrame(spriteNo: 42, textboxIndex: 21, menuTextboxReturns: 1);
@@ -341,10 +341,10 @@ return new Class extends TestCase {
         $task = $this->alloc(0x10);
 
         // Invoke
-        $this->call('_StoryMenuTask_8c017718')->with($task, 0);
+        $this->call('_CourseMenuStoryMenuTask_8c017718')->with($task, 0);
 
         // ANIMATING branch: interpolate returns false -> remain in state 4
-        $this->shouldCall('_interpolateCursor_8c016d2c')->andReturn(0);
+        $this->shouldCall('_CourseMenuInterpolateCursor_8c016d2c')->andReturn(0);
 
         // Epilogue rendering
         $this->shouldRenderFrame(
@@ -368,10 +368,10 @@ return new Class extends TestCase {
         $task = $this->alloc(0x10);
 
         // Invoke
-        $this->call('_StoryMenuTask_8c017718')->with($task, 0);
+        $this->call('_CourseMenuStoryMenuTask_8c017718')->with($task, 0);
 
         // ANIMATING branch: interpolate returns true -> write state = IDLE (3)
-        $this->shouldCall('_interpolateCursor_8c016d2c')->andReturn(1);
+        $this->shouldCall('_CourseMenuInterpolateCursor_8c016d2c')->andReturn(1);
         $this->shouldWriteLong($this->addressOf('_menuState_8c1bc7a8') + 0x18, 3);
 
         // Epilogue rendering
@@ -397,7 +397,7 @@ return new Class extends TestCase {
 
         $task = $this->alloc(0x10);
 
-        $this->call('_StoryMenuTask_8c017718')->with($task, 0);
+        $this->call('_CourseMenuStoryMenuTask_8c017718')->with($task, 0);
 
         $base = $this->addressOf('_menuState_8c1bc7a8');
 
@@ -424,7 +424,7 @@ return new Class extends TestCase {
 
         $task = $this->alloc(0x10);
 
-        $this->call('_StoryMenuTask_8c017718')->with($task, 0);
+        $this->call('_CourseMenuStoryMenuTask_8c017718')->with($task, 0);
 
         $base = $this->addressOf('_menuState_8c1bc7a8');
 
@@ -448,7 +448,7 @@ return new Class extends TestCase {
         $this->initMenuStateUint32(0x60, 42);
         $this->initUint32($this->addressOf('_var_8c225fb8'), 21);
 
-        $this->call('_StoryMenuTask_8c017718');
+        $this->call('_CourseMenuStoryMenuTask_8c017718');
 
         $this->shouldWriteLong($this->addressOf('_menuState_8c1bc7a8') + 0x68, 8);
         $this->shouldWriteLong($this->addressOf('_menuState_8c1bc7a8') + 0x48, 0);
@@ -470,7 +470,7 @@ return new Class extends TestCase {
         $this->initUint32($this->addressOf('_var_8c225fb8'), 21);
         $this->initUint32($this->addressOf('_init_8c03bd80'), 1);
 
-        $this->call('_StoryMenuTask_8c017718');
+        $this->call('_CourseMenuStoryMenuTask_8c017718');
     }
 
     public function test_fade_out_state_happy_path_without_free()
@@ -500,7 +500,7 @@ return new Class extends TestCase {
         $task = $this->alloc(0x10);
 
         // Invoke frame
-        $this->call('_StoryMenuTask_8c017718')->with($task, 0);
+        $this->call('_CourseMenuStoryMenuTask_8c017718')->with($task, 0);
 
         $base = $this->addressOf('_menuState_8c1bc7a8');
 
@@ -546,12 +546,12 @@ return new Class extends TestCase {
         $task = $this->alloc(0x10);
 
         // Invoke
-        $this->call('_StoryMenuTask_8c017718')->with($task, 0);
+        $this->call('_CourseMenuStoryMenuTask_8c017718')->with($task, 0);
 
         $base = $this->addressOf('_menuState_8c1bc7a8');
 
         // Conditional free branch
-        $this->shouldCall('_freeResourceGroup_8c0185c4')->with($base + 0x0c);
+        $this->shouldCall('_CourseMenuFreeResourceGroup_8c0185c4')->with($base + 0x0c);
         $this->shouldWriteLong($this->addressOf('_var_8c225fb0'), -1);
 
         // selected = 0
@@ -583,7 +583,7 @@ return new Class extends TestCase {
 
         $task = $this->alloc(0x10);
 
-        $this->call('_StoryMenuTask_8c017718')->with($task, 0);
+        $this->call('_CourseMenuStoryMenuTask_8c017718')->with($task, 0);
 
         // No state writes or menu switch while fading; epilogue rendering runs
         $this->shouldRenderFrame(
@@ -608,7 +608,7 @@ return new Class extends TestCase {
 
         $task = $this->alloc(0x10);
 
-        $this->call('_StoryMenuTask_8c017718')->with($task, 0);
+        $this->call('_CourseMenuStoryMenuTask_8c017718')->with($task, 0);
     }
 
     public function test_fade_out_to_main_menu()
@@ -624,7 +624,7 @@ return new Class extends TestCase {
 
         $task = $this->alloc(0x10);
 
-        $this->call('_StoryMenuTask_8c017718')->with($task, 0);
+        $this->call('_CourseMenuStoryMenuTask_8c017718')->with($task, 0);
 
         // Writes and call in order, then return (no epilogue rendering)
         $this->shouldWriteLong($this->addressOf('_var_8c1bb8b8'), 0);
@@ -675,7 +675,7 @@ return new Class extends TestCase {
 
     private function shouldRenderFrame(int $spriteNo, int $textboxIndex, int $menuTextboxReturns = 1): void
     {
-        $this->shouldCall('_drawDateAndExp_8c016ee6');
+        $this->shouldCall('_CourseMenuDrawDateAndExp_8c016ee6');
         $this->shouldCall('_drawCourseButtons_8c017590');
         $this->shouldDrawSprite(0x0c, 0x0a, 0.0, 0.0, -5.0);
         $this->shouldDrawSprite(0x00, 0x2b, 0.0, 0.0, -4.0);

@@ -567,7 +567,7 @@ STATIC void VmMenuTask_198a0(Task* task, void *actionState)
 
         /* Cursor animating */
         case VM_MENU_STATE_CURSOR_ANIMATING: {
-            if (interpolateCursor_8c016d2c()) {
+            if (CourseMenuInterpolateCursor_8c016d2c()) {
                 CHANGE_STATE(VM_MENU_STATE_IDLE);
                 swapMessageBoxFor_8c02aefc(init_vmuStatusMessages_8c044dc4[var_vmuStatus_8c226048[slot]]);
             }

@@ -37,7 +37,7 @@ return new class extends TestCase {
         $this->call('_CourseMenuSwitchFromTask_8c017e18')->with($task);
 
         $this->shouldCall('_setTaskAction_8c014b3e')->with(
-            $task, $this->addressOf('_FreeRunMenuTask_8c017ada')
+            $task, $this->addressOf('_CourseMenuFreeRunMenuTask_8c017ada')
         );
         $this->shouldCall('_buildFreeRunMenuDialogFlow_8c017a20');
 
@@ -55,7 +55,7 @@ return new class extends TestCase {
         $this->shouldCall('_AsqInitQueues_11f36')->with(8, 0, 0, 8);
         $this->shouldCall('_AsqResetQueues_11f6c');
 
-        $this->shouldCall('_requestSysResgrp_8c018568')->with(
+        $this->shouldCall('_CourseMenuRequestSysResgrp_8c018568')->with(
             $this->addressOf('_menuState_8c1bc7a8') + 0x0c,
             $this->addressOf('_init_mainMenuResourceGroup_8c044264'),
         )->andReturn(1);
@@ -95,7 +95,7 @@ return new class extends TestCase {
         $this->call('_CourseMenuSwitchFromTask_8c017e18')->with($task);
 
         $this->shouldCall('_setTaskAction_8c014b3e')->with(
-            $task, $this->addressOf('_FreeRunMenuTask_8c017ada')
+            $task, $this->addressOf('_CourseMenuFreeRunMenuTask_8c017ada')
         );
         $this->shouldCall('_buildFreeRunMenuDialogFlow_8c017a20');
 
@@ -113,7 +113,7 @@ return new class extends TestCase {
         $this->shouldCall('_AsqInitQueues_11f36')->with(8, 0, 0, 8);
         $this->shouldCall('_AsqResetQueues_11f6c');
 
-        $this->shouldCall('_requestSysResgrp_8c018568')->with(
+        $this->shouldCall('_CourseMenuRequestSysResgrp_8c018568')->with(
             $this->addressOf('_menuState_8c1bc7a8') + 0x0c,
             $this->addressOf('_init_mainMenuResourceGroup_8c044264'),
         )->andReturn(0);
@@ -148,7 +148,7 @@ return new class extends TestCase {
         $this->call('_CourseMenuSwitchFromTask_8c017e18')->with($task);
 
         $this->shouldCall('_setTaskAction_8c014b3e')->with(
-            $task, $this->addressOf('_StoryMenuTask_8c017718')
+            $task, $this->addressOf('_CourseMenuStoryMenuTask_8c017718')
         );
         $this->shouldCall('_buildCourseMenuDialogFlow_8c017420');
 
@@ -166,7 +166,7 @@ return new class extends TestCase {
         $this->shouldCall('_AsqInitQueues_11f36')->with(8, 0, 0, 8);
         $this->shouldCall('_AsqResetQueues_11f6c');
 
-        $this->shouldCall('_requestSysResgrp_8c018568')->with(
+        $this->shouldCall('_CourseMenuRequestSysResgrp_8c018568')->with(
             $this->addressOf('_menuState_8c1bc7a8') + 0x0c,
             $this->addressOf('_init_mainMenuResourceGroup_8c044264'),
         )->andReturn(1);
@@ -206,7 +206,7 @@ return new class extends TestCase {
         $this->call('_CourseMenuSwitchFromTask_8c017e18')->with($task);
 
         $this->shouldCall('_setTaskAction_8c014b3e')->with(
-            $task, $this->addressOf('_StoryMenuTask_8c017718')
+            $task, $this->addressOf('_CourseMenuStoryMenuTask_8c017718')
         );
         $this->shouldCall('_buildCourseMenuDialogFlow_8c017420');
 
@@ -224,7 +224,7 @@ return new class extends TestCase {
         $this->shouldCall('_AsqInitQueues_11f36')->with(8, 0, 0, 8);
         $this->shouldCall('_AsqResetQueues_11f6c');
 
-        $this->shouldCall('_requestSysResgrp_8c018568')->with(
+        $this->shouldCall('_CourseMenuRequestSysResgrp_8c018568')->with(
             $this->addressOf('_menuState_8c1bc7a8') + 0x0c,
             $this->addressOf('_init_mainMenuResourceGroup_8c044264'),
         )->andReturn(0);

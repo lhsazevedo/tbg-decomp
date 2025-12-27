@@ -183,7 +183,7 @@ enum {
 
 extern void snd_8c010cd6(int p1, int p2);
 extern void setUknPvmBool_8c014330();
-extern int requestSysResgrp_8c018568(ResourceGroup* dds, ResourceGroupInfo* rg);
+extern int CourseMenuRequestSysResgrp_8c018568(ResourceGroup* dds, ResourceGroupInfo* rg);
 extern CourseMenuButton init_courseMenuButtons_8c04442c[15];
 extern void* const_8c03628c;
 extern SDMIDI var_midiHandles_8c0fcd28[7];
@@ -236,10 +236,10 @@ extern int promptHandleBinary_16caa(int *promptState);
  * ====================
  */
 
-extern void freeResourceGroup_8c0185c4(ResourceGroup *res_group);
+extern void CourseMenuFreeResourceGroup_8c0185c4(ResourceGroup *res_group);
 extern void FUN_8c017d54(void);
-extern void FreeRunMenuTask_8c017ada(Task * task, void *state);
-extern void requestCommonResources_8c01852c(void);
+extern void CourseMenuFreeRunMenuTask_8c017ada(Task * task, void *state);
+extern void CourseMenuRequestCommonResources_8c01852c(void);
 
 /* =========
  * Functions
@@ -249,7 +249,7 @@ extern void requestCommonResources_8c01852c(void);
 /**
  * Returns 1 if the cursor has reached its target position, 0 otherwise.
  */
-int interpolateCursor_8c016d2c()
+int CourseMenuInterpolateCursor_8c016d2c()
 {
     menuState_8c1bc7a8.pos.cursor.cursor_0x20.x += menuState_8c1bc7a8.cursorVelocity_0x30.x;
     menuState_8c1bc7a8.pos.cursor.cursor_0x20.y += menuState_8c1bc7a8.cursorVelocity_0x30.y;
@@ -336,7 +336,7 @@ STATIC unsigned int getWeekDayIndex_8c016ed2()
     return r % 7;
 }
 
-void drawDateAndExp_8c016ee6()
+void CourseMenuDrawDateAndExp_8c016ee6()
 {
     float x;
     int days, sprite_id;
@@ -451,7 +451,7 @@ STATIC void dialogSequenceTask_8c016f98(DialogSequenceTask *task, DialogSequence
     var_8c225fb8 = state->field_0x0c;
 }
 
-void pushDialogTask_8c0170c6(int dialog_index, int *p2)
+void CourseMenuPushDialogTask_8c0170c6(int dialog_index, int *p2)
 {
     DialogSequenceTask *task;
     DialogSequenceTaskState *state;
@@ -557,7 +557,7 @@ STATIC void handleCourseMenuInput_8c017126()
     }
 }
 
-int buildCourseUnlockList_8c0172dc()
+int CourseMenuBuildCourseUnlockList_8c0172dc()
 {
     int i = 0;
     int j = 0;
@@ -637,7 +637,7 @@ int buildCourseUnlockList_8c0172dc()
     return j;
 }
 
-void applyUnlocks_8c0173e6(void)
+void CourseMenuApplyUnlocks_8c0173e6(void)
 {
     int i;
     for (i = 0; var_coursesToUnlock_8c225fd4[i] != -1; i++) {
@@ -686,7 +686,7 @@ STATIC void buildCourseMenuDialogFlow_8c017420(void)
     }
 
     // Course unlocked
-    if (buildCourseUnlockList_8c0172dc() != 0) {
+    if (CourseMenuBuildCourseUnlockList_8c0172dc() != 0) {
         var_dialogQueue_8c225fbc[cur++] = SEQ_COURSE_UNLOCKED;
     }
 
@@ -791,7 +791,7 @@ void buildCourseMenuDialogFlow_8c017420()
         {
             if (iVar3_index == 2)
             {
-                iVar2 = buildCourseUnlockList_8c0172dc();
+                iVar2 = CourseMenuBuildCourseUnlockList_8c0172dc();
                 if (iVar2 != 0)
                 {
                     // SEQ_COURSE_UNLOCKED
@@ -958,7 +958,7 @@ void drawCourseButtons_8c017590()
 }
 */
 
-void StoryMenuTask_8c017718(Task * task, void *state)
+void CourseMenuStoryMenuTask_8c017718(Task * task, void *state)
 {
     switch (menuState_8c1bc7a8.state_0x18) {
         case COURSE_MENU_STATE_INIT: {
@@ -975,7 +975,7 @@ void StoryMenuTask_8c017718(Task * task, void *state)
 
         case COURSE_MENU_STATE_FADE_IN: {
             if (isFading_8c226568 == 0) {
-                pushDialogTask_8c0170c6(var_dialogQueue_8c225fbc[0], 0);
+                CourseMenuPushDialogTask_8c0170c6(var_dialogQueue_8c225fbc[0], 0);
                 menuState_8c1bc7a8.state_0x18 = 2;
             }
             break;
@@ -987,7 +987,7 @@ void StoryMenuTask_8c017718(Task * task, void *state)
 
             if (var_dialogQueue_8c225fbc[task->field_0x08] == SEQ_COURSE_UNLOCKED) {
                 int row;
-                applyUnlocks_8c0173e6();
+                CourseMenuApplyUnlocks_8c0173e6();
                 for (row = 0; row < 3; row++) {
                     int col;
                     for (col = 0; col < 3; col++) {
@@ -1011,7 +1011,7 @@ void StoryMenuTask_8c017718(Task * task, void *state)
             }
             // Otherwise, start the next dialog sequence
             else {
-                pushDialogTask_8c0170c6(var_dialogQueue_8c225fbc[task->field_0x08], 0);
+                CourseMenuPushDialogTask_8c0170c6(var_dialogQueue_8c225fbc[task->field_0x08], 0);
                 if (var_dialogQueue_8c225fbc[task->field_0x08] == SEQ_COURSE_UNLOCKED) {
                     midiResetFxAndPlay_8c010846(0, 0);
                 }
@@ -1025,7 +1025,7 @@ void StoryMenuTask_8c017718(Task * task, void *state)
         }
 
         case COURSE_MENU_STATE_ANIMATING: {
-            if (!interpolateCursor_8c016d2c())
+            if (!CourseMenuInterpolateCursor_8c016d2c())
                 break;
 
             menuState_8c1bc7a8.state_0x18 = COURSE_MENU_STATE_IDLE;
@@ -1053,7 +1053,7 @@ void StoryMenuTask_8c017718(Task * task, void *state)
                 return;
 
             if (menuState_8c1bc7a8.field_0x3c != 1 || menuState_8c1bc7a8.field_0x40 != 0) {
-                freeResourceGroup_8c0185c4(&menuState_8c1bc7a8.resourceGroupB_0x0c);
+                CourseMenuFreeResourceGroup_8c0185c4(&menuState_8c1bc7a8.resourceGroupB_0x0c);
                 var_8c225fb0 = (void *) -1;
             }
 
@@ -1083,7 +1083,7 @@ void StoryMenuTask_8c017718(Task * task, void *state)
         }
     }
 
-    drawDateAndExp_8c016ee6();
+    CourseMenuDrawDateAndExp_8c016ee6();
     drawCourseButtons_8c017590();
     drawSprite_8c014f54(
         &menuState_8c1bc7a8.resourceGroupB_0x0c, 10, 0.0, 0.0, -5.0
@@ -1112,7 +1112,7 @@ void StoryMenuTask_8c017718(Task * task, void *state)
     AsqGetRandomA_12166();
 }
 
-void FreeRunMenuTask_8c017ada(Task * task, void *state)
+void CourseMenuFreeRunMenuTask_8c017ada(Task * task, void *state)
 {
     switch (menuState_8c1bc7a8.state_0x18) {
         case COURSE_MENU_STATE_INIT: {
@@ -1129,7 +1129,7 @@ void FreeRunMenuTask_8c017ada(Task * task, void *state)
 
         case COURSE_MENU_STATE_FADE_IN: {
             if (isFading_8c226568 == 0) {
-                pushDialogTask_8c0170c6(var_dialogQueue_8c225fbc[0], 0);
+                CourseMenuPushDialogTask_8c0170c6(var_dialogQueue_8c225fbc[0], 0);
                 menuState_8c1bc7a8.state_0x18 = 2;
             }
             break;
@@ -1141,7 +1141,7 @@ void FreeRunMenuTask_8c017ada(Task * task, void *state)
 
             if (var_dialogQueue_8c225fbc[task->field_0x08] == SEQ_COURSE_UNLOCKED) {
                 int row;
-                applyUnlocks_8c0173e6();
+                CourseMenuApplyUnlocks_8c0173e6();
                 for (row = 0; row < 3; row++) {
                     int col;
                     for (col = 0; col < 3; col++) {
@@ -1165,7 +1165,7 @@ void FreeRunMenuTask_8c017ada(Task * task, void *state)
             }
             // Otherwise, start the next dialog sequence
             else {
-                pushDialogTask_8c0170c6(var_dialogQueue_8c225fbc[task->field_0x08], 0);
+                CourseMenuPushDialogTask_8c0170c6(var_dialogQueue_8c225fbc[task->field_0x08], 0);
                 if (var_dialogQueue_8c225fbc[task->field_0x08] == SEQ_COURSE_UNLOCKED) {
                     midiResetFxAndPlay_8c010846(0, 0);
                 }
@@ -1179,7 +1179,7 @@ void FreeRunMenuTask_8c017ada(Task * task, void *state)
         }
 
         case COURSE_MENU_STATE_ANIMATING: {
-            if (!interpolateCursor_8c016d2c())
+            if (!CourseMenuInterpolateCursor_8c016d2c())
                 break;
 
             menuState_8c1bc7a8.state_0x18 = COURSE_MENU_STATE_IDLE;
@@ -1207,7 +1207,7 @@ void FreeRunMenuTask_8c017ada(Task * task, void *state)
                 return;
 
             if (menuState_8c1bc7a8.field_0x3c != 1 || menuState_8c1bc7a8.field_0x40 != 0) {
-                freeResourceGroup_8c0185c4(&menuState_8c1bc7a8.resourceGroupB_0x0c);
+                CourseMenuFreeResourceGroup_8c0185c4(&menuState_8c1bc7a8.resourceGroupB_0x0c);
                 var_8c225fb0 = (void *) -1;
             }
 
@@ -1237,7 +1237,7 @@ void FreeRunMenuTask_8c017ada(Task * task, void *state)
         }
     }
 
-    // drawDateAndExp_8c016ee6();
+    // CourseMenuDrawDateAndExp_8c016ee6();
     drawCourseButtons_8c017590();
     drawSprite_8c014f54(
         &menuState_8c1bc7a8.resourceGroupB_0x0c, 9, 0.0, 0.0, -5.0
@@ -1344,10 +1344,10 @@ STATIC void FUN_8c017d54(void)
 void CourseMenuSwitchFromTask_8c017e18(Task *task)
 {
     if (var_game_mode_8c1bb8fc == 0) {
-        setTaskAction_8c014b3e(task, StoryMenuTask_8c017718);
+        setTaskAction_8c014b3e(task, CourseMenuStoryMenuTask_8c017718);
         buildCourseMenuDialogFlow_8c017420();
     } else {
-        setTaskAction_8c014b3e(task, FreeRunMenuTask_8c017ada);
+        setTaskAction_8c014b3e(task, CourseMenuFreeRunMenuTask_8c017ada);
         buildFreeRunMenuDialogFlow_8c017a20();
     }
 
@@ -1364,7 +1364,7 @@ void CourseMenuSwitchFromTask_8c017e18(Task *task)
     AsqInitQueues_11f36(8, 0, 0, 8);
     AsqResetQueues_11f6c();
 
-    if (!requestSysResgrp_8c018568(
+    if (!CourseMenuRequestSysResgrp_8c018568(
         &menuState_8c1bc7a8.resourceGroupB_0x0c,
         &init_mainMenuResourceGroup_8c044264
     )) {
@@ -1380,7 +1380,7 @@ void CourseMenuSwitchFromTask_8c017e18(Task *task)
     menuState_8c1bc7a8.state_0x18 = 0;
 }
 
-void FUN_8c017ef2(void)
+void CourseMenuFUN_8c017ef2(void)
 {
     Task *createdTask;
     void *createdState;
@@ -1397,7 +1397,7 @@ void FUN_8c017ef2(void)
 
     pushTask_8c014ae8(
         var_tasks_8c1ba3c8,
-        &StoryMenuTask_8c017718,
+        &CourseMenuStoryMenuTask_8c017718,
         &createdTask,
         &createdState,
         0
@@ -1423,11 +1423,11 @@ void FUN_8c017ef2(void)
     AsqInitQueues_11f36(8, 0, 0, 8);
     AsqResetQueues_11f6c();
 
-    requestSysResgrp_8c018568(
+    CourseMenuRequestSysResgrp_8c018568(
         &menuState_8c1bc7a8.resourceGroupB_0x0c,
         &init_mainMenuResourceGroup_8c044264
     );
-    requestCommonResources_8c01852c();
+    CourseMenuRequestCommonResources_8c01852c();
     setUknPvmBool_8c014330();
     AsqProcessQueues_11fe0(AsqNop_11120, 0, 0, 0, resetUknPvmBool_8c014322);
 
@@ -1600,7 +1600,7 @@ STATIC void CourseConfirmMenuTask_8c0181b6(Task * task, void *state)
                     return;
                 }
 
-                freeResourceGroup_8c0185c4(&menuState_8c1bc7a8.resourceGroupB_0x0c);
+                CourseMenuFreeResourceGroup_8c0185c4(&menuState_8c1bc7a8.resourceGroupB_0x0c);
                 var_8c225fb0 = (void *) -1;
                 CourseMenuSwitchFromTask_8c017e18(task);
                 return;
@@ -1637,7 +1637,7 @@ STATIC void CourseConfirmMenuTask_8c0181b6(Task * task, void *state)
     );
 }
 
-void FUN_8c0184cc(Task *task)
+void CourseMenuFUN_8c0184cc(Task *task)
 {
     njGarbageTexture(&var_tex_8c157af8, 0xc00);
     setTaskAction_8c014b3e(task, CourseConfirmMenuTask_8c0181b6);
@@ -1645,7 +1645,7 @@ void FUN_8c0184cc(Task *task)
     menuState_8c1bc7a8.selected_0x38 = 0;
     AsqInitQueues_11f36(8, 0, 0, 8);
     AsqResetQueues_11f6c();
-    requestSysResgrp_8c018568(
+    CourseMenuRequestSysResgrp_8c018568(
         &menuState_8c1bc7a8.resourceGroupB_0x0c,
         &init_8c044d40
     );
@@ -1655,7 +1655,7 @@ void FUN_8c0184cc(Task *task)
     return;
 }
 
-void requestCommonResources_8c01852c(void)
+void CourseMenuRequestCommonResources_8c01852c(void)
 {
     AsqRequestDat_11182(
         "\\SYSTEM",
@@ -1671,7 +1671,7 @@ void requestCommonResources_8c01852c(void)
     return;
 }
 
-int requestSysResgrp_8c018568(ResourceGroup *res_group, ResourceGroupInfo *res_group_info)
+int CourseMenuRequestSysResgrp_8c018568(ResourceGroup *res_group, ResourceGroupInfo *res_group_info)
 {
     if (var_8c225fb0 == res_group_info) {
         return 0;
@@ -1680,7 +1680,7 @@ int requestSysResgrp_8c018568(ResourceGroup *res_group, ResourceGroupInfo *res_g
     var_8c225fb0 = res_group_info;
 
     if (res_group->tlist_0x00 != (void *) -1) {
-        freeResourceGroup_8c0185c4(res_group);
+        CourseMenuFreeResourceGroup_8c0185c4(res_group);
     }
 
     AsqRequestDat_11182(
@@ -1700,7 +1700,7 @@ int requestSysResgrp_8c018568(ResourceGroup *res_group, ResourceGroupInfo *res_g
     return 1;
 }
 
-void freeResourceGroup_8c0185c4(ResourceGroup *res_group)
+void CourseMenuFreeResourceGroup_8c0185c4(ResourceGroup *res_group)
 {
     if (res_group->tlist_0x00 == (void *) -1) {
         return;

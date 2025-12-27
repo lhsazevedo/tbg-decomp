@@ -15,7 +15,7 @@ return new class extends TestCase {
         // Set var_8c225fb0 to same resource group
         $this->initUint32($this->addressOf('_var_8c225fb0'), $resGroupInfo);
 
-        $this->call('_requestSysResgrp_8c018568')->with($resGroup, $resGroupInfo);
+        $this->call('_CourseMenuRequestSysResgrp_8c018568')->with($resGroup, $resGroupInfo);
 
         // Should return 0 early without doing anything
         $this->shouldReturn(0);
@@ -43,7 +43,7 @@ return new class extends TestCase {
         $this->initUint32($resGroupInfo + 0x08, $pvmStr);    // pvm
         $this->initUint32($resGroupInfo + 0x0c, 5);          // tex_count
 
-        $this->call('_requestSysResgrp_8c018568')->with($resGroup, $resGroupInfo);
+        $this->call('_CourseMenuRequestSysResgrp_8c018568')->with($resGroup, $resGroupInfo);
 
         // Step 1: Update var_8c225fb0 to point to new resource group
         $this->shouldWriteLongTo('_var_8c225fb0', $resGroupInfo);
@@ -97,13 +97,13 @@ return new class extends TestCase {
         $this->initUint32($resGroupInfo + 0x08, $pvmStr);    // pvm
         $this->initUint32($resGroupInfo + 0x0c, 3);          // tex_count
 
-        $this->call('_requestSysResgrp_8c018568')->with($resGroup, $resGroupInfo);
+        $this->call('_CourseMenuRequestSysResgrp_8c018568')->with($resGroup, $resGroupInfo);
 
         // Step 1: Update var_8c225fb0 to point to new resource group
         $this->shouldWriteLongTo('_var_8c225fb0', $resGroupInfo);
 
         // Step 2: Free old resource group since tlist_0x00 is not -1
-        $this->shouldCall('_freeResourceGroup_8c0185c4')->with($resGroup);
+        $this->shouldCall('_CourseMenuFreeResourceGroup_8c0185c4')->with($resGroup);
 
         // Step 3: Request parts dat
         $this->shouldCall('_AsqRequestDat_11182')->with(

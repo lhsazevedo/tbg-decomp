@@ -14,7 +14,7 @@ return new class extends TestCase {
         // Set tlist_0x00 to -1 (empty/uninitialized)
         $this->initUint32($resGroup + 0x00, 0xffffffff);
 
-        $this->call('_freeResourceGroup_8c0185c4')->with($resGroup);
+        $this->call('_CourseMenuFreeResourceGroup_8c0185c4')->with($resGroup);
 
         // Function should return early without doing anything
     }
@@ -34,7 +34,7 @@ return new class extends TestCase {
         $this->initUint32($resGroup + 0x04, $tanim);      // tanim_0x04
         $this->initUint32($resGroup + 0x08, $contents);   // contents_0x08
 
-        $this->call('_freeResourceGroup_8c0185c4')->with($resGroup);
+        $this->call('_CourseMenuFreeResourceGroup_8c0185c4')->with($resGroup);
 
         // Step 1: Release and free texlist
         $this->shouldCall('_AsqReleaseAndFreeTexlist_11e3c')->with($tlist);

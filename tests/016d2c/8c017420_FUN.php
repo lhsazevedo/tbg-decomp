@@ -69,7 +69,7 @@ return new class extends TestCase {
 
         $this->call('_buildCourseMenuDialogFlow_8c017420');
         $this->shouldPushSequence(self::SEQ_SUCCESS);
-        $this->shouldCall('_buildCourseUnlockList_8c0172dc')->andReturn(0);
+        $this->shouldCall('_CourseMenuBuildCourseUnlockList_8c0172dc')->andReturn(0);
         $this->shouldPushSequence(self::SEQ_CHOOSE_COURSE);
         $this->shouldPushSequence(-1);
     }
@@ -89,7 +89,7 @@ return new class extends TestCase {
 
         $this->call('_buildCourseMenuDialogFlow_8c017420');
         $this->shouldPushSequence(self::SEQ_SUCCESS);
-        $this->shouldCall('_buildCourseUnlockList_8c0172dc')->andReturn(0);
+        $this->shouldCall('_CourseMenuBuildCourseUnlockList_8c0172dc')->andReturn(0);
         $this->shouldCall('_AsqGetRandomInRangeB_121be')->andReturn(5);
         $this->shouldWriteLong(
             $this->addressOf('_var_progress_8c1ba1cc') + 0x2c + 5 * 4 + 0, 1
@@ -113,7 +113,7 @@ return new class extends TestCase {
 
         $this->call('_buildCourseMenuDialogFlow_8c017420');
         $this->shouldPushSequence(self::SEQ_SUCCESS);
-        $this->shouldCall('_buildCourseUnlockList_8c0172dc')->andReturn(1);
+        $this->shouldCall('_CourseMenuBuildCourseUnlockList_8c0172dc')->andReturn(1);
         $this->shouldPushSequence(self::SEQ_COURSE_UNLOCKED);
         $this->shouldPushSequence(self::SEQ_CHOOSE_COURSE);
         $this->shouldPushSequence(-1);
@@ -134,7 +134,7 @@ return new class extends TestCase {
 
         $this->call('_buildCourseMenuDialogFlow_8c017420');
         $this->shouldPushSequence(self::SEQ_SUCCESS);
-        $this->shouldCall('_buildCourseUnlockList_8c0172dc')->andReturn(1);
+        $this->shouldCall('_CourseMenuBuildCourseUnlockList_8c0172dc')->andReturn(1);
         $this->shouldPushSequence(self::SEQ_COURSE_UNLOCKED);
         $this->shouldCall('_AsqGetRandomInRangeB_121be')->andReturn(5);
         $this->shouldWriteLong(
@@ -158,7 +158,7 @@ return new class extends TestCase {
 
         $this->call('_buildCourseMenuDialogFlow_8c017420');
         $this->shouldPushSequence(self::SEQ_FAILURE);
-        $this->shouldCall('_buildCourseUnlockList_8c0172dc')->andReturn(0);
+        $this->shouldCall('_CourseMenuBuildCourseUnlockList_8c0172dc')->andReturn(0);
         $this->shouldPushSequence(self::SEQ_CHOOSE_COURSE);
         $this->shouldPushSequence(-1);
     }
@@ -178,7 +178,7 @@ return new class extends TestCase {
 
         $this->call('_buildCourseMenuDialogFlow_8c017420');
         $this->shouldPushSequence(self::SEQ_FAILURE);
-        $this->shouldCall('_buildCourseUnlockList_8c0172dc')->andReturn(0);
+        $this->shouldCall('_CourseMenuBuildCourseUnlockList_8c0172dc')->andReturn(0);
         $this->shouldCall('_AsqGetRandomInRangeB_121be')->andReturn(5);
         $this->shouldWriteLong(
             $this->addressOf('_var_progress_8c1ba1cc') + 0x2c + 5 * 4 + 0, 1
@@ -201,7 +201,7 @@ return new class extends TestCase {
 
         $this->call('_buildCourseMenuDialogFlow_8c017420');
         $this->shouldPushSequence(self::SEQ_FAILURE);
-        $this->shouldCall('_buildCourseUnlockList_8c0172dc')->andReturn(1);
+        $this->shouldCall('_CourseMenuBuildCourseUnlockList_8c0172dc')->andReturn(1);
         $this->shouldPushSequence(self::SEQ_COURSE_UNLOCKED);
         $this->shouldPushSequence(self::SEQ_CHOOSE_COURSE);
         $this->shouldPushSequence(-1);
@@ -222,7 +222,7 @@ return new class extends TestCase {
 
         $this->call('_buildCourseMenuDialogFlow_8c017420');
         $this->shouldPushSequence(self::SEQ_FAILURE);
-        $this->shouldCall('_buildCourseUnlockList_8c0172dc')->andReturn(1);
+        $this->shouldCall('_CourseMenuBuildCourseUnlockList_8c0172dc')->andReturn(1);
         $this->shouldPushSequence(self::SEQ_COURSE_UNLOCKED);
         $this->shouldCall('_AsqGetRandomInRangeB_121be')->andReturn(5);
         $this->shouldWriteLong(
@@ -392,7 +392,7 @@ return new class extends TestCase {
         $this->call('_buildCourseMenuDialogFlow_8c017420');
         $this->shouldPushSequence($sequence);
 
-        $this->shouldCall('_buildCourseUnlockList_8c0172dc')->andReturn($unlocked ? 1 : 0);
+        $this->shouldCall('_CourseMenuBuildCourseUnlockList_8c0172dc')->andReturn($unlocked ? 1 : 0);
         if ($unlocked) {
             $this->shouldPushSequence(self::SEQ_COURSE_UNLOCKED);
         }

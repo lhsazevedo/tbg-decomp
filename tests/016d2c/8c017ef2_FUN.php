@@ -17,7 +17,7 @@ return new class extends TestCase {
         // First sequence is the second one (index 1)
         $this->initUint32($this->addressOf('_var_dialogQueue_8c225fbc'), 1);
 
-        $this->call('_FUN_8c017ef2');
+        $this->call('_CourseMenuFUN_8c017ef2');
 
         $createdTaskLocal = 0xffffe8;
         $createdStateLocal = 0xffffec;
@@ -33,7 +33,7 @@ return new class extends TestCase {
         $createdTask = $this->alloc(0xc);
         $this->shouldCall('_pushTask_8c014ae8')->with(
             $this->addressOf('_var_tasks_8c1ba3c8'),
-            $this->addressOf('_StoryMenuTask_8c017718'),
+            $this->addressOf('_CourseMenuStoryMenuTask_8c017718'),
             $createdTaskLocal,
             $createdStateLocal,
             0,
@@ -65,11 +65,11 @@ return new class extends TestCase {
         $this->shouldCall('_FUN_8c017d54');
         $this->shouldCall('_AsqInitQueues_11f36')->with(8, 0, 0, 8);
         $this->shouldCall('_AsqResetQueues_11f6c');
-        $this->shouldCall('_requestSysResgrp_8c018568')->with(
+        $this->shouldCall('_CourseMenuRequestSysResgrp_8c018568')->with(
             $this->addressOf('_menuState_8c1bc7a8') + 0x0c,
             $this->addressOf('_init_mainMenuResourceGroup_8c044264'),
         );
-        $this->shouldCall('_requestCommonResources_8c01852c');
+        $this->shouldCall('_CourseMenuRequestCommonResources_8c01852c');
         $this->shouldCall('_setUknPvmBool_8c014330');
         $this->shouldCall('_AsqProcessQueues_11fe0')->with(
             $this->addressOf('_AsqNop_11120'),

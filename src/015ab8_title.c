@@ -28,8 +28,8 @@ extern FUN_8c02ae3e(int p1, int p2, float fp1, int p3, int p4, int p5, int p6, i
 extern void resetUknPvmBool_8c014322();
 extern FUN_8c016182();
 extern FUN_demo_8c0159ac();
-extern int requestSysResgrp_8c018568(ResourceGroup* dds, ResourceGroupInfo* rg);
-extern void requestCommonResources_8c01852c();
+extern int CourseMenuRequestSysResgrp_8c018568(ResourceGroup* dds, ResourceGroupInfo* rg);
+extern void CourseMenuRequestCommonResources_8c01852c();
 extern void setUknPvmBool_8c014330();
 extern void snd_8c010cd6(int p1, int p2);
 extern Bool FUN_8c012984(void);
@@ -444,8 +444,8 @@ void pushTitle_8c015fd6 (Bool direct) {
     AsqInitQueues_11f36(8, 0, 0, 8);
     AsqResetQueues_11f6c();
     var_8c225fb0 = (void *) -1;
-    requestSysResgrp_8c018568(&menuState_8c1bc7a8.resourceGroupB_0x0c, &titleResourceGroup_8c044254);
-    requestCommonResources_8c01852c();
+    CourseMenuRequestSysResgrp_8c018568(&menuState_8c1bc7a8.resourceGroupB_0x0c, &titleResourceGroup_8c044254);
+    CourseMenuRequestCommonResources_8c01852c();
     setUknPvmBool_8c014330();
     AsqProcessQueues_11fe0(&AsqNop_11120, 0, 0, 0, &resetUknPvmBool_8c014322);
 }

@@ -18,7 +18,7 @@ return new class extends TestCase {
         $this->initUint8($this->addressOf('_var_coursesToUnlock_8c225fd4') + 5, 1);
         $this->initUint8($this->addressOf('_var_coursesToUnlock_8c225fd4') + 6, -1);
 
-        $this->call('_applyUnlocks_8c0173e6');
+        $this->call('_CourseMenuApplyUnlocks_8c0173e6');
 
         $shouldWriteBoth = function (int $index, int $value) {
             $this->shouldWriteByte(

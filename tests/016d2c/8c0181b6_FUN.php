@@ -622,7 +622,7 @@ return new class extends TestCase {
         $this->call('_CourseConfirmMenuTask_8c0181b6')->with($task);
 
         // Step 1: Free resource group
-        $this->shouldCall('_freeResourceGroup_8c0185c4')->with(
+        $this->shouldCall('_CourseMenuFreeResourceGroup_8c0185c4')->with(
             $this->addressOf('_menuState_8c1bc7a8') + 0x0c
         );
 

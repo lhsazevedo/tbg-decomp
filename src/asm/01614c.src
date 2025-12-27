@@ -78,7 +78,7 @@
           .IMPORT     _FUN_8c0187d0
           .IMPORT     _VmMenuFreeAndClear_19504
           .IMPORT     _VmMenuUpdateVmusStatus_19550
-          .IMPORT     _FUN_8c017ef2
+          .IMPORT     _CourseMenuFUN_8c017ef2
           .EXPORT     _task_8c01677e
           .EXPORT     _FUN_8c016182
           .EXPORT     _FUN_8c016b4c
@@ -1255,7 +1255,7 @@ LP_GEN_65913:
           .DATA.L _syFree ; H'8C016A58
           .DATA.L _BupUnmount_8c014c46 ; H'8C016A5C
           .DATA.L _freeTask_8c014b66 ; H'8C016A60
-          .DATA.L _FUN_8c017ef2 ; H'8C016A64
+          .DATA.L _CourseMenuFUN_8c017ef2 ; H'8C016A64
           .DATA.L _FUN_8c0167ca ; H'8C016A68
           .DATA.L _var_tasks_8c1ba3c8 ; H'8C016A6C
           .DATA.L _pushTask_8c014ae8 ; H'8C016A70
