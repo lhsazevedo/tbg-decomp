@@ -5,7 +5,7 @@ use Lhsazevedo\Sh4ObjTest\TestCase;
 return new class extends TestCase {
     public function test_flag_zero_writes_41_and_sentinel(): void
     {
-        $flag = $this->addressOf('_var_8c1bb8c0');
+        $flag = $this->addressOf('_var_shouldShowFreeRunIntro_8c1bb8c0');
         $queue = $this->addressOf('_var_dialogQueue_8c225fbc');
 
         $this->initUint32($flag, 0);
@@ -19,7 +19,7 @@ return new class extends TestCase {
 
     public function test_flag_nonzero_writes_40_41_and_sentinel(): void
     {
-        $flag = $this->addressOf('_var_8c1bb8c0');
+        $flag = $this->addressOf('_var_shouldShowFreeRunIntro_8c1bb8c0');
         $queue = $this->addressOf('_var_dialogQueue_8c225fbc');
 
         $this->initUint32($flag, 1);

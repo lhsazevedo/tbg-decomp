@@ -86,7 +86,7 @@
           .IMPORT     _CourseMenuFUN_8c017ef2
           .IMPORT     _isFading_8c226568
           .IMPORT     _push_fadeout_8c022b60
-          .IMPORT     _var_8c1bb8c0
+          .IMPORT     _var_shouldShowFreeRunIntro_8c1bb8c0
           .IMPORT     _FUN_8c01f21c
           .IMPORT     _var_8c1bc418
           .IMPORT     _drawSprite_8c014f54
@@ -2670,7 +2670,7 @@ LP_GEN_25024:
           .DATA.L _isFading_8c226568 ; H'8C02C848
           .DATA.L _push_fadeout_8c022b60 ; H'8C02C84C
           .DATA.L _var_demo_8c1bb8d0 ; H'8C02C850
-          .DATA.L _var_8c1bb8c0 ; H'8C02C854
+          .DATA.L _var_shouldShowFreeRunIntro_8c1bb8c0 ; H'8C02C854
           .DATA.L _FUN_8c01f21c ; H'8C02C858
           .DATA.L _var_8c1bc418 ; H'8C02C85C
           .DATA.L H'C0400000 ; H'8C02C860

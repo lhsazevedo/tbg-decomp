@@ -154,7 +154,7 @@
           .IMPORT     _TxtInit_8c01524c
           .IMPORT     _TxtCreateTextBox_8c0152fc
           .IMPORT     _var_8c1bc40c
-          .IMPORT     _var_8c225fb8
+          .IMPORT     _var_menuTextboxCharLimit_8c225fb8
           .IMPORT     _TxtPrepareTextBoxLayout_8c01543a
           .IMPORT     _TxtDrawTextbox_8c0155e0
           .IMPORT     _TxtDestroyTextBox_8c015410
@@ -5991,7 +5991,7 @@ LP_GEN_16602:
           .DATA.L _TxtInit_8c01524c ; H'8C02AEEC
           .DATA.L _TxtCreateTextBox_8c0152fc ; H'8C02AEF0
           .DATA.L _var_8c1bc40c ; H'8C02AEF4
-          .DATA.L _var_8c225fb8 ; H'8C02AEF8
+          .DATA.L _var_menuTextboxCharLimit_8c225fb8 ; H'8C02AEF8
 _swapMessageBoxFor_8c02aefc:
           MOV.L       R14,@-R15
           ADD         #-H'4,R15

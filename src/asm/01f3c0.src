@@ -8,7 +8,7 @@
           .IMPORT     _init_8c045278
           .IMPORT     _menuState_8c1bc7a8
           .IMPORT     _drawSprite_8c014f54
-          .IMPORT     _var_8c225fb8
+          .IMPORT     _var_menuTextboxCharLimit_8c225fb8
           .IMPORT     _menuTextboxText_8c02af1c
           .IMPORT     _njSetBackColor
           .IMPORT     _var_8c1bc404
@@ -23,7 +23,7 @@
           .IMPORT     _AsqFreeQueues_11f7e
           .IMPORT     _push_fadein_8c022a9c
           .IMPORT     _CourseMenuPushDialogTask_8c0170c6
-          .IMPORT     _var_8c225fb4
+          .IMPORT     _var_dialogSequenceIsActive_8c225fb4
           .IMPORT     _push_fadeout_8c022b60
           .IMPORT     _free_8c1bc404_8c02af32
           .IMPORT     _TxtInit_8c01524c
@@ -348,7 +348,7 @@ LP_GEN_39506:
           .DATA.L H'42B40000 ; H'8C01F5E4
           .DATA.L _drawSprite_8c014f54 ; H'8C01F5E8
           .DATA.L H'C1080000 ; H'8C01F5EC
-          .DATA.L _var_8c225fb8 ; H'8C01F5F0
+          .DATA.L _var_menuTextboxCharLimit_8c225fb8 ; H'8C01F5F0
           .DATA.L _menuTextboxText_8c02af1c ; H'8C01F5F4
           .DATA.L H'C0E00000 ; H'8C01F5F8
           .DATA.L H'C1000000 ; H'8C01F5FC
@@ -674,7 +674,7 @@ LP_GEN_41910:
           .DATA.W H'03C0 ; H'8C01F87A
           .DATA.W H'0CA8 ; H'8C01F87C
           .DATA.W H'0A8C ; H'8C01F87E
-          .DATA.L _var_8c225fb4 ; H'8C01F880
+          .DATA.L _var_dialogSequenceIsActive_8c225fb4 ; H'8C01F880
           .DATA.L _push_fadeout_8c022b60 ; H'8C01F884
           .DATA.L _free_8c1bc404_8c02af32 ; H'8C01F888
           .DATA.L _TxtInit_8c01524c ; H'8C01F88C
@@ -883,7 +883,7 @@ LP_GEN_38893:
           .DATA.L _FUN_8c02ae3e ; H'8C01FA44
           .DATA.L _const_8c039f48 ; H'8C01FA48
           .DATA.L _swapMessageBoxFor_8c02aefc ; H'8C01FA4C
-          .DATA.L _var_8c225fb8 ; H'8C01FA50
+          .DATA.L _var_menuTextboxCharLimit_8c225fb8 ; H'8C01FA50
           .DATA.L _AsqInitQueues_11f36 ; H'8C01FA54
           .DATA.L _AsqResetQueues_11f6c ; H'8C01FA58
           .DATA.L _init_8c045324 ; H'8C01FA5C

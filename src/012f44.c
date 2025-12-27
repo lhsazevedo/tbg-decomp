@@ -354,7 +354,7 @@ extern void* var_resourceGroup_8c2263a8;
 extern void* var_8c1ba2e0;
 extern void* var_8c1ba348;
 extern void* var_8c1ba344;
-extern void* var_8c225fb0;
+extern void* var_currentSysResGroupInfo_8c225fb0;
 extern int* var_demoBuf_8c1ba3c4;
 extern void* var_8c1bc454;
 extern void* var_selectedVm_8c1ba34c;
@@ -737,7 +737,7 @@ void njUserInit_8c0134ec() {
     var_8c1ba2e0 = (void *) -1;
     var_8c1ba348 = (void *) -1;
     var_8c1ba344 = (void *) -1;
-    var_8c225fb0 = (void *) -1;
+    var_currentSysResGroupInfo_8c225fb0 = (void *) -1;
     var_demoBuf_8c1ba3c4 = (void *) -1;
     var_8c1bc454 = (void *) -1;
     var_selectedVm_8c1ba34c = (void *) -1;

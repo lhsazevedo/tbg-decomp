@@ -18,7 +18,7 @@ void CourseMenuPushDialogTask_8c0170c6(int dialog_index, int *p2);
 int CourseMenuBuildCourseUnlockList_8c0172dc(void);
 void CourseMenuApplyUnlocks_8c0173e6(void);
 void CourseMenuFUN_8c017ef2(void);
-void CourseMenuFUN_8c0184cc(Task *task);
+void CourseMenuConfirmInit_8c0184cc(Task *task);
 
 /* =========================================
  * Future Improvements

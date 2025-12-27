@@ -37,7 +37,7 @@ return new Class extends TestCase {
         $this->initMenuStateUint32(0x18, 1);
         $this->initMenuStateUint32(0x60, 42);
         $this->initUint32($this->addressOf('_isFading_8c226568'), 1);
-        $this->initUint32($this->addressOf('_var_8c225fb8'), 21);
+        $this->initUint32($this->addressOf('_var_menuTextboxCharLimit_8c225fb8'), 21);
 
         $this->call('_CourseMenuStoryMenuTask_8c017718');
 
@@ -55,7 +55,7 @@ return new Class extends TestCase {
         $this->initMenuStateUint32(0x18, 1);
         $this->initMenuStateUint32(0x60, 42);
         $this->initUint32($this->addressOf('_isFading_8c226568'), 0);
-        $this->initUint32($this->addressOf('_var_8c225fb8'), 21);
+        $this->initUint32($this->addressOf('_var_menuTextboxCharLimit_8c225fb8'), 21);
         $this->initUint32($this->addressOf('_var_dialogQueue_8c225fbc') + 4 * 0, 32);
 
         $this->call('_CourseMenuStoryMenuTask_8c017718');
@@ -78,9 +78,9 @@ return new Class extends TestCase {
         $this->initMenuStateUint32(0x60, 42);
 
         // Dialog is still running => should just break (no state advance, no new dialog)
-        $this->initUint32($this->addressOf('_var_8c225fb4'), 1);
+        $this->initUint32($this->addressOf('_var_dialogSequenceIsActive_8c225fb4'), 1);
 
-        $this->initUint32($this->addressOf('_var_8c225fb8'), 21);
+        $this->initUint32($this->addressOf('_var_menuTextboxCharLimit_8c225fb8'), 21);
 
         $this->call('_CourseMenuStoryMenuTask_8c017718');
 
@@ -99,9 +99,9 @@ return new Class extends TestCase {
         $this->initMenuStateUint32(0x18, 2);
         $this->initMenuStateUint32(0x60, 42);
 
-        $this->initUint32($this->addressOf('_var_8c225fb4'), 0);
+        $this->initUint32($this->addressOf('_var_dialogSequenceIsActive_8c225fb4'), 0);
 
-        $this->initUint32($this->addressOf('_var_8c225fb8'), 21);
+        $this->initUint32($this->addressOf('_var_menuTextboxCharLimit_8c225fb8'), 21);
 
         // Dialog sequence table
         $seqBase = $this->addressOf('_var_dialogQueue_8c225fbc');
@@ -151,8 +151,8 @@ return new Class extends TestCase {
         $this->initMenuStateUint32(0x18, 2);
         $this->initMenuStateUint32(0x60, 42);
 
-        $this->initUint32($this->addressOf('_var_8c225fb4'), 0);
-        $this->initUint32($this->addressOf('_var_8c225fb8'), 21);
+        $this->initUint32($this->addressOf('_var_dialogSequenceIsActive_8c225fb4'), 0);
+        $this->initUint32($this->addressOf('_var_menuTextboxCharLimit_8c225fb8'), 21);
 
         // Dialog sequences:
         // current != SEQ_COURSE_UNLOCKED to avoid unlock branch,
@@ -185,9 +185,9 @@ return new Class extends TestCase {
         $this->initMenuStateUint32(0x18, 2);
         $this->initMenuStateUint32(0x60, 42);
 
-        $this->initUint32($this->addressOf('_var_8c225fb4'), 0);
+        $this->initUint32($this->addressOf('_var_dialogSequenceIsActive_8c225fb4'), 0);
 
-        $this->initUint32($this->addressOf('_var_8c225fb8'), 21);
+        $this->initUint32($this->addressOf('_var_menuTextboxCharLimit_8c225fb8'), 21);
 
         // Dialog sequences:
         // current != SEQ_COURSE_UNLOCKED (skip unlock branch),
@@ -223,9 +223,9 @@ return new Class extends TestCase {
         $this->initMenuStateUint32(0x60, 42);
 
         // Dialog finished (so we advance this frame)
-        $this->initUint32($this->addressOf('_var_8c225fb4'), 0);
+        $this->initUint32($this->addressOf('_var_dialogSequenceIsActive_8c225fb4'), 0);
 
-        $this->initUint32($this->addressOf('_var_8c225fb8'), 21);
+        $this->initUint32($this->addressOf('_var_menuTextboxCharLimit_8c225fb8'), 21);
 
         // Dialog sequences: current == unlock, next == non-unlock
         $seqBase = $this->addressOf('_var_dialogQueue_8c225fbc');
@@ -270,8 +270,8 @@ return new Class extends TestCase {
 
         $this->initMenuStateUint32(0x18, 2);
         $this->initMenuStateUint32(0x60, 42);
-        $this->initUint32($this->addressOf('_var_8c225fb4'), 0);
-        $this->initUint32($this->addressOf('_var_8c225fb8'), 21);
+        $this->initUint32($this->addressOf('_var_dialogSequenceIsActive_8c225fb4'), 0);
+        $this->initUint32($this->addressOf('_var_menuTextboxCharLimit_8c225fb8'), 21);
 
         // Dialog sequences: current == unlock, next == unlock
         $seqBase = $this->addressOf('_var_dialogQueue_8c225fbc');
@@ -316,7 +316,7 @@ return new Class extends TestCase {
         $this->resolveSymbols();
         $this->initMenuStateUint32(0x18, 3);
         $this->initMenuStateUint32(0x60, 42);
-        $this->initUint32($this->addressOf('_var_8c225fb8'), 21);
+        $this->initUint32($this->addressOf('_var_menuTextboxCharLimit_8c225fb8'), 21);
 
         $task = $this->alloc(0x10);
         $this->initUint32($task + 0x08, 0);
@@ -335,7 +335,7 @@ return new Class extends TestCase {
         $this->initMenuStateUint32(0x18, 4);
         // ResourceGroupB sprite index + textbox index for epilogue
         $this->initMenuStateUint32(0x60, 42);
-        $this->initUint32($this->addressOf('_var_8c225fb8'), 21);
+        $this->initUint32($this->addressOf('_var_menuTextboxCharLimit_8c225fb8'), 21);
 
         // Allocate task (unused by this branch)
         $task = $this->alloc(0x10);
@@ -362,7 +362,7 @@ return new Class extends TestCase {
         $this->initMenuStateUint32(0x18, 4);
         // ResourceGroupB sprite index + textbox index for epilogue
         $this->initMenuStateUint32(0x60, 42);
-        $this->initUint32($this->addressOf('_var_8c225fb8'), 21);
+        $this->initUint32($this->addressOf('_var_menuTextboxCharLimit_8c225fb8'), 21);
 
         // Allocate task (unused by this branch)
         $task = $this->alloc(0x10);
@@ -393,7 +393,7 @@ return new Class extends TestCase {
 
         // Epilogue inputs
         $this->initMenuStateUint32(0x60, 42);
-        $this->initUint32($this->addressOf('_var_8c225fb8'), 21);
+        $this->initUint32($this->addressOf('_var_menuTextboxCharLimit_8c225fb8'), 21);
 
         $task = $this->alloc(0x10);
 
@@ -420,7 +420,7 @@ return new Class extends TestCase {
 
         // Epilogue inputs
         $this->initMenuStateUint32(0x60, 42);
-        $this->initUint32($this->addressOf('_var_8c225fb8'), 21);
+        $this->initUint32($this->addressOf('_var_menuTextboxCharLimit_8c225fb8'), 21);
 
         $task = $this->alloc(0x10);
 
@@ -446,7 +446,7 @@ return new Class extends TestCase {
         $this->initMenuStateUint32(0x68, 7);
         $this->initUint32($this->addressOf('_isFading_8c226568'), 1);
         $this->initMenuStateUint32(0x60, 42);
-        $this->initUint32($this->addressOf('_var_8c225fb8'), 21);
+        $this->initUint32($this->addressOf('_var_menuTextboxCharLimit_8c225fb8'), 21);
 
         $this->call('_CourseMenuStoryMenuTask_8c017718');
 
@@ -467,7 +467,7 @@ return new Class extends TestCase {
         $this->initMenuStateUint32(0x68, 7);
         $this->initUint32($this->addressOf('_isFading_8c226568'), 0);
         $this->initMenuStateUint32(0x60, 42);
-        $this->initUint32($this->addressOf('_var_8c225fb8'), 21);
+        $this->initUint32($this->addressOf('_var_menuTextboxCharLimit_8c225fb8'), 21);
         $this->initUint32($this->addressOf('_init_8c03bd80'), 1);
 
         $this->call('_CourseMenuStoryMenuTask_8c017718');
@@ -552,7 +552,7 @@ return new Class extends TestCase {
 
         // Conditional free branch
         $this->shouldCall('_CourseMenuFreeResourceGroup_8c0185c4')->with($base + 0x0c);
-        $this->shouldWriteLong($this->addressOf('_var_8c225fb0'), -1);
+        $this->shouldWriteLong($this->addressOf('_var_currentSysResGroupInfo_8c225fb0'), -1);
 
         // selected = 0
         $this->shouldWriteLong($base + 0x38, 0);
@@ -579,7 +579,7 @@ return new Class extends TestCase {
 
         // Epilogue inputs
         $this->initMenuStateUint32(0x60, 42);
-        $this->initUint32($this->addressOf('_var_8c225fb8'), 21);
+        $this->initUint32($this->addressOf('_var_menuTextboxCharLimit_8c225fb8'), 21);
 
         $task = $this->alloc(0x10);
 
@@ -604,7 +604,7 @@ return new Class extends TestCase {
 
         // Epilogue inputs
         $this->initMenuStateUint32(0x60, 42);
-        $this->initUint32($this->addressOf('_var_8c225fb8'), 21);
+        $this->initUint32($this->addressOf('_var_menuTextboxCharLimit_8c225fb8'), 21);
 
         $task = $this->alloc(0x10);
 
@@ -641,7 +641,7 @@ return new Class extends TestCase {
         $this->setSize('_var_dialogQueue_8c225fbc', 4 * 4);
         $this->setSize('_init_8c03bd80', 4);
         $this->setSize('_isFading_8c226568', 4);
-        $this->setSize('_var_8c225fb4', 4); // dialog-running flag
+        $this->setSize('_var_dialogSequenceIsActive_8c225fb4', 4); // dialog-running flag
         $this->setSize('_const_8c03628c', 4);
         $this->setSize('_init_courseMenuButtons_8c04442c', 0x1c * 15);
         $this->setSize('_var_progress_8c1ba1cc', 0x94);

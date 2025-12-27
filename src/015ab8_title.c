@@ -33,7 +33,7 @@ extern void setUknPvmBool_8c014330();
 extern void snd_8c010cd6(int p1, int p2);
 extern Bool FUN_8c012984(void);
 
-extern void* var_8c225fb0;
+extern void* var_currentSysResGroupInfo_8c225fb0;
 
 void task_title_8c015ab8(Task* task, void *state) {
 
@@ -442,7 +442,7 @@ void pushTitle_8c015fd6 (Bool direct) {
     FUN_8c02ae3e(0x20, 0x178, -2.0, 0x240, 0x40, 0, 0, -1);
     AsqInitQueues_11f36(8, 0, 0, 8);
     AsqResetQueues_11f6c();
-    var_8c225fb0 = (void *) -1;
+    var_currentSysResGroupInfo_8c225fb0 = (void *) -1;
     CourseMenuRequestSysResgrp_8c018568(&menuState_8c1bc7a8.resourceGroupB_0x0c, &titleResourceGroup_8c044254);
     CourseMenuRequestCommonResources_8c01852c();
     setUknPvmBool_8c014330();

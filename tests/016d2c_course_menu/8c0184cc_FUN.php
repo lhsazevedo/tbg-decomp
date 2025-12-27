@@ -14,7 +14,7 @@ return new class extends TestCase {
         // Allocate task parameter
         $task = $this->alloc(0x20);
 
-        $this->call('_CourseMenuFUN_8c0184cc')->with($task);
+        $this->call('_CourseMenuConfirmInit_8c0184cc')->with($task);
 
         // Step 1: Garbage texture
         $this->shouldCall('_njGarbageTexture')->with(

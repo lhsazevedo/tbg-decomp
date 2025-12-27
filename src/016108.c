@@ -3,7 +3,7 @@
 #include "015ab8_title.h"
 #include "016d2c_course_menu.h"
 
-extern void* var_8c225fb0;
+extern void* var_currentSysResGroupInfo_8c225fb0;
 extern ResourceGroup* var_resourceGroup_8c2263a8;
 
 /* Matched */
@@ -14,5 +14,5 @@ void freeResourceGroups_8c016108()
     CourseMenuFreeResourceGroup_8c0185c4(&var_resourceGroup_8c2263a8);
 
     free_8c1bc404_8c02af32();
-    var_8c225fb0 = (void *) -1;
+    var_currentSysResGroupInfo_8c225fb0 = (void *) -1;
 }

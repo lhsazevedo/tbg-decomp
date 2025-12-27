@@ -12,8 +12,8 @@ return new class extends TestCase {
         $resGroup = $this->alloc(0x10);
         $resGroupInfo = $this->alloc(0x10);
 
-        // Set var_8c225fb0 to same resource group
-        $this->initUint32($this->addressOf('_var_8c225fb0'), $resGroupInfo);
+        // Set var_currentSysResGroupInfo_8c225fb0 to same resource group
+        $this->initUint32($this->addressOf('_var_currentSysResGroupInfo_8c225fb0'), $resGroupInfo);
 
         $this->call('_CourseMenuRequestSysResgrp_8c018568')->with($resGroup, $resGroupInfo);
 
@@ -31,8 +31,8 @@ return new class extends TestCase {
         // Initialize resource group as empty (tlist_0x00 = -1)
         $this->initUint32($resGroup + 0x00, 0xffffffff);
 
-        // var_8c225fb0 points to different resource group
-        $this->initUint32($this->addressOf('_var_8c225fb0'), 0x12345678);
+        // var_currentSysResGroupInfo_8c225fb0 points to different resource group
+        $this->initUint32($this->addressOf('_var_currentSysResGroupInfo_8c225fb0'), 0x12345678);
 
         // Initialize resource group info fields
         $partsStr = $this->allocString("test_parts.dat");
@@ -45,8 +45,8 @@ return new class extends TestCase {
 
         $this->call('_CourseMenuRequestSysResgrp_8c018568')->with($resGroup, $resGroupInfo);
 
-        // Step 1: Update var_8c225fb0 to point to new resource group
-        $this->shouldWriteLongTo('_var_8c225fb0', $resGroupInfo);
+        // Step 1: Update var_currentSysResGroupInfo_8c225fb0 to point to new resource group
+        $this->shouldWriteLongTo('_var_currentSysResGroupInfo_8c225fb0', $resGroupInfo);
 
         // Step 2: Request parts dat
         $this->shouldCall('_AsqRequestDat_11182')->with(
@@ -85,8 +85,8 @@ return new class extends TestCase {
         // Initialize resource group with valid tlist (not -1)
         $this->initUint32($resGroup + 0x00, 0xbebacafe);
 
-        // var_8c225fb0 points to different resource group
-        $this->initUint32($this->addressOf('_var_8c225fb0'), 0x12345678);
+        // var_currentSysResGroupInfo_8c225fb0 points to different resource group
+        $this->initUint32($this->addressOf('_var_currentSysResGroupInfo_8c225fb0'), 0x12345678);
 
         // Initialize resource group info fields
         $partsStr = $this->allocString("course_parts.dat");
@@ -99,8 +99,8 @@ return new class extends TestCase {
 
         $this->call('_CourseMenuRequestSysResgrp_8c018568')->with($resGroup, $resGroupInfo);
 
-        // Step 1: Update var_8c225fb0 to point to new resource group
-        $this->shouldWriteLongTo('_var_8c225fb0', $resGroupInfo);
+        // Step 1: Update var_currentSysResGroupInfo_8c225fb0 to point to new resource group
+        $this->shouldWriteLongTo('_var_currentSysResGroupInfo_8c225fb0', $resGroupInfo);
 
         // Step 2: Free old resource group since tlist_0x00 is not -1
         $this->shouldCall('_CourseMenuFreeResourceGroup_8c0185c4')->with($resGroup);
@@ -134,7 +134,7 @@ return new class extends TestCase {
 
     private function resolveSymbols(): void
     {
-        $this->setSize('_var_8c225fb0', 4);
+        $this->setSize('_var_currentSysResGroupInfo_8c225fb0', 4);
 
         // Allocate string constant for "\\SYSTEM"
         $this->rellocate('_const_8c036290', $this->allocString("\\SYSTEM"));

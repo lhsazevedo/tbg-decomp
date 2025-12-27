@@ -4,9 +4,9 @@
           .EXPORT     _var_8c1bc828
           .EXPORT     _var_8c225fa8
           .EXPORT     _var_8c225fac
-          .EXPORT     _var_8c225fb0
-          .EXPORT     _var_8c225fb4
-          .EXPORT     _var_8c225fb8
+          .EXPORT     _var_currentSysResGroupInfo_8c225fb0
+          .EXPORT     _var_dialogSequenceIsActive_8c225fb4
+          .EXPORT     _var_menuTextboxCharLimit_8c225fb8
           .EXPORT     _var_dialogQueue_8c225fbc
           .EXPORT     _var_coursesToUnlock_8c225fd4
           .EXPORT     _var_8c225fe0
@@ -250,11 +250,11 @@ _var_8c225fa8:
           .RES.B      4
 _var_8c225fac:
           .RES.B      4
-_var_8c225fb0:
+_var_currentSysResGroupInfo_8c225fb0:
           .RES.B      4
-_var_8c225fb4:
+_var_dialogSequenceIsActive_8c225fb4:
           .RES.B      4
-_var_8c225fb8:
+_var_menuTextboxCharLimit_8c225fb8:
           .RES.B      4
 _var_dialogQueue_8c225fbc:
           .RES.B      24

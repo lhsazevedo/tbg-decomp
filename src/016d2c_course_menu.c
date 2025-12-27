@@ -220,19 +220,19 @@ extern void* const_8c03628c;
 extern SDMIDI var_midiHandles_8c0fcd28[7];
 extern PlayerProgress var_progress_8c1ba1cc;
 extern int var_exp_8c1ba25c;
-extern int var_8c225fb4;
-extern int var_8c225fb8;
+extern int var_dialogSequenceIsActive_8c225fb4;
+extern int var_menuTextboxCharLimit_8c225fb8;
 extern PDS_PERIPHERAL var_peripherals_8c1ba35c[2];
 extern ResourceGroupInfo init_mainMenuResourceGroup_8c044264;
-extern int var_8c1bb8e0;
+extern int var_8c1bb8e0; // course was unlocked
 extern int var_8c1bb8e4;
 extern int var_8c1bb8e8;
 extern int var_8c1bb8ec;
 extern int var_8c1bb8f0;
 extern int var_8c1bb8f4;
-extern int var_8c1ba2b8[5];
-extern int var_8c1ba2cc[5];
-extern Uint8 init_8c044d10[30];
+extern int var_8c1ba2b8[5]; // Maybe progress backup
+extern int var_8c1ba2cc[5]; // Maybe progress backup
+extern Uint8 init_8c044d10[30]; // Maybe day to course variant lookup table?
 extern void pushLoadingTask_8c013310(int p1);
 extern MenuDialog *init_dialogSequences_8c044c08[];
 extern int var_game_mode_8c1bb8fc;
@@ -241,17 +241,16 @@ extern Sint8 var_coursesToUnlock_8c225fd4[];
 extern int var_demo_8c1bb8d0;
 extern void resetUknPvmBool_8c014322();
 extern NJS_TEXMEMLIST var_tex_8c157af8[];
-extern Uint8 init_8c044d2e[];
-extern Uint8 init_8c044d2f[];
+extern Uint8 init_routeInfoTime_8c044d2e[];
 extern ResourceGroupInfo init_8c044d40;
-extern int var_8c1bb8b8;
+extern int var_8c1bb8b8; // Maybe courseMenuHasResult or courseMenuHasDialog
 extern int var_8c1bb8bc;
 extern int var_8c1bb8dc;
 extern int var_award_8c1bb8f8;
 extern Bool isFading_8c226568;
 extern int init_8c03bd80;
-extern void *var_8c225fb0;
-extern int var_8c1bb8c0;
+extern void *var_currentSysResGroupInfo_8c225fb0;
+extern int var_shouldShowFreeRunIntro_8c1bb8c0;
 extern void FUN_8c0128cc(void);
 extern void task_8c012f44(Task *task, void *state);
 extern FUN_8c02ae3e(int p1, int p2, float fp1, int p3, int p4, int p5, int p6, int p7);
@@ -268,7 +267,6 @@ extern int promptHandleBinary_16caa(int *promptState);
  */
 
 extern void CourseMenuFreeResourceGroup_8c0185c4(ResourceGroup *res_group);
-extern void FUN_8c017d54(void);
 extern void CourseMenuFreeRunMenuTask_8c017ada(Task * task, void *state);
 extern void CourseMenuRequestCommonResources_8c01852c(void);
 
@@ -408,7 +406,7 @@ STATIC void dialogSequenceTask_8c016f98(DialogSequenceTask *task, DialogSequence
             int r;
 
             if (!*(state->dialog_0x04->text_0x00)) {
-                var_8c225fb4 = 0;
+                var_dialogSequenceIsActive_8c225fb4 = 0;
                 freeTask_8c014b66((void *) task);
                 return;
             }
@@ -479,7 +477,7 @@ STATIC void dialogSequenceTask_8c016f98(DialogSequenceTask *task, DialogSequence
         }
     }
 
-    var_8c225fb8 = state->field_0x0c;
+    var_menuTextboxCharLimit_8c225fb8 = state->field_0x0c;
 }
 
 void CourseMenuPushDialogTask_8c0170c6(int dialog_index, int *p2)
@@ -498,12 +496,12 @@ void CourseMenuPushDialogTask_8c0170c6(int dialog_index, int *p2)
     task->field_0x18 = p2;
     state->state_0x00 = 0;
     state->dialog_0x04 = init_dialogSequences_8c044c08[dialog_index];
-    var_8c225fb4 = 1;
+    var_dialogSequenceIsActive_8c225fb4 = 1;
 }
 
-STATIC void FUN_swapDialogMessageBox_8c017108(int sequence)
+STATIC void swapDialogMessageBox_8c017108(int sequence)
 {
-    var_8c225fb8 = swapMessageBoxFor_8c02aefc(
+    var_menuTextboxCharLimit_8c225fb8 = swapMessageBoxFor_8c02aefc(
         init_dialogSequences_8c044c08[sequence]->text_0x00
     );
 }
@@ -519,7 +517,7 @@ STATIC void handleCourseMenuInput_8c017126()
             .unlocked_0x04 == 0
         ) {
             sdMidiPlay(var_midiHandles_8c0fcd28[0], 1, 2, 0);
-            FUN_swapDialogMessageBox_8c017108(SEQ_COURSE_LOCKED);
+            swapDialogMessageBox_8c017108(SEQ_COURSE_LOCKED);
         } else {
             FUN_8c010bae(0);
             FUN_8c010bae(1);
@@ -1014,7 +1012,7 @@ void CourseMenuStoryMenuTask_8c017718(Task * task, void *state)
 
         case COURSE_MENU_STATE_DIALOG: {
             // Dialog still running
-            if (var_8c225fb4) break;
+            if (var_dialogSequenceIsActive_8c225fb4) break;
 
             if (var_dialogQueue_8c225fbc[task->field_0x08] == SEQ_COURSE_UNLOCKED) {
                 int row;
@@ -1085,7 +1083,7 @@ void CourseMenuStoryMenuTask_8c017718(Task * task, void *state)
 
             if (menuState_8c1bc7a8.field_0x3c != 1 || menuState_8c1bc7a8.field_0x40 != 0) {
                 CourseMenuFreeResourceGroup_8c0185c4(&menuState_8c1bc7a8.resourceGroupB_0x0c);
-                var_8c225fb0 = (void *) -1;
+                var_currentSysResGroupInfo_8c225fb0 = (void *) -1;
             }
 
             menuState_8c1bc7a8.selected_0x38 = 0;
@@ -1122,7 +1120,7 @@ void CourseMenuStoryMenuTask_8c017718(Task * task, void *state)
     drawSprite_8c014f54(
         &menuState_8c1bc7a8.resourceGroupA_0x00, 0x2b, 0.0, 0.0, -4.0
     );
-    if (menuTextboxText_8c02af1c(var_8c225fb8) ) {
+    if (menuTextboxText_8c02af1c(var_menuTextboxCharLimit_8c225fb8) ) {
         drawSprite_8c014f54(
             &menuState_8c1bc7a8.resourceGroupA_0x00, 1, 0.0, 0.0, -5.0
         );
@@ -1168,7 +1166,7 @@ void CourseMenuFreeRunMenuTask_8c017ada(Task * task, void *state)
 
         case COURSE_MENU_STATE_DIALOG: {
             // Dialog still running
-            if (var_8c225fb4) break;
+            if (var_dialogSequenceIsActive_8c225fb4) break;
 
             if (var_dialogQueue_8c225fbc[task->field_0x08] == SEQ_COURSE_UNLOCKED) {
                 int row;
@@ -1239,7 +1237,7 @@ void CourseMenuFreeRunMenuTask_8c017ada(Task * task, void *state)
 
             if (menuState_8c1bc7a8.field_0x3c != 1 || menuState_8c1bc7a8.field_0x40 != 0) {
                 CourseMenuFreeResourceGroup_8c0185c4(&menuState_8c1bc7a8.resourceGroupB_0x0c);
-                var_8c225fb0 = (void *) -1;
+                var_currentSysResGroupInfo_8c225fb0 = (void *) -1;
             }
 
             menuState_8c1bc7a8.selected_0x38 = 0;
@@ -1276,7 +1274,7 @@ void CourseMenuFreeRunMenuTask_8c017ada(Task * task, void *state)
     // drawSprite_8c014f54(
     //     &menuState_8c1bc7a8.resourceGroupA_0x00, 0x2b, 0.0, 0.0, -4.0
     // );
-    if (menuTextboxText_8c02af1c(var_8c225fb8) ) {
+    if (menuTextboxText_8c02af1c(var_menuTextboxCharLimit_8c225fb8) ) {
         drawSprite_8c014f54(
             &menuState_8c1bc7a8.resourceGroupA_0x00, 1, 0.0, 0.0, -5.0
         );
@@ -1303,14 +1301,14 @@ STATIC void buildFreeRunMenuDialogFlow_8c017a20(void)
 {
     int idx = 0;
 
-    if (var_8c1bb8c0) {
+    if (var_shouldShowFreeRunIntro_8c1bb8c0) {
         var_dialogQueue_8c225fbc[idx++] = SEQ_FREE_RUN_INTRO;
     }
 
     var_dialogQueue_8c225fbc[idx++] = SEQ_FREE_RUN_CHOOSE_COURSE;
     var_dialogQueue_8c225fbc[idx]   = -1;
 
-    var_8c1bb8c0 = 0;
+    var_shouldShowFreeRunIntro_8c1bb8c0 = 0;
 }
 
 // This is the original code for the function above.
@@ -1322,7 +1320,7 @@ void buildFreeRunMenuDialogFlow_8c017a20(void)
 
     for (step = 0; step < 2; step++) {
         if (step == 0) {
-            if (var_8c1bb8c0 != 0) {
+            if (var_shouldShowFreeRunIntro_8c1bb8c0 != 0) {
                 var_dialogQueue_8c225fbc[queueIndex] = SEQ_FREE_RUN_INTRO;
                 queueIndex++;
             }
@@ -1334,7 +1332,7 @@ void buildFreeRunMenuDialogFlow_8c017a20(void)
     }
 
     var_dialogQueue_8c225fbc[queueIndex] = -1;
-    var_8c1bb8c0 = 0;
+    var_shouldShowFreeRunIntro_8c1bb8c0 = 0;
 }
 */
 
@@ -1390,7 +1388,7 @@ void CourseMenuSwitchFromTask_8c017e18(Task *task)
             var_dialogQueue_8c225fbc[0]
         ]->instructorSpriteNo_0x04;
     task->field_0x08 = 0;
-    var_8c225fb8 = 0;
+    var_menuTextboxCharLimit_8c225fb8 = 0;
     var_demo_8c1bb8d0 = 0;
     FUN_8c017d54();
     njGarbageTexture(&var_tex_8c157af8, 0xc00);
@@ -1447,7 +1445,7 @@ void CourseMenuFUN_8c017ef2(void)
 
     createdTask->field_0x08 = 0;
 
-    var_8c225fb8 = 0;
+    var_menuTextboxCharLimit_8c225fb8 = 0;
 
     njGarbageTexture(&var_tex_8c157af8, 0xc00);
     FUN_8c02ae3e(0x20, 0x180, -2.0, 0x240, 0x40, 0, 0, -1);
@@ -1490,22 +1488,24 @@ STATIC void drawFixedInteger_8c01803e(float x, float y, int value, int digits)
 STATIC void drawRouteInfo_8c018118(void)
 {
     int index = menuState_8c1bc7a8.field_0x40 * 6 + (menuState_8c1bc7a8.field_0x3c - 2) * 2;
-    int weekday;
 
+    // Draw day
     drawFixedInteger_8c01803e(219.0, 108.0, var_progress_8c1ba1cc.days_0x00, 0);
 
-    weekday = getWeekDayIndex_8c016ed2();
+    // Draw weekday sprite
     drawSprite_8c014f54(
         &menuState_8c1bc7a8.resourceGroupB_0x0c,
-        weekday + 0x16,
+        getWeekDayIndex_8c016ed2() + 0x16,
         281.0,
         110.0,
         -4.0
     );
 
-    drawFixedInteger_8c01803e(421.0, 108.0, init_8c044d2e[index], 2);
-    drawFixedInteger_8c01803e(471.0, 108.0, init_8c044d2f[index], 2);
+    // Draw hour and minute
+    drawFixedInteger_8c01803e(421.0, 108.0, init_routeInfoTime_8c044d2e[index], 2);
+    drawFixedInteger_8c01803e(471.0, 108.0, init_routeInfoTime_8c044d2e[index + 1], 2);
 
+    // Draw route info
     drawSprite_8c014f54(
         &menuState_8c1bc7a8.resourceGroupB_0x0c,
         menuState_8c1bc7a8.field_0x40 + 9,
@@ -1636,7 +1636,7 @@ STATIC void CourseConfirmMenuTask_8c0181b6(Task * task, void *state)
                 }
 
                 CourseMenuFreeResourceGroup_8c0185c4(&menuState_8c1bc7a8.resourceGroupB_0x0c);
-                var_8c225fb0 = (void *) -1;
+                var_currentSysResGroupInfo_8c225fb0 = (void *) -1;
                 CourseMenuSwitchFromTask_8c017e18(task);
                 return;
             }
@@ -1672,7 +1672,7 @@ STATIC void CourseConfirmMenuTask_8c0181b6(Task * task, void *state)
     );
 }
 
-void CourseMenuFUN_8c0184cc(Task *task)
+void CourseMenuConfirmInit_8c0184cc(Task *task)
 {
     LOG_INFO(("[COURSE_MENU] Initializing course confirmation menu\n"));
 
@@ -1710,11 +1710,11 @@ void CourseMenuRequestCommonResources_8c01852c(void)
 
 int CourseMenuRequestSysResgrp_8c018568(ResourceGroup *res_group, ResourceGroupInfo *res_group_info)
 {
-    if (var_8c225fb0 == res_group_info) {
+    if (var_currentSysResGroupInfo_8c225fb0 == res_group_info) {
         return 0;
     }
 
-    var_8c225fb0 = res_group_info;
+    var_currentSysResGroupInfo_8c225fb0 = res_group_info;
 
     if (res_group->tlist_0x00 != (void *) -1) {
         CourseMenuFreeResourceGroup_8c0185c4(res_group);

@@ -30,7 +30,7 @@ return new class extends TestCase {
 
         $this->call('_dialogSequenceTask_8c016f98')->with($task, $state);
 
-        $this->shouldWriteLongTo("_var_8c225fb4", 0);
+        $this->shouldWriteLongTo("_var_dialogSequenceIsActive_8c225fb4", 0);
         $this->shouldCall("_freeTask_8c014b66")->with($task);
     }
 
@@ -63,7 +63,7 @@ return new class extends TestCase {
         $this->shouldWriteLong($state + 0x0c, 1);
         $this->shouldWriteLong($state + 0x10, 0);
         $this->shouldWriteLong($state + 0x00, 1);
-        $this->shouldWriteLongTo('_var_8c225fb8', 1);
+        $this->shouldWriteLongTo('_var_menuTextboxCharLimit_8c225fb8', 1);
     }
 
     public function test_state_0_handles_null_sound_ptr()
@@ -91,7 +91,7 @@ return new class extends TestCase {
         $this->shouldWriteLong($state + 0x0c, 1);
         $this->shouldWriteLong($state + 0x10, 0);
         $this->shouldWriteLong($state + 0x00, 1);
-        $this->shouldWriteLongTo('_var_8c225fb8', 1);
+        $this->shouldWriteLongTo('_var_menuTextboxCharLimit_8c225fb8', 1);
     }
 
     public function test_state_0_skips_sound()
@@ -121,7 +121,7 @@ return new class extends TestCase {
         $this->shouldWriteLong($state + 0x0c, 1);
         $this->shouldWriteLong($state + 0x10, 0);
         $this->shouldWriteLong($state + 0x00, 1);
-        $this->shouldWriteLongTo('_var_8c225fb8', 1);
+        $this->shouldWriteLongTo('_var_menuTextboxCharLimit_8c225fb8', 1);
     }
 
     public function test_state_1_processes_normally()
@@ -142,7 +142,7 @@ return new class extends TestCase {
         $this->shouldWriteLong($state + 0x10, 3);
         $this->shouldWriteLong($state + 0x0c, 4);
         $this->shouldWriteLong($state + 0x00, 3);
-        $this->shouldWriteLongTo('_var_8c225fb8', 4);
+        $this->shouldWriteLongTo('_var_menuTextboxCharLimit_8c225fb8', 4);
     }
 
     public function test_state_1_skips_when_field_0x10_less_than_3()
@@ -161,7 +161,7 @@ return new class extends TestCase {
         $this->call('_dialogSequenceTask_8c016f98')->with($task, $state);
 
         $this->shouldWriteLong($state + 0x10, 2);
-        $this->shouldWriteLongTo('_var_8c225fb8', 3);
+        $this->shouldWriteLongTo('_var_menuTextboxCharLimit_8c225fb8', 3);
     }
 
     public function test_state_1_skips_when_field_0x0c_less_than_field_0x08()
@@ -182,7 +182,7 @@ return new class extends TestCase {
         $this->shouldWriteLong($state + 0x10, 3);
         $this->shouldWriteLong($state + 0x0c, 4);
         $this->shouldWriteLong($state + 0x10, 0);
-        $this->shouldWriteLongTo('_var_8c225fb8', 4);
+        $this->shouldWriteLongTo('_var_menuTextboxCharLimit_8c225fb8', 4);
     }
 
     public function test_state_1_responds_to_a_press()
@@ -207,7 +207,7 @@ return new class extends TestCase {
         $this->shouldWriteLong($state + 0x10, 100);
         $this->shouldWriteLong($state + 0x0c, 4);
         $this->shouldWriteLong($state + 0x00, 3);
-        $this->shouldWriteLongTo('_var_8c225fb8', 4);
+        $this->shouldWriteLongTo('_var_menuTextboxCharLimit_8c225fb8', 4);
     }
 
     public function test_state_1_responds_to_a_press_when_field_0x0c_less_than_field_0x08()
@@ -232,7 +232,7 @@ return new class extends TestCase {
         $this->shouldWriteLong($state + 0x10, 100);
         $this->shouldWriteLong($state + 0x0c, 4);
         $this->shouldWriteLong($state + 0x10, 0);
-        $this->shouldWriteLongTo('_var_8c225fb8', 4);
+        $this->shouldWriteLongTo('_var_menuTextboxCharLimit_8c225fb8', 4);
     }
 
     public function test_state_2_waits_for_a_press()
@@ -250,7 +250,7 @@ return new class extends TestCase {
 
         // $this->shouldWriteLong($state + 0x0c, 5);
         $this->shouldWriteLong($state + 0x00, 1);
-        $this->shouldWriteLongTo('_var_8c225fb8', 3);
+        $this->shouldWriteLongTo('_var_menuTextboxCharLimit_8c225fb8', 3);
     }
 
     public function test_state_2_waits_for_timer()
@@ -268,7 +268,7 @@ return new class extends TestCase {
 
         $this->shouldWriteLong($state + 0x0c, 4);
         // $this->shouldWriteLong($state + 0x00, 3);
-        $this->shouldWriteLongTo('_var_8c225fb8', 4);
+        $this->shouldWriteLongTo('_var_menuTextboxCharLimit_8c225fb8', 4);
     }
 
     public function test_state_2_advances()
@@ -286,7 +286,7 @@ return new class extends TestCase {
 
         $this->shouldWriteLong($state + 0x0c, 5);
         $this->shouldWriteLong($state + 0x00, 3);
-        $this->shouldWriteLongTo('_var_8c225fb8', 5);
+        $this->shouldWriteLongTo('_var_menuTextboxCharLimit_8c225fb8', 5);
     }
 
     public function test_state_3_advances_dialog_when_a_is_pressed()
@@ -321,13 +321,13 @@ return new class extends TestCase {
             -3.0
         );
 
-        $this->shouldWriteLongTo('_var_8c225fb8', 3);
+        $this->shouldWriteLongTo('_var_menuTextboxCharLimit_8c225fb8', 3);
     }
 
     public function resolveSymbols()
     {
         $this->setSize('_var_peripherals_8c1ba35c', 52 * 2);
-        $this->setSize('_var_8c225fb4', 4);
+        $this->setSize('_var_dialogSequenceIsActive_8c225fb4', 4);
         $this->setSize('_menuState_8c1bc7a8', 0x6c);
         // Functions
         $this->setSize('_snd_8c010cd6', 0x4);

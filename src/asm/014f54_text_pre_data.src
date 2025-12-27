@@ -68,7 +68,7 @@
           .EXPORT     _var_8c1bb8a4
           .EXPORT     _var_8c1bb8b8
           .EXPORT     _var_8c1bb8bc
-          .EXPORT     _var_8c1bb8c0
+          .EXPORT     _var_shouldShowFreeRunIntro_8c1bb8c0
           .EXPORT     _var_8c1bb8c4
           .EXPORT     _var_8c1bb8c8
           .EXPORT     _var_8c1bb8cc
@@ -297,7 +297,7 @@ _var_8c1bb8b8:
           .RES.B      4
 _var_8c1bb8bc:
           .RES.B      4
-_var_8c1bb8c0:
+_var_shouldShowFreeRunIntro_8c1bb8c0:
           .RES.B      4
 _var_8c1bb8c4:
           .RES.B      4

@@ -9,8 +9,7 @@ return new class extends TestCase {
 
         $progressBase = $this->addressOf('_var_progress_8c1ba1cc');
         $menuBase = $this->addressOf('_menuState_8c1bc7a8');
-        $digitsATable = $this->addressOf('_init_8c044d2e');
-        $digitsBTable = $this->addressOf('_init_8c044d2f');
+        $timeTable = $this->addressOf('_init_routeInfoTime_8c044d2e');
 
         $dayCount = 123;
         $row = 1;
@@ -21,8 +20,8 @@ return new class extends TestCase {
         $this->initUint32($menuBase + 0x3c, $column);
         $this->initUint32($menuBase + 0x40, $row);
 
-        $this->initUint8($digitsATable + $index, 0x2a);
-        $this->initUint8($digitsBTable + $index, 0x37);
+        $this->initUint8($timeTable + $index, 0x2a);      // hour
+        $this->initUint8($timeTable + $index + 1, 0x37);  // minute
 
         $this->call('_drawRouteInfo_8c018118');
 
@@ -50,7 +49,6 @@ return new class extends TestCase {
     {
         $this->setSize('_menuState_8c1bc7a8', 0x6c);
         $this->setSize('_var_progress_8c1ba1cc', 0x94);
-        $this->setSize('_init_8c044d2e', 0x20);
-        $this->setSize('_init_8c044d2f', 0x20);
+        $this->setSize('_init_routeInfoTime_8c044d2e', 0x20);
     }
 };

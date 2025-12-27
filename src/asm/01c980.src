@@ -9,7 +9,7 @@
           .IMPORT     __modls
           .IMPORT     _var_resourceGroup_8c2263a8
           .IMPORT     _init_8c045148
-          .IMPORT     _var_8c225fb0
+          .IMPORT     _var_currentSysResGroupInfo_8c225fb0
           .IMPORT     _CourseMenuFreeResourceGroup_8c0185c4
           .IMPORT     _var_tex_8c157af8
           .IMPORT     _njGarbageTexture
@@ -450,7 +450,7 @@ LP_GEN_72378:
           .RES.W 1 ; H'8C01CCA6
           .DATA.L _menuState_8c1bc7a8 ; H'8C01CCA8
           .DATA.L _init_8c045148 ; H'8C01CCAC
-          .DATA.L _var_8c225fb0 ; H'8C01CCB0
+          .DATA.L _var_currentSysResGroupInfo_8c225fb0 ; H'8C01CCB0
           .DATA.L _var_resourceGroup_8c2263a8 ; H'8C01CCB4
           .DATA.L _CourseMenuFreeResourceGroup_8c0185c4 ; H'8C01CCB8
           .DATA.L _var_tex_8c157af8 ; H'8C01CCBC

@@ -9,7 +9,7 @@
           .IMPORT     _var_midiHandles_8c0fcd28
           .IMPORT     _push_fadeout_8c022b60
           .IMPORT     _var_game_mode_8c1bb8fc
-          .IMPORT     _var_8c1bb8c0
+          .IMPORT     _var_shouldShowFreeRunIntro_8c1bb8c0
           .IMPORT     _CourseMenuSwitchFromTask_8c017e18
           .IMPORT     _FUN_8c01b122
           .IMPORT     _FUN_8c01c880
@@ -347,7 +347,7 @@ _MainMenuSwitchFromTask_8c01a09a:
 LP_GEN_13822:
           .RES.W 1 ; H'8C01A0F6
           .DATA.L _var_game_mode_8c1bb8fc ; H'8C01A0F8
-          .DATA.L _var_8c1bb8c0 ; H'8C01A0FC
+          .DATA.L _var_shouldShowFreeRunIntro_8c1bb8c0 ; H'8C01A0FC
           .DATA.L _CourseMenuSwitchFromTask_8c017e18 ; H'8C01A100
           .DATA.L _FUN_8c01b122 ; H'8C01A104
           .DATA.L _FUN_8c01c880 ; H'8C01A108

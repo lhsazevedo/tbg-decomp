@@ -1015,7 +1015,7 @@ return new class extends TestCase {
         $this->shouldWriteLong($this->addressOf('_menuState_8c1bc7a8') + 0x3c, 2);
         $this->shouldWriteLong($this->addressOf('_menuState_8c1bc7a8') + 0x40, 0);
         $this->shouldWriteLongTo('_var_game_mode_8c1bb8fc', 1);
-        $this->shouldWriteLongTo('_var_8c1bb8c0', 1);
+        $this->shouldWriteLongTo('_var_shouldShowFreeRunIntro_8c1bb8c0', 1);
 
         $this->shouldCall('_CourseMenuSwitchFromTask_8c017e18');
 
@@ -1043,7 +1043,7 @@ return new class extends TestCase {
         $this->shouldWriteLong($this->addressOf('_menuState_8c1bc7a8') + 0x3c, 2);
         $this->shouldWriteLong($this->addressOf('_menuState_8c1bc7a8') + 0x40, 0);
         $this->shouldWriteLongTo('_var_game_mode_8c1bb8fc', 0);
-        $this->shouldWriteLongTo('_var_8c1bb8c0', 1);
+        $this->shouldWriteLongTo('_var_shouldShowFreeRunIntro_8c1bb8c0', 1);
 
         $this->shouldCall('_CourseMenuSwitchFromTask_8c017e18')->with(0xbebacafe);
 

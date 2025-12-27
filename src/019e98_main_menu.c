@@ -58,7 +58,7 @@ extern ResourceGroupInfo init_8c044e90;
 extern SDMIDI var_midiHandles_8c0fcd28[7];
 extern NJS_TEXMEMLIST var_tex_8c157af8[TEX_NUM];
 extern PDS_PERIPHERAL var_peripherals_8c1ba35c[2];
-extern int var_8c1bb8c0;
+extern int var_shouldShowFreeRunIntro_8c1bb8c0;
 extern int var_demo_8c1bb8d0;
 extern int var_game_mode_8c1bb8fc;
 extern void* var_8c1bc454;
@@ -168,7 +168,7 @@ void MainMenuTask_8c019e98(Task *task) {
                     menuState_8c1bc7a8.field_0x3c = 2;
                     menuState_8c1bc7a8.field_0x40 = 0;
                     var_game_mode_8c1bb8fc = menuState_8c1bc7a8.selected_0x38;
-                    var_8c1bb8c0 = 1;
+                    var_shouldShowFreeRunIntro_8c1bb8c0 = 1;
                     CourseMenuSwitchFromTask_8c017e18(task);
                     break;
                 }

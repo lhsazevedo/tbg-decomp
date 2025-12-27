@@ -138,7 +138,7 @@
           .IMPORT     _var_8c1ba2e0
           .IMPORT     _var_8c1ba348
           .IMPORT     _var_8c1ba344
-          .IMPORT     _var_8c225fb0
+          .IMPORT     _var_currentSysResGroupInfo_8c225fb0
           .IMPORT     _var_demoBuf_8c1ba3c4
           .IMPORT     _var_8c1bc454
           .IMPORT     _var_selectedVm_8c1ba34c
@@ -1199,7 +1199,7 @@ LP_GEN_90231:
           .DATA.L _var_8c1ba2e0
           .DATA.L _var_8c1ba348
           .DATA.L _var_8c1ba344
-          .DATA.L _var_8c225fb0
+          .DATA.L _var_currentSysResGroupInfo_8c225fb0
           .DATA.L _var_demoBuf_8c1ba3c4
           .DATA.L _var_8c1bc454
           .DATA.L _var_selectedVm_8c1ba34c

@@ -45,7 +45,7 @@ return new class extends TestCase {
             $this->addressOf('_menuState_8c1bc7a8') + 0x60, 42
         );
         $this->shouldWriteLong($task + 0x08, 0);
-        $this->shouldWriteLongTo('_var_8c225fb8', 0);
+        $this->shouldWriteLongTo('_var_menuTextboxCharLimit_8c225fb8', 0);
         $this->shouldWriteLongTo('_var_demo_8c1bb8d0', 0);
 
         $this->shouldCall('_FUN_8c017d54');
@@ -103,7 +103,7 @@ return new class extends TestCase {
             $this->addressOf('_menuState_8c1bc7a8') + 0x60, 42
         );
         $this->shouldWriteLong($task + 0x08, 0);
-        $this->shouldWriteLongTo('_var_8c225fb8', 0);
+        $this->shouldWriteLongTo('_var_menuTextboxCharLimit_8c225fb8', 0);
         $this->shouldWriteLongTo('_var_demo_8c1bb8d0', 0);
 
         $this->shouldCall('_FUN_8c017d54');
@@ -156,7 +156,7 @@ return new class extends TestCase {
             $this->addressOf('_menuState_8c1bc7a8') + 0x60, 42
         );
         $this->shouldWriteLong($task + 0x08, 0);
-        $this->shouldWriteLongTo('_var_8c225fb8', 0);
+        $this->shouldWriteLongTo('_var_menuTextboxCharLimit_8c225fb8', 0);
         $this->shouldWriteLongTo('_var_demo_8c1bb8d0', 0);
 
         $this->shouldCall('_FUN_8c017d54');
@@ -214,7 +214,7 @@ return new class extends TestCase {
             $this->addressOf('_menuState_8c1bc7a8') + 0x60, 42
         );
         $this->shouldWriteLong($task + 0x08, 0);
-        $this->shouldWriteLongTo('_var_8c225fb8', 0);
+        $this->shouldWriteLongTo('_var_menuTextboxCharLimit_8c225fb8', 0);
         $this->shouldWriteLongTo('_var_demo_8c1bb8d0', 0);
 
         $this->shouldCall('_FUN_8c017d54');

@@ -55,13 +55,13 @@ return new class extends TestCase {
         $this->shouldWriteLong($createdTask + 0x18, 0xcafe0002);
         $this->shouldWriteLong($createdState + 0x00, 0);
         $this->shouldWriteLong($createdState + 0x04, $dialogs2);
-        $this->shouldWriteLong($this->addressOf('_var_8c225fb4'), 1);
+        $this->shouldWriteLong($this->addressOf('_var_dialogSequenceIsActive_8c225fb4'), 1);
     }
 
     private function resolveSymbols()
     {
         $this->setSize('_var_tasks_8c1ba3c8', 4);
-        $this->setSize('_var_8c225fb4', 4);
+        $this->setSize('_var_dialogSequenceIsActive_8c225fb4', 4);
     }
 
     protected function isAsmObject(): bool

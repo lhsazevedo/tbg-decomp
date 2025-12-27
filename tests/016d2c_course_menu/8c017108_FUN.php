@@ -30,13 +30,13 @@ return new class extends TestCase {
         $this->initUint32($this->addressOf('_init_dialogSequences_8c044c08') + 0x00, $dialogs1);
         $this->initUint32($this->addressOf('_init_dialogSequences_8c044c08') + 0x04, $dialogs2);
 
-        $this->call('_FUN_swapDialogMessageBox_8c017108')->with(1);
+        $this->call('_swapDialogMessageBox_8c017108')->with(1);
 
         $this->shouldCall('_swapMessageBoxFor_8c02aefc')
             ->with($text2)
             ->andReturn(42);
 
-        $this->shouldWrite($this->addressOf('_var_8c225fb8'), 42);
+        $this->shouldWrite($this->addressOf('_var_menuTextboxCharLimit_8c225fb8'), 42);
     }
 
     public function resolveSymbols()

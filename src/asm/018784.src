@@ -46,7 +46,7 @@
           .IMPORT     _VmMenuUnmountVms_194de
           .IMPORT     _var_8c22606c
           .IMPORT     _init_8c03bd80
-          .IMPORT     _var_8c225fb0
+          .IMPORT     _var_currentSysResGroupInfo_8c225fb0
           .IMPORT     _MainMenuSwitchFromTask_8c01a09a
           .IMPORT     _VmMenuSwitchFromTask_19e44
           .IMPORT     _setTaskAction_8c014b3e
@@ -1526,7 +1526,7 @@ LP_GEN_73468:
           .DATA.L _VmMenuUnmountVms_194de ; H'8C0192B8
           .DATA.L _var_8c22606c ; H'8C0192BC
           .DATA.L _init_8c03bd80 ; H'8C0192C0
-          .DATA.L _var_8c225fb0 ; H'8C0192C4
+          .DATA.L _var_currentSysResGroupInfo_8c225fb0 ; H'8C0192C4
           .DATA.L _MainMenuSwitchFromTask_8c01a09a ; H'8C0192C8
 LAB_8c0192cc:
           MOV.L       @R6,R2

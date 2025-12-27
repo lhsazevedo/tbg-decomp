@@ -626,8 +626,8 @@ return new class extends TestCase {
             $this->addressOf('_menuState_8c1bc7a8') + 0x0c
         );
 
-        // Step 2: Set var_8c225fb0 = 0xffffffff
-        $this->shouldWriteLongTo('_var_8c225fb0', 0xffffffff);
+        // Step 2: Set var_currentSysResGroupInfo_8c225fb0 = 0xffffffff
+        $this->shouldWriteLongTo('_var_currentSysResGroupInfo_8c225fb0', 0xffffffff);
 
         // Step 3: Call helper that handles all menu transition logic
         // (game mode check, task action, dialog setup, resource loading, etc.)
@@ -662,7 +662,7 @@ return new class extends TestCase {
         $this->setSize('_PTR_PTR_8c044d0c', 32); // Lookup table for days
         $this->setSize('_init_8c044d10', 30);
         $this->setSize('_var_game_mode_8c1bb8fc', 4);
-        $this->setSize('_var_8c225fb0', 4);
+        $this->setSize('_var_currentSysResGroupInfo_8c225fb0', 4);
         $this->setSize('_var_dialogQueue_8c225fbc', 0x10); // Array of dialog queue
         $this->setSize('_init_dialogSequences_8c044c08', 0x100); // Dialog sequences data
     }
