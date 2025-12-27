@@ -5,6 +5,7 @@
 #include "014a9c_tasks.h"
 #include "015ab8_title.h"
 #include "011120_asset_queues.h"
+#include "016d2c_course_menu.h"
 
 /* ====================
  * Compiler Definitions
@@ -49,8 +50,6 @@ enum MAIN_MENU_STATE {
 
 extern void resetUknPvmBool_8c014322();
 extern void drawSprite_8c014f54(ResourceGroup *r4, int r5, float fr4, float fr5, float fr6);
-extern void CourseMenuStoryMenuTask_8c017718(Task* task, void* state);
-extern void CourseMenuFreeRunMenuTask_8c017ada(Task* task, void* state);
 extern void FUN_8c01bfec(Task* task, void* state);
 extern void push_fadein_8c022a9c();
 extern void push_fadeout_8c022b60();

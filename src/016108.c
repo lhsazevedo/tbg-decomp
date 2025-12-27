@@ -1,10 +1,10 @@
 /* 8c016108 */
 #include <shinobi.h>
 #include "015ab8_title.h"
+#include "016d2c_course_menu.h"
 
 extern void* var_8c225fb0;
 extern ResourceGroup* var_resourceGroup_8c2263a8;
-extern CourseMenuFreeResourceGroup_8c0185c4(ResourceGroup* dds);
 
 /* Matched */
 void freeResourceGroups_8c016108()

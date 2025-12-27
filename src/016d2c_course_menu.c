@@ -6,6 +6,7 @@
 #include "014a9c_tasks.h"
 #include "011120_asset_queues.h"
 #include "019e98_main_menu.h"
+#include "016d2c_course_menu.h"
 #include "serial_debug.h"
 
 // TODO:
