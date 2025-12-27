@@ -3,7 +3,7 @@
   <!-- ClipPath to constrain the shadow within the progress bar -->
   <defs>
     <clipPath id="progress_clip">
-      <rect rx="4" x="0" width="47.10" height="20"/>
+      <rect rx="4" x="0" width="60.30" height="20"/>
     </clipPath>
   </defs>
   <linearGradient id="a" x2="0" y2="100%">
@@ -11,15 +11,15 @@
     <stop offset="1" stop-opacity=".1"/>
   </linearGradient>
   <!-- Main background with consistent border radius -->
-  <rect rx="4" x="0" width="47.10" height="20" fill="#428bca"/>
+  <rect rx="4" x="0" width="60.30" height="20" fill="#428bca"/>
   <!-- Progress bar background with the same border radius -->
-  <rect rx="4" x="0" width="47.10" height="20" fill="#555" />
+  <rect rx="4" x="0" width="60.30" height="20" fill="#555" />
   <!-- Progress fill with the same border radius to avoid sharp corners -->
-  <rect rx="4" x="0" width="47.10" height="20" fill="teal" />
+  <rect rx="4" x="0" width="60.30" height="20" fill="teal" />
   <!-- Apply the clipping path to keep everything inside the border radius -->
   <rect rx="4" width="300" height="20" fill="url(#a)" clip-path="url(#clip)" />
   <g fill="#fff" text-anchor="middle" font-family="DejaVu Sans,Verdana,Geneva,sans-serif" font-size="11">
-      <text x="150.0" y="15" fill="#010101" fill-opacity=".3">15.7% decompiled</text>
-      <text x="150.0" y="14">15.7% decompiled</text>
+      <text x="150.0" y="15" fill="#010101" fill-opacity=".3">20.1% decompiled</text>
+      <text x="150.0" y="14">20.1% decompiled</text>
   </g>
 </svg>

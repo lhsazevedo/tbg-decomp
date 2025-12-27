@@ -8,7 +8,8 @@ dates = [
     datetime(2024, 11, 1),
     datetime(2024, 11, 5),
     datetime(2024, 11, 10),
-    datetime(2025, 2, 5)
+    datetime(2025, 2, 5),
+    datetime(2025, 12, 27)
 ]
 
 decompiled_code = [
@@ -18,7 +19,8 @@ decompiled_code = [
     14.7,
     14.9,
     15.2,
-    15.7
+    15.7,
+    20.1,
 ]
 matched_code = [
     0.0,
@@ -27,7 +29,8 @@ matched_code = [
     1.3,
     1.3,
     1.3,
-    1.3
+    1.3,
+    1.3,
 ]
 
 fig, ax = plt.subplots()
