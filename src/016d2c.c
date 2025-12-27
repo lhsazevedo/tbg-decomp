@@ -13,6 +13,16 @@
 // - Review comments
 // - Split file in sections
 
+/* ====================
+ * Compiler Definitions
+ * ====================
+ */
+
+/* =================
+ * Type Declarations
+ * =================
+ */
+
 typedef struct {
     int enabled_0x00;
     int unlocked_0x04;
@@ -46,39 +56,26 @@ typedef struct {
     int field_0x90;
 } PlayerProgress;
 
-extern void snd_8c010cd6(int p1, int p2);
-extern void setUknPvmBool_8c014330();
-extern int requestSysResgrp_8c018568(ResourceGroup* dds, ResourceGroupInfo* rg);
-extern CourseMenuButton init_courseMenuButtons_8c04442c[15];
-extern void* const_8c03628c;
-extern SDMIDI var_midiHandles_8c0fcd28[7];
-extern PlayerProgress var_progress_8c1ba1cc;
-extern int var_exp_8c1ba25c;
-extern int var_8c225fb4;
-extern int var_8c225fb8;
-extern PDS_PERIPHERAL var_peripherals_8c1ba35c[2];
-extern ResourceGroupInfo init_mainMenuResourceGroup_8c044264;
-extern int var_8c1bb8e0;
-extern int var_8c1bb8e4;
-extern int var_8c1bb8e8;
-extern int var_8c1bb8ec;
-extern int var_8c1bb8f0;
-extern int var_8c1bb8f4;
-extern int var_8c1ba2b8[5];
-extern int var_8c1ba2cc[5];
-extern Uint8 init_8c044d10[30];
-extern void pushLoadingTask_8c013310(int p1);
+typedef struct {
+    int state_0x00;
+    MenuDialog *dialog_0x04;
+    int field_0x08;
+    int field_0x0c;
+    int field_0x10;
+    int field_0x14;
+    int *field_0x18;
+} DialogSequenceTaskState;
 
-extern MenuDialog *init_dialogSequences_8c044c08[];
-extern int var_game_mode_8c1bb8fc;
-extern int var_dialogQueue_8c225fbc[4]; // TODO: Confirm length
-extern Sint8 var_coursesToUnlock_8c225fd4[];
-extern int var_demo_8c1bb8d0;
-extern void resetUknPvmBool_8c014322();
-extern NJS_TEXMEMLIST var_tex_8c157af8[];
-extern Uint8 init_8c044d2e[];
-extern Uint8 init_8c044d2f[];
-extern ResourceGroupInfo init_8c044d40;
+typedef struct {
+    TaskAction action;
+    void *state;
+    int field_0x08;
+    void* field_0x0c;
+    int field_0x10;
+    int field_0x14;
+    int *field_0x18;
+    int field_0x1c;
+} DialogSequenceTask;
 
 enum {
     // --- Story / Training ---
@@ -156,6 +153,98 @@ enum {
     SEQ_FREE_RUN_INTRO         = 64,
     SEQ_FREE_RUN_CHOOSE_COURSE = 65,
 };
+
+enum {
+    COURSE_MENU_STATE_INIT = 0,
+    COURSE_MENU_STATE_FADE_IN = 1,
+    COURSE_MENU_STATE_DIALOG = 2,
+    COURSE_MENU_STATE_IDLE = 3,
+    COURSE_MENU_STATE_ANIMATING = 4,
+    COURSE_MENU_STATE_COURSE_SELECTED = 5,
+    COURSE_MENU_STATE_FADE_OUT = 6,
+    COURSE_MENU_STATE_FADE_OUT_TO_MAIN_MENU = 7
+};
+
+enum {
+    COURSE_CONFIRM_STATE_INIT = 0,
+    COURSE_CONFIRM_STATE_FADE_IN = 1,
+    COURSE_CONFIRM_STATE_PROMPT = 2,
+    COURSE_CONFIRM_STATE_FADE_OUT = 3,
+    COURSE_CONFIRM_STATE_ROUTE_INFO_FADE_IN = 4,
+    COURSE_CONFIRM_STATE_ROUTE_INFO_DISPLAY = 5,
+    COURSE_CONFIRM_STATE_START_LOADING = 6,
+    COURSE_CONFIRM_STATE_FADE_OUT_TO_COURSE_MENU = 7
+};
+
+/* =======================
+ * Non-initialized Globals
+ * =======================
+ */
+
+extern void snd_8c010cd6(int p1, int p2);
+extern void setUknPvmBool_8c014330();
+extern int requestSysResgrp_8c018568(ResourceGroup* dds, ResourceGroupInfo* rg);
+extern CourseMenuButton init_courseMenuButtons_8c04442c[15];
+extern void* const_8c03628c;
+extern SDMIDI var_midiHandles_8c0fcd28[7];
+extern PlayerProgress var_progress_8c1ba1cc;
+extern int var_exp_8c1ba25c;
+extern int var_8c225fb4;
+extern int var_8c225fb8;
+extern PDS_PERIPHERAL var_peripherals_8c1ba35c[2];
+extern ResourceGroupInfo init_mainMenuResourceGroup_8c044264;
+extern int var_8c1bb8e0;
+extern int var_8c1bb8e4;
+extern int var_8c1bb8e8;
+extern int var_8c1bb8ec;
+extern int var_8c1bb8f0;
+extern int var_8c1bb8f4;
+extern int var_8c1ba2b8[5];
+extern int var_8c1ba2cc[5];
+extern Uint8 init_8c044d10[30];
+extern void pushLoadingTask_8c013310(int p1);
+extern MenuDialog *init_dialogSequences_8c044c08[];
+extern int var_game_mode_8c1bb8fc;
+extern int var_dialogQueue_8c225fbc[4]; // TODO: Confirm length
+extern Sint8 var_coursesToUnlock_8c225fd4[];
+extern int var_demo_8c1bb8d0;
+extern void resetUknPvmBool_8c014322();
+extern NJS_TEXMEMLIST var_tex_8c157af8[];
+extern Uint8 init_8c044d2e[];
+extern Uint8 init_8c044d2f[];
+extern ResourceGroupInfo init_8c044d40;
+extern int var_8c1bb8b8;
+extern int var_8c1bb8bc;
+extern int var_8c1bb8dc;
+extern int var_award_8c1bb8f8;
+extern Bool isFading_8c226568;
+extern int init_8c03bd80;
+extern void *var_8c225fb0;
+extern int var_8c1bb8c0;
+extern void FUN_8c0128cc(void);
+extern void task_8c012f44(Task *task, void *state);
+extern FUN_8c02ae3e(int p1, int p2, float fp1, int p3, int p4, int p5, int p6, int p7);
+extern int promptHandleBinary_16caa(int *promptState);
+
+/* ===================
+ * Initialized Globals
+ * ===================
+ */
+
+/* ====================
+ * Forward Declarations
+ * ====================
+ */
+
+extern void freeResourceGroup_8c0185c4(ResourceGroup *res_group);
+extern void FUN_8c017d54(void);
+extern void FreeRunMenuTask_8c017ada(Task * task, void *state);
+extern void requestCommonResources_8c01852c(void);
+
+/* =========
+ * Functions
+ * =========
+ */
 
 /**
  * Returns 1 if the cursor has reached its target position, 0 otherwise.
@@ -281,27 +370,6 @@ void drawDateAndExp_8c016ee6()
     drawInteger_8c016e6c(var_progress_8c1ba1cc.field_0x90, 534.0, 82.0);
 }
 
-typedef struct {
-    int state_0x00;
-    MenuDialog *dialog_0x04;
-    int field_0x08;
-    int field_0x0c;
-    int field_0x10;
-    int field_0x14;
-    int *field_0x18;
-} DialogSequenceTaskState;
-
-typedef struct {
-    TaskAction action;
-    void *state;
-    int field_0x08;
-    void* field_0x0c;
-    int field_0x10;
-    int field_0x14;
-    int *field_0x18;
-    int field_0x1c;
-} DialogSequenceTask;
-
 void dialogSequenceTask_8c016f98(DialogSequenceTask *task, DialogSequenceTaskState *state)
 {
     switch(state->state_0x00) {
@@ -408,17 +476,6 @@ void FUN_swapDialogMessageBox_8c017108(int sequence)
         init_dialogSequences_8c044c08[sequence]->text_0x00
     );
 }
-
-enum {
-    COURSE_MENU_STATE_INIT = 0,
-    COURSE_MENU_STATE_FADE_IN = 1,
-    COURSE_MENU_STATE_DIALOG = 2,
-    COURSE_MENU_STATE_IDLE = 3,
-    COURSE_MENU_STATE_ANIMATING = 4,
-    COURSE_MENU_STATE_COURSE_SELECTED = 5,
-    COURSE_MENU_STATE_FADE_OUT = 6,
-    COURSE_MENU_STATE_FADE_OUT_TO_MAIN_MENU = 7
-};
 
 void handleCourseMenuInput_8c017126()
 {
@@ -590,12 +647,6 @@ void applyUnlocks_8c0173e6(void)
     }
 }
 
-extern int var_8c1bb8b8;
-extern int var_8c1bb8bc;
-extern int var_8c1bb8dc;
-extern int var_award_8c1bb8f8;
-
-// This function has been refactored.
 void buildCourseMenuDialogFlow_8c017420(void)
 {
     int cur = 0;
@@ -907,12 +958,6 @@ void drawCourseButtons_8c017590()
 }
 */
 
-extern Bool isFading_8c226568;
-extern int init_8c03bd80;
-extern void *var_8c225fb0;
-
-void freeResourceGroup_8c0185c4(ResourceGroup *res_group);
-
 void StoryMenuTask_8c017718(Task * task, void *state)
 {
     switch (menuState_8c1bc7a8.state_0x18) {
@@ -1222,8 +1267,6 @@ void FreeRunMenuTask_8c017ada(Task * task, void *state)
 }
 
 
-extern int var_8c1bb8c0;
-
 // This function has been refactored.
 void buildFreeRunMenuDialogFlow_8c017a20(void)
 {
@@ -1263,9 +1306,6 @@ void buildFreeRunMenuDialogFlow_8c017a20(void)
     var_8c1bb8c0 = 0;
 }
 */
-
-void FUN_8c017d54();
-void FreeRunMenuTask_8c017ada();
 
 void FUN_8c017d54(void)
 {
@@ -1339,14 +1379,6 @@ void CourseMenuSwitchFromTask_8c017e18(Task *task)
     AsqProcessQueues_11fe0(AsqNop_11120, 0, 0, 0, resetUknPvmBool_8c014322);
     menuState_8c1bc7a8.state_0x18 = 0;
 }
-
-// Extra externs used by FUN_8c017ef2
-extern void FUN_8c0128cc(void);
-extern void task_8c012f44(Task *task, void *state);
-extern FUN_8c02ae3e(int p1, int p2, float fp1, int p3, int p4, int p5, int p6, int p7);
-
-// Forward declarations
-void requestCommonResources_8c01852c(void);
 
 void FUN_8c017ef2(void)
 {
@@ -1447,20 +1479,6 @@ void drawRouteInfo_8c018118(void)
         -7.0
     );
 }
-
-// Original prompt handler used in the dialog state
-extern int promptHandleBinary_16caa(int *promptState);
-
-enum {
-    COURSE_CONFIRM_STATE_INIT = 0,
-    COURSE_CONFIRM_STATE_FADE_IN = 1,
-    COURSE_CONFIRM_STATE_PROMPT = 2,
-    COURSE_CONFIRM_STATE_FADE_OUT = 3,
-    COURSE_CONFIRM_STATE_ROUTE_INFO_FADE_IN = 4,
-    COURSE_CONFIRM_STATE_ROUTE_INFO_DISPLAY = 5,
-    COURSE_CONFIRM_STATE_START_LOADING = 6,
-    COURSE_CONFIRM_STATE_FADE_OUT_TO_COURSE_MENU = 7
-};
 
 void CourseConfirmMenuTask_8c0181b6(Task * task, void *state)
 {
