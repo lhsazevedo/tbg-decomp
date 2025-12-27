@@ -794,7 +794,7 @@ void drawCourseButtons_8c017590()
     for (i = 0; i < 15; i++) {
         CourseMenuButton *btn = &init_courseMenuButtons_8c04442c[i];
 
-        if (btn->enabled_0x00 == 0 || btn->spriteNo_0x10 == 0)
+        if (btn->unlocked_0x04 == 0 || btn->spriteNo_0x10 == 0)
             continue;
 
         drawSprite_8c014f54(
