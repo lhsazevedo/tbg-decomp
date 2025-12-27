@@ -86,6 +86,8 @@
           .EXPORT     _pushDialogTask_8c0170c6
           .EXPORT     _buildCourseUnlockList_8c0172dc
           .EXPORT     _applyUnlocks_8c0173e6
+          .EXPORT     _StoryMenuTask_8c017718
+          .EXPORT     _FreeRunMenuTask_8c017ada
           .EXPORT     _CourseMenuSwitchFromTask_8c017e18
           .EXPORT     _FUN_8c017ef2
           .EXPORT     _FUN_8c0184cc
@@ -102,9 +104,7 @@
           .EXPORT     _handleCourseMenuInput_8c017126
           .EXPORT     _buildCourseMenuDialogFlow_8c017420
           .EXPORT     _drawCourseButtons_8c017590
-          .EXPORT     _StoryMenuTask_8c017718
           .EXPORT     _buildFreeRunMenuDialogFlow_8c017a20
-          .EXPORT     _FreeRunMenuTask_8c017ada
           .EXPORT     _FUN_8c017d54
           .EXPORT     _drawFixedInteger_8c01803e
           .EXPORT     _drawRouteInfo_8c018118

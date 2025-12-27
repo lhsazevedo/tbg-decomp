@@ -292,7 +292,7 @@ int interpolateCursor_8c016d2c()
     return 1;
 }
 
-int cursorOffTarget_8c016dc6()
+STATIC int cursorOffTarget_8c016dc6()
 {
     int selected;
     float y;
@@ -316,7 +316,7 @@ int cursorOffTarget_8c016dc6()
     return 1;
 }
 
-void drawInteger_8c016e6c(int value, float x, float y)
+STATIC void drawInteger_8c016e6c(int value, float x, float y)
 {
     do {
         drawSprite_8c014f54(
@@ -330,7 +330,7 @@ void drawInteger_8c016e6c(int value, float x, float y)
     } while (value /= 10);
 }
 
-unsigned int getWeekDayIndex_8c016ed2()
+STATIC unsigned int getWeekDayIndex_8c016ed2()
 {
     unsigned int r = var_progress_8c1ba1cc.days_0x00 + 1;
     return r % 7;
@@ -370,7 +370,7 @@ void drawDateAndExp_8c016ee6()
     drawInteger_8c016e6c(var_progress_8c1ba1cc.field_0x90, 534.0, 82.0);
 }
 
-void dialogSequenceTask_8c016f98(DialogSequenceTask *task, DialogSequenceTaskState *state)
+STATIC void dialogSequenceTask_8c016f98(DialogSequenceTask *task, DialogSequenceTaskState *state)
 {
     switch(state->state_0x00) {
         case 0: {
@@ -470,14 +470,14 @@ void pushDialogTask_8c0170c6(int dialog_index, int *p2)
     var_8c225fb4 = 1;
 }
 
-void FUN_swapDialogMessageBox_8c017108(int sequence)
+STATIC void FUN_swapDialogMessageBox_8c017108(int sequence)
 {
     var_8c225fb8 = swapMessageBoxFor_8c02aefc(
         init_dialogSequences_8c044c08[sequence]->text_0x00
     );
 }
 
-void handleCourseMenuInput_8c017126()
+STATIC void handleCourseMenuInput_8c017126()
 {
     if (var_peripherals_8c1ba35c[0].press & PDD_DGT_TA) {
         if (
@@ -647,7 +647,7 @@ void applyUnlocks_8c0173e6(void)
     }
 }
 
-void buildCourseMenuDialogFlow_8c017420(void)
+STATIC void buildCourseMenuDialogFlow_8c017420(void)
 {
     int cur = 0;
 
@@ -827,7 +827,7 @@ void buildCourseMenuDialogFlow_8c017420()
 } */
 
 // This function has been refactored.
-void drawCourseButtons_8c017590()
+STATIC void drawCourseButtons_8c017590()
 {
     int i;
 
@@ -1268,7 +1268,7 @@ void FreeRunMenuTask_8c017ada(Task * task, void *state)
 
 
 // This function has been refactored.
-void buildFreeRunMenuDialogFlow_8c017a20(void)
+STATIC void buildFreeRunMenuDialogFlow_8c017a20(void)
 {
     int idx = 0;
 
@@ -1307,7 +1307,7 @@ void buildFreeRunMenuDialogFlow_8c017a20(void)
 }
 */
 
-void FUN_8c017d54(void)
+STATIC void FUN_8c017d54(void)
 {
     int enabled;
     int row;
@@ -1434,7 +1434,7 @@ void FUN_8c017ef2(void)
     menuState_8c1bc7a8.state_0x18 = 0;
 }
 
-void drawFixedInteger_8c01803e(float x, float y, int value, int digits)
+STATIC void drawFixedInteger_8c01803e(float x, float y, int value, int digits)
 {
     float tracking = 19.0;
     do {
@@ -1452,7 +1452,7 @@ void drawFixedInteger_8c01803e(float x, float y, int value, int digits)
     } while (digits > 0);
 }
 
-void drawRouteInfo_8c018118(void)
+STATIC void drawRouteInfo_8c018118(void)
 {
     int index = menuState_8c1bc7a8.field_0x40 * 6 + (menuState_8c1bc7a8.field_0x3c - 2) * 2;
     int weekday;
@@ -1480,7 +1480,7 @@ void drawRouteInfo_8c018118(void)
     );
 }
 
-void CourseConfirmMenuTask_8c0181b6(Task * task, void *state)
+STATIC void CourseConfirmMenuTask_8c0181b6(Task * task, void *state)
 {
     switch (menuState_8c1bc7a8.state_0x18) {
         case COURSE_CONFIRM_STATE_INIT: {
