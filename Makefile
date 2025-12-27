@@ -30,7 +30,7 @@ SRCS = \
 	src/asm/01614c.src \
 	src/asm/016bf4.src \
 	src/016c58_prompt.c \
-	src/016d2c.c \
+	src/016d2c_course_menu.c \
 	src/asm/018644.src \
 	src/asm/018784.src \
 	src/asm/0193c8_pre_data.src \
