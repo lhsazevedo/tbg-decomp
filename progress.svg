@@ -11,9 +11,9 @@
     <stop offset="1" stop-opacity=".1"/>
   </linearGradient>
   <!-- Main background with consistent border radius -->
-  <rect rx="4" x="0" width="60.30" height="20" fill="#428bca"/>
+  <rect rx="4" x="0" width="300" height="20" fill="#428bca"/>
   <!-- Progress bar background with the same border radius -->
-  <rect rx="4" x="0" width="60.30" height="20" fill="#555" />
+  <rect rx="4" x="0" width="300" height="20" fill="#555" />
   <!-- Progress fill with the same border radius to avoid sharp corners -->
   <rect rx="4" x="0" width="60.30" height="20" fill="teal" />
   <!-- Apply the clipping path to keep everything inside the border radius -->
