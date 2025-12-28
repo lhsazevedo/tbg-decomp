@@ -1,244 +1,311 @@
 ; 8c0fcd20
-          .EXPORT     _menuState_8c1bc7a8
-          .EXPORT     _var_8c1bc824
-          .EXPORT     _var_8c1bc828
-          .EXPORT     _var_8c225fa8
-          .EXPORT     _var_8c225fac
-          .EXPORT     _var_currentSysResGroupInfo_8c225fb0
-          .EXPORT     _var_dialogSequenceIsActive_8c225fb4
-          .EXPORT     _var_menuTextboxCharLimit_8c225fb8
-          .EXPORT     _var_dialogQueue_8c225fbc
-          .EXPORT     _var_coursesToUnlock_8c225fd4
-          .EXPORT     _var_8c225fe0
-          .EXPORT     _var_8c225fe4
-          .EXPORT     _var_8c22600c
-          .EXPORT     _var_8c226010
-          .EXPORT     _var_8c226014
-          .EXPORT     _var_8c226018
-          .EXPORT     _var_vmuStatus_8c226048
-          .EXPORT     _var_8c22606c
-          .EXPORT     _var_soundMode_8c226070
-          .EXPORT     _var_8c226074
-          .EXPORT     _var_8c226078
-          .EXPORT     _var_8c226080
-          .EXPORT     _var_8c226088
-          .EXPORT     _var_8c226098
-          .EXPORT     _var_8c2260a8
-          .EXPORT     _var_8c2260ac
-          .EXPORT     _var_8c2260b8
-          .EXPORT     _var_8c2260c4
-          .EXPORT     _var_8c2260d0
-          .EXPORT     _var_8c2260d4
-          .EXPORT     _var_8c226198
-          .EXPORT     _var_8c22619c
-          .EXPORT     _var_8c2261a0
-          .EXPORT     _var_8c2263a0
-          .EXPORT     _var_8c2263a4
-          .EXPORT     _var_resourceGroup_8c2263a8
-          .EXPORT     _var_8c2263b4
-          .EXPORT     _var_8c2263ec
-          .EXPORT     _var_8c2263f0
-          .EXPORT     _var_8c2263f4
-          .EXPORT     _var_8c2263f8
-          .EXPORT     _var_8c2263fc
-          .EXPORT     _var_8c226400
-          .EXPORT     _var_8c226404
-          .EXPORT     _var_8c226408
-          .EXPORT     _var_8c22640c
-          .EXPORT     _var_8c226410
-          .EXPORT     _var_8c226414
-          .EXPORT     _var_8c22642c
-          .EXPORT     _var_8c226430
-          .EXPORT     _var_8c226434
-          .EXPORT     _var_8c226438
-          .EXPORT     _var_8c22643c
-          .EXPORT     _var_8c226450
-          .EXPORT     _var_uknVol_8c226468
-          .EXPORT     _var_8c226478
-          .EXPORT     _var_8c2264a8
-          .EXPORT     _var_8c2264b8
-          .EXPORT     _var_8c2264bc
-          .EXPORT     _var_8c2264c4
-          .EXPORT     _var_8c2264d0
-          .EXPORT     _var_8c2264d4
-          .EXPORT     _var_8c2264d8
-          .EXPORT     _var_8c2264e4
-          .EXPORT     _var_8c2264e8
-          .EXPORT     _var_8c2264ec
-          .EXPORT     _var_8c2264f0
-          .EXPORT     _var_8c2264f4
-          .EXPORT     _var_8c2264f8
-          .EXPORT     _var_8c226504
-          .EXPORT     _var_8c226508
-          .EXPORT     _var_8c22650c
-          .EXPORT     _var_8c22651c
-          .EXPORT     _var_8c226520
-          .EXPORT     _var_8c226534
-          .EXPORT     _var_8c226538
-          .EXPORT     _var_8c226544
-          .EXPORT     _var_8c22654c
-          .EXPORT     _var_8c226558
-          .EXPORT     _var_8c22655c
-          .EXPORT     _var_8c226560
-          .EXPORT     _var_8c226564
-          .EXPORT     _isFading_8c226568
-          .EXPORT     _var_8c22656c
-          .EXPORT     _var_8c226570
-          .EXPORT     _var_8c22657c
-          .EXPORT     _var_8c227d7c
-          .EXPORT     _var_8c227d80
-          .EXPORT     _var_8c227d84
-          .EXPORT     _var_8c227d88
-          .EXPORT     _var_8c227d8c
-          .EXPORT     _var_8c227d90
-          .EXPORT     _var_8c227d9c
-          .EXPORT     _var_8c227da0
-          .EXPORT     _var_8c227da4
-          .EXPORT     _var_8c227da8
-          .EXPORT     _var_8c227dac
-          .EXPORT     _var_8c227db0
-          .EXPORT     _var_8c227db4
-          .EXPORT     _var_8c227db8
-          .EXPORT     _var_8c227dc4
-          .EXPORT     _var_8c227dd0
-          .EXPORT     _var_8c227dd4
-          .EXPORT     _var_8c227dd8
-          .EXPORT     _var_8c227ddc
-          .EXPORT     _var_8c227de0
-          .EXPORT     _var_8c227de4
-          .EXPORT     _var_8c227de8
-          .EXPORT     _var_8c227dec
-          .EXPORT     _var_8c227df0
-          .EXPORT     _var_8c227df4
-          .EXPORT     _var_8c227df8
-          .EXPORT     _var_8c227dfc
-          .EXPORT     _var_8c227e00
-          .EXPORT     _var_8c227e0c
-          .EXPORT     _var_8c227e10
-          .EXPORT     _var_demoEntryValue_8c227e14
-          .EXPORT     _var_8c227e18
-          .EXPORT     _var_8c227e1c
-          .EXPORT     _var_8c227e20
-          .EXPORT     _var_8c227e24
-          .EXPORT     _var_8c227e28
-          .EXPORT     _var_8c227e2c
-          .EXPORT     _var_8c22802c
-          .EXPORT     _var_demoEntryValue_8c22822c
-          .EXPORT     _var_8c228230
-          .EXPORT     _var_8c228234
-          .EXPORT     _var_8c228238
-          .EXPORT     _var_8c22823c
-          .EXPORT     _var_8c228240
-          .EXPORT     _var_8c228244
-          .EXPORT     _var_8c228248
-          .EXPORT     _var_8c228268
-          .EXPORT     _var_8c228270
-          .EXPORT     _var_8c228278
-          .EXPORT     _var_8c228288
-          .EXPORT     _var_8c228408
-          .EXPORT     _var_8c22840c
-          .EXPORT     _var_8c228410
-          .EXPORT     _var_8c228414
-          .EXPORT     _var_8c228418
-          .EXPORT     _var_8c22841c
-          .EXPORT     _var_8c228420
-          .EXPORT     _var_8c228424
-          .EXPORT     _var_8c228428
-          .EXPORT     _var_8c22842c
-          .EXPORT     _var_8c228430
-          .EXPORT     _var_8c228434
-          .EXPORT     _var_8c228478
-          .EXPORT     _var_8c22847c
-          .EXPORT     _var_8c228480
-          .EXPORT     _var_8c228484
-          .EXPORT     _var_8c228514
-          .EXPORT     _var_8c228518
-          .EXPORT     _var_8c22851c
-          .EXPORT     _var_8c228520
-          .EXPORT     _var_8c228560
-          .EXPORT     _var_8c228564
-          .EXPORT     _var_8c2285c4
-          .EXPORT     _var_8c2285c8
-          .EXPORT     _var_8c2285d0
-          .EXPORT     _var_8c2285d8
-          .EXPORT     _var_8c2285dc
-          .EXPORT     _var_8c2285e4
-          .EXPORT     _var_8c2285fc
-          .EXPORT     _var_8c22861c
-          .EXPORT     _var_8c228634
-          .EXPORT     _var_8c22864c
-          .EXPORT     _var_8c228660
-          .EXPORT     _var_8c228664
-          .EXPORT     _var_8c228668
-          .EXPORT     _var_8c22866c
-          .EXPORT     _var_8c228670
-          .EXPORT     _var_8c228674
-          .EXPORT     _var_8c228678
-          .EXPORT     _var_8c22867c
-          .EXPORT     _var_8c228680
-          .EXPORT     _var_8c228684
-          .EXPORT     _var_8c228688
-          .EXPORT     _var_8c22868c
-          .EXPORT     _var_8c228690
-          .EXPORT     _var_8c228694
-          .EXPORT     _var_8c228698
-          .EXPORT     _var_8c22869c
-          .EXPORT     _var_8c2286a0
-          .EXPORT     _var_8c2286a4
-          .EXPORT     _var_8c228704
-          .EXPORT     _var_8c228708
-          .EXPORT     _var_8c22870c
-          .EXPORT     _var_8c228710
-          .EXPORT     _var_8c228714
-          .EXPORT     _var_8c228718
-          .EXPORT     _var_8c228794
-          .EXPORT     _var_8c228798
-          .EXPORT     _var_8c2288d8
-          .EXPORT     _var_8c2288f8
-          .EXPORT     _var_8c2288fc
-          .EXPORT     _var_8c228900
-          .EXPORT     _var_8c228908 ; 02c884
-          .EXPORT     _var_8c22890c ; 02c884
-          .EXPORT     _var_8c228910 ; 02d19c
-          .EXPORT     _var_8c22891c ; 02d19c
-          .EXPORT     _var_8c228928 ; 02d19c
-          .EXPORT     _var_8c228934 ; 02d19c
-          .EXPORT     _var_8c228940 ; 02d19c
-          .EXPORT     _var_8c22894c ; 02d19c
-          .EXPORT     _var_8c228958 ; 02d19c
-          .EXPORT     _var_8c22895c ; 02d19c
-          .EXPORT     _var_8c228960 ; 02d06c
-          .EXPORT     _var_8c228974 ; 02df3c
-          .EXPORT     _var_8c228978 ; 02e2dc
-          .EXPORT     _var_8c2289d8 ; 02e2dc
-          .EXPORT     _var_8c228a38 ; 02e400
-          .EXPORT     _var_8c228b38 ; 02e400
-          .EXPORT     _var_8c228b3c ; 02e51c
-          .EXPORT     _var_8c228b40 ; 02f0c8 / 026710
-          .EXPORT     _var_8c228b44 ; 02f0c8
-          .EXPORT     _var_8c228b48 ; 02f0c8
-          .EXPORT     _var_8c228b98 ; 02f0c8
-          .EXPORT     _var_8c228b9c ; 02f0c8
-          .EXPORT     _var_8c228ba0 ; 02f0c8
-          .EXPORT     _var_8c228ba4 ; 02f320
-          .EXPORT     _var_8c228ba8 ; 02f320
-          .EXPORT     _var_8c228baa ; 02f320
-          .EXPORT     _var_8c228bac ; 02f320
-          .EXPORT     _var_8c228bae ; 02f320
-          .EXPORT     _var_8c229bae ; 02f320
-          .EXPORT     _var_8c22bbae ; 02f320
-          .EXPORT     _var_8c22dbae ; 02f320
-          .EXPORT     _var_8c22fbae ; 02f320
-          .EXPORT     _var_8c231bae ; 02f320
-          .EXPORT     _var_8c231bb0 ; 02f320
-          .EXPORT     _var_8c233bb0 ; 02f320
-          .EXPORT     _var_8c235bb0 ; 02f320
-          .EXPORT     _var_8c235bb2 ; 02f320
-          .EXPORT     _var_8c235bb4 ; 02f320
-          .EXPORT     _var_8c235c7c ; 02f320
-          .EXPORT     _var_8c235c7e ; 02f320
-          .EXPORT     _var_8c235c80             ; 02fb50
-          .EXPORT     _var_8c235c84             ; 02fb50
+          ; 0129cc
+          .EXPORT     _menuState_8c1bc7a8 ; 0129cc.src, 012f44, 015ab8_title, 016108.c, 016d2c_course_menu, 018784.src, 0193c8_vm_menu, 019e98_main_menu, 01a148.src, 01b19c.src, 01bb48.src, 01c980.src, 01d290.src, 01d7fc.src, 01e27c.src, 01f3c0.src,
+                                          ; 02b464.src
+
+          ; 012f44
+          .EXPORT     _var_8c1bc824 ; 012f44.c, 012f44.src, 01614c.src
+
+          ; 014f54_text
+          .EXPORT     _var_8c1bc828 ; 014f54_text.c, 014f54_text.src, 01614c.src
+          .EXPORT     _var_8c225fa8 ; 01614c.src, 016bf4.src, _027636_8c016bf4.c
+          .EXPORT     _var_8c225fac ; 01614c.src, 016bf4.src, _027636_8c016bf4.c
+
+          ; 015ab8_title
+          .EXPORT     _var_currentSysResGroupInfo_8c225fb0 ; 012f44.c, 012f44.src, 015ab8_title.c, 015ab8_title.src, 016108.c, 016d2c_course_menu.c, 016d2c_course_menu.src, 018784.src, 01c980.src, 01e27c.src
+
+          ; 016d2c_course_menu
+          .EXPORT     _var_dialogSequenceIsActive_8c225fb4 ; 016d2c_course_menu.c, 016d2c_course_menu.src, 01e27c.src, 01f3c0.src
+          .EXPORT     _var_menuTextboxCharLimit_8c225fb8 ; 016d2c_course_menu.c, 016d2c_course_menu.src, 01e27c.src, 01f3c0.src, 028258.src
+          .EXPORT     _var_dialogQueue_8c225fbc ; 016d2c_course_menu.c, 016d2c_course_menu.src, 01f3c0.src
+          .EXPORT     _var_coursesToUnlock_8c225fd4 ; 016d2c_course_menu.c, 016d2c_course_menu.src
+
+          ; 018644
+          .EXPORT     _var_8c225fe0 ; 018644.src, 018784.src
+          .EXPORT     _var_8c225fe4 ; 018644.src, 018784.src
+          .EXPORT     _var_8c22600c ; 018644.src, 018784.src
+          .EXPORT     _var_8c226010 ; 018644.src, 018784.src
+
+          ; 018784
+          .EXPORT     _var_8c226014 ; 018784.src
+          .EXPORT     _var_8c226018 ; 018784.src
+
+          ; 0193c8_vm_menu
+          .EXPORT     _var_vmuStatus_8c226048 ; 01614c.src, 018784.src, 0193c8_vm_menu.c, 0193c8_vm_menu.src, 01b19c.src, 01bb48.src, 01d7fc.src
+          .EXPORT     _var_8c22606c ; 018784.src, 0193c8_vm_menu.c, 0193c8_vm_menu.src, 01b19c.src, 01bb48.src
+
+          ; 01a148
+          .EXPORT     _var_soundMode_8c226070 ; 012f44.c, 012f44.src, 018784.src, 01a148.src
+          .EXPORT     _var_8c226074 ; 01a148.src
+          .EXPORT     _var_8c226078 ; 01a148.src
+          .EXPORT     _var_8c226080 ; 01a148.src
+          .EXPORT     _var_8c226088 ; 01a148.src
+
+          ; 01b19c
+          .EXPORT     _var_8c226098 ; 01b19c.src
+
+          ; 01bb48
+          .EXPORT     _var_8c2260a8 ; 012f44.c, 012f44.src, 01bb48.src
+          .EXPORT     _var_8c2260ac ; 012f44.c, 012f44.src, 01bb48.src, 03bd80_sectionD.src
+          .EXPORT     _var_8c2260b8 ; 012f44.c, 012f44.src, 01bb48.src, 03bd80_sectionD.src
+          .EXPORT     _var_8c2260c4 ; 012f44.c, 012f44.src, 01bb48.src, 03bd80_sectionD.src
+          .EXPORT     _var_8c2260d0 ; 01bb48.src
+          .EXPORT     _var_8c2260d4 ; 01bb48.src
+          .EXPORT     _var_8c226198 ; 01bb48.src
+          .EXPORT     _var_8c22619c ; 01bb48.src
+          .EXPORT     _var_8c2261a0 ; 01bb48.src
+          .EXPORT     _var_8c2263a0 ; 01bb48.src
+
+          ; 01c980
+          .EXPORT     _var_8c2263a4 ; 01b19c.src, 01c980.src
+          .EXPORT     _var_resourceGroup_8c2263a8 ; 012f44.c, 012f44.src, 016108.c, 019e98_main_menu.c, 01bb48.src, 01c980.src
+          .EXPORT     _var_8c2263b4 ; 01c980.src
+
+          ; 01d7fc
+          .EXPORT     _var_8c2263ec ; 01d7fc.src
+          .EXPORT     _var_8c2263f0 ; 01d7fc.src
+          .EXPORT     _var_8c2263f4 ; 01d7fc.src
+          .EXPORT     _var_8c2263f8 ; 01d7fc.src
+          .EXPORT     _var_8c2263fc ; 01d7fc.src
+          .EXPORT     _var_8c226400 ; 01d7fc.src
+          .EXPORT     _var_8c226404 ; 01d7fc.src
+          .EXPORT     _var_8c226408 ; 01d7fc.src
+
+          ; 01e27c
+          .EXPORT     _var_8c22640c ; 0129cc.src, 01e27c.src, 020214.src, 02b464.src
+          .EXPORT     _var_8c226410 ; 01e27c.src, 020214.src, 022464.src, 023310.src, 02b464.src, 02c884.src, 02d968.src
+          .EXPORT     _var_8c226414 ; 01e27c.src
+          .EXPORT     _var_8c22642c ; 01e27c.src
+
+          ; 01f3c0
+          .EXPORT     _var_8c226430 ; 01f3c0.src
+          .EXPORT     _var_8c226434 ; 012f44.c, 012f44.src
+          .EXPORT     _var_8c226438 ; 012f44.c, 012f44.src
+
+          ; 01fa78
+          .EXPORT     _var_8c22643c ; 01fa78.src, 02c884.src
+          .EXPORT     _var_8c226450 ; 02b464.src
+          .EXPORT     _var_uknVol_8c226468 ; 0100bc_sound.c, 0100bc_sound.src, _00188_8c0100bc.src
+          .EXPORT     _var_8c226478 ; 01fa78.src
+          .EXPORT     _var_8c2264a8 ; 01fa78.src
+
+          ; 020214
+          .EXPORT     _var_8c2264b8 ; 020214.src, 020528.c, 022bdc.src, _066856_8c020528.src
+          .EXPORT     _var_8c2264bc ; 020214.src
+          .EXPORT     _var_8c2264c4 ; 02b464.src, 02c884.src
+          .EXPORT     _var_8c2264d0 ; 025b98.src
+
+          ; 020914
+          .EXPORT     _var_8c2264d4 ; 020914.src, 020b6c.src, 022bdc.src, 023310.src, 026710.src, 027958.src, 028258.src, 02c884.src
+
+          ; 021b9c
+          .EXPORT     _var_8c2264d8 ; 021b9c.src, 028258.src, 02d06c.src
+          .EXPORT     _var_8c2264e4 ; 021b9c.src, 028258.src
+          .EXPORT     _var_8c2264e8 ; 021b9c.src
+          .EXPORT     _var_8c2264ec ; 021b9c.src
+          .EXPORT     _var_8c2264f0 ; 021b9c.src, 0222dc.src, 028258.src, 02d06c.src
+          .EXPORT     _var_8c2264f4 ; 028258.src, 02d06c.src
+          .EXPORT     _var_8c2264f8 ; 021b9c.src, 0222dc.src, 028258.src, 02d06c.src
+          .EXPORT     _var_8c226504 ; 013ae8.src, 021b9c.src
+          .EXPORT     _var_8c226508 ; 013ae8.src, 021b9c.src
+          .EXPORT     _var_8c22650c ; 02171c.src, 021b9c.src
+          .EXPORT     _var_8c22651c ; 02171c.src
+          .EXPORT     _var_8c226520 ; 02171c.src, 021b9c.src
+          .EXPORT     _var_8c226534 ; 013ae8.src, 02171c.src
+          .EXPORT     _var_8c226538 ; 021b9c.src
+          .EXPORT     _var_8c226544 ; 021b9c.src, 0222dc.src
+          .EXPORT     _var_8c22654c ; 021b9c.src, 0222dc.src
+
+          ; 022464
+          .EXPORT     _var_8c226558 ; 021b9c.src, 022464.src, 028258.src
+          .EXPORT     _var_8c22655c ; 012f44.c, 012f44.src, 022464.src, 02d19c.src
+          .EXPORT     _var_8c226560 ; 022464.src, 028258.src, 02d19c.src
+          .EXPORT     _var_8c226564 ; 022464.src, 028258.src, 02b464.src, 02d19c.src
+          .EXPORT     _isFading_8c226568 ; 0129cc.src, 015ab8_title, 016d2c_course_menu, 018784.src, 0193c8_vm_menu, 019e98_main_menu, 01a148.src, 01b19c.src, 01bb48.src, 01c980.src, 01d290.src, 01d7fc.src, 01e27c.src, 01f3c0.src, 022464.src,
+                                         ; 028258.src, 02b464.src, 02d19c.src
+          .EXPORT     _var_8c22656c ; 022464.src, 02b464.src, 02c884.src
+          .EXPORT     _var_8c226570 ; 0222dc.src, 022464.src
+          .EXPORT     _var_8c22657c ; 0222dc.src, 022464.src
+          .EXPORT     _var_8c227d7c ; 022464.src
+          .EXPORT     _var_8c227d80 ; 022464.src
+
+          ; 023310
+          .EXPORT     _var_8c227d84 ; 023310.src, 023938.src, 02412c.src
+          .EXPORT     _var_8c227d88 ; 023310.src, 023938.src, 02412c.src
+          .EXPORT     _var_8c227d8c ; 023310.src, 024280.src
+
+          ; 024b4c
+          .EXPORT     _var_8c227d90 ; 024b4c.src
+          .EXPORT     _var_8c227d9c ; 020214.src, 023310.src, 024280.src, 024b4c.src, 025870.src, 028258.src, 02d19c.src
+          .EXPORT     _var_8c227da0 ; 012f44.c, 012f44.src, 024b4c.src
+          .EXPORT     _var_8c227da4 ; 024b4c.src, 02d19c.src
+          .EXPORT     _var_8c227da8 ; 012f44.c, 012f44.src, 024b4c.src
+          .EXPORT     _var_8c227dac ; 023310.src, 024b4c.src
+          .EXPORT     _var_8c227db0 ; 022bdc.src, 024b4c.src
+          .EXPORT     _var_8c227db4 ; 022bdc.src, 023310.src
+          .EXPORT     _var_8c227db8 ; 024b4c.src, 026710.src, 028258.src, 02d19c.src
+          .EXPORT     _var_8c227dc4 ; 024b4c.src, 026710.src
+          .EXPORT     _var_8c227dd0 ; 013ae8.src, 024b4c.src
+          .EXPORT     _var_8c227dd4 ; 012f44.c, 012f44.src, 025870.src
+          .EXPORT     _var_8c227dd8 ; 024b4c.src
+          .EXPORT     _var_8c227ddc ; 024b4c.src
+          .EXPORT     _var_8c227de0 ; 024b4c.src
+          .EXPORT     _var_8c227de4 ; 024b4c.src
+          .EXPORT     _var_8c227de8 ; 024b4c.src
+          .EXPORT     _var_8c227dec ; 024b4c.src
+          .EXPORT     _var_8c227df0 ; 024b4c.src
+          .EXPORT     _var_8c227df4 ; 024b4c.src
+          .EXPORT     _var_8c227df8 ; 024b4c.src
+          .EXPORT     _var_8c227dfc ; 024b4c.src
+
+          ; 025870
+          .EXPORT     _var_8c227e00 ; 025870.src
+          .EXPORT     _var_8c227e0c ; 025870.src
+          .EXPORT     _var_8c227e10 ; 025870.src
+
+          ; 026710
+          .EXPORT     _var_demoEntryValue_8c227e14 ; 014f54_text.c, 014f54_text.src, 025b98.src, 026710.src, 02c884.src
+          .EXPORT     _var_8c227e18 ; 026710.src
+          .EXPORT     _var_8c227e1c ; 026710.src
+          .EXPORT     _var_8c227e20 ; 012f44.c, 012f44.src, 028258.src
+          .EXPORT     _var_8c227e24 ; 012f44.c, 012f44.src, 026710.src, 028258.src
+
+          ; 028258
+          .EXPORT     _var_8c227e28 ; 028258.src
+          .EXPORT     _var_8c227e2c ; 028258.src
+          .EXPORT     _var_8c22802c ; 028258.src
+          .EXPORT     _var_demoEntryValue_8c22822c ; 014f54_text.c, 014f54_text.src, 028258.src, 02c884.src
+          .EXPORT     _var_8c228230 ; 028258.src
+          .EXPORT     _var_8c228234 ; 012f44.c, 012f44.src, 028258.src
+          .EXPORT     _var_8c228238 ; 028258.src
+          .EXPORT     _var_8c22823c ; 028258.src
+          .EXPORT     _var_8c228240 ; 028258.src
+          .EXPORT     _var_8c228244 ; 028258.src
+          .EXPORT     _var_8c228248 ; 028258.src
+          .EXPORT     _var_8c228268 ; 028258.src
+          .EXPORT     _var_8c228270 ; 028258.src
+          .EXPORT     _var_8c228278 ; 028258.src
+          .EXPORT     _var_8c228288 ; 028258.src
+          .EXPORT     _var_8c228408 ; 028258.src
+          .EXPORT     _var_8c22840c ; 028258.src
+          .EXPORT     _var_8c228410 ; 028258.src
+          .EXPORT     _var_8c228414 ; 028258.src
+          .EXPORT     _var_8c228418 ; 028258.src
+          .EXPORT     _var_8c22841c ; 028258.src
+          .EXPORT     _var_8c228420 ; 028258.src
+          .EXPORT     _var_8c228424 ; 028258.src
+          .EXPORT     _var_8c228428 ; 028258.src
+          .EXPORT     _var_8c22842c ; 028258.src
+          .EXPORT     _var_8c228430 ; 028258.src
+          .EXPORT     _var_8c228434 ; 028258.src
+          .EXPORT     _var_8c228478 ; 028258.src, 02af78.src
+          .EXPORT     _var_8c22847c ; 0129cc.src, 012f44.c, 012f44.src, 028258.src, 02b464.src, 02d19c.src
+          .EXPORT     _var_8c228480 ; 028258.src
+          .EXPORT     _var_8c228484 ; 028258.src
+          .EXPORT     _var_8c228514 ; 028258.src
+          .EXPORT     _var_8c228518 ; 028258.src
+
+          ; 02af78
+          .EXPORT     _var_8c22851c ; 02af78.src, 02c884.src
+          .EXPORT     _var_8c228520 ; 02af78.src, 02c884.src
+          .EXPORT     _var_8c228560 ; 02af78.src, 02c884.src
+          .EXPORT     _var_8c228564 ; 02b2f0.src, 02b464.src
+          .EXPORT     _var_8c2285c4 ; 013ae8.src, 01fa78.src, 020214.src, 022bdc.src, 024280.src, 026710.src, 028258.src, 02b464.src, 02c884.src, 02d19c.src, 02d968.src
+          .EXPORT     _var_8c2285c8 ; 02b2f0.src
+          .EXPORT     _var_8c2285d0 ; 01d7fc.src, 01e27c.src, 01fa78.src, 02b464.src
+          .EXPORT     _var_8c2285d8 ; 02af78.src, 02b464.src, 02c884.src
+          .EXPORT     _var_8c2285dc ; 02af78.src, 02b464.src
+          .EXPORT     _var_8c2285e4 ; 020214.src, 028258.src, 02b464.src
+
+          ; 02b464
+          .EXPORT     _var_8c2285fc ; 02b464.src
+          .EXPORT     _var_8c22861c ; 02b464.src
+          .EXPORT     _var_8c228634 ; 02b464.src
+          .EXPORT     _var_8c22864c ; 024280.src
+          .EXPORT     _var_8c228660 ; 022bdc.src, 023938.src, 02b464.src
+          .EXPORT     _var_8c228664 ; 02b464.src
+          .EXPORT     _var_8c228668 ; 02b464.src
+          .EXPORT     _var_8c22866c ; 02b464.src
+          .EXPORT     _var_8c228670 ; 02b464.src
+          .EXPORT     _var_8c228674 ; 02b464.src
+          .EXPORT     _var_8c228678 ; 02b464.src
+          .EXPORT     _var_8c22867c ; 02b464.src
+          .EXPORT     _var_8c228680 ; 02b464.src
+          .EXPORT     _var_8c228684 ; 02b464.src
+          .EXPORT     _var_8c228688 ; 02b464.src
+          .EXPORT     _var_8c22868c ; 02b464.src
+          .EXPORT     _var_8c228690 ; 02b464.src
+          .EXPORT     _var_8c228694 ; 02b464.src
+          .EXPORT     _var_8c228698 ; 02b464.src
+          .EXPORT     _var_8c22869c ; 02b464.src
+          .EXPORT     _var_8c2286a0 ; 02b464.src
+
+          ; 02c884
+          .EXPORT     _var_8c2286a4 ; 02c884.src
+          .EXPORT     _var_8c228704 ; 012f44.c, 012f44.src, 02c884.src
+          .EXPORT     _var_8c228708 ; 012f44.c, 012f44.src, 013ae8.src, 023310.src, 026710.src, 02af78.src, 02c884.src, 02d19c.src, 02d968.src
+          .EXPORT     _var_8c22870c ; 020214.src, 02c884.src
+          .EXPORT     _var_8c228710 ; 020214.src, 02b464.src, 02c884.src
+          .EXPORT     _var_8c228714 ; 02b464.src, 02c884.src
+          .EXPORT     _var_8c228718 ; 02c884.src, 02d19c.src, 02d968.src
+          .EXPORT     _var_8c228794 ; 02c884.src, 02d06c.src, 02d968.src
+          .EXPORT     _var_8c228798 ; 02c884.src, 02d06c.src, 02d968.src
+          .EXPORT     _var_8c2288d8 ; 02c884.src, 02d06c.src, 02d19c.src
+          .EXPORT     _var_8c2288f8 ; 012f44.c, 012f44.src, 02c884.src, 02d19c.src, 02d968.src
+          .EXPORT     _var_8c2288fc ; 02c884.src
+          .EXPORT     _var_8c228900 ; 02c884.src
+          .EXPORT     _var_8c228908 ; 02c884.src
+          .EXPORT     _var_8c22890c ; 02c884.src
+
+          ; 02d19c
+          .EXPORT     _var_8c228910 ; 02d19c.src, 02d968.src
+          .EXPORT     _var_8c22891c ; 02d19c.src, 02d968.src
+          .EXPORT     _var_8c228928 ; 02d19c.src, 02d968.src
+          .EXPORT     _var_8c228934 ; 02d19c.src, 02d968.src
+          .EXPORT     _var_8c228940 ; 02d19c.src, 02d968.src
+          .EXPORT     _var_8c22894c ; 02d19c.src, 02d968.src
+          .EXPORT     _var_8c228958 ; 02d19c.src
+          .EXPORT     _var_8c22895c ; 02d19c.src, 02d968.src
+          .EXPORT     _var_8c228960 ; 02d06c.src, 02d19c.src, 02d968.src
+
+          ; 02e400
+          .EXPORT     _var_8c228974 ; 02df3c.src, 02e2dc.src, 02e400.src
+          .EXPORT     _var_8c228978 ; 02e2dc.src, 02e400.src
+          .EXPORT     _var_8c2289d8 ; 02e2dc.src, 02e400.src
+          .EXPORT     _var_8c228a38 ; 02e400.src
+          .EXPORT     _var_8c228b38 ; 02e400.src
+          .EXPORT     _var_8c228b3c ; 022bdc.src, 023310.src, 025b98.src, 026710.src, 02e51c.src
+
+          ; 02f0c8
+          .EXPORT     _var_8c228b40 ; 026710.src, 02f0c8.src
+          .EXPORT     _var_8c228b44 ; 026710.src, 02f0c8.src
+          .EXPORT     _var_8c228b48 ; 02f0c8.src
+          .EXPORT     _var_8c228b98 ; 02f0c8.src
+          .EXPORT     _var_8c228b9c ; 02f0c8.src
+          .EXPORT     _var_8c228ba0 ; 02f0c8.src
+
+          ; 02f320
+          .EXPORT     _var_8c228ba4 ; 01614c.src, 02f320.src
+          .EXPORT     _var_8c228ba8 ; 02f320.src
+          .EXPORT     _var_8c228baa ; 02f320.src
+          .EXPORT     _var_8c228bac ; 02f320.src
+          .EXPORT     _var_8c228bae ; 02f320.src
+          .EXPORT     _var_8c229bae ; 02f320.src
+          .EXPORT     _var_8c22bbae ; 02f320.src
+          .EXPORT     _var_8c22dbae ; 02f320.src
+          .EXPORT     _var_8c22fbae ; 02f320.src
+          .EXPORT     _var_8c231bae ; 02f320.src
+          .EXPORT     _var_8c231bb0 ; 02f320.src
+          .EXPORT     _var_8c233bb0 ; 02f320.src
+          .EXPORT     _var_8c235bb0 ; 02f320.src
+          .EXPORT     _var_8c235bb2 ; 02f320.src
+          .EXPORT     _var_8c235bb4 ; 02f320.src
+          .EXPORT     _var_8c235c7c ; 02f320.src
+          .EXPORT     _var_8c235c7e ; 02f320.src
+
+          ; 02fb50_sh4nlfzn
+          .EXPORT     _var_8c235c80 ; 02fb50_sh4nlfzn.src
+          .EXPORT     _var_8c235c84 ; 02fb50_sh4nlfzn.src
           .SECTION    B,DATA,ALIGN=4
 _menuState_8c1bc7a8:
           .RES.L      31

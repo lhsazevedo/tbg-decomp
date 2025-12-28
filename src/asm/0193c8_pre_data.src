@@ -1,184 +1,191 @@
-          .EXPORT     _const_8c035fb8
-          .EXPORT     _const_8c035fcc
-          .EXPORT     _const_8c035fd8
-          .EXPORT     _const_8c035fe4
-          .EXPORT     _const_8c035ff4
-          .EXPORT     _const_8c036000
-          .EXPORT     _const_8c03600c
-          .EXPORT     _const_8c03601c
-          .EXPORT     _const_8c036028
-          .EXPORT     _const_8c036034
-          .EXPORT     _const_8c03604c
-          .EXPORT     _const_8c03605c
-          .EXPORT     _const_8c03606c
-          .EXPORT     _const_8c036084
-          .EXPORT     _const_8c036094
-          .EXPORT     _const_8c0360a4
-          .EXPORT     _const_8c0360b0
-          .EXPORT     _const_8c0360b4
-          .EXPORT     _const_8c0360c0
-          .EXPORT     _const_8c0360d4
-          .EXPORT     _const_8c0360e4
-          .EXPORT     _const_8c0360fc
-          .EXPORT     _const_8c036120
-          .EXPORT     _const_8c036130
-          .EXPORT     _const_8c036148
-          .EXPORT     _const_8c036160
-          .EXPORT     _const_8c03616c
-          .EXPORT     _const_8c036170
-          .EXPORT     _const_8c036180
-          .EXPORT     _const_8c036190
-          .EXPORT     _const_8c03619c
-          .EXPORT     _const_8c0361a8
-          .EXPORT     _const_8c0361b8
-          .EXPORT     _const_8c0361c8
-          .EXPORT     _const_8c0361dc
-          .EXPORT     _const_8c0361ec
-          .EXPORT     _const_8c036200
-          .EXPORT     _const_8c036218
-          .EXPORT     _const_8c036224
-          .EXPORT     _const_8c036234
-          .EXPORT     _const_8c036244
-          .EXPORT     _const_8c036250
-          .EXPORT     _const_8c036264
-          .EXPORT     _const_8c036274
-          .EXPORT     _const_8c03627c
-          .EXPORT     _const_8c03628c
-          .EXPORT     _const_8c036290
-          .EXPORT     _const_8c036298
-          .EXPORT     _const_8c0362ac
-          .EXPORT     _const_8c0362b8
-          .EXPORT     _const_8c0362c4
-          .EXPORT     _const_8c0362f8
-          .EXPORT     _const_8c036334
-          .EXPORT     _const_8c03636c
-          .EXPORT     _const_8c036398
-          .EXPORT     _const_8c0363dc
-          .EXPORT     _const_8c036430
-          .EXPORT     _const_8c036470
-          .EXPORT     _const_8c0364ac
-          .EXPORT     _const_8c0364e8
-          .EXPORT     _const_8c036520
-          .EXPORT     _const_8c03654c
-          .EXPORT     _const_8c036574
-          .EXPORT     _const_8c0365b4
-          .EXPORT     _const_8c0365ec
-          .EXPORT     _const_8c036624
-          .EXPORT     _const_8c03665c
-          .EXPORT     _const_8c036698
-          .EXPORT     _const_8c0366c0
-          .EXPORT     _const_8c036704
-          .EXPORT     _const_8c036748
-          .EXPORT     _const_8c036778
-          .EXPORT     _const_8c0367bc
-          .EXPORT     _const_8c0367dc
-          .EXPORT     _const_8c036828
-          .EXPORT     _const_8c036848
-          .EXPORT     _const_8c036884
-          .EXPORT     _const_8c0368c8
-          .EXPORT     _const_8c036908
-          .EXPORT     _const_8c03693c
-          .EXPORT     _const_8c036964
-          .EXPORT     _const_8c036984
-          .EXPORT     _const_8c0369a8
-          .EXPORT     _const_8c0369e8
-          .EXPORT     _const_8c036a08
-          .EXPORT     _const_8c036a40
-          .EXPORT     _const_8c036a5c
-          .EXPORT     _const_8c036a94
-          .EXPORT     _const_8c036ad4
-          .EXPORT     _const_8c036b0c
-          .EXPORT     _const_8c036b58
-          .EXPORT     _const_8c036b98
-          .EXPORT     _const_8c036bd8
-          .EXPORT     _const_8c036c20
-          .EXPORT     _const_8c036c5c
-          .EXPORT     _const_8c036c7c
-          .EXPORT     _const_8c036ca8
-          .EXPORT     _const_8c036ce8
-          .EXPORT     _const_8c036d34
-          .EXPORT     _const_8c036d74
-          .EXPORT     _const_8c036db0
-          .EXPORT     _const_8c036dd0
-          .EXPORT     _const_8c036df0
-          .EXPORT     _const_8c036e30
-          .EXPORT     _const_8c036e80
-          .EXPORT     _const_8c036eb0
-          .EXPORT     _const_8c036ee4
-          .EXPORT     _const_8c036f24
-          .EXPORT     _const_8c036f60
-          .EXPORT     _const_8c036f84
-          .EXPORT     _const_8c036fd0
-          .EXPORT     _const_8c037004
-          .EXPORT     _const_8c037054
-          .EXPORT     _const_8c037078
-          .EXPORT     _const_8c0370b8
-          .EXPORT     _const_8c0370f4
-          .EXPORT     _const_8c037120
-          .EXPORT     _const_8c037144
-          .EXPORT     _const_8c037188
-          .EXPORT     _const_8c0371b0
-          .EXPORT     _const_8c0371f0
-          .EXPORT     _const_8c037228
-          .EXPORT     _const_8c037264
-          .EXPORT     _const_8c0372a8
-          .EXPORT     _const_8c0372f4
-          .EXPORT     _const_8c037334
-          .EXPORT     _const_8c037374
-          .EXPORT     _const_8c0373b8
-          .EXPORT     _const_8c037410
-          .EXPORT     _const_8c037434
-          .EXPORT     _const_8c037474
-          .EXPORT     _const_8c0374b8
-          .EXPORT     _const_8c0374e0
-          .EXPORT     _const_8c037528
-          .EXPORT     _const_8c037568
-          .EXPORT     _const_8c0375b4
-          .EXPORT     _const_8c0375f0
-          .EXPORT     _const_8c037630
-          .EXPORT     _const_8c037668
-          .EXPORT     _const_8c037680
-          .EXPORT     _const_8c0376b4
-          .EXPORT     _const_8c037700
-          .EXPORT     _const_8c037748
-          .EXPORT     _const_8c037794
-          .EXPORT     _const_8c0377e0
-          .EXPORT     _const_8c03782c
-          .EXPORT     _const_8c037874
-          .EXPORT     _const_8c0378ac
-          .EXPORT     _const_8c0378e8
-          .EXPORT     _const_8c037924
-          .EXPORT     _const_8c03794c
-          .EXPORT     _const_8c037970
-          .EXPORT     _const_8c0379ac
-          .EXPORT     _const_8c0379c8
-          .EXPORT     _const_8c037a08
-          .EXPORT     _const_8c037a34
-          .EXPORT     _const_8c037a70
-          .EXPORT     _const_8c037aa0
-          .EXPORT     _const_8c037aec
-          .EXPORT     _const_8c037b14
-          .EXPORT     _const_8c037b60
-          .EXPORT     _const_8c037bb0
-          .EXPORT     _const_8c037bfc
-          .EXPORT     _const_8c037c30
-          .EXPORT     _const_8c037c6c
-          .EXPORT     _const_8c037c94
-          .EXPORT     _const_8c037cd4
-          .EXPORT     _const_8c037cfc
-          .EXPORT     _const_8c037d40
-          .EXPORT     _const_8c037d78
-          .EXPORT     _const_8c037dcc
-          .EXPORT     _const_8c037dec
-          .EXPORT     _const_8c037e1c
-          .EXPORT     _const_8c037e38
-          .EXPORT     _const_8c037e48
-          .EXPORT     _const_8c037e54
-          .EXPORT     _const_8c037e60
-          .EXPORT     _const_8c037e78
-          .EXPORT     _const_8c037ea8
-          .EXPORT     _const_8c037ec8
-          .EXPORT     _const_8c037ecc
+          ; 03bd80_sectionD
+          .EXPORT     _const_8c035fb8 ; 03bd80_sectionD.src
+          .EXPORT     _const_8c035fcc ; 03bd80_sectionD.src
+          .EXPORT     _const_8c035fd8 ; 03bd80_sectionD.src
+          .EXPORT     _const_8c035fe4 ; 03bd80_sectionD.src
+          .EXPORT     _const_8c035ff4 ; 03bd80_sectionD.src
+          .EXPORT     _const_8c036000 ; 03bd80_sectionD.src
+          .EXPORT     _const_8c03600c ; 03bd80_sectionD.src
+          .EXPORT     _const_8c03601c ; 03bd80_sectionD.src
+          .EXPORT     _const_8c036028 ; 03bd80_sectionD.src
+          .EXPORT     _const_8c036034 ; 03bd80_sectionD.src
+          .EXPORT     _const_8c03604c ; 03bd80_sectionD.src
+          .EXPORT     _const_8c03605c ; 03bd80_sectionD.src
+          .EXPORT     _const_8c03606c ; 03bd80_sectionD.src
+          .EXPORT     _const_8c036084 ; 03bd80_sectionD.src
+          .EXPORT     _const_8c036094 ; 03bd80_sectionD.src
+
+          ; 01614c
+          .EXPORT     _const_8c0360a4 ; 01614c.src
+          .EXPORT     _const_8c0360b0 ; 01614c.src
+          .EXPORT     _const_8c0360b4 ; 01614c.src
+          .EXPORT     _const_8c0360c0 ; 01614c.src
+          .EXPORT     _const_8c0360d4 ; 01614c.src
+          .EXPORT     _const_8c0360e4 ; 01614c.src
+          .EXPORT     _const_8c0360fc ; 01614c.src
+          .EXPORT     _const_8c036120 ; 01614c.src
+          .EXPORT     _const_8c036130 ; 01614c.src
+          .EXPORT     _const_8c036148 ; 01614c.src
+          .EXPORT     _const_8c036160 ; 01614c.src, 03bd80_sectionD.src
+          .EXPORT     _const_8c03616c ; 03bd80_sectionD.src
+          .EXPORT     _const_8c036170 ; 03bd80_sectionD.src
+          .EXPORT     _const_8c036180 ; 03bd80_sectionD.src
+          .EXPORT     _const_8c036190 ; 03bd80_sectionD.src
+          .EXPORT     _const_8c03619c ; 03bd80_sectionD.src
+          .EXPORT     _const_8c0361a8 ; 03bd80_sectionD.src
+          .EXPORT     _const_8c0361b8 ; 03bd80_sectionD.src
+          .EXPORT     _const_8c0361c8 ; 03bd80_sectionD.src
+          .EXPORT     _const_8c0361dc ; 03bd80_sectionD.src
+          .EXPORT     _const_8c0361ec ; 03bd80_sectionD.src
+          .EXPORT     _const_8c036200 ; 03bd80_sectionD.src
+          .EXPORT     _const_8c036218 ; 03bd80_sectionD.src
+          .EXPORT     _const_8c036224 ; 03bd80_sectionD.src
+          .EXPORT     _const_8c036234 ; 03bd80_sectionD.src
+          .EXPORT     _const_8c036244 ; 03bd80_sectionD.src
+          .EXPORT     _const_8c036250 ; 03bd80_sectionD.src
+          .EXPORT     _const_8c036264 ; 03bd80_sectionD.src
+          .EXPORT     _const_8c036274 ; 03bd80_sectionD.src
+          .EXPORT     _const_8c03627c ; 03bd80_sectionD.src
+
+          ; 016d2c_course_menu
+          .EXPORT     _const_8c03628c ; 016d2c_course_menu.c, 016d2c_course_menu.src, 03bd80_sectionD.src
+          .EXPORT     _const_8c036290 ; 016d2c_course_menu.src
+          .EXPORT     _const_8c036298 ; 016d2c_course_menu.src
+          .EXPORT     _const_8c0362ac ; 016d2c_course_menu.src
+          .EXPORT     _const_8c0362b8 ; 016d2c_course_menu.src
+          .EXPORT     _const_8c0362c4 ; 03bd80_sectionD.src
+          .EXPORT     _const_8c0362f8 ; 03bd80_sectionD.src
+          .EXPORT     _const_8c036334 ; 03bd80_sectionD.src
+          .EXPORT     _const_8c03636c ; 03bd80_sectionD.src
+          .EXPORT     _const_8c036398 ; 03bd80_sectionD.src
+          .EXPORT     _const_8c0363dc ; 03bd80_sectionD.src
+          .EXPORT     _const_8c036430 ; 03bd80_sectionD.src
+          .EXPORT     _const_8c036470 ; 03bd80_sectionD.src
+          .EXPORT     _const_8c0364ac ; 03bd80_sectionD.src
+          .EXPORT     _const_8c0364e8 ; 03bd80_sectionD.src
+          .EXPORT     _const_8c036520 ; 03bd80_sectionD.src
+          .EXPORT     _const_8c03654c ; 03bd80_sectionD.src
+          .EXPORT     _const_8c036574 ; 03bd80_sectionD.src
+          .EXPORT     _const_8c0365b4 ; 03bd80_sectionD.src
+          .EXPORT     _const_8c0365ec ; 03bd80_sectionD.src
+          .EXPORT     _const_8c036624 ; 03bd80_sectionD.src
+          .EXPORT     _const_8c03665c ; 03bd80_sectionD.src
+          .EXPORT     _const_8c036698 ; 03bd80_sectionD.src
+          .EXPORT     _const_8c0366c0 ; 03bd80_sectionD.src
+          .EXPORT     _const_8c036704 ; 03bd80_sectionD.src
+          .EXPORT     _const_8c036748 ; 03bd80_sectionD.src
+          .EXPORT     _const_8c036778 ; 03bd80_sectionD.src
+          .EXPORT     _const_8c0367bc ; 03bd80_sectionD.src
+          .EXPORT     _const_8c0367dc ; 03bd80_sectionD.src
+          .EXPORT     _const_8c036828 ; 03bd80_sectionD.src
+          .EXPORT     _const_8c036848 ; 03bd80_sectionD.src
+          .EXPORT     _const_8c036884 ; 03bd80_sectionD.src
+          .EXPORT     _const_8c0368c8 ; 03bd80_sectionD.src
+          .EXPORT     _const_8c036908 ; 03bd80_sectionD.src
+          .EXPORT     _const_8c03693c ; 03bd80_sectionD.src
+          .EXPORT     _const_8c036964 ; 03bd80_sectionD.src
+          .EXPORT     _const_8c036984 ; 03bd80_sectionD.src
+          .EXPORT     _const_8c0369a8 ; 03bd80_sectionD.src
+          .EXPORT     _const_8c0369e8 ; 03bd80_sectionD.src
+          .EXPORT     _const_8c036a08 ; 03bd80_sectionD.src
+          .EXPORT     _const_8c036a40 ; 03bd80_sectionD.src
+          .EXPORT     _const_8c036a5c ; 03bd80_sectionD.src
+          .EXPORT     _const_8c036a94 ; 03bd80_sectionD.src
+          .EXPORT     _const_8c036ad4 ; 03bd80_sectionD.src
+          .EXPORT     _const_8c036b0c ; 03bd80_sectionD.src
+          .EXPORT     _const_8c036b58 ; 03bd80_sectionD.src
+          .EXPORT     _const_8c036b98 ; 03bd80_sectionD.src
+          .EXPORT     _const_8c036bd8 ; 03bd80_sectionD.src
+          .EXPORT     _const_8c036c20 ; 03bd80_sectionD.src
+          .EXPORT     _const_8c036c5c ; 03bd80_sectionD.src
+          .EXPORT     _const_8c036c7c ; 03bd80_sectionD.src
+          .EXPORT     _const_8c036ca8 ; 03bd80_sectionD.src
+          .EXPORT     _const_8c036ce8 ; 03bd80_sectionD.src
+          .EXPORT     _const_8c036d34 ; 03bd80_sectionD.src
+          .EXPORT     _const_8c036d74 ; 03bd80_sectionD.src
+          .EXPORT     _const_8c036db0 ; 03bd80_sectionD.src
+          .EXPORT     _const_8c036dd0 ; 03bd80_sectionD.src
+          .EXPORT     _const_8c036df0 ; 03bd80_sectionD.src
+          .EXPORT     _const_8c036e30 ; 03bd80_sectionD.src
+          .EXPORT     _const_8c036e80 ; 03bd80_sectionD.src
+          .EXPORT     _const_8c036eb0 ; 03bd80_sectionD.src
+          .EXPORT     _const_8c036ee4 ; 03bd80_sectionD.src
+          .EXPORT     _const_8c036f24 ; 03bd80_sectionD.src
+          .EXPORT     _const_8c036f60 ; 03bd80_sectionD.src
+          .EXPORT     _const_8c036f84 ; 03bd80_sectionD.src
+          .EXPORT     _const_8c036fd0 ; 03bd80_sectionD.src
+          .EXPORT     _const_8c037004 ; 03bd80_sectionD.src
+          .EXPORT     _const_8c037054 ; 03bd80_sectionD.src
+          .EXPORT     _const_8c037078 ; 03bd80_sectionD.src
+          .EXPORT     _const_8c0370b8 ; 03bd80_sectionD.src
+          .EXPORT     _const_8c0370f4 ; 03bd80_sectionD.src
+          .EXPORT     _const_8c037120 ; 03bd80_sectionD.src
+          .EXPORT     _const_8c037144 ; 03bd80_sectionD.src
+          .EXPORT     _const_8c037188 ; 03bd80_sectionD.src
+          .EXPORT     _const_8c0371b0 ; 03bd80_sectionD.src
+          .EXPORT     _const_8c0371f0 ; 03bd80_sectionD.src
+          .EXPORT     _const_8c037228 ; 03bd80_sectionD.src
+          .EXPORT     _const_8c037264 ; 03bd80_sectionD.src
+          .EXPORT     _const_8c0372a8 ; 03bd80_sectionD.src
+          .EXPORT     _const_8c0372f4 ; 03bd80_sectionD.src
+          .EXPORT     _const_8c037334 ; 03bd80_sectionD.src
+          .EXPORT     _const_8c037374 ; 03bd80_sectionD.src
+          .EXPORT     _const_8c0373b8 ; 03bd80_sectionD.src
+          .EXPORT     _const_8c037410 ; 03bd80_sectionD.src
+          .EXPORT     _const_8c037434 ; 03bd80_sectionD.src
+          .EXPORT     _const_8c037474 ; 03bd80_sectionD.src
+          .EXPORT     _const_8c0374b8 ; 03bd80_sectionD.src
+          .EXPORT     _const_8c0374e0 ; 03bd80_sectionD.src
+          .EXPORT     _const_8c037528 ; 03bd80_sectionD.src
+          .EXPORT     _const_8c037568 ; 03bd80_sectionD.src
+          .EXPORT     _const_8c0375b4 ; 03bd80_sectionD.src
+          .EXPORT     _const_8c0375f0 ; 03bd80_sectionD.src
+          .EXPORT     _const_8c037630 ; 03bd80_sectionD.src
+          .EXPORT     _const_8c037668 ; 03bd80_sectionD.src
+          .EXPORT     _const_8c037680 ; 03bd80_sectionD.src
+          .EXPORT     _const_8c0376b4 ; 03bd80_sectionD.src
+          .EXPORT     _const_8c037700 ; 03bd80_sectionD.src
+          .EXPORT     _const_8c037748 ; 03bd80_sectionD.src
+          .EXPORT     _const_8c037794 ; 03bd80_sectionD.src
+          .EXPORT     _const_8c0377e0 ; 03bd80_sectionD.src
+          .EXPORT     _const_8c03782c ; 03bd80_sectionD.src
+          .EXPORT     _const_8c037874 ; 03bd80_sectionD.src
+          .EXPORT     _const_8c0378ac ; 03bd80_sectionD.src
+          .EXPORT     _const_8c0378e8 ; 03bd80_sectionD.src
+          .EXPORT     _const_8c037924 ; 03bd80_sectionD.src
+          .EXPORT     _const_8c03794c ; 03bd80_sectionD.src
+          .EXPORT     _const_8c037970 ; 03bd80_sectionD.src
+          .EXPORT     _const_8c0379ac ; 03bd80_sectionD.src
+          .EXPORT     _const_8c0379c8 ; 03bd80_sectionD.src
+          .EXPORT     _const_8c037a08 ; 03bd80_sectionD.src
+          .EXPORT     _const_8c037a34 ; 03bd80_sectionD.src
+          .EXPORT     _const_8c037a70 ; 03bd80_sectionD.src
+          .EXPORT     _const_8c037aa0 ; 03bd80_sectionD.src
+          .EXPORT     _const_8c037aec ; 03bd80_sectionD.src
+          .EXPORT     _const_8c037b14 ; 03bd80_sectionD.src
+          .EXPORT     _const_8c037b60 ; 03bd80_sectionD.src
+          .EXPORT     _const_8c037bb0 ; 03bd80_sectionD.src
+          .EXPORT     _const_8c037bfc ; 03bd80_sectionD.src
+          .EXPORT     _const_8c037c30 ; 03bd80_sectionD.src
+          .EXPORT     _const_8c037c6c ; 03bd80_sectionD.src
+          .EXPORT     _const_8c037c94 ; 03bd80_sectionD.src
+          .EXPORT     _const_8c037cd4 ; 03bd80_sectionD.src
+          .EXPORT     _const_8c037cfc ; 03bd80_sectionD.src
+          .EXPORT     _const_8c037d40 ; 03bd80_sectionD.src
+          .EXPORT     _const_8c037d78 ; 03bd80_sectionD.src
+          .EXPORT     _const_8c037dcc ; 03bd80_sectionD.src
+          .EXPORT     _const_8c037dec ; 03bd80_sectionD.src
+          .EXPORT     _const_8c037e1c ; 03bd80_sectionD.src
+          .EXPORT     _const_8c037e38 ; 03bd80_sectionD.src
+          .EXPORT     _const_8c037e48 ; 03bd80_sectionD.src
+          .EXPORT     _const_8c037e54 ; 03bd80_sectionD.src
+
+          ; 018784
+          .EXPORT     _const_8c037e60 ; 018784.src
+          .EXPORT     _const_8c037e78 ; 018784.src
+          .EXPORT     _const_8c037ea8 ; 018784.src
+          .EXPORT     _const_8c037ec8 ; 018784.src
+          .EXPORT     _const_8c037ecc ; 018784.src
           .SECTION    C, DATA, ALIGN=4
 _const_8c035fb8:        ; from ghidra
           ;.SDATA      "common_parts.dat"

@@ -805,802 +805,145 @@
           .IMPORT     _const_8c03b950
           .IMPORT     _const_8c03b95c
           .IMPORT     _const_8c03b968
-          .EXPORT     _init_mainMenuResourceGroup_8c044264 ; 016d2c
-          .EXPORT     _init_8c044274 ; 01e27c
-          .EXPORT     _init_8c044284 ; 01e27c
-          .EXPORT     _init_8c044294 ; 01614c
-          .EXPORT     _init_8c04429c ; 01614c
-          .EXPORT     _init_courseMenuButtons_8c04442c ; 016d2c
-          .EXPORT     _titleResourceGroup_8c044254
-          .EXPORT     _init_8c044680
-          .EXPORT     _init_8c0446b8
-          .EXPORT     _init_8c0446e0
-          .EXPORT     _init_8c0446f8
-          .EXPORT     _init_8c044708
-          .EXPORT     _init_8c044718
-          .EXPORT     _init_8c044728
-          .EXPORT     _init_8c044748
-          .EXPORT     _init_8c044760
-          .EXPORT     _init_8c044778
-          .EXPORT     _init_8c044790
-          .EXPORT     _init_8c0447b0
-          .EXPORT     _init_8c0447d0
-          .EXPORT     _init_8c0447e0
-          .EXPORT     _init_8c0447f0
-          .EXPORT     _init_8c044808
-          .EXPORT     _init_8c04480f
-          .EXPORT     _init_8c044820
-          .EXPORT     _init_8c044848
-          .EXPORT     _init_8c044858
-          .EXPORT     _init_8c044868
-          .EXPORT     _init_8c044878
-          .EXPORT     _init_8c044888
-          .EXPORT     _init_8c044898
-          .EXPORT     _init_8c0448a8
-          .EXPORT     _init_8c0448c0
-          .EXPORT     _init_8c0448d8
-          .EXPORT     _init_8c0448f8
-          .EXPORT     _init_8c044910
-          .EXPORT     _init_8c044928
-          .EXPORT     _init_8c044948
-          .EXPORT     _init_8c044960
-          .EXPORT     _init_8c044978
-          .EXPORT     _init_8c044990
-          .EXPORT     _init_8c0449a8
-          .EXPORT     _init_8c0449c0
-          .EXPORT     _init_8c0449d8
-          .EXPORT     _init_8c0449f0
-          .EXPORT     _init_8c044a08
-          .EXPORT     _init_8c044a20
-          .EXPORT     _init_8c044a30
-          .EXPORT     _init_8c044a40
-          .EXPORT     _init_8c044a50
-          .EXPORT     _init_8c044a60
-          .EXPORT     _init_8c044a70
-          .EXPORT     _init_8c044a80
-          .EXPORT     _init_8c044aa0
-          .EXPORT     _init_8c044ab0
-          .EXPORT     _init_8c044ab8
-          .EXPORT     _init_8c044ad0
-          .EXPORT     _init_8c044ae8
-          .EXPORT     _init_8c044b00
-          .EXPORT     _init_8c044b18
-          .EXPORT     _init_8c044b30
-          .EXPORT     _init_8c044b40
-          .EXPORT     _init_8c044b50
-          .EXPORT     _init_8c044b68
-          .EXPORT     _init_8c044b80
-          .EXPORT     _init_8c044b98
-          .EXPORT     _init_8c044bb0
-          .EXPORT     _init_8c044bc0
-          .EXPORT     _init_8c044bd0
-          .EXPORT     _init_8c044be0
-          .EXPORT     _init_8c044bf8
-          .EXPORT     _init_dialogSequences_8c044c08
-          .EXPORT     _init_8c044d10
-          .EXPORT     _init_routeInfoTime_8c044d2e
-          .EXPORT     _init_8c044d40
-          .EXPORT     _init_saveNames_8c044d50
-          .EXPORT     _init_vmIconsPositions_8c044d7c
-          .EXPORT     _init_vmuStatusMessages_8c044dc4
-          .EXPORT     _init_8c044de0
-          .EXPORT     _init_8c044de8
-          .EXPORT     _init_8c044dec
-          .EXPORT     _init_8c044df8
-          .EXPORT     _init_8c044dfc
-          .EXPORT     _init_8c044e0c
-          .EXPORT     _init_8c044e1c
-          .EXPORT     _init_8c044e28
-          .EXPORT     _init_8c044e38
-          .EXPORT     _init_8c044e48
-          .EXPORT     _init_8c044e50
-          .EXPORT     _init_8c044e54
-          .EXPORT     _init_8c044e90
-          .EXPORT     _init_8c044ea0
-          .EXPORT     _init_8c044ea1
-          .EXPORT     _init_8c044ea9
-          .EXPORT     _init_8c044eaf
-          .EXPORT     _init_8c044eb7
-          .EXPORT     _init_8c044ebc
-          .EXPORT     _init_8c044ec0
-          .EXPORT     _init_8c044ec4
-          .EXPORT     _init_8c044ec8
-          .EXPORT     _init_8c044eda
-          .EXPORT     _init_8c044eff
-          .EXPORT     _init_8c044f24
-          .EXPORT     _init_8c044f28
-          .EXPORT     _init_8c044f2c
-          .EXPORT     _init_8c044f30
-          .EXPORT     _init_8c044f37
-          .EXPORT     _init_8c044f3b
-          .EXPORT     _init_8c044f41
-          .EXPORT     _init_8c044f44
-          .EXPORT     _init_8c044f48
-          .EXPORT     _init_8c044f4c
-          .EXPORT     _init_8c044f51
-          .EXPORT     _init_8c044f56
-          .EXPORT     _init_8c044f5b
-          .EXPORT     _init_8c044f5f
-          .EXPORT     _init_8c044f63
-          .EXPORT     _init_8c044f6b
-          .EXPORT     _init_8c044f73
-          .EXPORT     _init_8c044f79
-          .EXPORT     _init_8c044f7d
-          .EXPORT     _init_8c044f82
-          .EXPORT     _init_8c044f87
-          .EXPORT     _init_8c044f8d
-          .EXPORT     _init_8c044f92
-          .EXPORT     _init_8c044f96
-          .EXPORT     _init_8c044f9a
-          .EXPORT     _init_8c044f9e
-          .EXPORT     _init_8c044fa1
-          .EXPORT     _init_8c044fa4
-          .EXPORT     _init_8c044fab
-          .EXPORT     _init_8c044fb0
-          .EXPORT     _init_8c044fb5
-          .EXPORT     _init_8c044fba
-          .EXPORT     _init_8c044fc5
-          .EXPORT     _init_8c044fc9
-          .EXPORT     _init_8c044fcd
-          .EXPORT     _init_8c044fd0
-          .EXPORT     _init_8c044fd3
-          .EXPORT     _init_8c044fd6
-          .EXPORT     _init_8c044fd9
-          .EXPORT     _init_8c044fde
-          .EXPORT     _init_8c044fe3
-          .EXPORT     _init_8c044fe8
-          .EXPORT     _init_8c044fed
-          .EXPORT     _init_8c044ff1
-          .EXPORT     _init_8c044ff5
-          .EXPORT     _init_8c044ffc
-          .EXPORT     _init_8c045000
-          .EXPORT     _init_8c0450d8
-          .EXPORT     _init_8c0450e8
-          .EXPORT     _init_8c0450f8
-          .EXPORT     _init_8c045108
-          .EXPORT     _init_8c045118
-          .EXPORT     _init_8c045128
-          .EXPORT     _init_8c045138
-          .EXPORT     _init_8c045148
-          .EXPORT     _init_8c045160
-          .EXPORT     _init_8c045170
-          .EXPORT     _init_8c045174
-          .EXPORT     _init_8c0451a0
-          .EXPORT     _init_8c0451b4
-          .EXPORT     _init_8c0451b5
-          .EXPORT     _init_8c0451c0
-          .EXPORT     _init_8c0451ec
-          .EXPORT     _init_8c0451f8
-          .EXPORT     _init_8c045208
-          .EXPORT     _init_8c04522c
-          .EXPORT     _init_8c045244
-          .EXPORT     _init_8c04525c
-          .EXPORT     _init_8c045278
-          .EXPORT     _init_8c04528c
-          .EXPORT     _init_8c045290
-          .EXPORT     _init_8c045324
-          .EXPORT     _init_8c045334
-          .EXPORT     _init_8c045354
-          .EXPORT     _init_8c045364
-          .EXPORT     _init_8c045374
-          .EXPORT     _init_8c0453b4
-          .EXPORT     _init_8c045414
-          .EXPORT     _init_8c045420
-          .EXPORT     _init_8c04542c
-          .EXPORT     _init_8c045438
-          .EXPORT     _init_8c045498
-          .EXPORT     _init_8c0454f8
-          .EXPORT     _init_8c045558
-          .EXPORT     _init_8c045568
-          .EXPORT     _init_8c045578
-          .EXPORT     _init_8c045588
-          .EXPORT     _init_8c045598
-          .EXPORT     _init_8c0455a8
-          .EXPORT     _init_8c0455b4
-          .EXPORT     _init_8c0455c4
-          .EXPORT     _init_8c0455d4
-          .EXPORT     _init_8c0455e4
-          .EXPORT     _init_8c0455e8
-          .EXPORT     _init_8c0455fc
-          .EXPORT     _init_8c045610
-          .EXPORT     _init_8c045624
-          .EXPORT     _init_8c045638
-          .EXPORT     _init_8c04563c
-          .EXPORT     _init_8c045640
-          .EXPORT     _init_8c045674
-          .EXPORT     _init_8c045b60
-          .EXPORT     _init_8c045ee4
-          .EXPORT     _init_8c046000
-          .EXPORT     _init_8c04608a
-          .EXPORT     _init_8c0460b0
-          .EXPORT     _init_8c0460bc
-          .EXPORT     _init_8c0460bd
-          .EXPORT     _init_8c0460c8
-          .EXPORT     _init_8c0460cc
-          .EXPORT     _init_8c0460d0
-          .EXPORT     _init_8c0460d4
-          .EXPORT     _init_8c0461c8
-          .EXPORT     _init_8c046208
-          .EXPORT     _init_8c04622c
-          .EXPORT     _init_8c04623c
-          .EXPORT     _init_8c04650c
-          .EXPORT     _init_8c046518
-          .EXPORT     _init_8c046524
-          .EXPORT     _init_8c0465d8
-          .EXPORT     _init_8c0466a4
-          .EXPORT     _init_8c046758
-          .EXPORT     _init_8c04675c
-          .EXPORT     _init_8c046f54
-          .EXPORT     _init_8c046f58
-          .EXPORT     _init_8c046f5e
-          .EXPORT     _init_8c046f62
-          .EXPORT     _init_8c046f66
-          .EXPORT     _init_8c046f6a
-          .EXPORT     _init_8c046f6e
-          .EXPORT     _init_8c046f74
-          .EXPORT     _init_8c046f78
-          .EXPORT     _init_8c046f7c
-          .EXPORT     _init_8c046f82
-          .EXPORT     _init_8c046f8a
-          .EXPORT     _init_8c046f90
-          .EXPORT     _init_8c046f98
-          .EXPORT     _init_8c046f9e
-          .EXPORT     _init_8c046fa2
-          .EXPORT     _init_8c046fa8
-          .EXPORT     _init_8c046fac
-          .EXPORT     _init_8c046fb0
-          .EXPORT     _init_8c046fb6
-          .EXPORT     _init_8c046fba
-          .EXPORT     _init_8c046fbe
-          .EXPORT     _init_8c046fc2
-          .EXPORT     _init_8c046fc8
-          .EXPORT     _init_8c046fcc
-          .EXPORT     _init_8c046fd0
-          .EXPORT     _init_8c046fd4
-          .EXPORT     _init_8c046fd8
-          .EXPORT     _init_8c046fdc
-          .EXPORT     _init_8c046fe0
-          .EXPORT     _init_8c046fe6
-          .EXPORT     _init_8c046fee
-          .EXPORT     _init_8c046ff4
-          .EXPORT     _init_8c046ffc
-          .EXPORT     _init_8c047002
-          .EXPORT     _init_8c047006
-          .EXPORT     _init_8c047010
-          .EXPORT     _init_8c047014
-          .EXPORT     _init_8c047022
-          .EXPORT     _init_8c047028
-          .EXPORT     _init_8c047036
-          .EXPORT     _init_8c04703a
-          .EXPORT     _init_8c04703e
-          .EXPORT     _init_8c047044
-          .EXPORT     _init_8c047048
-          .EXPORT     _init_8c04704c
-          .EXPORT     _init_8c047050
-          .EXPORT     _init_8c047054
-          .EXPORT     _init_8c047058
-          .EXPORT     _init_8c04705c
-          .EXPORT     _init_8c047062
-          .EXPORT     _init_8c047066
-          .EXPORT     _init_8c04706a
-          .EXPORT     _init_8c047070
-          .EXPORT     _init_8c047074
-          .EXPORT     _init_8c047078
-          .EXPORT     _init_8c04707e
-          .EXPORT     _init_8c047086
-          .EXPORT     _init_8c047094
-          .EXPORT     _init_8c04709a
-          .EXPORT     _init_8c04709e
-          .EXPORT     _init_8c0470a2
-          .EXPORT     _init_8c0470a8
-          .EXPORT     _init_8c0470ac
-          .EXPORT     _init_8c0470b0
-          .EXPORT     _init_8c0470b6
-          .EXPORT     _init_8c0470ba
-          .EXPORT     _init_8c0470be
-          .EXPORT     _init_8c0470c2
-          .EXPORT     _init_8c0470c6
-          .EXPORT     _init_8c0470ca
-          .EXPORT     _init_8c0470d0
-          .EXPORT     _init_8c0470d4
-          .EXPORT     _init_8c0470d8
-          .EXPORT     _init_8c0470dc
-          .EXPORT     _init_8c0470e0
-          .EXPORT     _init_8c0470e4
-          .EXPORT     _init_8c0470e8
-          .EXPORT     _init_8c0470ee
-          .EXPORT     _init_8c0470f2
-          .EXPORT     _init_8c0470f6
-          .EXPORT     _init_8c0470fa
-          .EXPORT     _init_8c047100
-          .EXPORT     _init_8c047104
-          .EXPORT     _init_8c047108
-          .EXPORT     _init_8c04710c
-          .EXPORT     _init_8c047110
-          .EXPORT     _init_8c047114
-          .EXPORT     _init_8c047118
-          .EXPORT     _init_8c04711c
-          .EXPORT     _init_8c04712e
-          .EXPORT     _init_8c04713c
-          .EXPORT     _init_8c047142
-          .EXPORT     _init_8c047146
-          .EXPORT     _init_8c04714a
-          .EXPORT     _init_8c047150
-          .EXPORT     _init_8c047154
-          .EXPORT     _init_8c04715a
-          .EXPORT     _init_8c04715e
-          .EXPORT     _init_8c047164
-          .EXPORT     _init_8c047168
-          .EXPORT     _init_8c04716c
-          .EXPORT     _init_8c047172
-          .EXPORT     _init_8c04717a
-          .EXPORT     _init_8c047180
-          .EXPORT     _init_8c047184
-          .EXPORT     _init_8c047188
-          .EXPORT     _init_8c047190
-          .EXPORT     _init_8c047194
-          .EXPORT     _init_8c04719c
-          .EXPORT     _init_8c0471a0
-          .EXPORT     _init_8c0471a4
-          .EXPORT     _init_8c0471a8
-          .EXPORT     _init_8c0471ac
-          .EXPORT     _init_8c0471b0
-          .EXPORT     _init_8c0471b4
-          .EXPORT     _init_8c0471b8
-          .EXPORT     _init_8c0471be
-          .EXPORT     _init_8c0471c2
-          .EXPORT     _init_8c0471c6
-          .EXPORT     _init_8c0471cc
-          .EXPORT     _init_8c0471d0
-          .EXPORT     _init_8c0471da
-          .EXPORT     _init_8c0471de
-          .EXPORT     _init_8c0471e2
-          .EXPORT     _init_8c0471e6
-          .EXPORT     _init_8c0471ea
-          .EXPORT     _init_8c0471ee
-          .EXPORT     _init_8c0471f2
-          .EXPORT     _init_8c0471f6
-          .EXPORT     _init_8c0471fa
-          .EXPORT     _init_8c0471fe
-          .EXPORT     _init_8c047202
-          .EXPORT     _init_8c047206
-          .EXPORT     _init_8c04720e
-          .EXPORT     _init_8c047212
-          .EXPORT     _init_8c047216
-          .EXPORT     _init_8c04721a
-          .EXPORT     _init_8c04721e
-          .EXPORT     _init_8c047222
-          .EXPORT     _init_8c047228
-          .EXPORT     _init_8c04722c
-          .EXPORT     _init_8c047230
-          .EXPORT     _init_8c047234
-          .EXPORT     _init_8c04723a
-          .EXPORT     _init_8c04723e
-          .EXPORT     _init_8c047242
-          .EXPORT     _init_8c047248
-          .EXPORT     _init_8c04725a
-          .EXPORT     _init_8c04725e
-          .EXPORT     _init_8c047264
-          .EXPORT     _init_8c047268
-          .EXPORT     _init_8c04726c
-          .EXPORT     _init_8c047270
-          .EXPORT     _init_8c047276
-          .EXPORT     _init_8c04727a
-          .EXPORT     _init_8c04727e
-          .EXPORT     _init_8c047282
-          .EXPORT     _init_8c047286
-          .EXPORT     _init_8c047290
-          .EXPORT     _init_8c047294
-          .EXPORT     _init_8c047298
-          .EXPORT     _init_8c04729e
-          .EXPORT     _init_8c0472a2
-          .EXPORT     _init_8c0472a6
-          .EXPORT     _init_8c0472ac
-          .EXPORT     _init_8c0472b0
-          .EXPORT     _init_8c0472b4
-          .EXPORT     _init_8c0472b8
-          .EXPORT     _init_8c0472bc
-          .EXPORT     _init_8c0472c2
-          .EXPORT     _init_8c0472c6
-          .EXPORT     _init_8c0472ca
-          .EXPORT     _init_8c0472d0
-          .EXPORT     _init_8c0472d4
-          .EXPORT     _init_8c0472d8
-          .EXPORT     _init_8c0472dc
-          .EXPORT     _init_8c0472e0
-          .EXPORT     _init_8c0472e4
-          .EXPORT     _init_8c0472e8
-          .EXPORT     _init_8c0472ee
-          .EXPORT     _init_8c0472f2
-          .EXPORT     _init_8c0472f8
-          .EXPORT     _init_8c0472fc
-          .EXPORT     _init_8c047306
-          .EXPORT     _init_8c04730c
-          .EXPORT     _init_8c047314
-          .EXPORT     _init_8c04731c
-          .EXPORT     _init_8c047328
-          .EXPORT     _init_8c04732c
-          .EXPORT     _init_8c047330
-          .EXPORT     _init_8c047334
-          .EXPORT     _init_8c047338
-          .EXPORT     _init_8c04733c
-          .EXPORT     _init_8c047342
-          .EXPORT     _init_8c04734a
-          .EXPORT     _init_8c04734e
-          .EXPORT     _init_8c04740c
-          .EXPORT     _init_8c047454
-          .EXPORT     _init_8c04747c
-          .EXPORT     _init_8c0474a4
-          .EXPORT     _init_8c0474bc
-          .EXPORT     _init_8c0474ec
-          .EXPORT     _init_8c047514
-          .EXPORT     _init_8c047544
-          .EXPORT     _init_8c047564
-          .EXPORT     _init_8c047574
-          .EXPORT     _init_8c0475bc
-          .EXPORT     _init_8c0475dc
-          .EXPORT     _init_8c04761c
-          .EXPORT     _init_8c04763c
-          .EXPORT     _init_8c04766c
-          .EXPORT     _init_8c04768c
-          .EXPORT     _init_8c04769c
-          .EXPORT     _init_8c0476ac
-          .EXPORT     _init_8c0476bc
-          .EXPORT     _init_8c0476cc
-          .EXPORT     _init_8c04771c
-          .EXPORT     _init_8c047744
-          .EXPORT     _init_8c04776c
-          .EXPORT     _init_8c0477ac
-          .EXPORT     _init_8c0477d4
-          .EXPORT     _init_8c0477fc
-          .EXPORT     _init_8c047824
-          .EXPORT     _init_8c047864
-          .EXPORT     _init_8c04788c
-          .EXPORT     _init_8c0478b4
-          .EXPORT     _init_8c0478e4
-          .EXPORT     _init_8c04791c
-          .EXPORT     _init_8c04794c
-          .EXPORT     _init_8c047974
-          .EXPORT     _init_8c047984
-          .EXPORT     _init_8c047994
-          .EXPORT     _init_8c0479bc
-          .EXPORT     _init_8c0479e4
-          .EXPORT     _init_8c047a0c
-          .EXPORT     _init_8c047a34
-          .EXPORT     _init_8c047a64
-          .EXPORT     _init_8c047a84
-          .EXPORT     _init_8c047aac
-          .EXPORT     _init_8c047acc
-          .EXPORT     _init_8c047aec
-          .EXPORT     _init_8c047b14
-          .EXPORT     _init_8c047b3c
-          .EXPORT     _init_8c047b5c
-          .EXPORT     _init_8c047ba4
-          .EXPORT     _init_8c047bcc
-          .EXPORT     _init_8c047c04
-          .EXPORT     _init_8c047c4c
-          .EXPORT     _init_8c047c6c
-          .EXPORT     _init_8c047c7c
-          .EXPORT     _init_8c047c8c
-          .EXPORT     _init_8c047c9c
-          .EXPORT     _init_8c047cac
-          .EXPORT     _init_8c047cbc
-          .EXPORT     _init_8c047ccc
-          .EXPORT     _init_8c047cdc
-          .EXPORT     _init_8c047cec
-          .EXPORT     _init_8c047d1c
-          .EXPORT     _init_8c047d4c
-          .EXPORT     _init_8c047d74
-          .EXPORT     _init_8c047dbc
-          .EXPORT     _init_8c047de4
-          .EXPORT     _init_8c047e1c
-          .EXPORT     _init_8c047e5c
-          .EXPORT     _init_8c047e84
-          .EXPORT     _init_8c047e9c
-          .EXPORT     _init_8c047ec4
-          .EXPORT     _init_8c047edc
-          .EXPORT     _init_8c047f14
-          .EXPORT     _init_8c047f54
-          .EXPORT     _init_8c047f7c
-          .EXPORT     _init_8c047f9c
-          .EXPORT     _init_8c047fcc
-          .EXPORT     _init_8c047fdc
-          .EXPORT     _init_8c048004
-          .EXPORT     _init_8c048024
-          .EXPORT     _init_8c04805c
-          .EXPORT     _init_8c048084
-          .EXPORT     _init_8c0480ac
-          .EXPORT     _init_8c0480d4
-          .EXPORT     _init_8c0480ec
-          .EXPORT     _init_8c0480fc
-          .EXPORT     _init_8c04812c
-          .EXPORT     _init_8c04814c
-          .EXPORT     _init_8c04815c
-          .EXPORT     _init_8c04819c
-          .EXPORT     _init_8c0481c4
-          .EXPORT     _init_8c048204
-          .EXPORT     _init_8c04825c
-          .EXPORT     _init_8c04828c
-          .EXPORT     _init_8c0482bc
-          .EXPORT     _init_8c048304
-          .EXPORT     _init_8c04834c
-          .EXPORT     _init_8c0483a4
-          .EXPORT     _init_8c0483f4
-          .EXPORT     _init_8c04843c
-          .EXPORT     _init_8c0485cc
-          .EXPORT     _init_8c0485fc
-          .EXPORT     _init_8c04861c
-          .EXPORT     _init_8c048644
-          .EXPORT     _init_8c04866c
-          .EXPORT     _init_8c04868c
-          .EXPORT     _init_8c0486ac
-          .EXPORT     _init_8c0486dc
-          .EXPORT     _init_8c048704
-          .EXPORT     _init_8c048734
-          .EXPORT     _init_8c048754
-          .EXPORT     _init_8c048774
-          .EXPORT     _init_8c048794
-          .EXPORT     _init_8c0487b4
-          .EXPORT     _init_8c0487d4
-          .EXPORT     _init_8c04880c
-          .EXPORT     _init_8c048834
-          .EXPORT     _init_8c04885c
-          .EXPORT     _init_8c04887c
-          .EXPORT     _init_8c0488b4
-          .EXPORT     _init_8c0488d4
-          .EXPORT     _init_8c0488fc
-          .EXPORT     _init_8c04892c
-          .EXPORT     _init_8c04894c
-          .EXPORT     _init_8c048984
-          .EXPORT     _init_8c0489a4
-          .EXPORT     _init_8c0489c4
-          .EXPORT     _init_8c0489e4
-          .EXPORT     _init_8c048a2c
-          .EXPORT     _init_8c048a5c
-          .EXPORT     _init_8c048a6c
-          .EXPORT     _init_8c048a7c
-          .EXPORT     _init_8c048abc
-          .EXPORT     _init_8c048adc
-          .EXPORT     _init_8c048aec
-          .EXPORT     _init_8c048afc
-          .EXPORT     _init_8c048b24
-          .EXPORT     _init_8c048b3c
-          .EXPORT     _init_8c048b4c
-          .EXPORT     _init_8c048b5c
-          .EXPORT     _init_8c048b94
-          .EXPORT     _init_8c048bac
-          .EXPORT     _init_8c048bdc
-          .EXPORT     _init_8c048c04
-          .EXPORT     _init_8c048c34
-          .EXPORT     _init_8c048c5c
-          .EXPORT     _init_8c048c9c
-          .EXPORT     _init_8c048cbc
-          .EXPORT     _init_8c048ce4
-          .EXPORT     _init_8c048d0c
-          .EXPORT     _init_8c048d4c
-          .EXPORT     _init_8c048d6c
-          .EXPORT     _init_8c048db4
-          .EXPORT     _init_8c048dcc
-          .EXPORT     _init_8c048e0c
-          .EXPORT     _init_8c048e3c
-          .EXPORT     _init_8c048e74
-          .EXPORT     _init_8c048e8c
-          .EXPORT     _init_8c048ed4
-          .EXPORT     _init_8c048ef4
-          .EXPORT     _init_8c048f1c
-          .EXPORT     _init_8c048f54
-          .EXPORT     _init_8c048f7c
-          .EXPORT     _init_8c048fa4
-          .EXPORT     _init_8c048fdc
-          .EXPORT     _init_8c048ffc
-          .EXPORT     _init_8c04903c
-          .EXPORT     _init_8c04906c
-          .EXPORT     _init_8c0490ac
-          .EXPORT     _init_8c0490cc
-          .EXPORT     _init_8c049114
-          .EXPORT     _init_8c049134
-          .EXPORT     _init_8c049164
-          .EXPORT     _init_8c049184
-          .EXPORT     _init_8c0491b4
-          .EXPORT     _init_8c0491dc
-          .EXPORT     _init_8c049224
-          .EXPORT     _init_8c049244
-          .EXPORT     _init_8c049294
-          .EXPORT     _init_8c0492bc
-          .EXPORT     _init_8c0492dc
-          .EXPORT     _init_8c04930c
-          .EXPORT     _init_8c049344
-          .EXPORT     _init_8c049374
-          .EXPORT     _init_8c04938c
-          .EXPORT     _init_8c0493cc
-          .EXPORT     _init_8c0493ec
-          .EXPORT     _init_8c04940c
-          .EXPORT     _init_8c049424
-          .EXPORT     _init_8c04947c
-          .EXPORT     _init_8c0494b4
-          .EXPORT     _init_8c0494c4
-          .EXPORT     _init_8c0494d4
-          .EXPORT     _init_8c04950c
-          .EXPORT     _init_8c04952c
-          .EXPORT     _init_8c04956c
-          .EXPORT     _init_8c049594
-          .EXPORT     _init_8c0495b4
-          .EXPORT     _init_8c049614
-          .EXPORT     _init_8c049674
-          .EXPORT     _init_8c0496bc
-          .EXPORT     _init_8c049704
-          .EXPORT     _init_8c04974c
-          .EXPORT     _init_8c049774
-          .EXPORT     _init_8c0497a4
-          .EXPORT     _init_8c0497c4
-          .EXPORT     _init_8c049804
-          .EXPORT     _init_8c049824
-          .EXPORT     _init_8c049894
-          .EXPORT     _init_8c0498dc
-          .EXPORT     _init_8c04990c
-          .EXPORT     _init_8c04995c
-          .EXPORT     _init_8c0499b4
-          .EXPORT     _init_8c049a24
-          .EXPORT     _init_8c049a6c
-          .EXPORT     _init_8c049c38
-          .EXPORT     _init_8c049c70
-          .EXPORT     _init_8c049c90
-          .EXPORT     _init_8c049cf0
-          .EXPORT     _init_8c049d10
-          .EXPORT     _init_8c049d48
-          .EXPORT     _init_8c049d68
-          .EXPORT     _init_8c049d90
-          .EXPORT     _init_8c049dd0
-          .EXPORT     _init_8c049df0
-          .EXPORT     _init_8c049e08
-          .EXPORT     _init_8c049e30
-          .EXPORT     _init_8c049e58
-          .EXPORT     _init_8c049e70
-          .EXPORT     _init_8c049eb0
-          .EXPORT     _init_8c049ed8
-          .EXPORT     _init_8c049f20
-          .EXPORT     _init_8c049f48
-          .EXPORT     _init_8c049f68
-          .EXPORT     _init_8c049fa8
-          .EXPORT     _init_8c049fc8
-          .EXPORT     _init_8c049ff8
-          .EXPORT     _init_8c04a018
-          .EXPORT     _init_8c04a028
-          .EXPORT     _init_8c04a038
-          .EXPORT     _init_8c04a060
-          .EXPORT     _init_8c04a080
-          .EXPORT     _init_8c04a0a0
-          .EXPORT     _init_8c04a0c8
-          .EXPORT     _init_8c04a108
-          .EXPORT     _init_8c04a158
-          .EXPORT     _init_8c04a178
-          .EXPORT     _init_8c04a1b8
-          .EXPORT     _init_8c04a1d8
-          .EXPORT     _init_8c04a218
-          .EXPORT     _init_8c04a238
-          .EXPORT     _init_8c04a270
-          .EXPORT     _init_8c04a290
-          .EXPORT     _init_8c04a2c8
-          .EXPORT     _init_8c04a2e8
-          .EXPORT     _init_8c04a328
-          .EXPORT     _init_8c04a348
-          .EXPORT     _init_8c04a378
-          .EXPORT     _init_8c04a398
-          .EXPORT     _init_8c04a3a8
-          .EXPORT     _init_8c04a3b8
-          .EXPORT     _init_8c04a3c8
-          .EXPORT     _init_8c04a3d8
-          .EXPORT     _init_8c04a3e8
-          .EXPORT     _init_8c04a3f8
-          .EXPORT     _init_8c04a408
-          .EXPORT     _init_8c04a418
-          .EXPORT     _init_8c04a428
-          .EXPORT     _init_8c04a438
-          .EXPORT     _init_8c04a478
-          .EXPORT     _init_8c04a4a8
-          .EXPORT     _init_8c04a4b8
-          .EXPORT     _init_8c04a4c8
-          .EXPORT     _init_8c04a500
-          .EXPORT     _init_8c04a520
-          .EXPORT     _init_8c04a530
-          .EXPORT     _init_8c04a540
-          .EXPORT     _init_8c04a570
-          .EXPORT     _init_8c04a598
-          .EXPORT     _init_8c04a5e0
-          .EXPORT     _init_8c04a630
-          .EXPORT     _init_8c04a660
-          .EXPORT     _init_8c04a670
-          .EXPORT     _init_8c04a680
-          .EXPORT     _init_8c04a690
-          .EXPORT     _init_8c04a6a0
-          .EXPORT     _init_8c04a6b0
-          .EXPORT     _init_8c04a6c0
-          .EXPORT     _init_8c04a6d0
-          .EXPORT     _init_8c04a6e0
-          .EXPORT     _init_8c04a6f0
-          .EXPORT     _init_8c04a700
-          .EXPORT     _init_8c04a710
-          .EXPORT     _init_8c04a720
-          .EXPORT     _init_8c04a730
-          .EXPORT     _init_8c04a740
-          .EXPORT     _init_8c04a770
-          .EXPORT     _init_8c04a798
-          .EXPORT     _init_8c04a7d0
-          .EXPORT     _init_8c04a800
-          .EXPORT     _init_8c04a810
-          .EXPORT     _init_8c04a820
-          .EXPORT     _init_8c04a850
-          .EXPORT     _init_8c04a8a8
-          .EXPORT     _init_8c04a8e8
-          .EXPORT     _init_8c04a930
-          .EXPORT     _init_8c04a968
-          .EXPORT     _init_8c04a9c8
-          .EXPORT     _init_8c04ab3c
-          .EXPORT     _init_8c04ab48
-          .EXPORT     _init_8c04ab4c
-          .EXPORT     _init_8c04ab60
-          .EXPORT     _init_8c04abb0
-          .EXPORT     _init_8c04b1f0
-          .EXPORT     _init_8c04b920
-          .EXPORT     _init_8c04bef0
-          .EXPORT     _init_8c04bf0c
-          .EXPORT     _init_8c04bf34
-          .EXPORT     _init_8c04bf5c
-          .EXPORT     _init_8c04bf7c
-          .EXPORT     _init_8c04bf9c
-          .EXPORT     _init_8c04bfb0
-          .EXPORT     _init_8c04bfd4
-          .EXPORT     _init_8c04bff8
-          .EXPORT     _init_8c04c010
-          .EXPORT     _init_8c04c038
-          .EXPORT     _init_8c04c060
-          .EXPORT     _init_8c04c088
-          .EXPORT     _init_8c04c0b0
-          .EXPORT     _init_8c04c0d8
-          .EXPORT     _init_8c04c100
-          .EXPORT     _init_8c04c120
-          .EXPORT     _init_8c04c140
-          .EXPORT     _init_8c04c164
-          .EXPORT     _init_8c04c18c
-          .EXPORT     _init_8c04c1ac
-          .EXPORT     _init_8c04c1d4
-          .EXPORT     _init_8c04c1f8
-          .EXPORT     _init_8c04c210
-          .EXPORT     _init_8c04c228
-          .EXPORT     _init_8c04c248
-          .EXPORT     _init_8c04c268
-          .EXPORT     _init_8c04c28c
-          .EXPORT     _init_8c04c2a8
-          .EXPORT     _init_8c04c2c8
-          .EXPORT     _init_8c04c2dc
-          .EXPORT     _init_8c04c2f0
-          .EXPORT     _init_8c04c308
-          .EXPORT     _init_8c04c330
-          .EXPORT     _init_8c04c35c
-          .EXPORT     _init_8c04c3e4
-          .EXPORT     _init_8c04c3e8
-          .EXPORT     _init_8c04c4dc
-          .EXPORT     _init_8c04c520
-          .EXPORT     _init_8c04c580
-          .EXPORT     _init_8c04c5e0
-          .EXPORT     _init_8c04c640
-          .EXPORT     _init_8c04c6a0
-          .EXPORT     _init_8c04c700
-          .EXPORT     _init_8c04c760
-          .EXPORT     _init_8c04c7c0
-          .EXPORT     _init_8c04c820
-          .EXPORT     _init_8c04c880
-          .EXPORT     _init_8c04c8e0
-          .EXPORT     _init_8c04c940
-          .EXPORT     _init_8c04c980
-          .EXPORT     _init_8c04caec
-          .EXPORT     _init_8c04cd38
-          .EXPORT     _init_8c04ce10
-          .EXPORT     _init_8c04df38
-          .EXPORT     _init_8c04e988
-          .EXPORT     _init_8c04f6a8
-          .EXPORT     _init_8c04718c
-          .EXPORT     _init_8c04728c
+
+          ; course_menu
+          .EXPORT     _init_mainMenuResourceGroup_8c044264 ; 016d2c_course_menu.c, 016d2c_course_menu.src, 019e98_main_menu.c, 019e98_main_menu.src
+          .EXPORT     _init_8c044274 ; 01e27c.src
+          .EXPORT     _init_8c044284 ; 01e27c.src
+          .EXPORT     _init_8c044294 ; 01614c.src
+          .EXPORT     _init_8c04429c ; 01614c.src
+          .EXPORT     _init_courseMenuButtons_8c04442c ; 016d2c_course_menu.c, 016d2c_course_menu.src
+          .EXPORT     _titleResourceGroup_8c044254 ; 015ab8_title.c, 015ab8_title.src, 01d7fc.src
+          .EXPORT     _init_dialogSequences_8c044c08 ; 016d2c_course_menu.c, 016d2c_course_menu.src, 01e27c.src, 01f3c0.src
+          .EXPORT     _init_8c044d10 ; 016d2c_course_menu.c, 016d2c_course_menu.src
+          .EXPORT     _init_routeInfoTime_8c044d2e ; 016d2c_course_menu.c, 016d2c_course_menu.src
+          .EXPORT     _init_8c044d40 ; 016d2c_course_menu.c, 016d2c_course_menu.src
+
+          ; vm_menu
+          .EXPORT     _init_saveNames_8c044d50 ; 015ab8_title.c, 015ab8_title.src, 018784.src, 0193c8_vm_menu.c, 0193c8_vm_menu.src, 01b19c.src, 01d7fc.src
+          .EXPORT     _init_vmIconsPositions_8c044d7c ; 0193c8_vm_menu.c, 0193c8_vm_menu.src
+          .EXPORT     _init_vmuStatusMessages_8c044dc4 ; 0193c8_vm_menu.c, 0193c8_vm_menu.src
+
+          ; 01a148
+          .EXPORT     _init_8c044de0 ; 01a148.src
+          .EXPORT     _init_8c044de8 ; 01a148.src
+          .EXPORT     _init_8c044e28 ; 01a148.src
+
+          ; 01bb48
+          .EXPORT     _init_8c044e38 ; 01bb48.src
+          .EXPORT     _init_8c044e48 ; 01bb48.src
+          .EXPORT     _init_8c044e50 ; 01bb48.src
+          .EXPORT     _init_8c044e90 ; 019e98_main_menu.c, 01bb48.src
+
+          ; 01c980
+          .EXPORT     _init_8c044ffc ; 01c980.src
+          .EXPORT     _init_8c0450d8 ; 01c980.src
+          .EXPORT     _init_8c045148 ; 01c980.src
+
+          ; 01d290
+          .EXPORT     _init_8c045160 ; 01d290.src
+          .EXPORT     _init_8c045170 ; 01d290.src
+
+          ; 01d7fc
+          .EXPORT     _init_8c0451a0 ; 01d7fc.src
+
+          ; 01e27c
+          .EXPORT     _init_8c0451b4 ; 01e27c.src
+          .EXPORT     _init_8c0451c0 ; 01e27c.src
+          .EXPORT     _init_8c0451ec ; 01e27c.src
+          .EXPORT     _init_8c0451f8 ; 01e27c.src
+          .EXPORT     _init_8c045208 ; 01e27c.src
+
+          ; 01f3c0
+          .EXPORT     _init_8c04522c ; 01f3c0.src
+          .EXPORT     _init_8c045244 ; 01f3c0.src
+          .EXPORT     _init_8c04525c ; 01f3c0.src
+          .EXPORT     _init_8c045278 ; 01f3c0.src
+          .EXPORT     _init_8c04528c ; 01f3c0.src
+          .EXPORT     _init_8c045290 ; 01f3c0.src
+          .EXPORT     _init_8c045324 ; 01f3c0.src
+
+          ; 01fa78
+          .EXPORT     _init_8c045334 ; 01fa78.src
+          .EXPORT     _init_8c045374 ; 01fa78.src
+          .EXPORT     _init_8c0453b4 ; 01fa78.src
+          .EXPORT     _init_8c045414 ; 01fa78.src
+
+          ; 022464
+          .EXPORT     _init_8c045438 ; 022464.src
+          .EXPORT     _init_8c045498 ; 022464.src
+          .EXPORT     _init_8c0454f8 ; 022464.src
+          .EXPORT     _init_8c045558 ; 022464.src
+          .EXPORT     _init_8c045568 ; 022464.src
+          .EXPORT     _init_8c045578 ; 022464.src
+          .EXPORT     _init_8c045588 ; 022464.src
+          .EXPORT     _init_8c045598 ; 022464.src
+          .EXPORT     _init_8c0455a8 ; 022464.src
+          .EXPORT     _init_8c0455e8 ; 022464.src
+          .EXPORT     _init_8c0455fc ; 022464.src
+          .EXPORT     _init_8c045610 ; 022464.src
+          .EXPORT     _init_8c045624 ; 022464.src
+
+          ; 024280
+          .EXPORT     _init_8c045638 ; 024280.src
+
+          ; 025870
+          .EXPORT     _init_8c045674 ; 025870.src
+          .EXPORT     _init_8c045b60 ; 025870.src
+          .EXPORT     _init_8c045ee4 ; 025870.src
+          .EXPORT     _init_8c0460b0 ; 012f44.c, 012f44.src
+          .EXPORT     _init_8c0460bc ; 026710.src
+
+          ; 026710
+          .EXPORT     _init_8c0460c8 ; 026710.src
+          .EXPORT     _init_8c0461c8 ; 026710.src
+          .EXPORT     _init_8c046208 ; 026710.src
+          .EXPORT     _init_8c04622c ; 026710.src
+
+          ; 028258
+          .EXPORT     _init_8c04623c ; 028258.src, 02c884.src
+          .EXPORT     _init_8c04650c ; 028258.src
+          .EXPORT     _init_8c046518 ; 028258.src
+          .EXPORT     _init_8c046524 ; 028258.src
+          .EXPORT     _init_8c0465d8 ; 028258.src
+          .EXPORT     _init_8c0466a4 ; 028258.src
+          .EXPORT     _init_8c046758 ; 028258.src
+          .EXPORT     _init_8c04843c ; 028258.src
+          .EXPORT     _init_8c049a6c ; 028258.src
+          .EXPORT     _init_8c04a9c8 ; 028258.src
+          .EXPORT     _init_8c04ab3c ; 028258.src
+
+          ; 02af78
+          .EXPORT     _init_8c04abb0 ; 02af78.src
+          .EXPORT     _init_8c04b1f0 ; 02af78.src
+          .EXPORT     _init_8c04b920 ; 02af78.src
+
+          ; 02b464
+          .EXPORT     _init_8c04c35c ; 02b464.src
+
+          ; 02d19c
+          .EXPORT     _init_8c04c3e4 ; 02d19c.src, 02d968.src
+
+          ; 02d968
+          .EXPORT     _init_8c04c4dc ; 02d968.src
+
+          ; 02e2dc
+          .EXPORT     _init_8c04c820 ; 02e2dc.src
+          .EXPORT     _init_8c04c940 ; 02e2dc.src, 02e400.src
+
+          ; 026710
+          .EXPORT     _init_8c04c980 ; 026710.src
+          .EXPORT     _init_8c04caec ; 026710.src
+          .EXPORT     _init_8c04cd38 ; 026710.src
+
+          ; 013ae8_pre_data
+          .EXPORT     _init_8c04ce10 ; 013ae8_pre_data.src
+          .EXPORT     _init_8c04df38 ; 013ae8_pre_data.src
+          .EXPORT     _init_8c04e988 ; 013ae8_pre_data.src
+
+          ; 02fb50_sh4nlfzn
+          .EXPORT     _init_8c04f6a8 ; 02fb50_sh4nlfzn.src
+
           .SECTION    D, DATA, ALIGN=4
           .DATA.L      _const_8c035fb8 ; ukn
           .DATA.L      _const_8c035fcc ; ukn
