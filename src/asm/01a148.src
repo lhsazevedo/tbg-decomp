@@ -3,7 +3,7 @@
           .IMPORT     _menuState_8c1bc7a8
           .IMPORT     _sdMidiPlay
           .IMPORT     _var_midiHandles_8c0fcd28
-          .IMPORT     _var_peripheral_8c1ba35c
+          .IMPORT     _var_peripherals_8c1ba35c
           .IMPORT     _isFading_8c226568
           .IMPORT     _FUN_8c018862
           .IMPORT     _push_fadeout_8c022b60
@@ -14,8 +14,8 @@
           .IMPORT     _init_8c044de8
           .IMPORT     _njDrawPolygon
           .IMPORT     _var_8c157a70
-          .IMPORT     _var_8c1ba1cc
-          .IMPORT     _var_peripheral_8c1ba35c
+          .IMPORT     _var_progress_8c1ba1cc
+          .IMPORT     _var_peripherals_8c1ba35c
           .IMPORT     _FUN_8c0188bc
           .IMPORT     __modls
           .IMPORT     __divls
@@ -200,7 +200,7 @@ LP_GEN_11111:
           .DATA.L _menuState_8c1bc7a8 ; H'8C01A250
           .DATA.L _sdMidiPlay ; H'8C01A254
           .DATA.L _var_midiHandles_8c0fcd28 ; H'8C01A258
-          .DATA.L H'10+_var_peripheral_8c1ba35c ; H'8C01A25C
+          .DATA.L H'10+_var_peripherals_8c1ba35c ; H'8C01A25C
           .DATA.L _isFading_8c226568 ; H'8C01A260
           .DATA.L _FUN_8c018862 ; H'8C01A264
           .DATA.L _push_fadeout_8c022b60 ; H'8C01A268
@@ -488,7 +488,7 @@ LP_GEN_85851:
           .DATA.L _setTaskAction_8c014b3e ; H'8C01A488
           .DATA.L _menuState_8c1bc7a8 ; H'8C01A48C
           .DATA.L _push_fadein_8c022a9c ; H'8C01A490
-          .DATA.L H'10+_var_peripheral_8c1ba35c ; H'8C01A494
+          .DATA.L H'10+_var_peripherals_8c1ba35c ; H'8C01A494
           .DATA.L _var_midiHandles_8c0fcd28 ; H'8C01A498
           .DATA.L _sdMidiPlay ; H'8C01A49C
           .DATA.L H'43800000 ; H'8C01A4A0
@@ -693,12 +693,12 @@ LP_GEN_91649:
           .DATA.L _var_8c157a70 ; H'8C01A60C
           .DATA.L H'000F06FE ; H'8C01A610
           .DATA.L H'000700FE ; H'8C01A614
-          .DATA.L H'10+_var_peripheral_8c1ba35c ; H'8C01A618
+          .DATA.L H'10+_var_peripherals_8c1ba35c ; H'8C01A618
           .DATA.L _var_midiHandles_8c0fcd28 ; H'8C01A61C
           .DATA.L _sdMidiPlay ; H'8C01A620
-          .DATA.L _var_8c1ba1cc ; H'8C01A624
+          .DATA.L _var_progress_8c1ba1cc ; H'8C01A624
           .DATA.L _isFading_8c226568 ; H'8C01A628
-          .DATA.L _var_peripheral_8c1ba35c ; H'8C01A62C
+          .DATA.L _var_peripherals_8c1ba35c ; H'8C01A62C
           .DATA.L _FUN_8c0188bc ; H'8C01A630
           .DATA.L _push_fadeout_8c022b60 ; H'8C01A634
 LAB_8c01a638:
@@ -1268,10 +1268,10 @@ LP_GEN_75770:
           .DATA.L _setTaskAction_8c014b3e ; H'8C01AA48
           .DATA.L _menuState_8c1bc7a8 ; H'8C01AA4C
           .DATA.L _push_fadein_8c022a9c ; H'8C01AA50
-          .DATA.L H'10+_var_peripheral_8c1ba35c ; H'8C01AA54
+          .DATA.L H'10+_var_peripherals_8c1ba35c ; H'8C01AA54
           .DATA.L _var_midiHandles_8c0fcd28 ; H'8C01AA58
           .DATA.L _sdMidiPlay ; H'8C01AA5C
-          .DATA.L _var_peripheral_8c1ba35c ; H'8C01AA60
+          .DATA.L _var_peripherals_8c1ba35c ; H'8C01AA60
           .DATA.L __modls ; H'8C01AA64
           .DATA.L __divls ; H'8C01AA68
           .DATA.L _sdMidiStop ; H'8C01AA6C
@@ -1551,11 +1551,11 @@ LP_GEN_82753:
           .DATA.L H'C0800000 ; H'8C01AC60
           .DATA.L H'41D00000 ; H'8C01AC64
           .DATA.L _var_8c226078 ; H'8C01AC68
-          .DATA.L _var_8c1ba1cc ; H'8C01AC6C
+          .DATA.L _var_progress_8c1ba1cc ; H'8C01AC6C
           .DATA.L _isFading_8c226568 ; H'8C01AC70
           .DATA.L H'43DA0000 ; H'8C01AC74
           .DATA.L H'C0400000 ; H'8C01AC78
-          .DATA.L H'10+_var_peripheral_8c1ba35c ; H'8C01AC7C
+          .DATA.L H'10+_var_peripherals_8c1ba35c ; H'8C01AC7C
           .DATA.L _FUN_8c0188dc ; H'8C01AC80
           .DATA.L _var_soundMode_8c226070 ; H'8C01AC84
           .DATA.L _setSoundMode_8c0108c0 ; H'8C01AC88
@@ -1689,7 +1689,7 @@ LP_GEN_27951:
           .DATA.W H'00D5 ; H'8C01AD72
           .DATA.W H'00D6 ; H'8C01AD74
           .RES.W 1 ; H'8C01AD76
-          .DATA.L H'10+_var_peripheral_8c1ba35c ; H'8C01AD78
+          .DATA.L H'10+_var_peripherals_8c1ba35c ; H'8C01AD78
           .DATA.L _setAdxVol_8c010972 ; H'8C01AD7C
           .DATA.L _setMidiVolAndInitStruct_8c0109f4 ; H'8C01AD80
           .DATA.L _FUN_8c0107ac ; H'8C01AD84
@@ -2197,7 +2197,7 @@ LP_GEN_51773:
           .DATA.L _isFading_8c226568 ; H'8C01B168
           .DATA.L _var_midiHandles_8c0fcd28 ; H'8C01B16C
           .DATA.L _sdMidiPlay ; H'8C01B170
-          .DATA.L H'10+_var_peripheral_8c1ba35c ; H'8C01B174
+          .DATA.L H'10+_var_peripherals_8c1ba35c ; H'8C01B174
           .DATA.L _init_8c044e28 ; H'8C01B178
           .DATA.L _push_fadeout_8c022b60 ; H'8C01B17C
           .DATA.L _MainMenuSwitchFromTask_8c01a09a ; H'8C01B180

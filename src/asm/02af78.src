@@ -1,5 +1,5 @@
 ; 8c02af78
-          .IMPORT     _var_8c1ba1cc
+          .IMPORT     _var_progress_8c1ba1cc
           .IMPORT     _var_8c1ba1d0
           .IMPORT     _var_8c1ba1e4
           .IMPORT     _var_8c1ba2b4
@@ -180,7 +180,7 @@ LAB_8c02b07c:
           MOV.L       R0,@R4
 LP_GEN_66558:
           .RES.W 1 ; H'8C02B082
-          .DATA.L _var_8c1ba1cc ; H'8C02B084
+          .DATA.L _var_progress_8c1ba1cc ; H'8C02B084
           .DATA.L _var_8c1ba1d0 ; H'8C02B088
           .DATA.L _var_8c1ba1e4 ; H'8C02B08C
           .DATA.L _var_8c1ba2b4 ; H'8C02B090
@@ -295,7 +295,7 @@ LP_GEN_28749:
           .RES.W 1 ; H'8C02B15A
           .DATA.L _init_8c04b920 ; H'8C02B15C
           .DATA.L _var_8c18ad20 ; H'8C02B160
-          .DATA.L _var_8c1ba1cc ; H'8C02B164
+          .DATA.L _var_progress_8c1ba1cc ; H'8C02B164
           .DATA.L _var_8c228520 ; H'8C02B168
           .DATA.L H'0000FFFF ; H'8C02B16C
 _FUN_8c02b170:

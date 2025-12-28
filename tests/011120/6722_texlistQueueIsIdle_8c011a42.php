@@ -11,7 +11,7 @@ return new class extends TestCase
         $this->initUint32($this->addressOf('_var_texlistQueueIsIdle_8c157ab8'), 42);
 
         $this->singleCall('_texlistQueueIsIdle_8c011a42')
-            ->shouldReturn(42)
+            ->singleShouldReturn(42)
             ->run();
     }
 };

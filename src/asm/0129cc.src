@@ -24,11 +24,10 @@
           .IMPORT     _var_demo_8c1bb8d0
           .IMPORT     _var_8c1ba2cc
           .IMPORT     _var_8c1ba2b8
-          .IMPORT     _var_8c1ba1cc
+          .IMPORT     _var_progress_8c1ba1cc
           .IMPORT     _njDrawPolygon
-          .IMPORT     _FUN_8c017ef2
+          .IMPORT     _CourseMenuFUN_8c017ef2
           .IMPORT     _var_8c22640c
-          .IMPORT     _var_8c1bc7e0
           .IMPORT     _FUN_8c01f21c
           .IMPORT     _var_resetRequested_8c157a78
           .IMPORT     _var_8c157a7c
@@ -43,7 +42,8 @@
           .IMPORT     _init_8c03bf4c
           .IMPORT     _FUN_adxVol_8c010a40
           .IMPORT     _FUN_8c010bae
-          .IMPORT     _var_peripheral_8c1ba35c
+          .IMPORT     _var_peripherals_8c1ba35c
+          .IMPORT     _menuState_8c1bc7a8
           .EXPORT     _FUN_8c0129cc
           .EXPORT     _task_8c012cbc
           .EXPORT     _task_8c012d06
@@ -607,14 +607,14 @@ LP_GEN_43727:
           .DATA.L _var_demo_8c1bb8d0
           .DATA.L _var_8c1ba2cc
           .DATA.L _var_8c1ba2b8
-          .DATA.L _var_8c1ba1cc
+          .DATA.L _var_progress_8c1ba1cc
           .DATA.L _var_8c1bc418
           .DATA.L H'BF8CCCCD
           .DATA.L _init_8c03bf4c
           .DATA.L _njDrawPolygon
-          .DATA.L _FUN_8c017ef2
+          .DATA.L _CourseMenuFUN_8c017ef2
           .DATA.L _var_8c22640c
-          .DATA.L _var_8c1bc7e0
+          .DATA.L _menuState_8c1bc7a8 + H'38
           .DATA.L _FUN_8c01f21c
           .DATA.L _var_resetRequested_8c157a78
           .DATA.L _var_8c157a7c
@@ -631,7 +631,7 @@ LP_GEN_43727:
           .DATA.L _init_8c03bd84
           .DATA.L _FUN_adxVol_8c010a40
           .DATA.L _FUN_8c010bae
-          .DATA.L H'10+_var_peripheral_8c1ba35c
+          .DATA.L H'10+_var_peripherals_8c1ba35c
           .DATA.L _var_midiHandles_8c0fcd28
           .DATA.L _sdMidiPlay
 

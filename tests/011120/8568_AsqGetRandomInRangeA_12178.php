@@ -15,7 +15,7 @@ return new class extends TestCase {
 
         $this->singleCall('_AsqGetRandomInRangeA_12178')
             ->with(20)
-            ->shouldReturn(2)
+            ->singleShouldReturn(2)
             ->run();
     }
 
@@ -26,7 +26,7 @@ return new class extends TestCase {
 
         $this->singleCall('_AsqGetRandomInRangeA_12178')
             ->with(0)
-            ->shouldReturn(0)
+            ->singleShouldReturn(0)
             ->run();
     }
 };

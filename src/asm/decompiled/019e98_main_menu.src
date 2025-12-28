@@ -5,12 +5,12 @@
           .IMPORT     _AsqFreeQueues_11f7e
           .IMPORT     _push_fadein_8c022a9c
           .IMPORT     _sdMidiPlay
-          .IMPORT     _var_peripheral_8c1ba35c
+          .IMPORT     _var_peripherals_8c1ba35c
           .IMPORT     _var_midiHandles_8c0fcd28
           .IMPORT     _push_fadeout_8c022b60
           .IMPORT     _var_game_mode_8c1bb8fc
-          .IMPORT     _var_8c1bb8c0
-          .IMPORT     _FUN_8c017e18
+          .IMPORT     _var_shouldShowFreeRunIntro_8c1bb8c0
+          .IMPORT     _CourseMenuSwitchFromTask_8c017e18
           .IMPORT     _FUN_8c01b122
           .IMPORT     _FUN_8c01c880
           .IMPORT     _drawSprite_8c014f54
@@ -18,7 +18,7 @@
           .IMPORT     _AsqInitQueues_11f36
           .IMPORT     _AsqResetQueues_11f6c
           .IMPORT     _init_mainMenuResourceGroup_8c044264
-          .IMPORT     _requestSysResgrp_8c018568
+          .IMPORT     _CourseMenuRequestSysResgrp_8c018568
           .IMPORT     _setUknPvmBool_8c014330
           .IMPORT     _resetUknPvmBool_8c014322
           .IMPORT     _AsqNop_11120
@@ -162,7 +162,7 @@ LP_GEN_56609:
           .DATA.L _AsqFreeQueues_11f7e ; H'8C019F90
           .DATA.L _push_fadein_8c022a9c ; H'8C019F94
           .DATA.L _sdMidiPlay ; H'8C019F98
-          .DATA.L H'10+_var_peripheral_8c1ba35c ; H'8C019F9C
+          .DATA.L H'10+_var_peripherals_8c1ba35c ; H'8C019F9C
           .DATA.L _var_midiHandles_8c0fcd28 ; H'8C019FA0
           .DATA.L _push_fadeout_8c022b60 ; H'8C019FA4
 LAB_8c019fa8:
@@ -347,8 +347,8 @@ _MainMenuSwitchFromTask_8c01a09a:
 LP_GEN_13822:
           .RES.W 1 ; H'8C01A0F6
           .DATA.L _var_game_mode_8c1bb8fc ; H'8C01A0F8
-          .DATA.L _var_8c1bb8c0 ; H'8C01A0FC
-          .DATA.L _FUN_8c017e18 ; H'8C01A100
+          .DATA.L _var_shouldShowFreeRunIntro_8c1bb8c0 ; H'8C01A0FC
+          .DATA.L _CourseMenuSwitchFromTask_8c017e18 ; H'8C01A100
           .DATA.L _FUN_8c01b122 ; H'8C01A104
           .DATA.L _FUN_8c01c880 ; H'8C01A108
           .DATA.L _drawSprite_8c014f54 ; H'8C01A10C
@@ -361,7 +361,7 @@ LP_GEN_13822:
           .DATA.L _AsqInitQueues_11f36 ; H'8C01A128
           .DATA.L _AsqResetQueues_11f6c ; H'8C01A12C
           .DATA.L _init_mainMenuResourceGroup_8c044264 ; H'8C01A130
-          .DATA.L _requestSysResgrp_8c018568 ; H'8C01A134
+          .DATA.L _CourseMenuRequestSysResgrp_8c018568 ; H'8C01A134
           .DATA.L _setUknPvmBool_8c014330 ; H'8C01A138
           .DATA.L _resetUknPvmBool_8c014322 ; H'8C01A13C
           .DATA.L _AsqNop_11120 ; H'8C01A140

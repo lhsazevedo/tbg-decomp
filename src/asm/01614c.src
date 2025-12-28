@@ -44,7 +44,7 @@
           .IMPORT     _var_8c225fa8
           .IMPORT     _var_8c225fac
           .IMPORT     _var_8c1bbc84
-          .IMPORT     _var_peripheral_8c1ba35c
+          .IMPORT     _var_peripherals_8c1ba35c
           .IMPORT     _var_demo_8c1bb8d0
           .IMPORT     _FUN_8c01328c
           .IMPORT     _var_8c228ba4
@@ -78,7 +78,7 @@
           .IMPORT     _FUN_8c0187d0
           .IMPORT     _VmMenuFreeAndClear_19504
           .IMPORT     _VmMenuUpdateVmusStatus_19550
-          .IMPORT     _FUN_8c017ef2
+          .IMPORT     _CourseMenuFUN_8c017ef2
           .EXPORT     _task_8c01677e
           .EXPORT     _FUN_8c016182
           .EXPORT     _FUN_8c016b4c
@@ -432,7 +432,7 @@ LP_GEN_42967:
           .DATA.L H'000A000A ; H'8C0163FC
           .DATA.L _njPrintC ; H'8C016400
           .DATA.L _init_8c044294 ; H'8C016404
-          .DATA.L H'10+_var_peripheral_8c1ba35c ; H'8C016408
+          .DATA.L H'10+_var_peripherals_8c1ba35c ; H'8C016408
           .DATA.L _VmMenuUpdateVmusStatus_19550 ; H'8C01640C
           .DATA.L _var_vmuStatus_8c226048 ; H'8C016410
           .DATA.L H'000F0000 ; H'8C016414
@@ -538,7 +538,7 @@ LAB_8c0164bc:
           OR          R3,R4
 LP_GEN_63429:
           .RES.W 1 ; H'8C0164CA
-          .DATA.L H'10+_var_peripheral_8c1ba35c ; H'8C0164CC
+          .DATA.L H'10+_var_peripherals_8c1ba35c ; H'8C0164CC
           .DATA.L _BupGetInfo_8c014bba ; H'8C0164D0
           .DATA.L _BupMount_8c014c00 ; H'8C0164D4
           .DATA.L _const_8c0360b0 ; H'8C0164D8
@@ -1001,7 +1001,7 @@ LP_GEN_94139:
           .DATA.L _var_tasks_8c1ba3c8 ; H'8C01683C
           .DATA.L _pushTask_8c014ae8 ; H'8C016840
           .DATA.L _init_8c04429c ; H'8C016844
-          .DATA.L H'10+_var_peripheral_8c1ba35c ; H'8C016848
+          .DATA.L H'10+_var_peripherals_8c1ba35c ; H'8C016848
           .DATA.L _var_8c1bc824 ; H'8C01684C
           .DATA.L _njPrintC ; H'8C016850
           .DATA.L H'000C0000 ; H'8C016854
@@ -1015,7 +1015,7 @@ LP_GEN_94139:
           .DATA.L _var_8c225fac ; H'8C016874
           .DATA.L _var_8c1bbc84 ; H'8C016878
           .DATA.L _var_8c225fa8 ; H'8C01687C
-          .DATA.L _var_peripheral_8c1ba35c ; H'8C016880
+          .DATA.L _var_peripherals_8c1ba35c ; H'8C016880
           .DATA.L _var_demo_8c1bb8d0 ; H'8C016884
           .DATA.L _FUN_8c01328c ; H'8C016888
           .DATA.L _BupGetInfo_8c014bba ; H'8C01688C
@@ -1255,7 +1255,7 @@ LP_GEN_65913:
           .DATA.L _syFree ; H'8C016A58
           .DATA.L _BupUnmount_8c014c46 ; H'8C016A5C
           .DATA.L _freeTask_8c014b66 ; H'8C016A60
-          .DATA.L _FUN_8c017ef2 ; H'8C016A64
+          .DATA.L _CourseMenuFUN_8c017ef2 ; H'8C016A64
           .DATA.L _FUN_8c0167ca ; H'8C016A68
           .DATA.L _var_tasks_8c1ba3c8 ; H'8C016A6C
           .DATA.L _pushTask_8c014ae8 ; H'8C016A70

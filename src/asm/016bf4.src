@@ -2,7 +2,7 @@
           .IMPORT     _var_8c225fa8
           .IMPORT     _var_8c1bbc84
           .IMPORT     _var_8c225fac
-          .IMPORT     _var_peripheral_8c1ba35c
+          .IMPORT     _var_peripherals_8c1ba35c
           .EXPORT     _task_8c016bf4
           .SECTION    P,CODE,ALIGN=4
 _task_8c016bf4:                   ; function: task_8c016bf4
@@ -52,6 +52,6 @@ L1:
           .DATA.L _var_8c1bbc84 ; H'8C016C44
           .DATA.L _var_8c225fa8 ; H'8C016C48
           .DATA.L _var_8c225fa8 ; H'8C016C4C
-          .DATA.L _var_peripheral_8c1ba35c ; H'8C016C50
+          .DATA.L _var_peripherals_8c1ba35c ; H'8C016C50
           .DATA.L _var_8c225fac ; H'8C016C54
           .END

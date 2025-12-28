@@ -24,9 +24,9 @@
           .IMPORT     _snd_8c010cd6
           .IMPORT     _push_fadein_8c022a9c
           .IMPORT     _var_midiHandles_8c0fcd28
-          .IMPORT     _var_peripheral_8c1ba35c
+          .IMPORT     _var_peripherals_8c1ba35c
           .IMPORT     _sdMidiPlay
-          .IMPORT     _interpolated_8c016d2c
+          .IMPORT     _CourseMenuInterpolateCursor_8c016d2c
           .IMPORT     _promptHandleBinary_16caa
           .IMPORT     _var_selectedVm_8c1ba34c
           .IMPORT     _push_fadeout_8c022b60
@@ -1159,7 +1159,7 @@ LAB_8c019bd6:
           MOV         #H'20,R4
 LP_GEN_27695:
           .RES.W 1 ; H'8C019BDE
-          .DATA.L H'10+_var_peripheral_8c1ba35c ; H'8C019BE0
+          .DATA.L H'10+_var_peripherals_8c1ba35c ; H'8C019BE0
           .DATA.L _sdMidiPlay ; H'8C019BE4
           .DATA.L _const_8c037ef8 ; H'8C019BE8
           .DATA.L _swapMessageBoxFor_8c02aefc ; H'8C019BEC
@@ -1167,7 +1167,7 @@ LP_GEN_27695:
           .DATA.L _const_8c037f0c ; H'8C019BF4
           .DATA.L _var_midiHandles_8c0fcd28 ; H'8C019BF8
           .DATA.L _init_vmuStatusMessages_8c044dc4 ; H'8C019BFC
-          .DATA.L _interpolated_8c016d2c ; H'8C019C00
+          .DATA.L _CourseMenuInterpolateCursor_8c016d2c ; H'8C019C00
 LAB_8c019c04:
           MOV.L       LP_GEN_17403+4,R3
           MOV         R12,R4

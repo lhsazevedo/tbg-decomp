@@ -95,7 +95,7 @@ extern NJS_POINT2 init_vmIconsPositions_8c044d7c[8];
 extern SDMIDI var_midiHandles_8c0fcd28[7];
 
 extern int var_selectedVm_8c1ba34c;
-extern PDS_PERIPHERAL var_peripheral_8c1ba35c[2];
+extern PDS_PERIPHERAL var_peripherals_8c1ba35c[2];
 extern Task var_tasks_8c1ba3c8[];
 
 extern BACKUPINFO gBupInfo_8c1bc4ac[8];
@@ -344,9 +344,9 @@ STATIC void initCursorLerp_19788(int drive)
 {
     menuState_8c1bc7a8.pos.vmSelect.cursorTarget_0x28.x = init_vmIconsPositions_8c044d7c[drive].x;
     menuState_8c1bc7a8.pos.vmSelect.cursorTarget_0x28.y = init_vmIconsPositions_8c044d7c[drive].y;
-    menuState_8c1bc7a8.uknX_0x30 =
+    menuState_8c1bc7a8.cursorVelocity_0x30.x =
         (init_vmIconsPositions_8c044d7c[drive].x - menuState_8c1bc7a8.pos.vmSelect.cursor_0x20.x) / 6;
-    menuState_8c1bc7a8.uknY_0x34 =
+    menuState_8c1bc7a8.cursorVelocity_0x30.y =
         (init_vmIconsPositions_8c044d7c[drive].y - menuState_8c1bc7a8.pos.vmSelect.cursor_0x20.y) / 6;
 }
 
@@ -466,38 +466,38 @@ STATIC void VmMenuTask_198a0(Task* task, void *actionState)
                 // If on upper row
                 if (slot < 4) {
                     // Move left
-                    if (var_peripheral_8c1ba35c[0].press & PDD_DGT_KL) {
+                    if (var_peripherals_8c1ba35c[0].press & PDD_DGT_KL) {
                         do {
                             if (--slot < 0) slot = 3;
                         } while (!var_vmuStatus_8c226048[slot]);
                     }
                     // Move right
-                    else if (var_peripheral_8c1ba35c[0].press & PDD_DGT_KR) {
+                    else if (var_peripherals_8c1ba35c[0].press & PDD_DGT_KR) {
                         do {
                             if (++slot > 3) slot = 0;
                         } while (!var_vmuStatus_8c226048[slot]);
                     }
                     // Move down
-                    else if (var_peripheral_8c1ba35c[0].press & PDD_DGT_KD) {
+                    else if (var_peripherals_8c1ba35c[0].press & PDD_DGT_KD) {
                         for (slot += 4; !var_vmuStatus_8c226048[slot]; slot++);
                     }
                 }
                 // Else, on lower row
                 else {
                     // Move left
-                    if (var_peripheral_8c1ba35c[0].press & PDD_DGT_KL) {
+                    if (var_peripherals_8c1ba35c[0].press & PDD_DGT_KL) {
                         do {
                             if (--slot < 4) slot = 8; 
                         } while (!var_vmuStatus_8c226048[slot]);
                     }
                     // Move right
-                    else if (var_peripheral_8c1ba35c[0].press & PDD_DGT_KR) {
+                    else if (var_peripherals_8c1ba35c[0].press & PDD_DGT_KR) {
                         do {
                             if (++slot > 8) slot = 8;
                         } while (!var_vmuStatus_8c226048[slot]);
                     }
                     // Move up
-                    else if (var_peripheral_8c1ba35c[0].press & PDD_DGT_KU) {
+                    else if (var_peripherals_8c1ba35c[0].press & PDD_DGT_KU) {
                         int i;
                         for (i = 0; !var_vmuStatus_8c226048[i]; i++);
 
@@ -519,7 +519,7 @@ STATIC void VmMenuTask_198a0(Task* task, void *actionState)
 
                 // If slot didn't change and A was pressed
                 if (slot == menuState_8c1bc7a8.selected_0x38
-                    && (var_peripheral_8c1ba35c[0].press & PDD_DGT_TA))
+                    && (var_peripherals_8c1ba35c[0].press & PDD_DGT_TA))
                 {
                     int status = var_vmuStatus_8c226048[slot];
                     if (
@@ -567,7 +567,7 @@ STATIC void VmMenuTask_198a0(Task* task, void *actionState)
 
         /* Cursor animating */
         case VM_MENU_STATE_CURSOR_ANIMATING: {
-            if (interpolated_8c016d2c()) {
+            if (CourseMenuInterpolateCursor_8c016d2c()) {
                 CHANGE_STATE(VM_MENU_STATE_IDLE);
                 swapMessageBoxFor_8c02aefc(init_vmuStatusMessages_8c044dc4[var_vmuStatus_8c226048[slot]]);
             }

@@ -11,13 +11,13 @@ return new class extends TestCase {
 
         $optionPtr = $this->alloc(0x0c);
         $this->initUint32($optionPtr, 0);
-        $this->initUint32($this->addressOf('_var_peripheral_8c1ba35c') + 16, 0);
+        $this->initUint32($this->addressOf('_var_peripherals_8c1ba35c') + 16, 0);
 
         $this->shouldWrite($optionPtr, 0);
 
         $this->singleCall('_promptHandleMultiple_16c58')
             ->with($optionPtr, 3)
-            ->shouldReturn(0)
+            ->singleShouldReturn(0)
             ->run();
     }
 
@@ -27,7 +27,7 @@ return new class extends TestCase {
 
         $optionPtr = $this->alloc(0x0c);
         $this->initUint32($optionPtr, 0);
-        $this->initUint32($this->addressOf('_var_peripheral_8c1ba35c') + 16, 0x80);
+        $this->initUint32($this->addressOf('_var_peripherals_8c1ba35c') + 16, 0x80);
         $this->initUint32($this->addressOf('_var_midiHandles_8c0fcd28'), 0xbebacafe);
 
         $this->shouldCall('_sdMidiPlay')->with(0xbebacafe, 1, 3, 0);
@@ -36,7 +36,7 @@ return new class extends TestCase {
 
         $this->singleCall('_promptHandleMultiple_16c58')
             ->with($optionPtr, 3)
-            ->shouldReturn(1)
+            ->singleShouldReturn(1)
             ->run();
     }
 
@@ -46,7 +46,7 @@ return new class extends TestCase {
 
         $optionPtr = $this->alloc(0x0c);
         $this->initUint32($optionPtr, 3);
-        $this->initUint32($this->addressOf('_var_peripheral_8c1ba35c') + 16, 0x40);
+        $this->initUint32($this->addressOf('_var_peripherals_8c1ba35c') + 16, 0x40);
         $this->initUint32($this->addressOf('_var_midiHandles_8c0fcd28'), 0xbebacafe);
         
         $this->shouldCall('_sdMidiPlay')->with(0xbebacafe, 1, 3, 0);
@@ -55,7 +55,7 @@ return new class extends TestCase {
 
         $this->singleCall('_promptHandleMultiple_16c58')
             ->with($optionPtr, 3)
-            ->shouldReturn(1)
+            ->singleShouldReturn(1)
             ->run();
     }
 
@@ -65,7 +65,7 @@ return new class extends TestCase {
 
         $optionPtr = $this->alloc(0x0c);
         $this->initUint32($optionPtr, 2);
-        $this->initUint32($this->addressOf('_var_peripheral_8c1ba35c') + 16, 0x80);
+        $this->initUint32($this->addressOf('_var_peripherals_8c1ba35c') + 16, 0x80);
         $this->initUint32($this->addressOf('_var_midiHandles_8c0fcd28'), 0xbebacafe);
 
         $this->shouldCall('_sdMidiPlay')->with(0xbebacafe, 1, 3, 0);
@@ -74,7 +74,7 @@ return new class extends TestCase {
 
         $this->singleCall('_promptHandleMultiple_16c58')
             ->with($optionPtr, 3)
-            ->shouldReturn(1)
+            ->singleShouldReturn(1)
             ->run();
     }
 
@@ -84,7 +84,7 @@ return new class extends TestCase {
 
         $optionPtr = $this->alloc(0x0c);
         $this->initUint32($optionPtr, 0);
-        $this->initUint32($this->addressOf('_var_peripheral_8c1ba35c') + 16, 0x40);
+        $this->initUint32($this->addressOf('_var_peripherals_8c1ba35c') + 16, 0x40);
         $this->initUint32($this->addressOf('_var_midiHandles_8c0fcd28'), 0xbebacafe);
 
         $this->shouldCall('_sdMidiPlay')->with(0xbebacafe, 1, 3, 0);
@@ -93,7 +93,7 @@ return new class extends TestCase {
 
         $this->singleCall('_promptHandleMultiple_16c58')
             ->with($optionPtr, 3)
-            ->shouldReturn(1)
+            ->singleShouldReturn(1)
             ->run();
     }
 
@@ -103,19 +103,19 @@ return new class extends TestCase {
 
         $optionPtr = $this->alloc(0x0c);
         $this->initUint32($optionPtr, 1);
-        $this->initUint32($this->addressOf('_var_peripheral_8c1ba35c') + 16, 0);
+        $this->initUint32($this->addressOf('_var_peripherals_8c1ba35c') + 16, 0);
 
         $this->shouldWrite($optionPtr, 1);
 
         $this->singleCall('_promptHandleMultiple_16c58')
             ->with($optionPtr, 3)
-            ->shouldReturn(0)
+            ->singleShouldReturn(0)
             ->run();
     }
 
     private function resolveImports() {
         // sizeof PERIPHERAL = 52
-        $this->setSize('_var_peripheral_8c1ba35c', 52 * 2);
+        $this->setSize('_var_peripherals_8c1ba35c', 52 * 2);
         $this->setSize('_var_midiHandles_8c0fcd28', 0x8);
     }
 };

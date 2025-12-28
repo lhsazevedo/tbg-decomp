@@ -12,13 +12,13 @@ return new class extends TestCase {
         $this->resolveImports();
 
         $this->initUint32($this->addressOf('_menuState_8c1bc7a8') + 0x18 , 0x0b);
-        $this->initUint32($this->addressOf('_var_peripheral_8c1ba35c') + 0x10, 8);
+        $this->initUint32($this->addressOf('_var_peripherals_8c1ba35c') + 0x10, 8);
         $this->initUint32($this->addressOf('_var_midiHandles_8c0fcd28'), 0xbebacafe);
 
         /* Assert */
         $this->shouldCall('_sdMidiPlay')->with(0xbebacafe, 1, 0, 0);
 
-        $this->shouldWrite($this->addressOf('_var_peripheral_8c1ba35c') + 16, 0);
+        $this->shouldWrite($this->addressOf('_var_peripherals_8c1ba35c') + 16, 0);
         $this->shouldWriteSymbolOffset('_menuState_8c1bc7a8', 0x18, 0x0e);
         $this->shouldWrite($this->addressOf('_isFading_8c226568'), 0);
 
@@ -376,7 +376,7 @@ return new class extends TestCase {
         $this->resolveImports();
 
         $this->initUint32($this->addressOf('_menuState_8c1bc7a8') + 0x18, 8);
-        $this->initUint32($this->addressOf('_var_peripheral_8c1ba35c') + 16, 0);
+        $this->initUint32($this->addressOf('_var_peripherals_8c1ba35c') + 16, 0);
 
         $this->shouldCall('_VmMenuUpdateVmusStatus_19550')->with($this->addressOf('_init_saveNames_8c044d50'), 3)->andReturn(0);
 
@@ -391,7 +391,7 @@ return new class extends TestCase {
         $this->resolveImports();
 
         $this->initUint32($this->addressOf('_menuState_8c1bc7a8') + 0x18, 8);
-        $this->initUint32($this->addressOf('_var_peripheral_8c1ba35c') + 16, 1 << 3);
+        $this->initUint32($this->addressOf('_var_peripherals_8c1ba35c') + 16, 1 << 3);
         $this->initUint32($this->addressOf('_var_midiHandles_8c0fcd28'), 0xbebacafe);
 
         $this->shouldCall('_sdMidiPlay')->with(0xbebacafe, 1, 0, 0, 0);
@@ -412,7 +412,7 @@ return new class extends TestCase {
         $this->resolveImports();
 
         $this->initUint32($this->addressOf('_menuState_8c1bc7a8') + 0x18, 8);
-        $this->initUint32($this->addressOf('_var_peripheral_8c1ba35c') + 16, 1 << 2);
+        $this->initUint32($this->addressOf('_var_peripherals_8c1ba35c') + 16, 1 << 2);
         $this->initUint32($this->addressOf('_var_midiHandles_8c0fcd28'), 0xbebacafe);
 
         $this->shouldCall('_sdMidiPlay')->with(0xbebacafe, 1, 0, 0, 0);
@@ -434,7 +434,7 @@ return new class extends TestCase {
 
 
         $this->initUint32($this->addressOf('_menuState_8c1bc7a8') + 0x18, 8);
-        $this->initUint32($this->addressOf('_var_peripheral_8c1ba35c') + 16, 0xFFFFFFF3);
+        $this->initUint32($this->addressOf('_var_peripherals_8c1ba35c') + 16, 0xFFFFFFF3);
 
         $this->shouldCall('_VmMenuUpdateVmusStatus_19550')->with($this->addressOf('_init_saveNames_8c044d50'), 3)->andReturn(0);
 
@@ -450,7 +450,7 @@ return new class extends TestCase {
 
 
         $this->initUint32($this->addressOf('_menuState_8c1bc7a8') + 0x18, 8);
-        $this->initUint32($this->addressOf('_var_peripheral_8c1ba35c') + 16, 0);
+        $this->initUint32($this->addressOf('_var_peripherals_8c1ba35c') + 16, 0);
         $this->initUint32($this->addressOf('_var_midiHandles_8c0fcd28'), 0xbebacafe);
 
         $this->shouldCall('_VmMenuUpdateVmusStatus_19550')->with($this->addressOf('_init_saveNames_8c044d50'), 3)->andReturn(1);
@@ -539,7 +539,7 @@ return new class extends TestCase {
         $this->resolveImports();
 
         $this->initUint32($this->addressOf('_menuState_8c1bc7a8') + 0x18, 0x0b);
-        $this->initUint32($this->addressOf('_var_peripheral_8c1ba35c') + 16, 0);
+        $this->initUint32($this->addressOf('_var_peripherals_8c1ba35c') + 16, 0);
         // 640.0 is stored as 0x44200000
         $this->initUint32($this->addressOf('_menuState_8c1bc7a8') + 0x20, 0x44200000);
 
@@ -562,7 +562,7 @@ return new class extends TestCase {
         $this->resolveImports();
 
         $this->initUint32($this->addressOf('_menuState_8c1bc7a8') + 0x18, 0x0b);
-        $this->initUint32($this->addressOf('_var_peripheral_8c1ba35c') + 16, 0);
+        $this->initUint32($this->addressOf('_var_peripherals_8c1ba35c') + 16, 0);
         // 185.0 is stored as 0x43390000
         $this->initUint32($this->addressOf('_menuState_8c1bc7a8') + 0x20, 0x43390000);
 
@@ -600,7 +600,7 @@ return new class extends TestCase {
 
         $this->initUint32($this->addressOf('_menuState_8c1bc7a8') + 0x18, 0x0c);
         // Anim skip check
-        $this->initUint32($this->addressOf('_var_peripheral_8c1ba35c') + 16, 0);
+        $this->initUint32($this->addressOf('_var_peripherals_8c1ba35c') + 16, 0);
         // 167.0 is stored as 0x43270000
         $this->initUint32($this->addressOf('_menuState_8c1bc7a8') + 0x24, 0x43270000);
 
@@ -627,7 +627,7 @@ return new class extends TestCase {
 
         $this->initUint32($this->addressOf('_menuState_8c1bc7a8') + 0x18, 0x0c);
         // Anim skip check
-        $this->initUint32($this->addressOf('_var_peripheral_8c1ba35c') + 16, 0);
+        $this->initUint32($this->addressOf('_var_peripherals_8c1ba35c') + 16, 0);
         // 98 is stored as 0x42c40000
         $this->initUint32($this->addressOf('_menuState_8c1bc7a8') + 0x24, 0x42c40000);
 
@@ -703,7 +703,7 @@ return new class extends TestCase {
         $this->resolveImports();
 
         $this->initUint32($this->addressOf('_menuState_8c1bc7a8') + 0x18, 0x0e);
-        $this->initUint32($this->addressOf('_var_peripheral_8c1ba35c') + 16, 0);
+        $this->initUint32($this->addressOf('_var_peripherals_8c1ba35c') + 16, 0);
         $this->initUint32($this->addressOf('_menuState_8c1bc7a8') + 0x64, 1049);
 
         $this->shouldWrite($this->addressOf('_menuState_8c1bc7a8') + 0x64, 1050);
@@ -727,7 +727,7 @@ return new class extends TestCase {
         $this->resolveImports();
 
         $this->initUint32($this->addressOf('_menuState_8c1bc7a8') + 0x18, 0x0e);
-        $this->initUint32($this->addressOf('_var_peripheral_8c1ba35c') + 16, 1 << 3);
+        $this->initUint32($this->addressOf('_var_peripherals_8c1ba35c') + 16, 1 << 3);
         $this->initUint32($this->addressOf('_var_midiHandles_8c0fcd28'), 0xbebacafe);
 
         $this->shouldCall('_FUN_8c010bae')->with(0);
@@ -759,7 +759,7 @@ return new class extends TestCase {
         $this->resolveImports();
 
         $this->initUint32($this->addressOf('_menuState_8c1bc7a8') + 0x18, 0x0e);
-        $this->initUint32($this->addressOf('_var_peripheral_8c1ba35c') + 16, 0xFFFFFFF3);
+        $this->initUint32($this->addressOf('_var_peripherals_8c1ba35c') + 16, 0xFFFFFFF3);
         $this->initUint32($this->addressOf('_menuState_8c1bc7a8') + 0x64, 1051);
 
         $this->shouldWrite($this->addressOf('_menuState_8c1bc7a8') + 0x64, 1052);
@@ -1012,13 +1012,13 @@ return new class extends TestCase {
         $this->resolveImports();
 
         $this->initUint32($this->addressOf('_menuState_8c1bc7a8') + 0x18, 0x0b);
-        $this->initUint32($this->addressOf('_var_peripheral_8c1ba35c') + 16, 1 << 3);
+        $this->initUint32($this->addressOf('_var_peripherals_8c1ba35c') + 16, 1 << 3);
         $this->initUint32($this->addressOf('_var_midiHandles_8c0fcd28'), 0xbebacafe);
 
         $this->shouldReadFrom('_var_midiHandles_8c0fcd28', 0xbebacafe);
         $this->shouldCall('_sdMidiPlay')->with(0xbebacafe, 1, 0, 0);
 
-        $this->shouldWrite($this->addressOf('_var_peripheral_8c1ba35c') + 16, 0);
+        $this->shouldWrite($this->addressOf('_var_peripherals_8c1ba35c') + 16, 0);
         // Advance title state
         $this->shouldWriteSymbolOffset('_menuState_8c1bc7a8', 0x18, 0x0e);
         $this->shouldWriteSymbolOffset('_isFading_8c226568', 0, 0);
@@ -1037,13 +1037,13 @@ return new class extends TestCase {
         $this->resolveImports();
 
         $this->initUint32($this->addressOf('_menuState_8c1bc7a8') + 0x18, 0x0c);
-        $this->initUint32($this->addressOf('_var_peripheral_8c1ba35c') + 16, 1 << 3);
+        $this->initUint32($this->addressOf('_var_peripherals_8c1ba35c') + 16, 1 << 3);
         $this->initUint32($this->addressOf('_var_midiHandles_8c0fcd28'), 0xbebacafe);
 
         $this->shouldReadSymbolOffset('_var_midiHandles_8c0fcd28', 0, 0xbebacafe);
         $this->shouldCall('_sdMidiPlay')->with(0xbebacafe, 1, 0, 0);
 
-        $this->shouldWrite($this->addressOf('_var_peripheral_8c1ba35c') + 16, 0);
+        $this->shouldWrite($this->addressOf('_var_peripherals_8c1ba35c') + 16, 0);
         // Advance title state
         $this->shouldWriteSymbolOffset('_menuState_8c1bc7a8', 0x18, 0x0e);
         $this->shouldWriteSymbolOffset('_isFading_8c226568', 0, 0);
@@ -1063,7 +1063,7 @@ return new class extends TestCase {
         $this->setSize('_drawSprite_8c014f54', 4);
         $this->setSize('_menuState_8c1bc7a8', 0x6c);
         // sizeof PERIPHERAL = 52
-        $this->setSize('_var_peripheral_8c1ba35c', 52 * 2);
+        $this->setSize('_var_peripherals_8c1ba35c', 52 * 2);
         $this->setSize('_var_midiHandles_8c0fcd28', 0x8);
         $this->setSize('_isFading_8c226568', 4);
 

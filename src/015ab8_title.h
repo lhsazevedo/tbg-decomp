@@ -1,6 +1,7 @@
 #ifndef _TITLE_H_
 #define _TITLE_H_
 
+#include <shinobi.h>
 #include "014b8c_backup.h"
 
 enum TITLE_STATE {
@@ -55,9 +56,12 @@ struct MenuState {
             NJS_POINT2 cursor_0x20;
             NJS_POINT2 cursorTarget_0x28;
         } vmSelect;
+        struct {
+            NJS_POINT2 cursor_0x20;
+            NJS_POINT2 cursorTarget_0x28;
+        } cursor;
     } pos;
-    float uknX_0x30;
-    float uknY_0x34;
+    NJS_POINT2 cursorVelocity_0x30;
     int selected_0x38;
     int field_0x3c;
     int field_0x40;
@@ -68,7 +72,7 @@ struct MenuState {
     int field_0x54;
     int field_0x58;
     int field_0x5c;
-    int field_0x60;
+    int instructorSprite_0x60;
     int startTimer_0x64;
     int logo_timer_0x68;
     int selectedVmuSlot_0x6c;

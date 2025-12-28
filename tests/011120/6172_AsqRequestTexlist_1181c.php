@@ -24,7 +24,7 @@ return new class extends TestCase {
 
         $this->singleCall('_AsqRequestTexlist_1181c')
             ->with($dirname, $unknownStruct)
-            ->shouldReturn(1)
+            ->singleShouldReturn(1)
             ->run();
     }
 
@@ -44,7 +44,7 @@ return new class extends TestCase {
 
         $this->singleCall('_AsqRequestTexlist_1181c')
             ->with($dirname, $unknownStruct)
-            ->shouldReturn(0)
+            ->singleShouldReturn(0)
             ->run();
     }
 };

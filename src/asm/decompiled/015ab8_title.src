@@ -16,7 +16,7 @@
           .IMPORT     _var_8c1bb8c4
           .IMPORT     _titleResourceGroup_8c044254
           .IMPORT     _menuState_8c1bc7a8
-          .IMPORT     _var_peripheral_8c1ba35c
+          .IMPORT     _var_peripherals_8c1ba35c
           .IMPORT     _var_tasks_8c1ba3c8
           .IMPORT     _task_8c012f44
           .IMPORT     _var_tex_8c157af8
@@ -24,14 +24,14 @@
           .IMPORT     _AsqInitQueues_11f36
           .IMPORT     _AsqNop_11120
           .IMPORT     _resetUknPvmBool_8c014322
-          .IMPORT     _var_8c225fb0
+          .IMPORT     _var_currentSysResGroupInfo_8c225fb0
           .IMPORT     _VmMenuUpdateVmusStatus_19550
           .IMPORT     _VmMenuSwitchFromTask_19e44
           .IMPORT     _FUN_8c016182
           .IMPORT     _FUN_demo_8c0159ac
           .IMPORT     _AsqResetQueues_11f6c
-          .IMPORT     _requestSysResgrp_8c018568
-          .IMPORT     _requestCommonResources_8c01852c
+          .IMPORT     _CourseMenuRequestSysResgrp_8c018568
+          .IMPORT     _CourseMenuRequestCommonResources_8c01852c
           .IMPORT     _setUknPvmBool_8c014330
           .IMPORT     _AsqProcessQueues_11fe0
           .IMPORT     _snd_8c010cd6
@@ -64,7 +64,7 @@ _task_title_8c015ab8:            ; function: task_title_8c015ab8
           MOVA        L3+10,R0
           MOV         #11,R3
           MOV.L       L3+26,R12; _isFading_8c226568
-          MOV.L       L3+22,R9 ; _var_peripheral_8c1ba35c
+          MOV.L       L3+22,R9 ; _var_peripherals_8c1ba35c
           FMOV.S      @R0,FR14
           MOV.L       R4,@R15
           MOV.L       @(24,R14),R4
@@ -116,7 +116,7 @@ L3:
           .DATA.L     H'C0A00000 ; -5.0 H'8c015b40
           .DATA.L     _drawSprite_8c014f54
           .DATA.L     _menuState_8c1bc7a8
-          .DATA.L     _var_peripheral_8c1ba35c
+          .DATA.L     _var_peripherals_8c1ba35c
           .DATA.L     _isFading_8c226568 ; H'8c015b50
           .DATA.L     _var_midiHandles_8c0fcd28
           .DATA.L     _sdMidiPlay
@@ -789,15 +789,15 @@ _pushTitle_8c015fd6:                   ; function: pushTitle_8c015fd6
           MOV.L       L53+76,R2; AsqResetQueues_11f6c
           JSR         @R2
           NOP
-          MOV.L       L53+80,R2; _var_8c225fb0
+          MOV.L       L53+80,R2; _var_currentSysResGroupInfo_8c225fb0
           MOV         #-1,R3
           MOV.L       L53+84,R5; _titleResourceGroup_8c044254
           MOV         R14,R4
           MOV.L       R3,@R2
-          MOV.L       L53+88,R3; _requestSysResgrp_8c018568
+          MOV.L       L53+88,R3; _CourseMenuRequestSysResgrp_8c018568
           JSR         @R3
           ADD         #12,R4
-          MOV.L       L53+92,R2; _requestCommonResources_8c01852c
+          MOV.L       L53+92,R2; _CourseMenuRequestCommonResources_8c01852c
           JSR         @R2
           NOP
           MOV.L       L53+96,R3; _setUknPvmBool_8c014330
@@ -839,10 +839,10 @@ L53:
           .DATA.L     _FUN_8c02ae3e
           .DATA.L     _AsqInitQueues_11f36 ; H'8c0160e0
           .DATA.L     _AsqResetQueues_11f6c
-          .DATA.L     _var_8c225fb0
+          .DATA.L     _var_currentSysResGroupInfo_8c225fb0
           .DATA.L     _titleResourceGroup_8c044254
-          .DATA.L     _requestSysResgrp_8c018568 ; H'8c0160f0
-          .DATA.L     _requestCommonResources_8c01852c
+          .DATA.L     _CourseMenuRequestSysResgrp_8c018568 ; H'8c0160f0
+          .DATA.L     _CourseMenuRequestCommonResources_8c01852c
           .DATA.L     _setUknPvmBool_8c014330
           .DATA.L     _resetUknPvmBool_8c014322
           .DATA.L     _AsqNop_11120

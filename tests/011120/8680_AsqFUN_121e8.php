@@ -41,10 +41,10 @@ return new class extends TestCase {
         $this->init3be80(26, 55);
         $this->init3be80(27, 222);
 
-        $this->initUint32($this->addressOf('_var_8c1ba1cc') + 0xcc, 0);
-        $this->initUint32($this->addressOf('_var_8c1ba1cc') + 0xcd, 0);
-        $this->initUint32($this->addressOf('_var_8c1ba1cc') + 0xce, 0);
-        $this->initUint32($this->addressOf('_var_8c1ba1cc') + 0xcf, 0);
+        $this->initUint32($this->addressOf('_var_progress_8c1ba1cc') + 0xcc, 0);
+        $this->initUint32($this->addressOf('_var_progress_8c1ba1cc') + 0xcd, 0);
+        $this->initUint32($this->addressOf('_var_progress_8c1ba1cc') + 0xce, 0);
+        $this->initUint32($this->addressOf('_var_progress_8c1ba1cc') + 0xcf, 0);
 
         $this->shouldWriteOffset3be80(2 *  0, 113);
         $this->shouldWriteOffset3be80(2 *  1, 145);
@@ -117,10 +117,10 @@ return new class extends TestCase {
         $this->init3be80(26, 55);
         $this->init3be80(27, 222);
 
-        $this->initUint32($this->addressOf('_var_8c1ba1cc') + 0xcc, 1);
-        $this->initUint32($this->addressOf('_var_8c1ba1cc') + 0xcd, 0);
-        $this->initUint32($this->addressOf('_var_8c1ba1cc') + 0xce, 0);
-        $this->initUint32($this->addressOf('_var_8c1ba1cc') + 0xcf, 0);
+        $this->initUint32($this->addressOf('_var_progress_8c1ba1cc') + 0xcc, 1);
+        $this->initUint32($this->addressOf('_var_progress_8c1ba1cc') + 0xcd, 0);
+        $this->initUint32($this->addressOf('_var_progress_8c1ba1cc') + 0xce, 0);
+        $this->initUint32($this->addressOf('_var_progress_8c1ba1cc') + 0xcf, 0);
 
         $this->shouldWriteOffset3be80(2 *  0, 113);
         $this->shouldWriteOffset3be80(2 *  1, 145);
@@ -196,10 +196,10 @@ return new class extends TestCase {
         $this->init3be80(26, 55);
         $this->init3be80(27, 222);
 
-        $this->initUint32($this->addressOf('_var_8c1ba1cc') + 0xcc, 2);
-        $this->initUint32($this->addressOf('_var_8c1ba1cc') + 0xcd, 0);
-        $this->initUint32($this->addressOf('_var_8c1ba1cc') + 0xce, 0);
-        $this->initUint32($this->addressOf('_var_8c1ba1cc') + 0xcf, 0);
+        $this->initUint32($this->addressOf('_var_progress_8c1ba1cc') + 0xcc, 2);
+        $this->initUint32($this->addressOf('_var_progress_8c1ba1cc') + 0xcd, 0);
+        $this->initUint32($this->addressOf('_var_progress_8c1ba1cc') + 0xce, 0);
+        $this->initUint32($this->addressOf('_var_progress_8c1ba1cc') + 0xcf, 0);
 
         $this->shouldWriteOffset3be80(2 *  0, 113);
         $this->shouldWriteOffset3be80(2 *  1, 145);
@@ -275,10 +275,10 @@ return new class extends TestCase {
         $this->init3be80(26, 55);
         $this->init3be80(27, 222);
 
-        $this->initUint32($this->addressOf('_var_8c1ba1cc') + 0xcc, 0);
-        $this->initUint32($this->addressOf('_var_8c1ba1cc') + 0xcd, 1);
-        $this->initUint32($this->addressOf('_var_8c1ba1cc') + 0xce, 0);
-        $this->initUint32($this->addressOf('_var_8c1ba1cc') + 0xcf, 0);
+        $this->initUint32($this->addressOf('_var_progress_8c1ba1cc') + 0xcc, 0);
+        $this->initUint32($this->addressOf('_var_progress_8c1ba1cc') + 0xcd, 1);
+        $this->initUint32($this->addressOf('_var_progress_8c1ba1cc') + 0xce, 0);
+        $this->initUint32($this->addressOf('_var_progress_8c1ba1cc') + 0xcf, 0);
 
         $this->shouldWriteOffset3be80(2 *  0, 113);
         $this->shouldWriteOffset3be80(2 *  1, 145);
@@ -354,10 +354,10 @@ return new class extends TestCase {
         $this->init3be80(26, 55);
         $this->init3be80(27, 222);
 
-        $this->initUint32($this->addressOf('_var_8c1ba1cc') + 0xcc, 0);
-        $this->initUint32($this->addressOf('_var_8c1ba1cc') + 0xcd, 2);
-        $this->initUint32($this->addressOf('_var_8c1ba1cc') + 0xce, 0);
-        $this->initUint32($this->addressOf('_var_8c1ba1cc') + 0xcf, 0);
+        $this->initUint32($this->addressOf('_var_progress_8c1ba1cc') + 0xcc, 0);
+        $this->initUint32($this->addressOf('_var_progress_8c1ba1cc') + 0xcd, 2);
+        $this->initUint32($this->addressOf('_var_progress_8c1ba1cc') + 0xce, 0);
+        $this->initUint32($this->addressOf('_var_progress_8c1ba1cc') + 0xcf, 0);
 
         $this->shouldWriteOffset3be80(2 *  0, 113);
         $this->shouldWriteOffset3be80(2 *  1, 145);
@@ -433,10 +433,10 @@ return new class extends TestCase {
         $this->init3be80(26, 55);
         $this->init3be80(27, 222);
 
-        $this->initUint32($this->addressOf('_var_8c1ba1cc') + 0xcc, 0);
-        $this->initUint32($this->addressOf('_var_8c1ba1cc') + 0xcd, 0);
-        $this->initUint32($this->addressOf('_var_8c1ba1cc') + 0xce, 1);
-        $this->initUint32($this->addressOf('_var_8c1ba1cc') + 0xcf, 0);
+        $this->initUint32($this->addressOf('_var_progress_8c1ba1cc') + 0xcc, 0);
+        $this->initUint32($this->addressOf('_var_progress_8c1ba1cc') + 0xcd, 0);
+        $this->initUint32($this->addressOf('_var_progress_8c1ba1cc') + 0xce, 1);
+        $this->initUint32($this->addressOf('_var_progress_8c1ba1cc') + 0xcf, 0);
 
         $this->shouldWriteOffset3be80(2 *  0, 113);
         $this->shouldWriteOffset3be80(2 *  1, 145);
@@ -509,10 +509,10 @@ return new class extends TestCase {
         $this->init3be80(26, 55);
         $this->init3be80(27, 222);
 
-        $this->initUint32($this->addressOf('_var_8c1ba1cc') + 0xcc, 0);
-        $this->initUint32($this->addressOf('_var_8c1ba1cc') + 0xcd, 0);
-        $this->initUint32($this->addressOf('_var_8c1ba1cc') + 0xce, 2);
-        $this->initUint32($this->addressOf('_var_8c1ba1cc') + 0xcf, 0);
+        $this->initUint32($this->addressOf('_var_progress_8c1ba1cc') + 0xcc, 0);
+        $this->initUint32($this->addressOf('_var_progress_8c1ba1cc') + 0xcd, 0);
+        $this->initUint32($this->addressOf('_var_progress_8c1ba1cc') + 0xce, 2);
+        $this->initUint32($this->addressOf('_var_progress_8c1ba1cc') + 0xcf, 0);
 
         $this->shouldWriteOffset3be80(2 *  0, 113);
         $this->shouldWriteOffset3be80(2 *  1, 145);
@@ -585,10 +585,10 @@ return new class extends TestCase {
         $this->init3be80(26, 55);
         $this->init3be80(27, 222);
 
-        $this->initUint32($this->addressOf('_var_8c1ba1cc') + 0xcc, 0);
-        $this->initUint32($this->addressOf('_var_8c1ba1cc') + 0xcd, 0);
-        $this->initUint32($this->addressOf('_var_8c1ba1cc') + 0xce, 0);
-        $this->initUint32($this->addressOf('_var_8c1ba1cc') + 0xcf, 1);
+        $this->initUint32($this->addressOf('_var_progress_8c1ba1cc') + 0xcc, 0);
+        $this->initUint32($this->addressOf('_var_progress_8c1ba1cc') + 0xcd, 0);
+        $this->initUint32($this->addressOf('_var_progress_8c1ba1cc') + 0xce, 0);
+        $this->initUint32($this->addressOf('_var_progress_8c1ba1cc') + 0xcf, 1);
 
         $this->shouldWriteOffset3be80(2 *  0, 113);
         $this->shouldWriteOffset3be80(2 *  1, 145);
@@ -662,10 +662,10 @@ return new class extends TestCase {
         $this->init3be80(26, 55);
         $this->init3be80(27, 222);
 
-        $this->initUint32($this->addressOf('_var_8c1ba1cc') + 0xcc, 0);
-        $this->initUint32($this->addressOf('_var_8c1ba1cc') + 0xcd, 0);
-        $this->initUint32($this->addressOf('_var_8c1ba1cc') + 0xce, 0);
-        $this->initUint32($this->addressOf('_var_8c1ba1cc') + 0xcf, 2);
+        $this->initUint32($this->addressOf('_var_progress_8c1ba1cc') + 0xcc, 0);
+        $this->initUint32($this->addressOf('_var_progress_8c1ba1cc') + 0xcd, 0);
+        $this->initUint32($this->addressOf('_var_progress_8c1ba1cc') + 0xce, 0);
+        $this->initUint32($this->addressOf('_var_progress_8c1ba1cc') + 0xcf, 2);
 
         $this->shouldWriteOffset3be80(2 *  0, 113);
         $this->shouldWriteOffset3be80(2 *  1, 145);
@@ -739,10 +739,10 @@ return new class extends TestCase {
         $this->init3be80(26, 55);
         $this->init3be80(27, 222);
 
-        $this->initUint32($this->addressOf('_var_8c1ba1cc') + 0xcc, 0);
-        $this->initUint32($this->addressOf('_var_8c1ba1cc') + 0xcd, 0);
-        $this->initUint32($this->addressOf('_var_8c1ba1cc') + 0xce, 0);
-        $this->initUint32($this->addressOf('_var_8c1ba1cc') + 0xcf, 3);
+        $this->initUint32($this->addressOf('_var_progress_8c1ba1cc') + 0xcc, 0);
+        $this->initUint32($this->addressOf('_var_progress_8c1ba1cc') + 0xcd, 0);
+        $this->initUint32($this->addressOf('_var_progress_8c1ba1cc') + 0xce, 0);
+        $this->initUint32($this->addressOf('_var_progress_8c1ba1cc') + 0xcf, 3);
 
         $this->shouldWriteOffset3be80(2 *  0, 113);
         $this->shouldWriteOffset3be80(2 *  1, 145);
@@ -792,6 +792,6 @@ return new class extends TestCase {
 
     private function resolveImports(): void
     {
-        $this->setSize('_var_8c1ba1cc', 0xd0);
+        $this->setSize('_var_progress_8c1ba1cc', 0xd0);
     }
 };

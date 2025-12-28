@@ -16,4 +16,5 @@ docker run -it \
     $MOUNTS \
     -w /app \
     -u 1000 \
+    -e TERM=$TERM \
     lhsazevedo/tbg-decomp bash

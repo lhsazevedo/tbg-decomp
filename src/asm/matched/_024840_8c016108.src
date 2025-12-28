@@ -1,6 +1,6 @@
           .IMPORT     _menuState_8c1bc7a8
           .IMPORT     __8c225fb0
-          .IMPORT     _freeResourceGroup_8c0185c4
+          .IMPORT     _CourseMenuFreeResourceGroup_8c0185c4
           .IMPORT     __8c02af32
           .EXPORT     _freeResourceGroups_8c016108
           .SECTION    P,CODE,ALIGN=4

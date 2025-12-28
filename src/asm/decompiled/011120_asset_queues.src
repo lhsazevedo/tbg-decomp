@@ -25,7 +25,7 @@
           .IMPORT     _vmsLcd_8c01c8fc
           .IMPORT     _vmsLcd_8c01c910
           .IMPORT     __modlu
-          .IMPORT     _var_8c1ba1cc
+          .IMPORT     _var_progress_8c1ba1cc
           .EXPORT     _AsqNop_11120
           .EXPORT     _AsqRequestDat_11182
           .EXPORT     _AsqRequestNj_11492
@@ -2376,7 +2376,7 @@ LP_GEN_90004:
           .DATA.L     _var_seed_8c157acc
           .DATA.L     __modlu
           .DATA.L     _var_seed_8c157ad0
-          .DATA.L     _var_8c1ba1cc
+          .DATA.L     _var_progress_8c1ba1cc
           .DATA.L     _init_8c03bf18
           .DATA.L     _init_8c03be80
 

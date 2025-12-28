@@ -14,7 +14,7 @@ return new class extends TestCase {
         $this->shouldWriteTo('_var_seed_8c157acc', 223);
 
         $this->singleCall('_AsqGetRandomA_12166')
-            ->shouldReturn(223)
+            ->singleShouldReturn(223)
             ->run();
     }
 };

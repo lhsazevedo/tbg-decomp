@@ -1,16 +1,16 @@
           .IMPORT     _init_8c04ce10
           .IMPORT     _init_8c04df38
           .IMPORT     _init_8c04e988
-          .EXPORT     _const_8c033474
-          .EXPORT     _init_8c043ca4         ; 013ae8
-          .EXPORT     _init_8c043d64         ; 013ae8
-          .EXPORT     _init_8c043dc4         ; 013ae8
-          .EXPORT     _init_8c043ecc         ; 013ae8
-          .EXPORT     _init_8c043fd4         ; 013ae8
-          .EXPORT     _init_8c043fd8         ; 013ae8
-          .EXPORT     _init_8c0440dc         ; 013ae8
-          .EXPORT     _init_8c04410c         ; 01b19c
-          .EXPORT     _s_DUMMY_8c03346c
+          .EXPORT     _const_8c033474 ; 012f44.c, 012f44.src
+          .EXPORT     _init_8c043ca4 ; 013ae8.src
+          .EXPORT     _init_8c043d64 ; 013ae8.src
+          .EXPORT     _init_8c043dc4 ; 013ae8.src
+          .EXPORT     _init_8c043ecc ; 013ae8.src
+          .EXPORT     _init_8c043fd4 ; 013ae8.src
+          .EXPORT     _init_8c043fd8 ; 013ae8.src
+          .EXPORT     _init_8c0440dc ; 013ae8.src
+          .EXPORT     _init_8c04410c ; 01b19c.src
+          .EXPORT     _s_DUMMY_8c03346c ; 012f44.c, 012f44.src
           .EXPORT     s_front_njd_8c033478   ; 013ae8
           .EXPORT     s_front_pvm_8c033484   ; 013ae8
           .EXPORT     s_syanai_njd_8c033490  ; 013ae8

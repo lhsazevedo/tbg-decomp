@@ -17,7 +17,7 @@ return new class extends TestCase {
 
         $this->singleCall('_snd_8c010cd6')
             ->with(0, 42)
-            ->shouldReturn(1)
+            ->singleShouldReturn(1)
             ->run();
     }
 
@@ -33,7 +33,7 @@ return new class extends TestCase {
 
         $this->singleCall('_snd_8c010cd6')
             ->with(1, 42)
-            ->shouldReturn(1)
+            ->singleShouldReturn(1)
             ->run();
     }
 
@@ -49,7 +49,7 @@ return new class extends TestCase {
 
         $this->singleCall('_snd_8c010cd6')
             ->with(2, 42)
-            ->shouldReturn(1)
+            ->singleShouldReturn(1)
             ->run();
     }
 
@@ -61,7 +61,7 @@ return new class extends TestCase {
 
         $this->singleCall('_snd_8c010cd6')
             ->with(3, 42)
-            ->shouldReturn(0)
+            ->singleShouldReturn(0)
             ->run();
     }
 

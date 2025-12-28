@@ -84,8 +84,8 @@ UnknownAdxVolStructB var_uknAdxVol_8c157a34;
    ===================
  */
 
-int init_8c03bd80 = 0;
-int init_8c03bd84 = 1;
+int init_8c03bd80 = 0; // Maybe soundIsPlaying or soundIsPlayingForAdx
+int init_8c03bd84 = 1; // Maybe soundIsPlayingForMidi
 UnknownAdxVolStructA init_uknAdxVol_8c03bd88 = {
     990,
     990

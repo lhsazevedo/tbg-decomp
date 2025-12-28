@@ -1,5 +1,5 @@
 ; 8c012324
-          .IMPORT     _var_peripheral_8c1ba35c
+          .IMPORT     _var_peripherals_8c1ba35c
           .IMPORT     _var_resetRequested_8c157a78
           .IMPORT     _var_peripheral_8c1ba358
           .IMPORT     _pdGetPeripheral
@@ -143,7 +143,7 @@ LAB_8c012406:
 
 LP_GEN_72787:
           .DATA.W H'0080 ; LP_GEN_72787+0
-          .DATA.L _var_peripheral_8c1ba35c
+          .DATA.L _var_peripherals_8c1ba35c
           .DATA.L _var_resetRequested_8c157a78
           .DATA.L _var_peripheral_8c1ba358
           .DATA.L _pdGetPeripheral

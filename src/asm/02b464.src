@@ -81,20 +81,20 @@
           .IMPORT     _var_8c1bb8bc
           .IMPORT     _FUN_8c016182
           .IMPORT     _var_game_mode_8c1bb8fc
-          .IMPORT     _var_8c1ba1cc
+          .IMPORT     _var_progress_8c1ba1cc
           .IMPORT     _var_8c1bb8dc
-          .IMPORT     _FUN_8c017ef2
+          .IMPORT     _CourseMenuFUN_8c017ef2
           .IMPORT     _isFading_8c226568
           .IMPORT     _push_fadeout_8c022b60
-          .IMPORT     _var_8c1bb8c0
+          .IMPORT     _var_shouldShowFreeRunIntro_8c1bb8c0
           .IMPORT     _FUN_8c01f21c
           .IMPORT     _var_8c1bc418
           .IMPORT     _drawSprite_8c014f54
           .IMPORT     _FUN_8c01614c
           .IMPORT     _push_fadein_8c022a9c
           .IMPORT     _var_8c2285d0
-          .IMPORT     _var_8c1bc7e0
           .IMPORT     _FUN_8c01e0b4
+          .IMPORT     _menuState_8c1bc7a8
           .EXPORT     _FUN_8c02b464
           .EXPORT     _FUN_8c02b578
           .EXPORT     _FUN_8c02b6d4
@@ -2663,14 +2663,14 @@ LP_GEN_25024:
           .DATA.L _var_8c1bb8bc ; H'8C02C82C
           .DATA.L _FUN_8c016182 ; H'8C02C830
           .DATA.L _var_game_mode_8c1bb8fc ; H'8C02C834
-          .DATA.L _var_8c1ba1cc ; H'8C02C838
+          .DATA.L _var_progress_8c1ba1cc ; H'8C02C838
           .DATA.L _var_8c1bb8dc ; H'8C02C83C
           .DATA.L _FUN_8c01e0b4 ; H'8C02C840
-          .DATA.L _FUN_8c017ef2 ; H'8C02C844
+          .DATA.L _CourseMenuFUN_8c017ef2 ; H'8C02C844
           .DATA.L _isFading_8c226568 ; H'8C02C848
           .DATA.L _push_fadeout_8c022b60 ; H'8C02C84C
           .DATA.L _var_demo_8c1bb8d0 ; H'8C02C850
-          .DATA.L _var_8c1bb8c0 ; H'8C02C854
+          .DATA.L _var_shouldShowFreeRunIntro_8c1bb8c0 ; H'8C02C854
           .DATA.L _FUN_8c01f21c ; H'8C02C858
           .DATA.L _var_8c1bc418 ; H'8C02C85C
           .DATA.L H'C0400000 ; H'8C02C860
@@ -2681,5 +2681,5 @@ LP_GEN_25024:
           .DATA.L _push_fadein_8c022a9c ; H'8C02C874
           .DATA.L _var_8c2285d0 ; H'8C02C878
           .DATA.L _var_8c22640c ; H'8C02C87C
-          .DATA.L _var_8c1bc7e0 ; H'8C02C880
+          .DATA.L _menuState_8c1bc7a8 + H'38 ; H'8C02C880
           .END

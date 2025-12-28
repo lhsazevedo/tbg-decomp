@@ -29,7 +29,7 @@ return new class extends TestCase {
 
         $this->singleCall('_TxtDrawTextbox_8c0155e0')
             ->with($box)
-            ->shouldReturn(0)
+            ->singleShouldReturn(0)
             ->run();
     }
 
@@ -47,7 +47,7 @@ return new class extends TestCase {
 
         $this->singleCall('_TxtDrawTextbox_8c0155e0')
             ->with($box)
-            ->shouldReturn(0)
+            ->singleShouldReturn(0)
             ->run();
     }
 
@@ -141,7 +141,7 @@ return new class extends TestCase {
 
         $this->singleCall('_TxtDrawTextbox_8c0155e0')
             ->with($box, 3)
-            ->shouldReturn(1)
+            ->singleShouldReturn(1)
             ->run();
     }
 
@@ -235,7 +235,7 @@ return new class extends TestCase {
 
         $this->singleCall('_TxtDrawTextbox_8c0155e0')
             ->with($box, 3)
-            ->shouldReturn(1)
+            ->singleShouldReturn(1)
             ->run();
     }
 
@@ -313,7 +313,7 @@ return new class extends TestCase {
 
         $this->singleCall('_TxtDrawTextbox_8c0155e0')
             ->with($box, 2)
-            ->shouldReturn(1)
+            ->singleShouldReturn(1)
             ->run();
     }
 
@@ -395,7 +395,7 @@ return new class extends TestCase {
 
         $this->singleCall('_TxtDrawTextbox_8c0155e0')
             ->with($box, 3)
-            ->shouldReturn(1)
+            ->singleShouldReturn(1)
             ->run();
     }
 
@@ -475,7 +475,7 @@ return new class extends TestCase {
 
         $this->singleCall('_TxtDrawTextbox_8c0155e0')
             ->with($box, 3)
-            ->shouldReturn(1)
+            ->singleShouldReturn(1)
             ->run();
     }
 
@@ -557,7 +557,7 @@ return new class extends TestCase {
 
         $this->singleCall('_TxtDrawTextbox_8c0155e0')
             ->with($box, 3)
-            ->shouldReturn(1)
+            ->singleShouldReturn(1)
             ->run();
     }
 

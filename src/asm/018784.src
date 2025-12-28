@@ -10,7 +10,7 @@
           .IMPORT     _var_8c226010
           .IMPORT     _syFree
           .IMPORT     _var_8c1ba344
-          .IMPORT     _var_8c1ba1cc
+          .IMPORT     _var_progress_8c1ba1cc
           .IMPORT     _getSoundMode_8c010924
           .IMPORT     _var_soundMode_8c226070
           .IMPORT     _var_8c1bb8b8
@@ -30,7 +30,7 @@
           .IMPORT     _isFading_8c226568
           .IMPORT     _swapMessageBoxFor_8c02aefc
           .IMPORT     _sdMidiPlay
-          .IMPORT     _var_peripheral_8c1ba35c
+          .IMPORT     _var_peripherals_8c1ba35c
           .IMPORT     _var_midiHandles_8c0fcd28
           .IMPORT     _const_8c037e60
           .IMPORT     _menuTextboxText_8c02af1c
@@ -46,7 +46,7 @@
           .IMPORT     _VmMenuUnmountVms_194de
           .IMPORT     _var_8c22606c
           .IMPORT     _init_8c03bd80
-          .IMPORT     _var_8c225fb0
+          .IMPORT     _var_currentSysResGroupInfo_8c225fb0
           .IMPORT     _MainMenuSwitchFromTask_8c01a09a
           .IMPORT     _VmMenuSwitchFromTask_19e44
           .IMPORT     _setTaskAction_8c014b3e
@@ -222,7 +222,7 @@ LP_GEN_28586:
           .DATA.L _syFree ; H'8C0188AC
           .DATA.L _var_8c1ba344 ; H'8C0188B0
           .DATA.L H'0001869F ; H'8C0188B4
-          .DATA.L _var_8c1ba1cc ; H'8C0188B8
+          .DATA.L _var_progress_8c1ba1cc ; H'8C0188B8
 _FUN_8c0188bc:
           MOV.W       LP_GEN_30274,R0
           MOV         #H'0,R5
@@ -386,7 +386,7 @@ LP_GEN_30274:
           .DATA.W H'00D4 ; H'8C0189E2
           .DATA.W H'0098 ; H'8C0189E4
           .RES.W 1 ; H'8C0189E6
-          .DATA.L _var_8c1ba1cc ; H'8C0189E8
+          .DATA.L _var_progress_8c1ba1cc ; H'8C0189E8
           .DATA.L _getSoundMode_8c010924 ; H'8C0189EC
           .DATA.L _var_soundMode_8c226070 ; H'8C0189F0
           .DATA.L _var_8c1bb8b8 ; H'8C0189F4
@@ -540,7 +540,7 @@ LP_GEN_23929:
           .DATA.W H'00D5 ; H'8C018B0A
           .DATA.W H'00D6 ; H'8C018B0C
           .RES.W 1 ; H'8C018B0E
-          .DATA.L _var_8c1ba1cc ; H'8C018B10
+          .DATA.L _var_progress_8c1ba1cc ; H'8C018B10
           .DATA.L _setAdxVol_8c010972 ; H'8C018B14
           .DATA.L _setMidiVolAndInitStruct_8c0109f4 ; H'8C018B18
           .DATA.L _var_8c226014 ; H'8C018B1C
@@ -1072,7 +1072,7 @@ LP_GEN_84467:
           .DATA.L _isFading_8c226568 ; H'8C018F3C
           .DATA.L _swapMessageBoxFor_8c02aefc ; H'8C018F40
           .DATA.L _sdMidiPlay ; H'8C018F44
-          .DATA.L H'10+_var_peripheral_8c1ba35c ; H'8C018F48
+          .DATA.L H'10+_var_peripherals_8c1ba35c ; H'8C018F48
           .DATA.L _var_midiHandles_8c0fcd28 ; H'8C018F4C
           .DATA.L _var_8c157a7c ; H'8C018F50
           .DATA.L _const_8c037e60 ; H'8C018F54
@@ -1515,7 +1515,7 @@ LP_GEN_73468:
           .DATA.L _var_8c1ba350 ; H'8C01928C
           .DATA.L _var_8c225fe4 ; H'8C019290
           .DATA.L _var_8c1ba2e0 ; H'8C019294
-          .DATA.L _var_8c1ba1cc ; H'8C019298
+          .DATA.L _var_progress_8c1ba1cc ; H'8C019298
           .DATA.L _njMemCopy ; H'8C01929C
           .DATA.L _FUN_8c01b19c ; H'8C0192A0
           .DATA.L _var_midiHandles_8c0fcd28 ; H'8C0192A4
@@ -1526,7 +1526,7 @@ LP_GEN_73468:
           .DATA.L _VmMenuUnmountVms_194de ; H'8C0192B8
           .DATA.L _var_8c22606c ; H'8C0192BC
           .DATA.L _init_8c03bd80 ; H'8C0192C0
-          .DATA.L _var_8c225fb0 ; H'8C0192C4
+          .DATA.L _var_currentSysResGroupInfo_8c225fb0 ; H'8C0192C4
           .DATA.L _MainMenuSwitchFromTask_8c01a09a ; H'8C0192C8
 LAB_8c0192cc:
           MOV.L       @R6,R2

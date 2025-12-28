@@ -19,7 +19,7 @@ return new class extends TestCase {
 
         $this->singleCall('_initDatQueue_8c011124')
             ->with($queueItems)
-            ->shouldReturn(1)
+            ->singleShouldReturn(1)
             ->run();
     }
 
@@ -36,7 +36,7 @@ return new class extends TestCase {
 
         $this->singleCall('_initDatQueue_8c011124')
             ->with($queueItems)
-            ->shouldReturn(0)
+            ->singleShouldReturn(0)
             ->run();
     }
 
@@ -47,7 +47,7 @@ return new class extends TestCase {
 
         $this->singleCall('_initDatQueue_8c011124')
             ->with(0)
-            ->shouldReturn(1)
+            ->singleShouldReturn(1)
             ->run();
     }
 };

@@ -67,4 +67,8 @@ compile  src/011120_asset_queues.c
 assemble  src/asm/decompiled/019e98_main_menu.src
 compile  src/019e98_main_menu.c
 
-$sh4objtest suite -s tests.php -c
+# 019e98
+assemble  src/asm/decompiled/016d2c_course_menu.src
+compile  src/016d2c_course_menu.c
+
+$sh4objtest suite -s tests.php "$@"

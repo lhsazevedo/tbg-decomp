@@ -19,7 +19,7 @@ return new class extends TestCase {
         $this->shouldWriteLong($this->addressOf('_menuState_8c1bc7a8') + 0x5c, 0);
         $this->shouldCall('_AsqInitQueues_11f36')->with(8, 0, 0, 8);
         $this->shouldCall('_AsqResetQueues_11f6c');
-        $this->shouldCall('_requestSysResgrp_8c018568')->with(
+        $this->shouldCall('_CourseMenuRequestSysResgrp_8c018568')->with(
             $this->addressOf('_menuState_8c1bc7a8') + 0x0c,
             $this->addressOf('_init_mainMenuResourceGroup_8c044264'),
         );

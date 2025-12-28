@@ -8,7 +8,7 @@
           .IMPORT     _acosf
           .IMPORT     _var_8c227db0
           .IMPORT     _var_8c227db4
-          .IMPORT     _var_peripheral_8c1ba35c
+          .IMPORT     _var_peripherals_8c1ba35c
           .IMPORT     _FUN_8c0246b2
           .IMPORT     _var_8c2264b8
           .IMPORT     _var_8c1bb8c8
@@ -312,7 +312,7 @@ LP_GEN_73202:
           .DATA.W H'027C ; H'8C022DEE
           .DATA.W H'0334 ; H'8C022DF0
           .DATA.W H'02BC ; H'8C022DF2
-          .DATA.L H'10+_var_peripheral_8c1ba35c ; H'8C022DF4
+          .DATA.L H'10+_var_peripherals_8c1ba35c ; H'8C022DF4
           .DATA.L _FUN_8c0246b2 ; H'8C022DF8
           .DATA.L _var_8c2264b8 ; H'8C022DFC
           .DATA.L _var_8c1bb8c8 ; H'8C022E00

@@ -7,6 +7,8 @@
 #include "014a9c_tasks.h"
 #include "stdio.h"
 
+extern char var_progress_8c1ba1cc[];
+
 /* ====================
  * Compiler Definitions
  * ====================
@@ -1315,11 +1317,11 @@ void AsqFUN_121e8() {
         init_8c03be80[i] = init_8c03be80[i+1];
     }
 
-    if (var_8c1ba1cc[0xcc] != 0) {
-        if (var_8c1ba1cc[0xcc] == 1) {
+    if (var_progress_8c1ba1cc[0xcc] != 0) {
+        if (var_progress_8c1ba1cc[0xcc] == 1) {
             init_8c03be80[0] = 4;
             init_8c03be80[6] = 0x400; /* init_8c03be98 */
-        } else if (var_8c1ba1cc[0xcc] == 2) {
+        } else if (var_progress_8c1ba1cc[0xcc] == 2) {
             init_8c03be80[2] = 4;
             init_8c03be80[6] = 2; /* init_8c03be98 */
         }
@@ -1332,17 +1334,17 @@ void AsqFUN_121e8() {
     init_8c03beb8[8] = 0x40;
     init_8c03beb8[10] = 0x80;
 
-    if (var_8c1ba1cc[0xcd] != 0) {
-        if (var_8c1ba1cc[0xcd] == 1) {
+    if (var_progress_8c1ba1cc[0xcd] != 0) {
+        if (var_progress_8c1ba1cc[0xcd] == 1) {
             init_8c03beb8[0] = 4;
             init_8c03beb8[6] = 0x400;
-        } else if (var_8c1ba1cc[0xcd] == 2) {
+        } else if (var_progress_8c1ba1cc[0xcd] == 2) {
             init_8c03beb8[2] = 4;
             init_8c03beb8[6] = 2;
         }
     }
 
-    if (var_8c1ba1cc[0xce] == 0 || var_8c1ba1cc[0xce] != 1) {
+    if (var_progress_8c1ba1cc[0xce] == 0 || var_progress_8c1ba1cc[0xce] != 1) {
         init_8c03bef0[0] = 0x20;
         init_8c03bef0[2] = 0x10;
         init_8c03bef0[4] = 0x02;
@@ -1356,19 +1358,19 @@ void AsqFUN_121e8() {
 
     init_8c03bef0[8] = 8;
 
-    if (var_8c1ba1cc[0xcf] == 0) {
+    if (var_progress_8c1ba1cc[0xcf] == 0) {
         init_8c03bf18[0] = 0x20;
         init_8c03bf18[2] = 0x10;
         init_8c03bf18[4] = 2;
         init_8c03bf18[6] = 4;
     } else {
-        if (var_8c1ba1cc[0xcf] == 1) {
+        if (var_progress_8c1ba1cc[0xcf] == 1) {
             init_8c03bf18[0] = 2;
             init_8c03bf18[2] = 4;
             init_8c03bf18[4] = 0x20;
             init_8c03bf18[6] = 0x10;
         } else {
-            if (var_8c1ba1cc[0xcf] != 2) {
+            if (var_progress_8c1ba1cc[0xcf] != 2) {
                 init_8c03bf18[0] = 0x20;
                 init_8c03bf18[2] = 0x10;
                 init_8c03bf18[4] = 2;

@@ -138,7 +138,7 @@
           .IMPORT     _var_8c1ba2e0
           .IMPORT     _var_8c1ba348
           .IMPORT     _var_8c1ba344
-          .IMPORT     _var_8c225fb0
+          .IMPORT     _var_currentSysResGroupInfo_8c225fb0
           .IMPORT     _var_demoBuf_8c1ba3c4
           .IMPORT     _var_8c1bc454
           .IMPORT     _var_selectedVm_8c1ba34c
@@ -180,7 +180,7 @@
           .EXPORT     _task_8c012f44
           .EXPORT     _FUN_8c01306e
           .EXPORT     _FUN_8c01328c
-          .EXPORT     _FUN_8c013310
+          .EXPORT     _pushLoadingTask_8c013310
           .EXPORT     _task_8c013388 ; Exported for testing
           .EXPORT     _FUN_8c0134d6
           .EXPORT     _njUserInit_8c0134ec
@@ -665,7 +665,7 @@ LAB_8c0132e2:
           LDS.L       @R15+,PR
           JMP         @R2
           MOV.L       @R15+,R14
-_FUN_8c013310:
+_pushLoadingTask_8c013310:
           MOV.L       LP_GEN_38000+28,R3
           MOV.L       R14,@-R15
           MOV.L       R13,@-R15
@@ -1199,7 +1199,7 @@ LP_GEN_90231:
           .DATA.L _var_8c1ba2e0
           .DATA.L _var_8c1ba348
           .DATA.L _var_8c1ba344
-          .DATA.L _var_8c225fb0
+          .DATA.L _var_currentSysResGroupInfo_8c225fb0
           .DATA.L _var_demoBuf_8c1ba3c4
           .DATA.L _var_8c1bc454
           .DATA.L _var_selectedVm_8c1ba34c

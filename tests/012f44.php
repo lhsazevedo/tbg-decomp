@@ -307,7 +307,7 @@ return new class extends TestCase {
         $this->shouldCall('_AsqRequestDat_11182')->with("\\SOUND", "manatee.drv", $this->addressOf('_var_memblkSource_8c0fcd48'));
         $this->shouldCall('_AsqRequestDat_11182')->with("\\SOUND", "bus.mlt", $this->addressOf('_var_memblkSource_8c0fcd4c'));
         $this->shouldCall('_resetUknPvmBool_8c014322');
-        $this->shouldCall('_AsqProcessQueues_11fe0')->with($this->addressOf('_AsqNop_11120'), 0, 0, 0, $this->addressOf('_setUknPvmBool_8c014330'));;
+        $this->shouldCall('_AsqProcessQueues_11fe0')->with($this->addressOf('_AsqNop_11120'), 0, 0, 0, $this->addressOf('_setUknPvmBool_8c014330'));
 
         $this->singleCall('_task_8c013388')
             ->with($taskPtr, 0)
@@ -444,7 +444,7 @@ return new class extends TestCase {
         $this->shouldWriteTo('_var_8c1ba2e0', -1);
         $this->shouldWriteTo('_var_8c1ba348', -1);
         $this->shouldWriteTo('_var_8c1ba344', -1);
-        $this->shouldWriteTo('_var_8c225fb0', -1);
+        $this->shouldWriteTo('_var_currentSysResGroupInfo_8c225fb0', -1);
         $this->shouldWriteTo('_var_demoBuf_8c1ba3c4', -1);
         $this->shouldWriteTo('_var_8c1bc454', -1);
         $this->shouldWriteTo('_var_selectedVm_8c1ba34c', -1);
@@ -598,7 +598,7 @@ return new class extends TestCase {
         $this->shouldWriteTo('_var_8c1ba2e0', -1);
         $this->shouldWriteTo('_var_8c1ba348', -1);
         $this->shouldWriteTo('_var_8c1ba344', -1);
-        $this->shouldWriteTo('_var_8c225fb0', -1);
+        $this->shouldWriteTo('_var_currentSysResGroupInfo_8c225fb0', -1);
         $this->shouldWriteTo('_var_demoBuf_8c1ba3c4', -1);
         $this->shouldWriteTo('_var_8c1bc454', -1);
         $this->shouldWriteTo('_var_selectedVm_8c1ba34c', -1);
@@ -752,7 +752,7 @@ return new class extends TestCase {
         $this->shouldWriteTo('_var_8c1ba2e0', -1);
         $this->shouldWriteTo('_var_8c1ba348', -1);
         $this->shouldWriteTo('_var_8c1ba344', -1);
-        $this->shouldWriteTo('_var_8c225fb0', -1);
+        $this->shouldWriteTo('_var_currentSysResGroupInfo_8c225fb0', -1);
         $this->shouldWriteTo('_var_demoBuf_8c1ba3c4', -1);
         $this->shouldWriteTo('_var_8c1bc454', -1);
         $this->shouldWriteTo('_var_selectedVm_8c1ba34c', -1);
@@ -907,7 +907,7 @@ return new class extends TestCase {
         $this->shouldWriteTo('_var_8c1ba2e0', -1);
         $this->shouldWriteTo('_var_8c1ba348', -1);
         $this->shouldWriteTo('_var_8c1ba344', -1);
-        $this->shouldWriteTo('_var_8c225fb0', -1);
+        $this->shouldWriteTo('_var_currentSysResGroupInfo_8c225fb0', -1);
         $this->shouldWriteTo('_var_demoBuf_8c1ba3c4', -1);
         $this->shouldWriteTo('_var_8c1bc454', -1);
         $this->shouldWriteTo('_var_selectedVm_8c1ba34c', -1);
@@ -997,7 +997,7 @@ return new class extends TestCase {
         
         $this->shouldCall('_execTasks_8c014b42')->with($this->addressOf('_var_tasks_8c1ba3c8'));
 
-        $this->singleCall('_njUserMain_8c01392e')->shouldReturn(0)->run();
+        $this->singleCall('_njUserMain_8c01392e')->singleShouldReturn(0)->run();
     }
 
     public function test_njUserMain_8c01392e_block1_ok()
@@ -1009,7 +1009,7 @@ return new class extends TestCase {
 
         $this->shouldCall('_execTasks_8c014b42')->with($this->addressOf('_var_tasks_8c1ba3c8'));
 
-        $this->singleCall('_njUserMain_8c01392e')->shouldReturn(0)->run();
+        $this->singleCall('_njUserMain_8c01392e')->singleShouldReturn(0)->run();
     }
 
     public function test_njUserMain_8c01392e_block1_fail_noVib()
@@ -1022,7 +1022,7 @@ return new class extends TestCase {
         $this->initUint32($this->addressOf('_var_vibport_8c1ba354'), -1 & 0xffffffff);
 
         // FIXME: -1 & 0xffffffff
-        $this->singleCall('_njUserMain_8c01392e')->shouldReturn(-1 & 0xffffffff)->run();
+        $this->singleCall('_njUserMain_8c01392e')->singleShouldReturn(-1 & 0xffffffff)->run();
     }
 
     public function test_njUserMain_8c01392e_block1_fail_vib()
@@ -1040,7 +1040,7 @@ return new class extends TestCase {
         $this->shouldCall('_pdVibMxStop')->with(0xbebacafe);
 
         // FIXME: -1 & 0xffffffff
-        $this->singleCall('_njUserMain_8c01392e')->shouldReturn(-1 & 0xffffffff)->run();
+        $this->singleCall('_njUserMain_8c01392e')->singleShouldReturn(-1 & 0xffffffff)->run();
     }
 
     // public function test_njUserMain_8c01392e_0_0_0_idle_open_vib()
@@ -1067,7 +1067,7 @@ return new class extends TestCase {
     //     $this->shouldCall('_pdVibMxStop')->with(0xbebacafe);
 
     //     // FIXME: -1 & 0xffffffff
-    //     $this->singleCall('_njUserMain_8c01392e')->shouldReturn(-1 & 0xffffffff)->run();
+    //     $this->singleCall('_njUserMain_8c01392e')->singleShouldReturn(-1 & 0xffffffff)->run();
     // }
 
     // public function test_njUserMain_8c01392e_0_0_0_idle_open()
@@ -1093,7 +1093,7 @@ return new class extends TestCase {
     //     $this->shouldRead($var_vibport_8c1ba354Ptr, -1);
 
     //     // FIXME: -1 & 0xffffffff
-    //     $this->singleCall('_njUserMain_8c01392e')->shouldReturn(-1 & 0xffffffff)->run();
+    //     $this->singleCall('_njUserMain_8c01392e')->singleShouldReturn(-1 & 0xffffffff)->run();
     // }
 
     private function resolveNjUserMain()

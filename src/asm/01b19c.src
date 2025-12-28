@@ -1,15 +1,15 @@
 ; 8c01b19c
-          .IMPORT     _var_8c1ba1cc
+          .IMPORT     _var_progress_8c1ba1cc
           .IMPORT     _var_8c1bb8b8
           .IMPORT     _var_8c1bb8bc
           .IMPORT     _var_8c1bb8dc
-          .IMPORT     _var_8c1bb8f8
+          .IMPORT     _var_award_8c1bb8f8
           .IMPORT     __modls
           .IMPORT     __divls
           .IMPORT     _var_8c226098
           .IMPORT     _const_8c0380a4
           .IMPORT     _strcpy
-          .IMPORT     _var_8c1ba25c
+          .IMPORT     _var_exp_8c1ba25c
           .IMPORT     _FUN_8c01c980
           .IMPORT     _var_8c2263a4
           .IMPORT     _var_8c1ba2e4
@@ -36,7 +36,7 @@
           .IMPORT     _getUknPvmBool_8c01432a
           .IMPORT     _AsqFreeQueues_11f7e
           .IMPORT     _promptHandleMultiple_16c58
-          .IMPORT     _var_peripheral_8c1ba35c
+          .IMPORT     _var_peripherals_8c1ba35c
           .IMPORT     _const_8c0380c8
           .IMPORT     _const_8c0380cc
           .IMPORT     _const_8c0380f8
@@ -82,7 +82,7 @@
           .IMPORT     _syFree
           .IMPORT     _var_8c22606c
           .IMPORT     _FUN_8c0187d0
-          .IMPORT     _FUN_8c017e18
+          .IMPORT     _CourseMenuSwitchFromTask_8c017e18
           .IMPORT     _setTaskAction_8c014b3e
           .IMPORT     _push_fadein_8c022a9c
           .IMPORT     _AsqInitQueues_11f36
@@ -191,17 +191,17 @@ LAB_8c01b216:
           MOV.L       @R15+,R14
 LP_GEN_63917:
           .DATA.W H'00D8 ; H'8C01B23E
-          .DATA.L _var_8c1ba1cc ; H'8C01B240
+          .DATA.L _var_progress_8c1ba1cc ; H'8C01B240
           .DATA.L _var_8c1bb8b8 ; H'8C01B244
           .DATA.L _var_8c1bb8bc ; H'8C01B248
           .DATA.L _var_8c1bb8dc ; H'8C01B24C
-          .DATA.L _var_8c1bb8f8 ; H'8C01B250
+          .DATA.L _var_award_8c1bb8f8 ; H'8C01B250
           .DATA.L __modls ; H'8C01B254
           .DATA.L __divls ; H'8C01B258
           .DATA.L _var_8c226098 ; H'8C01B25C
           .DATA.L _const_8c0380a4 ; H'8C01B260
           .DATA.L _strcpy ; H'8C01B264
-          .DATA.L _var_8c1ba25c ; H'8C01B268
+          .DATA.L _var_exp_8c1ba25c ; H'8C01B268
 _FUN_8c01b26c:
           MOV.L       R14,@-R15
           MOV.L       R13,@-R15
@@ -316,11 +316,11 @@ LP_GEN_27906:
           .DATA.W H'008C ; H'8C01B346
           .DATA.W H'00E8 ; H'8C01B348
           .RES.W 1 ; H'8C01B34A
-          .DATA.L _var_8c1ba1cc ; H'8C01B34C
+          .DATA.L _var_progress_8c1ba1cc ; H'8C01B34C
           .DATA.L _var_8c1bb8b8 ; H'8C01B350
           .DATA.L _var_8c1bb8bc ; H'8C01B354
           .DATA.L _var_8c1bb8dc ; H'8C01B358
-          .DATA.L _var_8c1bb8f8 ; H'8C01B35C
+          .DATA.L _var_award_8c1bb8f8 ; H'8C01B35C
           .DATA.L _FUN_8c01c980 ; H'8C01B360
           .DATA.L _var_8c2263a4 ; H'8C01B364
           .DATA.L _var_8c1ba2e4 ; H'8C01B368
@@ -603,7 +603,7 @@ LP_GEN_91278:
           .DATA.L _getUknPvmBool_8c01432a ; H'8C01B58C
           .DATA.L _AsqFreeQueues_11f7e ; H'8C01B590
           .DATA.L _promptHandleMultiple_16c58 ; H'8C01B594
-          .DATA.L H'10+_var_peripheral_8c1ba35c ; H'8C01B598
+          .DATA.L H'10+_var_peripherals_8c1ba35c ; H'8C01B598
           .DATA.L _const_8c0380c8 ; H'8C01B59C
           .DATA.L _const_8c0380cc ; H'8C01B5A0
           .DATA.L _const_8c0380f8 ; H'8C01B5A4
@@ -772,7 +772,7 @@ LP_GEN_26888:
           .DATA.L _var_game_mode_8c1bb8fc ; H'8C01B6DC
           .DATA.L _const_8c0382d8 ; H'8C01B6E0
           .DATA.L _const_8c03830c ; H'8C01B6E4
-          .DATA.L H'10+_var_peripheral_8c1ba35c ; H'8C01B6E8
+          .DATA.L H'10+_var_peripherals_8c1ba35c ; H'8C01B6E8
           .DATA.L _VmMenuUnmountVms_194de ; H'8C01B6EC
           .DATA.L _push_fadeout_8c022b60 ; H'8C01B6F0
           .DATA.L _promptHandleBinary_16caa ; H'8C01B6F4
@@ -919,7 +919,7 @@ LP_GEN_43539:
           .DATA.L _var_8c1ba2e4 ; H'8C01B814
           .DATA.L _buAnalyzeBackupFileImage ; H'8C01B818
           .DATA.L _var_8c1ba33c ; H'8C01B81C
-          .DATA.L _var_8c1ba1cc ; H'8C01B820
+          .DATA.L _var_progress_8c1ba1cc ; H'8C01B820
           .DATA.L _njMemCopy ; H'8C01B824
           .DATA.L _FUN_8c018804 ; H'8C01B828
           .DATA.L _FUN_8c0189fc ; H'8C01B82C
@@ -930,7 +930,7 @@ LP_GEN_43539:
           .DATA.L _const_8c0383d0 ; H'8C01B840
           .DATA.L _var_8c157a7c ; H'8C01B844
           .DATA.L _vmsLcd_8c01c8fc ; H'8C01B848
-          .DATA.L H'10+_var_peripheral_8c1ba35c ; H'8C01B84C
+          .DATA.L H'10+_var_peripherals_8c1ba35c ; H'8C01B84C
           .DATA.L _FUN_8c016182 ; H'8C01B850
           .DATA.L _pushTitle_8c015fd6 ; H'8C01B854
           .DATA.L _menuTextboxText_8c02af1c ; H'8C01B858
@@ -1137,7 +1137,7 @@ LP_GEN_14610:
           .DATA.L _push_fadeout_8c022b60 ; H'8C01B9EC
           .DATA.L _var_8c22606c ; H'8C01B9F0
           .DATA.L _FUN_8c0187d0 ; H'8C01B9F4
-          .DATA.L _FUN_8c017e18 ; H'8C01B9F8
+          .DATA.L _CourseMenuSwitchFromTask_8c017e18 ; H'8C01B9F8
           .DATA.L _FUN_8c016182 ; H'8C01B9FC
           .DATA.L _pushTitle_8c015fd6 ; H'8C01BA00
 LAB_8c01ba04:

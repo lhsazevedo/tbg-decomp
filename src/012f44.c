@@ -350,12 +350,11 @@ extern void* var_8c227e20;
 extern void* var_8c227e24;
 extern void* var_8c2288f8;
 extern void* var_8c1bc438;
-extern void* var_8c1bc7b4;
 extern void* var_resourceGroup_8c2263a8;
 extern void* var_8c1ba2e0;
 extern void* var_8c1ba348;
 extern void* var_8c1ba344;
-extern void* var_8c225fb0;
+extern void* var_currentSysResGroupInfo_8c225fb0;
 extern int* var_demoBuf_8c1ba3c4;
 extern void* var_8c1bc454;
 extern void* var_selectedVm_8c1ba34c;
@@ -386,7 +385,7 @@ extern Uint32 var_vibport_8c1ba354;
 extern int init_8c03bd80;
 extern int init_8c03bd84;
 
-extern setUknPvmBool_8c014330;
+extern setUknPvmBool_8c014330();
 extern int var_gdErr_8c18ad14;
 
 extern NJS_FOG_TABLE var_fogTable_8c18aaf8;
@@ -593,7 +592,7 @@ void FUN_8c01328c() {
 }
 
 /* Matched :) */
-void FUN_8c013310(int p1) {
+void pushLoadingTask_8c013310(int p1) {
     Task *created_task;
     void* created_state;
   
@@ -738,7 +737,7 @@ void njUserInit_8c0134ec() {
     var_8c1ba2e0 = (void *) -1;
     var_8c1ba348 = (void *) -1;
     var_8c1ba344 = (void *) -1;
-    var_8c225fb0 = (void *) -1;
+    var_currentSysResGroupInfo_8c225fb0 = (void *) -1;
     var_demoBuf_8c1ba3c4 = (void *) -1;
     var_8c1bc454 = (void *) -1;
     var_selectedVm_8c1ba34c = (void *) -1;

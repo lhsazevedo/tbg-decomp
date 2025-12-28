@@ -23,7 +23,7 @@
           .IMPORT     _var_8c1bbd9c
           .IMPORT     _FUN_8c02f212
           .IMPORT     _var_busState_8c1bb9d0
-          .IMPORT     _var_8c1ba1cc
+          .IMPORT     _var_progress_8c1ba1cc
           .IMPORT     _var_8c18ad1c
           .IMPORT     _init_8c046208
           .IMPORT     _var_tasks_8c1bac28
@@ -1738,7 +1738,7 @@ LP_GEN_87611:
           .DATA.W H'4000 ; H'8C02738E
           .DATA.W H'02C8 ; H'8C027390
           .RES.W 1 ; H'8C027392
-          .DATA.L _var_8c1ba1cc ; H'8C027394
+          .DATA.L _var_progress_8c1ba1cc ; H'8C027394
           .DATA.L _var_8c18ad1c ; H'8C027398
           .DATA.L _var_8c18ad20 ; H'8C02739C
           .DATA.L _init_8c046208 ; H'8C0273A0

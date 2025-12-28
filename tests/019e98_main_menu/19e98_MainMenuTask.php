@@ -111,7 +111,7 @@ return new class extends TestCase {
 
         $this->initUint32($this->addressOf('_menuState_8c1bc7a8') + 0x18, 2);
         $this->initUint32($this->addressOf('_menuState_8c1bc7a8') + 0x5c, 0);
-        $this->initUint32($this->addressOf('_var_peripheral_8c1ba35c') + 0x10, 0);
+        $this->initUint32($this->addressOf('_var_peripherals_8c1ba35c') + 0x10, 0);
         $this->initUint32(
             $this->addressOf('_var_midiHandles_8c0fcd28'), 0xbeef0000
         );
@@ -152,7 +152,7 @@ return new class extends TestCase {
         $this->initUint32($this->addressOf('_menuState_8c1bc7a8') + 0x18, 2);
         $this->initUint32($this->addressOf('_menuState_8c1bc7a8') + 0x5c, 0);
         $this->initUint32($this->addressOf('_menuState_8c1bc7a8') + 0x38, 0);
-        $this->initUint32($this->addressOf('_var_peripheral_8c1ba35c') + 0x10, 0x40);
+        $this->initUint32($this->addressOf('_var_peripherals_8c1ba35c') + 0x10, 0x40);
         $this->initUint32(
             $this->addressOf('_var_midiHandles_8c0fcd28'), 0xbeef0000
         );
@@ -193,7 +193,7 @@ return new class extends TestCase {
         $this->initUint32($this->addressOf('_menuState_8c1bc7a8') + 0x18, 2);
         $this->initUint32($this->addressOf('_menuState_8c1bc7a8') + 0x5c, 0);
         $this->initUint32($this->addressOf('_menuState_8c1bc7a8') + 0x38, 3);
-        $this->initUint32($this->addressOf('_var_peripheral_8c1ba35c') + 0x10, 0x80);
+        $this->initUint32($this->addressOf('_var_peripherals_8c1ba35c') + 0x10, 0x80);
         $this->initUint32(
             $this->addressOf('_var_midiHandles_8c0fcd28'), 0xbeef0000
         );
@@ -232,7 +232,7 @@ return new class extends TestCase {
         $this->initUint32($this->addressOf('_menuState_8c1bc7a8') + 0x18, 2);
         $this->initUint32($this->addressOf('_menuState_8c1bc7a8') + 0x5c, 0);
         $this->initUint32($this->addressOf('_menuState_8c1bc7a8') + 0x38, 2);
-        $this->initUint32($this->addressOf('_var_peripheral_8c1ba35c') + 0x10, 0x40);
+        $this->initUint32($this->addressOf('_var_peripherals_8c1ba35c') + 0x10, 0x40);
         $this->initUint32(
             $this->addressOf('_var_midiHandles_8c0fcd28'), 0xbeef0000
         );
@@ -277,7 +277,7 @@ return new class extends TestCase {
         $this->initUint32($this->addressOf('_menuState_8c1bc7a8') + 0x18, 2);
         $this->initUint32($this->addressOf('_menuState_8c1bc7a8') + 0x5c, 0);
         $this->initUint32($this->addressOf('_menuState_8c1bc7a8') + 0x38, 2);
-        $this->initUint32($this->addressOf('_var_peripheral_8c1ba35c') + 0x10, 0x80);
+        $this->initUint32($this->addressOf('_var_peripherals_8c1ba35c') + 0x10, 0x80);
         $this->initUint32(
             $this->addressOf('_var_midiHandles_8c0fcd28'), 0xbeef0000
         );
@@ -323,7 +323,7 @@ return new class extends TestCase {
         $this->initUint32($this->addressOf('_menuState_8c1bc7a8') + 0x5c, 0);
         $this->initUint32($this->addressOf('_menuState_8c1bc7a8') + 0x38, 1);
         $this->initUint32(
-            $this->addressOf('_var_peripheral_8c1ba35c') + 0x10, 0x04
+            $this->addressOf('_var_peripherals_8c1ba35c') + 0x10, 0x04
         );
         $this->initUint32(
             $this->addressOf('_var_midiHandles_8c0fcd28'), 0xbeef0000
@@ -1006,18 +1006,18 @@ return new class extends TestCase {
 
         $this->initUint32($this->addressOf('_isFading_8c226568'), 0);
 
-        $init_8c044c08 = $this->alloc(64 * 4);
-        $this->initUint32($this->addressOf('_init_8c044c08'), $init_8c044c08);
-        $this->initUint32($init_8c044c08 + 2 * 4, 0xcafe0002);
-        // Used as index for init_8c044c08
-        $this->initUint32($this->addressOf('_var_8c225fbc'), 2);
+        $init_dialogSequences_8c044c08 = $this->alloc(64 * 4);
+        $this->initUint32($this->addressOf('_init_dialogSequences_8c044c08'), $init_dialogSequences_8c044c08);
+        $this->initUint32($init_dialogSequences_8c044c08 + 2 * 4, 0xcafe0002);
+        // Used as index for init_dialogSequences_8c044c08
+        $this->initUint32($this->addressOf('_var_dialogQueue_8c225fbc'), 2);
 
         $this->shouldWriteLong($this->addressOf('_menuState_8c1bc7a8') + 0x3c, 2);
         $this->shouldWriteLong($this->addressOf('_menuState_8c1bc7a8') + 0x40, 0);
         $this->shouldWriteLongTo('_var_game_mode_8c1bb8fc', 1);
-        $this->shouldWriteLongTo('_var_8c1bb8c0', 1);
+        $this->shouldWriteLongTo('_var_shouldShowFreeRunIntro_8c1bb8c0', 1);
 
-        $this->shouldCall('_FUN_8c017e18');
+        $this->shouldCall('_CourseMenuSwitchFromTask_8c017e18');
 
         $this->singleCall('_MainMenuTask_8c019e98')->with(0xbebacafe)->run();
     }
@@ -1034,18 +1034,18 @@ return new class extends TestCase {
 
         $this->initUint32($this->addressOf('_isFading_8c226568'), 0);
 
-        $init_8c044c08 = $this->alloc(64 * 4);
-        $this->initUint32($this->addressOf('_init_8c044c08'), $init_8c044c08);
-        $this->initUint32($init_8c044c08 + 2 * 4, 0xcafe0002);
-        // Used as index for init_8c044c08
-        $this->initUint32($this->addressOf('_var_8c225fbc'), 2);
+        $init_dialogSequences_8c044c08 = $this->alloc(64 * 4);
+        $this->initUint32($this->addressOf('_init_dialogSequences_8c044c08'), $init_dialogSequences_8c044c08);
+        $this->initUint32($init_dialogSequences_8c044c08 + 2 * 4, 0xcafe0002);
+        // Used as index for init_dialogSequences_8c044c08
+        $this->initUint32($this->addressOf('_var_dialogQueue_8c225fbc'), 2);
 
         $this->shouldWriteLong($this->addressOf('_menuState_8c1bc7a8') + 0x3c, 2);
         $this->shouldWriteLong($this->addressOf('_menuState_8c1bc7a8') + 0x40, 0);
         $this->shouldWriteLongTo('_var_game_mode_8c1bb8fc', 0);
-        $this->shouldWriteLongTo('_var_8c1bb8c0', 1);
+        $this->shouldWriteLongTo('_var_shouldShowFreeRunIntro_8c1bb8c0', 1);
 
-        $this->shouldCall('_FUN_8c017e18')->with(0xbebacafe);
+        $this->shouldCall('_CourseMenuSwitchFromTask_8c017e18')->with(0xbebacafe);
 
         $this->singleCall('_MainMenuTask_8c019e98')->with(0xbebacafe)->run();
     }
@@ -1100,15 +1100,15 @@ return new class extends TestCase {
     {
         $this->setSize('_menuState_8c1bc7a8', 0x6c);
         $this->setSize('_isFading_8c226568', 4);
-        $this->setSize('_var_peripheral_8c1ba35c', 52 * 2);
-        $this->setSize('_init_8c044c08', 4);
+        $this->setSize('_var_peripherals_8c1ba35c', 52 * 2);
+        $this->setSize('_init_dialogSequences_8c044c08', 4);
         $this->initUint32($this->addressOf('_var_midiHandles_8c0fcd28'), 0xbeef0000);
 
         // Functions
         $this->setSize('_drawSprite_8c014f54', 0x4);
         $this->setSize('_sdMidiPlay', 0x4);
-        $this->setSize('_FUN_8c017e18', 0x4);
-        $this->setSize('_FUN_8c017420', 0x4);
+        $this->setSize('_CourseMenuSwitchFromTask_8c017e18', 0x4);
+        $this->setSize('_buildCourseMenuDialogFlow_8c017420', 0x4);
         $this->setSize('_FUN_8c017d54', 0x4);
         $this->setSize('_FUN_8c01b122', 0x4);
     }
