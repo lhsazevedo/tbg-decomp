@@ -9,7 +9,7 @@ assemble() {
   local base_name=$(basename "$src_file" .src)
   local obj_file="build\\output\\${base_name}_src.obj"
 
-  wine "$SHC_BIN/asmsh.exe" $(echo "$src_file"| tr / '\\') -object="$obj_file" $ASMSH_FLAGS
+  wibo "$SHC_BIN/asmsh.exe" $(echo "$src_file"| tr / '\\') -object="$obj_file" $ASMSH_FLAGS
 }
 
 compile() {
@@ -18,7 +18,7 @@ compile() {
   local obj_file="build\\output\\${base_name}_c.obj"
   local asm_file="build\\output\\${base_name}_c.src"
 
-  wine "$SHC_BIN/shc.exe" $(echo "$src_file" | tr / '\\') -object="$obj_file" -sub=build/shc_testing.sub 
+  wibo "$SHC_BIN/shc.exe" $(echo "$src_file" | tr / '\\') -object="$obj_file" -sub=build/shc_testing.sub 
 
   # Generate ASM file, useful for debugging.
   # wine "$SHC_BIN/shc.exe" $(echo "$src_file" | tr / '\\') -code=asm -object="$asm_file" -sub=build/shc_testing.sub 

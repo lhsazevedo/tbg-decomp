@@ -27,21 +27,22 @@ jobs:
         working-directory: /home/runner/work
         run: cp -R $GITHUB_WORKSPACE tbg
 
-      - name: Install Wine
+      - name: Install wibo
         run: |
-          sudo dpkg --add-architecture i386
-          sudo apt-get update
-          sudo apt-get install -y --no-install-recommends wine wine32:i386
+          wget -nv https://github.com/decompals/wibo/releases/latest/download/wibo-x86_64 -O wibo
+          sudo mv wibo /usr/local/bin/wibo
+          sudo chmod +x /usr/local/bin/wibo
 
       - name: Configure environment
         run: |
           DC_SDK=$PWD/sdk
-          echo "SHINOBI_DIR=$(winepath -w $DC_SDK/shinobi)" >> "$GITHUB_ENV"
-          echo "KATANA_SDK_DIR=$(winepath -w $DC_SDK)" >> "$GITHUB_ENV"
-          echo "SHC_BIN=$(winepath -w $DC_SDK/shc/bin)" >> "$GITHUB_ENV"
-          echo "SHC_TMP=$(winepath -w /tmp)" >> "$GITHUB_ENV"
-          echo "SHC_LIB=$(winepath -w $DC_SDK/shc/bin)" >> "$GITHUB_ENV"
-          echo "SHC_INC=$(winepath -w $DC_SDK/shc/include),$(winepath -w $DC_SDK/shinobi/include)" >> "$GITHUB_ENV"
+          mkdir -p $PWD/build/tmp
+          echo "SHINOBI_DIR=$(wibo path -w $DC_SDK/shinobi)" >> "$GITHUB_ENV"
+          echo "KATANA_SDK_DIR=$(wibo path -w $DC_SDK)" >> "$GITHUB_ENV"
+          echo "SHC_BIN=$(wibo path -w $DC_SDK/shc/bin)" >> "$GITHUB_ENV"
+          echo "SHC_TMP=$(wibo path -w $PWD/build/tmp)" >> "$GITHUB_ENV"
+          echo "SHC_LIB=$(wibo path -w $DC_SDK/shc/bin)" >> "$GITHUB_ENV"
+          echo "SHC_INC=$(wibo path -w $DC_SDK/shc/include),$(wibo path -w $DC_SDK/shinobi/include)" >> "$GITHUB_ENV"
 
       - name: Build
         run: make -f Makefile.matching

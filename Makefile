@@ -99,20 +99,20 @@ create_dirs:
 	@mkdir -p $(OUTPUT_DIR)/src/asm
 
 $(OUTPUT_DIR)/src/asm/%.obj: src/asm/%.src
-	wine "$(SHC_BIN)/asmsh.exe" "$(subst /,\\,$<)" -object="$(subst /,\\,$@)" $(ASMSH_FLAGS)
+	wibo "$(SHC_BIN)/asmsh.exe" "$(subst /,\\,$<)" -object="$(subst /,\\,$@)" $(ASMSH_FLAGS)
 
 $(OUTPUT_DIR)/src/%.obj: src/%.c
-	wine "$(SHC_BIN)/shc.exe" "$(subst /,\\,$<)" -object="$(subst /,\\,$@)" -sub=$(BUILD_DIR)/shc.sub
+	wibo "$(SHC_BIN)/shc.exe" "$(subst /,\\,$<)" -object="$(subst /,\\,$@)" -sub=$(BUILD_DIR)/shc.sub
 
 $(OUTPUT_DIR)/tbg.elf: $(OBJS) $(BUILD_DIR)/lnk.sub
-	wine "$(SHC_BIN)/lnk.exe" -sub=build\\lnk.sub
+	wibo "$(SHC_BIN)/lnk.exe" -sub=build\\lnk.sub
 
 $(BUILD_DIR)/lnk.sub: $(BUILD_DIR)/lnk_template.sub
 	sed "s|@DC_SDK@|$$(printf %q "$(KATANA_SDK_DIR)")|g" $(BUILD_DIR)/lnk_template.sub > $(BUILD_DIR)/lnk.sub
 	sed -i 's|@INPUTS@|$(foreach obj,$(LINKER_OBJS),input $(obj)\n)|g' $(BUILD_DIR)/lnk.sub
 
 $(OUTPUT_DIR)/tbg.bin: $(OUTPUT_DIR)/tbg.elf
-	wine "$(KATANA_SDK_DIR)/bin/elf2bin.exe" -s 8c010000 "$(subst /,\\,$<)"
+	wibo "$(KATANA_SDK_DIR)/bin/elf2bin.exe" -s 8c010000 "$(subst /,\\,$<)"
 	@if ! echo "$(SHA1_CHECKSUM) *$(OUTPUT_DIR)/tbg.bin" | sha1sum --status -c -; then \
 		echo "================" ;\
 		echo "Project built :)" ;\
