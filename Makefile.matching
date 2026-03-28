@@ -18,7 +18,6 @@ SRCS = \
 	src/asm/012504.src \
 	src/asm/0129cc.src \
 	src/asm/decompiled/012f44.src \
-	src/asm/013ae8_pre_data.src \
 	src/asm/013ae8.src \
 	src/014934.c \
 	src/0149b0_sbinit.c \

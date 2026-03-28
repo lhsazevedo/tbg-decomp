@@ -17,7 +17,6 @@ SRCS = \
 	src/asm/012504.src \
 	src/asm/0129cc.src \
 	src/012f44.c \
-	src/asm/013ae8_pre_data.src \
 	src/asm/013ae8.src \
 	src/014934.c \
 	src/0149b0_sbinit.c \
@@ -124,7 +123,7 @@ $(OUTPUT_DIR)/tbg.bin: $(OUTPUT_DIR)/tbg.elf
 	fi
 
 clean:
-	rm -rf $(OUTPUT_DIR) $(OUTPUT_DIR)/lnk.sub
+	rm -rf $(OUTPUT_DIR) $(BUILD_DIR)/lnk.sub
 
 depend:
 	makedepend -Y -o .obj -f- $(C_SRCS) 2>/dev/null > Makefile.d

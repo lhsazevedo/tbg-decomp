@@ -936,10 +936,10 @@
           .EXPORT     _init_8c04caec ; 026710.src
           .EXPORT     _init_8c04cd38 ; 026710.src
 
-          ; 013ae8_pre_data
-          .EXPORT     _init_8c04ce10 ; 013ae8_pre_data.src
-          .EXPORT     _init_8c04df38 ; 013ae8_pre_data.src
-          .EXPORT     _init_8c04e988 ; 013ae8_pre_data.src
+          ; 013ae8
+          .EXPORT     _init_8c04ce10 ; 013ae8.src
+          .EXPORT     _init_8c04df38 ; 013ae8.src
+          .EXPORT     _init_8c04e988 ; 013ae8.src
 
           ; 02fb50_sh4nlfzn
           .EXPORT     _init_8c04f6a8 ; 02fb50_sh4nlfzn.src

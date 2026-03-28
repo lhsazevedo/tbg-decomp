@@ -308,8 +308,6 @@ typedef BusState;
 extern NJS_TEXMEMLIST var_tex_8c157af8[TEX_NUM];
 extern NJS_TEXNAME    var_texname_8c18acf8[1];
 extern Sint8          var_soundMode_8c226070;
-extern char           s_DUMMY_8c03346c[];
-extern int            const_8c033474;
 
 NJS_TEXLIST init_texlist_8c03bf44 = {var_texname_8c18acf8, 1};
 int init_8c03bf48 = 1;
@@ -323,10 +321,10 @@ char init_8c03bf4c[] = {
 int init_8c03bf8c[7];
 int init_8c03bf8c[] = {
     0,
-    (int) &s_DUMMY_8c03346c,
+    (int) &"DUMMY",
     1,
     (int) &init_8c03bf8c,
-    (int) &const_8c033474,
+    (int) &"",
     0,
     0,
 };

@@ -7,8 +7,6 @@
           .IMPORT     _pdVibMxStop
           .IMPORT     _FUN_8c016182
           .IMPORT     _var_8c1bb8c4
-          .IMPORT     _s_DUMMY_8c03346c
-          .IMPORT     _const_8c033474
           .IMPORT     _init_8c03bd80
           .IMPORT     _init_8c03bd84
           .IMPORT     _pushTitle_8c015fd6
@@ -1533,6 +1531,7 @@ _init_8c03bf8c:        ; from ghidra
 _init_8c03bfa8:        ; from defines
           .DATA.B      H'00, H'00, H'00, H'00
           .SECTION    C,DATA,ALIGN=4
+          
 _const_8c033364:
           .SDATA      "\SOUND" ; H'8c033364
           .DATA.B     H'00
@@ -1607,4 +1606,13 @@ s_3s_bus_m2_njs_8c03345c:
           .SDATA      "3s_bus_m2.njs" ; H'8c03345c
           .DATA.B     H'00
           .RES.B 2
+_s_DUMMY_8c03346c:
+          .SDATA      "DUMMY" ; H'8c03346c
+          .DATA.B     H'00
+          .RES.B 2
+_const_8c033474:
+          .DATA.B H'00
+          .DATA.B H'00
+          .DATA.B H'00
+          .DATA.B H'00
           .END
