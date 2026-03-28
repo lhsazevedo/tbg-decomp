@@ -1,23 +1,3 @@
-FROM bitnamilegacy/dotnet-sdk:6 AS gdibuilder
-
-COPY gdibuilder.patch /app/gdibuilder.patch
-
-RUN apt-get update && apt-get install -y \
-    clang \
-    zlib1g-dev \
-    libkrb5-dev \
-    libtinfo5 \
-    && rm -rf /var/lib/apt/lists/*
-
-RUN cd /app \
-    && git clone https://github.com/Sappharad/GDIbuilder.git \
-    && cd GDIbuilder \
-    && git checkout 43d0a81a55bbce67ac7f64d7e8ef101d11f26c9b \
-    && git apply /app/gdibuilder.patch \
-    && cd buildgdi \
-    && dotnet publish --configuration Release -r linux-x64 --self-contained
-
-
 FROM php:8.3-cli
 
 RUN addgroup --gid 1000 user \
@@ -27,7 +7,11 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         wget \
     && rm -rf /var/lib/apt/lists/* \
     && wget -nv https://github.com/decompals/wibo/releases/latest/download/wibo-x86_64 -O /usr/local/bin/wibo \
-    && chmod +x /usr/local/bin/wibo
+    && chmod +x /usr/local/bin/wibo \
+    && wget -nv https://github.com/lhsazevedo/gdworkbench/releases/download/v1.0.0-beta.5/gdworkbench_1.0.0-beta.5_linux_amd64.tar.gz -O /tmp/gdworkbench.tar.gz \
+    && tar -xzf /tmp/gdworkbench.tar.gz -C /usr/local/bin/ gdworkbench \
+    && rm /tmp/gdworkbench.tar.gz \
+    && chmod +x /usr/local/bin/gdworkbench
 
 # Install PHP extensions and Composer
 ADD https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions /usr/local/bin/
@@ -37,9 +21,6 @@ RUN chmod uga+x /usr/local/bin/install-php-extensions && sync \
     zip \
     @composer \
     && rm /usr/local/bin/install-php-extensions
-
-COPY --from=gdibuilder /app/GDIbuilder/buildgdi/bin/Release/net6.0/linux-x64/publish /opt/buildgdi
-RUN ln -s /opt/buildgdi/buildgdi /usr/local/bin/buildgdi
 
 USER user
 RUN composer global require lhsazevedo/sh4objtest:v0.1.18

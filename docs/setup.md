@@ -34,7 +34,7 @@ Ensure your SDK files are organized as follows:
    ```
 2. Edit the `.env` file to update the `SDK_PATH` variable with the absolute path of the SDK files and save the changes.
 
-3. *(Optional)* If rebuilding the disc image, uncomment and set the `TBG_DISC_PATH` variable in `.env` with the absolute path of the extracted disc image files.
+3. *(Optional)* If rebuilding the disc image, uncomment and set the `TBG_DISC_ROOT` variable in `.env` with the absolute path of the extracted disc image files.
 
 4. Start a bash shell inside the `/app` folder:
    ```bash
