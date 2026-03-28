@@ -13,7 +13,7 @@ jobs:
 
       - name: Install wibo
         run: |
-          wget -nv https://github.com/decompals/wibo/releases/latest/download/wibo-x86_64 -O wibo
+          wget -nv https://github.com/decompals/wibo/releases/download/1.1.0/wibo-x86_64 -O wibo
           sudo mv wibo /usr/local/bin/wibo
           sudo chmod +x /usr/local/bin/wibo
 

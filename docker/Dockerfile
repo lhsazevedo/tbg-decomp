@@ -6,7 +6,7 @@ RUN addgroup --gid 1000 user \
 RUN apt-get update && apt-get install -y --no-install-recommends \
         wget \
     && rm -rf /var/lib/apt/lists/* \
-    && wget -nv https://github.com/decompals/wibo/releases/latest/download/wibo-x86_64 -O /usr/local/bin/wibo \
+    && wget -nv https://github.com/decompals/wibo/releases/download/1.1.0/wibo-x86_64 -O /usr/local/bin/wibo \
     && chmod +x /usr/local/bin/wibo \
     && wget -nv https://github.com/lhsazevedo/gdworkbench/releases/download/v1.0.0-beta.5/gdworkbench_1.0.0-beta.5_linux_amd64.tar.gz -O /tmp/gdworkbench.tar.gz \
     && tar -xzf /tmp/gdworkbench.tar.gz -C /usr/local/bin/ gdworkbench \
