@@ -38,7 +38,7 @@ Ensure your SDK files are organized as follows:
 
 4. Start a bash shell inside the `/app` folder:
    ```bash
-   ./docker_shell.sh
+   ./docker-shell.sh
    ```
 
 ## Build and Test
