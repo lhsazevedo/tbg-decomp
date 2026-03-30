@@ -206,7 +206,7 @@ input build\output\010000.obj
 input build\output\010080_main.obj
 input build\output\0100bc_sound.obj
 input build\output\010e90.obj
-input build\output\010fe8_unused.obj
+input build\output\010fe8_heap.obj
 input build\output\011120.obj
 input build\output\_005168_8c011430.obj
 input build\output\_008160_8c011fe0.obj

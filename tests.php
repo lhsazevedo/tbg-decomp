@@ -4,6 +4,17 @@ return [
     'groups' => [
         [
             'tests' => [
+                "tests/010fe8_heap/8c010fe8_heapInit.php",
+                "tests/010fe8_heap/8c01102a_heapAlloc.php",
+                "tests/010fe8_heap/8c0110c4_heapFree.php",
+            ],
+            'objects' => [
+                "build/output/010fe8_heap_src.obj",
+                "build/output/010fe8_heap_c.obj",
+            ],
+        ],
+        [
+            'tests' => [
                 "tests/012324/12324_task.php",
             ],
             'objects' => [

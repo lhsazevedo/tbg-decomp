@@ -39,6 +39,10 @@ compile  src/014f54_text.c
 assemble  src/asm/decompiled/0100bc_sound.src
 compile  src/0100bc_sound.c
 
+# 010fe8_heap
+assemble  src/asm/decompiled/010fe8_heap.src
+compile  src/010fe8_heap.c
+
 # # 015ab8_title
 assemble  src/asm/decompiled/015ab8_title.src
 compile  src/015ab8_title.c

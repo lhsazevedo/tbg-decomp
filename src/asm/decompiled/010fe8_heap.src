@@ -1,0 +1,196 @@
+; 8c010fe8
+          .IMPORT     __divls
+          .EXPORT     _heapInit_8c010fe8
+          .EXPORT     _heapAlloc_8c01102a
+          .EXPORT     _heapFree_8c0110c4
+
+          .AIFDEF UNIT_TESTING
+          .EXPORT     _var_heapHead_8c157a58
+          .EXPORT     _var_heapTail_8c157a5c
+          .IMPORT     _heapAllocOutOfMemoryHook_8c01102a
+          .AENDI
+
+          .SECTION    P,CODE,ALIGN=4
+_heapInit_8c010fe8:                ; function: heapInit_8c010fe8
+                                 ; frame size=0
+          MOV         #0,R6
+          MOV         R4,R3
+          MOV         R5,R7
+          ADD         #-32,R7
+          MOV.L       L8+2,R5
+          MOV.L       R4,@R5
+          MOV.L       R6,@(12,R3)
+          MOV         R7,R3
+          SUB         R4,R3
+          MOV.L       @R5,R2
+          SHLR2       R3
+          MOV.L       L8+6,R4
+          SHLR2       R3
+          SHLR        R3
+          MOV.L       R3,@(8,R2)
+          MOV.L       @R5,R2
+          MOV.L       R2,@R2
+          MOV         R2,R3
+          MOV.L       @R5,R2
+          MOV.L       R7,@(4,R2)
+          MOV.L       @R5,R3
+          MOV.L       @(4,R3),R2
+          MOV         R2,R3
+          MOV.L       R2,@R4
+          MOV.L       R6,@(12,R3)
+          MOV.L       @R4,R2
+          MOV.L       R6,@(8,R2)
+          MOV.L       @R5,R2
+          MOV.L       @R4,R3
+          MOV.L       R2,@R3
+          MOV.L       @R4,R3
+          RTS
+          MOV.L       R6,@(4,R3)
+_heapAlloc_8c01102a:
+          MOV.L       R14,@-R15
+          MOV.L       R12,@-R15
+          MOV.L       R11,@-R15
+          STS.L       PR,@-R15
+          ADD         #-4,R15
+          MOV.L       R4,@R15
+          ADD         #H'1f,R4
+          SHLR2       R4
+          MOV.L       L8+2,R2
+          SHLR2       R4
+          MOV.L       L8+6,R14
+          SHLR        R4
+          MOV.L       @R2,R5
+          ADD         #1,R4
+          MOV         R4,R0
+          SHLL2       R0
+          SHLL2       R0
+          MOV         #0,R11
+          MOV         #32,R12
+          MOV         #1,R6
+          BRA         L3
+          SHLL        R0
+L0:
+          MOV.L       @(12,R5),R2
+          TST         R6,R2
+          BF          L2
+          MOV.L       @(8,R5),R3
+          CMP/HS      R4,R3
+          BF          L2
+          MOV.L       @(4,R5),R7
+          ADD         R5,R0
+          MOV.L       R4,@(8,R5)
+          MOV.L       R0,@(4,R5)
+          MOV.L       R6,@(12,R5)
+          MOV.L       @(4,R5),R4
+          CMP/EQ      R4,R7
+          BT/S        L1
+          MOV         R5,R6
+          MOV.L       L8+10,R2
+          MOV.L       R6,@R4
+          MOV.L       R7,@(4,R4)
+          SUB         R4,R7
+          MOV         R7,R1
+          JSR         @R2
+          MOV         R12,R0
+          MOV.L       R0,@(8,R4)
+          MOV.L       R11,@(12,R4)
+          MOV.L       @(4,R4),R5
+          MOV.L       R4,@R5
+          MOV.L       @R14,R3
+          CMP/EQ      R3,R5
+          BT          L1
+          MOV.L       @(12,R5),R0
+          TST         #1,R0
+          BF          L1
+          MOV.L       @(4,R5),R2
+          MOV.L       R2,@(4,R4)
+          MOV.L       @(8,R5),R3
+          MOV.L       @(8,R4),R1
+          ADD         R3,R1
+          MOV.L       R1,@(8,R4)
+          MOV.L       @(4,R4),R5
+          MOV.L       R4,@R5
+L1:
+          MOV         R6,R0
+          BRA         L5
+          ADD         #32,R0
+L2:
+          MOV.L       @(4,R5),R5
+L3:
+          MOV.L       @R14,R3
+          CMP/EQ      R3,R5
+          BF          L0
+L4:
+          .AIFDEF UNIT_TESTING
+          MOV.L       L8+14,R2
+          JSR         @R2
+          NOP
+          NOP
+          .AENDI
+          BRA         L4
+          NOP
+L5:
+          ADD         #4,R15
+          LDS.L       @R15+,PR
+          MOV.L       @R15+,R11
+          MOV.L       @R15+,R12
+          RTS
+          MOV.L       @R15+,R14
+_heapFree_8c0110c4:
+          ADD         #-32,R4
+          MOV.L       @(12,R4),R2
+          MOV         #-H'2,R3
+          AND         R3,R2
+          MOV.L       R2,@(12,R4)
+          MOV.L       L8+6,R2
+          MOV.L       @(4,R4),R5
+          MOV.L       @R2,R1
+          CMP/EQ      R1,R5
+          BT          L6
+          MOV.L       @(12,R5),R0
+          TST         #1,R0
+          BF          L6
+          MOV.L       @(4,R5),R3
+          MOV.L       R3,@(4,R4)
+          MOV.L       @(8,R4),R2
+          MOV.L       @(8,R5),R3
+          ADD         R3,R2
+          MOV.L       R2,@(8,R4)
+          MOV.L       @(4,R4),R5
+          MOV.L       R4,@R5
+L6:
+          MOV.L       L8+2,R2
+          MOV.L       @R2,R3
+          CMP/EQ      R3,R4
+          BT/S        L7
+          MOV.L       @R4,R5
+          MOV.L       @(12,R5),R0
+          TST         #1,R0
+          BF          L7
+          MOV.L       @(4,R4),R2
+          MOV.L       R2,@(4,R5)
+          MOV.L       @(8,R4),R3
+          MOV.L       @(8,R5),R1
+          ADD         R3,R1
+          MOV.L       R1,@(8,R5)
+          MOV.L       @(4,R4),R4
+          MOV.L       R5,@R4
+L7:
+          RTS
+          MOV         #0,R0
+
+L8:
+          .DATA.B     H'00, H'00 ; H'8c011112
+          .DATA.L     _var_heapHead_8c157a58
+          .DATA.L     _var_heapTail_8c157a5c
+          .DATA.L     __divls
+          .AIFDEF UNIT_TESTING
+          .DATA.L     _heapAllocOutOfMemoryHook_8c01102a
+          .AENDI
+          .SECTION    B,DATA,ALIGN=4
+_var_heapHead_8c157a58:                      ; static: var_heapHead_8c157a58
+          .RES.L      1
+_var_heapTail_8c157a5c:
+          .RES.B      4
+          .END
+
