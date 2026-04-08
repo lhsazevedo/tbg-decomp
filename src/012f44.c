@@ -305,8 +305,8 @@ struct BusState {
 }
 typedef BusState;
 
-extern NJS_TEXMEMLIST var_tex_8c157af8[TEX_NUM];
-extern NJS_TEXNAME    var_texname_8c18acf8[1];
+NJS_TEXMEMLIST var_tex_8c157af8[TEX_NUM];
+STATIC NJS_TEXNAME    var_texname_8c18acf8[1];
 extern Sint8          var_soundMode_8c226070;
 
 NJS_TEXLIST init_texlist_8c03bf44 = {var_texname_8c18acf8, 1};
@@ -384,9 +384,14 @@ extern int init_8c03bd80;
 extern int init_8c03bd84;
 
 extern setUknPvmBool_8c014330();
-extern int var_gdErr_8c18ad14;
+STATIC int var_gdErr_8c18ad14;
 
-extern NJS_FOG_TABLE var_fogTable_8c18aaf8;
+STATIC NJS_FOG_TABLE var_fogTable_8c18aaf8;
+
+int var_8c18ad04;
+int var_8c18ad08;
+int var_8c18ad0c;
+int var_8c18ad10;
 
 extern uknStruct2 *var_8c1bc824;
 extern char init_8c0460b0[];

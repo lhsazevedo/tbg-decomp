@@ -22,7 +22,6 @@
           .IMPORT     _njSetBackColor
           .IMPORT     _var_8c18ad28
           .IMPORT     _njSetFogColor
-          .IMPORT     _var_fogTable_8c18aaf8
           .IMPORT     _njGenerateFogTable3
           .IMPORT     _njFogEnable
           .IMPORT     _kmSetCheapShadowMode
@@ -86,7 +85,6 @@
           .IMPORT     _AsqFreeQueues_11f7e
           .IMPORT     _initSoundMidiAdx_8c010e18
           .IMPORT     _var_8c2260a8
-          .IMPORT     _var_gdErr_8c18ad14
           .IMPORT     _njSetTextureMemorySize
           .IMPORT     _syCblCheckCable
           .IMPORT     _sbInitSystem_8c0149b0
@@ -96,7 +94,6 @@
           .IMPORT     _njInitVertexBuffer
           .IMPORT     _var_texbuf_8c277ca0
           .IMPORT     _njInitTextureBuffer
-          .IMPORT     _var_tex_8c157af8
           .IMPORT     _njInitTexture
           .IMPORT     _var_cachebuf_8c235ca0
           .IMPORT     _njInitCacheTextureBuffer
@@ -109,7 +106,6 @@
           .IMPORT     _vibClear_8c010fbe
           .IMPORT     _bupInit_8c014b8c
           .IMPORT     _njSetTextureInfo
-          .IMPORT     _var_texname_8c18acf8
           .IMPORT     _njSetTextureName
           .IMPORT     _njSetRenderWidth
           .IMPORT     _njLoadTexture
@@ -186,9 +182,17 @@
           .EXPORT     _njUserExit_8c0139d4
           .EXPORT     _init_texlist_8c03bf44
           .EXPORT     _init_8c03bf4c
+          .EXPORT     _var_tex_8c157af8 ; 013ae8.src, 014934.c, 015ab8_title.c, 015ab8_title.src, 016d2c_course_menu.c, 016d2c_course_menu.src, 019e98_main_menu.c, 01c980.src, 01d290.src, 01d7fc.src, 01e27c.src, 01f3c0.src
+          .EXPORT     _var_8c18ad04 ; 0129cc.src
+          .EXPORT     _var_8c18ad08 ; 0129cc.src
+          .EXPORT     _var_8c18ad0c ; 0129cc.src
+          .EXPORT     _var_8c18ad10 ; 0129cc.src
 
           .AIFDEF UNIT_TESTING
           .EXPORT     _init_8c03bfa8
+          .EXPORT     _var_fogTable_8c18aaf8
+          .EXPORT     _var_texname_8c18acf8
+          .EXPORT     _var_gdErr_8c18ad14
           .AENDI
           .SECTION     P, CODE, ALIGN=4
 _task_8c012f44:
@@ -1615,4 +1619,21 @@ _const_8c033474:
           .DATA.B H'00
           .DATA.B H'00
           .DATA.B H'00
+          .SECTION    B,DATA,ALIGN=4
+_var_tex_8c157af8:
+          .RES.B      208896
+_var_fogTable_8c18aaf8:
+          .RES.B      512
+_var_texname_8c18acf8:
+          .RES.B      12
+_var_8c18ad04:
+          .RES.B      4
+_var_8c18ad08:
+          .RES.B      4
+_var_8c18ad0c:
+          .RES.B      4
+_var_8c18ad10:
+          .RES.B      4
+_var_gdErr_8c18ad14:
+          .RES.B      4
           .END

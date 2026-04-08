@@ -5,6 +5,7 @@
 
 #include <shinobi.h>
 #include <sg_syhw.h>
+#include "serial_debug.h"
 
 #define WORK_TOP 0x8c000000
 #define WORK_END 0x8d000000
@@ -41,14 +42,12 @@ extern Uint8* _BSG_END;
 
 /* Global work area                                                   */
 
-// TODO: Remove extern
-extern Uint8 gMapleRecvBuf[1024 * 24 * 2 + 32];
-extern Uint8 gMapleSendBuf[1024 * 24 * 2 + 32];
+STATIC Uint8 gMapleRecvBuf[1024 * 24 * 2 + 32];
+STATIC Uint8 gMapleSendBuf[1024 * 24 * 2 + 32];
 
 #if USE_GDFS
-// TODO: Remove extern (both)
-extern Uint8 gdfswork[GDFS_WORK_SIZE(FILES) + 32];
-extern Uint8 gdfscurdir[GDFS_DIRREC_SIZE(BUFFERS) + 32];
+STATIC Uint8 gdfswork[GDFS_WORK_SIZE(FILES) + 32];
+STATIC Uint8 gdfscurdir[GDFS_DIRREC_SIZE(BUFFERS) + 32];
 #endif
 
 /* The top address of the heap area */

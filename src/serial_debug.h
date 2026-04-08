@@ -1,7 +1,7 @@
 #ifndef _DEFINITIONS_H_
 #define _DEFINITIONS_H_
 
-/* TODO: Move to another file */
+/* TODO: Move STATIC to a dedicated common defs header (not logging). */
 #ifdef UNIT_TESTING
 #define STATIC
 #else

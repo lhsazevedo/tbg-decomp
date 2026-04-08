@@ -2,7 +2,6 @@
           .IMPORT     _init_8c04ce10
           .IMPORT     _init_8c04df38
           .IMPORT     _init_8c04e988
-          .IMPORT     _var_8c18ad6c
           .IMPORT     _var_8c1bc434
           .IMPORT     _AsqRequestNj_11492
           .IMPORT     _AsqRequestPvm_11ac0
@@ -18,20 +17,16 @@
           .IMPORT     _AsqReleaseAndFreeTexlist_11e3c
           .IMPORT     _syFree
           .IMPORT     _var_8c1bbddc
-          .IMPORT     _var_8c18ad20
           .IMPORT     _AsqFreeQueues_11f7e
           .IMPORT     _AsqInitQueues_11f36
           .IMPORT     _AsqResetQueues_11f6c
-          .IMPORT     _var_8c18adb0
           .IMPORT     _AsqNop_11120
           .IMPORT     _AsqProcessQueues_11fe0
           .IMPORT     _var_8c1bbfdc
-          .IMPORT     _var_8c18ad18
           .IMPORT     _var_8c228708
           .IMPORT     _var_8c1bc3f0
           .IMPORT     _AsqFreeNjPvmPairs_120fe
           .IMPORT     _FUN_8c021a24
-          .IMPORT     _var_8c18ad28
           .IMPORT     _var_8c226504
           .IMPORT     _var_8c226508
           .IMPORT     _var_8c227dd0
@@ -39,18 +34,11 @@
           .IMPORT     _var_demo_8c1bb8d0
           .IMPORT     _FUN_8c029ad4
           .IMPORT     _var_8c226534
-          .IMPORT     _var_8c18adb4
-          .IMPORT     _var_8c18ad2c
           .IMPORT     _AsqRequestDat_11182
           .IMPORT     _FUN_8c02aa36
           .IMPORT     _var_8c1bb868
-          .IMPORT     _var_8c18ad1c
-          .IMPORT     _var_8c18ad24
-          .IMPORT     _var_8c18ad4c
           .IMPORT     _strcpy
-          .IMPORT     _var_8c18ad8c
           .IMPORT     _var_8c1bc3ec
-          .IMPORT     _var_8c18adac
           .IMPORT     _var_8c1bc3f8
           .IMPORT     _njLoadCacheTexture
           .IMPORT     _FUN_8c02175a
@@ -94,6 +82,18 @@
           .EXPORT     _prob_task_8c014784
           .EXPORT     _FUN_8c0144fc
           .EXPORT     _init_8c04410c ; 01b19c.src
+          .EXPORT     _var_8c18ad18 ; 02c884.src
+          .EXPORT     _var_8c18ad1c ; 012f44.c, 012f44.src, 01d7fc.src, 020214.src, 023310.src, 025870.src, 026710.src, 028258.src, 02af78.src, 02b464.src, 02c884.src, 02d19c.src, 02d968.src
+          .EXPORT     _var_8c18ad20 ; 01d7fc.src, 022bdc.src, 023310.src, 025b98.src, 026710.src, 027958.src, 02af78.src, 02d19c.src
+          .EXPORT     _var_8c18ad24 ; 021b9c.src, 0222dc.src, 023310.src, 024b4c.src, 026710.src
+          .EXPORT     _var_8c18ad28 ; 012f44.c, 012f44.src
+          .EXPORT     _var_8c18ad2c
+          .EXPORT     _var_8c18ad4c ; 02171c.src
+          .EXPORT     _var_8c18ad6c ; 028258.src
+          .EXPORT     _var_8c18ad8c ; 028258.src
+          .EXPORT     _var_8c18adac
+          .EXPORT     _var_8c18adb0
+          .EXPORT     _var_8c18adb4 ; 02171c.src
           .SECTION     P, CODE, ALIGN=4
 _requestSomeFiles_8c013ae8:
           MOV.L       R14,@-R15
@@ -10896,4 +10896,29 @@ _const_8c035dc8:        ; aggressive search
           ;.DATA.B     H'00
           ;.RES.B      3
           .DATA.B      H'79, H'61, H'6A, H'69, H'2E, H'6E, H'6A, H'64, H'00, H'00, H'00, H'00
+          .SECTION    B,DATA,ALIGN=4
+_var_8c18ad18:
+          .RES.B      4
+_var_8c18ad1c:
+          .RES.B      4
+_var_8c18ad20:
+          .RES.B      4
+_var_8c18ad24:
+          .RES.B      4
+_var_8c18ad28:
+          .RES.B      4
+_var_8c18ad2c:
+          .RES.B      32
+_var_8c18ad4c:
+          .RES.B      32
+_var_8c18ad6c:
+          .RES.B      32
+_var_8c18ad8c:
+          .RES.B      32
+_var_8c18adac:
+          .RES.B      4
+_var_8c18adb0:
+          .RES.B      4
+_var_8c18adb4:
+          .RES.B      16
           .END
