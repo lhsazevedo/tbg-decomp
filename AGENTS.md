@@ -59,6 +59,7 @@ docs/setup.md                # One-time environment setup
 - `STATIC` macro (from `includes.h`): expands to `static` in production, empty in unit tests so test harness can access the symbol.
 - Private globals in asm: export only under `.AIFDEF UNIT_TESTING` / `.AENDI`.
 - Each unit has two object files: `<addr>_src.obj` (asm) and `<addr>_c.obj` (C).
+- **ASCII only** in `src/` and `tests/` files — they are Shift-JIS encoded; non-ASCII characters (including Unicode arrows `→`, smart quotes, etc.) will corrupt the file. Use plain ASCII alternatives (e.g. `->` instead of `→`).
 
 ## Adding a New Unit
 

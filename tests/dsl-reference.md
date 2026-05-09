@@ -12,6 +12,8 @@ $this->allocString("hello");                 // Allocate null-terminated string
 $this->rellocate('_symbol', $addr);          // Place symbol at specific address
 ```
 
+`setSize` works for external functions too (size 4); skipping this triggers an unresolved relocation.
+
 ## Seeding Memory
 
 ```php
