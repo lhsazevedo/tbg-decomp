@@ -10,3 +10,5 @@ build/lnk_matching.sub
 
 /ghidra
 /.env
+
+.claude/settings.local.json
