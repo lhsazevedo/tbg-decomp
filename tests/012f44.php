@@ -1101,7 +1101,6 @@ return new class extends TestCase {
         $this->setSize('_var_vibport_8c1ba354', 4);
         $this->setSize('_init_8c03bd80', 4);
         $this->setSize('_var_queuesAreInitialized_8c157a60', 4);
-        $this->setSize('_var_gdErr_8c18ad14', 4);
         $this->setSize('_var_tasks_8c1ba3c8', 4);
 
         // Functions
