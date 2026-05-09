@@ -1535,7 +1535,6 @@ _init_8c03bf8c:        ; from ghidra
 _init_8c03bfa8:        ; from defines
           .DATA.B      H'00, H'00, H'00, H'00
           .SECTION    C,DATA,ALIGN=4
-          
 _const_8c033364:
           .SDATA      "\SOUND" ; H'8c033364
           .DATA.B     H'00

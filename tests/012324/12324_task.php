@@ -14,7 +14,7 @@ return new class extends TestCase {
         $info = $this->alloc(0x4);
 
         $this->initUint32($info, 1); // PDD_DEVTYPE_CONTROLLER
-        $this->initUint32($per + 0x04, 0xf06fe);
+        $this->initUint32($per + 0x04, 0xf06fe); // Buttons supported by the standard controller
         $this->initUint32($per + 0x08, 0); // on, nothing
         $this->initUint32($per + 0x10, 0); // press, nothing
         $this->initUint16($per + 0x1c, 0); // x1
