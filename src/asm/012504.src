@@ -30,10 +30,11 @@
           .EXPORT     _FUN_8c012970
 
           .AIFDEF UNIT_TESTING
+          .EXPORT     _task_8c012504
           .EXPORT     _var_8c157aec
           .AENDI
           .SECTION     P, CODE, ALIGN=4
-task_8c012504:
+_task_8c012504:
           MOV.L       R14,@-R15
           MOV.L       R13,@-R15
           MOV.L       R12,@-R15
@@ -635,7 +636,7 @@ _FUN_8c012970:
           TST         R3,R3
           BF          LAB_8c01297e
           MOV         #H'0,R5
-          BRA         task_8c012504
+          BRA         _task_8c012504
           MOV         R5,R4
 LAB_8c01297e:
           MOV         #H'0,R5
@@ -666,7 +667,7 @@ LAB_8c0129a4:
 LP_GEN_44279:
           .DATA.L     _var_8c1bb8c8
           .DATA.L     _var_8c157a74
-          .DATA.L     task_8c012504
+          .DATA.L     _task_8c012504
           .DATA.L     _FUN_8c012718
           .DATA.L     _init_8c03bf40
           .DATA.L     _var_8c157aec

@@ -43,7 +43,7 @@ compile  src/0100bc_sound.c
 assemble  src/asm/decompiled/010fe8_heap.src
 compile  src/010fe8_heap.c
 
-# # 015ab8_title
+# 015ab8_title
 assemble  src/asm/decompiled/015ab8_title.src
 compile  src/015ab8_title.c
 
@@ -74,5 +74,9 @@ compile  src/019e98_main_menu.c
 # 019e98
 assemble  src/asm/decompiled/016d2c_course_menu.src
 compile  src/016d2c_course_menu.c
+
+# 012504
+assemble  src/asm/012504.src
+compile  src/012504.c
 
 $sh4objtest suite -s tests.php "$@"

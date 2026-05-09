@@ -199,6 +199,15 @@ return [
                 "build/output/016d2c_course_menu_src.obj",
                 "build/output/016d2c_course_menu_c.obj",
             ]
+            ],
+        [
+            "tests" => [
+                "tests/012504/8c012504_task.php",
+            ],
+            "objects" => [
+                "build/output/012504_src.obj",
+                "build/output/012504_c.obj",
+            ]
         ]
     ],
 ];
