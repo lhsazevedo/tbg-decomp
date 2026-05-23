@@ -24,8 +24,8 @@ compile() {
   # wine "$SHC_BIN/shc.exe" $(echo "$src_file" | tr / '\\') -code=asm -object="$asm_file" -sub=build/shc_testing.sub 
 }
 
-rm -rf build/output
-mkdir build/output
+rm -rf build/output build/tmp
+mkdir build/output build/tmp
 
 # 012324
 assemble  src/asm/decompiled/012324_peripheral_support.src

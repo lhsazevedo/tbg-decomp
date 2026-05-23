@@ -81,6 +81,98 @@ return new class extends TestCase {
         $this->forceStop();
     }
 
+    public function test_standard_controller_translates_inputs()
+    {
+        $this->resolveSymbols();
+        $this->setupInitTable();
+
+        $per = $this->alloc(0x34);
+        $info = $this->alloc(0x4);
+
+        $this->initUint32($info, 1);
+        $this->initUint32($per + 0x04, 0xf06fe);
+        $this->initUint16($per + 0x18, 0);
+        $this->initUint16($per + 0x1a, 0);
+        $this->initUint16($per + 0x1c, 0);
+        $this->initUint32($per + 0x30, $info);
+
+        // Seed two (mask, button) pairs at the start of init_8c03be80;
+        // remaining 5 pairs stay 0 so they never match.
+        $table = $this->addressOf('_init_8c03be80');
+        $this->initUint32($table + 0x00, 0x0001); // pair 0 mask
+        $this->initUint32($table + 0x04, 0x0100); // pair 0 button
+        $this->initUint32($table + 0x08, 0x0002); // pair 1 mask
+        $this->initUint32($table + 0x0c, 0x0200); // pair 1 button
+
+        // peripheral->on has bits matching both pair-0 and pair-1 masks.
+        $this->initUint32($per + 0x08, 0x0003);
+        // peripheral->press has bit matching only pair-0 mask.
+        $this->initUint32($per + 0x10, 0x0001);
+
+        $buf = $this->addressOf('_var_peripherals_8c1ba35c');
+
+        $this->call('_task_8c012504');
+
+        $this->shouldWriteLongTo('_var_resetRequested_8c157a78', 0);
+        $this->shouldCall('_pdGetPeripheral')->with(0)->andReturn($per);
+        $this->shouldWriteLongTo('_var_peripheral_8c1ba358', $per);
+        $this->shouldWriteWord($buf + 0x18, 0);
+        $this->shouldWriteWord($buf + 0x1a, 0);
+        $this->shouldWriteWord($buf + 0x1c, 0);
+        $this->shouldWriteLong($buf + 0x08, 0);
+        $this->shouldWriteLong($buf + 0x10, 0);
+        $this->shouldWriteLongTo('_var_8c157a70', 0xf06fe);
+
+        // on-loop: pair 0 matches -> .on |= 0x100
+        $this->shouldWriteLong($buf + 0x08, 0x0100);
+        // on-loop: pair 1 matches -> .on |= 0x200
+        $this->shouldWriteLong($buf + 0x08, 0x0300);
+        // press-loop: only pair 0 matches -> .press |= 0x100
+        $this->shouldWriteLong($buf + 0x10, 0x0100);
+
+        // press & 8 = 0, reset combo skipped.
+        $this->forceStop();
+    }
+
+    public function test_standard_controller_reset_combo_triggers()
+    {
+        $this->resolveSymbols();
+        $this->setupInitTable();
+
+        $per = $this->alloc(0x34);
+        $info = $this->alloc(0x4);
+
+        $this->initUint32($info, 1);
+        $this->initUint32($per + 0x04, 0xf06fe);
+        $this->initUint16($per + 0x18, 0);
+        $this->initUint16($per + 0x1a, 0);
+        $this->initUint16($per + 0x1c, 0);
+        $this->initUint32($per + 0x30, $info);
+
+        // init_8c03be80 all zeros -> loops produce no writes.
+        // Sega mandatory reset combo: Start + A + B + X + Y.
+        $this->initUint32($per + 0x08, 0x0606); // on: A|B|X|Y held
+        $this->initUint32($per + 0x10, 0x0008); // press: Start pressed
+
+        $buf = $this->addressOf('_var_peripherals_8c1ba35c');
+
+        $this->call('_task_8c012504');
+
+        $this->shouldWriteLongTo('_var_resetRequested_8c157a78', 0);
+        $this->shouldCall('_pdGetPeripheral')->with(0)->andReturn($per);
+        $this->shouldWriteLongTo('_var_peripheral_8c1ba358', $per);
+        $this->shouldWriteWord($buf + 0x18, 0);
+        $this->shouldWriteWord($buf + 0x1a, 0);
+        $this->shouldWriteWord($buf + 0x1c, 0);
+        $this->shouldWriteLong($buf + 0x08, 0);
+        $this->shouldWriteLong($buf + 0x10, 0);
+        $this->shouldWriteLongTo('_var_8c157a70', 0xf06fe);
+
+        $this->shouldWriteLongTo('_var_resetRequested_8c157a78', 1);
+
+        $this->forceStop();
+    }
+
     public function test_racing_controller()
     {
         $this->resolveSymbols();
@@ -113,6 +205,156 @@ return new class extends TestCase {
         $this->forceStop();
     }
 
+    public function test_racing_controller_translates_inputs()
+    {
+        $this->resolveSymbols();
+        $this->setupRacingInitTable();
+        $this->setupRacingState(timerRaw: 0, mode: 0);
+
+        $per = $this->alloc(0x34);
+        $info = $this->alloc(0x4);
+
+        $this->initUint32($info, 1);
+        $this->initUint32($per + 0x04, 0x700fe);
+        $this->initUint16($per + 0x18, 0);
+        // l = 0 -> peripherals[0].l < 0x81, special-XOR path gated off.
+        $this->initUint16($per + 0x1a, 0);
+        $this->initUint16($per + 0x1c, 0);
+        $this->initUint32($per + 0x30, $info);
+
+        // Two (mask, button) pairs at start of init_8c03bef0; rest stay 0.
+        $table = $this->addressOf('_init_8c03bef0');
+        $this->initUint32($table + 0x00, 0x0001); // pair 0 mask
+        $this->initUint32($table + 0x04, 0x0100); // pair 0 button
+        $this->initUint32($table + 0x08, 0x0002); // pair 1 mask
+        $this->initUint32($table + 0x0c, 0x0200); // pair 1 button
+
+        $this->initUint32($per + 0x08, 0x0003); // on: matches both pairs
+        $this->initUint32($per + 0x10, 0x0001); // press: matches only pair 0
+
+        $buf = $this->addressOf('_var_peripherals_8c1ba35c');
+
+        $this->call('_task_8c012504');
+
+        $this->shouldWriteLongTo('_var_resetRequested_8c157a78', 0);
+        $this->shouldCall('_pdGetPeripheral')->with(0)->andReturn($per);
+        $this->shouldWriteLongTo('_var_peripheral_8c1ba358', $per);
+        $this->shouldWriteWord($buf + 0x18, 0);
+        $this->shouldWriteWord($buf + 0x1a, 0);
+        $this->shouldWriteWord($buf + 0x1c, 0);
+        $this->shouldWriteLong($buf + 0x08, 0);
+        $this->shouldWriteLong($buf + 0x10, 0);
+        $this->shouldWriteLongTo('_var_8c157a70', 0x700fe);
+
+        // on-loop: pair 0 then pair 1 match.
+        $this->shouldWriteLong($buf + 0x08, 0x0100);
+        $this->shouldWriteLong($buf + 0x08, 0x0300);
+        // press-loop: only pair 0 matches.
+        $this->shouldWriteLong($buf + 0x10, 0x0100);
+
+        // press & 0x200 == 0 -> reset-combo branch; press & 8 == 0 -> no reset.
+        $this->forceStop();
+    }
+
+    public function test_racing_controller_reset_combo_triggers()
+    {
+        $this->resolveSymbols();
+        $this->setupRacingInitTable();
+        $this->setupRacingState(timerRaw: 0, mode: 0);
+
+        $per = $this->alloc(0x34);
+        $info = $this->alloc(0x4);
+
+        $this->initUint32($info, 1);
+        $this->initUint32($per + 0x04, 0x700fe);
+        $this->initUint16($per + 0x18, 0);
+        $this->initUint16($per + 0x1a, 0);
+        $this->initUint16($per + 0x1c, 0);
+        $this->initUint32($per + 0x30, $info);
+
+        // Racing reset combo: Start + A + B (no X/Y on a wheel).
+        $this->initUint32($per + 0x08, 0x0006); // on: A|B held
+        $this->initUint32($per + 0x10, 0x0008); // press: Start pressed
+
+        $buf = $this->addressOf('_var_peripherals_8c1ba35c');
+
+        $this->call('_task_8c012504');
+
+        $this->shouldWriteLongTo('_var_resetRequested_8c157a78', 0);
+        $this->shouldCall('_pdGetPeripheral')->with(0)->andReturn($per);
+        $this->shouldWriteLongTo('_var_peripheral_8c1ba358', $per);
+        $this->shouldWriteWord($buf + 0x18, 0);
+        $this->shouldWriteWord($buf + 0x1a, 0);
+        $this->shouldWriteWord($buf + 0x1c, 0);
+        $this->shouldWriteLong($buf + 0x08, 0);
+        $this->shouldWriteLong($buf + 0x10, 0);
+        $this->shouldWriteLongTo('_var_8c157a70', 0x700fe);
+
+        $this->shouldWriteLongTo('_var_resetRequested_8c157a78', 1);
+
+        $this->forceStop();
+    }
+
+    public function test_racing_paddle_shift_remaps_to_dpad_up()
+    {
+        $this->racingPaddleShift(mode: 5, xorMask: 0x0210, finalPress: 0x0010);
+    }
+
+    public function test_racing_paddle_shift_remaps_to_dpad_down()
+    {
+        $this->racingPaddleShift(mode: 0, xorMask: 0x0220, finalPress: 0x0020);
+    }
+
+    // Drives the special paddle-shift remap: peripherals[0].press has TY set
+    // (via init_8c03bef0 translation), wheel timer == 0.0, left brake at
+    // exactly the threshold (0x81). With var_8c1bbcc4 == mode, the asm
+    // XORs press with xorMask, producing finalPress.
+    private function racingPaddleShift(int $mode, int $xorMask, int $finalPress): void
+    {
+        $this->resolveSymbols();
+        $this->setupRacingInitTable();
+        $this->setupRacingState(timerRaw: 0, mode: $mode);
+
+        $per = $this->alloc(0x34);
+        $info = $this->alloc(0x4);
+
+        $this->initUint32($info, 1);
+        $this->initUint32($per + 0x04, 0x700fe);
+        $this->initUint16($per + 0x18, 0);
+        $this->initUint16($per + 0x1a, 0x81); // l threshold
+        $this->initUint16($per + 0x1c, 0);
+        $this->initUint32($per + 0x30, $info);
+
+        // One pair mapping mask 0x1 -> logical TY (0x200).
+        $table = $this->addressOf('_init_8c03bef0');
+        $this->initUint32($table + 0x00, 0x0001);
+        $this->initUint32($table + 0x04, 0x0200);
+
+        $this->initUint32($per + 0x08, 0x0000);
+        $this->initUint32($per + 0x10, 0x0001); // press fires pair 0 -> .press |= TY
+
+        $buf = $this->addressOf('_var_peripherals_8c1ba35c');
+
+        $this->call('_task_8c012504');
+
+        $this->shouldWriteLongTo('_var_resetRequested_8c157a78', 0);
+        $this->shouldCall('_pdGetPeripheral')->with(0)->andReturn($per);
+        $this->shouldWriteLongTo('_var_peripheral_8c1ba358', $per);
+        $this->shouldWriteWord($buf + 0x18, 0);
+        $this->shouldWriteWord($buf + 0x1a, 0x81);
+        $this->shouldWriteWord($buf + 0x1c, 0);
+        $this->shouldWriteLong($buf + 0x08, 0);
+        $this->shouldWriteLong($buf + 0x10, 0);
+        $this->shouldWriteLongTo('_var_8c157a70', 0x700fe);
+
+        // press-loop translates physical bit 0x1 to logical TY (0x200).
+        $this->shouldWriteLong($buf + 0x10, 0x0200);
+        // XOR remap: 0x200 ^ xorMask = finalPress.
+        $this->shouldWriteLong($buf + 0x10, $finalPress);
+
+        $this->forceStop();
+    }
+
     private function resolveSymbols(): void
     {
         $this->setSize('_var_vibport_8c1ba354', 4);
@@ -123,6 +365,38 @@ return new class extends TestCase {
             $this->addressOf('_const_peripheral_8c033318'),
             array_fill(0, 0x34 / 4, 0),
         );
+    }
+
+    // Allocates _init_8c03be80 (14 ints) and places _init_8c03beb8 immediately
+    // after it so the asm's `p < _init_8c03beb8` loop bound works. Zeroes the
+    // table; tests can override individual entries.
+    private function setupInitTable(): void
+    {
+        $this->setSize('_init_8c03be80', 0x38);
+        $base = $this->addressOf('_init_8c03be80');
+        $this->rellocate('_init_8c03beb8', $base + 0x38);
+        $this->initUint32Array($base, array_fill(0, 14, 0));
+    }
+
+    // Mirror of setupInitTable for the racing-controller translation table:
+    // _init_8c03bef0 is 10 ints (0x28 bytes); _init_8c03bf18 must immediately
+    // follow it for the asm's `p < _init_8c03bf18` loop bound.
+    private function setupRacingInitTable(): void
+    {
+        $this->setSize('_init_8c03bef0', 0x28);
+        $base = $this->addressOf('_init_8c03bef0');
+        $this->rellocate('_init_8c03bf18', $base + 0x28);
+        $this->initUint32Array($base, array_fill(0, 10, 0));
+    }
+
+    // Wheel-state globals consulted by the paddle-shift remap. `timerRaw` is
+    // the raw uint32 bit pattern of the float at _var_8c1bbc4c (0 == 0.0f).
+    private function setupRacingState(int $timerRaw, int $mode): void
+    {
+        $this->setSize('_var_8c1bbc4c', 4);
+        $this->setSize('_var_8c1bbcc4', 4);
+        $this->initUint32($this->addressOf('_var_8c1bbc4c'), $timerRaw);
+        $this->initUint32($this->addressOf('_var_8c1bbcc4'), $mode);
     }
 
     private function oddMvn(): Closure
