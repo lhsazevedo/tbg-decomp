@@ -54,6 +54,7 @@ void task_8c012504(void)
         !(var_peripheral_8c1ba358->info->type & PDD_DEVTYPE_CONTROLLER) ||
         (support != BT_CONTROLLER && support != BT_RACING)
     ) {
+        LOG_TRACE(("[INPUT] task_8c012504: no supported controller on port 0\n"));
         *var_peripherals_8c1ba35c = const_peripheral_8c033318;
         var_vibport_8c1ba354 = -1;
         var_8c157a70 = -1;
@@ -69,6 +70,7 @@ void task_8c012504(void)
     var_8c157a70 = support;
 
     if (support == BT_CONTROLLER) {
+        LOG_TRACE(("[INPUT] task_8c012504: standard controller\n"));
         for (i = 0; i < 14; i += 2) {
             if (var_peripheral_8c1ba358->on & init_8c03be80[i]) {
                 var_peripherals_8c1ba35c[0].on |= init_8c03be80[i + 1];
@@ -83,9 +85,11 @@ void task_8c012504(void)
         if ((var_peripheral_8c1ba358->press & PDD_DGT_ST) &&
             (var_peripheral_8c1ba358->on & (PDD_DGT_TA | PDD_DGT_TB | PDD_DGT_TX | PDD_DGT_TY)) ==
                 (PDD_DGT_TA | PDD_DGT_TB | PDD_DGT_TX | PDD_DGT_TY)) {
+            LOG_DEBUG(("[INPUT] task_8c012504: soft-reset combo held\n"));
             var_resetRequested_8c157a78 = 1;
         }
     } else if (support == BT_RACING) {
+        LOG_TRACE(("[INPUT] task_8c012504: racing wheel\n"));
         for (i = 0; i < 10; i += 2) {
             if (var_peripheral_8c1ba358->on & init_8c03bef0[i]) {
                 var_peripherals_8c1ba35c[0].on |= init_8c03bef0[i + 1];
@@ -103,6 +107,7 @@ void task_8c012504(void)
         if ((var_peripherals_8c1ba35c[0].press & PDD_DGT_TY) &&
             var_8c1bbc4c == 0.0f &&
             var_peripherals_8c1ba35c[0].l >= 0x81) {
+            LOG_DEBUG(("[INPUT] task_8c012504: paddle-shift remap (mode %d)\n", var_8c1bbcc4));
             if (var_8c1bbcc4 == 5) {
                 var_peripherals_8c1ba35c[0].press ^= (PDD_DGT_TY | PDD_DGT_KU);
             } else if (var_8c1bbcc4 == 0) {
@@ -113,6 +118,7 @@ void task_8c012504(void)
             if ((var_peripheral_8c1ba358->press & PDD_DGT_ST) &&
                 (var_peripheral_8c1ba358->on & (PDD_DGT_TA | PDD_DGT_TB)) ==
                     (PDD_DGT_TA | PDD_DGT_TB)) {
+                LOG_DEBUG(("[INPUT] task_8c012504: soft-reset combo held (wheel)\n"));
                 var_resetRequested_8c157a78 = 1;
             }
         }
@@ -147,6 +153,7 @@ void FUN_8c012718(void)
         !(var_peripheral_8c1ba358->info->type & PDD_DEVTYPE_CONTROLLER) ||
         (support != BT_CONTROLLER && support != BT_RACING)
     ) {
+        LOG_TRACE(("[INPUT] FUN_8c012718: no supported controller on port 0\n"));
         *var_peripherals_8c1ba35c = const_peripheral_8c033318;
         var_vibport_8c1ba354 = -1;
         var_8c157a70 = -1;
@@ -162,6 +169,7 @@ void FUN_8c012718(void)
     var_8c157a70 = support;
 
     if (support == BT_CONTROLLER) {
+        LOG_TRACE(("[INPUT] FUN_8c012718: standard controller\n"));
         for (i = 0; i < 14; i += 2) {
             if (var_peripheral_8c1ba358->on & init_8c03beb8[i]) {
                 var_peripherals_8c1ba35c[0].on |= init_8c03beb8[i + 1];
@@ -176,9 +184,11 @@ void FUN_8c012718(void)
         if ((var_peripheral_8c1ba358->press & PDD_DGT_ST) &&
             (var_peripheral_8c1ba358->on & (PDD_DGT_TA | PDD_DGT_TB | PDD_DGT_TX | PDD_DGT_TY)) ==
                 (PDD_DGT_TA | PDD_DGT_TB | PDD_DGT_TX | PDD_DGT_TY)) {
+            LOG_DEBUG(("[INPUT] FUN_8c012718: soft-reset combo held\n"));
             var_resetRequested_8c157a78 = 1;
         }
     } else if (support == BT_RACING) {
+        LOG_TRACE(("[INPUT] FUN_8c012718: racing wheel\n"));
         for (i = 0; i < 10; i += 2) {
             if (var_peripheral_8c1ba358->on & init_8c03bf18[i]) {
                 var_peripherals_8c1ba35c[0].on |= init_8c03bf18[i + 1];
@@ -193,6 +203,7 @@ void FUN_8c012718(void)
         if ((var_peripheral_8c1ba358->press & PDD_DGT_ST) &&
             (var_peripheral_8c1ba358->on & (PDD_DGT_TA | PDD_DGT_TB)) ==
                 (PDD_DGT_TA | PDD_DGT_TB)) {
+            LOG_DEBUG(("[INPUT] FUN_8c012718: soft-reset combo held (wheel)\n"));
             var_resetRequested_8c157a78 = 1;
         }
     }
@@ -219,6 +230,7 @@ void FUN_8c0128cc(int param)
     void *created_state;
 
     if (param == 0) {
+        LOG_DEBUG(("[INPUT] FUN_8c0128cc: queueing peripheral-support task\n"));
         pushTask_8c014ae8(var_tasks_8c1ba3c8, PspTask_8c012324,
                           &var_8c157a74, &created_state, 0);
         var_8c157ae4 = 0;
@@ -230,6 +242,8 @@ void FUN_8c0128cc(int param)
         } else {
             action = FUN_8c012718;
         }
+        LOG_DEBUG(("[INPUT] FUN_8c0128cc: queueing input handler (%s)\n",
+                   var_8c1bb8c8 == 0 ? "task_8c012504" : "FUN_8c012718"));
         pushTask_8c014ae8(var_tasks_8c1ba3c8, action,
                           &var_8c157a74, &created_state, 0);
     }
@@ -240,8 +254,10 @@ void FUN_8c0128cc(int param)
 void FUN_8c012970(void)
 {
     if (var_8c1bb8c8 == 0) {
+        LOG_TRACE(("[INPUT] FUN_8c012970: dispatch task_8c012504\n"));
         task_8c012504();
     } else {
+        LOG_TRACE(("[INPUT] FUN_8c012970: dispatch FUN_8c012718\n"));
         FUN_8c012718();
     }
 }
@@ -251,8 +267,10 @@ void FUN_8c012970(void)
 int FUN_8c012984(void)
 {
     if (strcmp(var_8c157aec, init_8c03bf40) == 0) {
+        LOG_DEBUG(("[INPUT] FUN_8c012984: name already \"%s\"\n", var_8c157aec));
         return 0;
     }
+    LOG_DEBUG(("[INPUT] FUN_8c012984: setting name to \"%s\"\n", init_8c03bf40));
     strcpy(var_8c157aec, init_8c03bf40);
     return 1;
 }
