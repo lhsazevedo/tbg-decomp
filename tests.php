@@ -203,6 +203,7 @@ return [
         [
             "tests" => [
                 "tests/012504/8c012504_task.php",
+                "tests/012504/8c012718_FUN.php",
             ],
             "objects" => [
                 "build/output/012504_src.obj",
