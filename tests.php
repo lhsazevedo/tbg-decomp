@@ -210,7 +210,7 @@ return [
             ],
             "objects" => [
                 "build/output/012504_src.obj",
-                "build/output/012504_c.obj",
+                "build/output/012504_input_c.obj",
             ]
         ]
     ],

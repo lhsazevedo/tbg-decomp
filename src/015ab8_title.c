@@ -31,7 +31,7 @@ extern FUN_8c016182();
 extern FUN_demo_8c0159ac();
 extern void setUknPvmBool_8c014330();
 extern void snd_8c010cd6(int p1, int p2);
-extern Bool FUN_8c012984(void);
+extern Bool setName_8c012984(void);
 
 extern void* var_currentSysResGroupInfo_8c225fb0;
 
@@ -158,7 +158,7 @@ void task_title_8c015ab8(Task* task, void *state) {
         case TITLE_STATE_0X06_ADX_FADE_OUT: {
             if (isFading_8c226568 == FALSE) {
                 // VMU Check?
-                if (FUN_8c012984() != FALSE && VmMenuUpdateVmusStatus_19550(init_saveNames_8c044d50, 3) == FALSE) {
+                if (setName_8c012984() != FALSE && VmMenuUpdateVmusStatus_19550(init_saveNames_8c044d50, 3) == FALSE) {
                     /* 8c015c62 */
                     menuState_8c1bc7a8.state_0x18 = TITLE_STATE_0X07_VMU_WARNING_FADE_IN;
                     LOG_DEBUG(("[TITLE] State changed: 0X07_VMU_WARNING_FADE_IN\n"));
@@ -427,7 +427,7 @@ void task_title_8c015ab8(Task* task, void *state) {
 void pushTitle_8c015fd6 (Bool direct) {
     Task* created_task;
     void* created_state;
-    FUN_8c0128cc(0);
+    pushInputTask_8c0128cc(0);
     pushTask_8c014ae8(var_tasks_8c1ba3c8, &task_8c012f44, &created_task, &created_state, 0);
 
     njSetBackColor(0,0,0);

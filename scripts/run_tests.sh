@@ -77,6 +77,6 @@ compile  src/016d2c_course_menu.c
 
 # 012504
 assemble  src/asm/012504.src
-compile  src/012504.c
+compile  src/012504_input.c
 
 $sh4objtest suite -s tests.php "$@"

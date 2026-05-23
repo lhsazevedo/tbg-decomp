@@ -4,7 +4,7 @@
           .IMPORT     _var_midiHandles_8c0fcd28
           .IMPORT     _sdMidiPlay
           .IMPORT     _var_peripheral_8c1ba358
-          .IMPORT     _var_8c157a70
+          .IMPORT     _var_activeCtrlType_8c157a70
           .IMPORT     _var_8c22847c
           .IMPORT     _var_8c18ad10
           .IMPORT     _controlAdxtWithOutVol_8c0107d2
@@ -328,7 +328,7 @@ LP_GEN_41107:
           .DATA.L _var_midiHandles_8c0fcd28
           .DATA.L _sdMidiPlay
           .DATA.L _var_peripheral_8c1ba358
-          .DATA.L _var_8c157a70
+          .DATA.L _var_activeCtrlType_8c157a70
           .DATA.L _var_8c22847c
           .DATA.L _var_8c18ad10
           .DATA.L _controlAdxtWithOutVol_8c0107d2

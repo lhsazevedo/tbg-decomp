@@ -35,7 +35,7 @@
           .IMPORT     _srand
           .IMPORT     _AsqSetSeedA_12160
           .IMPORT     _AsqSetSeedB_121a2
-          .IMPORT     _FUN_8c0128cc
+          .IMPORT     _pushInputTask_8c0128cc
           .IMPORT     _pushTask_8c014ae8
           .IMPORT     _var_tasks_8c1ba3c8
           .IMPORT     _task_8c012cbc
@@ -61,7 +61,7 @@
           .IMPORT     _var_8c1bb868
           .IMPORT     _var_8c1bc824
           .IMPORT     _var_8c228704
-          .IMPORT     _var_8c1bb8c8
+          .IMPORT     _var_inputMapSel_8c1bb8c8
           .IMPORT     _AsqGetRandomA_12166
           .IMPORT     _var_8c227dd4
           .IMPORT     _init_8c0460b0
@@ -500,7 +500,7 @@ LP_GEN_31464:
           .DATA.L _srand
           .DATA.L _AsqSetSeedA_12160
           .DATA.L _AsqSetSeedB_121a2
-          .DATA.L _FUN_8c0128cc
+          .DATA.L _pushInputTask_8c0128cc
           .DATA.L _pushTask_8c014ae8
           .DATA.L _var_tasks_8c1ba3c8
           .DATA.L _var_demo_8c1bb8d0
@@ -773,7 +773,7 @@ LP_GEN_38000:
           .DATA.L _var_seed_8c157a64
           .DATA.L _var_8c1bc824
           .DATA.L _var_8c228704
-          .DATA.L _var_8c1bb8c8
+          .DATA.L _var_inputMapSel_8c1bb8c8
           .DATA.L _AsqGetRandomA_12166
           .DATA.L _var_8c227dd4
           .DATA.L _var_8c1bb8d4

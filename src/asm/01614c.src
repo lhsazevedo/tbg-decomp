@@ -39,7 +39,7 @@
           .IMPORT     _init_8c04429c
           .IMPORT     _var_8c1bc824
           .IMPORT     _AsqGetRandomA_12166
-          .IMPORT     _FUN_8c0128cc
+          .IMPORT     _pushInputTask_8c0128cc
           .IMPORT     _var_8c1bc828
           .IMPORT     _var_8c225fa8
           .IMPORT     _var_8c225fac
@@ -50,7 +50,7 @@
           .IMPORT     _var_8c228ba4
           .IMPORT     _BupSave_8c014bcc
           .IMPORT     _const_8c036130
-          .IMPORT     _var_8c1bb8c8
+          .IMPORT     _var_inputMapSel_8c1bb8c8
           .IMPORT     _var_seed_8c157a64
           .IMPORT     _BupLoad_8c014bc6
           .IMPORT     _const_8c036148
@@ -1008,7 +1008,7 @@ LP_GEN_94139:
           .DATA.L _const_8c0360b0 ; H'8C016858
           .DATA.L H'000A0000 ; H'8C01685C
           .DATA.L _AsqGetRandomA_12166 ; H'8C016860
-          .DATA.L _FUN_8c0128cc ; H'8C016864
+          .DATA.L _pushInputTask_8c0128cc ; H'8C016864
           .DATA.L _FUN_8c01666a ; H'8C016868
           .DATA.L _var_8c1bc828 ; H'8C01686C
           .DATA.L _var_8c225fa8 ; H'8C016870
@@ -1268,7 +1268,7 @@ LP_GEN_65913:
           .DATA.L _FUN_8c02f320 ; H'8C016A8C
           .DATA.L _FUN_8c02f934 ; H'8C016A90
           .DATA.L _var_8c1bb868 ; H'8C016A94
-          .DATA.L _var_8c1bb8c8 ; H'8C016A98
+          .DATA.L _var_inputMapSel_8c1bb8c8 ; H'8C016A98
           .DATA.L _var_seed_8c157a64 ; H'8C016A9C
           .DATA.L _BupGetInfo_8c014bba ; H'8C016AA0
           .DATA.L _BupMount_8c014c00 ; H'8C016AA4
@@ -1405,7 +1405,7 @@ LP_GEN_41084:
           .DATA.L _njPrint ; H'8C016BAC
           .DATA.L _buStat ; H'8C016BB0
           .DATA.L _var_8c1bb868 ; H'8C016BB4
-          .DATA.L _var_8c1bb8c8 ; H'8C016BB8
+          .DATA.L _var_inputMapSel_8c1bb8c8 ; H'8C016BB8
           .DATA.L _var_seed_8c157a64 ; H'8C016BBC
           .DATA.L _var_8c1bc828 ; H'8C016BC0
           .DATA.L _FUN_8c02f320 ; H'8C016BC4

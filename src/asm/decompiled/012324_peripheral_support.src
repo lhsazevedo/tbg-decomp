@@ -3,7 +3,7 @@
           .IMPORT     _var_resetRequested_8c157a78
           .IMPORT     _var_peripheral_8c1ba358
           .IMPORT     _pdGetPeripheral
-          .IMPORT     _var_8c157a70
+          .IMPORT     _var_activeCtrlType_8c157a70
           .IMPORT     __quick_odd_mvn
           .IMPORT     _const_peripheral_8c033318
           .IMPORT     _var_vibport_8c1ba354
@@ -148,7 +148,7 @@ LP_GEN_72787:
           .DATA.L _var_peripheral_8c1ba358
           .DATA.L _pdGetPeripheral
           .DATA.L H'000F06FE
-          .DATA.L _var_8c157a70
+          .DATA.L _var_activeCtrlType_8c157a70
           .DATA.L H'000700FE
           .DATA.L __quick_odd_mvn
           .DATA.L _var_8c157ae4

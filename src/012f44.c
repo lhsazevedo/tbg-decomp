@@ -409,7 +409,7 @@ extern var_8c1bb8cc;
 extern var_8c22847c;
 extern int var_8c1bb868;
 extern int var_8c228704;
-extern int var_8c1bb8c8;
+extern int var_inputMapSel_8c1bb8c8;
 extern var_8c227dd4;
 extern Uint32 var_8c227da0;
 extern Uint32 var_8c1ba292;
@@ -527,7 +527,7 @@ void FUN_8c01306e(void)
     AsqSetSeedA_12160(var_seed_8c157a64);
     AsqSetSeedB_121a2(var_seed_8c157a64);
 
-    FUN_8c0128cc(1);
+    pushInputTask_8c0128cc(1);
 
     if (var_demo_8c1bb8d0 != 2) {
         pushTask_8c014ae8(var_tasks_8c1ba3c8, &task_8c012cbc, &created_task, &created_state, 0);
@@ -575,7 +575,7 @@ void FUN_8c01328c() {
     if (var_demo_8c1bb8d0 == 0) {
         var_8c1bb868 = var_8c1bc824->field_0x00;
         var_8c228704 = var_8c1bc824->field_0x04;
-        var_8c1bb8c8 = var_8c1bc824->field_0x08;
+        var_inputMapSel_8c1bb8c8 = var_8c1bc824->field_0x08;
         var_seed_8c157a64 = AsqGetRandomA_12166();
     } else if ((var_demo_8c1bb8d0 == 2) && (var_8c1bb8d4 != 0)) {
         var_8c227dd4 = init_8c0460b0[var_8c1bb868 - 0x26];
@@ -602,7 +602,7 @@ void pushLoadingTask_8c013310(int p1) {
     if (var_demo_8c1bb8d0 != 2) {
         var_8c1bb868 = p1;
         var_8c228704 = 0;
-        var_8c1bb8c8 = (char) var_8c1ba291;
+        var_inputMapSel_8c1bb8c8 = (char) var_8c1ba291;
         var_seed_8c157a64 = AsqGetRandomA_12166();
     } else if (var_demo_8c1bb8d0 == 2 && var_8c1bb8d4 != 0) {
         var_8c227dd4 = init_8c0460b0[var_8c1bb868 - 0x26];

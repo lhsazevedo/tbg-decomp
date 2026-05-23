@@ -5,7 +5,7 @@ declare(strict_types=1);
 use Lhsazevedo\Sh4ObjTest\TestCase;
 
 /*
- * FUN_8c012718 is the twin of task_8c012504: same flow, but it reads the
+ * inputTaskAlt_8c012718 is the twin of inputTask_8c012504: same flow, but it reads the
  * adjacent translation tables (_init_8c03beb8 / _init_8c03bf18) and has no
  * paddle-shift remap in the racing branch.
  */
@@ -21,14 +21,14 @@ return new class extends TestCase {
         $this->initUint32($per + 0x04, 0xf06fe);   // support bits (irrelevant for this path)
         $this->initUint32($per + 0x30, $info);
 
-        $this->call('_FUN_8c012718');
+        $this->call('_inputTaskAlt_8c012718');
 
         $this->shouldWriteLongTo('_var_resetRequested_8c157a78', 0);
         $this->shouldCall('_pdGetPeripheral')->with(0)->andReturn($per);
         $this->shouldWriteLongTo('_var_peripheral_8c1ba358', $per);
         $this->shouldCall('__quick_odd_mvn')->do($this->oddMvn());
         $this->shouldWriteLongTo('_var_vibport_8c1ba354', -1);
-        $this->shouldWriteLongTo('_var_8c157a70', -1);
+        $this->shouldWriteLongTo('_var_activeCtrlType_8c157a70', -1);
         $this->shouldCall('_vmsLcd_8c01c910');
     }
 
@@ -43,14 +43,14 @@ return new class extends TestCase {
         $this->initUint32($per + 0x04, 0); // support & 0xF06FE = 0 -> matches neither type
         $this->initUint32($per + 0x30, $info);
 
-        $this->call('_FUN_8c012718');
+        $this->call('_inputTaskAlt_8c012718');
 
         $this->shouldWriteLongTo('_var_resetRequested_8c157a78', 0);
         $this->shouldCall('_pdGetPeripheral')->with(0)->andReturn($per);
         $this->shouldWriteLongTo('_var_peripheral_8c1ba358', $per);
         $this->shouldCall('__quick_odd_mvn')->do($this->oddMvn());
         $this->shouldWriteLongTo('_var_vibport_8c1ba354', -1);
-        $this->shouldWriteLongTo('_var_8c157a70', -1);
+        $this->shouldWriteLongTo('_var_activeCtrlType_8c157a70', -1);
         $this->shouldCall('_vmsLcd_8c01c910');
     }
 
@@ -84,7 +84,7 @@ return new class extends TestCase {
 
         $buf = $this->addressOf('_var_peripherals_8c1ba35c');
 
-        $this->call('_FUN_8c012718');
+        $this->call('_inputTaskAlt_8c012718');
 
         $this->shouldWriteLongTo('_var_resetRequested_8c157a78', 0);
         $this->shouldCall('_pdGetPeripheral')->with(0)->andReturn($per);
@@ -94,7 +94,7 @@ return new class extends TestCase {
         $this->shouldWriteWord($buf + 0x1c, 0);
         $this->shouldWriteLong($buf + 0x08, 0);
         $this->shouldWriteLong($buf + 0x10, 0);
-        $this->shouldWriteLongTo('_var_8c157a70', 0xf06fe);
+        $this->shouldWriteLongTo('_var_activeCtrlType_8c157a70', 0xf06fe);
 
         // on-loop: pair 0 matches -> .on |= 0x100, then pair 1 -> .on |= 0x200
         $this->shouldWriteLong($buf + 0x08, 0x0100);
@@ -128,7 +128,7 @@ return new class extends TestCase {
 
         $buf = $this->addressOf('_var_peripherals_8c1ba35c');
 
-        $this->call('_FUN_8c012718');
+        $this->call('_inputTaskAlt_8c012718');
 
         $this->shouldWriteLongTo('_var_resetRequested_8c157a78', 0);
         $this->shouldCall('_pdGetPeripheral')->with(0)->andReturn($per);
@@ -138,7 +138,7 @@ return new class extends TestCase {
         $this->shouldWriteWord($buf + 0x1c, 0);
         $this->shouldWriteLong($buf + 0x08, 0);
         $this->shouldWriteLong($buf + 0x10, 0);
-        $this->shouldWriteLongTo('_var_8c157a70', 0xf06fe);
+        $this->shouldWriteLongTo('_var_activeCtrlType_8c157a70', 0xf06fe);
 
         $this->shouldWriteLongTo('_var_resetRequested_8c157a78', 1);
 
@@ -166,7 +166,7 @@ return new class extends TestCase {
 
         $buf = $this->addressOf('_var_peripherals_8c1ba35c');
 
-        $this->call('_FUN_8c012718');
+        $this->call('_inputTaskAlt_8c012718');
 
         $this->shouldWriteLongTo('_var_resetRequested_8c157a78', 0);
         $this->shouldCall('_pdGetPeripheral')->with(0)->andReturn($per);
@@ -176,7 +176,7 @@ return new class extends TestCase {
         $this->shouldWriteWord($buf + 0x1c, 0);
         $this->shouldWriteLong($buf + 0x08, 0);
         $this->shouldWriteLong($buf + 0x10, 0);
-        $this->shouldWriteLongTo('_var_8c157a70', 0xf06fe);
+        $this->shouldWriteLongTo('_var_activeCtrlType_8c157a70', 0xf06fe);
 
         // No second write to _var_resetRequested_8c157a78 (combo incomplete).
 
@@ -210,7 +210,7 @@ return new class extends TestCase {
 
         $buf = $this->addressOf('_var_peripherals_8c1ba35c');
 
-        $this->call('_FUN_8c012718');
+        $this->call('_inputTaskAlt_8c012718');
 
         $this->shouldWriteLongTo('_var_resetRequested_8c157a78', 0);
         $this->shouldCall('_pdGetPeripheral')->with(0)->andReturn($per);
@@ -220,7 +220,7 @@ return new class extends TestCase {
         $this->shouldWriteWord($buf + 0x1c, 0);
         $this->shouldWriteLong($buf + 0x08, 0);
         $this->shouldWriteLong($buf + 0x10, 0);
-        $this->shouldWriteLongTo('_var_8c157a70', 0x700fe);
+        $this->shouldWriteLongTo('_var_activeCtrlType_8c157a70', 0x700fe);
 
         // on-loop: pair 0 then pair 1 match.
         $this->shouldWriteLong($buf + 0x08, 0x0100);
@@ -253,7 +253,7 @@ return new class extends TestCase {
 
         $buf = $this->addressOf('_var_peripherals_8c1ba35c');
 
-        $this->call('_FUN_8c012718');
+        $this->call('_inputTaskAlt_8c012718');
 
         $this->shouldWriteLongTo('_var_resetRequested_8c157a78', 0);
         $this->shouldCall('_pdGetPeripheral')->with(0)->andReturn($per);
@@ -263,7 +263,7 @@ return new class extends TestCase {
         $this->shouldWriteWord($buf + 0x1c, 0);
         $this->shouldWriteLong($buf + 0x08, 0);
         $this->shouldWriteLong($buf + 0x10, 0);
-        $this->shouldWriteLongTo('_var_8c157a70', 0x700fe);
+        $this->shouldWriteLongTo('_var_activeCtrlType_8c157a70', 0x700fe);
 
         $this->shouldWriteLongTo('_var_resetRequested_8c157a78', 1);
 
@@ -331,7 +331,7 @@ return new class extends TestCase {
 
         $buf = $this->addressOf('_var_peripherals_8c1ba35c');
 
-        $this->call('_FUN_8c012718');
+        $this->call('_inputTaskAlt_8c012718');
 
         $this->shouldWriteLongTo('_var_resetRequested_8c157a78', 0);
         $this->shouldCall('_pdGetPeripheral')->with(0)->andReturn($per);
@@ -341,7 +341,7 @@ return new class extends TestCase {
         $this->shouldWriteWord($buf + 0x1c, 0);
         $this->shouldWriteLong($buf + 0x08, 0);
         $this->shouldWriteLong($buf + 0x10, 0);
-        $this->shouldWriteLongTo('_var_8c157a70', 0xf06fe);
+        $this->shouldWriteLongTo('_var_activeCtrlType_8c157a70', 0xf06fe);
 
         // Vibration-port detection probes port 1, then port 2 only if needed.
         $this->shouldCall('_pdGetPeripheral')->with(1)->andReturn($per1);
@@ -356,7 +356,7 @@ return new class extends TestCase {
     {
         $this->setSize('_var_vibport_8c1ba354', 4);
         $this->setSize('_var_peripherals_8c1ba35c', 0x34 * 2);
-        $this->setSize('_var_8c157a70', 4);
+        $this->setSize('_var_activeCtrlType_8c157a70', 4);
         $this->setSize('_vmsLcd_8c01c910', 4);
         $this->initUint32Array(
             $this->addressOf('_const_peripheral_8c033318'),
@@ -364,7 +364,7 @@ return new class extends TestCase {
         );
     }
 
-    // FUN_8c012718 standard table: _init_8c03beb8 (14 ints, 0x38 bytes). The
+    // inputTaskAlt_8c012718 standard table: _init_8c03beb8 (14 ints, 0x38 bytes). The
     // loop bound is base+0x38; pin the next imported symbol _init_8c03bef0
     // there so the imported tables stay contiguous.
     private function setupStandardTable(): void
@@ -375,9 +375,9 @@ return new class extends TestCase {
         $this->initUint32Array($base, array_fill(0, 14, 0));
     }
 
-    // FUN_8c012718 racing table: _init_8c03bf18 (10 ints, 0x28 bytes). The loop
+    // inputTaskAlt_8c012718 racing table: _init_8c03bf18 (10 ints, 0x28 bytes). The loop
     // bound is base+0x28, computed in the asm, so there is no bound symbol to
-    // pin (the symbol there, _init_8c03bf40, is defined locally in the unit).
+    // pin (the symbol there, _init_fortyFive_8c03bf40, is defined locally in the unit).
     private function setupRacingTable(): void
     {
         $this->setSize('_init_8c03bf18', 0x28);

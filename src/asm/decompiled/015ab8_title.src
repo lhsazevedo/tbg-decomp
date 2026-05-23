@@ -35,9 +35,9 @@
           .IMPORT     _setUknPvmBool_8c014330
           .IMPORT     _AsqProcessQueues_11fe0
           .IMPORT     _snd_8c010cd6
-          .IMPORT     _FUN_8c012984
+          .IMPORT     _setName_8c012984
           .IMPORT     _FUN_8c010bae
-          .IMPORT     _FUN_8c0128cc
+          .IMPORT     _pushInputTask_8c0128cc
           .EXPORT     _task_title_8c015ab8
           .EXPORT     _pushTitle_8c015fd6
           .SECTION    P,CODE,ALIGN=4
@@ -470,7 +470,7 @@ L37:
           .DATA.L     _VmMenuMountVms_1940e
           .DATA.L     H'FF000000
           .DATA.L     _njSetBackColor
-          .DATA.L     _FUN_8c012984 ; H'8c015de0
+          .DATA.L     _setName_8c012984 ; H'8c015de0
           .DATA.L     _init_saveNames_8c044d50
           .DATA.L     _VmMenuUpdateVmusStatus_19550
           .DATA.L     _var_midiHandles_8c0fcd28
@@ -721,7 +721,7 @@ _pushTitle_8c015fd6:                   ; function: pushTitle_8c015fd6
           MOV.L       R14,@-R15
           STS.L       PR,@-R15
           ADD         #-12,R15
-          MOV.L       L53+24,R3; FUN_8c0128cc
+          MOV.L       L53+24,R3; pushInputTask_8c0128cc
           MOV.L       R4,@(8,R15)
           JSR         @R3
           MOV         #0,R4
@@ -825,7 +825,7 @@ L53:
           .DATA.L     H'43970000 ; 302.0
           .DATA.L     H'43340000 ; 180.0
           .DATA.L     H'C0E00000 ; -7.0
-          .DATA.L     _FUN_8c0128cc ; H'8c0160b0
+          .DATA.L     _pushInputTask_8c0128cc ; H'8c0160b0
           .DATA.L     _task_8c012f44
           .DATA.L     _var_tasks_8c1ba3c8
           .DATA.L     _pushTask_8c014ae8

@@ -1,5 +1,5 @@
 
-void FUN_8c012718(void)
+void inputTaskAlt_8c012718(void)
 
 {
   int iVar1;

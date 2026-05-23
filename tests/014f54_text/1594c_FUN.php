@@ -17,7 +17,7 @@ return new class extends TestCase {
         $this->shouldCall('_getUknPvmBool_8c01432a')->andReturn(1);
 
         $this->shouldWriteTo('_var_8c1bb868', 0xcafe0001);
-        $this->shouldWriteTo('_var_8c1bb8c8', 0xcafe0002);
+        $this->shouldWriteTo('_var_inputMapSel_8c1bb8c8', 0xcafe0002);
         $this->shouldWriteTo('_var_seed_8c157a64', 0xcafe0003);
 
         $local1 = $this->isAsmObject() ? 0xffffe4 : 0xffffec;

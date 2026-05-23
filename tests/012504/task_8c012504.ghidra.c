@@ -1,7 +1,7 @@
 
 /* WARNING: Unknown calling convention -- yet parameter storage is locked */
 
-void task_8c012504(void)
+void inputTask_8c012504(void)
 
 {
   int iVar1;

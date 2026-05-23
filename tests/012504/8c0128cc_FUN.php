@@ -11,7 +11,7 @@ return new class extends TestCase {
     {
         $this->resolveSymbols();
 
-        $this->call('_FUN_8c0128cc')->with(0);
+        $this->call('_pushInputTask_8c0128cc')->with(0);
 
         $this->shouldCall('_pushTask_8c014ae8')->with(
             $this->addressOf('_var_tasks_8c1ba3c8'),
@@ -25,34 +25,34 @@ return new class extends TestCase {
         $this->shouldWriteLongTo('_var_8c157ad4', 0);
     }
 
-    // param 1, var_8c1bb8c8 == 0: queue task_8c012504.
-    public function test_installs_task_8c012504_when_flag_clear()
+    // param 1, var_inputMapSel_8c1bb8c8 == 0: queue inputTask_8c012504.
+    public function test_installs_inputTask_8c012504_when_flag_clear()
     {
         $this->resolveSymbols();
-        $this->initUint32($this->addressOf('_var_8c1bb8c8'), 0);
+        $this->initUint32($this->addressOf('_var_inputMapSel_8c1bb8c8'), 0);
 
-        $this->call('_FUN_8c0128cc')->with(1);
+        $this->call('_pushInputTask_8c0128cc')->with(1);
 
         $this->shouldCall('_pushTask_8c014ae8')->with(
             $this->addressOf('_var_tasks_8c1ba3c8'),
-            $this->addressOf('_task_8c012504'),
+            $this->addressOf('_inputTask_8c012504'),
             $this->addressOf('_var_8c157a74'),
             new WildcardArgument,
             0
         );
     }
 
-    // param 1, var_8c1bb8c8 != 0: queue FUN_8c012718.
-    public function test_installs_FUN_8c012718_when_flag_set()
+    // param 1, var_inputMapSel_8c1bb8c8 != 0: queue inputTaskAlt_8c012718.
+    public function test_installs_inputTaskAlt_8c012718_when_flag_set()
     {
         $this->resolveSymbols();
-        $this->initUint32($this->addressOf('_var_8c1bb8c8'), 1);
+        $this->initUint32($this->addressOf('_var_inputMapSel_8c1bb8c8'), 1);
 
-        $this->call('_FUN_8c0128cc')->with(1);
+        $this->call('_pushInputTask_8c0128cc')->with(1);
 
         $this->shouldCall('_pushTask_8c014ae8')->with(
             $this->addressOf('_var_tasks_8c1ba3c8'),
-            $this->addressOf('_FUN_8c012718'),
+            $this->addressOf('_inputTaskAlt_8c012718'),
             $this->addressOf('_var_8c157a74'),
             new WildcardArgument,
             0
@@ -67,7 +67,7 @@ return new class extends TestCase {
         // the relocation must resolve even though pushTask is never called.
         $this->setSize('_pushTask_8c014ae8', 4);
 
-        $this->call('_FUN_8c0128cc')->with(2);
+        $this->call('_pushInputTask_8c0128cc')->with(2);
     }
 
     private function resolveSymbols(): void
@@ -77,7 +77,7 @@ return new class extends TestCase {
         $this->setSize('_var_8c157ae4', 4);
         $this->setSize('_var_8c157ae8', 4);
         $this->setSize('_var_8c157ad4', 0x10);
-        $this->setSize('_var_8c1bb8c8', 4);
+        $this->setSize('_var_inputMapSel_8c1bb8c8', 4);
         $this->setSize('_PspTask_8c012324', 4);
     }
 };
