@@ -1,4 +1,5 @@
 #include <shinobi.h>
+#include "014a9c_tasks.h"
 
 #define BT(a)     PDD_DEV_SUPPORT_##a
 
@@ -27,6 +28,13 @@ extern int init_8c03bf18[10];
  * target (5 -> D-pad Up, 0 -> D-pad Down). */
 extern float var_8c1bbc4c;
 extern int var_8c1bbcc4;
+extern Task var_tasks_8c1ba3c8[];
+extern Task *var_8c157a74;
+extern int var_8c157ae4;
+extern int var_8c157ae8;
+extern int var_8c157ad4[4];
+extern int var_8c1bb8c8;
+extern void PspTask_8c012324(void);
 
 void task_8c012504(void)
 {
@@ -195,4 +203,29 @@ void FUN_8c012718(void)
     }
 
     vmsLcd_8c01c910();
+}
+
+/* Queues the active input-handler task. param 0 installs the peripheral-support
+ * task (PspTask_8c012324) and clears its repeat/auto-fire state; param 1 picks
+ * task_8c012504 or FUN_8c012718 by var_8c1bb8c8. */
+void FUN_8c0128cc(int param)
+{
+    void (*action)(void);
+    void *created_state;
+
+    if (param == 0) {
+        pushTask_8c014ae8(var_tasks_8c1ba3c8, PspTask_8c012324,
+                          &var_8c157a74, &created_state, 0);
+        var_8c157ae4 = 0;
+        var_8c157ae8 = 0;
+        var_8c157ad4[0] = 0;
+    } else if (param == 1) {
+        if (var_8c1bb8c8 == 0) {
+            action = task_8c012504;
+        } else {
+            action = FUN_8c012718;
+        }
+        pushTask_8c014ae8(var_tasks_8c1ba3c8, action,
+                          &var_8c157a74, &created_state, 0);
+    }
 }
