@@ -32,6 +32,7 @@
           .AIFDEF UNIT_TESTING
           .EXPORT     _task_8c012504
           .EXPORT     _var_8c157aec
+          .EXPORT     _const_8c033358
           .AENDI
           .SECTION     P, CODE, ALIGN=4
 _task_8c012504:

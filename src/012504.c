@@ -1,5 +1,6 @@
 #include <shinobi.h>
 #include "014a9c_tasks.h"
+#include "serial_debug.h"
 
 #define BT(a)     PDD_DEV_SUPPORT_##a
 
@@ -35,6 +36,10 @@ extern int var_8c157ae8;
 extern int var_8c157ad4[4];
 extern int var_8c1bb8c8;
 extern void PspTask_8c012324(void);
+
+STATIC char var_8c157aec[12];
+STATIC const char const_8c033358[] = "FortyFive";
+STATIC const char *init_8c03bf40 = const_8c033358;
 
 void task_8c012504(void)
 {
@@ -239,4 +244,15 @@ void FUN_8c012970(void)
     } else {
         FUN_8c012718();
     }
+}
+
+/* Ensures var_8c157aec holds "FortyFive": returns 0 if it already does,
+ * otherwise writes it and returns 1 (i.e. 1 means the name was just set). */
+int FUN_8c012984(void)
+{
+    if (strcmp(var_8c157aec, init_8c03bf40) == 0) {
+        return 0;
+    }
+    strcpy(var_8c157aec, init_8c03bf40);
+    return 1;
 }

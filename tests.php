@@ -206,6 +206,7 @@ return [
                 "tests/012504/8c012718_FUN.php",
                 "tests/012504/8c0128cc_FUN.php",
                 "tests/012504/8c012970_FUN.php",
+                "tests/012504/8c012984_FUN.php",
             ],
             "objects" => [
                 "build/output/012504_src.obj",
