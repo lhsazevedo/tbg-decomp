@@ -1,4 +1,5 @@
 /build/output
+/build/tmp
 /diskroot
 
 # Ignore game binary
