@@ -60,12 +60,14 @@ elif event == 'PostToolUse' and tool == 'Read':
 
 elif event == 'PreToolUse' and tool == 'Write':
     content = tip.get('content', '')
+    if not any(ord(c) > 0x7F for c in content):
+        sys.exit(0)
     file.parent.mkdir(parents=True, exist_ok=True)
     file.write_bytes(content.encode('shift_jis'))
     deny(f"Write intercepted: content saved as Shift-JIS at {file}")
 
 elif event == 'PreToolUse' and tool == 'Edit':
-    if not file.exists():
+    if not file.exists() or not has_non_ascii(file):
         sys.exit(0)
     old         = tip.get('old_string', '')
     new         = tip.get('new_string', '')
