@@ -229,3 +229,14 @@ void FUN_8c0128cc(int param)
                           &var_8c157a74, &created_state, 0);
     }
 }
+
+/* Task action that runs the active input handler each frame: task_8c012504
+ * or FUN_8c012718, selected by var_8c1bb8c8. (In asm this is a tail call.) */
+void FUN_8c012970(void)
+{
+    if (var_8c1bb8c8 == 0) {
+        task_8c012504();
+    } else {
+        FUN_8c012718();
+    }
+}
