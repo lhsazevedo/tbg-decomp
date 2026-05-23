@@ -103,5 +103,15 @@ void task_8c012504(void)
         }
     }
 
+    /* Pick the port that has a vibration pack: prefer port 1, then port 2;
+     * -1 if neither has one. */
+    if (pdGetPeripheral(1)->info->type & PDD_DEVTYPE_VIBRATION) {
+        var_vibport_8c1ba354 = 1;
+    } else if (pdGetPeripheral(2)->info->type & PDD_DEVTYPE_VIBRATION) {
+        var_vibport_8c1ba354 = 2;
+    } else {
+        var_vibport_8c1ba354 = -1;
+    }
+
     vmsLcd_8c01c910();
 }
