@@ -55,6 +55,25 @@ docs/setup.md                # One-time environment setup
 | Variables | `_var_name_8c<addr>` | `_var_resetRequested_8c157a78` |
 | Tests | `8c<addr>_name.php` | `8c012718_FUN.php` |
 
+## C Source File Structure
+
+Sections in order, each with a banner like the one below; omit empty sections:
+
+```c
+/* ====================
+ * Section Title
+ * ====================
+ */
+```
+
+
+1. Compiler Definitions
+2. Type Declarations
+3. Non-initialized Globals
+4. Initialized Globals
+5. Forward Declarations
+6. Functions
+
 ## Key Conventions
 
 - `STATIC` macro (from `includes.h`): expands to `static` in production, empty in unit tests so test harness can access the symbol.
