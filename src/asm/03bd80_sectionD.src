@@ -7,9 +7,6 @@
           .IMPORT     _var_8c2260b8
           .IMPORT     _var_8c2260c4
 ;          .IMPORT     _const_8c03628c
-          .IMPORT     _const_8c037e38
-          .IMPORT     _const_8c037e48
-          .IMPORT     _const_8c037e54
           .IMPORT     _const_8c037f60
           .IMPORT     _const_8c037f70
           .IMPORT     _const_8c037f80
@@ -634,11 +631,6 @@
           .IMPORT     _const_8c03b95c
           .IMPORT     _const_8c03b968
 
-          ; course_menu
-          .EXPORT     _init_8c044d10 ; 016d2c_course_menu.c, 016d2c_course_menu.src
-          .EXPORT     _init_routeInfoTime_8c044d2e ; 016d2c_course_menu.c, 016d2c_course_menu.src
-          .EXPORT     _init_8c044d40 ; 016d2c_course_menu.c, 016d2c_course_menu.src
-
           ; vm_menu
           .EXPORT     _init_saveNames_8c044d50 ; 015ab8_title.c, 015ab8_title.src, 018784.src, 0193c8_vm_menu.c, 0193c8_vm_menu.src, 01b19c.src, 01d7fc.src
           .EXPORT     _init_vmIconsPositions_8c044d7c ; 0193c8_vm_menu.c, 0193c8_vm_menu.src
@@ -765,24 +757,6 @@
           .EXPORT     _init_8c04f6a8 ; 02fb50_sh4nlfzn.src
 
           .SECTION    D, DATA, ALIGN=4
-_init_8c044d10:        ; from defines
-          .DATA.B      H'00, H'00, H'01, H'02, H'02, H'00, H'00, H'01, H'01, H'00, H'02, H'02, H'00, H'01, H'02, H'01
-          .DATA.B      H'00, H'02, H'02, H'00, H'01, H'01, H'02, H'00, H'02, H'02, H'00, H'01, H'01, H'00
-_init_routeInfoTime_8c044d2e:        ; from defines
-          .DATA.B      H'0C, H'1C
-          .DATA.B      H'10, H'34
-          .DATA.B      H'14, H'24
-          .DATA.B      H'0C, H'05
-          .DATA.B      H'10, H'2C
-          .DATA.B      H'14, H'30
-          .DATA.B      H'0C, H'2E
-          .DATA.B      H'11, H'04
-          .DATA.B      H'13, H'16
-_init_8c044d40:        ; from defines
-          .DATA.L      _const_8c037e38 ; ukn
-          .DATA.L      _const_8c037e48 ; ukn
-          .DATA.L      _const_8c037e54 ; ukn
-          .DATA.B      H'04, H'00, H'00, H'00
 _init_saveNames_8c044d50:        ; from defines
           .DATA.L      _const_8c037f60 ; ukn
           .DATA.L      _const_8c037f70 ; ukn

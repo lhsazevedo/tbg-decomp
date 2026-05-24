@@ -429,9 +429,9 @@ return new class extends TestCase {
         $progressBase = $this->addressOf('_var_progress_8c1ba1cc');
         $this->initUint32($progressBase + 0x00, 5); // days = 5
 
-        // Initialize lookup table byte at init_8c044d10[days - 1]
-        // Note: Ghidra shows PTR_PTR_8c044d0c + days + 3, which equals init_8c044d10 + days - 1
-        $this->initUint8($this->addressOf('_init_8c044d10') + 5 - 1, 7);
+        // Initialize lookup table byte at init_courseVariants_8c044d10[days - 1]
+        // Note: Ghidra shows PTR_PTR_8c044d0c + days + 3, which equals init_courseVariants_8c044d10 + days - 1
+        $this->initUint8($this->addressOf('_init_courseVariants_8c044d10') + 5 - 1, 7);
 
         // Initialize progress->field_0x04 data (two arrays of 5 uint32 values)
         for ($i = 0; $i < 5; $i++) {
@@ -471,8 +471,8 @@ return new class extends TestCase {
         }
 
         // Step 5: Update menuState.field_0x50 by adding lookup table value
-        // field_0x50 += init_8c044d10[days - 1]
-        // (Ghidra decompiled as PTR_PTR_8c044d0c + days + 3, which equals init_8c044d10 + days - 1)
+        // field_0x50 += init_courseVariants_8c044d10[days - 1]
+        // (Ghidra decompiled as PTR_PTR_8c044d0c + days + 3, which equals init_courseVariants_8c044d10 + days - 1)
         $menuStateBase = $this->addressOf('_menuState_8c1bc7a8');
         $this->shouldWriteLong($menuStateBase + 0x50, 12 + 7); // write sum (19)
 
@@ -502,8 +502,8 @@ return new class extends TestCase {
         $progressBase = $this->addressOf('_var_progress_8c1ba1cc');
         $this->initUint32($progressBase + 0x00, 5); // days = 5
 
-        // Initialize lookup table byte at init_8c044d10[days - 1]
-        $this->initUint8($this->addressOf('_init_8c044d10') + 5 - 1, 7);
+        // Initialize lookup table byte at init_courseVariants_8c044d10[days - 1]
+        $this->initUint8($this->addressOf('_init_courseVariants_8c044d10') + 5 - 1, 7);
 
         // Initialize progress->field_0x04 data (two arrays of 5 uint32 values)
         for ($i = 0; $i < 5; $i++) {
@@ -660,7 +660,7 @@ return new class extends TestCase {
         $this->setSize('_var_8c1ba2b8', 0x14); // 5 uint32 values
         $this->setSize('_var_8c1ba2cc', 0x14); // 5 uint32 values
         $this->setSize('_PTR_PTR_8c044d0c', 32); // Lookup table for days
-        $this->setSize('_init_8c044d10', 30);
+        $this->setSize('_init_courseVariants_8c044d10', 30);
         $this->setSize('_var_game_mode_8c1bb8fc', 4);
         $this->setSize('_var_currentSysResGroupInfo_8c225fb0', 4);
         $this->setSize('_var_dialogQueue_8c225fbc', 0x10); // Array of dialog queue

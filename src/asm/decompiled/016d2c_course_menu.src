@@ -59,7 +59,6 @@
           .IMPORT     _pushInputTask_8c0128cc
           .IMPORT     _task_8c012f44
           .IMPORT     _FUN_8c02ae3e
-          .IMPORT     _init_routeInfoTime_8c044d2e
           .IMPORT     _promptHandleBinary_16caa
           .IMPORT     _FUN_8c016182
           .IMPORT     _var_8c1bb8e0
@@ -70,9 +69,7 @@
           .IMPORT     _var_8c1bb8f4
           .IMPORT     _var_8c1ba2cc
           .IMPORT     _var_8c1ba2b8
-          .IMPORT     _init_8c044d10
           .IMPORT     _pushLoadingTask_8c013310
-          .IMPORT     _init_8c044d40
           .IMPORT     _AsqRequestDat_11182
           .IMPORT     _AsqRequestPvm_11ac0
           .IMPORT     _AsqReleaseAndFreeTexlist_11e3c
@@ -3114,7 +3111,7 @@ LAB_8c018494:
           RTS
           MOV.L       @R15+,R14
 LP_GEN_86610:
-          .DATA.L _init_8c044d10 ; H'8C0184A8
+          .DATA.L _init_courseVariants_8c044d10 ; H'8C0184A8
           .DATA.L _pushLoadingTask_8c013310 ; H'8C0184AC
           .DATA.L _var_currentSysResGroupInfo_8c225fb0 ; H'8C0184B0
           .DATA.L H'C0800000 ; H'8C0184B4
@@ -3285,7 +3282,7 @@ LP_GEN_93008:
           .DATA.L _menuState_8c1bc7a8 ; H'8C018600
           .DATA.L _AsqInitQueues_11f36 ; H'8C018604
           .DATA.L _AsqResetQueues_11f6c ; H'8C018608
-          .DATA.L _init_8c044d40 ; H'8C01860C
+          .DATA.L _init_courseResourceGroup_8c044d40 ; H'8C01860C
           .DATA.L _setUknPvmBool_8c014330 ; H'8C018610
           .DATA.L _resetUknPvmBool_8c014322 ; H'8C018614
           .DATA.L _AsqNop_11120 ; H'8C018618
@@ -3953,6 +3950,24 @@ _init_dialogSequences_8c044c08:        ; from defines
           .DATA.L      _init_seqDoorOperation_8c044bd0
           .DATA.L      _init_seqFreeRunIntro2_8c044be0
           .DATA.L      _init_seqFreeRunChooseCourse_8c044bf8
+_init_courseVariants_8c044d10:        ; from defines
+          .DATA.B      H'00, H'00, H'01, H'02, H'02, H'00, H'00, H'01, H'01, H'00, H'02, H'02, H'00, H'01, H'02, H'01
+          .DATA.B      H'00, H'02, H'02, H'00, H'01, H'01, H'02, H'00, H'02, H'02, H'00, H'01, H'01, H'00
+_init_routeInfoTime_8c044d2e:        ; from defines
+          .DATA.B      H'0C, H'1C
+          .DATA.B      H'10, H'34
+          .DATA.B      H'14, H'24
+          .DATA.B      H'0C, H'05
+          .DATA.B      H'10, H'2C
+          .DATA.B      H'14, H'30
+          .DATA.B      H'0C, H'2E
+          .DATA.B      H'11, H'04
+          .DATA.B      H'13, H'16
+_init_courseResourceGroup_8c044d40:        ; from defines
+          .DATA.L      _const_8c037e38 ; ukn
+          .DATA.L      _const_8c037e48 ; ukn
+          .DATA.L      _const_8c037e54 ; ukn
+          .DATA.B      H'04, H'00, H'00, H'00
 
           .SECTION    C, DATA, ALIGN=4
 _const_8c03628c:        ; from defines
@@ -4900,4 +4915,18 @@ _const_8c037e1c:        ; aggressive search
           ;.RES.B      3
           .DATA.B      H'82, H'B3, H'82, H'9F, H'81, H'41, H'83, H'52, H'81, H'5B, H'83, H'58, H'82, H'F0, H'91, H'49
           .DATA.B      H'82, H'F1, H'82, H'C5, H'82, H'AD, H'82, H'EA, H'00, H'00, H'00, H'00
+_const_8c037e38:        ; from ghidra
+          ;.SDATA      "corse_parts.dat"
+          ;.DATA.B     H'00
+          .DATA.B      H'63, H'6F, H'72, H'73, H'65, H'5F, H'70, H'61, H'72, H'74, H'73, H'2E, H'64, H'61, H'74, H'00
+_const_8c037e48:        ; aggressive search
+          ;.SDATA      "course.dat"
+          ;.DATA.B     H'00
+          ;.RES.B      1
+          .DATA.B      H'63, H'6F, H'75, H'72, H'73, H'65, H'2E, H'64, H'61, H'74, H'00, H'00
+_const_8c037e54:        ; aggressive search
+          ;.SDATA      "corse.pvm"
+          ;.DATA.B     H'00
+          ;.RES.B      2
+          .DATA.B      H'63, H'6F, H'72, H'73, H'65, H'2E, H'70, H'76, H'6D, H'00, H'00, H'00
           .END

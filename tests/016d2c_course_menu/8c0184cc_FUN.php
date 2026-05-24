@@ -42,7 +42,7 @@ return new class extends TestCase {
         // Step 6: Request course parts resource group
         $this->shouldCall('_CourseMenuRequestSysResgrp_8c018568')->with(
             $menuStateBase + 0x0c,
-            $this->addressOf('_init_8c044d40')
+            $this->addressOf('_init_courseResourceGroup_8c044d40')
         );
 
         // Step 7: Set unknown PVM boolean
@@ -71,7 +71,7 @@ return new class extends TestCase {
         $this->setSize('_resetUknPvmBool_8c014322', 0x4);
 
         // Resource group pointer
-        $this->setSize('_init_8c044d40', 0x8);
+        $this->setSize('_init_courseResourceGroup_8c044d40', 0x8);
     }
 };
 

@@ -1,6 +1,6 @@
           .EXPORT     _freeResourceGroups_8c016108
           .SECTION    P,CODE,ALIGN=4
-freeResourceGroups_8c016108:
+_freeResourceGroups_8c016108:
           MOV.L       R14,@-R15
           STS.L       PR,@-R15
           MOV.L       0x8c016138,R4

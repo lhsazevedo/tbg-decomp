@@ -1,22 +1,20 @@
 #!/usr/bin/env python3
-"""Remove unused .IMPORT directives from SH4 assembly .src files."""
+"""Remove unused .IMPORT and undefined .EXPORT directives from SH4 assembly .src files."""
 
 import re
 import sys
 from pathlib import Path
 
 IMPORT_RE = re.compile(r'^\s+\.IMPORT\s+(\w+)')
+EXPORT_RE = re.compile(r'^\s+\.EXPORT\s+(\w+)')
+LABEL_RE = re.compile(r'^(\w+):')
 
 
 def process_file(path: Path, dry_run: bool = False) -> int:
     text = path.read_bytes().decode('shift_jis')
     lines = text.splitlines(keepends=True)
 
-    imports = {}  # symbol -> line index
-    for i, line in enumerate(lines):
-        m = IMPORT_RE.match(line)
-        if m:
-            imports[m.group(1)] = i
+    defined = {m.group(1) for line in lines for m in [LABEL_RE.match(line)] if m}
 
     removed = 0
     keep = []
@@ -24,7 +22,7 @@ def process_file(path: Path, dry_run: bool = False) -> int:
         m = IMPORT_RE.match(line)
         if m:
             symbol = m.group(1)
-            # Check if symbol appears anywhere other than this import line
+            # Remove if symbol appears nowhere else in the file
             pattern = re.compile(r'\b' + re.escape(symbol) + r'\b')
             used = any(
                 pattern.search(other_line)
@@ -32,9 +30,19 @@ def process_file(path: Path, dry_run: bool = False) -> int:
                 if j != i
             )
             if not used:
-                print(f'  removing: {line.rstrip()}')
+                print(f'  removing unused import: {line.rstrip()}')
                 removed += 1
                 continue
+
+        m = EXPORT_RE.match(line)
+        if m:
+            symbol = m.group(1)
+            # Remove if symbol has no label definition in this file
+            if symbol not in defined:
+                print(f'  removing undefined export: {line.rstrip()}')
+                removed += 1
+                continue
+
         keep.append(line)
 
     if removed and not dry_run:
@@ -61,7 +69,7 @@ def main():
             print('  no unused imports')
         total += n
 
-    print(f'\n{"Would remove" if dry_run else "Removed"} {total} unused import(s).')
+    print(f'\n{"Would remove" if dry_run else "Removed"} {total} directive(s).')
 
 
 if __name__ == '__main__':

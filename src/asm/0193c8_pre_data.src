@@ -1,8 +1,4 @@
           ; 03bd80_sectionD
-          ; 016d2c_course_menu
-          .EXPORT     _const_8c037e38 ; 03bd80_sectionD.src
-          .EXPORT     _const_8c037e48 ; 03bd80_sectionD.src
-          .EXPORT     _const_8c037e54 ; 03bd80_sectionD.src
 
           ; 018784
           .EXPORT     _const_8c037e60 ; 018784.src
@@ -11,20 +7,6 @@
           .EXPORT     _const_8c037ec8 ; 018784.src
           .EXPORT     _const_8c037ecc ; 018784.src
           .SECTION    C, DATA, ALIGN=4
-_const_8c037e38:        ; from ghidra
-          ;.SDATA      "corse_parts.dat"
-          ;.DATA.B     H'00
-          .DATA.B      H'63, H'6F, H'72, H'73, H'65, H'5F, H'70, H'61, H'72, H'74, H'73, H'2E, H'64, H'61, H'74, H'00
-_const_8c037e48:        ; aggressive search
-          ;.SDATA      "course.dat"
-          ;.DATA.B     H'00
-          ;.RES.B      1
-          .DATA.B      H'63, H'6F, H'75, H'72, H'73, H'65, H'2E, H'64, H'61, H'74, H'00, H'00
-_const_8c037e54:        ; aggressive search
-          ;.SDATA      "corse.pvm"
-          ;.DATA.B     H'00
-          ;.RES.B      2
-          .DATA.B      H'63, H'6F, H'72, H'73, H'65, H'2E, H'70, H'76, H'6D, H'00, H'00, H'00
 _const_8c037e60:        ; from defines
           ;.SDATA      "ÉçÅ[ÉhÇ…é∏îsÇµÇ‹ÇµÇΩ"
           ;.DATA.B     H'00

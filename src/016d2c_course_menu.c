@@ -237,7 +237,6 @@ extern int var_8c1bb8f0;
 extern int var_8c1bb8f4;
 extern int var_8c1ba2b8[5]; // Maybe progress backup
 extern int var_8c1ba2cc[5]; // Maybe progress backup
-extern Uint8 init_8c044d10[30]; // Maybe day to course variant lookup table?
 extern void pushLoadingTask_8c013310(int p1);
 extern MenuDialog *init_dialogSequences_8c044c08[];
 extern int var_game_mode_8c1bb8fc;
@@ -246,8 +245,6 @@ extern Sint8 var_coursesToUnlock_8c225fd4[];
 extern int var_demo_8c1bb8d0;
 extern void resetUknPvmBool_8c014322();
 extern NJS_TEXMEMLIST var_tex_8c157af8[];
-extern Uint8 init_routeInfoTime_8c044d2e[];
-extern ResourceGroupInfo init_8c044d40;
 extern int var_8c1bb8b8; // Maybe courseMenuHasResult or courseMenuHasDialog
 extern int var_8c1bb8bc;
 extern int var_8c1bb8dc;
@@ -862,6 +859,38 @@ MenuDialog *init_dialogSequences_8c044c08[] = {
     init_seqDoorOperation_8c044bd0,
     init_seqFreeRunIntro2_8c044be0,
     init_seqFreeRunChooseCourse_8c044bf8
+};
+
+// 30 days -> course variant index (0-2)
+Uint8 init_courseVariants_8c044d10[30] = {
+    0, 0, 1, 2, 2, 0, 0,
+    1, 1, 0, 2, 2, 0, 1,
+    2, 1, 0, 2, 2, 0, 1,
+    1, 2, 0, 2, 2, 0, 1,
+    1, 0
+};
+
+// 3 courses -> 3 shifts -> hh, mm
+Uint8 init_routeInfoTime_8c044d2e[3 * 3 * 2] = {
+    // hh, mm
+    12, 28,
+    16, 52,
+    20, 36,
+
+    02, 05,
+    16, 44,
+    20, 48,
+
+    12, 46,
+    17, 04,
+    19, 22
+};
+
+ResourceGroupInfo init_courseResourceGroup_8c044d40 = {
+    "corse_parts.dat",
+    "course.dat",
+    "corse.pvm",
+    4
 };
 
 /* ====================
@@ -2218,7 +2247,7 @@ STATIC void CourseConfirmMenuTask_8c0181b6(Task * task, void *state)
 
                 // Step 5: Update field_0x50 by adding day-based lookup value
                 menuState_8c1bc7a8.field_0x50 += 
-                    init_8c044d10[var_progress_8c1ba1cc.days_0x00 - 1];
+                    init_courseVariants_8c044d10[var_progress_8c1ba1cc.days_0x00 - 1];
 
                 // Step 6: Initialize game and push loading task
                 pushLoadingTask_8c013310(menuState_8c1bc7a8.field_0x50);
@@ -2285,7 +2314,7 @@ void CourseMenuConfirmInit_8c0184cc(Task *task)
     AsqResetQueues_11f6c();
     CourseMenuRequestSysResgrp_8c018568(
         &menuState_8c1bc7a8.resourceGroupB_0x0c,
-        &init_8c044d40
+        &init_courseResourceGroup_8c044d40
     );
     setUknPvmBool_8c014330();
     AsqProcessQueues_11fe0(AsqNop_11120, 0, 0, 0, resetUknPvmBool_8c014322);
