@@ -1,20 +1,3 @@
-          ; 03bd80_sectionD
-          .EXPORT     _const_8c035fb8 ; 03bd80_sectionD.src
-          .EXPORT     _const_8c035fcc ; 03bd80_sectionD.src
-          .EXPORT     _const_8c035fd8 ; 03bd80_sectionD.src
-          .EXPORT     _const_8c035fe4 ; 03bd80_sectionD.src
-          .EXPORT     _const_8c035ff4 ; 03bd80_sectionD.src
-          .EXPORT     _const_8c036000 ; 03bd80_sectionD.src
-          .EXPORT     _const_8c03600c ; 03bd80_sectionD.src
-          .EXPORT     _const_8c03601c ; 03bd80_sectionD.src
-          .EXPORT     _const_8c036028 ; 03bd80_sectionD.src
-          .EXPORT     _const_8c036034 ; 03bd80_sectionD.src
-          .EXPORT     _const_8c03604c ; 03bd80_sectionD.src
-          .EXPORT     _const_8c03605c ; 03bd80_sectionD.src
-          .EXPORT     _const_8c03606c ; 03bd80_sectionD.src
-          .EXPORT     _const_8c036084 ; 03bd80_sectionD.src
-          .EXPORT     _const_8c036094 ; 03bd80_sectionD.src
-
           ; 01614c
           .EXPORT     _const_8c0360a4 ; 01614c.src
           .EXPORT     _const_8c0360b0 ; 01614c.src
@@ -187,83 +170,6 @@
           .EXPORT     _const_8c037ec8 ; 018784.src
           .EXPORT     _const_8c037ecc ; 018784.src
           .SECTION    C, DATA, ALIGN=4
-_const_8c035fb8:        ; from ghidra
-          ;.SDATA      "common_parts.dat"
-          ;.DATA.B     H'00
-          ;.RES.B      3
-          .DATA.B      H'63, H'6F, H'6D, H'6D, H'6F, H'6E, H'5F, H'70, H'61, H'72, H'74, H'73, H'2E, H'64, H'61, H'74
-          .DATA.B      H'00, H'00, H'00, H'00
-_const_8c035fcc:        ; from ghidra
-          ;.SDATA      "common.dat"
-          ;.DATA.B     H'00
-          ;.RES.B      1
-          .DATA.B      H'63, H'6F, H'6D, H'6D, H'6F, H'6E, H'2E, H'64, H'61, H'74, H'00, H'00
-_const_8c035fd8:        ; from ghidra
-          ;.SDATA      "common.pvm"
-          ;.DATA.B     H'00
-          ;.RES.B      1
-          .DATA.B      H'63, H'6F, H'6D, H'6D, H'6F, H'6E, H'2E, H'70, H'76, H'6D, H'00, H'00
-_const_8c035fe4:        ; from ghidra
-          ;.SDATA      "title_parts.dat"
-          ;.DATA.B     H'00
-          .DATA.B      H'74, H'69, H'74, H'6C, H'65, H'5F, H'70, H'61, H'72, H'74, H'73, H'2E, H'64, H'61, H'74, H'00
-_const_8c035ff4:        ; from ghidra
-          ;.SDATA      "title.dat"
-          ;.DATA.B     H'00
-          ;.RES.B      2
-          .DATA.B      H'74, H'69, H'74, H'6C, H'65, H'2E, H'64, H'61, H'74, H'00, H'00, H'00
-_const_8c036000:        ; from ghidra
-          ;.SDATA      "title.pvm"
-          ;.DATA.B     H'00
-          ;.RES.B      2
-          .DATA.B      H'74, H'69, H'74, H'6C, H'65, H'2E, H'70, H'76, H'6D, H'00, H'00, H'00
-_const_8c03600c:        ; from ghidra
-          ;.SDATA      "menu_parts.dat"
-          ;.DATA.B     H'00
-          ;.RES.B      1
-          .DATA.B      H'6D, H'65, H'6E, H'75, H'5F, H'70, H'61, H'72, H'74, H'73, H'2E, H'64, H'61, H'74, H'00, H'00
-_const_8c03601c:        ; from ghidra
-          ;.SDATA      "menu.dat"
-          ;.DATA.B     H'00
-          ;.RES.B      3
-          .DATA.B      H'6D, H'65, H'6E, H'75, H'2E, H'64, H'61, H'74, H'00, H'00, H'00, H'00
-_const_8c036028:        ; from ghidra
-          ;.SDATA      "menu.pvm"
-          ;.DATA.B     H'00
-          ;.RES.B      3
-          .DATA.B      H'6D, H'65, H'6E, H'75, H'2E, H'70, H'76, H'6D, H'00, H'00, H'00, H'00
-_const_8c036034:        ; from ghidra
-          ;.SDATA      "practice01_parts.dat"
-          ;.DATA.B     H'00
-          ;.RES.B      3
-          .DATA.B      H'70, H'72, H'61, H'63, H'74, H'69, H'63, H'65, H'30, H'31, H'5F, H'70, H'61, H'72, H'74, H'73
-          .DATA.B      H'2E, H'64, H'61, H'74, H'00, H'00, H'00, H'00
-_const_8c03604c:        ; from ghidra
-          ;.SDATA      "practice01.dat"
-          ;.DATA.B     H'00
-          ;.RES.B      1
-          .DATA.B      H'70, H'72, H'61, H'63, H'74, H'69, H'63, H'65, H'30, H'31, H'2E, H'64, H'61, H'74, H'00, H'00
-_const_8c03605c:        ; from ghidra
-          ;.SDATA      "practice01.pvm"
-          ;.DATA.B     H'00
-          ;.RES.B      1
-          .DATA.B      H'70, H'72, H'61, H'63, H'74, H'69, H'63, H'65, H'30, H'31, H'2E, H'70, H'76, H'6D, H'00, H'00
-_const_8c03606c:        ; from ghidra
-          ;.SDATA      "practice02_parts.dat"
-          ;.DATA.B     H'00
-          ;.RES.B      3
-          .DATA.B      H'70, H'72, H'61, H'63, H'74, H'69, H'63, H'65, H'30, H'32, H'5F, H'70, H'61, H'72, H'74, H'73
-          .DATA.B      H'2E, H'64, H'61, H'74, H'00, H'00, H'00, H'00
-_const_8c036084:        ; from ghidra
-          ;.SDATA      "practice02.dat"
-          ;.DATA.B     H'00
-          ;.RES.B      1
-          .DATA.B      H'70, H'72, H'61, H'63, H'74, H'69, H'63, H'65, H'30, H'32, H'2E, H'64, H'61, H'74, H'00, H'00
-_const_8c036094:        ; from ghidra
-          ;.SDATA      "practice02.pvm"
-          ;.DATA.B     H'00
-          ;.RES.B      1
-          .DATA.B      H'70, H'72, H'61, H'63, H'74, H'69, H'63, H'65, H'30, H'32, H'2E, H'70, H'76, H'6D, H'00, H'00
 _const_8c0360a4:        ; from defines
           ;.SDATA      "NO SAVING"
           ;.DATA.B     H'00

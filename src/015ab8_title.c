@@ -31,7 +31,39 @@ extern void* var_currentSysResGroupInfo_8c225fb0;
 
 extern char* init_saveNames_8c044d50[11];
 extern Bool init_8c03bd80;
-extern ResourceGroupInfo titleResourceGroup_8c044254; /* TODO: rename to init_titleResourceGroup_8c044254 */
+
+ResourceGroupInfo commonResourceGroup_8c044244 = {
+    "common_parts.dat",
+    "common.dat",
+    "common.pvm",
+    1
+};
+/* TODO: rename to init_titleResourceGroup_8c044254 */
+ResourceGroupInfo titleResourceGroup_8c044254 = {
+    "title_parts.dat",
+    "title.dat",
+    "title.pvm",
+    2
+};
+ResourceGroupInfo init_mainMenuResourceGroup_8c044264 = {
+    "menu_parts.dat",
+    "menu.dat",
+    "menu.pvm",
+    3
+};
+ResourceGroupInfo init_8c044274 = {
+    "practice01_parts.dat",
+    "practice01.dat",
+    "practice01.pvm",
+    4
+};
+ResourceGroupInfo init_8c044284 = {
+    "practice02_parts.dat",
+    "practice02.dat",
+    "practice02.pvm",
+    5
+};
+
 
 /* ====================
  * Forward Declarations

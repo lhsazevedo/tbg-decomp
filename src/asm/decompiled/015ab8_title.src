@@ -14,7 +14,6 @@
           .IMPORT     _init_saveNames_8c044d50
           .IMPORT     _init_8c03bd80
           .IMPORT     _var_8c1bb8c4
-          .IMPORT     _titleResourceGroup_8c044254
           .IMPORT     _menuState_8c1bc7a8
           .IMPORT     _var_peripherals_8c1ba35c
           .IMPORT     _var_tasks_8c1ba3c8
@@ -40,6 +39,10 @@
           .IMPORT     _pushInputTask_8c0128cc
           .EXPORT     _task_title_8c015ab8
           .EXPORT     _pushTitle_8c015fd6
+          .EXPORT     _titleResourceGroup_8c044254 ; 015ab8_title.c, 015ab8_title.src, 01d7fc.src
+          .EXPORT     _init_mainMenuResourceGroup_8c044264 ; 016d2c_course_menu.c, 016d2c_course_menu.src, 019e98_main_menu.c, 019e98_main_menu.src
+          .EXPORT     _init_8c044274 ; 01e27c.src
+          .EXPORT     _init_8c044284 ; 01e27c.src
           .SECTION    P,CODE,ALIGN=4
 _task_title_8c015ab8:            ; function: task_title_8c015ab8
                                  ; frame size=?
@@ -847,4 +850,91 @@ L53:
           .DATA.L     _resetUknPvmBool_8c014322
           .DATA.L     _AsqNop_11120
           .DATA.L     _AsqProcessQueues_11fe0
+
+          .SECTION    D, DATA, ALIGN=4
+          .DATA.L      _const_8c035fb8 ; ukn
+          .DATA.L      _const_8c035fcc ; ukn
+          .DATA.L      _const_8c035fd8 ; ukn
+          .DATA.L      H'01
+_titleResourceGroup_8c044254:        ; from defines
+          .DATA.L      _const_8c035fe4 ; ukn
+          .DATA.L      _const_8c035ff4 ; ukn
+          .DATA.L      _const_8c036000 ; ukn
+          .DATA.L      H'01
+_init_mainMenuResourceGroup_8c044264:        ; from defines
+          .DATA.L      _const_8c03600c ; ukn
+          .DATA.L      _const_8c03601c ; ukn
+          .DATA.L      _const_8c036028 ; ukn
+          .DATA.L      H'02
+_init_8c044274:        ; from defines
+          .DATA.L      _const_8c036034 ; ukn
+          .DATA.L      _const_8c03604c ; ukn
+          .DATA.L      _const_8c03605c ; ukn
+          .DATA.L      H'03
+_init_8c044284:        ; from defines
+          .DATA.L      _const_8c03606c ; ukn
+          .DATA.L      _const_8c036084 ; ukn
+          .DATA.L      _const_8c036094 ; ukn
+          .DATA.L      H'05
+
+          .SECTION    C, DATA, ALIGN=4
+_const_8c035fb8:        ; from ghidra
+          .SDATA      "common_parts.dat"
+          .DATA.B     H'00
+          .RES.B      3
+_const_8c035fcc:        ; from ghidra
+          .SDATA      "common.dat"
+          .DATA.B     H'00
+          .RES.B      1
+_const_8c035fd8:        ; from ghidra
+          .SDATA      "common.pvm"
+          .DATA.B     H'00
+          .RES.B      1
+_const_8c035fe4:        ; from ghidra
+          .SDATA      "title_parts.dat"
+          .DATA.B     H'00
+_const_8c035ff4:        ; from ghidra
+          .SDATA      "title.dat"
+          .DATA.B     H'00
+          .RES.B      2
+_const_8c036000:        ; from ghidra
+          .SDATA      "title.pvm"
+          .DATA.B     H'00
+          .RES.B      2
+_const_8c03600c:        ; from ghidra
+          .SDATA      "menu_parts.dat"
+          .DATA.B     H'00
+          .RES.B      1
+_const_8c03601c:        ; from ghidra
+          .SDATA      "menu.dat"
+          .DATA.B     H'00
+          .RES.B      3
+_const_8c036028:        ; from ghidra
+          .SDATA      "menu.pvm"
+          .DATA.B     H'00
+          .RES.B      3
+_const_8c036034:        ; from ghidra
+          .SDATA      "practice01_parts.dat"
+          .DATA.B     H'00
+          .RES.B      3
+_const_8c03604c:        ; from ghidra
+          .SDATA      "practice01.dat"
+          .DATA.B     H'00
+          .RES.B      1
+_const_8c03605c:        ; from ghidra
+          .SDATA      "practice01.pvm"
+          .DATA.B     H'00
+          .RES.B      1
+_const_8c03606c:        ; from ghidra
+          .SDATA      "practice02_parts.dat"
+          .DATA.B     H'00
+          .RES.B      3
+_const_8c036084:        ; from ghidra
+          .SDATA      "practice02.dat"
+          .DATA.B     H'00
+          .RES.B      1
+_const_8c036094:        ; from ghidra
+          .SDATA      "practice02.pvm"
+          .DATA.B     H'00
+          .RES.B      1
           .END

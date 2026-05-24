@@ -20,21 +20,6 @@
           .IMPORT     _const_8c035f94
           .IMPORT     _const_8c035fa0
           .IMPORT     _const_8c035fac
-          .IMPORT     _const_8c035fb8
-          .IMPORT     _const_8c035fcc
-          .IMPORT     _const_8c035fd8
-          .IMPORT     _const_8c035fe4
-          .IMPORT     _const_8c035ff4
-          .IMPORT     _const_8c036000
-          .IMPORT     _const_8c03600c
-          .IMPORT     _const_8c03601c
-          .IMPORT     _const_8c036028
-          .IMPORT     _const_8c036034
-          .IMPORT     _const_8c03604c
-          .IMPORT     _const_8c03605c
-          .IMPORT     _const_8c03606c
-          .IMPORT     _const_8c036084
-          .IMPORT     _const_8c036094
           .IMPORT     _const_8c036160
           .IMPORT     _const_8c03616c
           .IMPORT     _const_8c036170
@@ -807,13 +792,9 @@
           .IMPORT     _const_8c03b968
 
           ; course_menu
-          .EXPORT     _init_mainMenuResourceGroup_8c044264 ; 016d2c_course_menu.c, 016d2c_course_menu.src, 019e98_main_menu.c, 019e98_main_menu.src
-          .EXPORT     _init_8c044274 ; 01e27c.src
-          .EXPORT     _init_8c044284 ; 01e27c.src
           .EXPORT     _init_8c044294 ; 01614c.src
           .EXPORT     _init_8c04429c ; 01614c.src
           .EXPORT     _init_courseMenuButtons_8c04442c ; 016d2c_course_menu.c, 016d2c_course_menu.src
-          .EXPORT     _titleResourceGroup_8c044254 ; 015ab8_title.c, 015ab8_title.src, 01d7fc.src
           .EXPORT     _init_dialogSequences_8c044c08 ; 016d2c_course_menu.c, 016d2c_course_menu.src, 01e27c.src, 01f3c0.src
           .EXPORT     _init_8c044d10 ; 016d2c_course_menu.c, 016d2c_course_menu.src
           .EXPORT     _init_routeInfoTime_8c044d2e ; 016d2c_course_menu.c, 016d2c_course_menu.src
@@ -945,30 +926,6 @@
           .EXPORT     _init_8c04f6a8 ; 02fb50_sh4nlfzn.src
 
           .SECTION    D, DATA, ALIGN=4
-          .DATA.L      _const_8c035fb8 ; ukn
-          .DATA.L      _const_8c035fcc ; ukn
-          .DATA.L      _const_8c035fd8 ; ukn
-          .DATA.B      H'01, H'00, H'00, H'00
-_titleResourceGroup_8c044254:        ; from defines
-          .DATA.L      _const_8c035fe4 ; ukn
-          .DATA.L      _const_8c035ff4 ; ukn
-          .DATA.L      _const_8c036000 ; ukn
-          .DATA.B      H'01, H'00, H'00, H'00
-_init_mainMenuResourceGroup_8c044264:        ; from defines
-          .DATA.L      _const_8c03600c ; ukn
-          .DATA.L      _const_8c03601c ; ukn
-          .DATA.L      _const_8c036028 ; ukn
-          .DATA.B      H'02, H'00, H'00, H'00
-_init_8c044274:        ; from defines
-          .DATA.L      _const_8c036034 ; ukn
-          .DATA.L      _const_8c03604c ; ukn
-          .DATA.L      _const_8c03605c ; ukn
-          .DATA.B      H'03, H'00, H'00, H'00
-_init_8c044284:        ; from defines
-          .DATA.L      _const_8c03606c ; ukn
-          .DATA.L      _const_8c036084 ; ukn
-          .DATA.L      _const_8c036094 ; ukn
-          .DATA.B      H'05, H'00, H'00, H'00
 _init_8c044294:        ; from defines
           .DATA.L      _const_8c036160 ; ukn
           .DATA.L      _const_8c03616c ; ukn
