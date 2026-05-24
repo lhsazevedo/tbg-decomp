@@ -75,7 +75,7 @@ compile  src/019e98_main_menu.c
 assemble  src/asm/decompiled/016d2c_course_menu.src
 compile  src/016d2c_course_menu.c
 
-# 012504
+# 012504_input
 assemble  src/asm/decompiled/012504_input.src
 compile  src/012504_input.c
 
