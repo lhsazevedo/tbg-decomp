@@ -20,9 +20,6 @@ return new class extends TestCase {
         $this->initUint32($menuBase + 0x3c, $column);
         $this->initUint32($menuBase + 0x40, $row);
 
-        $this->initUint8($timeTable + $index, 0x2a);      // hour
-        $this->initUint8($timeTable + $index + 1, 0x37);  // minute
-
         $this->call('_drawRouteInfo_8c018118');
 
         $this->shouldCall('_drawFixedInteger_8c01803e')->with(219.0, 108.0, $dayCount, 0);
@@ -34,8 +31,8 @@ return new class extends TestCase {
             110.0,
             -4.0,
         );
-        $this->shouldCall('_drawFixedInteger_8c01803e')->with(421.0, 108.0, 0x2a, 2);
-        $this->shouldCall('_drawFixedInteger_8c01803e')->with(471.0, 108.0, 0x37, 2);
+        $this->shouldCall('_drawFixedInteger_8c01803e')->with(421.0, 108.0, 20, 2);
+        $this->shouldCall('_drawFixedInteger_8c01803e')->with(471.0, 108.0, 48, 2);
         $this->shouldCall('_drawSprite_8c014f54')->with(
             $menuBase + 0x0c,
             $row + 9,
@@ -49,6 +46,5 @@ return new class extends TestCase {
     {
         $this->setSize('_menuState_8c1bc7a8', 0x6c);
         $this->setSize('_var_progress_8c1ba1cc', 0x94);
-        $this->setSize('_init_routeInfoTime_8c044d2e', 0x20);
     }
 };

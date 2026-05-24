@@ -1101,7 +1101,6 @@ return new class extends TestCase {
         $this->setSize('_menuState_8c1bc7a8', 0x6c);
         $this->setSize('_isFading_8c226568', 4);
         $this->setSize('_var_peripherals_8c1ba35c', 52 * 2);
-        $this->setSize('_init_dialogSequences_8c044c08', 4);
         $this->initUint32($this->addressOf('_var_midiHandles_8c0fcd28'), 0xbeef0000);
 
         // Functions

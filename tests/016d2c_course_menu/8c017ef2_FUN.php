@@ -9,11 +9,6 @@ return new class extends TestCase {
         $this->initUint32($this->addressOf('_var_game_mode_8c1bb8fc'), 0);
 
         $this->setSize('_menuState_8c1bc7a8', 0x80);
-        $this->setSize('_init_dialogSequences_8c044c08', 0x8);
-        $this->initUint32($this->addressOf('_init_dialogSequences_8c044c08') + 0 * 0x04, 0x12341234);
-        $sequence = $this->alloc(0x8 * 4);
-        $this->initUint32($sequence + 1 * 0x04, 0xbebacafe);
-        $this->initUint32($this->addressOf('_init_dialogSequences_8c044c08') + 1 * 0x04, $sequence);
         // First sequence is the second one (index 1)
         $this->initUint32($this->addressOf('_var_dialogQueue_8c225fbc'), 1);
 
@@ -45,7 +40,7 @@ return new class extends TestCase {
 
         $this->shouldWriteLong(
             $this->addressOf('_menuState_8c1bc7a8') + 0x60,
-            0xbebacafe,
+            0,
         );
 
         $this->shouldWriteLong($createdTask + 0x08, 0);
@@ -58,7 +53,7 @@ return new class extends TestCase {
         $this->shouldCall('_FUN_8c02ae3e')->with(
             0x20, 0x180, -2.0, 0x240, 0x40, 0, 0, -1
         );
-        $this->shouldCall('_swapMessageBoxFor_8c02aefc')->with($this->addressOf('_const_8c03628c'));
+        $this->shouldCall('_swapMessageBoxFor_8c02aefc')->with("");
 
         $this->shouldWriteLongTo('_var_demo_8c1bb8d0', 0);
 

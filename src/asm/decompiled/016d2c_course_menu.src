@@ -104,6 +104,73 @@
           .EXPORT     _drawFixedInteger_8c01803e
           .EXPORT     _drawRouteInfo_8c018118
           .EXPORT     _CourseConfirmMenuTask_8c0181b6
+          .EXPORT     _init_seqStoryIntro_8c0445d0
+          .EXPORT     _init_seqSuccessPerfect_8c044620
+          .EXPORT     _init_seqSuccessHigh_8c044650
+          .EXPORT     _init_seqSuccessNormal_8c044680
+          .EXPORT     _init_seqFailureFinal_8c0446b8
+          .EXPORT     _init_seqFreeRunIntro_8c0446e0
+          .EXPORT     _init_seqStoryChooseCourse_8c0446f8
+          .EXPORT     _init_seqGoodPractice_8c044708
+          .EXPORT     _init_seqSuccess_8c044718
+          .EXPORT     _init_seqAwardBadgeGold_8c044728
+          .EXPORT     _init_seqAwardBadgeSilver_8c044748
+          .EXPORT     _init_seqAwardBadgeBronze_8c044760
+          .EXPORT     _init_seqFailureRetry_8c044778
+          .EXPORT     _init_seqCourseUnlocked_8c044790
+          .EXPORT     _init_seqPassengerLetter_8c0447b0
+          .EXPORT     _init_seqCourseLocked_8c0447d0
+          .EXPORT     _init_seqForcePractice_8c0447e0
+          .EXPORT     _init_seqFinalDay_8c0447f0
+          .EXPORT     _init_seqLessonIntro_8c044808
+          .EXPORT     _init_seqLessonComplete_8c044820
+          .EXPORT     _init_seqLessonNext_8c044848
+          .EXPORT     _init_seqLessonRetry_8c044858
+          .EXPORT     _init_seqLessonTips_8c044868
+          .EXPORT     _init_seqLessonWarning_8c044878
+          .EXPORT     _init_seqLessonChoose_8c044888
+          .EXPORT     _init_seqScoreRecord_8c044898
+          .EXPORT     _init_seqLessonFinalDay_8c0448a8
+          .EXPORT     _init_seqLessonPerfect_8c0448c0
+          .EXPORT     _init_seqLessonGood_8c0448d8
+          .EXPORT     _init_seqLessonPass_8c0448f8
+          .EXPORT     _init_seqLessonFailMinor_8c044910
+          .EXPORT     _init_seqLessonFailMajor_8c044928
+          .EXPORT     _init_seqCollisionCarMinor_8c044948
+          .EXPORT     _init_seqCollisionCarMedium_8c044960
+          .EXPORT     _init_seqCollisionCarSevere_8c044978
+          .EXPORT     _init_seqCollisionCarFatal_8c044990
+          .EXPORT     _init_seqCollisionWallMinor_8c0449a8
+          .EXPORT     _init_seqCollisionWallMedium_8c0449c0
+          .EXPORT     _init_seqCollisionWallSevere_8c0449d8
+          .EXPORT     _init_seqNearMissPedestrian_8c0449f0
+          .EXPORT     _init_seqOffCourseMinor_8c044a08
+          .EXPORT     _init_seqOffCourseMedium_8c044a20
+          .EXPORT     _init_seqOffCourseMajor_8c044a30
+          .EXPORT     _init_seqSpeedingMinor_8c044a40
+          .EXPORT     _init_seqSpeedingMajor_8c044a50
+          .EXPORT     _init_seqWrongLane_8c044a60
+          .EXPORT     _init_seqLaneStraddle_8c044a70
+          .EXPORT     _init_seqNoSignal_8c044a80
+          .EXPORT     _init_seqNoSignalTurn_8c044aa0
+          .EXPORT     _init_seqUkn49_8c044ab0
+          .EXPORT     _init_seqSignalViolation_8c044ab8
+          .EXPORT     _init_seqBadStopLine_8c044ad0
+          .EXPORT     _init_seqIllegalLaneChange_8c044ae8
+          .EXPORT     _init_seqBlockIntersection_8c044b00
+          .EXPORT     _init_seqWrongWay_8c044b18
+          .EXPORT     _init_seqRapidAccel_8c044b30
+          .EXPORT     _init_seqHardBrake_8c044b40
+          .EXPORT     _init_seqSwerving_8c044b50
+          .EXPORT     _init_seqMissedStop_8c044b68
+          .EXPORT     _init_seqBadStopPosition1_8c044b80
+          .EXPORT     _init_seqBadStopPosition2_8c044b98
+          .EXPORT     _init_seqTimeManagement_8c044bb0
+          .EXPORT     _init_seqAnnouncement_8c044bc0
+          .EXPORT     _init_seqDoorOperation_8c044bd0
+          .EXPORT     _init_seqFreeRunIntro2_8c044be0
+          .EXPORT     _init_seqFreeRunChooseCourse_8c044bf8
+          .EXPORT     _init_courseResourceGroup_8c044d40
           .AENDI
           .SECTION     P, CODE, ALIGN=4
 _CourseMenuInterpolateCursor_8c016d2c:

@@ -69,9 +69,6 @@ return new class extends TestCase {
         // Function pointers
         $this->setSize('_AsqNop_11120', 0x4);
         $this->setSize('_resetUknPvmBool_8c014322', 0x4);
-
-        // Resource group pointer
-        $this->setSize('_init_courseResourceGroup_8c044d40', 0x8);
     }
 };
 

@@ -20,18 +20,6 @@ return new class extends TestCase {
         $task = $this->alloc(0x20);
         $this->initUint32($this->addressOf('_var_game_mode_8c1bb8fc'), 1);
 
-        $text1 = $this->allocString('Hey there!');
-        $dialogs1 = $this->alloc(0x8 * 3);
-        $this->initUint32($dialogs1 + 0x00, $text1);
-        $this->initUint32($dialogs1 + 0x04, 1);
-
-        $text2 = $this->allocString('Hey there!');
-        $dialogs2 = $this->alloc(0x8 * 3);
-        $this->initUint32($dialogs2 + 0x00, $text2);
-        $this->initUint32($dialogs2 + 0x04, 42);
-
-        $this->initUint32($this->addressOf('_init_dialogSequences_8c044c08') + 0x00, $dialogs1);
-        $this->initUint32($this->addressOf('_init_dialogSequences_8c044c08') + 0x04, $dialogs2);
         $this->initUint32($this->addressOf('_var_dialogQueue_8c225fbc'), 1);
 
         $this->call('_CourseMenuSwitchFromTask_8c017e18')->with($task);
@@ -42,7 +30,7 @@ return new class extends TestCase {
         $this->shouldCall('_buildFreeRunMenuDialogFlow_8c017a20');
 
         $this->shouldWriteLong(
-            $this->addressOf('_menuState_8c1bc7a8') + 0x60, 42
+            $this->addressOf('_menuState_8c1bc7a8') + 0x60, 0
         );
         $this->shouldWriteLong($task + 0x08, 0);
         $this->shouldWriteLongTo('_var_menuTextboxCharLimit_8c225fb8', 0);
@@ -77,19 +65,6 @@ return new class extends TestCase {
 
         $task = $this->alloc(0x20);
         $this->initUint32($this->addressOf('_var_game_mode_8c1bb8fc'), 1);
-
-        $text1 = $this->allocString('Hey there!');
-        $dialogs1 = $this->alloc(0x8 * 3);
-        $this->initUint32($dialogs1 + 0x00, $text1);
-        $this->initUint32($dialogs1 + 0x04, 1);
-
-        $text2 = $this->allocString('Hey there!');
-        $dialogs2 = $this->alloc(0x8 * 3);
-        $this->initUint32($dialogs2 + 0x00, $text2);
-        $this->initUint32($dialogs2 + 0x04, 42);
-
-        $this->initUint32($this->addressOf('_init_dialogSequences_8c044c08') + 0x00, $dialogs1);
-        $this->initUint32($this->addressOf('_init_dialogSequences_8c044c08') + 0x04, $dialogs2);
         $this->initUint32($this->addressOf('_var_dialogQueue_8c225fbc'), 1);
 
         $this->call('_CourseMenuSwitchFromTask_8c017e18')->with($task);
@@ -100,7 +75,7 @@ return new class extends TestCase {
         $this->shouldCall('_buildFreeRunMenuDialogFlow_8c017a20');
 
         $this->shouldWriteLong(
-            $this->addressOf('_menuState_8c1bc7a8') + 0x60, 42
+            $this->addressOf('_menuState_8c1bc7a8') + 0x60, 0
         );
         $this->shouldWriteLong($task + 0x08, 0);
         $this->shouldWriteLongTo('_var_menuTextboxCharLimit_8c225fb8', 0);
@@ -131,18 +106,6 @@ return new class extends TestCase {
         $task = $this->alloc(0x20);
         $this->initUint32($this->addressOf('_var_game_mode_8c1bb8fc'), 0);
 
-        $text1 = $this->allocString('Hey there!');
-        $dialogs1 = $this->alloc(0x8 * 3);
-        $this->initUint32($dialogs1 + 0x00, $text1);
-        $this->initUint32($dialogs1 + 0x04, 1);
-
-        $text2 = $this->allocString('Hey there!');
-        $dialogs2 = $this->alloc(0x8 * 3);
-        $this->initUint32($dialogs2 + 0x00, $text2);
-        $this->initUint32($dialogs2 + 0x04, 42);
-
-        $this->initUint32($this->addressOf('_init_dialogSequences_8c044c08') + 0x00, $dialogs1);
-        $this->initUint32($this->addressOf('_init_dialogSequences_8c044c08') + 0x04, $dialogs2);
         $this->initUint32($this->addressOf('_var_dialogQueue_8c225fbc'), 1);
 
         $this->call('_CourseMenuSwitchFromTask_8c017e18')->with($task);
@@ -153,7 +116,7 @@ return new class extends TestCase {
         $this->shouldCall('_buildCourseMenuDialogFlow_8c017420');
 
         $this->shouldWriteLong(
-            $this->addressOf('_menuState_8c1bc7a8') + 0x60, 42
+            $this->addressOf('_menuState_8c1bc7a8') + 0x60, 0
         );
         $this->shouldWriteLong($task + 0x08, 0);
         $this->shouldWriteLongTo('_var_menuTextboxCharLimit_8c225fb8', 0);
@@ -189,18 +152,6 @@ return new class extends TestCase {
         $task = $this->alloc(0x20);
         $this->initUint32($this->addressOf('_var_game_mode_8c1bb8fc'), 0);
 
-        $text1 = $this->allocString('Hey there!');
-        $dialogs1 = $this->alloc(0x8 * 3);
-        $this->initUint32($dialogs1 + 0x00, $text1);
-        $this->initUint32($dialogs1 + 0x04, 1);
-
-        $text2 = $this->allocString('Hey there!');
-        $dialogs2 = $this->alloc(0x8 * 3);
-        $this->initUint32($dialogs2 + 0x00, $text2);
-        $this->initUint32($dialogs2 + 0x04, 42);
-
-        $this->initUint32($this->addressOf('_init_dialogSequences_8c044c08') + 0x00, $dialogs1);
-        $this->initUint32($this->addressOf('_init_dialogSequences_8c044c08') + 0x04, $dialogs2);
         $this->initUint32($this->addressOf('_var_dialogQueue_8c225fbc'), 1);
 
         $this->call('_CourseMenuSwitchFromTask_8c017e18')->with($task);
@@ -211,7 +162,7 @@ return new class extends TestCase {
         $this->shouldCall('_buildCourseMenuDialogFlow_8c017420');
 
         $this->shouldWriteLong(
-            $this->addressOf('_menuState_8c1bc7a8') + 0x60, 42
+            $this->addressOf('_menuState_8c1bc7a8') + 0x60, 0
         );
         $this->shouldWriteLong($task + 0x08, 0);
         $this->shouldWriteLongTo('_var_menuTextboxCharLimit_8c225fb8', 0);
@@ -238,7 +189,6 @@ return new class extends TestCase {
     public function resolveSymbols()
     {
         $this->setSize('_menuState_8c1bc7a8', 0x6c);
-        $this->setSize('_init_dialogSequences_8c044c08', 0x08);
         // Functions
     }
 };

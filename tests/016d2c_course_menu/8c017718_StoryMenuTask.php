@@ -134,7 +134,7 @@ return new Class extends TestCase {
 
         // Last sequence: advance state and swap message box
         $this->shouldWriteLong($this->addressOf('_menuState_8c1bc7a8') + 0x18, 3);
-        $this->shouldCall('_swapMessageBoxFor_8c02aefc')->with($this->addressOf('_const_8c03628c'));
+        $this->shouldCall('_swapMessageBoxFor_8c02aefc')->with("");
 
         // Epilogue rendering
         $this->shouldRenderFrame(
@@ -487,15 +487,6 @@ return new Class extends TestCase {
         $this->initMenuStateUint32(0x3c, 1);
         $this->initMenuStateUint32(0x40, 0);
 
-        // Prepare the selected button entry: index = 0*5 + 1 = 1
-        $btnBase = $this->addressOf('_init_courseMenuButtons_8c04442c');
-        $idx = 1;
-        $cb = $this->addressOf('_dummyCallback');
-
-        // Seed function pointer and payload value read by code
-        $this->initUint32($btnBase + $idx * 0x1c + 0x14, $cb);       // .field_0x14 (callback)
-        $this->initUint32($btnBase + $idx * 0x1c + 0x18, 0xbebacafe); // .field_0x18 (copied to menuState.field_0x50)
-
         // Allocate task (passed to callback)
         $task = $this->alloc(0x10);
 
@@ -510,14 +501,14 @@ return new Class extends TestCase {
         $this->shouldWriteLong($base + 0x38, 0);
 
         // field_0x50 <- btn[idx].field_0x18
-        $this->shouldWriteLong($base + 0x50, 0xbebacafe);
+        $this->shouldWriteLong($base + 0x50, 0);
 
         // Flip globals
         $this->shouldWriteLong($this->addressOf('_var_8c1bb8dc'), 1);
         $this->shouldWriteLong($this->addressOf('_var_8c1bb8b8'), 0);
         $this->shouldWriteLong($this->addressOf('_var_8c1bb8bc'), 1);
 
-        $this->shouldCall('_dummyCallback')->with($task);
+        $this->shouldCall('_FUN_8c01ba64')->with($task);
     }
 
     public function test_fade_out_state_happy_path_with_free()
@@ -532,15 +523,6 @@ return new Class extends TestCase {
         // Coordinates that TRIGGER the free path: field_0x3c != 1 (e.g., 2) || field_0x40 != 0
         $this->initMenuStateUint32(0x3c, 2);
         $this->initMenuStateUint32(0x40, 0);
-
-        // Button index = 0*5 + 2 = 2
-        $btnBase = $this->addressOf('_init_courseMenuButtons_8c04442c');
-        $idx     = 2;
-
-        // Seed function pointer and payload value read from the button
-        $cb = $this->addressOf('_dummyCallback');
-        $this->initUint32($btnBase + $idx * 0x1c + 0x14, $cb);        // .field_0x14 (callback)
-        $this->initUint32($btnBase + $idx * 0x1c + 0x18, 0xCAFEBABE); // .field_0x18 (copied to menuState.field_0x50)
 
         // Allocate task (passed to callback)
         $task = $this->alloc(0x10);
@@ -558,7 +540,7 @@ return new Class extends TestCase {
         $this->shouldWriteLong($base + 0x38, 0);
 
         // field_0x50 <- btn[idx].field_0x18
-        $this->shouldWriteLong($base + 0x50, 0xCAFEBABE);
+        $this->shouldWriteLong($base + 0x50, 0);
 
         // Flip globals
         $this->shouldWriteLong($this->addressOf('_var_8c1bb8dc'), 1);
@@ -566,7 +548,7 @@ return new Class extends TestCase {
         $this->shouldWriteLong($this->addressOf('_var_8c1bb8bc'), 1);
 
         // Indirect callback invoked with task
-        $this->shouldCall('_dummyCallback')->with($task);
+        $this->shouldCall('_CourseMenuConfirmInit_8c0184cc')->with($task);
     }
 
     public function test_fade_out_to_main_menu_waits_while_fading()
@@ -643,7 +625,6 @@ return new Class extends TestCase {
         $this->setSize('_isFading_8c226568', 4);
         $this->setSize('_var_dialogSequenceIsActive_8c225fb4', 4); // dialog-running flag
         $this->setSize('_const_8c03628c', 4);
-        $this->setSize('_init_courseMenuButtons_8c04442c', 0x1c * 15);
         $this->setSize('_var_progress_8c1ba1cc', 0x94);
     }
 

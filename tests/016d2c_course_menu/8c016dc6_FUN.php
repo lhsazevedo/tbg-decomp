@@ -57,14 +57,13 @@ return new class extends TestCase {
         $this->shouldWriteFloat($this->addressOf('_menuState_8c1bc7a8') + 0x34, 10.0);
 
         $this->shouldCall('_sdMidiPlay')->with(0x31d131d1);
-        $this->shouldCall('_swapMessageBoxFor_8c02aefc')->with($this->addressOf('_const_8c03628c'));
+        $this->shouldCall('_swapMessageBoxFor_8c02aefc')->with("");
         $this->shouldReturn(1);
     }
 
     public function resolveSymbols()
     {
         $this->setSize('_menuState_8c1bc7a8', 0x6c);
-        $this->setSize('_init_courseMenuButtons_8c04442c', 0x1c * 15);
 
         // Functions
         $this->setSize('__quick_evn_mvn', 4);

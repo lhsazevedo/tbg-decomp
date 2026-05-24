@@ -446,7 +446,6 @@ return new class extends TestCase {
     public function resolveSymbols()
     {
         $this->setSize('_var_peripherals_8c1ba35c', 52 * 2);
-        $this->setSize('_init_courseMenuButtons_8c04442c', 0x1c * 15);
         $this->setSize('_menuState_8c1bc7a8', 0x6c);
     }
 };

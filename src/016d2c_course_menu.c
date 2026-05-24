@@ -389,7 +389,7 @@ STATIC CourseMenuButton init_courseMenuButtons_8c04442c[15] = {
     },
 };
 
-MenuDialog init_seqStoryIntro_8c0445d0[] = {
+STATIC MenuDialog init_seqStoryIntro_8c0445d0[] = {
     { "やぁ、よく来たね<E>私がここの所長だ、以後よろしく", 1 },
     { "今日から一ヶ月間、キミには<E>ここで実地研修を受けてもらう", 0 },
     { "この研修に合格すると<E>キミは晴れて都営バスの運転手だ", 0 },
@@ -402,7 +402,7 @@ MenuDialog init_seqStoryIntro_8c0445d0[] = {
     { "", 0 },
 };
 
-MenuDialog init_seqSuccessPerfect_8c044620[] = {
+STATIC MenuDialog init_seqSuccessPerfect_8c044620[] = {
     { "キミの成績には、正直、びっくりしたよ<E>実に素晴らしい！", 0 },
     { "どのコースをとっても<E>まさにパーフェクト！", 0 },
     { "おめでとう<E>実地研修は満点で合格だ！", 2 },
@@ -411,7 +411,7 @@ MenuDialog init_seqSuccessPerfect_8c044620[] = {
     { "", 0 },
 };
 
-MenuDialog init_seqSuccessHigh_8c044650[] = {
+STATIC MenuDialog init_seqSuccessHigh_8c044650[] = {
     { "昨日で無事、実地研修が終了した<E>本当によく頑張ったな", 0 },
     { "キミの成績を見せてもらったが<E>申し分のない成績だったよ", 0 },
     { "全コースとも高得点をあげている<E>これは並大抵の事ではない", 0 },
@@ -420,7 +420,7 @@ MenuDialog init_seqSuccessHigh_8c044650[] = {
     { "", 0 },
 };
 
-MenuDialog init_seqSuccessNormal_8c044680[] = {
+STATIC MenuDialog init_seqSuccessNormal_8c044680[] = {
     { "昨日で無事、実地研修が終了した<E>本当によく頑張ったな", 0 },
     { "キミの成績を見せてもらったが<E>まぁ、十分に合格点をあげられるだろう", 0 },
     { "各コース、致命的なミスはなく<E>成績も悪くない", 0 },
@@ -430,7 +430,7 @@ MenuDialog init_seqSuccessNormal_8c044680[] = {
     { "", 0 },
 };
 
-MenuDialog init_seqFailureFinal_8c0446b8[] = {
+STATIC MenuDialog init_seqFailureFinal_8c0446b8[] = {
     { "１ヶ月間本当によく頑張ったな", 0 },
     { "…と言いたい所なんだが<E>合格点には少し及ばなかったようだ", 1 },
     { "運転手は、乗客の命を預かっているんだ<E>軽率な行動やミスは許されない", 1 },
@@ -438,95 +438,95 @@ MenuDialog init_seqFailureFinal_8c0446b8[] = {
     { "", 0 },
 };
 
-MenuDialog init_seqFreeRunIntro_8c0446e0[] = {
+STATIC MenuDialog init_seqFreeRunIntro_8c0446e0[] = {
     { "ここでは、好きなコースを<E>何度でも走る事ができるぞ", 0 },
     { "但しストーリーモードで走ったコース限る", 0 },
     { "", 0 },
 };
 
-MenuDialog init_seqStoryChooseCourse_8c0446f8[] = {
+STATIC MenuDialog init_seqStoryChooseCourse_8c0446f8[] = {
     { "さぁ、今日の研修を選んでくれ", 0 },
     { "", 0 },
 };
 
-MenuDialog init_seqGoodPractice_8c044708[] = {
+STATIC MenuDialog init_seqGoodPractice_8c044708[] = {
     { "昨日は充実した練習が出来たようだね", 0 },
     { "", 0 },
 };
 
-MenuDialog init_seqSuccess_8c044718[] = {
+STATIC MenuDialog init_seqSuccess_8c044718[] = {
     { "昨日はなんとかうまく走れたようだね<E>その調子で頑張ってくれよ", 0 },
     { "", 0 },
 };
 
-MenuDialog init_seqAwardBadgeGold_8c044728[] = {
+STATIC MenuDialog init_seqAwardBadgeGold_8c044728[] = {
     { "昨日は素晴らしい成績だったな", 0 },
     { "キミには優秀ドライバーの証し<E>ゴールドバッジを与えよう", 0 },
     { "この調子で頑張ってくれよ", 1 },
     { "", 0 },
 };
 
-MenuDialog init_seqAwardBadgeSilver_8c044748[] = {
+STATIC MenuDialog init_seqAwardBadgeSilver_8c044748[] = {
     { "キミには優秀ドライバーの証し<E>シルバーバッジを与えよう", 1 },
     { "もっと高得点が出れば、さらに上の<E>ゴールドバッジもあるからな", 0 },
     { "", 0 },
 };
 
-MenuDialog init_seqAwardBadgeBronze_8c044760[] = {
+STATIC MenuDialog init_seqAwardBadgeBronze_8c044760[] = {
     { "キミには優秀ドライバーの証し<E>ブロンズバッジを与えよう", 1 },
     { "もっと高得点が出れば、さらに上の<E>シルバーバッジやゴールドバッジもあるぞ", 0 },
     { "", 0 },
 };
 
-MenuDialog init_seqFailureRetry_8c044778[] = {
+STATIC MenuDialog init_seqFailureRetry_8c044778[] = {
     { "昨日は残念な結果になってしまったな<E>まぁ、誰にだって失敗はある", 0 },
     { "特に慣れないうちは仕方ないさ<E>気分を改めて今日も頑張ってくれよ", 0 },
     { "", 0 },
 };
 
-MenuDialog init_seqCourseUnlocked_8c044790[] = {
+STATIC MenuDialog init_seqCourseUnlocked_8c044790[] = {
     { "それから…経験も積んだようなので<E>そろそろ違うコースで研修してみよう", 0 },
     { "今までより、少し難しくなっていると思うが<E>キミなら大丈夫だ", 0 },
     { "勇気を持ってチャレンジしてくれ", 1 },
     { "", 0 },
 };
 
-MenuDialog init_seqPassengerLetter_8c0447b0[] = {
+STATIC MenuDialog init_seqPassengerLetter_8c0447b0[] = {
     { "そうそう、今日はお客さんから手紙が届いたよ", 0 },
     { "掲示板に張っておいたから、<E>見るときはＡＬＢＵＭを選んでくれ", 0 },
     { "お客さんってありがたいもんだね<E>運転手やってて本当に良かったって実感するよ", 0 },
     { "", 0 },
 };
 
-MenuDialog init_seqCourseLocked_8c0447d0[] = {
+STATIC MenuDialog init_seqCourseLocked_8c0447d0[] = {
     { "残念だがそのコースはまだ走れないよ<E>もっと経験を積んでからだな", 0 },
     { "", 0 },
 };
 
-MenuDialog init_seqForcePractice_8c0447e0[] = {
+STATIC MenuDialog init_seqForcePractice_8c0447e0[] = {
     { "はやる気持ちも分からんでもないが、<E>今日は練習してもらうよ", 0 },
     { "", 0 },
 };
 
-MenuDialog init_seqFinalDay_8c0447f0[] = {
+STATIC MenuDialog init_seqFinalDay_8c0447f0[] = {
     { "長かった研修も今日が最後だな", 0 },
     { "さぁ、最後の研修を選んでくれ", 0 },
     { "", 0 },
 };
 
-MenuDialog init_seqLessonIntro_8c044808[] = {
+STATIC MenuDialog init_seqLessonIntro_8c044808[] = {
     { "今日は初日なので、全てのＬＥＳＳＯＮを<E>順番にやってもらうよ", 0 },
     { "合格ラインは７０点。決して難しい事では<E>ないので、落ち着いて慎重に進めていこう", 0 },
     { "", 0 },
 };
 
 // Unused?
-MenuDialog init_8c044810[] = {
+STATIC MenuDialog init_8c044810[] = {
     { "合格ラインは７０点。決して難しい事では<E>ないので、落ち着いて慎重に進めていこう", 0 },
     { "", 0 },
 };
 
-MenuDialog init_seqLessonComplete_8c044820[] = {
+STATIC MenuDialog init_seqLessonComplete_8c044820[] = {
     { "おめでとう<E>これで全てのＬＥＳＳＯＮは終了だ", 0 },
     { "明日からは実際の街中にでて<E>実地研修を行うとしよう", 0 },
     { "もっとも、運行に何か不安があったら<E>ここに来て練習すればいい", 0 },
@@ -534,260 +534,260 @@ MenuDialog init_seqLessonComplete_8c044820[] = {
     { "", 0 },
 };
 
-MenuDialog init_seqLessonNext_8c044848[] = {
+STATIC MenuDialog init_seqLessonNext_8c044848[] = {
     { "よーし、次のＬＥＳＳＯＮに進もう", 0 },
     { "", 0 },
 };
 
-MenuDialog init_seqLessonRetry_8c044858[] = {
+STATIC MenuDialog init_seqLessonRetry_8c044858[] = {
     { "誰だって最初はうまくできないものさ<E>気を落とさないで、もう一度やってみよう", 0 },
     { "", 0 },
 };
 
-MenuDialog init_seqLessonTips_8c044868[] = {
+STATIC MenuDialog init_seqLessonTips_8c044868[] = {
     { "ここでは運行中の諸注意を<E>ポイント毎に練習できるぞ", 0 },
     { "", 0 },
 };
 
-MenuDialog init_seqLessonWarning_8c044878[] = {
+STATIC MenuDialog init_seqLessonWarning_8c044878[] = {
     { "一度ＬＥＳＳＯＮを選ぶと、今日はコースに<E>出られなくなるので、気を付けるように", 0 },
     { "", 0 },
 };
 
-MenuDialog init_seqLessonChoose_8c044888[] = {
+STATIC MenuDialog init_seqLessonChoose_8c044888[] = {
     { "練習したいＬＥＳＳＯＮを選んでくれ", 0 },
     { "", 0 },
 };
 
-MenuDialog init_seqScoreRecord_8c044898[] = {
+STATIC MenuDialog init_seqScoreRecord_8c044898[] = {
     { "そうそう、最高得点が更新されたようだ<E>この調子で頑張ってくれよ", 0 },
     { "", 0 },
 };
 
-MenuDialog init_seqLessonFinalDay_8c0448a8[] = {
+STATIC MenuDialog init_seqLessonFinalDay_8c0448a8[] = {
     { "今日は研修の最終日だぞ<E>もう練習しているより、実戦あるのみ", 0 },
     { "まぁ、どうしてもと言うのなら止めはしないが", 0 },
     { "", 0 },
 };
 
-MenuDialog init_seqLessonPerfect_8c0448c0[] = {
+STATIC MenuDialog init_seqLessonPerfect_8c0448c0[] = {
     { "素晴らしい！<E>パーフェクトで合格だ", 0 },
     { "この調子で他のＬＥＳＳＯＮはもちろん<E>コースの方も頑張ってくれよ", 0 },
     { "", 0 },
 };
 
-MenuDialog init_seqLessonGood_8c0448d8[] = {
+STATIC MenuDialog init_seqLessonGood_8c0448d8[] = {
     { "しかし、ミスはその１カ所だけのようだな", 0 },
     { "他はパーフェクトだっただけに<E>悔やまれるが、十分に合格点だ！", 0 },
     { "今度走る時はパーフェクトを<E>目指してみてはどうかな？", 0 },
     { "", 0 },
 };
 
-MenuDialog init_seqLessonPass_8c0448f8[] = {
+STATIC MenuDialog init_seqLessonPass_8c0448f8[] = {
     { "まぁ、他にもミスはあったが<E>致命的なものではないようだな", 0 },
     { "少し不安は残るが、一応は合格点だ<E>次はもっと高得点を目指してくれよ", 0 },
     { "", 0 },
 };
 
-MenuDialog init_seqLessonFailMinor_8c044910[] = {
+STATIC MenuDialog init_seqLessonFailMinor_8c044910[] = {
     { "ミスはその１カ所だけのようだが<E>状況によっては大事故になる危険なミスだぞ", 1 },
     { "残念だが今回は不合格だな<E>気を取り直して、次は頑張ってくれよ", 1 },
     { "", 0 },
 };
 
-MenuDialog init_seqLessonFailMajor_8c044928[] = {
+STATIC MenuDialog init_seqLessonFailMajor_8c044928[] = {
     { "…その他にもミスが目立つようだ<E>とても合格点はあげられないな", 1 },
     { "乗客を乗せているということは、<E>命を預かっているのと同じことなんだ", 1 },
     { "我々の不注意が、多くの人々を危険にさらして<E>しまう事を、よく肝に銘じて練習に励んでくれ", 1 },
     { "", 0 },
 };
 
-MenuDialog init_seqCollisionCarMinor_8c044948[] = {
+STATIC MenuDialog init_seqCollisionCarMinor_8c044948[] = {
     { "他の車に接触してしまったようだな…", 1 },
     { "車間距離を十分に取り、<E>早めにブレーキをかけるようにしてくれ", 1 },
     { "", 0 },
 };
 
-MenuDialog init_seqCollisionCarMedium_8c044960[] = {
+STATIC MenuDialog init_seqCollisionCarMedium_8c044960[] = {
     { "スピードは出ていなかったようだが<E>停車車両に接触してしまったな…", 1 },
     { "一日も早く、車両感覚を身につけてくれ", 1 },
     { "", 0 },
 };
 
-MenuDialog init_seqCollisionCarSevere_8c044978[] = {
+STATIC MenuDialog init_seqCollisionCarSevere_8c044978[] = {
     { "停車車両に接触してしまったようだな…<E>しかもスピードが大分出ていたな", 1 },
     { "一日も早く、車両感覚を身につけてくれ", 1 },
     { "", 0 },
 };
 
-MenuDialog init_seqCollisionCarFatal_8c044990[] = {
+STATIC MenuDialog init_seqCollisionCarFatal_8c044990[] = {
     { "停車車両に接触してしまったようだな…<E>しかも凄いスピードで…", 1 },
     { "まず速度はむやみに出さないこと！<E>そして車両感覚をしっかり身につけてくれ", 1 },
     { "", 0 },
 };
 
-MenuDialog init_seqCollisionWallMinor_8c0449a8[] = {
+STATIC MenuDialog init_seqCollisionWallMinor_8c0449a8[] = {
     { "スピードは出ていなかったようだが<E>壁に接触してしまったな…", 1 },
     { "一日も早く、車両感覚を身につけてくれ", 1 },
     { "", 0 },
 };
 
-MenuDialog init_seqCollisionWallMedium_8c0449c0[] = {
+STATIC MenuDialog init_seqCollisionWallMedium_8c0449c0[] = {
     { "壁に接触してしまったようだな…<E>しかもスピードが大分出ていたな", 1 },
     { "一日も早く、車両感覚を身につけてくれ", 1 },
     { "", 0 },
 };
 
-MenuDialog init_seqCollisionWallSevere_8c0449d8[] = {
+STATIC MenuDialog init_seqCollisionWallSevere_8c0449d8[] = {
     { "壁に接触してしまったようだな…<E>しかも凄いスピードで…", 1 },
     { "まず速度はむやみに出さないこと！<E>そして車両感覚をしっかり身につけてくれ", 0 },
     { "", 0 },
 };
 
-MenuDialog init_seqNearMissPedestrian_8c0449f0[] = {
+STATIC MenuDialog init_seqNearMissPedestrian_8c0449f0[] = {
     { "ふー、危機一髪だったな", 1 },
     { "おいおい、通行人の安全は<E>何に替えても守ってくれよ", 1 },
     { "", 0 },
 };
 
-MenuDialog init_seqOffCourseMinor_8c044a08[] = {
+STATIC MenuDialog init_seqOffCourseMinor_8c044a08[] = {
     { "コースを外れてしまったようだな…<E>コースは常に正確に走ってくれないと困るぞ", 1 },
     { "コースから外れかけても、慌てずに速度を落とし<E>正しいコースに戻ればいい", 1 },
     { "", 0 },
 };
 
-MenuDialog init_seqOffCourseMedium_8c044a20[] = {
+STATIC MenuDialog init_seqOffCourseMedium_8c044a20[] = {
     { "コースを外れてしまったようだな…<E>コースは常に正確に走ってくれないと困るぞ", 1 },
     { "", 0 },
 };
 
-MenuDialog init_seqOffCourseMajor_8c044a30[] = {
+STATIC MenuDialog init_seqOffCourseMajor_8c044a30[] = {
     { "コースを外れてしまったようだな…<E>コースは常に正確に走ってくれないと困るぞ", 1 },
     { "", 0 },
 };
 
-MenuDialog init_seqSpeedingMinor_8c044a40[] = {
+STATIC MenuDialog init_seqSpeedingMinor_8c044a40[] = {
     { "少しスピードオーバーしたみたいだな…<E>制限速度には常に注意を払ってくれよ", 1 },
     { "", 0 },
 };
 
-MenuDialog init_seqSpeedingMajor_8c044a50[] = {
+STATIC MenuDialog init_seqSpeedingMajor_8c044a50[] = {
     { "大分スピードオーバーしたようだな…<E>制限速度を守るのは安全運転の基本だぞ", 1 },
     { "", 0 },
 };
 
-MenuDialog init_seqWrongLane_8c044a60[] = {
+STATIC MenuDialog init_seqWrongLane_8c044a60[] = {
     { "対向車線を越えるとは言語道断！<E>大事故の元なので、以後、絶対にないように", 1 },
     { "", 0 },
 };
 
-MenuDialog init_seqLaneStraddle_8c044a70[] = {
+STATIC MenuDialog init_seqLaneStraddle_8c044a70[] = {
     { "車体が大きいので大変なのは分かるが<E>車線をまたがって走ってはいかんぞ", 1 },
     { "", 0 },
 };
 
-MenuDialog init_seqNoSignal_8c044a80[] = {
+STATIC MenuDialog init_seqNoSignal_8c044a80[] = {
     { "ウインカーを忘れていたぞ<E>車線変更や交差点での右左折", 1 },
     { "そして停留所に停車する時は<E>必ずウインカーを出すようにな", 1 },
     { "大切なのは、自分の行動を<E>周りの車にちゃんと知らせることだ", 1 },
     { "", 0 },
 };
 
-MenuDialog init_seqNoSignalTurn_8c044aa0[] = {
+STATIC MenuDialog init_seqNoSignalTurn_8c044aa0[] = {
     { "右左折する時のウインカーを忘れていたぞ", 1 },
     { "", 0 },
 };
 
-MenuDialog init_seqUkn49_8c044ab0[] = {
+STATIC MenuDialog init_seqUkn49_8c044ab0[] = {
     { "", 0 },
 };
 
-MenuDialog init_seqSignalViolation_8c044ab8[] = {
+STATIC MenuDialog init_seqSignalViolation_8c044ab8[] = {
     { "おいおい、大事故になる所だったぞ", 1 },
     { "信号はしっかりと確認してくれよ<E>交通法規の基本中の基本だぞ", 1 },
     { "", 0 },
 };
 
-MenuDialog init_seqBadStopLine_8c044ad0[] = {
+STATIC MenuDialog init_seqBadStopLine_8c044ad0[] = {
     { "停止時にちょっと失敗したな", 1 },
     { "停止線をきちんと確認して、<E>正しい位置に停止するようにしてくれ", 1 },
     { "", 0 },
 };
 
-MenuDialog init_seqIllegalLaneChange_8c044ae8[] = {
+STATIC MenuDialog init_seqIllegalLaneChange_8c044ae8[] = {
     { "してはいけない所で車線変更をしたようだな…", 1 },
     { "交差点の手前などでは禁止されているので<E>気を付けてくれよ", 1 },
     { "", 0 },
 };
 
-MenuDialog init_seqBlockIntersection_8c044b00[] = {
+STATIC MenuDialog init_seqBlockIntersection_8c044b00[] = {
     { "交差点での立ち往生は<E>絶対にしてはいけないぞ", 1 },
     { "事故や渋滞を引き起こす危険があるからな…<E>交差点は素早く通り抜けることだ", 1 },
     { "", 0 },
 };
 
-MenuDialog init_seqWrongWay_8c044b18[] = {
+STATIC MenuDialog init_seqWrongWay_8c044b18[] = {
     { "コースを正しく走る<E>これが運転の基本だ", 1 },
     { "落ち着いて走れば逆走などするわけがない<E>大事故になるので絶対にやめてくれよ", 1 },
     { "", 0 },
 };
 
-MenuDialog init_seqRapidAccel_8c044b30[] = {
+STATIC MenuDialog init_seqRapidAccel_8c044b30[] = {
     { "基本的には、お客さんあってのバスだからね<E>急発進などしないように気を付けよう", 1 },
     { "", 0 },
 };
 
-MenuDialog init_seqHardBrake_8c044b40[] = {
+STATIC MenuDialog init_seqHardBrake_8c044b40[] = {
     { "急ブレーキがあったようだな<E>今度はお客さんの身になって運転してみるといい", 1 },
     { "", 0 },
 };
 
-MenuDialog init_seqSwerving_8c044b50[] = {
+STATIC MenuDialog init_seqSwerving_8c044b50[] = {
     { "荒っぽい運転をすると<E>立っているお客さんは大変だぞ", 1 },
     { "もっと安全運転を心がけて<E>急ハンドルなんてしないようにな", 1 },
     { "", 0 },
 };
 
-MenuDialog init_seqMissedStop_8c044b68[] = {
+STATIC MenuDialog init_seqMissedStop_8c044b68[] = {
     { "バスが停留所を通り過ぎてどうするんだ", 1 },
     { "きちんと停留所情報を確認して<E>必要な停留所では停車してくれよ", 1 },
     { "", 0 },
 };
 
-MenuDialog init_seqBadStopPosition1_8c044b80[] = {
+STATIC MenuDialog init_seqBadStopPosition1_8c044b80[] = {
     { "停留所の停車位置が良くなかったようだな", 1 },
     { "今度からは、お客さんが乗り降り<E>しやすいように、正確に停車してくれ", 1 },
     { "", 0 },
 };
 
-MenuDialog init_seqBadStopPosition2_8c044b98[] = {
+STATIC MenuDialog init_seqBadStopPosition2_8c044b98[] = {
     { "停留所の停車位置が良くなかったようだな", 1 },
     { "今度からは、お客さんが乗り降り<E>しやすいように、正確に停車してくれ", 1 },
     { "", 0 },
 };
 
-MenuDialog init_seqTimeManagement_8c044bb0[] = {
+STATIC MenuDialog init_seqTimeManagement_8c044bb0[] = {
     { "運転技術はもちろんのこと<E>時間配分にも気を配ってくれ", 1 },
     { "", 0 },
 };
 
-MenuDialog init_seqAnnouncement_8c044bc0[] = {
+STATIC MenuDialog init_seqAnnouncement_8c044bc0[] = {
     { "バスの運転手がお客さんにしなければならない<E>こととして、車内アナウンスは重要だぞ", 1 },
     { "", 0 },
 };
 
-MenuDialog init_seqDoorOperation_8c044bd0[] = {
+STATIC MenuDialog init_seqDoorOperation_8c044bd0[] = {
     { "ドアの開閉の確認は基本事項だぞ", 1 },
     { "", 0 },
 };
 
-MenuDialog init_seqFreeRunIntro2_8c044be0[] = {
+STATIC MenuDialog init_seqFreeRunIntro2_8c044be0[] = {
     { "ここでは、好きなコースを<E>何度でも走る事ができるぞ", 0 },
     { "但しストーリーモードで<E>走ったコースに限るがな", 0 },
     { "", 0 },
 };
 
-MenuDialog init_seqFreeRunChooseCourse_8c044bf8[] = {
+STATIC MenuDialog init_seqFreeRunChooseCourse_8c044bf8[] = {
     { "さぁ、コースを選んでくれ", 0 },
     { "", 0 },
 };
@@ -886,7 +886,7 @@ Uint8 init_routeInfoTime_8c044d2e[3 * 3 * 2] = {
     19, 22
 };
 
-ResourceGroupInfo init_courseResourceGroup_8c044d40 = {
+STATIC ResourceGroupInfo init_courseResourceGroup_8c044d40 = {
     "corse_parts.dat",
     "course.dat",
     "corse.pvm",

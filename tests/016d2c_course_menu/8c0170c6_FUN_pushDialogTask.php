@@ -16,28 +16,13 @@ return new class extends TestCase {
     {
         $this->resolveSymbols();
 
-        $text1 = $this->allocString('Hey there!');
-        $dialogs1 = $this->alloc(0x8 * 3);
-        $this->initUint32($dialogs1 + 0x00, $text1);
-        $this->initUint32($dialogs1 + 0x04, 1);
-
-        $text2 = $this->allocString('Hey there!');
-        $dialogs2 = $this->alloc(0x8 * 3);
-        $this->initUint32($dialogs2 + 0x00, $text2);
-        $this->initUint32($dialogs2 + 0x04, 42);
-
-        $this->setSize('_init_dialogSequences_8c044c08', 0x8);
-        $this->initUint32($this->addressOf('_init_dialogSequences_8c044c08') + 0x00, $dialogs1);
-        $this->initUint32($this->addressOf('_init_dialogSequences_8c044c08') + 0x04, $dialogs2);
-
         $createdTaskLocal = 0xffffec;
         $createdStateLocal = 0xffffe8;
         $createdTask = $this->alloc(0x20);
         $createdState = $this->alloc(0x1c);
 
         $this->call('_CourseMenuPushDialogTask_8c0170c6')
-            ->with(1, 0xcafe0002);
-
+            ->with(65, 0xcafe0002);
 
         $this->shouldCall('_pushTask_8c014ae8')
             ->with(
@@ -54,7 +39,7 @@ return new class extends TestCase {
 
         $this->shouldWriteLong($createdTask + 0x18, 0xcafe0002);
         $this->shouldWriteLong($createdState + 0x00, 0);
-        $this->shouldWriteLong($createdState + 0x04, $dialogs2);
+        $this->shouldWriteLong($createdState + 0x04, $this->addressOf('_init_seqFreeRunChooseCourse_8c044bf8'));
         $this->shouldWriteLong($this->addressOf('_var_dialogSequenceIsActive_8c225fb4'), 1);
     }
 

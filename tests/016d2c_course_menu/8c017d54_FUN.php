@@ -151,9 +151,6 @@ return new class extends TestCase {
         // Menu state must cover cursor pos/target and a flag at +0x72
         $this->setSize('_menuState_8c1bc7a8', 0x80);
 
-        // 15 CourseMenuButton entries, sizeof == 0x1C
-        $this->setSize('_init_courseMenuButtons_8c04442c', 0x1C * 15);
-
         // PlayerProgress blob ? we only need courses array starting at +0x44
         $this->setSize('_var_progress_8c1ba1cc', 0x200);
 
