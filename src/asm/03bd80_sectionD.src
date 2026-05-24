@@ -2,15 +2,10 @@
           .IMPORT     _FUN_8c016636
           .IMPORT     _FUN_8c0167c0
           .IMPORT     _FUN_8c016b4c
-          .IMPORT     _CourseMenuConfirmInit_8c0184cc
           .IMPORT     _MainMenuSwitchFromTask_8c01a09a
           .IMPORT     _FUN_8c01a3c0
           .IMPORT     _FUN_8c01a89c
           .IMPORT     _FUN_8c01afd8
-          .IMPORT     _FUN_8c01ba64
-          .IMPORT     _FUN_8c01d1c4
-          .IMPORT     _FUN_8c01d6e2
-          .IMPORT     _FUN_8c01f114
           .IMPORT     _FUN_8c02aa36
           .IMPORT     _var_8c2260ac
           .IMPORT     _var_8c2260b8
@@ -775,7 +770,6 @@
           .IMPORT     _const_8c03b968
 
           ; course_menu
-          .EXPORT     _init_courseMenuButtons_8c04442c ; 016d2c_course_menu.c, 016d2c_course_menu.src
           .EXPORT     _init_dialogSequences_8c044c08 ; 016d2c_course_menu.c, 016d2c_course_menu.src, 01e27c.src, 01f3c0.src
           .EXPORT     _init_8c044d10 ; 016d2c_course_menu.c, 016d2c_course_menu.src
           .EXPORT     _init_routeInfoTime_8c044d2e ; 016d2c_course_menu.c, 016d2c_course_menu.src
@@ -907,127 +901,6 @@
           .EXPORT     _init_8c04f6a8 ; 02fb50_sh4nlfzn.src
 
           .SECTION    D, DATA, ALIGN=4
-_init_courseMenuButtons_8c04442c:        ; from defines
-          .DATA.B      H'01, H'00, H'00, H'00          ; enabled
-          .DATA.B      H'01, H'00, H'00, H'00          ; unlocked
-          .DATA.B      H'00, H'00, H'34, H'42          ; x
-          .DATA.B      H'00, H'00, H'DA, H'42          ; y
-          .DATA.B      H'00, H'00, H'00, H'00          ; spriteNo
-          .DATA.L      _FUN_8c01f114                   ; onSelect
-          .DATA.B      H'00, H'00, H'00, H'00          ; courseId
-
-          .DATA.B      H'01, H'00, H'00, H'00          ; enabled
-          .DATA.B      H'01, H'00, H'00, H'00          ; unlocked
-          .DATA.B      H'00, H'00, H'DC, H'42          ; x
-          .DATA.B      H'00, H'00, H'DA, H'42          ; y
-          .DATA.B      H'00, H'00, H'00, H'00          ; spriteNo
-          .DATA.L      _FUN_8c01ba64                   ; onSelect
-          .DATA.B      H'00, H'00, H'00, H'00          ; courseId
-
-          .DATA.B      H'01, H'00, H'00, H'00          ; enabled
-          .DATA.B      H'01, H'00, H'00, H'00          ; unlocked
-          .DATA.B      H'00, H'00, H'3E, H'43          ; x
-          .DATA.B      H'00, H'00, H'DA, H'42          ; y
-          .DATA.B      H'0B, H'00, H'00, H'00          ; spriteNo
-          .DATA.L      _CourseMenuConfirmInit_8c0184cc ; onSelect
-          .DATA.B      H'00, H'00, H'00, H'00          ; courseId
-
-          .DATA.B      H'01, H'00, H'00, H'00          ; enabled
-          .DATA.B      H'01, H'00, H'00, H'00          ; unlocked
-          .DATA.B      H'00, H'00, H'8E, H'43          ; x
-          .DATA.B      H'00, H'00, H'DA, H'42          ; y
-          .DATA.B      H'0C, H'00, H'00, H'00          ; spriteNo
-          .DATA.L      _CourseMenuConfirmInit_8c0184cc ; onSelect
-          .DATA.B      H'03, H'00, H'00, H'00          ; courseId
-
-          .DATA.B      H'01, H'00, H'00, H'00          ; enabled
-          .DATA.B      H'01, H'00, H'00, H'00          ; unlocked
-          .DATA.B      H'00, H'80, H'BC, H'43          ; x
-          .DATA.B      H'00, H'00, H'DA, H'42          ; y
-          .DATA.B      H'0D, H'00, H'00, H'00          ; spriteNo
-          .DATA.L      _CourseMenuConfirmInit_8c0184cc ; onSelect
-          .DATA.B      H'06, H'00, H'00, H'00          ; courseId
-
-          .DATA.B      H'01, H'00, H'00, H'00          ; enabled
-          .DATA.B      H'01, H'00, H'00, H'00          ; unlocked
-          .DATA.B      H'00, H'00, H'34, H'42          ; x
-          .DATA.B      H'00, H'00, H'36, H'43          ; y
-          .DATA.B      H'00, H'00, H'00, H'00          ; spriteNo
-          .DATA.L      _FUN_8c01d1c4                   ; onSelect
-          .DATA.B      H'00, H'00, H'00, H'00          ; courseId
-
-          .DATA.B      H'01, H'00, H'00, H'00          ; enabled
-          .DATA.B      H'01, H'00, H'00, H'00          ; unlocked
-          .DATA.B      H'00, H'00, H'DA, H'42          ; x
-          .DATA.B      H'00, H'00, H'36, H'43          ; y
-          .DATA.B      H'00, H'00, H'00, H'00          ; spriteNo
-          .DATA.L      _FUN_8c01d6e2                   ; onSelect
-          .DATA.B      H'00, H'00, H'00, H'00          ; courseId
-
-          .DATA.B      H'01, H'00, H'00, H'00          ; enabled
-          .DATA.B      H'01, H'00, H'00, H'00          ; unlocked
-          .DATA.B      H'00, H'00, H'3E, H'43          ; x
-          .DATA.B      H'00, H'00, H'36, H'43          ; y
-          .DATA.B      H'0E, H'00, H'00, H'00          ; spriteNo
-          .DATA.L      _CourseMenuConfirmInit_8c0184cc ; onSelect
-          .DATA.B      H'09, H'00, H'00, H'00          ; courseId
-
-          .DATA.B      H'01, H'00, H'00, H'00          ; enabled
-          .DATA.B      H'01, H'00, H'00, H'00          ; unlocked
-          .DATA.B      H'00, H'80, H'8E, H'43          ; x
-          .DATA.B      H'00, H'00, H'36, H'43          ; y
-          .DATA.B      H'0F, H'00, H'00, H'00          ; spriteNo
-          .DATA.L      _CourseMenuConfirmInit_8c0184cc ; onSelect
-          .DATA.B      H'0C, H'00, H'00, H'00          ; courseId
-
-          .DATA.B      H'01, H'00, H'00, H'00          ; enabled
-          .DATA.B      H'01, H'00, H'00, H'00          ; unlocked
-          .DATA.B      H'00, H'00, H'BD, H'43          ; x
-          .DATA.B      H'00, H'00, H'36, H'43          ; y
-          .DATA.B      H'10, H'00, H'00, H'00          ; spriteNo
-          .DATA.L      _CourseMenuConfirmInit_8c0184cc ; onSelect
-          .DATA.B      H'0F, H'00, H'00, H'00          ; courseId
-
-          .DATA.B      H'00, H'00, H'00, H'00          ; enabled
-          .DATA.B      H'00, H'00, H'00, H'00          ; unlocked
-          .DATA.B      H'00, H'00, H'30, H'42          ; x
-          .DATA.B      H'00, H'00, H'80, H'43          ; y
-          .DATA.B      H'00, H'00, H'00, H'00          ; spriteNo
-          .DATA.B      H'00, H'00, H'00, H'00          ; onSelect
-          .DATA.B      H'00, H'00, H'00, H'00          ; courseId
-
-          .DATA.B      H'00, H'00, H'00, H'00          ; enabled
-          .DATA.B      H'00, H'00, H'00, H'00          ; unlocked
-          .DATA.B      H'00, H'00, H'D8, H'42          ; x
-          .DATA.B      H'00, H'00, H'80, H'43          ; y
-          .DATA.B      H'00, H'00, H'00, H'00          ; spriteNo
-          .DATA.B      H'00, H'00, H'00, H'00          ; onSelect
-          .DATA.B      H'00, H'00, H'00, H'00          ; courseId
-
-          .DATA.B      H'01, H'00, H'00, H'00          ; enabled
-          .DATA.B      H'01, H'00, H'00, H'00          ; unlocked
-          .DATA.B      H'00, H'00, H'3F, H'43          ; x
-          .DATA.B      H'00, H'00, H'80, H'43          ; y
-          .DATA.B      H'11, H'00, H'00, H'00          ; spriteNo
-          .DATA.L      _CourseMenuConfirmInit_8c0184cc ; onSelect
-          .DATA.B      H'12, H'00, H'00, H'00          ; courseId
-
-          .DATA.B      H'01, H'00, H'00, H'00          ; enabled
-          .DATA.B      H'01, H'00, H'00, H'00          ; unlocked
-          .DATA.B      H'00, H'80, H'8E, H'43          ; x
-          .DATA.B      H'00, H'00, H'80, H'43          ; y
-          .DATA.B      H'12, H'00, H'00, H'00          ; spriteNo
-          .DATA.L      _CourseMenuConfirmInit_8c0184cc ; onSelect
-          .DATA.B      H'15, H'00, H'00, H'00          ; courseId
-
-          .DATA.B      H'01, H'00, H'00, H'00          ; enabled
-          .DATA.B      H'01, H'00, H'00, H'00          ; unlocked
-          .DATA.B      H'00, H'00, H'BD, H'43          ; x
-          .DATA.B      H'00, H'00, H'80, H'43          ; y
-          .DATA.B      H'13, H'00, H'00, H'00          ; spriteNo
-          .DATA.L      _CourseMenuConfirmInit_8c0184cc ; onSelect
-          .DATA.B      H'18, H'00, H'00, H'00          ; courseId
-
 _init_8c0445d0:        ; from ghidra
           .DATA.L      _const_8c0362c4 ; ukn
           .DATA.B      H'01, H'00, H'00, H'00

@@ -215,7 +215,11 @@ enum {
 extern void snd_8c010cd6(int p1, int p2);
 extern void setUknPvmBool_8c014330();
 extern int CourseMenuRequestSysResgrp_8c018568(ResourceGroup* dds, ResourceGroupInfo* rg);
-extern CourseMenuButton init_courseMenuButtons_8c04442c[15];
+extern void CourseMenuConfirmInit_8c0184cc(Task *task);
+extern void FUN_8c01f114(Task *task);
+extern void FUN_8c01ba64(Task *task);
+extern void FUN_8c01d1c4(Task *task);
+extern void FUN_8c01d6e2(Task *task);
 extern void* const_8c03628c;
 extern SDMIDI var_midiHandles_8c0fcd28[7];
 extern PlayerProgress var_progress_8c1ba1cc;
@@ -260,6 +264,132 @@ extern int promptHandleBinary_16caa(int *promptState);
  * Initialized Globals
  * ===================
  */
+
+ /*  0  1    2  3  4
+  *  5  6    7  8  9
+  * 10 11   12 13 14  */
+STATIC CourseMenuButton init_courseMenuButtons_8c04442c[15] = {
+    {   /* [0] */
+        /* enabled  */ 1,
+        /* unlocked */ 1,
+        /* x, y     */ 45.0f, 109.0f,
+        /* spriteNo */ 0,
+        /* onSelect */ FUN_8c01f114,
+        /* courseId */ 0,
+    },
+    {   /* [1] */
+        /* enabled  */ 1,
+        /* unlocked */ 1,
+        /* x, y     */ 110.0f, 109.0f,
+        /* spriteNo */ 0,
+        /* onSelect */ FUN_8c01ba64,
+        /* courseId */ 0,
+    },
+    {   /* [2] */
+        /* enabled  */ 1,
+        /* unlocked */ 1,
+        /* x, y     */ 190.0f, 109.0f,
+        /* spriteNo */ 11,
+        /* onSelect */ CourseMenuConfirmInit_8c0184cc,
+        /* courseId */ 0,
+    },
+    {   /* [3] */
+        /* enabled  */ 1,
+        /* unlocked */ 1,
+        /* x, y     */ 284.0f, 109.0f,
+        /* spriteNo */ 12,
+        /* onSelect */ CourseMenuConfirmInit_8c0184cc,
+        /* courseId */ 3,
+    },
+    {   /* [4] */
+        /* enabled  */ 1,
+        /* unlocked */ 1,
+        /* x, y     */ 377.0f, 109.0f,
+        /* spriteNo */ 13,
+        /* onSelect */ CourseMenuConfirmInit_8c0184cc,
+        /* courseId */ 6,
+    },
+    {   /* [5] */
+        /* enabled  */ 1,
+        /* unlocked */ 1,
+        /* x, y     */ 45.0f, 182.0f,
+        /* spriteNo */ 0,
+        /* onSelect */ FUN_8c01d1c4,
+        /* courseId */ 0,
+    },
+    {   /* [6] */
+        /* enabled  */ 1,
+        /* unlocked */ 1,
+        /* x, y     */ 109.0f, 182.0f,
+        /* spriteNo */ 0,
+        /* onSelect */ FUN_8c01d6e2,
+        /* courseId */ 0,
+    },
+    {   /* [7] */
+        /* enabled  */ 1,
+        /* unlocked */ 1,
+        /* x, y     */ 190.0f, 182.0f,
+        /* spriteNo */ 14,
+        /* onSelect */ CourseMenuConfirmInit_8c0184cc,
+        /* courseId */ 9,
+    },
+    {   /* [8] */
+        /* enabled  */ 1,
+        /* unlocked */ 1,
+        /* x, y     */ 285.0f, 182.0f,
+        /* spriteNo */ 15,
+        /* onSelect */ CourseMenuConfirmInit_8c0184cc,
+        /* courseId */ 12,
+    },
+    {   /* [9] */
+        /* enabled  */ 1,
+        /* unlocked */ 1,
+        /* x, y     */ 378.0f, 182.0f,
+        /* spriteNo */ 16,
+        /* onSelect */ CourseMenuConfirmInit_8c0184cc,
+        /* courseId */ 15,
+    },
+    {   /* [10] */
+        /* enabled  */ 0,
+        /* unlocked */ 0,
+        /* x, y     */ 44.0f, 256.0f,
+        /* spriteNo */ 0,
+        /* onSelect */ NULL,
+        /* courseId */ 0,
+    },
+    {   /* [11] */
+        /* enabled  */ 0,
+        /* unlocked */ 0,
+        /* x, y     */ 108.0f, 256.0f,
+        /* spriteNo */ 0,
+        /* onSelect */ NULL,
+        /* courseId */ 0,
+    },
+    {   /* [12] */
+        /* enabled  */ 1,
+        /* unlocked */ 1,
+        /* x, y     */ 191.0f, 256.0f,
+        /* spriteNo */ 17,
+        /* onSelect */ CourseMenuConfirmInit_8c0184cc,
+        /* courseId */ 18,
+    },
+    {   /* [13] */
+        /* enabled  */ 1,
+        /* unlocked */ 1,
+        /* x, y     */ 285.0f, 256.0f,
+        /* spriteNo */ 18,
+        /* onSelect */ CourseMenuConfirmInit_8c0184cc,
+        /* courseId */ 21,
+    },
+    {   /* [14] */
+        /* enabled  */ 1,
+        /* unlocked */ 1,
+        /* x, y     */ 378.0f, 256.0f,
+        /* spriteNo */ 19,
+        /* onSelect */ CourseMenuConfirmInit_8c0184cc,
+        /* courseId */ 24,
+    },
+};
 
 /* ====================
  * Forward Declarations
