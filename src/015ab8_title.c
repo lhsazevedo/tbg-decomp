@@ -11,20 +11,38 @@
 #include "011120_asset_queues.h"
 #include "016d2c_course_menu.h"
 
-extern Bool getUknPvmBool_8c01432a();
-extern void push_fadein_8c022a9c();
+/* =======================
+ * Non-initialized Globals
+ * =======================
+ */
+
 extern SDMIDI var_midiHandles_8c0fcd28[7];
-extern Bool isFading_8c226568;
-extern void drawSprite_8c014f54(ResourceGroup *r4, int r5, float fr4, float fr5, float fr6);
-extern void push_fadeout_8c022b60();
-extern char* init_saveNames_8c044d50[11];
-extern Bool init_8c03bd80;
+extern Bool isFading_8c226568; /* TODO: rename to var_isFading_8c226568 */
 extern Bool var_8c1bb8c4;
-extern ResourceGroupInfo titleResourceGroup_8c044254;
 extern PDS_PERIPHERAL var_peripherals_8c1ba35c[2];
 extern Task var_tasks_8c1ba3c8[16];
-extern void task_8c012f44(Task* task, void* state);
 extern NJS_TEXMEMLIST var_tex_8c157af8;
+extern void* var_currentSysResGroupInfo_8c225fb0;
+
+/* ===================
+ * Initialized Globals
+ * ===================
+ */
+
+extern char* init_saveNames_8c044d50[11];
+extern Bool init_8c03bd80;
+extern ResourceGroupInfo titleResourceGroup_8c044254; /* TODO: rename to init_titleResourceGroup_8c044254 */
+
+/* ====================
+ * Forward Declarations
+ * ====================
+ */
+
+extern Bool getUknPvmBool_8c01432a();
+extern void push_fadein_8c022a9c();
+extern void push_fadeout_8c022b60();
+extern void drawSprite_8c014f54(ResourceGroup *r4, int r5, float fr4, float fr5, float fr6);
+extern void task_8c012f44(Task* task, void* state);
 extern FUN_8c02ae3e(int p1, int p2, float fp1, int p3, int p4, int p5, int p6, int p7);
 extern void resetUknPvmBool_8c014322();
 extern FUN_8c016182();
@@ -33,7 +51,10 @@ extern void setUknPvmBool_8c014330();
 extern void snd_8c010cd6(int p1, int p2);
 extern Bool setName_8c012984(void);
 
-extern void* var_currentSysResGroupInfo_8c225fb0;
+/* =========
+ * Functions
+ * =========
+ */
 
 void task_title_8c015ab8(Task* task, void *state) {
 
