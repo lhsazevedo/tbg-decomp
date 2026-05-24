@@ -1,17 +1,7 @@
-          .IMPORT     _syRtcGetDate
-          .IMPORT     _syMalloc
-          .IMPORT     _syFree
           .IMPORT     _buInit
           .IMPORT     _buExit
-          .IMPORT     _buSaveFile
           .IMPORT     _buLoadFile
           .IMPORT     _buDeleteFile
-          .IMPORT     _buSetCompleteCallback
-          .IMPORT     _buSetProgressCallback
-          .IMPORT     _buMountDisk
-          .IMPORT     _buUnmount
-          .IMPORT     _buGetDiskInfo
-          .IMPORT     _gBupTime
           .IMPORT     _memset
           .IMPORT     _gBupInfo
           .EXPORT     _BupInit

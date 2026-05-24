@@ -7,7 +7,6 @@
           .IMPORT     _FUN_8c01d6e2
           .IMPORT     _var_midiHandles_8c0fcd28
           .IMPORT     _sdMidiPlay
-          .IMPORT     _const_8c03628c
           .IMPORT     _swapMessageBoxFor_8c02aefc
           .IMPORT     _drawSprite_8c014f54
           .IMPORT     __modls
@@ -23,7 +22,6 @@
           .IMPORT     _var_menuTextboxCharLimit_8c225fb8
           .IMPORT     _var_tasks_8c1ba3c8
           .IMPORT     _pushTask_8c014ae8
-          .IMPORT     _init_dialogSequences_8c044c08
           .IMPORT     _FUN_8c010bae
           .IMPORT     _var_exp_8c1ba25c
           .IMPORT     _var_coursesToUnlock_8c225fd4
@@ -75,11 +73,7 @@
           .IMPORT     _init_8c044d10
           .IMPORT     _pushLoadingTask_8c013310
           .IMPORT     _init_8c044d40
-          .IMPORT     _const_8c036290
-          .IMPORT     _const_8c036298
           .IMPORT     _AsqRequestDat_11182
-          .IMPORT     _const_8c0362ac
-          .IMPORT     _const_8c0362b8
           .IMPORT     _AsqRequestPvm_11ac0
           .IMPORT     _AsqReleaseAndFreeTexlist_11e3c
           .IMPORT     _syFree
@@ -96,6 +90,7 @@
           .EXPORT     _CourseMenuRequestCommonResources_8c01852c
           .EXPORT     _CourseMenuRequestSysResgrp_8c018568
           .EXPORT     _CourseMenuFreeResourceGroup_8c0185c4
+          .EXPORT     _init_dialogSequences_8c044c08
 
           .AIFDEF UNIT_TESTING
           .EXPORT     _init_courseMenuButtons_8c04442c
@@ -3426,4 +3421,1483 @@ _init_courseMenuButtons_8c04442c:        ; from defines
           .DATA.B      H'13, H'00, H'00, H'00          ; spriteNo
           .DATA.L      _CourseMenuConfirmInit_8c0184cc ; onSelect
           .DATA.B      H'18, H'00, H'00, H'00          ; courseId
+_init_seqStoryIntro_8c0445d0:        ; from ghidra
+          .DATA.L      _const_8c0362c4 ; ukn
+          .DATA.B      H'01, H'00, H'00, H'00
+          .DATA.L      _const_8c0362f8 ; ukn
+          .DATA.B      H'00, H'00, H'00, H'00
+          .DATA.L      _const_8c036334 ; ukn
+          .DATA.B      H'00, H'00, H'00, H'00
+          .DATA.L      _const_8c03636c ; ukn
+          .DATA.B      H'00, H'00, H'00, H'00
+          .DATA.L      _const_8c036398 ; ukn
+          .DATA.B      H'00, H'00, H'00, H'00
+          .DATA.L      _const_8c0363dc ; ukn
+          .DATA.B      H'00, H'00, H'00, H'00
+          .DATA.L      _const_8c036430 ; ukn
+          .DATA.B      H'00, H'00, H'00, H'00
+          .DATA.L      _const_8c036470 ; ukn
+          .DATA.B      H'00, H'00, H'00, H'00
+          .DATA.L      _const_8c0364ac ; ukn
+          .DATA.B      H'00, H'00, H'00, H'00
+          .DATA.L      _const_8c03628c ; ukn
+          .DATA.B      H'00, H'00, H'00, H'00
+_init_seqSuccessPerfect_8c044620:        ; aggressive search
+          .DATA.L      _const_8c0364e8 ; ukn
+          .DATA.B      H'00, H'00, H'00, H'00
+          .DATA.L      _const_8c036520 ; ukn
+          .DATA.B      H'00, H'00, H'00, H'00
+          .DATA.L      _const_8c03654c ; ukn
+          .DATA.B      H'02, H'00, H'00, H'00
+          .DATA.L      _const_8c036574 ; ukn
+          .DATA.B      H'02, H'00, H'00, H'00
+          .DATA.L      _const_8c0365b4 ; ukn
+          .DATA.B      H'03, H'00, H'00, H'00
+          .DATA.L      _const_8c03628c ; ukn
+          .DATA.B      H'00, H'00, H'00, H'00
+_init_seqSuccessHigh_8c044650:        ; aggressive search
+          .DATA.L      _const_8c0365ec ; ukn
+          .DATA.B      H'00, H'00, H'00, H'00
+          .DATA.L      _const_8c036624 ; ukn
+          .DATA.B      H'00, H'00, H'00, H'00
+          .DATA.L      _const_8c03665c ; ukn
+          .DATA.B      H'00, H'00, H'00, H'00
+          .DATA.L      _const_8c036698 ; ukn
+          .DATA.B      H'02, H'00, H'00, H'00
+          .DATA.L      _const_8c0366c0 ; ukn
+          .DATA.B      H'03, H'00, H'00, H'00
+          .DATA.L      _const_8c03628c ; ukn
+          .DATA.B      H'00, H'00, H'00, H'00
+_init_seqSuccessNormal_8c044680:        ; aggressive search
+          .DATA.L      _const_8c0365ec ; ukn
+          .DATA.B      H'00, H'00, H'00, H'00
+          .DATA.L      _const_8c036704 ; ukn
+          .DATA.B      H'00, H'00, H'00, H'00
+          .DATA.L      _const_8c036748 ; ukn
+          .DATA.B      H'00, H'00, H'00, H'00
+          .DATA.L      _const_8c036778 ; ukn
+          .DATA.B      H'00, H'00, H'00, H'00
+          .DATA.L      _const_8c0367bc ; ukn
+          .DATA.B      H'02, H'00, H'00, H'00
+          .DATA.L      _const_8c0367dc ; ukn
+          .DATA.B      H'03, H'00, H'00, H'00
+          .DATA.L      _const_8c03628c ; ukn
+          .DATA.B      H'00, H'00, H'00, H'00
+_init_seqFailureFinal_8c0446b8:        ; aggressive search
+          .DATA.L      _const_8c036828 ; ukn
+          .DATA.B      H'00, H'00, H'00, H'00
+          .DATA.L      _const_8c036848 ; ukn
+          .DATA.B      H'01, H'00, H'00, H'00
+          .DATA.L      _const_8c036884 ; ukn
+          .DATA.B      H'01, H'00, H'00, H'00
+          .DATA.L      _const_8c0368c8 ; ukn
+          .DATA.B      H'01, H'00, H'00, H'00
+          .DATA.L      _const_8c03628c ; ukn
+          .DATA.B      H'00, H'00, H'00, H'00
+_init_seqFreeRunIntro_8c0446e0:        ; aggressive search
+          .DATA.L      _const_8c036908 ; ukn
+          .DATA.B      H'00, H'00, H'00, H'00
+          .DATA.L      _const_8c03693c ; ukn
+          .DATA.B      H'00, H'00, H'00, H'00
+          .DATA.L      _const_8c03628c ; ukn
+          .DATA.B      H'00, H'00, H'00, H'00
+_init_seqStoryChooseCourse_8c0446f8:        ; aggressive search
+          .DATA.L      _const_8c036964 ; ukn
+          .DATA.B      H'00, H'00, H'00, H'00
+          .DATA.L      _const_8c03628c ; ukn
+          .DATA.B      H'00, H'00, H'00, H'00
+_init_seqGoodPractice_8c044708:        ; aggressive search
+          .DATA.L      _const_8c036984 ; ukn
+          .DATA.B      H'00, H'00, H'00, H'00
+          .DATA.L      _const_8c03628c ; ukn
+          .DATA.B      H'00, H'00, H'00, H'00
+_init_seqSuccess_8c044718:        ; aggressive search
+          .DATA.L      _const_8c0369a8 ; ukn
+          .DATA.B      H'00, H'00, H'00, H'00
+          .DATA.L      _const_8c03628c ; ukn
+          .DATA.B      H'00, H'00, H'00, H'00
+_init_seqAwardBadgeGold_8c044728:        ; aggressive search
+          .DATA.L      _const_8c0369e8 ; ukn
+          .DATA.B      H'00, H'00, H'00, H'00
+          .DATA.L      _const_8c036a08 ; ukn
+          .DATA.B      H'00, H'00, H'00, H'00
+          .DATA.L      _const_8c036a40 ; ukn
+          .DATA.B      H'01, H'00, H'00, H'00
+          .DATA.L      _const_8c03628c ; ukn
+          .DATA.B      H'00, H'00, H'00, H'00
+_init_seqAwardBadgeSilver_8c044748:        ; aggressive search
+          .DATA.L      _const_8c036a5c ; ukn
+          .DATA.B      H'01, H'00, H'00, H'00
+          .DATA.L      _const_8c036a94 ; ukn
+          .DATA.B      H'00, H'00, H'00, H'00
+          .DATA.L      _const_8c03628c ; ukn
+          .DATA.B      H'00, H'00, H'00, H'00
+_init_seqAwardBadgeBronze_8c044760:        ; aggressive search
+          .DATA.L      _const_8c036ad4 ; ukn
+          .DATA.B      H'01, H'00, H'00, H'00
+          .DATA.L      _const_8c036b0c ; ukn
+          .DATA.B      H'00, H'00, H'00, H'00
+          .DATA.L      _const_8c03628c ; ukn
+          .DATA.B      H'00, H'00, H'00, H'00
+_init_seqFailureRetry_8c044778:        ; aggressive search
+          .DATA.L      _const_8c036b58 ; ukn
+          .DATA.B      H'00, H'00, H'00, H'00
+          .DATA.L      _const_8c036b98 ; ukn
+          .DATA.B      H'00, H'00, H'00, H'00
+          .DATA.L      _const_8c03628c ; ukn
+          .DATA.B      H'00, H'00, H'00, H'00
+_init_seqCourseUnlocked_8c044790:        ; aggressive search
+          .DATA.L      _const_8c036bd8 ; ukn
+          .DATA.B      H'00, H'00, H'00, H'00
+          .DATA.L      _const_8c036c20 ; ukn
+          .DATA.B      H'00, H'00, H'00, H'00
+          .DATA.L      _const_8c036c5c ; ukn
+          .DATA.B      H'01, H'00, H'00, H'00
+          .DATA.L      _const_8c03628c ; ukn
+          .DATA.B      H'00, H'00, H'00, H'00
+_init_seqPassengerLetter_8c0447b0:        ; aggressive search
+          .DATA.L      _const_8c036c7c ; ukn
+          .DATA.B      H'00, H'00, H'00, H'00
+          .DATA.L      _const_8c036ca8 ; ukn
+          .DATA.B      H'00, H'00, H'00, H'00
+          .DATA.L      _const_8c036ce8 ; ukn
+          .DATA.B      H'00, H'00, H'00, H'00
+          .DATA.L      _const_8c03628c ; ukn
+          .DATA.B      H'00, H'00, H'00, H'00
+_init_seqCourseLocked_8c0447d0:        ; aggressive search
+          .DATA.L      _const_8c036d34 ; ukn
+          .DATA.B      H'00, H'00, H'00, H'00
+          .DATA.L      _const_8c03628c ; ukn
+          .DATA.B      H'00, H'00, H'00, H'00
+_init_seqForcePractice_8c0447e0:        ; aggressive search
+          .DATA.L      _const_8c036d74 ; ukn
+          .DATA.B      H'00, H'00, H'00, H'00
+          .DATA.L      _const_8c03628c ; ukn
+          .DATA.B      H'00, H'00, H'00, H'00
+_init_seqFinalDay_8c0447f0:        ; aggressive search
+          .DATA.L      _const_8c036db0 ; ukn
+          .DATA.B      H'00, H'00, H'00, H'00
+          .DATA.L      _const_8c036dd0 ; ukn
+          .DATA.B      H'00, H'00, H'00, H'00
+          .DATA.L      _const_8c03628c ; ukn
+          .DATA.B      H'00, H'00, H'00, H'00
+_init_seqLessonIntro_8c044808:        ; aggressive search
+          .DATA.L      _const_8c036df0 ; ukn
+          .DATA.B      H'00, H'00, H'00, H'00
+_init_8c044810:        ; aggressive search
+          .DATA.L      _const_8c036e30 ; ukn
+          .DATA.B      H'00, H'00, H'00, H'00
+          .DATA.L      _const_8c03628c ; ukn
+          .DATA.B      H'00, H'00, H'00, H'00
+_init_seqLessonComplete_8c044820:        ; aggressive search
+          .DATA.L      _const_8c036e80 ; ukn
+          .DATA.B      H'00, H'00, H'00, H'00
+          .DATA.L      _const_8c036eb0 ; ukn
+          .DATA.B      H'00, H'00, H'00, H'00
+          .DATA.L      _const_8c036ee4 ; ukn
+          .DATA.B      H'00, H'00, H'00, H'00
+          .DATA.L      _const_8c036f24 ; ukn
+          .DATA.B      H'00, H'00, H'00, H'00
+          .DATA.L      _const_8c03628c ; ukn
+          .DATA.B      H'00, H'00, H'00, H'00
+_init_seqLessonNext_8c044848:        ; aggressive search
+          .DATA.L      _const_8c036f60 ; ukn
+          .DATA.B      H'00, H'00, H'00, H'00
+          .DATA.L      _const_8c03628c ; ukn
+          .DATA.B      H'00, H'00, H'00, H'00
+_init_seqLessonRetry_8c044858:        ; aggressive search
+          .DATA.L      _const_8c036f84 ; ukn
+          .DATA.B      H'00, H'00, H'00, H'00
+          .DATA.L      _const_8c03628c ; ukn
+          .DATA.B      H'00, H'00, H'00, H'00
+_init_seqLessonTips_8c044868:        ; aggressive search
+          .DATA.L      _const_8c036fd0 ; ukn
+          .DATA.B      H'00, H'00, H'00, H'00
+          .DATA.L      _const_8c03628c ; ukn
+          .DATA.B      H'00, H'00, H'00, H'00
+_init_seqLessonWarning_8c044878:        ; aggressive search
+          .DATA.L      _const_8c037004 ; ukn
+          .DATA.B      H'00, H'00, H'00, H'00
+          .DATA.L      _const_8c03628c ; ukn
+          .DATA.B      H'00, H'00, H'00, H'00
+_init_seqLessonChoose_8c044888:        ; aggressive search
+          .DATA.L      _const_8c037054 ; ukn
+          .DATA.B      H'00, H'00, H'00, H'00
+          .DATA.L      _const_8c03628c ; ukn
+          .DATA.B      H'00, H'00, H'00, H'00
+_init_seqScoreRecord_8c044898:        ; aggressive search
+          .DATA.L      _const_8c037078 ; ukn
+          .DATA.B      H'00, H'00, H'00, H'00
+          .DATA.L      _const_8c03628c ; ukn
+          .DATA.B      H'00, H'00, H'00, H'00
+_init_seqLessonFinalDay_8c0448a8:        ; aggressive search
+          .DATA.L      _const_8c0370b8 ; ukn
+          .DATA.B      H'00, H'00, H'00, H'00
+          .DATA.L      _const_8c0370f4 ; ukn
+          .DATA.B      H'00, H'00, H'00, H'00
+          .DATA.L      _const_8c03628c ; ukn
+          .DATA.B      H'00, H'00, H'00, H'00
+_init_seqLessonPerfect_8c0448c0:        ; aggressive search
+          .DATA.L      _const_8c037120 ; ukn
+          .DATA.B      H'00, H'00, H'00, H'00
+          .DATA.L      _const_8c037144 ; ukn
+          .DATA.B      H'00, H'00, H'00, H'00
+          .DATA.L      _const_8c03628c ; ukn
+          .DATA.B      H'00, H'00, H'00, H'00
+_init_seqLessonGood_8c0448d8:        ; aggressive search
+          .DATA.L      _const_8c037188 ; ukn
+          .DATA.B      H'00, H'00, H'00, H'00
+          .DATA.L      _const_8c0371b0 ; ukn
+          .DATA.B      H'00, H'00, H'00, H'00
+          .DATA.L      _const_8c0371f0 ; ukn
+          .DATA.B      H'00, H'00, H'00, H'00
+          .DATA.L      _const_8c03628c ; ukn
+          .DATA.B      H'00, H'00, H'00, H'00
+_init_seqLessonPass_8c0448f8:        ; aggressive search
+          .DATA.L      _const_8c037228 ; ukn
+          .DATA.B      H'00, H'00, H'00, H'00
+          .DATA.L      _const_8c037264 ; ukn
+          .DATA.B      H'00, H'00, H'00, H'00
+          .DATA.L      _const_8c03628c ; ukn
+          .DATA.B      H'00, H'00, H'00, H'00
+_init_seqLessonFailMinor_8c044910:        ; aggressive search
+          .DATA.L      _const_8c0372a8 ; ukn
+          .DATA.B      H'01, H'00, H'00, H'00
+          .DATA.L      _const_8c0372f4 ; ukn
+          .DATA.B      H'01, H'00, H'00, H'00
+          .DATA.L      _const_8c03628c ; ukn
+          .DATA.B      H'00, H'00, H'00, H'00
+_init_seqLessonFailMajor_8c044928:        ; aggressive search
+          .DATA.L      _const_8c037334 ; ukn
+          .DATA.B      H'01, H'00, H'00, H'00
+          .DATA.L      _const_8c037374 ; ukn
+          .DATA.B      H'01, H'00, H'00, H'00
+          .DATA.L      _const_8c0373b8 ; ukn
+          .DATA.B      H'01, H'00, H'00, H'00
+          .DATA.L      _const_8c03628c ; ukn
+          .DATA.B      H'00, H'00, H'00, H'00
+_init_seqCollisionCarMinor_8c044948:        ; aggressive search
+          .DATA.L      _const_8c037410 ; ukn
+          .DATA.B      H'01, H'00, H'00, H'00
+          .DATA.L      _const_8c037434 ; ukn
+          .DATA.B      H'01, H'00, H'00, H'00
+          .DATA.L      _const_8c03628c ; ukn
+          .DATA.B      H'00, H'00, H'00, H'00
+_init_seqCollisionCarMedium_8c044960:        ; aggressive search
+          .DATA.L      _const_8c037474 ; ukn
+          .DATA.B      H'01, H'00, H'00, H'00
+          .DATA.L      _const_8c0374b8 ; ukn
+          .DATA.B      H'01, H'00, H'00, H'00
+          .DATA.L      _const_8c03628c ; ukn
+          .DATA.B      H'00, H'00, H'00, H'00
+_init_seqCollisionCarSevere_8c044978:        ; aggressive search
+          .DATA.L      _const_8c0374e0 ; ukn
+          .DATA.B      H'01, H'00, H'00, H'00
+          .DATA.L      _const_8c0374b8 ; ukn
+          .DATA.B      H'01, H'00, H'00, H'00
+          .DATA.L      _const_8c03628c ; ukn
+          .DATA.B      H'00, H'00, H'00, H'00
+_init_seqCollisionCarFatal_8c044990:        ; aggressive search
+          .DATA.L      _const_8c037528 ; ukn
+          .DATA.B      H'01, H'00, H'00, H'00
+          .DATA.L      _const_8c037568 ; ukn
+          .DATA.B      H'01, H'00, H'00, H'00
+          .DATA.L      _const_8c03628c ; ukn
+          .DATA.B      H'00, H'00, H'00, H'00
+_init_seqCollisionWallMinor_8c0449a8:        ; aggressive search
+          .DATA.L      _const_8c0375b4 ; ukn
+          .DATA.B      H'01, H'00, H'00, H'00
+          .DATA.L      _const_8c0374b8 ; ukn
+          .DATA.B      H'01, H'00, H'00, H'00
+          .DATA.L      _const_8c03628c ; ukn
+          .DATA.B      H'00, H'00, H'00, H'00
+_init_seqCollisionWallMedium_8c0449c0:        ; aggressive search
+          .DATA.L      _const_8c0375f0 ; ukn
+          .DATA.B      H'01, H'00, H'00, H'00
+          .DATA.L      _const_8c0374b8 ; ukn
+          .DATA.B      H'01, H'00, H'00, H'00
+          .DATA.L      _const_8c03628c ; ukn
+          .DATA.B      H'00, H'00, H'00, H'00
+_init_seqCollisionWallSevere_8c0449d8:        ; aggressive search
+          .DATA.L      _const_8c037630 ; ukn
+          .DATA.B      H'01, H'00, H'00, H'00
+          .DATA.L      _const_8c037568 ; ukn
+          .DATA.B      H'00, H'00, H'00, H'00
+          .DATA.L      _const_8c03628c ; ukn
+          .DATA.B      H'00, H'00, H'00, H'00
+_init_seqNearMissPedestrian_8c0449f0:        ; aggressive search
+          .DATA.L      _const_8c037668 ; ukn
+          .DATA.B      H'01, H'00, H'00, H'00
+          .DATA.L      _const_8c037680 ; ukn
+          .DATA.B      H'01, H'00, H'00, H'00
+          .DATA.L      _const_8c03628c ; ukn
+          .DATA.B      H'00, H'00, H'00, H'00
+_init_seqOffCourseMinor_8c044a08:        ; aggressive search
+          .DATA.L      _const_8c0376b4 ; ukn
+          .DATA.B      H'01, H'00, H'00, H'00
+          .DATA.L      _const_8c037700 ; ukn
+          .DATA.B      H'01, H'00, H'00, H'00
+          .DATA.L      _const_8c03628c ; ukn
+          .DATA.B      H'00, H'00, H'00, H'00
+_init_seqOffCourseMedium_8c044a20:        ; aggressive search
+          .DATA.L      _const_8c0376b4 ; ukn
+          .DATA.B      H'01, H'00, H'00, H'00
+          .DATA.L      _const_8c03628c ; ukn
+          .DATA.B      H'00, H'00, H'00, H'00
+_init_seqOffCourseMajor_8c044a30:        ; aggressive search
+          .DATA.L      _const_8c0376b4 ; ukn
+          .DATA.B      H'01, H'00, H'00, H'00
+          .DATA.L      _const_8c03628c ; ukn
+          .DATA.B      H'00, H'00, H'00, H'00
+_init_seqSpeedingMinor_8c044a40:        ; aggressive search
+          .DATA.L      _const_8c037748 ; ukn
+          .DATA.B      H'01, H'00, H'00, H'00
+          .DATA.L      _const_8c03628c ; ukn
+          .DATA.B      H'00, H'00, H'00, H'00
+_init_seqSpeedingMajor_8c044a50:        ; aggressive search
+          .DATA.L      _const_8c037794 ; ukn
+          .DATA.B      H'01, H'00, H'00, H'00
+          .DATA.L      _const_8c03628c ; ukn
+          .DATA.B      H'00, H'00, H'00, H'00
+_init_seqWrongLane_8c044a60:        ; aggressive search
+          .DATA.L      _const_8c0377e0 ; ukn
+          .DATA.B      H'01, H'00, H'00, H'00
+          .DATA.L      _const_8c03628c ; ukn
+          .DATA.B      H'00, H'00, H'00, H'00
+_init_seqLaneStraddle_8c044a70:        ; aggressive search
+          .DATA.L      _const_8c03782c ; ukn
+          .DATA.B      H'01, H'00, H'00, H'00
+          .DATA.L      _const_8c03628c ; ukn
+          .DATA.B      H'00, H'00, H'00, H'00
+_init_seqNoSignal_8c044a80:        ; aggressive search
+          .DATA.L      _const_8c037874 ; ukn
+          .DATA.B      H'01, H'00, H'00, H'00
+          .DATA.L      _const_8c0378ac ; ukn
+          .DATA.B      H'01, H'00, H'00, H'00
+          .DATA.L      _const_8c0378e8 ; ukn
+          .DATA.B      H'01, H'00, H'00, H'00
+          .DATA.L      _const_8c03628c ; ukn
+          .DATA.B      H'00, H'00, H'00, H'00
+_init_seqNoSignalTurn_8c044aa0:        ; aggressive search
+          .DATA.L      _const_8c037924 ; ukn
+          .DATA.B      H'01, H'00, H'00, H'00
+          .DATA.L      _const_8c03628c ; ukn
+          .DATA.B      H'00, H'00, H'00, H'00
+_init_seqUkn49_8c044ab0:        ; aggressive search
+          .DATA.L      _const_8c03628c ; ukn
+          .DATA.B      H'00, H'00, H'00, H'00
+_init_seqSignalViolation_8c044ab8:        ; aggressive search
+          .DATA.L      _const_8c03794c ; ukn
+          .DATA.B      H'01, H'00, H'00, H'00
+          .DATA.L      _const_8c037970 ; ukn
+          .DATA.B      H'01, H'00, H'00, H'00
+          .DATA.L      _const_8c03628c ; ukn
+          .DATA.B      H'00, H'00, H'00, H'00
+_init_seqBadStopLine_8c044ad0:        ; aggressive search
+          .DATA.L      _const_8c0379ac ; ukn
+          .DATA.B      H'01, H'00, H'00, H'00
+          .DATA.L      _const_8c0379c8 ; ukn
+          .DATA.B      H'01, H'00, H'00, H'00
+          .DATA.L      _const_8c03628c ; ukn
+          .DATA.B      H'00, H'00, H'00, H'00
+_init_seqIllegalLaneChange_8c044ae8:        ; aggressive search
+          .DATA.L      _const_8c037a08 ; ukn
+          .DATA.B      H'01, H'00, H'00, H'00
+          .DATA.L      _const_8c037a34 ; ukn
+          .DATA.B      H'01, H'00, H'00, H'00
+          .DATA.L      _const_8c03628c ; ukn
+          .DATA.B      H'00, H'00, H'00, H'00
+_init_seqBlockIntersection_8c044b00:        ; aggressive search
+          .DATA.L      _const_8c037a70 ; ukn
+          .DATA.B      H'01, H'00, H'00, H'00
+          .DATA.L      _const_8c037aa0 ; ukn
+          .DATA.B      H'01, H'00, H'00, H'00
+          .DATA.L      _const_8c03628c ; ukn
+          .DATA.B      H'00, H'00, H'00, H'00
+_init_seqWrongWay_8c044b18:        ; aggressive search
+          .DATA.L      _const_8c037aec ; ukn
+          .DATA.B      H'01, H'00, H'00, H'00
+          .DATA.L      _const_8c037b14 ; ukn
+          .DATA.B      H'01, H'00, H'00, H'00
+          .DATA.L      _const_8c03628c ; ukn
+          .DATA.B      H'00, H'00, H'00, H'00
+_init_seqRapidAccel_8c044b30:        ; aggressive search
+          .DATA.L      _const_8c037b60 ; ukn
+          .DATA.B      H'01, H'00, H'00, H'00
+          .DATA.L      _const_8c03628c ; ukn
+          .DATA.B      H'00, H'00, H'00, H'00
+_init_seqHardBrake_8c044b40:        ; aggressive search
+          .DATA.L      _const_8c037bb0 ; ukn
+          .DATA.B      H'01, H'00, H'00, H'00
+          .DATA.L      _const_8c03628c ; ukn
+          .DATA.B      H'00, H'00, H'00, H'00
+_init_seqSwerving_8c044b50:        ; aggressive search
+          .DATA.L      _const_8c037bfc ; ukn
+          .DATA.B      H'01, H'00, H'00, H'00
+          .DATA.L      _const_8c037c30 ; ukn
+          .DATA.B      H'01, H'00, H'00, H'00
+          .DATA.L      _const_8c03628c ; ukn
+          .DATA.B      H'00, H'00, H'00, H'00
+_init_seqMissedStop_8c044b68:        ; aggressive search
+          .DATA.L      _const_8c037c6c ; ukn
+          .DATA.B      H'01, H'00, H'00, H'00
+          .DATA.L      _const_8c037c94 ; ukn
+          .DATA.B      H'01, H'00, H'00, H'00
+          .DATA.L      _const_8c03628c ; ukn
+          .DATA.B      H'00, H'00, H'00, H'00
+_init_seqBadStopPosition1_8c044b80:        ; aggressive search
+          .DATA.L      _const_8c037cd4 ; ukn
+          .DATA.B      H'01, H'00, H'00, H'00
+          .DATA.L      _const_8c037cfc ; ukn
+          .DATA.B      H'01, H'00, H'00, H'00
+          .DATA.L      _const_8c03628c ; ukn
+          .DATA.B      H'00, H'00, H'00, H'00
+_init_seqBadStopPosition2_8c044b98:        ; aggressive search
+          .DATA.L      _const_8c037cd4 ; ukn
+          .DATA.B      H'01, H'00, H'00, H'00
+          .DATA.L      _const_8c037cfc ; ukn
+          .DATA.B      H'01, H'00, H'00, H'00
+          .DATA.L      _const_8c03628c ; ukn
+          .DATA.B      H'00, H'00, H'00, H'00
+_init_seqTimeManagement_8c044bb0:        ; aggressive search
+          .DATA.L      _const_8c037d40 ; ukn
+          .DATA.B      H'01, H'00, H'00, H'00
+          .DATA.L      _const_8c03628c ; ukn
+          .DATA.B      H'00, H'00, H'00, H'00
+_init_seqAnnouncement_8c044bc0:        ; aggressive search
+          .DATA.L      _const_8c037d78 ; ukn
+          .DATA.B      H'01, H'00, H'00, H'00
+          .DATA.L      _const_8c03628c ; ukn
+          .DATA.B      H'00, H'00, H'00, H'00
+_init_seqDoorOperation_8c044bd0:        ; aggressive search
+          .DATA.L      _const_8c037dcc ; ukn
+          .DATA.B      H'01, H'00, H'00, H'00
+          .DATA.L      _const_8c03628c ; ukn
+          .DATA.B      H'00, H'00, H'00, H'00
+_init_seqFreeRunIntro2_8c044be0:        ; aggressive search
+          .DATA.L      _const_8c036908 ; ukn
+          .DATA.B      H'00, H'00, H'00, H'00
+          .DATA.L      _const_8c037dec ; ukn
+          .DATA.B      H'00, H'00, H'00, H'00
+          .DATA.L      _const_8c03628c ; ukn
+          .DATA.B      H'00, H'00, H'00, H'00
+_init_seqFreeRunChooseCourse_8c044bf8:        ; aggressive search
+          .DATA.L      _const_8c037e1c ; ukn
+          .DATA.B      H'00, H'00, H'00, H'00
+          .DATA.L      _const_8c03628c ; ukn
+          .DATA.B      H'00, H'00, H'00, H'00
+_init_dialogSequences_8c044c08:        ; from defines
+          .DATA.L      _init_seqStoryIntro_8c0445d0
+          .DATA.L      _init_seqSuccessPerfect_8c044620
+          .DATA.L      _init_seqSuccessHigh_8c044650
+          .DATA.L      _init_seqSuccessNormal_8c044680
+          .DATA.L      _init_seqFailureFinal_8c0446b8
+          .DATA.L      _init_seqFreeRunIntro_8c0446e0
+          .DATA.L      _init_seqStoryChooseCourse_8c0446f8
+          .DATA.L      _init_seqGoodPractice_8c044708
+          .DATA.L      _init_seqSuccess_8c044718
+          .DATA.L      _init_seqAwardBadgeGold_8c044728
+          .DATA.L      _init_seqAwardBadgeSilver_8c044748
+          .DATA.L      _init_seqAwardBadgeBronze_8c044760
+          .DATA.L      _init_seqFailureRetry_8c044778
+          .DATA.L      _init_seqCourseUnlocked_8c044790
+          .DATA.L      _init_seqPassengerLetter_8c0447b0
+          .DATA.L      _init_seqCourseLocked_8c0447d0
+          .DATA.L      _init_seqForcePractice_8c0447e0
+          .DATA.L      _init_seqFinalDay_8c0447f0
+          .DATA.L      _init_seqLessonIntro_8c044808
+          .DATA.L      _init_seqLessonComplete_8c044820
+          .DATA.L      _init_seqLessonNext_8c044848
+          .DATA.L      _init_seqLessonRetry_8c044858
+          .DATA.L      _init_seqLessonTips_8c044868
+          .DATA.L      _init_seqLessonWarning_8c044878
+          .DATA.L      _init_seqLessonChoose_8c044888
+          .DATA.L      _init_seqScoreRecord_8c044898
+          .DATA.L      _init_seqLessonFinalDay_8c0448a8
+          .DATA.L      _init_seqLessonPerfect_8c0448c0
+          .DATA.L      _init_seqLessonGood_8c0448d8
+          .DATA.L      _init_seqLessonPass_8c0448f8
+          .DATA.L      _init_seqLessonFailMinor_8c044910
+          .DATA.L      _init_seqLessonFailMajor_8c044928
+          .DATA.L      _init_seqCollisionCarMinor_8c044948
+          .DATA.L      _init_seqCollisionCarMedium_8c044960
+          .DATA.L      _init_seqCollisionCarSevere_8c044978
+          .DATA.L      _init_seqCollisionCarFatal_8c044990
+          .DATA.L      _init_seqCollisionWallMinor_8c0449a8
+          .DATA.L      _init_seqCollisionWallMedium_8c0449c0
+          .DATA.L      _init_seqCollisionWallSevere_8c0449d8
+          .DATA.L      _init_seqNearMissPedestrian_8c0449f0
+          .DATA.L      _init_seqOffCourseMinor_8c044a08
+          .DATA.L      _init_seqOffCourseMedium_8c044a20
+          .DATA.L      _init_seqOffCourseMajor_8c044a30
+          .DATA.L      _init_seqSpeedingMinor_8c044a40
+          .DATA.L      _init_seqSpeedingMajor_8c044a50
+          .DATA.L      _init_seqWrongLane_8c044a60
+          .DATA.L      _init_seqLaneStraddle_8c044a70
+          .DATA.L      _init_seqNoSignal_8c044a80
+          .DATA.L      _init_seqNoSignalTurn_8c044aa0
+          .DATA.L      _init_seqUkn49_8c044ab0
+          .DATA.L      _init_seqSignalViolation_8c044ab8
+          .DATA.L      _init_seqBadStopLine_8c044ad0
+          .DATA.L      _init_seqIllegalLaneChange_8c044ae8
+          .DATA.L      _init_seqBlockIntersection_8c044b00
+          .DATA.L      _init_seqWrongWay_8c044b18
+          .DATA.L      _init_seqRapidAccel_8c044b30
+          .DATA.L      _init_seqHardBrake_8c044b40
+          .DATA.L      _init_seqSwerving_8c044b50
+          .DATA.L      _init_seqMissedStop_8c044b68
+          .DATA.L      _init_seqBadStopPosition1_8c044b80
+          .DATA.L      _init_seqBadStopPosition2_8c044b98
+          .DATA.L      _init_seqTimeManagement_8c044bb0
+          .DATA.L      _init_seqAnnouncement_8c044bc0
+          .DATA.L      _init_seqDoorOperation_8c044bd0
+          .DATA.L      _init_seqFreeRunIntro2_8c044be0
+          .DATA.L      _init_seqFreeRunChooseCourse_8c044bf8
+
+          .SECTION    C, DATA, ALIGN=4
+_const_8c03628c:        ; from defines
+          .DATA.B      H'00, H'00, H'00, H'00
+_const_8c036290:        ; from defines
+          ;.SDATA      "\SYSTEM"
+          ;.DATA.B     H'00
+          .DATA.B      H'5C, H'53, H'59, H'53, H'54, H'45, H'4D, H'00
+_const_8c036298:        ; from defines
+          ;.SDATA      "common_parts.dat"
+          ;.DATA.B     H'00
+          ;.RES.B      3
+          .DATA.B      H'63, H'6F, H'6D, H'6D, H'6F, H'6E, H'5F, H'70, H'61, H'72, H'74, H'73, H'2E, H'64, H'61, H'74
+          .DATA.B      H'00, H'00, H'00, H'00
+_const_8c0362ac:        ; from defines
+          ;.SDATA      "common.dat"
+          ;.DATA.B     H'00
+          ;.RES.B      1
+          .DATA.B      H'63, H'6F, H'6D, H'6D, H'6F, H'6E, H'2E, H'64, H'61, H'74, H'00, H'00
+_const_8c0362b8:        ; from defines
+          ;.SDATA      "common.pvm"
+          ;.DATA.B     H'00
+          ;.RES.B      1
+          .DATA.B      H'63, H'6F, H'6D, H'6D, H'6F, H'6E, H'2E, H'70, H'76, H'6D, H'00, H'00
+_const_8c0362c4:        ; from ghidra
+          ;.SDATA      "やぁ、よく来たね<E>私がここの所長だ、以後よろしく"
+          ;.DATA.B     H'00
+          ;.RES.B      2
+          .DATA.B      H'82, H'E2, H'82, H'9F, H'81, H'41, H'82, H'E6, H'82, H'AD, H'97, H'88, H'82, H'BD, H'82, H'CB
+          .DATA.B      H'3C, H'45, H'3E, H'8E, H'84, H'82, H'AA, H'82, H'B1, H'82, H'B1, H'82, H'CC, H'8F, H'8A, H'92
+          .DATA.B      H'B7, H'82, H'BE, H'81, H'41, H'88, H'C8, H'8C, H'E3, H'82, H'E6, H'82, H'EB, H'82, H'B5, H'82
+          .DATA.B      H'AD, H'00, H'00, H'00
+_const_8c0362f8:        ; aggressive search
+          ;.SDATA      "今日から一ヶ月間、キミには<E>ここで実地研修を受けてもらう"
+          ;.DATA.B     H'00
+          ;.RES.B      2
+          .DATA.B      H'8D, H'A1, H'93, H'FA, H'82, H'A9, H'82, H'E7, H'88, H'EA, H'83, H'96, H'8C, H'8E, H'8A, H'D4
+          .DATA.B      H'81, H'41, H'83, H'4C, H'83, H'7E, H'82, H'C9, H'82, H'CD, H'3C, H'45, H'3E, H'82, H'B1, H'82
+          .DATA.B      H'B1, H'82, H'C5, H'8E, H'C0, H'92, H'6E, H'8C, H'A4, H'8F, H'43, H'82, H'F0, H'8E, H'F3, H'82
+          .DATA.B      H'AF, H'82, H'C4, H'82, H'E0, H'82, H'E7, H'82, H'A4, H'00, H'00, H'00
+_const_8c036334:        ; aggressive search
+          ;.SDATA      "この研修に合格すると<E>キミは晴れて都営バスの運転手だ"
+          ;.DATA.B     H'00
+          ;.RES.B      2
+          .DATA.B      H'82, H'B1, H'82, H'CC, H'8C, H'A4, H'8F, H'43, H'82, H'C9, H'8D, H'87, H'8A, H'69, H'82, H'B7
+          .DATA.B      H'82, H'E9, H'82, H'C6, H'3C, H'45, H'3E, H'83, H'4C, H'83, H'7E, H'82, H'CD, H'90, H'B0, H'82
+          .DATA.B      H'EA, H'82, H'C4, H'93, H'73, H'89, H'63, H'83, H'6F, H'83, H'58, H'82, H'CC, H'89, H'5E, H'93
+          .DATA.B      H'5D, H'8E, H'E8, H'82, H'BE, H'00, H'00, H'00
+_const_8c03636c:        ; aggressive search
+          ;.SDATA      "最後の研修だが<E>気を抜かずに頑張ってくれよ"
+          ;.DATA.B     H'00
+          .DATA.B      H'8D, H'C5, H'8C, H'E3, H'82, H'CC, H'8C, H'A4, H'8F, H'43, H'82, H'BE, H'82, H'AA, H'3C, H'45
+          .DATA.B      H'3E, H'8B, H'43, H'82, H'F0, H'94, H'B2, H'82, H'A9, H'82, H'B8, H'82, H'C9, H'8A, H'E6, H'92
+          .DATA.B      H'A3, H'82, H'C1, H'82, H'C4, H'82, H'AD, H'82, H'EA, H'82, H'E6, H'00
+_const_8c036398:        ; aggressive search
+          ;.SDATA      "まずは比較的簡単な〈梅７６〉と<E>〈虹０１〉の２コースで研修しよう"
+          ;.DATA.B     H'00
+          ;.RES.B      2
+          .DATA.B      H'82, H'DC, H'82, H'B8, H'82, H'CD, H'94, H'E4, H'8A, H'72, H'93, H'49, H'8A, H'C8, H'92, H'50
+          .DATA.B      H'82, H'C8, H'81, H'71, H'94, H'7E, H'82, H'56, H'82, H'55, H'81, H'72, H'82, H'C6, H'3C, H'45
+          .DATA.B      H'3E, H'81, H'71, H'93, H'F8, H'82, H'4F, H'82, H'50, H'81, H'72, H'82, H'CC, H'82, H'51, H'83
+          .DATA.B      H'52, H'81, H'5B, H'83, H'58, H'82, H'C5, H'8C, H'A4, H'8F, H'43, H'82, H'B5, H'82, H'E6, H'82
+          .DATA.B      H'A4, H'00, H'00, H'00
+_const_8c0363dc:        ; aggressive search
+          ;.SDATA      "視界も広く、交通量も多くない時間帯を<E>選んでいるので、研修にはちょうどいいだろう"
+          ;.DATA.B     H'00
+          ;.RES.B      2
+          .DATA.B      H'8E, H'8B, H'8A, H'45, H'82, H'E0, H'8D, H'4C, H'82, H'AD, H'81, H'41, H'8C, H'F0, H'92, H'CA
+          .DATA.B      H'97, H'CA, H'82, H'E0, H'91, H'BD, H'82, H'AD, H'82, H'C8, H'82, H'A2, H'8E, H'9E, H'8A, H'D4
+          .DATA.B      H'91, H'D1, H'82, H'F0, H'3C, H'45, H'3E, H'91, H'49, H'82, H'F1, H'82, H'C5, H'82, H'A2, H'82
+          .DATA.B      H'E9, H'82, H'CC, H'82, H'C5, H'81, H'41, H'8C, H'A4, H'8F, H'43, H'82, H'C9, H'82, H'CD, H'82
+          .DATA.B      H'BF, H'82, H'E5, H'82, H'A4, H'82, H'C7, H'82, H'A2, H'82, H'A2, H'82, H'BE, H'82, H'EB, H'82
+          .DATA.B      H'A4, H'00, H'00, H'00
+_const_8c036430:        ; aggressive search
+          ;.SDATA      "慣れてきたら、少しづつ難しいコースも<E>走れるようになるからな"
+          ;.DATA.B     H'00
+          ;.RES.B      2
+          .DATA.B      H'8A, H'B5, H'82, H'EA, H'82, H'C4, H'82, H'AB, H'82, H'BD, H'82, H'E7, H'81, H'41, H'8F, H'AD
+          .DATA.B      H'82, H'B5, H'82, H'C3, H'82, H'C2, H'93, H'EF, H'82, H'B5, H'82, H'A2, H'83, H'52, H'81, H'5B
+          .DATA.B      H'83, H'58, H'82, H'E0, H'3C, H'45, H'3E, H'91, H'96, H'82, H'EA, H'82, H'E9, H'82, H'E6, H'82
+          .DATA.B      H'A4, H'82, H'C9, H'82, H'C8, H'82, H'E9, H'82, H'A9, H'82, H'E7, H'82, H'C8, H'00, H'00, H'00
+_const_8c036470:        ; aggressive search
+          ;.SDATA      "いきなりコースを走るのが不安なら<E>練習することもできるぞ"
+          ;.DATA.B     H'00
+          ;.RES.B      2
+          .DATA.B      H'82, H'A2, H'82, H'AB, H'82, H'C8, H'82, H'E8, H'83, H'52, H'81, H'5B, H'83, H'58, H'82, H'F0
+          .DATA.B      H'91, H'96, H'82, H'E9, H'82, H'CC, H'82, H'AA, H'95, H'73, H'88, H'C0, H'82, H'C8, H'82, H'E7
+          .DATA.B      H'3C, H'45, H'3E, H'97, H'FB, H'8F, H'4B, H'82, H'B7, H'82, H'E9, H'82, H'B1, H'82, H'C6, H'82
+          .DATA.B      H'E0, H'82, H'C5, H'82, H'AB, H'82, H'E9, H'82, H'BC, H'00, H'00, H'00
+_const_8c0364ac:        ; aggressive search
+          ;.SDATA      "練習したい場合は画面左上の<E>ＰＲＡＣＴＩＣＥを選ぶといい"
+          ;.DATA.B     H'00
+          ;.RES.B      2
+          .DATA.B      H'97, H'FB, H'8F, H'4B, H'82, H'B5, H'82, H'BD, H'82, H'A2, H'8F, H'EA, H'8D, H'87, H'82, H'CD
+          .DATA.B      H'89, H'E6, H'96, H'CA, H'8D, H'B6, H'8F, H'E3, H'82, H'CC, H'3C, H'45, H'3E, H'82, H'6F, H'82
+          .DATA.B      H'71, H'82, H'60, H'82, H'62, H'82, H'73, H'82, H'68, H'82, H'62, H'82, H'64, H'82, H'F0, H'91
+          .DATA.B      H'49, H'82, H'D4, H'82, H'C6, H'82, H'A2, H'82, H'A2, H'00, H'00, H'00
+_const_8c0364e8:        ; aggressive search
+          ;.SDATA      "キミの成績には、正直、びっくりしたよ<E>実に素晴らしい！"
+          ;.DATA.B     H'00
+          .DATA.B      H'83, H'4C, H'83, H'7E, H'82, H'CC, H'90, H'AC, H'90, H'D1, H'82, H'C9, H'82, H'CD, H'81, H'41
+          .DATA.B      H'90, H'B3, H'92, H'BC, H'81, H'41, H'82, H'D1, H'82, H'C1, H'82, H'AD, H'82, H'E8, H'82, H'B5
+          .DATA.B      H'82, H'BD, H'82, H'E6, H'3C, H'45, H'3E, H'8E, H'C0, H'82, H'C9, H'91, H'66, H'90, H'B0, H'82
+          .DATA.B      H'E7, H'82, H'B5, H'82, H'A2, H'81, H'49, H'00
+_const_8c036520:        ; aggressive search
+          ;.SDATA      "どのコースをとっても<E>まさにパーフェクト！"
+          ;.DATA.B     H'00
+          .DATA.B      H'82, H'C7, H'82, H'CC, H'83, H'52, H'81, H'5B, H'83, H'58, H'82, H'F0, H'82, H'C6, H'82, H'C1
+          .DATA.B      H'82, H'C4, H'82, H'E0, H'3C, H'45, H'3E, H'82, H'DC, H'82, H'B3, H'82, H'C9, H'83, H'70, H'81
+          .DATA.B      H'5B, H'83, H'74, H'83, H'46, H'83, H'4E, H'83, H'67, H'81, H'49, H'00
+_const_8c03654c:        ; aggressive search
+          ;.SDATA      "おめでとう<E>実地研修は満点で合格だ！"
+          ;.DATA.B     H'00
+          ;.RES.B      2
+          .DATA.B      H'82, H'A8, H'82, H'DF, H'82, H'C5, H'82, H'C6, H'82, H'A4, H'3C, H'45, H'3E, H'8E, H'C0, H'92
+          .DATA.B      H'6E, H'8C, H'A4, H'8F, H'43, H'82, H'CD, H'96, H'9E, H'93, H'5F, H'82, H'C5, H'8D, H'87, H'8A
+          .DATA.B      H'69, H'82, H'BE, H'81, H'49, H'00, H'00, H'00
+_const_8c036574:        ; aggressive search
+          ;.SDATA      "キミならどこに配属されても大丈夫<E>研修を担当した私も鼻が高いよ"
+          ;.DATA.B     H'00
+          .DATA.B      H'83, H'4C, H'83, H'7E, H'82, H'C8, H'82, H'E7, H'82, H'C7, H'82, H'B1, H'82, H'C9, H'94, H'7A
+          .DATA.B      H'91, H'AE, H'82, H'B3, H'82, H'EA, H'82, H'C4, H'82, H'E0, H'91, H'E5, H'8F, H'E4, H'95, H'76
+          .DATA.B      H'3C, H'45, H'3E, H'8C, H'A4, H'8F, H'43, H'82, H'F0, H'92, H'53, H'93, H'96, H'82, H'B5, H'82
+          .DATA.B      H'BD, H'8E, H'84, H'82, H'E0, H'95, H'40, H'82, H'AA, H'8D, H'82, H'82, H'A2, H'82, H'E6, H'00
+_const_8c0365b4:        ; aggressive search
+          ;.SDATA      "都営バスの未来を担う一員として<E>キミには期待しているぞ"
+          ;.DATA.B     H'00
+          .DATA.B      H'93, H'73, H'89, H'63, H'83, H'6F, H'83, H'58, H'82, H'CC, H'96, H'A2, H'97, H'88, H'82, H'F0
+          .DATA.B      H'92, H'53, H'82, H'A4, H'88, H'EA, H'88, H'F5, H'82, H'C6, H'82, H'B5, H'82, H'C4, H'3C, H'45
+          .DATA.B      H'3E, H'83, H'4C, H'83, H'7E, H'82, H'C9, H'82, H'CD, H'8A, H'FA, H'91, H'D2, H'82, H'B5, H'82
+          .DATA.B      H'C4, H'82, H'A2, H'82, H'E9, H'82, H'BC, H'00
+_const_8c0365ec:        ; aggressive search
+          ;.SDATA      "昨日で無事、実地研修が終了した<E>本当によく頑張ったな"
+          ;.DATA.B     H'00
+          ;.RES.B      2
+          .DATA.B      H'8D, H'F0, H'93, H'FA, H'82, H'C5, H'96, H'B3, H'8E, H'96, H'81, H'41, H'8E, H'C0, H'92, H'6E
+          .DATA.B      H'8C, H'A4, H'8F, H'43, H'82, H'AA, H'8F, H'49, H'97, H'B9, H'82, H'B5, H'82, H'BD, H'3C, H'45
+          .DATA.B      H'3E, H'96, H'7B, H'93, H'96, H'82, H'C9, H'82, H'E6, H'82, H'AD, H'8A, H'E6, H'92, H'A3, H'82
+          .DATA.B      H'C1, H'82, H'BD, H'82, H'C8, H'00, H'00, H'00
+_const_8c036624:        ; aggressive search
+          ;.SDATA      "キミの成績を見せてもらったが<E>申し分のない成績だったよ"
+          ;.DATA.B     H'00
+          .DATA.B      H'83, H'4C, H'83, H'7E, H'82, H'CC, H'90, H'AC, H'90, H'D1, H'82, H'F0, H'8C, H'A9, H'82, H'B9
+          .DATA.B      H'82, H'C4, H'82, H'E0, H'82, H'E7, H'82, H'C1, H'82, H'BD, H'82, H'AA, H'3C, H'45, H'3E, H'90
+          .DATA.B      H'5C, H'82, H'B5, H'95, H'AA, H'82, H'CC, H'82, H'C8, H'82, H'A2, H'90, H'AC, H'90, H'D1, H'82
+          .DATA.B      H'BE, H'82, H'C1, H'82, H'BD, H'82, H'E6, H'00
+_const_8c03665c:        ; aggressive search
+          ;.SDATA      "全コースとも高得点をあげている<E>これは並大抵の事ではない"
+          ;.DATA.B     H'00
+          ;.RES.B      2
+          .DATA.B      H'91, H'53, H'83, H'52, H'81, H'5B, H'83, H'58, H'82, H'C6, H'82, H'E0, H'8D, H'82, H'93, H'BE
+          .DATA.B      H'93, H'5F, H'82, H'F0, H'82, H'A0, H'82, H'B0, H'82, H'C4, H'82, H'A2, H'82, H'E9, H'3C, H'45
+          .DATA.B      H'3E, H'82, H'B1, H'82, H'EA, H'82, H'CD, H'95, H'C0, H'91, H'E5, H'92, H'EF, H'82, H'CC, H'8E
+          .DATA.B      H'96, H'82, H'C5, H'82, H'CD, H'82, H'C8, H'82, H'A2, H'00, H'00, H'00
+_const_8c036698:        ; aggressive search
+          ;.SDATA      "おめでとう<E>実地研修はもちろん合格だ！"
+          ;.DATA.B     H'00
+          .DATA.B      H'82, H'A8, H'82, H'DF, H'82, H'C5, H'82, H'C6, H'82, H'A4, H'3C, H'45, H'3E, H'8E, H'C0, H'92
+          .DATA.B      H'6E, H'8C, H'A4, H'8F, H'43, H'82, H'CD, H'82, H'E0, H'82, H'BF, H'82, H'EB, H'82, H'F1, H'8D
+          .DATA.B      H'87, H'8A, H'69, H'82, H'BE, H'81, H'49, H'00
+_const_8c0366c0:        ; aggressive search
+          ;.SDATA      "今日からキミは都営バスの立派な運転手だ<E>これからもよろしく頼むぞ！"
+          ;.DATA.B     H'00
+          .DATA.B      H'8D, H'A1, H'93, H'FA, H'82, H'A9, H'82, H'E7, H'83, H'4C, H'83, H'7E, H'82, H'CD, H'93, H'73
+          .DATA.B      H'89, H'63, H'83, H'6F, H'83, H'58, H'82, H'CC, H'97, H'A7, H'94, H'68, H'82, H'C8, H'89, H'5E
+          .DATA.B      H'93, H'5D, H'8E, H'E8, H'82, H'BE, H'3C, H'45, H'3E, H'82, H'B1, H'82, H'EA, H'82, H'A9, H'82
+          .DATA.B      H'E7, H'82, H'E0, H'82, H'E6, H'82, H'EB, H'82, H'B5, H'82, H'AD, H'97, H'8A, H'82, H'DE, H'82
+          .DATA.B      H'BC, H'81, H'49, H'00
+_const_8c036704:        ; aggressive search
+          ;.SDATA      "キミの成績を見せてもらったが<E>まぁ、十分に合格点をあげられるだろう"
+          ;.DATA.B     H'00
+          .DATA.B      H'83, H'4C, H'83, H'7E, H'82, H'CC, H'90, H'AC, H'90, H'D1, H'82, H'F0, H'8C, H'A9, H'82, H'B9
+          .DATA.B      H'82, H'C4, H'82, H'E0, H'82, H'E7, H'82, H'C1, H'82, H'BD, H'82, H'AA, H'3C, H'45, H'3E, H'82
+          .DATA.B      H'DC, H'82, H'9F, H'81, H'41, H'8F, H'5C, H'95, H'AA, H'82, H'C9, H'8D, H'87, H'8A, H'69, H'93
+          .DATA.B      H'5F, H'82, H'F0, H'82, H'A0, H'82, H'B0, H'82, H'E7, H'82, H'EA, H'82, H'E9, H'82, H'BE, H'82
+          .DATA.B      H'EB, H'82, H'A4, H'00
+_const_8c036748:        ; aggressive search
+          ;.SDATA      "各コース、致命的なミスはなく<E>成績も悪くない"
+          ;.DATA.B     H'00
+          ;.RES.B      2
+          .DATA.B      H'8A, H'65, H'83, H'52, H'81, H'5B, H'83, H'58, H'81, H'41, H'92, H'76, H'96, H'BD, H'93, H'49
+          .DATA.B      H'82, H'C8, H'83, H'7E, H'83, H'58, H'82, H'CD, H'82, H'C8, H'82, H'AD, H'3C, H'45, H'3E, H'90
+          .DATA.B      H'AC, H'90, H'D1, H'82, H'E0, H'88, H'AB, H'82, H'AD, H'82, H'C8, H'82, H'A2, H'00, H'00, H'00
+_const_8c036778:        ; aggressive search
+          ;.SDATA      "これからも注意を怠ることなく<E>この調子でますます努力・精進してくれ"
+          ;.DATA.B     H'00
+          .DATA.B      H'82, H'B1, H'82, H'EA, H'82, H'A9, H'82, H'E7, H'82, H'E0, H'92, H'8D, H'88, H'D3, H'82, H'F0
+          .DATA.B      H'91, H'D3, H'82, H'E9, H'82, H'B1, H'82, H'C6, H'82, H'C8, H'82, H'AD, H'3C, H'45, H'3E, H'82
+          .DATA.B      H'B1, H'82, H'CC, H'92, H'B2, H'8E, H'71, H'82, H'C5, H'82, H'DC, H'82, H'B7, H'82, H'DC, H'82
+          .DATA.B      H'B7, H'93, H'77, H'97, H'CD, H'81, H'45, H'90, H'B8, H'90, H'69, H'82, H'B5, H'82, H'C4, H'82
+          .DATA.B      H'AD, H'82, H'EA, H'00
+_const_8c0367bc:        ; aggressive search
+          ;.SDATA      "おめでとう<E>実地研修は合格だ！"
+          ;.DATA.B     H'00
+          .DATA.B      H'82, H'A8, H'82, H'DF, H'82, H'C5, H'82, H'C6, H'82, H'A4, H'3C, H'45, H'3E, H'8E, H'C0, H'92
+          .DATA.B      H'6E, H'8C, H'A4, H'8F, H'43, H'82, H'CD, H'8D, H'87, H'8A, H'69, H'82, H'BE, H'81, H'49, H'00
+_const_8c0367dc:        ; aggressive search
+          ;.SDATA      "明日からも気を抜くことなく、<E>研修の延長線だと思って、業務に取り組んでくれ"
+          ;.DATA.B     H'00
+          .DATA.B      H'96, H'BE, H'93, H'FA, H'82, H'A9, H'82, H'E7, H'82, H'E0, H'8B, H'43, H'82, H'F0, H'94, H'B2
+          .DATA.B      H'82, H'AD, H'82, H'B1, H'82, H'C6, H'82, H'C8, H'82, H'AD, H'81, H'41, H'3C, H'45, H'3E, H'8C
+          .DATA.B      H'A4, H'8F, H'43, H'82, H'CC, H'89, H'84, H'92, H'B7, H'90, H'FC, H'82, H'BE, H'82, H'C6, H'8E
+          .DATA.B      H'76, H'82, H'C1, H'82, H'C4, H'81, H'41, H'8B, H'C6, H'96, H'B1, H'82, H'C9, H'8E, H'E6, H'82
+          .DATA.B      H'E8, H'91, H'67, H'82, H'F1, H'82, H'C5, H'82, H'AD, H'82, H'EA, H'00
+_const_8c036828:        ; aggressive search
+          ;.SDATA      "１ヶ月間本当によく頑張ったな"
+          ;.DATA.B     H'00
+          ;.RES.B      3
+          .DATA.B      H'82, H'50, H'83, H'96, H'8C, H'8E, H'8A, H'D4, H'96, H'7B, H'93, H'96, H'82, H'C9, H'82, H'E6
+          .DATA.B      H'82, H'AD, H'8A, H'E6, H'92, H'A3, H'82, H'C1, H'82, H'BD, H'82, H'C8, H'00, H'00, H'00, H'00
+_const_8c036848:        ; aggressive search
+          ;.SDATA      "…と言いたい所なんだが<E>合格点には少し及ばなかったようだ"
+          ;.DATA.B     H'00
+          ;.RES.B      2
+          .DATA.B      H'81, H'63, H'82, H'C6, H'8C, H'BE, H'82, H'A2, H'82, H'BD, H'82, H'A2, H'8F, H'8A, H'82, H'C8
+          .DATA.B      H'82, H'F1, H'82, H'BE, H'82, H'AA, H'3C, H'45, H'3E, H'8D, H'87, H'8A, H'69, H'93, H'5F, H'82
+          .DATA.B      H'C9, H'82, H'CD, H'8F, H'AD, H'82, H'B5, H'8B, H'79, H'82, H'CE, H'82, H'C8, H'82, H'A9, H'82
+          .DATA.B      H'C1, H'82, H'BD, H'82, H'E6, H'82, H'A4, H'82, H'BE, H'00, H'00, H'00
+_const_8c036884:        ; aggressive search
+          ;.SDATA      "運転手は、乗客の命を預かっているんだ<E>軽率な行動やミスは許されない"
+          ;.DATA.B     H'00
+          .DATA.B      H'89, H'5E, H'93, H'5D, H'8E, H'E8, H'82, H'CD, H'81, H'41, H'8F, H'E6, H'8B, H'71, H'82, H'CC
+          .DATA.B      H'96, H'BD, H'82, H'F0, H'97, H'61, H'82, H'A9, H'82, H'C1, H'82, H'C4, H'82, H'A2, H'82, H'E9
+          .DATA.B      H'82, H'F1, H'82, H'BE, H'3C, H'45, H'3E, H'8C, H'79, H'97, H'A6, H'82, H'C8, H'8D, H'73, H'93
+          .DATA.B      H'AE, H'82, H'E2, H'83, H'7E, H'83, H'58, H'82, H'CD, H'8B, H'96, H'82, H'B3, H'82, H'EA, H'82
+          .DATA.B      H'C8, H'82, H'A2, H'00
+_const_8c0368c8:        ; aggressive search
+          ;.SDATA      "キミはもう少し研修を続けた方が<E>良さそうだな、頑張ってくれよ"
+          ;.DATA.B     H'00
+          ;.RES.B      2
+          .DATA.B      H'83, H'4C, H'83, H'7E, H'82, H'CD, H'82, H'E0, H'82, H'A4, H'8F, H'AD, H'82, H'B5, H'8C, H'A4
+          .DATA.B      H'8F, H'43, H'82, H'F0, H'91, H'B1, H'82, H'AF, H'82, H'BD, H'95, H'FB, H'82, H'AA, H'3C, H'45
+          .DATA.B      H'3E, H'97, H'C7, H'82, H'B3, H'82, H'BB, H'82, H'A4, H'82, H'BE, H'82, H'C8, H'81, H'41, H'8A
+          .DATA.B      H'E6, H'92, H'A3, H'82, H'C1, H'82, H'C4, H'82, H'AD, H'82, H'EA, H'82, H'E6, H'00, H'00, H'00
+_const_8c036908:        ; aggressive search
+          ;.SDATA      "ここでは、好きなコースを<E>何度でも走る事ができるぞ"
+          ;.DATA.B     H'00
+          .DATA.B      H'82, H'B1, H'82, H'B1, H'82, H'C5, H'82, H'CD, H'81, H'41, H'8D, H'44, H'82, H'AB, H'82, H'C8
+          .DATA.B      H'83, H'52, H'81, H'5B, H'83, H'58, H'82, H'F0, H'3C, H'45, H'3E, H'89, H'BD, H'93, H'78, H'82
+          .DATA.B      H'C5, H'82, H'E0, H'91, H'96, H'82, H'E9, H'8E, H'96, H'82, H'AA, H'82, H'C5, H'82, H'AB, H'82
+          .DATA.B      H'E9, H'82, H'BC, H'00
+_const_8c03693c:        ; aggressive search
+          ;.SDATA      "但しストーリーモードで走ったコース限る"
+          ;.DATA.B     H'00
+          ;.RES.B      1
+          .DATA.B      H'92, H'41, H'82, H'B5, H'83, H'58, H'83, H'67, H'81, H'5B, H'83, H'8A, H'81, H'5B, H'83, H'82
+          .DATA.B      H'81, H'5B, H'83, H'68, H'82, H'C5, H'91, H'96, H'82, H'C1, H'82, H'BD, H'83, H'52, H'81, H'5B
+          .DATA.B      H'83, H'58, H'8C, H'C0, H'82, H'E9, H'00, H'00
+_const_8c036964:        ; aggressive search
+          ;.SDATA      "さぁ、今日の研修を選んでくれ"
+          ;.DATA.B     H'00
+          ;.RES.B      3
+          .DATA.B      H'82, H'B3, H'82, H'9F, H'81, H'41, H'8D, H'A1, H'93, H'FA, H'82, H'CC, H'8C, H'A4, H'8F, H'43
+          .DATA.B      H'82, H'F0, H'91, H'49, H'82, H'F1, H'82, H'C5, H'82, H'AD, H'82, H'EA, H'00, H'00, H'00, H'00
+_const_8c036984:        ; aggressive search
+          ;.SDATA      "昨日は充実した練習が出来たようだね"
+          ;.DATA.B     H'00
+          ;.RES.B      1
+          .DATA.B      H'8D, H'F0, H'93, H'FA, H'82, H'CD, H'8F, H'5B, H'8E, H'C0, H'82, H'B5, H'82, H'BD, H'97, H'FB
+          .DATA.B      H'8F, H'4B, H'82, H'AA, H'8F, H'6F, H'97, H'88, H'82, H'BD, H'82, H'E6, H'82, H'A4, H'82, H'BE
+          .DATA.B      H'82, H'CB, H'00, H'00
+_const_8c0369a8:        ; aggressive search
+          ;.SDATA      "昨日はなんとかうまく走れたようだね<E>その調子で頑張ってくれよ"
+          ;.DATA.B     H'00
+          ;.RES.B      2
+          .DATA.B      H'8D, H'F0, H'93, H'FA, H'82, H'CD, H'82, H'C8, H'82, H'F1, H'82, H'C6, H'82, H'A9, H'82, H'A4
+          .DATA.B      H'82, H'DC, H'82, H'AD, H'91, H'96, H'82, H'EA, H'82, H'BD, H'82, H'E6, H'82, H'A4, H'82, H'BE
+          .DATA.B      H'82, H'CB, H'3C, H'45, H'3E, H'82, H'BB, H'82, H'CC, H'92, H'B2, H'8E, H'71, H'82, H'C5, H'8A
+          .DATA.B      H'E6, H'92, H'A3, H'82, H'C1, H'82, H'C4, H'82, H'AD, H'82, H'EA, H'82, H'E6, H'00, H'00, H'00
+_const_8c0369e8:        ; aggressive search
+          ;.SDATA      "昨日は素晴らしい成績だったな"
+          ;.DATA.B     H'00
+          ;.RES.B      3
+          .DATA.B      H'8D, H'F0, H'93, H'FA, H'82, H'CD, H'91, H'66, H'90, H'B0, H'82, H'E7, H'82, H'B5, H'82, H'A2
+          .DATA.B      H'90, H'AC, H'90, H'D1, H'82, H'BE, H'82, H'C1, H'82, H'BD, H'82, H'C8, H'00, H'00, H'00, H'00
+_const_8c036a08:        ; aggressive search
+          ;.SDATA      "キミには優秀ドライバーの証し<E>ゴールドバッジを与えよう"
+          ;.DATA.B     H'00
+          .DATA.B      H'83, H'4C, H'83, H'7E, H'82, H'C9, H'82, H'CD, H'97, H'44, H'8F, H'47, H'83, H'68, H'83, H'89
+          .DATA.B      H'83, H'43, H'83, H'6F, H'81, H'5B, H'82, H'CC, H'8F, H'D8, H'82, H'B5, H'3C, H'45, H'3E, H'83
+          .DATA.B      H'53, H'81, H'5B, H'83, H'8B, H'83, H'68, H'83, H'6F, H'83, H'62, H'83, H'57, H'82, H'F0, H'97
+          .DATA.B      H'5E, H'82, H'A6, H'82, H'E6, H'82, H'A4, H'00
+_const_8c036a40:        ; aggressive search
+          ;.SDATA      "この調子で頑張ってくれよ"
+          ;.DATA.B     H'00
+          ;.RES.B      3
+          .DATA.B      H'82, H'B1, H'82, H'CC, H'92, H'B2, H'8E, H'71, H'82, H'C5, H'8A, H'E6, H'92, H'A3, H'82, H'C1
+          .DATA.B      H'82, H'C4, H'82, H'AD, H'82, H'EA, H'82, H'E6, H'00, H'00, H'00, H'00
+_const_8c036a5c:        ; aggressive search
+          ;.SDATA      "キミには優秀ドライバーの証し<E>シルバーバッジを与えよう"
+          ;.DATA.B     H'00
+          .DATA.B      H'83, H'4C, H'83, H'7E, H'82, H'C9, H'82, H'CD, H'97, H'44, H'8F, H'47, H'83, H'68, H'83, H'89
+          .DATA.B      H'83, H'43, H'83, H'6F, H'81, H'5B, H'82, H'CC, H'8F, H'D8, H'82, H'B5, H'3C, H'45, H'3E, H'83
+          .DATA.B      H'56, H'83, H'8B, H'83, H'6F, H'81, H'5B, H'83, H'6F, H'83, H'62, H'83, H'57, H'82, H'F0, H'97
+          .DATA.B      H'5E, H'82, H'A6, H'82, H'E6, H'82, H'A4, H'00
+_const_8c036a94:        ; aggressive search
+          ;.SDATA      "もっと高得点が出れば、さらに上の<E>ゴールドバッジもあるからな"
+          ;.DATA.B     H'00
+          ;.RES.B      2
+          .DATA.B      H'82, H'E0, H'82, H'C1, H'82, H'C6, H'8D, H'82, H'93, H'BE, H'93, H'5F, H'82, H'AA, H'8F, H'6F
+          .DATA.B      H'82, H'EA, H'82, H'CE, H'81, H'41, H'82, H'B3, H'82, H'E7, H'82, H'C9, H'8F, H'E3, H'82, H'CC
+          .DATA.B      H'3C, H'45, H'3E, H'83, H'53, H'81, H'5B, H'83, H'8B, H'83, H'68, H'83, H'6F, H'83, H'62, H'83
+          .DATA.B      H'57, H'82, H'E0, H'82, H'A0, H'82, H'E9, H'82, H'A9, H'82, H'E7, H'82, H'C8, H'00, H'00, H'00
+_const_8c036ad4:        ; aggressive search
+          ;.SDATA      "キミには優秀ドライバーの証し<E>ブロンズバッジを与えよう"
+          ;.DATA.B     H'00
+          .DATA.B      H'83, H'4C, H'83, H'7E, H'82, H'C9, H'82, H'CD, H'97, H'44, H'8F, H'47, H'83, H'68, H'83, H'89
+          .DATA.B      H'83, H'43, H'83, H'6F, H'81, H'5B, H'82, H'CC, H'8F, H'D8, H'82, H'B5, H'3C, H'45, H'3E, H'83
+          .DATA.B      H'75, H'83, H'8D, H'83, H'93, H'83, H'59, H'83, H'6F, H'83, H'62, H'83, H'57, H'82, H'F0, H'97
+          .DATA.B      H'5E, H'82, H'A6, H'82, H'E6, H'82, H'A4, H'00
+_const_8c036b0c:        ; aggressive search
+          ;.SDATA      "もっと高得点が出れば、さらに上の<E>シルバーバッジやゴールドバッジもあるぞ"
+          ;.DATA.B     H'00
+          ;.RES.B      2
+          .DATA.B      H'82, H'E0, H'82, H'C1, H'82, H'C6, H'8D, H'82, H'93, H'BE, H'93, H'5F, H'82, H'AA, H'8F, H'6F
+          .DATA.B      H'82, H'EA, H'82, H'CE, H'81, H'41, H'82, H'B3, H'82, H'E7, H'82, H'C9, H'8F, H'E3, H'82, H'CC
+          .DATA.B      H'3C, H'45, H'3E, H'83, H'56, H'83, H'8B, H'83, H'6F, H'81, H'5B, H'83, H'6F, H'83, H'62, H'83
+          .DATA.B      H'57, H'82, H'E2, H'83, H'53, H'81, H'5B, H'83, H'8B, H'83, H'68, H'83, H'6F, H'83, H'62, H'83
+          .DATA.B      H'57, H'82, H'E0, H'82, H'A0, H'82, H'E9, H'82, H'BC, H'00, H'00, H'00
+_const_8c036b58:        ; aggressive search
+          ;.SDATA      "昨日は残念な結果になってしまったな<E>まぁ、誰にだって失敗はある"
+          ;.DATA.B     H'00
+          .DATA.B      H'8D, H'F0, H'93, H'FA, H'82, H'CD, H'8E, H'63, H'94, H'4F, H'82, H'C8, H'8C, H'8B, H'89, H'CA
+          .DATA.B      H'82, H'C9, H'82, H'C8, H'82, H'C1, H'82, H'C4, H'82, H'B5, H'82, H'DC, H'82, H'C1, H'82, H'BD
+          .DATA.B      H'82, H'C8, H'3C, H'45, H'3E, H'82, H'DC, H'82, H'9F, H'81, H'41, H'92, H'4E, H'82, H'C9, H'82
+          .DATA.B      H'BE, H'82, H'C1, H'82, H'C4, H'8E, H'B8, H'94, H'73, H'82, H'CD, H'82, H'A0, H'82, H'E9, H'00
+_const_8c036b98:        ; aggressive search
+          ;.SDATA      "特に慣れないうちは仕方ないさ<E>気分を改めて今日も頑張ってくれよ"
+          ;.DATA.B     H'00
+          .DATA.B      H'93, H'C1, H'82, H'C9, H'8A, H'B5, H'82, H'EA, H'82, H'C8, H'82, H'A2, H'82, H'A4, H'82, H'BF
+          .DATA.B      H'82, H'CD, H'8E, H'64, H'95, H'FB, H'82, H'C8, H'82, H'A2, H'82, H'B3, H'3C, H'45, H'3E, H'8B
+          .DATA.B      H'43, H'95, H'AA, H'82, H'F0, H'89, H'FC, H'82, H'DF, H'82, H'C4, H'8D, H'A1, H'93, H'FA, H'82
+          .DATA.B      H'E0, H'8A, H'E6, H'92, H'A3, H'82, H'C1, H'82, H'C4, H'82, H'AD, H'82, H'EA, H'82, H'E6, H'00
+_const_8c036bd8:        ; aggressive search
+          ;.SDATA      "それから…経験も積んだようなので<E>そろそろ違うコースで研修してみよう"
+          ;.DATA.B     H'00
+          ;.RES.B      2
+          .DATA.B      H'82, H'BB, H'82, H'EA, H'82, H'A9, H'82, H'E7, H'81, H'63, H'8C, H'6F, H'8C, H'B1, H'82, H'E0
+          .DATA.B      H'90, H'CF, H'82, H'F1, H'82, H'BE, H'82, H'E6, H'82, H'A4, H'82, H'C8, H'82, H'CC, H'82, H'C5
+          .DATA.B      H'3C, H'45, H'3E, H'82, H'BB, H'82, H'EB, H'82, H'BB, H'82, H'EB, H'88, H'E1, H'82, H'A4, H'83
+          .DATA.B      H'52, H'81, H'5B, H'83, H'58, H'82, H'C5, H'8C, H'A4, H'8F, H'43, H'82, H'B5, H'82, H'C4, H'82
+          .DATA.B      H'DD, H'82, H'E6, H'82, H'A4, H'00, H'00, H'00
+_const_8c036c20:        ; aggressive search
+          ;.SDATA      "今までより、少し難しくなっていると思うが<E>キミなら大丈夫だ"
+          ;.DATA.B     H'00
+          .DATA.B      H'8D, H'A1, H'82, H'DC, H'82, H'C5, H'82, H'E6, H'82, H'E8, H'81, H'41, H'8F, H'AD, H'82, H'B5
+          .DATA.B      H'93, H'EF, H'82, H'B5, H'82, H'AD, H'82, H'C8, H'82, H'C1, H'82, H'C4, H'82, H'A2, H'82, H'E9
+          .DATA.B      H'82, H'C6, H'8E, H'76, H'82, H'A4, H'82, H'AA, H'3C, H'45, H'3E, H'83, H'4C, H'83, H'7E, H'82
+          .DATA.B      H'C8, H'82, H'E7, H'91, H'E5, H'8F, H'E4, H'95, H'76, H'82, H'BE, H'00
+_const_8c036c5c:        ; aggressive search
+          ;.SDATA      "勇気を持ってチャレンジしてくれ"
+          ;.DATA.B     H'00
+          ;.RES.B      1
+          .DATA.B      H'97, H'45, H'8B, H'43, H'82, H'F0, H'8E, H'9D, H'82, H'C1, H'82, H'C4, H'83, H'60, H'83, H'83
+          .DATA.B      H'83, H'8C, H'83, H'93, H'83, H'57, H'82, H'B5, H'82, H'C4, H'82, H'AD, H'82, H'EA, H'00, H'00
+_const_8c036c7c:        ; aggressive search
+          ;.SDATA      "そうそう、今日はお客さんから手紙が届いたよ"
+          ;.DATA.B     H'00
+          ;.RES.B      1
+          .DATA.B      H'82, H'BB, H'82, H'A4, H'82, H'BB, H'82, H'A4, H'81, H'41, H'8D, H'A1, H'93, H'FA, H'82, H'CD
+          .DATA.B      H'82, H'A8, H'8B, H'71, H'82, H'B3, H'82, H'F1, H'82, H'A9, H'82, H'E7, H'8E, H'E8, H'8E, H'86
+          .DATA.B      H'82, H'AA, H'93, H'CD, H'82, H'A2, H'82, H'BD, H'82, H'E6, H'00, H'00
+_const_8c036ca8:        ; aggressive search
+          ;.SDATA      "掲示板に張っておいたから、<E>見るときはＡＬＢＵＭを選んでくれ"
+          ;.DATA.B     H'00
+          ;.RES.B      2
+          .DATA.B      H'8C, H'66, H'8E, H'A6, H'94, H'C2, H'82, H'C9, H'92, H'A3, H'82, H'C1, H'82, H'C4, H'82, H'A8
+          .DATA.B      H'82, H'A2, H'82, H'BD, H'82, H'A9, H'82, H'E7, H'81, H'41, H'3C, H'45, H'3E, H'8C, H'A9, H'82
+          .DATA.B      H'E9, H'82, H'C6, H'82, H'AB, H'82, H'CD, H'82, H'60, H'82, H'6B, H'82, H'61, H'82, H'74, H'82
+          .DATA.B      H'6C, H'82, H'F0, H'91, H'49, H'82, H'F1, H'82, H'C5, H'82, H'AD, H'82, H'EA, H'00, H'00, H'00
+_const_8c036ce8:        ; aggressive search
+          ;.SDATA      "お客さんってありがたいもんだね<E>運転手やってて本当に良かったって実感するよ"
+          ;.DATA.B     H'00
+          .DATA.B      H'82, H'A8, H'8B, H'71, H'82, H'B3, H'82, H'F1, H'82, H'C1, H'82, H'C4, H'82, H'A0, H'82, H'E8
+          .DATA.B      H'82, H'AA, H'82, H'BD, H'82, H'A2, H'82, H'E0, H'82, H'F1, H'82, H'BE, H'82, H'CB, H'3C, H'45
+          .DATA.B      H'3E, H'89, H'5E, H'93, H'5D, H'8E, H'E8, H'82, H'E2, H'82, H'C1, H'82, H'C4, H'82, H'C4, H'96
+          .DATA.B      H'7B, H'93, H'96, H'82, H'C9, H'97, H'C7, H'82, H'A9, H'82, H'C1, H'82, H'BD, H'82, H'C1, H'82
+          .DATA.B      H'C4, H'8E, H'C0, H'8A, H'B4, H'82, H'B7, H'82, H'E9, H'82, H'E6, H'00
+_const_8c036d34:        ; aggressive search
+          ;.SDATA      "残念だがそのコースはまだ走れないよ<E>もっと経験を積んでからだな"
+          ;.DATA.B     H'00
+          .DATA.B      H'8E, H'63, H'94, H'4F, H'82, H'BE, H'82, H'AA, H'82, H'BB, H'82, H'CC, H'83, H'52, H'81, H'5B
+          .DATA.B      H'83, H'58, H'82, H'CD, H'82, H'DC, H'82, H'BE, H'91, H'96, H'82, H'EA, H'82, H'C8, H'82, H'A2
+          .DATA.B      H'82, H'E6, H'3C, H'45, H'3E, H'82, H'E0, H'82, H'C1, H'82, H'C6, H'8C, H'6F, H'8C, H'B1, H'82
+          .DATA.B      H'F0, H'90, H'CF, H'82, H'F1, H'82, H'C5, H'82, H'A9, H'82, H'E7, H'82, H'BE, H'82, H'C8, H'00
+_const_8c036d74:        ; aggressive search
+          ;.SDATA      "はやる気持ちも分からんでもないが、<E>今日は練習してもらうよ"
+          ;.DATA.B     H'00
+          .DATA.B      H'82, H'CD, H'82, H'E2, H'82, H'E9, H'8B, H'43, H'8E, H'9D, H'82, H'BF, H'82, H'E0, H'95, H'AA
+          .DATA.B      H'82, H'A9, H'82, H'E7, H'82, H'F1, H'82, H'C5, H'82, H'E0, H'82, H'C8, H'82, H'A2, H'82, H'AA
+          .DATA.B      H'81, H'41, H'3C, H'45, H'3E, H'8D, H'A1, H'93, H'FA, H'82, H'CD, H'97, H'FB, H'8F, H'4B, H'82
+          .DATA.B      H'B5, H'82, H'C4, H'82, H'E0, H'82, H'E7, H'82, H'A4, H'82, H'E6, H'00
+_const_8c036db0:        ; aggressive search
+          ;.SDATA      "長かった研修も今日が最後だな"
+          ;.DATA.B     H'00
+          ;.RES.B      3
+          .DATA.B      H'92, H'B7, H'82, H'A9, H'82, H'C1, H'82, H'BD, H'8C, H'A4, H'8F, H'43, H'82, H'E0, H'8D, H'A1
+          .DATA.B      H'93, H'FA, H'82, H'AA, H'8D, H'C5, H'8C, H'E3, H'82, H'BE, H'82, H'C8, H'00, H'00, H'00, H'00
+_const_8c036dd0:        ; aggressive search
+          ;.SDATA      "さぁ、最後の研修を選んでくれ"
+          ;.DATA.B     H'00
+          ;.RES.B      3
+          .DATA.B      H'82, H'B3, H'82, H'9F, H'81, H'41, H'8D, H'C5, H'8C, H'E3, H'82, H'CC, H'8C, H'A4, H'8F, H'43
+          .DATA.B      H'82, H'F0, H'91, H'49, H'82, H'F1, H'82, H'C5, H'82, H'AD, H'82, H'EA, H'00, H'00, H'00, H'00
+_const_8c036df0:        ; aggressive search
+          ;.SDATA      "今日は初日なので、全てのＬＥＳＳＯＮを<E>順番にやってもらうよ"
+          ;.DATA.B     H'00
+          ;.RES.B      2
+          .DATA.B      H'8D, H'A1, H'93, H'FA, H'82, H'CD, H'8F, H'89, H'93, H'FA, H'82, H'C8, H'82, H'CC, H'82, H'C5
+          .DATA.B      H'81, H'41, H'91, H'53, H'82, H'C4, H'82, H'CC, H'82, H'6B, H'82, H'64, H'82, H'72, H'82, H'72
+          .DATA.B      H'82, H'6E, H'82, H'6D, H'82, H'F0, H'3C, H'45, H'3E, H'8F, H'87, H'94, H'D4, H'82, H'C9, H'82
+          .DATA.B      H'E2, H'82, H'C1, H'82, H'C4, H'82, H'E0, H'82, H'E7, H'82, H'A4, H'82, H'E6, H'00, H'00, H'00
+_const_8c036e30:        ; aggressive search
+          ;.SDATA      "合格ラインは７０点。決して難しい事では<E>ないので、落ち着いて慎重に進めていこう"
+          ;.DATA.B     H'00
+          .DATA.B      H'8D, H'87, H'8A, H'69, H'83, H'89, H'83, H'43, H'83, H'93, H'82, H'CD, H'82, H'56, H'82, H'4F
+          .DATA.B      H'93, H'5F, H'81, H'42, H'8C, H'88, H'82, H'B5, H'82, H'C4, H'93, H'EF, H'82, H'B5, H'82, H'A2
+          .DATA.B      H'8E, H'96, H'82, H'C5, H'82, H'CD, H'3C, H'45, H'3E, H'82, H'C8, H'82, H'A2, H'82, H'CC, H'82
+          .DATA.B      H'C5, H'81, H'41, H'97, H'8E, H'82, H'BF, H'92, H'85, H'82, H'A2, H'82, H'C4, H'90, H'54, H'8F
+          .DATA.B      H'64, H'82, H'C9, H'90, H'69, H'82, H'DF, H'82, H'C4, H'82, H'A2, H'82, H'B1, H'82, H'A4, H'00
+_const_8c036e80:        ; aggressive search
+          ;.SDATA      "おめでとう<E>これで全てのＬＥＳＳＯＮは終了だ"
+          ;.DATA.B     H'00
+          ;.RES.B      2
+          .DATA.B      H'82, H'A8, H'82, H'DF, H'82, H'C5, H'82, H'C6, H'82, H'A4, H'3C, H'45, H'3E, H'82, H'B1, H'82
+          .DATA.B      H'EA, H'82, H'C5, H'91, H'53, H'82, H'C4, H'82, H'CC, H'82, H'6B, H'82, H'64, H'82, H'72, H'82
+          .DATA.B      H'72, H'82, H'6E, H'82, H'6D, H'82, H'CD, H'8F, H'49, H'97, H'B9, H'82, H'BE, H'00, H'00, H'00
+_const_8c036eb0:        ; aggressive search
+          ;.SDATA      "明日からは実際の街中にでて<E>実地研修を行うとしよう"
+          ;.DATA.B     H'00
+          .DATA.B      H'96, H'BE, H'93, H'FA, H'82, H'A9, H'82, H'E7, H'82, H'CD, H'8E, H'C0, H'8D, H'DB, H'82, H'CC
+          .DATA.B      H'8A, H'58, H'92, H'86, H'82, H'C9, H'82, H'C5, H'82, H'C4, H'3C, H'45, H'3E, H'8E, H'C0, H'92
+          .DATA.B      H'6E, H'8C, H'A4, H'8F, H'43, H'82, H'F0, H'8D, H'73, H'82, H'A4, H'82, H'C6, H'82, H'B5, H'82
+          .DATA.B      H'E6, H'82, H'A4, H'00
+_const_8c036ee4:        ; aggressive search
+          ;.SDATA      "もっとも、運行に何か不安があったら<E>ここに来て練習すればいい"
+          ;.DATA.B     H'00
+          ;.RES.B      2
+          .DATA.B      H'82, H'E0, H'82, H'C1, H'82, H'C6, H'82, H'E0, H'81, H'41, H'89, H'5E, H'8D, H'73, H'82, H'C9
+          .DATA.B      H'89, H'BD, H'82, H'A9, H'95, H'73, H'88, H'C0, H'82, H'AA, H'82, H'A0, H'82, H'C1, H'82, H'BD
+          .DATA.B      H'82, H'E7, H'3C, H'45, H'3E, H'82, H'B1, H'82, H'B1, H'82, H'C9, H'97, H'88, H'82, H'C4, H'97
+          .DATA.B      H'FB, H'8F, H'4B, H'82, H'B7, H'82, H'EA, H'82, H'CE, H'82, H'A2, H'82, H'A2, H'00, H'00, H'00
+_const_8c036f24:        ; aggressive search
+          ;.SDATA      "次からは好きなＬＥＳＳＯＮが選べるから<E>有効に活用してくれ"
+          ;.DATA.B     H'00
+          .DATA.B      H'8E, H'9F, H'82, H'A9, H'82, H'E7, H'82, H'CD, H'8D, H'44, H'82, H'AB, H'82, H'C8, H'82, H'6B
+          .DATA.B      H'82, H'64, H'82, H'72, H'82, H'72, H'82, H'6E, H'82, H'6D, H'82, H'AA, H'91, H'49, H'82, H'D7
+          .DATA.B      H'82, H'E9, H'82, H'A9, H'82, H'E7, H'3C, H'45, H'3E, H'97, H'4C, H'8C, H'F8, H'82, H'C9, H'8A
+          .DATA.B      H'88, H'97, H'70, H'82, H'B5, H'82, H'C4, H'82, H'AD, H'82, H'EA, H'00
+_const_8c036f60:        ; aggressive search
+          ;.SDATA      "よーし、次のＬＥＳＳＯＮに進もう"
+          ;.DATA.B     H'00
+          ;.RES.B      3
+          .DATA.B      H'82, H'E6, H'81, H'5B, H'82, H'B5, H'81, H'41, H'8E, H'9F, H'82, H'CC, H'82, H'6B, H'82, H'64
+          .DATA.B      H'82, H'72, H'82, H'72, H'82, H'6E, H'82, H'6D, H'82, H'C9, H'90, H'69, H'82, H'E0, H'82, H'A4
+          .DATA.B      H'00, H'00, H'00, H'00
+_const_8c036f84:        ; aggressive search
+          ;.SDATA      "誰だって最初はうまくできないものさ<E>気を落とさないで、もう一度やってみよう"
+          ;.DATA.B     H'00
+          .DATA.B      H'92, H'4E, H'82, H'BE, H'82, H'C1, H'82, H'C4, H'8D, H'C5, H'8F, H'89, H'82, H'CD, H'82, H'A4
+          .DATA.B      H'82, H'DC, H'82, H'AD, H'82, H'C5, H'82, H'AB, H'82, H'C8, H'82, H'A2, H'82, H'E0, H'82, H'CC
+          .DATA.B      H'82, H'B3, H'3C, H'45, H'3E, H'8B, H'43, H'82, H'F0, H'97, H'8E, H'82, H'C6, H'82, H'B3, H'82
+          .DATA.B      H'C8, H'82, H'A2, H'82, H'C5, H'81, H'41, H'82, H'E0, H'82, H'A4, H'88, H'EA, H'93, H'78, H'82
+          .DATA.B      H'E2, H'82, H'C1, H'82, H'C4, H'82, H'DD, H'82, H'E6, H'82, H'A4, H'00
+_const_8c036fd0:        ; aggressive search
+          ;.SDATA      "ここでは運行中の諸注意を<E>ポイント毎に練習できるぞ"
+          ;.DATA.B     H'00
+          .DATA.B      H'82, H'B1, H'82, H'B1, H'82, H'C5, H'82, H'CD, H'89, H'5E, H'8D, H'73, H'92, H'86, H'82, H'CC
+          .DATA.B      H'8F, H'94, H'92, H'8D, H'88, H'D3, H'82, H'F0, H'3C, H'45, H'3E, H'83, H'7C, H'83, H'43, H'83
+          .DATA.B      H'93, H'83, H'67, H'96, H'88, H'82, H'C9, H'97, H'FB, H'8F, H'4B, H'82, H'C5, H'82, H'AB, H'82
+          .DATA.B      H'E9, H'82, H'BC, H'00
+_const_8c037004:        ; aggressive search
+          ;.SDATA      "一度ＬＥＳＳＯＮを選ぶと、今日はコースに<E>出られなくなるので、気を付けるように"
+          ;.DATA.B     H'00
+          .DATA.B      H'88, H'EA, H'93, H'78, H'82, H'6B, H'82, H'64, H'82, H'72, H'82, H'72, H'82, H'6E, H'82, H'6D
+          .DATA.B      H'82, H'F0, H'91, H'49, H'82, H'D4, H'82, H'C6, H'81, H'41, H'8D, H'A1, H'93, H'FA, H'82, H'CD
+          .DATA.B      H'83, H'52, H'81, H'5B, H'83, H'58, H'82, H'C9, H'3C, H'45, H'3E, H'8F, H'6F, H'82, H'E7, H'82
+          .DATA.B      H'EA, H'82, H'C8, H'82, H'AD, H'82, H'C8, H'82, H'E9, H'82, H'CC, H'82, H'C5, H'81, H'41, H'8B
+          .DATA.B      H'43, H'82, H'F0, H'95, H'74, H'82, H'AF, H'82, H'E9, H'82, H'E6, H'82, H'A4, H'82, H'C9, H'00
+_const_8c037054:        ; aggressive search
+          ;.SDATA      "練習したいＬＥＳＳＯＮを選んでくれ"
+          ;.DATA.B     H'00
+          ;.RES.B      1
+          .DATA.B      H'97, H'FB, H'8F, H'4B, H'82, H'B5, H'82, H'BD, H'82, H'A2, H'82, H'6B, H'82, H'64, H'82, H'72
+          .DATA.B      H'82, H'72, H'82, H'6E, H'82, H'6D, H'82, H'F0, H'91, H'49, H'82, H'F1, H'82, H'C5, H'82, H'AD
+          .DATA.B      H'82, H'EA, H'00, H'00
+_const_8c037078:        ; aggressive search
+          ;.SDATA      "そうそう、最高得点が更新されたようだ<E>この調子で頑張ってくれよ"
+          ;.DATA.B     H'00
+          .DATA.B      H'82, H'BB, H'82, H'A4, H'82, H'BB, H'82, H'A4, H'81, H'41, H'8D, H'C5, H'8D, H'82, H'93, H'BE
+          .DATA.B      H'93, H'5F, H'82, H'AA, H'8D, H'58, H'90, H'56, H'82, H'B3, H'82, H'EA, H'82, H'BD, H'82, H'E6
+          .DATA.B      H'82, H'A4, H'82, H'BE, H'3C, H'45, H'3E, H'82, H'B1, H'82, H'CC, H'92, H'B2, H'8E, H'71, H'82
+          .DATA.B      H'C5, H'8A, H'E6, H'92, H'A3, H'82, H'C1, H'82, H'C4, H'82, H'AD, H'82, H'EA, H'82, H'E6, H'00
+_const_8c0370b8:        ; aggressive search
+          ;.SDATA      "今日は研修の最終日だぞ<E>もう練習しているより、実戦あるのみ"
+          ;.DATA.B     H'00
+          .DATA.B      H'8D, H'A1, H'93, H'FA, H'82, H'CD, H'8C, H'A4, H'8F, H'43, H'82, H'CC, H'8D, H'C5, H'8F, H'49
+          .DATA.B      H'93, H'FA, H'82, H'BE, H'82, H'BC, H'3C, H'45, H'3E, H'82, H'E0, H'82, H'A4, H'97, H'FB, H'8F
+          .DATA.B      H'4B, H'82, H'B5, H'82, H'C4, H'82, H'A2, H'82, H'E9, H'82, H'E6, H'82, H'E8, H'81, H'41, H'8E
+          .DATA.B      H'C0, H'90, H'ED, H'82, H'A0, H'82, H'E9, H'82, H'CC, H'82, H'DD, H'00
+_const_8c0370f4:        ; aggressive search
+          ;.SDATA      "まぁ、どうしてもと言うのなら止めはしないが"
+          ;.DATA.B     H'00
+          ;.RES.B      1
+          .DATA.B      H'82, H'DC, H'82, H'9F, H'81, H'41, H'82, H'C7, H'82, H'A4, H'82, H'B5, H'82, H'C4, H'82, H'E0
+          .DATA.B      H'82, H'C6, H'8C, H'BE, H'82, H'A4, H'82, H'CC, H'82, H'C8, H'82, H'E7, H'8E, H'7E, H'82, H'DF
+          .DATA.B      H'82, H'CD, H'82, H'B5, H'82, H'C8, H'82, H'A2, H'82, H'AA, H'00, H'00
+_const_8c037120:        ; aggressive search
+          ;.SDATA      "素晴らしい！<E>パーフェクトで合格だ"
+          ;.DATA.B     H'00
+          .DATA.B      H'91, H'66, H'90, H'B0, H'82, H'E7, H'82, H'B5, H'82, H'A2, H'81, H'49, H'3C, H'45, H'3E, H'83
+          .DATA.B      H'70, H'81, H'5B, H'83, H'74, H'83, H'46, H'83, H'4E, H'83, H'67, H'82, H'C5, H'8D, H'87, H'8A
+          .DATA.B      H'69, H'82, H'BE, H'00
+_const_8c037144:        ; aggressive search
+          ;.SDATA      "この調子で他のＬＥＳＳＯＮはもちろん<E>コースの方も頑張ってくれよ"
+          ;.DATA.B     H'00
+          ;.RES.B      2
+          .DATA.B      H'82, H'B1, H'82, H'CC, H'92, H'B2, H'8E, H'71, H'82, H'C5, H'91, H'BC, H'82, H'CC, H'82, H'6B
+          .DATA.B      H'82, H'64, H'82, H'72, H'82, H'72, H'82, H'6E, H'82, H'6D, H'82, H'CD, H'82, H'E0, H'82, H'BF
+          .DATA.B      H'82, H'EB, H'82, H'F1, H'3C, H'45, H'3E, H'83, H'52, H'81, H'5B, H'83, H'58, H'82, H'CC, H'95
+          .DATA.B      H'FB, H'82, H'E0, H'8A, H'E6, H'92, H'A3, H'82, H'C1, H'82, H'C4, H'82, H'AD, H'82, H'EA, H'82
+          .DATA.B      H'E6, H'00, H'00, H'00
+_const_8c037188:        ; aggressive search
+          ;.SDATA      "しかし、ミスはその１カ所だけのようだな"
+          ;.DATA.B     H'00
+          ;.RES.B      1
+          .DATA.B      H'82, H'B5, H'82, H'A9, H'82, H'B5, H'81, H'41, H'83, H'7E, H'83, H'58, H'82, H'CD, H'82, H'BB
+          .DATA.B      H'82, H'CC, H'82, H'50, H'83, H'4A, H'8F, H'8A, H'82, H'BE, H'82, H'AF, H'82, H'CC, H'82, H'E6
+          .DATA.B      H'82, H'A4, H'82, H'BE, H'82, H'C8, H'00, H'00
+_const_8c0371b0:        ; aggressive search
+          ;.SDATA      "他はパーフェクトだっただけに<E>悔やまれるが、十分に合格点だ！"
+          ;.DATA.B     H'00
+          ;.RES.B      2
+          .DATA.B      H'91, H'BC, H'82, H'CD, H'83, H'70, H'81, H'5B, H'83, H'74, H'83, H'46, H'83, H'4E, H'83, H'67
+          .DATA.B      H'82, H'BE, H'82, H'C1, H'82, H'BD, H'82, H'BE, H'82, H'AF, H'82, H'C9, H'3C, H'45, H'3E, H'89
+          .DATA.B      H'F7, H'82, H'E2, H'82, H'DC, H'82, H'EA, H'82, H'E9, H'82, H'AA, H'81, H'41, H'8F, H'5C, H'95
+          .DATA.B      H'AA, H'82, H'C9, H'8D, H'87, H'8A, H'69, H'93, H'5F, H'82, H'BE, H'81, H'49, H'00, H'00, H'00
+_const_8c0371f0:        ; aggressive search
+          ;.SDATA      "今度走る時はパーフェクトを<E>目指してみてはどうかな？"
+          ;.DATA.B     H'00
+          ;.RES.B      2
+          .DATA.B      H'8D, H'A1, H'93, H'78, H'91, H'96, H'82, H'E9, H'8E, H'9E, H'82, H'CD, H'83, H'70, H'81, H'5B
+          .DATA.B      H'83, H'74, H'83, H'46, H'83, H'4E, H'83, H'67, H'82, H'F0, H'3C, H'45, H'3E, H'96, H'DA, H'8E
+          .DATA.B      H'77, H'82, H'B5, H'82, H'C4, H'82, H'DD, H'82, H'C4, H'82, H'CD, H'82, H'C7, H'82, H'A4, H'82
+          .DATA.B      H'A9, H'82, H'C8, H'81, H'48, H'00, H'00, H'00
+_const_8c037228:        ; aggressive search
+          ;.SDATA      "まぁ、他にもミスはあったが<E>致命的なものではないようだな"
+          ;.DATA.B     H'00
+          ;.RES.B      2
+          .DATA.B      H'82, H'DC, H'82, H'9F, H'81, H'41, H'91, H'BC, H'82, H'C9, H'82, H'E0, H'83, H'7E, H'83, H'58
+          .DATA.B      H'82, H'CD, H'82, H'A0, H'82, H'C1, H'82, H'BD, H'82, H'AA, H'3C, H'45, H'3E, H'92, H'76, H'96
+          .DATA.B      H'BD, H'93, H'49, H'82, H'C8, H'82, H'E0, H'82, H'CC, H'82, H'C5, H'82, H'CD, H'82, H'C8, H'82
+          .DATA.B      H'A2, H'82, H'E6, H'82, H'A4, H'82, H'BE, H'82, H'C8, H'00, H'00, H'00
+_const_8c037264:        ; aggressive search
+          ;.SDATA      "少し不安は残るが、一応は合格点だ<E>次はもっと高得点を目指してくれよ"
+          ;.DATA.B     H'00
+          .DATA.B      H'8F, H'AD, H'82, H'B5, H'95, H'73, H'88, H'C0, H'82, H'CD, H'8E, H'63, H'82, H'E9, H'82, H'AA
+          .DATA.B      H'81, H'41, H'88, H'EA, H'89, H'9E, H'82, H'CD, H'8D, H'87, H'8A, H'69, H'93, H'5F, H'82, H'BE
+          .DATA.B      H'3C, H'45, H'3E, H'8E, H'9F, H'82, H'CD, H'82, H'E0, H'82, H'C1, H'82, H'C6, H'8D, H'82, H'93
+          .DATA.B      H'BE, H'93, H'5F, H'82, H'F0, H'96, H'DA, H'8E, H'77, H'82, H'B5, H'82, H'C4, H'82, H'AD, H'82
+          .DATA.B      H'EA, H'82, H'E6, H'00
+_const_8c0372a8:        ; aggressive search
+          ;.SDATA      "ミスはその１カ所だけのようだが<E>状況によっては大事故になる危険なミスだぞ"
+          ;.DATA.B     H'00
+          ;.RES.B      2
+          .DATA.B      H'83, H'7E, H'83, H'58, H'82, H'CD, H'82, H'BB, H'82, H'CC, H'82, H'50, H'83, H'4A, H'8F, H'8A
+          .DATA.B      H'82, H'BE, H'82, H'AF, H'82, H'CC, H'82, H'E6, H'82, H'A4, H'82, H'BE, H'82, H'AA, H'3C, H'45
+          .DATA.B      H'3E, H'8F, H'F3, H'8B, H'B5, H'82, H'C9, H'82, H'E6, H'82, H'C1, H'82, H'C4, H'82, H'CD, H'91
+          .DATA.B      H'E5, H'8E, H'96, H'8C, H'CC, H'82, H'C9, H'82, H'C8, H'82, H'E9, H'8A, H'EB, H'8C, H'AF, H'82
+          .DATA.B      H'C8, H'83, H'7E, H'83, H'58, H'82, H'BE, H'82, H'BC, H'00, H'00, H'00
+_const_8c0372f4:        ; aggressive search
+          ;.SDATA      "残念だが今回は不合格だな<E>気を取り直して、次は頑張ってくれよ"
+          ;.DATA.B     H'00
+          ;.RES.B      2
+          .DATA.B      H'8E, H'63, H'94, H'4F, H'82, H'BE, H'82, H'AA, H'8D, H'A1, H'89, H'F1, H'82, H'CD, H'95, H'73
+          .DATA.B      H'8D, H'87, H'8A, H'69, H'82, H'BE, H'82, H'C8, H'3C, H'45, H'3E, H'8B, H'43, H'82, H'F0, H'8E
+          .DATA.B      H'E6, H'82, H'E8, H'92, H'BC, H'82, H'B5, H'82, H'C4, H'81, H'41, H'8E, H'9F, H'82, H'CD, H'8A
+          .DATA.B      H'E6, H'92, H'A3, H'82, H'C1, H'82, H'C4, H'82, H'AD, H'82, H'EA, H'82, H'E6, H'00, H'00, H'00
+_const_8c037334:        ; aggressive search
+          ;.SDATA      "…その他にもミスが目立つようだ<E>とても合格点はあげられないな"
+          ;.DATA.B     H'00
+          ;.RES.B      2
+          .DATA.B      H'81, H'63, H'82, H'BB, H'82, H'CC, H'91, H'BC, H'82, H'C9, H'82, H'E0, H'83, H'7E, H'83, H'58
+          .DATA.B      H'82, H'AA, H'96, H'DA, H'97, H'A7, H'82, H'C2, H'82, H'E6, H'82, H'A4, H'82, H'BE, H'3C, H'45
+          .DATA.B      H'3E, H'82, H'C6, H'82, H'C4, H'82, H'E0, H'8D, H'87, H'8A, H'69, H'93, H'5F, H'82, H'CD, H'82
+          .DATA.B      H'A0, H'82, H'B0, H'82, H'E7, H'82, H'EA, H'82, H'C8, H'82, H'A2, H'82, H'C8, H'00, H'00, H'00
+_const_8c037374:        ; aggressive search
+          ;.SDATA      "乗客を乗せているということは、<E>命を預かっているのと同じことなんだ"
+          ;.DATA.B     H'00
+          .DATA.B      H'8F, H'E6, H'8B, H'71, H'82, H'F0, H'8F, H'E6, H'82, H'B9, H'82, H'C4, H'82, H'A2, H'82, H'E9
+          .DATA.B      H'82, H'C6, H'82, H'A2, H'82, H'A4, H'82, H'B1, H'82, H'C6, H'82, H'CD, H'81, H'41, H'3C, H'45
+          .DATA.B      H'3E, H'96, H'BD, H'82, H'F0, H'97, H'61, H'82, H'A9, H'82, H'C1, H'82, H'C4, H'82, H'A2, H'82
+          .DATA.B      H'E9, H'82, H'CC, H'82, H'C6, H'93, H'AF, H'82, H'B6, H'82, H'B1, H'82, H'C6, H'82, H'C8, H'82
+          .DATA.B      H'F1, H'82, H'BE, H'00
+_const_8c0373b8:        ; aggressive search
+          ;.SDATA      "我々の不注意が、多くの人々を危険にさらして<E>しまう事を、よく肝に銘じて練習に励んでくれ"
+          ;.DATA.B     H'00
+          .DATA.B      H'89, H'E4, H'81, H'58, H'82, H'CC, H'95, H'73, H'92, H'8D, H'88, H'D3, H'82, H'AA, H'81, H'41
+          .DATA.B      H'91, H'BD, H'82, H'AD, H'82, H'CC, H'90, H'6C, H'81, H'58, H'82, H'F0, H'8A, H'EB, H'8C, H'AF
+          .DATA.B      H'82, H'C9, H'82, H'B3, H'82, H'E7, H'82, H'B5, H'82, H'C4, H'3C, H'45, H'3E, H'82, H'B5, H'82
+          .DATA.B      H'DC, H'82, H'A4, H'8E, H'96, H'82, H'F0, H'81, H'41, H'82, H'E6, H'82, H'AD, H'8A, H'CC, H'82
+          .DATA.B      H'C9, H'96, H'C1, H'82, H'B6, H'82, H'C4, H'97, H'FB, H'8F, H'4B, H'82, H'C9, H'97, H'E3, H'82
+          .DATA.B      H'F1, H'82, H'C5, H'82, H'AD, H'82, H'EA, H'00
+_const_8c037410:        ; aggressive search
+          ;.SDATA      "他の車に接触してしまったようだな…"
+          ;.DATA.B     H'00
+          ;.RES.B      1
+          .DATA.B      H'91, H'BC, H'82, H'CC, H'8E, H'D4, H'82, H'C9, H'90, H'DA, H'90, H'47, H'82, H'B5, H'82, H'C4
+          .DATA.B      H'82, H'B5, H'82, H'DC, H'82, H'C1, H'82, H'BD, H'82, H'E6, H'82, H'A4, H'82, H'BE, H'82, H'C8
+          .DATA.B      H'81, H'63, H'00, H'00
+_const_8c037434:        ; aggressive search
+          ;.SDATA      "車間距離を十分に取り、<E>早めにブレーキをかけるようにしてくれ"
+          ;.DATA.B     H'00
+          ;.RES.B      2
+          .DATA.B      H'8E, H'D4, H'8A, H'D4, H'8B, H'97, H'97, H'A3, H'82, H'F0, H'8F, H'5C, H'95, H'AA, H'82, H'C9
+          .DATA.B      H'8E, H'E6, H'82, H'E8, H'81, H'41, H'3C, H'45, H'3E, H'91, H'81, H'82, H'DF, H'82, H'C9, H'83
+          .DATA.B      H'75, H'83, H'8C, H'81, H'5B, H'83, H'4C, H'82, H'F0, H'82, H'A9, H'82, H'AF, H'82, H'E9, H'82
+          .DATA.B      H'E6, H'82, H'A4, H'82, H'C9, H'82, H'B5, H'82, H'C4, H'82, H'AD, H'82, H'EA, H'00, H'00, H'00
+_const_8c037474:        ; aggressive search
+          ;.SDATA      "スピードは出ていなかったようだが<E>停車車両に接触してしまったな…"
+          ;.DATA.B     H'00
+          ;.RES.B      2
+          .DATA.B      H'83, H'58, H'83, H'73, H'81, H'5B, H'83, H'68, H'82, H'CD, H'8F, H'6F, H'82, H'C4, H'82, H'A2
+          .DATA.B      H'82, H'C8, H'82, H'A9, H'82, H'C1, H'82, H'BD, H'82, H'E6, H'82, H'A4, H'82, H'BE, H'82, H'AA
+          .DATA.B      H'3C, H'45, H'3E, H'92, H'E2, H'8E, H'D4, H'8E, H'D4, H'97, H'BC, H'82, H'C9, H'90, H'DA, H'90
+          .DATA.B      H'47, H'82, H'B5, H'82, H'C4, H'82, H'B5, H'82, H'DC, H'82, H'C1, H'82, H'BD, H'82, H'C8, H'81
+          .DATA.B      H'63, H'00, H'00, H'00
+_const_8c0374b8:        ; aggressive search
+          ;.SDATA      "一日も早く、車両感覚を身につけてくれ"
+          ;.DATA.B     H'00
+          ;.RES.B      3
+          .DATA.B      H'88, H'EA, H'93, H'FA, H'82, H'E0, H'91, H'81, H'82, H'AD, H'81, H'41, H'8E, H'D4, H'97, H'BC
+          .DATA.B      H'8A, H'B4, H'8A, H'6F, H'82, H'F0, H'90, H'67, H'82, H'C9, H'82, H'C2, H'82, H'AF, H'82, H'C4
+          .DATA.B      H'82, H'AD, H'82, H'EA, H'00, H'00, H'00, H'00
+_const_8c0374e0:        ; aggressive search
+          ;.SDATA      "停車車両に接触してしまったようだな…<E>しかもスピードが大分出ていたな"
+          ;.DATA.B     H'00
+          ;.RES.B      2
+          .DATA.B      H'92, H'E2, H'8E, H'D4, H'8E, H'D4, H'97, H'BC, H'82, H'C9, H'90, H'DA, H'90, H'47, H'82, H'B5
+          .DATA.B      H'82, H'C4, H'82, H'B5, H'82, H'DC, H'82, H'C1, H'82, H'BD, H'82, H'E6, H'82, H'A4, H'82, H'BE
+          .DATA.B      H'82, H'C8, H'81, H'63, H'3C, H'45, H'3E, H'82, H'B5, H'82, H'A9, H'82, H'E0, H'83, H'58, H'83
+          .DATA.B      H'73, H'81, H'5B, H'83, H'68, H'82, H'AA, H'91, H'E5, H'95, H'AA, H'8F, H'6F, H'82, H'C4, H'82
+          .DATA.B      H'A2, H'82, H'BD, H'82, H'C8, H'00, H'00, H'00
+_const_8c037528:        ; aggressive search
+          ;.SDATA      "停車車両に接触してしまったようだな…<E>しかも凄いスピードで…"
+          ;.DATA.B     H'00
+          ;.RES.B      2
+          .DATA.B      H'92, H'E2, H'8E, H'D4, H'8E, H'D4, H'97, H'BC, H'82, H'C9, H'90, H'DA, H'90, H'47, H'82, H'B5
+          .DATA.B      H'82, H'C4, H'82, H'B5, H'82, H'DC, H'82, H'C1, H'82, H'BD, H'82, H'E6, H'82, H'A4, H'82, H'BE
+          .DATA.B      H'82, H'C8, H'81, H'63, H'3C, H'45, H'3E, H'82, H'B5, H'82, H'A9, H'82, H'E0, H'90, H'A6, H'82
+          .DATA.B      H'A2, H'83, H'58, H'83, H'73, H'81, H'5B, H'83, H'68, H'82, H'C5, H'81, H'63, H'00, H'00, H'00
+_const_8c037568:        ; aggressive search
+          ;.SDATA      "まず速度はむやみに出さないこと！<E>そして車両感覚をしっかり身につけてくれ"
+          ;.DATA.B     H'00
+          ;.RES.B      2
+          .DATA.B      H'82, H'DC, H'82, H'B8, H'91, H'AC, H'93, H'78, H'82, H'CD, H'82, H'DE, H'82, H'E2, H'82, H'DD
+          .DATA.B      H'82, H'C9, H'8F, H'6F, H'82, H'B3, H'82, H'C8, H'82, H'A2, H'82, H'B1, H'82, H'C6, H'81, H'49
+          .DATA.B      H'3C, H'45, H'3E, H'82, H'BB, H'82, H'B5, H'82, H'C4, H'8E, H'D4, H'97, H'BC, H'8A, H'B4, H'8A
+          .DATA.B      H'6F, H'82, H'F0, H'82, H'B5, H'82, H'C1, H'82, H'A9, H'82, H'E8, H'90, H'67, H'82, H'C9, H'82
+          .DATA.B      H'C2, H'82, H'AF, H'82, H'C4, H'82, H'AD, H'82, H'EA, H'00, H'00, H'00
+_const_8c0375b4:        ; aggressive search
+          ;.SDATA      "スピードは出ていなかったようだが<E>壁に接触してしまったな…"
+          ;.DATA.B     H'00
+          .DATA.B      H'83, H'58, H'83, H'73, H'81, H'5B, H'83, H'68, H'82, H'CD, H'8F, H'6F, H'82, H'C4, H'82, H'A2
+          .DATA.B      H'82, H'C8, H'82, H'A9, H'82, H'C1, H'82, H'BD, H'82, H'E6, H'82, H'A4, H'82, H'BE, H'82, H'AA
+          .DATA.B      H'3C, H'45, H'3E, H'95, H'C7, H'82, H'C9, H'90, H'DA, H'90, H'47, H'82, H'B5, H'82, H'C4, H'82
+          .DATA.B      H'B5, H'82, H'DC, H'82, H'C1, H'82, H'BD, H'82, H'C8, H'81, H'63, H'00
+_const_8c0375f0:        ; aggressive search
+          ;.SDATA      "壁に接触してしまったようだな…<E>しかもスピードが大分出ていたな"
+          ;.DATA.B     H'00
+          .DATA.B      H'95, H'C7, H'82, H'C9, H'90, H'DA, H'90, H'47, H'82, H'B5, H'82, H'C4, H'82, H'B5, H'82, H'DC
+          .DATA.B      H'82, H'C1, H'82, H'BD, H'82, H'E6, H'82, H'A4, H'82, H'BE, H'82, H'C8, H'81, H'63, H'3C, H'45
+          .DATA.B      H'3E, H'82, H'B5, H'82, H'A9, H'82, H'E0, H'83, H'58, H'83, H'73, H'81, H'5B, H'83, H'68, H'82
+          .DATA.B      H'AA, H'91, H'E5, H'95, H'AA, H'8F, H'6F, H'82, H'C4, H'82, H'A2, H'82, H'BD, H'82, H'C8, H'00
+_const_8c037630:        ; aggressive search
+          ;.SDATA      "壁に接触してしまったようだな…<E>しかも凄いスピードで…"
+          ;.DATA.B     H'00
+          .DATA.B      H'95, H'C7, H'82, H'C9, H'90, H'DA, H'90, H'47, H'82, H'B5, H'82, H'C4, H'82, H'B5, H'82, H'DC
+          .DATA.B      H'82, H'C1, H'82, H'BD, H'82, H'E6, H'82, H'A4, H'82, H'BE, H'82, H'C8, H'81, H'63, H'3C, H'45
+          .DATA.B      H'3E, H'82, H'B5, H'82, H'A9, H'82, H'E0, H'90, H'A6, H'82, H'A2, H'83, H'58, H'83, H'73, H'81
+          .DATA.B      H'5B, H'83, H'68, H'82, H'C5, H'81, H'63, H'00
+_const_8c037668:        ; aggressive search
+          ;.SDATA      "ふー、危機一髪だったな"
+          ;.DATA.B     H'00
+          ;.RES.B      1
+          .DATA.B      H'82, H'D3, H'81, H'5B, H'81, H'41, H'8A, H'EB, H'8B, H'40, H'88, H'EA, H'94, H'AF, H'82, H'BE
+          .DATA.B      H'82, H'C1, H'82, H'BD, H'82, H'C8, H'00, H'00
+_const_8c037680:        ; aggressive search
+          ;.SDATA      "おいおい、通行人の安全は<E>何に替えても守ってくれよ"
+          ;.DATA.B     H'00
+          .DATA.B      H'82, H'A8, H'82, H'A2, H'82, H'A8, H'82, H'A2, H'81, H'41, H'92, H'CA, H'8D, H'73, H'90, H'6C
+          .DATA.B      H'82, H'CC, H'88, H'C0, H'91, H'53, H'82, H'CD, H'3C, H'45, H'3E, H'89, H'BD, H'82, H'C9, H'91
+          .DATA.B      H'D6, H'82, H'A6, H'82, H'C4, H'82, H'E0, H'8E, H'E7, H'82, H'C1, H'82, H'C4, H'82, H'AD, H'82
+          .DATA.B      H'EA, H'82, H'E6, H'00
+_const_8c0376b4:        ; aggressive search
+          ;.SDATA      "コースを外れてしまったようだな…<E>コースは常に正確に走ってくれないと困るぞ"
+          ;.DATA.B     H'00
+          .DATA.B      H'83, H'52, H'81, H'5B, H'83, H'58, H'82, H'F0, H'8A, H'4F, H'82, H'EA, H'82, H'C4, H'82, H'B5
+          .DATA.B      H'82, H'DC, H'82, H'C1, H'82, H'BD, H'82, H'E6, H'82, H'A4, H'82, H'BE, H'82, H'C8, H'81, H'63
+          .DATA.B      H'3C, H'45, H'3E, H'83, H'52, H'81, H'5B, H'83, H'58, H'82, H'CD, H'8F, H'ED, H'82, H'C9, H'90
+          .DATA.B      H'B3, H'8A, H'6D, H'82, H'C9, H'91, H'96, H'82, H'C1, H'82, H'C4, H'82, H'AD, H'82, H'EA, H'82
+          .DATA.B      H'C8, H'82, H'A2, H'82, H'C6, H'8D, H'A2, H'82, H'E9, H'82, H'BC, H'00
+_const_8c037700:        ; aggressive search
+          ;.SDATA      "コースから外れかけても、慌てずに速度を落とし<E>正しいコースに戻ればいい"
+          ;.DATA.B     H'00
+          .DATA.B      H'83, H'52, H'81, H'5B, H'83, H'58, H'82, H'A9, H'82, H'E7, H'8A, H'4F, H'82, H'EA, H'82, H'A9
+          .DATA.B      H'82, H'AF, H'82, H'C4, H'82, H'E0, H'81, H'41, H'8D, H'51, H'82, H'C4, H'82, H'B8, H'82, H'C9
+          .DATA.B      H'91, H'AC, H'93, H'78, H'82, H'F0, H'97, H'8E, H'82, H'C6, H'82, H'B5, H'3C, H'45, H'3E, H'90
+          .DATA.B      H'B3, H'82, H'B5, H'82, H'A2, H'83, H'52, H'81, H'5B, H'83, H'58, H'82, H'C9, H'96, H'DF, H'82
+          .DATA.B      H'EA, H'82, H'CE, H'82, H'A2, H'82, H'A2, H'00
+_const_8c037748:        ; aggressive search
+          ;.SDATA      "少しスピードオーバーしたみたいだな…<E>制限速度には常に注意を払ってくれよ"
+          ;.DATA.B     H'00
+          ;.RES.B      2
+          .DATA.B      H'8F, H'AD, H'82, H'B5, H'83, H'58, H'83, H'73, H'81, H'5B, H'83, H'68, H'83, H'49, H'81, H'5B
+          .DATA.B      H'83, H'6F, H'81, H'5B, H'82, H'B5, H'82, H'BD, H'82, H'DD, H'82, H'BD, H'82, H'A2, H'82, H'BE
+          .DATA.B      H'82, H'C8, H'81, H'63, H'3C, H'45, H'3E, H'90, H'A7, H'8C, H'C0, H'91, H'AC, H'93, H'78, H'82
+          .DATA.B      H'C9, H'82, H'CD, H'8F, H'ED, H'82, H'C9, H'92, H'8D, H'88, H'D3, H'82, H'F0, H'95, H'A5, H'82
+          .DATA.B      H'C1, H'82, H'C4, H'82, H'AD, H'82, H'EA, H'82, H'E6, H'00, H'00, H'00
+_const_8c037794:        ; aggressive search
+          ;.SDATA      "大分スピードオーバーしたようだな…<E>制限速度を守るのは安全運転の基本だぞ"
+          ;.DATA.B     H'00
+          ;.RES.B      2
+          .DATA.B      H'91, H'E5, H'95, H'AA, H'83, H'58, H'83, H'73, H'81, H'5B, H'83, H'68, H'83, H'49, H'81, H'5B
+          .DATA.B      H'83, H'6F, H'81, H'5B, H'82, H'B5, H'82, H'BD, H'82, H'E6, H'82, H'A4, H'82, H'BE, H'82, H'C8
+          .DATA.B      H'81, H'63, H'3C, H'45, H'3E, H'90, H'A7, H'8C, H'C0, H'91, H'AC, H'93, H'78, H'82, H'F0, H'8E
+          .DATA.B      H'E7, H'82, H'E9, H'82, H'CC, H'82, H'CD, H'88, H'C0, H'91, H'53, H'89, H'5E, H'93, H'5D, H'82
+          .DATA.B      H'CC, H'8A, H'EE, H'96, H'7B, H'82, H'BE, H'82, H'BC, H'00, H'00, H'00
+_const_8c0377e0:        ; aggressive search
+          ;.SDATA      "対向車線を越えるとは言語道断！<E>大事故の元なので、以後、絶対にないように"
+          ;.DATA.B     H'00
+          ;.RES.B      2
+          .DATA.B      H'91, H'CE, H'8C, H'FC, H'8E, H'D4, H'90, H'FC, H'82, H'F0, H'89, H'7A, H'82, H'A6, H'82, H'E9
+          .DATA.B      H'82, H'C6, H'82, H'CD, H'8C, H'BE, H'8C, H'EA, H'93, H'B9, H'92, H'66, H'81, H'49, H'3C, H'45
+          .DATA.B      H'3E, H'91, H'E5, H'8E, H'96, H'8C, H'CC, H'82, H'CC, H'8C, H'B3, H'82, H'C8, H'82, H'CC, H'82
+          .DATA.B      H'C5, H'81, H'41, H'88, H'C8, H'8C, H'E3, H'81, H'41, H'90, H'E2, H'91, H'CE, H'82, H'C9, H'82
+          .DATA.B      H'C8, H'82, H'A2, H'82, H'E6, H'82, H'A4, H'82, H'C9, H'00, H'00, H'00
+_const_8c03782c:        ; aggressive search
+          ;.SDATA      "車体が大きいので大変なのは分かるが<E>車線をまたがって走ってはいかんぞ"
+          ;.DATA.B     H'00
+          ;.RES.B      2
+          .DATA.B      H'8E, H'D4, H'91, H'CC, H'82, H'AA, H'91, H'E5, H'82, H'AB, H'82, H'A2, H'82, H'CC, H'82, H'C5
+          .DATA.B      H'91, H'E5, H'95, H'CF, H'82, H'C8, H'82, H'CC, H'82, H'CD, H'95, H'AA, H'82, H'A9, H'82, H'E9
+          .DATA.B      H'82, H'AA, H'3C, H'45, H'3E, H'8E, H'D4, H'90, H'FC, H'82, H'F0, H'82, H'DC, H'82, H'BD, H'82
+          .DATA.B      H'AA, H'82, H'C1, H'82, H'C4, H'91, H'96, H'82, H'C1, H'82, H'C4, H'82, H'CD, H'82, H'A2, H'82
+          .DATA.B      H'A9, H'82, H'F1, H'82, H'BC, H'00, H'00, H'00
+_const_8c037874:        ; aggressive search
+          ;.SDATA      "ウインカーを忘れていたぞ<E>車線変更や交差点での右左折"
+          ;.DATA.B     H'00
+          ;.RES.B      2
+          .DATA.B      H'83, H'45, H'83, H'43, H'83, H'93, H'83, H'4A, H'81, H'5B, H'82, H'F0, H'96, H'59, H'82, H'EA
+          .DATA.B      H'82, H'C4, H'82, H'A2, H'82, H'BD, H'82, H'BC, H'3C, H'45, H'3E, H'8E, H'D4, H'90, H'FC, H'95
+          .DATA.B      H'CF, H'8D, H'58, H'82, H'E2, H'8C, H'F0, H'8D, H'B7, H'93, H'5F, H'82, H'C5, H'82, H'CC, H'89
+          .DATA.B      H'45, H'8D, H'B6, H'90, H'DC, H'00, H'00, H'00
+_const_8c0378ac:        ; aggressive search
+          ;.SDATA      "そして停留所に停車する時は<E>必ずウインカーを出すようにな"
+          ;.DATA.B     H'00
+          ;.RES.B      2
+          .DATA.B      H'82, H'BB, H'82, H'B5, H'82, H'C4, H'92, H'E2, H'97, H'AF, H'8F, H'8A, H'82, H'C9, H'92, H'E2
+          .DATA.B      H'8E, H'D4, H'82, H'B7, H'82, H'E9, H'8E, H'9E, H'82, H'CD, H'3C, H'45, H'3E, H'95, H'4B, H'82
+          .DATA.B      H'B8, H'83, H'45, H'83, H'43, H'83, H'93, H'83, H'4A, H'81, H'5B, H'82, H'F0, H'8F, H'6F, H'82
+          .DATA.B      H'B7, H'82, H'E6, H'82, H'A4, H'82, H'C9, H'82, H'C8, H'00, H'00, H'00
+_const_8c0378e8:        ; aggressive search
+          ;.SDATA      "大切なのは、自分の行動を<E>周りの車にちゃんと知らせることだ"
+          ;.DATA.B     H'00
+          .DATA.B      H'91, H'E5, H'90, H'D8, H'82, H'C8, H'82, H'CC, H'82, H'CD, H'81, H'41, H'8E, H'A9, H'95, H'AA
+          .DATA.B      H'82, H'CC, H'8D, H'73, H'93, H'AE, H'82, H'F0, H'3C, H'45, H'3E, H'8E, H'FC, H'82, H'E8, H'82
+          .DATA.B      H'CC, H'8E, H'D4, H'82, H'C9, H'82, H'BF, H'82, H'E1, H'82, H'F1, H'82, H'C6, H'92, H'6D, H'82
+          .DATA.B      H'E7, H'82, H'B9, H'82, H'E9, H'82, H'B1, H'82, H'C6, H'82, H'BE, H'00
+_const_8c037924:        ; aggressive search
+          ;.SDATA      "右左折する時のウインカーを忘れていたぞ"
+          ;.DATA.B     H'00
+          ;.RES.B      1
+          .DATA.B      H'89, H'45, H'8D, H'B6, H'90, H'DC, H'82, H'B7, H'82, H'E9, H'8E, H'9E, H'82, H'CC, H'83, H'45
+          .DATA.B      H'83, H'43, H'83, H'93, H'83, H'4A, H'81, H'5B, H'82, H'F0, H'96, H'59, H'82, H'EA, H'82, H'C4
+          .DATA.B      H'82, H'A2, H'82, H'BD, H'82, H'BC, H'00, H'00
+_const_8c03794c:        ; aggressive search
+          ;.SDATA      "おいおい、大事故になる所だったぞ"
+          ;.DATA.B     H'00
+          ;.RES.B      3
+          .DATA.B      H'82, H'A8, H'82, H'A2, H'82, H'A8, H'82, H'A2, H'81, H'41, H'91, H'E5, H'8E, H'96, H'8C, H'CC
+          .DATA.B      H'82, H'C9, H'82, H'C8, H'82, H'E9, H'8F, H'8A, H'82, H'BE, H'82, H'C1, H'82, H'BD, H'82, H'BC
+          .DATA.B      H'00, H'00, H'00, H'00
+_const_8c037970:        ; aggressive search
+          ;.SDATA      "信号はしっかりと確認してくれよ<E>交通法規の基本中の基本だぞ"
+          ;.DATA.B     H'00
+          .DATA.B      H'90, H'4D, H'8D, H'86, H'82, H'CD, H'82, H'B5, H'82, H'C1, H'82, H'A9, H'82, H'E8, H'82, H'C6
+          .DATA.B      H'8A, H'6D, H'94, H'46, H'82, H'B5, H'82, H'C4, H'82, H'AD, H'82, H'EA, H'82, H'E6, H'3C, H'45
+          .DATA.B      H'3E, H'8C, H'F0, H'92, H'CA, H'96, H'40, H'8B, H'4B, H'82, H'CC, H'8A, H'EE, H'96, H'7B, H'92
+          .DATA.B      H'86, H'82, H'CC, H'8A, H'EE, H'96, H'7B, H'82, H'BE, H'82, H'BC, H'00
+_const_8c0379ac:        ; aggressive search
+          ;.SDATA      "停止時にちょっと失敗したな"
+          ;.DATA.B     H'00
+          ;.RES.B      1
+          .DATA.B      H'92, H'E2, H'8E, H'7E, H'8E, H'9E, H'82, H'C9, H'82, H'BF, H'82, H'E5, H'82, H'C1, H'82, H'C6
+          .DATA.B      H'8E, H'B8, H'94, H'73, H'82, H'B5, H'82, H'BD, H'82, H'C8, H'00, H'00
+_const_8c0379c8:        ; aggressive search
+          ;.SDATA      "停止線をきちんと確認して、<E>正しい位置に停止するようにしてくれ"
+          ;.DATA.B     H'00
+          .DATA.B      H'92, H'E2, H'8E, H'7E, H'90, H'FC, H'82, H'F0, H'82, H'AB, H'82, H'BF, H'82, H'F1, H'82, H'C6
+          .DATA.B      H'8A, H'6D, H'94, H'46, H'82, H'B5, H'82, H'C4, H'81, H'41, H'3C, H'45, H'3E, H'90, H'B3, H'82
+          .DATA.B      H'B5, H'82, H'A2, H'88, H'CA, H'92, H'75, H'82, H'C9, H'92, H'E2, H'8E, H'7E, H'82, H'B7, H'82
+          .DATA.B      H'E9, H'82, H'E6, H'82, H'A4, H'82, H'C9, H'82, H'B5, H'82, H'C4, H'82, H'AD, H'82, H'EA, H'00
+_const_8c037a08:        ; aggressive search
+          ;.SDATA      "してはいけない所で車線変更をしたようだな…"
+          ;.DATA.B     H'00
+          ;.RES.B      1
+          .DATA.B      H'82, H'B5, H'82, H'C4, H'82, H'CD, H'82, H'A2, H'82, H'AF, H'82, H'C8, H'82, H'A2, H'8F, H'8A
+          .DATA.B      H'82, H'C5, H'8E, H'D4, H'90, H'FC, H'95, H'CF, H'8D, H'58, H'82, H'F0, H'82, H'B5, H'82, H'BD
+          .DATA.B      H'82, H'E6, H'82, H'A4, H'82, H'BE, H'82, H'C8, H'81, H'63, H'00, H'00
+_const_8c037a34:        ; aggressive search
+          ;.SDATA      "交差点の手前などでは禁止されているので<E>気を付けてくれよ"
+          ;.DATA.B     H'00
+          ;.RES.B      2
+          .DATA.B      H'8C, H'F0, H'8D, H'B7, H'93, H'5F, H'82, H'CC, H'8E, H'E8, H'91, H'4F, H'82, H'C8, H'82, H'C7
+          .DATA.B      H'82, H'C5, H'82, H'CD, H'8B, H'D6, H'8E, H'7E, H'82, H'B3, H'82, H'EA, H'82, H'C4, H'82, H'A2
+          .DATA.B      H'82, H'E9, H'82, H'CC, H'82, H'C5, H'3C, H'45, H'3E, H'8B, H'43, H'82, H'F0, H'95, H'74, H'82
+          .DATA.B      H'AF, H'82, H'C4, H'82, H'AD, H'82, H'EA, H'82, H'E6, H'00, H'00, H'00
+_const_8c037a70:        ; aggressive search
+          ;.SDATA      "交差点での立ち往生は<E>絶対にしてはいけないぞ"
+          ;.DATA.B     H'00
+          ;.RES.B      2
+          .DATA.B      H'8C, H'F0, H'8D, H'B7, H'93, H'5F, H'82, H'C5, H'82, H'CC, H'97, H'A7, H'82, H'BF, H'89, H'9D
+          .DATA.B      H'90, H'B6, H'82, H'CD, H'3C, H'45, H'3E, H'90, H'E2, H'91, H'CE, H'82, H'C9, H'82, H'B5, H'82
+          .DATA.B      H'C4, H'82, H'CD, H'82, H'A2, H'82, H'AF, H'82, H'C8, H'82, H'A2, H'82, H'BC, H'00, H'00, H'00
+_const_8c037aa0:        ; aggressive search
+          ;.SDATA      "事故や渋滞を引き起こす危険があるからな…<E>交差点は素早く通り抜けることだ"
+          ;.DATA.B     H'00
+          ;.RES.B      2
+          .DATA.B      H'8E, H'96, H'8C, H'CC, H'82, H'E2, H'8F, H'61, H'91, H'D8, H'82, H'F0, H'88, H'F8, H'82, H'AB
+          .DATA.B      H'8B, H'4E, H'82, H'B1, H'82, H'B7, H'8A, H'EB, H'8C, H'AF, H'82, H'AA, H'82, H'A0, H'82, H'E9
+          .DATA.B      H'82, H'A9, H'82, H'E7, H'82, H'C8, H'81, H'63, H'3C, H'45, H'3E, H'8C, H'F0, H'8D, H'B7, H'93
+          .DATA.B      H'5F, H'82, H'CD, H'91, H'66, H'91, H'81, H'82, H'AD, H'92, H'CA, H'82, H'E8, H'94, H'B2, H'82
+          .DATA.B      H'AF, H'82, H'E9, H'82, H'B1, H'82, H'C6, H'82, H'BE, H'00, H'00, H'00
+_const_8c037aec:        ; aggressive search
+          ;.SDATA      "コースを正しく走る<E>これが運転の基本だ"
+          ;.DATA.B     H'00
+          .DATA.B      H'83, H'52, H'81, H'5B, H'83, H'58, H'82, H'F0, H'90, H'B3, H'82, H'B5, H'82, H'AD, H'91, H'96
+          .DATA.B      H'82, H'E9, H'3C, H'45, H'3E, H'82, H'B1, H'82, H'EA, H'82, H'AA, H'89, H'5E, H'93, H'5D, H'82
+          .DATA.B      H'CC, H'8A, H'EE, H'96, H'7B, H'82, H'BE, H'00
+_const_8c037b14:        ; aggressive search
+          ;.SDATA      "落ち着いて走れば逆走などするわけがない<E>大事故になるので絶対にやめてくれよ"
+          ;.DATA.B     H'00
+          .DATA.B      H'97, H'8E, H'82, H'BF, H'92, H'85, H'82, H'A2, H'82, H'C4, H'91, H'96, H'82, H'EA, H'82, H'CE
+          .DATA.B      H'8B, H'74, H'91, H'96, H'82, H'C8, H'82, H'C7, H'82, H'B7, H'82, H'E9, H'82, H'ED, H'82, H'AF
+          .DATA.B      H'82, H'AA, H'82, H'C8, H'82, H'A2, H'3C, H'45, H'3E, H'91, H'E5, H'8E, H'96, H'8C, H'CC, H'82
+          .DATA.B      H'C9, H'82, H'C8, H'82, H'E9, H'82, H'CC, H'82, H'C5, H'90, H'E2, H'91, H'CE, H'82, H'C9, H'82
+          .DATA.B      H'E2, H'82, H'DF, H'82, H'C4, H'82, H'AD, H'82, H'EA, H'82, H'E6, H'00
+_const_8c037b60:        ; aggressive search
+          ;.SDATA      "基本的には、お客さんあってのバスだからね<E>急発進などしないように気を付けよう"
+          ;.DATA.B     H'00
+          ;.RES.B      2
+          .DATA.B      H'8A, H'EE, H'96, H'7B, H'93, H'49, H'82, H'C9, H'82, H'CD, H'81, H'41, H'82, H'A8, H'8B, H'71
+          .DATA.B      H'82, H'B3, H'82, H'F1, H'82, H'A0, H'82, H'C1, H'82, H'C4, H'82, H'CC, H'83, H'6F, H'83, H'58
+          .DATA.B      H'82, H'BE, H'82, H'A9, H'82, H'E7, H'82, H'CB, H'3C, H'45, H'3E, H'8B, H'7D, H'94, H'AD, H'90
+          .DATA.B      H'69, H'82, H'C8, H'82, H'C7, H'82, H'B5, H'82, H'C8, H'82, H'A2, H'82, H'E6, H'82, H'A4, H'82
+          .DATA.B      H'C9, H'8B, H'43, H'82, H'F0, H'95, H'74, H'82, H'AF, H'82, H'E6, H'82, H'A4, H'00, H'00, H'00
+_const_8c037bb0:        ; aggressive search
+          ;.SDATA      "急ブレーキがあったようだな<E>今度はお客さんの身になって運転してみるといい"
+          ;.DATA.B     H'00
+          ;.RES.B      2
+          .DATA.B      H'8B, H'7D, H'83, H'75, H'83, H'8C, H'81, H'5B, H'83, H'4C, H'82, H'AA, H'82, H'A0, H'82, H'C1
+          .DATA.B      H'82, H'BD, H'82, H'E6, H'82, H'A4, H'82, H'BE, H'82, H'C8, H'3C, H'45, H'3E, H'8D, H'A1, H'93
+          .DATA.B      H'78, H'82, H'CD, H'82, H'A8, H'8B, H'71, H'82, H'B3, H'82, H'F1, H'82, H'CC, H'90, H'67, H'82
+          .DATA.B      H'C9, H'82, H'C8, H'82, H'C1, H'82, H'C4, H'89, H'5E, H'93, H'5D, H'82, H'B5, H'82, H'C4, H'82
+          .DATA.B      H'DD, H'82, H'E9, H'82, H'C6, H'82, H'A2, H'82, H'A2, H'00, H'00, H'00
+_const_8c037bfc:        ; aggressive search
+          ;.SDATA      "荒っぽい運転をすると<E>立っているお客さんは大変だぞ"
+          ;.DATA.B     H'00
+          .DATA.B      H'8D, H'72, H'82, H'C1, H'82, H'DB, H'82, H'A2, H'89, H'5E, H'93, H'5D, H'82, H'F0, H'82, H'B7
+          .DATA.B      H'82, H'E9, H'82, H'C6, H'3C, H'45, H'3E, H'97, H'A7, H'82, H'C1, H'82, H'C4, H'82, H'A2, H'82
+          .DATA.B      H'E9, H'82, H'A8, H'8B, H'71, H'82, H'B3, H'82, H'F1, H'82, H'CD, H'91, H'E5, H'95, H'CF, H'82
+          .DATA.B      H'BE, H'82, H'BC, H'00
+_const_8c037c30:        ; aggressive search
+          ;.SDATA      "もっと安全運転を心がけて<E>急ハンドルなんてしないようにな"
+          ;.DATA.B     H'00
+          ;.RES.B      2
+          .DATA.B      H'82, H'E0, H'82, H'C1, H'82, H'C6, H'88, H'C0, H'91, H'53, H'89, H'5E, H'93, H'5D, H'82, H'F0
+          .DATA.B      H'90, H'53, H'82, H'AA, H'82, H'AF, H'82, H'C4, H'3C, H'45, H'3E, H'8B, H'7D, H'83, H'6E, H'83
+          .DATA.B      H'93, H'83, H'68, H'83, H'8B, H'82, H'C8, H'82, H'F1, H'82, H'C4, H'82, H'B5, H'82, H'C8, H'82
+          .DATA.B      H'A2, H'82, H'E6, H'82, H'A4, H'82, H'C9, H'82, H'C8, H'00, H'00, H'00
+_const_8c037c6c:        ; aggressive search
+          ;.SDATA      "バスが停留所を通り過ぎてどうするんだ"
+          ;.DATA.B     H'00
+          ;.RES.B      3
+          .DATA.B      H'83, H'6F, H'83, H'58, H'82, H'AA, H'92, H'E2, H'97, H'AF, H'8F, H'8A, H'82, H'F0, H'92, H'CA
+          .DATA.B      H'82, H'E8, H'89, H'DF, H'82, H'AC, H'82, H'C4, H'82, H'C7, H'82, H'A4, H'82, H'B7, H'82, H'E9
+          .DATA.B      H'82, H'F1, H'82, H'BE, H'00, H'00, H'00, H'00
+_const_8c037c94:        ; aggressive search
+          ;.SDATA      "きちんと停留所情報を確認して<E>必要な停留所では停車してくれよ"
+          ;.DATA.B     H'00
+          ;.RES.B      2
+          .DATA.B      H'82, H'AB, H'82, H'BF, H'82, H'F1, H'82, H'C6, H'92, H'E2, H'97, H'AF, H'8F, H'8A, H'8F, H'EE
+          .DATA.B      H'95, H'F1, H'82, H'F0, H'8A, H'6D, H'94, H'46, H'82, H'B5, H'82, H'C4, H'3C, H'45, H'3E, H'95
+          .DATA.B      H'4B, H'97, H'76, H'82, H'C8, H'92, H'E2, H'97, H'AF, H'8F, H'8A, H'82, H'C5, H'82, H'CD, H'92
+          .DATA.B      H'E2, H'8E, H'D4, H'82, H'B5, H'82, H'C4, H'82, H'AD, H'82, H'EA, H'82, H'E6, H'00, H'00, H'00
+_const_8c037cd4:        ; aggressive search
+          ;.SDATA      "停留所の停車位置が良くなかったようだな"
+          ;.DATA.B     H'00
+          ;.RES.B      1
+          .DATA.B      H'92, H'E2, H'97, H'AF, H'8F, H'8A, H'82, H'CC, H'92, H'E2, H'8E, H'D4, H'88, H'CA, H'92, H'75
+          .DATA.B      H'82, H'AA, H'97, H'C7, H'82, H'AD, H'82, H'C8, H'82, H'A9, H'82, H'C1, H'82, H'BD, H'82, H'E6
+          .DATA.B      H'82, H'A4, H'82, H'BE, H'82, H'C8, H'00, H'00
+_const_8c037cfc:        ; aggressive search
+          ;.SDATA      "今度からは、お客さんが乗り降り<E>しやすいように、正確に停車してくれ"
+          ;.DATA.B     H'00
+          .DATA.B      H'8D, H'A1, H'93, H'78, H'82, H'A9, H'82, H'E7, H'82, H'CD, H'81, H'41, H'82, H'A8, H'8B, H'71
+          .DATA.B      H'82, H'B3, H'82, H'F1, H'82, H'AA, H'8F, H'E6, H'82, H'E8, H'8D, H'7E, H'82, H'E8, H'3C, H'45
+          .DATA.B      H'3E, H'82, H'B5, H'82, H'E2, H'82, H'B7, H'82, H'A2, H'82, H'E6, H'82, H'A4, H'82, H'C9, H'81
+          .DATA.B      H'41, H'90, H'B3, H'8A, H'6D, H'82, H'C9, H'92, H'E2, H'8E, H'D4, H'82, H'B5, H'82, H'C4, H'82
+          .DATA.B      H'AD, H'82, H'EA, H'00
+_const_8c037d40:        ; aggressive search
+          ;.SDATA      "運転技術はもちろんのこと<E>時間配分にも気を配ってくれ"
+          ;.DATA.B     H'00
+          ;.RES.B      2
+          .DATA.B      H'89, H'5E, H'93, H'5D, H'8B, H'5A, H'8F, H'70, H'82, H'CD, H'82, H'E0, H'82, H'BF, H'82, H'EB
+          .DATA.B      H'82, H'F1, H'82, H'CC, H'82, H'B1, H'82, H'C6, H'3C, H'45, H'3E, H'8E, H'9E, H'8A, H'D4, H'94
+          .DATA.B      H'7A, H'95, H'AA, H'82, H'C9, H'82, H'E0, H'8B, H'43, H'82, H'F0, H'94, H'7A, H'82, H'C1, H'82
+          .DATA.B      H'C4, H'82, H'AD, H'82, H'EA, H'00, H'00, H'00
+_const_8c037d78:        ; aggressive search
+          ;.SDATA      "バスの運転手がお客さんにしなければならない<E>こととして、車内アナウンスは重要だぞ"
+          ;.DATA.B     H'00
+          ;.RES.B      2
+          .DATA.B      H'83, H'6F, H'83, H'58, H'82, H'CC, H'89, H'5E, H'93, H'5D, H'8E, H'E8, H'82, H'AA, H'82, H'A8
+          .DATA.B      H'8B, H'71, H'82, H'B3, H'82, H'F1, H'82, H'C9, H'82, H'B5, H'82, H'C8, H'82, H'AF, H'82, H'EA
+          .DATA.B      H'82, H'CE, H'82, H'C8, H'82, H'E7, H'82, H'C8, H'82, H'A2, H'3C, H'45, H'3E, H'82, H'B1, H'82
+          .DATA.B      H'C6, H'82, H'C6, H'82, H'B5, H'82, H'C4, H'81, H'41, H'8E, H'D4, H'93, H'E0, H'83, H'41, H'83
+          .DATA.B      H'69, H'83, H'45, H'83, H'93, H'83, H'58, H'82, H'CD, H'8F, H'64, H'97, H'76, H'82, H'BE, H'82
+          .DATA.B      H'BC, H'00, H'00, H'00
+_const_8c037dcc:        ; aggressive search
+          ;.SDATA      "ドアの開閉の確認は基本事項だぞ"
+          ;.DATA.B     H'00
+          ;.RES.B      1
+          .DATA.B      H'83, H'68, H'83, H'41, H'82, H'CC, H'8A, H'4A, H'95, H'C2, H'82, H'CC, H'8A, H'6D, H'94, H'46
+          .DATA.B      H'82, H'CD, H'8A, H'EE, H'96, H'7B, H'8E, H'96, H'8D, H'80, H'82, H'BE, H'82, H'BC, H'00, H'00
+_const_8c037dec:        ; aggressive search
+          ;.SDATA      "但しストーリーモードで<E>走ったコースに限るがな"
+          ;.DATA.B     H'00
+          .DATA.B      H'92, H'41, H'82, H'B5, H'83, H'58, H'83, H'67, H'81, H'5B, H'83, H'8A, H'81, H'5B, H'83, H'82
+          .DATA.B      H'81, H'5B, H'83, H'68, H'82, H'C5, H'3C, H'45, H'3E, H'91, H'96, H'82, H'C1, H'82, H'BD, H'83
+          .DATA.B      H'52, H'81, H'5B, H'83, H'58, H'82, H'C9, H'8C, H'C0, H'82, H'E9, H'82, H'AA, H'82, H'C8, H'00
+_const_8c037e1c:        ; aggressive search
+          ;.SDATA      "さぁ、コースを選んでくれ"
+          ;.DATA.B     H'00
+          ;.RES.B      3
+          .DATA.B      H'82, H'B3, H'82, H'9F, H'81, H'41, H'83, H'52, H'81, H'5B, H'83, H'58, H'82, H'F0, H'91, H'49
+          .DATA.B      H'82, H'F1, H'82, H'C5, H'82, H'AD, H'82, H'EA, H'00, H'00, H'00, H'00
           .END
