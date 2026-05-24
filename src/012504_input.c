@@ -24,9 +24,7 @@ extern int init_8c03be80[14];
 extern int init_8c03bef0[10];
 extern int init_8c03beb8[14];
 extern int init_8c03bf18[10];
-/* Racing-wheel state. Names unknown; var_8c1bbc4c gates the paddle-shift
- * remap (likely a timer that must be 0); var_8c1bbcc4 picks the remap
- * target (5 -> D-pad Up, 0 -> D-pad Down). */
+/* var_8c1bbc4c: paddle remap timer (must be 0); var_8c1bbcc4: remap target (5=Up, 0=Down) */
 extern float var_8c1bbc4c;
 extern int var_8c1bbcc4;
 extern Task var_tasks_8c1ba3c8[];
@@ -99,10 +97,7 @@ void inputTask_8c012504(void)
                 var_peripherals_8c1ba35c[0].press |= init_8c03bef0[i + 1];
             }
         }
-        /* Paddle-shift remap: when the Y-paddle is freshly pressed while the
-         * wheel is idle (timer == 0) and the left brake is at least half-
-         * applied, remap Y to a D-pad press (Up in mode 5, Down in mode 0).
-         * Otherwise fall through to the racing-controller reset combo. */
+        /* Y + half-brake while timer idle -> remap Y to D-pad; else check reset combo */
         if ((var_peripherals_8c1ba35c[0].press & PDD_DGT_TY) &&
             var_8c1bbc4c == 0.0f &&
             var_peripherals_8c1ba35c[0].l >= 0x81) {
@@ -123,8 +118,6 @@ void inputTask_8c012504(void)
         }
     }
 
-    /* Pick the port that has a vibration pack: prefer port 1, then port 2;
-     * -1 if neither has one. */
     if (pdGetPeripheral(1)->info->type & PDD_DEVTYPE_VIBRATION) {
         var_vibport_8c1ba354 = 1;
     } else if (pdGetPeripheral(2)->info->type & PDD_DEVTYPE_VIBRATION) {
@@ -136,9 +129,7 @@ void inputTask_8c012504(void)
     vmsLcd_8c01c910();
 }
 
-/* Alternate input handler, selected over inputTask_8c012504 by dispatchInputTask_8c012970 based
- * on var_inputMapSel_8c1bb8c8. Identical flow but reads the adjacent translation tables
- * (init_8c03beb8 / init_8c03bf18) and has no paddle-shift remap. */
+/* Like inputTask_8c012504 but uses alt translation tables and skips paddle-shift remap. */
 void inputTaskAlt_8c012718(void)
 {
     int support;
@@ -207,8 +198,6 @@ void inputTaskAlt_8c012718(void)
         }
     }
 
-    /* Pick the port that has a vibration pack: prefer port 1, then port 2;
-     * -1 if neither has one. */
     if (pdGetPeripheral(1)->info->type & PDD_DEVTYPE_VIBRATION) {
         var_vibport_8c1ba354 = 1;
     } else if (pdGetPeripheral(2)->info->type & PDD_DEVTYPE_VIBRATION) {
@@ -220,9 +209,8 @@ void inputTaskAlt_8c012718(void)
     vmsLcd_8c01c910();
 }
 
-/* Queues the active input-handler task. param 0 installs the peripheral-support
- * task (PspTask_8c012324) and clears its repeat/auto-fire state; param 1 picks
- * inputTask_8c012504 or inputTaskAlt_8c012718 by var_inputMapSel_8c1bb8c8. */
+/* param 0: install peripheral-support task, clear auto-fire state;
+ * param 1: install the mapped input handler. */
 void pushInputTask_8c0128cc(int param)
 {
     void (*action)(void);
@@ -248,8 +236,7 @@ void pushInputTask_8c0128cc(int param)
     }
 }
 
-/* Task action that runs the active input handler each frame: inputTask_8c012504
- * or inputTaskAlt_8c012718, selected by var_inputMapSel_8c1bb8c8. (In asm this is a tail call.) */
+/* Tail call in asm; dispatches inputTask or Alt via var_inputMapSel_8c1bb8c8. */
 void dispatchInputTask_8c012970(void)
 {
     if (var_inputMapSel_8c1bb8c8 == 0) {
@@ -261,8 +248,7 @@ void dispatchInputTask_8c012970(void)
     }
 }
 
-/* Ensures var_name_8c157aec holds "FortyFive": returns 0 if it already does,
- * otherwise writes it and returns 1 (i.e. 1 means the name was just set). */
+/* Returns 1 if name was just initialized, 0 if already "FortyFive". */
 int setName_8c012984(void)
 {
     if (strcmp(var_name_8c157aec, init_fortyFive_8c03bf40) == 0) {

@@ -4,11 +4,7 @@ declare(strict_types=1);
 
 use Lhsazevedo\Sh4ObjTest\TestCase;
 
-/*
- * inputTaskAlt_8c012718 is the twin of inputTask_8c012504: same flow, but it reads the
- * adjacent translation tables (_init_8c03beb8 / _init_8c03bf18) and has no
- * paddle-shift remap in the racing branch.
- */
+/* Twin of inputTask_8c012504: alt tables, no paddle-shift remap. */
 return new class extends TestCase {
     public function test_not_controller_type()
     {
@@ -69,18 +65,15 @@ return new class extends TestCase {
         $this->initUint16($per + 0x1c, 0);
         $this->initUint32($per + 0x30, $info);
 
-        // Seed two (mask, button) pairs at the start of init_8c03beb8;
-        // remaining 5 pairs stay 0 so they never match.
+        // Two pairs in init_8c03beb8; rest zeroed.
         $table = $this->addressOf('_init_8c03beb8');
         $this->initUint32($table + 0x00, 0x0001); // pair 0 mask
         $this->initUint32($table + 0x04, 0x0100); // pair 0 button
         $this->initUint32($table + 0x08, 0x0002); // pair 1 mask
         $this->initUint32($table + 0x0c, 0x0200); // pair 1 button
 
-        // peripheral->on has bits matching both pair-0 and pair-1 masks.
-        $this->initUint32($per + 0x08, 0x0003);
-        // peripheral->press has bit matching only pair-0 mask.
-        $this->initUint32($per + 0x10, 0x0001);
+        $this->initUint32($per + 0x08, 0x0003); // on: matches both pairs
+        $this->initUint32($per + 0x10, 0x0001); // press: matches only pair 0
 
         $buf = $this->addressOf('_var_peripherals_8c1ba35c');
 
@@ -272,7 +265,7 @@ return new class extends TestCase {
 
     public function test_vibration_pack_on_port1()
     {
-        // Port 1 reports the vibration capability (0x100 = PDD_DEVTYPE_VIBRATION) -> vibport = 1.
+        // Port 1 has vibration -> vibport = 1.
         $this->vibportScenario(port1Type: 0x100, port2Type: null, expected: 1);
     }
 
@@ -290,15 +283,11 @@ return new class extends TestCase {
 
     public function test_vibration_detection_masks_other_capability_bits()
     {
-        // Port 1 has other capability bits but not vibration (0x100), so it
-        // must fall through to port 2.
+        // Port 1 has non-vibration bits -> must not match.
         $this->vibportScenario(port1Type: 0x0ff, port2Type: 0x100, expected: 2);
     }
 
-    // Drives the trailing vibration-port detection. Sets up a standard
-    // controller on port 0 with empty inputs so the body falls straight
-    // through to the detection, then probes ports 1 and 2. `port2Type` is
-    // null when port 1 already has the pack (port 2 is never queried).
+    // port2Type=null means port 1 matched (port 2 never queried).
     private function vibportScenario(int $port1Type, ?int $port2Type, int $expected): void
     {
         $this->resolveSymbols();
@@ -343,7 +332,6 @@ return new class extends TestCase {
         $this->shouldWriteLong($buf + 0x10, 0);
         $this->shouldWriteLongTo('_var_activeCtrlType_8c157a70', 0xf06fe);
 
-        // Vibration-port detection probes port 1, then port 2 only if needed.
         $this->shouldCall('_pdGetPeripheral')->with(1)->andReturn($per1);
         if ($per2 !== null) {
             $this->shouldCall('_pdGetPeripheral')->with(2)->andReturn($per2);
@@ -364,9 +352,7 @@ return new class extends TestCase {
         );
     }
 
-    // inputTaskAlt_8c012718 standard table: _init_8c03beb8 (14 ints, 0x38 bytes). The
-    // loop bound is base+0x38; pin the next imported symbol _init_8c03bef0
-    // there so the imported tables stay contiguous.
+    // Pin _init_8c03bef0 right after _init_8c03beb8 (asm loop bound); zero the table.
     private function setupStandardTable(): void
     {
         $this->setSize('_init_8c03beb8', 0x38);
@@ -375,9 +361,7 @@ return new class extends TestCase {
         $this->initUint32Array($base, array_fill(0, 14, 0));
     }
 
-    // inputTaskAlt_8c012718 racing table: _init_8c03bf18 (10 ints, 0x28 bytes). The loop
-    // bound is base+0x28, computed in the asm, so there is no bound symbol to
-    // pin (the symbol there, _init_fortyFive_8c03bf40, is defined locally in the unit).
+    // Loop bound (base+0x28) is computed in asm; no symbol to pin.
     private function setupRacingTable(): void
     {
         $this->setSize('_init_8c03bf18', 0x28);

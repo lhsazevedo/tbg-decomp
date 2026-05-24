@@ -63,8 +63,7 @@ return new class extends TestCase {
     public function test_other_param_does_nothing()
     {
         $this->resolveSymbols();
-        // Loaded into a register by the prologue before the param branch, so
-        // the relocation must resolve even though pushTask is never called.
+        // Prologue loads this before the branch, so relocation must resolve.
         $this->setSize('_pushTask_8c014ae8', 4);
 
         $this->call('_pushInputTask_8c0128cc')->with(2);

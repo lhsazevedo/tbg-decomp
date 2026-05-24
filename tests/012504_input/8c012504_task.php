@@ -96,18 +96,15 @@ return new class extends TestCase {
         $this->initUint16($per + 0x1c, 0);
         $this->initUint32($per + 0x30, $info);
 
-        // Seed two (mask, button) pairs at the start of init_8c03be80;
-        // remaining 5 pairs stay 0 so they never match.
+        // Two pairs in init_8c03be80; rest zeroed.
         $table = $this->addressOf('_init_8c03be80');
         $this->initUint32($table + 0x00, 0x0001); // pair 0 mask
         $this->initUint32($table + 0x04, 0x0100); // pair 0 button
         $this->initUint32($table + 0x08, 0x0002); // pair 1 mask
         $this->initUint32($table + 0x0c, 0x0200); // pair 1 button
 
-        // peripheral->on has bits matching both pair-0 and pair-1 masks.
-        $this->initUint32($per + 0x08, 0x0003);
-        // peripheral->press has bit matching only pair-0 mask.
-        $this->initUint32($per + 0x10, 0x0001);
+        $this->initUint32($per + 0x08, 0x0003); // on: matches both pairs
+        $this->initUint32($per + 0x10, 0x0001); // press: matches only pair 0
 
         $buf = $this->addressOf('_var_peripherals_8c1ba35c');
 
@@ -188,8 +185,7 @@ return new class extends TestCase {
         $this->initUint16($per + 0x1c, 0);
         $this->initUint32($per + 0x30, $info);
 
-        // Start is pressed but only A|B held (X|Y = 0x600 missing), so the
-        // (on & A|B|X|Y) == all check fails and reset does NOT fire.
+        // Start pressed but X|Y missing -> combo fails.
         $this->initUint32($per + 0x08, 0x0006); // on: A|B held only
         $this->initUint32($per + 0x10, 0x0008); // press: Start pressed
 
@@ -348,16 +344,12 @@ return new class extends TestCase {
 
     public function test_racing_paddle_shift_no_remap_for_other_mode()
     {
-        // Gate passes but var_8c1bbcc4 is neither 5 nor 0 -> no remap; press
-        // keeps the translated TY bit (0x200) unchanged.
+        // Mode 3: gate passes but no remap -> press stays 0x200.
         $this->racingPaddleShift(mode: 3, finalPress: null);
     }
 
-    // Drives the special paddle-shift remap: peripherals[0].press has TY set
-    // (via init_8c03bef0 translation), wheel timer == 0.0, left brake at
-    // exactly the threshold (0x81). With var_8c1bbcc4 == mode, the asm XORs
-    // press with a D-pad bit, producing finalPress. Pass finalPress = null
-    // for modes other than 5/0, where no remap occurs and press stays 0x200.
+    // Exercises paddle-shift remap with brake at threshold (0x81) and timer=0.
+    // finalPress=null means mode is neither 5 nor 0 (no remap).
     private function racingPaddleShift(int $mode, ?int $finalPress): void
     {
         $this->resolveSymbols();
@@ -408,7 +400,7 @@ return new class extends TestCase {
 
     public function test_vibration_pack_on_port1()
     {
-        // Port 1 reports the vibration capability (0x100 = PDD_DEVTYPE_VIBRATION) -> vibport = 1.
+        // Port 1 has vibration -> vibport = 1.
         $this->vibportScenario(port1Type: 0x100, port2Type: null, expected: 1);
     }
 
@@ -426,16 +418,11 @@ return new class extends TestCase {
 
     public function test_vibration_detection_masks_other_capability_bits()
     {
-        // Port 1 has other capability bits but not vibration (0x100), so it
-        // must fall through to port 2. Guards against a truthy `if (type)`
-        // check that would wrongly pick port 1.
+        // Port 1 has non-vibration bits -> must not match; guards against truthy type check.
         $this->vibportScenario(port1Type: 0x0ff, port2Type: 0x100, expected: 2);
     }
 
-    // Drives the trailing vibration-port detection. Sets up a standard
-    // controller on port 0 with empty inputs so the body falls straight
-    // through to the detection, then probes ports 1 and 2. `port2Type` is
-    // null when port 1 already has the pack (port 2 is never queried).
+    // port2Type=null means port 1 matched (port 2 never queried).
     private function vibportScenario(int $port1Type, ?int $port2Type, int $expected): void
     {
         $this->resolveSymbols();
@@ -480,7 +467,6 @@ return new class extends TestCase {
         $this->shouldWriteLong($buf + 0x10, 0);
         $this->shouldWriteLongTo('_var_activeCtrlType_8c157a70', 0xf06fe);
 
-        // Vibration-port detection probes port 1, then port 2 only if needed.
         $this->shouldCall('_pdGetPeripheral')->with(1)->andReturn($per1);
         if ($per2 !== null) {
             $this->shouldCall('_pdGetPeripheral')->with(2)->andReturn($per2);
@@ -501,9 +487,7 @@ return new class extends TestCase {
         );
     }
 
-    // Allocates _init_8c03be80 (14 ints) and places _init_8c03beb8 immediately
-    // after it so the asm's `p < _init_8c03beb8` loop bound works. Zeroes the
-    // table; tests can override individual entries.
+    // Pin _init_8c03beb8 right after _init_8c03be80 (asm loop bound); zero the table.
     private function setupInitTable(): void
     {
         $this->setSize('_init_8c03be80', 0x38);
@@ -512,9 +496,7 @@ return new class extends TestCase {
         $this->initUint32Array($base, array_fill(0, 14, 0));
     }
 
-    // Mirror of setupInitTable for the racing-controller translation table:
-    // _init_8c03bef0 is 10 ints (0x28 bytes); _init_8c03bf18 must immediately
-    // follow it for the asm's `p < _init_8c03bf18` loop bound.
+    // Pin _init_8c03bf18 right after _init_8c03bef0 (asm loop bound); zero the table.
     private function setupRacingInitTable(): void
     {
         $this->setSize('_init_8c03bef0', 0x28);
@@ -523,8 +505,7 @@ return new class extends TestCase {
         $this->initUint32Array($base, array_fill(0, 10, 0));
     }
 
-    // Wheel-state globals consulted by the paddle-shift remap. `timerRaw` is
-    // the raw uint32 bit pattern of the float at _var_8c1bbc4c (0 == 0.0f).
+    // timerRaw: raw bits of float _var_8c1bbc4c (0 == 0.0f).
     private function setupRacingState(int $timerRaw, int $mode): void
     {
         $this->setSize('_var_8c1bbc4c', 4);

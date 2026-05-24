@@ -13,8 +13,7 @@ return new class extends TestCase {
 
         $this->call('_dispatchInputTask_8c012970');
 
-        // Tail call in asm, plain call in C; args (R4/R5=0) are not asserted
-        // because the C `void` call leaves them undefined.
+        // Args (R4/R5) not asserted; void call leaves them undefined.
         $this->shouldCall('_inputTask_8c012504');
     }
 
