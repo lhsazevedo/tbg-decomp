@@ -13,7 +13,7 @@
           .IMPORT     _push_fadein_8c022a9c
           .IMPORT     _init_8c044de8
           .IMPORT     _njDrawPolygon
-          .IMPORT     _var_8c157a70
+          .IMPORT     _var_activeCtrlType_8c157a70
           .IMPORT     _var_progress_8c1ba1cc
           .IMPORT     _var_peripherals_8c1ba35c
           .IMPORT     _FUN_8c0188bc
@@ -690,7 +690,7 @@ LAB_8c01a5f8:
 LP_GEN_91649:
           .RES.W 1 ; H'8C01A606
           .DATA.L _menuState_8c1bc7a8 ; H'8C01A608
-          .DATA.L _var_8c157a70 ; H'8C01A60C
+          .DATA.L _var_activeCtrlType_8c157a70 ; H'8C01A60C
           .DATA.L H'000F06FE ; H'8C01A610
           .DATA.L H'000700FE ; H'8C01A614
           .DATA.L H'10+_var_peripherals_8c1ba35c ; H'8C01A618

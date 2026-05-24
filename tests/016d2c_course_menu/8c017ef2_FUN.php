@@ -21,7 +21,7 @@ return new class extends TestCase {
 
         $createdTaskLocal = 0xffffe8;
         $createdStateLocal = 0xffffec;
-        $this->shouldCall('_FUN_8c0128cc');
+        $this->shouldCall('_pushInputTask_8c0128cc');
         $this->shouldCall('_pushTask_8c014ae8')->with(
             $this->addressOf('_var_tasks_8c1ba3c8'),
             $this->addressOf('_task_8c012f44'),

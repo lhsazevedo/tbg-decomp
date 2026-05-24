@@ -24,8 +24,8 @@ compile() {
   # wine "$SHC_BIN/shc.exe" $(echo "$src_file" | tr / '\\') -code=asm -object="$asm_file" -sub=build/shc_testing.sub 
 }
 
-rm -rf build/output
-mkdir build/output
+rm -rf build/output build/tmp
+mkdir build/output build/tmp
 
 # 012324
 assemble  src/asm/decompiled/012324_peripheral_support.src
@@ -43,7 +43,7 @@ compile  src/0100bc_sound.c
 assemble  src/asm/decompiled/010fe8_heap.src
 compile  src/010fe8_heap.c
 
-# # 015ab8_title
+# 015ab8_title
 assemble  src/asm/decompiled/015ab8_title.src
 compile  src/015ab8_title.c
 
@@ -74,5 +74,9 @@ compile  src/019e98_main_menu.c
 # 019e98
 assemble  src/asm/decompiled/016d2c_course_menu.src
 compile  src/016d2c_course_menu.c
+
+# 012504_input
+assemble  src/asm/decompiled/012504_input.src
+compile  src/012504_input.c
 
 $sh4objtest suite -s tests.php "$@"

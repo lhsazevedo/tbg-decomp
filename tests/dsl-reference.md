@@ -39,6 +39,12 @@ $this->shouldCall('_fn')->with($a, $b);
 $this->shouldCall('_fn')->andReturn($value);
 $this->shouldCall('_fn')->with($a)->andReturn($value);
 
+// A plain PHP string literal matches a pointer arg by dereferencing it and
+// comparing the C string contents -- no allocString()/addressOf() needed.
+// Use this for pointers to string literals (e.g. anonymous C literals that
+// have no named symbol to addressOf):
+$this->shouldCall('_strcmp')->with($this->addressOf('_buf'), "FortyFive");
+
 // Callback for complex side effects (e.g. memcpy simulation)
 $this->shouldCall('__quick_evn_mvn')->do(function ($params) {
     $src = $this->registers[2]->value;

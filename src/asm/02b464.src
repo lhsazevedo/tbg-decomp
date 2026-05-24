@@ -29,7 +29,7 @@
           .IMPORT     _var_8c228660
           .IMPORT     _var_8c228680
           .IMPORT     _var_8c22868c
-          .IMPORT     _var_8c1bb8c8
+          .IMPORT     _var_inputMapSel_8c1bb8c8
           .IMPORT     _var_busState_8c1bb9d0
           .IMPORT     _FUN_8c028900
           .IMPORT     _var_8c228684
@@ -737,7 +737,7 @@ LP_GEN_71333:
           .DATA.L _var_8c228690 ; H'8C02B930
           .DATA.L _var_8c22868c ; H'8C02B934
           .DATA.L H'00020000 ; H'8C02B938
-          .DATA.L _var_8c1bb8c8 ; H'8C02B93C
+          .DATA.L _var_inputMapSel_8c1bb8c8 ; H'8C02B93C
           .DATA.L _var_busState_8c1bb9d0 ; H'8C02B940
           .DATA.L _var_8c2285c4 ; H'8C02B944
           .DATA.L _var_8c22866c ; H'8C02B948
@@ -968,7 +968,7 @@ LAB_8c02baec:
           MOV.L       @R15+,R14
 LP_GEN_75926:
           .DATA.W H'00D2 ; H'8C02BAF6
-          .DATA.L _var_8c1bb8c8 ; H'8C02BAF8
+          .DATA.L _var_inputMapSel_8c1bb8c8 ; H'8C02BAF8
           .DATA.L _var_8c228674 ; H'8C02BAFC
           .DATA.L _var_8c22867c ; H'8C02BB00
           .DATA.L _var_8c228678 ; H'8C02BB04
@@ -1114,7 +1114,7 @@ LP_GEN_46467:
           .DATA.L H'47D2F000 ; H'8C02BC2C
           .DATA.L H'3D638E39 ; H'8C02BC30
           .DATA.L H'3E3DA12F ; H'8C02BC34
-          .DATA.L _var_8c1bb8c8 ; H'8C02BC38
+          .DATA.L _var_inputMapSel_8c1bb8c8 ; H'8C02BC38
           .DATA.L _var_8c228684 ; H'8C02BC3C
           .DATA.L _var_8c1bbd9c ; H'8C02BC40
           .DATA.L _var_8c228688 ; H'8C02BC44
@@ -1500,7 +1500,7 @@ LP_GEN_20612:
           .DATA.L _var_8c1ba374 ; H'8C02BF18
           .DATA.L H'3C23D70A ; H'8C02BF1C
           .DATA.L _vib_8c010f7a ; H'8C02BF20
-          .DATA.L _var_8c1bb8c8 ; H'8C02BF24
+          .DATA.L _var_inputMapSel_8c1bb8c8 ; H'8C02BF24
           .DATA.L H'C4FA0000 ; H'8C02BF28
           .DATA.L H'44FA0000 ; H'8C02BF2C
 LAB_8c02bf30:
@@ -2087,7 +2087,7 @@ LP_GEN_30870:
           .DATA.W H'071C ; H'8C02C396
           .DATA.W H'025C ; H'8C02C398
           .RES.W 1 ; H'8C02C39A
-          .DATA.L _var_8c1bb8c8 ; H'8C02C39C
+          .DATA.L _var_inputMapSel_8c1bb8c8 ; H'8C02C39C
           .DATA.L _var_8c228714 ; H'8C02C3A0
           .DATA.L H'FFFF071D ; H'8C02C3A4
           .DATA.L H'0000F8E3 ; H'8C02C3A8

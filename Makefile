@@ -14,7 +14,7 @@ SRCS = \
 	src/010fe8_heap.c \
 	src/011120_asset_queues.c \
 	src/012324_peripheral_support.c \
-	src/asm/012504.src \
+	src/012504_input.c \
 	src/asm/0129cc.src \
 	src/012f44.c \
 	src/asm/013ae8.src \

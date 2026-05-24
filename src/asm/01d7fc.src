@@ -56,7 +56,7 @@
           .IMPORT     _CourseMenuApplyUnlocks_8c0173e6
           .IMPORT     _pushTitle_8c015fd6
           .IMPORT     _njSetBackColor
-          .IMPORT     _FUN_8c0128cc
+          .IMPORT     _pushInputTask_8c0128cc
           .IMPORT     _task_8c012f44
           .IMPORT     _var_tasks_8c1ba3c8
           .IMPORT     _pushTask_8c014ae8
@@ -1150,7 +1150,7 @@ LP_GEN_43538:
           .DATA.L _drawSprite_8c014f54 ; H'8C01E048
           .DATA.L H'FF418DFF ; H'8C01E04C
           .DATA.L _njSetBackColor ; H'8C01E050
-          .DATA.L _FUN_8c0128cc ; H'8C01E054
+          .DATA.L _pushInputTask_8c0128cc ; H'8C01E054
           .DATA.L _task_8c012f44 ; H'8C01E058
           .DATA.L _var_tasks_8c1ba3c8 ; H'8C01E05C
           .DATA.L _pushTask_8c014ae8 ; H'8C01E060

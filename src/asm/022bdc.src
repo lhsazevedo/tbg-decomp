@@ -11,7 +11,7 @@
           .IMPORT     _var_peripherals_8c1ba35c
           .IMPORT     _FUN_8c0246b2
           .IMPORT     _var_8c2264b8
-          .IMPORT     _var_8c1bb8c8
+          .IMPORT     _var_inputMapSel_8c1bb8c8
           .IMPORT     _FUN_8c023e7e
           .IMPORT     _FUN_8c02412c
           .IMPORT     _njSin
@@ -315,7 +315,7 @@ LP_GEN_73202:
           .DATA.L H'10+_var_peripherals_8c1ba35c ; H'8C022DF4
           .DATA.L _FUN_8c0246b2 ; H'8C022DF8
           .DATA.L _var_8c2264b8 ; H'8C022DFC
-          .DATA.L _var_8c1bb8c8 ; H'8C022E00
+          .DATA.L _var_inputMapSel_8c1bb8c8 ; H'8C022E00
           .DATA.L _FUN_8c023e7e ; H'8C022E04
           .DATA.L _FUN_8c02412c ; H'8C022E08
 LAB_8c022e0c:
@@ -463,7 +463,7 @@ LP_GEN_93321:
           .DATA.L _njCos ; H'8C022F18
           .DATA.L _FUN_8c024280 ; H'8C022F1C
           .DATA.L H'3DCCCCCD ; H'8C022F20
-          .DATA.L _var_8c1bb8c8 ; H'8C022F24
+          .DATA.L _var_inputMapSel_8c1bb8c8 ; H'8C022F24
           .DATA.L _FUN_8c02081c ; H'8C022F28
           .DATA.L _var_8c2285c4 ; H'8C022F2C
           .DATA.L H'3CA3D70A ; H'8C022F30
@@ -804,7 +804,7 @@ LP_GEN_75383:
           .DATA.W H'027C ; H'8C0231AE
           .DATA.W H'0280 ; H'8C0231B0
           .RES.W 1 ; H'8C0231B2
-          .DATA.L _var_8c1bb8c8 ; H'8C0231B4
+          .DATA.L _var_inputMapSel_8c1bb8c8 ; H'8C0231B4
           .DATA.L H'44800000 ; H'8C0231B8
 LAB_8c0231bc:
           MOV         #H'5b,R5

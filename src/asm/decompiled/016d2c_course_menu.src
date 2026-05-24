@@ -55,7 +55,7 @@
           .IMPORT     _resetUknPvmBool_8c014322
           .IMPORT     _AsqNop_11120
           .IMPORT     _AsqProcessQueues_11fe0
-          .IMPORT     _FUN_8c0128cc
+          .IMPORT     _pushInputTask_8c0128cc
           .IMPORT     _task_8c012f44
           .IMPORT     _FUN_8c02ae3e
           .IMPORT     _init_routeInfoTime_8c044d2e
@@ -2487,7 +2487,7 @@ LP_GEN_67544:
           .DATA.L _AsqFreeQueues_11f7e ; H'8C017F7C
           .DATA.L _push_fadein_8c022a9c ; H'8C017F80
           .DATA.L _snd_8c010cd6 ; H'8C017F84
-          .DATA.L _FUN_8c0128cc ; H'8C017F88
+          .DATA.L _pushInputTask_8c0128cc ; H'8C017F88
           .DATA.L _pushTask_8c014ae8 ; H'8C017F8C
           .DATA.L _task_8c012f44 ; H'8C017F90
           .DATA.L _var_tasks_8c1ba3c8 ; H'8C017F94

@@ -1,7 +1,7 @@
 #include <shinobi.h>
 
 extern PDS_PERIPHERAL const_peripheral_8c033318;
-extern int var_8c157a70;
+extern int var_activeCtrlType_8c157a70;
 extern int var_resetRequested_8c157a78;
 int var_8c157ad4[4];
 int var_8c157ae4;
@@ -29,7 +29,7 @@ void PspTask_8c012324()
         var_peripherals_8c1ba35c[0] = *var_peripheral_8c1ba358;
         // Peripheral type 0xf06fe
         if (support == 0xf06fe) {
-            var_8c157a70 = 0xf06fe;
+            var_activeCtrlType_8c157a70 = 0xf06fe;
             // Stick x axis left
             if (var_peripherals_8c1ba35c[0].x1 < -64) {
                 var_peripherals_8c1ba35c[0].on |= PDD_DGT_KL;
@@ -80,7 +80,7 @@ void PspTask_8c012324()
                 var_resetRequested_8c157a78 = 1;
             }
         } else if (support == 0x700fe) {
-            var_8c157a70 = 0x700fe;
+            var_activeCtrlType_8c157a70 = 0x700fe;
             if (
                 (var_peripheral_8c1ba358->press & PDD_DGT_ST) &&
                 ((var_peripheral_8c1ba358->on & DGT_ABXY) == DGT_ABXY)
@@ -93,7 +93,7 @@ void PspTask_8c012324()
     else {
         *var_peripherals_8c1ba35c = const_peripheral_8c033318;
         var_vibport_8c1ba354 = -1;
-        var_8c157a70 = -1;
+        var_activeCtrlType_8c157a70 = -1;
     }
 
     // TODO: Test

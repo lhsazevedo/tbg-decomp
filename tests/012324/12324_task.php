@@ -8,7 +8,7 @@ return new class extends TestCase {
     public function test_controller_0xf06fe_no_stick()
     {
         $this->setSize('_var_peripherals_8c1ba35c', 0x34 * 2);
-        $this->setSize('_var_8c157a70', 4);
+        $this->setSize('_var_activeCtrlType_8c157a70', 4);
 
         $per = $this->alloc(0x34);
         $info = $this->alloc(0x4);
@@ -50,7 +50,7 @@ return new class extends TestCase {
 
         $this->shouldCall('__quick_odd_mvn')->do($oddMvn);
 
-        $this->shouldWriteLongTo('_var_8c157a70', 0xf06fe);
+        $this->shouldWriteLongTo('_var_activeCtrlType_8c157a70', 0xf06fe);
         $this->shouldWriteLongTo('_var_8c157ae4', 0);
         $this->shouldWriteLongTo('_var_8c157ae8', 0);
 
@@ -61,7 +61,7 @@ return new class extends TestCase {
     public function test_controller_0xf06fe_stick_left()
     {
         $this->setSize('_var_peripherals_8c1ba35c', 0x34 * 2);
-        $this->setSize('_var_8c157a70', 4);
+        $this->setSize('_var_activeCtrlType_8c157a70', 4);
 
         $per = $this->alloc(0x34);
         $info = $this->alloc(0x4);
@@ -101,7 +101,7 @@ return new class extends TestCase {
 
         $this->shouldCall('__quick_odd_mvn')->do($oddMvn);
 
-        $this->shouldWriteLongTo('_var_8c157a70', 0xf06fe);
+        $this->shouldWriteLongTo('_var_activeCtrlType_8c157a70', 0xf06fe);
 
         $this->shouldWriteLong($this->addressOf('_var_peripherals_8c1ba35c') + 0x08, 0x40);
         $this->shouldWriteLong($this->addressOf('_var_peripherals_8c1ba35c') + 0x10, 0x40);
@@ -119,7 +119,7 @@ return new class extends TestCase {
     public function test_controller_0xf06fe_stick_left_hold()
     {
         $this->setSize('_var_peripherals_8c1ba35c', 0x34 * 2);
-        $this->setSize('_var_8c157a70', 4);
+        $this->setSize('_var_activeCtrlType_8c157a70', 4);
 
         $per = $this->alloc(0x34);
         $info = $this->alloc(0x4);
@@ -159,7 +159,7 @@ return new class extends TestCase {
 
         $this->shouldCall('__quick_odd_mvn')->do($oddMvn);
 
-        $this->shouldWriteLongTo('_var_8c157a70', 0xf06fe);
+        $this->shouldWriteLongTo('_var_activeCtrlType_8c157a70', 0xf06fe);
 
         $this->shouldWriteLong($this->addressOf('_var_peripherals_8c1ba35c') + 0x08, 0x40);
         $this->shouldWriteLongTo('_var_8c157ae4', 0x40);
@@ -176,7 +176,7 @@ return new class extends TestCase {
     public function test_controller_0xf06fe_stick_right()
     {
         $this->setSize('_var_peripherals_8c1ba35c', 0x34 * 2);
-        $this->setSize('_var_8c157a70', 4);
+        $this->setSize('_var_activeCtrlType_8c157a70', 4);
 
         $per = $this->alloc(0x34);
         $info = $this->alloc(0x4);
@@ -216,7 +216,7 @@ return new class extends TestCase {
 
         $this->shouldCall('__quick_odd_mvn')->do($oddMvn);
 
-        $this->shouldWriteLongTo('_var_8c157a70', 0xf06fe);
+        $this->shouldWriteLongTo('_var_activeCtrlType_8c157a70', 0xf06fe);
 
         $this->shouldWriteLong($this->addressOf('_var_peripherals_8c1ba35c') + 0x08, 0x80);
         $this->shouldWriteLong($this->addressOf('_var_peripherals_8c1ba35c') + 0x10, 0x80);
@@ -234,7 +234,7 @@ return new class extends TestCase {
     public function test_controller_0xf06fe_stick_up()
     {
         $this->setSize('_var_peripherals_8c1ba35c', 0x34 * 2);
-        $this->setSize('_var_8c157a70', 4);
+        $this->setSize('_var_activeCtrlType_8c157a70', 4);
 
         $per = $this->alloc(0x34);
         $info = $this->alloc(0x4);
@@ -274,7 +274,7 @@ return new class extends TestCase {
 
         $this->shouldCall('__quick_odd_mvn')->do($oddMvn);
 
-        $this->shouldWriteLongTo('_var_8c157a70', 0xf06fe);
+        $this->shouldWriteLongTo('_var_activeCtrlType_8c157a70', 0xf06fe);
 
         $this->shouldWriteLongTo('_var_8c157ae4', 0);
 
@@ -292,7 +292,7 @@ return new class extends TestCase {
     public function test_controller_0xf06fe_stick_up_hold()
     {
         $this->setSize('_var_peripherals_8c1ba35c', 0x34 * 2);
-        $this->setSize('_var_8c157a70', 4);
+        $this->setSize('_var_activeCtrlType_8c157a70', 4);
 
         $per = $this->alloc(0x34);
         $info = $this->alloc(0x4);
@@ -332,7 +332,7 @@ return new class extends TestCase {
 
         $this->shouldCall('__quick_odd_mvn')->do($oddMvn);
 
-        $this->shouldWriteLongTo('_var_8c157a70', 0xf06fe);
+        $this->shouldWriteLongTo('_var_activeCtrlType_8c157a70', 0xf06fe);
 
         $this->shouldWriteLongTo('_var_8c157ae4', 0);
 
@@ -349,7 +349,7 @@ return new class extends TestCase {
     public function test_controller_0xf06fe_stick_down()
     {
         $this->setSize('_var_peripherals_8c1ba35c', 0x34 * 2);
-        $this->setSize('_var_8c157a70', 4);
+        $this->setSize('_var_activeCtrlType_8c157a70', 4);
 
         $per = $this->alloc(0x34);
         $info = $this->alloc(0x4);
@@ -389,7 +389,7 @@ return new class extends TestCase {
 
         $this->shouldCall('__quick_odd_mvn')->do($oddMvn);
 
-        $this->shouldWriteLongTo('_var_8c157a70', 0xf06fe);
+        $this->shouldWriteLongTo('_var_activeCtrlType_8c157a70', 0xf06fe);
 
         $this->shouldWriteLongTo('_var_8c157ae4', 0);
 
@@ -407,7 +407,7 @@ return new class extends TestCase {
     public function test_controller_0xf06fe_start_abxy()
     {
         $this->setSize('_var_peripherals_8c1ba35c', 0x34 * 2);
-        $this->setSize('_var_8c157a70', 4);
+        $this->setSize('_var_activeCtrlType_8c157a70', 4);
 
         $per = $this->alloc(0x34);
         $info = $this->alloc(0x4);
@@ -447,7 +447,7 @@ return new class extends TestCase {
 
         $this->shouldCall('__quick_odd_mvn')->do($oddMvn);
 
-        $this->shouldWriteLongTo('_var_8c157a70', 0xf06fe);
+        $this->shouldWriteLongTo('_var_activeCtrlType_8c157a70', 0xf06fe);
         $this->shouldWriteLongTo('_var_8c157ae4', 0);
         $this->shouldWriteLongTo('_var_8c157ae8', 0);
 
@@ -463,7 +463,7 @@ return new class extends TestCase {
     public function test_controller_0x700fe_nothing()
     {
         $this->setSize('_var_peripherals_8c1ba35c', 0x34 * 2);
-        $this->setSize('_var_8c157a70', 4);
+        $this->setSize('_var_activeCtrlType_8c157a70', 4);
 
         $per = $this->alloc(0x34);
         $info = $this->alloc(0x4);
@@ -503,7 +503,7 @@ return new class extends TestCase {
 
         $this->shouldCall('__quick_odd_mvn')->do($oddMvn);
 
-        $this->shouldWriteLongTo('_var_8c157a70', 0x700fe);
+        $this->shouldWriteLongTo('_var_activeCtrlType_8c157a70', 0x700fe);
 
         $this->shouldCall('_vmsLcd_8c01c910');
         $this->shouldCall('_FUN_adxVol_8c010a40');
@@ -515,7 +515,7 @@ return new class extends TestCase {
     public function test_controller_0x700fe_pressed()
     {
         $this->setSize('_var_peripherals_8c1ba35c', 0x34 * 2);
-        $this->setSize('_var_8c157a70', 4);
+        $this->setSize('_var_activeCtrlType_8c157a70', 4);
 
         $per = $this->alloc(0x34);
         $info = $this->alloc(0x4);
@@ -555,7 +555,7 @@ return new class extends TestCase {
 
         $this->shouldCall('__quick_odd_mvn')->do($oddMvn);
 
-        $this->shouldWriteLongTo('_var_8c157a70', 0x700fe);
+        $this->shouldWriteLongTo('_var_activeCtrlType_8c157a70', 0x700fe);
         $this->shouldWriteLongTo('_var_resetRequested_8c157a78', 1);
 
         $this->shouldCall('_vmsLcd_8c01c910');
@@ -568,7 +568,7 @@ return new class extends TestCase {
     {
         $this->setSize('_var_peripherals_8c1ba35c', 0x34 * 2);
         $this->setSize('_const_peripheral_8c033318', 0x34);
-        $this->setSize('_var_8c157a70', 4);
+        $this->setSize('_var_activeCtrlType_8c157a70', 4);
 
         $per = $this->alloc(0x34);
         $info = $this->alloc(0x4);
@@ -609,7 +609,7 @@ return new class extends TestCase {
         $this->shouldCall('__quick_odd_mvn')->do($oddMvn);
 
         $this->shouldWriteLongTo('_var_vibport_8c1ba354', -1);
-        $this->shouldWriteLongTo('_var_8c157a70', -1);
+        $this->shouldWriteLongTo('_var_activeCtrlType_8c157a70', -1);
 
         $this->shouldCall('_vmsLcd_8c01c910');
         $this->shouldCall('_FUN_adxVol_8c010a40');
@@ -625,7 +625,7 @@ return new class extends TestCase {
             $this->addressOf('_const_peripheral_8c033318'),
             array_fill(0, 0x34 / 4, 0),
         );
-        $this->setSize('_var_8c157a70', 4);
+        $this->setSize('_var_activeCtrlType_8c157a70', 4);
 
         $per = $this->alloc(0x34);
         $info = $this->alloc(0x4);
@@ -665,7 +665,7 @@ return new class extends TestCase {
         $this->shouldCall('__quick_odd_mvn')->do($oddMvn);
 
         $this->shouldWriteLongTo('_var_vibport_8c1ba354', -1);
-        $this->shouldWriteLongTo('_var_8c157a70', -1);
+        $this->shouldWriteLongTo('_var_activeCtrlType_8c157a70', -1);
 
         $this->shouldCall('_vmsLcd_8c01c910');
         $this->shouldCall('_FUN_adxVol_8c010a40');
@@ -681,7 +681,7 @@ return new class extends TestCase {
             $this->addressOf('_const_peripheral_8c033318'),
             array_fill(0, 0x34 / 4, 0),
         );
-        $this->setSize('_var_8c157a70', 4);
+        $this->setSize('_var_activeCtrlType_8c157a70', 4);
 
         $per = $this->alloc(0x34);
         $info = $this->alloc(0x4);
@@ -720,7 +720,7 @@ return new class extends TestCase {
 
         $this->shouldCall('__quick_odd_mvn')->do($oddMvn);
 
-        $this->shouldWriteLongTo('_var_8c157a70', 0xf06fe);
+        $this->shouldWriteLongTo('_var_activeCtrlType_8c157a70', 0xf06fe);
         $this->shouldWriteLongTo('_var_8c157ae4', 0);
         $this->shouldWriteLongTo('_var_8c157ae8', 0);
 
@@ -743,7 +743,7 @@ return new class extends TestCase {
             $this->addressOf('_const_peripheral_8c033318'),
             array_fill(0, 0x34 / 4, 0),
         );
-        $this->setSize('_var_8c157a70', 4);
+        $this->setSize('_var_activeCtrlType_8c157a70', 4);
 
         $per = $this->alloc(0x34);
         $info = $this->alloc(0x4);
@@ -785,7 +785,7 @@ return new class extends TestCase {
 
         $this->shouldCall('__quick_odd_mvn')->do($oddMvn);
 
-        $this->shouldWriteLongTo('_var_8c157a70', 0xf06fe);
+        $this->shouldWriteLongTo('_var_activeCtrlType_8c157a70', 0xf06fe);
         $this->shouldWriteLongTo('_var_8c157ae4', 0);
         $this->shouldWriteLongTo('_var_8c157ae8', 0);
 
@@ -805,7 +805,7 @@ return new class extends TestCase {
             $this->addressOf('_const_peripheral_8c033318'),
             array_fill(0, 0x34 / 4, 0),
         );
-        $this->setSize('_var_8c157a70', 4);
+        $this->setSize('_var_activeCtrlType_8c157a70', 4);
 
         $per = $this->alloc(0x34);
         $info = $this->alloc(0x4);
@@ -847,7 +847,7 @@ return new class extends TestCase {
 
         $this->shouldCall('__quick_odd_mvn')->do($oddMvn);
 
-        $this->shouldWriteLongTo('_var_8c157a70', 0xf06fe);
+        $this->shouldWriteLongTo('_var_activeCtrlType_8c157a70', 0xf06fe);
         $this->shouldWriteLongTo('_var_8c157ae4', 0);
         $this->shouldWriteLongTo('_var_8c157ae8', 0);
 
@@ -868,7 +868,7 @@ return new class extends TestCase {
             $this->addressOf('_const_peripheral_8c033318'),
             array_fill(0, 0x34 / 4, 0),
         );
-        $this->setSize('_var_8c157a70', 4);
+        $this->setSize('_var_activeCtrlType_8c157a70', 4);
 
         $per = $this->alloc(0x34);
         $info = $this->alloc(0x4);
@@ -910,7 +910,7 @@ return new class extends TestCase {
 
         $this->shouldCall('__quick_odd_mvn')->do($oddMvn);
 
-        $this->shouldWriteLongTo('_var_8c157a70', 0xf06fe);
+        $this->shouldWriteLongTo('_var_activeCtrlType_8c157a70', 0xf06fe);
         $this->shouldWriteLongTo('_var_8c157ae4', 0);
         $this->shouldWriteLongTo('_var_8c157ae8', 0);
 
@@ -934,7 +934,7 @@ return new class extends TestCase {
             $this->addressOf('_const_peripheral_8c033318'),
             array_fill(0, 0x34 / 4, 0),
         );
-        $this->setSize('_var_8c157a70', 4);
+        $this->setSize('_var_activeCtrlType_8c157a70', 4);
 
         $per = $this->alloc(0x34);
         $info = $this->alloc(0x4);
@@ -976,7 +976,7 @@ return new class extends TestCase {
 
         $this->shouldCall('__quick_odd_mvn')->do($oddMvn);
 
-        $this->shouldWriteLongTo('_var_8c157a70', 0xf06fe);
+        $this->shouldWriteLongTo('_var_activeCtrlType_8c157a70', 0xf06fe);
         $this->shouldWriteLongTo('_var_8c157ae4', 0);
         $this->shouldWriteLongTo('_var_8c157ae8', 0);
 
