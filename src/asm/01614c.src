@@ -20,23 +20,12 @@
           .IMPORT     _var_8c1bc454
           .IMPORT     _freeResourceGroups_8c016108
           .IMPORT     _var_selectedVm_8c1ba34c
-          .IMPORT     _init_8c044294
           .IMPORT     _var_vmuStatus_8c226048
-          .IMPORT     _const_8c0360a4
           .IMPORT     _BupGetInfo_8c014bba
           .IMPORT     _BupMount_8c014c00
-          .IMPORT     _const_8c0360b0
-          .IMPORT     _const_8c036160
-          .IMPORT     _const_8c0360b4
           .IMPORT     _BupUnmount_8c014c46
-          .IMPORT     _const_8c0360c0
-          .IMPORT     _const_8c0360d4
-          .IMPORT     _const_8c0360e4
-          .IMPORT     _const_8c0360fc
-          .IMPORT     _const_8c036120
           .IMPORT     _freeTask_8c014b66
           .IMPORT     _pushTask_8c014ae8
-          .IMPORT     _init_8c04429c
           .IMPORT     _var_8c1bc824
           .IMPORT     _AsqGetRandomA_12166
           .IMPORT     _pushInputTask_8c0128cc
@@ -49,11 +38,10 @@
           .IMPORT     _FUN_8c01328c
           .IMPORT     _var_8c228ba4
           .IMPORT     _BupSave_8c014bcc
-          .IMPORT     _const_8c036130
           .IMPORT     _var_inputMapSel_8c1bb8c8
           .IMPORT     _var_seed_8c157a64
           .IMPORT     _BupLoad_8c014bc6
-          .IMPORT     _const_8c036148
+          .IMPORT     _FUN_8c02aa36
           .IMPORT     _var_8c1bb8d4
           .IMPORT     _FUN_8c02f934
           .IMPORT     _FUN_readDemo_8c02fa14
@@ -92,6 +80,38 @@
           .EXPORT     _FUN_8c0167ca
           .EXPORT     _FUN_8c016924
           .EXPORT     _FUN_8c0169bc
+          .EXPORT     _init_8c044294
+          .EXPORT     _init_8c04429c
+          .EXPORT     _const_8c0360a4
+          .EXPORT     _const_8c0360b0
+          .EXPORT     _const_8c0360b4
+          .EXPORT     _const_8c0360c0
+          .EXPORT     _const_8c0360d4
+          .EXPORT     _const_8c0360e4
+          .EXPORT     _const_8c0360fc
+          .EXPORT     _const_8c036120
+          .EXPORT     _const_8c036130
+          .EXPORT     _const_8c036148
+          .EXPORT     _const_8c036160
+          .EXPORT     _const_8c03616c
+          .EXPORT     _const_8c036170
+          .EXPORT     _const_8c036180
+          .EXPORT     _const_8c036190
+          .EXPORT     _const_8c03619c
+          .EXPORT     _const_8c0361a8
+          .EXPORT     _const_8c0361b8
+          .EXPORT     _const_8c0361c8
+          .EXPORT     _const_8c0361dc
+          .EXPORT     _const_8c0361ec
+          .EXPORT     _const_8c036200
+          .EXPORT     _const_8c036218
+          .EXPORT     _const_8c036224
+          .EXPORT     _const_8c036234
+          .EXPORT     _const_8c036244
+          .EXPORT     _const_8c036250
+          .EXPORT     _const_8c036264
+          .EXPORT     _const_8c036274
+          .EXPORT     _const_8c03627c
           .SECTION    P, CODE, ALIGN=4
 _FUN_8c01614c:
           MOV.L       R14,@-R15
@@ -1420,4 +1440,183 @@ LP_GEN_41084:
           .DATA.L _FUN_8c0169bc ; H'8C016BE8
           .DATA.L _var_tasks_8c1ba3c8 ; H'8C016BEC
           .DATA.L _pushTask_8c014ae8 ; H'8C016BF0
+
+          .SECTION    D, DATA, ALIGN=4
+_init_8c044294:        ; from defines
+          .DATA.L      _const_8c036160 ; ukn
+          .DATA.L      _const_8c03616c ; ukn
+_init_8c04429c:        ; from defines
+          .DATA.L      _const_8c036170 ; ukn
+          .DATA.L      _FUN_8c02aa36 ; ukn
+          .DATA.B      H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00
+_init_8c0442b0:        ; from ghidra
+          .DATA.L      _const_8c036180 ; ukn
+          .DATA.L      _FUN_8c02aa36 ; ukn
+          .DATA.B      H'01, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00
+          .DATA.L      _const_8c036190 ; ukn
+          .DATA.L      _FUN_8c02aa36 ; ukn
+          .DATA.B      H'02, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00
+          .DATA.L      _const_8c03619c ; ukn
+          .DATA.L      _FUN_8c0167c0 ; ukn
+          .DATA.B      H'00, H'00, H'00, H'00, H'0A, H'00, H'00, H'00, H'00, H'00, H'00, H'00
+          .DATA.L      _const_8c0361a8 ; ukn
+          .DATA.L      _FUN_8c0167c0 ; ukn
+          .DATA.B      H'00, H'00, H'00, H'00, H'0A, H'00, H'00, H'00, H'01, H'00, H'00, H'00
+          .DATA.L      _const_8c0361b8 ; ukn
+          .DATA.L      _FUN_8c0167c0 ; ukn
+          .DATA.B      H'09, H'00, H'00, H'00, H'14, H'00, H'00, H'00, H'00, H'00, H'00, H'00
+          .DATA.L      _const_8c0361c8 ; ukn
+          .DATA.L      _FUN_8c0167c0 ; ukn
+          .DATA.B      H'0C, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00
+          .DATA.L      _const_8c0361dc ; ukn
+          .DATA.L      _FUN_8c0167c0 ; ukn
+          .DATA.B      H'0F, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00
+          .DATA.L      _const_8c0361ec ; ukn
+          .DATA.L      _FUN_8c0167c0 ; ukn
+          .DATA.B      H'09, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'01, H'00, H'00, H'00
+          .DATA.L      _const_8c0361c8 ; ukn
+          .DATA.L      _FUN_8c0167c0 ; ukn
+          .DATA.B      H'0C, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'01, H'00, H'00, H'00
+          .DATA.L      _const_8c036200 ; ukn
+          .DATA.L      _FUN_8c0167c0 ; ukn
+          .DATA.B      H'0F, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'01, H'00, H'00, H'00
+          .DATA.L      _const_8c036218 ; ukn
+          .DATA.L      _FUN_8c0167c0 ; ukn
+          .DATA.B      H'12, H'00, H'00, H'00, H'0A, H'00, H'00, H'00, H'00, H'00, H'00, H'00
+          .DATA.L      _const_8c036224 ; ukn
+          .DATA.L      _FUN_8c0167c0 ; ukn
+          .DATA.B      H'12, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'01, H'00, H'00, H'00
+          .DATA.L      _const_8c036234 ; ukn
+          .DATA.L      _FUN_8c0167c0 ; ukn
+          .DATA.B      H'06, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00
+          .DATA.L      _const_8c036244 ; ukn
+          .DATA.L      _FUN_8c0167c0 ; ukn
+          .DATA.B      H'18, H'00, H'00, H'00, H'11, H'00, H'00, H'00, H'00, H'00, H'00, H'00
+          .DATA.L      _const_8c036250 ; ukn
+          .DATA.L      _FUN_8c0167c0 ; ukn
+          .DATA.B      H'06, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'01, H'00, H'00, H'00
+          .DATA.L      _const_8c036264 ; ukn
+          .DATA.L      _FUN_8c0167c0 ; ukn
+          .DATA.B      H'18, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'01, H'00, H'00, H'00
+          .DATA.L      _const_8c036274 ; ukn
+          .DATA.L      _FUN_8c016b4c ; ukn
+          .DATA.B      H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00
+          .DATA.L      _const_8c03627c ; ukn
+          .DATA.L      _FUN_8c016636 ; ukn
+          .DATA.B      H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00
+          .DATA.L      _const_8c03616c ; ukn
+          .DATA.B      H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00
+
+          .SECTION    C, DATA, ALIGN=4
+_const_8c0360a4:        ; from defines
+          .SDATA      "NO SAVING"
+          .DATA.B     H'00
+          .RES.B      2
+_const_8c0360b0:        ; from defines
+          .SDATA      "-"
+          .DATA.B     H'00
+          .RES.B      2
+_const_8c0360b4:        ; from defines
+          .SDATA      "CHECKING..."
+          .DATA.B     H'00
+_const_8c0360c0:        ; from defines
+          .SDATA      "%04d/%04d BLOCKS"
+          .DATA.B     H'00
+          .RES.B      3
+_const_8c0360d4:        ; from defines
+          .SDATA      "NO SAVING OK?"
+          .DATA.B     H'00
+          .RES.B      2
+_const_8c0360e4:        ; from defines
+          .SDATA      "MEMORY_CARD IS UNFORMAT"
+          .DATA.B     H'00
+_const_8c0360fc:        ; from defines
+          .SDATA      "MEMORY_CARD IS NOT ENOUGH FREE AREA"
+          .DATA.B     H'00
+_const_8c036120:        ; from defines
+          .SDATA      "NO_MEMORY_CARD"
+          .DATA.B     H'00
+          .RES.B      1
+_const_8c036130:        ; from defines
+          .SDATA      "NOW SAVING...(%03d%%)"
+          .DATA.B     H'00
+          .RES.B      2
+_const_8c036148:        ; from defines
+          .SDATA      "NOW LOADING...(%03d%%)"
+          .DATA.B     H'00
+          .RES.B      1
+_const_8c036160:        ; from defines
+          .SDATA      "BUS_REPLAY"
+          .DATA.B     H'00
+          .RES.B      1
+_const_8c03616c:        ; from ghidra
+          .DATA.B      H'00, H'00, H'00, H'00
+_const_8c036170:        ; from ghidra
+          .SDATA      "SHINJYUKU_EVENT"
+          .DATA.B     H'00
+_const_8c036180:        ; from ghidra
+          .SDATA      "WANGAN_EVENT"
+          .DATA.B     H'00
+          .RES.B      3
+_const_8c036190:        ; from ghidra
+          .SDATA      "OUME_EVENT"
+          .DATA.B     H'00
+          .RES.B      1
+_const_8c03619c:        ; from ghidra
+          .SDATA      "WANGAN_DAY"
+          .DATA.B     H'00
+          .RES.B      1
+_const_8c0361a8:        ; from ghidra
+          .SDATA      "WANGAN_DAY_AUTO"
+          .DATA.B     H'00
+_const_8c0361b8:        ; from ghidra
+          .SDATA      "SHINJYUKU_DAY"
+          .DATA.B     H'00
+          .RES.B      2
+_const_8c0361c8:        ; from ghidra
+          .SDATA      "SHINJYUKU_EVENING"
+          .DATA.B     H'00
+          .RES.B      2
+_const_8c0361dc:        ; from ghidra
+          .SDATA      "SHINJYUKU_NIGHT"
+          .DATA.B     H'00
+_const_8c0361ec:        ; from ghidra
+          .SDATA      "SHINJYUKU_DAY_AUTO"
+          .DATA.B     H'00
+          .RES.B      1
+_const_8c036200:        ; from ghidra
+          .SDATA      "SHINJYUKU_NIGHT_AUTO"
+          .DATA.B     H'00
+          .RES.B      3
+_const_8c036218:        ; from ghidra
+          .SDATA      "OUME_DAY"
+          .DATA.B     H'00
+          .RES.B      3
+_const_8c036224:        ; from ghidra
+          .SDATA      "OUME_DAY_AUTO"
+          .DATA.B     H'00
+          .RES.B      2
+_const_8c036234:        ; from ghidra
+          .SDATA      "WANGAN_NIGHT"
+          .DATA.B     H'00
+          .RES.B      3
+_const_8c036244:        ; from ghidra
+          .SDATA      "OUME_NIGHT"
+          .DATA.B     H'00
+          .RES.B      1
+_const_8c036250:        ; from ghidra
+          .SDATA      "WANGAN_NIGHT_AUTO"
+          .DATA.B     H'00
+          .RES.B      2
+_const_8c036264:        ; from ghidra
+          .SDATA      "OUME_NIGHT_AUTO"
+          .DATA.B     H'00
+_const_8c036274:        ; from ghidra
+          .SDATA      "REPLAY"
+          .DATA.B     H'00
+          .RES.B      1
+_const_8c03627c:        ; from ghidra
+          .SDATA      "VISUAL_MEMORY"
+          .DATA.B     H'00
+          .RES.B      2
           .END

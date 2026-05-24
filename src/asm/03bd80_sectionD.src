@@ -23,23 +23,6 @@
           .IMPORT     _const_8c036160
           .IMPORT     _const_8c03616c
           .IMPORT     _const_8c036170
-          .IMPORT     _const_8c036180
-          .IMPORT     _const_8c036190
-          .IMPORT     _const_8c03619c
-          .IMPORT     _const_8c0361a8
-          .IMPORT     _const_8c0361b8
-          .IMPORT     _const_8c0361c8
-          .IMPORT     _const_8c0361dc
-          .IMPORT     _const_8c0361ec
-          .IMPORT     _const_8c036200
-          .IMPORT     _const_8c036218
-          .IMPORT     _const_8c036224
-          .IMPORT     _const_8c036234
-          .IMPORT     _const_8c036244
-          .IMPORT     _const_8c036250
-          .IMPORT     _const_8c036264
-          .IMPORT     _const_8c036274
-          .IMPORT     _const_8c03627c
           .IMPORT     _const_8c03628c
           .IMPORT     _const_8c0362c4
           .IMPORT     _const_8c0362f8
@@ -792,8 +775,6 @@
           .IMPORT     _const_8c03b968
 
           ; course_menu
-          .EXPORT     _init_8c044294 ; 01614c.src
-          .EXPORT     _init_8c04429c ; 01614c.src
           .EXPORT     _init_courseMenuButtons_8c04442c ; 016d2c_course_menu.c, 016d2c_course_menu.src
           .EXPORT     _init_dialogSequences_8c044c08 ; 016d2c_course_menu.c, 016d2c_course_menu.src, 01e27c.src, 01f3c0.src
           .EXPORT     _init_8c044d10 ; 016d2c_course_menu.c, 016d2c_course_menu.src
@@ -926,70 +907,6 @@
           .EXPORT     _init_8c04f6a8 ; 02fb50_sh4nlfzn.src
 
           .SECTION    D, DATA, ALIGN=4
-_init_8c044294:        ; from defines
-          .DATA.L      _const_8c036160 ; ukn
-          .DATA.L      _const_8c03616c ; ukn
-_init_8c04429c:        ; from defines
-          .DATA.L      _const_8c036170 ; ukn
-          .DATA.L      _FUN_8c02aa36 ; ukn
-          .DATA.B      H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00
-_init_8c0442b0:        ; from ghidra
-          .DATA.L      _const_8c036180 ; ukn
-          .DATA.L      _FUN_8c02aa36 ; ukn
-          .DATA.B      H'01, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00
-          .DATA.L      _const_8c036190 ; ukn
-          .DATA.L      _FUN_8c02aa36 ; ukn
-          .DATA.B      H'02, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00
-          .DATA.L      _const_8c03619c ; ukn
-          .DATA.L      _FUN_8c0167c0 ; ukn
-          .DATA.B      H'00, H'00, H'00, H'00, H'0A, H'00, H'00, H'00, H'00, H'00, H'00, H'00
-          .DATA.L      _const_8c0361a8 ; ukn
-          .DATA.L      _FUN_8c0167c0 ; ukn
-          .DATA.B      H'00, H'00, H'00, H'00, H'0A, H'00, H'00, H'00, H'01, H'00, H'00, H'00
-          .DATA.L      _const_8c0361b8 ; ukn
-          .DATA.L      _FUN_8c0167c0 ; ukn
-          .DATA.B      H'09, H'00, H'00, H'00, H'14, H'00, H'00, H'00, H'00, H'00, H'00, H'00
-          .DATA.L      _const_8c0361c8 ; ukn
-          .DATA.L      _FUN_8c0167c0 ; ukn
-          .DATA.B      H'0C, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00
-          .DATA.L      _const_8c0361dc ; ukn
-          .DATA.L      _FUN_8c0167c0 ; ukn
-          .DATA.B      H'0F, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00
-          .DATA.L      _const_8c0361ec ; ukn
-          .DATA.L      _FUN_8c0167c0 ; ukn
-          .DATA.B      H'09, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'01, H'00, H'00, H'00
-          .DATA.L      _const_8c0361c8 ; ukn
-          .DATA.L      _FUN_8c0167c0 ; ukn
-          .DATA.B      H'0C, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'01, H'00, H'00, H'00
-          .DATA.L      _const_8c036200 ; ukn
-          .DATA.L      _FUN_8c0167c0 ; ukn
-          .DATA.B      H'0F, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'01, H'00, H'00, H'00
-          .DATA.L      _const_8c036218 ; ukn
-          .DATA.L      _FUN_8c0167c0 ; ukn
-          .DATA.B      H'12, H'00, H'00, H'00, H'0A, H'00, H'00, H'00, H'00, H'00, H'00, H'00
-          .DATA.L      _const_8c036224 ; ukn
-          .DATA.L      _FUN_8c0167c0 ; ukn
-          .DATA.B      H'12, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'01, H'00, H'00, H'00
-          .DATA.L      _const_8c036234 ; ukn
-          .DATA.L      _FUN_8c0167c0 ; ukn
-          .DATA.B      H'06, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00
-          .DATA.L      _const_8c036244 ; ukn
-          .DATA.L      _FUN_8c0167c0 ; ukn
-          .DATA.B      H'18, H'00, H'00, H'00, H'11, H'00, H'00, H'00, H'00, H'00, H'00, H'00
-          .DATA.L      _const_8c036250 ; ukn
-          .DATA.L      _FUN_8c0167c0 ; ukn
-          .DATA.B      H'06, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'01, H'00, H'00, H'00
-          .DATA.L      _const_8c036264 ; ukn
-          .DATA.L      _FUN_8c0167c0 ; ukn
-          .DATA.B      H'18, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'01, H'00, H'00, H'00
-          .DATA.L      _const_8c036274 ; ukn
-          .DATA.L      _FUN_8c016b4c ; ukn
-          .DATA.B      H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00
-          .DATA.L      _const_8c03627c ; ukn
-          .DATA.L      _FUN_8c016636 ; ukn
-          .DATA.B      H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00
-          .DATA.L      _const_8c03616c ; ukn
-          .DATA.B      H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00
 _init_courseMenuButtons_8c04442c:        ; from defines
           .DATA.B      H'01, H'00, H'00, H'00          ; enabled
           .DATA.B      H'01, H'00, H'00, H'00          ; unlocked
