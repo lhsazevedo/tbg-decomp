@@ -2,9 +2,9 @@
 
 LC_NUMERIC=C
 
-matched_lines=$(grep -lE "SECTION\s+P" src/asm/matched/*.src | xargs cat | grep -vE ".IMPORT|.EXPORT" | wc -l)
-decompiled_lines=$(grep -lE "SECTION\s+P" src/asm/decompiled/*.src | xargs cat | grep -vE ".IMPORT|.EXPORT" | wc -l)
-remaining_lines=$(grep -lE "SECTION\s+P" src/asm/*.src | xargs cat | grep -vE ".IMPORT|.EXPORT" | wc -l)
+matched_lines=$(grep -lE "SECTION\s+(P|C|D|B)" src/asm/matched/*.src | xargs cat | grep -vE ".IMPORT|.EXPORT" | wc -l)
+decompiled_lines=$(grep -lE "SECTION\s+(P|C|D|B)" src/asm/decompiled/*.src | xargs cat | grep -vE ".IMPORT|.EXPORT" | wc -l)
+remaining_lines=$(grep -lE "SECTION\s+(P|C|D|B)" src/asm/*.src | xargs cat | grep -vE ".IMPORT|.EXPORT" | wc -l)
 
 decompiled_total=$((matched_lines + decompiled_lines))
 total_lines=$((decompiled_total + remaining_lines))
