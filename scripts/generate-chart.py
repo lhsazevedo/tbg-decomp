@@ -2,36 +2,43 @@ import matplotlib.pyplot as plt
 from datetime import datetime
 
 dates = [
-    datetime(2022, 3, 27),
-    datetime(2024, 1, 1),
-    datetime(2024, 7, 19),
-    datetime(2024, 11, 1),
-    datetime(2024, 11, 5),
-    datetime(2024, 11, 10),
-    datetime(2025, 2, 5),
-    datetime(2025, 12, 27)
+  datetime(2022, 3, 27),
+  datetime(2024, 1, 1),
+  datetime(2024, 7, 19),
+  datetime(2024, 11, 1),
+  datetime(2024, 11, 5),
+  datetime(2024, 11, 10),
+  datetime(2025, 2, 5),
+  datetime(2025, 12, 28),  # was Dec 27, actual commit is Dec 28
+  datetime(2026, 5, 23),
+  datetime(2026, 5, 24),
 ]
 
 decompiled_code = [
-    0.0,
-    2.0,
-    12.6,
-    14.7,
-    14.9,
-    15.2,
-    15.7,
-    20.1,
+  0.0,
+  0.0,   # no asm structure at this commit (was manually estimated 2.0)
+  8.6,
+  8.6,
+  10.4,
+  10.6,
+  11.0,
+  14.3,
+  15.2,
+  18.0,
 ]
 matched_code = [
-    0.0,
-    1.0,
-    1.3,
-    1.3,
-    1.3,
-    1.3,
-    1.3,
-    1.3,
+  0.0,
+  0.0,   # same
+  1.0,
+  1.0,
+  1.0,
+  1.0,
+  1.0,
+  1.0,
+  1.0,
+  1.0,
 ]
+
 
 fig, ax = plt.subplots()
 
