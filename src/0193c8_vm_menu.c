@@ -88,9 +88,7 @@ enum VMU_STATUS {
 extern MainMenuSwitchFromTask_8c01a09a(Task *task);
 
 extern int init_8c03bd80;
-extern char* init_saveNames_8c044d50[11];
-extern char* init_vmuStatusMessages_8c044dc4[7];
-extern NJS_POINT2 init_vmIconsPositions_8c044d7c[8];
+
 
 extern SDMIDI var_midiHandles_8c0fcd28[7];
 
@@ -116,6 +114,41 @@ extern Bool isFading_8c226568;
    ===================
  */
 
+char* init_saveNames_8c044d50[11] = {
+    "TOKYOBUS.001",
+    "TOKYOBUS.002",
+    "TOKYOBUS.003",
+    "TOKYOBUS.004",
+    "TOKYOBUS.005",
+    "TOKYOBUS.006",
+    "TOKYOBUS.007",
+    "TOKYOBUS.008",
+    "TOKYOBUS.009",
+    "TOKYOBUS.010",
+    ""
+};
+
+NJS_POINT2 init_vmIconsPositions_8c044d7c[9] = {
+    {185.0f, 98.0f},
+    {255.0f, 98.0f},
+    {325.0f, 98.0f},
+    {395.0f, 98.0f},
+    {150.0f, 194.0f},
+    {220.0f, 194.0f},
+    {290.0f, 194.0f},
+    {360.0f, 194.0f},
+    {430.0f, 194.0f}
+};
+
+char* init_vmuStatusMessages_8c044dc4[7] = {
+    NULL,
+    "使用できません",
+    "空きブロックが不足しています<E>セーブには３ブロック必要です",
+    "ファイルを設定せずに<E>ゲームを開始します",
+    "セーブ可能です",
+    "セーブデータがあります",
+    "セーブデータがあります"
+};
 
 /* =========
  * Functions

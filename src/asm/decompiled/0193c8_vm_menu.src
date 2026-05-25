@@ -12,13 +12,10 @@
           .IMPORT     _gBupInfo_8c1bc4ac
           .IMPORT     _buIsExistFile
           .IMPORT     _var_vmuStatus_8c226048
-          .IMPORT     _init_vmIconsPositions_8c044d7c
           .IMPORT     _menuState_8c1bc7a8
           .IMPORT     _drawSprite_8c014f54
           .IMPORT     _isFading_8c226568
-          .IMPORT     _init_saveNames_8c044d50
           .IMPORT     __quick_evn_mvn
-          .IMPORT     _init_vmuStatusMessages_8c044dc4
           .IMPORT     _swapMessageBoxFor_8c02aefc
           .IMPORT     _FUN_8c010d8a
           .IMPORT     _snd_8c010cd6
@@ -37,6 +34,25 @@
           .IMPORT     _init_8c03bd80
           .IMPORT     _MainMenuSwitchFromTask_8c01a09a
           .IMPORT     _setTaskAction_8c014b3e
+          .EXPORT     _const_8c037f60
+          .EXPORT     _const_8c037f70
+          .EXPORT     _const_8c037f80
+          .EXPORT     _const_8c037f90
+          .EXPORT     _const_8c037fa0
+          .EXPORT     _const_8c037fb0
+          .EXPORT     _const_8c037fc0
+          .EXPORT     _const_8c037fd0
+          .EXPORT     _const_8c037fe0
+          .EXPORT     _const_8c037ff0
+          .EXPORT     _const_8c038000
+          .EXPORT     _const_8c038004
+          .EXPORT     _const_8c038014
+          .EXPORT     _const_8c038050
+          .EXPORT     _const_8c03807c
+          .EXPORT     _const_8c03808c
+          .EXPORT     _init_saveNames_8c044d50
+          .EXPORT     _init_vmIconsPositions_8c044d7c
+          .EXPORT     _init_vmuStatusMessages_8c044dc4
           .EXPORT     _VmMenuMountVms_1940e
           .EXPORT     _VmMenuUnmountVms_194de
           .EXPORT     _VmMenuFreeAndClear_19504
@@ -1516,4 +1532,115 @@ _const_8c037ef8:
 _const_8c037f0c:
           .SDATA      "ファイルを設定しないとセーブできません<E>このままゲームを開始してもよろしいですか？"
           .DATA.B     H'00
+          .SECTION     D, DATA, ALIGN=4
+_init_saveNames_8c044d50:
+          .DATA.L      _const_8c037f60
+          .DATA.L      _const_8c037f70
+          .DATA.L      _const_8c037f80
+          .DATA.L      _const_8c037f90
+          .DATA.L      _const_8c037fa0
+          .DATA.L      _const_8c037fb0
+          .DATA.L      _const_8c037fc0
+          .DATA.L      _const_8c037fd0
+          .DATA.L      _const_8c037fe0
+          .DATA.L      _const_8c037ff0
+          .DATA.L      _const_8c038000
+_init_vmIconsPositions_8c044d7c:
+          .DATA.B      H'00, H'00, H'39, H'43
+          .DATA.B      H'00, H'00, H'C4, H'42, H'00, H'00, H'7F, H'43, H'00, H'00, H'C4, H'42, H'00, H'80, H'A2, H'43
+          .DATA.B      H'00, H'00, H'C4, H'42, H'00, H'80, H'C5, H'43, H'00, H'00, H'C4, H'42, H'00, H'00, H'16, H'43
+          .DATA.B      H'00, H'00, H'42, H'43, H'00, H'00, H'5C, H'43, H'00, H'00, H'42, H'43, H'00, H'00, H'91, H'43
+          .DATA.B      H'00, H'00, H'42, H'43, H'00, H'00, H'B4, H'43, H'00, H'00, H'42, H'43, H'00, H'00, H'D7, H'43
+          .DATA.B      H'00, H'00, H'42, H'43
+_init_vmuStatusMessages_8c044dc4:
+          .DATA.B      H'00, H'00, H'00, H'00
+          .DATA.L      _const_8c038004
+          .DATA.L      _const_8c038014
+          .DATA.L      _const_8c038050
+          .DATA.L      _const_8c03807c
+          .DATA.L      _const_8c03808c
+          .DATA.L      _const_8c03808c
+          .SECTION    C, DATA, ALIGN=4
+_const_8c037f60:        ; from ghidra
+          ;.SDATA      "TOKYOBUS.001"
+          ;.DATA.B     H'00
+          ;.RES.B      3
+          .DATA.B      H'54, H'4F, H'4B, H'59, H'4F, H'42, H'55, H'53, H'2E, H'30, H'30, H'31, H'00, H'00, H'00, H'00
+_const_8c037f70:        ; from ghidra
+          ;.SDATA      "TOKYOBUS.002"
+          ;.DATA.B     H'00
+          ;.RES.B      3
+          .DATA.B      H'54, H'4F, H'4B, H'59, H'4F, H'42, H'55, H'53, H'2E, H'30, H'30, H'32, H'00, H'00, H'00, H'00
+_const_8c037f80:        ; from ghidra
+          ;.SDATA      "TOKYOBUS.003"
+          ;.DATA.B     H'00
+          ;.RES.B      3
+          .DATA.B      H'54, H'4F, H'4B, H'59, H'4F, H'42, H'55, H'53, H'2E, H'30, H'30, H'33, H'00, H'00, H'00, H'00
+_const_8c037f90:        ; from ghidra
+          ;.SDATA      "TOKYOBUS.004"
+          ;.DATA.B     H'00
+          ;.RES.B      3
+          .DATA.B      H'54, H'4F, H'4B, H'59, H'4F, H'42, H'55, H'53, H'2E, H'30, H'30, H'34, H'00, H'00, H'00, H'00
+_const_8c037fa0:        ; from ghidra
+          ;.SDATA      "TOKYOBUS.005"
+          ;.DATA.B     H'00
+          ;.RES.B      3
+          .DATA.B      H'54, H'4F, H'4B, H'59, H'4F, H'42, H'55, H'53, H'2E, H'30, H'30, H'35, H'00, H'00, H'00, H'00
+_const_8c037fb0:        ; from ghidra
+          ;.SDATA      "TOKYOBUS.006"
+          ;.DATA.B     H'00
+          ;.RES.B      3
+          .DATA.B      H'54, H'4F, H'4B, H'59, H'4F, H'42, H'55, H'53, H'2E, H'30, H'30, H'36, H'00, H'00, H'00, H'00
+_const_8c037fc0:        ; from ghidra
+          ;.SDATA      "TOKYOBUS.007"
+          ;.DATA.B     H'00
+          ;.RES.B      3
+          .DATA.B      H'54, H'4F, H'4B, H'59, H'4F, H'42, H'55, H'53, H'2E, H'30, H'30, H'37, H'00, H'00, H'00, H'00
+_const_8c037fd0:        ; from ghidra
+          ;.SDATA      "TOKYOBUS.008"
+          ;.DATA.B     H'00
+          ;.RES.B      3
+          .DATA.B      H'54, H'4F, H'4B, H'59, H'4F, H'42, H'55, H'53, H'2E, H'30, H'30, H'38, H'00, H'00, H'00, H'00
+_const_8c037fe0:        ; from ghidra
+          ;.SDATA      "TOKYOBUS.009"
+          ;.DATA.B     H'00
+          ;.RES.B      3
+          .DATA.B      H'54, H'4F, H'4B, H'59, H'4F, H'42, H'55, H'53, H'2E, H'30, H'30, H'39, H'00, H'00, H'00, H'00
+_const_8c037ff0:        ; from ghidra
+          ;.SDATA      "TOKYOBUS.010"
+          ;.DATA.B     H'00
+          ;.RES.B      3
+          .DATA.B      H'54, H'4F, H'4B, H'59, H'4F, H'42, H'55, H'53, H'2E, H'30, H'31, H'30, H'00, H'00, H'00, H'00
+_const_8c038000:        ; from ghidra
+          .DATA.B      H'00, H'00, H'00, H'00
+_const_8c038004:        ; aggressive search
+          ;.SDATA      "使用できません"
+          ;.DATA.B     H'00
+          ;.RES.B      1
+          .DATA.B      H'8E, H'67, H'97, H'70, H'82, H'C5, H'82, H'AB, H'82, H'DC, H'82, H'B9, H'82, H'F1, H'00, H'00
+_const_8c038014:        ; aggressive search
+          ;.SDATA      "空きブロックが不足しています<E>セーブには３ブロック必要です"
+          ;.DATA.B     H'00
+          .DATA.B      H'8B, H'F3, H'82, H'AB, H'83, H'75, H'83, H'8D, H'83, H'62, H'83, H'4E, H'82, H'AA, H'95, H'73
+          .DATA.B      H'91, H'AB, H'82, H'B5, H'82, H'C4, H'82, H'A2, H'82, H'DC, H'82, H'B7, H'3C, H'45, H'3E, H'83
+          .DATA.B      H'5A, H'81, H'5B, H'83, H'75, H'82, H'C9, H'82, H'CD, H'82, H'52, H'83, H'75, H'83, H'8D, H'83
+          .DATA.B      H'62, H'83, H'4E, H'95, H'4B, H'97, H'76, H'82, H'C5, H'82, H'B7, H'00
+_const_8c038050:        ; aggressive search
+          ;.SDATA      "ファイルを設定せずに<E>ゲームを開始します"
+          ;.DATA.B     H'00
+          ;.RES.B      2
+          .DATA.B      H'83, H'74, H'83, H'40, H'83, H'43, H'83, H'8B, H'82, H'F0, H'90, H'DD, H'92, H'E8, H'82, H'B9
+          .DATA.B      H'82, H'B8, H'82, H'C9, H'3C, H'45, H'3E, H'83, H'51, H'81, H'5B, H'83, H'80, H'82, H'F0, H'8A
+          .DATA.B      H'4A, H'8E, H'6E, H'82, H'B5, H'82, H'DC, H'82, H'B7, H'00, H'00, H'00
+_const_8c03807c:        ; aggressive search
+          ;.SDATA      "セーブ可能です"
+          ;.DATA.B     H'00
+          ;.RES.B      1
+          .DATA.B      H'83, H'5A, H'81, H'5B, H'83, H'75, H'89, H'C2, H'94, H'5C, H'82, H'C5, H'82, H'B7, H'00, H'00
+_const_8c03808c:        ; aggressive search
+          ;.SDATA      "セーブデータがあります"
+          ;.DATA.B     H'00
+          ;.RES.B      1
+          .DATA.B      H'83, H'5A, H'81, H'5B, H'83, H'75, H'83, H'66, H'81, H'5B, H'83, H'5E, H'82, H'AA, H'82, H'A0
+          .DATA.B      H'82, H'E8, H'82, H'DC, H'82, H'B7, H'00, H'00
           .END
