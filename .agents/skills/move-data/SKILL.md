@@ -101,6 +101,32 @@ The section C layout in the linked binary is determined by link order. As long a
 - the const block is appended AFTER the unit's existing section C data (so order within the unit obj is preserved),
 the byte sequence in the final section C is identical to before — just split across different obj files.
 
+## Fixing Tests After Moving Initialized Data
+
+After moving a symbol from `*_pre_data.src` / `sectionD.src` to a TU (section D of its `.c` or `.src`), the corresponding tests need updating:
+
+### setSize removal
+- `setSize('_sym', n)` allocates an extern symbol. Once the TU defines it, this call fails with "Cannot allocate symbol X, it is already defined in the object file".
+- **Fix**: remove the `setSize()` call entirely.
+
+### initUint32 / initUint32Array on TU-owned section D data does NOT work
+- TU-defined section D data is loaded into test memory AFTER `initUint32`/`initUint32Array` writes. The TU initialization silently overwrites any test-level init.
+- **Fix**: remove the `initUint32Array()` call for the moved symbol. Either accept the TU-defined values as-is, or re-examine whether overriding is truly needed.
+- Exception: BSS symbols (allocated via `setSize`) CAN be initialized with `initUint32` since BSS is zero-filled and test writes are not overwritten.
+
+### String address expectations when data moves to TU
+- Each test file runs twice: once against `_src.obj` (asm stub), once against `_c.obj` (C compiled). The TU-owned section C/D string addresses differ between the two objects (`_const_8cXXXXXX` asm labels vs. anonymous C compiler strings).
+- Address-based expectations (e.g. `->with($this->addressOf('_const_8c037f60'))`) only work for one obj variant.
+- **Fix**: use PHP string literals in `with()` — the framework compares by C string content: `->with("TOKYOBUS.001")`. This works for both obj variants.
+
+### Loop count changes when array sentinel moves
+- If a test previously overrode a TU-owned array with fewer entries (e.g. 4 entries ending with `""`) to bound a loop, removing that override means the loop now runs to the TU-defined sentinel (e.g. 11 entries). Update expected call counts accordingly.
+- Example: `_init_saveNames_8c044d50` — old tests used 4 entries with `""` sentinel; TU has 10 names + `""`. Tests that expected 3 `_buIsExistFile` not-found calls for "saving possible" now need 10.
+
+### vmuStatusMessages / pointer arrays used as message selectors
+- If a function indexes into a TU-owned `char*` array to pass to another function, and tests previously overrode that array with fake addresses (0xcafe000x), those overrides no longer work.
+- **Fix**: remove the `initUint32Array` override; update `->with(0xcafe000x)` expectations to use the actual SJIS string content: `->with("セーブ可能です")`.
+
 ## Conversation-Derived Conventions
 
 - If a symbol is only used by the owner C file and tests, prefer:
