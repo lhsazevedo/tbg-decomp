@@ -82,6 +82,24 @@ Use this workflow when a variable currently lives in a shared pre-data file (for
 - **Duplicate definition**: symbol left in both old and new BSS owners; remove old allocation.
 - **Wrong section ownership**: symbol moved in export list but BSS allocation not moved.
 - **Export placement drift**: new `.EXPORT` added in imports region; relocate to export block.
+- **Orphaned section C data after extracting a const block**: if you extract a `.SECTION C, DATA, ALIGN=4` header together with its const block, the remaining data in the source file loses its section declaration and the assembler silently drops it. Always re-insert `.SECTION C, DATA, ALIGN=4` before the first remaining label in the source file, OR extract only the DATA lines and leave the section header behind.
+
+## Moving Section C Consts to a Unit
+
+When a unit's `init_*` data array in section D references `_const_8cXXXXXX` symbols from `0332a4_sectionC.src`, those consts can be moved into the unit's `.src` file verbatim so ownership is consolidated. Procedure:
+
+1. **Extract the const block** from `sectionC.src` — copy the `.SECTION C, DATA, ALIGN=4` line plus the data labels/bytes verbatim.
+2. **Keep the section header in `sectionC.src`** — after removing the const data lines, ensure a `.SECTION C, DATA, ALIGN=4` directive remains before the first surviving data label. Failure to do this causes the assembler to silently drop all remaining section C data, shifting every subsequent const address and breaking the matching build.
+3. **Add the block to the unit `.src`** — append it before `.END`, after the section D data. Switching back and forth between section C and section D in a single `.src` file is fine; the assembler merges same-named sections.
+4. **Update exports in the unit `.src`** — add `.EXPORT _const_8cXXXXXX` for each moved const (remove the corresponding `.IMPORT`; local symbols need no import).
+5. **Remove exports from `sectionC.src`** — delete the `.EXPORT` lines for the moved consts.
+6. **C file** — use direct SJIS string literals (same style as MenuDialog sequences in `course_menu.c`). The compiler puts anonymous strings in section C of the unit's obj; they do not conflict with the named `_const_*` labels in the matching build because those are separate symbols.
+
+### Why the binary stays identical
+The section C layout in the linked binary is determined by link order. As long as:
+- the unit `.src` is linked at the same relative position (before `sectionC.src`), and
+- the const block is appended AFTER the unit's existing section C data (so order within the unit obj is preserved),
+the byte sequence in the final section C is identical to before — just split across different obj files.
 
 ## Conversation-Derived Conventions
 
