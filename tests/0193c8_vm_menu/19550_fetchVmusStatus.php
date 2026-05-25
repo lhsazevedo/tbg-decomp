@@ -12,16 +12,6 @@ return new class extends TestCase {
         $this->resolveSymbols();
 
         $this->initUint32Array(
-            $this->addressOf('_init_saveNames_8c044d50'),
-            [
-                $saveName1 = $this->allocString('TOKYOBUS.001'),
-                $saveName2 = $this->allocString('TOKYOBUS.002'),
-                $saveName3 = $this->allocString('TOKYOBUS.003'),
-                $saveName4 = $this->allocString(''),
-            ]
-        );
-
-        $this->initUint32Array(
             $this->addressOf('_var_vmuStatus_8c226048'),
             [0,0,0,0,0,0,0,0,0,0]
         );
@@ -80,27 +70,34 @@ return new class extends TestCase {
         $this->shouldCall('_BupGetInfo_8c014bba')->with(2)->andReturn($bupAddresses[2]);
 
         $this->shouldCall('_BupGetInfo_8c014bba')->with(3)->andReturn($bupAddresses[3]);
-        $this->shouldCall('_buIsExistFile')->with(3, $saveName1)->andReturn(0); // BUD_ERR_OK
+        $this->shouldCall('_buIsExistFile')->with(3, "TOKYOBUS.001")->andReturn(0); // BUD_ERR_OK
         $this->shouldWriteLong($this->addressOf('_var_vmuStatus_8c226048') + 3 * 4, 5); // Save data exists
 
         $this->shouldCall('_BupGetInfo_8c014bba')->with(4)->andReturn($bupAddresses[4]);
-        $this->shouldCall('_buIsExistFile')->with(4, $saveName1)->andReturn(0xffffff05); // BUD_ERR_FILE_NOT_FOUND
-        $this->shouldCall('_buIsExistFile')->with(4, $saveName2)->andReturn(0); // BUD_ERR_OK
+        $this->shouldCall('_buIsExistFile')->with(4, "TOKYOBUS.001")->andReturn(0xffffff05); // BUD_ERR_FILE_NOT_FOUND
+        $this->shouldCall('_buIsExistFile')->with(4, "TOKYOBUS.002")->andReturn(0); // BUD_ERR_OK
         $this->shouldWriteLong($this->addressOf('_var_vmuStatus_8c226048') + 4 * 4, 6); // Save data exists 2
 
         $this->shouldCall('_BupGetInfo_8c014bba')->with(5)->andReturn($bupAddresses[5]);
-        $this->shouldCall('_buIsExistFile')->with(5, $saveName1)->andReturn(0xffffff03); // BUD_ERR_UNFORMAT
+        $this->shouldCall('_buIsExistFile')->with(5, "TOKYOBUS.001")->andReturn(0xffffff03); // BUD_ERR_UNFORMAT
         $this->shouldWriteLong($this->addressOf('_var_vmuStatus_8c226048') + 5 * 4, 1); // Not available
         $this->shouldWriteLong($this->addressOf('_var_vmuStatus_8c226048') + 5 * 4, 1); // Not available
 
         $this->shouldCall('_BupGetInfo_8c014bba')->with(6)->andReturn($bupAddresses[6]);
-        $this->shouldCall('_buIsExistFile')->with(6, $saveName1)->andReturn(0xffffffff); /// BUD_ERR_BUSY
+        $this->shouldCall('_buIsExistFile')->with(6, "TOKYOBUS.001")->andReturn(0xffffffff); // BUD_ERR_BUSY
         $this->shouldWriteLong($this->addressOf('_var_vmuStatus_8c226048') + 6 * 4, 1); // Not available
 
         $this->shouldCall('_BupGetInfo_8c014bba')->with(7)->andReturn($bupAddresses[7]);
-        $this->shouldCall('_buIsExistFile')->with(7, $saveName1)->andReturn(0xffffff05); // BUD_ERR_FILE_NOT_FOUND
-        $this->shouldCall('_buIsExistFile')->with(7, $saveName2)->andReturn(0xffffff05); // BUD_ERR_FILE_NOT_FOUND
-        $this->shouldCall('_buIsExistFile')->with(7, $saveName3)->andReturn(0xffffff05); // BUD_ERR_FILE_NOT_FOUND
+        $this->shouldCall('_buIsExistFile')->with(7, "TOKYOBUS.001")->andReturn(0xffffff05); // BUD_ERR_FILE_NOT_FOUND
+        $this->shouldCall('_buIsExistFile')->with(7, "TOKYOBUS.002")->andReturn(0xffffff05); // BUD_ERR_FILE_NOT_FOUND
+        $this->shouldCall('_buIsExistFile')->with(7, "TOKYOBUS.003")->andReturn(0xffffff05); // BUD_ERR_FILE_NOT_FOUND
+        $this->shouldCall('_buIsExistFile')->with(7, "TOKYOBUS.004")->andReturn(0xffffff05); // BUD_ERR_FILE_NOT_FOUND
+        $this->shouldCall('_buIsExistFile')->with(7, "TOKYOBUS.005")->andReturn(0xffffff05); // BUD_ERR_FILE_NOT_FOUND
+        $this->shouldCall('_buIsExistFile')->with(7, "TOKYOBUS.006")->andReturn(0xffffff05); // BUD_ERR_FILE_NOT_FOUND
+        $this->shouldCall('_buIsExistFile')->with(7, "TOKYOBUS.007")->andReturn(0xffffff05); // BUD_ERR_FILE_NOT_FOUND
+        $this->shouldCall('_buIsExistFile')->with(7, "TOKYOBUS.008")->andReturn(0xffffff05); // BUD_ERR_FILE_NOT_FOUND
+        $this->shouldCall('_buIsExistFile')->with(7, "TOKYOBUS.009")->andReturn(0xffffff05); // BUD_ERR_FILE_NOT_FOUND
+        $this->shouldCall('_buIsExistFile')->with(7, "TOKYOBUS.010")->andReturn(0xffffff05); // BUD_ERR_FILE_NOT_FOUND
         $this->shouldWriteLong($this->addressOf('_var_vmuStatus_8c226048') + 7 * 4, 4); // Saving is possible
 
         $this->shouldWriteLong($this->addressOf('_var_vmuStatus_8c226048') + 8 * 4, 3);
@@ -113,16 +110,6 @@ return new class extends TestCase {
     public function test_fetchVmusNotEnoughSpace()
     {
         $this->resolveSymbols();
-
-        $this->initUint32Array(
-            $this->addressOf('_init_saveNames_8c044d50'),
-            [
-                $saveName1 = $this->allocString('TOKYOBUS.001'),
-                $saveName2 = $this->allocString('TOKYOBUS.002'),
-                $saveName3 = $this->allocString('TOKYOBUS.003'),
-                $saveName4 = $this->allocString(''),
-            ]
-        );
 
         $this->initUint32Array(
             $this->addressOf('_var_vmuStatus_8c226048'),
@@ -175,9 +162,16 @@ return new class extends TestCase {
         $bupAddresses = $this->initBackupInfos($bupInfos);
 
         $this->shouldCall('_BupGetInfo_8c014bba')->with(0)->andReturn($bupAddresses[0]);
-        $this->shouldCall('_buIsExistFile')->with(0, $saveName1)->andReturn(0xffffff05); // BUD_ERR_FILE_NOT_FOUND
-        $this->shouldCall('_buIsExistFile')->with(0, $saveName2)->andReturn(0xffffff05); // BUD_ERR_FILE_NOT_FOUND
-        $this->shouldCall('_buIsExistFile')->with(0, $saveName3)->andReturn(0xffffff05); // BUD_ERR_FILE_NOT_FOUND
+        $this->shouldCall('_buIsExistFile')->with(0, "TOKYOBUS.001")->andReturn(0xffffff05); // BUD_ERR_FILE_NOT_FOUND
+        $this->shouldCall('_buIsExistFile')->with(0, "TOKYOBUS.002")->andReturn(0xffffff05); // BUD_ERR_FILE_NOT_FOUND
+        $this->shouldCall('_buIsExistFile')->with(0, "TOKYOBUS.003")->andReturn(0xffffff05); // BUD_ERR_FILE_NOT_FOUND
+        $this->shouldCall('_buIsExistFile')->with(0, "TOKYOBUS.004")->andReturn(0xffffff05); // BUD_ERR_FILE_NOT_FOUND
+        $this->shouldCall('_buIsExistFile')->with(0, "TOKYOBUS.005")->andReturn(0xffffff05); // BUD_ERR_FILE_NOT_FOUND
+        $this->shouldCall('_buIsExistFile')->with(0, "TOKYOBUS.006")->andReturn(0xffffff05); // BUD_ERR_FILE_NOT_FOUND
+        $this->shouldCall('_buIsExistFile')->with(0, "TOKYOBUS.007")->andReturn(0xffffff05); // BUD_ERR_FILE_NOT_FOUND
+        $this->shouldCall('_buIsExistFile')->with(0, "TOKYOBUS.008")->andReturn(0xffffff05); // BUD_ERR_FILE_NOT_FOUND
+        $this->shouldCall('_buIsExistFile')->with(0, "TOKYOBUS.009")->andReturn(0xffffff05); // BUD_ERR_FILE_NOT_FOUND
+        $this->shouldCall('_buIsExistFile')->with(0, "TOKYOBUS.010")->andReturn(0xffffff05); // BUD_ERR_FILE_NOT_FOUND
         $this->shouldWriteLong($this->addressOf('_var_vmuStatus_8c226048') + 0 * 4, 2); // Not enough space
 
         $this->shouldCall('_BupGetInfo_8c014bba')->with(1)->andReturn($bupAddresses[1]);
@@ -204,7 +198,6 @@ return new class extends TestCase {
 
     private function resolveSymbols(): void
     {
-        $this->setSize('_init_saveNames_8c044d50', 4 * 4);
         $this->setSize('_var_vmuStatus_8c226048', 4 * 9);
 
         // Functions
@@ -238,9 +231,4 @@ return new class extends TestCase {
         }
         return $addresses;
     }
-
-    // private function isAsmObject(): bool
-    // {
-    //     return str_ends_with($this->objectFile, '_src.obj');
-    // }
 };

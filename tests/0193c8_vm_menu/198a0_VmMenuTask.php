@@ -76,7 +76,7 @@ return new class extends TestCase {
         };
 
         $this->shouldCall('__quick_evn_mvn')->do($mvn);
-        $this->shouldCall('_swapMessageBoxFor_8c02aefc')->with(0xcafe0004);
+        $this->shouldCall('_swapMessageBoxFor_8c02aefc')->with("セーブ可能です");
         $this->shouldCall('_FUN_8c010d8a');
         $this->shouldCall('_snd_8c010cd6');
 
@@ -168,7 +168,7 @@ return new class extends TestCase {
         $this->shouldCall('_sdMidiPlay')->with(0xbeef0000, 1, 3, 0);
         $this->shouldCall('_initCursorLerp_19788')->with(2);
         $this->shouldWriteMenuState(3);
-        $this->shouldCall('_swapMessageBoxFor_8c02aefc')->with(0xcafe0004);
+        $this->shouldCall('_swapMessageBoxFor_8c02aefc')->with("セーブ可能です");
 
         $this->shouldCall('_drawVmMenu_197c0');
         $this->shouldCall('_menuTextboxText_8c02af1c')->with(0x20);
@@ -568,7 +568,7 @@ return new class extends TestCase {
         $this->shouldCall('_CourseMenuInterpolateCursor_8c016d2c')->andReturn(1);
 
         $this->shouldWriteMenuState(2);
-        $this->shouldCall('_swapMessageBoxFor_8c02aefc')->with(0xcafe0004);
+        $this->shouldCall('_swapMessageBoxFor_8c02aefc')->with("セーブ可能です");
 
         $this->shouldCall('_drawVmMenu_197c0');
         $this->shouldCall('_menuTextboxText_8c02af1c')->with(0x20);
@@ -670,7 +670,7 @@ return new class extends TestCase {
             })
             ->andReturn(2);
 
-        $this->shouldCall('_swapMessageBoxFor_8c02aefc')->with(0xcafe0004);
+        $this->shouldCall('_swapMessageBoxFor_8c02aefc')->with("セーブ可能です");
         $this->shouldWriteMenuState(2);
 
         $this->shouldCall('_drawSprite_8c014f54')
@@ -784,7 +784,7 @@ return new class extends TestCase {
             })
             ->andReturn(2);
 
-        $this->shouldCall('_swapMessageBoxFor_8c02aefc')->with(0xcafe0003);
+        $this->shouldCall('_swapMessageBoxFor_8c02aefc')->with("ファイルを設定せずに<E>ゲームを開始します");
         $this->shouldWriteMenuState(2);
 
         $this->shouldCall('_drawSprite_8c014f54')
@@ -923,7 +923,7 @@ return new class extends TestCase {
         };
         $this->shouldCall('__quick_evn_mvn')->do($mvn);
 
-        $this->shouldCall('_swapMessageBoxFor_8c02aefc', 0xcafe0006);
+        $this->shouldCall('_swapMessageBoxFor_8c02aefc')->with("セーブ可能です");
         $this->shouldWrite($task + 0x08, 3); // substate
         $this->shouldCall('_push_fadeout_8c022b60')->with(10);
 
@@ -1165,7 +1165,6 @@ return new class extends TestCase {
     {
         $this->setSize('_menuState_8c1bc7a8', 0x6c);
         $this->setSize('_var_peripherals_8c1ba35c', 0x34 * 2);
-        $this->setSize('_init_saveNames_8c044d50', 4 * 11);
         $this->setSize('_isFading_8c226568', 4);
         $this->setSize('_var_vmuStatus_8c226048', 0x24);
         $this->setSize('_var_midiHandles_8c0fcd28', 7 * 4);
@@ -1179,16 +1178,6 @@ return new class extends TestCase {
             0xbeef0004,
             0xbeef0005,
             0xbeef0006,
-        ]);
-
-        $this->initUint32Array($this->addressOf('_init_vmuStatusMessages_8c044dc4'), [
-            0,
-            0xcafe0001,
-            0xcafe0002,
-            0xcafe0003,
-            0xcafe0004,
-            0xcafe0005,
-            0xcafe0006,
         ]);
 
         // Functions
@@ -1238,12 +1227,12 @@ return new class extends TestCase {
 
             $messages = [
                 0,
-                0xcafe0001,
-                0xcafe0002,
-                0xcafe0003,
-                0xcafe0004,
-                0xcafe0005,
-                0xcafe0006,
+                "使用できません",
+                "空きブロックが不足しています<E>セーブには３ブロック必要です",
+                "ファイルを設定せずに<E>ゲームを開始します",
+                "セーブ可能です",
+                "セーブデータがあります",
+                "セーブデータがあります",
             ];
             $message = $messages[$slots[$expectedSlot]];
             $this->shouldCall('_swapMessageBoxFor_8c02aefc')->with($message);
