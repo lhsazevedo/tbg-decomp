@@ -2,6 +2,7 @@
           .IMPORT     _demoCursor_8c225fa8
           .IMPORT     _var_8c1bbc84
           .IMPORT     _demoPrevOn_8c225fac
+          .IMPORT     _demoBuffer_8c1bc828
           .IMPORT     _var_peripherals_8c1ba35c
           .EXPORT     _demoInputTask_8c016bf4
           .SECTION    P,CODE,ALIGN=4
@@ -51,7 +52,7 @@ L0:
 L1:                               
           .DATA.L _var_8c1bbc84 ; H'8C016C44
           .DATA.L _demoCursor_8c225fa8 ; H'8C016C48
-          .DATA.L _demoCursor_8c225fa8 ; H'8C016C4C
+          .DATA.L _demoBuffer_8c1bc828+432000 ; H'8C016C4C (end of replay buffer)
           .DATA.L _var_peripherals_8c1ba35c ; H'8C016C50
           .DATA.L _demoPrevOn_8c225fac ; H'8C016C54
           .END
