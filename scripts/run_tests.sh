@@ -79,4 +79,8 @@ compile  src/016d2c_course_menu.c
 assemble  src/asm/decompiled/012504_input.src
 compile  src/012504_input.c
 
+# 016bf4_demo_input
+assemble  src/asm/decompiled/016bf4_demo_input.src
+compile  src/016bf4_demo_input.c
+
 $sh4objtest suite -s tests.php "$@"

@@ -29,9 +29,9 @@
           .IMPORT     _var_8c1bc824
           .IMPORT     _AsqGetRandomA_12166
           .IMPORT     _pushInputTask_8c0128cc
-          .IMPORT     _var_8c1bc828
-          .IMPORT     _var_8c225fa8
-          .IMPORT     _var_8c225fac
+          .IMPORT     _demoBuffer_8c1bc828
+          .IMPORT     _demoCursor_8c225fa8
+          .IMPORT     _demoPrevOn_8c225fac
           .IMPORT     _var_8c1bbc84
           .IMPORT     _var_peripherals_8c1ba35c
           .IMPORT     _var_demo_8c1bb8d0
@@ -1030,11 +1030,11 @@ LP_GEN_94139:
           .DATA.L _AsqGetRandomA_12166 ; H'8C016860
           .DATA.L _pushInputTask_8c0128cc ; H'8C016864
           .DATA.L _FUN_8c01666a ; H'8C016868
-          .DATA.L _var_8c1bc828 ; H'8C01686C
-          .DATA.L _var_8c225fa8 ; H'8C016870
-          .DATA.L _var_8c225fac ; H'8C016874
+          .DATA.L _demoBuffer_8c1bc828 ; H'8C01686C
+          .DATA.L _demoCursor_8c225fa8 ; H'8C016870
+          .DATA.L _demoPrevOn_8c225fac ; H'8C016874
           .DATA.L _var_8c1bbc84 ; H'8C016878
-          .DATA.L _var_8c225fa8 ; H'8C01687C
+          .DATA.L _demoCursor_8c225fa8 ; H'8C01687C
           .DATA.L _var_peripherals_8c1ba35c ; H'8C016880
           .DATA.L _var_demo_8c1bb8d0 ; H'8C016884
           .DATA.L _FUN_8c01328c ; H'8C016888
@@ -1280,9 +1280,9 @@ LP_GEN_65913:
           .DATA.L _var_tasks_8c1ba3c8 ; H'8C016A6C
           .DATA.L _pushTask_8c014ae8 ; H'8C016A70
           .DATA.L _var_selectedVm_8c1ba34c ; H'8C016A74
-          .DATA.L _var_8c225fa8 ; H'8C016A78
-          .DATA.L _var_8c225fa8 ; H'8C016A7C
-          .DATA.L _var_8c1bc828 ; H'8C016A80
+          .DATA.L _demoCursor_8c225fa8 ; H'8C016A78
+          .DATA.L _demoCursor_8c225fa8 ; H'8C016A7C
+          .DATA.L _demoBuffer_8c1bc828 ; H'8C016A80
           .DATA.L _var_demoBuf_8c1ba3c4 ; H'8C016A84
           .DATA.L _syMalloc ; H'8C016A88
           .DATA.L _FUN_8c02f320 ; H'8C016A8C
@@ -1427,7 +1427,7 @@ LP_GEN_41084:
           .DATA.L _var_8c1bb868 ; H'8C016BB4
           .DATA.L _var_inputMapSel_8c1bb8c8 ; H'8C016BB8
           .DATA.L _var_seed_8c157a64 ; H'8C016BBC
-          .DATA.L _var_8c1bc828 ; H'8C016BC0
+          .DATA.L _demoBuffer_8c1bc828 ; H'8C016BC0
           .DATA.L _FUN_8c02f320 ; H'8C016BC4
           .DATA.L _FUN_readDemo_8c02fa14 ; H'8C016BC8
           .DATA.L _syFree ; H'8C016BCC

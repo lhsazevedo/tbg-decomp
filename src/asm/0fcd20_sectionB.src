@@ -1,16 +1,4 @@
 ; 8c0fcd20
-          ; 0129cc
-          .EXPORT     _menuState_8c1bc7a8 ; 0129cc.src, 012f44, 015ab8_title, 016108.c, 016d2c_course_menu, 018784.src, 0193c8_vm_menu, 019e98_main_menu, 01a148.src, 01b19c.src, 01bb48.src, 01c980.src, 01d290.src, 01d7fc.src, 01e27c.src, 01f3c0.src,
-                                          ; 02b464.src
-
-          ; 012f44
-          .EXPORT     _var_8c1bc824 ; 012f44.c, 012f44.src, 01614c.src
-
-          ; 014f54_text
-          .EXPORT     _var_8c1bc828 ; 014f54_text.c, 014f54_text.src, 01614c.src
-          .EXPORT     _var_8c225fa8 ; 01614c.src, 016bf4.src, _027636_8c016bf4.c
-          .EXPORT     _var_8c225fac ; 01614c.src, 016bf4.src, _027636_8c016bf4.c
-
           ; 015ab8_title
           .EXPORT     _var_currentSysResGroupInfo_8c225fb0 ; 012f44.c, 012f44.src, 015ab8_title.c, 015ab8_title.src, 016108.c, 016d2c_course_menu.c, 016d2c_course_menu.src, 018784.src, 01c980.src, 01e27c.src
 
@@ -307,16 +295,6 @@
           .EXPORT     _var_8c235c80 ; 02fb50_sh4nlfzn.src
           .EXPORT     _var_8c235c84 ; 02fb50_sh4nlfzn.src
           .SECTION    B,DATA,ALIGN=4
-_menuState_8c1bc7a8:
-          .RES.L      31
-_var_8c1bc824:
-          .RES.B      4
-_var_8c1bc828:
-          .RES.B      432000
-_var_8c225fa8:
-          .RES.B      4
-_var_8c225fac:
-          .RES.B      4
 _var_currentSysResGroupInfo_8c225fb0:
           .RES.B      4
 _var_dialogSequenceIsActive_8c225fb4:

@@ -15,7 +15,6 @@
           .IMPORT     _var_8c1bb868
           .IMPORT     _var_inputMapSel_8c1bb8c8
           .IMPORT     _var_seed_8c157a64
-          .IMPORT     _var_8c1bc828
           .IMPORT     _FUN_8c02f320
           .IMPORT     _FUN_readDemo_8c02fa14
           .IMPORT     _freeTask_8c014b66
@@ -35,6 +34,11 @@
           .IMPORT     _AsqNop_11120
           .IMPORT     _AsqProcessQueues_11fe0
           .IMPORT     _njDrawSprite2D
+          .EXPORT     _menuState_8c1bc7a8
+          .EXPORT     _var_8c1bc824
+          .EXPORT     _demoBuffer_8c1bc828
+          .EXPORT     _demoCursor_8c225fa8
+          .EXPORT     _demoPrevOn_8c225fac
           .EXPORT     _drawSprite_8c014f54
           .EXPORT     _TxtInit_8c01524c
           .EXPORT     _TxtDestroy_8c01529c
@@ -1543,7 +1547,7 @@ LP_GEN_51554:
           .DATA.L _var_8c1bb868
           .DATA.L _var_inputMapSel_8c1bb8c8
           .DATA.L _var_seed_8c157a64
-          .DATA.L _var_8c1bc828
+          .DATA.L _demoBuffer_8c1bc828
           .DATA.L _FUN_8c02f320
           .DATA.L _FUN_readDemo_8c02fa14
           .DATA.L _syFree
@@ -1733,6 +1737,16 @@ _var_fontResourceGroup_8c1bc794:
 _var_8c1bc7a0:
           .RES.B      4
 _var_glyphBuffer_8c1bc7a4:
+          .RES.B      4
+_menuState_8c1bc7a8:
+          .RES.L      31
+_var_8c1bc824:
+          .RES.B      4
+_demoBuffer_8c1bc828:
+          .RES.B      432000
+_demoCursor_8c225fa8:
+          .RES.B      4
+_demoPrevOn_8c225fac:
           .RES.B      4
           .END
 

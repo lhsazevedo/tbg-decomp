@@ -22,7 +22,7 @@ return new class extends TestCase {
 
         $local1 = $this->isAsmObject() ? 0xffffe4 : 0xffffec;
 
-        $this->shouldWriteLong($local1, $this->addressOf('_var_8c1bc828'));
+        $this->shouldWriteLong($local1, $this->addressOf('_demoBuffer_8c1bc828'));
 
         $this->shouldCall('_FUN_8c02f320');
         $this->shouldCall('_FUN_readDemo_8c02fa14')

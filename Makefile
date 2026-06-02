@@ -27,7 +27,7 @@ SRCS = \
 	src/015ab8_title.c \
 	src/016108.c \
 	src/asm/01614c.src \
-	src/asm/016bf4.src \
+	src/016bf4_demo_input.c \
 	src/016c58_prompt.c \
 	src/016d2c_course_menu.c \
 	src/asm/018644.src \

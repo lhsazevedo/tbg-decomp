@@ -28,7 +28,7 @@ SRCS = \
 	src/asm/decompiled/015ab8_title.src \
 	src/016108.c \
 	src/asm/01614c.src \
-	src/asm/016bf4.src \
+	src/asm/decompiled/016bf4_demo_input.src \
 	src/asm/decompiled/016c58_prompt.src \
 	src/asm/decompiled/016d2c_course_menu.src \
 	src/asm/018644.src \

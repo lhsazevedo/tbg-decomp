@@ -2,6 +2,7 @@
 #include "015ab8_title.h"
 #include "014a9c_tasks.h"
 #include "011120_asset_queues.h"
+#include "014f54_text.h"
 #include "serial_debug.h"
 
 /* ====================
@@ -77,7 +78,12 @@ STATIC ResourceGroup var_fontResourceGroup_8c1bc794;
 STATIC Sint16 *var_8c1bc7a0;
 STATIC void *var_glyphBuffer_8c1bc7a4;
 
-extern void *var_8c1bc828;
+MenuState menuState_8c1bc7a8;
+void *var_8c1bc824;
+ReplayInput demoBuffer_8c1bc828[REPLAY_BUFFER_CAPACITY];
+ReplayInput *demoCursor_8c225fa8;
+Uint32 demoPrevOn_8c225fac;
+
 extern int var_demoEntryValue_8c227e14;
 extern int var_demoEntryValue_8c22822c;
 
@@ -750,7 +756,7 @@ STATIC void FUN_8c01594c(Task *task)
     var_8c1bb868 = var_demoBuf_8c1ba3c4[1];
     var_inputMapSel_8c1bb8c8 = var_demoBuf_8c1ba3c4[2];
     var_seed_8c157a64 = var_demoBuf_8c1ba3c4[3];
-    local = &var_8c1bc828;
+    local = demoBuffer_8c1bc828;
     FUN_8c02f320();
     FUN_readDemo_8c02fa14(&var_demoBuf_8c1ba3c4[4], &local, var_demoBuf_8c1ba3c4[0]);
     syFree(var_demoBuf_8c1ba3c4);

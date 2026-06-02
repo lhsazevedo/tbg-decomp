@@ -212,6 +212,15 @@ return [
                 "build/output/012504_input_src.obj",
                 "build/output/012504_input_c.obj",
             ]
+        ],
+        [
+            "tests" => [
+                "tests/016bf4_demo_input/8c016bf4_FUN.php"
+            ],
+            "objects" => [
+                "build/output/016bf4_src.obj",
+                "build/output/016bf4_c.obj",
+            ]
         ]
     ],
 ];

@@ -42,7 +42,7 @@
           .IMPORT     _task_8c01677e
           .IMPORT     _var_8c1bb8d4
           .IMPORT     _task_8c012d06
-          .IMPORT     _task_8c016bf4
+          .IMPORT     _demoInputTask_8c016bf4
           .IMPORT     _FUN_8c025af4
           .IMPORT     _var_8c1bb8cc
           .IMPORT     _var_8c22847c
@@ -751,7 +751,7 @@ LAB_8c0133a0:
 
 LP_GEN_38000:
           .DATA.L _task_8c012d5a ; LP_GEN_38000+0
-          .DATA.L _task_8c016bf4
+          .DATA.L _demoInputTask_8c016bf4
           .DATA.L _FUN_8c025af4
           .DATA.L _var_8c1bb8cc
           .DATA.L _var_8c22847c

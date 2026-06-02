@@ -404,7 +404,7 @@ extern task_8c01677e;
 extern var_8c1bb8d4;
 extern task_8c012d06;
 extern task_8c012d5a;
-extern task_8c016bf4;
+extern demoInputTask_8c016bf4;
 extern var_8c1bb8cc;
 extern var_8c22847c;
 extern int var_8c1bb868;
@@ -540,7 +540,7 @@ void FUN_8c01306e(void)
             created_task->field_0x08 = 0;
             created_task->field_0x0c = (void*) 0;
         }
-        pushTask_8c014ae8(var_tasks_8c1ba5e8, &task_8c016bf4, &created_task, &created_state, 0);
+        pushTask_8c014ae8(var_tasks_8c1ba5e8, &demoInputTask_8c016bf4, &created_task, &created_state, 0);
         FUN_8c025af4();
     }
 
