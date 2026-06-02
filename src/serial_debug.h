@@ -20,7 +20,7 @@
 #define LOG_LEVEL_TRACE 6
 
 #ifndef DEBUG_LEVEL
-#define DEBUG_LEVEL LOG_LEVEL_TRACE
+#define DEBUG_LEVEL LOG_LEVEL_INFO
 #endif
 
 #if defined(SERIAL_DEBUG)
