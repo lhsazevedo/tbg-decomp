@@ -46,12 +46,12 @@
           .EXPORT     _AsqSetSeedB_121a2
           .EXPORT     _AsqGetRandomB_121a8
           .EXPORT     _AsqGetRandomInRangeB_121be
-          .EXPORT     _AsqFUN_121e8
+          .EXPORT     _AsqApplyButtonConfig_121e8
 
-          .EXPORT     _init_8c03be80
-          .EXPORT     _init_8c03beb8
-          .EXPORT     _init_8c03bef0
-          .EXPORT     _init_8c03bf18
+          .EXPORT     _init_btnRemap_8c03be80
+          .EXPORT     _init_btnRemapAlt_8c03beb8
+          .EXPORT     _init_btnRemapWheel_8c03bef0
+          .EXPORT     _init_btnRemapWheelAlt_8c03bf18
 
           .EXPORT     _var_queuesAreInitialized_8c157a60
           .EXPORT     _var_seed_8c157a64
@@ -2349,7 +2349,7 @@ LAB_8c0121de:
           LDS.L       @R15+,PR
           RTS
           NOP
-_AsqFUN_121e8:
+_AsqApplyButtonConfig_121e8:
           MOV.L       R14,@-R15
           MOV         #H'4,R6
           MOV.L       R13,@-R15
@@ -2377,8 +2377,8 @@ LP_GEN_90004:
           .DATA.L     __modlu
           .DATA.L     _var_seed_8c157ad0
           .DATA.L     _var_progress_8c1ba1cc
-          .DATA.L     _init_8c03bf18
-          .DATA.L     _init_8c03be80
+          .DATA.L     _init_btnRemapWheelAlt_8c03bf18
+          .DATA.L     _init_btnRemap_8c03be80
 
 LAB_8c012234:
           MOV.L       @(H'4,R4),R2
@@ -2516,12 +2516,12 @@ LP_GEN_88006:
           .DATA.W H'00CE
           .DATA.W H'00CF
           .DATA.W H'0000
-          .DATA.L _init_8c03beb8
-          .DATA.L _init_8c03bef0
+          .DATA.L _init_btnRemapAlt_8c03beb8
+          .DATA.L _init_btnRemapWheel_8c03bef0
           .SECTION    D,DATA,ALIGN=4
 _init_8c03be7c:                      ; static: _8c03334c
           .DATA.L     L372031
-_init_8c03be80:        ; from defines
+_init_btnRemap_8c03be80:        ; from defines
           .DATA.L      H'00000000
           .DATA.L      H'00000400
           .DATA.L      H'00000000
@@ -2536,7 +2536,7 @@ _init_8c03be80:        ; from defines
           .DATA.L      H'00000020
           .DATA.L      H'00000000
           .DATA.L      H'00000008
-_init_8c03beb8:        ; from defines
+_init_btnRemapAlt_8c03beb8:        ; from defines
           .DATA.L      H'00000000
           .DATA.L      H'00000400
           .DATA.L      H'00000000
@@ -2551,7 +2551,7 @@ _init_8c03beb8:        ; from defines
           .DATA.L      H'00000002
           .DATA.L      H'00000000
           .DATA.L      H'00000008
-_init_8c03bef0:        ; from defines
+_init_btnRemapWheel_8c03bef0:        ; from defines
           .DATA.L      H'00000000
           .DATA.L      H'00000400
           .DATA.L      H'00000000
@@ -2562,7 +2562,7 @@ _init_8c03bef0:        ; from defines
           .DATA.L      H'00000004
           .DATA.L      H'00000000
           .DATA.L      H'00000008
-_init_8c03bf18:        ; from defines
+_init_btnRemapWheelAlt_8c03bf18:        ; from defines
           .DATA.L      H'00000000
           .DATA.L      H'00000400
           .DATA.L      H'00000000

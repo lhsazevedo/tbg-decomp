@@ -10,7 +10,8 @@ return new class extends TestCase {
     {
         $this->call('_setName_8c012984');
 
-        $this->shouldCall('_strcmp')
+        $strCmp = $this->isAsmObject() ? '_strcmp' : '__slow_strcmp1';
+        $this->shouldCall($strCmp)
             ->with($this->addressOf('_var_name_8c157aec'), "FortyFive")
             ->andReturn(0);
         $this->shouldReturn(0);
@@ -21,11 +22,19 @@ return new class extends TestCase {
     {
         $this->call('_setName_8c012984');
 
-        $this->shouldCall('_strcmp')
+        $strCmp = $this->isAsmObject() ? '_strcmp' : '__slow_strcmp1';
+        $this->shouldCall($strCmp)
             ->with($this->addressOf('_var_name_8c157aec'), "FortyFive")
             ->andReturn(1);
-        $this->shouldCall('_strcpy')
+
+        $strCpy = $this->isAsmObject() ? '_strcpy' : '__slow_strcpy';
+        $this->shouldCall($strCpy)
             ->with($this->addressOf('_var_name_8c157aec'), "FortyFive");
         $this->shouldReturn(1);
+    }
+
+    protected function isAsmObject(): bool
+    {
+        return str_ends_with($this->objectFile, '_src.obj');
     }
 };

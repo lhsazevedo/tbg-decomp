@@ -5,15 +5,15 @@
           .IMPORT     _var_peripheral_8c1ba358
           .IMPORT     _var_activeCtrlType_8c157a70
           .IMPORT     _var_peripherals_8c1ba35c
-          .IMPORT     _init_8c03be80
-          .IMPORT     _init_8c03bef0
+          .IMPORT     _init_btnRemap_8c03be80
+          .IMPORT     _init_btnRemapWheel_8c03bef0
           .IMPORT     _var_8c1bbc4c
           .IMPORT     _var_8c1bbcc4
           .IMPORT     _const_peripheral_8c033318
           .IMPORT     __quick_odd_mvn
           .IMPORT     _vmsLcd_8c01c910
-          .IMPORT     _init_8c03beb8
-          .IMPORT     _init_8c03bf18
+          .IMPORT     _init_btnRemapAlt_8c03beb8
+          .IMPORT     _init_btnRemapWheelAlt_8c03bf18
           .IMPORT     _pushTask_8c014ae8
           .IMPORT     _var_tasks_8c1ba3c8
           .IMPORT     _var_8c157a74
@@ -172,8 +172,8 @@ LP_GEN_80518:
           .DATA.L _var_activeCtrlType_8c157a70
           .DATA.L _var_peripherals_8c1ba35c
           .DATA.L H'000700FE
-          .DATA.L _init_8c03be80
-          .DATA.L _init_8c03bef0
+          .DATA.L _init_btnRemap_8c03be80
+          .DATA.L _init_btnRemapWheel_8c03bef0
 
 LAB_8c012614:
           MOV.L       @R14,R2
@@ -455,8 +455,8 @@ LP_GEN_64371:
           .DATA.L _var_peripherals_8c1ba35c
           .DATA.L H'000700FE
           .DATA.L _var_activeCtrlType_8c157a70
-          .DATA.L _init_8c03beb8
-          .DATA.L _init_8c03bf18
+          .DATA.L _init_btnRemapAlt_8c03beb8
+          .DATA.L _init_btnRemapWheelAlt_8c03bf18
 
 LAB_8c012828:
           MOV.L       @R14,R3

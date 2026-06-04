@@ -65,8 +65,8 @@ return new class extends TestCase {
         $this->initUint16($per + 0x1c, 0);
         $this->initUint32($per + 0x30, $info);
 
-        // Two pairs in init_8c03beb8; rest zeroed.
-        $table = $this->addressOf('_init_8c03beb8');
+        // Two pairs in init_btnRemapAlt_8c03beb8; rest zeroed.
+        $table = $this->addressOf('_init_btnRemapAlt_8c03beb8');
         $this->initUint32($table + 0x00, 0x0001); // pair 0 mask
         $this->initUint32($table + 0x04, 0x0100); // pair 0 button
         $this->initUint32($table + 0x08, 0x0002); // pair 1 mask
@@ -114,7 +114,7 @@ return new class extends TestCase {
         $this->initUint16($per + 0x1c, 0);
         $this->initUint32($per + 0x30, $info);
 
-        // init_8c03beb8 all zeros -> loops produce no writes.
+        // init_btnRemapAlt_8c03beb8 all zeros -> loops produce no writes.
         // Sega mandatory reset combo: Start + A + B + X + Y.
         $this->initUint32($per + 0x08, 0x0606); // on: A|B|X|Y held
         $this->initUint32($per + 0x10, 0x0008); // press: Start pressed
@@ -191,8 +191,8 @@ return new class extends TestCase {
         $this->initUint16($per + 0x1c, 0);
         $this->initUint32($per + 0x30, $info);
 
-        // Two (mask, button) pairs at start of init_8c03bf18; rest stay 0.
-        $table = $this->addressOf('_init_8c03bf18');
+        // Two (mask, button) pairs at start of init_btnRemapWheelAlt_8c03bf18; rest stay 0.
+        $table = $this->addressOf('_init_btnRemapWheelAlt_8c03bf18');
         $this->initUint32($table + 0x00, 0x0001); // pair 0 mask
         $this->initUint32($table + 0x04, 0x0100); // pair 0 button
         $this->initUint32($table + 0x08, 0x0002); // pair 1 mask
@@ -352,20 +352,20 @@ return new class extends TestCase {
         );
     }
 
-    // Pin _init_8c03bef0 right after _init_8c03beb8 (asm loop bound); zero the table.
+    // Pin _init_btnRemapWheel_8c03bef0 right after _init_btnRemapAlt_8c03beb8 (asm loop bound); zero the table.
     private function setupStandardTable(): void
     {
-        $this->setSize('_init_8c03beb8', 0x38);
-        $base = $this->addressOf('_init_8c03beb8');
-        $this->rellocate('_init_8c03bef0', $base + 0x38);
+        $this->setSize('_init_btnRemapAlt_8c03beb8', 0x38);
+        $base = $this->addressOf('_init_btnRemapAlt_8c03beb8');
+        $this->rellocate('_init_btnRemapWheel_8c03bef0', $base + 0x38);
         $this->initUint32Array($base, array_fill(0, 14, 0));
     }
 
     // Loop bound (base+0x28) is computed in asm; no symbol to pin.
     private function setupRacingTable(): void
     {
-        $this->setSize('_init_8c03bf18', 0x28);
-        $base = $this->addressOf('_init_8c03bf18');
+        $this->setSize('_init_btnRemapWheelAlt_8c03bf18', 0x28);
+        $base = $this->addressOf('_init_btnRemapWheelAlt_8c03bf18');
         $this->initUint32Array($base, array_fill(0, 10, 0));
     }
 

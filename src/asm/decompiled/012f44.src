@@ -66,7 +66,7 @@
           .IMPORT     _var_8c227dd4
           .IMPORT     _init_8c0460b0
           .IMPORT     _FUN_8c01895e
-          .IMPORT     _AsqFUN_121e8
+          .IMPORT     _AsqApplyButtonConfig_121e8
           .IMPORT     _var_8c1ba292
           .IMPORT     _var_8c227da0
           .IMPORT     _var_8c227da8
@@ -782,7 +782,7 @@ LP_GEN_38000:
           .DATA.L _srand
           .DATA.L _AsqSetSeedA_12160
           .DATA.L _AsqSetSeedB_121a2
-          .DATA.L _AsqFUN_121e8
+          .DATA.L _AsqApplyButtonConfig_121e8
           .DATA.L _var_8c1ba292
           .DATA.L _var_8c227da0
           .DATA.L _var_8c227da8

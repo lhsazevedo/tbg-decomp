@@ -587,7 +587,7 @@ void FUN_8c01328c() {
     njRandomSeed(var_seed_8c157a64);
     AsqSetSeedA_12160(var_seed_8c157a64);
     AsqSetSeedB_121a2(var_seed_8c157a64);
-    AsqFUN_121e8();
+    AsqApplyButtonConfig_121e8();
     var_8c227da0 = (char) var_8c1ba292;
     var_8c227da8 = 0;
 
@@ -613,7 +613,7 @@ void pushLoadingTask_8c013310(int p1) {
     njRandomSeed(var_seed_8c157a64);
     AsqSetSeedA_12160(var_seed_8c157a64);
     AsqSetSeedB_121a2(var_seed_8c157a64);
-    AsqFUN_121e8();
+    AsqApplyButtonConfig_121e8();
     var_8c227da0 = (char) var_8c1ba292;
     var_8c227da8 = 0;
 

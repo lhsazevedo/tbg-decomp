@@ -149,7 +149,7 @@ return [
                 "tests/011120/8610_AsqSetSeedB_121a2.php",
                 "tests/011120/8616_AsqGetRandomB_121a8.php",
                 "tests/011120/8638_AsqGetRandomInRangeB_121be.php",
-                "tests/011120/8680_AsqFUN_121e8.php",
+                "tests/011120/8680_AsqApplyButtonConfig_121e8.php",
             ],
             'objects' => [
                 "build/output/011120_asset_queues_src.obj",

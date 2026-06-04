@@ -1,4 +1,5 @@
 #include <shinobi.h>
+#include "011120_asset_queues.h"
 #include "014a9c_tasks.h"
 #include "serial_debug.h"
 
@@ -20,15 +21,10 @@ extern int var_resetRequested_8c157a78;
 extern Uint32 var_vibport_8c1ba354;
 extern PDS_PERIPHERAL *var_peripheral_8c1ba358;
 extern PDS_PERIPHERAL var_peripherals_8c1ba35c[2];
-extern int init_8c03be80[14];
-extern int init_8c03bef0[10];
-extern int init_8c03beb8[14];
-extern int init_8c03bf18[10];
 /* var_8c1bbc4c: paddle remap timer (must be 0); var_8c1bbcc4: remap target (5=Up, 0=Down) */
 extern float var_8c1bbc4c;
 extern int var_8c1bbcc4;
 extern Task var_tasks_8c1ba3c8[];
-extern Task *var_8c157a74;
 extern int var_8c157ae4;
 extern int var_8c157ae8;
 extern int var_8c157ad4[4];
@@ -68,14 +64,14 @@ void inputTask_8c012504(void)
 
     if (support == BT_CONTROLLER) {
         LOG_TRACE(("[INPUT] inputTask_8c012504: standard controller\n"));
-        for (i = 0; i < 14; i += 2) {
-            if (var_peripheral_8c1ba358->on & init_8c03be80[i]) {
-                var_peripherals_8c1ba35c[0].on |= init_8c03be80[i + 1];
+        for (i = 0; i < 7; i++) {
+            if (var_peripheral_8c1ba358->on & init_btnRemap_8c03be80[i].physical_0x00) {
+                var_peripherals_8c1ba35c[0].on |= init_btnRemap_8c03be80[i].logical_0x04;
             }
         }
-        for (i = 0; i < 14; i += 2) {
-            if (var_peripheral_8c1ba358->press & init_8c03be80[i]) {
-                var_peripherals_8c1ba35c[0].press |= init_8c03be80[i + 1];
+        for (i = 0; i < 7; i++) {
+            if (var_peripheral_8c1ba358->press & init_btnRemap_8c03be80[i].physical_0x00) {
+                var_peripherals_8c1ba35c[0].press |= init_btnRemap_8c03be80[i].logical_0x04;
             }
         }
         /* Sega mandatory reset combo: Start + A + B + X + Y */
@@ -87,14 +83,14 @@ void inputTask_8c012504(void)
         }
     } else if (support == BT_RACING) {
         LOG_TRACE(("[INPUT] inputTask_8c012504: racing wheel\n"));
-        for (i = 0; i < 10; i += 2) {
-            if (var_peripheral_8c1ba358->on & init_8c03bef0[i]) {
-                var_peripherals_8c1ba35c[0].on |= init_8c03bef0[i + 1];
+        for (i = 0; i < 5; i++) {
+            if (var_peripheral_8c1ba358->on & init_btnRemapWheel_8c03bef0[i].physical_0x00) {
+                var_peripherals_8c1ba35c[0].on |= init_btnRemapWheel_8c03bef0[i].logical_0x04;
             }
         }
-        for (i = 0; i < 10; i += 2) {
-            if (var_peripheral_8c1ba358->press & init_8c03bef0[i]) {
-                var_peripherals_8c1ba35c[0].press |= init_8c03bef0[i + 1];
+        for (i = 0; i < 5; i++) {
+            if (var_peripheral_8c1ba358->press & init_btnRemapWheel_8c03bef0[i].physical_0x00) {
+                var_peripherals_8c1ba35c[0].press |= init_btnRemapWheel_8c03bef0[i].logical_0x04;
             }
         }
         /* Y + half-brake while timer idle -> remap Y to D-pad; else check reset combo */
@@ -160,14 +156,14 @@ void inputTaskAlt_8c012718(void)
 
     if (support == BT_CONTROLLER) {
         LOG_TRACE(("[INPUT] inputTaskAlt_8c012718: standard controller\n"));
-        for (i = 0; i < 14; i += 2) {
-            if (var_peripheral_8c1ba358->on & init_8c03beb8[i]) {
-                var_peripherals_8c1ba35c[0].on |= init_8c03beb8[i + 1];
+        for (i = 0; i < 7; i++) {
+            if (var_peripheral_8c1ba358->on & init_btnRemapAlt_8c03beb8[i].physical_0x00) {
+                var_peripherals_8c1ba35c[0].on |= init_btnRemapAlt_8c03beb8[i].logical_0x04;
             }
         }
-        for (i = 0; i < 14; i += 2) {
-            if (var_peripheral_8c1ba358->press & init_8c03beb8[i]) {
-                var_peripherals_8c1ba35c[0].press |= init_8c03beb8[i + 1];
+        for (i = 0; i < 7; i++) {
+            if (var_peripheral_8c1ba358->press & init_btnRemapAlt_8c03beb8[i].physical_0x00) {
+                var_peripherals_8c1ba35c[0].press |= init_btnRemapAlt_8c03beb8[i].logical_0x04;
             }
         }
         /* Sega mandatory reset combo: Start + A + B + X + Y */
@@ -179,14 +175,14 @@ void inputTaskAlt_8c012718(void)
         }
     } else if (support == BT_RACING) {
         LOG_TRACE(("[INPUT] inputTaskAlt_8c012718: racing wheel\n"));
-        for (i = 0; i < 10; i += 2) {
-            if (var_peripheral_8c1ba358->on & init_8c03bf18[i]) {
-                var_peripherals_8c1ba35c[0].on |= init_8c03bf18[i + 1];
+        for (i = 0; i < 5; i++) {
+            if (var_peripheral_8c1ba358->on & init_btnRemapWheelAlt_8c03bf18[i].physical_0x00) {
+                var_peripherals_8c1ba35c[0].on |= init_btnRemapWheelAlt_8c03bf18[i].logical_0x04;
             }
         }
-        for (i = 0; i < 10; i += 2) {
-            if (var_peripheral_8c1ba358->press & init_8c03bf18[i]) {
-                var_peripherals_8c1ba35c[0].press |= init_8c03bf18[i + 1];
+        for (i = 0; i < 5; i++) {
+            if (var_peripheral_8c1ba358->press & init_btnRemapWheelAlt_8c03bf18[i].physical_0x00) {
+                var_peripherals_8c1ba35c[0].press |= init_btnRemapWheelAlt_8c03bf18[i].logical_0x04;
             }
         }
         /* Sega reset combo for racing wheel: Start + A + B */

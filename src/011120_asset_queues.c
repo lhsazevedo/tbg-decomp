@@ -134,40 +134,41 @@ STATIC int var_seed_8c157ad0;
    ===================
  */
 
-int init_8c03be80[14] = {
-    0x0, 0x400,
-    0x0,   0x2,
-    0x0, 0x200,
-    0x0,   0x4,
-    0x0,  0x10,
-    0x0,  0x20,
-    0x0,   0x8,
+ButtonRemap init_btnRemap_8c03be80[7] = {
+    /* physical, logical */
+    { 0, PDD_DGT_TX },
+    { 0, PDD_DGT_TB },
+    { 0, PDD_DGT_TY },
+    { 0, PDD_DGT_TA },
+    { 0, PDD_DGT_KU },
+    { 0, PDD_DGT_KD },
+    { 0, PDD_DGT_ST },
 };
 
-int init_8c03beb8[14] = {
-    0x0, 0x400,
-    0x0,   0x2,
-    0x0, 0x200,
-    0x0,   0x4,
-    0x0, 0x400,
-    0x0,   0x2,
-    0x0,   0x8,
+ButtonRemap init_btnRemapAlt_8c03beb8[7] = {
+    { 0, PDD_DGT_TX },
+    { 0, PDD_DGT_TB },
+    { 0, PDD_DGT_TY },
+    { 0, PDD_DGT_TA },
+    { 0, PDD_DGT_TX },
+    { 0, PDD_DGT_TB },
+    { 0, PDD_DGT_ST },
 };
 
-int init_8c03bef0[10] = {
-    0x0, 0x400,
-    0x0,   0x2,
-    0x0, 0x200,
-    0x0,   0x4,
-    0x0,   0x8,
+ButtonRemap init_btnRemapWheel_8c03bef0[5] = {
+    { 0, PDD_DGT_TX },
+    { 0, PDD_DGT_TB },
+    { 0, PDD_DGT_TY },
+    { 0, PDD_DGT_TA },
+    { 0, PDD_DGT_ST },
 };
 
-int init_8c03bf18[10] = {
-    0x0, 0x400,
-    0x0,   0x2,
-    0x0, 0x200,
-    0x0,   0x4,
-    0x0,   0x8,
+ButtonRemap init_btnRemapWheelAlt_8c03bf18[5] = {
+    { 0, PDD_DGT_TX },
+    { 0, PDD_DGT_TB },
+    { 0, PDD_DGT_TY },
+    { 0, PDD_DGT_TA },
+    { 0, PDD_DGT_ST },
 };
 
 
@@ -1310,79 +1311,79 @@ int AsqGetRandomInRangeB_121be(unsigned int p1) {
 }
 
 /* Tested */
-void AsqFUN_121e8() {
+void AsqApplyButtonConfig_121e8() {
     int i;
 
-    for (i = 0; i < 14; i += 2) {
-        init_8c03be80[i] = init_8c03be80[i+1];
+    for (i = 0; i < 7; i++) {
+        init_btnRemap_8c03be80[i].physical_0x00 = init_btnRemap_8c03be80[i].logical_0x04;
     }
 
     if (var_progress_8c1ba1cc[0xcc] != 0) {
         if (var_progress_8c1ba1cc[0xcc] == 1) {
-            init_8c03be80[0] = 4;
-            init_8c03be80[6] = 0x400; /* init_8c03be98 */
+            init_btnRemap_8c03be80[0].physical_0x00 = PDD_DGT_TA;
+            init_btnRemap_8c03be80[3].physical_0x00 = PDD_DGT_TX;
         } else if (var_progress_8c1ba1cc[0xcc] == 2) {
-            init_8c03be80[2] = 4;
-            init_8c03be80[6] = 2; /* init_8c03be98 */
+            init_btnRemap_8c03be80[1].physical_0x00 = PDD_DGT_TA;
+            init_btnRemap_8c03be80[3].physical_0x00 = PDD_DGT_TB;
         }
     }
 
-    for (i = 0; i < 14; i += 2) {
-        init_8c03beb8[i] = init_8c03beb8[i + 1];
+    for (i = 0; i < 7; i++) {
+        init_btnRemapAlt_8c03beb8[i].physical_0x00 = init_btnRemapAlt_8c03beb8[i].logical_0x04;
     }
 
-    init_8c03beb8[8] = 0x40;
-    init_8c03beb8[10] = 0x80;
+    init_btnRemapAlt_8c03beb8[4].physical_0x00 = PDD_DGT_KL;
+    init_btnRemapAlt_8c03beb8[5].physical_0x00 = PDD_DGT_KR;
 
     if (var_progress_8c1ba1cc[0xcd] != 0) {
         if (var_progress_8c1ba1cc[0xcd] == 1) {
-            init_8c03beb8[0] = 4;
-            init_8c03beb8[6] = 0x400;
+            init_btnRemapAlt_8c03beb8[0].physical_0x00 = PDD_DGT_TA;
+            init_btnRemapAlt_8c03beb8[3].physical_0x00 = PDD_DGT_TX;
         } else if (var_progress_8c1ba1cc[0xcd] == 2) {
-            init_8c03beb8[2] = 4;
-            init_8c03beb8[6] = 2;
+            init_btnRemapAlt_8c03beb8[1].physical_0x00 = PDD_DGT_TA;
+            init_btnRemapAlt_8c03beb8[3].physical_0x00 = PDD_DGT_TB;
         }
     }
 
     if (var_progress_8c1ba1cc[0xce] == 0 || var_progress_8c1ba1cc[0xce] != 1) {
-        init_8c03bef0[0] = 0x20;
-        init_8c03bef0[2] = 0x10;
-        init_8c03bef0[4] = 0x02;
-        init_8c03bef0[6] = 0x04;
+        init_btnRemapWheel_8c03bef0[0].physical_0x00 = PDD_DGT_KD;
+        init_btnRemapWheel_8c03bef0[1].physical_0x00 = PDD_DGT_KU;
+        init_btnRemapWheel_8c03bef0[2].physical_0x00 = PDD_DGT_TB;
+        init_btnRemapWheel_8c03bef0[3].physical_0x00 = PDD_DGT_TA;
     } else {
-        init_8c03bef0[0] = 0x02;
-        init_8c03bef0[2] = 0x04;
-        init_8c03bef0[4] = 0x20;
-        init_8c03bef0[6] = 0x10;
+        init_btnRemapWheel_8c03bef0[0].physical_0x00 = PDD_DGT_TB;
+        init_btnRemapWheel_8c03bef0[1].physical_0x00 = PDD_DGT_TA;
+        init_btnRemapWheel_8c03bef0[2].physical_0x00 = PDD_DGT_KD;
+        init_btnRemapWheel_8c03bef0[3].physical_0x00 = PDD_DGT_KU;
     }
 
-    init_8c03bef0[8] = 8;
+    init_btnRemapWheel_8c03bef0[4].physical_0x00 = PDD_DGT_ST;
 
     if (var_progress_8c1ba1cc[0xcf] == 0) {
-        init_8c03bf18[0] = 0x20;
-        init_8c03bf18[2] = 0x10;
-        init_8c03bf18[4] = 2;
-        init_8c03bf18[6] = 4;
+        init_btnRemapWheelAlt_8c03bf18[0].physical_0x00 = PDD_DGT_KD;
+        init_btnRemapWheelAlt_8c03bf18[1].physical_0x00 = PDD_DGT_KU;
+        init_btnRemapWheelAlt_8c03bf18[2].physical_0x00 = PDD_DGT_TB;
+        init_btnRemapWheelAlt_8c03bf18[3].physical_0x00 = PDD_DGT_TA;
     } else {
         if (var_progress_8c1ba1cc[0xcf] == 1) {
-            init_8c03bf18[0] = 2;
-            init_8c03bf18[2] = 4;
-            init_8c03bf18[4] = 0x20;
-            init_8c03bf18[6] = 0x10;
+            init_btnRemapWheelAlt_8c03bf18[0].physical_0x00 = PDD_DGT_TB;
+            init_btnRemapWheelAlt_8c03bf18[1].physical_0x00 = PDD_DGT_TA;
+            init_btnRemapWheelAlt_8c03bf18[2].physical_0x00 = PDD_DGT_KD;
+            init_btnRemapWheelAlt_8c03bf18[3].physical_0x00 = PDD_DGT_KU;
         } else {
             if (var_progress_8c1ba1cc[0xcf] != 2) {
-                init_8c03bf18[0] = 0x20;
-                init_8c03bf18[2] = 0x10;
-                init_8c03bf18[4] = 2;
-                init_8c03bf18[6] = 4;
+                init_btnRemapWheelAlt_8c03bf18[0].physical_0x00 = PDD_DGT_KD;
+                init_btnRemapWheelAlt_8c03bf18[1].physical_0x00 = PDD_DGT_KU;
+                init_btnRemapWheelAlt_8c03bf18[2].physical_0x00 = PDD_DGT_TB;
+                init_btnRemapWheelAlt_8c03bf18[3].physical_0x00 = PDD_DGT_TA;
             } else {
-                init_8c03bf18[0] = 0x40;
-                init_8c03bf18[2] = 0x80;
-                init_8c03bf18[4] = 0x20;
-                init_8c03bf18[6] = 0x10;
+                init_btnRemapWheelAlt_8c03bf18[0].physical_0x00 = PDD_DGT_KL;
+                init_btnRemapWheelAlt_8c03bf18[1].physical_0x00 = PDD_DGT_KR;
+                init_btnRemapWheelAlt_8c03bf18[2].physical_0x00 = PDD_DGT_KD;
+                init_btnRemapWheelAlt_8c03bf18[3].physical_0x00 = PDD_DGT_KU;
             }
         }
     }
 
-    init_8c03bf18[8] = 8;
+    init_btnRemapWheelAlt_8c03bf18[4].physical_0x00 = PDD_DGT_ST;
 }

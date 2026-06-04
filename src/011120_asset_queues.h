@@ -22,6 +22,11 @@ typedef struct {
     void *njDest;
 } NjPvmPair;
 
+typedef struct {
+    unsigned int physical_0x00;
+    unsigned int logical_0x04;
+} ButtonRemap;
+
 /* =====================
  * External Declarations
    =====================
@@ -46,6 +51,11 @@ extern int var_activeCtrlType_8c157a70;
 extern int var_8c157a74;
 extern int var_resetRequested_8c157a78;
 extern int var_8c157a7c;
+
+extern ButtonRemap init_btnRemap_8c03be80[7];
+extern ButtonRemap init_btnRemapAlt_8c03beb8[7];
+extern ButtonRemap init_btnRemapWheel_8c03bef0[5];
+extern ButtonRemap init_btnRemapWheelAlt_8c03bf18[5];
 
 /* =========
  * Functions
@@ -90,4 +100,4 @@ int AsqGetRandomB_121a8();
 
 int AsqGetRandomInRangeB_121be(unsigned int p1);
 
-void AsqFUN_121e8();
+void AsqApplyButtonConfig_121e8();
