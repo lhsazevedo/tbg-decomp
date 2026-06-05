@@ -253,7 +253,7 @@ extern Bool isFading_8c226568;
 extern int init_8c03bd80;
 extern void *var_currentSysResGroupInfo_8c225fb0;
 extern int var_shouldShowFreeRunIntro_8c1bb8c0;
-extern void pushInputTask_8c0128cc(void);
+extern void pushInputTask_8c0128cc(int param);
 extern void task_8c012f44(Task *task, void *state);
 extern FUN_8c02ae3e(int p1, int p2, float fp1, int p3, int p4, int p5, int p6, int p7);
 extern int promptHandleBinary_16caa(int *promptState);
@@ -2048,7 +2048,7 @@ void CourseMenuFUN_8c017ef2(void)
 
     LOG_INFO(("[COURSE_MENU] Setting up story course menu\n"));
 
-    pushInputTask_8c0128cc();
+    pushInputTask_8c0128cc(0);
 
     pushTask_8c014ae8(
         var_tasks_8c1ba3c8,
@@ -2058,15 +2058,25 @@ void CourseMenuFUN_8c017ef2(void)
         0
     );
 
-    pushTask_8c014ae8(
-        var_tasks_8c1ba3c8,
-        &CourseMenuStoryMenuTask_8c017718,
-        &createdTask,
-        &createdState,
-        0
-    );
-
-    buildCourseMenuDialogFlow_8c017420();
+    if (var_game_mode_8c1bb8fc == 0) {
+        pushTask_8c014ae8(
+            var_tasks_8c1ba3c8,
+            &CourseMenuStoryMenuTask_8c017718,
+            &createdTask,
+            &createdState,
+            0
+        );
+        buildCourseMenuDialogFlow_8c017420();
+    } else {
+        pushTask_8c014ae8(
+            var_tasks_8c1ba3c8,
+            &CourseMenuFreeRunMenuTask_8c017ada,
+            &createdTask,
+            &createdState,
+            0
+        );
+        buildFreeRunMenuDialogFlow_8c017a20();
+    }
 
     menuState_8c1bc7a8.instructorSprite_0x60 =
         init_dialogSequences_8c044c08[
