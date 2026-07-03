@@ -11,11 +11,11 @@
 char var_8c18ad6c[0x20];
 
 extern void *var_8c1bc434;
-extern void *var_8c1bc430;
+extern NJS_TEXLIST *var_8c1bc430;
 extern void *var_8c1bc43c;
-extern void *var_8c1bc438;
-extern void *var_8c1bc418;
-extern void *var_8c1bc424;
+extern NJS_TEXLIST *var_8c1bc438;
+extern NJS_TEXLIST *var_8c1bc418;
+extern NJS_TEXLIST *var_8c1bc424;
 extern void *var_8c1bc3f4;
 
 /* ======================
@@ -54,4 +54,23 @@ void requestSomeFiles_8c013ae8(void)
     AsqRequestPvm_11ac0(var_8c18ad6c, "mark.pvm", &var_8c1bc418, 3, 0);
     AsqRequestPvm_11ac0(var_8c18ad6c, "busstop.pvm", &var_8c1bc424, 1, 0);
     var_8c1bc3f4 = AsqRequestNjPvmPairs_12030(var_8c18ad6c, init_8c043d64, 0);
+}
+
+void FUN_8c013b5a(void)
+{
+    Uint32 i;
+
+    if (var_8c1bc438 != (NJS_TEXLIST *) -1) {
+        njSetTexture(var_8c1bc438);
+        for (i = 0; i < var_8c1bc438->nbTexture; i++) {
+            njReleaseCacheTextureNum(i);
+        }
+        AsqReleaseAndFreeTexlist_11e3c(var_8c1bc438);
+        syFree(var_8c1bc43c);
+        AsqReleaseAndFreeTexlist_11e3c(var_8c1bc430);
+        syFree(var_8c1bc434);
+        AsqReleaseAndFreeTexlist_11e3c(var_8c1bc418);
+        AsqReleaseAndFreeTexlist_11e3c(var_8c1bc424);
+        var_8c1bc438 = (NJS_TEXLIST *) -1;
+    }
 }
