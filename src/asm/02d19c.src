@@ -5,9 +5,9 @@
           .IMPORT     _njDrawSprite3D
           .IMPORT     _var_8c227db8
           .IMPORT     _njCnkSetSimpleLight
-          .IMPORT     _var_8c1bc438
+          .IMPORT     _var_interiorTexlist_8c1bc438
           .IMPORT     _njSetTexture
-          .IMPORT     _var_8c1bc43c
+          .IMPORT     _var_interiorNj_8c1bc43c
           .IMPORT     _njCnkSimpleDrawObject
           .IMPORT     _var_8c22895c
           .IMPORT     _sdMidiPlay
@@ -375,9 +375,9 @@ LP_GEN_53841:
           .DATA.L _njDrawSprite3D ; H'8C02D3D8
           .DATA.L _var_8c227db8 ; H'8C02D3DC
           .DATA.L _njCnkSetSimpleLight ; H'8C02D3E0
-          .DATA.L _var_8c1bc438 ; H'8C02D3E4
+          .DATA.L _var_interiorTexlist_8c1bc438 ; H'8C02D3E4
           .DATA.L _njSetTexture ; H'8C02D3E8
-          .DATA.L _var_8c1bc43c ; H'8C02D3EC
+          .DATA.L _var_interiorNj_8c1bc43c ; H'8C02D3EC
           .DATA.L _njCnkSimpleDrawObject ; H'8C02D3F0
           .DATA.L _var_8c22895c ; H'8C02D3F4
           .DATA.L _sdMidiPlay ; H'8C02D3F8
@@ -919,7 +919,7 @@ LP_GEN_70221:
           .DATA.L _var_midiHandles_8c0fcd28 ; H'8C02D82C
           .DATA.L _sdMidiPlay ; H'8C02D830
           .DATA.L _FUN_8c02ca96 ; H'8C02D834
-          .DATA.L _var_8c1bc438 ; H'8C02D838
+          .DATA.L _var_interiorTexlist_8c1bc438 ; H'8C02D838
           .DATA.L _njReleaseTexture ; H'8C02D83C
           .DATA.L _var_8c227d9c ; H'8C02D840
           .DATA.L _var_8c227da4 ; H'8C02D844

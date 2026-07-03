@@ -117,23 +117,23 @@
           .EXPORT     _var_8c1bbfe4 ; 02d06c.src, 02d19c.src
           .EXPORT     _var_8c1bc3ec ; 012f44.c, 012f44.src, 013ae8.src, 01614c.src, 028258.src
           .EXPORT     _var_8c1bc3f0 ; 012f44.c, 012f44.src, 013ae8.src, 01614c.src, 0222dc.src
-          .EXPORT     _var_8c1bc3f4 ; 012f44.c, 012f44.src, 013ae8.src, 01614c.src, 023310.src, 026710.src
+          .EXPORT     _var_routeModelPairs_8c1bc3f4 ; 012f44.c, 012f44.src, 013ae8.src, 01614c.src, 023310.src, 026710.src
           .EXPORT     _var_8c1bc3f8 ; 012f44.c, 012f44.src, 013ae8.src
           .EXPORT     _var_8c1bc404 ; 012f44.c, 012f44.src, 01f3c0.src, 028258.src
           .EXPORT     _var_8c1bc408 ; 01f3c0.src, 028258.src
           .EXPORT     _var_8c1bc40c ; 028258.src
           .EXPORT     _var_8c1bc410 ; 012f44.c, 012f44.src, 023310.src, 024b4c.src
           .EXPORT     _var_8c1bc414 ; 012f44.c, 012f44.src, 024b4c.src
-          .EXPORT     _var_8c1bc418 ; 0129cc.src, 013ae8.src, 01fa78.src, 02b2f0.src, 02b464.src
+          .EXPORT     _var_markTexlist_8c1bc418 ; 0129cc.src, 013ae8.src, 01fa78.src, 02b2f0.src, 02b464.src
           .EXPORT     _var_mark_parts_dat_8c1bc41c ; 012f44.c, 012f44.src
           .EXPORT     _var_mark_dat_8c1bc420 ; 012f44.c, 012f44.src
-          .EXPORT     _var_8c1bc424 ; 013ae8.src, 01fa78.src, 022464.src
+          .EXPORT     _var_busStopTexlist_8c1bc424 ; 013ae8.src, 01fa78.src, 022464.src
           .EXPORT     _var_busstop_parts_dat_8c1bc428 ; 012f44.c, 012f44.src
           .EXPORT     _var_busstop_dat_8c1bc42c ; 012f44.c, 012f44.src
-          .EXPORT     _var_8c1bc430 ; 013ae8.src, 024b4c.src
-          .EXPORT     _var_8c1bc434 ; 013ae8.src, 024b4c.src
-          .EXPORT     _var_8c1bc438 ; 012f44.c, 012f44.src, 013ae8.src, 02d19c.src, 02d968.src
-          .EXPORT     _var_8c1bc43c ; 013ae8.src, 02d19c.src
+          .EXPORT     _var_frontTexlist_8c1bc430 ; 013ae8.src, 024b4c.src
+          .EXPORT     _var_frontNj_8c1bc434 ; 013ae8.src, 024b4c.src
+          .EXPORT     _var_interiorTexlist_8c1bc438 ; 012f44.c, 012f44.src, 013ae8.src, 02d19c.src, 02d968.src
+          .EXPORT     _var_interiorNj_8c1bc43c ; 013ae8.src, 02d19c.src
           .EXPORT     _var_8c1bc440 ; 012f44.c, 012f44.src, 02c884.src
           .EXPORT     _var_8c1bc444 ; 012f44.c, 012f44.src, 02c884.src
           .EXPORT     _var_loadedFooNjm_8c1bc448 ; 012f44.c, 012f44.src, 02c884.src
@@ -358,7 +358,7 @@ _var_8c1bc3ec:
           .RES.B      4
 _var_8c1bc3f0:
           .RES.B      4
-_var_8c1bc3f4:
+_var_routeModelPairs_8c1bc3f4:
           .RES.B      4
 _var_8c1bc3f8:
           .RES.B      12
@@ -372,25 +372,25 @@ _var_8c1bc410:
           .RES.B      4
 _var_8c1bc414:
           .RES.B      4
-_var_8c1bc418:
+_var_markTexlist_8c1bc418:
           .RES.B      4
 _var_mark_parts_dat_8c1bc41c:
           .RES.B      4
 _var_mark_dat_8c1bc420:
           .RES.B      4
-_var_8c1bc424:
+_var_busStopTexlist_8c1bc424:
           .RES.B      4
 _var_busstop_parts_dat_8c1bc428:
           .RES.B      4
 _var_busstop_dat_8c1bc42c:
           .RES.B      4
-_var_8c1bc430:
+_var_frontTexlist_8c1bc430:
           .RES.B      4
-_var_8c1bc434:
+_var_frontNj_8c1bc434:
           .RES.B      4
-_var_8c1bc438:
+_var_interiorTexlist_8c1bc438:
           .RES.B      4
-_var_8c1bc43c:
+_var_interiorNj_8c1bc43c:
           .RES.B      4
 _var_8c1bc440:
           .RES.B      4

@@ -339,7 +339,7 @@ extern Task var_tasks_8c1bb448[];
 extern void* var_8c1bb86c;
 extern void* var_8c1bc3ec;
 extern void* var_8c1bc3f0;
-extern void* var_8c1bc3f4;
+extern void* var_routeModelPairs_8c1bc3f4;
 extern void* var_8c1bc404;
 extern void* var_8c226434;
 extern void* var_8c226438;
@@ -347,7 +347,7 @@ extern void* var_8c228234;
 extern void* var_8c227e20;
 extern void* var_8c227e24;
 extern void* var_8c2288f8;
-extern void* var_8c1bc438;
+extern void* var_interiorTexlist_8c1bc438;
 extern void* var_resourceGroup_8c2263a8;
 extern void* var_8c1ba2e0;
 extern void* var_8c1ba348;
@@ -720,7 +720,7 @@ void njUserInit_8c0134ec() {
 
     var_8c1bc3ec = (void *) -1;
     var_8c1bc3f0 = (void *) -1;
-    var_8c1bc3f4 = (void *) -1;
+    var_routeModelPairs_8c1bc3f4 = (void *) -1;
 
     clearUnknownVar_8c02171c();
     clearUnknownVar_8c029acc();
@@ -733,7 +733,7 @@ void njUserInit_8c0134ec() {
     var_8c227e20 = (void *) -1;
     var_8c227e24 = (void *) -1;
     var_8c2288f8 = (void *) -1;
-    var_8c1bc438 = (void *) -1;
+    var_interiorTexlist_8c1bc438 = (void *) -1;
     menuState_8c1bc7a8.resourceGroupA_0x00.tlist_0x00 = (void*) -1;
     menuState_8c1bc7a8.resourceGroupB_0x0c.tlist_0x00 = (void*) -1;
     var_resourceGroup_8c2263a8 = (void *) -1;

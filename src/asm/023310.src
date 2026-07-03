@@ -23,7 +23,7 @@
           .IMPORT     _pushTask_8c014ae8
           .IMPORT     _var_8c1bbd9c
           .IMPORT     _var_8c1bbf7c
-          .IMPORT     _var_8c1bc3f4
+          .IMPORT     _var_routeModelPairs_8c1bc3f4
           .IMPORT     _FUN_8c02786c
           .IMPORT     _var_8c18ad20
           .IMPORT     _var_8c18ad1c
@@ -524,7 +524,7 @@ LP_GEN_28893:
           .DATA.L _var_busState_8c1bb9d0 ; H'8C0236F0
           .DATA.L _var_8c1bbd9c ; H'8C0236F4
           .DATA.L _var_8c1bbf7c ; H'8C0236F8
-          .DATA.L _var_8c1bc3f4 ; H'8C0236FC
+          .DATA.L _var_routeModelPairs_8c1bc3f4 ; H'8C0236FC
           .DATA.L _FUN_8c02786c ; H'8C023700
           .DATA.L _var_8c18ad20 ; H'8C023704
 LAB_8c023708:

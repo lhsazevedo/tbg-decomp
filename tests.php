@@ -235,8 +235,8 @@ return [
         ],
         [
             "tests" => [
-                "tests/013ae8/13ae8_requestSomeFiles.php",
-                "tests/013ae8/13b5a_FUN.php",
+                "tests/013ae8/13ae8_requestVehicleAssets.php",
+                "tests/013ae8/13b5a_freeVehicleAssets.php",
             ],
             "objects" => [
                 "build/output/013ae8_src.obj",

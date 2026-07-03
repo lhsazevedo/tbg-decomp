@@ -28,8 +28,8 @@
           .IMPORT     _var_8c227db0
           .IMPORT     _njControl3D
           .IMPORT     _njCnkModDrawObject
-          .IMPORT     _var_8c1bc430
-          .IMPORT     _var_8c1bc434
+          .IMPORT     _var_frontTexlist_8c1bc430
+          .IMPORT     _var_frontNj_8c1bc434
           .IMPORT     _njCnkSimpleDrawObject
           .IMPORT     _njSqrt
           .IMPORT     _acosf
@@ -306,9 +306,9 @@ LP_GEN_54676:
           .DATA.L _njCnkSetSimpleLightIntensity ; H'8C024D50
           .DATA.L _njCnkSetSimpleLightColor ; H'8C024D54
           .DATA.L _njMultiMatrix ; H'8C024D58
-          .DATA.L _var_8c1bc430 ; H'8C024D5C
+          .DATA.L _var_frontTexlist_8c1bc430 ; H'8C024D5C
           .DATA.L _njSetTexture ; H'8C024D60
-          .DATA.L _var_8c1bc434 ; H'8C024D64
+          .DATA.L _var_frontNj_8c1bc434 ; H'8C024D64
           .DATA.L _njCnkSimpleDrawObject ; H'8C024D68
 _FUN_8c024d6c:
           MOV.L       R14,@-R15

@@ -13,8 +13,8 @@
           .IMPORT     _AsqFreeNjPvmPairs_120fe
           .IMPORT     _var_8c1bc3ec
           .IMPORT     _var_8c1bc3f0
-          .IMPORT     _var_8c1bc3f4
-          .IMPORT     _FUN_8c013b5a
+          .IMPORT     _var_routeModelPairs_8c1bc3f4
+          .IMPORT     _freeVehicleAssets_8c013b5a
           .IMPORT     _var_8c1bb868
           .IMPORT     _var_demoBuf_8c1ba3c4
           .IMPORT     _var_8c1bc454
@@ -438,9 +438,9 @@ LP_GEN_42967:
           .DATA.L _AsqFreeNjPvmPairs_120fe ; H'8C0163C4
           .DATA.L _var_8c1bc3ec ; H'8C0163C8
           .DATA.L _var_8c1bc3f0 ; H'8C0163CC
-          .DATA.L _var_8c1bc3f4 ; H'8C0163D0
+          .DATA.L _var_routeModelPairs_8c1bc3f4 ; H'8C0163D0
           .DATA.L _FUN_8c021724 ; H'8C0163D4
-          .DATA.L _FUN_8c013b5a ; H'8C0163D8
+          .DATA.L _freeVehicleAssets_8c013b5a ; H'8C0163D8
           .DATA.L _var_8c1bb868 ; H'8C0163DC
           .DATA.L _syFree ; H'8C0163E0
           .DATA.L _var_demoBuf_8c1ba3c4 ; H'8C0163E4

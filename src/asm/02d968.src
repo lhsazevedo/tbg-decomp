@@ -7,7 +7,7 @@
           .IMPORT     _pushTask_8c014ae8
           .IMPORT     _FUN_8c02d8f0
           .IMPORT     _var_8c2285c4
-          .IMPORT     _var_8c1bc438
+          .IMPORT     _var_interiorTexlist_8c1bc438
           .IMPORT     _njSetTexture
           .IMPORT     _njLoadCacheTexture
           .IMPORT     _FUN_8c025870
@@ -308,7 +308,7 @@ LP_GEN_52173:
           .DATA.L _pushTask_8c014ae8 ; H'8C02DB6C
           .DATA.L _FUN_8c02d8f0 ; H'8C02DB70
           .DATA.L _var_8c2285c4 ; H'8C02DB74
-          .DATA.L _var_8c1bc438 ; H'8C02DB78
+          .DATA.L _var_interiorTexlist_8c1bc438 ; H'8C02DB78
           .DATA.L _njSetTexture ; H'8C02DB7C
           .DATA.L _njLoadCacheTexture ; H'8C02DB80
           .DATA.L _FUN_8c025870 ; H'8C02DB84

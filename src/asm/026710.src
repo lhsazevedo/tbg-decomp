@@ -36,7 +36,7 @@
           .IMPORT     _FUN_8c02f0c8
           .IMPORT     _var_demoEntryValue_8c227e14
           .IMPORT     _init_8c04622c
-          .IMPORT     _var_8c1bc3f4
+          .IMPORT     _var_routeModelPairs_8c1bc3f4
           .IMPORT     _FUN_8c02786c
           .IMPORT     _var_8c227db8
           .IMPORT     _var_8c227dc4
@@ -2009,7 +2009,7 @@ LP_GEN_41074:
           .DATA.L H'4F800000 ; H'8C0275B0
           .DATA.L _var_demoEntryValue_8c227e14 ; H'8C0275B4
           .DATA.L _init_8c04622c ; H'8C0275B8
-          .DATA.L _var_8c1bc3f4 ; H'8C0275BC
+          .DATA.L _var_routeModelPairs_8c1bc3f4 ; H'8C0275BC
           .DATA.L _FUN_8c02786c ; H'8C0275C0
           .DATA.L _var_8c227db8 ; H'8C0275C4
           .DATA.L _var_8c227dc4 ; H'8C0275C8

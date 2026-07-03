@@ -26,7 +26,7 @@
           .IMPORT     _njRenderTextureNumG
           .IMPORT     _init_8c045558
           .IMPORT     _init_8c045438
-          .IMPORT     _var_8c1bc424
+          .IMPORT     _var_busStopTexlist_8c1bc424
           .IMPORT     _init_8c045568
           .IMPORT     _init_8c045498
           .IMPORT     _init_8c0455e8
@@ -343,7 +343,7 @@ LP_GEN_55916:
           .DATA.L _njRenderTextureNumG ; H'8C022698
           .DATA.L _init_8c045558 ; H'8C02269C
           .DATA.L _init_8c045438 ; H'8C0226A0
-          .DATA.L _var_8c1bc424 ; H'8C0226A4
+          .DATA.L _var_busStopTexlist_8c1bc424 ; H'8C0226A4
           .DATA.L _init_8c045568 ; H'8C0226A8
           .DATA.L _init_8c045498 ; H'8C0226AC
           .DATA.L _init_8c0455e8 ; H'8C0226B0
@@ -484,7 +484,7 @@ LP_GEN_42584:
           .DATA.L _init_8c0455e8 ; H'8C0227C8
           .DATA.L _init_8c0454f8 ; H'8C0227CC
           .DATA.L _var_8c1bb904 ; H'8C0227D0
-          .DATA.L _var_8c1bc424 ; H'8C0227D4
+          .DATA.L _var_busStopTexlist_8c1bc424 ; H'8C0227D4
           .DATA.L _isFading_8c226568 ; H'8C0227D8
           .DATA.L H'FF000000 ; H'8C0227DC
           .DATA.L _var_8c227d7c ; H'8C0227E0

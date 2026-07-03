@@ -14,7 +14,7 @@
           .IMPORT     _drawSprite_8c014f54
           .IMPORT     _var_8c18ad0c
           .IMPORT     _var_8c18ad08
-          .IMPORT     _var_8c1bc418
+          .IMPORT     _var_markTexlist_8c1bc418
           .IMPORT     _push_fadeout_8c022b60
           .IMPORT     _isFading_8c226568
           .IMPORT     _var_8c1bb8dc
@@ -339,7 +339,7 @@ LP_GEN_41107:
           .DATA.L _var_8c18ad0c
           .DATA.L H'BF8B851F
           .DATA.L _var_8c18ad08
-          .DATA.L _var_8c1bc418
+          .DATA.L _var_markTexlist_8c1bc418
           .DATA.L _push_fadeout_8c022b60
 
 LAB_8c012bfc:
@@ -608,7 +608,7 @@ LP_GEN_43727:
           .DATA.L _var_8c1ba2cc
           .DATA.L _var_8c1ba2b8
           .DATA.L _var_progress_8c1ba1cc
-          .DATA.L _var_8c1bc418
+          .DATA.L _var_markTexlist_8c1bc418
           .DATA.L H'BF8CCCCD
           .DATA.L _init_8c03bf4c
           .DATA.L _njDrawPolygon
@@ -748,7 +748,7 @@ LP_GEN_94405:
           .DATA.L     _execTasks_8c014b42
           .DATA.L     _FUN_8c022910
           .DATA.L     H'BF8CCCCD
-          .DATA.L     _var_8c1bc418
+          .DATA.L     _var_markTexlist_8c1bc418
           .DATA.L     _drawSprite_8c014f54
           .SECTION    D,DATA,ALIGN=4
           .END

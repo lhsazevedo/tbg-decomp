@@ -126,7 +126,7 @@
           .IMPORT     _var_8c228514
           .IMPORT     _var_8c228518
           .IMPORT     _var_8c228480
-          .IMPORT     _var_8c18ad6c
+          .IMPORT     _var_basedir_8c18ad6c
           .IMPORT     _init_8c049a6c
           .IMPORT     _const_8c03a17c
           .IMPORT     _init_8c04843c
@@ -5459,7 +5459,7 @@ LP_GEN_90475:
           .DATA.L _var_8c228518 ; H'8C02AAA8
           .DATA.L _var_8c228480 ; H'8C02AAAC
           .DATA.L _AsqRequestDat_11182 ; H'8C02AAB0
-          .DATA.L _var_8c18ad6c ; H'8C02AAB4
+          .DATA.L _var_basedir_8c18ad6c ; H'8C02AAB4
           .DATA.L _var_8c18ad1c ; H'8C02AAB8
           .DATA.L _init_8c049a6c ; H'8C02AABC
           .DATA.L _const_8c03a17c ; H'8C02AAC0

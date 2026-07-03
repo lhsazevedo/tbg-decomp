@@ -2,16 +2,16 @@
           .IMPORT     _init_8c04ce10
           .IMPORT     _init_8c04df38
           .IMPORT     _init_8c04e988
-          .IMPORT     _var_8c1bc434
+          .IMPORT     _var_frontNj_8c1bc434
           .IMPORT     _AsqRequestNj_11492
           .IMPORT     _AsqRequestPvm_11ac0
-          .IMPORT     _var_8c1bc430
-          .IMPORT     _var_8c1bc43c
-          .IMPORT     _var_8c1bc438
-          .IMPORT     _var_8c1bc418
-          .IMPORT     _var_8c1bc424
+          .IMPORT     _var_frontTexlist_8c1bc430
+          .IMPORT     _var_interiorNj_8c1bc43c
+          .IMPORT     _var_interiorTexlist_8c1bc438
+          .IMPORT     _var_markTexlist_8c1bc418
+          .IMPORT     _var_busStopTexlist_8c1bc424
           .IMPORT     _AsqRequestNjPvmPairs_12030
-          .IMPORT     _var_8c1bc3f4
+          .IMPORT     _var_routeModelPairs_8c1bc3f4
           .IMPORT     _njSetTexture
           .IMPORT     _njReleaseCacheTextureNum
           .IMPORT     _AsqReleaseAndFreeTexlist_11e3c
@@ -63,8 +63,8 @@
           .IMPORT     _var_8c1ba290
           .IMPORT     _var_8c2285c4
           .IMPORT     _dispatchInputTask_8c012970
-          .EXPORT     _requestSomeFiles_8c013ae8
-          .EXPORT     _FUN_8c013b5a
+          .EXPORT     _requestVehicleAssets_8c013ae8
+          .EXPORT     _freeVehicleAssets_8c013b5a
           .EXPORT     _clearUnknowArray_8c013bbc
           .EXPORT     _FUN_8c013c34
           .EXPORT     _FUN_8c013d42
@@ -89,16 +89,16 @@
           .EXPORT     _var_8c18ad28 ; 012f44.c, 012f44.src
           .EXPORT     _var_8c18ad2c
           .EXPORT     _var_8c18ad4c ; 02171c.src
-          .EXPORT     _var_8c18ad6c ; 028258.src
+          .EXPORT     _var_basedir_8c18ad6c ; 028258.src
           .EXPORT     _var_8c18ad8c ; 028258.src
           .EXPORT     _var_8c18adac
           .EXPORT     _var_8c18adb0
           .EXPORT     _var_8c18adb4 ; 02171c.src
           .AIFDEF     UNIT_TESTING
-          .EXPORT     _init_8c043d64
+          .EXPORT     _init_routeModelFilenames_8c043d64
           .AENDI
           .SECTION     P, CODE, ALIGN=4
-_requestSomeFiles_8c013ae8:
+_requestVehicleAssets_8c013ae8:
           MOV.L       R14,@-R15
           MOV         #H'0,R7
           MOV.L       R13,@-R15
@@ -156,7 +156,7 @@ _requestSomeFiles_8c013ae8:
           MOV.L       @R15+,R13
           RTS
           MOV.L       @R15+,R14
-_FUN_8c013b5a:
+_freeVehicleAssets_8c013b5a:
           MOV.L       R14,@-R15
           MOV.L       LP_GEN_83755+42,R14
           MOV.L       R13,@-R15
@@ -228,25 +228,25 @@ LAB_8c013bd2:
 
 LP_GEN_83755:
           .RES.W      1 ; H'8c013bd6
-          .DATA.L _var_8c18ad6c
-          .DATA.L _var_8c1bc434
+          .DATA.L _var_basedir_8c18ad6c
+          .DATA.L _var_frontNj_8c1bc434
           .DATA.L s_front_njd_8c033478
           .DATA.L _AsqRequestNj_11492
           .DATA.L _AsqRequestPvm_11ac0
-          .DATA.L _var_8c1bc430
+          .DATA.L _var_frontTexlist_8c1bc430
           .DATA.L s_front_pvm_8c033484
-          .DATA.L _var_8c1bc43c
+          .DATA.L _var_interiorNj_8c1bc43c
           .DATA.L s_syanai_njd_8c033490
           .DATA.L H'80000000
-          .DATA.L _var_8c1bc438
+          .DATA.L _var_interiorTexlist_8c1bc438
           .DATA.L s_syanai_pvm_8c03349c
-          .DATA.L _var_8c1bc418
+          .DATA.L _var_markTexlist_8c1bc418
           .DATA.L s_mark_pvm_8c0334a8
-          .DATA.L _var_8c1bc424
+          .DATA.L _var_busStopTexlist_8c1bc424
           .DATA.L s_busstop_pvm_8c0334b4
-          .DATA.L _init_8c043d64
+          .DATA.L _init_routeModelFilenames_8c043d64
           .DATA.L _AsqRequestNjPvmPairs_12030
-          .DATA.L _var_8c1bc3f4
+          .DATA.L _var_routeModelPairs_8c1bc3f4
           .DATA.L _njSetTexture
           .DATA.L _njReleaseCacheTextureNum
           .DATA.L _AsqReleaseAndFreeTexlist_11e3c
@@ -409,7 +409,7 @@ _FUN_8c013d42:
 LP_GEN_93614:
           .DATA.W H'0200 ; LP_GEN_93614+0
           .DATA.L _var_8c1bbddc
-          .DATA.L _var_8c18ad6c
+          .DATA.L _var_basedir_8c18ad6c
           .DATA.L _var_8c18ad20
           .DATA.L _init_8c043dc4
           .DATA.L _AsqRequestNj_11492
@@ -571,7 +571,7 @@ LP_GEN_38230:
           .DATA.L _syFree
           .DATA.L _var_8c1bbfdc
           .DATA.L _init_8c043fd8
-          .DATA.L _var_8c18ad6c
+          .DATA.L _var_basedir_8c18ad6c
           .DATA.L _AsqRequestPvm_11ac0
 
 LAB_8c013eb0:
@@ -938,7 +938,7 @@ LP_GEN_25668:
           .DATA.L _var_8c226504
           .DATA.L _var_8c226508
           .DATA.L _var_8c227dd0
-          .DATA.L _var_8c18ad6c
+          .DATA.L _var_basedir_8c18ad6c
           .DATA.L _AsqRequestNjPvmPairs_12030
           .DATA.L _var_8c1bc3f0
           .DATA.L _var_8c18adb0
@@ -1126,7 +1126,7 @@ LAB_8c0141e4:
           ADD         #H'4c,R6
           JSR         @R11
           MOV         R13,R4
-          BSR         _requestSomeFiles_8c013ae8
+          BSR         _requestVehicleAssets_8c013ae8
           NOP
           MOV.L       LP_GEN_90737+38,R2
           MOV         #H'10,R6
@@ -1635,7 +1635,7 @@ LP_GEN_17698:
           .DATA.L _var_8c157a6c
           .DATA.L _var_8c1bc3f8
           .DATA.L _njReleaseTexture
-          .DATA.L _var_8c1bc438
+          .DATA.L _var_interiorTexlist_8c1bc438
           .DATA.L _njSetTexture
           .DATA.L _njLoadCacheTexture
           .DATA.L _FUN_8c01306e
@@ -1850,7 +1850,7 @@ LP_GEN_48435:
           .DATA.L _AsqFreeQueues_11f7e
           .DATA.L _var_8c157a6c
           .DATA.L _njReleaseTexture
-          .DATA.L _var_8c1bc438
+          .DATA.L _var_interiorTexlist_8c1bc438
           .DATA.L _FUN_8c01306e
           .DATA.L _dispatchInputTask_8c012970
           .DATA.L H'C0A00000
@@ -7426,7 +7426,7 @@ _init_8c043ca4:        ; from defines
           .DATA.L      _init_8c043900
           .DATA.L      _init_8c043bd4
           .DATA.L      _init_8c043c3c
-_init_8c043d64:        ; from defines
+_init_routeModelFilenames_8c043d64:        ; from defines
           .DATA.L      _const_8c035398 ; ukn
           .DATA.L      _const_8c03386c ; ukn
           .DATA.L      _const_8c0353a8 ; ukn
@@ -10914,7 +10914,7 @@ _var_8c18ad2c:
           .RES.B      32
 _var_8c18ad4c:
           .RES.B      32
-_var_8c18ad6c:
+_var_basedir_8c18ad6c:
           .RES.B      32
 _var_8c18ad8c:
           .RES.B      32

@@ -3,13 +3,13 @@
           .IMPORT     __divls
           .IMPORT     __modls
           .IMPORT     _drawSprite_8c014f54
-          .IMPORT     _var_8c1bc424
+          .IMPORT     _var_busStopTexlist_8c1bc424
           .IMPORT     _var_8c2285c4
           .IMPORT     _njDrawPolygon
           .IMPORT     _var_busState_8c1bb9d0
           .IMPORT     _var_8c22643c
           .IMPORT     _var_demo_8c1bb8d0
-          .IMPORT     _var_8c1bc418
+          .IMPORT     _var_markTexlist_8c1bc418
           .IMPORT     _init_8c045334
           .IMPORT     _init_8c045374
           .IMPORT     _init_8c0453b4
@@ -170,7 +170,7 @@ LP_GEN_77638:
           .DATA.L __modls ; H'8C01FB84
           .DATA.L H'BF9AE148 ; H'8C01FB88
           .DATA.L _drawSprite_8c014f54 ; H'8C01FB8C
-          .DATA.L _var_8c1bc424 ; H'8C01FB90
+          .DATA.L _var_busStopTexlist_8c1bc424 ; H'8C01FB90
           .DATA.L H'43E00000 ; H'8C01FB94
           .DATA.L H'43DA0000 ; H'8C01FB98
           .DATA.L H'43EE8000 ; H'8C01FB9C
@@ -299,9 +299,9 @@ LP_GEN_37481:
           .DATA.L _var_8c22643c ; H'8C01FC90
           .DATA.L _var_demo_8c1bb8d0 ; H'8C01FC94
           .DATA.L _var_8c2264a8 ; H'8C01FC98
-          .DATA.L _var_8c1bc418 ; H'8C01FC9C
+          .DATA.L _var_markTexlist_8c1bc418 ; H'8C01FC9C
           .DATA.L H'BF99999A ; H'8C01FCA0
-          .DATA.L _var_8c1bc424 ; H'8C01FCA4
+          .DATA.L _var_busStopTexlist_8c1bc424 ; H'8C01FCA4
 LAB_8c01fca8:
           CMP/GT      R4,R9
           BT          LAB_8c01fcb2
@@ -432,7 +432,7 @@ LAB_8c01fd82:
 LP_GEN_59952:
           .DATA.W H'0080 ; H'8C01FD94
           .DATA.W H'02E0 ; H'8C01FD96
-          .DATA.L _var_8c1bc424 ; H'8C01FD98
+          .DATA.L _var_busStopTexlist_8c1bc424 ; H'8C01FD98
           .DATA.L H'42180000 ; H'8C01FD9C
           .DATA.L _init_8c045334 ; H'8C01FDA0
           .DATA.L H'434A0000 ; H'8C01FDA4
@@ -626,7 +626,7 @@ LP_GEN_41663:
           .DATA.L H'447A0000 ; H'8C01FF28
           .DATA.L H'43D20000 ; H'8C01FF2C
           .DATA.L __modls ; H'8C01FF30
-          .DATA.L _var_8c1bc424 ; H'8C01FF34
+          .DATA.L _var_busStopTexlist_8c1bc424 ; H'8C01FF34
           .DATA.L H'439A0000 ; H'8C01FF38
           .DATA.L H'43C90000 ; H'8C01FF3C
           .DATA.L H'43D38000 ; H'8C01FF40

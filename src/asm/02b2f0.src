@@ -1,7 +1,7 @@
 ; 8c02b2f0
           .IMPORT     _njDrawQuadTexture
           .IMPORT     _var_8c2285c8
-          .IMPORT     _var_8c1bc418
+          .IMPORT     _var_markTexlist_8c1bc418
           .IMPORT     _njSetTexture
           .IMPORT     _njQuadTextureStart
           .IMPORT     _njSetQuadTextureG
@@ -180,7 +180,7 @@ LP_GEN_28247:
           .DATA.L H'41800000 ; H'8C02B434
           .DATA.L H'43800000 ; H'8C02B438
           .DATA.L _var_8c2285c8 ; H'8C02B43C
-          .DATA.L _var_8c1bc418 ; H'8C02B440
+          .DATA.L _var_markTexlist_8c1bc418 ; H'8C02B440
           .DATA.L _njSetTexture ; H'8C02B444
           .DATA.L _njQuadTextureStart ; H'8C02B448
           .DATA.L _njSetQuadTextureG ; H'8C02B44C

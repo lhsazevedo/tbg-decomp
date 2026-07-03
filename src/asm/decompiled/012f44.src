@@ -115,7 +115,7 @@
           .IMPORT     _var_8c1bbfdc
           .IMPORT     _var_8c1bc3ec
           .IMPORT     _var_8c1bc3f0
-          .IMPORT     _var_8c1bc3f4
+          .IMPORT     _var_routeModelPairs_8c1bc3f4
           .IMPORT     _clearUnknownVar_8c02171c
           .IMPORT     _clearUnknownVar_8c029acc
           .IMPORT     _clearUnknownVars_8c02aa28
@@ -126,7 +126,7 @@
           .IMPORT     _var_8c227e20
           .IMPORT     _var_8c227e24
           .IMPORT     _var_8c2288f8
-          .IMPORT     _var_8c1bc438
+          .IMPORT     _var_interiorTexlist_8c1bc438
           .IMPORT     _menuState_8c1bc7a8
           .IMPORT     _var_resourceGroup_8c2263a8
           .IMPORT     _var_8c1ba2e0
@@ -1184,7 +1184,7 @@ LP_GEN_90231:
           .DATA.L _var_8c1bbfdc
           .DATA.L _var_8c1bc3ec
           .DATA.L _var_8c1bc3f0
-          .DATA.L _var_8c1bc3f4
+          .DATA.L _var_routeModelPairs_8c1bc3f4
           .DATA.L _clearUnknownVar_8c02171c
           .DATA.L _clearUnknownVar_8c029acc
           .DATA.L _clearUnknownVars_8c02aa28
@@ -1195,7 +1195,7 @@ LP_GEN_90231:
           .DATA.L _var_8c227e20
           .DATA.L _var_8c227e24
           .DATA.L _var_8c2288f8
-          .DATA.L _var_8c1bc438
+          .DATA.L _var_interiorTexlist_8c1bc438
           .DATA.L _menuState_8c1bc7a8
           .DATA.L _var_resourceGroup_8c2263a8
           .DATA.L _var_8c1ba2e0

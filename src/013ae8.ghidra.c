@@ -13,7 +13,7 @@ void request_some_files_8c013ae8(void)
 }
 
 
-void FUN_8c013b5a(void)
+void freeVehicleAssets_8c013b5a(void)
 
 {
   uint uVar1;

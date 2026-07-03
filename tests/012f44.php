@@ -424,7 +424,7 @@ return new class extends TestCase {
 
         $this->shouldWriteTo('_var_8c1bc3ec', -1);
         $this->shouldWriteTo('_var_8c1bc3f0', -1);
-        $this->shouldWriteTo('_var_8c1bc3f4', -1);
+        $this->shouldWriteTo('_var_routeModelPairs_8c1bc3f4', -1);
 
         $this->shouldCall('_clearUnknownVar_8c02171c');
         $this->shouldCall('_clearUnknownVar_8c029acc');
@@ -437,7 +437,7 @@ return new class extends TestCase {
         $this->shouldWriteTo('_var_8c227e20', -1);
         $this->shouldWriteTo('_var_8c227e24', -1);
         $this->shouldWriteTo('_var_8c2288f8', -1);
-        $this->shouldWriteTo('_var_8c1bc438', -1);
+        $this->shouldWriteTo('_var_interiorTexlist_8c1bc438', -1);
         $this->shouldWrite($this->addressOf('_menuState_8c1bc7a8') + 0x0 + 0, -1);
         $this->shouldWrite($this->addressOf('_menuState_8c1bc7a8') + 0xc + 0, -1);
         $this->shouldWriteTo('_var_resourceGroup_8c2263a8', -1);
@@ -578,7 +578,7 @@ return new class extends TestCase {
 
         $this->shouldWriteTo('_var_8c1bc3ec', -1);
         $this->shouldWriteTo('_var_8c1bc3f0', -1);
-        $this->shouldWriteTo('_var_8c1bc3f4', -1);
+        $this->shouldWriteTo('_var_routeModelPairs_8c1bc3f4', -1);
 
         $this->shouldCall('_clearUnknownVar_8c02171c');
         $this->shouldCall('_clearUnknownVar_8c029acc');
@@ -591,7 +591,7 @@ return new class extends TestCase {
         $this->shouldWriteTo('_var_8c227e20', -1);
         $this->shouldWriteTo('_var_8c227e24', -1);
         $this->shouldWriteTo('_var_8c2288f8', -1);
-        $this->shouldWriteTo('_var_8c1bc438', -1);
+        $this->shouldWriteTo('_var_interiorTexlist_8c1bc438', -1);
         $this->shouldWrite($this->addressOf('_menuState_8c1bc7a8') + 0x0 + 0, -1);
         $this->shouldWrite($this->addressOf('_menuState_8c1bc7a8') + 0xc + 0, -1);
         $this->shouldWriteTo('_var_resourceGroup_8c2263a8', -1);
@@ -732,7 +732,7 @@ return new class extends TestCase {
 
         $this->shouldWriteTo('_var_8c1bc3ec', -1);
         $this->shouldWriteTo('_var_8c1bc3f0', -1);
-        $this->shouldWriteTo('_var_8c1bc3f4', -1);
+        $this->shouldWriteTo('_var_routeModelPairs_8c1bc3f4', -1);
 
         $this->shouldCall('_clearUnknownVar_8c02171c');
         $this->shouldCall('_clearUnknownVar_8c029acc');
@@ -745,7 +745,7 @@ return new class extends TestCase {
         $this->shouldWriteTo('_var_8c227e20', -1);
         $this->shouldWriteTo('_var_8c227e24', -1);
         $this->shouldWriteTo('_var_8c2288f8', -1);
-        $this->shouldWriteTo('_var_8c1bc438', -1);
+        $this->shouldWriteTo('_var_interiorTexlist_8c1bc438', -1);
         $this->shouldWrite($this->addressOf('_menuState_8c1bc7a8') + 0x0 + 0, -1);
         $this->shouldWrite($this->addressOf('_menuState_8c1bc7a8') + 0xc + 0, -1);
         $this->shouldWriteTo('_var_resourceGroup_8c2263a8', -1);
@@ -887,7 +887,7 @@ return new class extends TestCase {
 
         $this->shouldWriteTo('_var_8c1bc3ec', -1);
         $this->shouldWriteTo('_var_8c1bc3f0', -1);
-        $this->shouldWriteTo('_var_8c1bc3f4', -1);
+        $this->shouldWriteTo('_var_routeModelPairs_8c1bc3f4', -1);
 
         $this->shouldCall('_clearUnknownVar_8c02171c');
         $this->shouldCall('_clearUnknownVar_8c029acc');
@@ -900,7 +900,7 @@ return new class extends TestCase {
         $this->shouldWriteTo('_var_8c227e20', -1);
         $this->shouldWriteTo('_var_8c227e24', -1);
         $this->shouldWriteTo('_var_8c2288f8', -1);
-        $this->shouldWriteTo('_var_8c1bc438', -1);
+        $this->shouldWriteTo('_var_interiorTexlist_8c1bc438', -1);
         $this->shouldWrite($this->addressOf('_menuState_8c1bc7a8') + 0x0 + 0, -1);
         $this->shouldWrite($this->addressOf('_menuState_8c1bc7a8') + 0xc + 0, -1);
         $this->shouldWriteTo('_var_resourceGroup_8c2263a8', -1);
