@@ -65,7 +65,7 @@
           .IMPORT     _dispatchInputTask_8c012970
           .EXPORT     _requestVehicleAssets_8c013ae8
           .EXPORT     _freeVehicleAssets_8c013b5a
-          .EXPORT     _clearUnknowArray_8c013bbc
+          .EXPORT     _clearUnknownArray_8c013bbc
           .EXPORT     _FUN_8c013c34
           .EXPORT     _FUN_8c013d42
           .EXPORT     _FUN_8c013d78
@@ -206,7 +206,7 @@ LAB_8c013bb2:
           MOV.L       @R15+,R13
           RTS
           MOV.L       @R15+,R14
-_clearUnknowArray_8c013bbc:
+_clearUnknownArray_8c013bbc:
           ADD         #-H'1,R5
           SHLL2       R5
           SHLL2       R5

@@ -715,8 +715,8 @@ void njUserInit_8c0134ec() {
 
     var_8c1bb86c = (void *) -1;
 
-    clearUnknowArray_8c013bbc(&var_8c1bbddc, 0x20);
-    clearUnknowArray_8c013bbc(&var_8c1bbfdc, 0x41);
+    clearUnknownArray_8c013bbc(&var_8c1bbddc, 0x20);
+    clearUnknownArray_8c013bbc(&var_8c1bbfdc, 0x41);
 
     var_8c1bc3ec = (void *) -1;
     var_8c1bc3f0 = (void *) -1;

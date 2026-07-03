@@ -74,3 +74,15 @@ void freeVehicleAssets_8c013b5a(void)
         var_interiorTexlist_8c1bc438 = (NJS_TEXLIST *) -1;
     }
 }
+
+/* Reset the handle/id at +8 of each 0x10-byte slot to -1. Walks the array
+ * back to front. count == 0 underflows the start index and writes nothing. */
+void clearUnknownArray_8c013bbc(void *array, int count)
+{
+    char *p;
+
+    for (p = (char *) array + (count - 1) * 0x10; p >= (char *) array; p -= 0x10) {
+        /* TODO: likely a struct; type it and drop the raw +8 */
+        *(Sint32 *)(p + 8) = -1;
+    }
+}
