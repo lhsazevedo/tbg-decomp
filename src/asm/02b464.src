@@ -54,14 +54,14 @@
           .IMPORT     _var_8c22847c
           .IMPORT     _var_8c228714
           .IMPORT     _var_8c22861c
-          .IMPORT     _FUN_8c010bae
+          .IMPORT     _startAdxFadeOut_8c010bae
           .IMPORT     _init_8c03bd80
           .IMPORT     _sdMidiStopAll
           .IMPORT     _var_vibport_8c1ba354
           .IMPORT     _pdVibMxStop
           .IMPORT     _var_8c226564
           .IMPORT     _FUN_8c024b4c
-          .IMPORT     _FUN_adxVol_8c010a40
+          .IMPORT     _updateAdxVolFade_8c010a40
           .IMPORT     _FUN_8c02b388
           .IMPORT     _FUN_8c0223ea
           .IMPORT     _var_tasks_8c1ba5e8
@@ -2097,7 +2097,7 @@ LP_GEN_30870:
           .DATA.L LAB_8c02c76a ; H'8C02C3B8
           .DATA.L LAB_8c02c624 ; H'8C02C3BC
           .DATA.L _FUN_8c02c784 ; H'8C02C3C0
-          .DATA.L _FUN_8c010bae ; H'8C02C3C4
+          .DATA.L _startAdxFadeOut_8c010bae ; H'8C02C3C4
 LAB_8c02c3c8:
           MOV.L       @(H'8,R14),R2
           ADD         #-H'1,R2
@@ -2225,7 +2225,7 @@ LP_GEN_93947:
           .DATA.L _pdVibMxStop ; H'8C02C4B0
           .DATA.L _var_8c226564 ; H'8C02C4B4
           .DATA.L _FUN_8c024b4c ; H'8C02C4B8
-          .DATA.L _FUN_adxVol_8c010a40 ; H'8C02C4BC
+          .DATA.L _updateAdxVolFade_8c010a40 ; H'8C02C4BC
           .DATA.L _var_8c228564 ; H'8C02C4C0
           .DATA.L _FUN_8c02b388 ; H'8C02C4C4
           .DATA.L _FUN_8c0223ea ; H'8C02C4C8

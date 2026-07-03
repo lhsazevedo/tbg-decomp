@@ -8,7 +8,7 @@
           .IMPORT     _const_peripheral_8c033318
           .IMPORT     _var_vibport_8c1ba354
           .IMPORT     _vmsLcd_8c01c910
-          .IMPORT     _FUN_adxVol_8c010a40
+          .IMPORT     _updateAdxVolFade_8c010a40
           .EXPORT     _PspTask_8c012324
           .EXPORT     _var_8c157ad4
           .EXPORT     _var_8c157ae4
@@ -261,7 +261,7 @@ LP_GEN_88452:
           .DATA.L _var_vibport_8c1ba354
           .DATA.L _var_8c157ad4
           .DATA.L _vmsLcd_8c01c910
-          .DATA.L _FUN_adxVol_8c010a40
+          .DATA.L _updateAdxVolFade_8c010a40
           .SECTION    B,DATA,ALIGN=4
 _var_8c157ad4:
           .RES.L      4

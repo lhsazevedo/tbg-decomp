@@ -155,13 +155,13 @@ return new class extends TestCase {
 
         $this->call('_CourseConfirmMenuTask_8c0181b6');
 
-        // Prompt returns NO/Cancel (2) ¨ set state 7, do two FUN_8c010bae calls, then fade out
+        // Prompt returns NO/Cancel (2) ¨ set state 7, do two startAdxFadeOut_8c010bae calls, then fade out
         $this->shouldCall('_promptHandleBinary_16caa')->with(
             $this->addressOf('_menuState_8c1bc7a8') + 0x38
         )->andReturn(2);
         $this->shouldWriteLong($this->addressOf('_menuState_8c1bc7a8') + 0x18, 7);
-        $this->shouldCall('_FUN_8c010bae')->with(0);
-        $this->shouldCall('_FUN_8c010bae')->with(1);
+        $this->shouldCall('_startAdxFadeOut_8c010bae')->with(0);
+        $this->shouldCall('_startAdxFadeOut_8c010bae')->with(1);
         $this->shouldCall('_push_fadeout_8c022b60')->with(10);
 
         // Epilogue draws
@@ -372,8 +372,8 @@ return new class extends TestCase {
         $this->shouldWriteLong($this->addressOf('_menuState_8c1bc7a8') + 0x68, 31);
         // Then transition to state 6
         $this->shouldWriteLong($this->addressOf('_menuState_8c1bc7a8') + 0x18, 6);
-        $this->shouldCall('_FUN_8c010bae')->with(0);
-        $this->shouldCall('_FUN_8c010bae')->with(1);
+        $this->shouldCall('_startAdxFadeOut_8c010bae')->with(0);
+        $this->shouldCall('_startAdxFadeOut_8c010bae')->with(1);
         $this->shouldCall('_push_fadeout_8c022b60')->with(20);
         // State 5 calls drawRouteInfo
         $this->shouldCall('_drawRouteInfo_8c018118');
@@ -631,7 +631,7 @@ return new class extends TestCase {
     {
         $this->setSize('_menuState_8c1bc7a8', 0x84);
         $this->setSize('_isFading_8c226568', 4);
-        $this->setSize('_FUN_8c010bae', 4);
+        $this->setSize('_startAdxFadeOut_8c010bae', 4);
         $this->setSize('_init_8c03bd80', 4);
         $this->setSize('_drawSprite_8c014f54', 4);
         $this->setSize('_handleBinaryPrompt_8c016caa', 4); // decompiled alias

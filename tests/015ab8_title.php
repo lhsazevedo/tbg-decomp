@@ -730,8 +730,8 @@ return new class extends TestCase {
         $this->initUint32($this->addressOf('_var_peripherals_8c1ba35c') + 16, 1 << 3);
         $this->initUint32($this->addressOf('_var_midiHandles_8c0fcd28'), 0xbebacafe);
 
-        $this->shouldCall('_FUN_8c010bae')->with(0);
-        $this->shouldCall('_FUN_8c010bae')->with(1);
+        $this->shouldCall('_startAdxFadeOut_8c010bae')->with(0);
+        $this->shouldCall('_startAdxFadeOut_8c010bae')->with(1);
 
         $this->shouldCall('_sdMidiPlay')->with(0xbebacafe, 1, 0, 0);
 
@@ -767,8 +767,8 @@ return new class extends TestCase {
         // Advance title state
         $this->shouldWriteSymbolOffset('_menuState_8c1bc7a8', 0x18, 0x11);
 
-        $this->shouldCall('_FUN_8c010bae')->with(0);
-        $this->shouldCall('_FUN_8c010bae')->with(1);
+        $this->shouldCall('_startAdxFadeOut_8c010bae')->with(0);
+        $this->shouldCall('_startAdxFadeOut_8c010bae')->with(1);
         $this->shouldCall('_push_fadeout_8c022b60')->with(60);
 
         $this->shouldCall('_drawSprite_8c014f54')->with($this->addressOf('_menuState_8c1bc7a8') + 0x0c, 5, 0.0, 0.0, -4.0);
@@ -1071,6 +1071,6 @@ return new class extends TestCase {
         $this->setSize('_push_fadeout_8c022b60', 4);
         $this->setSize('_push_fadein_8c022a9c', 4);
         $this->setSize('_getUknPvmBool_8c01432a', 4);
-        $this->setSize('_FUN_8c010bae', 4);
+        $this->setSize('_startAdxFadeOut_8c010bae', 4);
     }
 };

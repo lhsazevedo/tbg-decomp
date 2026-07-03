@@ -35,7 +35,7 @@
           .IMPORT     _AsqProcessQueues_11fe0
           .IMPORT     _snd_8c010cd6
           .IMPORT     _setName_8c012984
-          .IMPORT     _FUN_8c010bae
+          .IMPORT     _startAdxFadeOut_8c010bae
           .IMPORT     _pushInputTask_8c0128cc
           .EXPORT     _task_title_8c015ab8
           .EXPORT     _pushTitle_8c015fd6
@@ -644,7 +644,7 @@ L47:                              ; case label 11
           
 L48:                              
           .DATA.W     H'041A ; H'8c015f36
-          .DATA.L     _FUN_8c010bae ; H'8c015f38
+          .DATA.L     _startAdxFadeOut_8c010bae ; H'8c015f38
           .DATA.L     _var_midiHandles_8c0fcd28
           .DATA.L     _sdMidiPlay ; H'8c015f40
           .DATA.L     _init_saveNames_8c044d50

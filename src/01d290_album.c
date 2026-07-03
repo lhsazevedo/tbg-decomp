@@ -58,7 +58,7 @@ extern int getUknPvmBool_8c01432a(void);
 extern void snd_8c010cd6(int p1, int p2);
 extern void push_fadein_8c022a9c(int frames);
 extern void push_fadeout_8c022b60(int frames);
-extern void FUN_8c010bae(int p1);
+extern void startAdxFadeOut_8c010bae(int p1);
 extern void FUN_8c016182(void);
 extern void setTaskAction_8c014b3e(Task *task, TaskAction action);
 extern void setUknPvmBool_8c014330(void);
@@ -147,8 +147,8 @@ void AlbumMenuTask_8c01d300(Task *task, void *state)
             } else if (press & PDD_DGT_TB) {
                 CHANGE_STATE(ALBUM_STATE_FADE_OUT);
                 sdMidiPlay(var_midiHandles_8c0fcd28[0], 1, 1, 0);
-                FUN_8c010bae(0);
-                FUN_8c010bae(1);
+                startAdxFadeOut_8c010bae(0);
+                startAdxFadeOut_8c010bae(1);
                 push_fadeout_8c022b60(10);
             }
             break;
@@ -239,8 +239,8 @@ void AlbumMenuTask_8c01d300(Task *task, void *state)
                 /* Leave the album. */
                 CHANGE_STATE(ALBUM_STATE_FADE_OUT);
                 sdMidiPlay(var_midiHandles_8c0fcd28[0], 1, 1, 0);
-                FUN_8c010bae(0);
-                FUN_8c010bae(1);
+                startAdxFadeOut_8c010bae(0);
+                startAdxFadeOut_8c010bae(1);
                 push_fadeout_8c022b60(10);
             }
 

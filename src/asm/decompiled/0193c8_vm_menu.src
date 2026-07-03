@@ -28,7 +28,7 @@
           .IMPORT     _var_selectedVm_8c1ba34c
           .IMPORT     _push_fadeout_8c022b60
           .IMPORT     _FUN_8c01895e
-          .IMPORT     _FUN_8c010bae
+          .IMPORT     _startAdxFadeOut_8c010bae
           .IMPORT     _menuTextboxText_8c02af1c
           .IMPORT     _FUN_8c019334
           .IMPORT     _init_8c03bd80
@@ -1310,7 +1310,7 @@ LP_GEN_17403:
           .DATA.L _init_vmuStatusMessages_8c044dc4 ; H'8C019CE8
           .DATA.L _swapMessageBoxFor_8c02aefc ; H'8C019CEC
           .DATA.L _FUN_8c01895e ; H'8C019CF0
-          .DATA.L _FUN_8c010bae ; H'8C019CF4
+          .DATA.L _startAdxFadeOut_8c010bae ; H'8C019CF4
           .DATA.L _drawSprite_8c014f54 ; H'8C019CF8
           .DATA.L _menuTextboxText_8c02af1c ; H'8C019CFC
 LAB_8c019d00:

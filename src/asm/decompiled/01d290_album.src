@@ -10,7 +10,7 @@
           .IMPORT     _push_fadein_8c022a9c
           .IMPORT     _var_midiHandles_8c0fcd28
           .IMPORT     _sdMidiPlay
-          .IMPORT     _FUN_8c010bae
+          .IMPORT     _startAdxFadeOut_8c010bae
           .IMPORT     _push_fadeout_8c022b60
           .IMPORT     _init_8c045170
           .IMPORT     _CourseMenuInterpolateCursor_8c016d2c
@@ -239,7 +239,7 @@ LP_GEN_16673:
           .DATA.L _push_fadein_8c022a9c ; H'8C01D418
           .DATA.L _var_midiHandles_8c0fcd28 ; H'8C01D41C
           .DATA.L _sdMidiPlay ; H'8C01D420
-          .DATA.L _FUN_8c010bae ; H'8C01D424
+          .DATA.L _startAdxFadeOut_8c010bae ; H'8C01D424
           .DATA.L _push_fadeout_8c022b60 ; H'8C01D428
 LAB_8c01d42c:
           MOV.L       @(H'10,R9),R0
@@ -674,7 +674,7 @@ LP_GEN_43132:
           .RES.W 1 ; H'8C01D73A
           .DATA.L _var_midiHandles_8c0fcd28 ; H'8C01D73C
           .DATA.L _sdMidiPlay ; H'8C01D740
-          .DATA.L _FUN_8c010bae ; H'8C01D744
+          .DATA.L _startAdxFadeOut_8c010bae ; H'8C01D744
           .DATA.L _push_fadeout_8c022b60 ; H'8C01D748
           .DATA.L _CourseMenuInterpolateCursor_8c016d2c ; H'8C01D74C
           .DATA.L H'C0000000 ; H'8C01D750

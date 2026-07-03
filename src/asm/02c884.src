@@ -61,7 +61,7 @@
           .IMPORT     _var_8c1bbc4c
           .IMPORT     _var_8c22656c
           .IMPORT     _FUN_8c02c586
-          .IMPORT     _FUN_8c010bae
+          .IMPORT     _startAdxFadeOut_8c010bae
           .IMPORT     _FUN_8c02c784
           .EXPORT     _FUN_8c02c884
           .EXPORT     _FUN_8c02c8ae
@@ -1061,5 +1061,5 @@ LP_GEN_27124:
           .DATA.L _FUN_8c02c784 ; H'8C02D05C
           .DATA.L _var_8c22656c ; H'8C02D060
           .DATA.L _FUN_8c02c586 ; H'8C02D064
-          .DATA.L _FUN_8c010bae ; H'8C02D068
+          .DATA.L _startAdxFadeOut_8c010bae ; H'8C02D068
           .END

@@ -15,7 +15,7 @@
           .IMPORT     _swapMessageBoxFor_8c02aefc
           .IMPORT     _var_midiHandles_8c0fcd28
           .IMPORT     _sdMidiPlay
-          .IMPORT     _FUN_8c010bae
+          .IMPORT     _startAdxFadeOut_8c010bae
           .IMPORT     _promptHandleBinary_16caa
           .IMPORT     _push_fadeout_8c022b60
           .IMPORT     _njSetBackColor
@@ -524,7 +524,7 @@ LP_GEN_38636:
           .DATA.L _swapMessageBoxFor_8c02aefc ; H'8C01E5C4
           .DATA.L _var_midiHandles_8c0fcd28 ; H'8C01E5C8
           .DATA.L _sdMidiPlay ; H'8C01E5CC
-          .DATA.L _FUN_8c010bae ; H'8C01E5D0
+          .DATA.L _startAdxFadeOut_8c010bae ; H'8C01E5D0
           .DATA.L _promptHandleBinary_16caa ; H'8C01E5D4
           .DATA.L _push_fadeout_8c022b60 ; H'8C01E5D8
           .DATA.L H'43960000 ; H'8C01E5DC
@@ -753,7 +753,7 @@ LP_GEN_92116:
           .DATA.L _AsqFreeQueues_11f7e ; H'8C01E7B0
           .DATA.L _snd_8c010cd6 ; H'8C01E7B4
           .DATA.L _push_fadein_8c022a9c ; H'8C01E7B8
-          .DATA.L _FUN_8c010bae ; H'8C01E7BC
+          .DATA.L _startAdxFadeOut_8c010bae ; H'8C01E7BC
           .DATA.L _init_8c0451ec ; H'8C01E7C0
           .DATA.L _push_fadeout_8c022b60 ; H'8C01E7C4
           .DATA.L _init_8c03bd80 ; H'8C01E7C8
@@ -1707,7 +1707,7 @@ LAB_8c01ef0c:
 LP_GEN_95699:
           .DATA.W H'0090 ; H'8C01EF2A
           .DATA.L _promptHandleBinary_16caa ; H'8C01EF2C
-          .DATA.L _FUN_8c010bae ; H'8C01EF30
+          .DATA.L _startAdxFadeOut_8c010bae ; H'8C01EF30
           .DATA.L _push_fadeout_8c022b60 ; H'8C01EF34
           .DATA.L _const_8c038984 ; H'8C01EF38
           .DATA.L _var_menuTextboxCharLimit_8c225fb8 ; H'8C01EF3C

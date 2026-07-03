@@ -641,8 +641,8 @@ STATIC void VmMenuTask_198a0(Task* task, void *actionState)
                 var_selectedVm_8c1ba34c = -1;
                 FUN_8c01895e();
                 CHANGE_STATE(VM_MENU_STATE_FADE_OUT);
-                FUN_8c010bae(0);
-                FUN_8c010bae(1);
+                startAdxFadeOut_8c010bae(0);
+                startAdxFadeOut_8c010bae(1);
                 push_fadeout_8c022b60(10);
             } else if (promptResult == 2) {
                 swapMessageBoxFor_8c02aefc(init_vmuStatusMessages_8c044dc4[var_vmuStatus_8c226048[slot]]);

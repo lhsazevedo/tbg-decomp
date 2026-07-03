@@ -83,8 +83,8 @@ return new class extends TestCase {
         $this->call('_handleCourseMenuInput_8c017126');
 
         // -- Assert -------------------
-        $this->shouldCall('_FUN_8c010bae')->with(0);
-        $this->shouldCall('_FUN_8c010bae')->with(1);
+        $this->shouldCall('_startAdxFadeOut_8c010bae')->with(0);
+        $this->shouldCall('_startAdxFadeOut_8c010bae')->with(1);
         $this->shouldCall('_sdMidiPlay')->with(0xd1d1d1d1, 1, 0, 0);
         $this->shouldWriteLong(
             $this->addressOf('_menuState_8c1bc7a8') + 0x18, 5
@@ -117,8 +117,8 @@ return new class extends TestCase {
         $this->call('_handleCourseMenuInput_8c017126');
 
         // -- Assert -------------------
-        $this->shouldCall('_FUN_8c010bae')->with(0);
-        $this->shouldCall('_FUN_8c010bae')->with(1);
+        $this->shouldCall('_startAdxFadeOut_8c010bae')->with(0);
+        $this->shouldCall('_startAdxFadeOut_8c010bae')->with(1);
         $this->shouldCall('_sdMidiPlay')->with(0xd1d1d1d1, 1, 0, 0);
         $this->shouldWriteLong(
             $this->addressOf('_menuState_8c1bc7a8') + 0x18, 5

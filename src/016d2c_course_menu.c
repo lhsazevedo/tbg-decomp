@@ -1151,8 +1151,8 @@ STATIC void handleCourseMenuInput_8c017126()
             sdMidiPlay(var_midiHandles_8c0fcd28[0], 1, 2, 0);
             swapDialogMessageBox_8c017108(SEQ_COURSE_LOCKED);
         } else {
-            FUN_8c010bae(0);
-            FUN_8c010bae(1);
+            startAdxFadeOut_8c010bae(0);
+            startAdxFadeOut_8c010bae(1);
             sdMidiPlay(var_midiHandles_8c0fcd28[0], 1, 0, 0);
             CHANGE_STATE(COURSE_MENU_STATE_COURSE_SELECTED);
             menuState_8c1bc7a8.logo_timer_0x68 = 0;
@@ -2183,8 +2183,8 @@ STATIC void CourseConfirmMenuTask_8c0181b6(Task * task, void *state)
                 push_fadeout_8c022b60(10);
             } else if (r == 2) {
                 CHANGE_CONFIRM_STATE(COURSE_CONFIRM_STATE_FADE_OUT_TO_COURSE_MENU);
-                FUN_8c010bae(0);
-                FUN_8c010bae(1);
+                startAdxFadeOut_8c010bae(0);
+                startAdxFadeOut_8c010bae(1);
                 push_fadeout_8c022b60(10);
             }
             break;
@@ -2212,8 +2212,8 @@ STATIC void CourseConfirmMenuTask_8c0181b6(Task * task, void *state)
             menuState_8c1bc7a8.logo_timer_0x68++;
             if (menuState_8c1bc7a8.logo_timer_0x68 > 30) {
                 CHANGE_CONFIRM_STATE(COURSE_CONFIRM_STATE_START_LOADING);
-                FUN_8c010bae(0);
-                FUN_8c010bae(1);
+                startAdxFadeOut_8c010bae(0);
+                startAdxFadeOut_8c010bae(1);
                 push_fadeout_8c022b60(20);
             }
             // State 5 uses drawRouteInfo instead of epilogue rendering

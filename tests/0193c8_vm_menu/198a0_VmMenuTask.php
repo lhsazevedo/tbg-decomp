@@ -745,8 +745,8 @@ return new class extends TestCase {
         $this->shouldWriteLongTo('_var_selectedVm_8c1ba34c', -1);
         $this->shouldCall('_FUN_8c01895e');
         $this->shouldWriteMenuState(9);
-        $this->shouldCall('_FUN_8c010bae')->with(0);
-        $this->shouldCall('_FUN_8c010bae')->with(1);
+        $this->shouldCall('_startAdxFadeOut_8c010bae')->with(0);
+        $this->shouldCall('_startAdxFadeOut_8c010bae')->with(1);
         $this->shouldCall('_push_fadeout_8c022b60')->with(10);
 
         $this->shouldCall('_drawSprite_8c014f54')

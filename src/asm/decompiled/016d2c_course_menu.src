@@ -22,7 +22,7 @@
           .IMPORT     _var_menuTextboxCharLimit_8c225fb8
           .IMPORT     _var_tasks_8c1ba3c8
           .IMPORT     _pushTask_8c014ae8
-          .IMPORT     _FUN_8c010bae
+          .IMPORT     _startAdxFadeOut_8c010bae
           .IMPORT     _var_exp_8c1ba25c
           .IMPORT     _var_coursesToUnlock_8c225fd4
           .IMPORT     _var_8c1bb8b8
@@ -755,7 +755,7 @@ LP_GEN_21301:
           .DATA.L _swapMessageBoxFor_8c02aefc ; H'8C0171BC
           .DATA.L _init_courseMenuButtons_8c04442c ; H'8C0171C0
           .DATA.L H'10+_var_peripherals_8c1ba35c ; H'8C0171C4
-          .DATA.L _FUN_8c010bae ; H'8C0171C8
+          .DATA.L _startAdxFadeOut_8c010bae ; H'8C0171C8
           .DATA.L _var_midiHandles_8c0fcd28 ; H'8C0171CC
           .DATA.L _sdMidiPlay ; H'8C0171D0
 LAB_8c0171d4:
@@ -3041,7 +3041,7 @@ LP_GEN_82242:
           .DATA.L H'43EB8000 ; H'8C018374
           .DATA.L H'C0E00000 ; H'8C018378
           .DATA.L _init_8c03bd80 ; H'8C01837C
-          .DATA.L _FUN_8c010bae ; H'8C018380
+          .DATA.L _startAdxFadeOut_8c010bae ; H'8C018380
           .DATA.L _isFading_8c226568 ; H'8C018384
           .DATA.L _getUknPvmBool_8c01432a ; H'8C018388
           .DATA.L _AsqFreeQueues_11f7e ; H'8C01838C

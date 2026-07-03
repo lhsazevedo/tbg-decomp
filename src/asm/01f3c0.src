@@ -16,7 +16,7 @@
           .IMPORT     _TxtPrepareTextBoxLayout_8c01543a
           .IMPORT     _TxtDrawTextbox_8c0155e0
           .IMPORT     _init_8c03bd80
-          .IMPORT     _FUN_8c010bae
+          .IMPORT     _startAdxFadeOut_8c010bae
           .IMPORT     _isFading_8c226568
           .IMPORT     _snd_8c010cd6
           .IMPORT     _getUknPvmBool_8c01432a
@@ -503,7 +503,7 @@ LP_GEN_79838:
           .RES.W 1 ; H'8C01F71A
           .DATA.L _TxtDrawTextbox_8c0155e0 ; H'8C01F71C
           .DATA.L _init_8c03bd80 ; H'8C01F720
-          .DATA.L _FUN_8c010bae ; H'8C01F724
+          .DATA.L _startAdxFadeOut_8c010bae ; H'8C01F724
           .DATA.L _isFading_8c226568 ; H'8C01F728
           .DATA.L _snd_8c010cd6 ; H'8C01F72C
           .DATA.L _menuState_8c1bc7a8 ; H'8C01F730

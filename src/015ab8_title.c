@@ -368,8 +368,8 @@ void task_title_8c015ab8(Task* task, void *state) {
         case TITLE_STATE_0X0E_PRESS_START: {
             if (var_peripherals_8c1ba35c[0].press & PDD_DGT_ST) {
                 /* 8c015e20 */
-                FUN_8c010bae(0);
-                FUN_8c010bae(1);
+                startAdxFadeOut_8c010bae(0);
+                startAdxFadeOut_8c010bae(1);
 
                 sdMidiPlay(var_midiHandles_8c0fcd28[0], 1, 0, 0);
 
@@ -382,8 +382,8 @@ void task_title_8c015ab8(Task* task, void *state) {
                     /* 8c015e54 */
                     menuState_8c1bc7a8.state_0x18 = TITLE_STATE_0X11_TIME_OUT;
                     LOG_DEBUG(("[TITLE] State changed: 0X11_TIME_OUT\n"));
-                    FUN_8c010bae(0);
-                    FUN_8c010bae(1);
+                    startAdxFadeOut_8c010bae(0);
+                    startAdxFadeOut_8c010bae(1);
 
                     push_fadeout_8c022b60(60);
                 }

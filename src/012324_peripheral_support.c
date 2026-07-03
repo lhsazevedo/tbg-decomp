@@ -123,5 +123,5 @@ void PspTask_8c012324()
     }
 
     vmsLcd_8c01c910();
-    FUN_adxVol_8c010a40();
+    updateAdxVolFade_8c010a40();
 }

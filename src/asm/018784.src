@@ -41,7 +41,7 @@
           .IMPORT     _var_8c1ba350
           .IMPORT     _njMemCopy
           .IMPORT     _FUN_8c01b19c
-          .IMPORT     _FUN_8c010bae
+          .IMPORT     _startAdxFadeOut_8c010bae
           .IMPORT     _const_8c037ec8
           .IMPORT     _VmMenuUnmountVms_194de
           .IMPORT     _var_8c22606c
@@ -1519,7 +1519,7 @@ LP_GEN_73468:
           .DATA.L _njMemCopy ; H'8C01929C
           .DATA.L _FUN_8c01b19c ; H'8C0192A0
           .DATA.L _var_midiHandles_8c0fcd28 ; H'8C0192A4
-          .DATA.L _FUN_8c010bae ; H'8C0192A8
+          .DATA.L _startAdxFadeOut_8c010bae ; H'8C0192A8
           .DATA.L _push_fadeout_8c022b60 ; H'8C0192AC
           .DATA.L _const_8c037ec8 ; H'8C0192B0
           .DATA.L _menuTextboxText_8c02af1c ; H'8C0192B4

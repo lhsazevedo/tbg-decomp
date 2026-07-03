@@ -117,8 +117,8 @@ return new class extends TestCase {
 
         $this->shouldWriteLong($this->m(0x18), 6);
         $this->shouldCall('_sdMidiPlay')->with(0xbeef0000, 1, 1, 0);
-        $this->shouldCall('_FUN_8c010bae')->with(0);
-        $this->shouldCall('_FUN_8c010bae')->with(1);
+        $this->shouldCall('_startAdxFadeOut_8c010bae')->with(0);
+        $this->shouldCall('_startAdxFadeOut_8c010bae')->with(1);
         $this->shouldCall('_push_fadeout_8c022b60')->with(10);
         $this->shouldCall('_AlbumDrawGrid_8c01d290');
         $this->shouldWriteLong($this->m(0x38), 0);
@@ -247,8 +247,8 @@ return new class extends TestCase {
 
         $this->shouldWriteLong($this->m(0x18), 6);
         $this->shouldCall('_sdMidiPlay')->with(0xbeef0000, 1, 1, 0);
-        $this->shouldCall('_FUN_8c010bae')->with(0);
-        $this->shouldCall('_FUN_8c010bae')->with(1);
+        $this->shouldCall('_startAdxFadeOut_8c010bae')->with(0);
+        $this->shouldCall('_startAdxFadeOut_8c010bae')->with(1);
         $this->shouldCall('_push_fadeout_8c022b60')->with(10);
         $this->shouldCall('_drawSprite_8c014f54')->with($this->m(0x0c), 0xd, 0.0, 0.0, -2.0);
         $this->shouldCall('_AlbumDrawGrid_8c01d290');
@@ -464,7 +464,7 @@ return new class extends TestCase {
         $this->setSize('_snd_8c010cd6', 0x4);
         $this->setSize('_push_fadein_8c022a9c', 0x4);
         $this->setSize('_push_fadeout_8c022b60', 0x4);
-        $this->setSize('_FUN_8c010bae', 0x4);
+        $this->setSize('_startAdxFadeOut_8c010bae', 0x4);
         $this->setSize('_FUN_8c016182', 0x4);
         $this->setSize('_CourseMenuInterpolateCursor_8c016d2c', 0x4);
         $this->setSize('_CourseMenuFUN_8c017ef2', 0x4);

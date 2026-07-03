@@ -40,18 +40,23 @@ typedef struct {
     int nfile_0x04;
 } AdxfPartitionInfo;
 
+/* Per-channel full-volume targets, stored as 0..990 (actual ADX vol = value - 990). */
 typedef struct {
-    int field_0x00;
-    int field_0x04;
-} UnknownAdxVolStructA;
+    int vol0_0x00;
+    int vol1_0x04;
+} AdxVolTargets;
 
 typedef struct {
-    int flags_0x00;
-    int field_0x04;
-    int field_0x08;
-    int field_0x0c;
-    int field_0x10;
-} UnknownAdxVolStructB;
+    /* bit0: ch0 fade-out
+     * bit1: ch1 fade-out
+     * bit4: ch0 fade-in
+     * bit5: ch1 fade-in */
+    int fadeFlags_0x00;
+    int step0_0x04;
+    int step1_0x08;
+    int curVol0_0x0c;
+    int curVol1_0x10;
+} AdxFadeState;
 
 
 /* =====================
@@ -77,7 +82,7 @@ UnknownVolStructA var_uknVol_8c0fcd50;
 char var_work_8c0fcd74[WKSIZE * 2];
 char var_adxf_work_8c156efc[ADXF_CALC_PTINFO_SIZE(MAX_NFILES)];
 
-UnknownAdxVolStructB var_uknAdxVol_8c157a34;
+AdxFadeState var_adxFade_8c157a34;
 
 /* ===================
  * Initialized Globals
@@ -86,7 +91,7 @@ UnknownAdxVolStructB var_uknAdxVol_8c157a34;
 
 int init_8c03bd80 = 0; // Maybe soundIsPlaying or soundIsPlayingForAdx
 int init_8c03bd84 = 1; // Maybe soundIsPlayingForMidi
-UnknownAdxVolStructA init_uknAdxVol_8c03bd88 = {
+AdxVolTargets init_adxVolTargets_8c03bd88 = {
     990,
     990
 };
@@ -426,8 +431,8 @@ void controlAdxtWithOutVol_8c0107d2(Bool play)
         for (i = 0; i < 8; i++)
             sdMidiPause(var_midiHandles_8c0fcd28[i]);
     } else if (play == FALSE) {
-        ADXT_SetOutVol(var_adxtHandles_8c0fcd20[0], -990 + init_uknAdxVol_8c03bd88.field_0x00);
-        ADXT_SetOutVol(var_adxtHandles_8c0fcd20[1], -990 + init_uknAdxVol_8c03bd88.field_0x04);
+        ADXT_SetOutVol(var_adxtHandles_8c0fcd20[0], -990 + init_adxVolTargets_8c03bd88.vol0_0x00);
+        ADXT_SetOutVol(var_adxtHandles_8c0fcd20[1], -990 + init_adxVolTargets_8c03bd88.vol1_0x04);
 
         for (i = 0; i < 8; i++)
             sdMidiContinue(var_midiHandles_8c0fcd28[i]);
@@ -524,13 +529,13 @@ void setAdxVol_8c010972(int volNo, int handle) {
     switch (handle)
     {
         case 0: {
-            init_uknAdxVol_8c03bd88.field_0x00 = vols_from_8c0332b0[volNo];
-            ADXT_SetOutVol(var_adxtHandles_8c0fcd20[handle], init_uknAdxVol_8c03bd88.field_0x00 - 990);
+            init_adxVolTargets_8c03bd88.vol0_0x00 = vols_from_8c0332b0[volNo];
+            ADXT_SetOutVol(var_adxtHandles_8c0fcd20[handle], init_adxVolTargets_8c03bd88.vol0_0x00 - 990);
             break;
         }
         case 1: {
-            init_uknAdxVol_8c03bd88.field_0x04 = vols_from_8c0332b0[volNo];
-            ADXT_SetOutVol(var_adxtHandles_8c0fcd20[handle], init_uknAdxVol_8c03bd88.field_0x04 - 990);
+            init_adxVolTargets_8c03bd88.vol1_0x04 = vols_from_8c0332b0[volNo];
+            ADXT_SetOutVol(var_adxtHandles_8c0fcd20[handle], init_adxVolTargets_8c03bd88.vol1_0x04 - 990);
             break;
         }
     }
@@ -562,121 +567,121 @@ void setMidiVolAndInitStruct_8c0109f4(int param1) {
 }
 
 /* Tested */
-void FUN_adxVol_8c010a40() {
+void updateAdxVolFade_8c010a40() {
     /* 8c010a56 */
-    if ((var_uknAdxVol_8c157a34.flags_0x00 & 0xf) != 0)
+    if ((var_adxFade_8c157a34.fadeFlags_0x00 & 0xf) != 0)
     {
         /* 8c010a5c */
-        if ((var_uknAdxVol_8c157a34.flags_0x00 & 1) == 1)
+        if ((var_adxFade_8c157a34.fadeFlags_0x00 & 1) == 1)
         {
             /* A */
-            var_uknAdxVol_8c157a34.field_0x0c -= var_uknAdxVol_8c157a34.field_0x04;
-            ADXT_SetOutVol(var_adxtHandles_8c0fcd20[0], var_uknAdxVol_8c157a34.field_0x0c);
+            var_adxFade_8c157a34.curVol0_0x0c -= var_adxFade_8c157a34.step0_0x04;
+            ADXT_SetOutVol(var_adxtHandles_8c0fcd20[0], var_adxFade_8c157a34.curVol0_0x0c);
         }
 
         /* 8c010a70 */
-        if ((var_uknAdxVol_8c157a34.flags_0x00 & 2) == 2)
+        if ((var_adxFade_8c157a34.fadeFlags_0x00 & 2) == 2)
         {
             /* B */
-            var_uknAdxVol_8c157a34.field_0x10 -= var_uknAdxVol_8c157a34.field_0x08;
-            ADXT_SetOutVol(var_adxtHandles_8c0fcd20[1], var_uknAdxVol_8c157a34.field_0x10);
+            var_adxFade_8c157a34.curVol1_0x10 -= var_adxFade_8c157a34.step1_0x08;
+            ADXT_SetOutVol(var_adxtHandles_8c0fcd20[1], var_adxFade_8c157a34.curVol1_0x10);
         }
 
         /* 8c010a86 */
         if (
-            (var_uknAdxVol_8c157a34.field_0x0c < -300)
-            && (var_uknAdxVol_8c157a34.flags_0x00 & 1) == 1
+            (var_adxFade_8c157a34.curVol0_0x0c < -300)
+            && (var_adxFade_8c157a34.fadeFlags_0x00 & 1) == 1
         ) 
         {
             /* C */
             ADXT_Stop(var_adxtHandles_8c0fcd20[0]);
-            ADXT_SetOutVol(var_adxtHandles_8c0fcd20[0], init_uknAdxVol_8c03bd88.field_0x00 - 990);
+            ADXT_SetOutVol(var_adxtHandles_8c0fcd20[0], init_adxVolTargets_8c03bd88.vol0_0x00 - 990);
 
-            var_uknAdxVol_8c157a34.flags_0x00 &= ~1;
+            var_adxFade_8c157a34.fadeFlags_0x00 &= ~1;
             init_8c03bd80 &= ~1;
         }
 
         /* 8c010abe */
         if (
-            (var_uknAdxVol_8c157a34.field_0x10 < -300)
-            && (var_uknAdxVol_8c157a34.flags_0x00 & 2) == 2
+            (var_adxFade_8c157a34.curVol1_0x10 < -300)
+            && (var_adxFade_8c157a34.fadeFlags_0x00 & 2) == 2
         )
         {
             /* D */
             ADXT_Stop(var_adxtHandles_8c0fcd20[1]);
-            ADXT_SetOutVol(var_adxtHandles_8c0fcd20[1], init_uknAdxVol_8c03bd88.field_0x04 - 990);
-            var_uknAdxVol_8c157a34.flags_0x00 &= ~2;
+            ADXT_SetOutVol(var_adxtHandles_8c0fcd20[1], init_adxVolTargets_8c03bd88.vol1_0x04 - 990);
+            var_adxFade_8c157a34.fadeFlags_0x00 &= ~2;
             init_8c03bd80 &= ~(1 << 4);
         }
     }
     else
     {
         /* 8c010b38 */
-        if ((var_uknAdxVol_8c157a34.flags_0x00 & 0xf0) != 0) {
-            if ((var_uknAdxVol_8c157a34.flags_0x00 & 0x10) == 0x10) {
+        if ((var_adxFade_8c157a34.fadeFlags_0x00 & 0xf0) != 0) {
+            if ((var_adxFade_8c157a34.fadeFlags_0x00 & 0x10) == 0x10) {
                 /* E */
-                var_uknAdxVol_8c157a34.field_0x0c += var_uknAdxVol_8c157a34.field_0x04;
-                ADXT_SetOutVol(var_adxtHandles_8c0fcd20[0], var_uknAdxVol_8c157a34.field_0x0c);
+                var_adxFade_8c157a34.curVol0_0x0c += var_adxFade_8c157a34.step0_0x04;
+                ADXT_SetOutVol(var_adxtHandles_8c0fcd20[0], var_adxFade_8c157a34.curVol0_0x0c);
             }
 
             /* 8c010b4e */
-            if ((var_uknAdxVol_8c157a34.flags_0x00 & 0x20) == 0x20) {
+            if ((var_adxFade_8c157a34.fadeFlags_0x00 & 0x20) == 0x20) {
                 /* F */
-                var_uknAdxVol_8c157a34.field_0x10 += var_uknAdxVol_8c157a34.field_0x08;
-                ADXT_SetOutVol(var_adxtHandles_8c0fcd20[1], var_uknAdxVol_8c157a34.field_0x10);
+                var_adxFade_8c157a34.curVol1_0x10 += var_adxFade_8c157a34.step1_0x08;
+                ADXT_SetOutVol(var_adxtHandles_8c0fcd20[1], var_adxFade_8c157a34.curVol1_0x10);
             }
 
             /* 8c010b64 */
             if (
-                (var_uknAdxVol_8c157a34.field_0x0c > init_uknAdxVol_8c03bd88.field_0x00)
-                && ((var_uknAdxVol_8c157a34.flags_0x00 & 0x10) == 0x10)
+                (var_adxFade_8c157a34.curVol0_0x0c > init_adxVolTargets_8c03bd88.vol0_0x00)
+                && ((var_adxFade_8c157a34.fadeFlags_0x00 & 0x10) == 0x10)
             ) {
                 /* G */
-                ADXT_SetOutVol(var_adxtHandles_8c0fcd20[0], init_uknAdxVol_8c03bd88.field_0x00);
-                var_uknAdxVol_8c157a34.flags_0x00 &= 0xffffffef;
+                ADXT_SetOutVol(var_adxtHandles_8c0fcd20[0], init_adxVolTargets_8c03bd88.vol0_0x00);
+                var_adxFade_8c157a34.fadeFlags_0x00 &= 0xffffffef;
             }
 
             /* 8c010b82 */
             if (
-                (var_uknAdxVol_8c157a34.field_0x10 > init_uknAdxVol_8c03bd88.field_0x04)
-                && ((var_uknAdxVol_8c157a34.flags_0x00 & 0x20) == 0x20)
+                (var_adxFade_8c157a34.curVol1_0x10 > init_adxVolTargets_8c03bd88.vol1_0x04)
+                && ((var_adxFade_8c157a34.fadeFlags_0x00 & 0x20) == 0x20)
             ) {
                 /* H */
-                ADXT_SetOutVol(var_adxtHandles_8c0fcd20[1], init_uknAdxVol_8c03bd88.field_0x04);
-                var_uknAdxVol_8c157a34.flags_0x00 &= 0xffffffdf;
+                ADXT_SetOutVol(var_adxtHandles_8c0fcd20[1], init_adxVolTargets_8c03bd88.vol1_0x04);
+                var_adxFade_8c157a34.fadeFlags_0x00 &= 0xffffffdf;
             }
         }
     }
 }
 
 /* Tested */
-void FUN_8c010bae(int param1) {
-    if ((var_uknAdxVol_8c157a34.flags_0x00 & 0xf0) == 0) {
+void startAdxFadeOut_8c010bae(int param1) {
+    if ((var_adxFade_8c157a34.fadeFlags_0x00 & 0xf0) == 0) {
         /* 8c010bba */
-        if (param1 == 0 && (var_uknAdxVol_8c157a34.flags_0x00 & 0xf) != 1) {
+        if (param1 == 0 && (var_adxFade_8c157a34.fadeFlags_0x00 & 0xf) != 1) {
             /* A */
-            var_uknAdxVol_8c157a34.flags_0x00 |= 1;
-            var_uknAdxVol_8c157a34.field_0x04 = (init_uknAdxVol_8c03bd88.field_0x00 - 300) / 90;
-            var_uknAdxVol_8c157a34.field_0x0c = init_uknAdxVol_8c03bd88.field_0x00 - 990;
+            var_adxFade_8c157a34.fadeFlags_0x00 |= 1;
+            var_adxFade_8c157a34.step0_0x04 = (init_adxVolTargets_8c03bd88.vol0_0x00 - 300) / 90;
+            var_adxFade_8c157a34.curVol0_0x0c = init_adxVolTargets_8c03bd88.vol0_0x00 - 990;
         }
-        if (param1 == 1 && (var_uknAdxVol_8c157a34.flags_0x00 & 0xf) != 2) {
+        if (param1 == 1 && (var_adxFade_8c157a34.fadeFlags_0x00 & 0xf) != 2) {
             /* B */
-            var_uknAdxVol_8c157a34.flags_0x00 |= 2;
-            var_uknAdxVol_8c157a34.field_0x08 = (init_uknAdxVol_8c03bd88.field_0x04 - 300) / 90;
-            var_uknAdxVol_8c157a34.field_0x10 = init_uknAdxVol_8c03bd88.field_0x04 - 990;
+            var_adxFade_8c157a34.fadeFlags_0x00 |= 2;
+            var_adxFade_8c157a34.step1_0x08 = (init_adxVolTargets_8c03bd88.vol1_0x04 - 300) / 90;
+            var_adxFade_8c157a34.curVol1_0x10 = init_adxVolTargets_8c03bd88.vol1_0x04 - 990;
         }
     }
 }
 
 /* Tested */
-void FUN_8c010c2c(Bool param1) {
-    if ((var_uknAdxVol_8c157a34.flags_0x00 & 0xf) == 0
+void startAdxCh1FadeIn_8c010c2c(Bool param1) {
+    if ((var_adxFade_8c157a34.fadeFlags_0x00 & 0xf) == 0
         && param1 == 1
-        && (var_uknAdxVol_8c157a34.flags_0x00 & 0xf0) != 0x20)
+        && (var_adxFade_8c157a34.fadeFlags_0x00 & 0xf0) != 0x20)
     {
-        var_uknAdxVol_8c157a34.flags_0x00 |= 0x20; 
-        var_uknAdxVol_8c157a34.field_0x08 = init_uknAdxVol_8c03bd88.field_0x04 / 90;
-        var_uknAdxVol_8c157a34.field_0x10 = -990;
+        var_adxFade_8c157a34.fadeFlags_0x00 |= 0x20; 
+        var_adxFade_8c157a34.step1_0x08 = init_adxVolTargets_8c03bd88.vol1_0x04 / 90;
+        var_adxFade_8c157a34.curVol1_0x10 = -990;
         init_8c03bd80 &= 0xffffffef;
     }
 }
@@ -742,13 +747,13 @@ int snd_8c010cd6(int p1, int p2) {
 /* Matched */
 void FUN_8c010d8a() {
     ADXT_Stop(var_adxtHandles_8c0fcd20[0]);
-    ADXT_SetOutVol(var_adxtHandles_8c0fcd20[0], init_uknAdxVol_8c03bd88.field_0x00 - 990);
-    var_uknAdxVol_8c157a34.flags_0x00 &= 0xfffffffe;
+    ADXT_SetOutVol(var_adxtHandles_8c0fcd20[0], init_adxVolTargets_8c03bd88.vol0_0x00 - 990);
+    var_adxFade_8c157a34.fadeFlags_0x00 &= 0xfffffffe;
     init_8c03bd80 &= 0xfffffffe;
 
     ADXT_Stop(var_adxtHandles_8c0fcd20[0]);
-    ADXT_SetOutVol(var_adxtHandles_8c0fcd20[0], init_uknAdxVol_8c03bd88.field_0x00 - 990);
-    var_uknAdxVol_8c157a34.flags_0x00 &= 0xfffffffe;
+    ADXT_SetOutVol(var_adxtHandles_8c0fcd20[0], init_adxVolTargets_8c03bd88.vol0_0x00 - 990);
+    var_adxFade_8c157a34.fadeFlags_0x00 &= 0xfffffffe;
     init_8c03bd80 &= 0xfffffffe;
 }
 
@@ -759,7 +764,7 @@ void unusedStopMidiAdx_8c010de6() {
     ADXT_Stop(var_adxtHandles_8c0fcd20[1]);
     init_8c03bd80 = 0;
     init_8c03bd84 = 1;
-    memset(&var_uknAdxVol_8c157a34, 0, sizeof(UnknownAdxVolStructB));
+    memset(&var_adxFade_8c157a34, 0, sizeof(AdxFadeState));
     initUknVol_8c0100bc();
 }
 
@@ -768,7 +773,7 @@ void initSoundMidiAdx_8c010e18(char *dirname) {
     init_8c03bd80 = 0;
     init_8c03bd84 = 1;
     gdFsChangeDir(dirname);
-    memset(&var_uknAdxVol_8c157a34, 0, sizeof(UnknownAdxVolStructB));
+    memset(&var_adxFade_8c157a34, 0, sizeof(AdxFadeState));
     initUknVol_8c0100bc();
     init_8c03bd80 |= 0x11;
     soundInit_8c01065e();
