@@ -178,3 +178,18 @@ void FUN_8c013d78(void)
     syncRouteModelAssets_8c013c34(var_8c18adb0);
     AsqProcessQueues_11fe0(AsqNop_11120, 0, 0, 0, finishAssetLoad_8c013d42);
 }
+
+/* Release every loaded route-model asset: free its texlist and njd, then
+ * mark the slot unloaded. */
+void FUN_8c013dae(void)
+{
+    RouteModelAsset *slot;
+
+    for (slot = var_8c1bbddc; slot < &var_8c1bbddc[0x20]; slot++) {
+        if (slot->texlist_0x08 != (NJS_TEXLIST *) -1) {
+            AsqReleaseAndFreeTexlist_11e3c(slot->texlist_0x08);
+            syFree(slot->nj_0x0c);
+            slot->texlist_0x08 = (NJS_TEXLIST *) -1;
+        }
+    }
+}
