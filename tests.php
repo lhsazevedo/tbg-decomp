@@ -221,6 +221,17 @@ return [
                 "build/output/016bf4_demo_input_src.obj",
                 "build/output/016bf4_demo_input_c.obj",
             ]
+        ],
+        [
+            "tests" => [
+                "tests/01d290_album/1d290_AlbumDrawGrid.php",
+                "tests/01d290_album/1d300_AlbumMenuTask.php",
+                "tests/01d290_album/1d6e2_AlbumSwitchFromTask.php",
+            ],
+            "objects" => [
+                "build/output/01d290_album_src.obj",
+                "build/output/01d290_album_c.obj",
+            ]
         ]
     ],
 ];

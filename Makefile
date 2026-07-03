@@ -39,7 +39,7 @@ SRCS = \
 	src/asm/01b19c.src \
 	src/asm/01bb48.src \
 	src/asm/01c980.src \
-	src/asm/01d290.src \
+	src/01d290_album.c \
 	src/asm/01d7fc.src \
 	src/asm/01e27c.src \
 	src/asm/01f3c0.src \
@@ -81,12 +81,12 @@ SRCS = \
 	src/asm/02e51c.src \
 	src/asm/02f0c8.src \
 	src/asm/02f320.src \
+	src/scif.c \
+	src/serial_debug.c \
 	src/asm/0332a4_sectionC.src \
 	src/asm/03bd80_sectionD.src \
 	src/asm/0fcd20_sectionB.src \
 	src/02fb50_sh4nlfzn_post_data.c \
-	src/scif.c \
-	src/serial_debug.c
 
 OBJS = $(patsubst src/%.c,$(OUTPUT_DIR)/src/%.obj,$(SRCS))
 OBJS := $(patsubst src/asm/%.src,$(OUTPUT_DIR)/src/asm/%.obj,$(OBJS))

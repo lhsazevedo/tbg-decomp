@@ -2,7 +2,7 @@ set -e
 
 sh4objtest=sh4objtest
 
-ASMSH_FLAGS="-define=UNIT_TESTING=1 -debug=d -cpu=sh4 -endian=little -sjis"
+ASMSH_FLAGS="-define=UNIT_TESTING=1 -debug -cpu=sh4 -endian=little -sjis"
 
 assemble() {
   local src_file="$1"
@@ -21,7 +21,7 @@ compile() {
   wibo "$SHC_BIN/shc.exe" $(echo "$src_file" | tr / '\\') -object="$obj_file" -sub=build/shc_testing.sub 
 
   # Generate ASM file, useful for debugging.
-  # wibo "$SHC_BIN/shc.exe" $(echo "$src_file" | tr / '\\') -code=asm -object="$asm_file" -sub=build/shc_testing.sub 
+  wibo "$SHC_BIN/shc.exe" $(echo "$src_file" | tr / '\\') -code=asm -object="$asm_file" -sub=build/shc_testing.sub 
 }
 
 rm -rf build/output build/tmp
@@ -82,5 +82,9 @@ compile  src/012504_input.c
 # 016bf4_demo_input
 assemble  src/asm/decompiled/016bf4_demo_input.src
 compile  src/016bf4_demo_input.c
+
+# 01d290_album
+assemble  src/asm/decompiled/01d290_album.src
+compile  src/01d290_album.c
 
 $sh4objtest suite -s tests.php "$@"

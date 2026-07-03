@@ -632,9 +632,9 @@
           .EXPORT     _init_8c0450d8 ; 01c980.src
           .EXPORT     _init_8c045148 ; 01c980.src
 
-          ; 01d290
-          .EXPORT     _init_8c045160 ; 01d290.src
-          .EXPORT     _init_8c045170 ; 01d290.src
+          ; 01d290_album
+          .EXPORT     _albumResourceGroup_8c045160 ; 01d290_album.src
+          .EXPORT     _init_8c045170 ; 01d290_album.src
 
           ; 01d7fc
           .EXPORT     _init_8c0451a0 ; 01d7fc.src
@@ -992,7 +992,7 @@ _init_8c045148:        ; from defines
           .DATA.L      _init_8c045118
           .DATA.L      _init_8c045128
           .DATA.L      _init_8c045138
-_init_8c045160:        ; from defines
+_albumResourceGroup_8c045160:        ; from defines
           .DATA.L      _const_8c0387d4 ; ukn
           .DATA.L      _const_8c0387e4 ; ukn
           .DATA.L      _const_8c0387f0 ; ukn

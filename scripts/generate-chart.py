@@ -12,6 +12,7 @@ dates = [
   datetime(2025, 12, 28),  # was Dec 27, actual commit is Dec 28
   datetime(2026, 5, 23),
   datetime(2026, 5, 24),
+  datetime(2026, 7, 1),
 ]
 
 decompiled_code = [
@@ -25,10 +26,12 @@ decompiled_code = [
   14.3,
   15.2,
   18.0,
+  18.9,
 ]
 matched_code = [
   0.0,
   0.0,   # same
+  1.0,
   1.0,
   1.0,
   1.0,

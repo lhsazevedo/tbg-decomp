@@ -220,7 +220,7 @@ extern void CourseMenuConfirmInit_8c0184cc(Task *task);
 extern void FUN_8c01f114(Task *task);
 extern void FUN_8c01ba64(Task *task);
 extern void FUN_8c01d1c4(Task *task);
-extern void FUN_8c01d6e2(Task *task);
+extern void AlbumSwitchFromTask_8c01d6e2(Task *task);
 extern void* const_8c03628c;
 extern SDMIDI var_midiHandles_8c0fcd28[7];
 extern PlayerProgress var_progress_8c1ba1cc;
@@ -320,7 +320,7 @@ STATIC CourseMenuButton init_courseMenuButtons_8c04442c[15] = {
         /* unlocked */ 1,
         /* x, y     */ 109.0f, 182.0f,
         /* spriteNo */ 0,
-        /* onSelect */ FUN_8c01d6e2,
+        /* onSelect */ AlbumSwitchFromTask_8c01d6e2,
         /* courseId */ 0,
     },
     {   /* [7] */

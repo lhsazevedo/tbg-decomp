@@ -182,7 +182,7 @@
           .EXPORT     _njUserExit_8c0139d4
           .EXPORT     _init_texlist_8c03bf44
           .EXPORT     _init_8c03bf4c
-          .EXPORT     _var_tex_8c157af8 ; 013ae8.src, 014934.c, 015ab8_title.c, 015ab8_title.src, 016d2c_course_menu.c, 016d2c_course_menu.src, 019e98_main_menu.c, 01c980.src, 01d290.src, 01d7fc.src, 01e27c.src, 01f3c0.src
+          .EXPORT     _var_tex_8c157af8 ; 013ae8.src, 014934.c, 015ab8_title.c, 015ab8_title.src, 016d2c_course_menu.c, 016d2c_course_menu.src, 019e98_main_menu.c, 01c980.src, 01d290_album.src, 01d7fc.src, 01e27c.src, 01f3c0.src
           .EXPORT     _var_8c18ad04 ; 0129cc.src
           .EXPORT     _var_8c18ad08 ; 0129cc.src
           .EXPORT     _var_8c18ad0c ; 0129cc.src

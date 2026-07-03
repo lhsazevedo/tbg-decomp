@@ -23,17 +23,17 @@
           .IMPORT     _njGarbageTexture
           .IMPORT     _AsqInitQueues_11f36
           .IMPORT     _AsqResetQueues_11f6c
-          .IMPORT     _init_8c045160
+          .IMPORT     _albumResourceGroup_8c045160
           .IMPORT     _CourseMenuRequestSysResgrp_8c018568
           .IMPORT     _setUknPvmBool_8c014330
           .IMPORT     _resetUknPvmBool_8c014322
           .IMPORT     _AsqNop_11120
           .IMPORT     _AsqProcessQueues_11fe0
-          .EXPORT     _FUN_8c01d290
-          .EXPORT     _FUN_8c01d300
-          .EXPORT     _FUN_8c01d6e2
+          .EXPORT     _AlbumDrawGrid_8c01d290
+          .EXPORT     _AlbumMenuTask_8c01d300
+          .EXPORT     _AlbumSwitchFromTask_8c01d6e2
           .SECTION     P, CODE, ALIGN=4
-_FUN_8c01d290:
+_AlbumDrawGrid_8c01d290:
           MOV.L       R14,@-R15
           MOV.L       R13,@-R15
           MOV.L       R12,@-R15
@@ -93,7 +93,7 @@ LAB_8c01d2ec:
           MOV.L       @R15+,R13
           RTS
           MOV.L       @R15+,R14
-_FUN_8c01d300:
+_AlbumMenuTask_8c01d300:
           MOV.L       R14,@-R15
           MOV.L       R13,@-R15
           MOV.L       R12,@-R15
@@ -607,7 +607,7 @@ LAB_8c01d68e:
           JMP         @R2
           MOV.L       @R15+,R14
 LAB_8c01d6c6:
-          BSR         _FUN_8c01d290
+          BSR         _AlbumDrawGrid_8c01d290
           NOP
           MOV.L       R14,@(H'38,R13)
 LAB_8c01d6cc:
@@ -622,7 +622,7 @@ LAB_8c01d6cc:
           MOV.L       @R15+,R13
           RTS
           MOV.L       @R15+,R14
-_FUN_8c01d6e2:
+_AlbumSwitchFromTask_8c01d6e2:
           MOV.L       R14,@-R15
           MOV.L       R13,@-R15
           MOV.L       R12,@-R15
@@ -683,7 +683,7 @@ LP_GEN_43132:
           .DATA.L _init_8c03bd80 ; H'8C01D75C
           .DATA.L _FUN_8c016182 ; H'8C01D760
           .DATA.L _CourseMenuFUN_8c017ef2 ; H'8C01D764
-          .DATA.L _FUN_8c01d300 ; H'8C01D768
+          .DATA.L _AlbumMenuTask_8c01d300 ; H'8C01D768
           .DATA.L _setTaskAction_8c014b3e ; H'8C01D76C
           .DATA.L _menuState_8c1bc7a8 ; H'8C01D770
           .DATA.L _init_8c045170 ; H'8C01D774
@@ -738,7 +738,7 @@ LP_GEN_20271:
           .DATA.L _njGarbageTexture ; H'8C01D7D8
           .DATA.L _AsqInitQueues_11f36 ; H'8C01D7DC
           .DATA.L _AsqResetQueues_11f6c ; H'8C01D7E0
-          .DATA.L _init_8c045160 ; H'8C01D7E4
+          .DATA.L _albumResourceGroup_8c045160 ; H'8C01D7E4
           .DATA.L _CourseMenuRequestSysResgrp_8c018568 ; H'8C01D7E8
           .DATA.L _setUknPvmBool_8c014330 ; H'8C01D7EC
           .DATA.L _resetUknPvmBool_8c014322 ; H'8C01D7F0

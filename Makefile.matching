@@ -40,7 +40,7 @@ SRCS = \
 	src/asm/01b19c.src \
 	src/asm/01bb48.src \
 	src/asm/01c980.src \
-	src/asm/01d290.src \
+	src/asm/decompiled/01d290_album.src \
 	src/asm/01d7fc.src \
 	src/asm/01e27c.src \
 	src/asm/01f3c0.src \
