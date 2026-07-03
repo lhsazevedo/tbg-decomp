@@ -239,6 +239,7 @@ return [
                 "tests/013ae8/13b5a_freeVehicleAssets.php",
                 "tests/013ae8/13bbc_clearUnknownArray.php",
                 "tests/013ae8/13c34_syncRouteModelAssets.php",
+                "tests/013ae8/13d42_finishAssetLoad.php",
             ],
             "objects" => [
                 "build/output/013ae8_src.obj",

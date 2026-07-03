@@ -67,7 +67,7 @@
           .EXPORT     _freeVehicleAssets_8c013b5a
           .EXPORT     _clearUnknownArray_8c013bbc
           .EXPORT     _syncRouteModelAssets_8c013c34
-          .EXPORT     _FUN_8c013d42
+          .EXPORT     _finishAssetLoad_8c013d42
           .EXPORT     _FUN_8c013d78
           .EXPORT     _FUN_8c013dae
           .EXPORT     _FUN_8c013df6
@@ -398,7 +398,7 @@ LAB_8c013d1c:
           MOV.L       @R15+,R13
           RTS
           MOV.L       @R15+,R14
-_FUN_8c013d42:
+_finishAssetLoad_8c013d42:
           STS.L       PR,@-R15
           BSR         _setUknPvmBool_8c014330
           NOP
@@ -563,7 +563,7 @@ LP_GEN_38230:
           .DATA.L _AsqInitQueues_11f36
           .DATA.L _AsqResetQueues_11f6c
           .DATA.L _var_8c18adb0
-          .DATA.L _FUN_8c013d42
+          .DATA.L _finishAssetLoad_8c013d42
           .DATA.L _AsqNop_11120
           .DATA.L _AsqProcessQueues_11fe0
           .DATA.L _var_8c1bbddc

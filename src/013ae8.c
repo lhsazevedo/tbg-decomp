@@ -61,6 +61,14 @@ NjPvmPairFilenames init_routeModelFilenames_8c043d64[] = {
     { "", "" },
 };
 
+/* ======================
+ * Forward Declarations
+ * ======================
+ */
+
+/* pvm-ready flag helpers, still asm later in this TU */
+void setUknPvmBool_8c014330(void);
+
 /* ==========
  * Functions
  * ==========
@@ -146,4 +154,12 @@ void syncRouteModelAssets_8c013c34(char *models)
             var_8c1bbddc[i].texlist_0x08 = (NJS_TEXLIST *) -1;
         }
     }
+}
+
+/* afterTexlist callback for an asset-load pass: mark pvm assets ready,
+ * then release the request queues. */
+void finishAssetLoad_8c013d42(void)
+{
+    setUknPvmBool_8c014330();
+    AsqFreeQueues_11f7e();
 }
