@@ -232,6 +232,15 @@ return [
                 "build/output/01d290_album_src.obj",
                 "build/output/01d290_album_c.obj",
             ]
+        ],
+        [
+            "tests" => [
+                "tests/013ae8/13ae8_requestSomeFiles.php",
+            ],
+            "objects" => [
+                "build/output/013ae8_src.obj",
+                "build/output/013ae8_c.obj",
+            ]
         ]
     ],
 ];

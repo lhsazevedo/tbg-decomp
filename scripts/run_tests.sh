@@ -87,4 +87,8 @@ compile  src/016bf4_demo_input.c
 assemble  src/asm/decompiled/01d290_album.src
 compile  src/01d290_album.c
 
+# 013ae8
+assemble  src/asm/decompiled/013ae8.src
+compile  src/013ae8.c
+
 $sh4objtest suite -s tests.php "$@"
