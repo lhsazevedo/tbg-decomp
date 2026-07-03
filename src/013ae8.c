@@ -2,6 +2,19 @@
 #include "011120_asset_queues.h"
 #include "serial_debug.h"
 
+/* ====================
+ * Type Declarations
+ * ====================
+ */
+
+/* One entry of the 0x20-slot route-model asset table (var_8c1bbddc). */
+typedef struct {
+    int requested_0x00;         /* model is in the current request list */
+    int needsLoad_0x04;         /* request its files this pass */
+    NJS_TEXLIST *texlist_0x08;  /* loaded pvm texlist, -1 when unloaded */
+    void *nj_0x0c;              /* loaded njd data */
+} RouteModelAsset;
+
 /* ==========================
  * Non-initialized Globals
  * ==========================
@@ -9,6 +22,15 @@
 
 /* basedir path buffer, filled at runtime */
 char var_basedir_8c18ad6c[0x20];
+
+/* Selects the alternate filename table (init_8c043ecc) when == 2. */
+int var_8c18ad20;
+
+extern RouteModelAsset var_8c1bbddc[0x20];
+
+/* njd/pvm filename tables, one nj+pvm pointer pair per model. */
+extern char *init_8c043dc4[];
+extern char *init_8c043ecc[];
 
 extern void *var_frontNj_8c1bc434;
 extern NJS_TEXLIST *var_frontTexlist_8c1bc430;
@@ -84,5 +106,44 @@ void clearUnknownArray_8c013bbc(void *array, int count)
     for (p = (char *) array + (count - 1) * 0x10; p >= (char *) array; p -= 0x10) {
         /* TODO: likely a struct; type it and drop the raw +8 */
         *(Sint32 *)(p + 8) = -1;
+    }
+}
+
+/* Reconcile loaded route-model assets with a -1-terminated list of model
+ * indices: request files for newly-wanted models, free the ones dropped. */
+void syncRouteModelAssets_8c013c34(char *models)
+{
+    RouteModelAsset *slot;
+    char **names;
+    int i;
+
+    for (slot = var_8c1bbddc; slot < &var_8c1bbddc[0x20]; slot++) {
+        slot->requested_0x00 = 0;
+        slot->needsLoad_0x04 = 0;
+    }
+
+    while ((i = *models) != -1) {
+        var_8c1bbddc[i].requested_0x00 = 1;
+        models++;
+        if (var_8c1bbddc[i].texlist_0x08 == (NJS_TEXLIST *) -1) {
+            var_8c1bbddc[i].needsLoad_0x04 = 1;
+        }
+    }
+
+    for (i = 0; i < 0x20; i++) {
+        if (var_8c1bbddc[i].needsLoad_0x04 != 0) {
+            if (var_8c18ad20 == 2) {
+                AsqRequestNj_11492(var_basedir_8c18ad6c, init_8c043ecc[i * 2], 0, &var_8c1bbddc[i].nj_0x0c);
+                names = init_8c043ecc;
+            } else {
+                AsqRequestNj_11492(var_basedir_8c18ad6c, init_8c043dc4[i * 2], 0, &var_8c1bbddc[i].nj_0x0c);
+                names = init_8c043dc4;
+            }
+            AsqRequestPvm_11ac0(var_basedir_8c18ad6c, names[i * 2 + 1], &var_8c1bbddc[i].texlist_0x08, 0x60, 0);
+        } else if (var_8c1bbddc[i].requested_0x00 == 0 && var_8c1bbddc[i].texlist_0x08 != (NJS_TEXLIST *) -1) {
+            AsqReleaseAndFreeTexlist_11e3c(var_8c1bbddc[i].texlist_0x08);
+            syFree(var_8c1bbddc[i].nj_0x0c);
+            var_8c1bbddc[i].texlist_0x08 = (NJS_TEXLIST *) -1;
+        }
     }
 }

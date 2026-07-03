@@ -66,7 +66,7 @@
           .EXPORT     _requestVehicleAssets_8c013ae8
           .EXPORT     _freeVehicleAssets_8c013b5a
           .EXPORT     _clearUnknownArray_8c013bbc
-          .EXPORT     _FUN_8c013c34
+          .EXPORT     _syncRouteModelAssets_8c013c34
           .EXPORT     _FUN_8c013d42
           .EXPORT     _FUN_8c013d78
           .EXPORT     _FUN_8c013dae
@@ -254,7 +254,7 @@ LP_GEN_83755:
 
           ; UNIT BOUNDARY?
 
-_FUN_8c013c34:
+_syncRouteModelAssets_8c013c34:
           MOV.L       R14,@-R15
           MOV.L       R13,@-R15
           MOV.L       R12,@-R15
@@ -433,7 +433,7 @@ _FUN_8c013d78:
           BSR         _resetUknPvmBool_8c014322
           NOP
           MOV.L       LP_GEN_38230+14,R2
-          BSR         _FUN_8c013c34
+          BSR         _syncRouteModelAssets_8c013c34
           MOV.L       @R2,R4
           MOV.L       LP_GEN_38230+18,R1
           MOV         #H'0,R7
@@ -746,7 +746,7 @@ LAB_8c013fee:
           BT          LAB_8c014010
           MOV.L       @(H'10,R14),R3
           MOV.L       R3,@R4
-          BSR         _FUN_8c013c34
+          BSR         _syncRouteModelAssets_8c013c34
           MOV.L       @(H'10,R14),R4
           BRA         LAB_8c014010
           NOP
@@ -758,7 +758,7 @@ LAB_8c014000:
           MOV.L       R3,@R4
 LAB_8c01400a:
           MOV.L       LP_GEN_25668+48,R4
-          BSR         _FUN_8c013c34
+          BSR         _syncRouteModelAssets_8c013c34
           NOP
 LAB_8c014010:
           MOV.L       @(H'18,R14),R3
