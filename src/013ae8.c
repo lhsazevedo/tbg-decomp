@@ -26,6 +26,9 @@ char var_basedir_8c18ad6c[0x20];
 /* Selects the alternate filename table (init_8c043ecc) when == 2. */
 int var_8c18ad20;
 
+/* -1-terminated list of route-model indices to keep loaded */
+char *var_8c18adb0;
+
 extern RouteModelAsset var_8c1bbddc[0x20];
 
 /* njd/pvm filename tables, one nj+pvm pointer pair per model. */
@@ -68,6 +71,7 @@ NjPvmPairFilenames init_routeModelFilenames_8c043d64[] = {
 
 /* pvm-ready flag helpers, still asm later in this TU */
 void setUknPvmBool_8c014330(void);
+void resetUknPvmBool_8c014322(void);
 
 /* ==========
  * Functions
@@ -162,4 +166,15 @@ void finishAssetLoad_8c013d42(void)
 {
     setUknPvmBool_8c014330();
     AsqFreeQueues_11f7e();
+}
+
+/* (Re)initialize the asset queues and kick off one load pass for the
+ * currently-wanted route models. finishAssetLoad runs once the texlists land. */
+void FUN_8c013d78(void)
+{
+    AsqInitQueues_11f36(0, 0x40, 0, 0x40);
+    AsqResetQueues_11f6c();
+    resetUknPvmBool_8c014322();
+    syncRouteModelAssets_8c013c34(var_8c18adb0);
+    AsqProcessQueues_11fe0(AsqNop_11120, 0, 0, 0, finishAssetLoad_8c013d42);
 }
