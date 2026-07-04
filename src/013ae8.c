@@ -23,6 +23,9 @@ typedef struct {
 /* basedir path buffer, filled at runtime */
 char var_basedir_8c18ad6c[0x20];
 
+/* Per-mode config record; +8 field points to a 0x2c-stride entry array. */
+int *var_8c18ad18;
+
 /* Selects the alternate filename table (init_8c043ecc) when == 2. */
 int var_8c18ad20;
 
@@ -78,6 +81,12 @@ NjPvmPairFilenames init_routeModelFilenames_8c043d64[] = {
 /* pvm-ready flag helpers, still asm later in this TU */
 void setUknPvmBool_8c014330(void);
 void resetUknPvmBool_8c014322(void);
+
+/* selected entry index into var_8c18ad18's array */
+extern int var_8c228708;
+extern void *var_8c1bc3f0;
+
+void FUN_8c021a24(void);
 
 /* ==========
  * Functions
@@ -241,5 +250,20 @@ void FUN_8c013ee4(void)
             AsqReleaseAndFreeTexlist_11e3c(slot->texlist_0x08);
             slot->texlist_0x08 = (NJS_TEXLIST *) -1;
         }
+    }
+}
+
+/* For the currently-selected entry, free its njd/pvm pairs and, if it has a
+ * follow-up, hand off to FUN_8c021a24. */
+void FUN_8c013f22(void)
+{
+    int entry;
+
+    entry = *(int *)((char *)var_8c18ad18 + 8) + var_8c228708 * 0x2c;
+    if (*(int *)(entry + 0x28) != 0) {
+        AsqFreeNjPvmPairs_120fe((NjPvmPair **) &var_8c1bc3f0);
+    }
+    if (*(int *)(entry + 0xc) != 0) {
+        FUN_8c021a24();
     }
 }

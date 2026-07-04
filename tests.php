@@ -244,6 +244,7 @@ return [
                 "tests/013ae8/13dae_FUN.php",
                 "tests/013ae8/13df6_FUN.php",
                 "tests/013ae8/13ee4_FUN.php",
+                "tests/013ae8/13f22_FUN.php",
             ],
             "objects" => [
                 "build/output/013ae8_src.obj",
