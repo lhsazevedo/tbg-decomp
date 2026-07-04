@@ -230,3 +230,16 @@ void FUN_8c013df6(char *models)
         }
     }
 }
+
+/* Release every loaded slot of the second asset table (texlist only). */
+void FUN_8c013ee4(void)
+{
+    RouteModelAsset *slot;
+
+    for (slot = var_8c1bbfdc; slot < &var_8c1bbfdc[0x41]; slot++) {
+        if (slot->texlist_0x08 != (NJS_TEXLIST *) -1) {
+            AsqReleaseAndFreeTexlist_11e3c(slot->texlist_0x08);
+            slot->texlist_0x08 = (NJS_TEXLIST *) -1;
+        }
+    }
+}
