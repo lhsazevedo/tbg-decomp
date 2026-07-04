@@ -15,12 +15,29 @@ typedef struct {
     void *nj_0x0c;              /* loaded model (njd) */
 } RouteModelAsset;
 
-/* Entry in var_8c18ad18's array; contents not yet identified. */
+/* Fog params (shared with 012f44). */
+typedef struct {
+    int field_0x00;
+    int field_0x04;
+    Uint8 field_0x08;
+    Uint8 field_0x09;
+    Uint8 field_0x0a;
+    Uint8 field_0x0b;
+    float fogN_0x0c;
+    float fogF_0x10;
+} s_8c18ad28;
+
+/* Entry in var_8c18ad18's array; most fields still unidentified. */
 typedef struct {
     char _ukn_0x00[0x0c];
-    int ukn_0x0c;
-    char _ukn_0x10[0x18];
-    int ukn_0x28;
+    int ukn_0x0c;                    /* dat count for the request loop */
+    char *ukn_0x10;                  /* route-model list (syncRouteModelAssets) */
+    char _ukn_0x14[0x04];
+    char *ukn_0x18;                  /* second-table list (FUN_8c013df6) */
+    int ukn_0x1c;                    /* FUN_8c029ad4 arg */
+    char **ukn_0x20;                 /* dat filenames for the request loop */
+    s_8c18ad28 *ukn_0x24;            /* fog params */
+    NjPvmPairFilenames *ukn_0x28;    /* nj/pvm pairs */
 } UknEntry;
 
 /* Pointed to by var_8c18ad18; +8 holds the UknEntry array. */
@@ -39,11 +56,20 @@ char var_basedir_8c18ad6c[0x20];
 
 Ukn *var_8c18ad18;
 
+/* fog params for the current entry (from UknEntry.ukn_0x24) */
+s_8c18ad28 *var_8c18ad28;
+
+/* path buffer for dat requests, parallel to var_basedir_8c18ad6c */
+char var_8c18ad2c[0x20];
+
 /* Selects the alternate filename table (init_8c043ecc) when == 2. */
 int var_8c18ad20;
 
 /* -1-terminated list of route-model indices to keep loaded */
 char *var_8c18adb0;
+
+/* dat handles filled by the request loop (4 slots) */
+void *var_8c18adb4[4];
 
 extern RouteModelAsset var_8c1bbddc[0x20];
 
@@ -86,6 +112,9 @@ NjPvmPairFilenames init_routeModelFilenames_8c043d64[] = {
     { "", "" },
 };
 
+/* demo-mode fixed model list: model 0x1a, then terminator */
+char init_8c043fd4[] = { 0x1a, -1, 0, 0 };
+
 /* ======================
  * Forward Declarations
  * ======================
@@ -99,7 +128,21 @@ void resetUknPvmBool_8c014322(void);
 extern int var_8c228708;
 extern NjPvmPair *var_8c1bc3f0;
 
+/* fog-derived values published alongside var_8c18ad28 */
+extern int var_8c226504;
+extern int var_8c226508;
+extern int var_8c227dd0;
+
+/* active nj/pvm pair id, or -1 when the entry has none */
+extern int var_8c226534;
+
+/* set outside demo playback; var_demo is the demo-active flag */
+extern int var_8c1bb900;
+extern int var_demo_8c1bb8d0;
+
 void FUN_8c021a24(void);
+void FUN_8c029ad4(int arg);
+void FUN_8c02aa36(void);
 
 /* ==========
  * Functions
@@ -278,5 +321,58 @@ void FUN_8c013f22(void)
     }
     if (entry->ukn_0x0c != 0) {
         FUN_8c021a24();
+    }
+}
+
+/* Bring the currently-selected entry's assets in line: publish its fog params,
+ * request its nj/pvm pairs, reconcile both route-model tables, and request its
+ * dat files. Demo playback substitutes a fixed model list and skips the tail. */
+void FUN_8c013f78(void)
+{
+    UknEntry *entry;
+    int i;
+
+    entry = &var_8c18ad18->entries_0x08[var_8c228708];
+
+    if (entry->ukn_0x24 != 0) {
+        var_8c18ad28 = entry->ukn_0x24;
+        var_8c226504 = var_8c18ad28->field_0x00 - 1;
+        var_8c226508 = var_8c226504 / 2;
+        var_8c227dd0 = var_8c18ad28->field_0x04;
+    }
+
+    if (entry->ukn_0x28 != 0) {
+        var_8c1bc3f0 = AsqRequestNjPvmPairs_12030(var_basedir_8c18ad6c, entry->ukn_0x28, 0x10);
+    }
+
+    if (var_8c1bb900 == 0 || var_demo_8c1bb8d0 != 0) {
+        if (entry->ukn_0x10 != 0) {
+            var_8c18adb0 = entry->ukn_0x10;
+            syncRouteModelAssets_8c013c34(entry->ukn_0x10);
+        }
+    } else {
+        if (entry->ukn_0x10 != 0) {
+            var_8c18adb0 = entry->ukn_0x10;
+        }
+        syncRouteModelAssets_8c013c34(init_8c043fd4);
+    }
+
+    if (entry->ukn_0x18 != 0) {
+        FUN_8c013df6(entry->ukn_0x18);
+    }
+
+    FUN_8c029ad4(entry->ukn_0x1c);
+
+    if (entry->ukn_0x0c == 0) {
+        var_8c226534 = -1;
+    } else {
+        var_8c226534 = entry->ukn_0x0c;
+        for (i = 0; i < 4; i++) {
+            AsqRequestDat_11182(var_8c18ad2c, entry->ukn_0x20[i], &var_8c18adb4[i]);
+        }
+    }
+
+    if (var_8c1bb900 != 0 && var_demo_8c1bb8d0 == 0) {
+        FUN_8c02aa36();
     }
 }

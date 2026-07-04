@@ -96,6 +96,7 @@
           .EXPORT     _var_8c18adb4 ; 02171c.src
           .AIFDEF     UNIT_TESTING
           .EXPORT     _init_routeModelFilenames_8c043d64
+          .EXPORT     _init_8c043fd4
           .AENDI
           .SECTION     P, CODE, ALIGN=4
 _requestVehicleAssets_8c013ae8:
