@@ -242,6 +242,7 @@ return [
                 "tests/013ae8/13d42_finishAssetLoad.php",
                 "tests/013ae8/13d78_FUN.php",
                 "tests/013ae8/13dae_FUN.php",
+                "tests/013ae8/13df6_FUN.php",
             ],
             "objects" => [
                 "build/output/013ae8_src.obj",

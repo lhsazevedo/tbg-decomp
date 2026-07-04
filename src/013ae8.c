@@ -31,9 +31,15 @@ char *var_8c18adb0;
 
 extern RouteModelAsset var_8c1bbddc[0x20];
 
+/* Second, 0x41-slot asset table (pvm only); FUN_8c013df6 reconciles it. */
+extern RouteModelAsset var_8c1bbfdc[0x41];
+
 /* njd/pvm filename tables, one nj+pvm pointer pair per model. */
 extern char *init_8c043dc4[];
 extern char *init_8c043ecc[];
+
+/* one pvm filename per var_8c1bbfdc slot */
+extern char *init_8c043fd8[];
 
 extern void *var_frontNj_8c1bc434;
 extern NJS_TEXLIST *var_frontTexlist_8c1bc430;
@@ -190,6 +196,37 @@ void FUN_8c013dae(void)
             AsqReleaseAndFreeTexlist_11e3c(slot->texlist_0x08);
             syFree(slot->nj_0x0c);
             slot->texlist_0x08 = (NJS_TEXLIST *) -1;
+        }
+    }
+}
+
+/* Reconcile the second (0x41-slot) asset table with a -1-terminated index
+ * list: request pvms for newly-wanted slots, release the ones dropped.
+ * Unlike syncRouteModelAssets there is no njd, so no syFree. */
+void FUN_8c013df6(char *models)
+{
+    RouteModelAsset *slot;
+    int i;
+
+    for (slot = var_8c1bbfdc; slot < &var_8c1bbfdc[0x41]; slot++) {
+        slot->requested_0x00 = 0;
+        slot->needsLoad_0x04 = 0;
+    }
+
+    while ((i = *models) != -1) {
+        var_8c1bbfdc[i].requested_0x00 = 1;
+        models++;
+        if (var_8c1bbfdc[i].texlist_0x08 == (NJS_TEXLIST *) -1) {
+            var_8c1bbfdc[i].needsLoad_0x04 = 1;
+        }
+    }
+
+    for (i = 0; i < 0x41; i++) {
+        if (var_8c1bbfdc[i].needsLoad_0x04 != 0) {
+            AsqRequestPvm_11ac0(var_basedir_8c18ad6c, init_8c043fd8[i], &var_8c1bbfdc[i].texlist_0x08, 2, 0);
+        } else if (var_8c1bbfdc[i].requested_0x00 == 0 && var_8c1bbfdc[i].texlist_0x08 != (NJS_TEXLIST *) -1) {
+            AsqReleaseAndFreeTexlist_11e3c(var_8c1bbfdc[i].texlist_0x08);
+            var_8c1bbfdc[i].texlist_0x08 = (NJS_TEXLIST *) -1;
         }
     }
 }
