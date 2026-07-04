@@ -11,9 +11,23 @@
 typedef struct {
     int requested_0x00;         /* model is in the current request list */
     int needsLoad_0x04;         /* request its files this pass */
-    NJS_TEXLIST *texlist_0x08;  /* loaded pvm texlist, -1 when unloaded */
-    void *nj_0x0c;              /* loaded njd data */
+    NJS_TEXLIST *texlist_0x08;  /* loaded texture set (pvm), -1 when unloaded */
+    void *nj_0x0c;              /* loaded model (njd) */
 } RouteModelAsset;
+
+/* Entry in var_8c18ad18's array; contents not yet identified. */
+typedef struct {
+    char _ukn_0x00[0x0c];
+    int ukn_0x0c;
+    char _ukn_0x10[0x18];
+    int ukn_0x28;
+} UknEntry;
+
+/* Pointed to by var_8c18ad18; +8 holds the UknEntry array. */
+typedef struct {
+    char _ukn_0x00[0x08];
+    UknEntry *entries_0x08;
+} Ukn;
 
 /* ==========================
  * Non-initialized Globals
@@ -23,8 +37,7 @@ typedef struct {
 /* basedir path buffer, filled at runtime */
 char var_basedir_8c18ad6c[0x20];
 
-/* Per-mode config record; +8 field points to a 0x2c-stride entry array. */
-int *var_8c18ad18;
+Ukn *var_8c18ad18;
 
 /* Selects the alternate filename table (init_8c043ecc) when == 2. */
 int var_8c18ad20;
@@ -253,17 +266,17 @@ void FUN_8c013ee4(void)
     }
 }
 
-/* For the currently-selected entry, free its njd/pvm pairs and, if it has a
- * follow-up, hand off to FUN_8c021a24. */
+/* For the currently-selected entry, free its nj/pvm pairs and, when flagged,
+ * hand off to FUN_8c021a24. */
 void FUN_8c013f22(void)
 {
-    int entry;
+    UknEntry *entry;
 
-    entry = *(int *)((char *)var_8c18ad18 + 8) + var_8c228708 * 0x2c;
-    if (*(int *)(entry + 0x28) != 0) {
+    entry = &var_8c18ad18->entries_0x08[var_8c228708];
+    if (entry->ukn_0x28 != 0) {
         AsqFreeNjPvmPairs_120fe((NjPvmPair **) &var_8c1bc3f0);
     }
-    if (*(int *)(entry + 0xc) != 0) {
+    if (entry->ukn_0x0c != 0) {
         FUN_8c021a24();
     }
 }

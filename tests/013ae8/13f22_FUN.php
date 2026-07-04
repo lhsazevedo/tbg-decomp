@@ -36,8 +36,8 @@ return new class extends TestCase {
     }
 
     /**
-     * Seed the entry array so var_8c228708 selects entry $index, whose +0x28
-     * (free flag) and +0x0c (handoff flag) fields hold $f28 / $f0c.
+     * Seed the entry array so var_8c228708 selects entry $index, whose ukn_0x28
+     * (gates the pair free) and ukn_0x0c (gates the handoff) hold $f28 / $f0c.
      */
     private function setup(int $index, int $f28, int $f0c): int
     {
