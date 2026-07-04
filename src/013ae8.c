@@ -63,7 +63,7 @@ extern void *var_interiorNj_8c1bc43c;
 extern NJS_TEXLIST *var_interiorTexlist_8c1bc438;
 extern NJS_TEXLIST *var_markTexlist_8c1bc418;
 extern NJS_TEXLIST *var_busStopTexlist_8c1bc424;
-extern void *var_routeModelPairs_8c1bc3f4;
+extern NjPvmPair *var_routeModelPairs_8c1bc3f4;
 
 /* ======================
  * Initialized Globals
@@ -97,7 +97,7 @@ void resetUknPvmBool_8c014322(void);
 
 /* selected entry index into var_8c18ad18's array */
 extern int var_8c228708;
-extern void *var_8c1bc3f0;
+extern NjPvmPair *var_8c1bc3f0;
 
 void FUN_8c021a24(void);
 
@@ -274,7 +274,7 @@ void FUN_8c013f22(void)
 
     entry = &var_8c18ad18->entries_0x08[var_8c228708];
     if (entry->ukn_0x28 != 0) {
-        AsqFreeNjPvmPairs_120fe((NjPvmPair **) &var_8c1bc3f0);
+        AsqFreeNjPvmPairs_120fe(&var_8c1bc3f0);
     }
     if (entry->ukn_0x0c != 0) {
         FUN_8c021a24();
