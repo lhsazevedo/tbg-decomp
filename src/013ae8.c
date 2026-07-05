@@ -194,6 +194,8 @@ extern ResourceGroup var_8c1bc3f8;
 /* set while the route-load screen owns the display */
 extern int var_8c157a6c;
 
+extern NJS_TEXMEMLIST var_tex_8c157af8;
+
 void drawSprite_8c014f54(ResourceGroup *res, int textureId, float x, float y, float priority);
 void dispatchInputTask_8c012970(void);
 void FUN_8c01306e(void);
@@ -581,4 +583,22 @@ void task_load_8c014338(Task *task, void *state)
     frame = (int) task->field_0x0c;
     task->field_0x0c = (void *) (frame + 1);
     drawSprite_8c014f54(&var_8c1bc3f8, (frame >> 2) % 6 + 1, 0.0f, 0.0f, -4.0f);
+}
+
+/* Kick off the route-load screen: install task_load and prime the asset queues. */
+void FUN_8c0144fc(void)
+{
+    Task *task;
+    void *state;
+
+    njSetBackColor(0xff418dff, 0xff418dff, 0xff418dff);
+    var_8c157a6c = 1;
+
+    pushTask_8c014ae8(var_tasks_8c1ba3c8, (void *) task_load_8c014338, &task, &state, 0);
+    task->field_0x08 = 0;
+    task->field_0x0c = 0;
+
+    njGarbageTexture(&var_tex_8c157af8, 0xc00);
+
+    AsqInitQueues_11f36(0x20, 0x800, 0x800, 0x40);
 }
