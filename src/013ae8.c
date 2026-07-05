@@ -602,3 +602,46 @@ void FUN_8c0144fc(void)
 
     AsqInitQueues_11f36(0x20, 0x800, 0x800, 0x40);
 }
+
+/* Second-stage load task: build the interior, then hand off to the input task.
+ * Draws the same loading animation as task_load_8c014338 while it works. */
+void FUN_8c014550(Task *task, void *state)
+{
+    int frame;
+
+    switch (task->field_0x08) {
+    case 0:
+        FUN_8c02b170();
+        AsqResetQueues_11f6c();
+        FUN_8c013f78();
+        resetUknPvmBool_8c014322();
+        AsqProcessQueues_11fe0(AsqNop_11120, FUN_8c021810, FUN_8c02190a, 0, setUknPvmBool_8c014330);
+        task->field_0x08++;
+        break;
+    case 1:
+        if (getUknPvmBool_8c01432a() != 0) {
+            task->field_0x08++;
+            return;
+        }
+        break;
+    case 2:
+        task->field_0x08++;
+        return;
+    case 3:
+        freeTask_8c014b66(task);
+        AsqFreeQueues_11f7e();
+        var_8c157a6c = 0;
+        njReleaseTexture(var_8c1bc3f8.tlist_0x00);
+        njSetTexture(var_interiorTexlist_8c1bc438);
+        njLoadCacheTexture(var_interiorTexlist_8c1bc438);
+        FUN_8c01306e();
+        dispatchInputTask_8c012970();
+        return;
+    }
+
+    /* Loading animation, drawn for states 0-1 (and any unexpected state). */
+    drawSprite_8c014f54(&var_8c1bc3f8, 0, 0.0f, 0.0f, -5.0f);
+    frame = (int) task->field_0x0c;
+    task->field_0x0c = (void *) (frame + 1);
+    drawSprite_8c014f54(&var_8c1bc3f8, (frame >> 2) % 6 + 1, 0.0f, 0.0f, -4.0f);
+}

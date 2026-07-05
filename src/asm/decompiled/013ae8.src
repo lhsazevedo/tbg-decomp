@@ -80,6 +80,7 @@
           .EXPORT     _setUknPvmBool_8c014330
           .EXPORT     _task_load_8c014338
           .EXPORT     _FUN_8c01468e
+          .EXPORT     _FUN_8c014550
           .EXPORT     _prob_task_8c014784
           .EXPORT     _FUN_8c0144fc
           .EXPORT     _init_8c04410c ; 01b19c.src
@@ -1419,7 +1420,7 @@ _FUN_8c0144fc:
           LDS.L       @R15+,PR
           RTS
           MOV.L       @R15+,R14
-LAB_8c014550:
+_FUN_8c014550:
           MOV.L       R14,@-R15
           MOV         R4,R14
           FMOV.S      FR15,@-R15
@@ -1662,7 +1663,7 @@ LP_GEN_17698:
           .DATA.L _var_8c1ba290
           .DATA.L _var_demo_8c1bb8d0
           .DATA.L _var_8c2285c4
-          .DATA.L LAB_8c014550
+          .DATA.L _FUN_8c014550
           .DATA.L _var_tasks_8c1ba3c8
           .DATA.L _pushTask_8c014ae8
           .DATA.L _var_tex_8c157af8
