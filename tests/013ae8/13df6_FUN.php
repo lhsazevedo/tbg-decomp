@@ -20,9 +20,7 @@ return new class extends TestCase {
         // slot 10: loaded and still requested -> kept untouched.
         $this->initUint32($base + 10 * 0x10 + 0x8, 0x8c600000);
 
-        // slot 0's pvm filename. src.obj bakes the real string; seed c.obj to match.
-        $fd8 = $this->addressOf('_init_8c043fd8');
-        $this->initUint32($fd8 + 0 * 4, $this->allocString("MOV01.pvm"));
+        // slot 0's pvm filename is init_8c043fd8[0] == "MOV01.pvm".
 
         // Request list: keep 10, load 0, terminate.
         $models = $this->alloc(3);
@@ -84,7 +82,6 @@ return new class extends TestCase {
     {
         // _var_basedir_8c18ad6c is defined in the C object.
         $this->setSize('_var_8c1bbfdc', self::SLOTS * 0x10);
-        $this->setSize('_init_8c043fd8', self::SLOTS * 4);
         $this->setSize('_AsqRequestPvm_11ac0', 4);
         $this->setSize('_AsqReleaseAndFreeTexlist_11e3c', 4);
     }

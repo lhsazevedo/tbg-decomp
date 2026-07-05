@@ -24,11 +24,7 @@ return new class extends TestCase {
         // slot 10: loaded and still requested -> kept untouched.
         $this->initUint32($base + 10 * 0x10 + 0x8, 0x8c600000);
 
-        // slot 3's njd/pvm filenames in the default table (entries 6, 7).
-        // The src.obj holds the real strings; seed the c.obj to match.
-        $njd = $this->addressOf('_init_8c043dc4');
-        $this->initUint32($njd + 6 * 4, $this->allocString("3s_2do1_s.njd"));
-        $this->initUint32($njd + 7 * 4, $this->allocString("3t_2do1_s.pvm"));
+        // slot 3 maps to init_8c043dc4 entries 6/7 ("3s_2do1_s.njd" / .pvm).
 
         // Request list: keep 10, load 3, terminate.
         $models = $this->alloc(3);
@@ -64,12 +60,8 @@ return new class extends TestCase {
         $basedir = $this->addressOf('_var_basedir_8c18ad6c');
         $this->seedAllUnloaded($base);
 
-        // Mode 2 selects init_8c043ecc.
+        // Mode 2 selects init_8c043ecc; slot 1 maps to entries 2/3.
         $this->initUint32($this->addressOf('_var_8c18ad20'), 2);
-
-        $ecc = $this->addressOf('_init_8c043ecc');
-        $this->initUint32($ecc + 2 * 4, $this->allocString("3s_2do0_sn.njd"));
-        $this->initUint32($ecc + 3 * 4, $this->allocString("3t_2do0_sn.pvm"));
 
         // Load slot 1 only.
         $models = $this->alloc(2);
@@ -124,8 +116,6 @@ return new class extends TestCase {
     {
         // _var_8c18ad20 and _var_basedir_8c18ad6c are defined in the C object.
         $this->setSize('_var_8c1bbddc', self::SLOTS * 0x10);
-        $this->setSize('_init_8c043dc4', 0x21 * 2 * 4);
-        $this->setSize('_init_8c043ecc', 0x21 * 2 * 4);
 
         $this->setSize('_AsqRequestNj_11492', 4);
         $this->setSize('_AsqRequestPvm_11ac0', 4);

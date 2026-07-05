@@ -107,7 +107,7 @@ $(OUTPUT_DIR)/src/%.obj: src/%.c
 $(OUTPUT_DIR)/tbg.elf: $(OBJS) $(BUILD_DIR)/lnk.sub
 	wibo "$(SHC_BIN)/lnk.exe" -sub=build\\lnk.sub
 
-$(BUILD_DIR)/lnk.sub: $(BUILD_DIR)/lnk_template.sub
+$(BUILD_DIR)/lnk.sub: $(BUILD_DIR)/lnk_template.sub Makefile
 	sed "s|@DC_SDK@|$$(printf %q "$(KATANA_SDK_DIR)")|g" $(BUILD_DIR)/lnk_template.sub > $(BUILD_DIR)/lnk.sub
 	sed -i 's|@INPUTS@|$(foreach obj,$(LINKER_OBJS),input $(obj)\n)|g' $(BUILD_DIR)/lnk.sub
 

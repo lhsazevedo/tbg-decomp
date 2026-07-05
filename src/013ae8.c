@@ -124,13 +124,6 @@ extern RouteModelAsset var_8c1bbddc[0x20];
 /* Second, 0x41-slot asset table (pvm only); FUN_8c013df6 reconciles it. */
 extern RouteModelAsset var_8c1bbfdc[0x41];
 
-/* njd/pvm filename tables, one nj+pvm pointer pair per model. */
-extern char *init_8c043dc4[];
-extern char *init_8c043ecc[];
-
-/* one pvm filename per var_8c1bbfdc slot */
-extern char *init_8c043fd8[];
-
 /* shared filename strings living in the next TU (referenced from the
  * filenames_0x1c[19] tables); .IMPORTed in the asm. */
 extern char init_8c04ce10[];
