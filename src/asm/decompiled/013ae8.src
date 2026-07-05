@@ -97,6 +97,19 @@
           .AIFDEF     UNIT_TESTING
           .EXPORT     _init_routeModelFilenames_8c043d64
           .EXPORT     _init_8c043fd4
+          .EXPORT     _init_8c041d80
+          .EXPORT     _init_8c040d28
+          .EXPORT     _init_8c0440dc
+          .EXPORT     _init_8c0406cc
+          .EXPORT     _init_8c04093c
+          .EXPORT     _init_8c041eb8
+          .EXPORT     _init_8c03d1ec
+          .EXPORT     _init_8c03d45c
+          .EXPORT     _init_8c03d848
+          .EXPORT     _init_8c03d958
+          .EXPORT     _init_8c040db0
+          .EXPORT     _init_8c03c2b4
+          .EXPORT     _init_8c03c3c4
           .AENDI
           .SECTION     P, CODE, ALIGN=4
 _requestVehicleAssets_8c013ae8:
@@ -2443,7 +2456,6 @@ _init_8c03cdcc:        ; from ghidra
           .DATA.B      H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'02, H'00, H'D5, H'00
           .DATA.B      H'00, H'00, H'6D, H'00
           .DATA.L      _init_8c03c168
-_init_8c03d0c4:        ; from ghidra
           .DATA.L      _init_8c03c1ae
           .DATA.B      H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00
           .DATA.L      _init_8c03c52c
@@ -4902,7 +4914,6 @@ _init_8c040734:        ; from ghidra
           .DATA.L      _const_8c034334 ; ukn
           .DATA.L      _const_8c034344 ; ukn
           .DATA.L      _const_8c034350 ; ukn
-_init_8c040798:        ; from ghidra
           .DATA.L      _const_8c034350 ; ukn
 _init_8c04079c:        ; from ghidra
           .DATA.B      H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00
@@ -4975,7 +4986,6 @@ _init_8c04086c:        ; from ghidra
           .DATA.L      _const_8c0343a4 ; ukn
           .DATA.L      _const_8c034310 ; ukn
           .DATA.L      _const_8c034324 ; ukn
-_init_8c0408c4:        ; from ghidra
           .DATA.L      _const_8c034334 ; ukn
           .DATA.L      _const_8c034344 ; ukn
           .DATA.L      _const_8c034350 ; ukn
@@ -9758,7 +9768,6 @@ _const_8c034ff8:        ; aggressive search
           ;.SDATA      "l_kousok"
           ;.DATA.B     H'00
           .DATA.B      H'6C, H'5F, H'6B, H'6F, H'75, H'73, H'6F, H'6B
-_const_8c035000:        ; aggressive search
           ;.SDATA      "00_FF_kousok00_9.pac"
           ;.DATA.B     H'00
           ;.RES.B      3
