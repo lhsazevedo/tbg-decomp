@@ -23,9 +23,23 @@ return new class extends TestCase {
         $this->initUint32($tail + 0x0c, 0);
     }
 
+    protected function isAsmObject(): bool
+    {
+        return str_ends_with($this->objectFile, '_src.obj');
+    }
+
+    // remainder->units_0x08 = ((int)oldNext - (int)remainder) / sizeof(HeapChunk).
+    // The asm object (matches the original binary) calls __divls; the C
+    // recompile folds the constant power-of-two division into shifts.
     public function test_alloc_splits_head_chunk(): void
     {
         $this->setSize('__divls', 4);
+
+        if ($this->isAsmObject()) {
+            $this->onCall('__divls', function () {
+                $this->setRegister(0, $this->getRegister(1)->div($this->getRegister(0)));
+            });
+        }
 
         $heap = $this->alloc(0x100);
         $tail = $heap + 0xe0;
@@ -41,6 +55,9 @@ return new class extends TestCase {
 
         $this->shouldWriteLong($remainder + 0x00, $heap);
         $this->shouldWriteLong($remainder + 0x04, $tail);
+        if ($this->isAsmObject()) {
+            $this->shouldCall('__divls');
+        }
         $this->shouldWriteLong($remainder + 0x08, 5);
         $this->shouldWriteLong($remainder + 0x0c, 0);
 
@@ -100,6 +117,12 @@ return new class extends TestCase {
     {
         $this->setSize('__divls', 4);
 
+        if ($this->isAsmObject()) {
+            $this->onCall('__divls', function () {
+                $this->setRegister(0, $this->getRegister(1)->div($this->getRegister(0)));
+            });
+        }
+
         $heap = $this->alloc(0x100);
         $chunk1 = $heap + 0x40;
         $tail = $heap + 0xe0;
@@ -135,6 +158,9 @@ return new class extends TestCase {
 
         $this->shouldWriteLong($remainder + 0x00, $chunk1);
         $this->shouldWriteLong($remainder + 0x04, $tail);
+        if ($this->isAsmObject()) {
+            $this->shouldCall('__divls');
+        }
         $this->shouldWriteLong($remainder + 0x08, 3);
         $this->shouldWriteLong($remainder + 0x0c, 0);
 
@@ -147,6 +173,12 @@ return new class extends TestCase {
     public function test_alloc_coalesces_remainder_with_next_free(): void
     {
         $this->setSize('__divls', 4);
+
+        if ($this->isAsmObject()) {
+            $this->onCall('__divls', function () {
+                $this->setRegister(0, $this->getRegister(1)->div($this->getRegister(0)));
+            });
+        }
 
         $heap = $this->alloc(0x100);
         $chunk1 = $heap + 0x60;
@@ -183,6 +215,9 @@ return new class extends TestCase {
 
         $this->shouldWriteLong($remainder + 0x00, $heap);
         $this->shouldWriteLong($remainder + 0x04, $chunk1);
+        if ($this->isAsmObject()) {
+            $this->shouldCall('__divls');
+        }
         $this->shouldWriteLong($remainder + 0x08, 1);
         $this->shouldWriteLong($remainder + 0x0c, 0);
 

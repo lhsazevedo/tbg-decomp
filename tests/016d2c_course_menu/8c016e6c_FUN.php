@@ -25,6 +25,7 @@ return new class extends TestCase {
             69.0,
         );
 
+        $this->shouldCall('__modls');
         $this->shouldCall('_drawSprite_8c014f54')->with(
             $this->addressOf('_menuState_8c1bc7a8') + 0,
             15,
@@ -33,6 +34,8 @@ return new class extends TestCase {
             -4.0
         );
 
+        $this->shouldCall('__divls');
+        $this->shouldCall('__modls');
         $this->shouldCall('_drawSprite_8c014f54')->with(
             $this->addressOf('_menuState_8c1bc7a8') + 0,
             15,
@@ -41,6 +44,8 @@ return new class extends TestCase {
             -4.0
         );
 
+        $this->shouldCall('__divls');
+        $this->shouldCall('__modls');
         $this->shouldCall('_drawSprite_8c014f54')->with(
             $this->addressOf('_menuState_8c1bc7a8') + 0,
             16,
@@ -48,6 +53,8 @@ return new class extends TestCase {
             69.0,
             -4.0
         );
+
+        $this->shouldCall('__divls');
     }
 
     public function resolveSymbols()
@@ -57,5 +64,12 @@ return new class extends TestCase {
         // Functions
         $this->setSize('__modls', 4);
         $this->setSize('__divls', 4);
+
+        $this->onCall('__modls', function () {
+            $this->setRegister(0, $this->getRegister(1)->mod($this->getRegister(0)));
+        });
+        $this->onCall('__divls', function () {
+            $this->setRegister(0, $this->getRegister(1)->div($this->getRegister(0)));
+        });
     }
 };

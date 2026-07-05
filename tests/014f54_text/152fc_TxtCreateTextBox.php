@@ -31,14 +31,34 @@ return new class extends TestCase {
         $this->shouldWriteWord($box + 0x28, 0xbdef);
         $this->shouldWriteWord($box + 0x2a, 0xc631);
 
+        // max_chars = 0x28 + (width / GLYPH_WIDTH) * (height / GLYPH_HEIGHT);
+        // width / GLYPH_WIDTH (24) is not a power of two, so it's a __divls call.
+        // The asm object (matches the original binary) computes this twice here;
+        // the C recompile only once.
+        $this->shouldCall('__divls');
+        if ($this->isAsmObject()) {
+            $this->shouldCall('__divls');
+        }
         $this->shouldCall('_syMalloc')->with($GLYPH_COUNT * 2)->andReturn($glyphIndexes);
         $this->shouldWriteLong($box + 0x2c, $glyphIndexes);
         $this->shouldCall('_syMalloc')->with($HEIGHT * 4 / 32)->andReturn(0xbebacafe);
         $this->shouldWriteLong($box + 0x34, 0xbebacafe);
         $this->shouldWriteLong($box + 0x30, 42);
-        
+
+        // In the asm object, the loop bound isn't hoisted: it recomputes
+        // max_chars from scratch on every iteration (width / GLYPH_WIDTH, times
+        // height, then / GLYPH_HEIGHT -- two __divls calls each time), including
+        // the final failing check.
         for ($i = 0; $i < $GLYPH_COUNT; $i++) {
+            if ($this->isAsmObject()) {
+                $this->shouldCall('__divls');
+                $this->shouldCall('__divls');
+            }
             $this->shouldWriteWord($glyphIndexes + $i * 2, 0xffff);
+        }
+        if ($this->isAsmObject()) {
+            $this->shouldCall('__divls');
+            $this->shouldCall('__divls');
         }
 
         $this->shouldWriteLong($box + 0x38, 0);
@@ -57,6 +77,10 @@ return new class extends TestCase {
         // Functions
         $this->setSize('_syMalloc', 4);
         $this->setSize('__divls', 4);
+
+        $this->onCall('__divls', function () {
+            $this->setRegister(0, $this->getRegister(1)->div($this->getRegister(0)));
+        });
     }
 
     protected function isAsmObject(): bool

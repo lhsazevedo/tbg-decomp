@@ -14,6 +14,8 @@ return new class extends TestCase {
         $this->initUint32($this->addressOf('_init_8c03bd80'), 0b0101_0101);
 
         $this->shouldWriteLong($this->addressOf('_var_adxFade_8c157a34') + 0x00, 0x60);
+        // step1 = vol1 / 90, not a power of two.
+        $this->shouldCall('__divls');
         $this->shouldWriteLong($this->addressOf('_var_adxFade_8c157a34') + 0x08, 7);
         $this->shouldWriteLong($this->addressOf('_var_adxFade_8c157a34') + 0x10, -990);
         $this->shouldWriteLong($this->addressOf('_init_8c03bd80'), 0b0100_0101);
@@ -69,5 +71,9 @@ return new class extends TestCase {
     {
         // Functions
         $this->setSize('__divls', 4);
+
+        $this->onCall('__divls', function () {
+            $this->setRegister(0, $this->getRegister(1)->div($this->getRegister(0)));
+        });
     }
 };

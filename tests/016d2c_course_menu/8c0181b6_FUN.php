@@ -44,6 +44,7 @@ return new class extends TestCase {
         $this->call('_CourseConfirmMenuTask_8c0181b6');
 
         $this->shouldWriteLong($this->addressOf('_menuState_8c1bc7a8') + 0x18, 2);
+        $this->shouldCall('__divls');
         $this->shouldCall('_drawSprite_8c014f54')->with(
             $this->addressOf('_menuState_8c1bc7a8') + 0x0c,
             4,
@@ -79,6 +80,7 @@ return new class extends TestCase {
         $this->call('_CourseConfirmMenuTask_8c0181b6');
 
         // Still fading ¨ remain in state 1 and render epilogue
+        $this->shouldCall('__divls');
         $this->shouldCall('_drawSprite_8c014f54')->with(
             $this->addressOf('_menuState_8c1bc7a8') + 0x0c,
             4,
@@ -121,6 +123,7 @@ return new class extends TestCase {
         $this->shouldCall('_push_fadeout_8c022b60')->with(10);
 
         // Epilogue draws
+        $this->shouldCall('__divls');
         $this->shouldCall('_drawSprite_8c014f54')->with(
             $this->addressOf('_menuState_8c1bc7a8') + 0x0c,
             4,
@@ -165,6 +168,7 @@ return new class extends TestCase {
         $this->shouldCall('_push_fadeout_8c022b60')->with(10);
 
         // Epilogue draws
+        $this->shouldCall('__divls');
         $this->shouldCall('_drawSprite_8c014f54')->with(
             $this->addressOf('_menuState_8c1bc7a8') + 0x0c,
             4,
@@ -205,6 +209,7 @@ return new class extends TestCase {
         )->andReturn(0);
 
         // Epilogue draws
+        $this->shouldCall('__divls');
         $this->shouldCall('_drawSprite_8c014f54')->with(
             $this->addressOf('_menuState_8c1bc7a8') + 0x0c,
             4,
@@ -245,6 +250,7 @@ return new class extends TestCase {
         $this->shouldCall('_push_fadein_8c022a9c')->with(20);
 
         // Epilogue draws
+        $this->shouldCall('__divls');
         $this->shouldCall('_drawSprite_8c014f54')->with(
             $this->addressOf('_menuState_8c1bc7a8') + 0x0c,
             4,
@@ -281,6 +287,7 @@ return new class extends TestCase {
         $this->call('_CourseConfirmMenuTask_8c0181b6');
 
         // Still fading ¨ remain in state 3; epilogue draws occur
+        $this->shouldCall('__divls');
         $this->shouldCall('_drawSprite_8c014f54')->with(
             $this->addressOf('_menuState_8c1bc7a8') + 0x0c,
             4,
@@ -404,7 +411,12 @@ return new class extends TestCase {
 
         $this->call('_CourseConfirmMenuTask_8c0181b6');
 
-        // init_8c03bd80 is busy ¨ just return (no calls)
+        // init_8c03bd80 is busy ¨ just return (no calls).
+        // The C recompile eagerly computes the course index (__divls) before
+        // checking init_8c03bd80; the asm checks init_8c03bd80 first.
+        if (!$this->isAsmObject()) {
+            $this->shouldCall('__divls');
+        }
     }
 
     public function test_start_loading_state_initializes_game(): void
@@ -438,11 +450,20 @@ return new class extends TestCase {
         $this->call('_CourseConfirmMenuTask_8c0181b6');
 
         // Step 1: Initialize game systems
-        $this->shouldCall('_FUN_8c016182');
+        if ($this->isAsmObject()) {
+            $this->shouldCall('_FUN_8c016182');
+            $this->shouldCall('__divls');
+        } else {
+            $this->shouldCall('__divls');
+            $this->shouldCall('_FUN_8c016182');
+        }
 
         // Step 2: Check if course is unlocked (read course[4].field_0x02)
         // Course is not unlocked (we init'd it to 0), so write 1 to var_8c1bb8e0
         $this->shouldWriteLong($this->addressOf('_var_8c1bb8e0'), 1);
+        if ($this->isAsmObject()) {
+            $this->shouldCall('__divls');
+        }
         $this->shouldWriteByte($this->addressOf('_var_progress_8c1ba1cc') + 0x66, 1);
 
         // Step 3: Initialize various game state variables
@@ -507,7 +528,13 @@ return new class extends TestCase {
         $this->call('_CourseConfirmMenuTask_8c0181b6');
 
         // Step 1: call FUN_8c016182
-        $this->shouldCall('_FUN_8c016182');
+        if ($this->isAsmObject()) {
+            $this->shouldCall('_FUN_8c016182');
+            $this->shouldCall('__divls');
+        } else {
+            $this->shouldCall('__divls');
+            $this->shouldCall('_FUN_8c016182');
+        }
 
         // Step 2: Course is already unlocked (field_0x02 == 1), so write 0 to var_8c1bb8e0
         // No write to course[4].field_0x02
@@ -553,6 +580,7 @@ return new class extends TestCase {
         $this->call('_CourseConfirmMenuTask_8c0181b6');
 
         // Still fading ¨ render epilogue (no state transition)
+        $this->shouldCall('__divls');
         $this->shouldCall('_drawSprite_8c014f54')->with(
             $this->addressOf('_menuState_8c1bc7a8') + 0x0c,
             4,
@@ -627,6 +655,11 @@ return new class extends TestCase {
         $this->initUint32($this->addressOf('_menuState_8c1bc7a8') + $offset, $value);
     }
 
+    protected function isAsmObject(): bool
+    {
+        return str_ends_with($this->objectFile, '_src.obj');
+    }
+
     private function resolveSymbols(): void
     {
         $this->setSize('_menuState_8c1bc7a8', 0x84);
@@ -638,6 +671,9 @@ return new class extends TestCase {
         $this->setSize('_promptHandleBinary_16caa', 4);    // original symbol name
         $this->setSize('_push_fadeout_8c022b60', 4);
         $this->setSize('__divls', 4);
+        $this->onCall('__divls', function () {
+            $this->setRegister(0, $this->getRegister(1)->div($this->getRegister(0)));
+        });
         $this->setSize('_FUN_8c016182', 4);
         $this->setSize('_pushLoadingTask_8c013310', 4);
         $this->setSize('_var_8c1bb8e0', 4);

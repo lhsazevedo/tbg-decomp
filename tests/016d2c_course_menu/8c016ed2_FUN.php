@@ -19,6 +19,7 @@ return new class extends TestCase {
 
         $this->initUint32($this->addressOf('_var_progress_8c1ba1cc'), 264);
         $this->call('_getWeekDayIndex_8c016ed2');
+        $this->shouldCall('__modlu');
         $this->shouldReturn(6);
     }
 
@@ -28,6 +29,7 @@ return new class extends TestCase {
 
         $this->initUint32($this->addressOf('_var_progress_8c1ba1cc'), 265);
         $this->call('_getWeekDayIndex_8c016ed2');
+        $this->shouldCall('__modlu');
         $this->shouldReturn(0);
     }
 
@@ -36,6 +38,10 @@ return new class extends TestCase {
         $this->setSize('_var_progress_8c1ba1cc', 4);
         // Functions
         $this->setSize('__modlu', 4);
+
+        $this->onCall('__modlu', function () {
+            $this->setRegister(0, $this->getRegister(1)->mod($this->getRegister(0)));
+        });
     }
 };
 
