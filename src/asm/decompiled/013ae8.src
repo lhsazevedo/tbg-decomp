@@ -78,6 +78,7 @@
           .EXPORT     _resetUknPvmBool_8c014322
           .EXPORT     _getUknPvmBool_8c01432a
           .EXPORT     _setUknPvmBool_8c014330
+          .EXPORT     _task_load_8c014338
           .EXPORT     _FUN_8c01468e
           .EXPORT     _prob_task_8c014784
           .EXPORT     _FUN_8c0144fc
@@ -1170,7 +1171,7 @@ _setUknPvmBool_8c014330:
           MOV         #H'1,R2
           RTS
           MOV.L       R2,@R1
-task_load_8c014338:
+_task_load_8c014338:
           MOV.L       R14,@-R15
           MOV         R4,R14
           MOV.L       R13,@-R15
@@ -1486,7 +1487,7 @@ LP_GEN_28406:
           .DATA.L H'FF418DFF
           .DATA.L _njSetBackColor
           .DATA.L _var_8c157a6c
-          .DATA.L task_load_8c014338
+          .DATA.L _task_load_8c014338
           .DATA.L _var_tasks_8c1ba3c8
           .DATA.L _pushTask_8c014ae8
           .DATA.L _var_tex_8c157af8

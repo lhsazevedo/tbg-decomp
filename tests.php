@@ -250,6 +250,7 @@ return [
                 "tests/013ae8/14322_resetUknPvmBool.php",
                 "tests/013ae8/1432a_getUknPvmBool.php",
                 "tests/013ae8/14330_setUknPvmBool.php",
+                "tests/013ae8/14338_taskLoad.php",
             ],
             "objects" => [
                 "build/output/013ae8_src.obj",

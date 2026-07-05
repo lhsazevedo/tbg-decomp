@@ -1,5 +1,6 @@
 #include <shinobi.h>
 #include "011120_asset_queues.h"
+#include "014a9c_tasks.h"
 #include "serial_debug.h"
 
 /* ====================
@@ -73,6 +74,13 @@ typedef struct { char *a, *b; int n0, n1; } Rec_ssii;
 typedef struct { char *a, *b; int n; float f0, f1; } Rec_ssiff;
 typedef struct { char *a, *b; int n; char *c; } Rec_ssis;
 typedef struct { char *a, *b; int n; char *c; Uint8 flags[4]; } Rec_ssisb;
+
+/* Sprite-drawing resource group (see 015ab8_title.h). */
+typedef struct {
+    NJS_TEXLIST *tlist_0x00;
+    NJS_TEXANIM *tanim_0x04;
+    void *contents_0x08;
+} ResourceGroup;
 
 /* ==========================
  * Non-initialized Globals
@@ -8490,6 +8498,25 @@ void FUN_8c021a24(void);
 void FUN_8c029ad4(void *arg);
 void FUN_8c02aa36(void);
 
+/* loading-screen sprite group; njSetTexture/njReleaseTexture use its texlist,
+ * drawSprite takes the whole group */
+extern ResourceGroup var_8c1bc3f8;
+
+/* set while the route-load screen owns the display */
+extern int var_8c157a6c;
+
+void drawSprite_8c014f54(ResourceGroup *res, int textureId, float x, float y, float priority);
+void dispatchInputTask_8c012970(void);
+void FUN_8c01306e(void);
+void FUN_8c02175a(void);
+void FUN_8c026da4(void *handle);
+void FUN_8c028de8(void *handle);
+void FUN_8c028dd0(void *handle);
+void FUN_8c02caba(void);
+void FUN_8c02b170(void);
+void FUN_8c021810(void);
+void FUN_8c02190a(void);
+
 /* ==========
  * Functions
  * ==========
@@ -8798,4 +8825,71 @@ int getUknPvmBool_8c01432a(void)
 void setUknPvmBool_8c014330(void)
 {
     var_8c18adac = 1;
+}
+
+/* Route-load screen task. Drives asset loading across several frames, then
+ * hands the display over to the input task.
+ *   0: reset queues, load the route models, start the load pass.
+ *   1: once the pass finishes, run post-load setup and start a second pass.
+ *   2: wait for the second pass, then advance.
+ *   3: idle one frame.
+ *   4: tear down and switch to the input task.
+ * States 0-2 keep drawing the animated loading sprite each frame. */
+void task_load_8c014338(Task *task, void *state)
+{
+    int frame;
+
+    switch (task->field_0x08) {
+    case 0:
+        AsqResetQueues_11f6c();
+        njSetTexture(var_8c1bc3f8.tlist_0x00);
+        njLoadCacheTexture(var_8c1bc3f8.tlist_0x00);
+        loadRouteModels_8c014088();
+        resetUknPvmBool_8c014322();
+        AsqProcessQueues_11fe0(AsqNop_11120, 0, 0, 0, setUknPvmBool_8c014330);
+        task->field_0x08++;
+        return;
+
+    case 1:
+        if (getUknPvmBool_8c01432a() != 0) {
+            FUN_8c02175a();
+            FUN_8c026da4(var_8c1bb868.slots_0x04[8]);
+            FUN_8c028de8(var_8c1bb868.slots_0x04[11]);
+            FUN_8c028dd0(var_8c1bb868.slots_0x04[12]);
+            FUN_8c02caba();
+            FUN_8c02b170();
+            AsqResetQueues_11f6c();
+            FUN_8c013f78();
+            resetUknPvmBool_8c014322();
+            AsqProcessQueues_11fe0(AsqNop_11120, FUN_8c021810, FUN_8c02190a, 0, setUknPvmBool_8c014330);
+            task->field_0x08++;
+        }
+        break;
+
+    case 2:
+        if (getUknPvmBool_8c01432a() != 0) {
+            task->field_0x08++;
+            return;
+        }
+        break;
+
+    case 3:
+        task->field_0x08++;
+        return;
+
+    case 4:
+        freeTask_8c014b66(task);
+        AsqFreeQueues_11f7e();
+        var_8c157a6c = 0;
+        njReleaseTexture(var_8c1bc3f8.tlist_0x00);
+        FUN_8c01306e();
+        dispatchInputTask_8c012970();
+        return;
+    }
+
+    /* Loading animation, drawn for states 0-2 (and any unexpected state). */
+    drawSprite_8c014f54(&var_8c1bc3f8, 0, 0.0f, 0.0f, -5.0f);
+    frame = (int) task->field_0x0c;
+    task->field_0x0c = (void *) (frame + 1);
+    drawSprite_8c014f54(&var_8c1bc3f8, (frame >> 2) % 6 + 1, 0.0f, 0.0f, -4.0f);
 }
