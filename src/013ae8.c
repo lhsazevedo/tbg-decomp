@@ -102,6 +102,9 @@ int var_8c18ad20;
 
 void *var_8c18ad24;
 
+/* pvm-ready flag; async asset processing sets it via setUknPvmBool_8c014330 */
+int var_8c18adac;
+
 /* -1-terminated list of route-model indices to keep loaded */
 Sint8 *var_8c18adb0;
 
@@ -8463,7 +8466,7 @@ Ukn *init_8c043ca4[] = {
  * ======================
  */
 
-/* pvm-ready flag helpers, still asm later in this TU */
+/* pvm-ready flag helpers, defined at the tail of this TU */
 void setUknPvmBool_8c014330(void);
 void resetUknPvmBool_8c014322(void);
 
@@ -8780,4 +8783,19 @@ void loadRouteModels_8c014088(void)
 
     requestVehicleAssets_8c013ae8();
     var_8c1bc3ec = AsqRequestNjPvmPairs_12030(var_basedir_8c18ad6c, init_8c0440dc, 0x10);
+}
+
+void resetUknPvmBool_8c014322(void)
+{
+    var_8c18adac = 0;
+}
+
+int getUknPvmBool_8c01432a(void)
+{
+    return var_8c18adac;
+}
+
+void setUknPvmBool_8c014330(void)
+{
+    var_8c18adac = 1;
 }

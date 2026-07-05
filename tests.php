@@ -247,6 +247,9 @@ return [
                 "tests/013ae8/13f22_FUN.php",
                 "tests/013ae8/13f78_FUN.php",
                 "tests/013ae8/14088_loadRouteModels.php",
+                "tests/013ae8/14322_resetUknPvmBool.php",
+                "tests/013ae8/1432a_getUknPvmBool.php",
+                "tests/013ae8/14330_setUknPvmBool.php",
             ],
             "objects" => [
                 "build/output/013ae8_src.obj",
