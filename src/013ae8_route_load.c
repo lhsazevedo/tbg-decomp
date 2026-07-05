@@ -4,9 +4,57 @@
 #include "serial_debug.h"
 
 /* ====================
+ * Compiler Definitions
+ * ====================
+ */
+
+#ifdef SERIAL_DEBUG
+char *DEBUG_routeLoadStateNames[] = {
+    "INIT",
+    "POST_LOAD",
+    "WAIT",
+    "IDLE",
+    "DONE",
+};
+
+char *DEBUG_routeLoad2StateNames[] = {
+    "POST_LOAD",
+    "WAIT",
+    "IDLE",
+    "DONE",
+};
+#endif
+
+#define CHANGE_LOAD_STATE(task, x)                                            \
+    (task)->field_0x08 = x;                                                   \
+    LOG_DEBUG(("[ROUTE_LOAD] State changed: %s\n", DEBUG_routeLoadStateNames[x]))
+
+#define CHANGE_LOAD2_STATE(task, x)                                           \
+    (task)->field_0x08 = x;                                                   \
+    LOG_DEBUG(("[ROUTE_LOAD] State changed: %s\n", DEBUG_routeLoad2StateNames[x]))
+
+/* ====================
  * Type Declarations
  * ====================
  */
+
+/* States for task_load_8c014338 and prob_task_8c014784 (identical shape). */
+enum ROUTE_LOAD_STATE {
+    ROUTE_LOAD_STATE_INIT      = 0,
+    ROUTE_LOAD_STATE_POST_LOAD = 1,
+    ROUTE_LOAD_STATE_WAIT      = 2,
+    ROUTE_LOAD_STATE_IDLE      = 3,
+    ROUTE_LOAD_STATE_DONE      = 4,
+};
+
+/* States for FUN_8c014550 (same idea, but load pass is already underway
+ * when the task is installed, so there's no separate INIT state). */
+enum ROUTE_LOAD2_STATE {
+    ROUTE_LOAD2_STATE_POST_LOAD = 0,
+    ROUTE_LOAD2_STATE_WAIT      = 1,
+    ROUTE_LOAD2_STATE_IDLE      = 2,
+    ROUTE_LOAD2_STATE_DONE      = 3,
+};
 
 /* One entry of the 0x20-slot route-model asset table (var_8c1bbddc). */
 typedef struct {
@@ -149,7 +197,7 @@ extern NjPvmPair *var_routeModelPairs_8c1bc3f4;
  * ======================
  */
 
-#include "013ae8.data.inc"
+#include "013ae8_route_load.data.inc"
 
 /* ======================
  * Forward Declarations
@@ -212,6 +260,8 @@ void FUN_8c02190a(void);
 
 void requestVehicleAssets_8c013ae8(void)
 {
+    LOG_DEBUG(("[ROUTE_LOAD] requestVehicleAssets_8c013ae8: requesting vehicle assets\n"));
+
     AsqRequestNj_11492(var_basedir_8c18ad6c, "front.njd", &var_frontNj_8c1bc434, 0);
     AsqRequestPvm_11ac0(var_basedir_8c18ad6c, "front.pvm", &var_frontTexlist_8c1bc430, 0xf, 0);
     AsqRequestNj_11492(var_basedir_8c18ad6c, "syanai.njd", &var_interiorNj_8c1bc43c, 0);
@@ -227,6 +277,8 @@ void freeVehicleAssets_8c013b5a(void)
     Uint32 i;
 
     if (var_interiorTexlist_8c1bc438 != (NJS_TEXLIST *) -1) {
+        LOG_DEBUG(("[ROUTE_LOAD] freeVehicleAssets_8c013b5a: freeing vehicle assets\n"));
+
         njSetTexture(var_interiorTexlist_8c1bc438);
         for (i = 0; i < var_interiorTexlist_8c1bc438->nbTexture; i++) {
             njReleaseCacheTextureNum(i);
@@ -260,6 +312,8 @@ void syncRouteModelAssets_8c013c34(Sint8 *models)
     RouteModelAsset *slot;
     char **names;
     int i;
+
+    LOG_DEBUG(("[ROUTE_LOAD] syncRouteModelAssets_8c013c34: reconciling route-model assets (models=%p)\n", models));
 
     for (slot = var_8c1bbddc; slot < &var_8c1bbddc[0x20]; slot++) {
         slot->requested_0x00 = 0;
@@ -296,6 +350,8 @@ void syncRouteModelAssets_8c013c34(Sint8 *models)
  * then release the request queues. */
 void finishAssetLoad_8c013d42(void)
 {
+    LOG_DEBUG(("[ROUTE_LOAD] finishAssetLoad_8c013d42: asset load pass finished\n"));
+
     setUknPvmBool_8c014330();
     AsqFreeQueues_11f7e();
 }
@@ -304,6 +360,8 @@ void finishAssetLoad_8c013d42(void)
  * currently-wanted route models. finishAssetLoad runs once the texlists land. */
 void FUN_8c013d78(void)
 {
+    LOG_DEBUG(("[ROUTE_LOAD] FUN_8c013d78: starting route-model load pass\n"));
+
     AsqInitQueues_11f36(0, 0x40, 0, 0x40);
     AsqResetQueues_11f6c();
     resetUknPvmBool_8c014322();
@@ -316,6 +374,8 @@ void FUN_8c013d78(void)
 void FUN_8c013dae(void)
 {
     RouteModelAsset *slot;
+
+    LOG_DEBUG(("[ROUTE_LOAD] FUN_8c013dae: releasing all route-model assets\n"));
 
     for (slot = var_8c1bbddc; slot < &var_8c1bbddc[0x20]; slot++) {
         if (slot->texlist_0x08 != (NJS_TEXLIST *) -1) {
@@ -333,6 +393,8 @@ void FUN_8c013df6(Sint8 *models)
 {
     RouteModelAsset *slot;
     int i;
+
+    LOG_DEBUG(("[ROUTE_LOAD] FUN_8c013df6: reconciling second asset table (models=%p)\n", models));
 
     for (slot = var_8c1bbfdc; slot < &var_8c1bbfdc[0x41]; slot++) {
         slot->requested_0x00 = 0;
@@ -362,6 +424,8 @@ void FUN_8c013ee4(void)
 {
     RouteModelAsset *slot;
 
+    LOG_DEBUG(("[ROUTE_LOAD] FUN_8c013ee4: releasing second asset table\n"));
+
     for (slot = var_8c1bbfdc; slot < &var_8c1bbfdc[0x41]; slot++) {
         if (slot->texlist_0x08 != (NJS_TEXLIST *) -1) {
             AsqReleaseAndFreeTexlist_11e3c(slot->texlist_0x08);
@@ -375,6 +439,8 @@ void FUN_8c013ee4(void)
 void FUN_8c013f22(void)
 {
     UknEntry *entry;
+
+    LOG_DEBUG(("[ROUTE_LOAD] FUN_8c013f22: freeing pairs for selected entry (index=%d)\n", var_8c228708));
 
     entry = &var_8c18ad18->entries_0x08[var_8c228708];
     if (entry->ukn_0x28 != 0) {
@@ -392,6 +458,8 @@ void FUN_8c013f78(void)
 {
     UknEntry *entry;
     int i;
+
+    LOG_DEBUG(("[ROUTE_LOAD] FUN_8c013f78: syncing assets for selected entry (index=%d)\n", var_8c228708));
 
     entry = &var_8c18ad18->entries_0x08[var_8c228708];
 
@@ -442,6 +510,8 @@ void FUN_8c013f78(void)
  * base/pvr paths for its area+time of day, and request all of its files. */
 void loadRouteModels_8c014088(void)
 {
+    LOG_DEBUG(("[ROUTE_LOAD] loadRouteModels_8c014088: loading route %d\n", var_8c1bb868.routeId_0x00));
+
     var_8c18ad18 = init_8c043ca4[var_8c1bb868.routeId_0x00];
     var_8c18ad1c = var_8c18ad18->ukn_0x00;
     var_8c18ad20 = var_8c18ad18->ukn_0x04;
@@ -512,6 +582,8 @@ int getUknPvmBool_8c01432a(void)
 
 void setUknPvmBool_8c014330(void)
 {
+    LOG_DEBUG(("[ROUTE_LOAD] setUknPvmBool_8c014330: pvm load pass ready\n"));
+
     var_8c18adac = 1;
 }
 
@@ -528,17 +600,17 @@ void task_load_8c014338(Task *task, void *state)
     int frame;
 
     switch (task->field_0x08) {
-    case 0:
+    case ROUTE_LOAD_STATE_INIT:
         AsqResetQueues_11f6c();
         njSetTexture(var_8c1bc3f8.tlist_0x00);
         njLoadCacheTexture(var_8c1bc3f8.tlist_0x00);
         loadRouteModels_8c014088();
         resetUknPvmBool_8c014322();
         AsqProcessQueues_11fe0(AsqNop_11120, 0, 0, 0, setUknPvmBool_8c014330);
-        task->field_0x08++;
+        CHANGE_LOAD_STATE(task, ROUTE_LOAD_STATE_POST_LOAD);
         return;
 
-    case 1:
+    case ROUTE_LOAD_STATE_POST_LOAD:
         if (getUknPvmBool_8c01432a() != 0) {
             FUN_8c02175a();
             FUN_8c026da4(var_8c1bb868.slots_0x04[8]);
@@ -550,22 +622,22 @@ void task_load_8c014338(Task *task, void *state)
             FUN_8c013f78();
             resetUknPvmBool_8c014322();
             AsqProcessQueues_11fe0(AsqNop_11120, FUN_8c021810, FUN_8c02190a, 0, setUknPvmBool_8c014330);
-            task->field_0x08++;
+            CHANGE_LOAD_STATE(task, ROUTE_LOAD_STATE_WAIT);
         }
         break;
 
-    case 2:
+    case ROUTE_LOAD_STATE_WAIT:
         if (getUknPvmBool_8c01432a() != 0) {
-            task->field_0x08++;
+            CHANGE_LOAD_STATE(task, ROUTE_LOAD_STATE_IDLE);
             return;
         }
         break;
 
-    case 3:
-        task->field_0x08++;
+    case ROUTE_LOAD_STATE_IDLE:
+        CHANGE_LOAD_STATE(task, ROUTE_LOAD_STATE_DONE);
         return;
 
-    case 4:
+    case ROUTE_LOAD_STATE_DONE:
         freeTask_8c014b66(task);
         AsqFreeQueues_11f7e();
         var_8c157a6c = 0;
@@ -588,11 +660,13 @@ void FUN_8c0144fc(void)
     Task *task;
     void *state;
 
+    LOG_DEBUG(("[ROUTE_LOAD] FUN_8c0144fc: installing task_load\n"));
+
     njSetBackColor(0xff418dff, 0xff418dff, 0xff418dff);
     var_8c157a6c = 1;
 
     pushTask_8c014ae8(var_tasks_8c1ba3c8, (void *) task_load_8c014338, &task, &state, 0);
-    task->field_0x08 = 0;
+    CHANGE_LOAD_STATE(task, ROUTE_LOAD_STATE_INIT);
     task->field_0x0c = 0;
 
     njGarbageTexture(&var_tex_8c157af8, 0xc00);
@@ -607,24 +681,24 @@ void FUN_8c014550(Task *task, void *state)
     int frame;
 
     switch (task->field_0x08) {
-    case 0:
+    case ROUTE_LOAD2_STATE_POST_LOAD:
         FUN_8c02b170();
         AsqResetQueues_11f6c();
         FUN_8c013f78();
         resetUknPvmBool_8c014322();
         AsqProcessQueues_11fe0(AsqNop_11120, FUN_8c021810, FUN_8c02190a, 0, setUknPvmBool_8c014330);
-        task->field_0x08++;
+        CHANGE_LOAD2_STATE(task, ROUTE_LOAD2_STATE_WAIT);
         break;
-    case 1:
+    case ROUTE_LOAD2_STATE_WAIT:
         if (getUknPvmBool_8c01432a() != 0) {
-            task->field_0x08++;
+            CHANGE_LOAD2_STATE(task, ROUTE_LOAD2_STATE_IDLE);
             return;
         }
         break;
-    case 2:
-        task->field_0x08++;
+    case ROUTE_LOAD2_STATE_IDLE:
+        CHANGE_LOAD2_STATE(task, ROUTE_LOAD2_STATE_DONE);
         return;
-    case 3:
+    case ROUTE_LOAD2_STATE_DONE:
         freeTask_8c014b66(task);
         AsqFreeQueues_11f7e();
         var_8c157a6c = 0;
@@ -656,9 +730,11 @@ void FUN_8c01468e(void)
         }
     }
 
+    LOG_DEBUG(("[ROUTE_LOAD] FUN_8c01468e: installing FUN_8c014550\n"));
+
     var_8c157a6c = 1;
     pushTask_8c014ae8(var_tasks_8c1ba3c8, (void *) FUN_8c014550, &task, &state, 0);
-    task->field_0x08 = 0;
+    CHANGE_LOAD2_STATE(task, ROUTE_LOAD2_STATE_POST_LOAD);
     task->field_0x0c = 0;
     FUN_8c013f22();
 
@@ -676,17 +752,17 @@ void prob_task_8c014784(Task *task, void *state)
     int frame;
 
     switch (task->field_0x08) {
-    case 0:
+    case ROUTE_LOAD_STATE_INIT:
         AsqResetQueues_11f6c();
         njSetTexture(var_8c1bc3f8.tlist_0x00);
         njLoadCacheTexture(var_8c1bc3f8.tlist_0x00);
         loadRouteModels_8c014088();
         resetUknPvmBool_8c014322();
         AsqProcessQueues_11fe0(AsqNop_11120, 0, 0, 0, setUknPvmBool_8c014330);
-        task->field_0x08++;
+        CHANGE_LOAD_STATE(task, ROUTE_LOAD_STATE_POST_LOAD);
         break;
 
-    case 1:
+    case ROUTE_LOAD_STATE_POST_LOAD:
         if (getUknPvmBool_8c01432a() != 0) {
             FUN_8c02175a();
             FUN_8c026da4(var_8c1bb868.slots_0x04[8]);
@@ -698,22 +774,22 @@ void prob_task_8c014784(Task *task, void *state)
             FUN_8c013f78();
             resetUknPvmBool_8c014322();
             AsqProcessQueues_11fe0(AsqNop_11120, 0, FUN_8c02190a, 0, setUknPvmBool_8c014330);
-            task->field_0x08++;
+            CHANGE_LOAD_STATE(task, ROUTE_LOAD_STATE_WAIT);
         }
         break;
 
-    case 2:
+    case ROUTE_LOAD_STATE_WAIT:
         if (getUknPvmBool_8c01432a() != 0) {
-            task->field_0x08++;
+            CHANGE_LOAD_STATE(task, ROUTE_LOAD_STATE_IDLE);
             return;
         }
         break;
 
-    case 3:
-        task->field_0x08++;
+    case ROUTE_LOAD_STATE_IDLE:
+        CHANGE_LOAD_STATE(task, ROUTE_LOAD_STATE_DONE);
         return;
 
-    case 4:
+    case ROUTE_LOAD_STATE_DONE:
         freeTask_8c014b66(task);
         AsqFreeQueues_11f7e();
         var_8c157a6c = 0;

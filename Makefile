@@ -17,7 +17,7 @@ SRCS = \
 	src/012504_input.c \
 	src/asm/0129cc.src \
 	src/012f44.c \
-	src/013ae8.c \
+	src/013ae8_route_load.c \
 	src/014934.c \
 	src/0149b0_sbinit.c \
 	src/014a9c_tasks.c \
