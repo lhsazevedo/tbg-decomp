@@ -675,3 +675,66 @@ void FUN_8c01468e(void)
     njLoadCacheTexture(var_8c1bc3f8.tlist_0x00);
     njSetBackColor(0xff418dff, 0xff418dff, 0xff418dff);
 }
+
+/* Like task_load_8c014338, but on completion binds the interior texture and
+ * hands off to the input task (as FUN_8c014550 does). */
+void prob_task_8c014784(Task *task, void *state)
+{
+    int frame;
+
+    switch (task->field_0x08) {
+    case 0:
+        AsqResetQueues_11f6c();
+        njSetTexture(var_8c1bc3f8.tlist_0x00);
+        njLoadCacheTexture(var_8c1bc3f8.tlist_0x00);
+        loadRouteModels_8c014088();
+        resetUknPvmBool_8c014322();
+        AsqProcessQueues_11fe0(AsqNop_11120, 0, 0, 0, setUknPvmBool_8c014330);
+        task->field_0x08++;
+        break;
+
+    case 1:
+        if (getUknPvmBool_8c01432a() != 0) {
+            FUN_8c02175a();
+            FUN_8c026da4(var_8c1bb868.slots_0x04[8]);
+            FUN_8c028de8(var_8c1bb868.slots_0x04[11]);
+            FUN_8c028dd0(var_8c1bb868.slots_0x04[12]);
+            FUN_8c02caba();
+            FUN_8c02b170();
+            AsqResetQueues_11f6c();
+            FUN_8c013f78();
+            resetUknPvmBool_8c014322();
+            AsqProcessQueues_11fe0(AsqNop_11120, 0, FUN_8c02190a, 0, setUknPvmBool_8c014330);
+            task->field_0x08++;
+        }
+        break;
+
+    case 2:
+        if (getUknPvmBool_8c01432a() != 0) {
+            task->field_0x08++;
+            return;
+        }
+        break;
+
+    case 3:
+        task->field_0x08++;
+        return;
+
+    case 4:
+        freeTask_8c014b66(task);
+        AsqFreeQueues_11f7e();
+        var_8c157a6c = 0;
+        njReleaseTexture(var_8c1bc3f8.tlist_0x00);
+        njSetTexture(var_interiorTexlist_8c1bc438);
+        njLoadCacheTexture(var_interiorTexlist_8c1bc438);
+        FUN_8c01306e();
+        dispatchInputTask_8c012970();
+        return;
+    }
+
+    /* Loading animation, drawn for states 0-2 (and any unexpected state). */
+    drawSprite_8c014f54(&var_8c1bc3f8, 0, 0.0f, 0.0f, -5.0f);
+    frame = (int) task->field_0x0c;
+    task->field_0x0c = (void *) (frame + 1);
+    drawSprite_8c014f54(&var_8c1bc3f8, (frame >> 2) % 6 + 1, 0.0f, 0.0f, -4.0f);
+}
