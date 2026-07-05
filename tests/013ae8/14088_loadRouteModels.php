@@ -60,23 +60,42 @@ return new class extends TestCase {
     public function test_route_autumn_day(): void    { $this->assertRoute(18); }
     public function test_route_autumn_night(): void  { $this->assertRoute(24); }
 
-    private function assertRoute(int $routeId): void
+    /**
+     * Area/time selectors out of range: no basedir/pvr strcpy runs, everything
+     * else is unchanged. The record fields are forced past the real data, which
+     * only ever holds 0..2. ad1c > 2 skips the outer switch; ad1c in range with
+     * ad20 > 2 skips each inner switch.
+     */
+    public function test_area_out_of_range(): void      { $this->assertRoute(9, 3); }
+    public function test_time_out_of_range_summer(): void { $this->assertRoute(9, null, 3); }
+    public function test_time_out_of_range_winter(): void { $this->assertRoute(3, null, 3); }
+    public function test_time_out_of_range_autumn(): void { $this->assertRoute(18, null, 3); }
+
+    private function assertRoute(int $routeId, ?int $forceAd1c = null, ?int $forceAd20 = null): void
     {
         $cfg = self::ROUTES[$routeId];
 
         $this->setSizes();
         $this->initUint32($this->addressOf('_var_8c1bb868') + 0x00, $routeId);
 
+        $record = $this->addressOf($cfg['record']);
+        $ad1c = $cfg['ad1c'];
+        $ad20 = $cfg['ad20'];
+        if ($forceAd1c !== null) { $this->initUint32($record + 0x00, $forceAd1c); $ad1c = $forceAd1c; }
+        if ($forceAd20 !== null) { $this->initUint32($record + 0x04, $forceAd20); $ad20 = $forceAd20; }
+
         $this->call('_loadRouteModels_8c014088');
 
-        $this->shouldWriteLong($this->addressOf('_var_8c18ad18'), $this->addressOf($cfg['record']));
-        $this->shouldWriteLong($this->addressOf('_var_8c18ad1c'), $cfg['ad1c']);
-        $this->shouldWriteLong($this->addressOf('_var_8c18ad20'), $cfg['ad20']);
+        $this->shouldWriteLong($this->addressOf('_var_8c18ad18'), $record);
+        $this->shouldWriteLong($this->addressOf('_var_8c18ad1c'), $ad1c);
+        $this->shouldWriteLong($this->addressOf('_var_8c18ad20'), $ad20);
         $this->shouldWriteLong($this->addressOf('_var_8c18ad24'), $this->addressOf($cfg['ukn10']));
 
         $basedir = $this->addressOf('_var_basedir_8c18ad6c');
-        $this->expectStrcpy($basedir, $cfg['common']);
-        $this->expectStrcpy($this->addressOf('_var_8c18ad4c'), $cfg['pvr']);
+        if ($ad1c <= 2 && $ad20 <= 2) {
+            $this->expectStrcpy($basedir, $cfg['common']);
+            $this->expectStrcpy($this->addressOf('_var_8c18ad4c'), $cfg['pvr']);
+        }
         $this->expectStrcpy($this->addressOf('_var_8c18ad8c'), $basedir);
         $this->expectStrcpy($this->addressOf('_var_8c18ad2c'), $basedir);
 

@@ -136,6 +136,17 @@ return new class extends TestCase {
         $this->shouldCall('_dispatchInputTask_8c012970');
     }
 
+    /** Unexpected state: falls through the switch to just the animation. */
+    public function test_default_state_draws(): void
+    {
+        $this->resolveSizes();
+        $task = $this->makeTask(5, 0);
+
+        $this->call('_prob_task_8c014784')->with($task, 0);
+
+        $this->expectLoadingAnimation($task);
+    }
+
     /**
      * The loading animation: a base sprite plus one of six cycling frames.
      * With field_0x0c == 0 the frame index is __modls(0, 6) + 1 == 1.
