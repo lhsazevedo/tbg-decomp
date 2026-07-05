@@ -253,6 +253,7 @@ return [
                 "tests/013ae8/14338_taskLoad.php",
                 "tests/013ae8/144fc_FUN.php",
                 "tests/013ae8/14550_FUN.php",
+                "tests/013ae8/1468e_FUN.php",
             ],
             "objects" => [
                 "build/output/013ae8_src.obj",

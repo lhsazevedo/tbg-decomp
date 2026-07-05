@@ -196,6 +196,10 @@ extern int var_8c157a6c;
 
 extern NJS_TEXMEMLIST var_tex_8c157af8;
 
+/* below 2 outside demo playback shortens the fade; [3]/[4] are a counter and its cap */
+extern signed char var_8c1ba290;
+extern int var_8c2285c4[];
+
 void drawSprite_8c014f54(ResourceGroup *res, int textureId, float x, float y, float priority);
 void dispatchInputTask_8c012970(void);
 void FUN_8c01306e(void);
@@ -644,4 +648,30 @@ void FUN_8c014550(Task *task, void *state)
     frame = (int) task->field_0x0c;
     task->field_0x0c = (void *) (frame + 1);
     drawSprite_8c014f54(&var_8c1bc3f8, (frame >> 2) % 6 + 1, 0.0f, 0.0f, -4.0f);
+}
+
+/* Install FUN_8c014550 and prime the queues, keeping the current texture bound. */
+void FUN_8c01468e(void)
+{
+    Task *task;
+    void *state;
+
+    if (var_8c1ba290 < 2 || var_demo_8c1bb8d0 == 1) {
+        var_8c2285c4[3] += 0x1e;
+        if (var_8c2285c4[4] < var_8c2285c4[3]) {
+            var_8c2285c4[3] = var_8c2285c4[4];
+        }
+    }
+
+    var_8c157a6c = 1;
+    pushTask_8c014ae8(var_tasks_8c1ba3c8, (void *) FUN_8c014550, &task, &state, 0);
+    task->field_0x08 = 0;
+    task->field_0x0c = 0;
+    FUN_8c013f22();
+
+    njGarbageTexture(&var_tex_8c157af8, 0xc00);
+    AsqInitQueues_11f36(0x20, 0x800, 0x800, 0x40);
+    njSetTexture(var_8c1bc3f8.tlist_0x00);
+    njLoadCacheTexture(var_8c1bc3f8.tlist_0x00);
+    njSetBackColor(0xff418dff, 0xff418dff, 0xff418dff);
 }
