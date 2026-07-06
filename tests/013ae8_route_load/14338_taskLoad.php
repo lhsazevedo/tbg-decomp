@@ -63,7 +63,7 @@ return new class extends TestCase {
         $this->shouldCall('_FUN_8c02caba');
         $this->shouldCall('_FUN_8c02b170');
         $this->shouldCall('_AsqResetQueues_11f6c');
-        $this->shouldCall('_FUN_8c013f78');
+        $this->shouldCall('_syncSelectedEntryAssets_8c013f78');
         $this->shouldCall('_resetUknPvmBool_8c014322');
         $this->shouldCall('_AsqProcessQueues_11fe0')->with(
             $this->addressOf('_AsqNop_11120'),

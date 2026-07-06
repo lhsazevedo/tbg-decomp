@@ -16,7 +16,7 @@ return new class extends TestCase {
         $models = 0x8cabc000;
         $this->initUint32($this->addressOf('_var_8c18adb0'), $models);
 
-        $this->call('_FUN_8c013d78');
+        $this->call('_startRouteModelLoadPass_8c013d78');
 
         $this->shouldCall('_AsqInitQueues_11f36')->with(0, 0x40, 0, 0x40);
         $this->shouldCall('_AsqResetQueues_11f6c');

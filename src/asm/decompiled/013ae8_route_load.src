@@ -68,25 +68,25 @@
           .EXPORT     _clearUnknownArray_8c013bbc
           .EXPORT     _syncRouteModelAssets_8c013c34
           .EXPORT     _finishAssetLoad_8c013d42
-          .EXPORT     _FUN_8c013d78
-          .EXPORT     _FUN_8c013dae
+          .EXPORT     _startRouteModelLoadPass_8c013d78
+          .EXPORT     _freeAllRouteModels_8c013dae
           .EXPORT     _FUN_8c013df6
           .EXPORT     _FUN_8c013ee4
-          .EXPORT     _FUN_8c013f22
-          .EXPORT     _FUN_8c013f78
+          .EXPORT     _freeSelectedEntryPairs_8c013f22
+          .EXPORT     _syncSelectedEntryAssets_8c013f78
           .EXPORT     _loadRouteModels_8c014088
           .EXPORT     _resetUknPvmBool_8c014322
           .EXPORT     _getUknPvmBool_8c01432a
           .EXPORT     _setUknPvmBool_8c014330
           .EXPORT     _task_load_8c014338
-          .EXPORT     _FUN_8c01468e
-          .EXPORT     _FUN_8c014550
-          .EXPORT     _prob_task_8c014784
-          .EXPORT     _FUN_8c0144fc
+          .EXPORT     _pushInteriorLoadTask_8c01468e
+          .EXPORT     _task_interiorLoad_8c014550
+          .EXPORT     _task_loadBindInterior_8c014784
+          .EXPORT     _pushRouteLoadTask_8c0144fc
           .EXPORT     _init_8c04410c ; 01b19c.src
           .EXPORT     _var_8c18ad18 ; 02c884.src
-          .EXPORT     _var_8c18ad1c ; 012f44.c, 012f44.src, 01d7fc.src, 020214.src, 023310.src, 025870.src, 026710.src, 028258.src, 02af78.src, 02b464.src, 02c884.src, 02d19c.src, 02d968.src
-          .EXPORT     _var_8c18ad20 ; 01d7fc.src, 022bdc.src, 023310.src, 025b98.src, 026710.src, 027958.src, 02af78.src, 02d19c.src
+          .EXPORT     _var_route_8c18ad1c ; 012f44.c, 012f44.src, 01d7fc.src, 020214.src, 023310.src, 025870.src, 026710.src, 028258.src, 02af78.src, 02b464.src, 02c884.src, 02d19c.src, 02d968.src
+          .EXPORT     _var_timeOfDay_8c18ad20 ; 01d7fc.src, 022bdc.src, 023310.src, 025b98.src, 026710.src, 027958.src, 02af78.src, 02d19c.src
           .EXPORT     _var_8c18ad24 ; 021b9c.src, 0222dc.src, 023310.src, 024b4c.src, 026710.src
           .EXPORT     _var_8c18ad28 ; 012f44.c, 012f44.src
           .EXPORT     _var_8c18ad2c
@@ -426,7 +426,7 @@ LP_GEN_93614:
           .DATA.W H'0200 ; LP_GEN_93614+0
           .DATA.L _var_8c1bbddc
           .DATA.L _var_basedir_8c18ad6c
-          .DATA.L _var_8c18ad20
+          .DATA.L _var_timeOfDay_8c18ad20
           .DATA.L _init_8c043dc4
           .DATA.L _AsqRequestNj_11492
           .DATA.L _init_8c043ecc
@@ -435,7 +435,7 @@ LP_GEN_93614:
           .DATA.L _syFree
           .DATA.L _AsqFreeQueues_11f7e
 
-_FUN_8c013d78:
+_startRouteModelLoadPass_8c013d78:
           STS.L       PR,@-R15
           MOV.L       LP_GEN_38230+6,R3
           MOV         #H'40,R7
@@ -463,7 +463,7 @@ _FUN_8c013d78:
           LDS.L       @R15+,PR
           RTS
           NOP
-_FUN_8c013dae:
+_freeAllRouteModels_8c013dae:
           MOV.L       R14,@-R15
           MOV.L       R13,@-R15
           MOV.L       R12,@-R15
@@ -652,7 +652,7 @@ LAB_8c013f0c:
           MOV.L       @R15+,R13
           RTS
           MOV.L       @R15+,R14
-_FUN_8c013f22:
+_freeSelectedEntryPairs_8c013f22:
           MOV.L       LP_GEN_91607+14,R0
           MOV         #H'2c,R2
           MOV.L       LP_GEN_91607+10,R3
@@ -694,7 +694,7 @@ LP_GEN_91607:
           .DATA.L _AsqFreeNjPvmPairs_120fe
           .DATA.L _FUN_8c021a24
 
-_FUN_8c013f78:
+_syncSelectedEntryAssets_8c013f78:
           MOV.L       LP_GEN_25668+4,R0
           MOV         #H'2c,R2
           MOV.L       LP_GEN_25668+0,R3
@@ -969,8 +969,8 @@ LP_GEN_25668:
           .DATA.L _FUN_8c02aa36
           .DATA.L _var_8c1bb868
           .DATA.L _init_8c043ca4
-          .DATA.L _var_8c18ad1c
-          .DATA.L _var_8c18ad20
+          .DATA.L _var_route_8c18ad1c
+          .DATA.L _var_timeOfDay_8c18ad20
           .DATA.L _var_8c18ad24
           .DATA.L _var_8c18ad4c
           .DATA.L _strcpy
@@ -1246,7 +1246,7 @@ LAB_8c014398:
           MOV.L       LP_GEN_90737+54,R3
           JSR         @R3
           NOP
-          BSR         _FUN_8c013f78
+          BSR         _syncSelectedEntryAssets_8c013f78
           NOP
           BSR         _resetUknPvmBool_8c014322
           NOP
@@ -1377,7 +1377,7 @@ LAB_8c0144f2:
           MOV.L       @R15+,R13
           RTS
           MOV.L       @R15+,R14
-_FUN_8c0144fc:
+_pushRouteLoadTask_8c0144fc:
           MOV.L       R14,@-R15
           STS.L       PR,@-R15
           ADD         #-H'8,R15
@@ -1420,7 +1420,7 @@ _FUN_8c0144fc:
           LDS.L       @R15+,PR
           RTS
           MOV.L       @R15+,R14
-_FUN_8c014550:
+_task_interiorLoad_8c014550:
           MOV.L       R14,@-R15
           MOV         R4,R14
           FMOV.S      FR15,@-R15
@@ -1443,7 +1443,7 @@ LAB_8c01456e:
           MOV.L       LP_GEN_28406+66,R2
           JSR         @R2
           NOP
-          BSR         _FUN_8c013f78
+          BSR         _syncSelectedEntryAssets_8c013f78
           NOP
           BSR         _resetUknPvmBool_8c014322
           NOP
@@ -1568,7 +1568,7 @@ LAB_8c014686:
           FMOV.S      @R15+,FR15
           RTS
           MOV.L       @R15+,R14
-_FUN_8c01468e:
+_pushInteriorLoadTask_8c01468e:
           MOV.L       R14,@-R15
           STS.L       PR,@-R15
           ADD         #-H'8,R15
@@ -1611,7 +1611,7 @@ LAB_8c0146ba:
           MOV.L       R4,@(H'8,R2)
           MOV.L       @(H'4,R15),R3
           MOV.L       R4,@(H'c,R3)
-          BSR         _FUN_8c013f22
+          BSR         _freeSelectedEntryPairs_8c013f22
           NOP
           MOV.L       LP_GEN_17698+88,R2
           MOV.L       LP_GEN_17698+84,R4
@@ -1663,7 +1663,7 @@ LP_GEN_17698:
           .DATA.L _var_8c1ba290
           .DATA.L _var_demo_8c1bb8d0
           .DATA.L _var_8c2285c4
-          .DATA.L _FUN_8c014550
+          .DATA.L _task_interiorLoad_8c014550
           .DATA.L _var_tasks_8c1ba3c8
           .DATA.L _pushTask_8c014ae8
           .DATA.L _var_tex_8c157af8
@@ -1672,7 +1672,7 @@ LP_GEN_17698:
           .DATA.L H'FF418DFF
           .DATA.L _njSetBackColor
 
-_prob_task_8c014784:
+_task_loadBindInterior_8c014784:
           MOV.L       R14,@-R15
           MOV         R4,R14
           MOV.L       R13,@-R15
@@ -1743,7 +1743,7 @@ LAB_8c0147d8:
           MOV.L       LP_GEN_48435+6,R2
           JSR         @R2
           NOP
-          BSR         _FUN_8c013f78
+          BSR         _syncSelectedEntryAssets_8c013f78
           NOP
           BSR         _resetUknPvmBool_8c014322
           NOP
@@ -10914,9 +10914,9 @@ _const_8c035dc8:        ; aggressive search
           .SECTION    B,DATA,ALIGN=4
 _var_8c18ad18:
           .RES.B      4
-_var_8c18ad1c:
+_var_route_8c18ad1c:
           .RES.B      4
-_var_8c18ad20:
+_var_timeOfDay_8c18ad20:
           .RES.B      4
 _var_8c18ad24:
           .RES.B      4

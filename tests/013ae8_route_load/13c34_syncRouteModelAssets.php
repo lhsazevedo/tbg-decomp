@@ -16,7 +16,7 @@ return new class extends TestCase {
         $this->seedAllUnloaded($base);
 
         // Default filename table.
-        $this->initUint32($this->addressOf('_var_8c18ad20'), 0);
+        $this->initUint32($this->addressOf('_var_timeOfDay_8c18ad20'), 0);
 
         // slot 5: loaded but not requested -> freed.
         $this->initUint32($base + 5 * 0x10 + 0x8, 0x8c500000);
@@ -61,7 +61,7 @@ return new class extends TestCase {
         $this->seedAllUnloaded($base);
 
         // Mode 2 selects init_8c043ecc; slot 1 maps to entries 2/3.
-        $this->initUint32($this->addressOf('_var_8c18ad20'), 2);
+        $this->initUint32($this->addressOf('_var_timeOfDay_8c18ad20'), 2);
 
         // Load slot 1 only.
         $models = $this->alloc(2);
@@ -114,7 +114,7 @@ return new class extends TestCase {
 
     private function resolveSymbols(): void
     {
-        // _var_8c18ad20 and _var_basedir_8c18ad6c are defined in the C object.
+        // _var_timeOfDay_8c18ad20 and _var_basedir_8c18ad6c are defined in the C object.
         $this->setSize('_var_8c1bbddc', self::SLOTS * 0x10);
 
         $this->setSize('_AsqRequestNj_11492', 4);

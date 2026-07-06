@@ -11,7 +11,7 @@
           .IMPORT     _init_8c03bd84
           .IMPORT     _pushTitle_8c015fd6
           .IMPORT     _var_demo_8c1bb8d0
-          .IMPORT     _var_8c18ad1c
+          .IMPORT     _var_route_8c18ad1c
           .IMPORT     _var_8c228708
           .IMPORT     _var_8c22655c
           .IMPORT     _var_busState_8c1bb9d0
@@ -170,7 +170,7 @@
           .IMPORT     _sbExitSystem_8c014a24
           .IMPORT     _syBtExit
           .IMPORT     _task_8c012d5a
-          .IMPORT     _FUN_8c0144fc
+          .IMPORT     _pushRouteLoadTask_8c0144fc
           .EXPORT     _task_8c012f44
           .EXPORT     _FUN_8c01306e
           .EXPORT     _FUN_8c01328c
@@ -322,7 +322,7 @@ LP_GEN_99840:
           .DATA.L _init_8c03bd84
           .DATA.L _pushTitle_8c015fd6
           .DATA.L _var_demo_8c1bb8d0
-          .DATA.L _var_8c18ad1c
+          .DATA.L _var_route_8c18ad1c
           .DATA.L _var_8c228708
           .DATA.L _var_8c22655c
           .DATA.L _var_busState_8c1bb9d0
@@ -786,7 +786,7 @@ LP_GEN_38000:
           .DATA.L _var_8c1ba292
           .DATA.L _var_8c227da0
           .DATA.L _var_8c227da8
-          .DATA.L _FUN_8c0144fc
+          .DATA.L _pushRouteLoadTask_8c0144fc
           .DATA.L _var_8c1ba291
           .DATA.L _const_8c033364
 

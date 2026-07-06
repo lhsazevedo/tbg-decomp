@@ -66,7 +66,7 @@
           .IMPORT     _FUN_8c0223ea
           .IMPORT     _var_tasks_8c1ba5e8
           .IMPORT     _pushTask_8c014ae8
-          .IMPORT     _var_8c18ad1c
+          .IMPORT     _var_route_8c18ad1c
           .IMPORT     _var_8c22640c
           .IMPORT     _var_8c228710
           .IMPORT     _FUN_8c0297da
@@ -76,7 +76,7 @@
           .IMPORT     _var_tasks_8c1bac28
           .IMPORT     _var_tasks_8c1ba3c8
           .IMPORT     _FUN_8c02ccc6
-          .IMPORT     _FUN_8c01468e
+          .IMPORT     _pushInteriorLoadTask_8c01468e
           .IMPORT     _var_8c1bb8b8
           .IMPORT     _var_8c1bb8bc
           .IMPORT     _FUN_8c016182
@@ -2379,7 +2379,7 @@ LP_GEN_23130:
           .DATA.L _var_8c2286a0 ; H'8C02C5F8
           .DATA.L _var_8c228564 ; H'8C02C5FC
           .DATA.L _var_demo_8c1bb8d0 ; H'8C02C600
-          .DATA.L _var_8c18ad1c ; H'8C02C604
+          .DATA.L _var_route_8c18ad1c ; H'8C02C604
           .DATA.L _var_8c226410 ; H'8C02C608
           .DATA.L _var_8c22640c ; H'8C02C60C
 LAB_8c02c610:
@@ -2658,7 +2658,7 @@ LP_GEN_25024:
           .DATA.L _var_tasks_8c1ba5e8 ; H'8C02C818
           .DATA.L _var_tasks_8c1ba3c8 ; H'8C02C81C
           .DATA.L _FUN_8c02ccc6 ; H'8C02C820
-          .DATA.L _FUN_8c01468e ; H'8C02C824
+          .DATA.L _pushInteriorLoadTask_8c01468e ; H'8C02C824
           .DATA.L _var_8c1bb8b8 ; H'8C02C828
           .DATA.L _var_8c1bb8bc ; H'8C02C82C
           .DATA.L _FUN_8c016182 ; H'8C02C830

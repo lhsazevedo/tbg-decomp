@@ -23,7 +23,7 @@ return new class extends TestCase {
         $this->initUint32($base + 7 * 0x10 + 0x8, 0x8c700000);
         $this->initUint32($base + 7 * 0x10 + 0xc, 0x8c700010);
 
-        $this->call('_FUN_8c013dae');
+        $this->call('_freeAllRouteModels_8c013dae');
 
         $this->shouldCall('_AsqReleaseAndFreeTexlist_11e3c')->with(0x8c500000);
         $this->shouldCall('_syFree')->with(0x8c500010);
@@ -43,7 +43,7 @@ return new class extends TestCase {
         $base = $this->addressOf('_var_8c1bbddc');
         $this->seedAllUnloaded($base);
 
-        $this->call('_FUN_8c013dae');
+        $this->call('_freeAllRouteModels_8c013dae');
     }
 
     /** Every slot starts unloaded (texlist == -1) so nothing is freed. */

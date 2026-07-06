@@ -13,7 +13,7 @@
           .IMPORT     _sdMidiPlay
           .IMPORT     _FUN_8c0223ea
           .IMPORT     _var_midiHandles_8c0fcd28
-          .IMPORT     _var_8c18ad1c
+          .IMPORT     _var_route_8c18ad1c
           .IMPORT     _var_8c228928
           .IMPORT     _var_8c228910
           .IMPORT     _AsqGetRandomInRangeB_121be
@@ -49,7 +49,7 @@
           .IMPORT     _var_busState_8c1bb9d0
           .IMPORT     _var_8c228708
           .IMPORT     _var_8c22655c
-          .IMPORT     _var_8c18ad20
+          .IMPORT     _var_timeOfDay_8c18ad20
           .IMPORT     _snd_8c010cd6
           .IMPORT     _FUN_8c02d146
           .IMPORT     _var_8c1bbc84
@@ -383,7 +383,7 @@ LP_GEN_53841:
           .DATA.L _sdMidiPlay ; H'8C02D3F8
           .DATA.L _FUN_8c0223ea ; H'8C02D3FC
           .DATA.L _var_midiHandles_8c0fcd28 ; H'8C02D400
-          .DATA.L _var_8c18ad1c ; H'8C02D404
+          .DATA.L _var_route_8c18ad1c ; H'8C02D404
           .DATA.L _var_8c228928 ; H'8C02D408
           .DATA.L _var_8c228910 ; H'8C02D40C
           .DATA.L _AsqGetRandomInRangeB_121be ; H'8C02D410
@@ -658,7 +658,7 @@ LP_GEN_80933:
           .DATA.L _var_8c22895c ; H'8C02D60C
           .DATA.L _var_midiHandles_8c0fcd28 ; H'8C02D610
           .DATA.L _sdMidiPlay ; H'8C02D614
-          .DATA.L _var_8c18ad1c ; H'8C02D618
+          .DATA.L _var_route_8c18ad1c ; H'8C02D618
           .DATA.L _var_8c228718 ; H'8C02D61C
           .DATA.L _var_8c228934 ; H'8C02D620
           .DATA.L _var_8c228940 ; H'8C02D624
@@ -1053,10 +1053,10 @@ LP_GEN_72278:
           .RES.W 1 ; H'8C02D92E
           .DATA.L _FUN_8c024b86 ; H'8C02D930
           .DATA.L _var_busState_8c1bb9d0 ; H'8C02D934
-          .DATA.L _var_8c18ad1c ; H'8C02D938
+          .DATA.L _var_route_8c18ad1c ; H'8C02D938
           .DATA.L _var_8c228708 ; H'8C02D93C
           .DATA.L _var_8c22655c ; H'8C02D940
-          .DATA.L _var_8c18ad20 ; H'8C02D944
+          .DATA.L _var_timeOfDay_8c18ad20 ; H'8C02D944
           .DATA.L _snd_8c010cd6 ; H'8C02D948
           .DATA.L _freeTask_8c014b66 ; H'8C02D94C
           .DATA.L _FUN_8c02d146 ; H'8C02D950

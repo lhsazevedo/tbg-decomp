@@ -25,8 +25,8 @@
           .IMPORT     _var_8c1bbf7c
           .IMPORT     _var_routeModelPairs_8c1bc3f4
           .IMPORT     _FUN_8c02786c
-          .IMPORT     _var_8c18ad20
-          .IMPORT     _var_8c18ad1c
+          .IMPORT     _var_timeOfDay_8c18ad20
+          .IMPORT     _var_route_8c18ad1c
           .IMPORT     _FUN_8c02e69c
           .IMPORT     _FUN_8c02eab4
           .IMPORT     _FUN_8c02ec50
@@ -526,7 +526,7 @@ LP_GEN_28893:
           .DATA.L _var_8c1bbf7c ; H'8C0236F8
           .DATA.L _var_routeModelPairs_8c1bc3f4 ; H'8C0236FC
           .DATA.L _FUN_8c02786c ; H'8C023700
-          .DATA.L _var_8c18ad20 ; H'8C023704
+          .DATA.L _var_timeOfDay_8c18ad20 ; H'8C023704
 LAB_8c023708:
           MOV         R14,R4
           ADD         #H'58,R4
@@ -690,7 +690,7 @@ LP_GEN_45139:
           .DATA.W H'035C ; H'8C02383A
           .DATA.W H'0368 ; H'8C02383C
           .RES.W 1 ; H'8C02383E
-          .DATA.L _var_8c18ad1c ; H'8C023840
+          .DATA.L _var_route_8c18ad1c ; H'8C023840
           .DATA.L _FUN_8c02e69c ; H'8C023844
           .DATA.L _var_8c228708 ; H'8C023848
           .DATA.L _FUN_8c020fe4 ; H'8C02384C

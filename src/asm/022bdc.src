@@ -23,7 +23,7 @@
           .IMPORT     _FUN_8c023938
           .IMPORT     _FUN_8c023cba
           .IMPORT     _var_8c228b3c
-          .IMPORT     _var_8c18ad20
+          .IMPORT     _var_timeOfDay_8c18ad20
           .IMPORT     _var_8c1bbd9c
           .IMPORT     _prob_blinker_8c028022
           .IMPORT     _sdMidiStop
@@ -926,7 +926,7 @@ LP_GEN_14264:
           .DATA.W H'0260 ; H'8C023290
           .RES.W 1 ; H'8C023292
           .DATA.L H'3E4CCCCD ; H'8C023294
-          .DATA.L _var_8c18ad20 ; H'8C023298
+          .DATA.L _var_timeOfDay_8c18ad20 ; H'8C023298
           .DATA.L _var_8c1bbd9c ; H'8C02329C
           .DATA.L _prob_blinker_8c028022 ; H'8C0232A0
           .DATA.L _sdMidiStop ; H'8C0232A4

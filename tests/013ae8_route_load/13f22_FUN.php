@@ -10,7 +10,7 @@ return new class extends TestCase {
     public function test_frees_pairs_and_hands_off_when_both_flags_set()
     {
         $entry = $this->setup(2, 1, 1);
-        $this->call('_FUN_8c013f22');
+        $this->call('_freeSelectedEntryPairs_8c013f22');
         $this->shouldCall('_AsqFreeNjPvmPairs_120fe')->with($this->addressOf('_var_8c1bc3f0'));
         $this->shouldCall('_FUN_8c021a24');
     }
@@ -18,21 +18,21 @@ return new class extends TestCase {
     public function test_only_frees_pairs_when_handoff_flag_clear()
     {
         $this->setup(0, 1, 0);
-        $this->call('_FUN_8c013f22');
+        $this->call('_freeSelectedEntryPairs_8c013f22');
         $this->shouldCall('_AsqFreeNjPvmPairs_120fe')->with($this->addressOf('_var_8c1bc3f0'));
     }
 
     public function test_only_hands_off_when_free_flag_clear()
     {
         $this->setup(0, 0, 1);
-        $this->call('_FUN_8c013f22');
+        $this->call('_freeSelectedEntryPairs_8c013f22');
         $this->shouldCall('_FUN_8c021a24');
     }
 
     public function test_does_nothing_when_both_flags_clear()
     {
         $this->setup(0, 0, 0);
-        $this->call('_FUN_8c013f22');
+        $this->call('_freeSelectedEntryPairs_8c013f22');
     }
 
     /**

@@ -38,7 +38,7 @@ char *DEBUG_routeLoad2StateNames[] = {
  * ====================
  */
 
-/* States for task_load_8c014338 and prob_task_8c014784 (identical shape). */
+/* States for task_load_8c014338 and task_loadBindInterior_8c014784 (identical shape). */
 enum ROUTE_LOAD_STATE {
     ROUTE_LOAD_STATE_INIT      = 0,
     ROUTE_LOAD_STATE_POST_LOAD = 1,
@@ -47,13 +47,27 @@ enum ROUTE_LOAD_STATE {
     ROUTE_LOAD_STATE_DONE      = 4,
 };
 
-/* States for FUN_8c014550 (same idea, but load pass is already underway
- * when the task is installed, so there's no separate INIT state). */
+/* States for task_interiorLoad_8c014550 (same idea, but load pass is already underway
+ * when the task is pushed, so there's no separate INIT state). */
 enum ROUTE_LOAD2_STATE {
     ROUTE_LOAD2_STATE_POST_LOAD = 0,
     ROUTE_LOAD2_STATE_WAIT      = 1,
     ROUTE_LOAD2_STATE_IDLE      = 2,
     ROUTE_LOAD2_STATE_DONE      = 3,
+};
+
+/* Bus route selector (var_route_8c18ad1c); picks the asset-dir prefix. */
+enum ROUTE {
+    ROUTE_SHINJUKU = 0,
+    ROUTE_WANGAN   = 1,
+    ROUTE_OME      = 2,
+};
+
+/* Time-of-day selector (var_timeOfDay_8c18ad20); 0/1 -> D dir, 2 -> N dir. */
+enum TIME_OF_DAY {
+    TIME_OF_DAY_DAY     = 0,
+    TIME_OF_DAY_EVENING = 1,
+    TIME_OF_DAY_NIGHT   = 2,
 };
 
 /* One entry of the 0x20-slot route-model asset table (var_8c1bbddc). */
@@ -88,17 +102,17 @@ typedef struct {
     void *ukn_0x14;
     Sint8 *ukn_0x18;                 /* second-table list (FUN_8c013df6) */
     void *ukn_0x1c;                  /* FUN_8c029ad4 arg */
-    char **ukn_0x20;                 /* dat filenames for the request loop */
-    s_8c18ad28 *ukn_0x24;            /* fog params */
-    NjPvmPairFilenames *ukn_0x28;    /* nj/pvm pairs */
+    char **datFilenames_0x20;                 /* dat filenames for the request loop */
+    s_8c18ad28 *fog_0x24;            /* fog params */
+    NjPvmPairFilenames *njPvmPairs_0x28;    /* nj/pvm pairs */
 } UknEntry;
 
 /* Static per-route config record; init_8c043ca4[] holds one per route.
  * entries_0x08 is the UknEntry array indexed by var_8c228708.
  * filenames_0x1c holds the nj/dat asset names loaded by loadRouteModels. */
 typedef struct {
-    int ukn_0x00;              /* -> var_8c18ad1c (area/season select) */
-    int ukn_0x04;              /* -> var_8c18ad20 (day/night select) */
+    int ukn_0x00;              /* -> var_route_8c18ad1c (0 Shinjuku, 1 Wangan, 2 Ome) */
+    int ukn_0x04;              /* -> var_timeOfDay_8c18ad20 (day/evening/night) */
     UknEntry *entries_0x08;
     void *ukn_0x0c;
     void *ukn_0x10;
@@ -144,17 +158,19 @@ char var_8c18ad8c[0x20];
 
 Ukn *var_8c18ad18;
 
-/* area/season and day/night selectors, copied from the route record */
-int var_8c18ad1c;
+/* Route: 0 Shinjuku (S), 1 Wangan (W), 2 Ome (O). Selects the asset-dir
+ * prefix; pairs with var_timeOfDay to pick one of SD/SN/WD/WN/OD/ON. */
+int var_route_8c18ad1c;
 
-/* fog params for the current entry (from UknEntry.ukn_0x24) */
+/* fog params for the current entry (from UknEntry.fog_0x24) */
 s_8c18ad28 *var_8c18ad28;
 
 /* path buffer for dat requests, parallel to var_basedir_8c18ad6c */
 char var_8c18ad2c[0x20];
 
-/* Selects the alternate filename table (init_8c043ecc) when == 2. */
-int var_8c18ad20;
+/* Time-of-day selector: 0 day, 1 evening (oe_ files), 2 night. Picks the
+ * D vs N asset dir (0/1 -> D, 2 -> N) and the night model table when == 2. */
+int var_timeOfDay_8c18ad20;
 
 void *var_8c18ad24;
 
@@ -330,7 +346,7 @@ void syncRouteModelAssets_8c013c34(Sint8 *models)
 
     for (i = 0; i < 0x20; i++) {
         if (var_8c1bbddc[i].needsLoad_0x04 != 0) {
-            if (var_8c18ad20 == 2) {
+            if (var_timeOfDay_8c18ad20 == TIME_OF_DAY_NIGHT) {
                 AsqRequestNj_11492(var_basedir_8c18ad6c, init_8c043ecc[i * 2], 0, &var_8c1bbddc[i].nj_0x0c);
                 names = init_8c043ecc;
             } else {
@@ -358,9 +374,9 @@ void finishAssetLoad_8c013d42(void)
 
 /* (Re)initialize the asset queues and kick off one load pass for the
  * currently-wanted route models. finishAssetLoad runs once the texlists land. */
-void FUN_8c013d78(void)
+void startRouteModelLoadPass_8c013d78(void)
 {
-    LOG_DEBUG(("[ROUTE_LOAD] FUN_8c013d78: starting route-model load pass\n"));
+    LOG_DEBUG(("[ROUTE_LOAD] startRouteModelLoadPass_8c013d78: starting route-model load pass\n"));
 
     AsqInitQueues_11f36(0, 0x40, 0, 0x40);
     AsqResetQueues_11f6c();
@@ -371,11 +387,11 @@ void FUN_8c013d78(void)
 
 /* Release every loaded route-model asset: free its texlist and njd, then
  * mark the slot unloaded. */
-void FUN_8c013dae(void)
+void freeAllRouteModels_8c013dae(void)
 {
     RouteModelAsset *slot;
 
-    LOG_DEBUG(("[ROUTE_LOAD] FUN_8c013dae: releasing all route-model assets\n"));
+    LOG_DEBUG(("[ROUTE_LOAD] freeAllRouteModels_8c013dae: releasing all route-model assets\n"));
 
     for (slot = var_8c1bbddc; slot < &var_8c1bbddc[0x20]; slot++) {
         if (slot->texlist_0x08 != (NJS_TEXLIST *) -1) {
@@ -436,14 +452,14 @@ void FUN_8c013ee4(void)
 
 /* For the currently-selected entry, free its nj/pvm pairs and, when flagged,
  * hand off to FUN_8c021a24. */
-void FUN_8c013f22(void)
+void freeSelectedEntryPairs_8c013f22(void)
 {
     UknEntry *entry;
 
-    LOG_DEBUG(("[ROUTE_LOAD] FUN_8c013f22: freeing pairs for selected entry (index=%d)\n", var_8c228708));
+    LOG_DEBUG(("[ROUTE_LOAD] freeSelectedEntryPairs_8c013f22: freeing pairs for selected entry (index=%d)\n", var_8c228708));
 
     entry = &var_8c18ad18->entries_0x08[var_8c228708];
-    if (entry->ukn_0x28 != 0) {
+    if (entry->njPvmPairs_0x28 != 0) {
         AsqFreeNjPvmPairs_120fe(&var_8c1bc3f0);
     }
     if (entry->ukn_0x0c != 0) {
@@ -454,24 +470,24 @@ void FUN_8c013f22(void)
 /* Bring the currently-selected entry's assets in line: publish its fog params,
  * request its nj/pvm pairs, reconcile both route-model tables, and request its
  * dat files. Demo playback substitutes a fixed model list and skips the tail. */
-void FUN_8c013f78(void)
+void syncSelectedEntryAssets_8c013f78(void)
 {
     UknEntry *entry;
     int i;
 
-    LOG_DEBUG(("[ROUTE_LOAD] FUN_8c013f78: syncing assets for selected entry (index=%d)\n", var_8c228708));
+    LOG_DEBUG(("[ROUTE_LOAD] syncSelectedEntryAssets_8c013f78: syncing assets for selected entry (index=%d)\n", var_8c228708));
 
     entry = &var_8c18ad18->entries_0x08[var_8c228708];
 
-    if (entry->ukn_0x24 != 0) {
-        var_8c18ad28 = entry->ukn_0x24;
+    if (entry->fog_0x24 != 0) {
+        var_8c18ad28 = entry->fog_0x24;
         var_8c226504 = var_8c18ad28->field_0x00 - 1;
         var_8c226508 = var_8c226504 / 2;
         var_8c227dd0 = var_8c18ad28->field_0x04;
     }
 
-    if (entry->ukn_0x28 != 0) {
-        var_8c1bc3f0 = AsqRequestNjPvmPairs_12030(var_basedir_8c18ad6c, entry->ukn_0x28, 0x10);
+    if (entry->njPvmPairs_0x28 != 0) {
+        var_8c1bc3f0 = AsqRequestNjPvmPairs_12030(var_basedir_8c18ad6c, entry->njPvmPairs_0x28, 0x10);
     }
 
     if (var_8c1bb900 == 0 || var_demo_8c1bb8d0 != 0) {
@@ -497,7 +513,7 @@ void FUN_8c013f78(void)
     } else {
         var_8c226534 = (int)entry->ukn_0x0c;
         for (i = 0; i < 4; i++) {
-            AsqRequestDat_11182(var_8c18ad2c, entry->ukn_0x20[i], &var_8c18adb4[i]);
+            AsqRequestDat_11182(var_8c18ad2c, entry->datFilenames_0x20[i], &var_8c18adb4[i]);
         }
     }
 
@@ -513,31 +529,31 @@ void loadRouteModels_8c014088(void)
     LOG_DEBUG(("[ROUTE_LOAD] loadRouteModels_8c014088: loading route %d\n", var_8c1bb868.routeId_0x00));
 
     var_8c18ad18 = init_8c043ca4[var_8c1bb868.routeId_0x00];
-    var_8c18ad1c = var_8c18ad18->ukn_0x00;
-    var_8c18ad20 = var_8c18ad18->ukn_0x04;
+    var_route_8c18ad1c = var_8c18ad18->ukn_0x00;
+    var_timeOfDay_8c18ad20 = var_8c18ad18->ukn_0x04;
     var_8c18ad24 = var_8c18ad18->ukn_0x10;
 
-    if (var_8c18ad1c == 0) {
-        if (var_8c18ad20 == 0 || var_8c18ad20 == 1) {
+    if (var_route_8c18ad1c == ROUTE_SHINJUKU) {
+        if (var_timeOfDay_8c18ad20 == TIME_OF_DAY_DAY || var_timeOfDay_8c18ad20 == TIME_OF_DAY_EVENING) {
             strcpy(var_basedir_8c18ad6c, "\\SD_COMMON");
             strcpy(var_8c18ad4c, "\\SD_PVR");
-        } else if (var_8c18ad20 == 2) {
+        } else if (var_timeOfDay_8c18ad20 == TIME_OF_DAY_NIGHT) {
             strcpy(var_basedir_8c18ad6c, "\\SN_COMMON");
             strcpy(var_8c18ad4c, "\\SN_PVR");
         }
-    } else if (var_8c18ad1c == 1) {
-        if (var_8c18ad20 == 0 || var_8c18ad20 == 1) {
+    } else if (var_route_8c18ad1c == ROUTE_WANGAN) {
+        if (var_timeOfDay_8c18ad20 == TIME_OF_DAY_DAY || var_timeOfDay_8c18ad20 == TIME_OF_DAY_EVENING) {
             strcpy(var_basedir_8c18ad6c, "\\WD_COMMON");
             strcpy(var_8c18ad4c, "\\WD_PVR");
-        } else if (var_8c18ad20 == 2) {
+        } else if (var_timeOfDay_8c18ad20 == TIME_OF_DAY_NIGHT) {
             strcpy(var_basedir_8c18ad6c, "\\WN_COMMON");
             strcpy(var_8c18ad4c, "\\WN_PVR");
         }
-    } else if (var_8c18ad1c == 2) {
-        if (var_8c18ad20 == 0 || var_8c18ad20 == 1) {
+    } else if (var_route_8c18ad1c == ROUTE_OME) {
+        if (var_timeOfDay_8c18ad20 == TIME_OF_DAY_DAY || var_timeOfDay_8c18ad20 == TIME_OF_DAY_EVENING) {
             strcpy(var_basedir_8c18ad6c, "\\OD_COMMON");
             strcpy(var_8c18ad4c, "\\OD_PVR");
-        } else if (var_8c18ad20 == 2) {
+        } else if (var_timeOfDay_8c18ad20 == TIME_OF_DAY_NIGHT) {
             strcpy(var_basedir_8c18ad6c, "\\ON_COMMON");
             strcpy(var_8c18ad4c, "\\ON_PVR");
         }
@@ -619,7 +635,7 @@ void task_load_8c014338(Task *task, void *state)
             FUN_8c02caba();
             FUN_8c02b170();
             AsqResetQueues_11f6c();
-            FUN_8c013f78();
+            syncSelectedEntryAssets_8c013f78();
             resetUknPvmBool_8c014322();
             AsqProcessQueues_11fe0(AsqNop_11120, FUN_8c021810, FUN_8c02190a, 0, setUknPvmBool_8c014330);
             CHANGE_LOAD_STATE(task, ROUTE_LOAD_STATE_WAIT);
@@ -654,13 +670,13 @@ void task_load_8c014338(Task *task, void *state)
     drawSprite_8c014f54(&var_8c1bc3f8, (frame >> 2) % 6 + 1, 0.0f, 0.0f, -4.0f);
 }
 
-/* Kick off the route-load screen: install task_load and prime the asset queues. */
-void FUN_8c0144fc(void)
+/* Kick off the route-load screen: push task_load and prime the asset queues. */
+void pushRouteLoadTask_8c0144fc(void)
 {
     Task *task;
     void *state;
 
-    LOG_DEBUG(("[ROUTE_LOAD] FUN_8c0144fc: installing task_load\n"));
+    LOG_DEBUG(("[ROUTE_LOAD] pushRouteLoadTask_8c0144fc: pushing task_load\n"));
 
     njSetBackColor(0xff418dff, 0xff418dff, 0xff418dff);
     var_8c157a6c = 1;
@@ -676,7 +692,7 @@ void FUN_8c0144fc(void)
 
 /* Second-stage load task: build the interior, then hand off to the input task.
  * Draws the same loading animation as task_load_8c014338 while it works. */
-void FUN_8c014550(Task *task, void *state)
+void task_interiorLoad_8c014550(Task *task, void *state)
 {
     int frame;
 
@@ -684,7 +700,7 @@ void FUN_8c014550(Task *task, void *state)
     case ROUTE_LOAD2_STATE_POST_LOAD:
         FUN_8c02b170();
         AsqResetQueues_11f6c();
-        FUN_8c013f78();
+        syncSelectedEntryAssets_8c013f78();
         resetUknPvmBool_8c014322();
         AsqProcessQueues_11fe0(AsqNop_11120, FUN_8c021810, FUN_8c02190a, 0, setUknPvmBool_8c014330);
         CHANGE_LOAD2_STATE(task, ROUTE_LOAD2_STATE_WAIT);
@@ -717,8 +733,8 @@ void FUN_8c014550(Task *task, void *state)
     drawSprite_8c014f54(&var_8c1bc3f8, (frame >> 2) % 6 + 1, 0.0f, 0.0f, -4.0f);
 }
 
-/* Install FUN_8c014550 and prime the queues, keeping the current texture bound. */
-void FUN_8c01468e(void)
+/* Push task_interiorLoad_8c014550 and prime the queues, keeping the current texture bound. */
+void pushInteriorLoadTask_8c01468e(void)
 {
     Task *task;
     void *state;
@@ -730,13 +746,13 @@ void FUN_8c01468e(void)
         }
     }
 
-    LOG_DEBUG(("[ROUTE_LOAD] FUN_8c01468e: installing FUN_8c014550\n"));
+    LOG_DEBUG(("[ROUTE_LOAD] pushInteriorLoadTask_8c01468e: pushing task_interiorLoad_8c014550\n"));
 
     var_8c157a6c = 1;
-    pushTask_8c014ae8(var_tasks_8c1ba3c8, (void *) FUN_8c014550, &task, &state, 0);
+    pushTask_8c014ae8(var_tasks_8c1ba3c8, (void *) task_interiorLoad_8c014550, &task, &state, 0);
     CHANGE_LOAD2_STATE(task, ROUTE_LOAD2_STATE_POST_LOAD);
     task->field_0x0c = 0;
-    FUN_8c013f22();
+    freeSelectedEntryPairs_8c013f22();
 
     njGarbageTexture(&var_tex_8c157af8, 0xc00);
     AsqInitQueues_11f36(0x20, 0x800, 0x800, 0x40);
@@ -746,8 +762,8 @@ void FUN_8c01468e(void)
 }
 
 /* Like task_load_8c014338, but on completion binds the interior texture and
- * hands off to the input task (as FUN_8c014550 does). */
-void prob_task_8c014784(Task *task, void *state)
+ * hands off to the input task (as task_interiorLoad_8c014550 does). */
+void task_loadBindInterior_8c014784(Task *task, void *state)
 {
     int frame;
 
@@ -771,7 +787,7 @@ void prob_task_8c014784(Task *task, void *state)
             FUN_8c02caba();
             FUN_8c02b170();
             AsqResetQueues_11f6c();
-            FUN_8c013f78();
+            syncSelectedEntryAssets_8c013f78();
             resetUknPvmBool_8c014322();
             AsqProcessQueues_11fe0(AsqNop_11120, 0, FUN_8c02190a, 0, setUknPvmBool_8c014330);
             CHANGE_LOAD_STATE(task, ROUTE_LOAD_STATE_WAIT);

@@ -18,7 +18,7 @@ return new class extends TestCase {
         $this->initUint32($counter + 0x0c, 10);
         $this->initUint32($counter + 0x10, 100);
 
-        $this->call('_FUN_8c01468e');
+        $this->call('_pushInteriorLoadTask_8c01468e');
 
         $this->shouldWriteLong($counter + 0x0c, 40);
         $this->expectInstallAndBind();
@@ -33,7 +33,7 @@ return new class extends TestCase {
         $this->initUint32($counter + 0x0c, 90);
         $this->initUint32($counter + 0x10, 100);
 
-        $this->call('_FUN_8c01468e');
+        $this->call('_pushInteriorLoadTask_8c01468e');
 
         $this->shouldWriteLong($counter + 0x0c, 120);
         $this->shouldWriteLong($counter + 0x0c, 100);
@@ -47,12 +47,12 @@ return new class extends TestCase {
         $this->initUint32($this->addressOf('_var_8c1ba290'), 5);
         $this->initUint32($this->addressOf('_var_demo_8c1bb8d0'), 0);
 
-        $this->call('_FUN_8c01468e');
+        $this->call('_pushInteriorLoadTask_8c01468e');
 
         $this->expectInstallAndBind();
     }
 
-    /** Common tail: install FUN_8c014550, prime the queues, rebind the texture. */
+    /** Common tail: install task_interiorLoad_8c014550, prime the queues, rebind the texture. */
     private function expectInstallAndBind(): void
     {
         $this->initUint32($this->addressOf('_var_8c1bc3f8'), self::TLIST);
@@ -64,7 +64,7 @@ return new class extends TestCase {
         $this->shouldCall('_pushTask_8c014ae8')
             ->with(
                 $this->addressOf('_var_tasks_8c1ba3c8'),
-                $this->addressOf('_FUN_8c014550'),
+                $this->addressOf('_task_interiorLoad_8c014550'),
                 0xffffec,
                 0xfffff0,
                 0,
@@ -75,7 +75,7 @@ return new class extends TestCase {
             });
         $this->shouldWriteLong($createdTask + 0x08, 0);
         $this->shouldWriteLong($createdTask + 0x0c, 0);
-        $this->shouldCall('_FUN_8c013f22');
+        $this->shouldCall('_freeSelectedEntryPairs_8c013f22');
         $this->shouldCall('_njGarbageTexture')->with($this->addressOf('_var_tex_8c157af8'), 0xc00);
         $this->shouldCall('_AsqInitQueues_11f36')->with(0x20, 0x800, 0x800, 0x40);
         $this->shouldCall('_njSetTexture')->with(self::TLIST);

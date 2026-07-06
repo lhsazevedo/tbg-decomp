@@ -17,7 +17,7 @@
           .IMPORT     _var_8c228910
           .IMPORT     _var_8c228940
           .IMPORT     _var_8c22891c
-          .IMPORT     _var_8c18ad1c
+          .IMPORT     _var_route_8c18ad1c
           .IMPORT     _var_8c1bba54
           .IMPORT     _var_8c22895c
           .IMPORT     _var_8c228960
@@ -321,7 +321,7 @@ LP_GEN_52173:
           .DATA.L H'3F2E147B ; H'8C02DBA0
           .DATA.L _var_8c228940 ; H'8C02DBA4
           .DATA.L _var_8c22891c ; H'8C02DBA8
-          .DATA.L _var_8c18ad1c ; H'8C02DBAC
+          .DATA.L _var_route_8c18ad1c ; H'8C02DBAC
           .DATA.L H'BFCCCCCD ; H'8C02DBB0
           .DATA.L H'3F666666 ; H'8C02DBB4
           .DATA.L _var_8c1bba54 ; H'8C02DBB8

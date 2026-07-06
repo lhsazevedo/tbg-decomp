@@ -18,7 +18,7 @@
           .IMPORT     _swapMessageBoxFor_8c02aefc
           .IMPORT     _menuTextboxText_8c02af1c
           .IMPORT     _FUN_8c0223ea
-          .IMPORT     _var_8c18ad1c
+          .IMPORT     _var_route_8c18ad1c
           .IMPORT     _init_8c045674
           .IMPORT     _init_8c045b60
           .IMPORT     _init_8c045ee4
@@ -409,7 +409,7 @@ LP_GEN_72418:
           .DATA.L _FUN_8c024bb8 ; H'8C025B68
           .DATA.L _FUN_8c0223ea ; H'8C025B6C
           .DATA.L _var_8c227e0c ; H'8C025B70
-          .DATA.L _var_8c18ad1c ; H'8C025B74
+          .DATA.L _var_route_8c18ad1c ; H'8C025B74
           .DATA.L _init_8c045674 ; H'8C025B78
           .DATA.L _init_8c045b60 ; H'8C025B7C
           .DATA.L _init_8c045ee4 ; H'8C025B80

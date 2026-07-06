@@ -1,7 +1,7 @@
 ; 8c026710
           .IMPORT     _var_8c227e1c
           .IMPORT     _init_8c0460bc
-          .IMPORT     _var_8c18ad20
+          .IMPORT     _var_timeOfDay_8c18ad20
           .IMPORT     _FUN_8c02e51c
           .IMPORT     _var_8c18ad24
           .IMPORT     _var_8c1bbdb0
@@ -24,7 +24,7 @@
           .IMPORT     _FUN_8c02f212
           .IMPORT     _var_busState_8c1bb9d0
           .IMPORT     _var_progress_8c1ba1cc
-          .IMPORT     _var_8c18ad1c
+          .IMPORT     _var_route_8c18ad1c
           .IMPORT     _init_8c046208
           .IMPORT     _var_tasks_8c1bac28
           .IMPORT     _FUN_8c025b98
@@ -308,7 +308,7 @@ LP_GEN_58523:
           .DATA.W H'00C8 ; H'8C0268CA
           .DATA.W H'00CC ; H'8C0268CC
           .DATA.W H'00D0 ; H'8C0268CE
-          .DATA.L _var_8c18ad20 ; H'8C0268D0
+          .DATA.L _var_timeOfDay_8c18ad20 ; H'8C0268D0
           .DATA.L _FUN_8c02e51c ; H'8C0268D4
           .DATA.L _var_8c18ad24 ; H'8C0268D8
 LAB_8c0268dc:
@@ -1739,8 +1739,8 @@ LP_GEN_87611:
           .DATA.W H'02C8 ; H'8C027390
           .RES.W 1 ; H'8C027392
           .DATA.L _var_progress_8c1ba1cc ; H'8C027394
-          .DATA.L _var_8c18ad1c ; H'8C027398
-          .DATA.L _var_8c18ad20 ; H'8C02739C
+          .DATA.L _var_route_8c18ad1c ; H'8C027398
+          .DATA.L _var_timeOfDay_8c18ad20 ; H'8C02739C
           .DATA.L _init_8c046208 ; H'8C0273A0
           .DATA.L _var_tasks_8c1bac28 ; H'8C0273A4
           .DATA.L _FUN_8c025b98 ; H'8C0273A8
@@ -2314,11 +2314,11 @@ LP_GEN_74201:
           .DATA.L _execTasks_8c014b42 ; H'8C027820
           .DATA.L _var_8c227e1c ; H'8C027824
           .DATA.L _var_8c228b40 ; H'8C027828
-          .DATA.L _var_8c18ad1c ; H'8C02782C
+          .DATA.L _var_route_8c18ad1c ; H'8C02782C
           .DATA.L _init_8c04c980 ; H'8C027830
           .DATA.L _init_8c04caec ; H'8C027834
           .DATA.L _init_8c04cd38 ; H'8C027838
-          .DATA.L _var_8c18ad20 ; H'8C02783C
+          .DATA.L _var_timeOfDay_8c18ad20 ; H'8C02783C
           .DATA.L _var_8c1bbdb0 ; H'8C027840
           .DATA.L _var_8c18ad24 ; H'8C027844
           .DATA.L _var_8c1bbdd0 ; H'8C027848

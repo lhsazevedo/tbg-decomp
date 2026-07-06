@@ -12,7 +12,7 @@
           .IMPORT     _vib_8c010f7a
           .IMPORT     _var_demo_8c1bb8d0
           .IMPORT     _var_8c226410
-          .IMPORT     _var_8c18ad1c
+          .IMPORT     _var_route_8c18ad1c
           .IMPORT     _var_8c22640c
           .IMPORT     _snd_8c010cd6
           .IMPORT     _var_8c228710
@@ -429,7 +429,7 @@ LAB_8c0204e6:
 LP_GEN_85437:
           .RES.W 1 ; H'8C0204FA
           .DATA.L _var_8c226410 ; H'8C0204FC
-          .DATA.L _var_8c18ad1c ; H'8C020500
+          .DATA.L _var_route_8c18ad1c ; H'8C020500
           .DATA.L _var_8c22640c ; H'8C020504
           .DATA.L _snd_8c010cd6 ; H'8C020508
           .DATA.L _var_8c228710 ; H'8C02050C

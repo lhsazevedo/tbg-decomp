@@ -15,7 +15,7 @@
           .IMPORT     _var_8c1bb894
           .IMPORT     _AsqGetRandomInRangeA_12178
           .IMPORT     _var_8c228798
-          .IMPORT     _var_8c18ad1c
+          .IMPORT     _var_route_8c18ad1c
           .IMPORT     _rand
           .IMPORT     _syFree
           .IMPORT     _var_8c2288f8
@@ -444,7 +444,7 @@ LP_GEN_58192:
           .DATA.L H'47000000 ; H'8C02CB58
           .DATA.L H'BF000000 ; H'8C02CB5C
           .DATA.L _var_8c228798 ; H'8C02CB60
-          .DATA.L _var_8c18ad1c ; H'8C02CB64
+          .DATA.L _var_route_8c18ad1c ; H'8C02CB64
           .DATA.L _rand ; H'8C02CB68
           .DATA.L _syFree ; H'8C02CB6C
           .DATA.L _var_8c2288f8 ; H'8C02CB70

@@ -6,11 +6,11 @@
           .IMPORT     _var_8c228560
           .IMPORT     _var_demo_8c1bb8d0
           .IMPORT     _var_8c22851c
-          .IMPORT     _var_8c18ad1c
+          .IMPORT     _var_route_8c18ad1c
           .IMPORT     _init_8c04b1f0
           .IMPORT     _init_8c04abb0
           .IMPORT     _init_8c04b920
-          .IMPORT     _var_8c18ad20
+          .IMPORT     _var_timeOfDay_8c18ad20
           .IMPORT     _var_8c228520
           .IMPORT     _var_game_mode_8c1bb8fc
           .IMPORT     _var_8c2285dc
@@ -187,7 +187,7 @@ LP_GEN_66558:
           .DATA.L _var_8c228560 ; H'8C02B094
           .DATA.L _var_demo_8c1bb8d0 ; H'8C02B098
           .DATA.L _var_8c22851c ; H'8C02B09C
-          .DATA.L _var_8c18ad1c ; H'8C02B0A0
+          .DATA.L _var_route_8c18ad1c ; H'8C02B0A0
           .DATA.L _init_8c04b1f0 ; H'8C02B0A4
           .DATA.L _init_8c04abb0 ; H'8C02B0A8
 LAB_8c02b0ac:
@@ -294,7 +294,7 @@ LP_GEN_28749:
           .DATA.W H'03FF ; H'8C02B158
           .RES.W 1 ; H'8C02B15A
           .DATA.L _init_8c04b920 ; H'8C02B15C
-          .DATA.L _var_8c18ad20 ; H'8C02B160
+          .DATA.L _var_timeOfDay_8c18ad20 ; H'8C02B160
           .DATA.L _var_progress_8c1ba1cc ; H'8C02B164
           .DATA.L _var_8c228520 ; H'8C02B168
           .DATA.L H'0000FFFF ; H'8C02B16C

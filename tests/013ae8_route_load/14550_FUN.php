@@ -14,11 +14,11 @@ return new class extends TestCase {
         $this->resolveSizes();
         $task = $this->makeTask(0, 0);
 
-        $this->call('_FUN_8c014550')->with($task, 0);
+        $this->call('_task_interiorLoad_8c014550')->with($task, 0);
 
         $this->shouldCall('_FUN_8c02b170');
         $this->shouldCall('_AsqResetQueues_11f6c');
-        $this->shouldCall('_FUN_8c013f78');
+        $this->shouldCall('_syncSelectedEntryAssets_8c013f78');
         $this->shouldCall('_resetUknPvmBool_8c014322');
         $this->shouldCall('_AsqProcessQueues_11fe0')->with(
             $this->addressOf('_AsqNop_11120'),
@@ -38,7 +38,7 @@ return new class extends TestCase {
         $this->resolveSizes();
         $task = $this->makeTask(1, 0);
 
-        $this->call('_FUN_8c014550')->with($task, 0);
+        $this->call('_task_interiorLoad_8c014550')->with($task, 0);
 
         $this->shouldCall('_getUknPvmBool_8c01432a')->andReturn(0);
         $this->expectLoadingAnimation($task);
@@ -50,7 +50,7 @@ return new class extends TestCase {
         $this->resolveSizes();
         $task = $this->makeTask(1, 0);
 
-        $this->call('_FUN_8c014550')->with($task, 0);
+        $this->call('_task_interiorLoad_8c014550')->with($task, 0);
 
         $this->shouldCall('_getUknPvmBool_8c01432a')->andReturn(1);
         $this->shouldWriteLong($task + 0x08, 2);
@@ -62,7 +62,7 @@ return new class extends TestCase {
         $this->resolveSizes();
         $task = $this->makeTask(2, 0);
 
-        $this->call('_FUN_8c014550')->with($task, 0);
+        $this->call('_task_interiorLoad_8c014550')->with($task, 0);
 
         $this->shouldWriteLong($task + 0x08, 3);
     }
@@ -75,7 +75,7 @@ return new class extends TestCase {
         $this->initUint32($this->addressOf('_var_interiorTexlist_8c1bc438'), $interior);
         $task = $this->makeTask(3, 0);
 
-        $this->call('_FUN_8c014550')->with($task, 0);
+        $this->call('_task_interiorLoad_8c014550')->with($task, 0);
 
         $this->shouldCall('_freeTask_8c014b66')->with($task);
         $this->shouldCall('_AsqFreeQueues_11f7e');
@@ -93,7 +93,7 @@ return new class extends TestCase {
         $this->resolveSizes();
         $task = $this->makeTask(4, 0);
 
-        $this->call('_FUN_8c014550')->with($task, 0);
+        $this->call('_task_interiorLoad_8c014550')->with($task, 0);
 
         $this->expectLoadingAnimation($task);
     }

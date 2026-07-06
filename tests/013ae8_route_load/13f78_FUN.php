@@ -11,7 +11,7 @@ return new class extends TestCase {
     {
         [$entry] = $this->setup(1, 0);
 
-        $this->call('_FUN_8c013f78');
+        $this->call('_syncSelectedEntryAssets_8c013f78');
 
         // ukn_0x1c is 0; then no pairs -> var_8c226534 becomes -1.
         $this->shouldCall('_FUN_8c029ad4')->with(0);
@@ -28,7 +28,7 @@ return new class extends TestCase {
         $this->initUint32($fog + 0x04, 0x12345678);
         $this->initUint32($entry + 0x24, $fog);
 
-        $this->call('_FUN_8c013f78');
+        $this->call('_syncSelectedEntryAssets_8c013f78');
 
         $this->shouldWriteLong($this->addressOf('_var_8c18ad28'), $fog);
         $this->shouldWriteLong($this->addressOf('_var_8c226504'), 0xffffffff);
@@ -46,7 +46,7 @@ return new class extends TestCase {
         $pairs = $this->alloc(0x10);
         $this->initUint32($entry + 0x28, $pairs);
 
-        $this->call('_FUN_8c013f78');
+        $this->call('_syncSelectedEntryAssets_8c013f78');
 
         $this->shouldCall('_AsqRequestNjPvmPairs_12030')
             ->with($this->addressOf('_var_basedir_8c18ad6c'), $pairs, 0x10)
@@ -65,7 +65,7 @@ return new class extends TestCase {
         $models = 0x8cab0000;
         $this->initUint32($entry + 0x10, $models);
 
-        $this->call('_FUN_8c013f78');
+        $this->call('_syncSelectedEntryAssets_8c013f78');
 
         $this->shouldWriteLong($this->addressOf('_var_8c18adb0'), $models);
         $this->shouldCall('_syncRouteModelAssets_8c013c34')->with($models);
@@ -82,7 +82,7 @@ return new class extends TestCase {
         $models = 0x8cab0000;
         $this->initUint32($entry + 0x10, $models);
 
-        $this->call('_FUN_8c013f78');
+        $this->call('_syncSelectedEntryAssets_8c013f78');
 
         // The entry list is still latched, but the fixed demo list is synced.
         $this->shouldWriteLong($this->addressOf('_var_8c18adb0'), $models);
@@ -101,7 +101,7 @@ return new class extends TestCase {
         $list = 0x8cac0000;
         $this->initUint32($entry + 0x18, $list);
 
-        $this->call('_FUN_8c013f78');
+        $this->call('_syncSelectedEntryAssets_8c013f78');
 
         $this->shouldCall('_FUN_8c013df6')->with($list);
 
@@ -120,7 +120,7 @@ return new class extends TestCase {
         $this->initUint32($entry + 0x0c, 0x21);   // pair id, non-zero
         $this->initUint32($entry + 0x20, $names);
 
-        $this->call('_FUN_8c013f78');
+        $this->call('_syncSelectedEntryAssets_8c013f78');
 
         $this->shouldCall('_FUN_8c029ad4')->with(0);
         $this->shouldWriteLong($this->addressOf('_var_8c226534'), 0x21);

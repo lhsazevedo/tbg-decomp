@@ -76,8 +76,8 @@
           .IMPORT     _resetUknPvmBool_8c014322
           .IMPORT     _AsqNop_11120
           .IMPORT     _AsqProcessQueues_11fe0
-          .IMPORT     _var_8c18ad20
-          .IMPORT     _var_8c18ad1c
+          .IMPORT     _var_timeOfDay_8c18ad20
+          .IMPORT     _var_route_8c18ad1c
           .IMPORT     _init_8c0451a0
           .IMPORT     _var_8c1bb8e0
           .IMPORT     _var_8c2285d0
@@ -1295,8 +1295,8 @@ LAB_8c01e158:
           NOP
 LP_GEN_76652:
           .RES.W 1 ; H'8C01E186
-          .DATA.L _var_8c18ad20 ; H'8C01E188
-          .DATA.L _var_8c18ad1c ; H'8C01E18C
+          .DATA.L _var_timeOfDay_8c18ad20 ; H'8C01E188
+          .DATA.L _var_route_8c18ad1c ; H'8C01E18C
           .DATA.L _var_8c2263ec ; H'8C01E190
           .DATA.L _var_8c1bb8dc ; H'8C01E194
           .DATA.L _init_8c0451a0 ; H'8C01E198

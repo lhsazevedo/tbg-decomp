@@ -419,11 +419,11 @@ extern task_load_8c014338;
 extern var_memblkSource_8c0fcd48;
 extern var_memblkSource_8c0fcd4c;
 
-extern var_8c18ad1c;
+extern var_route_8c18ad1c;
 extern var_8c228708;
 extern Bool var_8c22655c;
 
-extern FUN_8c0144fc();
+extern pushRouteLoadTask_8c0144fc();
 extern Sint8 getSoundMode_8c010924();
 extern setSoundMode_8c0108c0(Bool);
 
@@ -451,7 +451,7 @@ void task_8c012f9c(Task *task, void* state) {
     Bool r7;
     Float speed_fr2;
 
-    if (var_demo_8c1bb8d0 != 1 && var_8c18ad1c == 2 && var_8c228708 == 0) {
+    if (var_demo_8c1bb8d0 != 1 && var_route_8c18ad1c == 2 && var_8c228708 == 0) {
         r7 = TRUE;
     } else {
         r7 = FALSE;
@@ -591,7 +591,7 @@ void FUN_8c01328c() {
     var_8c227da0 = (char) var_8c1ba292;
     var_8c227da8 = 0;
 
-    FUN_8c0144fc();
+    pushRouteLoadTask_8c0144fc();
 }
 
 /* Matched :) */
@@ -617,7 +617,7 @@ void pushLoadingTask_8c013310(int p1) {
     var_8c227da0 = (char) var_8c1ba292;
     var_8c227da8 = 0;
 
-    FUN_8c0144fc();
+    pushRouteLoadTask_8c0144fc();
 }
 
 /** Tested */
