@@ -533,29 +533,54 @@ void loadRouteModels_8c014088(void)
     var_timeOfDay_8c18ad20 = var_8c18ad18->ukn_0x04;
     var_8c18ad24 = var_8c18ad18->ukn_0x10;
 
-    if (var_route_8c18ad1c == ROUTE_SHINJUKU) {
-        if (var_timeOfDay_8c18ad20 == TIME_OF_DAY_DAY || var_timeOfDay_8c18ad20 == TIME_OF_DAY_EVENING) {
-            strcpy(var_basedir_8c18ad6c, "\\SD_COMMON");
-            strcpy(var_8c18ad4c, "\\SD_PVR");
-        } else if (var_timeOfDay_8c18ad20 == TIME_OF_DAY_NIGHT) {
-            strcpy(var_basedir_8c18ad6c, "\\SN_COMMON");
-            strcpy(var_8c18ad4c, "\\SN_PVR");
+    switch (var_route_8c18ad1c) {
+        case ROUTE_SHINJUKU: {
+            switch (var_timeOfDay_8c18ad20) {
+                case TIME_OF_DAY_DAY:
+                case TIME_OF_DAY_EVENING: {
+                    strcpy(var_basedir_8c18ad6c, "\\SD_COMMON");
+                    strcpy(var_8c18ad4c, "\\SD_PVR");
+                    break;
+                }
+                case TIME_OF_DAY_NIGHT: {
+                    strcpy(var_basedir_8c18ad6c, "\\SN_COMMON");
+                    strcpy(var_8c18ad4c, "\\SN_PVR");
+                    break;
+                }
+            }
+            break;
         }
-    } else if (var_route_8c18ad1c == ROUTE_WANGAN) {
-        if (var_timeOfDay_8c18ad20 == TIME_OF_DAY_DAY || var_timeOfDay_8c18ad20 == TIME_OF_DAY_EVENING) {
-            strcpy(var_basedir_8c18ad6c, "\\WD_COMMON");
-            strcpy(var_8c18ad4c, "\\WD_PVR");
-        } else if (var_timeOfDay_8c18ad20 == TIME_OF_DAY_NIGHT) {
-            strcpy(var_basedir_8c18ad6c, "\\WN_COMMON");
-            strcpy(var_8c18ad4c, "\\WN_PVR");
+        case ROUTE_WANGAN: {
+            switch (var_timeOfDay_8c18ad20) {
+                case TIME_OF_DAY_DAY:
+                case TIME_OF_DAY_EVENING: {
+                    strcpy(var_basedir_8c18ad6c, "\\WD_COMMON");
+                    strcpy(var_8c18ad4c, "\\WD_PVR");
+                    break;
+                }
+                case TIME_OF_DAY_NIGHT: {
+                    strcpy(var_basedir_8c18ad6c, "\\WN_COMMON");
+                    strcpy(var_8c18ad4c, "\\WN_PVR");
+                    break;
+                }
+            }
+            break;
         }
-    } else if (var_route_8c18ad1c == ROUTE_OME) {
-        if (var_timeOfDay_8c18ad20 == TIME_OF_DAY_DAY || var_timeOfDay_8c18ad20 == TIME_OF_DAY_EVENING) {
-            strcpy(var_basedir_8c18ad6c, "\\OD_COMMON");
-            strcpy(var_8c18ad4c, "\\OD_PVR");
-        } else if (var_timeOfDay_8c18ad20 == TIME_OF_DAY_NIGHT) {
-            strcpy(var_basedir_8c18ad6c, "\\ON_COMMON");
-            strcpy(var_8c18ad4c, "\\ON_PVR");
+        case ROUTE_OME: {
+            switch (var_timeOfDay_8c18ad20) {
+                case TIME_OF_DAY_DAY:
+                case TIME_OF_DAY_EVENING: {
+                    strcpy(var_basedir_8c18ad6c, "\\OD_COMMON");
+                    strcpy(var_8c18ad4c, "\\OD_PVR");
+                    break;
+                }
+                case TIME_OF_DAY_NIGHT: {
+                    strcpy(var_basedir_8c18ad6c, "\\ON_COMMON");
+                    strcpy(var_8c18ad4c, "\\ON_PVR");
+                    break;
+                }
+            }
+            break;
         }
     }
 
