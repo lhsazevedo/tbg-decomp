@@ -936,5 +936,5 @@ _const_8c036084:        ; from ghidra
 _const_8c036094:        ; from ghidra
           .SDATA      "practice02.pvm"
           .DATA.B     H'00
-          .RES.B      1
+          ;.RES.B      1
           .END

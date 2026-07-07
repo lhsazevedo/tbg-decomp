@@ -1642,5 +1642,5 @@ _const_8c03808c:        ; aggressive search
           ;.DATA.B     H'00
           ;.RES.B      1
           .DATA.B      H'83, H'5A, H'81, H'5B, H'83, H'75, H'83, H'66, H'81, H'5B, H'83, H'5E, H'82, H'AA, H'82, H'A0
-          .DATA.B      H'82, H'E8, H'82, H'DC, H'82, H'B7, H'00, H'00
+          .DATA.B      H'82, H'E8, H'82, H'DC, H'82, H'B7, H'00
           .END
