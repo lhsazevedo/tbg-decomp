@@ -115,7 +115,7 @@
           .EXPORT     _var_8c1bbdd0 ; 026710.src, 027958.src
           .EXPORT     _var_8c1bbddc ; 012f44.c, 012f44.src, 013ae8_route_load.src, 026710.src, 028258.src
           .EXPORT     _var_8c1bbf7c ; 023310.src
-          .EXPORT     _var_8c1bbfdc ; 012f44.c, 012f44.src, 013ae8_route_load.src, 028258.src
+          .EXPORT     _var_pedestrianAssets_8c1bbfdc ; 012f44.c, 012f44.src, 013ae8_route_load.src, 028258.src
           .EXPORT     _var_8c1bbfe4 ; 02d06c.src, 02d19c.src
           .EXPORT     _var_8c1bc3ec ; 012f44.c, 012f44.src, 013ae8_route_load.src, 01614c.src, 028258.src
           .EXPORT     _var_8c1bc3f0 ; 012f44.c, 012f44.src, 013ae8_route_load.src, 01614c.src, 0222dc.src
@@ -352,7 +352,7 @@ _var_8c1bbddc:
           .RES.B      416
 _var_8c1bbf7c:
           .RES.B      96
-_var_8c1bbfdc:
+_var_pedestrianAssets_8c1bbfdc:
           .RES.B      8
 _var_8c1bbfe4:
           .RES.B      1032

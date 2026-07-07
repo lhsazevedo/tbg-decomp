@@ -420,7 +420,7 @@ return new class extends TestCase {
         $this->shouldWriteTo('_var_8c1bb86c', -1);
 
         $this->shouldCall('_clearUnknownArray_8c013bbc')->with($this->addressOf('_var_8c1bbddc'), 0x20);
-        $this->shouldCall('_clearUnknownArray_8c013bbc')->with($this->addressOf('_var_8c1bbfdc'), 0x41);
+        $this->shouldCall('_clearUnknownArray_8c013bbc')->with($this->addressOf('_var_pedestrianAssets_8c1bbfdc'), 0x41);
 
         $this->shouldWriteTo('_var_8c1bc3ec', -1);
         $this->shouldWriteTo('_var_8c1bc3f0', -1);
@@ -574,7 +574,7 @@ return new class extends TestCase {
         $this->shouldWriteTo('_var_8c1bb86c', -1);
 
         $this->shouldCall('_clearUnknownArray_8c013bbc')->with($this->addressOf('_var_8c1bbddc'), 0x20);
-        $this->shouldCall('_clearUnknownArray_8c013bbc')->with($this->addressOf('_var_8c1bbfdc'), 0x41);
+        $this->shouldCall('_clearUnknownArray_8c013bbc')->with($this->addressOf('_var_pedestrianAssets_8c1bbfdc'), 0x41);
 
         $this->shouldWriteTo('_var_8c1bc3ec', -1);
         $this->shouldWriteTo('_var_8c1bc3f0', -1);
@@ -728,7 +728,7 @@ return new class extends TestCase {
         $this->shouldWriteTo('_var_8c1bb86c', -1);
 
         $this->shouldCall('_clearUnknownArray_8c013bbc')->with($this->addressOf('_var_8c1bbddc'), 0x20);
-        $this->shouldCall('_clearUnknownArray_8c013bbc')->with($this->addressOf('_var_8c1bbfdc'), 0x41);
+        $this->shouldCall('_clearUnknownArray_8c013bbc')->with($this->addressOf('_var_pedestrianAssets_8c1bbfdc'), 0x41);
 
         $this->shouldWriteTo('_var_8c1bc3ec', -1);
         $this->shouldWriteTo('_var_8c1bc3f0', -1);
@@ -883,7 +883,7 @@ return new class extends TestCase {
         $this->shouldWriteTo('_var_8c1bb86c', -1);
 
         $this->shouldCall('_clearUnknownArray_8c013bbc')->with($this->addressOf('_var_8c1bbddc'), 0x20);
-        $this->shouldCall('_clearUnknownArray_8c013bbc')->with($this->addressOf('_var_8c1bbfdc'), 0x41);
+        $this->shouldCall('_clearUnknownArray_8c013bbc')->with($this->addressOf('_var_pedestrianAssets_8c1bbfdc'), 0x41);
 
         $this->shouldWriteTo('_var_8c1bc3ec', -1);
         $this->shouldWriteTo('_var_8c1bc3f0', -1);

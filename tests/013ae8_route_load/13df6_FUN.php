@@ -11,7 +11,7 @@ return new class extends TestCase {
     public function test_requests_wanted_releases_dropped_keeps_loaded()
     {
         $this->resolveSymbols();
-        $base = $this->addressOf('_var_8c1bbfdc');
+        $base = $this->addressOf('_var_pedestrianAssets_8c1bbfdc');
         $basedir = $this->addressOf('_var_basedir_8c18ad6c');
         $this->seedAllUnloaded($base);
 
@@ -20,7 +20,7 @@ return new class extends TestCase {
         // slot 10: loaded and still requested -> kept untouched.
         $this->initUint32($base + 10 * 0x10 + 0x8, 0x8c600000);
 
-        // slot 0's pvm filename is init_8c043fd8[0] == "MOV01.pvm".
+        // slot 0's pvm filename is init_pedestrianPvmNames_8c043fd8[0] == "MOV01.pvm".
 
         // Request list: keep 10, load 0, terminate.
         $models = $this->alloc(3);
@@ -28,7 +28,7 @@ return new class extends TestCase {
         $this->initUint8($models + 1, 0);
         $this->initUint8($models + 2, 0xff);
 
-        $this->call('_FUN_8c013df6')->with($models);
+        $this->call('_syncPedestrianAssets_8c013df6')->with($models);
 
         $this->assertFlagsCleared($base);
 
@@ -50,13 +50,13 @@ return new class extends TestCase {
     public function test_empty_list_only_clears_flags()
     {
         $this->resolveSymbols();
-        $base = $this->addressOf('_var_8c1bbfdc');
+        $base = $this->addressOf('_var_pedestrianAssets_8c1bbfdc');
         $this->seedAllUnloaded($base);
 
         $models = $this->alloc(1);
         $this->initUint8($models + 0, 0xff);
 
-        $this->call('_FUN_8c013df6')->with($models);
+        $this->call('_syncPedestrianAssets_8c013df6')->with($models);
 
         $this->assertFlagsCleared($base);
     }
@@ -81,7 +81,7 @@ return new class extends TestCase {
     private function resolveSymbols(): void
     {
         // _var_basedir_8c18ad6c is defined in the C object.
-        $this->setSize('_var_8c1bbfdc', self::SLOTS * 0x10);
+        $this->setSize('_var_pedestrianAssets_8c1bbfdc', self::SLOTS * 0x10);
         $this->setSize('_AsqRequestPvm_11ac0', 4);
         $this->setSize('_AsqReleaseAndFreeTexlist_11e3c', 4);
     }

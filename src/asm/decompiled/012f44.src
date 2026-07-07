@@ -112,7 +112,7 @@
           .IMPORT     _var_8c1bb86c
           .IMPORT     _var_8c1bbddc
           .IMPORT     _clearUnknownArray_8c013bbc
-          .IMPORT     _var_8c1bbfdc
+          .IMPORT     _var_pedestrianAssets_8c1bbfdc
           .IMPORT     _var_8c1bc3ec
           .IMPORT     _var_8c1bc3f0
           .IMPORT     _var_routeModelPairs_8c1bc3f4
@@ -1181,7 +1181,7 @@ LP_GEN_90231:
           .DATA.L _var_8c1bb86c
           .DATA.L _var_8c1bbddc
           .DATA.L _clearUnknownArray_8c013bbc
-          .DATA.L _var_8c1bbfdc
+          .DATA.L _var_pedestrianAssets_8c1bbfdc
           .DATA.L _var_8c1bc3ec
           .DATA.L _var_8c1bc3f0
           .DATA.L _var_routeModelPairs_8c1bc3f4

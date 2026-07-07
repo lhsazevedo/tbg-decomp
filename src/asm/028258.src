@@ -48,7 +48,7 @@
           .IMPORT     _var_8c228238
           .IMPORT     _rand
           .IMPORT     _AsqGetRandomA_12166
-          .IMPORT     _var_8c1bbfdc
+          .IMPORT     _var_pedestrianAssets_8c1bbfdc
           .IMPORT     _freeTask_8c014b66
           .IMPORT     _init_8c04623c
           .IMPORT     _var_8c1bbd8c
@@ -2648,7 +2648,7 @@ LP_GEN_26341:
           .DATA.L _FUN_8c020914 ; H'8C029484
           .DATA.L _FUN_8c020f7e ; H'8C029488
           .DATA.L H'3C75C28F ; H'8C02948C
-          .DATA.L _var_8c1bbfdc ; H'8C029490
+          .DATA.L _var_pedestrianAssets_8c1bbfdc ; H'8C029490
           .DATA.L _freeTask_8c014b66 ; H'8C029494
           .DATA.L _init_8c04623c ; H'8C029498
           .DATA.L _execTasks_8c014b42 ; H'8C02949C

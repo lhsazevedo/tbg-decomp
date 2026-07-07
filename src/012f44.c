@@ -359,7 +359,7 @@ extern void* var_selectedVm_8c1ba34c;
 extern BusState var_busState_8c1bb9d0;
 
 extern void* var_8c1bbddc;
-extern void* var_8c1bbfdc;
+extern void* var_pedestrianAssets_8c1bbfdc;
 
 extern int var_8c1bb8c4;
 extern int var_demoIndex_8c1bb8d8;
@@ -716,7 +716,7 @@ void njUserInit_8c0134ec() {
     var_8c1bb86c = (void *) -1;
 
     clearUnknownArray_8c013bbc(&var_8c1bbddc, 0x20);
-    clearUnknownArray_8c013bbc(&var_8c1bbfdc, 0x41);
+    clearUnknownArray_8c013bbc(&var_pedestrianAssets_8c1bbfdc, 0x41);
 
     var_8c1bc3ec = (void *) -1;
     var_8c1bc3f0 = (void *) -1;

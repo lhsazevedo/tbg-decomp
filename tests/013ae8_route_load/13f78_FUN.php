@@ -103,7 +103,7 @@ return new class extends TestCase {
 
         $this->call('_syncSelectedEntryAssets_8c013f78');
 
-        $this->shouldCall('_FUN_8c013df6')->with($list);
+        $this->shouldCall('_syncPedestrianAssets_8c013df6')->with($list);
 
         $this->shouldCall('_FUN_8c029ad4')->with(0);
         $this->shouldWriteLong($this->addressOf('_var_8c226534'), 0xffffffff);

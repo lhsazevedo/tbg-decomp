@@ -99,11 +99,11 @@ typedef struct {
     Uint16 ukn_0x04;                 /* always 0 */
     Uint16 ukn_0x06;                 /* id, 0..0xa9 */
     void *ukn_0x08;
-    void *datGroup_0x0c;             /* gates dat load; copied to var_8c226534 */
-    Sint8 *routeModelList_0x10;      /* route-model index list (syncRouteModelAssets) */
+    void *tileRegionList_0x0c;       /* {x0,y0,x1,y1} tile-rect list; gates dat load, published to var_8c226534 (FUN_8c02190a streams the covered grid cells) */
+    Sint8 *routeModelList_0x10;      /* scenery-model index list -> var_8c1bbddc (syncRouteModelAssets) */
     void *ukn_0x14;
-    Sint8 *secondModelList_0x18;     /* second index list (FUN_8c013df6) */
-    void *ukn_0x1c;                  /* FUN_8c029ad4 arg */
+    Sint8 *pedestrianModelList_0x18; /* pedestrian-model index list -> var_pedestrianAssets_8c1bbfdc (syncPedestrianAssets_8c013df6; consumed by task_pedestrians_8c0293f6) */
+    void *sceneObjectList_0x1c;      /* typed {type,rec} scene-object list (FUN_8c029ad4 streams nj/pvm/dat; e.g. O_FUMI railroad crossing) */
     char **datFilenames_0x20;                 /* dat filenames for the request loop */
     s_8c18ad28 *fog_0x24;            /* fog params */
     NjPvmPairFilenames *njPvmPairs_0x28;    /* nj/pvm pairs */
@@ -187,8 +187,9 @@ void *var_8c18adb4[4];
 
 extern RouteModelAsset var_8c1bbddc[0x20];
 
-/* Second, 0x41-slot asset table (pvm only); FUN_8c013df6 reconciles it. */
-extern RouteModelAsset var_8c1bbfdc[0x41];
+/* Pedestrian billboard texture table (0x41 slots, pvm only); syncPedestrianAssets_8c013df6
+ * reconciles it, task_pedestrians_8c0293f6 draws from it. */
+extern RouteModelAsset var_pedestrianAssets_8c1bbfdc[0x41];
 
 /* shared filename strings living in the next TU (referenced from the
  * filenames_0x1c[19] tables); .IMPORTed in the asm. */
@@ -403,48 +404,47 @@ void freeAllRouteModels_8c013dae(void)
         }
     }
 }
-
-/* Reconcile the second (0x41-slot) asset table with a -1-terminated index
+/* Reconcile the pedestrian billboard texture table with a -1-terminated index
  * list: request pvms for newly-wanted slots, release the ones dropped.
  * Unlike syncRouteModelAssets there is no njd, so no syFree. */
-void FUN_8c013df6(Sint8 *models)
+void syncPedestrianAssets_8c013df6(Sint8 *models)
 {
     RouteModelAsset *slot;
     int i;
 
-    LOG_DEBUG(("[ROUTE_LOAD] FUN_8c013df6: reconciling second asset table (models=%p)\n", models));
+    LOG_DEBUG(("[ROUTE_LOAD] syncPedestrianAssets_8c013df6: reconciling pedestrian textures (models=%p)\n", models));
 
-    for (slot = var_8c1bbfdc; slot < &var_8c1bbfdc[0x41]; slot++) {
+    for (slot = var_pedestrianAssets_8c1bbfdc; slot < &var_pedestrianAssets_8c1bbfdc[0x41]; slot++) {
         slot->requested_0x00 = 0;
         slot->needsLoad_0x04 = 0;
     }
 
     while ((i = *models) != -1) {
-        var_8c1bbfdc[i].requested_0x00 = 1;
+        var_pedestrianAssets_8c1bbfdc[i].requested_0x00 = 1;
         models++;
-        if (var_8c1bbfdc[i].texlist_0x08 == (NJS_TEXLIST *) -1) {
-            var_8c1bbfdc[i].needsLoad_0x04 = 1;
+        if (var_pedestrianAssets_8c1bbfdc[i].texlist_0x08 == (NJS_TEXLIST *) -1) {
+            var_pedestrianAssets_8c1bbfdc[i].needsLoad_0x04 = 1;
         }
     }
 
     for (i = 0; i < 0x41; i++) {
-        if (var_8c1bbfdc[i].needsLoad_0x04 != 0) {
-            AsqRequestPvm_11ac0(var_basedir_8c18ad6c, init_8c043fd8[i], &var_8c1bbfdc[i].texlist_0x08, 2, 0);
-        } else if (var_8c1bbfdc[i].requested_0x00 == 0 && var_8c1bbfdc[i].texlist_0x08 != (NJS_TEXLIST *) -1) {
-            AsqReleaseAndFreeTexlist_11e3c(var_8c1bbfdc[i].texlist_0x08);
-            var_8c1bbfdc[i].texlist_0x08 = (NJS_TEXLIST *) -1;
+        if (var_pedestrianAssets_8c1bbfdc[i].needsLoad_0x04 != 0) {
+            AsqRequestPvm_11ac0(var_basedir_8c18ad6c, init_pedestrianPvmNames_8c043fd8[i], &var_pedestrianAssets_8c1bbfdc[i].texlist_0x08, 2, 0);
+        } else if (var_pedestrianAssets_8c1bbfdc[i].requested_0x00 == 0 && var_pedestrianAssets_8c1bbfdc[i].texlist_0x08 != (NJS_TEXLIST *) -1) {
+            AsqReleaseAndFreeTexlist_11e3c(var_pedestrianAssets_8c1bbfdc[i].texlist_0x08);
+            var_pedestrianAssets_8c1bbfdc[i].texlist_0x08 = (NJS_TEXLIST *) -1;
         }
     }
 }
 
-/* Release every loaded slot of the second asset table (texlist only). */
-void FUN_8c013ee4(void)
+/* Release every loaded slot of the pedestrian texture table (texlist only). */
+void freePedestrianAssets_8c013ee4(void)
 {
     RouteModelAsset *slot;
 
-    LOG_DEBUG(("[ROUTE_LOAD] FUN_8c013ee4: releasing second asset table\n"));
+    LOG_DEBUG(("[ROUTE_LOAD] freePedestrianAssets_8c013ee4: releasing pedestrian textures\n"));
 
-    for (slot = var_8c1bbfdc; slot < &var_8c1bbfdc[0x41]; slot++) {
+    for (slot = var_pedestrianAssets_8c1bbfdc; slot < &var_pedestrianAssets_8c1bbfdc[0x41]; slot++) {
         if (slot->texlist_0x08 != (NJS_TEXLIST *) -1) {
             AsqReleaseAndFreeTexlist_11e3c(slot->texlist_0x08);
             slot->texlist_0x08 = (NJS_TEXLIST *) -1;
@@ -464,7 +464,7 @@ void freeSelectedEntryPairs_8c013f22(void)
     if (entry->njPvmPairs_0x28 != 0) {
         AsqFreeNjPvmPairs_120fe(&var_8c1bc3f0);
     }
-    if (entry->datGroup_0x0c != 0) {
+    if (entry->tileRegionList_0x0c != 0) {
         FUN_8c021a24();
     }
 }
@@ -504,16 +504,16 @@ void syncSelectedEntryAssets_8c013f78(void)
         syncRouteModelAssets_8c013c34(init_8c043fd4);
     }
 
-    if (entry->secondModelList_0x18 != 0) {
-        FUN_8c013df6(entry->secondModelList_0x18);
+    if (entry->pedestrianModelList_0x18 != 0) {
+        syncPedestrianAssets_8c013df6(entry->pedestrianModelList_0x18);
     }
 
-    FUN_8c029ad4(entry->ukn_0x1c);
+    FUN_8c029ad4(entry->sceneObjectList_0x1c);
 
-    if (entry->datGroup_0x0c == 0) {
+    if (entry->tileRegionList_0x0c == 0) {
         var_8c226534 = -1;
     } else {
-        var_8c226534 = (int)entry->datGroup_0x0c;
+        var_8c226534 = (int)entry->tileRegionList_0x0c;
         for (i = 0; i < 4; i++) {
             AsqRequestDat_11182(var_8c18ad2c, entry->datFilenames_0x20[i], &var_8c18adb4[i]);
         }

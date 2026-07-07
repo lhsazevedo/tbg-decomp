@@ -10,17 +10,17 @@ return new class extends TestCase {
 
     public function test_frees_loaded_slots_marks_them_unloaded()
     {
-        $this->setSize('_var_8c1bbfdc', self::SLOTS * 0x10);
+        $this->setSize('_var_pedestrianAssets_8c1bbfdc', self::SLOTS * 0x10);
         $this->setSize('_AsqReleaseAndFreeTexlist_11e3c', 4);
 
-        $base = $this->addressOf('_var_8c1bbfdc');
+        $base = $this->addressOf('_var_pedestrianAssets_8c1bbfdc');
         $this->seedAllUnloaded($base);
 
         // slot 3 and slot 40 are loaded -> released in slot order.
         $this->initUint32($base + 3 * 0x10 + 0x8, 0x8c500000);
         $this->initUint32($base + 40 * 0x10 + 0x8, 0x8c700000);
 
-        $this->call('_FUN_8c013ee4');
+        $this->call('_freePedestrianAssets_8c013ee4');
 
         $this->shouldCall('_AsqReleaseAndFreeTexlist_11e3c')->with(0x8c500000);
         $this->shouldWriteLong($base + 3 * 0x10 + 0x8, self::UNLOADED);
@@ -31,13 +31,13 @@ return new class extends TestCase {
 
     public function test_all_unloaded_does_nothing()
     {
-        $this->setSize('_var_8c1bbfdc', self::SLOTS * 0x10);
+        $this->setSize('_var_pedestrianAssets_8c1bbfdc', self::SLOTS * 0x10);
         $this->setSize('_AsqReleaseAndFreeTexlist_11e3c', 4);
 
-        $base = $this->addressOf('_var_8c1bbfdc');
+        $base = $this->addressOf('_var_pedestrianAssets_8c1bbfdc');
         $this->seedAllUnloaded($base);
 
-        $this->call('_FUN_8c013ee4');
+        $this->call('_freePedestrianAssets_8c013ee4');
     }
 
     /** Every slot starts unloaded (texlist == -1) so nothing is freed. */
