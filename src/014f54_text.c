@@ -443,8 +443,8 @@ TextBox* TxtCreateTextBox_8c0152fc(
     int i;
     TextBox *box = syMalloc(sizeof(TextBox));
 
-    LOG_INFO((
-        "[TXT] Creating TextBox instance:\n"
+    LOG_INFO(("[TXT] Creating TextBox instance\n"));
+    LOG_DEBUG((
         "      x=%d, y=%d, priority=%f, width=%d, height=%d, "
         "      x2=%d, y2=%d, enable_offset=%d\n",
         x, y, priority, width, height, x2, y2, enable_offset

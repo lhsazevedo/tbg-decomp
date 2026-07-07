@@ -216,7 +216,7 @@ int AsqRequestDat_11182(char* basedir, char* filename, void* dest) {
         return 0;
     }
 
-    LOG_DEBUG(("[ASSET_QUEUES] DAT enqueued: \"%s\" (basedir \"%s\")\n", filename, basedir));
+    LOG_TRACE(("[ASSET_QUEUES] DAT enqueued: \"%s\" (basedir \"%s\")\n", filename, basedir));
 
     var_datQueueRear_8c157a90->basedir = basedir;
     var_datQueueRear_8c157a90->filename = filename;
@@ -449,7 +449,7 @@ int AsqRequestNj_11492(char* basedir, char* filename, void* dest, void* dest2) {
         return 0;
     }
 
-    LOG_DEBUG(("[ASSET_QUEUES] NJ enqueued: \"%s\" (basedir \"%s\")\n", filename, basedir));
+    LOG_TRACE(("[ASSET_QUEUES] NJ enqueued: \"%s\" (basedir \"%s\")\n", filename, basedir));
 
     var_njQueueRear_8c157aa0->basedir = basedir;
     var_njQueueRear_8c157aa0->filename = filename;
@@ -710,7 +710,7 @@ int AsqRequestTexlist_1181c(char *basedir, NJS_TEXLIST *texlist) {
         return 0;
     }
 
-    LOG_DEBUG(("[ASSET_QUEUES] Texlist enqueued: %p (basedir \"%s\")\n", texlist, basedir));
+    LOG_TRACE(("[ASSET_QUEUES] Texlist enqueued: %p (basedir \"%s\")\n", texlist, basedir));
 
     var_texlistQueueRear_8c157ab0->basedir_0x00 = basedir;
     var_texlistQueueRear_8c157ab0->texlist_0x04 = texlist;
@@ -865,7 +865,7 @@ int AsqRequestPvm_11ac0(char *basedir, char *filename, void *texlist, int count,
         return 0;
     }
 
-    LOG_DEBUG(("[ASSET_QUEUES] PVM enqueued: %s (basedir %s)\n", filename, basedir));
+    LOG_TRACE(("[ASSET_QUEUES] PVM enqueued: %s (basedir %s)\n", filename, basedir));
 
     var_pvmQueueRear_8c157ac0->basedir = basedir;
     var_pvmQueueRear_8c157ac0->filename = filename;

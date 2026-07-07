@@ -25,7 +25,7 @@ return new class extends TestCase {
         $this->shouldCall('_pushTask_8c014ae8')
             ->with(
                 $this->addressOf('_var_tasks_8c1ba3c8'),
-                $this->addressOf('_task_load_8c014338'),
+                $this->addressOf('_routeLoadTask_8c014338'),
                 0xffffec,
                 0xfffff0,
                 0,

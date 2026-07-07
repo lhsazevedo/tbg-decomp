@@ -415,7 +415,6 @@ extern Uint32 var_8c227da0;
 extern Uint32 var_8c1ba292;
 extern Uint32 var_8c1ba291;
 extern int var_8c227da8;
-extern task_load_8c014338;
 extern var_memblkSource_8c0fcd48;
 extern var_memblkSource_8c0fcd4c;
 

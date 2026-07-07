@@ -38,7 +38,7 @@ char *DEBUG_routeLoad2StateNames[] = {
  * ====================
  */
 
-/* States for task_load_8c014338 and task_loadBindInterior_8c014784 (identical shape). */
+/* States for routeLoadTask_8c014338 and routeLoadBindInteriorTask_8c014784 (identical shape). */
 enum ROUTE_LOAD_STATE {
     ROUTE_LOAD_STATE_INIT      = 0,
     ROUTE_LOAD_STATE_POST_LOAD = 1,
@@ -47,7 +47,7 @@ enum ROUTE_LOAD_STATE {
     ROUTE_LOAD_STATE_DONE      = 4,
 };
 
-/* States for task_interiorLoad_8c014550 (same idea, but load pass is already underway
+/* States for interiorLoadTask_8c014550 (same idea, but load pass is already underway
  * when the task is pushed, so there's no separate INIT state). */
 enum ROUTE_LOAD2_STATE {
     ROUTE_LOAD2_STATE_POST_LOAD = 0,
@@ -294,7 +294,7 @@ void FUN_8c02190a(void);
 
 void requestVehicleAssets_8c013ae8(void)
 {
-    LOG_DEBUG(("[ROUTE_LOAD] requestVehicleAssets_8c013ae8: requesting vehicle assets\n"));
+    LOG_DEBUG(("[ROUTE_LOAD] requesting vehicle assets\n"));
 
     AsqRequestNj_11492(var_basedir_8c18ad6c, "front.njd", &var_frontNj_8c1bc434, 0);
     AsqRequestPvm_11ac0(var_basedir_8c18ad6c, "front.pvm", &var_frontTexlist_8c1bc430, 0xf, 0);
@@ -311,7 +311,7 @@ void freeVehicleAssets_8c013b5a(void)
     Uint32 i;
 
     if (var_interiorTexlist_8c1bc438 != (NJS_TEXLIST *) -1) {
-        LOG_DEBUG(("[ROUTE_LOAD] freeVehicleAssets_8c013b5a: freeing vehicle assets\n"));
+        LOG_DEBUG(("[ROUTE_LOAD] freeing vehicle assets\n"));
 
         njSetTexture(var_interiorTexlist_8c1bc438);
         for (i = 0; i < var_interiorTexlist_8c1bc438->nbTexture; i++) {
@@ -347,7 +347,7 @@ void syncRouteModelAssets_8c013c34(Sint8 *models)
     char **names;
     int i;
 
-    LOG_DEBUG(("[ROUTE_LOAD] syncRouteModelAssets_8c013c34: reconciling route-model assets (models=%p)\n", models));
+    LOG_DEBUG(("[ROUTE_LOAD] reconciling route-model assets (models=%p)\n", models));
 
     for (slot = var_8c1bbddc; slot < &var_8c1bbddc[0x20]; slot++) {
         slot->requested_0x00 = 0;
@@ -384,7 +384,7 @@ void syncRouteModelAssets_8c013c34(Sint8 *models)
  * then release the request queues. */
 void finishAssetLoad_8c013d42(void)
 {
-    LOG_DEBUG(("[ROUTE_LOAD] finishAssetLoad_8c013d42: asset load pass finished\n"));
+    LOG_DEBUG(("[ROUTE_LOAD] asset load pass finished\n"));
 
     setUknPvmBool_8c014330();
     AsqFreeQueues_11f7e();
@@ -394,7 +394,7 @@ void finishAssetLoad_8c013d42(void)
  * currently-wanted route models. finishAssetLoad runs once the texlists land. */
 void startRouteModelLoadPass_8c013d78(void)
 {
-    LOG_DEBUG(("[ROUTE_LOAD] startRouteModelLoadPass_8c013d78: starting route-model load pass\n"));
+    LOG_DEBUG(("[ROUTE_LOAD] starting route-model load pass\n"));
 
     AsqInitQueues_11f36(0, 0x40, 0, 0x40);
     AsqResetQueues_11f6c();
@@ -409,7 +409,7 @@ void freeAllRouteModels_8c013dae(void)
 {
     RouteModelAsset *slot;
 
-    LOG_DEBUG(("[ROUTE_LOAD] freeAllRouteModels_8c013dae: releasing all route-model assets\n"));
+    LOG_DEBUG(("[ROUTE_LOAD] releasing all route-model assets\n"));
 
     for (slot = var_8c1bbddc; slot < &var_8c1bbddc[0x20]; slot++) {
         if (slot->texlist_0x08 != (NJS_TEXLIST *) -1) {
@@ -427,7 +427,7 @@ void syncPedestrianAssets_8c013df6(Sint8 *models)
     RouteModelAsset *slot;
     int i;
 
-    LOG_DEBUG(("[ROUTE_LOAD] syncPedestrianAssets_8c013df6: reconciling pedestrian textures (models=%p)\n", models));
+    LOG_DEBUG(("[ROUTE_LOAD] reconciling pedestrian textures (models=%p)\n", models));
 
     for (slot = var_pedestrianAssets_8c1bbfdc; slot < &var_pedestrianAssets_8c1bbfdc[0x41]; slot++) {
         slot->requested_0x00 = 0;
@@ -457,7 +457,7 @@ void freePedestrianAssets_8c013ee4(void)
 {
     RouteModelAsset *slot;
 
-    LOG_DEBUG(("[ROUTE_LOAD] freePedestrianAssets_8c013ee4: releasing pedestrian textures\n"));
+    LOG_DEBUG(("[ROUTE_LOAD] releasing pedestrian textures\n"));
 
     for (slot = var_pedestrianAssets_8c1bbfdc; slot < &var_pedestrianAssets_8c1bbfdc[0x41]; slot++) {
         if (slot->texlist_0x08 != (NJS_TEXLIST *) -1) {
@@ -473,7 +473,7 @@ void freeSelectedEntryPairs_8c013f22(void)
 {
     CourseSegment *entry;
 
-    LOG_DEBUG(("[ROUTE_LOAD] freeSelectedEntryPairs_8c013f22: freeing pairs for selected entry (index=%d)\n", var_8c228708));
+    LOG_DEBUG(("[ROUTE_LOAD] freeing pairs for selected entry (index=%d)\n", var_8c228708));
 
     entry = &var_currentCourse_8c18ad18->entries_0x08[var_8c228708];
     if (entry->njPvmPairs_0x28 != 0) {
@@ -492,7 +492,7 @@ void syncSelectedEntryAssets_8c013f78(void)
     CourseSegment *entry;
     int i;
 
-    LOG_DEBUG(("[ROUTE_LOAD] syncSelectedEntryAssets_8c013f78: syncing assets for selected entry (index=%d)\n", var_8c228708));
+    LOG_DEBUG(("[ROUTE_LOAD] syncing assets for selected entry (index=%d)\n", var_8c228708));
 
     entry = &var_currentCourse_8c18ad18->entries_0x08[var_8c228708];
 
@@ -543,7 +543,7 @@ void syncSelectedEntryAssets_8c013f78(void)
  * base/pvr paths for its area+time of day, and request all of its files. */
 void loadRouteModels_8c014088(void)
 {
-    LOG_DEBUG(("[ROUTE_LOAD] loadRouteModels_8c014088: loading course %d\n", var_8c1bb868.courseId_0x00));
+    LOG_DEBUG(("[ROUTE_LOAD] loading course %d\n", var_8c1bb868.courseId_0x00));
 
     var_currentCourse_8c18ad18 = init_courseTable_8c043ca4[var_8c1bb868.courseId_0x00];
     var_route_8c18ad1c = var_currentCourse_8c18ad18->route_0x00;
@@ -640,7 +640,7 @@ int getUknPvmBool_8c01432a(void)
 
 void setUknPvmBool_8c014330(void)
 {
-    LOG_DEBUG(("[ROUTE_LOAD] setUknPvmBool_8c014330: pvm load pass ready\n"));
+    LOG_DEBUG(("[ROUTE_LOAD] pvm load pass ready\n"));
 
     var_8c18adac = 1;
 }
@@ -653,7 +653,7 @@ void setUknPvmBool_8c014330(void)
  *   3: idle one frame.
  *   4: tear down and switch to the input task.
  * States 0-2 keep drawing the animated loading sprite each frame. */
-void task_load_8c014338(Task *task, void *state)
+void routeLoadTask_8c014338(Task *task, void *state)
 {
     int frame;
 
@@ -712,18 +712,18 @@ void task_load_8c014338(Task *task, void *state)
     drawSprite_8c014f54(&var_8c1bc3f8, (frame >> 2) % 6 + 1, 0.0f, 0.0f, -4.0f);
 }
 
-/* Kick off the route-load screen: push task_load and prime the asset queues. */
+/* Kick off the route-load screen: push routeLoadTask_8c014338 and prime the asset queues. */
 void pushRouteLoadTask_8c0144fc(void)
 {
     Task *task;
     void *state;
 
-    LOG_DEBUG(("[ROUTE_LOAD] pushRouteLoadTask_8c0144fc: pushing task_load\n"));
+    LOG_DEBUG(("[ROUTE_LOAD] pushing routeLoadTask_8c014338\n"));
 
     njSetBackColor(0xff418dff, 0xff418dff, 0xff418dff);
     var_8c157a6c = 1;
 
-    pushTask_8c014ae8(var_tasks_8c1ba3c8, (void *) task_load_8c014338, &task, &state, 0);
+    pushTask_8c014ae8(var_tasks_8c1ba3c8, (void *) routeLoadTask_8c014338, &task, &state, 0);
     CHANGE_LOAD_STATE(task, ROUTE_LOAD_STATE_INIT);
     task->field_0x0c = 0;
 
@@ -733,8 +733,8 @@ void pushRouteLoadTask_8c0144fc(void)
 }
 
 /* Second-stage load task: build the interior, then hand off to the input task.
- * Draws the same loading animation as task_load_8c014338 while it works. */
-void task_interiorLoad_8c014550(Task *task, void *state)
+ * Draws the same loading animation as routeLoadTask_8c014338 while it works. */
+void interiorLoadTask_8c014550(Task *task, void *state)
 {
     int frame;
 
@@ -775,7 +775,7 @@ void task_interiorLoad_8c014550(Task *task, void *state)
     drawSprite_8c014f54(&var_8c1bc3f8, (frame >> 2) % 6 + 1, 0.0f, 0.0f, -4.0f);
 }
 
-/* Push task_interiorLoad_8c014550 and prime the queues, keeping the current texture bound. */
+/* Push interiorLoadTask_8c014550 and prime the queues, keeping the current texture bound. */
 void pushInteriorLoadTask_8c01468e(void)
 {
     Task *task;
@@ -788,10 +788,10 @@ void pushInteriorLoadTask_8c01468e(void)
         }
     }
 
-    LOG_DEBUG(("[ROUTE_LOAD] pushInteriorLoadTask_8c01468e: pushing task_interiorLoad_8c014550\n"));
+    LOG_DEBUG(("[ROUTE_LOAD] pushing interiorLoadTask_8c014550\n"));
 
     var_8c157a6c = 1;
-    pushTask_8c014ae8(var_tasks_8c1ba3c8, (void *) task_interiorLoad_8c014550, &task, &state, 0);
+    pushTask_8c014ae8(var_tasks_8c1ba3c8, (void *) interiorLoadTask_8c014550, &task, &state, 0);
     CHANGE_LOAD2_STATE(task, ROUTE_LOAD2_STATE_POST_LOAD);
     task->field_0x0c = 0;
     freeSelectedEntryPairs_8c013f22();
@@ -803,9 +803,9 @@ void pushInteriorLoadTask_8c01468e(void)
     njSetBackColor(0xff418dff, 0xff418dff, 0xff418dff);
 }
 
-/* Like task_load_8c014338, but on completion binds the interior texture and
- * hands off to the input task (as task_interiorLoad_8c014550 does). */
-void task_loadBindInterior_8c014784(Task *task, void *state)
+/* Like routeLoadTask_8c014338, but on completion binds the interior texture and
+ * hands off to the input task (as interiorLoadTask_8c014550 does). */
+void routeLoadBindInteriorTask_8c014784(Task *task, void *state)
 {
     int frame;
 

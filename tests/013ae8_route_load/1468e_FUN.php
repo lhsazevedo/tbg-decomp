@@ -52,7 +52,7 @@ return new class extends TestCase {
         $this->expectInstallAndBind();
     }
 
-    /** Common tail: install task_interiorLoad_8c014550, prime the queues, rebind the texture. */
+    /** Common tail: install interiorLoadTask_8c014550, prime the queues, rebind the texture. */
     private function expectInstallAndBind(): void
     {
         $this->initUint32($this->addressOf('_var_8c1bc3f8'), self::TLIST);
@@ -64,7 +64,7 @@ return new class extends TestCase {
         $this->shouldCall('_pushTask_8c014ae8')
             ->with(
                 $this->addressOf('_var_tasks_8c1ba3c8'),
-                $this->addressOf('_task_interiorLoad_8c014550'),
+                $this->addressOf('_interiorLoadTask_8c014550'),
                 0xffffec,
                 0xfffff0,
                 0,
