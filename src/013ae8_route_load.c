@@ -109,6 +109,19 @@ typedef struct {
     NjPvmPairFilenames *njPvmPairs_0x28;    /* nj/pvm pairs */
 } CourseSegment;
 
+/* Per-course scene/lighting params (CourseConfig.sceneParams_0x10), one block
+ * per timeOfDay. Appears to be directional lighting: a dir vec3 followed by
+ * color/coefficient records rec = {k0, k1, r, g, b}. Roles inferred from value
+ * ranges + consumers 023310 (reads rec0_0x0c[0]) and 026748 (rec0_0x0c[1..2]). */
+typedef struct {
+    float dir0_0x00[3];
+    float rec0_0x0c[3][5];
+    float dir1_0x48[3];
+    float rec1_0x54[5];
+    float dir2_0x68[3];
+    float rec2_0x74[5];
+} CourseSceneParams;
+
 /* Per-course config record; init_courseTable_8c043ca4[] holds one per courseId.
  * entries_0x08 is the CourseSegment array indexed by var_8c228708.
  * filenames_0x1c holds the nj/dat asset names loaded by loadRouteModels. */
@@ -117,7 +130,7 @@ typedef struct {
     int timeOfDay_0x04;        /* enum TIME_OF_DAY -> var_timeOfDay_8c18ad20 */
     CourseSegment *entries_0x08;
     void *ukn_0x0c;
-    void *ukn_0x10;
+    CourseSceneParams *sceneParams_0x10;  /* -> per-timeOfDay scene/lighting block */
     int ukn_0x14;
     int ukn_0x18;
     char *filenames_0x1c[19];
@@ -174,7 +187,9 @@ char var_8c18ad2c[0x20];
  * D vs N asset dir (0/1 -> D, 2 -> N) and the night model table when == 2. */
 int var_timeOfDay_8c18ad20;
 
-void *var_8c18ad24;
+/* current course's scene-param block (from CourseConfig.sceneParams_0x10);
+ * read by driving/render units 023310, 026710, 021b9c, 0222dc, 024b4c */
+CourseSceneParams *var_sceneParams_8c18ad24;
 
 /* pvm-ready flag; async asset processing sets it via setUknPvmBool_8c014330 */
 int var_8c18adac;
@@ -533,7 +548,7 @@ void loadRouteModels_8c014088(void)
     var_currentCourse_8c18ad18 = init_courseTable_8c043ca4[var_8c1bb868.courseId_0x00];
     var_route_8c18ad1c = var_currentCourse_8c18ad18->route_0x00;
     var_timeOfDay_8c18ad20 = var_currentCourse_8c18ad18->timeOfDay_0x04;
-    var_8c18ad24 = var_currentCourse_8c18ad18->ukn_0x10;
+    var_sceneParams_8c18ad24 = var_currentCourse_8c18ad18->sceneParams_0x10;
 
     switch (var_route_8c18ad1c) {
         case ROUTE_SHINJUKU: {

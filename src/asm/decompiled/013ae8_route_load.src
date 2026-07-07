@@ -87,7 +87,7 @@
           .EXPORT     _var_currentCourse_8c18ad18 ; 02c884.src
           .EXPORT     _var_route_8c18ad1c ; 012f44.c, 012f44.src, 01d7fc.src, 020214.src, 023310.src, 025870.src, 026710.src, 028258.src, 02af78.src, 02b464.src, 02c884.src, 02d19c.src, 02d968.src
           .EXPORT     _var_timeOfDay_8c18ad20 ; 01d7fc.src, 022bdc.src, 023310.src, 025b98.src, 026710.src, 027958.src, 02af78.src, 02d19c.src
-          .EXPORT     _var_8c18ad24 ; 021b9c.src, 0222dc.src, 023310.src, 024b4c.src, 026710.src
+          .EXPORT     _var_sceneParams_8c18ad24 ; 021b9c.src, 0222dc.src, 023310.src, 024b4c.src, 026710.src
           .EXPORT     _var_8c18ad28 ; 012f44.c, 012f44.src
           .EXPORT     _var_8c18ad2c
           .EXPORT     _var_8c18ad4c ; 02171c.src
@@ -971,7 +971,7 @@ LP_GEN_25668:
           .DATA.L _init_courseTable_8c043ca4
           .DATA.L _var_route_8c18ad1c
           .DATA.L _var_timeOfDay_8c18ad20
-          .DATA.L _var_8c18ad24
+          .DATA.L _var_sceneParams_8c18ad24
           .DATA.L _var_8c18ad4c
           .DATA.L _strcpy
           .DATA.L s_SD_COMMON_8c0334c0
@@ -10918,7 +10918,7 @@ _var_route_8c18ad1c:
           .RES.B      4
 _var_timeOfDay_8c18ad20:
           .RES.B      4
-_var_8c18ad24:
+_var_sceneParams_8c18ad24:
           .RES.B      4
 _var_8c18ad28:
           .RES.B      4

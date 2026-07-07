@@ -26,7 +26,7 @@
           .IMPORT     _var_8c2264e8
           .IMPORT     _var_8c2264e4
           .IMPORT     _var_8c1bb904
-          .IMPORT     _var_8c18ad24
+          .IMPORT     _var_sceneParams_8c18ad24
           .IMPORT     _njCalcVector
           .IMPORT     _var_8c1bb944
           .IMPORT     _var_8c22650c
@@ -928,7 +928,7 @@ LP_GEN_78610:
           .DATA.L _var_8c1bb904 ; H'8C0222A4
           .DATA.L _njSetCamera ; H'8C0222A8
           .DATA.L _var_8c226538 ; H'8C0222AC
-          .DATA.L _var_8c18ad24 ; H'8C0222B0
+          .DATA.L _var_sceneParams_8c18ad24 ; H'8C0222B0
           .DATA.L _njCalcVector ; H'8C0222B4
           .DATA.L _var_8c2264d8 ; H'8C0222B8
           .DATA.L _var_8c1bb944 ; H'8C0222BC

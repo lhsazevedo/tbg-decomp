@@ -2,7 +2,7 @@
           .IMPORT     _var_8c228708
           .IMPORT     _FUN_8c02cd7a
           .IMPORT     _var_busState_8c1bb9d0
-          .IMPORT     _var_8c18ad24
+          .IMPORT     _var_sceneParams_8c18ad24
           .IMPORT     _FUN_8c020914
           .IMPORT     _FUN_8c020f7e
           .IMPORT     _var_demo_8c1bb8d0
@@ -167,7 +167,7 @@ LP_GEN_83541:
           .DATA.L _var_8c228708 ; H'8C023404
           .DATA.L _FUN_8c02cd7a ; H'8C023408
           .DATA.L _var_busState_8c1bb9d0 ; H'8C02340C
-          .DATA.L _var_8c18ad24 ; H'8C023410
+          .DATA.L _var_sceneParams_8c18ad24 ; H'8C023410
           .DATA.L _FUN_8c020914 ; H'8C023414
           .DATA.L _FUN_8c020f7e ; H'8C023418
           .DATA.L H'409CCCCD ; H'8C02341C

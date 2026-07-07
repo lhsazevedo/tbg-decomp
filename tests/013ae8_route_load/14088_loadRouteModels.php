@@ -89,7 +89,7 @@ return new class extends TestCase {
         $this->shouldWriteLong($this->addressOf('_var_currentCourse_8c18ad18'), $record);
         $this->shouldWriteLong($this->addressOf('_var_route_8c18ad1c'), $ad1c);
         $this->shouldWriteLong($this->addressOf('_var_timeOfDay_8c18ad20'), $ad20);
-        $this->shouldWriteLong($this->addressOf('_var_8c18ad24'), $this->addressOf($cfg['ukn10']));
+        $this->shouldWriteLong($this->addressOf('_var_sceneParams_8c18ad24'), $this->addressOf($cfg['ukn10']));
 
         $basedir = $this->addressOf('_var_basedir_8c18ad6c');
         if ($ad1c <= 2 && $ad20 <= 2) {

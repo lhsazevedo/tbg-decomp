@@ -3,7 +3,7 @@
           .IMPORT     _init_8c0460bc
           .IMPORT     _var_timeOfDay_8c18ad20
           .IMPORT     _FUN_8c02e51c
-          .IMPORT     _var_8c18ad24
+          .IMPORT     _var_sceneParams_8c18ad24
           .IMPORT     _var_8c1bbdb0
           .IMPORT     _var_8c1bbdd0
           .IMPORT     _FUN_8c020914
@@ -310,7 +310,7 @@ LP_GEN_58523:
           .DATA.W H'00D0 ; H'8C0268CE
           .DATA.L _var_timeOfDay_8c18ad20 ; H'8C0268D0
           .DATA.L _FUN_8c02e51c ; H'8C0268D4
-          .DATA.L _var_8c18ad24 ; H'8C0268D8
+          .DATA.L _var_sceneParams_8c18ad24 ; H'8C0268D8
 LAB_8c0268dc:
           MOV.L       LP_GEN_59685+32,R4
           MOV.W       LP_GEN_59685,R0
@@ -2320,7 +2320,7 @@ LP_GEN_74201:
           .DATA.L _init_8c04cd38 ; H'8C027838
           .DATA.L _var_timeOfDay_8c18ad20 ; H'8C02783C
           .DATA.L _var_8c1bbdb0 ; H'8C027840
-          .DATA.L _var_8c18ad24 ; H'8C027844
+          .DATA.L _var_sceneParams_8c18ad24 ; H'8C027844
           .DATA.L _var_8c1bbdd0 ; H'8C027848
           .DATA.L _var_8c1bbda8 ; H'8C02784C
           .DATA.L _var_8c1bbdc4 ; H'8C027850

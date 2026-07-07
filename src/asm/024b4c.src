@@ -56,7 +56,7 @@
           .IMPORT     _njRollCameraInterest
           .IMPORT     _var_8c227d90
           .IMPORT     _njSetCamera
-          .IMPORT     _var_8c18ad24
+          .IMPORT     _var_sceneParams_8c18ad24
           .IMPORT     _njCalcVector
           .IMPORT     _FUN_8c0223ea
           .IMPORT     _var_8c1bb944
@@ -1463,7 +1463,7 @@ LP_GEN_36343:
           .DATA.L _njTranslateCameraPosition ; H'8C02565C
           .DATA.L _njPointCameraInterest ; H'8C025660
           .DATA.L _njSetCamera ; H'8C025664
-          .DATA.L _var_8c18ad24 ; H'8C025668
+          .DATA.L _var_sceneParams_8c18ad24 ; H'8C025668
           .DATA.L _var_8c227db8 ; H'8C02566C
           .DATA.L _njCalcVector ; H'8C025670
           .DATA.L LAB_8c024cc8 ; H'8C025674
@@ -1686,7 +1686,7 @@ LP_GEN_86833:
           .DATA.L _njRollCameraInterest ; H'8C025850
           .DATA.L _njSqrt ; H'8C025854
           .DATA.L _njSetCamera ; H'8C025858
-          .DATA.L _var_8c18ad24 ; H'8C02585C
+          .DATA.L _var_sceneParams_8c18ad24 ; H'8C02585C
           .DATA.L _var_8c227dc4 ; H'8C025860
           .DATA.L _njCalcVector ; H'8C025864
           .DATA.L _FUN_8c024bb8 ; H'8C025868
