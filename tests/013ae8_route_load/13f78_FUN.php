@@ -135,7 +135,7 @@ return new class extends TestCase {
     }
 
     /**
-     * Seed var_8c18ad18 so var_8c228708 selects entry $index (zeroed), and set
+     * Seed var_currentCourse_8c18ad18 so var_8c228708 selects entry $index (zeroed), and set
      * the demo-gating globals. Returns [entryAddr, arrayBase].
      */
     private function setup(int $index, int $bb900, int $demo = 0): array
@@ -162,7 +162,7 @@ return new class extends TestCase {
             $this->initUint32($entry + $off, 0);
         }
 
-        $this->initUint32($this->addressOf('_var_8c18ad18'), $holder);
+        $this->initUint32($this->addressOf('_var_currentCourse_8c18ad18'), $holder);
         $this->initUint32($holder + 8, $array);
         $this->initUint32($this->addressOf('_var_8c228708'), $index);
         $this->initUint32($this->addressOf('_var_8c1bb900'), $bb900);

@@ -41,7 +41,7 @@ return new class extends TestCase {
      */
     private function setup(int $index, int $f28, int $f0c): int
     {
-        // _var_8c18ad18 is defined in the C object; the other two are imported.
+        // _var_currentCourse_8c18ad18 is defined in the C object; the other two are imported.
         $this->setSize('_var_8c228708', 4);
         $this->setSize('_var_8c1bc3f0', 4);
         $this->setSize('_AsqFreeNjPvmPairs_120fe', 4);
@@ -51,8 +51,8 @@ return new class extends TestCase {
         $array = $this->alloc(4 * self::STRIDE);
         $entry = $array + $index * self::STRIDE;
 
-        // var_8c18ad18 -> holder; holder+8 -> entry array base.
-        $this->initUint32($this->addressOf('_var_8c18ad18'), $holder);
+        // var_currentCourse_8c18ad18 -> holder; holder+8 -> entry array base.
+        $this->initUint32($this->addressOf('_var_currentCourse_8c18ad18'), $holder);
         $this->initUint32($holder + 8, $array);
         $this->initUint32($this->addressOf('_var_8c228708'), $index);
 

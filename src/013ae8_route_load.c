@@ -90,7 +90,7 @@ typedef struct {
     float fogF_0x10;
 } s_8c18ad28;
 
-/* Entry in var_8c18ad18's array; most fields still unidentified. */
+/* Entry in var_currentCourse_8c18ad18's array; most fields still unidentified. */
 typedef struct {
     Uint16 ukn_0x00;                 /* 0..3 */
     Uint16 ukn_0x02;                 /* id, 0..0x16c */
@@ -107,24 +107,24 @@ typedef struct {
     NjPvmPairFilenames *njPvmPairs_0x28;    /* nj/pvm pairs */
 } UknEntry;
 
-/* Static per-route config record; init_8c043ca4[] holds one per route.
+/* Per-course config record; init_courseTable_8c043ca4[] holds one per courseId.
  * entries_0x08 is the UknEntry array indexed by var_8c228708.
  * filenames_0x1c holds the nj/dat asset names loaded by loadRouteModels. */
 typedef struct {
-    int ukn_0x00;              /* -> var_route_8c18ad1c (0 Shinjuku, 1 Wangan, 2 Ome) */
-    int ukn_0x04;              /* -> var_timeOfDay_8c18ad20 (day/evening/night) */
+    int route_0x00;            /* enum ROUTE -> var_route_8c18ad1c */
+    int timeOfDay_0x04;        /* enum TIME_OF_DAY -> var_timeOfDay_8c18ad20 */
     UknEntry *entries_0x08;
     void *ukn_0x0c;
     void *ukn_0x10;
     int ukn_0x14;
     int ukn_0x18;
     char *filenames_0x1c[19];
-} Ukn;
+} CourseConfig;
 
-/* Current route id plus the 19 asset handles filled by loadRouteModels
+/* Current courseId plus the 19 asset handles filled by loadRouteModels
  * (ghidra's var_8c1bb86c..8b4). */
 typedef struct {
-    int routeId_0x00;
+    int courseId_0x00;
     void *slots_0x04[19];
 } s_8c1bb868;
 
@@ -156,7 +156,7 @@ char var_basedir_8c18ad6c[0x20];
 char var_8c18ad4c[0x20];
 char var_8c18ad8c[0x20];
 
-Ukn *var_8c18ad18;
+CourseConfig *var_currentCourse_8c18ad18;
 
 /* Route: 0 Shinjuku (S), 1 Wangan (W), 2 Ome (O). Selects the asset-dir
  * prefix; pairs with var_timeOfDay to pick one of SD/SN/WD/WN/OD/ON. */
@@ -194,7 +194,7 @@ extern char init_8c04ce10[];
 extern char init_8c04df38[];
 extern char init_8c04e988[];
 
-/* current route id + the asset handles loadRouteModels fills */
+/* current courseId + the asset handles loadRouteModels fills */
 extern s_8c1bb868 var_8c1bb868;
 
 /* nj/pvm pairs for the loaded route models */
@@ -224,7 +224,7 @@ extern NjPvmPair *var_routeModelPairs_8c1bc3f4;
 void setUknPvmBool_8c014330(void);
 void resetUknPvmBool_8c014322(void);
 
-/* selected entry index into var_8c18ad18's array */
+/* selected entry index into var_currentCourse_8c18ad18's array */
 extern int var_8c228708;
 extern NjPvmPair *var_8c1bc3f0;
 
@@ -458,7 +458,7 @@ void freeSelectedEntryPairs_8c013f22(void)
 
     LOG_DEBUG(("[ROUTE_LOAD] freeSelectedEntryPairs_8c013f22: freeing pairs for selected entry (index=%d)\n", var_8c228708));
 
-    entry = &var_8c18ad18->entries_0x08[var_8c228708];
+    entry = &var_currentCourse_8c18ad18->entries_0x08[var_8c228708];
     if (entry->njPvmPairs_0x28 != 0) {
         AsqFreeNjPvmPairs_120fe(&var_8c1bc3f0);
     }
@@ -477,7 +477,7 @@ void syncSelectedEntryAssets_8c013f78(void)
 
     LOG_DEBUG(("[ROUTE_LOAD] syncSelectedEntryAssets_8c013f78: syncing assets for selected entry (index=%d)\n", var_8c228708));
 
-    entry = &var_8c18ad18->entries_0x08[var_8c228708];
+    entry = &var_currentCourse_8c18ad18->entries_0x08[var_8c228708];
 
     if (entry->fog_0x24 != 0) {
         var_8c18ad28 = entry->fog_0x24;
@@ -526,12 +526,12 @@ void syncSelectedEntryAssets_8c013f78(void)
  * base/pvr paths for its area+time of day, and request all of its files. */
 void loadRouteModels_8c014088(void)
 {
-    LOG_DEBUG(("[ROUTE_LOAD] loadRouteModels_8c014088: loading route %d\n", var_8c1bb868.routeId_0x00));
+    LOG_DEBUG(("[ROUTE_LOAD] loadRouteModels_8c014088: loading course %d\n", var_8c1bb868.courseId_0x00));
 
-    var_8c18ad18 = init_8c043ca4[var_8c1bb868.routeId_0x00];
-    var_route_8c18ad1c = var_8c18ad18->ukn_0x00;
-    var_timeOfDay_8c18ad20 = var_8c18ad18->ukn_0x04;
-    var_8c18ad24 = var_8c18ad18->ukn_0x10;
+    var_currentCourse_8c18ad18 = init_courseTable_8c043ca4[var_8c1bb868.courseId_0x00];
+    var_route_8c18ad1c = var_currentCourse_8c18ad18->route_0x00;
+    var_timeOfDay_8c18ad20 = var_currentCourse_8c18ad18->timeOfDay_0x04;
+    var_8c18ad24 = var_currentCourse_8c18ad18->ukn_0x10;
 
     switch (var_route_8c18ad1c) {
         case ROUTE_SHINJUKU: {
@@ -587,25 +587,25 @@ void loadRouteModels_8c014088(void)
     strcpy(var_8c18ad8c, var_basedir_8c18ad6c);
     strcpy(var_8c18ad2c, var_basedir_8c18ad6c);
 
-    AsqRequestNj_11492(var_basedir_8c18ad6c, var_8c18ad18->filenames_0x1c[0], &var_8c1bb868.slots_0x04[0], 0);
-    AsqRequestNj_11492(var_basedir_8c18ad6c, var_8c18ad18->filenames_0x1c[1], &var_8c1bb868.slots_0x04[1], 0);
-    var_8c1bb868.slots_0x04[2] = var_8c18ad18->filenames_0x1c[2];
-    AsqRequestNj_11492(var_basedir_8c18ad6c, var_8c18ad18->filenames_0x1c[3], &var_8c1bb868.slots_0x04[3], 0);
-    AsqRequestNj_11492(var_basedir_8c18ad6c, var_8c18ad18->filenames_0x1c[4], &var_8c1bb868.slots_0x04[4], 0);
-    AsqRequestNj_11492(var_basedir_8c18ad6c, var_8c18ad18->filenames_0x1c[5], &var_8c1bb868.slots_0x04[5], 0);
-    AsqRequestNj_11492(var_basedir_8c18ad6c, var_8c18ad18->filenames_0x1c[6], &var_8c1bb868.slots_0x04[6], 0);
-    AsqRequestNj_11492(var_basedir_8c18ad6c, var_8c18ad18->filenames_0x1c[7], &var_8c1bb868.slots_0x04[7], 0);
-    AsqRequestDat_11182(var_basedir_8c18ad6c, var_8c18ad18->filenames_0x1c[8], &var_8c1bb868.slots_0x04[8]);
-    AsqRequestNj_11492(var_basedir_8c18ad6c, var_8c18ad18->filenames_0x1c[9], &var_8c1bb868.slots_0x04[9], 0);
-    AsqRequestNj_11492(var_basedir_8c18ad6c, var_8c18ad18->filenames_0x1c[10], 0, &var_8c1bb868.slots_0x04[10]);
-    AsqRequestDat_11182(var_basedir_8c18ad6c, var_8c18ad18->filenames_0x1c[11], &var_8c1bb868.slots_0x04[11]);
-    AsqRequestDat_11182(var_basedir_8c18ad6c, var_8c18ad18->filenames_0x1c[12], &var_8c1bb868.slots_0x04[12]);
-    AsqRequestDat_11182(var_basedir_8c18ad6c, var_8c18ad18->filenames_0x1c[13], &var_8c1bb868.slots_0x04[13]);
-    AsqRequestNj_11492(var_basedir_8c18ad6c, var_8c18ad18->filenames_0x1c[14], &var_8c1bb868.slots_0x04[14], 0);
-    AsqRequestNj_11492(var_basedir_8c18ad6c, var_8c18ad18->filenames_0x1c[15], &var_8c1bb868.slots_0x04[15], 0);
-    AsqRequestNj_11492(var_basedir_8c18ad6c, var_8c18ad18->filenames_0x1c[16], &var_8c1bb868.slots_0x04[16], 0);
-    AsqRequestNj_11492(var_basedir_8c18ad6c, var_8c18ad18->filenames_0x1c[17], &var_8c1bb868.slots_0x04[17], 0);
-    AsqRequestNj_11492(var_basedir_8c18ad6c, var_8c18ad18->filenames_0x1c[18], &var_8c1bb868.slots_0x04[18], 0);
+    AsqRequestNj_11492(var_basedir_8c18ad6c, var_currentCourse_8c18ad18->filenames_0x1c[0], &var_8c1bb868.slots_0x04[0], 0);
+    AsqRequestNj_11492(var_basedir_8c18ad6c, var_currentCourse_8c18ad18->filenames_0x1c[1], &var_8c1bb868.slots_0x04[1], 0);
+    var_8c1bb868.slots_0x04[2] = var_currentCourse_8c18ad18->filenames_0x1c[2];
+    AsqRequestNj_11492(var_basedir_8c18ad6c, var_currentCourse_8c18ad18->filenames_0x1c[3], &var_8c1bb868.slots_0x04[3], 0);
+    AsqRequestNj_11492(var_basedir_8c18ad6c, var_currentCourse_8c18ad18->filenames_0x1c[4], &var_8c1bb868.slots_0x04[4], 0);
+    AsqRequestNj_11492(var_basedir_8c18ad6c, var_currentCourse_8c18ad18->filenames_0x1c[5], &var_8c1bb868.slots_0x04[5], 0);
+    AsqRequestNj_11492(var_basedir_8c18ad6c, var_currentCourse_8c18ad18->filenames_0x1c[6], &var_8c1bb868.slots_0x04[6], 0);
+    AsqRequestNj_11492(var_basedir_8c18ad6c, var_currentCourse_8c18ad18->filenames_0x1c[7], &var_8c1bb868.slots_0x04[7], 0);
+    AsqRequestDat_11182(var_basedir_8c18ad6c, var_currentCourse_8c18ad18->filenames_0x1c[8], &var_8c1bb868.slots_0x04[8]);
+    AsqRequestNj_11492(var_basedir_8c18ad6c, var_currentCourse_8c18ad18->filenames_0x1c[9], &var_8c1bb868.slots_0x04[9], 0);
+    AsqRequestNj_11492(var_basedir_8c18ad6c, var_currentCourse_8c18ad18->filenames_0x1c[10], 0, &var_8c1bb868.slots_0x04[10]);
+    AsqRequestDat_11182(var_basedir_8c18ad6c, var_currentCourse_8c18ad18->filenames_0x1c[11], &var_8c1bb868.slots_0x04[11]);
+    AsqRequestDat_11182(var_basedir_8c18ad6c, var_currentCourse_8c18ad18->filenames_0x1c[12], &var_8c1bb868.slots_0x04[12]);
+    AsqRequestDat_11182(var_basedir_8c18ad6c, var_currentCourse_8c18ad18->filenames_0x1c[13], &var_8c1bb868.slots_0x04[13]);
+    AsqRequestNj_11492(var_basedir_8c18ad6c, var_currentCourse_8c18ad18->filenames_0x1c[14], &var_8c1bb868.slots_0x04[14], 0);
+    AsqRequestNj_11492(var_basedir_8c18ad6c, var_currentCourse_8c18ad18->filenames_0x1c[15], &var_8c1bb868.slots_0x04[15], 0);
+    AsqRequestNj_11492(var_basedir_8c18ad6c, var_currentCourse_8c18ad18->filenames_0x1c[16], &var_8c1bb868.slots_0x04[16], 0);
+    AsqRequestNj_11492(var_basedir_8c18ad6c, var_currentCourse_8c18ad18->filenames_0x1c[17], &var_8c1bb868.slots_0x04[17], 0);
+    AsqRequestNj_11492(var_basedir_8c18ad6c, var_currentCourse_8c18ad18->filenames_0x1c[18], &var_8c1bb868.slots_0x04[18], 0);
 
     requestVehicleAssets_8c013ae8();
     var_8c1bc3ec = AsqRequestNjPvmPairs_12030(var_basedir_8c18ad6c, init_8c0440dc, 0x10);

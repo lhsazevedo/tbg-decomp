@@ -1719,7 +1719,7 @@ void CourseMenuStoryMenuTask_8c017718(Task * task, void *state)
 
             menuState_8c1bc7a8.selected_0x38 = 0;
             buttonIndex = menuState_8c1bc7a8.field_0x40 * 5 + menuState_8c1bc7a8.field_0x3c;
-            menuState_8c1bc7a8.field_0x50 =
+            menuState_8c1bc7a8.courseId_0x50 =
                 init_courseMenuButtons_8c04442c[buttonIndex].courseId_0x18;
 
             var_8c1bb8dc = 1;
@@ -1872,7 +1872,7 @@ void CourseMenuFreeRunMenuTask_8c017ada(Task * task, void *state)
 
             menuState_8c1bc7a8.selected_0x38 = 0;
             buttonIndex = menuState_8c1bc7a8.field_0x40 * 5 + menuState_8c1bc7a8.field_0x3c;
-            menuState_8c1bc7a8.field_0x50 =
+            menuState_8c1bc7a8.courseId_0x50 =
                 init_courseMenuButtons_8c04442c[buttonIndex].courseId_0x18;
 
             // var_8c1bb8dc = 1;
@@ -2224,7 +2224,7 @@ STATIC void CourseConfirmMenuTask_8c0181b6(Task * task, void *state)
         case COURSE_CONFIRM_STATE_START_LOADING: {
             if (isFading_8c226568 == 0) {
                 int i = 0;
-                int courseIndex = menuState_8c1bc7a8.field_0x50 / 3;
+                int courseIndex = menuState_8c1bc7a8.courseId_0x50 / 3;
 
                 if (init_8c03bd80 != 0) {
                     // init is busy, just return early
@@ -2255,12 +2255,12 @@ STATIC void CourseConfirmMenuTask_8c0181b6(Task * task, void *state)
                     var_8c1ba2cc[i] = ((int*)(&var_progress_8c1ba1cc.field_0x04))[i + 5];
                 }
 
-                // Step 5: Update field_0x50 by adding day-based lookup value
-                menuState_8c1bc7a8.field_0x50 += 
+                // Step 5: Update courseId_0x50 by adding day-based lookup value
+                menuState_8c1bc7a8.courseId_0x50 += 
                     init_courseVariants_8c044d10[var_progress_8c1ba1cc.days_0x00 - 1];
 
                 // Step 6: Initialize game and push loading task
-                pushLoadingTask_8c013310(menuState_8c1bc7a8.field_0x50);
+                pushLoadingTask_8c013310(menuState_8c1bc7a8.courseId_0x50);
                 return;
             }
             // State 6 uses drawRouteInfo instead of epilogue rendering
@@ -2287,7 +2287,7 @@ STATIC void CourseConfirmMenuTask_8c0181b6(Task * task, void *state)
     // Epilogue rendering that runs every frame for this task
     drawSprite_8c014f54(
         &menuState_8c1bc7a8.resourceGroupB_0x0c,
-        menuState_8c1bc7a8.field_0x50 / 3,
+        menuState_8c1bc7a8.courseId_0x50 / 3,
         0.0,
         0.0,
         -4.0
