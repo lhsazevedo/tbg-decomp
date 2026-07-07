@@ -16,37 +16,37 @@ return new class extends TestCase {
      */
     private const ROUTES = [
         9 => [
-            'record' => '_init_course09_8c0406cc', 'ad1c' => 0, 'ad20' => 0,
+            'record' => '_init_courseShinjukuDay0_8c0406cc', 'ad1c' => 0, 'ad20' => 0,
             'common' => "\\SD_COMMON", 'pvr' => "\\SD_PVR",
             'ukn10' => '_init_8c03d848',
             'files' => ["s_atari_bus.dat", "s_line_bus.dat", '@init_8c04ce10', "s_attr_bus.dat", "s_attr_mark.dat", "s_atari_cpu.dat", "s_line_cpu.dat", "s_attr_cpu.dat", "sd_mac_cpu1.dat", "s_atari_hum.dat", "s_line_hum.dat", "sd_mac_hum_g0.dat", "sd_mac_hum_m0.dat", "s_mac_signal.dat", "sd_road_x.dat", "sd_machi_x.dat", "sd_uv_x.dat", "sn_shadow_x.dat", "sn_shadow_x.dat"],
         ],
         15 => [
-            'record' => '_init_course15_8c04093c', 'ad1c' => 0, 'ad20' => 2,
+            'record' => '_init_courseShinjukuNight0_8c04093c', 'ad1c' => 0, 'ad20' => 2,
             'common' => "\\SN_COMMON", 'pvr' => "\\SN_PVR",
             'ukn10' => '_init_8c03d958',
             'files' => ["s_atari_bus.dat", "s_line_bus.dat", '@init_8c04ce10', "s_attr_bus.dat", "s_attr_mark.dat", "s_atari_cpu.dat", "s_line_cpu.dat", "s_attr_cpu.dat", "sn_mac_cpu1.dat", "s_atari_hum.dat", "s_line_hum.dat", "sn_mac_hum_g0.dat", "sn_mac_hum_m0.dat", "s_mac_signal.dat", "sd_road_x.dat", "sn_machi_x.dat", "sd_uv_x.dat", "sn_shadow_x.dat", "sn_shadow_x.dat"],
         ],
         3 => [
-            'record' => '_init_course03_8c041d80', 'ad1c' => 1, 'ad20' => 1,
+            'record' => '_init_courseWanganEvening0_8c041d80', 'ad1c' => 1, 'ad20' => 1,
             'common' => "\\WD_COMMON", 'pvr' => "\\WD_PVR",
             'ukn10' => '_init_8c040d28',
             'files' => ["w_atari_bus.dat", "w_line_bus.dat", '@init_8c04e988', "w_attr_bus.dat", "w_attr_mark.dat", "w_atari_cpu.dat", "w_line_cpu.dat", "w_attr_cpu.dat", "we_mac_cpu1.dat", "w_atari_hum.dat", "w_line_hum.dat", "we_mac_hum_g0.dat", "we_mac_hum_m0.dat", "w_mac_signal.dat", "wd_road_x.dat", "wd_machi_x.dat", "wd_uv_x.dat", "wd_shadow_x.dat", "wd_shadow_x.dat"],
         ],
         6 => [
-            'record' => '_init_course06_8c041eb8', 'ad1c' => 1, 'ad20' => 2,
+            'record' => '_init_courseWanganNight0_8c041eb8', 'ad1c' => 1, 'ad20' => 2,
             'common' => "\\WN_COMMON", 'pvr' => "\\WN_PVR",
             'ukn10' => '_init_8c040db0',
             'files' => ["w_atari_bus.dat", "w_line_bus.dat", '@init_8c04e988', "w_attr_bus.dat", "w_attr_mark.dat", "w_atari_cpu.dat", "w_line_cpu.dat", "w_attr_cpu.dat", "wn_mac_cpu1.dat", "w_atari_hum.dat", "w_line_hum.dat", "wn_mac_hum_g0.dat", "wn_mac_hum_m0.dat", "w_mac_signal.dat", "wd_road_x.dat", "wn_machi_x.dat", "wd_uv_x.dat", "wn_shadow_x.dat", "wn_shadow_x.dat"],
         ],
         18 => [
-            'record' => '_init_course18_8c03d1ec', 'ad1c' => 2, 'ad20' => 0,
+            'record' => '_init_courseOmeDay0_8c03d1ec', 'ad1c' => 2, 'ad20' => 0,
             'common' => "\\OD_COMMON", 'pvr' => "\\OD_PVR",
             'ukn10' => '_init_8c03c2b4',
             'files' => ["o_atari_bus.dat", "o_line_bus.dat", '@init_8c04df38', "o_attr_bus.dat", "o_attr_mark.dat", "o_atari_cpu.dat", "o_line_cpu.dat", "o_attr_cpu.dat", "od_mac_cpu1.dat", "o_atari_hum.dat", "o_line_hum.dat", "od_mac_hum_g0.dat", "od_mac_hum_m0.dat", "o_mac_signal.dat", "od_road_x.dat", "od_machi_x.dat", "od_uv1_x.dat", "od_uv2_x.dat", "od_shadow_x.dat"],
         ],
         24 => [
-            'record' => '_init_course24_8c03d45c', 'ad1c' => 2, 'ad20' => 2,
+            'record' => '_init_courseOmeNight0_8c03d45c', 'ad1c' => 2, 'ad20' => 2,
             'common' => "\\ON_COMMON", 'pvr' => "\\ON_PVR",
             'ukn10' => '_init_8c03c3c4',
             'files' => ["o_atari_bus.dat", "o_line_bus.dat", '@init_8c04df38', "o_attr_bus.dat", "o_attr_mark.dat", "o_atari_cpu.dat", "o_line_cpu.dat", "o_attr_cpu.dat", "on_mac_cpu1.dat", "o_atari_hum.dat", "o_line_hum.dat", "on_mac_hum_g0.dat", "on_mac_hum_m0.dat", "o_mac_signal.dat", "od_road_x.dat", "on_machi_x.dat", "od_uv1_x.dat", "od_uv2_x.dat", "on_shadow_x.dat"],

@@ -1059,7 +1059,7 @@ UknEntry init_8c03cdcc[24] = {
     },
 };
 
-CourseConfig init_course18_8c03d1ec = {
+CourseConfig init_courseOmeDay0_8c03d1ec = {
     /* route_0x00 */ 2,
     /* timeOfDay_0x04 */ 0,
     /* entries_0x08 */ init_8c03c58c,
@@ -1090,7 +1090,7 @@ CourseConfig init_course18_8c03d1ec = {
     },
 };
 
-CourseConfig init_course19_8c03d254 = {
+CourseConfig init_courseOmeDay1_8c03d254 = {
     /* route_0x00 */ 2,
     /* timeOfDay_0x04 */ 0,
     /* entries_0x08 */ init_8c03c58c,
@@ -1121,7 +1121,7 @@ CourseConfig init_course19_8c03d254 = {
     },
 };
 
-CourseConfig init_course20_8c03d2bc = {
+CourseConfig init_courseOmeDay2_8c03d2bc = {
     /* route_0x00 */ 2,
     /* timeOfDay_0x04 */ 0,
     /* entries_0x08 */ init_8c03c58c,
@@ -1152,7 +1152,7 @@ CourseConfig init_course20_8c03d2bc = {
     },
 };
 
-CourseConfig init_course21_8c03d324 = {
+CourseConfig init_courseOmeEvening0_8c03d324 = {
     /* route_0x00 */ 2,
     /* timeOfDay_0x04 */ 1,
     /* entries_0x08 */ init_8c03c9ac,
@@ -1183,7 +1183,7 @@ CourseConfig init_course21_8c03d324 = {
     },
 };
 
-CourseConfig init_course22_8c03d38c = {
+CourseConfig init_courseOmeEvening1_8c03d38c = {
     /* route_0x00 */ 2,
     /* timeOfDay_0x04 */ 1,
     /* entries_0x08 */ init_8c03c9ac,
@@ -1214,7 +1214,7 @@ CourseConfig init_course22_8c03d38c = {
     },
 };
 
-CourseConfig init_course23_8c03d3f4 = {
+CourseConfig init_courseOmeEvening2_8c03d3f4 = {
     /* route_0x00 */ 2,
     /* timeOfDay_0x04 */ 1,
     /* entries_0x08 */ init_8c03c9ac,
@@ -1245,7 +1245,7 @@ CourseConfig init_course23_8c03d3f4 = {
     },
 };
 
-CourseConfig init_course24_8c03d45c = {
+CourseConfig init_courseOmeNight0_8c03d45c = {
     /* route_0x00 */ 2,
     /* timeOfDay_0x04 */ 2,
     /* entries_0x08 */ init_8c03cdcc,
@@ -1276,7 +1276,7 @@ CourseConfig init_course24_8c03d45c = {
     },
 };
 
-CourseConfig init_course25_8c03d4c4 = {
+CourseConfig init_courseOmeNight1_8c03d4c4 = {
     /* route_0x00 */ 2,
     /* timeOfDay_0x04 */ 2,
     /* entries_0x08 */ init_8c03cdcc,
@@ -1307,7 +1307,7 @@ CourseConfig init_course25_8c03d4c4 = {
     },
 };
 
-CourseConfig init_course26_8c03d52c = {
+CourseConfig init_courseOmeNight2_8c03d52c = {
     /* route_0x00 */ 2,
     /* timeOfDay_0x04 */ 2,
     /* entries_0x08 */ init_8c03cdcc,
@@ -4524,7 +4524,7 @@ UknEntry init_8c0402ac[24] = {
     },
 };
 
-CourseConfig init_course09_8c0406cc = {
+CourseConfig init_courseShinjukuDay0_8c0406cc = {
     /* route_0x00 */ 0,
     /* timeOfDay_0x04 */ 0,
     /* entries_0x08 */ init_8c03e1ac,
@@ -4555,7 +4555,7 @@ CourseConfig init_course09_8c0406cc = {
     },
 };
 
-CourseConfig init_course10_8c040734 = {
+CourseConfig init_courseShinjukuDay1_8c040734 = {
     /* route_0x00 */ 0,
     /* timeOfDay_0x04 */ 0,
     /* entries_0x08 */ init_8c03e5cc,
@@ -4586,7 +4586,7 @@ CourseConfig init_course10_8c040734 = {
     },
 };
 
-CourseConfig init_course11_8c04079c = {
+CourseConfig init_courseShinjukuDay2_8c04079c = {
     /* route_0x00 */ 0,
     /* timeOfDay_0x04 */ 0,
     /* entries_0x08 */ init_8c03e9ec,
@@ -4617,7 +4617,7 @@ CourseConfig init_course11_8c04079c = {
     },
 };
 
-CourseConfig init_course12_8c040804 = {
+CourseConfig init_courseShinjukuEvening0_8c040804 = {
     /* route_0x00 */ 0,
     /* timeOfDay_0x04 */ 1,
     /* entries_0x08 */ init_8c03ee0c,
@@ -4648,7 +4648,7 @@ CourseConfig init_course12_8c040804 = {
     },
 };
 
-CourseConfig init_course13_8c04086c = {
+CourseConfig init_courseShinjukuEvening1_8c04086c = {
     /* route_0x00 */ 0,
     /* timeOfDay_0x04 */ 1,
     /* entries_0x08 */ init_8c03f22c,
@@ -4679,7 +4679,7 @@ CourseConfig init_course13_8c04086c = {
     },
 };
 
-CourseConfig init_course14_8c0408d4 = {
+CourseConfig init_courseShinjukuEvening2_8c0408d4 = {
     /* route_0x00 */ 0,
     /* timeOfDay_0x04 */ 1,
     /* entries_0x08 */ init_8c03f64c,
@@ -4710,7 +4710,7 @@ CourseConfig init_course14_8c0408d4 = {
     },
 };
 
-CourseConfig init_course15_8c04093c = {
+CourseConfig init_courseShinjukuNight0_8c04093c = {
     /* route_0x00 */ 0,
     /* timeOfDay_0x04 */ 2,
     /* entries_0x08 */ init_8c03fa6c,
@@ -4741,7 +4741,7 @@ CourseConfig init_course15_8c04093c = {
     },
 };
 
-CourseConfig init_course16_8c0409a4 = {
+CourseConfig init_courseShinjukuNight1_8c0409a4 = {
     /* route_0x00 */ 0,
     /* timeOfDay_0x04 */ 2,
     /* entries_0x08 */ init_8c03fe8c,
@@ -4772,7 +4772,7 @@ CourseConfig init_course16_8c0409a4 = {
     },
 };
 
-CourseConfig init_course17_8c040a0c = {
+CourseConfig init_courseShinjukuNight2_8c040a0c = {
     /* route_0x00 */ 0,
     /* timeOfDay_0x04 */ 2,
     /* entries_0x08 */ init_8c0402ac,
@@ -5839,7 +5839,7 @@ UknEntry init_8c04195c[17] = {
     },
 };
 
-CourseConfig init_course00_8c041c48 = {
+CourseConfig init_courseWanganDay0_8c041c48 = {
     /* route_0x00 */ 1,
     /* timeOfDay_0x04 */ 0,
     /* entries_0x08 */ init_8c041384,
@@ -5870,7 +5870,7 @@ CourseConfig init_course00_8c041c48 = {
     },
 };
 
-CourseConfig init_course01_8c041cb0 = {
+CourseConfig init_courseWanganDay1_8c041cb0 = {
     /* route_0x00 */ 1,
     /* timeOfDay_0x04 */ 0,
     /* entries_0x08 */ init_8c041384,
@@ -5901,7 +5901,7 @@ CourseConfig init_course01_8c041cb0 = {
     },
 };
 
-CourseConfig init_course02_8c041d18 = {
+CourseConfig init_courseWanganDay2_8c041d18 = {
     /* route_0x00 */ 1,
     /* timeOfDay_0x04 */ 0,
     /* entries_0x08 */ init_8c041384,
@@ -5932,7 +5932,7 @@ CourseConfig init_course02_8c041d18 = {
     },
 };
 
-CourseConfig init_course03_8c041d80 = {
+CourseConfig init_courseWanganEvening0_8c041d80 = {
     /* route_0x00 */ 1,
     /* timeOfDay_0x04 */ 1,
     /* entries_0x08 */ init_8c041670,
@@ -5963,7 +5963,7 @@ CourseConfig init_course03_8c041d80 = {
     },
 };
 
-CourseConfig init_course04_8c041de8 = {
+CourseConfig init_courseWanganEvening1_8c041de8 = {
     /* route_0x00 */ 1,
     /* timeOfDay_0x04 */ 1,
     /* entries_0x08 */ init_8c041670,
@@ -5994,7 +5994,7 @@ CourseConfig init_course04_8c041de8 = {
     },
 };
 
-CourseConfig init_course05_8c041e50 = {
+CourseConfig init_courseWanganEvening2_8c041e50 = {
     /* route_0x00 */ 1,
     /* timeOfDay_0x04 */ 1,
     /* entries_0x08 */ init_8c041670,
@@ -6025,7 +6025,7 @@ CourseConfig init_course05_8c041e50 = {
     },
 };
 
-CourseConfig init_course06_8c041eb8 = {
+CourseConfig init_courseWanganNight0_8c041eb8 = {
     /* route_0x00 */ 1,
     /* timeOfDay_0x04 */ 2,
     /* entries_0x08 */ init_8c04195c,
@@ -6056,7 +6056,7 @@ CourseConfig init_course06_8c041eb8 = {
     },
 };
 
-CourseConfig init_course07_8c041f20 = {
+CourseConfig init_courseWanganNight1_8c041f20 = {
     /* route_0x00 */ 1,
     /* timeOfDay_0x04 */ 2,
     /* entries_0x08 */ init_8c04195c,
@@ -6087,7 +6087,7 @@ CourseConfig init_course07_8c041f20 = {
     },
 };
 
-CourseConfig init_course08_8c041f88 = {
+CourseConfig init_courseWanganNight2_8c041f88 = {
     /* route_0x00 */ 1,
     /* timeOfDay_0x04 */ 2,
     /* entries_0x08 */ init_8c04195c,
@@ -8235,43 +8235,43 @@ CourseConfig init_course47_8c043c3c = {
  * course, picked by day-of-month); 27-47 are additional courses (TBD). */
 CourseConfig *init_courseTable_8c043ca4[] = {
     // Wangan
-    &init_course00_8c041c48, // day v0
-    &init_course01_8c041cb0, // v1
-    &init_course02_8c041d18, // v2
+    &init_courseWanganDay0_8c041c48,
+    &init_courseWanganDay1_8c041cb0,
+    &init_courseWanganDay2_8c041d18,
 
-    &init_course03_8c041d80, // evening v0
-    &init_course04_8c041de8, // v1
-    &init_course05_8c041e50, // v2
+    &init_courseWanganEvening0_8c041d80,
+    &init_courseWanganEvening1_8c041de8,
+    &init_courseWanganEvening2_8c041e50,
 
-    &init_course06_8c041eb8, // night v0
-    &init_course07_8c041f20, // v1
-    &init_course08_8c041f88, // v2
+    &init_courseWanganNight0_8c041eb8,
+    &init_courseWanganNight1_8c041f20,
+    &init_courseWanganNight2_8c041f88,
 
     // Shinjuku
-    &init_course09_8c0406cc, // day v0
-    &init_course10_8c040734, // v1
-    &init_course11_8c04079c, // v2
+    &init_courseShinjukuDay0_8c0406cc,
+    &init_courseShinjukuDay1_8c040734,
+    &init_courseShinjukuDay2_8c04079c,
 
-    &init_course12_8c040804, // evening v0
-    &init_course13_8c04086c, // v1
-    &init_course14_8c0408d4, // v2
+    &init_courseShinjukuEvening0_8c040804,
+    &init_courseShinjukuEvening1_8c04086c,
+    &init_courseShinjukuEvening2_8c0408d4,
 
-    &init_course15_8c04093c, // night v0
-    &init_course16_8c0409a4, // v1
-    &init_course17_8c040a0c, // v2
+    &init_courseShinjukuNight0_8c04093c,
+    &init_courseShinjukuNight1_8c0409a4,
+    &init_courseShinjukuNight2_8c040a0c,
 
     // Ome
-    &init_course18_8c03d1ec, // day v0
-    &init_course19_8c03d254, // v1
-    &init_course20_8c03d2bc, // v2
+    &init_courseOmeDay0_8c03d1ec,
+    &init_courseOmeDay1_8c03d254,
+    &init_courseOmeDay2_8c03d2bc,
 
-    &init_course21_8c03d324, // evening v0
-    &init_course22_8c03d38c, // v1
-    &init_course23_8c03d3f4, // v2
+    &init_courseOmeEvening0_8c03d324,
+    &init_courseOmeEvening1_8c03d38c,
+    &init_courseOmeEvening2_8c03d3f4,
 
-    &init_course24_8c03d45c, // night v0
-    &init_course25_8c03d4c4, // v1
-    &init_course26_8c03d52c, // v2
+    &init_courseOmeNight0_8c03d45c,
+    &init_courseOmeNight1_8c03d4c4,
+    &init_courseOmeNight2_8c03d52c,
 
     // 27-47: additional courses (mode TBD)
     &init_course27_8c042094, // course 27 (route=2 tod=0)

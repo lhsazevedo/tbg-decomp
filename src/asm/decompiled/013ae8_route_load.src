@@ -99,14 +99,14 @@
           .AIFDEF     UNIT_TESTING
           .EXPORT     _init_routeModelFilenames_8c043d64
           .EXPORT     _init_8c043fd4
-          .EXPORT     _init_course03_8c041d80
+          .EXPORT     _init_courseWanganEvening0_8c041d80
           .EXPORT     _init_8c040d28
           .EXPORT     _init_8c0440dc
-          .EXPORT     _init_course09_8c0406cc
-          .EXPORT     _init_course15_8c04093c
-          .EXPORT     _init_course06_8c041eb8
-          .EXPORT     _init_course18_8c03d1ec
-          .EXPORT     _init_course24_8c03d45c
+          .EXPORT     _init_courseShinjukuDay0_8c0406cc
+          .EXPORT     _init_courseShinjukuNight0_8c04093c
+          .EXPORT     _init_courseWanganNight0_8c041eb8
+          .EXPORT     _init_courseOmeDay0_8c03d1ec
+          .EXPORT     _init_courseOmeNight0_8c03d45c
           .EXPORT     _init_8c03d848
           .EXPORT     _init_8c03d958
           .EXPORT     _init_8c040db0
@@ -2489,7 +2489,7 @@ _init_8c03cdcc:        ; from ghidra
           .DATA.B      H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00
           .DATA.B      H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00
           .DATA.B      H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00
-_init_course18_8c03d1ec:        ; from ghidra
+_init_courseOmeDay0_8c03d1ec:        ; from ghidra
           .DATA.B      H'02, H'00, H'00, H'00, H'00, H'00, H'00, H'00
           .DATA.L      _init_8c03c58c
           .DATA.L      _init_8c03bfac
@@ -2514,7 +2514,7 @@ _init_course18_8c03d1ec:        ; from ghidra
           .DATA.L      _const_8c03399c ; ukn
           .DATA.L      _const_8c0339ac ; ukn
           .DATA.L      _const_8c0339bc ; ukn
-_init_course19_8c03d254:        ; from ghidra
+_init_courseOmeDay1_8c03d254:        ; from ghidra
           .DATA.B      H'02, H'00, H'00, H'00, H'00, H'00, H'00, H'00
           .DATA.L      _init_8c03c58c
           .DATA.L      _init_8c03bfac
@@ -2539,7 +2539,7 @@ _init_course19_8c03d254:        ; from ghidra
           .DATA.L      _const_8c03399c ; ukn
           .DATA.L      _const_8c0339ac ; ukn
           .DATA.L      _const_8c0339bc ; ukn
-_init_course20_8c03d2bc:        ; from ghidra
+_init_courseOmeDay2_8c03d2bc:        ; from ghidra
           .DATA.B      H'02, H'00, H'00, H'00, H'00, H'00, H'00, H'00
           .DATA.L      _init_8c03c58c
           .DATA.L      _init_8c03bfac
@@ -2564,7 +2564,7 @@ _init_course20_8c03d2bc:        ; from ghidra
           .DATA.L      _const_8c03399c ; ukn
           .DATA.L      _const_8c0339ac ; ukn
           .DATA.L      _const_8c0339bc ; ukn
-_init_course21_8c03d324:        ; from ghidra
+_init_courseOmeEvening0_8c03d324:        ; from ghidra
           .DATA.B      H'02, H'00, H'00, H'00, H'01, H'00, H'00, H'00
           .DATA.L      _init_8c03c9ac
           .DATA.L      _init_8c03c008
@@ -2589,7 +2589,7 @@ _init_course21_8c03d324:        ; from ghidra
           .DATA.L      _const_8c03399c ; ukn
           .DATA.L      _const_8c0339ac ; ukn
           .DATA.L      _const_8c033a24 ; ukn
-_init_course22_8c03d38c:        ; from ghidra
+_init_courseOmeEvening1_8c03d38c:        ; from ghidra
           .DATA.B      H'02, H'00, H'00, H'00, H'01, H'00, H'00, H'00
           .DATA.L      _init_8c03c9ac
           .DATA.L      _init_8c03c008
@@ -2614,7 +2614,7 @@ _init_course22_8c03d38c:        ; from ghidra
           .DATA.L      _const_8c03399c ; ukn
           .DATA.L      _const_8c0339ac ; ukn
           .DATA.L      _const_8c033a24 ; ukn
-_init_course23_8c03d3f4:        ; from ghidra
+_init_courseOmeEvening2_8c03d3f4:        ; from ghidra
           .DATA.B      H'02, H'00, H'00, H'00, H'01, H'00, H'00, H'00
           .DATA.L      _init_8c03c9ac
           .DATA.L      _init_8c03c008
@@ -2639,7 +2639,7 @@ _init_course23_8c03d3f4:        ; from ghidra
           .DATA.L      _const_8c03399c ; ukn
           .DATA.L      _const_8c0339ac ; ukn
           .DATA.L      _const_8c033a24 ; ukn
-_init_course24_8c03d45c:        ; from ghidra
+_init_courseOmeNight0_8c03d45c:        ; from ghidra
           .DATA.B      H'02, H'00, H'00, H'00, H'02, H'00, H'00, H'00
           .DATA.L      _init_8c03cdcc
           .DATA.L      _init_8c03c064
@@ -2664,7 +2664,7 @@ _init_course24_8c03d45c:        ; from ghidra
           .DATA.L      _const_8c03399c ; ukn
           .DATA.L      _const_8c0339ac ; ukn
           .DATA.L      _const_8c033a24 ; ukn
-_init_course25_8c03d4c4:        ; from ghidra
+_init_courseOmeNight1_8c03d4c4:        ; from ghidra
           .DATA.B      H'02, H'00, H'00, H'00, H'02, H'00, H'00, H'00
           .DATA.L      _init_8c03cdcc
           .DATA.L      _init_8c03c064
@@ -2689,7 +2689,7 @@ _init_course25_8c03d4c4:        ; from ghidra
           .DATA.L      _const_8c03399c ; ukn
           .DATA.L      _const_8c0339ac ; ukn
           .DATA.L      _const_8c033a24 ; ukn
-_init_course26_8c03d52c:        ; from ghidra
+_init_courseOmeNight2_8c03d52c:        ; from ghidra
           .DATA.B      H'02, H'00, H'00, H'00, H'02, H'00, H'00, H'00
           .DATA.L      _init_8c03cdcc
           .DATA.L      _init_8c03c064
@@ -4867,7 +4867,7 @@ _init_8c0402ac:        ; from ghidra
           .DATA.B      H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00
           .DATA.B      H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00
           .DATA.B      H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00
-_init_course09_8c0406cc:        ; from ghidra
+_init_courseShinjukuDay0_8c0406cc:        ; from ghidra
           .DATA.B      H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00
           .DATA.L      _init_8c03e1ac
           .DATA.L      _init_8c03d594
@@ -4892,7 +4892,7 @@ _init_course09_8c0406cc:        ; from ghidra
           .DATA.L      _const_8c034344 ; ukn
           .DATA.L      _const_8c034350 ; ukn
           .DATA.L      _const_8c034350 ; ukn
-_init_course10_8c040734:        ; from ghidra
+_init_courseShinjukuDay1_8c040734:        ; from ghidra
           .DATA.B      H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00
           .DATA.L      _init_8c03e5cc
           .DATA.L      _init_8c03d594
@@ -4917,7 +4917,7 @@ _init_course10_8c040734:        ; from ghidra
           .DATA.L      _const_8c034344 ; ukn
           .DATA.L      _const_8c034350 ; ukn
           .DATA.L      _const_8c034350 ; ukn
-_init_course11_8c04079c:        ; from ghidra
+_init_courseShinjukuDay2_8c04079c:        ; from ghidra
           .DATA.B      H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00
           .DATA.L      _init_8c03e9ec
           .DATA.L      _init_8c03d594
@@ -4942,7 +4942,7 @@ _init_course11_8c04079c:        ; from ghidra
           .DATA.L      _const_8c034344 ; ukn
           .DATA.L      _const_8c034350 ; ukn
           .DATA.L      _const_8c034350 ; ukn
-_init_course12_8c040804:        ; from ghidra
+_init_courseShinjukuEvening0_8c040804:        ; from ghidra
           .DATA.B      H'00, H'00, H'00, H'00, H'01, H'00, H'00, H'00
           .DATA.L      _init_8c03ee0c
           .DATA.L      _init_8c03d5f0
@@ -4967,7 +4967,7 @@ _init_course12_8c040804:        ; from ghidra
           .DATA.L      _const_8c034344 ; ukn
           .DATA.L      _const_8c034350 ; ukn
           .DATA.L      _const_8c034350 ; ukn
-_init_course13_8c04086c:        ; from ghidra
+_init_courseShinjukuEvening1_8c04086c:        ; from ghidra
           .DATA.B      H'00, H'00, H'00, H'00, H'01, H'00, H'00, H'00
           .DATA.L      _init_8c03f22c
           .DATA.L      _init_8c03d5f0
@@ -4992,7 +4992,7 @@ _init_course13_8c04086c:        ; from ghidra
           .DATA.L      _const_8c034344 ; ukn
           .DATA.L      _const_8c034350 ; ukn
           .DATA.L      _const_8c034350 ; ukn
-_init_course14_8c0408d4:        ; from ghidra
+_init_courseShinjukuEvening2_8c0408d4:        ; from ghidra
           .DATA.B      H'00, H'00, H'00, H'00, H'01, H'00, H'00, H'00
           .DATA.L      _init_8c03f64c
           .DATA.L      _init_8c03d5f0
@@ -5017,7 +5017,7 @@ _init_course14_8c0408d4:        ; from ghidra
           .DATA.L      _const_8c034344 ; ukn
           .DATA.L      _const_8c034350 ; ukn
           .DATA.L      _const_8c034350 ; ukn
-_init_course15_8c04093c:        ; from ghidra
+_init_courseShinjukuNight0_8c04093c:        ; from ghidra
           .DATA.B      H'00, H'00, H'00, H'00, H'02, H'00, H'00, H'00
           .DATA.L      _init_8c03fa6c
           .DATA.L      _init_8c03d64c
@@ -5042,7 +5042,7 @@ _init_course15_8c04093c:        ; from ghidra
           .DATA.L      _const_8c034344 ; ukn
           .DATA.L      _const_8c034350 ; ukn
           .DATA.L      _const_8c034350 ; ukn
-_init_course16_8c0409a4:        ; from ghidra
+_init_courseShinjukuNight1_8c0409a4:        ; from ghidra
           .DATA.B      H'00, H'00, H'00, H'00, H'02, H'00, H'00, H'00
           .DATA.L      _init_8c03fe8c
           .DATA.L      _init_8c03d64c
@@ -5067,7 +5067,7 @@ _init_course16_8c0409a4:        ; from ghidra
           .DATA.L      _const_8c034344 ; ukn
           .DATA.L      _const_8c034350 ; ukn
           .DATA.L      _const_8c034350 ; ukn
-_init_course17_8c040a0c:        ; from ghidra
+_init_courseShinjukuNight2_8c040a0c:        ; from ghidra
           .DATA.B      H'00, H'00, H'00, H'00, H'02, H'00, H'00, H'00
           .DATA.L      _init_8c0402ac
           .DATA.L      _init_8c03d64c
@@ -5867,7 +5867,7 @@ _init_8c04195c:        ; from ghidra
           .DATA.B      H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00
           .DATA.B      H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00
           .DATA.B      H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00
-_init_course00_8c041c48:        ; from ghidra
+_init_courseWanganDay0_8c041c48:        ; from ghidra
           .DATA.B      H'01, H'00, H'00, H'00, H'00, H'00, H'00, H'00
           .DATA.L      _init_8c041384
           .DATA.L      _init_8c040a74 ; ukn
@@ -5892,7 +5892,7 @@ _init_course00_8c041c48:        ; from ghidra
           .DATA.L      _const_8c034aac ; ukn
           .DATA.L      _const_8c034ab8 ; ukn
           .DATA.L      _const_8c034ab8 ; ukn
-_init_course01_8c041cb0:        ; from ghidra
+_init_courseWanganDay1_8c041cb0:        ; from ghidra
           .DATA.B      H'01, H'00, H'00, H'00, H'00, H'00, H'00, H'00
           .DATA.L      _init_8c041384
           .DATA.L      _init_8c040a74 ; ukn
@@ -5917,7 +5917,7 @@ _init_course01_8c041cb0:        ; from ghidra
           .DATA.L      _const_8c034aac ; ukn
           .DATA.L      _const_8c034ab8 ; ukn
           .DATA.L      _const_8c034ab8 ; ukn
-_init_course02_8c041d18:        ; from ghidra
+_init_courseWanganDay2_8c041d18:        ; from ghidra
           .DATA.B      H'01, H'00, H'00, H'00, H'00, H'00, H'00, H'00
           .DATA.L      _init_8c041384
           .DATA.L      _init_8c040a74 ; ukn
@@ -5942,7 +5942,7 @@ _init_course02_8c041d18:        ; from ghidra
           .DATA.L      _const_8c034aac ; ukn
           .DATA.L      _const_8c034ab8 ; ukn
           .DATA.L      _const_8c034ab8 ; ukn
-_init_course03_8c041d80:        ; from ghidra
+_init_courseWanganEvening0_8c041d80:        ; from ghidra
           .DATA.B      H'01, H'00, H'00, H'00, H'01, H'00, H'00, H'00
           .DATA.L      _init_8c041670
           .DATA.L      _init_8c040ab4
@@ -5967,7 +5967,7 @@ _init_course03_8c041d80:        ; from ghidra
           .DATA.L      _const_8c034aac ; ukn
           .DATA.L      _const_8c034ab8 ; ukn
           .DATA.L      _const_8c034ab8 ; ukn
-_init_course04_8c041de8:        ; from ghidra
+_init_courseWanganEvening1_8c041de8:        ; from ghidra
           .DATA.B      H'01, H'00, H'00, H'00, H'01, H'00, H'00, H'00
           .DATA.L      _init_8c041670
           .DATA.L      _init_8c040ab4
@@ -5992,7 +5992,7 @@ _init_course04_8c041de8:        ; from ghidra
           .DATA.L      _const_8c034aac ; ukn
           .DATA.L      _const_8c034ab8 ; ukn
           .DATA.L      _const_8c034ab8 ; ukn
-_init_course05_8c041e50:        ; from ghidra
+_init_courseWanganEvening2_8c041e50:        ; from ghidra
           .DATA.B      H'01, H'00, H'00, H'00, H'01, H'00, H'00, H'00
           .DATA.L      _init_8c041670
           .DATA.L      _init_8c040ab4
@@ -6017,7 +6017,7 @@ _init_course05_8c041e50:        ; from ghidra
           .DATA.L      _const_8c034aac ; ukn
           .DATA.L      _const_8c034ab8 ; ukn
           .DATA.L      _const_8c034ab8 ; ukn
-_init_course06_8c041eb8:        ; from ghidra
+_init_courseWanganNight0_8c041eb8:        ; from ghidra
           .DATA.B      H'01, H'00, H'00, H'00, H'02, H'00, H'00, H'00
           .DATA.L      _init_8c04195c
           .DATA.L      _init_8c040af4
@@ -6042,7 +6042,7 @@ _init_course06_8c041eb8:        ; from ghidra
           .DATA.L      _const_8c034aac ; ukn
           .DATA.L      _const_8c034b88 ; ukn
           .DATA.L      _const_8c034b88 ; ukn
-_init_course07_8c041f20:        ; from ghidra
+_init_courseWanganNight1_8c041f20:        ; from ghidra
           .DATA.B      H'01, H'00, H'00, H'00, H'02, H'00, H'00, H'00
           .DATA.L      _init_8c04195c
           .DATA.L      _init_8c040af4
@@ -6067,7 +6067,7 @@ _init_course07_8c041f20:        ; from ghidra
           .DATA.L      _const_8c034aac ; ukn
           .DATA.L      _const_8c034b88 ; ukn
           .DATA.L      _const_8c034b88 ; ukn
-_init_course08_8c041f88:        ; from ghidra
+_init_courseWanganNight2_8c041f88:        ; from ghidra
           .DATA.B      H'01, H'00, H'00, H'00, H'02, H'00, H'00, H'00
           .DATA.L      _init_8c04195c
           .DATA.L      _init_8c040af4
@@ -7391,33 +7391,33 @@ _init_course47_8c043c3c:        ; from ghidra
           .DATA.L      _const_8c0339ac ; ukn
           .DATA.L      _const_8c033a24 ; ukn
 _init_courseTable_8c043ca4:        ; from defines
-          .DATA.L      _init_course00_8c041c48
-          .DATA.L      _init_course01_8c041cb0
-          .DATA.L      _init_course02_8c041d18
-          .DATA.L      _init_course03_8c041d80
-          .DATA.L      _init_course04_8c041de8
-          .DATA.L      _init_course05_8c041e50
-          .DATA.L      _init_course06_8c041eb8
-          .DATA.L      _init_course07_8c041f20
-          .DATA.L      _init_course08_8c041f88
-          .DATA.L      _init_course09_8c0406cc
-          .DATA.L      _init_course10_8c040734
-          .DATA.L      _init_course11_8c04079c
-          .DATA.L      _init_course12_8c040804
-          .DATA.L      _init_course13_8c04086c
-          .DATA.L      _init_course14_8c0408d4
-          .DATA.L      _init_course15_8c04093c
-          .DATA.L      _init_course16_8c0409a4
-          .DATA.L      _init_course17_8c040a0c
-          .DATA.L      _init_course18_8c03d1ec
-          .DATA.L      _init_course19_8c03d254
-          .DATA.L      _init_course20_8c03d2bc
-          .DATA.L      _init_course21_8c03d324
-          .DATA.L      _init_course22_8c03d38c
-          .DATA.L      _init_course23_8c03d3f4
-          .DATA.L      _init_course24_8c03d45c
-          .DATA.L      _init_course25_8c03d4c4
-          .DATA.L      _init_course26_8c03d52c
+          .DATA.L      _init_courseWanganDay0_8c041c48
+          .DATA.L      _init_courseWanganDay1_8c041cb0
+          .DATA.L      _init_courseWanganDay2_8c041d18
+          .DATA.L      _init_courseWanganEvening0_8c041d80
+          .DATA.L      _init_courseWanganEvening1_8c041de8
+          .DATA.L      _init_courseWanganEvening2_8c041e50
+          .DATA.L      _init_courseWanganNight0_8c041eb8
+          .DATA.L      _init_courseWanganNight1_8c041f20
+          .DATA.L      _init_courseWanganNight2_8c041f88
+          .DATA.L      _init_courseShinjukuDay0_8c0406cc
+          .DATA.L      _init_courseShinjukuDay1_8c040734
+          .DATA.L      _init_courseShinjukuDay2_8c04079c
+          .DATA.L      _init_courseShinjukuEvening0_8c040804
+          .DATA.L      _init_courseShinjukuEvening1_8c04086c
+          .DATA.L      _init_courseShinjukuEvening2_8c0408d4
+          .DATA.L      _init_courseShinjukuNight0_8c04093c
+          .DATA.L      _init_courseShinjukuNight1_8c0409a4
+          .DATA.L      _init_courseShinjukuNight2_8c040a0c
+          .DATA.L      _init_courseOmeDay0_8c03d1ec
+          .DATA.L      _init_courseOmeDay1_8c03d254
+          .DATA.L      _init_courseOmeDay2_8c03d2bc
+          .DATA.L      _init_courseOmeEvening0_8c03d324
+          .DATA.L      _init_courseOmeEvening1_8c03d38c
+          .DATA.L      _init_courseOmeEvening2_8c03d3f4
+          .DATA.L      _init_courseOmeNight0_8c03d45c
+          .DATA.L      _init_courseOmeNight1_8c03d4c4
+          .DATA.L      _init_courseOmeNight2_8c03d52c
           .DATA.L      _init_course27_8c042094
           .DATA.L      _init_course28_8c0421a0
           .DATA.L      _init_course29_8c0422ac
