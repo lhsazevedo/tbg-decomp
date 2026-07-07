@@ -90,30 +90,32 @@ typedef struct {
     float fogF_0x10;
 } s_8c18ad28;
 
-/* Entry in var_currentCourse_8c18ad18's array; most fields still unidentified. */
+/* One segment of a course: entries_0x08[] holds these, streamed in as the bus
+ * advances (var_8c228708 = current segment). Each carries its own fog, scenery
+ * models, and dat/nj-pvm assets. Several fields still unidentified. */
 typedef struct {
     Uint16 ukn_0x00;                 /* 0..3 */
     Uint16 ukn_0x02;                 /* id, 0..0x16c */
     Uint16 ukn_0x04;                 /* always 0 */
     Uint16 ukn_0x06;                 /* id, 0..0xa9 */
     void *ukn_0x08;
-    void *ukn_0x0c;                  /* gates dat load; copied to var_8c226534 */
-    Sint8 *ukn_0x10;                 /* route-model list (syncRouteModelAssets) */
+    void *datGroup_0x0c;             /* gates dat load; copied to var_8c226534 */
+    Sint8 *routeModelList_0x10;      /* route-model index list (syncRouteModelAssets) */
     void *ukn_0x14;
-    Sint8 *ukn_0x18;                 /* second-table list (FUN_8c013df6) */
+    Sint8 *secondModelList_0x18;     /* second index list (FUN_8c013df6) */
     void *ukn_0x1c;                  /* FUN_8c029ad4 arg */
     char **datFilenames_0x20;                 /* dat filenames for the request loop */
     s_8c18ad28 *fog_0x24;            /* fog params */
     NjPvmPairFilenames *njPvmPairs_0x28;    /* nj/pvm pairs */
-} UknEntry;
+} CourseSegment;
 
 /* Per-course config record; init_courseTable_8c043ca4[] holds one per courseId.
- * entries_0x08 is the UknEntry array indexed by var_8c228708.
+ * entries_0x08 is the CourseSegment array indexed by var_8c228708.
  * filenames_0x1c holds the nj/dat asset names loaded by loadRouteModels. */
 typedef struct {
     int route_0x00;            /* enum ROUTE -> var_route_8c18ad1c */
     int timeOfDay_0x04;        /* enum TIME_OF_DAY -> var_timeOfDay_8c18ad20 */
-    UknEntry *entries_0x08;
+    CourseSegment *entries_0x08;
     void *ukn_0x0c;
     void *ukn_0x10;
     int ukn_0x14;
@@ -128,7 +130,7 @@ typedef struct {
     void *slots_0x04[19];
 } s_8c1bb868;
 
-/* Placeholder types for the nested table/record tree hung off the UknEntry
+/* Placeholder types for the nested table/record tree hung off the CourseSegment
  * pointer slots. Field meanings are provisional (recovered from data shape,
  * not yet from the consuming code); names are byte-layout hints only. */
 typedef struct { int count; void *ptr; } IntPtr;           /* {count, rec*} lists, {-1,NULL}-terminated */
@@ -162,7 +164,7 @@ CourseConfig *var_currentCourse_8c18ad18;
  * prefix; pairs with var_timeOfDay to pick one of SD/SN/WD/WN/OD/ON. */
 int var_route_8c18ad1c;
 
-/* fog params for the current entry (from UknEntry.fog_0x24) */
+/* fog params for the current entry (from CourseSegment.fog_0x24) */
 s_8c18ad28 *var_8c18ad28;
 
 /* path buffer for dat requests, parallel to var_basedir_8c18ad6c */
@@ -454,7 +456,7 @@ void FUN_8c013ee4(void)
  * hand off to FUN_8c021a24. */
 void freeSelectedEntryPairs_8c013f22(void)
 {
-    UknEntry *entry;
+    CourseSegment *entry;
 
     LOG_DEBUG(("[ROUTE_LOAD] freeSelectedEntryPairs_8c013f22: freeing pairs for selected entry (index=%d)\n", var_8c228708));
 
@@ -462,7 +464,7 @@ void freeSelectedEntryPairs_8c013f22(void)
     if (entry->njPvmPairs_0x28 != 0) {
         AsqFreeNjPvmPairs_120fe(&var_8c1bc3f0);
     }
-    if (entry->ukn_0x0c != 0) {
+    if (entry->datGroup_0x0c != 0) {
         FUN_8c021a24();
     }
 }
@@ -472,7 +474,7 @@ void freeSelectedEntryPairs_8c013f22(void)
  * dat files. Demo playback substitutes a fixed model list and skips the tail. */
 void syncSelectedEntryAssets_8c013f78(void)
 {
-    UknEntry *entry;
+    CourseSegment *entry;
     int i;
 
     LOG_DEBUG(("[ROUTE_LOAD] syncSelectedEntryAssets_8c013f78: syncing assets for selected entry (index=%d)\n", var_8c228708));
@@ -491,27 +493,27 @@ void syncSelectedEntryAssets_8c013f78(void)
     }
 
     if (var_8c1bb900 == 0 || var_demo_8c1bb8d0 != 0) {
-        if (entry->ukn_0x10 != 0) {
-            var_8c18adb0 = entry->ukn_0x10;
-            syncRouteModelAssets_8c013c34(entry->ukn_0x10);
+        if (entry->routeModelList_0x10 != 0) {
+            var_8c18adb0 = entry->routeModelList_0x10;
+            syncRouteModelAssets_8c013c34(entry->routeModelList_0x10);
         }
     } else {
-        if (entry->ukn_0x10 != 0) {
-            var_8c18adb0 = entry->ukn_0x10;
+        if (entry->routeModelList_0x10 != 0) {
+            var_8c18adb0 = entry->routeModelList_0x10;
         }
         syncRouteModelAssets_8c013c34(init_8c043fd4);
     }
 
-    if (entry->ukn_0x18 != 0) {
-        FUN_8c013df6(entry->ukn_0x18);
+    if (entry->secondModelList_0x18 != 0) {
+        FUN_8c013df6(entry->secondModelList_0x18);
     }
 
     FUN_8c029ad4(entry->ukn_0x1c);
 
-    if (entry->ukn_0x0c == 0) {
+    if (entry->datGroup_0x0c == 0) {
         var_8c226534 = -1;
     } else {
-        var_8c226534 = (int)entry->ukn_0x0c;
+        var_8c226534 = (int)entry->datGroup_0x0c;
         for (i = 0; i < 4; i++) {
             AsqRequestDat_11182(var_8c18ad2c, entry->datFilenames_0x20[i], &var_8c18adb4[i]);
         }
