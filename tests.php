@@ -9,8 +9,8 @@ return [
                 "tests/010fe8_heap/8c0110c4_heapFree.php",
             ],
             'objects' => [
-                "build/output/010fe8_heap_src.obj",
-                "build/output/010fe8_heap_c.obj",
+                "build/output_test/010fe8_heap_src.obj",
+                "build/output_test/010fe8_heap_c.obj",
             ],
         ],
         [
@@ -18,8 +18,8 @@ return [
                 "tests/012324/12324_task.php",
             ],
             'objects' => [
-                "build/output/012324_peripheral_support_src.obj",
-                "build/output/012324_peripheral_support_c.obj",
+                "build/output_test/012324_peripheral_support_src.obj",
+                "build/output_test/012324_peripheral_support_c.obj",
             ],
         ],
         [
@@ -36,8 +36,8 @@ return [
                 "tests/014f54_text/159ac_FUN_demo.php",
             ],
             'objects' => [
-                "build/output/014f54_text_src.obj",
-                "build/output/014f54_text_c.obj",
+                "build/output_test/014f54_text_src.obj",
+                "build/output_test/014f54_text_c.obj",
             ],
         ],
         [
@@ -52,15 +52,15 @@ return [
                 "tests/0100bc_sound/010cd6_snd.php",
             ],
             'objects' => [
-                "build/output/0100bc_sound_src.obj",
-                "build/output/0100bc_sound_c.obj",
+                "build/output_test/0100bc_sound_src.obj",
+                "build/output_test/0100bc_sound_c.obj",
             ],
         ],
         [
             'tests' => ["tests/015ab8_title.php"],
             'objects' => [
-                "build/output/015ab8_title_src.obj",
-                "build/output/015ab8_title_c.obj",
+                "build/output_test/015ab8_title_src.obj",
+                "build/output_test/015ab8_title_c.obj",
             ],
         ],
         [
@@ -80,8 +80,8 @@ return [
                 "tests/0193c8_vm_menu/197c0_drawVmMenu.php",
             ],
             'objects' => [
-                "build/output/0193c8_vm_menu_src.obj",
-                "build/output/0193c8_vm_menu_c.obj",
+                "build/output_test/0193c8_vm_menu_src.obj",
+                "build/output_test/0193c8_vm_menu_c.obj",
             ],
         ],
         [
@@ -89,8 +89,8 @@ return [
                 "tests/0207d4.php",
             ],
             'objects' => [
-                "build/output/0207d4_src.obj",
-                "build/output/0207d4_c.obj",
+                "build/output_test/0207d4_src.obj",
+                "build/output_test/0207d4_c.obj",
             ],
         ],
         [
@@ -98,8 +98,8 @@ return [
                 "tests/016c58.php"
             ],
             'objects' => [
-                "build/output/016c58_prompt_src.obj",
-                "build/output/016c58_prompt_c.obj",
+                "build/output_test/016c58_prompt_src.obj",
+                "build/output_test/016c58_prompt_c.obj",
             ],
         ],
         [
@@ -107,8 +107,8 @@ return [
                 "tests/012f44.php",
             ],
             'objects' => [
-                "build/output/012f44_src.obj",
-                "build/output/012f44_c.obj",
+                "build/output_test/012f44_src.obj",
+                "build/output_test/012f44_c.obj",
             ],
         ],
         [
@@ -152,8 +152,8 @@ return [
                 "tests/011120/8680_AsqApplyButtonConfig_121e8.php",
             ],
             'objects' => [
-                "build/output/011120_asset_queues_src.obj",
-                "build/output/011120_asset_queues_c.obj",
+                "build/output_test/011120_asset_queues_src.obj",
+                "build/output_test/011120_asset_queues_c.obj",
             ],
         ],
         [
@@ -162,8 +162,8 @@ return [
                 "tests/019e98_main_menu/1a09a_switchToMainMenuTask.php",
             ],
             "objects" => [
-                "build/output/019e98_main_menu_src.obj",
-                "build/output/019e98_main_menu_c.obj",
+                "build/output_test/019e98_main_menu_src.obj",
+                "build/output_test/019e98_main_menu_c.obj",
             ]
         ],
         [
@@ -196,8 +196,8 @@ return [
                 "tests/016d2c_course_menu/8c0185c4_freeResourceGroup.php",
             ],
             "objects" => [
-                "build/output/016d2c_course_menu_src.obj",
-                "build/output/016d2c_course_menu_c.obj",
+                "build/output_test/016d2c_course_menu_src.obj",
+                "build/output_test/016d2c_course_menu_c.obj",
             ]
             ],
         [
@@ -209,8 +209,8 @@ return [
                 "tests/012504_input/8c012984_FUN.php",
             ],
             "objects" => [
-                "build/output/012504_input_src.obj",
-                "build/output/012504_input_c.obj",
+                "build/output_test/012504_input_src.obj",
+                "build/output_test/012504_input_c.obj",
             ]
         ],
         [
@@ -218,8 +218,8 @@ return [
                 "tests/016bf4_demo_input/8c016bf4_FUN.php"
             ],
             "objects" => [
-                "build/output/016bf4_demo_input_src.obj",
-                "build/output/016bf4_demo_input_c.obj",
+                "build/output_test/016bf4_demo_input_src.obj",
+                "build/output_test/016bf4_demo_input_c.obj",
             ]
         ],
         [
@@ -229,8 +229,8 @@ return [
                 "tests/01d290_album/1d6e2_AlbumSwitchFromTask.php",
             ],
             "objects" => [
-                "build/output/01d290_album_src.obj",
-                "build/output/01d290_album_c.obj",
+                "build/output_test/01d290_album_src.obj",
+                "build/output_test/01d290_album_c.obj",
             ]
         ],
         [
@@ -257,8 +257,8 @@ return [
                 "tests/013ae8_route_load/14784_probTask.php",
             ],
             "objects" => [
-                "build/output/013ae8_route_load_src.obj",
-                "build/output/013ae8_route_load_c.obj",
+                "build/output_test/013ae8_route_load_src.obj",
+                "build/output_test/013ae8_route_load_c.obj",
             ]
         ]
     ],
