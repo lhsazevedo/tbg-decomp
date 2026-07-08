@@ -31,7 +31,7 @@ return new class extends TestCase {
             $pvmQueue + 3 * $sizeOfQueuedPvm
         );
 
-        $this->initUint32($this->addressOf('_var_8c157a6c'), 1);
+        $this->initUint32($this->addressOf('_var_loadScreenActive_8c157a6c'), 1);
 
         $this->shouldWriteTo('_var_pvmQueueIsIdle_8c157ac8', 0);
 
@@ -110,7 +110,7 @@ return new class extends TestCase {
             $pvmQueue + 3 * $sizeOfQueuedPvm
         );
 
-        $this->initUint32($this->addressOf('_var_8c157a6c'), 0);
+        $this->initUint32($this->addressOf('_var_loadScreenActive_8c157a6c'), 0);
 
         $this->shouldWriteTo('_var_pvmQueueIsIdle_8c157ac8', 0);
 
@@ -179,7 +179,7 @@ return new class extends TestCase {
             $pvmQueue + 1 * $sizeOfQueuedPvm
         );
 
-        $this->initUint32($this->addressOf('_var_8c157a6c'), 1);
+        $this->initUint32($this->addressOf('_var_loadScreenActive_8c157a6c'), 1);
 
         $this->shouldWriteTo('_var_pvmQueueIsIdle_8c157ac8', 0);
 

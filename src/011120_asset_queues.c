@@ -94,7 +94,7 @@ typedef struct {
 int var_queuesAreInitialized_8c157a60;
 int var_seed_8c157a64;
 STATIC int var_texlistQueueCount_8c157a68;
-int var_8c157a6c;
+int var_loadScreenActive_8c157a6c;
 
 /* TODO: Confirm type */
 int var_activeCtrlType_8c157a70;
@@ -1043,7 +1043,7 @@ STATIC int sortAndLoadPvmQueue_8c011d24() {
     temp = syMalloc((int) var_pvmQueueRear_8c157ac0 - (int) var_pvmQueue_8c157abc);
 
     /* TODO: Test this skip */
-    if (var_8c157a6c != 0) {
+    if (var_loadScreenActive_8c157a6c != 0) {
         while (1) {
             int swapped = 0;
             QueuedPvm *a = var_pvmQueue_8c157abc;

@@ -10,7 +10,7 @@ return new class extends TestCase {
     public function test_installs_task_and_inits_queues(): void
     {
         $this->setSize('_var_tasks_8c1ba3c8', 4);
-        $this->setSize('_var_8c157a6c', 4);
+        $this->setSize('_var_loadScreenActive_8c157a6c', 4);
         $this->setSize('_var_tex_8c157af8', 4);
         $this->setSize('_njSetBackColor', 4);
         $this->setSize('_njGarbageTexture', 4);
@@ -21,7 +21,7 @@ return new class extends TestCase {
         $this->call('_pushRouteLoadTask_8c0144fc');
 
         $this->shouldCall('_njSetBackColor')->with(0xff418dff, 0xff418dff, 0xff418dff);
-        $this->shouldWriteLong($this->addressOf('_var_8c157a6c'), 1);
+        $this->shouldWriteLong($this->addressOf('_var_loadScreenActive_8c157a6c'), 1);
         $this->shouldCall('_pushTask_8c014ae8')
             ->with(
                 $this->addressOf('_var_tasks_8c1ba3c8'),

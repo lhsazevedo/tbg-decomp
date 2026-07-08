@@ -74,7 +74,7 @@
           .EXPORT     _var_8c1bb8f4 ; 016d2c_course_menu.c, 016d2c_course_menu.src, 01e27c.src, 02b464.src
           .EXPORT     _var_award_8c1bb8f8 ; 016d2c_course_menu.c, 016d2c_course_menu.src, 01b19c.src, 01d7fc.src, 01e27c.src
           .EXPORT     _var_game_mode_8c1bb8fc ; 016d2c_course_menu.c, 016d2c_course_menu.src, 019e98_main_menu.c, 019e98_main_menu.src, 01b19c.src, 01d7fc.src, 01e27c.src, 02af78.src, 02b464.src
-          .EXPORT     _var_maybeCutscene_8c1bb900 ; 013ae8_route_load.src, 02af78.src, 02d19c.src
+          .EXPORT     _var_cutsceneActive_8c1bb900 ; 013ae8_route_load.src, 02af78.src, 02d19c.src
           .EXPORT     _var_8c1bb904 ; 021b9c.src, 022464.src, 024b4c.src, 025870.src
           .EXPORT     _var_8c1bb944 ; 021b9c.src, 022464.src, 024b4c.src
           .EXPORT     _var_8c1bb984 ; 022464.src, 025870.src
@@ -272,7 +272,7 @@ _var_award_8c1bb8f8:
           .RES.B      4
 _var_game_mode_8c1bb8fc:
           .RES.B      4
-_var_maybeCutscene_8c1bb900:
+_var_cutsceneActive_8c1bb900:
           .RES.B      4
 _var_8c1bb904:
           .RES.B      64

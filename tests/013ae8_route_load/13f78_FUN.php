@@ -13,9 +13,9 @@ return new class extends TestCase {
 
         $this->call('_syncSegmentModels_8c013f78');
 
-        // ukn_0x1c is 0; then no pairs -> var_8c226534 becomes -1.
+        // ukn_0x1c is 0; then no pairs -> var_currentTileRegionList_8c226534 becomes -1.
         $this->shouldCall('_FUN_8c029ad4')->with(0);
-        $this->shouldWriteLong($this->addressOf('_var_8c226534'), 0xffffffff);
+        $this->shouldWriteLong($this->addressOf('_var_currentTileRegionList_8c226534'), 0xffffffff);
     }
 
     public function test_publishes_fog_params()
@@ -36,7 +36,7 @@ return new class extends TestCase {
         $this->shouldWriteLong($this->addressOf('_var_fogParam_8c227dd0'), 0x12345678);
 
         $this->shouldCall('_FUN_8c029ad4')->with(0);
-        $this->shouldWriteLong($this->addressOf('_var_8c226534'), 0xffffffff);
+        $this->shouldWriteLong($this->addressOf('_var_currentTileRegionList_8c226534'), 0xffffffff);
     }
 
     public function test_requests_nj_pvm_pairs()
@@ -54,7 +54,7 @@ return new class extends TestCase {
         $this->shouldWriteLong($this->addressOf('_var_segmentModels_8c1bc3f0'), 0x8c990000);
 
         $this->shouldCall('_FUN_8c029ad4')->with(0);
-        $this->shouldWriteLong($this->addressOf('_var_8c226534'), 0xffffffff);
+        $this->shouldWriteLong($this->addressOf('_var_currentTileRegionList_8c226534'), 0xffffffff);
     }
 
     public function test_non_demo_syncs_entry_models()
@@ -71,7 +71,7 @@ return new class extends TestCase {
         $this->shouldCall('_syncRouteModelAssets_8c013c34')->with($models);
 
         $this->shouldCall('_FUN_8c029ad4')->with(0);
-        $this->shouldWriteLong($this->addressOf('_var_8c226534'), 0xffffffff);
+        $this->shouldWriteLong($this->addressOf('_var_currentTileRegionList_8c226534'), 0xffffffff);
     }
 
     public function test_demo_uses_fixed_list_and_runs_tail()
@@ -90,7 +90,7 @@ return new class extends TestCase {
             ->with($this->addressOf('_init_8c043fd4'));
 
         $this->shouldCall('_FUN_8c029ad4')->with(0);
-        $this->shouldWriteLong($this->addressOf('_var_8c226534'), 0xffffffff);
+        $this->shouldWriteLong($this->addressOf('_var_currentTileRegionList_8c226534'), 0xffffffff);
         $this->shouldCall('_FUN_8c02aa36');
     }
 
@@ -106,7 +106,7 @@ return new class extends TestCase {
         $this->shouldCall('_syncPedestrianAssets_8c013df6')->with($list);
 
         $this->shouldCall('_FUN_8c029ad4')->with(0);
-        $this->shouldWriteLong($this->addressOf('_var_8c226534'), 0xffffffff);
+        $this->shouldWriteLong($this->addressOf('_var_currentTileRegionList_8c226534'), 0xffffffff);
     }
 
     public function test_requests_four_dat_files()
@@ -123,7 +123,7 @@ return new class extends TestCase {
         $this->call('_syncSegmentModels_8c013f78');
 
         $this->shouldCall('_FUN_8c029ad4')->with(0);
-        $this->shouldWriteLong($this->addressOf('_var_8c226534'), 0x21);
+        $this->shouldWriteLong($this->addressOf('_var_currentTileRegionList_8c226534'), 0x21);
 
         $basedir = $this->addressOf('_var_datDir_8c18ad2c');
         $dest = $this->addressOf('_var_datFiles_8c18adb4');
@@ -141,12 +141,12 @@ return new class extends TestCase {
     private function setup(int $index, int $bb900, int $demo = 0): array
     {
         $this->setSize('_var_currentSegment_8c228708', 4);
-        $this->setSize('_var_maybeCutscene_8c1bb900', 4);
+        $this->setSize('_var_cutsceneActive_8c1bb900', 4);
         $this->setSize('_var_playMode_8c1bb8d0', 4);
         $this->setSize('_var_fogParam_8c226504', 4);
         $this->setSize('_var_fogParam_8c226508', 4);
         $this->setSize('_var_fogParam_8c227dd0', 4);
-        $this->setSize('_var_8c226534', 4);
+        $this->setSize('_var_currentTileRegionList_8c226534', 4);
         $this->setSize('_var_segmentModels_8c1bc3f0', 4);
         $this->setSize('_AsqRequestModels_12030', 4);
         $this->setSize('_AsqRequestDat_11182', 4);
@@ -165,7 +165,7 @@ return new class extends TestCase {
         $this->initUint32($this->addressOf('_var_currentCourseConfig_8c18ad18'), $holder);
         $this->initUint32($holder + 8, $array);
         $this->initUint32($this->addressOf('_var_currentSegment_8c228708'), $index);
-        $this->initUint32($this->addressOf('_var_maybeCutscene_8c1bb900'), $bb900);
+        $this->initUint32($this->addressOf('_var_cutsceneActive_8c1bb900'), $bb900);
         $this->initUint32($this->addressOf('_var_playMode_8c1bb8d0'), $demo);
 
         return [$entry, $array];

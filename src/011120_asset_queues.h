@@ -45,7 +45,7 @@ extern Sint8 var_texbuf_8c277ca0[];
 
 extern int var_queuesAreInitialized_8c157a60;
 extern int var_seed_8c157a64;
-extern int var_8c157a6c;
+extern int var_loadScreenActive_8c157a6c;
 
 /* TODO: Confirm type */
 extern int var_activeCtrlType_8c157a70;

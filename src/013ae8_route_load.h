@@ -45,4 +45,4 @@ extern FogParams *var_fogParams_8c18ad28;
  */
 
 void pushRouteLoadTask_8c0144fc(void);
-void pushInteriorLoadTask_8c01468e(void);
+void pushUnknownSegmentReloadTask_8c01468e(void);

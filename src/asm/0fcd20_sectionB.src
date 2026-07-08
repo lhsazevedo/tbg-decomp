@@ -99,7 +99,7 @@
           .EXPORT     _var_8c22650c ; 02171c.src, 021b9c.src
           .EXPORT     _var_8c22651c ; 02171c.src
           .EXPORT     _var_8c226520 ; 02171c.src, 021b9c.src
-          .EXPORT     _var_8c226534 ; 013ae8_route_load.src, 02171c.src
+          .EXPORT     _var_currentTileRegionList_8c226534 ; 013ae8_route_load.src, 02171c.src
           .EXPORT     _var_8c226538 ; 021b9c.src
           .EXPORT     _var_8c226544 ; 021b9c.src, 0222dc.src
           .EXPORT     _var_8c22654c ; 021b9c.src, 0222dc.src
@@ -433,7 +433,7 @@ _var_8c22651c:
           .RES.B      4
 _var_8c226520:
           .RES.B      20
-_var_8c226534:
+_var_currentTileRegionList_8c226534:
           .RES.B      4
 _var_8c226538:
           .RES.B      12

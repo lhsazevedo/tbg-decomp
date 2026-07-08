@@ -128,7 +128,7 @@ return new class extends TestCase {
 
         $this->shouldCall('_freeTask_8c014b66')->with($task);
         $this->shouldCall('_AsqFreeQueues_11f7e');
-        $this->shouldWriteLong($this->addressOf('_var_8c157a6c'), 0);
+        $this->shouldWriteLong($this->addressOf('_var_loadScreenActive_8c157a6c'), 0);
         $this->shouldCall('_njReleaseTexture')->with(self::TLIST);
         $this->shouldCall('_njSetTexture')->with($interior);
         $this->shouldCall('_njLoadCacheTexture')->with($interior);
@@ -181,7 +181,7 @@ return new class extends TestCase {
     {
         foreach ([
             '_var_loadingResourceGroup_8c1bc3f8' => 0x0c,
-            '_var_8c157a6c' => 4,
+            '_var_loadScreenActive_8c157a6c' => 4,
             '_var_currentCourse_8c1bb868' => 0x50,
             '_var_interiorTexlist_8c1bc438' => 4,
             '_AsqResetQueues_11f6c' => 4,

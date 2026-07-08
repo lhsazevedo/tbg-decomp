@@ -13,7 +13,7 @@ void FUN_8c014934()
     void* state;
 
     njSetBackColor(0xff418dff, 0xff418dff, 0xff418dff);
-    var_8c157a6c = 1;
+    var_loadScreenActive_8c157a6c = 1;
 
     pushTask_8c014ae8(var_tasks_8c1ba3c8, (void *) &unknownRouteLoadTask_8c014784, &task, &state, 0);
     task->field_0x08 = 0;

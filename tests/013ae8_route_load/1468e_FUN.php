@@ -18,7 +18,7 @@ return new class extends TestCase {
         $this->initUint32($counter + 0x0c, 10);
         $this->initUint32($counter + 0x10, 100);
 
-        $this->call('_pushInteriorLoadTask_8c01468e');
+        $this->call('_pushUnknownSegmentReloadTask_8c01468e');
 
         $this->shouldWriteLong($counter + 0x0c, 40);
         $this->expectInstallAndBind();
@@ -33,7 +33,7 @@ return new class extends TestCase {
         $this->initUint32($counter + 0x0c, 90);
         $this->initUint32($counter + 0x10, 100);
 
-        $this->call('_pushInteriorLoadTask_8c01468e');
+        $this->call('_pushUnknownSegmentReloadTask_8c01468e');
 
         $this->shouldWriteLong($counter + 0x0c, 120);
         $this->shouldWriteLong($counter + 0x0c, 100);
@@ -47,12 +47,12 @@ return new class extends TestCase {
         $this->initUint32($this->addressOf('_var_8c1ba290'), 5);
         $this->initUint32($this->addressOf('_var_playMode_8c1bb8d0'), 0);
 
-        $this->call('_pushInteriorLoadTask_8c01468e');
+        $this->call('_pushUnknownSegmentReloadTask_8c01468e');
 
         $this->expectInstallAndBind();
     }
 
-    /** Common tail: install interiorLoadTask_8c014550, prime the queues, rebind the texture. */
+    /** Common tail: install unknownSegmentReloadTask_8c014550, prime the queues, rebind the texture. */
     private function expectInstallAndBind(): void
     {
         $this->initUint32($this->addressOf('_var_loadingResourceGroup_8c1bc3f8'), self::TLIST);
@@ -60,11 +60,11 @@ return new class extends TestCase {
         $createdTask = $this->alloc(0x20);
         $createdState = $this->alloc(0x1c);
 
-        $this->shouldWriteLong($this->addressOf('_var_8c157a6c'), 1);
+        $this->shouldWriteLong($this->addressOf('_var_loadScreenActive_8c157a6c'), 1);
         $this->shouldCall('_pushTask_8c014ae8')
             ->with(
                 $this->addressOf('_var_tasks_8c1ba3c8'),
-                $this->addressOf('_interiorLoadTask_8c014550'),
+                $this->addressOf('_unknownSegmentReloadTask_8c014550'),
                 0xffffec,
                 0xfffff0,
                 0,
@@ -89,7 +89,7 @@ return new class extends TestCase {
             '_var_8c1ba290' => 1,
             '_var_playMode_8c1bb8d0' => 4,
             '_var_8c2285c4' => 0x14,
-            '_var_8c157a6c' => 4,
+            '_var_loadScreenActive_8c157a6c' => 4,
             '_var_loadingResourceGroup_8c1bc3f8' => 0x0c,
             '_var_tasks_8c1ba3c8' => 4,
             '_var_tex_8c157af8' => 4,

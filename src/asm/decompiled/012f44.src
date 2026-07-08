@@ -137,7 +137,7 @@
           .IMPORT     _var_8c1bc454
           .IMPORT     _var_selectedVm_8c1ba34c
           .IMPORT     _var_demoIndex_8c1bb8d8
-          .IMPORT     _var_8c157a6c
+          .IMPORT     _var_loadScreenActive_8c157a6c
           .IMPORT     _FUN_8c01c8dc
           .IMPORT     _FUN_8c0189d2
           .IMPORT     _njSetBorderColor
@@ -1207,7 +1207,7 @@ LP_GEN_90231:
           .DATA.L _var_selectedVm_8c1ba34c
           .DATA.L _var_8c1bb8c4
           .DATA.L _var_demoIndex_8c1bb8d8
-          .DATA.L _var_8c157a6c
+          .DATA.L _var_loadScreenActive_8c157a6c
           .DATA.L _FUN_8c01c8dc
           .DATA.L _FUN_8c0189d2
           .DATA.L _njSetBorderColor

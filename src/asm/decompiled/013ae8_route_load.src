@@ -30,10 +30,10 @@
           .IMPORT     _var_fogParam_8c226504
           .IMPORT     _var_fogParam_8c226508
           .IMPORT     _var_fogParam_8c227dd0
-          .IMPORT     _var_maybeCutscene_8c1bb900
+          .IMPORT     _var_cutsceneActive_8c1bb900
           .IMPORT     _var_playMode_8c1bb8d0
           .IMPORT     _FUN_8c029ad4
-          .IMPORT     _var_8c226534
+          .IMPORT     _var_currentTileRegionList_8c226534
           .IMPORT     _AsqRequestDat_11182
           .IMPORT     _FUN_8c02aa36
           .IMPORT     _var_currentCourse_8c1bb868
@@ -50,7 +50,7 @@
           .IMPORT     _FUN_8c02190a
           .IMPORT     _FUN_8c021810
           .IMPORT     _freeTask_8c014b66
-          .IMPORT     _var_8c157a6c
+          .IMPORT     _var_loadScreenActive_8c157a6c
           .IMPORT     _njReleaseTexture
           .IMPORT     _FUN_8c01306e
           .IMPORT     _drawSprite_8c014f54
@@ -79,8 +79,8 @@
           .EXPORT     _isPvmReady_8c01432a
           .EXPORT     _setPvmReady_8c014330
           .EXPORT     _routeLoadTask_8c014338
-          .EXPORT     _pushInteriorLoadTask_8c01468e
-          .EXPORT     _interiorLoadTask_8c014550
+          .EXPORT     _pushUnknownSegmentReloadTask_8c01468e
+          .EXPORT     _unknownSegmentReloadTask_8c014550
           .EXPORT     _unknownRouteLoadTask_8c014784
           .EXPORT     _pushRouteLoadTask_8c0144fc
           .EXPORT     _init_8c04410c ; 01b19c.src
@@ -958,11 +958,11 @@ LP_GEN_25668:
           .DATA.L _AsqRequestModels_12030
           .DATA.L _var_segmentModels_8c1bc3f0
           .DATA.L _var_routeModelIndexes_8c18adb0
-          .DATA.L _var_maybeCutscene_8c1bb900
+          .DATA.L _var_cutsceneActive_8c1bb900
           .DATA.L _var_playMode_8c1bb8d0
           .DATA.L _init_8c043fd4
           .DATA.L _FUN_8c029ad4
-          .DATA.L _var_8c226534
+          .DATA.L _var_currentTileRegionList_8c226534
           .DATA.L _var_datFiles_8c18adb4
           .DATA.L _var_datDir_8c18ad2c
           .DATA.L _AsqRequestDat_11182
@@ -1334,7 +1334,7 @@ LP_GEN_90737:
           .DATA.L _FUN_8c021810
           .DATA.L _freeTask_8c014b66
           .DATA.L _AsqFreeQueues_11f7e
-          .DATA.L _var_8c157a6c
+          .DATA.L _var_loadScreenActive_8c157a6c
           .DATA.L _njReleaseTexture
           .DATA.L _FUN_8c01306e
           .DATA.L _dispatchInputTask_8c012970
@@ -1420,7 +1420,7 @@ _pushRouteLoadTask_8c0144fc:
           LDS.L       @R15+,PR
           RTS
           MOV.L       @R15+,R14
-_interiorLoadTask_8c014550:
+_unknownSegmentReloadTask_8c014550:
           MOV.L       R14,@-R15
           MOV         R4,R14
           FMOV.S      FR15,@-R15
@@ -1487,7 +1487,7 @@ LP_GEN_28406:
           .DATA.L H'C0800000
           .DATA.L H'FF418DFF
           .DATA.L _njSetBackColor
-          .DATA.L _var_8c157a6c
+          .DATA.L _var_loadScreenActive_8c157a6c
           .DATA.L _routeLoadTask_8c014338
           .DATA.L _var_tasks_8c1ba3c8
           .DATA.L _pushTask_8c014ae8
@@ -1568,7 +1568,7 @@ LAB_8c014686:
           FMOV.S      @R15+,FR15
           RTS
           MOV.L       @R15+,R14
-_pushInteriorLoadTask_8c01468e:
+_pushUnknownSegmentReloadTask_8c01468e:
           MOV.L       R14,@-R15
           STS.L       PR,@-R15
           ADD         #-H'8,R15
@@ -1648,7 +1648,7 @@ LP_GEN_17698:
           .DATA.W H'0800
           .DATA.L _freeTask_8c014b66
           .DATA.L _AsqFreeQueues_11f7e
-          .DATA.L _var_8c157a6c
+          .DATA.L _var_loadScreenActive_8c157a6c
           .DATA.L _var_loadingResourceGroup_8c1bc3f8
           .DATA.L _njReleaseTexture
           .DATA.L _var_interiorTexlist_8c1bc438
@@ -1663,7 +1663,7 @@ LP_GEN_17698:
           .DATA.L _var_8c1ba290
           .DATA.L _var_playMode_8c1bb8d0
           .DATA.L _var_8c2285c4
-          .DATA.L _interiorLoadTask_8c014550
+          .DATA.L _unknownSegmentReloadTask_8c014550
           .DATA.L _var_tasks_8c1ba3c8
           .DATA.L _pushTask_8c014ae8
           .DATA.L _var_tex_8c157af8
@@ -1864,7 +1864,7 @@ LP_GEN_48435:
           .DATA.L _FUN_8c02190a
           .DATA.L _freeTask_8c014b66
           .DATA.L _AsqFreeQueues_11f7e
-          .DATA.L _var_8c157a6c
+          .DATA.L _var_loadScreenActive_8c157a6c
           .DATA.L _njReleaseTexture
           .DATA.L _var_interiorTexlist_8c1bc438
           .DATA.L _FUN_8c01306e

@@ -34,7 +34,7 @@
           .IMPORT     _isFading_8c226568
           .IMPORT     _var_8c2288f8
           .IMPORT     _execTasks_8c014b42
-          .IMPORT     _var_maybeCutscene_8c1bb900
+          .IMPORT     _var_cutsceneActive_8c1bb900
           .IMPORT     _var_8c226564
           .IMPORT     _var_8c226560
           .IMPORT     _FUN_8c02ad8c
@@ -910,7 +910,7 @@ LP_GEN_70221:
           .DATA.L _var_8c228958 ; H'8C02D808
           .DATA.L _var_8c2288f8 ; H'8C02D80C
           .DATA.L _execTasks_8c014b42 ; H'8C02D810
-          .DATA.L _var_maybeCutscene_8c1bb900 ; H'8C02D814
+          .DATA.L _var_cutsceneActive_8c1bb900 ; H'8C02D814
           .DATA.L _var_8c226564 ; H'8C02D818
           .DATA.L _var_8c226560 ; H'8C02D81C
           .DATA.L _FUN_8c02ad8c ; H'8C02D820

@@ -77,7 +77,7 @@ typedef struct {
     // id, 0..0xa9
     Uint16 ukn_0x06;
     void *ukn_0x08;
-    // {x0,y0,x1,y1} tile-rect list
+    // tile-region list (gates dat-file requests); element layout unconfirmed
     void *tileRegionList_0x0c;
     Sint8 *routeModelIndexes_0x10;
     void *ukn_0x14;
@@ -207,9 +207,9 @@ extern int var_fogParam_8c226504;
 extern int var_fogParam_8c226508;
 extern int var_fogParam_8c227dd0;
 
-extern int var_8c226534;
+extern int var_currentTileRegionList_8c226534;
 
-extern int var_maybeCutscene_8c1bb900;
+extern int var_cutsceneActive_8c1bb900;
 
 extern void FUN_8c021a24(void);
 extern void FUN_8c029ad4(void *arg);
@@ -218,7 +218,7 @@ extern void FUN_8c02aa36(void);
 extern ResourceGroup var_loadingResourceGroup_8c1bc3f8;
 
 // set while the route-load screen owns the display
-extern int var_8c157a6c;
+extern int var_loadScreenActive_8c157a6c;
 
 extern NJS_TEXMEMLIST var_tex_8c157af8;
 
@@ -432,7 +432,7 @@ void freeSegmentModels_8c013f22(void)
 
 /* Bring the current segment's assets in line: publish its fog params,
  * request its models, sync both model tables, and request its dat files.
- * When var_maybeCutscene_8c1bb900 is set during real gameplay
+ * When var_cutsceneActive_8c1bb900 is set during real gameplay
  * (var_playMode_8c1bb8d0 == PLAY_MODE_NORMAL), a story scene is playing --
  * opening slideshow or passenger conversation -- so it swaps in a minimal
  * route-model list (init_8c043fd4, one model) and runs the scene setup
@@ -457,7 +457,7 @@ void syncSegmentModels_8c013f78(void)
         var_segmentModels_8c1bc3f0 = AsqRequestModels_12030(var_commonDir_8c18ad6c, entry->modelFiles_0x28, 0x10);
     }
 
-    if (var_maybeCutscene_8c1bb900 == 0 || var_playMode_8c1bb8d0 != PLAY_MODE_NORMAL) {
+    if (var_cutsceneActive_8c1bb900 == 0 || var_playMode_8c1bb8d0 != PLAY_MODE_NORMAL) {
         if (entry->routeModelIndexes_0x10 != 0) {
             var_routeModelIndexes_8c18adb0 = entry->routeModelIndexes_0x10;
             syncRouteModelAssets_8c013c34(entry->routeModelIndexes_0x10);
@@ -476,15 +476,15 @@ void syncSegmentModels_8c013f78(void)
     FUN_8c029ad4(entry->sceneObjectList_0x1c);
 
     if (entry->tileRegionList_0x0c == 0) {
-        var_8c226534 = -1;
+        var_currentTileRegionList_8c226534 = -1;
     } else {
-        var_8c226534 = (int)entry->tileRegionList_0x0c;
+        var_currentTileRegionList_8c226534 = (int)entry->tileRegionList_0x0c;
         for (i = 0; i < 4; i++) {
             AsqRequestDat_11182(var_datDir_8c18ad2c, entry->datFilenames_0x20[i], &var_datFiles_8c18adb4[i]);
         }
     }
 
-    if (var_maybeCutscene_8c1bb900 != 0 && var_playMode_8c1bb8d0 == PLAY_MODE_NORMAL) {
+    if (var_cutsceneActive_8c1bb900 != 0 && var_playMode_8c1bb8d0 == PLAY_MODE_NORMAL) {
         FUN_8c02aa36();
     }
 }
@@ -608,7 +608,7 @@ void setPvmReady_8c014330(void)
  * texture on finish and drops one AsqProcessQueues callback -- its trigger
  * is unconfirmed (never seen in those four modes; candidate: album/replay
  * or save-resume). Crossing a segment boundary runs the lighter
- * interiorLoadTask (pushInteriorLoadTask):
+ * unknownSegmentReloadTask (pushUnknownSegmentReloadTask):
  * no loadRouteModels, just freeSegmentModels then syncSegmentModels for the
  * new segment. startRouteModelLoadPass (a callback used from 028258)
  * reconciles route models as the segment index advances. */
@@ -661,7 +661,7 @@ void routeLoadTask_8c014338(Task *task, void *state)
         case ROUTE_LOAD_STATE_DONE: {
             freeTask_8c014b66(task);
             AsqFreeQueues_11f7e();
-            var_8c157a6c = 0;
+            var_loadScreenActive_8c157a6c = 0;
             njReleaseTexture(var_loadingResourceGroup_8c1bc3f8.tlist_0x00);
             FUN_8c01306e();
             dispatchInputTask_8c012970();
@@ -684,7 +684,7 @@ void pushRouteLoadTask_8c0144fc(void)
     LOG_DEBUG(("[ROUTE_LOAD] pushing routeLoadTask_8c014338\n"));
 
     njSetBackColor(0xff418dff, 0xff418dff, 0xff418dff);
-    var_8c157a6c = 1;
+    var_loadScreenActive_8c157a6c = 1;
 
     pushTask_8c014ae8(var_tasks_8c1ba3c8, (void *) routeLoadTask_8c014338, &task, &state, 0);
     CHANGE_LOAD_STATE(task, ROUTE_LOAD_STATE_INIT);
@@ -695,8 +695,9 @@ void pushRouteLoadTask_8c0144fc(void)
     AsqInitQueues_11f36(0x20, 0x800, 0x800, 0x40);
 }
 
-/* Second-stage load task: build the interior, then hand off to the input task. */
-void interiorLoadTask_8c014550(Task *task, void *state)
+/* Segment-boundary reload: stream the new segment's assets (no full route
+ * reload), rebind the interior texture, then hand off to the input task. */
+void unknownSegmentReloadTask_8c014550(Task *task, void *state)
 {
     int frame;
 
@@ -727,7 +728,7 @@ void interiorLoadTask_8c014550(Task *task, void *state)
         case ROUTE_LOAD_INTERIOR_STATE_DONE: {
             freeTask_8c014b66(task);
             AsqFreeQueues_11f7e();
-            var_8c157a6c = 0;
+            var_loadScreenActive_8c157a6c = 0;
             njReleaseTexture(var_loadingResourceGroup_8c1bc3f8.tlist_0x00);
             njSetTexture(var_interiorTexlist_8c1bc438);
             njLoadCacheTexture(var_interiorTexlist_8c1bc438);
@@ -744,7 +745,7 @@ void interiorLoadTask_8c014550(Task *task, void *state)
     drawSprite_8c014f54(&var_loadingResourceGroup_8c1bc3f8, (frame >> 2) % 6 + 1, 0.0f, 0.0f, -4.0f);
 }
 
-void pushInteriorLoadTask_8c01468e(void)
+void pushUnknownSegmentReloadTask_8c01468e(void)
 {
     Task *task;
     void *state;
@@ -756,10 +757,10 @@ void pushInteriorLoadTask_8c01468e(void)
         }
     }
 
-    LOG_DEBUG(("[ROUTE_LOAD] pushing interiorLoadTask_8c014550\n"));
+    LOG_DEBUG(("[ROUTE_LOAD] pushing unknownSegmentReloadTask_8c014550\n"));
 
-    var_8c157a6c = 1;
-    pushTask_8c014ae8(var_tasks_8c1ba3c8, (void *) interiorLoadTask_8c014550, &task, &state, 0);
+    var_loadScreenActive_8c157a6c = 1;
+    pushTask_8c014ae8(var_tasks_8c1ba3c8, (void *) unknownSegmentReloadTask_8c014550, &task, &state, 0);
     CHANGE_LOAD2_STATE(task, ROUTE_LOAD_INTERIOR_STATE_POST_LOAD);
     task->field_0x0c = 0;
     freeSegmentModels_8c013f22();
@@ -772,7 +773,7 @@ void pushInteriorLoadTask_8c01468e(void)
 }
 
 /* Like routeLoadTask_8c014338, but on completion binds the interior texture and
- * hands off to the input task (as interiorLoadTask_8c014550 does). */
+ * hands off to the input task (as unknownSegmentReloadTask_8c014550 does). */
 void unknownRouteLoadTask_8c014784(Task *task, void *state)
 {
     int frame;
@@ -822,7 +823,7 @@ void unknownRouteLoadTask_8c014784(Task *task, void *state)
         case ROUTE_LOAD_STATE_DONE: {
             freeTask_8c014b66(task);
             AsqFreeQueues_11f7e();
-            var_8c157a6c = 0;
+            var_loadScreenActive_8c157a6c = 0;
             njReleaseTexture(var_loadingResourceGroup_8c1bc3f8.tlist_0x00);
             njSetTexture(var_interiorTexlist_8c1bc438);
             njLoadCacheTexture(var_interiorTexlist_8c1bc438);

@@ -734,7 +734,7 @@ void njUserInit_8c0134ec() {
 
     // Set high index to trigger loop and ensure first demo runs
     var_demoIndex_8c1bb8d8 = 100;
-    var_8c157a6c = 0;
+    var_loadScreenActive_8c157a6c = 0;
 
     FUN_8c01c8dc();
     FUN_8c0189d2();
