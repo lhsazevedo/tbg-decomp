@@ -37,49 +37,49 @@ STATIC Uint8 init_8c03c19e[8] = { 0x1c, 0x0c, 0x21, 0x15, 0x00, 0x00, 0x00, 0x00
 STATIC Uint8 init_8c03c1a6[8] = { 0x15, 0x09, 0x1f, 0x0f, 0x00, 0x00, 0x00, 0x00 };
 STATIC Uint8 init_8c03c1ae[8] = { 0x0b, 0x03, 0x17, 0x0b, 0x00, 0x00, 0x00, 0x00 };
 STATIC Uint8 init_8c03c1b6[66] = { 0x02, 0x03, 0x0e, 0x09, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09, 0x0a, 0x0b, 0xff, 0x0b, 0x0c, 0x0d, 0x0e, 0x0f, 0x10, 0x11, 0x12, 0x13, 0x14, 0x15, 0x16, 0x17, 0x18, 0x19, 0xff, 0x19, 0x1a, 0x1b, 0x1c, 0x1d, 0x1e, 0x1f, 0x20, 0x21, 0x22, 0x23, 0x24, 0xff, 0x24, 0x25, 0x26, 0x27, 0x28, 0x29, 0x2a, 0x2b, 0x2c, 0x2d, 0x2e, 0x2f, 0x30, 0x31, 0xff, 0x00 };
-STATIC char *init_8c03c1f8[4] = {
+STATIC char *init_courseOmeSeg0PacFiles[4] = {
     "o_road0.pac",
     "o_machi0.pac",
     "o_uv0.pac",
     "O_ROAD_UV_OHDAN0.pac",
 };
-STATIC char *init_8c03c208[4] = {
+STATIC char *init_courseOmeSeg5PacFiles[4] = {
     "o_road1_1.pac",
     "o_machi1_1.pac",
     "o_uv1_1.pac",
     "O_ROAD_UV_OHDAN1_1.pac",
 };
-STATIC char *init_8c03c218[4] = {
+STATIC char *init_courseOmeSeg7PacFiles[4] = {
     "o_road1_2.pac",
     "o_machi1_2.pac",
     "o_uv1_2.pac",
     "O_ROAD_UV_OHDAN1_2.pac",
 };
-STATIC char *init_8c03c228[4] = {
+STATIC char *init_courseOmeSeg10PacFiles[4] = {
     "o_road2.pac",
     "o_machi2.pac",
     "o_uv2.pac",
     "O_ROAD_UV_OHDAN2.pac",
 };
-STATIC char *init_8c03c238[4] = {
+STATIC char *init_courseOmeSeg12PacFiles[4] = {
     "o_road3_1.pac",
     "o_machi3_1.pac",
     "o_uv3_1.pac",
     "O_ROAD_UV_OHDAN3_1.pac",
 };
-STATIC char *init_8c03c248[4] = {
+STATIC char *init_courseOmeSeg15PacFiles[4] = {
     "o_road3_2.pac",
     "o_machi3_2.pac",
     "o_uv3_2.pac",
     "O_ROAD_UV_OHDAN3_2.pac",
 };
-STATIC char *init_8c03c258[4] = {
+STATIC char *init_courseOmeSeg17PacFiles[4] = {
     "o_road4_1.pac",
     "o_machi4_1.pac",
     "o_uv4_1.pac",
     "O_ROAD_UV_OHDAN4_1.pac",
 };
-STATIC char *init_8c03c268[4] = {
+STATIC char *init_courseOmeSeg20PacFiles[4] = {
     "o_road4_2.pac",
     "o_machi4_2.pac",
     "o_uv4_2.pac",
@@ -219,7 +219,7 @@ STATIC ModelFiles init_8c03c57c[2] = {
     { "", "" },
 };
 
-CourseSegment init_8c03c58c[24] = {
+CourseSegment init_courseOmeDaySegments[24] = {
     {   /* [0] */
         /* ukn_0x00, ukn_0x02, ukn_0x04, ukn_0x06 */ 0x0002, 0x00c4, 0x0000, 0x005c,
         /* ukn_0x08 */ init_8c03c10e,
@@ -228,7 +228,7 @@ CourseSegment init_8c03c58c[24] = {
         /* ukn_0x14 */ NULL,
         /* pedestrianModelList_0x18 */ init_8c03c0c0,
         /* sceneObjectList_0x1c */ init_8c03c4d4,
-        /* datFilenames_0x20 */ init_8c03c1f8,
+        /* datFilenames_0x20 */ init_courseOmeSeg0PacFiles,
         /* fog_0x24 */ &init_8c03c278,
         /* modelFiles_0x28 */ init_8c03c55c,
     },
@@ -288,7 +288,7 @@ CourseSegment init_8c03c58c[24] = {
         /* ukn_0x14 */ NULL,
         /* pedestrianModelList_0x18 */ NULL,
         /* sceneObjectList_0x1c */ init_8c03c4f4,
-        /* datFilenames_0x20 */ init_8c03c208,
+        /* datFilenames_0x20 */ init_courseOmeSeg5PacFiles,
         /* fog_0x24 */ NULL,
         /* modelFiles_0x28 */ NULL,
     },
@@ -312,7 +312,7 @@ CourseSegment init_8c03c58c[24] = {
         /* ukn_0x14 */ NULL,
         /* pedestrianModelList_0x18 */ NULL,
         /* sceneObjectList_0x1c */ NULL,
-        /* datFilenames_0x20 */ init_8c03c218,
+        /* datFilenames_0x20 */ init_courseOmeSeg7PacFiles,
         /* fog_0x24 */ NULL,
         /* modelFiles_0x28 */ NULL,
     },
@@ -348,7 +348,7 @@ CourseSegment init_8c03c58c[24] = {
         /* ukn_0x14 */ NULL,
         /* pedestrianModelList_0x18 */ NULL,
         /* sceneObjectList_0x1c */ NULL,
-        /* datFilenames_0x20 */ init_8c03c228,
+        /* datFilenames_0x20 */ init_courseOmeSeg10PacFiles,
         /* fog_0x24 */ NULL,
         /* modelFiles_0x28 */ NULL,
     },
@@ -372,7 +372,7 @@ CourseSegment init_8c03c58c[24] = {
         /* ukn_0x14 */ NULL,
         /* pedestrianModelList_0x18 */ NULL,
         /* sceneObjectList_0x1c */ NULL,
-        /* datFilenames_0x20 */ init_8c03c238,
+        /* datFilenames_0x20 */ init_courseOmeSeg12PacFiles,
         /* fog_0x24 */ NULL,
         /* modelFiles_0x28 */ NULL,
     },
@@ -408,7 +408,7 @@ CourseSegment init_8c03c58c[24] = {
         /* ukn_0x14 */ NULL,
         /* pedestrianModelList_0x18 */ NULL,
         /* sceneObjectList_0x1c */ init_8c03c504,
-        /* datFilenames_0x20 */ init_8c03c248,
+        /* datFilenames_0x20 */ init_courseOmeSeg15PacFiles,
         /* fog_0x24 */ NULL,
         /* modelFiles_0x28 */ NULL,
     },
@@ -432,7 +432,7 @@ CourseSegment init_8c03c58c[24] = {
         /* ukn_0x14 */ NULL,
         /* pedestrianModelList_0x18 */ NULL,
         /* sceneObjectList_0x1c */ init_8c03c52c,
-        /* datFilenames_0x20 */ init_8c03c258,
+        /* datFilenames_0x20 */ init_courseOmeSeg17PacFiles,
         /* fog_0x24 */ NULL,
         /* modelFiles_0x28 */ NULL,
     },
@@ -468,7 +468,7 @@ CourseSegment init_8c03c58c[24] = {
         /* ukn_0x14 */ NULL,
         /* pedestrianModelList_0x18 */ NULL,
         /* sceneObjectList_0x1c */ init_8c03c54c,
-        /* datFilenames_0x20 */ init_8c03c268,
+        /* datFilenames_0x20 */ init_courseOmeSeg20PacFiles,
         /* fog_0x24 */ NULL,
         /* modelFiles_0x28 */ NULL,
     },
@@ -510,7 +510,7 @@ CourseSegment init_8c03c58c[24] = {
     },
 };
 
-CourseSegment init_8c03c9ac[24] = {
+CourseSegment init_courseOmeEveningSegments[24] = {
     {   /* [0] */
         /* ukn_0x00, ukn_0x02, ukn_0x04, ukn_0x06 */ 0x0002, 0x00c4, 0x0000, 0x005c,
         /* ukn_0x08 */ init_8c03c10e,
@@ -519,7 +519,7 @@ CourseSegment init_8c03c9ac[24] = {
         /* ukn_0x14 */ NULL,
         /* pedestrianModelList_0x18 */ init_8c03c0c0,
         /* sceneObjectList_0x1c */ init_8c03c4d4,
-        /* datFilenames_0x20 */ init_8c03c1f8,
+        /* datFilenames_0x20 */ init_courseOmeSeg0PacFiles,
         /* fog_0x24 */ &init_8c03c28c,
         /* modelFiles_0x28 */ init_8c03c56c,
     },
@@ -579,7 +579,7 @@ CourseSegment init_8c03c9ac[24] = {
         /* ukn_0x14 */ NULL,
         /* pedestrianModelList_0x18 */ NULL,
         /* sceneObjectList_0x1c */ init_8c03c4f4,
-        /* datFilenames_0x20 */ init_8c03c208,
+        /* datFilenames_0x20 */ init_courseOmeSeg5PacFiles,
         /* fog_0x24 */ NULL,
         /* modelFiles_0x28 */ NULL,
     },
@@ -603,7 +603,7 @@ CourseSegment init_8c03c9ac[24] = {
         /* ukn_0x14 */ NULL,
         /* pedestrianModelList_0x18 */ NULL,
         /* sceneObjectList_0x1c */ NULL,
-        /* datFilenames_0x20 */ init_8c03c218,
+        /* datFilenames_0x20 */ init_courseOmeSeg7PacFiles,
         /* fog_0x24 */ NULL,
         /* modelFiles_0x28 */ NULL,
     },
@@ -639,7 +639,7 @@ CourseSegment init_8c03c9ac[24] = {
         /* ukn_0x14 */ NULL,
         /* pedestrianModelList_0x18 */ NULL,
         /* sceneObjectList_0x1c */ NULL,
-        /* datFilenames_0x20 */ init_8c03c228,
+        /* datFilenames_0x20 */ init_courseOmeSeg10PacFiles,
         /* fog_0x24 */ NULL,
         /* modelFiles_0x28 */ NULL,
     },
@@ -663,7 +663,7 @@ CourseSegment init_8c03c9ac[24] = {
         /* ukn_0x14 */ NULL,
         /* pedestrianModelList_0x18 */ NULL,
         /* sceneObjectList_0x1c */ NULL,
-        /* datFilenames_0x20 */ init_8c03c238,
+        /* datFilenames_0x20 */ init_courseOmeSeg12PacFiles,
         /* fog_0x24 */ NULL,
         /* modelFiles_0x28 */ NULL,
     },
@@ -699,7 +699,7 @@ CourseSegment init_8c03c9ac[24] = {
         /* ukn_0x14 */ NULL,
         /* pedestrianModelList_0x18 */ NULL,
         /* sceneObjectList_0x1c */ init_8c03c53c,
-        /* datFilenames_0x20 */ init_8c03c248,
+        /* datFilenames_0x20 */ init_courseOmeSeg15PacFiles,
         /* fog_0x24 */ NULL,
         /* modelFiles_0x28 */ NULL,
     },
@@ -723,7 +723,7 @@ CourseSegment init_8c03c9ac[24] = {
         /* ukn_0x14 */ NULL,
         /* pedestrianModelList_0x18 */ NULL,
         /* sceneObjectList_0x1c */ init_8c03c52c,
-        /* datFilenames_0x20 */ init_8c03c258,
+        /* datFilenames_0x20 */ init_courseOmeSeg17PacFiles,
         /* fog_0x24 */ NULL,
         /* modelFiles_0x28 */ NULL,
     },
@@ -759,7 +759,7 @@ CourseSegment init_8c03c9ac[24] = {
         /* ukn_0x14 */ NULL,
         /* pedestrianModelList_0x18 */ NULL,
         /* sceneObjectList_0x1c */ init_8c03c54c,
-        /* datFilenames_0x20 */ init_8c03c268,
+        /* datFilenames_0x20 */ init_courseOmeSeg20PacFiles,
         /* fog_0x24 */ NULL,
         /* modelFiles_0x28 */ NULL,
     },
@@ -801,7 +801,7 @@ CourseSegment init_8c03c9ac[24] = {
     },
 };
 
-CourseSegment init_8c03cdcc[24] = {
+CourseSegment init_courseOmeNightSegments[24] = {
     {   /* [0] */
         /* ukn_0x00, ukn_0x02, ukn_0x04, ukn_0x06 */ 0x0002, 0x00c4, 0x0000, 0x005c,
         /* ukn_0x08 */ init_8c03c10e,
@@ -810,7 +810,7 @@ CourseSegment init_8c03cdcc[24] = {
         /* ukn_0x14 */ NULL,
         /* pedestrianModelList_0x18 */ init_8c03c0c0,
         /* sceneObjectList_0x1c */ init_8c03c4d4,
-        /* datFilenames_0x20 */ init_8c03c1f8,
+        /* datFilenames_0x20 */ init_courseOmeSeg0PacFiles,
         /* fog_0x24 */ &init_8c03c2a0,
         /* modelFiles_0x28 */ init_8c03c57c,
     },
@@ -870,7 +870,7 @@ CourseSegment init_8c03cdcc[24] = {
         /* ukn_0x14 */ NULL,
         /* pedestrianModelList_0x18 */ NULL,
         /* sceneObjectList_0x1c */ init_8c03c4f4,
-        /* datFilenames_0x20 */ init_8c03c208,
+        /* datFilenames_0x20 */ init_courseOmeSeg5PacFiles,
         /* fog_0x24 */ NULL,
         /* modelFiles_0x28 */ NULL,
     },
@@ -894,7 +894,7 @@ CourseSegment init_8c03cdcc[24] = {
         /* ukn_0x14 */ NULL,
         /* pedestrianModelList_0x18 */ NULL,
         /* sceneObjectList_0x1c */ NULL,
-        /* datFilenames_0x20 */ init_8c03c218,
+        /* datFilenames_0x20 */ init_courseOmeSeg7PacFiles,
         /* fog_0x24 */ NULL,
         /* modelFiles_0x28 */ NULL,
     },
@@ -930,7 +930,7 @@ CourseSegment init_8c03cdcc[24] = {
         /* ukn_0x14 */ NULL,
         /* pedestrianModelList_0x18 */ NULL,
         /* sceneObjectList_0x1c */ NULL,
-        /* datFilenames_0x20 */ init_8c03c228,
+        /* datFilenames_0x20 */ init_courseOmeSeg10PacFiles,
         /* fog_0x24 */ NULL,
         /* modelFiles_0x28 */ NULL,
     },
@@ -954,7 +954,7 @@ CourseSegment init_8c03cdcc[24] = {
         /* ukn_0x14 */ NULL,
         /* pedestrianModelList_0x18 */ NULL,
         /* sceneObjectList_0x1c */ NULL,
-        /* datFilenames_0x20 */ init_8c03c238,
+        /* datFilenames_0x20 */ init_courseOmeSeg12PacFiles,
         /* fog_0x24 */ NULL,
         /* modelFiles_0x28 */ NULL,
     },
@@ -990,7 +990,7 @@ CourseSegment init_8c03cdcc[24] = {
         /* ukn_0x14 */ NULL,
         /* pedestrianModelList_0x18 */ NULL,
         /* sceneObjectList_0x1c */ init_8c03c53c,
-        /* datFilenames_0x20 */ init_8c03c248,
+        /* datFilenames_0x20 */ init_courseOmeSeg15PacFiles,
         /* fog_0x24 */ NULL,
         /* modelFiles_0x28 */ NULL,
     },
@@ -1014,7 +1014,7 @@ CourseSegment init_8c03cdcc[24] = {
         /* ukn_0x14 */ NULL,
         /* pedestrianModelList_0x18 */ NULL,
         /* sceneObjectList_0x1c */ init_8c03c52c,
-        /* datFilenames_0x20 */ init_8c03c258,
+        /* datFilenames_0x20 */ init_courseOmeSeg17PacFiles,
         /* fog_0x24 */ NULL,
         /* modelFiles_0x28 */ NULL,
     },
@@ -1050,7 +1050,7 @@ CourseSegment init_8c03cdcc[24] = {
         /* ukn_0x14 */ NULL,
         /* pedestrianModelList_0x18 */ NULL,
         /* sceneObjectList_0x1c */ init_8c03c54c,
-        /* datFilenames_0x20 */ init_8c03c268,
+        /* datFilenames_0x20 */ init_courseOmeSeg20PacFiles,
         /* fog_0x24 */ NULL,
         /* modelFiles_0x28 */ NULL,
     },
@@ -1095,7 +1095,7 @@ CourseSegment init_8c03cdcc[24] = {
 CourseConfig init_courseOmeDay0_8c03d1ec = {
     /* route_0x00 */ 2,
     /* timeOfDay_0x04 */ 0,
-    /* segments_0x08 */ init_8c03c58c,
+    /* segments_0x08 */ init_courseOmeDaySegments,
     /* ukn_0x0c */ init_8c03bfac,
     /* sceneParams_0x10 */ &init_8c03c2b4,
     /* ukn_0x14 */ 10,
@@ -1126,7 +1126,7 @@ CourseConfig init_courseOmeDay0_8c03d1ec = {
 CourseConfig init_courseOmeDay1_8c03d254 = {
     /* route_0x00 */ 2,
     /* timeOfDay_0x04 */ 0,
-    /* segments_0x08 */ init_8c03c58c,
+    /* segments_0x08 */ init_courseOmeDaySegments,
     /* ukn_0x0c */ init_8c03bfac,
     /* sceneParams_0x10 */ &init_8c03c2b4,
     /* ukn_0x14 */ 10,
@@ -1157,7 +1157,7 @@ CourseConfig init_courseOmeDay1_8c03d254 = {
 CourseConfig init_courseOmeDay2_8c03d2bc = {
     /* route_0x00 */ 2,
     /* timeOfDay_0x04 */ 0,
-    /* segments_0x08 */ init_8c03c58c,
+    /* segments_0x08 */ init_courseOmeDaySegments,
     /* ukn_0x0c */ init_8c03bfac,
     /* sceneParams_0x10 */ &init_8c03c2b4,
     /* ukn_0x14 */ 10,
@@ -1188,7 +1188,7 @@ CourseConfig init_courseOmeDay2_8c03d2bc = {
 CourseConfig init_courseOmeEvening0_8c03d324 = {
     /* route_0x00 */ 2,
     /* timeOfDay_0x04 */ 1,
-    /* segments_0x08 */ init_8c03c9ac,
+    /* segments_0x08 */ init_courseOmeEveningSegments,
     /* ukn_0x0c */ init_8c03c008,
     /* sceneParams_0x10 */ &init_8c03c33c,
     /* ukn_0x14 */ 10,
@@ -1219,7 +1219,7 @@ CourseConfig init_courseOmeEvening0_8c03d324 = {
 CourseConfig init_courseOmeEvening1_8c03d38c = {
     /* route_0x00 */ 2,
     /* timeOfDay_0x04 */ 1,
-    /* segments_0x08 */ init_8c03c9ac,
+    /* segments_0x08 */ init_courseOmeEveningSegments,
     /* ukn_0x0c */ init_8c03c008,
     /* sceneParams_0x10 */ &init_8c03c33c,
     /* ukn_0x14 */ 10,
@@ -1250,7 +1250,7 @@ CourseConfig init_courseOmeEvening1_8c03d38c = {
 CourseConfig init_courseOmeEvening2_8c03d3f4 = {
     /* route_0x00 */ 2,
     /* timeOfDay_0x04 */ 1,
-    /* segments_0x08 */ init_8c03c9ac,
+    /* segments_0x08 */ init_courseOmeEveningSegments,
     /* ukn_0x0c */ init_8c03c008,
     /* sceneParams_0x10 */ &init_8c03c33c,
     /* ukn_0x14 */ 10,
@@ -1281,7 +1281,7 @@ CourseConfig init_courseOmeEvening2_8c03d3f4 = {
 CourseConfig init_courseOmeNight0_8c03d45c = {
     /* route_0x00 */ 2,
     /* timeOfDay_0x04 */ 2,
-    /* segments_0x08 */ init_8c03cdcc,
+    /* segments_0x08 */ init_courseOmeNightSegments,
     /* ukn_0x0c */ init_8c03c064,
     /* sceneParams_0x10 */ &init_8c03c3c4,
     /* ukn_0x14 */ 10,
@@ -1312,7 +1312,7 @@ CourseConfig init_courseOmeNight0_8c03d45c = {
 CourseConfig init_courseOmeNight1_8c03d4c4 = {
     /* route_0x00 */ 2,
     /* timeOfDay_0x04 */ 2,
-    /* segments_0x08 */ init_8c03cdcc,
+    /* segments_0x08 */ init_courseOmeNightSegments,
     /* ukn_0x0c */ init_8c03c064,
     /* sceneParams_0x10 */ &init_8c03c3c4,
     /* ukn_0x14 */ 10,
@@ -1343,7 +1343,7 @@ CourseConfig init_courseOmeNight1_8c03d4c4 = {
 CourseConfig init_courseOmeNight2_8c03d52c = {
     /* route_0x00 */ 2,
     /* timeOfDay_0x04 */ 2,
-    /* segments_0x08 */ init_8c03cdcc,
+    /* segments_0x08 */ init_courseOmeNightSegments,
     /* ukn_0x0c */ init_8c03c064,
     /* sceneParams_0x10 */ &init_8c03c3c4,
     /* ukn_0x14 */ 10,
@@ -1413,49 +1413,49 @@ STATIC Uint8 init_8c03d7b3[6] = { 0x17, 0x18, 0x19, 0x1a, 0x1b, 0xff };
 STATIC Uint8 init_8c03d7b9[5] = { 0x1b, 0x1c, 0x1d, 0x1e, 0xff };
 STATIC Uint8 init_8c03d7be[4] = { 0x1e, 0x1f, 0x20, 0xff };
 STATIC Uint8 init_8c03d7c2[6] = { 0x20, 0x21, 0x22, 0xff, 0x00, 0x00 };
-STATIC char *init_8c03d7c8[4] = {
+STATIC char *init_courseShinjukuSeg0PacFiles[4] = {
     "s_road0.pac",
     "s_machi0.pac",
     "kousok00_FF_kousok00_0.pac",
     "s_dummy.pac",
 };
-STATIC char *init_8c03d7d8[4] = {
+STATIC char *init_courseShinjukuSeg3PacFiles[4] = {
     "s_road1.pac",
     "s_machi1.pac",
     "kousok00_FF_kousok00_1.pac",
     "s_dummy.pac",
 };
-STATIC char *init_8c03d7e8[4] = {
+STATIC char *init_courseShinjukuSeg5PacFiles[4] = {
     "s_road2.pac",
     "s_machi2.pac",
     "kousok00_FF_kousok00_2.pac",
     "s_dummy.pac",
 };
-STATIC char *init_8c03d7f8[4] = {
+STATIC char *init_courseShinjukuSeg10PacFiles[4] = {
     "s_road3.pac",
     "s_machi3.pac",
     "kousok00_FF_kousok00_3.pac",
     "s_dummy.pac",
 };
-STATIC char *init_8c03d808[4] = {
+STATIC char *init_courseShinjukuSeg15PacFiles[4] = {
     "s_road4.pac",
     "s_machi4.pac",
     "kousok00_FF_kousok00_4.pac",
     "s_dummy.pac",
 };
-STATIC char *init_8c03d818[4] = {
+STATIC char *init_courseShinjukuSeg18PacFiles[4] = {
     "s_road5.pac",
     "s_machi5.pac",
     "kousok00_FF_kousok00_5.pac",
     "s_dummy.pac",
 };
-STATIC char *init_8c03d828[4] = {
+STATIC char *init_courseShinjukuSeg20PacFiles[4] = {
     "s_road6.pac",
     "s_machi6.pac",
     "kousok00_FF_kousok00_6.pac",
     "s_dummy.pac",
 };
-STATIC char *init_8c03d838[4] = {
+STATIC char *init_courseShinjukuSeg21PacFiles[4] = {
     "s_road7.pac",
     "s_machi7.pac",
     "kousok00_FF_kousok00_7.pac",
@@ -1971,7 +1971,7 @@ STATIC IntPtr init_8c03e16c[8] = {
     { /* count */ -1, /* ptr */ 0 },
 };
 
-CourseSegment init_8c03e1ac[24] = {
+CourseSegment init_courseShinjukuDay0Segments[24] = {
     {   /* [0] */
         /* ukn_0x00, ukn_0x02, ukn_0x04, ukn_0x06 */ 0x0002, 0x00f9, 0x0000, 0x0093,
         /* ukn_0x08 */ init_8c03d6b8,
@@ -1980,7 +1980,7 @@ CourseSegment init_8c03e1ac[24] = {
         /* ukn_0x14 */ init_8c03d794,
         /* pedestrianModelList_0x18 */ init_8c03d6a8,
         /* sceneObjectList_0x1c */ init_8c03dd4c,
-        /* datFilenames_0x20 */ init_8c03d7c8,
+        /* datFilenames_0x20 */ init_courseShinjukuSeg0PacFiles,
         /* fog_0x24 */ &init_8c03d9e0,
         /* modelFiles_0x28 */ init_8c03da1c,
     },
@@ -2016,7 +2016,7 @@ CourseSegment init_8c03e1ac[24] = {
         /* ukn_0x14 */ init_8c03d79c,
         /* pedestrianModelList_0x18 */ NULL,
         /* sceneObjectList_0x1c */ init_8c03dd94,
-        /* datFilenames_0x20 */ init_8c03d7d8,
+        /* datFilenames_0x20 */ init_courseShinjukuSeg3PacFiles,
         /* fog_0x24 */ NULL,
         /* modelFiles_0x28 */ NULL,
     },
@@ -2040,7 +2040,7 @@ CourseSegment init_8c03e1ac[24] = {
         /* ukn_0x14 */ init_8c03d7a2,
         /* pedestrianModelList_0x18 */ NULL,
         /* sceneObjectList_0x1c */ init_8c03dd3c,
-        /* datFilenames_0x20 */ init_8c03d7e8,
+        /* datFilenames_0x20 */ init_courseShinjukuSeg5PacFiles,
         /* fog_0x24 */ NULL,
         /* modelFiles_0x28 */ NULL,
     },
@@ -2100,7 +2100,7 @@ CourseSegment init_8c03e1ac[24] = {
         /* ukn_0x14 */ init_8c03d7ac,
         /* pedestrianModelList_0x18 */ NULL,
         /* sceneObjectList_0x1c */ init_8c03dd2c,
-        /* datFilenames_0x20 */ init_8c03d7f8,
+        /* datFilenames_0x20 */ init_courseShinjukuSeg10PacFiles,
         /* fog_0x24 */ NULL,
         /* modelFiles_0x28 */ NULL,
     },
@@ -2160,7 +2160,7 @@ CourseSegment init_8c03e1ac[24] = {
         /* ukn_0x14 */ init_8c03d7b3,
         /* pedestrianModelList_0x18 */ NULL,
         /* sceneObjectList_0x1c */ init_8c03de94,
-        /* datFilenames_0x20 */ init_8c03d808,
+        /* datFilenames_0x20 */ init_courseShinjukuSeg15PacFiles,
         /* fog_0x24 */ NULL,
         /* modelFiles_0x28 */ NULL,
     },
@@ -2196,7 +2196,7 @@ CourseSegment init_8c03e1ac[24] = {
         /* ukn_0x14 */ init_8c03d7b9,
         /* pedestrianModelList_0x18 */ NULL,
         /* sceneObjectList_0x1c */ init_8c03debc,
-        /* datFilenames_0x20 */ init_8c03d818,
+        /* datFilenames_0x20 */ init_courseShinjukuSeg18PacFiles,
         /* fog_0x24 */ NULL,
         /* modelFiles_0x28 */ NULL,
     },
@@ -2220,7 +2220,7 @@ CourseSegment init_8c03e1ac[24] = {
         /* ukn_0x14 */ init_8c03d7be,
         /* pedestrianModelList_0x18 */ NULL,
         /* sceneObjectList_0x1c */ init_8c03dee4,
-        /* datFilenames_0x20 */ init_8c03d828,
+        /* datFilenames_0x20 */ init_courseShinjukuSeg20PacFiles,
         /* fog_0x24 */ NULL,
         /* modelFiles_0x28 */ NULL,
     },
@@ -2232,7 +2232,7 @@ CourseSegment init_8c03e1ac[24] = {
         /* ukn_0x14 */ init_8c03d7c2,
         /* pedestrianModelList_0x18 */ NULL,
         /* sceneObjectList_0x1c */ init_8c03ddec,
-        /* datFilenames_0x20 */ init_8c03d838,
+        /* datFilenames_0x20 */ init_courseShinjukuSeg21PacFiles,
         /* fog_0x24 */ NULL,
         /* modelFiles_0x28 */ NULL,
     },
@@ -2262,7 +2262,7 @@ CourseSegment init_8c03e1ac[24] = {
     },
 };
 
-CourseSegment init_8c03e5cc[24] = {
+CourseSegment init_courseShinjukuDay1Segments[24] = {
     {   /* [0] */
         /* ukn_0x00, ukn_0x02, ukn_0x04, ukn_0x06 */ 0x0002, 0x00f9, 0x0000, 0x0093,
         /* ukn_0x08 */ init_8c03d6b8,
@@ -2271,7 +2271,7 @@ CourseSegment init_8c03e5cc[24] = {
         /* ukn_0x14 */ init_8c03d794,
         /* pedestrianModelList_0x18 */ init_8c03d6a8,
         /* sceneObjectList_0x1c */ init_8c03dd4c,
-        /* datFilenames_0x20 */ init_8c03d7c8,
+        /* datFilenames_0x20 */ init_courseShinjukuSeg0PacFiles,
         /* fog_0x24 */ &init_8c03d9e0,
         /* modelFiles_0x28 */ init_8c03da1c,
     },
@@ -2307,7 +2307,7 @@ CourseSegment init_8c03e5cc[24] = {
         /* ukn_0x14 */ init_8c03d79c,
         /* pedestrianModelList_0x18 */ NULL,
         /* sceneObjectList_0x1c */ init_8c03dd94,
-        /* datFilenames_0x20 */ init_8c03d7d8,
+        /* datFilenames_0x20 */ init_courseShinjukuSeg3PacFiles,
         /* fog_0x24 */ NULL,
         /* modelFiles_0x28 */ NULL,
     },
@@ -2331,7 +2331,7 @@ CourseSegment init_8c03e5cc[24] = {
         /* ukn_0x14 */ init_8c03d7a2,
         /* pedestrianModelList_0x18 */ NULL,
         /* sceneObjectList_0x1c */ init_8c03dd3c,
-        /* datFilenames_0x20 */ init_8c03d7e8,
+        /* datFilenames_0x20 */ init_courseShinjukuSeg5PacFiles,
         /* fog_0x24 */ NULL,
         /* modelFiles_0x28 */ NULL,
     },
@@ -2391,7 +2391,7 @@ CourseSegment init_8c03e5cc[24] = {
         /* ukn_0x14 */ init_8c03d7ac,
         /* pedestrianModelList_0x18 */ NULL,
         /* sceneObjectList_0x1c */ init_8c03dd2c,
-        /* datFilenames_0x20 */ init_8c03d7f8,
+        /* datFilenames_0x20 */ init_courseShinjukuSeg10PacFiles,
         /* fog_0x24 */ NULL,
         /* modelFiles_0x28 */ NULL,
     },
@@ -2451,7 +2451,7 @@ CourseSegment init_8c03e5cc[24] = {
         /* ukn_0x14 */ init_8c03d7b3,
         /* pedestrianModelList_0x18 */ NULL,
         /* sceneObjectList_0x1c */ init_8c03de94,
-        /* datFilenames_0x20 */ init_8c03d808,
+        /* datFilenames_0x20 */ init_courseShinjukuSeg15PacFiles,
         /* fog_0x24 */ NULL,
         /* modelFiles_0x28 */ NULL,
     },
@@ -2487,7 +2487,7 @@ CourseSegment init_8c03e5cc[24] = {
         /* ukn_0x14 */ init_8c03d7b9,
         /* pedestrianModelList_0x18 */ NULL,
         /* sceneObjectList_0x1c */ init_8c03debc,
-        /* datFilenames_0x20 */ init_8c03d818,
+        /* datFilenames_0x20 */ init_courseShinjukuSeg18PacFiles,
         /* fog_0x24 */ NULL,
         /* modelFiles_0x28 */ NULL,
     },
@@ -2511,7 +2511,7 @@ CourseSegment init_8c03e5cc[24] = {
         /* ukn_0x14 */ init_8c03d7be,
         /* pedestrianModelList_0x18 */ NULL,
         /* sceneObjectList_0x1c */ init_8c03dee4,
-        /* datFilenames_0x20 */ init_8c03d828,
+        /* datFilenames_0x20 */ init_courseShinjukuSeg20PacFiles,
         /* fog_0x24 */ NULL,
         /* modelFiles_0x28 */ NULL,
     },
@@ -2523,7 +2523,7 @@ CourseSegment init_8c03e5cc[24] = {
         /* ukn_0x14 */ init_8c03d7c2,
         /* pedestrianModelList_0x18 */ NULL,
         /* sceneObjectList_0x1c */ init_8c03de24,
-        /* datFilenames_0x20 */ init_8c03d838,
+        /* datFilenames_0x20 */ init_courseShinjukuSeg21PacFiles,
         /* fog_0x24 */ NULL,
         /* modelFiles_0x28 */ NULL,
     },
@@ -2553,7 +2553,7 @@ CourseSegment init_8c03e5cc[24] = {
     },
 };
 
-CourseSegment init_8c03e9ec[24] = {
+CourseSegment init_courseShinjukuDay2Segments[24] = {
     {   /* [0] */
         /* ukn_0x00, ukn_0x02, ukn_0x04, ukn_0x06 */ 0x0002, 0x00f9, 0x0000, 0x0093,
         /* ukn_0x08 */ init_8c03d6b8,
@@ -2562,7 +2562,7 @@ CourseSegment init_8c03e9ec[24] = {
         /* ukn_0x14 */ init_8c03d794,
         /* pedestrianModelList_0x18 */ init_8c03d6a8,
         /* sceneObjectList_0x1c */ init_8c03dd4c,
-        /* datFilenames_0x20 */ init_8c03d7c8,
+        /* datFilenames_0x20 */ init_courseShinjukuSeg0PacFiles,
         /* fog_0x24 */ &init_8c03d9e0,
         /* modelFiles_0x28 */ init_8c03da1c,
     },
@@ -2598,7 +2598,7 @@ CourseSegment init_8c03e9ec[24] = {
         /* ukn_0x14 */ init_8c03d79c,
         /* pedestrianModelList_0x18 */ NULL,
         /* sceneObjectList_0x1c */ init_8c03dd94,
-        /* datFilenames_0x20 */ init_8c03d7d8,
+        /* datFilenames_0x20 */ init_courseShinjukuSeg3PacFiles,
         /* fog_0x24 */ NULL,
         /* modelFiles_0x28 */ NULL,
     },
@@ -2622,7 +2622,7 @@ CourseSegment init_8c03e9ec[24] = {
         /* ukn_0x14 */ init_8c03d7a2,
         /* pedestrianModelList_0x18 */ NULL,
         /* sceneObjectList_0x1c */ init_8c03dd3c,
-        /* datFilenames_0x20 */ init_8c03d7e8,
+        /* datFilenames_0x20 */ init_courseShinjukuSeg5PacFiles,
         /* fog_0x24 */ NULL,
         /* modelFiles_0x28 */ NULL,
     },
@@ -2682,7 +2682,7 @@ CourseSegment init_8c03e9ec[24] = {
         /* ukn_0x14 */ init_8c03d7ac,
         /* pedestrianModelList_0x18 */ NULL,
         /* sceneObjectList_0x1c */ init_8c03dd2c,
-        /* datFilenames_0x20 */ init_8c03d7f8,
+        /* datFilenames_0x20 */ init_courseShinjukuSeg10PacFiles,
         /* fog_0x24 */ NULL,
         /* modelFiles_0x28 */ NULL,
     },
@@ -2742,7 +2742,7 @@ CourseSegment init_8c03e9ec[24] = {
         /* ukn_0x14 */ init_8c03d7b3,
         /* pedestrianModelList_0x18 */ NULL,
         /* sceneObjectList_0x1c */ init_8c03de94,
-        /* datFilenames_0x20 */ init_8c03d808,
+        /* datFilenames_0x20 */ init_courseShinjukuSeg15PacFiles,
         /* fog_0x24 */ NULL,
         /* modelFiles_0x28 */ NULL,
     },
@@ -2778,7 +2778,7 @@ CourseSegment init_8c03e9ec[24] = {
         /* ukn_0x14 */ init_8c03d7b9,
         /* pedestrianModelList_0x18 */ NULL,
         /* sceneObjectList_0x1c */ init_8c03debc,
-        /* datFilenames_0x20 */ init_8c03d818,
+        /* datFilenames_0x20 */ init_courseShinjukuSeg18PacFiles,
         /* fog_0x24 */ NULL,
         /* modelFiles_0x28 */ NULL,
     },
@@ -2802,7 +2802,7 @@ CourseSegment init_8c03e9ec[24] = {
         /* ukn_0x14 */ init_8c03d7be,
         /* pedestrianModelList_0x18 */ NULL,
         /* sceneObjectList_0x1c */ init_8c03dee4,
-        /* datFilenames_0x20 */ init_8c03d828,
+        /* datFilenames_0x20 */ init_courseShinjukuSeg20PacFiles,
         /* fog_0x24 */ NULL,
         /* modelFiles_0x28 */ NULL,
     },
@@ -2814,7 +2814,7 @@ CourseSegment init_8c03e9ec[24] = {
         /* ukn_0x14 */ init_8c03d7c2,
         /* pedestrianModelList_0x18 */ NULL,
         /* sceneObjectList_0x1c */ init_8c03de5c,
-        /* datFilenames_0x20 */ init_8c03d838,
+        /* datFilenames_0x20 */ init_courseShinjukuSeg21PacFiles,
         /* fog_0x24 */ NULL,
         /* modelFiles_0x28 */ NULL,
     },
@@ -2844,7 +2844,7 @@ CourseSegment init_8c03e9ec[24] = {
     },
 };
 
-CourseSegment init_8c03ee0c[24] = {
+CourseSegment init_courseShinjukuEvening0Segments[24] = {
     {   /* [0] */
         /* ukn_0x00, ukn_0x02, ukn_0x04, ukn_0x06 */ 0x0002, 0x00f9, 0x0000, 0x0093,
         /* ukn_0x08 */ init_8c03d6b8,
@@ -2853,7 +2853,7 @@ CourseSegment init_8c03ee0c[24] = {
         /* ukn_0x14 */ init_8c03d794,
         /* pedestrianModelList_0x18 */ init_8c03d6a8,
         /* sceneObjectList_0x1c */ init_8c03dfa4,
-        /* datFilenames_0x20 */ init_8c03d7c8,
+        /* datFilenames_0x20 */ init_courseShinjukuSeg0PacFiles,
         /* fog_0x24 */ &init_8c03d9f4,
         /* modelFiles_0x28 */ init_8c03da2c,
     },
@@ -2889,7 +2889,7 @@ CourseSegment init_8c03ee0c[24] = {
         /* ukn_0x14 */ init_8c03d79c,
         /* pedestrianModelList_0x18 */ NULL,
         /* sceneObjectList_0x1c */ init_8c03dff4,
-        /* datFilenames_0x20 */ init_8c03d7d8,
+        /* datFilenames_0x20 */ init_courseShinjukuSeg3PacFiles,
         /* fog_0x24 */ NULL,
         /* modelFiles_0x28 */ NULL,
     },
@@ -2913,7 +2913,7 @@ CourseSegment init_8c03ee0c[24] = {
         /* ukn_0x14 */ init_8c03d7a2,
         /* pedestrianModelList_0x18 */ NULL,
         /* sceneObjectList_0x1c */ init_8c03dd3c,
-        /* datFilenames_0x20 */ init_8c03d7e8,
+        /* datFilenames_0x20 */ init_courseShinjukuSeg5PacFiles,
         /* fog_0x24 */ NULL,
         /* modelFiles_0x28 */ NULL,
     },
@@ -2973,7 +2973,7 @@ CourseSegment init_8c03ee0c[24] = {
         /* ukn_0x14 */ init_8c03d7ac,
         /* pedestrianModelList_0x18 */ NULL,
         /* sceneObjectList_0x1c */ init_8c03dd2c,
-        /* datFilenames_0x20 */ init_8c03d7f8,
+        /* datFilenames_0x20 */ init_courseShinjukuSeg10PacFiles,
         /* fog_0x24 */ NULL,
         /* modelFiles_0x28 */ NULL,
     },
@@ -3033,7 +3033,7 @@ CourseSegment init_8c03ee0c[24] = {
         /* ukn_0x14 */ init_8c03d7b3,
         /* pedestrianModelList_0x18 */ NULL,
         /* sceneObjectList_0x1c */ init_8c03de94,
-        /* datFilenames_0x20 */ init_8c03d808,
+        /* datFilenames_0x20 */ init_courseShinjukuSeg15PacFiles,
         /* fog_0x24 */ NULL,
         /* modelFiles_0x28 */ NULL,
     },
@@ -3069,7 +3069,7 @@ CourseSegment init_8c03ee0c[24] = {
         /* ukn_0x14 */ init_8c03d7b9,
         /* pedestrianModelList_0x18 */ NULL,
         /* sceneObjectList_0x1c */ init_8c03debc,
-        /* datFilenames_0x20 */ init_8c03d818,
+        /* datFilenames_0x20 */ init_courseShinjukuSeg18PacFiles,
         /* fog_0x24 */ NULL,
         /* modelFiles_0x28 */ NULL,
     },
@@ -3093,7 +3093,7 @@ CourseSegment init_8c03ee0c[24] = {
         /* ukn_0x14 */ init_8c03d7be,
         /* pedestrianModelList_0x18 */ NULL,
         /* sceneObjectList_0x1c */ init_8c03dee4,
-        /* datFilenames_0x20 */ init_8c03d828,
+        /* datFilenames_0x20 */ init_courseShinjukuSeg20PacFiles,
         /* fog_0x24 */ NULL,
         /* modelFiles_0x28 */ NULL,
     },
@@ -3105,7 +3105,7 @@ CourseSegment init_8c03ee0c[24] = {
         /* ukn_0x14 */ init_8c03d7c2,
         /* pedestrianModelList_0x18 */ NULL,
         /* sceneObjectList_0x1c */ init_8c03df6c,
-        /* datFilenames_0x20 */ init_8c03d838,
+        /* datFilenames_0x20 */ init_courseShinjukuSeg21PacFiles,
         /* fog_0x24 */ NULL,
         /* modelFiles_0x28 */ NULL,
     },
@@ -3135,7 +3135,7 @@ CourseSegment init_8c03ee0c[24] = {
     },
 };
 
-CourseSegment init_8c03f22c[24] = {
+CourseSegment init_courseShinjukuEvening1Segments[24] = {
     {   /* [0] */
         /* ukn_0x00, ukn_0x02, ukn_0x04, ukn_0x06 */ 0x0002, 0x00f9, 0x0000, 0x0093,
         /* ukn_0x08 */ init_8c03d6b8,
@@ -3144,7 +3144,7 @@ CourseSegment init_8c03f22c[24] = {
         /* ukn_0x14 */ init_8c03d794,
         /* pedestrianModelList_0x18 */ init_8c03d6a8,
         /* sceneObjectList_0x1c */ init_8c03dfa4,
-        /* datFilenames_0x20 */ init_8c03d7c8,
+        /* datFilenames_0x20 */ init_courseShinjukuSeg0PacFiles,
         /* fog_0x24 */ &init_8c03d9f4,
         /* modelFiles_0x28 */ init_8c03da2c,
     },
@@ -3180,7 +3180,7 @@ CourseSegment init_8c03f22c[24] = {
         /* ukn_0x14 */ init_8c03d79c,
         /* pedestrianModelList_0x18 */ NULL,
         /* sceneObjectList_0x1c */ init_8c03dff4,
-        /* datFilenames_0x20 */ init_8c03d7d8,
+        /* datFilenames_0x20 */ init_courseShinjukuSeg3PacFiles,
         /* fog_0x24 */ NULL,
         /* modelFiles_0x28 */ NULL,
     },
@@ -3204,7 +3204,7 @@ CourseSegment init_8c03f22c[24] = {
         /* ukn_0x14 */ init_8c03d7a2,
         /* pedestrianModelList_0x18 */ NULL,
         /* sceneObjectList_0x1c */ init_8c03dd3c,
-        /* datFilenames_0x20 */ init_8c03d7e8,
+        /* datFilenames_0x20 */ init_courseShinjukuSeg5PacFiles,
         /* fog_0x24 */ NULL,
         /* modelFiles_0x28 */ NULL,
     },
@@ -3264,7 +3264,7 @@ CourseSegment init_8c03f22c[24] = {
         /* ukn_0x14 */ init_8c03d7ac,
         /* pedestrianModelList_0x18 */ NULL,
         /* sceneObjectList_0x1c */ init_8c03dd2c,
-        /* datFilenames_0x20 */ init_8c03d7f8,
+        /* datFilenames_0x20 */ init_courseShinjukuSeg10PacFiles,
         /* fog_0x24 */ NULL,
         /* modelFiles_0x28 */ NULL,
     },
@@ -3324,7 +3324,7 @@ CourseSegment init_8c03f22c[24] = {
         /* ukn_0x14 */ init_8c03d7b3,
         /* pedestrianModelList_0x18 */ NULL,
         /* sceneObjectList_0x1c */ init_8c03de94,
-        /* datFilenames_0x20 */ init_8c03d808,
+        /* datFilenames_0x20 */ init_courseShinjukuSeg15PacFiles,
         /* fog_0x24 */ NULL,
         /* modelFiles_0x28 */ NULL,
     },
@@ -3360,7 +3360,7 @@ CourseSegment init_8c03f22c[24] = {
         /* ukn_0x14 */ init_8c03d7b9,
         /* pedestrianModelList_0x18 */ NULL,
         /* sceneObjectList_0x1c */ init_8c03debc,
-        /* datFilenames_0x20 */ init_8c03d818,
+        /* datFilenames_0x20 */ init_courseShinjukuSeg18PacFiles,
         /* fog_0x24 */ NULL,
         /* modelFiles_0x28 */ NULL,
     },
@@ -3384,7 +3384,7 @@ CourseSegment init_8c03f22c[24] = {
         /* ukn_0x14 */ init_8c03d7be,
         /* pedestrianModelList_0x18 */ NULL,
         /* sceneObjectList_0x1c */ init_8c03dee4,
-        /* datFilenames_0x20 */ init_8c03d828,
+        /* datFilenames_0x20 */ init_courseShinjukuSeg20PacFiles,
         /* fog_0x24 */ NULL,
         /* modelFiles_0x28 */ NULL,
     },
@@ -3396,7 +3396,7 @@ CourseSegment init_8c03f22c[24] = {
         /* ukn_0x14 */ init_8c03d7c2,
         /* pedestrianModelList_0x18 */ NULL,
         /* sceneObjectList_0x1c */ init_8c03df2c,
-        /* datFilenames_0x20 */ init_8c03d838,
+        /* datFilenames_0x20 */ init_courseShinjukuSeg21PacFiles,
         /* fog_0x24 */ NULL,
         /* modelFiles_0x28 */ NULL,
     },
@@ -3426,7 +3426,7 @@ CourseSegment init_8c03f22c[24] = {
     },
 };
 
-CourseSegment init_8c03f64c[24] = {
+CourseSegment init_courseShinjukuEvening2Segments[24] = {
     {   /* [0] */
         /* ukn_0x00, ukn_0x02, ukn_0x04, ukn_0x06 */ 0x0002, 0x00f9, 0x0000, 0x0093,
         /* ukn_0x08 */ init_8c03d6b8,
@@ -3435,7 +3435,7 @@ CourseSegment init_8c03f64c[24] = {
         /* ukn_0x14 */ init_8c03d794,
         /* pedestrianModelList_0x18 */ init_8c03d6a8,
         /* sceneObjectList_0x1c */ init_8c03dfa4,
-        /* datFilenames_0x20 */ init_8c03d7c8,
+        /* datFilenames_0x20 */ init_courseShinjukuSeg0PacFiles,
         /* fog_0x24 */ &init_8c03d9f4,
         /* modelFiles_0x28 */ init_8c03da2c,
     },
@@ -3471,7 +3471,7 @@ CourseSegment init_8c03f64c[24] = {
         /* ukn_0x14 */ init_8c03d79c,
         /* pedestrianModelList_0x18 */ NULL,
         /* sceneObjectList_0x1c */ init_8c03dff4,
-        /* datFilenames_0x20 */ init_8c03d7d8,
+        /* datFilenames_0x20 */ init_courseShinjukuSeg3PacFiles,
         /* fog_0x24 */ NULL,
         /* modelFiles_0x28 */ NULL,
     },
@@ -3495,7 +3495,7 @@ CourseSegment init_8c03f64c[24] = {
         /* ukn_0x14 */ init_8c03d7a2,
         /* pedestrianModelList_0x18 */ NULL,
         /* sceneObjectList_0x1c */ init_8c03dd3c,
-        /* datFilenames_0x20 */ init_8c03d7e8,
+        /* datFilenames_0x20 */ init_courseShinjukuSeg5PacFiles,
         /* fog_0x24 */ NULL,
         /* modelFiles_0x28 */ NULL,
     },
@@ -3555,7 +3555,7 @@ CourseSegment init_8c03f64c[24] = {
         /* ukn_0x14 */ init_8c03d7ac,
         /* pedestrianModelList_0x18 */ NULL,
         /* sceneObjectList_0x1c */ init_8c03dd2c,
-        /* datFilenames_0x20 */ init_8c03d7f8,
+        /* datFilenames_0x20 */ init_courseShinjukuSeg10PacFiles,
         /* fog_0x24 */ NULL,
         /* modelFiles_0x28 */ NULL,
     },
@@ -3615,7 +3615,7 @@ CourseSegment init_8c03f64c[24] = {
         /* ukn_0x14 */ init_8c03d7b3,
         /* pedestrianModelList_0x18 */ NULL,
         /* sceneObjectList_0x1c */ init_8c03de94,
-        /* datFilenames_0x20 */ init_8c03d808,
+        /* datFilenames_0x20 */ init_courseShinjukuSeg15PacFiles,
         /* fog_0x24 */ NULL,
         /* modelFiles_0x28 */ NULL,
     },
@@ -3651,7 +3651,7 @@ CourseSegment init_8c03f64c[24] = {
         /* ukn_0x14 */ init_8c03d7b9,
         /* pedestrianModelList_0x18 */ NULL,
         /* sceneObjectList_0x1c */ init_8c03debc,
-        /* datFilenames_0x20 */ init_8c03d818,
+        /* datFilenames_0x20 */ init_courseShinjukuSeg18PacFiles,
         /* fog_0x24 */ NULL,
         /* modelFiles_0x28 */ NULL,
     },
@@ -3675,7 +3675,7 @@ CourseSegment init_8c03f64c[24] = {
         /* ukn_0x14 */ init_8c03d7be,
         /* pedestrianModelList_0x18 */ NULL,
         /* sceneObjectList_0x1c */ init_8c03dee4,
-        /* datFilenames_0x20 */ init_8c03d828,
+        /* datFilenames_0x20 */ init_courseShinjukuSeg20PacFiles,
         /* fog_0x24 */ NULL,
         /* modelFiles_0x28 */ NULL,
     },
@@ -3687,7 +3687,7 @@ CourseSegment init_8c03f64c[24] = {
         /* ukn_0x14 */ init_8c03d7c2,
         /* pedestrianModelList_0x18 */ NULL,
         /* sceneObjectList_0x1c */ init_8c03df6c,
-        /* datFilenames_0x20 */ init_8c03d838,
+        /* datFilenames_0x20 */ init_courseShinjukuSeg21PacFiles,
         /* fog_0x24 */ NULL,
         /* modelFiles_0x28 */ NULL,
     },
@@ -3717,7 +3717,7 @@ CourseSegment init_8c03f64c[24] = {
     },
 };
 
-CourseSegment init_8c03fa6c[24] = {
+CourseSegment init_courseShinjukuNight0Segments[24] = {
     {   /* [0] */
         /* ukn_0x00, ukn_0x02, ukn_0x04, ukn_0x06 */ 0x0002, 0x00f9, 0x0000, 0x0093,
         /* ukn_0x08 */ init_8c03d6b8,
@@ -3726,7 +3726,7 @@ CourseSegment init_8c03fa6c[24] = {
         /* ukn_0x14 */ init_8c03d794,
         /* pedestrianModelList_0x18 */ init_8c03d6a8,
         /* sceneObjectList_0x1c */ init_8c03dfa4,
-        /* datFilenames_0x20 */ init_8c03d7c8,
+        /* datFilenames_0x20 */ init_courseShinjukuSeg0PacFiles,
         /* fog_0x24 */ &init_8c03da08,
         /* modelFiles_0x28 */ init_8c03da3c,
     },
@@ -3762,7 +3762,7 @@ CourseSegment init_8c03fa6c[24] = {
         /* ukn_0x14 */ init_8c03d79c,
         /* pedestrianModelList_0x18 */ NULL,
         /* sceneObjectList_0x1c */ init_8c03dff4,
-        /* datFilenames_0x20 */ init_8c03d7d8,
+        /* datFilenames_0x20 */ init_courseShinjukuSeg3PacFiles,
         /* fog_0x24 */ NULL,
         /* modelFiles_0x28 */ NULL,
     },
@@ -3786,7 +3786,7 @@ CourseSegment init_8c03fa6c[24] = {
         /* ukn_0x14 */ init_8c03d7a2,
         /* pedestrianModelList_0x18 */ NULL,
         /* sceneObjectList_0x1c */ init_8c03dd3c,
-        /* datFilenames_0x20 */ init_8c03d7e8,
+        /* datFilenames_0x20 */ init_courseShinjukuSeg5PacFiles,
         /* fog_0x24 */ NULL,
         /* modelFiles_0x28 */ NULL,
     },
@@ -3846,7 +3846,7 @@ CourseSegment init_8c03fa6c[24] = {
         /* ukn_0x14 */ init_8c03d7ac,
         /* pedestrianModelList_0x18 */ NULL,
         /* sceneObjectList_0x1c */ init_8c03dd2c,
-        /* datFilenames_0x20 */ init_8c03d7f8,
+        /* datFilenames_0x20 */ init_courseShinjukuSeg10PacFiles,
         /* fog_0x24 */ NULL,
         /* modelFiles_0x28 */ NULL,
     },
@@ -3906,7 +3906,7 @@ CourseSegment init_8c03fa6c[24] = {
         /* ukn_0x14 */ init_8c03d7b3,
         /* pedestrianModelList_0x18 */ NULL,
         /* sceneObjectList_0x1c */ init_8c03e054,
-        /* datFilenames_0x20 */ init_8c03d808,
+        /* datFilenames_0x20 */ init_courseShinjukuSeg15PacFiles,
         /* fog_0x24 */ NULL,
         /* modelFiles_0x28 */ NULL,
     },
@@ -3942,7 +3942,7 @@ CourseSegment init_8c03fa6c[24] = {
         /* ukn_0x14 */ init_8c03d7b9,
         /* pedestrianModelList_0x18 */ NULL,
         /* sceneObjectList_0x1c */ init_8c03e07c,
-        /* datFilenames_0x20 */ init_8c03d818,
+        /* datFilenames_0x20 */ init_courseShinjukuSeg18PacFiles,
         /* fog_0x24 */ NULL,
         /* modelFiles_0x28 */ NULL,
     },
@@ -3966,7 +3966,7 @@ CourseSegment init_8c03fa6c[24] = {
         /* ukn_0x14 */ init_8c03d7be,
         /* pedestrianModelList_0x18 */ NULL,
         /* sceneObjectList_0x1c */ init_8c03e0ac,
-        /* datFilenames_0x20 */ init_8c03d828,
+        /* datFilenames_0x20 */ init_courseShinjukuSeg20PacFiles,
         /* fog_0x24 */ NULL,
         /* modelFiles_0x28 */ NULL,
     },
@@ -3978,7 +3978,7 @@ CourseSegment init_8c03fa6c[24] = {
         /* ukn_0x14 */ init_8c03d7c2,
         /* pedestrianModelList_0x18 */ NULL,
         /* sceneObjectList_0x1c */ init_8c03e0fc,
-        /* datFilenames_0x20 */ init_8c03d838,
+        /* datFilenames_0x20 */ init_courseShinjukuSeg21PacFiles,
         /* fog_0x24 */ NULL,
         /* modelFiles_0x28 */ NULL,
     },
@@ -4008,7 +4008,7 @@ CourseSegment init_8c03fa6c[24] = {
     },
 };
 
-CourseSegment init_8c03fe8c[24] = {
+CourseSegment init_courseShinjukuNight1Segments[24] = {
     {   /* [0] */
         /* ukn_0x00, ukn_0x02, ukn_0x04, ukn_0x06 */ 0x0002, 0x00f9, 0x0000, 0x0093,
         /* ukn_0x08 */ init_8c03d6b8,
@@ -4017,7 +4017,7 @@ CourseSegment init_8c03fe8c[24] = {
         /* ukn_0x14 */ init_8c03d794,
         /* pedestrianModelList_0x18 */ init_8c03d6a8,
         /* sceneObjectList_0x1c */ init_8c03dfa4,
-        /* datFilenames_0x20 */ init_8c03d7c8,
+        /* datFilenames_0x20 */ init_courseShinjukuSeg0PacFiles,
         /* fog_0x24 */ &init_8c03da08,
         /* modelFiles_0x28 */ init_8c03da3c,
     },
@@ -4053,7 +4053,7 @@ CourseSegment init_8c03fe8c[24] = {
         /* ukn_0x14 */ init_8c03d79c,
         /* pedestrianModelList_0x18 */ NULL,
         /* sceneObjectList_0x1c */ init_8c03dff4,
-        /* datFilenames_0x20 */ init_8c03d7d8,
+        /* datFilenames_0x20 */ init_courseShinjukuSeg3PacFiles,
         /* fog_0x24 */ NULL,
         /* modelFiles_0x28 */ NULL,
     },
@@ -4077,7 +4077,7 @@ CourseSegment init_8c03fe8c[24] = {
         /* ukn_0x14 */ init_8c03d7a2,
         /* pedestrianModelList_0x18 */ NULL,
         /* sceneObjectList_0x1c */ init_8c03dd3c,
-        /* datFilenames_0x20 */ init_8c03d7e8,
+        /* datFilenames_0x20 */ init_courseShinjukuSeg5PacFiles,
         /* fog_0x24 */ NULL,
         /* modelFiles_0x28 */ NULL,
     },
@@ -4137,7 +4137,7 @@ CourseSegment init_8c03fe8c[24] = {
         /* ukn_0x14 */ init_8c03d7ac,
         /* pedestrianModelList_0x18 */ NULL,
         /* sceneObjectList_0x1c */ init_8c03dd2c,
-        /* datFilenames_0x20 */ init_8c03d7f8,
+        /* datFilenames_0x20 */ init_courseShinjukuSeg10PacFiles,
         /* fog_0x24 */ NULL,
         /* modelFiles_0x28 */ NULL,
     },
@@ -4197,7 +4197,7 @@ CourseSegment init_8c03fe8c[24] = {
         /* ukn_0x14 */ init_8c03d7b3,
         /* pedestrianModelList_0x18 */ NULL,
         /* sceneObjectList_0x1c */ init_8c03e054,
-        /* datFilenames_0x20 */ init_8c03d808,
+        /* datFilenames_0x20 */ init_courseShinjukuSeg15PacFiles,
         /* fog_0x24 */ NULL,
         /* modelFiles_0x28 */ NULL,
     },
@@ -4233,7 +4233,7 @@ CourseSegment init_8c03fe8c[24] = {
         /* ukn_0x14 */ init_8c03d7b9,
         /* pedestrianModelList_0x18 */ NULL,
         /* sceneObjectList_0x1c */ init_8c03e07c,
-        /* datFilenames_0x20 */ init_8c03d818,
+        /* datFilenames_0x20 */ init_courseShinjukuSeg18PacFiles,
         /* fog_0x24 */ NULL,
         /* modelFiles_0x28 */ NULL,
     },
@@ -4257,7 +4257,7 @@ CourseSegment init_8c03fe8c[24] = {
         /* ukn_0x14 */ init_8c03d7be,
         /* pedestrianModelList_0x18 */ NULL,
         /* sceneObjectList_0x1c */ init_8c03e0ac,
-        /* datFilenames_0x20 */ init_8c03d828,
+        /* datFilenames_0x20 */ init_courseShinjukuSeg20PacFiles,
         /* fog_0x24 */ NULL,
         /* modelFiles_0x28 */ NULL,
     },
@@ -4269,7 +4269,7 @@ CourseSegment init_8c03fe8c[24] = {
         /* ukn_0x14 */ init_8c03d7c2,
         /* pedestrianModelList_0x18 */ NULL,
         /* sceneObjectList_0x1c */ init_8c03e13c,
-        /* datFilenames_0x20 */ init_8c03d838,
+        /* datFilenames_0x20 */ init_courseShinjukuSeg21PacFiles,
         /* fog_0x24 */ NULL,
         /* modelFiles_0x28 */ NULL,
     },
@@ -4299,7 +4299,7 @@ CourseSegment init_8c03fe8c[24] = {
     },
 };
 
-CourseSegment init_8c0402ac[24] = {
+CourseSegment init_courseShinjukuNight2Segments[24] = {
     {   /* [0] */
         /* ukn_0x00, ukn_0x02, ukn_0x04, ukn_0x06 */ 0x0002, 0x00f9, 0x0000, 0x0093,
         /* ukn_0x08 */ init_8c03d6b8,
@@ -4308,7 +4308,7 @@ CourseSegment init_8c0402ac[24] = {
         /* ukn_0x14 */ init_8c03d794,
         /* pedestrianModelList_0x18 */ init_8c03d6a8,
         /* sceneObjectList_0x1c */ init_8c03dfa4,
-        /* datFilenames_0x20 */ init_8c03d7c8,
+        /* datFilenames_0x20 */ init_courseShinjukuSeg0PacFiles,
         /* fog_0x24 */ &init_8c03da08,
         /* modelFiles_0x28 */ init_8c03da3c,
     },
@@ -4344,7 +4344,7 @@ CourseSegment init_8c0402ac[24] = {
         /* ukn_0x14 */ init_8c03d79c,
         /* pedestrianModelList_0x18 */ NULL,
         /* sceneObjectList_0x1c */ init_8c03dff4,
-        /* datFilenames_0x20 */ init_8c03d7d8,
+        /* datFilenames_0x20 */ init_courseShinjukuSeg3PacFiles,
         /* fog_0x24 */ NULL,
         /* modelFiles_0x28 */ NULL,
     },
@@ -4368,7 +4368,7 @@ CourseSegment init_8c0402ac[24] = {
         /* ukn_0x14 */ init_8c03d7a2,
         /* pedestrianModelList_0x18 */ NULL,
         /* sceneObjectList_0x1c */ init_8c03dd3c,
-        /* datFilenames_0x20 */ init_8c03d7e8,
+        /* datFilenames_0x20 */ init_courseShinjukuSeg5PacFiles,
         /* fog_0x24 */ NULL,
         /* modelFiles_0x28 */ NULL,
     },
@@ -4428,7 +4428,7 @@ CourseSegment init_8c0402ac[24] = {
         /* ukn_0x14 */ init_8c03d7ac,
         /* pedestrianModelList_0x18 */ NULL,
         /* sceneObjectList_0x1c */ init_8c03dd2c,
-        /* datFilenames_0x20 */ init_8c03d7f8,
+        /* datFilenames_0x20 */ init_courseShinjukuSeg10PacFiles,
         /* fog_0x24 */ NULL,
         /* modelFiles_0x28 */ NULL,
     },
@@ -4488,7 +4488,7 @@ CourseSegment init_8c0402ac[24] = {
         /* ukn_0x14 */ init_8c03d7b3,
         /* pedestrianModelList_0x18 */ NULL,
         /* sceneObjectList_0x1c */ init_8c03e054,
-        /* datFilenames_0x20 */ init_8c03d808,
+        /* datFilenames_0x20 */ init_courseShinjukuSeg15PacFiles,
         /* fog_0x24 */ NULL,
         /* modelFiles_0x28 */ NULL,
     },
@@ -4524,7 +4524,7 @@ CourseSegment init_8c0402ac[24] = {
         /* ukn_0x14 */ init_8c03d7b9,
         /* pedestrianModelList_0x18 */ NULL,
         /* sceneObjectList_0x1c */ init_8c03e07c,
-        /* datFilenames_0x20 */ init_8c03d818,
+        /* datFilenames_0x20 */ init_courseShinjukuSeg18PacFiles,
         /* fog_0x24 */ NULL,
         /* modelFiles_0x28 */ NULL,
     },
@@ -4548,7 +4548,7 @@ CourseSegment init_8c0402ac[24] = {
         /* ukn_0x14 */ init_8c03d7be,
         /* pedestrianModelList_0x18 */ NULL,
         /* sceneObjectList_0x1c */ init_8c03e0ac,
-        /* datFilenames_0x20 */ init_8c03d828,
+        /* datFilenames_0x20 */ init_courseShinjukuSeg20PacFiles,
         /* fog_0x24 */ NULL,
         /* modelFiles_0x28 */ NULL,
     },
@@ -4560,7 +4560,7 @@ CourseSegment init_8c0402ac[24] = {
         /* ukn_0x14 */ init_8c03d7c2,
         /* pedestrianModelList_0x18 */ NULL,
         /* sceneObjectList_0x1c */ init_8c03e16c,
-        /* datFilenames_0x20 */ init_8c03d838,
+        /* datFilenames_0x20 */ init_courseShinjukuSeg21PacFiles,
         /* fog_0x24 */ NULL,
         /* modelFiles_0x28 */ NULL,
     },
@@ -4593,7 +4593,7 @@ CourseSegment init_8c0402ac[24] = {
 CourseConfig init_courseShinjukuDay0_8c0406cc = {
     /* route_0x00 */ 0,
     /* timeOfDay_0x04 */ 0,
-    /* segments_0x08 */ init_8c03e1ac,
+    /* segments_0x08 */ init_courseShinjukuDay0Segments,
     /* ukn_0x0c */ init_8c03d594,
     /* sceneParams_0x10 */ &init_8c03d848,
     /* ukn_0x14 */ 9,
@@ -4624,7 +4624,7 @@ CourseConfig init_courseShinjukuDay0_8c0406cc = {
 CourseConfig init_courseShinjukuDay1_8c040734 = {
     /* route_0x00 */ 0,
     /* timeOfDay_0x04 */ 0,
-    /* segments_0x08 */ init_8c03e5cc,
+    /* segments_0x08 */ init_courseShinjukuDay1Segments,
     /* ukn_0x0c */ init_8c03d594,
     /* sceneParams_0x10 */ &init_8c03d848,
     /* ukn_0x14 */ 9,
@@ -4655,7 +4655,7 @@ CourseConfig init_courseShinjukuDay1_8c040734 = {
 CourseConfig init_courseShinjukuDay2_8c04079c = {
     /* route_0x00 */ 0,
     /* timeOfDay_0x04 */ 0,
-    /* segments_0x08 */ init_8c03e9ec,
+    /* segments_0x08 */ init_courseShinjukuDay2Segments,
     /* ukn_0x0c */ init_8c03d594,
     /* sceneParams_0x10 */ &init_8c03d848,
     /* ukn_0x14 */ 9,
@@ -4686,7 +4686,7 @@ CourseConfig init_courseShinjukuDay2_8c04079c = {
 CourseConfig init_courseShinjukuEvening0_8c040804 = {
     /* route_0x00 */ 0,
     /* timeOfDay_0x04 */ 1,
-    /* segments_0x08 */ init_8c03ee0c,
+    /* segments_0x08 */ init_courseShinjukuEvening0Segments,
     /* ukn_0x0c */ init_8c03d5f0,
     /* sceneParams_0x10 */ &init_8c03d8d0,
     /* ukn_0x14 */ 9,
@@ -4717,7 +4717,7 @@ CourseConfig init_courseShinjukuEvening0_8c040804 = {
 CourseConfig init_courseShinjukuEvening1_8c04086c = {
     /* route_0x00 */ 0,
     /* timeOfDay_0x04 */ 1,
-    /* segments_0x08 */ init_8c03f22c,
+    /* segments_0x08 */ init_courseShinjukuEvening1Segments,
     /* ukn_0x0c */ init_8c03d5f0,
     /* sceneParams_0x10 */ &init_8c03d8d0,
     /* ukn_0x14 */ 9,
@@ -4748,7 +4748,7 @@ CourseConfig init_courseShinjukuEvening1_8c04086c = {
 CourseConfig init_courseShinjukuEvening2_8c0408d4 = {
     /* route_0x00 */ 0,
     /* timeOfDay_0x04 */ 1,
-    /* segments_0x08 */ init_8c03f64c,
+    /* segments_0x08 */ init_courseShinjukuEvening2Segments,
     /* ukn_0x0c */ init_8c03d5f0,
     /* sceneParams_0x10 */ &init_8c03d8d0,
     /* ukn_0x14 */ 9,
@@ -4779,7 +4779,7 @@ CourseConfig init_courseShinjukuEvening2_8c0408d4 = {
 CourseConfig init_courseShinjukuNight0_8c04093c = {
     /* route_0x00 */ 0,
     /* timeOfDay_0x04 */ 2,
-    /* segments_0x08 */ init_8c03fa6c,
+    /* segments_0x08 */ init_courseShinjukuNight0Segments,
     /* ukn_0x0c */ init_8c03d64c,
     /* sceneParams_0x10 */ &init_8c03d958,
     /* ukn_0x14 */ 9,
@@ -4810,7 +4810,7 @@ CourseConfig init_courseShinjukuNight0_8c04093c = {
 CourseConfig init_courseShinjukuNight1_8c0409a4 = {
     /* route_0x00 */ 0,
     /* timeOfDay_0x04 */ 2,
-    /* segments_0x08 */ init_8c03fe8c,
+    /* segments_0x08 */ init_courseShinjukuNight1Segments,
     /* ukn_0x0c */ init_8c03d64c,
     /* sceneParams_0x10 */ &init_8c03d958,
     /* ukn_0x14 */ 9,
@@ -4841,7 +4841,7 @@ CourseConfig init_courseShinjukuNight1_8c0409a4 = {
 CourseConfig init_courseShinjukuNight2_8c040a0c = {
     /* route_0x00 */ 0,
     /* timeOfDay_0x04 */ 2,
-    /* segments_0x08 */ init_8c0402ac,
+    /* segments_0x08 */ init_courseShinjukuNight2Segments,
     /* ukn_0x0c */ init_8c03d64c,
     /* sceneParams_0x10 */ &init_8c03d958,
     /* ukn_0x14 */ 9,
@@ -4892,25 +4892,25 @@ STATIC Uint8 init_8c040bb8[32] = { 0x18, 0x11, 0x1c, 0x17, 0x18, 0x13, 0x18, 0x1
 STATIC Uint8 init_8c040bd8[8] = { 0x0c, 0x14, 0x13, 0x20, 0x00, 0x00, 0x00, 0x00 };
 STATIC Uint8 init_8c040be0[8] = { 0x02, 0x06, 0x15, 0x16, 0x00, 0x00, 0x00, 0x00 };
 STATIC Uint8 init_8c040be8[60] = { 0x01, 0x01, 0x08, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0xff, 0x06, 0x07, 0x08, 0x09, 0x0a, 0xff, 0x0a, 0x0b, 0x0c, 0x0d, 0x0e, 0x0f, 0x10, 0x11, 0x12, 0xff, 0x12, 0x13, 0x14, 0x15, 0x16, 0x17, 0xff, 0x17, 0x18, 0x19, 0x1a, 0x1b, 0xff, 0x1b, 0x1c, 0x1d, 0x1e, 0xff, 0x1e, 0x1f, 0x20, 0xff, 0x20, 0x21, 0x22, 0xff, 0x00, 0x00 };
-STATIC char *init_8c040c24[4] = {
+STATIC char *init_courseWanganSeg0PacFiles[4] = {
     "w_road0.pac",
     "w_machi0.pac",
     "w_uv00_FF_wd_uv00_0.pac",
     "w_uv01_FF_wd_uv01_0.pac",
 };
-STATIC char *init_8c040c34[4] = {
+STATIC char *init_courseWanganSeg5PacFiles[4] = {
     "w_road1.pac",
     "w_machi1.pac",
     "w_uv00_FF_wd_uv00_1.pac",
     "w_uv01_FF_wd_uv01_1.pac",
 };
-STATIC char *init_8c040c44[4] = {
+STATIC char *init_courseWanganSeg10PacFiles[4] = {
     "w_road2.pac",
     "w_machi2.pac",
     "w_uv00_FF_wd_uv00_2.pac",
     "w_uv01_FF_wd_uv01_2.pac",
 };
-STATIC char *init_8c040c54[4] = {
+STATIC char *init_courseWanganSeg12PacFiles[4] = {
     "w_road3.pac",
     "w_machi3.pac",
     "w_uv00_FF_wd_uv00_3.pac",
@@ -5317,7 +5317,7 @@ STATIC IntPtr init_8c04134c[7] = {
 };
 
 
-CourseSegment init_8c041384[17] = {
+CourseSegment init_courseWanganDaySegments[17] = {
     {   /* [0] */
         /* ukn_0x00, ukn_0x02, ukn_0x04, ukn_0x06 */ 0x0002, 0x0000, 0x0000, 0x0000,
         /* ukn_0x08 */ init_8c040b44,
@@ -5326,7 +5326,7 @@ CourseSegment init_8c041384[17] = {
         /* ukn_0x14 */ NULL,
         /* pedestrianModelList_0x18 */ init_8c040b34,
         /* sceneObjectList_0x1c */ init_8c04122c,
-        /* datFilenames_0x20 */ init_8c040c24,
+        /* datFilenames_0x20 */ init_courseWanganSeg0PacFiles,
         /* fog_0x24 */ &init_8c040c64,
         /* modelFiles_0x28 */ init_8c040e38,
     },
@@ -5386,7 +5386,7 @@ CourseSegment init_8c041384[17] = {
         /* ukn_0x14 */ NULL,
         /* pedestrianModelList_0x18 */ NULL,
         /* sceneObjectList_0x1c */ init_8c04113c,
-        /* datFilenames_0x20 */ init_8c040c34,
+        /* datFilenames_0x20 */ init_courseWanganSeg5PacFiles,
         /* fog_0x24 */ NULL,
         /* modelFiles_0x28 */ NULL,
     },
@@ -5446,7 +5446,7 @@ CourseSegment init_8c041384[17] = {
         /* ukn_0x14 */ NULL,
         /* pedestrianModelList_0x18 */ NULL,
         /* sceneObjectList_0x1c */ init_8c0411ac,
-        /* datFilenames_0x20 */ init_8c040c44,
+        /* datFilenames_0x20 */ init_courseWanganSeg10PacFiles,
         /* fog_0x24 */ NULL,
         /* modelFiles_0x28 */ NULL,
     },
@@ -5470,7 +5470,7 @@ CourseSegment init_8c041384[17] = {
         /* ukn_0x14 */ NULL,
         /* pedestrianModelList_0x18 */ NULL,
         /* sceneObjectList_0x1c */ init_8c0411ec,
-        /* datFilenames_0x20 */ init_8c040c54,
+        /* datFilenames_0x20 */ init_courseWanganSeg12PacFiles,
         /* fog_0x24 */ NULL,
         /* modelFiles_0x28 */ init_8c040e48,
     },
@@ -5524,7 +5524,7 @@ CourseSegment init_8c041384[17] = {
     },
 };
 
-CourseSegment init_8c041670[17] = {
+CourseSegment init_courseWanganEveningSegments[17] = {
     {   /* [0] */
         /* ukn_0x00, ukn_0x02, ukn_0x04, ukn_0x06 */ 0x0002, 0x0000, 0x0000, 0x0000,
         /* ukn_0x08 */ init_8c040b44,
@@ -5533,7 +5533,7 @@ CourseSegment init_8c041670[17] = {
         /* ukn_0x14 */ NULL,
         /* pedestrianModelList_0x18 */ init_8c040b34,
         /* sceneObjectList_0x1c */ init_8c04122c,
-        /* datFilenames_0x20 */ init_8c040c24,
+        /* datFilenames_0x20 */ init_courseWanganSeg0PacFiles,
         /* fog_0x24 */ &init_8c040c78,
         /* modelFiles_0x28 */ init_8c040e58,
     },
@@ -5593,7 +5593,7 @@ CourseSegment init_8c041670[17] = {
         /* ukn_0x14 */ NULL,
         /* pedestrianModelList_0x18 */ NULL,
         /* sceneObjectList_0x1c */ init_8c04113c,
-        /* datFilenames_0x20 */ init_8c040c34,
+        /* datFilenames_0x20 */ init_courseWanganSeg5PacFiles,
         /* fog_0x24 */ NULL,
         /* modelFiles_0x28 */ NULL,
     },
@@ -5653,7 +5653,7 @@ CourseSegment init_8c041670[17] = {
         /* ukn_0x14 */ NULL,
         /* pedestrianModelList_0x18 */ NULL,
         /* sceneObjectList_0x1c */ init_8c0411ac,
-        /* datFilenames_0x20 */ init_8c040c44,
+        /* datFilenames_0x20 */ init_courseWanganSeg10PacFiles,
         /* fog_0x24 */ NULL,
         /* modelFiles_0x28 */ NULL,
     },
@@ -5677,7 +5677,7 @@ CourseSegment init_8c041670[17] = {
         /* ukn_0x14 */ NULL,
         /* pedestrianModelList_0x18 */ NULL,
         /* sceneObjectList_0x1c */ init_8c0411ec,
-        /* datFilenames_0x20 */ init_8c040c54,
+        /* datFilenames_0x20 */ init_courseWanganSeg12PacFiles,
         /* fog_0x24 */ NULL,
         /* modelFiles_0x28 */ init_8c040e68,
     },
@@ -5731,7 +5731,7 @@ CourseSegment init_8c041670[17] = {
     },
 };
 
-CourseSegment init_8c04195c[17] = {
+CourseSegment init_courseWanganNightSegments[17] = {
     {   /* [0] */
         /* ukn_0x00, ukn_0x02, ukn_0x04, ukn_0x06 */ 0x0002, 0x0000, 0x0000, 0x0000,
         /* ukn_0x08 */ init_8c040b44,
@@ -5740,7 +5740,7 @@ CourseSegment init_8c04195c[17] = {
         /* ukn_0x14 */ NULL,
         /* pedestrianModelList_0x18 */ init_8c040b34,
         /* sceneObjectList_0x1c */ init_8c04134c,
-        /* datFilenames_0x20 */ init_8c040c24,
+        /* datFilenames_0x20 */ init_courseWanganSeg0PacFiles,
         /* fog_0x24 */ &init_8c040c8c,
         /* modelFiles_0x28 */ init_8c040e78,
     },
@@ -5800,7 +5800,7 @@ CourseSegment init_8c04195c[17] = {
         /* ukn_0x14 */ NULL,
         /* pedestrianModelList_0x18 */ NULL,
         /* sceneObjectList_0x1c */ init_8c041264,
-        /* datFilenames_0x20 */ init_8c040c34,
+        /* datFilenames_0x20 */ init_courseWanganSeg5PacFiles,
         /* fog_0x24 */ NULL,
         /* modelFiles_0x28 */ NULL,
     },
@@ -5860,7 +5860,7 @@ CourseSegment init_8c04195c[17] = {
         /* ukn_0x14 */ NULL,
         /* pedestrianModelList_0x18 */ NULL,
         /* sceneObjectList_0x1c */ init_8c0412cc,
-        /* datFilenames_0x20 */ init_8c040c44,
+        /* datFilenames_0x20 */ init_courseWanganSeg10PacFiles,
         /* fog_0x24 */ NULL,
         /* modelFiles_0x28 */ NULL,
     },
@@ -5884,7 +5884,7 @@ CourseSegment init_8c04195c[17] = {
         /* ukn_0x14 */ NULL,
         /* pedestrianModelList_0x18 */ NULL,
         /* sceneObjectList_0x1c */ init_8c04130c,
-        /* datFilenames_0x20 */ init_8c040c54,
+        /* datFilenames_0x20 */ init_courseWanganSeg12PacFiles,
         /* fog_0x24 */ NULL,
         /* modelFiles_0x28 */ init_8c040e88,
     },
@@ -5941,7 +5941,7 @@ CourseSegment init_8c04195c[17] = {
 CourseConfig init_courseWanganDay0_8c041c48 = {
     /* route_0x00 */ 1,
     /* timeOfDay_0x04 */ 0,
-    /* segments_0x08 */ init_8c041384,
+    /* segments_0x08 */ init_courseWanganDaySegments,
     /* ukn_0x0c */ init_8c040a74,
     /* sceneParams_0x10 */ &init_8c040ca0,
     /* ukn_0x14 */ 5,
@@ -5972,7 +5972,7 @@ CourseConfig init_courseWanganDay0_8c041c48 = {
 CourseConfig init_courseWanganDay1_8c041cb0 = {
     /* route_0x00 */ 1,
     /* timeOfDay_0x04 */ 0,
-    /* segments_0x08 */ init_8c041384,
+    /* segments_0x08 */ init_courseWanganDaySegments,
     /* ukn_0x0c */ init_8c040a74,
     /* sceneParams_0x10 */ &init_8c040ca0,
     /* ukn_0x14 */ 5,
@@ -6003,7 +6003,7 @@ CourseConfig init_courseWanganDay1_8c041cb0 = {
 CourseConfig init_courseWanganDay2_8c041d18 = {
     /* route_0x00 */ 1,
     /* timeOfDay_0x04 */ 0,
-    /* segments_0x08 */ init_8c041384,
+    /* segments_0x08 */ init_courseWanganDaySegments,
     /* ukn_0x0c */ init_8c040a74,
     /* sceneParams_0x10 */ &init_8c040ca0,
     /* ukn_0x14 */ 5,
@@ -6034,7 +6034,7 @@ CourseConfig init_courseWanganDay2_8c041d18 = {
 CourseConfig init_courseWanganEvening0_8c041d80 = {
     /* route_0x00 */ 1,
     /* timeOfDay_0x04 */ 1,
-    /* segments_0x08 */ init_8c041670,
+    /* segments_0x08 */ init_courseWanganEveningSegments,
     /* ukn_0x0c */ init_8c040ab4,
     /* sceneParams_0x10 */ &init_8c040d28,
     /* ukn_0x14 */ 5,
@@ -6065,7 +6065,7 @@ CourseConfig init_courseWanganEvening0_8c041d80 = {
 CourseConfig init_courseWanganEvening1_8c041de8 = {
     /* route_0x00 */ 1,
     /* timeOfDay_0x04 */ 1,
-    /* segments_0x08 */ init_8c041670,
+    /* segments_0x08 */ init_courseWanganEveningSegments,
     /* ukn_0x0c */ init_8c040ab4,
     /* sceneParams_0x10 */ &init_8c040d28,
     /* ukn_0x14 */ 5,
@@ -6096,7 +6096,7 @@ CourseConfig init_courseWanganEvening1_8c041de8 = {
 CourseConfig init_courseWanganEvening2_8c041e50 = {
     /* route_0x00 */ 1,
     /* timeOfDay_0x04 */ 1,
-    /* segments_0x08 */ init_8c041670,
+    /* segments_0x08 */ init_courseWanganEveningSegments,
     /* ukn_0x0c */ init_8c040ab4,
     /* sceneParams_0x10 */ &init_8c040d28,
     /* ukn_0x14 */ 5,
@@ -6127,7 +6127,7 @@ CourseConfig init_courseWanganEvening2_8c041e50 = {
 CourseConfig init_courseWanganNight0_8c041eb8 = {
     /* route_0x00 */ 1,
     /* timeOfDay_0x04 */ 2,
-    /* segments_0x08 */ init_8c04195c,
+    /* segments_0x08 */ init_courseWanganNightSegments,
     /* ukn_0x0c */ init_8c040af4,
     /* sceneParams_0x10 */ &init_8c040db0,
     /* ukn_0x14 */ 5,
@@ -6158,7 +6158,7 @@ CourseConfig init_courseWanganNight0_8c041eb8 = {
 CourseConfig init_courseWanganNight1_8c041f20 = {
     /* route_0x00 */ 1,
     /* timeOfDay_0x04 */ 2,
-    /* segments_0x08 */ init_8c04195c,
+    /* segments_0x08 */ init_courseWanganNightSegments,
     /* ukn_0x0c */ init_8c040af4,
     /* sceneParams_0x10 */ &init_8c040db0,
     /* ukn_0x14 */ 5,
@@ -6189,7 +6189,7 @@ CourseConfig init_courseWanganNight1_8c041f20 = {
 CourseConfig init_courseWanganNight2_8c041f88 = {
     /* route_0x00 */ 1,
     /* timeOfDay_0x04 */ 2,
-    /* segments_0x08 */ init_8c04195c,
+    /* segments_0x08 */ init_courseWanganNightSegments,
     /* ukn_0x0c */ init_8c040af4,
     /* sceneParams_0x10 */ &init_8c040db0,
     /* ukn_0x14 */ 5,
@@ -6216,7 +6216,7 @@ CourseConfig init_courseWanganNight2_8c041f88 = {
         "wn_shadow_x.dat",
     },
 };
-STATIC char *init_8c041ff0[4] = {
+STATIC char *init_course27Seg0PacFiles[4] = {
     "l_road0.pac",
     "l_machi0.pac",
     "l_uv0.pac",
@@ -6225,7 +6225,7 @@ STATIC char *init_8c041ff0[4] = {
 STATIC Uint8 init_8c042000[8] = { 0x29, 0x1c, 0x2d, 0x25, 0x00, 0x00, 0x00, 0x00 };
 STATIC Uint8 init_8c042008[8] = { 0x4e, 0x0c, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 };
 
-CourseSegment init_8c042010[3] = {
+CourseSegment init_course27Segments[3] = {
     {   /* [0] */
         /* ukn_0x00, ukn_0x02, ukn_0x04, ukn_0x06 */ 0x0002, 0x00ca, 0x0000, 0x0062,
         /* ukn_0x08 */ init_8c03c136,
@@ -6234,7 +6234,7 @@ CourseSegment init_8c042010[3] = {
         /* ukn_0x14 */ NULL,
         /* pedestrianModelList_0x18 */ init_8c03c0c0,
         /* sceneObjectList_0x1c */ NULL,
-        /* datFilenames_0x20 */ init_8c041ff0,
+        /* datFilenames_0x20 */ init_course27Seg0PacFiles,
         /* fog_0x24 */ &init_8c03c278,
         /* modelFiles_0x28 */ init_8c03c55c,
     },
@@ -6267,7 +6267,7 @@ CourseSegment init_8c042010[3] = {
 CourseConfig init_course27_8c042094 = {
     /* route_0x00 */ 2,
     /* timeOfDay_0x04 */ 0,
-    /* segments_0x08 */ init_8c042010,
+    /* segments_0x08 */ init_course27Segments,
     /* ukn_0x0c */ init_8c042008,
     /* sceneParams_0x10 */ &init_8c03c2b4,
     /* ukn_0x14 */ 2,
@@ -6294,7 +6294,7 @@ CourseConfig init_course27_8c042094 = {
         "od_shadow_x.dat",
     },
 };
-STATIC char *init_8c0420fc[4] = {
+STATIC char *init_course28Seg0PacFiles[4] = {
     "l_road1.pac",
     "l_machi1.pac",
     "l_uv1.pac",
@@ -6303,7 +6303,7 @@ STATIC char *init_8c0420fc[4] = {
 STATIC Uint8 init_8c04210c[8] = { 0x0b, 0x03, 0x12, 0x0a, 0x00, 0x00, 0x00, 0x00 };
 STATIC Uint8 init_8c042114[8] = { 0xae, 0x15, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 };
 
-CourseSegment init_8c04211c[3] = {
+CourseSegment init_course28Segments[3] = {
     {   /* [0] */
         /* ukn_0x00, ukn_0x02, ukn_0x04, ukn_0x06 */ 0x0002, 0x00d6, 0x0000, 0x006e,
         /* ukn_0x08 */ init_8c03c16c,
@@ -6312,7 +6312,7 @@ CourseSegment init_8c04211c[3] = {
         /* ukn_0x14 */ NULL,
         /* pedestrianModelList_0x18 */ init_8c03c0c0,
         /* sceneObjectList_0x1c */ init_8c03c54c,
-        /* datFilenames_0x20 */ init_8c0420fc,
+        /* datFilenames_0x20 */ init_course28Seg0PacFiles,
         /* fog_0x24 */ &init_8c03c278,
         /* modelFiles_0x28 */ init_8c03c55c,
     },
@@ -6345,7 +6345,7 @@ CourseSegment init_8c04211c[3] = {
 CourseConfig init_course28_8c0421a0 = {
     /* route_0x00 */ 2,
     /* timeOfDay_0x04 */ 0,
-    /* segments_0x08 */ init_8c04211c,
+    /* segments_0x08 */ init_course28Segments,
     /* ukn_0x0c */ init_8c042114,
     /* sceneParams_0x10 */ &init_8c03c2b4,
     /* ukn_0x14 */ 2,
@@ -6372,7 +6372,7 @@ CourseConfig init_course28_8c0421a0 = {
         "od_shadow_x.dat",
     },
 };
-STATIC char *init_8c042208[4] = {
+STATIC char *init_course29Seg0PacFiles[4] = {
     "l_road2.pac",
     "l_machi2.pac",
     "l_uv2.pac",
@@ -6381,7 +6381,7 @@ STATIC char *init_8c042208[4] = {
 STATIC Uint8 init_8c042218[8] = { 0x2a, 0x22, 0x2e, 0x28, 0x00, 0x00, 0x00, 0x00 };
 STATIC Uint8 init_8c042220[8] = { 0xd2, 0x0f, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 };
 
-CourseSegment init_8c042228[3] = {
+CourseSegment init_course29Segments[3] = {
     {   /* [0] */
         /* ukn_0x00, ukn_0x02, ukn_0x04, ukn_0x06 */ 0x0002, 0x00c9, 0x0000, 0x0061,
         /* ukn_0x08 */ init_8c03c130,
@@ -6390,7 +6390,7 @@ CourseSegment init_8c042228[3] = {
         /* ukn_0x14 */ NULL,
         /* pedestrianModelList_0x18 */ init_8c03c0c0,
         /* sceneObjectList_0x1c */ init_8c03c4f4,
-        /* datFilenames_0x20 */ init_8c042208,
+        /* datFilenames_0x20 */ init_course29Seg0PacFiles,
         /* fog_0x24 */ &init_8c03c278,
         /* modelFiles_0x28 */ init_8c03c55c,
     },
@@ -6423,7 +6423,7 @@ CourseSegment init_8c042228[3] = {
 CourseConfig init_course29_8c0422ac = {
     /* route_0x00 */ 2,
     /* timeOfDay_0x04 */ 0,
-    /* segments_0x08 */ init_8c042228,
+    /* segments_0x08 */ init_course29Segments,
     /* ukn_0x0c */ init_8c042220,
     /* sceneParams_0x10 */ &init_8c03c2b4,
     /* ukn_0x14 */ 2,
@@ -6450,7 +6450,7 @@ CourseConfig init_course29_8c0422ac = {
         "od_shadow_x.dat",
     },
 };
-STATIC char *init_8c042314[4] = {
+STATIC char *init_course30Seg0PacFiles[4] = {
     "l_road3.pac",
     "l_machi3.pac",
     "l_kousok00_FF_kousok00_3.pac",
@@ -6459,7 +6459,7 @@ STATIC char *init_8c042314[4] = {
 STATIC Uint8 init_8c042324[8] = { 0x05, 0x01, 0x0d, 0x06, 0x00, 0x00, 0x00, 0x00 };
 STATIC Uint8 init_8c04232c[8] = { 0x56, 0x13, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 };
 
-CourseSegment init_8c042334[3] = {
+CourseSegment init_course30Segments[3] = {
     {   /* [0] */
         /* ukn_0x00, ukn_0x02, ukn_0x04, ukn_0x06 */ 0x0002, 0x010b, 0x0000, 0x00a5,
         /* ukn_0x08 */ init_8c03d736,
@@ -6468,7 +6468,7 @@ CourseSegment init_8c042334[3] = {
         /* ukn_0x14 */ NULL,
         /* pedestrianModelList_0x18 */ init_8c03d6a8,
         /* sceneObjectList_0x1c */ init_8c03deac,
-        /* datFilenames_0x20 */ init_8c042314,
+        /* datFilenames_0x20 */ init_course30Seg0PacFiles,
         /* fog_0x24 */ &init_8c03d9e0,
         /* modelFiles_0x28 */ init_8c03da1c,
     },
@@ -6501,7 +6501,7 @@ CourseSegment init_8c042334[3] = {
 CourseConfig init_course30_8c0423b8 = {
     /* route_0x00 */ 0,
     /* timeOfDay_0x04 */ 0,
-    /* segments_0x08 */ init_8c042334,
+    /* segments_0x08 */ init_course30Segments,
     /* ukn_0x0c */ init_8c04232c,
     /* sceneParams_0x10 */ &init_8c03d848,
     /* ukn_0x14 */ 2,
@@ -6537,7 +6537,7 @@ CourseConfig init_course30_8c0423b8 = {
 /* numeric / byte-table leaves (closure) */
 
 /* ---- nested tables & records (Level 1-3), topologically ordered ---- */
-STATIC char *init_8c042420[4] = {
+STATIC char *init_course31Seg0PacFiles[4] = {
     "l_road4.pac",
     "l_machi4.pac",
     "l_kousok00_FF_kousok00_4.pac",
@@ -6546,7 +6546,7 @@ STATIC char *init_8c042420[4] = {
 STATIC Uint8 init_8c042430[8] = { 0x17, 0x17, 0x1b, 0x1d, 0x00, 0x00, 0x00, 0x00 };
 STATIC Uint8 init_8c042438[8] = { 0xd2, 0x0f, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 };
 
-CourseSegment init_8c042440[3] = {
+CourseSegment init_course31Segments[3] = {
     {   /* [0] */
         /* ukn_0x00, ukn_0x02, ukn_0x04, ukn_0x06 */ 0x0002, 0x000f, 0x0000, 0x0094,
         /* ukn_0x08 */ init_8c03d6c0,
@@ -6555,7 +6555,7 @@ CourseSegment init_8c042440[3] = {
         /* ukn_0x14 */ NULL,
         /* pedestrianModelList_0x18 */ init_8c03d6a8,
         /* sceneObjectList_0x1c */ init_8c03dd4c,
-        /* datFilenames_0x20 */ init_8c042420,
+        /* datFilenames_0x20 */ init_course31Seg0PacFiles,
         /* fog_0x24 */ &init_8c03d9e0,
         /* modelFiles_0x28 */ init_8c03da1c,
     },
@@ -6588,7 +6588,7 @@ CourseSegment init_8c042440[3] = {
 CourseConfig init_course31_8c0424c4 = {
     /* route_0x00 */ 0,
     /* timeOfDay_0x04 */ 0,
-    /* segments_0x08 */ init_8c042440,
+    /* segments_0x08 */ init_course31Segments,
     /* ukn_0x0c */ init_8c042438,
     /* sceneParams_0x10 */ &init_8c03d848,
     /* ukn_0x14 */ 2,
@@ -6615,7 +6615,7 @@ CourseConfig init_course31_8c0424c4 = {
         "sn_shadow_x.dat",
     },
 };
-STATIC char *init_8c04252c[4] = {
+STATIC char *init_course32Seg0PacFiles[4] = {
     "l_road5.pac",
     "l_machi5.pac",
     "l_uv00_FF_wd_uv00_5.pac",
@@ -6624,7 +6624,7 @@ STATIC char *init_8c04252c[4] = {
 STATIC Uint8 init_8c04253c[8] = { 0x19, 0x12, 0x1c, 0x15, 0x00, 0x00, 0x00, 0x00 };
 STATIC Uint8 init_8c042544[8] = { 0xa6, 0x0e, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 };
 
-CourseSegment init_8c04254c[3] = {
+CourseSegment init_course32Segments[3] = {
     {   /* [0] */
         /* ukn_0x00, ukn_0x02, ukn_0x04, ukn_0x06 */ 0x0002, 0x0000, 0x0000, 0x0000,
         /* ukn_0x08 */ init_8c040b44,
@@ -6633,7 +6633,7 @@ CourseSegment init_8c04254c[3] = {
         /* ukn_0x14 */ NULL,
         /* pedestrianModelList_0x18 */ init_8c040b34,
         /* sceneObjectList_0x1c */ init_8c04122c,
-        /* datFilenames_0x20 */ init_8c04252c,
+        /* datFilenames_0x20 */ init_course32Seg0PacFiles,
         /* fog_0x24 */ &init_8c040c64,
         /* modelFiles_0x28 */ init_8c040e38,
     },
@@ -6666,7 +6666,7 @@ CourseSegment init_8c04254c[3] = {
 CourseConfig init_course32_8c0425d0 = {
     /* route_0x00 */ 1,
     /* timeOfDay_0x04 */ 0,
-    /* segments_0x08 */ init_8c04254c,
+    /* segments_0x08 */ init_course32Segments,
     /* ukn_0x0c */ init_8c042544,
     /* sceneParams_0x10 */ &init_8c040ca0,
     /* ukn_0x14 */ 2,
@@ -6693,7 +6693,7 @@ CourseConfig init_course32_8c0425d0 = {
         "wn_shadow_x.dat",
     },
 };
-STATIC char *init_8c042638[4] = {
+STATIC char *init_course33Seg0PacFiles[4] = {
     "l_road6.pac",
     "l_machi6.pac",
     "l_kousok00_FF_kousok00_6.pac",
@@ -6702,7 +6702,7 @@ STATIC char *init_8c042638[4] = {
 STATIC Uint8 init_8c042648[8] = { 0x19, 0x1b, 0x1e, 0x1e, 0x00, 0x00, 0x00, 0x00 };
 STATIC Uint8 init_8c042650[8] = { 0xa6, 0x0e, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 };
 
-CourseSegment init_8c042658[3] = {
+CourseSegment init_course33Segments[3] = {
     {   /* [0] */
         /* ukn_0x00, ukn_0x02, ukn_0x04, ukn_0x06 */ 0x0002, 0x00f9, 0x0000, 0x0093,
         /* ukn_0x08 */ init_8c03d6b8,
@@ -6711,7 +6711,7 @@ CourseSegment init_8c042658[3] = {
         /* ukn_0x14 */ NULL,
         /* pedestrianModelList_0x18 */ init_8c03d6a8,
         /* sceneObjectList_0x1c */ init_8c03dd4c,
-        /* datFilenames_0x20 */ init_8c042638,
+        /* datFilenames_0x20 */ init_course33Seg0PacFiles,
         /* fog_0x24 */ &init_8c03d9e0,
         /* modelFiles_0x28 */ init_8c03da1c,
     },
@@ -6744,7 +6744,7 @@ CourseSegment init_8c042658[3] = {
 CourseConfig init_course33_8c0426dc = {
     /* route_0x00 */ 0,
     /* timeOfDay_0x04 */ 0,
-    /* segments_0x08 */ init_8c042658,
+    /* segments_0x08 */ init_course33Segments,
     /* ukn_0x0c */ init_8c042650,
     /* sceneParams_0x10 */ &init_8c03d848,
     /* ukn_0x14 */ 2,
@@ -6771,7 +6771,7 @@ CourseConfig init_course33_8c0426dc = {
         "sn_shadow_x.dat",
     },
 };
-STATIC char *init_8c042744[4] = {
+STATIC char *init_course34Seg0PacFiles[4] = {
     "l_road7.pac",
     "l_machi7.pac",
     "l_uv00_FF_wd_uv00_7.pac",
@@ -6780,7 +6780,7 @@ STATIC char *init_8c042744[4] = {
 STATIC Uint8 init_8c042754[8] = { 0x16, 0x12, 0x1c, 0x18, 0x00, 0x00, 0x00, 0x00 };
 STATIC Uint8 init_8c04275c[12] = { 0x80, 0xc6, 0x13, 0x00, 0x88, 0xcd, 0x13, 0x00, 0x90, 0xd4, 0x13, 0x00 };
 
-CourseSegment init_8c042768[4] = {
+CourseSegment init_course34Segments[4] = {
     {   /* [0] */
         /* ukn_0x00, ukn_0x02, ukn_0x04, ukn_0x06 */ 0x0002, 0x0001, 0x0000, 0x0001,
         /* ukn_0x08 */ init_8c040b44,
@@ -6789,7 +6789,7 @@ CourseSegment init_8c042768[4] = {
         /* ukn_0x14 */ NULL,
         /* pedestrianModelList_0x18 */ init_8c040b34,
         /* sceneObjectList_0x1c */ init_8c04122c,
-        /* datFilenames_0x20 */ init_8c042744,
+        /* datFilenames_0x20 */ init_course34Seg0PacFiles,
         /* fog_0x24 */ &init_8c040c64,
         /* modelFiles_0x28 */ init_8c040e38,
     },
@@ -6834,7 +6834,7 @@ CourseSegment init_8c042768[4] = {
 CourseConfig init_course34_8c042818 = {
     /* route_0x00 */ 1,
     /* timeOfDay_0x04 */ 0,
-    /* segments_0x08 */ init_8c042768,
+    /* segments_0x08 */ init_course34Segments,
     /* ukn_0x0c */ init_8c04275c,
     /* sceneParams_0x10 */ &init_8c040ca0,
     /* ukn_0x14 */ 2,
@@ -6863,7 +6863,7 @@ CourseConfig init_course34_8c042818 = {
 };
 STATIC Uint8 init_8c042880[10] = { 0x00, 0x01, 0x01, 0x01, 0x04, 0x01, 0x06, 0x01, 0x00, 0x00 };
 STATIC Uint8 init_8c04288a[6] = { 0x00, 0x01, 0x00, 0x00, 0x00, 0x00 };
-STATIC char *init_8c042890[4] = {
+STATIC char *init_course35Seg0PacFiles[4] = {
     "l_road8.pac",
     "l_machi8.pac",
     "l_uv00_FF_wd_uv00_8.pac",
@@ -6872,7 +6872,7 @@ STATIC char *init_8c042890[4] = {
 STATIC Uint8 init_8c0428a0[8] = { 0x0c, 0x19, 0x0f, 0x1e, 0x00, 0x00, 0x00, 0x00 };
 STATIC Uint8 init_8c0428a8[8] = { 0x80, 0xc6, 0x13, 0x00, 0x90, 0xd4, 0x13, 0x00 };
 
-CourseSegment init_8c0428b0[3] = {
+CourseSegment init_course35Segments[3] = {
     {   /* [0] */
         /* ukn_0x00, ukn_0x02, ukn_0x04, ukn_0x06 */ 0x0002, 0x005e, 0x0000, 0x0005,
         /* ukn_0x08 */ init_8c042880,
@@ -6881,7 +6881,7 @@ CourseSegment init_8c0428b0[3] = {
         /* ukn_0x14 */ NULL,
         /* pedestrianModelList_0x18 */ init_8c040b34,
         /* sceneObjectList_0x1c */ init_8c04113c,
-        /* datFilenames_0x20 */ init_8c042890,
+        /* datFilenames_0x20 */ init_course35Seg0PacFiles,
         /* fog_0x24 */ &init_8c040c64,
         /* modelFiles_0x28 */ init_8c040e38,
     },
@@ -6914,7 +6914,7 @@ CourseSegment init_8c0428b0[3] = {
 CourseConfig init_course35_8c042934 = {
     /* route_0x00 */ 1,
     /* timeOfDay_0x04 */ 0,
-    /* segments_0x08 */ init_8c0428b0,
+    /* segments_0x08 */ init_course35Segments,
     /* ukn_0x0c */ init_8c0428a8,
     /* sceneParams_0x10 */ &init_8c03d848,
     /* ukn_0x14 */ 2,
@@ -6946,7 +6946,7 @@ STATIC Uint8 init_8c0429a4[4] = { 0x01, 0x04, 0x00, 0x00 };
 STATIC Uint8 init_8c0429a8[4] = { 0x02, 0x04, 0x00, 0x00 };
 STATIC Uint8 init_8c0429ac[4] = { 0x03, 0x04, 0x00, 0x00 };
 STATIC Uint8 init_8c0429b0[4] = { 0x01, 0x04, 0x00, 0x00 };
-STATIC char *init_8c0429b4[4] = {
+STATIC char *init_course36Seg0PacFiles[4] = {
     "l_road9.pac",
     "l_machi9.pac",
     "l_kousok00_FF_kousok00_9.pac",
@@ -6955,7 +6955,7 @@ STATIC char *init_8c0429b4[4] = {
 STATIC Uint8 init_8c0429c4[8] = { 0x0e, 0x07, 0x12, 0x0f, 0x00, 0x00, 0x00, 0x00 };
 STATIC Uint8 init_8c0429cc[24] = { 0x80, 0xc6, 0x13, 0x00, 0x4a, 0xcf, 0x13, 0x00, 0xe8, 0xd6, 0x13, 0x00, 0x2e, 0xdc, 0x13, 0x00, 0xde, 0xe0, 0x13, 0x00, 0x00, 0x00, 0x00, 0x00 };
 
-CourseSegment init_8c0429e4[6] = {
+CourseSegment init_course36Segments[6] = {
     {   /* [0] */
         /* ukn_0x00, ukn_0x02, ukn_0x04, ukn_0x06 */ 0x0002, 0x0103, 0x0000, 0x009d,
         /* ukn_0x08 */ init_8c04299c,
@@ -6964,7 +6964,7 @@ CourseSegment init_8c0429e4[6] = {
         /* ukn_0x14 */ NULL,
         /* pedestrianModelList_0x18 */ init_8c03d6a8,
         /* sceneObjectList_0x1c */ init_8c03dd2c,
-        /* datFilenames_0x20 */ init_8c0429b4,
+        /* datFilenames_0x20 */ init_course36Seg0PacFiles,
         /* fog_0x24 */ &init_8c03d9e0,
         /* modelFiles_0x28 */ init_8c03da1c,
     },
@@ -7033,7 +7033,7 @@ CourseSegment init_8c0429e4[6] = {
 CourseConfig init_course36_8c042aec = {
     /* route_0x00 */ 0,
     /* timeOfDay_0x04 */ 0,
-    /* segments_0x08 */ init_8c0429e4,
+    /* segments_0x08 */ init_course36Segments,
     /* ukn_0x0c */ init_8c0429cc,
     /* sceneParams_0x10 */ &init_8c03d848,
     /* ukn_0x14 */ 3,
@@ -7065,13 +7065,13 @@ STATIC Uint8 init_8c042b5a[4] = { 0x06, 0x03, 0x00, 0x00 };
 STATIC Uint8 init_8c042b5e[4] = { 0x06, 0x03, 0x00, 0x00 };
 STATIC Uint8 init_8c042b62[8] = { 0x00, 0x04, 0x04, 0x04, 0x06, 0x04, 0x00, 0x00 };
 STATIC Uint8 init_8c042b6a[6] = { 0x00, 0x04, 0x00, 0x00, 0x00, 0x00 };
-STATIC char *init_8c042b70[4] = {
+STATIC char *init_course37Seg0PacFiles[4] = {
     "l_road10.pac",
     "l_machi10.pac",
     "l_kousok00_FF_kousok00_10.pac",
     "s_dummy.pac",
 };
-STATIC char *init_8c042b80[4] = {
+STATIC char *init_course37Seg3PacFiles[4] = {
     "l_road11.pac",
     "l_machi11.pac",
     "l_kousok00_FF_kousok00_11.pac",
@@ -7081,7 +7081,7 @@ STATIC Uint8 init_8c042b90[8] = { 0x18, 0x17, 0x1e, 0x1e, 0x00, 0x00, 0x00, 0x00
 STATIC Uint8 init_8c042b98[8] = { 0x16, 0x16, 0x1a, 0x18, 0x00, 0x00, 0x00, 0x00 };
 STATIC Uint8 init_8c042ba0[24] = { 0x80, 0xf5, 0x20, 0x00, 0xe0, 0xfe, 0x20, 0x00, 0x2e, 0x0b, 0x21, 0x00, 0x50, 0x16, 0x21, 0x00, 0x1a, 0x1f, 0x21, 0x00, 0x00, 0x00, 0x00, 0x00 };
 
-CourseSegment init_8c042bb8[6] = {
+CourseSegment init_course37Segments[6] = {
     {   /* [0] */
         /* ukn_0x00, ukn_0x02, ukn_0x04, ukn_0x06 */ 0x0002, 0x00f9, 0x0000, 0x0093,
         /* ukn_0x08 */ init_8c042b54,
@@ -7090,7 +7090,7 @@ CourseSegment init_8c042bb8[6] = {
         /* ukn_0x14 */ NULL,
         /* pedestrianModelList_0x18 */ init_8c03d6a8,
         /* sceneObjectList_0x1c */ init_8c03dfa4,
-        /* datFilenames_0x20 */ init_8c042b70,
+        /* datFilenames_0x20 */ init_course37Seg0PacFiles,
         /* fog_0x24 */ &init_8c03da08,
         /* modelFiles_0x28 */ init_8c03da3c,
     },
@@ -7126,7 +7126,7 @@ CourseSegment init_8c042bb8[6] = {
         /* ukn_0x14 */ NULL,
         /* pedestrianModelList_0x18 */ NULL,
         /* sceneObjectList_0x1c */ init_8c03dff4,
-        /* datFilenames_0x20 */ init_8c042b80,
+        /* datFilenames_0x20 */ init_course37Seg3PacFiles,
         /* fog_0x24 */ &init_8c03da08,
         /* modelFiles_0x28 */ init_8c03da3c,
     },
@@ -7159,7 +7159,7 @@ CourseSegment init_8c042bb8[6] = {
 CourseConfig init_course37_8c042cc0 = {
     /* route_0x00 */ 0,
     /* timeOfDay_0x04 */ 2,
-    /* segments_0x08 */ init_8c042bb8,
+    /* segments_0x08 */ init_course37Segments,
     /* ukn_0x0c */ init_8c042ba0,
     /* sceneParams_0x10 */ &init_8c03d958,
     /* ukn_0x14 */ 3,
@@ -7186,19 +7186,19 @@ CourseConfig init_course37_8c042cc0 = {
         "sn_shadow_x.dat",
     },
 };
-STATIC char *init_8c042d28[4] = {
+STATIC char *init_course38Seg0PacFiles[4] = {
     "d_road0.pac",
     "d_machi0.pac",
     "d_kousok00_FF_kousok00_0.pac",
     "s_dummy.pac",
 };
-STATIC char *init_8c042d38[4] = {
+STATIC char *init_course39Seg0PacFiles[4] = {
     "d_road1.pac",
     "d_machi1.pac",
     "d_kousok00_FF_kousok00_1.pac",
     "s_dummy.pac",
 };
-STATIC char *init_8c042d48[4] = {
+STATIC char *init_course40Seg0PacFiles[4] = {
     "d_road2.pac",
     "d_machi2.pac",
     "d_kousok00_FF_kousok00_2.pac",
@@ -7208,7 +7208,7 @@ STATIC Uint8 init_8c042d58[8] = { 0x13, 0x14, 0x1a, 0x19, 0x00, 0x00, 0x00, 0x00
 STATIC Uint8 init_8c042d60[8] = { 0x10, 0x0d, 0x15, 0x14, 0x00, 0x00, 0x00, 0x00 };
 STATIC Uint8 init_8c042d68[8] = { 0x02, 0x00, 0x08, 0x04, 0x00, 0x00, 0x00, 0x00 };
 
-CourseSegment init_8c042d70[9] = {
+CourseSegment init_course38Segments[9] = {
     {   /* [0] */
         /* ukn_0x00, ukn_0x02, ukn_0x04, ukn_0x06 */ 0x0002, 0x00fc, 0x0000, 0x0000,
         /* ukn_0x08 */ init_8c03d6cc,
@@ -7217,7 +7217,7 @@ CourseSegment init_8c042d70[9] = {
         /* ukn_0x14 */ NULL,
         /* pedestrianModelList_0x18 */ init_8c03d6a8,
         /* sceneObjectList_0x1c */ init_8c03dff4,
-        /* datFilenames_0x20 */ init_8c042d28,
+        /* datFilenames_0x20 */ init_course38Seg0PacFiles,
         /* fog_0x24 */ &init_8c03da08,
         /* modelFiles_0x28 */ init_8c03da3c,
     },
@@ -7319,7 +7319,7 @@ CourseSegment init_8c042d70[9] = {
     },
 };
 
-CourseSegment init_8c042efc[11] = {
+CourseSegment init_course39Segments[11] = {
     {   /* [0] */
         /* ukn_0x00, ukn_0x02, ukn_0x04, ukn_0x06 */ 0x0002, 0x00ff, 0x0000, 0x0000,
         /* ukn_0x08 */ init_8c03d6f6,
@@ -7328,7 +7328,7 @@ CourseSegment init_8c042efc[11] = {
         /* ukn_0x14 */ NULL,
         /* pedestrianModelList_0x18 */ init_8c03d6a8,
         /* sceneObjectList_0x1c */ init_8c03dd3c,
-        /* datFilenames_0x20 */ init_8c042d38,
+        /* datFilenames_0x20 */ init_course39Seg0PacFiles,
         /* fog_0x24 */ &init_8c03d9e0,
         /* modelFiles_0x28 */ init_8c03da1c,
     },
@@ -7454,7 +7454,7 @@ CourseSegment init_8c042efc[11] = {
     },
 };
 
-CourseSegment init_8c0430e0[4] = {
+CourseSegment init_course40Segments[4] = {
     {   /* [0] */
         /* ukn_0x00, ukn_0x02, ukn_0x04, ukn_0x06 */ 0x0002, 0x010d, 0x0000, 0x0000,
         /* ukn_0x08 */ init_8c03d742,
@@ -7463,7 +7463,7 @@ CourseSegment init_8c0430e0[4] = {
         /* ukn_0x14 */ NULL,
         /* pedestrianModelList_0x18 */ init_8c03d6a8,
         /* sceneObjectList_0x1c */ init_8c03e0ac,
-        /* datFilenames_0x20 */ init_8c042d48,
+        /* datFilenames_0x20 */ init_course40Seg0PacFiles,
         /* fog_0x24 */ &init_8c03da08,
         /* modelFiles_0x28 */ init_8c03da3c,
     },
@@ -7508,7 +7508,7 @@ CourseSegment init_8c0430e0[4] = {
 CourseConfig init_course38_8c043190 = {
     /* route_0x00 */ 0,
     /* timeOfDay_0x04 */ 2,
-    /* segments_0x08 */ init_8c042d70,
+    /* segments_0x08 */ init_course38Segments,
     /* ukn_0x0c */ init_8c03d64c,
     /* sceneParams_0x10 */ &init_8c03d958,
     /* ukn_0x14 */ 2,
@@ -7539,7 +7539,7 @@ CourseConfig init_course38_8c043190 = {
 CourseConfig init_course39_8c0431f8 = {
     /* route_0x00 */ 0,
     /* timeOfDay_0x04 */ 0,
-    /* segments_0x08 */ init_8c042efc,
+    /* segments_0x08 */ init_course39Segments,
     /* ukn_0x0c */ init_8c03d594,
     /* sceneParams_0x10 */ &init_8c03d848,
     /* ukn_0x14 */ 2,
@@ -7570,7 +7570,7 @@ CourseConfig init_course39_8c0431f8 = {
 CourseConfig init_course40_8c043260 = {
     /* route_0x00 */ 0,
     /* timeOfDay_0x04 */ 2,
-    /* segments_0x08 */ init_8c0430e0,
+    /* segments_0x08 */ init_course40Segments,
     /* ukn_0x0c */ init_8c03d64c,
     /* sceneParams_0x10 */ &init_8c03d958,
     /* ukn_0x14 */ 2,
@@ -7597,31 +7597,31 @@ CourseConfig init_course40_8c043260 = {
         "sn_shadow_x.dat",
     },
 };
-STATIC char *init_8c0432c8[4] = {
+STATIC char *init_course41Seg0PacFiles[4] = {
     "d_road3.pac",
     "d_machi3.pac",
     "d_uv00_FF_wd_uv00_3.pac",
     "d_uv01_FF_wd_uv01_3.pac",
 };
-STATIC char *init_8c0432d8[4] = {
+STATIC char *init_course42Seg0PacFiles[4] = {
     "d_road4.pac",
     "d_machi4.pac",
     "d_uv00_FF_wd_uv00_4.pac",
     "d_uv01_FF_wd_uv01_4.pac",
 };
-STATIC char *init_8c0432e8[4] = {
+STATIC char *init_course43Seg0PacFiles[4] = {
     "d_road5.pac",
     "d_machi5.pac",
     "d_uv00_FF_wd_uv00_5.pac",
     "d_uv01_FF_wd_uv01_5.pac",
 };
-STATIC char *init_8c0432f8[4] = {
+STATIC char *init_course44Seg0PacFiles[4] = {
     "d_road6.pac",
     "d_machi6.pac",
     "d_uv00_FF_wd_uv00_6.pac",
     "d_uv01_FF_wd_uv01_6.pac",
 };
-STATIC char *init_8c043308[4] = {
+STATIC char *init_course45Seg0PacFiles[4] = {
     "d_road7.pac",
     "d_machi7.pac",
     "d_uv00_FF_wd_uv00_7.pac",
@@ -7633,7 +7633,7 @@ STATIC Uint8 init_8c043328[8] = { 0x0c, 0x14, 0x11, 0x1b, 0x00, 0x00, 0x00, 0x00
 STATIC Uint8 init_8c043330[8] = { 0x0f, 0x11, 0x14, 0x17, 0x00, 0x00, 0x00, 0x00 };
 STATIC Uint8 init_8c043338[8] = { 0x01, 0x00, 0x08, 0x05, 0x00, 0x00, 0x00, 0x00 };
 
-CourseSegment init_8c043340[7] = {
+CourseSegment init_course41Segments[7] = {
     {   /* [0] */
         /* ukn_0x00, ukn_0x02, ukn_0x04, ukn_0x06 */ 0x0002, 0x0000, 0x0000, 0x0000,
         /* ukn_0x08 */ init_8c040b44,
@@ -7642,7 +7642,7 @@ CourseSegment init_8c043340[7] = {
         /* ukn_0x14 */ NULL,
         /* pedestrianModelList_0x18 */ init_8c040b34,
         /* sceneObjectList_0x1c */ init_8c04122c,
-        /* datFilenames_0x20 */ init_8c0432c8,
+        /* datFilenames_0x20 */ init_course41Seg0PacFiles,
         /* fog_0x24 */ &init_8c040c64,
         /* modelFiles_0x28 */ init_8c040e38,
     },
@@ -7720,7 +7720,7 @@ CourseSegment init_8c043340[7] = {
     },
 };
 
-CourseSegment init_8c043474[4] = {
+CourseSegment init_course42Segments[4] = {
     {   /* [0] */
         /* ukn_0x00, ukn_0x02, ukn_0x04, ukn_0x06 */ 0x0002, 0x0003, 0x0000, 0x0000,
         /* ukn_0x08 */ init_8c040b64,
@@ -7729,7 +7729,7 @@ CourseSegment init_8c043474[4] = {
         /* ukn_0x14 */ NULL,
         /* pedestrianModelList_0x18 */ init_8c040b34,
         /* sceneObjectList_0x1c */ init_8c04122c,
-        /* datFilenames_0x20 */ init_8c0432d8,
+        /* datFilenames_0x20 */ init_course42Seg0PacFiles,
         /* fog_0x24 */ &init_8c040c78,
         /* modelFiles_0x28 */ init_8c040e58,
     },
@@ -7771,7 +7771,7 @@ CourseSegment init_8c043474[4] = {
     },
 };
 
-CourseSegment init_8c043524[5] = {
+CourseSegment init_course43Segments[5] = {
     {   /* [0] */
         /* ukn_0x00, ukn_0x02, ukn_0x04, ukn_0x06 */ 0x0002, 0x0006, 0x0000, 0x0000,
         /* ukn_0x08 */ init_8c040b82,
@@ -7780,7 +7780,7 @@ CourseSegment init_8c043524[5] = {
         /* ukn_0x14 */ NULL,
         /* pedestrianModelList_0x18 */ init_8c040b34,
         /* sceneObjectList_0x1c */ init_8c041264,
-        /* datFilenames_0x20 */ init_8c0432e8,
+        /* datFilenames_0x20 */ init_course43Seg0PacFiles,
         /* fog_0x24 */ &init_8c040c8c,
         /* modelFiles_0x28 */ init_8c040e78,
     },
@@ -7834,7 +7834,7 @@ CourseSegment init_8c043524[5] = {
     },
 };
 
-CourseSegment init_8c043600[4] = {
+CourseSegment init_course44Segments[4] = {
     {   /* [0] */
         /* ukn_0x00, ukn_0x02, ukn_0x04, ukn_0x06 */ 0x0002, 0x0009, 0x0000, 0x0000,
         /* ukn_0x08 */ init_8c040b9c,
@@ -7843,7 +7843,7 @@ CourseSegment init_8c043600[4] = {
         /* ukn_0x14 */ NULL,
         /* pedestrianModelList_0x18 */ init_8c040b34,
         /* sceneObjectList_0x1c */ init_8c0411ac,
-        /* datFilenames_0x20 */ init_8c0432f8,
+        /* datFilenames_0x20 */ init_course44Seg0PacFiles,
         /* fog_0x24 */ &init_8c040c78,
         /* modelFiles_0x28 */ init_8c040e58,
     },
@@ -7885,7 +7885,7 @@ CourseSegment init_8c043600[4] = {
     },
 };
 
-CourseSegment init_8c0436b0[4] = {
+CourseSegment init_course45Segments[4] = {
     {   /* [0] */
         /* ukn_0x00, ukn_0x02, ukn_0x04, ukn_0x06 */ 0x0002, 0x000c, 0x0000, 0x0000,
         /* ukn_0x08 */ init_8c040bac,
@@ -7894,7 +7894,7 @@ CourseSegment init_8c0436b0[4] = {
         /* ukn_0x14 */ NULL,
         /* pedestrianModelList_0x18 */ init_8c040b34,
         /* sceneObjectList_0x1c */ NULL,
-        /* datFilenames_0x20 */ init_8c043308,
+        /* datFilenames_0x20 */ init_course45Seg0PacFiles,
         /* fog_0x24 */ &init_8c040c8c,
         /* modelFiles_0x28 */ init_8c040e88,
     },
@@ -7939,7 +7939,7 @@ CourseSegment init_8c0436b0[4] = {
 CourseConfig init_course41_8c043760 = {
     /* route_0x00 */ 1,
     /* timeOfDay_0x04 */ 0,
-    /* segments_0x08 */ init_8c043340,
+    /* segments_0x08 */ init_course41Segments,
     /* ukn_0x0c */ init_8c040a74,
     /* sceneParams_0x10 */ &init_8c040ca0,
     /* ukn_0x14 */ 2,
@@ -7970,7 +7970,7 @@ CourseConfig init_course41_8c043760 = {
 CourseConfig init_course42_8c0437c8 = {
     /* route_0x00 */ 1,
     /* timeOfDay_0x04 */ 1,
-    /* segments_0x08 */ init_8c043474,
+    /* segments_0x08 */ init_course42Segments,
     /* ukn_0x0c */ init_8c040ab4,
     /* sceneParams_0x10 */ &init_8c040d28,
     /* ukn_0x14 */ 2,
@@ -8001,7 +8001,7 @@ CourseConfig init_course42_8c0437c8 = {
 CourseConfig init_course43_8c043830 = {
     /* route_0x00 */ 1,
     /* timeOfDay_0x04 */ 2,
-    /* segments_0x08 */ init_8c043524,
+    /* segments_0x08 */ init_course43Segments,
     /* ukn_0x0c */ init_8c040af4,
     /* sceneParams_0x10 */ &init_8c040db0,
     /* ukn_0x14 */ 2,
@@ -8032,7 +8032,7 @@ CourseConfig init_course43_8c043830 = {
 CourseConfig init_course44_8c043898 = {
     /* route_0x00 */ 1,
     /* timeOfDay_0x04 */ 1,
-    /* segments_0x08 */ init_8c043600,
+    /* segments_0x08 */ init_course44Segments,
     /* ukn_0x0c */ init_8c040ab4,
     /* sceneParams_0x10 */ &init_8c040d28,
     /* ukn_0x14 */ 2,
@@ -8063,7 +8063,7 @@ CourseConfig init_course44_8c043898 = {
 CourseConfig init_course45_8c043900 = {
     /* route_0x00 */ 1,
     /* timeOfDay_0x04 */ 2,
-    /* segments_0x08 */ init_8c0436b0,
+    /* segments_0x08 */ init_course45Segments,
     /* ukn_0x0c */ init_8c040af4,
     /* sceneParams_0x10 */ &init_8c040db0,
     /* ukn_0x14 */ 2,
@@ -8090,13 +8090,13 @@ CourseConfig init_course45_8c043900 = {
         "wn_shadow_x.dat",
     },
 };
-STATIC char *init_8c043968[4] = {
+STATIC char *init_course46Seg0PacFiles[4] = {
     "d_road8.pac",
     "d_machi8.pac",
     "d_uv8.pac",
     "d_O_ROAD_UV_OHDAN8.pac",
 };
-STATIC char *init_8c043978[4] = {
+STATIC char *init_course47Seg0PacFiles[4] = {
     "d_road9.pac",
     "d_machi9.pac",
     "d_uv9.pac",
@@ -8105,7 +8105,7 @@ STATIC char *init_8c043978[4] = {
 STATIC Uint8 init_8c043988[8] = { 0x2c, 0x27, 0x32, 0x2c, 0x00, 0x00, 0x00, 0x00 };
 STATIC Uint8 init_8c043990[8] = { 0x0a, 0x03, 0x13, 0x0b, 0x00, 0x00, 0x00, 0x00 };
 
-CourseSegment init_8c043998[7] = {
+CourseSegment init_course46Segments[7] = {
     {   /* [0] */
         /* ukn_0x00, ukn_0x02, ukn_0x04, ukn_0x06 */ 0x0002, 0x00c4, 0x0000, 0x0000,
         /* ukn_0x08 */ init_8c03c10e,
@@ -8114,7 +8114,7 @@ CourseSegment init_8c043998[7] = {
         /* ukn_0x14 */ NULL,
         /* pedestrianModelList_0x18 */ init_8c03c0c0,
         /* sceneObjectList_0x1c */ init_8c03c4d4,
-        /* datFilenames_0x20 */ init_8c043968,
+        /* datFilenames_0x20 */ init_course46Seg0PacFiles,
         /* fog_0x24 */ &init_8c03c278,
         /* modelFiles_0x28 */ init_8c03c55c,
     },
@@ -8192,7 +8192,7 @@ CourseSegment init_8c043998[7] = {
     },
 };
 
-CourseSegment init_8c043acc[6] = {
+CourseSegment init_course47Segments[6] = {
     {   /* [0] */
         /* ukn_0x00, ukn_0x02, ukn_0x04, ukn_0x06 */ 0x0002, 0x00d6, 0x0000, 0x0000,
         /* ukn_0x08 */ init_8c03c16c,
@@ -8201,7 +8201,7 @@ CourseSegment init_8c043acc[6] = {
         /* ukn_0x14 */ NULL,
         /* pedestrianModelList_0x18 */ init_8c03c0c0,
         /* sceneObjectList_0x1c */ init_8c03c54c,
-        /* datFilenames_0x20 */ init_8c043978,
+        /* datFilenames_0x20 */ init_course47Seg0PacFiles,
         /* fog_0x24 */ &init_8c03c28c,
         /* modelFiles_0x28 */ init_8c03c56c,
     },
@@ -8270,7 +8270,7 @@ CourseSegment init_8c043acc[6] = {
 CourseConfig init_course46_8c043bd4 = {
     /* route_0x00 */ 2,
     /* timeOfDay_0x04 */ 0,
-    /* segments_0x08 */ init_8c043998,
+    /* segments_0x08 */ init_course46Segments,
     /* ukn_0x0c */ init_8c03bfac,
     /* sceneParams_0x10 */ &init_8c03c2b4,
     /* ukn_0x14 */ 2,
@@ -8301,7 +8301,7 @@ CourseConfig init_course46_8c043bd4 = {
 CourseConfig init_course47_8c043c3c = {
     /* route_0x00 */ 2,
     /* timeOfDay_0x04 */ 1,
-    /* segments_0x08 */ init_8c043acc,
+    /* segments_0x08 */ init_course47Segments,
     /* ukn_0x0c */ init_8c03c008,
     /* sceneParams_0x10 */ &init_8c03c33c,
     /* ukn_0x14 */ 2,
