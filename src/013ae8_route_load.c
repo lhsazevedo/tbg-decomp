@@ -508,7 +508,7 @@ void syncSegmentModels_8c013f78(void)
  * route id, and request all of its files. */
 void loadRouteModels_8c014088(void)
 {
-    LOG_DEBUG(("[ROUTE_LOAD] requesting course %d\n models", var_currentCourse_8c1bb868.courseId_0x00));
+    LOG_DEBUG(("[ROUTE_LOAD] requesting course %d models\n", var_currentCourse_8c1bb868.courseId_0x00));
 
     var_currentCourseConfig_8c18ad18 = init_courseTable_8c043ca4[var_currentCourse_8c1bb868.courseId_0x00];
     var_route_8c18ad1c = var_currentCourseConfig_8c18ad18->route_0x00;
