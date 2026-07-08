@@ -19,7 +19,7 @@ char *DEBUG_routeLoadStateNames[] = {
     "DONE",
 };
 
-char *DEBUG_routeLoad2StateNames[] = {
+char *DEBUG_segmentReloadStateNames[] = {
     "POST_LOAD",
     "WAIT",
     "IDLE",
@@ -27,16 +27,16 @@ char *DEBUG_routeLoad2StateNames[] = {
 };
 #endif
 
-#define CHANGE_LOAD_STATE(task, x)                                            \
-    do {                                                                      \
-        (task)->field_0x08 = x;                                               \
+#define CHANGE_LOAD_STATE(task, x) \
+    do { \
+        (task)->field_0x08 = x; \
         LOG_DEBUG(("[ROUTE_LOAD] State changed: %s\n", DEBUG_routeLoadStateNames[x])); \
     } while (0)
 
-#define CHANGE_LOAD2_STATE(task, x)                                           \
-    do {                                                                      \
-        (task)->field_0x08 = x;                                               \
-        LOG_DEBUG(("[ROUTE_LOAD] State changed: %s\n", DEBUG_routeLoad2StateNames[x])); \
+#define CHANGE_SEGMENT_RELOAD_STATE(task, x) \
+    do { \
+        (task)->field_0x08 = x; \
+        LOG_DEBUG(("[ROUTE_LOAD] State changed: %s\n", DEBUG_segmentReloadStateNames[x])); \
     } while (0)
 
 /* ====================
@@ -52,11 +52,11 @@ enum ROUTE_LOAD_STATE {
     ROUTE_LOAD_STATE_DONE      = 4,
 };
 
-enum ROUTE_LOAD_INTERIOR_STATE {
-    ROUTE_LOAD_INTERIOR_STATE_POST_LOAD = 0,
-    ROUTE_LOAD_INTERIOR_STATE_WAIT      = 1,
-    ROUTE_LOAD_INTERIOR_STATE_IDLE      = 2,
-    ROUTE_LOAD_INTERIOR_STATE_DONE      = 3,
+enum SEGMENT_RELOAD_STATE {
+    SEGMENT_RELOAD_STATE_POST_LOAD = 0,
+    SEGMENT_RELOAD_STATE_WAIT      = 1,
+    SEGMENT_RELOAD_STATE_IDLE      = 2,
+    SEGMENT_RELOAD_STATE_DONE      = 3,
 };
 
 /* One entry of var_routeModelSlots_8c1bbddc. */
@@ -702,30 +702,30 @@ void unknownSegmentReloadTask_8c014550(Task *task, void *state)
     int frame;
 
     switch (task->field_0x08) {
-        case ROUTE_LOAD_INTERIOR_STATE_POST_LOAD: {
+        case SEGMENT_RELOAD_STATE_POST_LOAD: {
             FUN_8c02b170();
             AsqResetQueues_11f6c();
             syncSegmentModels_8c013f78();
             resetPvmReady_8c014322();
             AsqProcessQueues_11fe0(AsqNop_11120, FUN_8c021810, FUN_8c02190a, 0, setPvmReady_8c014330);
-            CHANGE_LOAD2_STATE(task, ROUTE_LOAD_INTERIOR_STATE_WAIT);
+            CHANGE_SEGMENT_RELOAD_STATE(task, SEGMENT_RELOAD_STATE_WAIT);
             break;
         }
 
-        case ROUTE_LOAD_INTERIOR_STATE_WAIT: {
+        case SEGMENT_RELOAD_STATE_WAIT: {
             if (isPvmReady_8c01432a() != 0) {
-                CHANGE_LOAD2_STATE(task, ROUTE_LOAD_INTERIOR_STATE_IDLE);
+                CHANGE_SEGMENT_RELOAD_STATE(task, SEGMENT_RELOAD_STATE_IDLE);
                 return;
             }
             break;
         }
 
-        case ROUTE_LOAD_INTERIOR_STATE_IDLE: {
-            CHANGE_LOAD2_STATE(task, ROUTE_LOAD_INTERIOR_STATE_DONE);
+        case SEGMENT_RELOAD_STATE_IDLE: {
+            CHANGE_SEGMENT_RELOAD_STATE(task, SEGMENT_RELOAD_STATE_DONE);
             return;
         }
 
-        case ROUTE_LOAD_INTERIOR_STATE_DONE: {
+        case SEGMENT_RELOAD_STATE_DONE: {
             freeTask_8c014b66(task);
             AsqFreeQueues_11f7e();
             var_loadScreenActive_8c157a6c = 0;
@@ -761,7 +761,7 @@ void pushUnknownSegmentReloadTask_8c01468e(void)
 
     var_loadScreenActive_8c157a6c = 1;
     pushTask_8c014ae8(var_tasks_8c1ba3c8, (void *) unknownSegmentReloadTask_8c014550, &task, &state, 0);
-    CHANGE_LOAD2_STATE(task, ROUTE_LOAD_INTERIOR_STATE_POST_LOAD);
+    CHANGE_SEGMENT_RELOAD_STATE(task, SEGMENT_RELOAD_STATE_POST_LOAD);
     task->field_0x0c = 0;
     freeSegmentModels_8c013f22();
 
