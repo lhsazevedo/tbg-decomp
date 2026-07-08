@@ -15,12 +15,13 @@
 typedef struct {
     char *njFilename;
     char *pvmFilename;
-} NjPvmPairFilenames;
+} ModelFiles;
 
+// SHC doesn't like "Model"
 typedef struct {
     NJS_TEXLIST *texlist;
     void *njDest;
-} NjPvmPair;
+} LoadedModel;
 
 typedef struct {
     unsigned int physical_0x00;
@@ -84,9 +85,9 @@ void AsqFreeQueues_11f7e();
 
 void AsqProcessQueues_11fe0(void *func, void *afterDatCallback, void *afterNjCallback, void *afterPvmCallback, void *afterTexlistCallback);
 
-NjPvmPair* AsqRequestNjPvmPairs_12030(char *basedir, NjPvmPairFilenames *pairs, int texlistCount);
+LoadedModel* AsqRequestModels_12030(char *basedir, ModelFiles *pairs, int texlistCount);
 
-void AsqFreeNjPvmPairs_120fe(NjPvmPair **pairsPtr);
+void AsqFreeModels_120fe(LoadedModel **pairsPtr);
 
 void AsqSetSeedA_12160(int p1);
 

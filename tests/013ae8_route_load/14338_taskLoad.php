@@ -5,7 +5,7 @@ declare(strict_types=1);
 use Lhsazevedo\Sh4ObjTest\TestCase;
 
 return new class extends TestCase {
-    /** value at var_8c1bc3f8.tlist_0x00, passed to the nj texture calls */
+    /** value at var_loadingResourceGroup_8c1bc3f8.tlist_0x00, passed to the nj texture calls */
     private const TLIST = 0x8c500000;
 
     /** State 0: reset queues, load the route models, start the first pass. */
@@ -20,11 +20,11 @@ return new class extends TestCase {
         $this->shouldCall('_njSetTexture')->with(self::TLIST);
         $this->shouldCall('_njLoadCacheTexture')->with(self::TLIST);
         $this->shouldCall('_loadRouteModels_8c014088');
-        $this->shouldCall('_resetUknPvmBool_8c014322');
+        $this->shouldCall('_resetPvmReady_8c014322');
         $this->shouldCall('_AsqProcessQueues_11fe0')->with(
             $this->addressOf('_AsqNop_11120'),
             0, 0, 0,
-            $this->addressOf('_setUknPvmBool_8c014330'),
+            $this->addressOf('_setPvmReady_8c014330'),
         );
         $this->shouldWriteLong($task + 0x08, 1);
     }
@@ -37,7 +37,7 @@ return new class extends TestCase {
 
         $this->call('_routeLoadTask_8c014338')->with($task, 0);
 
-        $this->shouldCall('_getUknPvmBool_8c01432a')->andReturn(0);
+        $this->shouldCall('_isPvmReady_8c01432a')->andReturn(0);
         $this->expectLoadingAnimation($task);
     }
 
@@ -46,7 +46,7 @@ return new class extends TestCase {
     {
         $this->resolveSizes();
 
-        $base = $this->addressOf('_var_8c1bb868');
+        $base = $this->addressOf('_var_currentCourse_8c1bb868');
         $this->initUint32($base + 0x24, 0x8cd00008);   // slots_0x04[8]
         $this->initUint32($base + 0x30, 0x8cd0000b);   // slots_0x04[11]
         $this->initUint32($base + 0x34, 0x8cd0000c);   // slots_0x04[12]
@@ -55,7 +55,7 @@ return new class extends TestCase {
 
         $this->call('_routeLoadTask_8c014338')->with($task, 0);
 
-        $this->shouldCall('_getUknPvmBool_8c01432a')->andReturn(1);
+        $this->shouldCall('_isPvmReady_8c01432a')->andReturn(1);
         $this->shouldCall('_FUN_8c02175a');
         $this->shouldCall('_FUN_8c026da4')->with(0x8cd00008);
         $this->shouldCall('_FUN_8c028de8')->with(0x8cd0000b);
@@ -63,14 +63,14 @@ return new class extends TestCase {
         $this->shouldCall('_FUN_8c02caba');
         $this->shouldCall('_FUN_8c02b170');
         $this->shouldCall('_AsqResetQueues_11f6c');
-        $this->shouldCall('_syncSelectedEntryAssets_8c013f78');
-        $this->shouldCall('_resetUknPvmBool_8c014322');
+        $this->shouldCall('_syncSegmentModels_8c013f78');
+        $this->shouldCall('_resetPvmReady_8c014322');
         $this->shouldCall('_AsqProcessQueues_11fe0')->with(
             $this->addressOf('_AsqNop_11120'),
             $this->addressOf('_FUN_8c021810'),
             $this->addressOf('_FUN_8c02190a'),
             0,
-            $this->addressOf('_setUknPvmBool_8c014330'),
+            $this->addressOf('_setPvmReady_8c014330'),
         );
         $this->shouldWriteLong($task + 0x08, 2);
 
@@ -85,7 +85,7 @@ return new class extends TestCase {
 
         $this->call('_routeLoadTask_8c014338')->with($task, 0);
 
-        $this->shouldCall('_getUknPvmBool_8c01432a')->andReturn(1);
+        $this->shouldCall('_isPvmReady_8c01432a')->andReturn(1);
         $this->shouldWriteLong($task + 0x08, 3);
     }
 
@@ -97,7 +97,7 @@ return new class extends TestCase {
 
         $this->call('_routeLoadTask_8c014338')->with($task, 0);
 
-        $this->shouldCall('_getUknPvmBool_8c01432a')->andReturn(0);
+        $this->shouldCall('_isPvmReady_8c01432a')->andReturn(0);
         $this->expectLoadingAnimation($task);
     }
 
@@ -116,7 +116,7 @@ return new class extends TestCase {
     public function test_state4_teardown_and_handoff(): void
     {
         $this->resolveSizes();
-        $this->initUint32($this->addressOf('_var_8c1bc3f8'), self::TLIST);
+        $this->initUint32($this->addressOf('_var_loadingResourceGroup_8c1bc3f8'), self::TLIST);
         $task = $this->makeTask(4, 0);
 
         $this->call('_routeLoadTask_8c014338')->with($task, 0);
@@ -151,7 +151,7 @@ return new class extends TestCase {
             $this->setRegister(0, $this->getRegister(1)->mod($this->getRegister(0)));
         });
 
-        $res = $this->addressOf('_var_8c1bc3f8');
+        $res = $this->addressOf('_var_loadingResourceGroup_8c1bc3f8');
         $this->shouldCall('_drawSprite_8c014f54')->with($res, 0, 0.0, 0.0, -5.0);
         $this->shouldWriteLong($task + 0x0c, 1);
         $this->shouldCall('__modls');
@@ -166,7 +166,7 @@ return new class extends TestCase {
         }
         $this->initUint32($task + 0x08, $state);
         $this->initUint32($task + 0x0c, $frame);
-        $this->initUint32($this->addressOf('_var_8c1bc3f8'), self::TLIST);
+        $this->initUint32($this->addressOf('_var_loadingResourceGroup_8c1bc3f8'), self::TLIST);
 
         return $task;
     }
@@ -174,9 +174,9 @@ return new class extends TestCase {
     private function resolveSizes(): void
     {
         foreach ([
-            '_var_8c1bc3f8' => 0x0c,
+            '_var_loadingResourceGroup_8c1bc3f8' => 0x0c,
             '_var_8c157a6c' => 4,
-            '_var_8c1bb868' => 0x50,
+            '_var_currentCourse_8c1bb868' => 0x50,
             '_AsqResetQueues_11f6c' => 4,
             '_AsqFreeQueues_11f7e' => 4,
             '_AsqProcessQueues_11fe0' => 4,

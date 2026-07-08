@@ -1,5 +1,5 @@
 ; 8c023310
-          .IMPORT     _var_8c228708
+          .IMPORT     _var_currentSegment_8c228708
           .IMPORT     _FUN_8c02cd7a
           .IMPORT     _var_busState_8c1bb9d0
           .IMPORT     _var_sceneParams_8c18ad24
@@ -11,7 +11,7 @@
           .IMPORT     _acosf
           .IMPORT     _var_8c227d9c
           .IMPORT     _var_8c227dac
-          .IMPORT     _var_8c1bb868
+          .IMPORT     _var_currentCourse_8c1bb868
           .IMPORT     _var_8c2264d4
           .IMPORT     _var_8c228b3c
           .IMPORT     _var_8c227d84
@@ -23,7 +23,7 @@
           .IMPORT     _pushTask_8c014ae8
           .IMPORT     _var_8c1bbd9c
           .IMPORT     _var_8c1bbf7c
-          .IMPORT     _var_routeModelPairs_8c1bc3f4
+          .IMPORT     _var_trafficModels_8c1bc3f4
           .IMPORT     _FUN_8c02786c
           .IMPORT     _var_timeOfDay_8c18ad20
           .IMPORT     _var_route_8c18ad1c
@@ -164,7 +164,7 @@ LP_GEN_83541:
           .DATA.W H'024C ; H'8C0233FE
           .DATA.W H'025C ; H'8C023400
           .RES.W 1 ; H'8C023402
-          .DATA.L _var_8c228708 ; H'8C023404
+          .DATA.L _var_currentSegment_8c228708 ; H'8C023404
           .DATA.L _FUN_8c02cd7a ; H'8C023408
           .DATA.L _var_busState_8c1bb9d0 ; H'8C02340C
           .DATA.L _var_sceneParams_8c18ad24 ; H'8C023410
@@ -510,7 +510,7 @@ LAB_8c0236b8:
 LP_GEN_28893:
           .RES.W 1 ; H'8C0236BE
           .DATA.L _var_8c227dac ; H'8C0236C0
-          .DATA.L _var_8c1bb868 ; H'8C0236C4
+          .DATA.L _var_currentCourse_8c1bb868 ; H'8C0236C4
           .DATA.L _var_8c2264d4 ; H'8C0236C8
           .DATA.L _var_8c228b3c ; H'8C0236CC
           .DATA.L _var_8c227d84 ; H'8C0236D0
@@ -524,7 +524,7 @@ LP_GEN_28893:
           .DATA.L _var_busState_8c1bb9d0 ; H'8C0236F0
           .DATA.L _var_8c1bbd9c ; H'8C0236F4
           .DATA.L _var_8c1bbf7c ; H'8C0236F8
-          .DATA.L _var_routeModelPairs_8c1bc3f4 ; H'8C0236FC
+          .DATA.L _var_trafficModels_8c1bc3f4 ; H'8C0236FC
           .DATA.L _FUN_8c02786c ; H'8C023700
           .DATA.L _var_timeOfDay_8c18ad20 ; H'8C023704
 LAB_8c023708:
@@ -692,7 +692,7 @@ LP_GEN_45139:
           .RES.W 1 ; H'8C02383E
           .DATA.L _var_route_8c18ad1c ; H'8C023840
           .DATA.L _FUN_8c02e69c ; H'8C023844
-          .DATA.L _var_8c228708 ; H'8C023848
+          .DATA.L _var_currentSegment_8c228708 ; H'8C023848
           .DATA.L _FUN_8c020fe4 ; H'8C02384C
           .DATA.L _FUN_8c02eab4 ; H'8C023850
           .DATA.L _FUN_8c02ec50 ; H'8C023854

@@ -12,7 +12,7 @@ return new class extends TestCase {
 
         $this->call('_CourseConfirmMenuTask_8c0181b6');
 
-        $this->shouldCall('_getUknPvmBool_8c01432a')->andReturn(1);
+        $this->shouldCall('_isPvmReady_8c01432a')->andReturn(1);
     }
 
     public function test_init_state_advances(): void
@@ -23,7 +23,7 @@ return new class extends TestCase {
 
         $this->call('_CourseConfirmMenuTask_8c0181b6');
 
-        $this->shouldCall('_getUknPvmBool_8c01432a')->andReturn(0);
+        $this->shouldCall('_isPvmReady_8c01432a')->andReturn(0);
         $this->shouldCall('_AsqFreeQueues_11f7e');
         $this->shouldWriteLong($this->addressOf('_menuState_8c1bc7a8') + 0x18, 1);
         $this->shouldCall('_push_fadein_8c022a9c')->with(10);

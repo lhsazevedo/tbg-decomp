@@ -10,9 +10,9 @@
           .IMPORT     _njSetTextureInfo
           .IMPORT     _njSetTextureName
           .IMPORT     _njLoadTexture
-          .IMPORT     _getUknPvmBool_8c01432a
+          .IMPORT     _isPvmReady_8c01432a
           .IMPORT     _var_demoBuf_8c1ba3c4
-          .IMPORT     _var_8c1bb868
+          .IMPORT     _var_currentCourse_8c1bb868
           .IMPORT     _var_inputMapSel_8c1bb8c8
           .IMPORT     _var_seed_8c157a64
           .IMPORT     _FUN_8c02f320
@@ -29,8 +29,8 @@
           .IMPORT     _AsqRequestDat_11182
           .IMPORT     _var_demoEntryValue_8c227e14
           .IMPORT     _var_demoEntryValue_8c22822c
-          .IMPORT     _resetUknPvmBool_8c014322
-          .IMPORT     _setUknPvmBool_8c014330
+          .IMPORT     _resetPvmReady_8c014322
+          .IMPORT     _setPvmReady_8c014330
           .IMPORT     _AsqNop_11120
           .IMPORT     _AsqProcessQueues_11fe0
           .IMPORT     _njDrawSprite2D
@@ -1542,9 +1542,9 @@ LAB_8c0159ec
           MOV.L       @R15+,R14
 
 LP_GEN_51554:
-          .DATA.L _getUknPvmBool_8c01432a ; LP_GEN_51554+0
+          .DATA.L _isPvmReady_8c01432a ; LP_GEN_51554+0
           .DATA.L _var_demoBuf_8c1ba3c4
-          .DATA.L _var_8c1bb868
+          .DATA.L _var_currentCourse_8c1bb868
           .DATA.L _var_inputMapSel_8c1bb8c8
           .DATA.L _var_seed_8c157a64
           .DATA.L _demoBuffer_8c1bc828
@@ -1566,8 +1566,8 @@ LP_GEN_51554:
           .DATA.L _AsqRequestDat_11182
           .DATA.L _var_demoEntryValue_8c227e14
           .DATA.L _var_demoEntryValue_8c22822c
-          .DATA.L _resetUknPvmBool_8c014322
-          .DATA.L _setUknPvmBool_8c014330
+          .DATA.L _resetPvmReady_8c014322
+          .DATA.L _setPvmReady_8c014330
           .DATA.L _AsqNop_11120
           .DATA.L _AsqProcessQueues_11fe0
           .SECTION    C,DATA,ALIGN=4

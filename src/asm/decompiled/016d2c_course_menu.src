@@ -34,7 +34,7 @@
           .IMPORT     _var_game_mode_8c1bb8fc
           .IMPORT     _init_8c03bd80
           .IMPORT     _isFading_8c226568
-          .IMPORT     _getUknPvmBool_8c01432a
+          .IMPORT     _isPvmReady_8c01432a
           .IMPORT     _AsqFreeQueues_11f7e
           .IMPORT     _FUN_8c010d8a
           .IMPORT     _push_fadein_8c022a9c
@@ -52,8 +52,8 @@
           .IMPORT     _AsqInitQueues_11f36
           .IMPORT     _AsqResetQueues_11f6c
           .IMPORT     _init_mainMenuResourceGroup_8c044264
-          .IMPORT     _setUknPvmBool_8c014330
-          .IMPORT     _resetUknPvmBool_8c014322
+          .IMPORT     _setPvmReady_8c014330
+          .IMPORT     _resetPvmReady_8c014322
           .IMPORT     _AsqNop_11120
           .IMPORT     _AsqProcessQueues_11fe0
           .IMPORT     _pushInputTask_8c0128cc
@@ -1581,7 +1581,7 @@ LP_GEN_90654:
           .DATA.L _init_8c03bd80 ; H'8C0177D8
           .DATA.L _isFading_8c226568 ; H'8C0177DC
           .DATA.L _var_dialogQueue_8c225fbc ; H'8C0177E0
-          .DATA.L _getUknPvmBool_8c01432a ; H'8C0177E4
+          .DATA.L _isPvmReady_8c01432a ; H'8C0177E4
           .DATA.L _AsqFreeQueues_11f7e ; H'8C0177E8
           .DATA.L _FUN_8c010d8a ; H'8C0177EC
           .DATA.L _snd_8c010cd6 ; H'8C0177F0
@@ -2105,7 +2105,7 @@ LP_GEN_86246:
           .DATA.L _init_8c03bd80 ; H'8C017BDC
           .DATA.L _var_dialogQueue_8c225fbc ; H'8C017BE0
           .DATA.L _isFading_8c226568 ; H'8C017BE4
-          .DATA.L _getUknPvmBool_8c01432a ; H'8C017BE8
+          .DATA.L _isPvmReady_8c01432a ; H'8C017BE8
           .DATA.L _AsqFreeQueues_11f7e ; H'8C017BEC
           .DATA.L _FUN_8c010d8a ; H'8C017BF0
           .DATA.L _snd_8c010cd6 ; H'8C017BF4
@@ -2543,8 +2543,8 @@ LP_GEN_67544:
           .DATA.L _AsqInitQueues_11f36 ; H'8C017F60
           .DATA.L _AsqResetQueues_11f6c ; H'8C017F64
           .DATA.L _init_mainMenuResourceGroup_8c044264 ; H'8C017F68
-          .DATA.L _setUknPvmBool_8c014330 ; H'8C017F6C
-          .DATA.L _resetUknPvmBool_8c014322 ; H'8C017F70
+          .DATA.L _setPvmReady_8c014330 ; H'8C017F6C
+          .DATA.L _resetPvmReady_8c014322 ; H'8C017F70
           .DATA.L _AsqNop_11120 ; H'8C017F74
           .DATA.L _AsqProcessQueues_11fe0 ; H'8C017F78
           .DATA.L _AsqFreeQueues_11f7e ; H'8C017F7C
@@ -2716,8 +2716,8 @@ LP_GEN_56170:
           .DATA.L _AsqInitQueues_11f36 ; H'8C0180E8
           .DATA.L _AsqResetQueues_11f6c ; H'8C0180EC
           .DATA.L _init_mainMenuResourceGroup_8c044264 ; H'8C0180F0
-          .DATA.L _setUknPvmBool_8c014330 ; H'8C0180F4
-          .DATA.L _resetUknPvmBool_8c014322 ; H'8C0180F8
+          .DATA.L _setPvmReady_8c014330 ; H'8C0180F4
+          .DATA.L _resetPvmReady_8c014322 ; H'8C0180F8
           .DATA.L _AsqNop_11120 ; H'8C0180FC
           .DATA.L _AsqProcessQueues_11fe0 ; H'8C018100
           .DATA.L _drawSprite_8c014f54 ; H'8C018104
@@ -3043,7 +3043,7 @@ LP_GEN_82242:
           .DATA.L _init_8c03bd80 ; H'8C01837C
           .DATA.L _startAdxFadeOut_8c010bae ; H'8C018380
           .DATA.L _isFading_8c226568 ; H'8C018384
-          .DATA.L _getUknPvmBool_8c01432a ; H'8C018388
+          .DATA.L _isPvmReady_8c01432a ; H'8C018388
           .DATA.L _AsqFreeQueues_11f7e ; H'8C01838C
           .DATA.L _push_fadein_8c022a9c ; H'8C018390
           .DATA.L _snd_8c010cd6 ; H'8C018394
@@ -3350,8 +3350,8 @@ LP_GEN_93008:
           .DATA.L _AsqInitQueues_11f36 ; H'8C018604
           .DATA.L _AsqResetQueues_11f6c ; H'8C018608
           .DATA.L _init_courseResourceGroup_8c044d40 ; H'8C01860C
-          .DATA.L _setUknPvmBool_8c014330 ; H'8C018610
-          .DATA.L _resetUknPvmBool_8c014322 ; H'8C018614
+          .DATA.L _setPvmReady_8c014330 ; H'8C018610
+          .DATA.L _resetPvmReady_8c014322 ; H'8C018614
           .DATA.L _AsqNop_11120 ; H'8C018618
           .DATA.L _AsqProcessQueues_11fe0 ; H'8C01861C
           .DATA.L _const_8c036290 ; H'8C018620

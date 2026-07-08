@@ -16,10 +16,10 @@
           .IMPORT     _FUN_8c02df3c
           .IMPORT     _njSqrt
           .IMPORT     _acosf
-          .IMPORT     _var_8c228708
+          .IMPORT     _var_currentSegment_8c228708
           .IMPORT     _FUN_8c02cd6a
           .IMPORT     _var_8c227e24
-          .IMPORT     _var_8c1bb868
+          .IMPORT     _var_currentCourse_8c1bb868
           .IMPORT     _var_8c1bbd9c
           .IMPORT     _FUN_8c02f212
           .IMPORT     _var_busState_8c1bb9d0
@@ -31,12 +31,12 @@
           .IMPORT     _pushTask_8c014ae8
           .IMPORT     _FUN_8c02eab4
           .IMPORT     _FUN_8c020b6c
-          .IMPORT     _var_8c1bbddc
+          .IMPORT     _var_routeModelSlots_8c1bbddc
           .IMPORT     _freeTask_8c014b66
           .IMPORT     _FUN_8c02f0c8
           .IMPORT     _var_demoEntryValue_8c227e14
           .IMPORT     _init_8c04622c
-          .IMPORT     _var_routeModelPairs_8c1bc3f4
+          .IMPORT     _var_trafficModels_8c1bc3f4
           .IMPORT     _FUN_8c02786c
           .IMPORT     _var_8c227db8
           .IMPORT     _var_8c227dc4
@@ -1009,10 +1009,10 @@ LP_GEN_70087:
           .DATA.L _acosf ; H'8C026E34
           .DATA.L H'47800000 ; H'8C026E38
           .DATA.L H'40C90FD8 ; H'8C026E3C
-          .DATA.L _var_8c228708 ; H'8C026E40
+          .DATA.L _var_currentSegment_8c228708 ; H'8C026E40
           .DATA.L _FUN_8c02cd6a ; H'8C026E44
           .DATA.L _var_8c227e24 ; H'8C026E48
-          .DATA.L _var_8c1bb868 ; H'8C026E4C
+          .DATA.L _var_currentCourse_8c1bb868 ; H'8C026E4C
           .DATA.L _init_8c0460bc ; H'8C026E50
 LAB_8c026e54:
           CMP/EQ      #H'5,R0
@@ -1838,7 +1838,7 @@ LP_GEN_50256:
           .RES.W 1 ; H'8C02745E
           .DATA.L _FUN_8c020b6c ; H'8C027460
           .DATA.L _FUN_8c02e51c ; H'8C027464
-          .DATA.L _var_8c1bbddc ; H'8C027468
+          .DATA.L _var_routeModelSlots_8c1bbddc ; H'8C027468
           .DATA.L _freeTask_8c014b66 ; H'8C02746C
           .DATA.L _AsqGetRandomA_12166 ; H'8C027470
           .DATA.L H'41000000 ; H'8C027474
@@ -2009,7 +2009,7 @@ LP_GEN_41074:
           .DATA.L H'4F800000 ; H'8C0275B0
           .DATA.L _var_demoEntryValue_8c227e14 ; H'8C0275B4
           .DATA.L _init_8c04622c ; H'8C0275B8
-          .DATA.L _var_routeModelPairs_8c1bc3f4 ; H'8C0275BC
+          .DATA.L _var_trafficModels_8c1bc3f4 ; H'8C0275BC
           .DATA.L _FUN_8c02786c ; H'8C0275C0
           .DATA.L _var_8c227db8 ; H'8C0275C4
           .DATA.L _var_8c227dc4 ; H'8C0275C8
@@ -2299,7 +2299,7 @@ LAB_8c0277b0:
           NOP
 LP_GEN_74201:
           .DATA.L _var_8c2285c4 ; H'8C0277EC
-          .DATA.L _var_8c1bb868 ; H'8C0277F0
+          .DATA.L _var_currentCourse_8c1bb868 ; H'8C0277F0
           .DATA.L _var_8c2264d4 ; H'8C0277F4
           .DATA.L _var_8c228b3c ; H'8C0277F8
           .DATA.L _FUN_8c028958 ; H'8C0277FC

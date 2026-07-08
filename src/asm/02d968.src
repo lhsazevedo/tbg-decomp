@@ -32,7 +32,7 @@
           .IMPORT     _var_8c228798
           .IMPORT     __quick_odd_mvn
           .IMPORT     _init_8c04c4dc
-          .IMPORT     _var_8c228708
+          .IMPORT     _var_currentSegment_8c228708
           .IMPORT     _task_8c02d5ca
           .IMPORT     _init_8c04c3e4
           .IMPORT     _AsqGetRandomInRangeA_12178
@@ -486,7 +486,7 @@ LP_GEN_81852:
           .DATA.L _var_8c228794 ; H'8C02DD1C
           .DATA.L _syMalloc ; H'8C02DD20
           .DATA.L H'3E3851EC ; H'8C02DD24
-          .DATA.L _var_8c228708 ; H'8C02DD28
+          .DATA.L _var_currentSegment_8c228708 ; H'8C02DD28
 LAB_8c02dd2c:
           MOV         #H'38,R3
           MOV.L       LP_GEN_19590+2,R5

@@ -44,7 +44,7 @@
           .EXPORT     _var_tasks_8c1ba808 ; 012f44.c, 012f44.src, 01614c.src, 028258.src
           .EXPORT     _var_tasks_8c1bac28 ; 012f44.c, 012f44.src, 01614c.src, 024280.src, 026710.src, 02b464.src, 02df3c.src, 02e2dc.src, 02e400.src, 02e51c.src, 02f0c8.src
           .EXPORT     _var_tasks_8c1bb448 ; 012f44.c, 012f44.src, 01614c.src, 028258.src, 02b464.src
-          .EXPORT     _var_8c1bb868 ; 012f44.c, 012f44.src, 013ae8_route_load.src, 014f54_text.c, 014f54_text.src, 01614c.src, 02171c.src, 022bdc.src, 023310.src, 026710.src, 028258.src
+          .EXPORT     _var_currentCourse_8c1bb868 ; 012f44.c, 012f44.src, 013ae8_route_load.src, 014f54_text.c, 014f54_text.src, 01614c.src, 02171c.src, 022bdc.src, 023310.src, 026710.src, 028258.src
           .EXPORT     _var_8c1bb86c ; 012f44.c, 012f44.src, 027958.src, 028258.src, 02c884.src
           .EXPORT     _var_8c1bb870 ; 02c884.src
           .EXPORT     _var_8c1bb878 ; 025b98.src
@@ -113,14 +113,14 @@
           .EXPORT     _var_8c1bbdb8 ; 026710.src, 027958.src
           .EXPORT     _var_8c1bbdc4 ; 026710.src, 027958.src
           .EXPORT     _var_8c1bbdd0 ; 026710.src, 027958.src
-          .EXPORT     _var_8c1bbddc ; 012f44.c, 012f44.src, 013ae8_route_load.src, 026710.src, 028258.src
+          .EXPORT     _var_routeModelSlots_8c1bbddc ; 012f44.c, 012f44.src, 013ae8_route_load.src, 026710.src, 028258.src
           .EXPORT     _var_8c1bbf7c ; 023310.src
           .EXPORT     _var_pedestrianAssets_8c1bbfdc ; 012f44.c, 012f44.src, 013ae8_route_load.src, 028258.src
           .EXPORT     _var_8c1bbfe4 ; 02d06c.src, 02d19c.src
-          .EXPORT     _var_8c1bc3ec ; 012f44.c, 012f44.src, 013ae8_route_load.src, 01614c.src, 028258.src
-          .EXPORT     _var_8c1bc3f0 ; 012f44.c, 012f44.src, 013ae8_route_load.src, 01614c.src, 0222dc.src
-          .EXPORT     _var_routeModelPairs_8c1bc3f4 ; 012f44.c, 012f44.src, 013ae8_route_load.src, 01614c.src, 023310.src, 026710.src
-          .EXPORT     _var_8c1bc3f8 ; 012f44.c, 012f44.src, 013ae8_route_load.src
+          .EXPORT     _var_routeModels_8c1bc3ec ; 012f44.c, 012f44.src, 013ae8_route_load.src, 01614c.src, 028258.src
+          .EXPORT     _var_segmentModels_8c1bc3f0 ; 012f44.c, 012f44.src, 013ae8_route_load.src, 01614c.src, 0222dc.src
+          .EXPORT     _var_trafficModels_8c1bc3f4 ; 012f44.c, 012f44.src, 013ae8_route_load.src, 01614c.src, 023310.src, 026710.src
+          .EXPORT     _var_loadingResourceGroup_8c1bc3f8 ; 012f44.c, 012f44.src, 013ae8_route_load.src
           .EXPORT     _var_8c1bc404 ; 012f44.c, 012f44.src, 01f3c0.src, 028258.src
           .EXPORT     _var_8c1bc408 ; 01f3c0.src, 028258.src
           .EXPORT     _var_8c1bc40c ; 028258.src
@@ -216,7 +216,7 @@ _var_tasks_8c1bac28:
           .RES.B      2080
 _var_tasks_8c1bb448:
           .RES.B      1056
-_var_8c1bb868:
+_var_currentCourse_8c1bb868:
           .RES.B      4
 _var_8c1bb86c:
           .RES.B      4
@@ -348,7 +348,7 @@ _var_8c1bbdc4:
           .RES.B      12
 _var_8c1bbdd0:
           .RES.B      12
-_var_8c1bbddc:
+_var_routeModelSlots_8c1bbddc:
           .RES.B      416
 _var_8c1bbf7c:
           .RES.B      96
@@ -356,13 +356,13 @@ _var_pedestrianAssets_8c1bbfdc:
           .RES.B      8
 _var_8c1bbfe4:
           .RES.B      1032
-_var_8c1bc3ec:
+_var_routeModels_8c1bc3ec:
           .RES.B      4
-_var_8c1bc3f0:
+_var_segmentModels_8c1bc3f0:
           .RES.B      4
-_var_routeModelPairs_8c1bc3f4:
+_var_trafficModels_8c1bc3f4:
           .RES.B      4
-_var_8c1bc3f8:
+_var_loadingResourceGroup_8c1bc3f8:
           .RES.B      12
 _var_8c1bc404:
           .RES.B      4

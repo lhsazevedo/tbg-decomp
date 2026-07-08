@@ -1,13 +1,13 @@
 ; 8c02171c
           .IMPORT     _var_8c226520
           .IMPORT     _syFree
-          .IMPORT     _var_8c1bb868
+          .IMPORT     _var_currentCourse_8c1bb868
           .IMPORT     _var_8c22650c
           .IMPORT     _syMalloc
           .IMPORT     _var_8c226534
-          .IMPORT     _var_8c18adb4
+          .IMPORT     _var_datFiles_8c18adb4
           .IMPORT     _njReadBinary
-          .IMPORT     _var_8c18ad4c
+          .IMPORT     _var_pvrDir_8c18ad4c
           .IMPORT     _AsqRequestTexlist_1181c
           .IMPORT     _var_8c1bb8a4
           .IMPORT     _var_8c22651c
@@ -372,11 +372,11 @@ LP_GEN_62938:
           .RES.W 1 ; H'8C02198E
           .DATA.L _var_8c226520 ; H'8C021990
           .DATA.L _syFree ; H'8C021994
-          .DATA.L _var_8c1bb868 ; H'8C021998
+          .DATA.L _var_currentCourse_8c1bb868 ; H'8C021998
           .DATA.L _var_8c22650c ; H'8C02199C
           .DATA.L _syMalloc ; H'8C0219A0
           .DATA.L _var_8c226534 ; H'8C0219A4
-          .DATA.L _var_8c18adb4 ; H'8C0219A8
+          .DATA.L _var_datFiles_8c18adb4 ; H'8C0219A8
           .DATA.L _njReadBinary ; H'8C0219AC
 LAB_8c0219b0:
           MOV.L       @R14,R2
@@ -574,7 +574,7 @@ LAB_8c021af8:
           RTS
           MOV.L       @R15+,R14
 LP_GEN_62772:
-          .DATA.L _var_8c18ad4c ; H'8C021B14
+          .DATA.L _var_pvrDir_8c18ad4c ; H'8C021B14
           .DATA.L _AsqRequestTexlist_1181c ; H'8C021B18
           .DATA.L _syFree ; H'8C021B1C
           .DATA.L _var_8c1bb8a4 ; H'8C021B20

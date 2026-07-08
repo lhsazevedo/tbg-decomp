@@ -16,8 +16,8 @@
           .IMPORT     _AsqInitQueues_11f36
           .IMPORT     _AsqResetQueues_11f6c
           .IMPORT     _CourseMenuRequestSysResgrp_8c018568
-          .IMPORT     _setUknPvmBool_8c014330
-          .IMPORT     _resetUknPvmBool_8c014322
+          .IMPORT     _setPvmReady_8c014330
+          .IMPORT     _resetPvmReady_8c014322
           .IMPORT     _AsqNop_11120
           .IMPORT     _AsqProcessQueues_11fe0
           .IMPORT     _var_midiHandles_8c0fcd28
@@ -26,7 +26,7 @@
           .IMPORT     _push_fadeout_8c022b60
           .IMPORT     _var_peripherals_8c1ba35c
           .IMPORT     _isFading_8c226568
-          .IMPORT     _getUknPvmBool_8c01432a
+          .IMPORT     _isPvmReady_8c01432a
           .IMPORT     _AsqFreeQueues_11f7e
           .IMPORT     _CourseMenuInterpolateCursor_8c016d2c
           .IMPORT     _promptHandleMultiple_16c58
@@ -458,8 +458,8 @@ LP_GEN_72378:
           .DATA.L _AsqInitQueues_11f36 ; H'8C01CCC4
           .DATA.L _AsqResetQueues_11f6c ; H'8C01CCC8
           .DATA.L _CourseMenuRequestSysResgrp_8c018568 ; H'8C01CCCC
-          .DATA.L _setUknPvmBool_8c014330 ; H'8C01CCD0
-          .DATA.L _resetUknPvmBool_8c014322 ; H'8C01CCD4
+          .DATA.L _setPvmReady_8c014330 ; H'8C01CCD0
+          .DATA.L _resetPvmReady_8c014322 ; H'8C01CCD4
           .DATA.L _AsqNop_11120 ; H'8C01CCD8
           .DATA.L _AsqProcessQueues_11fe0 ; H'8C01CCDC
           .DATA.L _var_midiHandles_8c0fcd28 ; H'8C01CCE0
@@ -810,7 +810,7 @@ LAB_8c01cf5c:
           BRA         LAB_8c01d104
           NOP
 LP_GEN_45604:
-          .DATA.L _getUknPvmBool_8c01432a ; H'8C01CF64
+          .DATA.L _isPvmReady_8c01432a ; H'8C01CF64
           .DATA.L _AsqFreeQueues_11f7e ; H'8C01CF68
           .DATA.L H'42400000 ; H'8C01CF6C
           .DATA.L H'40C00000 ; H'8C01CF70
@@ -1206,8 +1206,8 @@ LP_GEN_13275:
           .DATA.L _AsqResetQueues_11f6c ; H'8C01D274
           .DATA.L _init_8c0450d8 ; H'8C01D278
           .DATA.L _CourseMenuRequestSysResgrp_8c018568 ; H'8C01D27C
-          .DATA.L _setUknPvmBool_8c014330 ; H'8C01D280
-          .DATA.L _resetUknPvmBool_8c014322 ; H'8C01D284
+          .DATA.L _setPvmReady_8c014330 ; H'8C01D280
+          .DATA.L _resetPvmReady_8c014322 ; H'8C01D284
           .DATA.L _AsqNop_11120 ; H'8C01D288
           .DATA.L _AsqProcessQueues_11fe0 ; H'8C01D28C
           .END

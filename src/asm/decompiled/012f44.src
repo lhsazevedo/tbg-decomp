@@ -12,7 +12,7 @@
           .IMPORT     _pushTitle_8c015fd6
           .IMPORT     _var_demo_8c1bb8d0
           .IMPORT     _var_route_8c18ad1c
-          .IMPORT     _var_8c228708
+          .IMPORT     _var_currentSegment_8c228708
           .IMPORT     _var_8c22655c
           .IMPORT     _var_busState_8c1bb9d0
           .IMPORT     _freeTask_8c014b66
@@ -20,7 +20,7 @@
           .IMPORT     _var_matrix_8c2f8ca0
           .IMPORT     _njInitMatrix
           .IMPORT     _njSetBackColor
-          .IMPORT     _var_8c18ad28
+          .IMPORT     _var_fogParams_8c18ad28
           .IMPORT     _njSetFogColor
           .IMPORT     _njGenerateFogTable3
           .IMPORT     _njFogEnable
@@ -58,7 +58,7 @@
           .IMPORT     _FUN_8c02d968
           .IMPORT     _FUN_8c020528
           .IMPORT     _FUN_8c0228a2
-          .IMPORT     _var_8c1bb868
+          .IMPORT     _var_currentCourse_8c1bb868
           .IMPORT     _var_8c1bc824
           .IMPORT     _var_8c228704
           .IMPORT     _var_inputMapSel_8c1bb8c8
@@ -71,15 +71,15 @@
           .IMPORT     _var_8c227da0
           .IMPORT     _var_8c227da8
           .IMPORT     _var_8c1ba291
-          .IMPORT     _getUknPvmBool_8c01432a
+          .IMPORT     _isPvmReady_8c01432a
           .IMPORT     _var_loadedFooNjm_8c1bc448
           .IMPORT     _var_8c1bc450
           .IMPORT     _AsqResetQueues_11f6c
           .IMPORT     _var_memblkSource_8c0fcd48
           .IMPORT     _AsqRequestDat_11182
           .IMPORT     _var_memblkSource_8c0fcd4c
-          .IMPORT     _resetUknPvmBool_8c014322
-          .IMPORT     _setUknPvmBool_8c014330
+          .IMPORT     _resetPvmReady_8c014322
+          .IMPORT     _setPvmReady_8c014330
           .IMPORT     _AsqNop_11120
           .IMPORT     _AsqProcessQueues_11fe0
           .IMPORT     _AsqFreeQueues_11f7e
@@ -110,12 +110,12 @@
           .IMPORT     _njSetRenderWidth
           .IMPORT     _njLoadTexture
           .IMPORT     _var_8c1bb86c
-          .IMPORT     _var_8c1bbddc
-          .IMPORT     _clearUnknownArray_8c013bbc
+          .IMPORT     _var_routeModelSlots_8c1bbddc
+          .IMPORT     _clearModelSlots_8c013bbc
           .IMPORT     _var_pedestrianAssets_8c1bbfdc
-          .IMPORT     _var_8c1bc3ec
-          .IMPORT     _var_8c1bc3f0
-          .IMPORT     _var_routeModelPairs_8c1bc3f4
+          .IMPORT     _var_routeModels_8c1bc3ec
+          .IMPORT     _var_segmentModels_8c1bc3f0
+          .IMPORT     _var_trafficModels_8c1bc3f4
           .IMPORT     _clearUnknownVar_8c02171c
           .IMPORT     _clearUnknownVar_8c029acc
           .IMPORT     _clearUnknownVars_8c02aa28
@@ -148,7 +148,7 @@
           .IMPORT     _var_mark_dat_8c1bc420
           .IMPORT     _var_busstop_parts_dat_8c1bc428
           .IMPORT     _var_busstop_dat_8c1bc42c
-          .IMPORT     _var_8c1bc3f8
+          .IMPORT     _var_loadingResourceGroup_8c1bc3f8
           .IMPORT     _AsqRequestPvm_11ac0
           .IMPORT     _var_busFont_8c1ba1c8
           .IMPORT     _var_8c2260ac
@@ -323,7 +323,7 @@ LP_GEN_99840:
           .DATA.L _pushTitle_8c015fd6
           .DATA.L _var_demo_8c1bb8d0
           .DATA.L _var_route_8c18ad1c
-          .DATA.L _var_8c228708
+          .DATA.L _var_currentSegment_8c228708
           .DATA.L _var_8c22655c
           .DATA.L _var_busState_8c1bb9d0
 
@@ -484,7 +484,7 @@ LP_GEN_31464:
           .DATA.L _var_matrix_8c2f8ca0
           .DATA.L _njInitMatrix
           .DATA.L _njSetBackColor
-          .DATA.L _var_8c18ad28
+          .DATA.L _var_fogParams_8c18ad28
           .DATA.L _njSetFogColor
           .DATA.L _var_fogTable_8c18aaf8
           .DATA.L _njGenerateFogTable3
@@ -769,7 +769,7 @@ LP_GEN_38000:
           .DATA.L _FUN_8c020528
           .DATA.L _FUN_8c012f9c
           .DATA.L _FUN_8c0228a2
-          .DATA.L _var_8c1bb868
+          .DATA.L _var_currentCourse_8c1bb868
           .DATA.L _var_seed_8c157a64
           .DATA.L _var_8c1bc824
           .DATA.L _var_8c228704
@@ -908,7 +908,7 @@ _njUserInit_8c0134ec:
           NOP
 
 LP_GEN_65923:
-          .DATA.L _getUknPvmBool_8c01432a ; LP_GEN_65923+0
+          .DATA.L _isPvmReady_8c01432a ; LP_GEN_65923+0
           .DATA.L _var_loadedFooNjm_8c1bc448
           .DATA.L H'4F800000
           .DATA.L _var_8c1bc450
@@ -918,8 +918,8 @@ LP_GEN_65923:
           .DATA.L _AsqRequestDat_11182
           .DATA.L _var_memblkSource_8c0fcd4c
           .DATA.L _const_8c033378
-          .DATA.L _resetUknPvmBool_8c014322
-          .DATA.L _setUknPvmBool_8c014330
+          .DATA.L _resetPvmReady_8c014322
+          .DATA.L _setPvmReady_8c014330
           .DATA.L _AsqNop_11120
           .DATA.L _AsqProcessQueues_11fe0
           .DATA.L _AsqFreeQueues_11f7e
@@ -1179,12 +1179,12 @@ LP_GEN_90231:
           .DATA.L _var_tasks_8c1bac28
           .DATA.L _var_tasks_8c1bb448
           .DATA.L _var_8c1bb86c
-          .DATA.L _var_8c1bbddc
-          .DATA.L _clearUnknownArray_8c013bbc
+          .DATA.L _var_routeModelSlots_8c1bbddc
+          .DATA.L _clearModelSlots_8c013bbc
           .DATA.L _var_pedestrianAssets_8c1bbfdc
-          .DATA.L _var_8c1bc3ec
-          .DATA.L _var_8c1bc3f0
-          .DATA.L _var_routeModelPairs_8c1bc3f4
+          .DATA.L _var_routeModels_8c1bc3ec
+          .DATA.L _var_segmentModels_8c1bc3f0
+          .DATA.L _var_trafficModels_8c1bc3f4
           .DATA.L _clearUnknownVar_8c02171c
           .DATA.L _clearUnknownVar_8c029acc
           .DATA.L _clearUnknownVars_8c02aa28
@@ -1469,7 +1469,7 @@ LP_GEN_19861:
           .DATA.L     _const_8c0333a4
           .DATA.L     _var_busstop_dat_8c1bc42c
           .DATA.L     _const_8c0333b8
-          .DATA.L     _var_8c1bc3f8
+          .DATA.L     _var_loadingResourceGroup_8c1bc3f8
           .DATA.L     H'80000000
           .DATA.L     s_loading_pvm_8c0333c4
           .DATA.L     _AsqRequestPvm_11ac0
@@ -1495,8 +1495,8 @@ LP_GEN_19861:
           .DATA.L     s_SD_COMMON_8c033440
           .DATA.L     _var_8c1bc414
           .DATA.L     s_3s_bus_m2_njs_8c03345c
-          .DATA.L     _resetUknPvmBool_8c014322
-          .DATA.L     _setUknPvmBool_8c014330
+          .DATA.L     _resetPvmReady_8c014322
+          .DATA.L     _setPvmReady_8c014330
           .DATA.L     _AsqNop_11120
           .DATA.L     _AsqProcessQueues_11fe0
           .DATA.L     _var_gdErr_8c18ad14

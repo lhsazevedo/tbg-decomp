@@ -76,7 +76,7 @@ return new class extends TestCase {
         $cfg = self::ROUTES[$routeId];
 
         $this->setSizes();
-        $this->initUint32($this->addressOf('_var_8c1bb868') + 0x00, $routeId);
+        $this->initUint32($this->addressOf('_var_currentCourse_8c1bb868') + 0x00, $routeId);
 
         $record = $this->addressOf($cfg['record']);
         $ad1c = $cfg['ad1c'];
@@ -86,20 +86,20 @@ return new class extends TestCase {
 
         $this->call('_loadRouteModels_8c014088');
 
-        $this->shouldWriteLong($this->addressOf('_var_currentCourse_8c18ad18'), $record);
+        $this->shouldWriteLong($this->addressOf('_var_currentCourseConfig_8c18ad18'), $record);
         $this->shouldWriteLong($this->addressOf('_var_route_8c18ad1c'), $ad1c);
         $this->shouldWriteLong($this->addressOf('_var_timeOfDay_8c18ad20'), $ad20);
         $this->shouldWriteLong($this->addressOf('_var_sceneParams_8c18ad24'), $this->addressOf($cfg['ukn10']));
 
-        $basedir = $this->addressOf('_var_basedir_8c18ad6c');
+        $basedir = $this->addressOf('_var_commonDir_8c18ad6c');
         if ($ad1c <= 2 && $ad20 <= 2) {
             $this->expectStrcpy($basedir, $cfg['common']);
-            $this->expectStrcpy($this->addressOf('_var_8c18ad4c'), $cfg['pvr']);
+            $this->expectStrcpy($this->addressOf('_var_pvrDir_8c18ad4c'), $cfg['pvr']);
         }
-        $this->expectStrcpy($this->addressOf('_var_8c18ad8c'), $basedir);
-        $this->expectStrcpy($this->addressOf('_var_8c18ad2c'), $basedir);
+        $this->expectStrcpy($this->addressOf('_var_commonDirCopy_8c18ad8c'), $basedir);
+        $this->expectStrcpy($this->addressOf('_var_datDir_8c18ad2c'), $basedir);
 
-        $base = $this->addressOf('_var_8c1bb868');
+        $base = $this->addressOf('_var_currentCourse_8c1bb868');
         foreach ($cfg['files'] as $k => $file) {
             $dest = $base + 0x04 + 4 * $k;
 
@@ -115,23 +115,23 @@ return new class extends TestCase {
         }
 
         $this->shouldCall('_requestVehicleAssets_8c013ae8');
-        $this->shouldCall('_AsqRequestNjPvmPairs_12030')
+        $this->shouldCall('_AsqRequestModels_12030')
             ->with($basedir, $this->addressOf('_init_8c0440dc'), 0x10)
             ->andReturn(0x8cff0000);
-        $this->shouldWriteLong($this->addressOf('_var_8c1bc3ec'), 0x8cff0000);
+        $this->shouldWriteLong($this->addressOf('_var_routeModels_8c1bc3ec'), 0x8cff0000);
     }
 
     private function setSizes(): void
     {
         foreach ([
-            '_var_8c1bb868' => 0x50,
-            '_var_8c1bc3ec' => 4,
+            '_var_currentCourse_8c1bb868' => 0x50,
+            '_var_routeModels_8c1bc3ec' => 4,
             '_init_8c04e988' => 4,
             '_init_8c04ce10' => 4,
             '_init_8c04df38' => 4,
             '_AsqRequestNj_11492' => 4,
             '_AsqRequestDat_11182' => 4,
-            '_AsqRequestNjPvmPairs_12030' => 4,
+            '_AsqRequestModels_12030' => 4,
         ] as $sym => $size) {
             $this->setSize($sym, $size);
         }

@@ -54,15 +54,15 @@ enum ALBUM_STATE {
  */
 
 extern void drawSprite_8c014f54(ResourceGroup *r4, int r5, float fr4, float fr5, float fr6);
-extern int getUknPvmBool_8c01432a(void);
+extern int isPvmReady_8c01432a(void);
 extern void snd_8c010cd6(int p1, int p2);
 extern void push_fadein_8c022a9c(int frames);
 extern void push_fadeout_8c022b60(int frames);
 extern void startAdxFadeOut_8c010bae(int p1);
 extern void FUN_8c016182(void);
 extern void setTaskAction_8c014b3e(Task *task, TaskAction action);
-extern void setUknPvmBool_8c014330(void);
-extern void resetUknPvmBool_8c014322(void);
+extern void setPvmReady_8c014330(void);
+extern void resetPvmReady_8c014322(void);
 
 extern PlayerProgress var_progress_8c1ba1cc;
 extern PDS_PERIPHERAL var_peripherals_8c1ba35c[2];
@@ -120,7 +120,7 @@ void AlbumMenuTask_8c01d300(Task *task, void *state)
 
     switch (menuState_8c1bc7a8.state_0x18) {
         case ALBUM_STATE_INIT: {
-            if (getUknPvmBool_8c01432a()) {
+            if (isPvmReady_8c01432a()) {
                 return;
             }
             AsqFreeQueues_11f7e();
@@ -335,6 +335,6 @@ void AlbumSwitchFromTask_8c01d6e2(Task *task)
         &menuState_8c1bc7a8.resourceGroupB_0x0c,
         &albumResourceGroup_8c045160
     );
-    setUknPvmBool_8c014330();
-    AsqProcessQueues_11fe0(&AsqNop_11120, 0, 0, 0, &resetUknPvmBool_8c014322);
+    setPvmReady_8c014330();
+    AsqProcessQueues_11fe0(&AsqNop_11120, 0, 0, 0, &resetPvmReady_8c014322);
 }

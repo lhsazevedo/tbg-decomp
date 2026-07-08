@@ -33,7 +33,7 @@
           .IMPORT     _var_vmuStatus_8c226048
           .IMPORT     _isFading_8c226568
           .IMPORT     _swapMessageBoxFor_8c02aefc
-          .IMPORT     _getUknPvmBool_8c01432a
+          .IMPORT     _isPvmReady_8c01432a
           .IMPORT     _AsqFreeQueues_11f7e
           .IMPORT     _promptHandleMultiple_16c58
           .IMPORT     _var_peripherals_8c1ba35c
@@ -90,8 +90,8 @@
           .IMPORT     _const_8c038454
           .IMPORT     _const_8c03844c
           .IMPORT     _AsqRequestDat_11182
-          .IMPORT     _setUknPvmBool_8c014330
-          .IMPORT     _resetUknPvmBool_8c014322
+          .IMPORT     _setPvmReady_8c014330
+          .IMPORT     _resetPvmReady_8c014322
           .IMPORT     _AsqNop_11120
           .IMPORT     _AsqProcessQueues_11fe0
           .EXPORT     _FUN_8c01b19c
@@ -600,7 +600,7 @@ LP_GEN_91278:
           .DATA.L _var_vmuStatus_8c226048 ; H'8C01B580
           .DATA.L _isFading_8c226568 ; H'8C01B584
           .DATA.L _swapMessageBoxFor_8c02aefc ; H'8C01B588
-          .DATA.L _getUknPvmBool_8c01432a ; H'8C01B58C
+          .DATA.L _isPvmReady_8c01432a ; H'8C01B58C
           .DATA.L _AsqFreeQueues_11f7e ; H'8C01B590
           .DATA.L _promptHandleMultiple_16c58 ; H'8C01B594
           .DATA.L H'10+_var_peripherals_8c1ba35c ; H'8C01B598
@@ -1279,8 +1279,8 @@ LP_GEN_62205:
           .DATA.L _const_8c038454 ; H'8C01BB2C
           .DATA.L _const_8c03844c ; H'8C01BB30
           .DATA.L _AsqRequestDat_11182 ; H'8C01BB34
-          .DATA.L _setUknPvmBool_8c014330 ; H'8C01BB38
-          .DATA.L _resetUknPvmBool_8c014322 ; H'8C01BB3C
+          .DATA.L _setPvmReady_8c014330 ; H'8C01BB38
+          .DATA.L _resetPvmReady_8c014322 ; H'8C01BB3C
           .DATA.L _AsqNop_11120 ; H'8C01BB40
           .DATA.L _AsqProcessQueues_11fe0 ; H'8C01BB44
           .END

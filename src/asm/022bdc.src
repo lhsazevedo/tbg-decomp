@@ -1,6 +1,6 @@
 ; 8c022bdc
           .IMPORT     _sdMidiPlay
-          .IMPORT     _var_8c1bb868
+          .IMPORT     _var_currentCourse_8c1bb868
           .IMPORT     _var_midiHandles_8c0fcd28
           .IMPORT     _var_busState_8c1bb9d0
           .IMPORT     _var_8c2264d4
@@ -180,7 +180,7 @@ LP_GEN_58738:
           .DATA.W H'03C4 ; H'8C022CE2
           .DATA.L H'47800000 ; H'8C022CE4
           .DATA.L _sdMidiPlay ; H'8C022CE8
-          .DATA.L _var_8c1bb868 ; H'8C022CEC
+          .DATA.L _var_currentCourse_8c1bb868 ; H'8C022CEC
           .DATA.L _var_midiHandles_8c0fcd28 ; H'8C022CF0
           .DATA.L _var_busState_8c1bb9d0 ; H'8C022CF4
           .DATA.L _var_8c2264d4 ; H'8C022CF8

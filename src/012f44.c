@@ -28,7 +28,7 @@ struct uknStruct2 {
 }
 typedef uknStruct2;
 
-struct s_8c18ad28 {
+struct FogParams {
     int field_0x00;
     int field_0x04;
     Uint8 field_0x08;
@@ -38,8 +38,8 @@ struct s_8c18ad28 {
     float fogN_0x0c;
     float fogF_0x10;
 }
-typedef s_8c18ad28;
-extern s_8c18ad28 *var_8c18ad28;
+typedef FogParams;
+extern FogParams *var_fogParams_8c18ad28;
 
 // TODO:
 struct BusState {
@@ -337,9 +337,9 @@ extern Task var_tasks_8c1bac28[];
 extern Task var_tasks_8c1bb448[];
 
 extern void* var_8c1bb86c;
-extern void* var_8c1bc3ec;
-extern void* var_8c1bc3f0;
-extern void* var_routeModelPairs_8c1bc3f4;
+extern void* var_routeModels_8c1bc3ec;
+extern void* var_segmentModels_8c1bc3f0;
+extern void* var_trafficModels_8c1bc3f4;
 extern void* var_8c1bc404;
 extern void* var_8c226434;
 extern void* var_8c226438;
@@ -358,7 +358,7 @@ extern void* var_8c1bc454;
 extern void* var_selectedVm_8c1ba34c;
 extern BusState var_busState_8c1bb9d0;
 
-extern void* var_8c1bbddc;
+extern void* var_routeModelSlots_8c1bbddc;
 extern void* var_pedestrianAssets_8c1bbfdc;
 
 extern int var_8c1bb8c4;
@@ -368,7 +368,7 @@ extern void* var_mark_parts_dat_8c1bc41c;
 extern void* var_mark_dat_8c1bc420;
 extern void* var_busstop_parts_dat_8c1bc428;
 extern void* var_busstop_dat_8c1bc42c;
-extern void* var_8c1bc3f8[3];
+extern void* var_loadingResourceGroup_8c1bc3f8[3];
 extern void* var_busFont_8c1ba1c8;
 extern void* var_8c2260ac;
 extern void* var_8c2260b8;
@@ -383,7 +383,7 @@ extern Uint32 var_vibport_8c1ba354;
 extern int init_8c03bd80;
 extern int init_8c03bd84;
 
-extern setUknPvmBool_8c014330();
+extern setPvmReady_8c014330();
 STATIC int var_gdErr_8c18ad14;
 
 STATIC NJS_FOG_TABLE var_fogTable_8c18aaf8;
@@ -407,7 +407,7 @@ extern task_8c012d5a;
 extern demoInputTask_8c016bf4;
 extern var_8c1bb8cc;
 extern var_8c22847c;
-extern int var_8c1bb868;
+extern int var_currentCourse_8c1bb868;
 extern int var_8c228704;
 extern int var_inputMapSel_8c1bb8c8;
 extern var_8c227dd4;
@@ -419,7 +419,7 @@ extern var_memblkSource_8c0fcd48;
 extern var_memblkSource_8c0fcd4c;
 
 extern var_route_8c18ad1c;
-extern var_8c228708;
+extern var_currentSegment_8c228708;
 extern Bool var_8c22655c;
 
 extern pushRouteLoadTask_8c0144fc();
@@ -450,7 +450,7 @@ void task_8c012f9c(Task *task, void* state) {
     Bool r7;
     Float speed_fr2;
 
-    if (var_demo_8c1bb8d0 != 1 && var_route_8c18ad1c == 2 && var_8c228708 == 0) {
+    if (var_demo_8c1bb8d0 != 1 && var_route_8c18ad1c == 2 && var_currentSegment_8c228708 == 0) {
         r7 = TRUE;
     } else {
         r7 = FALSE;
@@ -506,13 +506,13 @@ void FUN_8c01306e(void)
     njInitMatrix(var_matrix_8c2f8ca0, 16, 0);
     njSetBackColor(0,0,0);
     njSetFogColor(ARGB(
-        var_8c18ad28->field_0x0b,
-        var_8c18ad28->field_0x0a,
-        var_8c18ad28->field_0x09,
-        var_8c18ad28->field_0x08
+        var_fogParams_8c18ad28->field_0x0b,
+        var_fogParams_8c18ad28->field_0x0a,
+        var_fogParams_8c18ad28->field_0x09,
+        var_fogParams_8c18ad28->field_0x08
     ));
 
-    njGenerateFogTable3(var_fogTable_8c18aaf8, var_8c18ad28->fogN_0x0c, var_8c18ad28->fogF_0x10);
+    njGenerateFogTable3(var_fogTable_8c18aaf8, var_fogParams_8c18ad28->fogN_0x0c, var_fogParams_8c18ad28->fogF_0x10);
     njFogEnable();
     kmSetCheapShadowMode(0x80);
     kmSetFogTable(var_fogTable_8c18aaf8);
@@ -572,12 +572,12 @@ void FUN_8c01328c() {
     void* created_state;
   
     if (var_demo_8c1bb8d0 == 0) {
-        var_8c1bb868 = var_8c1bc824->field_0x00;
+        var_currentCourse_8c1bb868 = var_8c1bc824->field_0x00;
         var_8c228704 = var_8c1bc824->field_0x04;
         var_inputMapSel_8c1bb8c8 = var_8c1bc824->field_0x08;
         var_seed_8c157a64 = AsqGetRandomA_12166();
     } else if ((var_demo_8c1bb8d0 == 2) && (var_8c1bb8d4 != 0)) {
-        var_8c227dd4 = init_8c0460b0[var_8c1bb868 - 0x26];
+        var_8c227dd4 = init_8c0460b0[var_currentCourse_8c1bb868 - 0x26];
         FUN_8c01895e();
     } else {
         var_8c227dd4 = 0;
@@ -599,12 +599,12 @@ void pushLoadingTask_8c013310(int p1) {
     void* created_state;
   
     if (var_demo_8c1bb8d0 != 2) {
-        var_8c1bb868 = p1;
+        var_currentCourse_8c1bb868 = p1;
         var_8c228704 = 0;
         var_inputMapSel_8c1bb8c8 = (char) var_8c1ba291;
         var_seed_8c157a64 = AsqGetRandomA_12166();
     } else if (var_demo_8c1bb8d0 == 2 && var_8c1bb8d4 != 0) {
-        var_8c227dd4 = init_8c0460b0[var_8c1bb868 - 0x26];
+        var_8c227dd4 = init_8c0460b0[var_currentCourse_8c1bb868 - 0x26];
     } else {
         var_8c227dd4 = 0;
     }
@@ -624,7 +624,7 @@ void task_8c013388(Task *task, void *state) {
     switch (task->field_0x08) {
         case 0: {
             /* 8c013440 */
-            Bool b = getUknPvmBool_8c01432a();
+            Bool b = isPvmReady_8c01432a();
             if (b) {
                 task->field_0x08++;
                 var_8c1bc450 = (Float) var_loadedFooNjm_8c1bc448->nbFrame - 1;
@@ -632,14 +632,14 @@ void task_8c013388(Task *task, void *state) {
                 AsqResetQueues_11f6c();
                 AsqRequestDat_11182("\\SOUND", "manatee.drv", &var_memblkSource_8c0fcd48);
                 AsqRequestDat_11182("\\SOUND", "bus.mlt", &var_memblkSource_8c0fcd4c);
-                resetUknPvmBool_8c014322();
-                AsqProcessQueues_11fe0(&AsqNop_11120, 0, 0, 0, &setUknPvmBool_8c014330);
+                resetPvmReady_8c014322();
+                AsqProcessQueues_11fe0(&AsqNop_11120, 0, 0, 0, &setPvmReady_8c014330);
             }
             break;
         }
         case 1: {
             /* 8c0133a0, 8c0134ce */
-            if (getUknPvmBool_8c01432a() != 0) {
+            if (isPvmReady_8c01432a() != 0) {
                 AsqFreeQueues_11f7e();
                 freeTask_8c014b66(task);
                 initSoundMidiAdx_8c010e18();
@@ -714,12 +714,12 @@ void njUserInit_8c0134ec() {
 
     var_8c1bb86c = (void *) -1;
 
-    clearUnknownArray_8c013bbc(&var_8c1bbddc, 0x20);
-    clearUnknownArray_8c013bbc(&var_pedestrianAssets_8c1bbfdc, 0x41);
+    clearModelSlots_8c013bbc(&var_routeModelSlots_8c1bbddc, 0x20);
+    clearModelSlots_8c013bbc(&var_pedestrianAssets_8c1bbfdc, 0x41);
 
-    var_8c1bc3ec = (void *) -1;
-    var_8c1bc3f0 = (void *) -1;
-    var_routeModelPairs_8c1bc3f4 = (void *) -1;
+    var_routeModels_8c1bc3ec = (void *) -1;
+    var_segmentModels_8c1bc3f0 = (void *) -1;
+    var_trafficModels_8c1bc3f4 = (void *) -1;
 
     clearUnknownVar_8c02171c();
     clearUnknownVar_8c029acc();
@@ -767,10 +767,10 @@ void njUserInit_8c0134ec() {
     AsqRequestDat_11182("\\SYSTEM", "busstop_parts.dat", &var_busstop_parts_dat_8c1bc428);
     AsqRequestDat_11182("\\SYSTEM", "busstop.dat", &var_busstop_dat_8c1bc42c);
 
-    /*  TODO: Fix var_8c1bc3f8 type */ 
-    AsqRequestPvm_11ac0("\\SYSTEM", "loading.pvm", &var_8c1bc3f8[0], 1, 0x80000000);
-    AsqRequestDat_11182("\\SYSTEM", "load_parts.dat", &var_8c1bc3f8[1]);
-    AsqRequestDat_11182("\\SYSTEM", "loading.dat", &var_8c1bc3f8[2]);
+    /*  TODO: Fix var_loadingResourceGroup_8c1bc3f8 type */ 
+    AsqRequestPvm_11ac0("\\SYSTEM", "loading.pvm", &var_loadingResourceGroup_8c1bc3f8[0], 1, 0x80000000);
+    AsqRequestDat_11182("\\SYSTEM", "load_parts.dat", &var_loadingResourceGroup_8c1bc3f8[1]);
+    AsqRequestDat_11182("\\SYSTEM", "loading.dat", &var_loadingResourceGroup_8c1bc3f8[2]);
 
     AsqRequestDat_11182("\\SYSTEM", "bus_font.fff", &var_busFont_8c1ba1c8);
     AsqRequestDat_11182("\\SYSTEM", "vm_bus.lcd", &var_8c2260ac);
@@ -784,8 +784,8 @@ void njUserInit_8c0134ec() {
     AsqRequestNj_11492("\\SD_COMMON","3s_bus_m2.njm", &var_8c1bc410, 0);
     AsqRequestNj_11492("\\SD_COMMON","3s_bus_m2.njs", &var_8c1bc414, 0);
 
-    resetUknPvmBool_8c014322();
-    AsqProcessQueues_11fe0(&AsqNop_11120, 0, 0, 0, &setUknPvmBool_8c014330);
+    resetPvmReady_8c014322();
+    AsqProcessQueues_11fe0(&AsqNop_11120, 0, 0, 0, &setPvmReady_8c014330);
     var_gdErr_8c18ad14 = 0;
     gdFsEntryErrFuncAll(&usrGdErrFunc_8c0134d6, (void *) 0);
 }

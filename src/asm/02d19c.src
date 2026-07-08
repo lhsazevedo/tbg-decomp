@@ -39,7 +39,7 @@
           .IMPORT     _var_8c226560
           .IMPORT     _FUN_8c02ad8c
           .IMPORT     _var_8c22847c
-          .IMPORT     _getUknPvmBool_8c01432a
+          .IMPORT     _isPvmReady_8c01432a
           .IMPORT     _FUN_8c02ca96
           .IMPORT     _njReleaseTexture
           .IMPORT     _var_8c227d9c
@@ -47,7 +47,7 @@
           .IMPORT     _FUN_8c024f32
           .IMPORT     _FUN_8c024b86
           .IMPORT     _var_busState_8c1bb9d0
-          .IMPORT     _var_8c228708
+          .IMPORT     _var_currentSegment_8c228708
           .IMPORT     _var_8c22655c
           .IMPORT     _var_timeOfDay_8c18ad20
           .IMPORT     _snd_8c010cd6
@@ -915,7 +915,7 @@ LP_GEN_70221:
           .DATA.L _var_8c226560 ; H'8C02D81C
           .DATA.L _FUN_8c02ad8c ; H'8C02D820
           .DATA.L _var_8c22847c ; H'8C02D824
-          .DATA.L _getUknPvmBool_8c01432a ; H'8C02D828
+          .DATA.L _isPvmReady_8c01432a ; H'8C02D828
           .DATA.L _var_midiHandles_8c0fcd28 ; H'8C02D82C
           .DATA.L _sdMidiPlay ; H'8C02D830
           .DATA.L _FUN_8c02ca96 ; H'8C02D834
@@ -1054,7 +1054,7 @@ LP_GEN_72278:
           .DATA.L _FUN_8c024b86 ; H'8C02D930
           .DATA.L _var_busState_8c1bb9d0 ; H'8C02D934
           .DATA.L _var_route_8c18ad1c ; H'8C02D938
-          .DATA.L _var_8c228708 ; H'8C02D93C
+          .DATA.L _var_currentSegment_8c228708 ; H'8C02D93C
           .DATA.L _var_8c22655c ; H'8C02D940
           .DATA.L _var_timeOfDay_8c18ad20 ; H'8C02D944
           .DATA.L _snd_8c010cd6 ; H'8C02D948

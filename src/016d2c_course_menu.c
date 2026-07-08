@@ -214,7 +214,7 @@ enum {
  */
 
 extern void snd_8c010cd6(int p1, int p2);
-extern void setUknPvmBool_8c014330();
+extern void setPvmReady_8c014330();
 extern int CourseMenuRequestSysResgrp_8c018568(ResourceGroup* dds, ResourceGroupInfo* rg);
 extern void CourseMenuConfirmInit_8c0184cc(Task *task);
 extern void FUN_8c01f114(Task *task);
@@ -243,7 +243,7 @@ extern int var_game_mode_8c1bb8fc;
 extern int var_dialogQueue_8c225fbc[4]; // TODO: Confirm length
 extern Sint8 var_coursesToUnlock_8c225fd4[];
 extern int var_demo_8c1bb8d0;
-extern void resetUknPvmBool_8c014322();
+extern void resetPvmReady_8c014322();
 extern NJS_TEXMEMLIST var_tex_8c157af8[];
 extern int var_8c1bb8b8; // Maybe courseMenuHasResult or courseMenuHasDialog
 extern int var_8c1bb8bc;
@@ -995,7 +995,7 @@ void CourseMenuStoryMenuTask_8c017718(Task * task, void *state)
 {
     switch (menuState_8c1bc7a8.state_0x18) {
         case COURSE_MENU_STATE_INIT: {
-            if (getUknPvmBool_8c01432a())
+            if (isPvmReady_8c01432a())
                 return;
 
             AsqFreeQueues_11f7e();
@@ -1148,7 +1148,7 @@ void CourseMenuFreeRunMenuTask_8c017ada(Task * task, void *state)
 {
     switch (menuState_8c1bc7a8.state_0x18) {
         case COURSE_MENU_STATE_INIT: {
-            if (getUknPvmBool_8c01432a())
+            if (isPvmReady_8c01432a())
                 return;
 
             AsqFreeQueues_11f7e();
@@ -1408,8 +1408,8 @@ void CourseMenuSwitchFromTask_8c017e18(Task *task)
         return;
     }
 
-    setUknPvmBool_8c014330();
-    AsqProcessQueues_11fe0(AsqNop_11120, 0, 0, 0, resetUknPvmBool_8c014322);
+    setPvmReady_8c014330();
+    AsqProcessQueues_11fe0(AsqNop_11120, 0, 0, 0, resetPvmReady_8c014322);
     CHANGE_STATE(COURSE_MENU_STATE_INIT);
 }
 
@@ -1473,8 +1473,8 @@ void CourseMenuFUN_8c017ef2(void)
         &init_mainMenuResourceGroup_8c044264
     );
     CourseMenuRequestCommonResources_8c01852c();
-    setUknPvmBool_8c014330();
-    AsqProcessQueues_11fe0(AsqNop_11120, 0, 0, 0, resetUknPvmBool_8c014322);
+    setPvmReady_8c014330();
+    AsqProcessQueues_11fe0(AsqNop_11120, 0, 0, 0, resetPvmReady_8c014322);
 
     CHANGE_STATE(COURSE_MENU_STATE_INIT);
 }
@@ -1531,7 +1531,7 @@ STATIC void CourseConfirmMenuTask_8c0181b6(Task * task, void *state)
 {
     switch (menuState_8c1bc7a8.state_0x18) {
         case COURSE_CONFIRM_STATE_INIT: {
-            if (getUknPvmBool_8c01432a())
+            if (isPvmReady_8c01432a())
                 return;
 
             AsqFreeQueues_11f7e();
@@ -1698,8 +1698,8 @@ void CourseMenuConfirmInit_8c0184cc(Task *task)
         &menuState_8c1bc7a8.resourceGroupB_0x0c,
         &init_courseResourceGroup_8c044d40
     );
-    setUknPvmBool_8c014330();
-    AsqProcessQueues_11fe0(AsqNop_11120, 0, 0, 0, resetUknPvmBool_8c014322);
+    setPvmReady_8c014330();
+    AsqProcessQueues_11fe0(AsqNop_11120, 0, 0, 0, resetPvmReady_8c014322);
     CHANGE_CONFIRM_STATE(COURSE_CONFIRM_STATE_INIT);
     return;
 }

@@ -9,7 +9,7 @@ return new class extends TestCase {
     {
         $this->resolveSymbols();
 
-        $basedir = $this->addressOf('_var_basedir_8c18ad6c');
+        $basedir = $this->addressOf('_var_commonDir_8c18ad6c');
 
         $this->call('_requestVehicleAssets_8c013ae8');
 
@@ -33,10 +33,10 @@ return new class extends TestCase {
             $basedir, "busstop.pvm", $this->addressOf('_var_busStopTexlist_8c1bc424'), 1, 0
         );
 
-        $this->shouldCall('_AsqRequestNjPvmPairs_12030')->with(
-            $basedir, $this->addressOf('_init_routeModelFilenames_8c043d64'), 0
+        $this->shouldCall('_AsqRequestModels_12030')->with(
+            $basedir, $this->addressOf('_init_trafficModelFiles_8c043d64'), 0
         )->andReturn(0x8c123456);
-        $this->shouldWriteLongTo('_var_routeModelPairs_8c1bc3f4', 0x8c123456);
+        $this->shouldWriteLongTo('_var_trafficModels_8c1bc3f4', 0x8c123456);
     }
 
     private function resolveSymbols(): void
@@ -47,6 +47,6 @@ return new class extends TestCase {
         $this->setSize('_var_interiorTexlist_8c1bc438', 4);
         $this->setSize('_var_markTexlist_8c1bc418', 4);
         $this->setSize('_var_busStopTexlist_8c1bc424', 4);
-        $this->setSize('_var_routeModelPairs_8c1bc3f4', 4);
+        $this->setSize('_var_trafficModels_8c1bc3f4', 4);
     }
 };

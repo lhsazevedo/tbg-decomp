@@ -10,11 +10,11 @@ return new class extends TestCase {
 
     public function test_frees_loaded_slots_marks_them_unloaded()
     {
-        $this->setSize('_var_8c1bbddc', self::SLOTS * 0x10);
+        $this->setSize('_var_routeModelSlots_8c1bbddc', self::SLOTS * 0x10);
         $this->setSize('_AsqReleaseAndFreeTexlist_11e3c', 4);
         $this->setSize('_syFree', 4);
 
-        $base = $this->addressOf('_var_8c1bbddc');
+        $base = $this->addressOf('_var_routeModelSlots_8c1bbddc');
         $this->seedAllUnloaded($base);
 
         // slot 2 and slot 7 are loaded -> freed in slot order.
@@ -36,11 +36,11 @@ return new class extends TestCase {
 
     public function test_all_unloaded_does_nothing()
     {
-        $this->setSize('_var_8c1bbddc', self::SLOTS * 0x10);
+        $this->setSize('_var_routeModelSlots_8c1bbddc', self::SLOTS * 0x10);
         $this->setSize('_AsqReleaseAndFreeTexlist_11e3c', 4);
         $this->setSize('_syFree', 4);
 
-        $base = $this->addressOf('_var_8c1bbddc');
+        $base = $this->addressOf('_var_routeModelSlots_8c1bbddc');
         $this->seedAllUnloaded($base);
 
         $this->call('_freeAllRouteModels_8c013dae');

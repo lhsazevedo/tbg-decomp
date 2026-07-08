@@ -34,7 +34,7 @@ return new class extends TestCase {
 
         $this->shouldWrite($pairsPtr, -1);
 
-        $this->singleCall('_AsqFreeNjPvmPairs_120fe')
+        $this->singleCall('_AsqFreeModels_120fe')
             ->with($pairsPtr)
             ->run();
     }
@@ -58,7 +58,7 @@ return new class extends TestCase {
         $this->initUint32($pairs + 2 * $pairSize + 0x0, 0);
         $this->initUint32($pairs + 2 * $pairSize + 0x4, 0);
 
-        $this->singleCall('_AsqFreeNjPvmPairs_120fe')
+        $this->singleCall('_AsqFreeModels_120fe')
             ->with($pairsPtr)
             ->run();
     }
@@ -90,7 +90,7 @@ return new class extends TestCase {
 
         $this->shouldWrite($pairsPtr, -1);
 
-        $this->singleCall('_AsqFreeNjPvmPairs_120fe')
+        $this->singleCall('_AsqFreeModels_120fe')
             ->with($pairsPtr)
             ->run();
     }
@@ -122,7 +122,7 @@ return new class extends TestCase {
 
         $this->shouldWrite($pairsPtr, -1);
 
-        $this->singleCall('_AsqFreeNjPvmPairs_120fe')
+        $this->singleCall('_AsqFreeModels_120fe')
             ->with($pairsPtr)
             ->run();
     }

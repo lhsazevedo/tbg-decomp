@@ -80,7 +80,7 @@ return new class extends TestCase {
 
         $this->shouldWrite($destPairs + 2 * $destPairSize + 0x0, 0);
 
-        $this->singleCall('_AsqRequestNjPvmPairs_12030')
+        $this->singleCall('_AsqRequestModels_12030')
             ->with($basedir, $pairs, 3)
             ->singleShouldReturn($destPairs)
             ->run();
@@ -162,7 +162,7 @@ return new class extends TestCase {
 
         $this->shouldWrite($destPairs + 2 * $destPairSize + 0x0, 0);
 
-        $this->singleCall('_AsqRequestNjPvmPairs_12030')
+        $this->singleCall('_AsqRequestModels_12030')
             ->with($basedir, $pairs, 3)
             ->singleShouldReturn($destPairs)
             ->run();
@@ -244,7 +244,7 @@ return new class extends TestCase {
 
         $this->shouldWrite($destPairs + 2 * $destPairSize + 0x0, 0);
 
-        $this->singleCall('_AsqRequestNjPvmPairs_12030')
+        $this->singleCall('_AsqRequestModels_12030')
             ->with($basedir, $pairs, 3)
             ->singleShouldReturn($destPairs)
             ->run();

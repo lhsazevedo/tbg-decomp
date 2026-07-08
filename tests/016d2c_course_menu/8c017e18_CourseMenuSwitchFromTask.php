@@ -48,13 +48,13 @@ return new class extends TestCase {
             $this->addressOf('_init_mainMenuResourceGroup_8c044264'),
         )->andReturn(1);
 
-        $this->shouldCall('_setUknPvmBool_8c014330');
+        $this->shouldCall('_setPvmReady_8c014330');
         $this->shouldCall('_AsqProcessQueues_11fe0')->with(
             $this->addressOf('_AsqNop_11120'),
             0,
             0,
             0,
-            $this->addressOf('_resetUknPvmBool_8c014322'),
+            $this->addressOf('_resetPvmReady_8c014322'),
         );
         $this->shouldWriteLong($this->addressOf('_menuState_8c1bc7a8') + 0x18, 0);
     }
@@ -134,13 +134,13 @@ return new class extends TestCase {
             $this->addressOf('_init_mainMenuResourceGroup_8c044264'),
         )->andReturn(1);
 
-        $this->shouldCall('_setUknPvmBool_8c014330');
+        $this->shouldCall('_setPvmReady_8c014330');
         $this->shouldCall('_AsqProcessQueues_11fe0')->with(
             $this->addressOf('_AsqNop_11120'),
             0,
             0,
             0,
-            $this->addressOf('_resetUknPvmBool_8c014322'),
+            $this->addressOf('_resetPvmReady_8c014322'),
         );
         $this->shouldWriteLong($this->addressOf('_menuState_8c1bc7a8') + 0x18, 0);
     }

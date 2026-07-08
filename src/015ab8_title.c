@@ -70,16 +70,16 @@ ResourceGroupInfo init_8c044284 = {
  * ====================
  */
 
-extern Bool getUknPvmBool_8c01432a();
+extern Bool isPvmReady_8c01432a();
 extern void push_fadein_8c022a9c();
 extern void push_fadeout_8c022b60();
 extern void drawSprite_8c014f54(ResourceGroup *r4, int r5, float fr4, float fr5, float fr6);
 extern void task_8c012f44(Task* task, void* state);
 extern FUN_8c02ae3e(int p1, int p2, float fp1, int p3, int p4, int p5, int p6, int p7);
-extern void resetUknPvmBool_8c014322();
+extern void resetPvmReady_8c014322();
 extern FUN_8c016182();
 extern FUN_demo_8c0159ac();
-extern void setUknPvmBool_8c014330();
+extern void setPvmReady_8c014330();
 extern void snd_8c010cd6(int p1, int p2);
 extern Bool setName_8c012984(void);
 
@@ -106,7 +106,7 @@ void task_title_8c015ab8(Task* task, void *state) {
     switch (menuState_8c1bc7a8.state_0x18) {
         /* 0x8c015b88 (0x8c015b32 + 4 + 0x052) */
         case TITLE_STATE_0X00_INIT: {
-            if (getUknPvmBool_8c01432a() == FALSE) {
+            if (isPvmReady_8c01432a() == FALSE) {
                 /* 8c015b96 */
                 AsqFreeQueues_11f7e();
                 VmMenuMountVms_1940e();
@@ -498,6 +498,6 @@ void pushTitle_8c015fd6 (Bool direct) {
     var_currentSysResGroupInfo_8c225fb0 = (void *) -1;
     CourseMenuRequestSysResgrp_8c018568(&menuState_8c1bc7a8.resourceGroupB_0x0c, &titleResourceGroup_8c044254);
     CourseMenuRequestCommonResources_8c01852c();
-    setUknPvmBool_8c014330();
-    AsqProcessQueues_11fe0(&AsqNop_11120, 0, 0, 0, &resetUknPvmBool_8c014322);
+    setPvmReady_8c014330();
+    AsqProcessQueues_11fe0(&AsqNop_11120, 0, 0, 0, &resetPvmReady_8c014322);
 }

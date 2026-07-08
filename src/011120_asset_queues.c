@@ -1222,16 +1222,16 @@ void AsqProcessQueues_11fe0(void *func, void *afterDatCallback, void *afterNjCal
 }
 
 /* Tested */
-NjPvmPair* AsqRequestNjPvmPairs_12030(char *basedir, NjPvmPairFilenames *pairs, int texlistCount) {
+LoadedModel* AsqRequestModels_12030(char *basedir, ModelFiles *pairs, int texlistCount) {
     int pairCount = 0;
-    NjPvmPair *dest;
+    LoadedModel *dest;
     int currentPair;
 
     while (*pairs[pairCount].njFilename || *pairs[pairCount].pvmFilename) {
         pairCount++;
     }
 
-    dest = syMalloc((pairCount + 1) * sizeof(NjPvmPair));
+    dest = syMalloc((pairCount + 1) * sizeof(LoadedModel));
 
     if (pairCount > 0) {
         for (currentPair = 0; currentPair < pairCount; currentPair++) {
@@ -1250,9 +1250,9 @@ NjPvmPair* AsqRequestNjPvmPairs_12030(char *basedir, NjPvmPairFilenames *pairs, 
 }
 
 /* Tested */
-void AsqFreeNjPvmPairs_120fe(NjPvmPair **pairsPtr) {
+void AsqFreeModels_120fe(LoadedModel **pairsPtr) {
     int i;
-    NjPvmPair *pairs = *pairsPtr;
+    LoadedModel *pairs = *pairsPtr;
 
     if (pairs != (void*) -1) {
         for (i = 0; pairs[i].texlist != (void*) 0; i++) {

@@ -11,8 +11,8 @@ return new class extends TestCase {
     public function test_loads_wanted_frees_dropped_keeps_loaded()
     {
         $this->resolveSymbols();
-        $base = $this->addressOf('_var_8c1bbddc');
-        $basedir = $this->addressOf('_var_basedir_8c18ad6c');
+        $base = $this->addressOf('_var_routeModelSlots_8c1bbddc');
+        $basedir = $this->addressOf('_var_commonDir_8c18ad6c');
         $this->seedAllUnloaded($base);
 
         // Default filename table.
@@ -56,8 +56,8 @@ return new class extends TestCase {
     public function test_uses_alternate_table_when_mode_is_2()
     {
         $this->resolveSymbols();
-        $base = $this->addressOf('_var_8c1bbddc');
-        $basedir = $this->addressOf('_var_basedir_8c18ad6c');
+        $base = $this->addressOf('_var_routeModelSlots_8c1bbddc');
+        $basedir = $this->addressOf('_var_commonDir_8c18ad6c');
         $this->seedAllUnloaded($base);
 
         // Mode 2 selects init_8c043ecc; slot 1 maps to entries 2/3.
@@ -83,7 +83,7 @@ return new class extends TestCase {
     public function test_empty_list_only_clears_flags()
     {
         $this->resolveSymbols();
-        $base = $this->addressOf('_var_8c1bbddc');
+        $base = $this->addressOf('_var_routeModelSlots_8c1bbddc');
         $this->seedAllUnloaded($base);
 
         // Nothing loaded, nothing requested: no requests, no frees.
@@ -114,8 +114,8 @@ return new class extends TestCase {
 
     private function resolveSymbols(): void
     {
-        // _var_timeOfDay_8c18ad20 and _var_basedir_8c18ad6c are defined in the C object.
-        $this->setSize('_var_8c1bbddc', self::SLOTS * 0x10);
+        // _var_timeOfDay_8c18ad20 and _var_commonDir_8c18ad6c are defined in the C object.
+        $this->setSize('_var_routeModelSlots_8c1bbddc', self::SLOTS * 0x10);
 
         $this->setSize('_AsqRequestNj_11492', 4);
         $this->setSize('_AsqRequestPvm_11ac0', 4);

@@ -31,7 +31,7 @@
           .IMPORT     _init_8c044e48
           .IMPORT     _VmMenuUpdateVmusStatus_19550
           .IMPORT     _isFading_8c226568
-          .IMPORT     _getUknPvmBool_8c01432a
+          .IMPORT     _isPvmReady_8c01432a
           .IMPORT     _AsqFreeQueues_11f7e
           .IMPORT     _promptHandleMultiple_16c58
           .IMPORT     _var_peripherals_8c1ba35c
@@ -74,8 +74,8 @@
           .IMPORT     _const_8c038660
           .IMPORT     _const_8c038658
           .IMPORT     _AsqRequestDat_11182
-          .IMPORT     _setUknPvmBool_8c014330
-          .IMPORT     _resetUknPvmBool_8c014322
+          .IMPORT     _setPvmReady_8c014330
+          .IMPORT     _resetPvmReady_8c014322
           .IMPORT     _AsqNop_11120
           .IMPORT     _AsqProcessQueues_11fe0
           .IMPORT     _var_8c2260ac
@@ -1078,7 +1078,7 @@ LAB_8c01c276:
           BRA         LAB_8c01c2bc
           MOV.L       R3,@R15
 LP_GEN_76857:
-          .DATA.L _getUknPvmBool_8c01432a ; H'8C01C284
+          .DATA.L _isPvmReady_8c01432a ; H'8C01C284
           .DATA.L _AsqFreeQueues_11f7e ; H'8C01C288
           .DATA.L _drawSprite_8c014f54 ; H'8C01C28C
           .DATA.L _promptHandleMultiple_16c58 ; H'8C01C290
@@ -1962,8 +1962,8 @@ LP_GEN_73212:
           .DATA.L _const_8c038660 ; H'8C01C944
           .DATA.L _const_8c038658 ; H'8C01C948
           .DATA.L _AsqRequestDat_11182 ; H'8C01C94C
-          .DATA.L _setUknPvmBool_8c014330 ; H'8C01C950
-          .DATA.L _resetUknPvmBool_8c014322 ; H'8C01C954
+          .DATA.L _setPvmReady_8c014330 ; H'8C01C950
+          .DATA.L _resetPvmReady_8c014322 ; H'8C01C954
           .DATA.L _AsqNop_11120 ; H'8C01C958
           .DATA.L _AsqProcessQueues_11fe0 ; H'8C01C95C
           .DATA.L _const_8c03867c ; H'8C01C960

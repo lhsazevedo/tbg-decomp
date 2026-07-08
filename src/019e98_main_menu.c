@@ -48,7 +48,7 @@ enum MAIN_MENU_STATE {
  * =====================
  */
 
-extern void resetUknPvmBool_8c014322();
+extern void resetPvmReady_8c014322();
 extern void drawSprite_8c014f54(ResourceGroup *r4, int r5, float fr4, float fr5, float fr6);
 extern void FUN_8c01bfec(Task* task, void* state);
 extern void push_fadein_8c022a9c();
@@ -85,7 +85,7 @@ void MainMenuTask_8c019e98(Task *task) {
     switch (menuState_8c1bc7a8.state_0x18)
     {
         case MAIN_MENU_STATE_INIT: {
-            if (getUknPvmBool_8c01432a()) {
+            if (isPvmReady_8c01432a()) {
                 return;
             }
 
@@ -226,6 +226,6 @@ void MainMenuSwitchFromTask_8c01a09a(Task* task) {
         &menuState_8c1bc7a8.resourceGroupB_0x0c,
         &init_mainMenuResourceGroup_8c044264
     );
-    setUknPvmBool_8c014330();
-    AsqProcessQueues_11fe0(AsqNop_11120, 0, 0, 0, resetUknPvmBool_8c014322);
+    setPvmReady_8c014330();
+    AsqProcessQueues_11fe0(AsqNop_11120, 0, 0, 0, resetPvmReady_8c014322);
 }

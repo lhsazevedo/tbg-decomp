@@ -6,7 +6,7 @@ use Lhsazevedo\Sh4ObjTest\TestCase;
 use Lhsazevedo\Sh4ObjTest\Simulator\Types\U32;
 
 return new class extends TestCase {
-    /** value at var_8c1bc3f8.tlist_0x00, bound by the texture calls */
+    /** value at var_loadingResourceGroup_8c1bc3f8.tlist_0x00, bound by the texture calls */
     private const TLIST = 0x8c500000;
 
     /** Outside a demo (flag < 2): bump the fade counter, no clamp needed. */
@@ -55,7 +55,7 @@ return new class extends TestCase {
     /** Common tail: install interiorLoadTask_8c014550, prime the queues, rebind the texture. */
     private function expectInstallAndBind(): void
     {
-        $this->initUint32($this->addressOf('_var_8c1bc3f8'), self::TLIST);
+        $this->initUint32($this->addressOf('_var_loadingResourceGroup_8c1bc3f8'), self::TLIST);
 
         $createdTask = $this->alloc(0x20);
         $createdState = $this->alloc(0x1c);
@@ -75,7 +75,7 @@ return new class extends TestCase {
             });
         $this->shouldWriteLong($createdTask + 0x08, 0);
         $this->shouldWriteLong($createdTask + 0x0c, 0);
-        $this->shouldCall('_freeSelectedEntryPairs_8c013f22');
+        $this->shouldCall('_freeSegmentModels_8c013f22');
         $this->shouldCall('_njGarbageTexture')->with($this->addressOf('_var_tex_8c157af8'), 0xc00);
         $this->shouldCall('_AsqInitQueues_11f36')->with(0x20, 0x800, 0x800, 0x40);
         $this->shouldCall('_njSetTexture')->with(self::TLIST);
@@ -90,7 +90,7 @@ return new class extends TestCase {
             '_var_demo_8c1bb8d0' => 4,
             '_var_8c2285c4' => 0x14,
             '_var_8c157a6c' => 4,
-            '_var_8c1bc3f8' => 0x0c,
+            '_var_loadingResourceGroup_8c1bc3f8' => 0x0c,
             '_var_tasks_8c1ba3c8' => 4,
             '_var_tex_8c157af8' => 4,
             '_njGarbageTexture' => 4,

@@ -91,13 +91,13 @@ return new class extends TestCase {
             $this->m(0x0c),
             $this->addressOf('_albumResourceGroup_8c045160'),
         );
-        $this->shouldCall('_setUknPvmBool_8c014330');
+        $this->shouldCall('_setPvmReady_8c014330');
         $this->shouldCall('_AsqProcessQueues_11fe0')->with(
             $this->addressOf('_AsqNop_11120'),
             0,
             0,
             0,
-            $this->addressOf('_resetUknPvmBool_8c014322'),
+            $this->addressOf('_resetPvmReady_8c014322'),
         );
     }
 };

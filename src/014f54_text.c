@@ -66,7 +66,7 @@ typedef struct {
 
 extern void *var_busFont_8c1ba1c8;
 extern int *var_demoBuf_8c1ba3c4;
-extern int var_8c1bb868;
+extern int var_currentCourse_8c1bb868;
 extern int var_inputMapSel_8c1bb8c8;
 extern int var_demo_8c1bb8d0;
 extern int var_8c1bb8d4;
@@ -139,7 +139,7 @@ STATIC DemoEntry init_demos_8c044154[20] = {
  * ====================
  */
 
-extern void setUknPvmBool_8c014330();
+extern void setPvmReady_8c014330();
 
 /* =========
  * Functions
@@ -749,11 +749,11 @@ int TxtDrawTextbox_8c0155e0(TextBox *box, int limit)
 STATIC void FUN_8c01594c(Task *task)
 {
     void *local;
-    if (!getUknPvmBool_8c01432a()) {
+    if (!isPvmReady_8c01432a()) {
         return;
     }
 
-    var_8c1bb868 = var_demoBuf_8c1ba3c4[1];
+    var_currentCourse_8c1bb868 = var_demoBuf_8c1ba3c4[1];
     var_inputMapSel_8c1bb8c8 = var_demoBuf_8c1ba3c4[2];
     var_seed_8c157a64 = var_demoBuf_8c1ba3c4[3];
     local = demoBuffer_8c1bc828;
@@ -790,7 +790,7 @@ void FUN_demo_8c0159ac()
         init_demos_8c044154[var_demoIndex_8c1bb8d8].field_0x04;
     var_demoEntryValue_8c22822c =
         init_demos_8c044154[var_demoIndex_8c1bb8d8].field_0x08;
-    resetUknPvmBool_8c014322();
-    AsqProcessQueues_11fe0(AsqNop_11120, 0, 0, 0, setUknPvmBool_8c014330);
+    resetPvmReady_8c014322();
+    AsqProcessQueues_11fe0(AsqNop_11120, 0, 0, 0, setPvmReady_8c014330);
     return;
 }

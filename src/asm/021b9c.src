@@ -1,8 +1,8 @@
 ; 8c021b9c
           .IMPORT     _var_busState_8c1bb9d0
           .IMPORT     __divls
-          .IMPORT     _var_8c226508
-          .IMPORT     _var_8c226504
+          .IMPORT     _var_fogParam_8c226508
+          .IMPORT     _var_fogParam_8c226504
           .IMPORT     _njControl3D
           .IMPORT     _var_8c226520
           .IMPORT     _var_8c226544
@@ -176,8 +176,8 @@ LP_GEN_32922:
           .DATA.W H'2500 ; H'8C021CA2
           .DATA.L _var_busState_8c1bb9d0 ; H'8C021CA4
           .DATA.L __divls ; H'8C021CA8
-          .DATA.L _var_8c226508 ; H'8C021CAC
-          .DATA.L _var_8c226504 ; H'8C021CB0
+          .DATA.L _var_fogParam_8c226508 ; H'8C021CAC
+          .DATA.L _var_fogParam_8c226504 ; H'8C021CB0
           .DATA.L _njControl3D ; H'8C021CB4
           .DATA.L _var_8c226520 ; H'8C021CB8
           .DATA.L _var_8c226544 ; H'8C021CBC

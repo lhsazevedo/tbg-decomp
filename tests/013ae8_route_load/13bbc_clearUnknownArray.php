@@ -10,7 +10,7 @@ return new class extends TestCase {
         $count = 4;
         $base = $this->alloc($count * 0x10);
 
-        $this->call('_clearUnknownArray_8c013bbc')->with($base, $count);
+        $this->call('_clearModelSlots_8c013bbc')->with($base, $count);
 
         // Walks back to front, storing -1 at +8 of each 0x10-byte slot.
         for ($i = $count - 1; $i >= 0; $i--) {
@@ -22,6 +22,6 @@ return new class extends TestCase {
     {
         $base = $this->alloc(0x10);
 
-        $this->call('_clearUnknownArray_8c013bbc')->with($base, 0);
+        $this->call('_clearModelSlots_8c013bbc')->with($base, 0);
     }
 };

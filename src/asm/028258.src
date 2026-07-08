@@ -20,7 +20,7 @@
           .IMPORT     _var_8c227e28
           .IMPORT     _FUN_8c026dcc
           .IMPORT     _clearTasks_8c014a9c
-          .IMPORT     _var_8c1bc3ec
+          .IMPORT     _var_routeModels_8c1bc3ec
           .IMPORT     _pushTask_8c014ae8
           .IMPORT     __quick_odd_mvn
           .IMPORT     _njUnitMatrix
@@ -64,7 +64,7 @@
           .IMPORT     _var_demo_8c1bb8d0
           .IMPORT     _var_8c2285e4
           .IMPORT     _FUN_8c02d06c
-          .IMPORT     _var_8c1bb868
+          .IMPORT     _var_currentCourse_8c1bb868
           .IMPORT     _var_8c228278
           .IMPORT     __modls
           .IMPORT     _njMultiMatrix
@@ -79,7 +79,7 @@
           .IMPORT     _var_8c228408
           .IMPORT     _AsqRequestPvm_11ac0
           .IMPORT     _AsqRequestNj_11492
-          .IMPORT     _var_8c18ad8c
+          .IMPORT     _var_commonDirCopy_8c18ad8c
           .IMPORT     _var_8c228288
           .IMPORT     _AsqRequestDat_11182
           .IMPORT     __quick_evn_mvn
@@ -108,7 +108,7 @@
           .IMPORT     _njCnkSimpleDrawMotion
           .IMPORT     _AsqGetRandomInRangeA_12178
           .IMPORT     _var_tasks_8c1bb448
-          .IMPORT     _var_8c1bbddc
+          .IMPORT     _var_routeModelSlots_8c1bbddc
           .IMPORT     _njControl3D
           .IMPORT     _njFogDisable
           .IMPORT     _njFogEnable
@@ -126,7 +126,7 @@
           .IMPORT     _var_8c228514
           .IMPORT     _var_8c228518
           .IMPORT     _var_8c228480
-          .IMPORT     _var_basedir_8c18ad6c
+          .IMPORT     _var_commonDir_8c18ad6c
           .IMPORT     _init_8c049a6c
           .IMPORT     _const_8c03a17c
           .IMPORT     _init_8c04843c
@@ -609,7 +609,7 @@ LP_GEN_52240:
           .DATA.L _clearTasks_8c014a9c ; H'8C028578
           .DATA.L H'43B40000 ; H'8C02857C
           .DATA.L H'47800000 ; H'8C028580
-          .DATA.L _var_8c1bc3ec ; H'8C028584
+          .DATA.L _var_routeModels_8c1bc3ec ; H'8C028584
           .DATA.L _var_8c1bc460 ; H'8C028588
 LAB_8c02858c:
           MOV.L       @(H'4,R14),R1
@@ -2963,7 +2963,7 @@ LP_GEN_59898:
           .DATA.L LAB_8c028a38 ; H'8C029730
           .DATA.L _var_8c2285e4 ; H'8C029734
           .DATA.L _FUN_8c02d06c ; H'8C029738
-          .DATA.L _var_8c1bb868 ; H'8C02973C
+          .DATA.L _var_currentCourse_8c1bb868 ; H'8C02973C
           .DATA.L _var_8c228238 ; H'8C029740
           .DATA.L _var_8c228240 ; H'8C029744
           .DATA.L _var_8c22823c ; H'8C029748
@@ -3397,7 +3397,7 @@ LP_GEN_39842:
           .DATA.L _njCnkSimpleDrawObject ; H'8C029A74
           .DATA.L LAB_8c029878 ; H'8C029A78
           .DATA.L _FUN_8c022420 ; H'8C029A7C
-          .DATA.L _var_8c1bc3ec ; H'8C029A80
+          .DATA.L _var_routeModels_8c1bc3ec ; H'8C029A80
           .DATA.L _var_route_8c18ad1c ; H'8C029A84
           .DATA.L _init_8c0465d8 ; H'8C029A88
           .DATA.L _init_8c046524 ; H'8C029A8C
@@ -3409,7 +3409,7 @@ LP_GEN_39842:
           .DATA.L _njRotateY ; H'8C029AA4
           .DATA.L H'47800000 ; H'8C029AA8
           .DATA.L H'43B40000 ; H'8C029AAC
-          .DATA.L _var_8c1bb868 ; H'8C029AB0
+          .DATA.L _var_currentCourse_8c1bb868 ; H'8C029AB0
           .DATA.L _var_8c2264d4 ; H'8C029AB4
           .DATA.L _FUN_8c020914 ; H'8C029AB8
           .DATA.L _var_8c1bc460 ; H'8C029ABC
@@ -3745,7 +3745,7 @@ LP_GEN_99465:
           .DATA.L _var_8c228408 ; H'8C029D2C
           .DATA.L _AsqRequestPvm_11ac0 ; H'8C029D30
           .DATA.L _AsqRequestNj_11492 ; H'8C029D34
-          .DATA.L _var_8c18ad8c ; H'8C029D38
+          .DATA.L _var_commonDirCopy_8c18ad8c ; H'8C029D38
           .DATA.L _var_8c228288 ; H'8C029D3C
           .DATA.L _AsqRequestDat_11182 ; H'8C029D40
           .DATA.L __quick_evn_mvn ; H'8C029D44
@@ -4116,7 +4116,7 @@ LP_GEN_15421:
           .DATA.L LAB_8c029e68 ; H'8C02A030
           .DATA.L _var_tasks_8c1bb448 ; H'8C02A034
           .DATA.L _pushTask_8c014ae8 ; H'8C02A038
-          .DATA.L _var_8c1bbddc ; H'8C02A03C
+          .DATA.L _var_routeModelSlots_8c1bbddc ; H'8C02A03C
           .DATA.L _njCnkSimpleDrawObject ; H'8C02A040
           .DATA.L LAB_8c029f2a ; H'8C02A044
 LAB_8c02a048:
@@ -5459,7 +5459,7 @@ LP_GEN_90475:
           .DATA.L _var_8c228518 ; H'8C02AAA8
           .DATA.L _var_8c228480 ; H'8C02AAAC
           .DATA.L _AsqRequestDat_11182 ; H'8C02AAB0
-          .DATA.L _var_basedir_8c18ad6c ; H'8C02AAB4
+          .DATA.L _var_commonDir_8c18ad6c ; H'8C02AAB4
           .DATA.L _var_route_8c18ad1c ; H'8C02AAB8
           .DATA.L _init_8c049a6c ; H'8C02AABC
           .DATA.L _const_8c03a17c ; H'8C02AAC0

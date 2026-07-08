@@ -10,36 +10,36 @@
           .IMPORT     _var_interiorTexlist_8c1bc438
           .IMPORT     _var_markTexlist_8c1bc418
           .IMPORT     _var_busStopTexlist_8c1bc424
-          .IMPORT     _AsqRequestNjPvmPairs_12030
-          .IMPORT     _var_routeModelPairs_8c1bc3f4
+          .IMPORT     _AsqRequestModels_12030
+          .IMPORT     _var_trafficModels_8c1bc3f4
           .IMPORT     _njSetTexture
           .IMPORT     _njReleaseCacheTextureNum
           .IMPORT     _AsqReleaseAndFreeTexlist_11e3c
           .IMPORT     _syFree
-          .IMPORT     _var_8c1bbddc
+          .IMPORT     _var_routeModelSlots_8c1bbddc
           .IMPORT     _AsqFreeQueues_11f7e
           .IMPORT     _AsqInitQueues_11f36
           .IMPORT     _AsqResetQueues_11f6c
           .IMPORT     _AsqNop_11120
           .IMPORT     _AsqProcessQueues_11fe0
           .IMPORT     _var_pedestrianAssets_8c1bbfdc
-          .IMPORT     _var_8c228708
-          .IMPORT     _var_8c1bc3f0
-          .IMPORT     _AsqFreeNjPvmPairs_120fe
+          .IMPORT     _var_currentSegment_8c228708
+          .IMPORT     _var_segmentModels_8c1bc3f0
+          .IMPORT     _AsqFreeModels_120fe
           .IMPORT     _FUN_8c021a24
-          .IMPORT     _var_8c226504
-          .IMPORT     _var_8c226508
-          .IMPORT     _var_8c227dd0
+          .IMPORT     _var_fogParam_8c226504
+          .IMPORT     _var_fogParam_8c226508
+          .IMPORT     _var_fogParam_8c227dd0
           .IMPORT     _var_8c1bb900
           .IMPORT     _var_demo_8c1bb8d0
           .IMPORT     _FUN_8c029ad4
           .IMPORT     _var_8c226534
           .IMPORT     _AsqRequestDat_11182
           .IMPORT     _FUN_8c02aa36
-          .IMPORT     _var_8c1bb868
+          .IMPORT     _var_currentCourse_8c1bb868
           .IMPORT     _strcpy
-          .IMPORT     _var_8c1bc3ec
-          .IMPORT     _var_8c1bc3f8
+          .IMPORT     _var_routeModels_8c1bc3ec
+          .IMPORT     _var_loadingResourceGroup_8c1bc3f8
           .IMPORT     _njLoadCacheTexture
           .IMPORT     _FUN_8c02175a
           .IMPORT     _FUN_8c026da4
@@ -65,39 +65,39 @@
           .IMPORT     _dispatchInputTask_8c012970
           .EXPORT     _requestVehicleAssets_8c013ae8
           .EXPORT     _freeVehicleAssets_8c013b5a
-          .EXPORT     _clearUnknownArray_8c013bbc
+          .EXPORT     _clearModelSlots_8c013bbc
           .EXPORT     _syncRouteModelAssets_8c013c34
           .EXPORT     _finishAssetLoad_8c013d42
           .EXPORT     _startRouteModelLoadPass_8c013d78
           .EXPORT     _freeAllRouteModels_8c013dae
           .EXPORT     _syncPedestrianAssets_8c013df6
           .EXPORT     _freePedestrianAssets_8c013ee4
-          .EXPORT     _freeSelectedEntryPairs_8c013f22
-          .EXPORT     _syncSelectedEntryAssets_8c013f78
+          .EXPORT     _freeSegmentModels_8c013f22
+          .EXPORT     _syncSegmentModels_8c013f78
           .EXPORT     _loadRouteModels_8c014088
-          .EXPORT     _resetUknPvmBool_8c014322
-          .EXPORT     _getUknPvmBool_8c01432a
-          .EXPORT     _setUknPvmBool_8c014330
+          .EXPORT     _resetPvmReady_8c014322
+          .EXPORT     _isPvmReady_8c01432a
+          .EXPORT     _setPvmReady_8c014330
           .EXPORT     _routeLoadTask_8c014338
           .EXPORT     _pushInteriorLoadTask_8c01468e
           .EXPORT     _interiorLoadTask_8c014550
           .EXPORT     _routeLoadBindInteriorTask_8c014784
           .EXPORT     _pushRouteLoadTask_8c0144fc
           .EXPORT     _init_8c04410c ; 01b19c.src
-          .EXPORT     _var_currentCourse_8c18ad18 ; 02c884.src
+          .EXPORT     _var_currentCourseConfig_8c18ad18 ; 02c884.src
           .EXPORT     _var_route_8c18ad1c ; 012f44.c, 012f44.src, 01d7fc.src, 020214.src, 023310.src, 025870.src, 026710.src, 028258.src, 02af78.src, 02b464.src, 02c884.src, 02d19c.src, 02d968.src
           .EXPORT     _var_timeOfDay_8c18ad20 ; 01d7fc.src, 022bdc.src, 023310.src, 025b98.src, 026710.src, 027958.src, 02af78.src, 02d19c.src
           .EXPORT     _var_sceneParams_8c18ad24 ; 021b9c.src, 0222dc.src, 023310.src, 024b4c.src, 026710.src
-          .EXPORT     _var_8c18ad28 ; 012f44.c, 012f44.src
-          .EXPORT     _var_8c18ad2c
-          .EXPORT     _var_8c18ad4c ; 02171c.src
-          .EXPORT     _var_basedir_8c18ad6c ; 028258.src
-          .EXPORT     _var_8c18ad8c ; 028258.src
-          .EXPORT     _var_8c18adac
-          .EXPORT     _var_8c18adb0
-          .EXPORT     _var_8c18adb4 ; 02171c.src
+          .EXPORT     _var_fogParams_8c18ad28 ; 012f44.c, 012f44.src
+          .EXPORT     _var_datDir_8c18ad2c
+          .EXPORT     _var_pvrDir_8c18ad4c ; 02171c.src
+          .EXPORT     _var_commonDir_8c18ad6c ; 028258.src
+          .EXPORT     _var_commonDirCopy_8c18ad8c ; 028258.src
+          .EXPORT     _var_pvmReady_8c18adac
+          .EXPORT     _var_routeModelIndexes_8c18adb0
+          .EXPORT     _var_datFiles_8c18adb4 ; 02171c.src
           .AIFDEF     UNIT_TESTING
-          .EXPORT     _init_routeModelFilenames_8c043d64
+          .EXPORT     _init_trafficModelFiles_8c043d64
           .EXPORT     _init_8c043fd4
           .EXPORT     _init_courseWanganEvening0_8c041d80
           .EXPORT     _init_8c040d28
@@ -225,7 +225,7 @@ LAB_8c013bb2:
           MOV.L       @R15+,R13
           RTS
           MOV.L       @R15+,R14
-_clearUnknownArray_8c013bbc:
+_clearModelSlots_8c013bbc:
           ADD         #-H'1,R5
           SHLL2       R5
           SHLL2       R5
@@ -244,7 +244,7 @@ LAB_8c013bd2:
 
 LP_GEN_83755:
           .RES.W      1 ; H'8c013bd6
-          .DATA.L _var_basedir_8c18ad6c
+          .DATA.L _var_commonDir_8c18ad6c
           .DATA.L _var_frontNj_8c1bc434
           .DATA.L s_front_njd_8c033478
           .DATA.L _AsqRequestNj_11492
@@ -260,9 +260,9 @@ LP_GEN_83755:
           .DATA.L s_mark_pvm_8c0334a8
           .DATA.L _var_busStopTexlist_8c1bc424
           .DATA.L s_busstop_pvm_8c0334b4
-          .DATA.L _init_routeModelFilenames_8c043d64
-          .DATA.L _AsqRequestNjPvmPairs_12030
-          .DATA.L _var_routeModelPairs_8c1bc3f4
+          .DATA.L _init_trafficModelFiles_8c043d64
+          .DATA.L _AsqRequestModels_12030
+          .DATA.L _var_trafficModels_8c1bc3f4
           .DATA.L _njSetTexture
           .DATA.L _njReleaseCacheTextureNum
           .DATA.L _AsqReleaseAndFreeTexlist_11e3c
@@ -416,7 +416,7 @@ LAB_8c013d1c:
           MOV.L       @R15+,R14
 _finishAssetLoad_8c013d42:
           STS.L       PR,@-R15
-          BSR         _setUknPvmBool_8c014330
+          BSR         _setPvmReady_8c014330
           NOP
           MOV.L       LP_GEN_93614+38,R1
           JMP         @R1
@@ -424,8 +424,8 @@ _finishAssetLoad_8c013d42:
 
 LP_GEN_93614:
           .DATA.W H'0200 ; LP_GEN_93614+0
-          .DATA.L _var_8c1bbddc
-          .DATA.L _var_basedir_8c18ad6c
+          .DATA.L _var_routeModelSlots_8c1bbddc
+          .DATA.L _var_commonDir_8c18ad6c
           .DATA.L _var_timeOfDay_8c18ad20
           .DATA.L _init_8c043dc4
           .DATA.L _AsqRequestNj_11492
@@ -446,7 +446,7 @@ _startRouteModelLoadPass_8c013d78:
           MOV.L       LP_GEN_38230+10,R2
           JSR         @R2
           NOP
-          BSR         _resetUknPvmBool_8c014322
+          BSR         _resetPvmReady_8c014322
           NOP
           MOV.L       LP_GEN_38230+14,R2
           BSR         _syncRouteModelAssets_8c013c34
@@ -578,16 +578,16 @@ LP_GEN_38230:
           .RES.W 1
           .DATA.L _AsqInitQueues_11f36
           .DATA.L _AsqResetQueues_11f6c
-          .DATA.L _var_8c18adb0
+          .DATA.L _var_routeModelIndexes_8c18adb0
           .DATA.L _finishAssetLoad_8c013d42
           .DATA.L _AsqNop_11120
           .DATA.L _AsqProcessQueues_11fe0
-          .DATA.L _var_8c1bbddc
+          .DATA.L _var_routeModelSlots_8c1bbddc
           .DATA.L _AsqReleaseAndFreeTexlist_11e3c
           .DATA.L _syFree
           .DATA.L _var_pedestrianAssets_8c1bbfdc
           .DATA.L _init_pedestrianPvmNames_8c043fd8
-          .DATA.L _var_basedir_8c18ad6c
+          .DATA.L _var_commonDir_8c18ad6c
           .DATA.L _AsqRequestPvm_11ac0
 
 LAB_8c013eb0:
@@ -652,7 +652,7 @@ LAB_8c013f0c:
           MOV.L       @R15+,R13
           RTS
           MOV.L       @R15+,R14
-_freeSelectedEntryPairs_8c013f22:
+_freeSegmentModels_8c013f22:
           MOV.L       LP_GEN_91607+14,R0
           MOV         #H'2c,R2
           MOV.L       LP_GEN_91607+10,R3
@@ -688,13 +688,13 @@ LP_GEN_91607:
           .DATA.W H'0410 ; LP_GEN_91607+0
           .DATA.L _AsqReleaseAndFreeTexlist_11e3c
           .DATA.L _var_pedestrianAssets_8c1bbfdc
-          .DATA.L _var_currentCourse_8c18ad18
-          .DATA.L _var_8c228708
-          .DATA.L _var_8c1bc3f0
-          .DATA.L _AsqFreeNjPvmPairs_120fe
+          .DATA.L _var_currentCourseConfig_8c18ad18
+          .DATA.L _var_currentSegment_8c228708
+          .DATA.L _var_segmentModels_8c1bc3f0
+          .DATA.L _AsqFreeModels_120fe
           .DATA.L _FUN_8c021a24
 
-_syncSelectedEntryAssets_8c013f78:
+_syncSegmentModels_8c013f78:
           MOV.L       LP_GEN_25668+4,R0
           MOV         #H'2c,R2
           MOV.L       LP_GEN_25668+0,R3
@@ -948,31 +948,31 @@ LAB_8c014132:
           NOP
 
 LP_GEN_25668:
-          .DATA.L _var_currentCourse_8c18ad18 ; LP_GEN_25668+0
-          .DATA.L _var_8c228708
-          .DATA.L _var_8c18ad28
-          .DATA.L _var_8c226504
-          .DATA.L _var_8c226508
-          .DATA.L _var_8c227dd0
-          .DATA.L _var_basedir_8c18ad6c
-          .DATA.L _AsqRequestNjPvmPairs_12030
-          .DATA.L _var_8c1bc3f0
-          .DATA.L _var_8c18adb0
+          .DATA.L _var_currentCourseConfig_8c18ad18 ; LP_GEN_25668+0
+          .DATA.L _var_currentSegment_8c228708
+          .DATA.L _var_fogParams_8c18ad28
+          .DATA.L _var_fogParam_8c226504
+          .DATA.L _var_fogParam_8c226508
+          .DATA.L _var_fogParam_8c227dd0
+          .DATA.L _var_commonDir_8c18ad6c
+          .DATA.L _AsqRequestModels_12030
+          .DATA.L _var_segmentModels_8c1bc3f0
+          .DATA.L _var_routeModelIndexes_8c18adb0
           .DATA.L _var_8c1bb900
           .DATA.L _var_demo_8c1bb8d0
           .DATA.L _init_8c043fd4
           .DATA.L _FUN_8c029ad4
           .DATA.L _var_8c226534
-          .DATA.L _var_8c18adb4
-          .DATA.L _var_8c18ad2c
+          .DATA.L _var_datFiles_8c18adb4
+          .DATA.L _var_datDir_8c18ad2c
           .DATA.L _AsqRequestDat_11182
           .DATA.L _FUN_8c02aa36
-          .DATA.L _var_8c1bb868
+          .DATA.L _var_currentCourse_8c1bb868
           .DATA.L _init_courseTable_8c043ca4
           .DATA.L _var_route_8c18ad1c
           .DATA.L _var_timeOfDay_8c18ad20
           .DATA.L _var_sceneParams_8c18ad24
-          .DATA.L _var_8c18ad4c
+          .DATA.L _var_pvrDir_8c18ad4c
           .DATA.L _strcpy
           .DATA.L s_SD_COMMON_8c0334c0
           .DATA.L s_SD_PVR_8c0334cc
@@ -1158,16 +1158,16 @@ LAB_8c0141e4:
           MOV.L       @R15+,R13
           RTS
           MOV.L       @R15+,R14
-_resetUknPvmBool_8c014322:
+_resetPvmReady_8c014322:
           MOV.L       LP_GEN_90737+46,R1
           MOV         #H'0,R2
           RTS
           MOV.L       R2,@R1
-_getUknPvmBool_8c01432a:
+_isPvmReady_8c01432a:
           MOV.L       LP_GEN_90737+46,R3
           RTS
           MOV.L       @R3,R0
-_setUknPvmBool_8c014330:
+_setPvmReady_8c014330:
           MOV.L       LP_GEN_90737+46,R1
           MOV         #H'1,R2
           RTS
@@ -1204,7 +1204,7 @@ LAB_8c01435e:
           MOV.L       @R13,R4
           BSR         _loadRouteModels_8c014088
           NOP
-          BSR         _resetUknPvmBool_8c014322
+          BSR         _resetPvmReady_8c014322
           NOP
           MOV.L       LP_GEN_90737+66,R2
           MOV         #H'0,R7
@@ -1217,7 +1217,7 @@ LAB_8c01435e:
           BRA         LAB_8c0143ee
           ADD         #H'4,R15
 LAB_8c01438c:
-          BSR         _getUknPvmBool_8c01432a
+          BSR         _isPvmReady_8c01432a
           NOP
           TST         R0,R0
           BF          LAB_8c014398
@@ -1246,9 +1246,9 @@ LAB_8c014398:
           MOV.L       LP_GEN_90737+54,R3
           JSR         @R3
           NOP
-          BSR         _syncSelectedEntryAssets_8c013f78
+          BSR         _syncSegmentModels_8c013f78
           NOP
-          BSR         _resetUknPvmBool_8c014322
+          BSR         _resetPvmReady_8c014322
           NOP
           MOV.L       LP_GEN_90737+66,R2
           MOV.L       LP_GEN_90737+70,R4
@@ -1264,7 +1264,7 @@ LAB_8c014398:
           BRA         LAB_8c0144b4
           MOV.L       R2,@(H'8,R14)
 LAB_8c0143e6:
-          BSR         _getUknPvmBool_8c01432a
+          BSR         _isPvmReady_8c01432a
           NOP
           TST         R0,R0
           BT          LAB_8c0144b4
@@ -1308,23 +1308,23 @@ LP_GEN_90737:
           .DATA.L s_OD_PVR_8c03351c
           .DATA.L s_ON_COMMON_8c033524
           .DATA.L s_ON_PVR_8c033530
-          .DATA.L _var_8c18ad8c
-          .DATA.L _var_8c18ad2c
+          .DATA.L _var_commonDirCopy_8c18ad8c
+          .DATA.L _var_datDir_8c18ad2c
           .DATA.L _AsqRequestNj_11492
           .DATA.L _AsqRequestDat_11182
           .DATA.L _init_8c0440dc
-          .DATA.L _AsqRequestNjPvmPairs_12030
-          .DATA.L _var_8c1bc3ec
-          .DATA.L _var_8c18adac
-          .DATA.L _var_8c1bc3f8
+          .DATA.L _AsqRequestModels_12030
+          .DATA.L _var_routeModels_8c1bc3ec
+          .DATA.L _var_pvmReady_8c18adac
+          .DATA.L _var_loadingResourceGroup_8c1bc3f8
           .DATA.L _AsqResetQueues_11f6c
           .DATA.L _njSetTexture
           .DATA.L _njLoadCacheTexture
-          .DATA.L _setUknPvmBool_8c014330
+          .DATA.L _setPvmReady_8c014330
           .DATA.L _AsqNop_11120
           .DATA.L _AsqProcessQueues_11fe0
           .DATA.L _FUN_8c02175a
-          .DATA.L _var_8c1bb868
+          .DATA.L _var_currentCourse_8c1bb868
           .DATA.L _FUN_8c026da4
           .DATA.L _FUN_8c028de8
           .DATA.L _FUN_8c028dd0
@@ -1443,9 +1443,9 @@ LAB_8c01456e:
           MOV.L       LP_GEN_28406+66,R2
           JSR         @R2
           NOP
-          BSR         _syncSelectedEntryAssets_8c013f78
+          BSR         _syncSegmentModels_8c013f78
           NOP
-          BSR         _resetUknPvmBool_8c014322
+          BSR         _resetPvmReady_8c014322
           NOP
           MOV.L       LP_GEN_28406+70,R3
           MOV.L       LP_GEN_28406+82,R4
@@ -1461,7 +1461,7 @@ LAB_8c01456e:
           BRA         LAB_8c01464a
           MOV.L       R3,@(H'8,R14)
 LAB_8c01459c:
-          BSR         _getUknPvmBool_8c01432a
+          BSR         _isPvmReady_8c01432a
           NOP
           TST         R0,R0
           BT          LAB_8c01464a
@@ -1480,7 +1480,7 @@ LP_GEN_28406:
           .DATA.W H'0C00 ; LP_GEN_28406+0
           .DATA.W H'0800
           .RES.W      1
-          .DATA.L _var_8c1bc3f8
+          .DATA.L _var_loadingResourceGroup_8c1bc3f8
           .DATA.L H'C0A00000
           .DATA.L _drawSprite_8c014f54
           .DATA.L __modls
@@ -1496,7 +1496,7 @@ LP_GEN_28406:
           .DATA.L _AsqInitQueues_11f36
           .DATA.L _FUN_8c02b170
           .DATA.L _AsqResetQueues_11f6c
-          .DATA.L _setUknPvmBool_8c014330
+          .DATA.L _setPvmReady_8c014330
           .DATA.L _FUN_8c02190a
           .DATA.L _FUN_8c021810
           .DATA.L _AsqNop_11120
@@ -1611,7 +1611,7 @@ LAB_8c0146ba:
           MOV.L       R4,@(H'8,R2)
           MOV.L       @(H'4,R15),R3
           MOV.L       R4,@(H'c,R3)
-          BSR         _freeSelectedEntryPairs_8c013f22
+          BSR         _freeSegmentModels_8c013f22
           NOP
           MOV.L       LP_GEN_17698+88,R2
           MOV.L       LP_GEN_17698+84,R4
@@ -1649,7 +1649,7 @@ LP_GEN_17698:
           .DATA.L _freeTask_8c014b66
           .DATA.L _AsqFreeQueues_11f7e
           .DATA.L _var_8c157a6c
-          .DATA.L _var_8c1bc3f8
+          .DATA.L _var_loadingResourceGroup_8c1bc3f8
           .DATA.L _njReleaseTexture
           .DATA.L _var_interiorTexlist_8c1bc438
           .DATA.L _njSetTexture
@@ -1704,7 +1704,7 @@ LAB_8c0147aa:
           MOV.L       @R13,R4
           BSR         _loadRouteModels_8c014088
           NOP
-          BSR         _resetUknPvmBool_8c014322
+          BSR         _resetPvmReady_8c014322
           NOP
           MOV.L       LP_GEN_48435+18,R2
           MOV         #H'0,R7
@@ -1717,7 +1717,7 @@ LAB_8c0147aa:
           BRA         LAB_8c014824
           NOP
 LAB_8c0147d8:
-          BSR         _getUknPvmBool_8c01432a
+          BSR         _isPvmReady_8c01432a
           NOP
           TST         R0,R0
           BT          LAB_8c014882
@@ -1743,9 +1743,9 @@ LAB_8c0147d8:
           MOV.L       LP_GEN_48435+6,R2
           JSR         @R2
           NOP
-          BSR         _syncSelectedEntryAssets_8c013f78
+          BSR         _syncSegmentModels_8c013f78
           NOP
-          BSR         _resetUknPvmBool_8c014322
+          BSR         _resetPvmReady_8c014322
           NOP
           MOV.L       LP_GEN_48435+18,R3
           MOV         #H'0,R7
@@ -1762,7 +1762,7 @@ LAB_8c014824:
           BRA         LAB_8c014882
           MOV.L       R3,@(H'8,R14)
 LAB_8c01482e:
-          BSR         _getUknPvmBool_8c01432a
+          BSR         _isPvmReady_8c01432a
           NOP
           TST         R0,R0
           BT          LAB_8c014882
@@ -1847,15 +1847,15 @@ LAB_8c0148c0:
 
 LP_GEN_48435:
           .RES.W      1 ; H'8c0148ca
-          .DATA.L _var_8c1bc3f8
+          .DATA.L _var_loadingResourceGroup_8c1bc3f8
           .DATA.L _AsqResetQueues_11f6c
           .DATA.L _njSetTexture
           .DATA.L _njLoadCacheTexture
-          .DATA.L _setUknPvmBool_8c014330
+          .DATA.L _setPvmReady_8c014330
           .DATA.L _AsqNop_11120
           .DATA.L _AsqProcessQueues_11fe0
           .DATA.L _FUN_8c02175a
-          .DATA.L _var_8c1bb868
+          .DATA.L _var_currentCourse_8c1bb868
           .DATA.L _FUN_8c026da4
           .DATA.L _FUN_8c028de8
           .DATA.L _FUN_8c028dd0
@@ -7439,7 +7439,7 @@ _init_courseTable_8c043ca4:        ; from defines
           .DATA.L      _init_course45_8c043900
           .DATA.L      _init_course46_8c043bd4
           .DATA.L      _init_course47_8c043c3c
-_init_routeModelFilenames_8c043d64:        ; from defines
+_init_trafficModelFiles_8c043d64:        ; from defines
           .DATA.L      _const_8c035398 ; ukn
           .DATA.L      _const_8c03386c ; ukn
           .DATA.L      _const_8c0353a8 ; ukn
@@ -10912,7 +10912,7 @@ _const_8c035dc8:        ; aggressive search
           ;.RES.B      3
           .DATA.B      H'79, H'61, H'6A, H'69, H'2E, H'6E, H'6A, H'64, H'00, H'00, H'00, H'00
           .SECTION    B,DATA,ALIGN=4
-_var_currentCourse_8c18ad18:
+_var_currentCourseConfig_8c18ad18:
           .RES.B      4
 _var_route_8c18ad1c:
           .RES.B      4
@@ -10920,20 +10920,20 @@ _var_timeOfDay_8c18ad20:
           .RES.B      4
 _var_sceneParams_8c18ad24:
           .RES.B      4
-_var_8c18ad28:
+_var_fogParams_8c18ad28:
           .RES.B      4
-_var_8c18ad2c:
+_var_datDir_8c18ad2c:
           .RES.B      32
-_var_8c18ad4c:
+_var_pvrDir_8c18ad4c:
           .RES.B      32
-_var_basedir_8c18ad6c:
+_var_commonDir_8c18ad6c:
           .RES.B      32
-_var_8c18ad8c:
+_var_commonDirCopy_8c18ad8c:
           .RES.B      32
-_var_8c18adac:
+_var_pvmReady_8c18adac:
           .RES.B      4
-_var_8c18adb0:
+_var_routeModelIndexes_8c18adb0:
           .RES.B      4
-_var_8c18adb4:
+_var_datFiles_8c18adb4:
           .RES.B      16
           .END

@@ -270,7 +270,7 @@ void task_8c013388(Task *task, void *allocated) {
     if (task->field_0x08 == 0) {
         // 0x8c013440
 
-        if (!getUknPvmBool_8c01432a()) {
+        if (!isPvmReady_8c01432a()) {
             return;
         }
 
@@ -296,7 +296,7 @@ void task_8c013388(Task *task, void *allocated) {
 
         _8c011fe0();
     } else if (task->field_0x08 = 1) {
-        if (getUknPvmBool_8c01432a()) {
+        if (isPvmReady_8c01432a()) {
             return;
         }
 
@@ -478,15 +478,15 @@ int njUserMain_8c01392e() {
 
 // ...
 
-void resetUknPvmBool_8c014322() {
+void resetPvmReady_8c014322() {
     *ukn_pvm_bool_at_8c18adac = FALSE;
 }
 
-boolean getUknPvmBool_8c01432a() {
+boolean isPvmReady_8c01432a() {
     return *ukn_pvm_bool_at_8c18adac;
 }
 
-void setUknPvmBool_8c014330() {
+void setPvmReady_8c014330() {
     *ukn_pvm_bool_at_8c18adac = TRUE;
 }
 

@@ -15,7 +15,7 @@
           .IMPORT     _var_game_mode_8c1bb8fc
           .IMPORT     _var_8c2285dc
           .IMPORT     _var_8c2285d8
-          .IMPORT     _var_8c228708
+          .IMPORT     _var_currentSegment_8c228708
           .IMPORT     _var_8c1bb900
           .IMPORT     _AsqGetRandomInRangeB_121be
           .IMPORT     _var_8c228478
@@ -424,7 +424,7 @@ LP_GEN_88891:
           .DATA.L _var_8c2285d8 ; H'8C02B258
           .DATA.L _var_8c228520 ; H'8C02B25C
           .DATA.L _var_8c22851c ; H'8C02B260
-          .DATA.L _var_8c228708 ; H'8C02B264
+          .DATA.L _var_currentSegment_8c228708 ; H'8C02B264
           .DATA.L _var_8c228560 ; H'8C02B268
           .DATA.L _var_8c1bb900 ; H'8C02B26C
           .DATA.L _AsqGetRandomInRangeB_121be ; H'8C02B270

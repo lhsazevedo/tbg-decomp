@@ -12,7 +12,7 @@ return new class extends TestCase {
     {
         $this->resolveSymbols();
         $base = $this->addressOf('_var_pedestrianAssets_8c1bbfdc');
-        $basedir = $this->addressOf('_var_basedir_8c18ad6c');
+        $basedir = $this->addressOf('_var_commonDir_8c18ad6c');
         $this->seedAllUnloaded($base);
 
         // slot 5: loaded but not requested -> released.
@@ -80,7 +80,7 @@ return new class extends TestCase {
 
     private function resolveSymbols(): void
     {
-        // _var_basedir_8c18ad6c is defined in the C object.
+        // _var_commonDir_8c18ad6c is defined in the C object.
         $this->setSize('_var_pedestrianAssets_8c1bbfdc', self::SLOTS * 0x10);
         $this->setSize('_AsqRequestPvm_11ac0', 4);
         $this->setSize('_AsqReleaseAndFreeTexlist_11e3c', 4);

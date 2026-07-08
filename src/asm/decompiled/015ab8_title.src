@@ -3,7 +3,7 @@
           .IMPORT     _njGarbageTexture
           .IMPORT     _sdMidiPlay
           .IMPORT     _pushTask_8c014ae8
-          .IMPORT     _getUknPvmBool_8c01432a
+          .IMPORT     _isPvmReady_8c01432a
           .IMPORT     _AsqFreeQueues_11f7e
           .IMPORT     _VmMenuMountVms_1940e
           .IMPORT     _push_fadein_8c022a9c
@@ -22,7 +22,7 @@
           .IMPORT     _FUN_8c02ae3e
           .IMPORT     _AsqInitQueues_11f36
           .IMPORT     _AsqNop_11120
-          .IMPORT     _resetUknPvmBool_8c014322
+          .IMPORT     _resetPvmReady_8c014322
           .IMPORT     _var_currentSysResGroupInfo_8c225fb0
           .IMPORT     _VmMenuUpdateVmusStatus_19550
           .IMPORT     _VmMenuSwitchFromTask_19e44
@@ -31,7 +31,7 @@
           .IMPORT     _AsqResetQueues_11f6c
           .IMPORT     _CourseMenuRequestSysResgrp_8c018568
           .IMPORT     _CourseMenuRequestCommonResources_8c01852c
-          .IMPORT     _setUknPvmBool_8c014330
+          .IMPORT     _setPvmReady_8c014330
           .IMPORT     _AsqProcessQueues_11fe0
           .IMPORT     _snd_8c010cd6
           .IMPORT     _setName_8c012984
@@ -145,7 +145,7 @@ L4:
           .DATA.W     L43-L2
           .DATA.W     L47-L2
 L5:                               ; case label 0
-          MOV.L       L37,R3 ; _getUknPvmBool_8c01432a
+          MOV.L       L37,R3 ; _isPvmReady_8c01432a
           JSR         @R3
           NOP
           TST         R0,R0
@@ -468,7 +468,7 @@ L36:
           FMOV.S      @R0,FR6
 
 L37:                              
-          .DATA.L     _getUknPvmBool_8c01432a ; H'8c015dcc
+          .DATA.L     _isPvmReady_8c01432a ; H'8c015dcc
           .DATA.L     _AsqFreeQueues_11f7e ; H'8c015dd0
           .DATA.L     _VmMenuMountVms_1940e
           .DATA.L     H'FF000000
@@ -803,10 +803,10 @@ _pushTitle_8c015fd6:                   ; function: pushTitle_8c015fd6
           MOV.L       L53+92,R2; _CourseMenuRequestCommonResources_8c01852c
           JSR         @R2
           NOP
-          MOV.L       L53+96,R3; _setUknPvmBool_8c014330
+          MOV.L       L53+96,R3; _setPvmReady_8c014330
           JSR         @R3
           NOP
-          MOV.L       L53+100,R2; _resetUknPvmBool_8c014322
+          MOV.L       L53+100,R2; _resetPvmReady_8c014322
           MOV         #0,R7
           MOV.L       L53+104,R4; _AsqNop_11120
           MOV         R7,R6
@@ -846,8 +846,8 @@ L53:
           .DATA.L     _titleResourceGroup_8c044254
           .DATA.L     _CourseMenuRequestSysResgrp_8c018568 ; H'8c0160f0
           .DATA.L     _CourseMenuRequestCommonResources_8c01852c
-          .DATA.L     _setUknPvmBool_8c014330
-          .DATA.L     _resetUknPvmBool_8c014322
+          .DATA.L     _setPvmReady_8c014330
+          .DATA.L     _resetPvmReady_8c014322
           .DATA.L     _AsqNop_11120
           .DATA.L     _AsqProcessQueues_11fe0
 

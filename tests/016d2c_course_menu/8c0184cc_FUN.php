@@ -46,7 +46,7 @@ return new class extends TestCase {
         );
 
         // Step 7: Set unknown PVM boolean
-        $this->shouldCall('_setUknPvmBool_8c014330');
+        $this->shouldCall('_setPvmReady_8c014330');
 
         // Step 8: Process asset queues
         $this->shouldCall('_AsqProcessQueues_11fe0')->with(
@@ -54,7 +54,7 @@ return new class extends TestCase {
             0,
             0,
             0,
-            $this->addressOf('_resetUknPvmBool_8c014322')
+            $this->addressOf('_resetPvmReady_8c014322')
         );
 
         // Step 9: Reset menuState state field again
@@ -68,7 +68,7 @@ return new class extends TestCase {
 
         // Function pointers
         $this->setSize('_AsqNop_11120', 0x4);
-        $this->setSize('_resetUknPvmBool_8c014322', 0x4);
+        $this->setSize('_resetPvmReady_8c014322', 0x4);
     }
 };
 

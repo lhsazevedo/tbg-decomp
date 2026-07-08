@@ -4,7 +4,7 @@
           .IMPORT     _drawSprite_8c014f54
           .IMPORT     _var_peripherals_8c1ba35c
           .IMPORT     _isFading_8c226568
-          .IMPORT     _getUknPvmBool_8c01432a
+          .IMPORT     _isPvmReady_8c01432a
           .IMPORT     _AsqFreeQueues_11f7e
           .IMPORT     _snd_8c010cd6
           .IMPORT     _push_fadein_8c022a9c
@@ -25,8 +25,8 @@
           .IMPORT     _AsqResetQueues_11f6c
           .IMPORT     _albumResourceGroup_8c045160
           .IMPORT     _CourseMenuRequestSysResgrp_8c018568
-          .IMPORT     _setUknPvmBool_8c014330
-          .IMPORT     _resetUknPvmBool_8c014322
+          .IMPORT     _setPvmReady_8c014330
+          .IMPORT     _resetPvmReady_8c014322
           .IMPORT     _AsqNop_11120
           .IMPORT     _AsqProcessQueues_11fe0
           .EXPORT     _AlbumDrawGrid_8c01d290
@@ -233,7 +233,7 @@ LP_GEN_16673:
           .DATA.L H'C0A00000 ; H'8C01D400
           .DATA.L _var_peripherals_8c1ba35c ; H'8C01D404
           .DATA.L _isFading_8c226568 ; H'8C01D408
-          .DATA.L _getUknPvmBool_8c01432a ; H'8C01D40C
+          .DATA.L _isPvmReady_8c01432a ; H'8C01D40C
           .DATA.L _AsqFreeQueues_11f7e ; H'8C01D410
           .DATA.L _snd_8c010cd6 ; H'8C01D414
           .DATA.L _push_fadein_8c022a9c ; H'8C01D418
@@ -740,8 +740,8 @@ LP_GEN_20271:
           .DATA.L _AsqResetQueues_11f6c ; H'8C01D7E0
           .DATA.L _albumResourceGroup_8c045160 ; H'8C01D7E4
           .DATA.L _CourseMenuRequestSysResgrp_8c018568 ; H'8C01D7E8
-          .DATA.L _setUknPvmBool_8c014330 ; H'8C01D7EC
-          .DATA.L _resetUknPvmBool_8c014322 ; H'8C01D7F0
+          .DATA.L _setPvmReady_8c014330 ; H'8C01D7EC
+          .DATA.L _resetPvmReady_8c014322 ; H'8C01D7F0
           .DATA.L _AsqNop_11120 ; H'8C01D7F4
           .DATA.L _AsqProcessQueues_11fe0 ; H'8C01D7F8
           .END

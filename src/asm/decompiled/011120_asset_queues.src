@@ -38,8 +38,8 @@
           .EXPORT     _AsqResetQueues_11f6c
           .EXPORT     _AsqFreeQueues_11f7e
           .EXPORT     _AsqProcessQueues_11fe0
-          .EXPORT     _AsqRequestNjPvmPairs_12030
-          .EXPORT     _AsqFreeNjPvmPairs_120fe
+          .EXPORT     _AsqRequestModels_12030
+          .EXPORT     _AsqFreeModels_120fe
           .EXPORT     _AsqSetSeedA_12160
           .EXPORT     _AsqGetRandomA_12166
           .EXPORT     _AsqGetRandomInRangeA_12178
@@ -2108,7 +2108,7 @@ _AsqProcessQueues_11fe0:
           LDS.L       @R15+,PR
           RTS
           NOP
-_AsqRequestNjPvmPairs_12030:
+_AsqRequestModels_12030:
           MOV.L       R14,@-R15
           MOV.L       R13,@-R15
           MOV.L       R12,@-R15
@@ -2218,7 +2218,7 @@ LAB_8c0120e0:
           MOV.L       @R15+,R13
           RTS
           MOV.L       @R15+,R14
-_AsqFreeNjPvmPairs_120fe:
+_AsqFreeModels_120fe:
           MOV.L       R14,@-R15
           MOV.L       R13,@-R15
           MOV.L       R12,@-R15
