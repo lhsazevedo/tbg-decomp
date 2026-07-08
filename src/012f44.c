@@ -7,6 +7,7 @@
 #include "015ab8_title.h"
 #include "scif.h"
 #include "011120_asset_queues.h"
+#include "013ae8_route_load.h"
 #include "02fb50_sh4nlfzn_post_data.h"
 
 #define TEX_NUM         3072
@@ -27,19 +28,6 @@ struct uknStruct2 {
     int field_0x08;
 }
 typedef uknStruct2;
-
-struct FogParams {
-    int field_0x00;
-    int field_0x04;
-    Uint8 field_0x08;
-    Uint8 field_0x09;
-    Uint8 field_0x0a;
-    Uint8 field_0x0b;
-    float fogN_0x0c;
-    float fogF_0x10;
-}
-typedef FogParams;
-extern FogParams *var_fogParams_8c18ad28;
 
 // TODO:
 struct BusState {
@@ -418,11 +406,9 @@ extern int var_8c227da8;
 extern var_memblkSource_8c0fcd48;
 extern var_memblkSource_8c0fcd4c;
 
-extern var_route_8c18ad1c;
 extern var_currentSegment_8c228708;
 extern Bool var_8c22655c;
 
-extern pushRouteLoadTask_8c0144fc();
 extern Sint8 getSoundMode_8c010924();
 extern setSoundMode_8c0108c0(Bool);
 

@@ -1,5 +1,6 @@
 #include <shinobi.h>
 #include "011120_asset_queues.h"
+#include "013ae8_route_load.h"
 #include "014a9c_tasks.h"
 #include "serial_debug.h"
 
@@ -53,18 +54,6 @@ enum ROUTE_LOAD_INTERIOR_STATE {
     ROUTE_LOAD_INTERIOR_STATE_DONE      = 3,
 };
 
-enum ROUTE {
-    ROUTE_SHINJUKU = 0,
-    ROUTE_WANGAN   = 1,
-    ROUTE_OME      = 2,
-};
-
-enum TIME_OF_DAY {
-    TIME_OF_DAY_DAY     = 0,
-    TIME_OF_DAY_EVENING = 1,
-    TIME_OF_DAY_NIGHT   = 2,
-};
-
 /* One entry of var_routeModelSlots_8c1bbddc. */
 typedef struct {
     int requested_0x00;
@@ -72,18 +61,6 @@ typedef struct {
     NJS_TEXLIST *texlist_0x08; // -1 when unloaded
     void *nj_0x0c;
 } ModelSlot;
-
-/* TODO: shared with 012f44, extract to header */
-typedef struct {
-    int field_0x00;
-    int field_0x04;
-    Uint8 field_0x08;
-    Uint8 field_0x09;
-    Uint8 field_0x0a;
-    Uint8 field_0x0b;
-    float fogN_0x0c;
-    float fogF_0x10;
-} FogParams;
 
 typedef struct {
     // 0..3
