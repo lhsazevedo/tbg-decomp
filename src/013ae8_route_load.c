@@ -27,12 +27,16 @@ char *DEBUG_routeLoad2StateNames[] = {
 #endif
 
 #define CHANGE_LOAD_STATE(task, x)                                            \
-    (task)->field_0x08 = x;                                                   \
-    LOG_DEBUG(("[ROUTE_LOAD] State changed: %s\n", DEBUG_routeLoadStateNames[x]))
+    do {                                                                      \
+        (task)->field_0x08 = x;                                               \
+        LOG_DEBUG(("[ROUTE_LOAD] State changed: %s\n", DEBUG_routeLoadStateNames[x])); \
+    } while (0)
 
 #define CHANGE_LOAD2_STATE(task, x)                                           \
-    (task)->field_0x08 = x;                                                   \
-    LOG_DEBUG(("[ROUTE_LOAD] State changed: %s\n", DEBUG_routeLoad2StateNames[x]))
+    do {                                                                      \
+        (task)->field_0x08 = x;                                               \
+        LOG_DEBUG(("[ROUTE_LOAD] State changed: %s\n", DEBUG_routeLoad2StateNames[x])); \
+    } while (0)
 
 /* ====================
  * Type Declarations
@@ -428,7 +432,9 @@ void freeSegmentModels_8c013f22(void)
 
 /* Bring the current segment's assets in line: publish its fog params,
  * request its models, sync both model tables, and request its dat files.
- * Demo playback substitutes a fixed model list and skips the tail. */
+ * When var_8c1bb900 is set (non-demo) it swaps in a minimal route-model
+ * list (init_8c043fd4, one model) and runs an extra pass FUN_8c02aa36 --
+ * likely the cockpit view, which doesn't need the full exterior set. */
 void syncSegmentModels_8c013f78(void)
 {
     CourseSegment *entry;
@@ -589,6 +595,18 @@ void setPvmReady_8c014330(void)
     var_pvmReady_8c18adac = 1;
 }
 
+/* The route loads in stages. A course is an array of segments
+ * (CourseConfig.segments_0x08[]), each carrying its own models, pedestrians,
+ * dat files, fog, scene objects and tile regions, streamed in as the bus
+ * advances var_currentSegment_8c228708.
+ *
+ * Full load runs once at course entry -- routeLoadTask (exterior view) or
+ * routeLoadBindInteriorTask (interior view: same, but binds the interior
+ * texture on finish and drops one AsqProcessQueues callback). Crossing a
+ * segment boundary runs the lighter interiorLoadTask (pushInteriorLoadTask):
+ * no loadRouteModels, just freeSegmentModels then syncSegmentModels for the
+ * new segment. startRouteModelLoadPass (a callback used from 028258)
+ * reconciles route models as the segment index advances. */
 void routeLoadTask_8c014338(Task *task, void *state)
 {
     int frame;
