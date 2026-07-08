@@ -10,7 +10,7 @@
           .IMPORT     _init_8c03bd80
           .IMPORT     _init_8c03bd84
           .IMPORT     _pushTitle_8c015fd6
-          .IMPORT     _var_demo_8c1bb8d0
+          .IMPORT     _var_playMode_8c1bb8d0
           .IMPORT     _var_route_8c18ad1c
           .IMPORT     _var_currentSegment_8c228708
           .IMPORT     _var_8c22655c
@@ -321,7 +321,7 @@ LP_GEN_99840:
           .DATA.L _init_8c03bd80
           .DATA.L _init_8c03bd84
           .DATA.L _pushTitle_8c015fd6
-          .DATA.L _var_demo_8c1bb8d0
+          .DATA.L _var_playMode_8c1bb8d0
           .DATA.L _var_route_8c18ad1c
           .DATA.L _var_currentSegment_8c228708
           .DATA.L _var_8c22655c
@@ -503,7 +503,7 @@ LP_GEN_31464:
           .DATA.L _pushInputTask_8c0128cc
           .DATA.L _pushTask_8c014ae8
           .DATA.L _var_tasks_8c1ba3c8
-          .DATA.L _var_demo_8c1bb8d0
+          .DATA.L _var_playMode_8c1bb8d0
           .DATA.L _task_8c012cbc
           .DATA.L _task_8c01677e
           .DATA.L _var_8c1bb8d4
@@ -757,7 +757,7 @@ LP_GEN_38000:
           .DATA.L _var_8c22847c
           .DATA.L _FUN_8c023610
           .DATA.L _FUN_8c02845a
-          .DATA.L _var_demo_8c1bb8d0
+          .DATA.L _var_playMode_8c1bb8d0
           .DATA.L _FUN_8c029920
           .DATA.L _FUN_8c0296d6
           .DATA.L _FUN_8c02769e

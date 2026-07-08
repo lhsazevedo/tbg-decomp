@@ -55,7 +55,7 @@ return new class extends TestCase {
         );
         $this->shouldCall('_swapMessageBoxFor_8c02aefc')->with("");
 
-        $this->shouldWriteLongTo('_var_demo_8c1bb8d0', 0);
+        $this->shouldWriteLongTo('_var_playMode_8c1bb8d0', 0);
 
         $this->shouldCall('_FUN_8c017d54');
         $this->shouldCall('_AsqInitQueues_11f36')->with(8, 0, 0, 8);
@@ -147,7 +147,7 @@ return new class extends TestCase {
         );
         $this->shouldCall('_swapMessageBoxFor_8c02aefc')->with("");
 
-        $this->shouldWriteLongTo('_var_demo_8c1bb8d0', 0);
+        $this->shouldWriteLongTo('_var_playMode_8c1bb8d0', 0);
 
         $this->shouldCall('_FUN_8c017d54');
         $this->shouldCall('_AsqInitQueues_11f36')->with(8, 0, 0, 8);

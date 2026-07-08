@@ -8,7 +8,7 @@
           .IMPORT     _njDrawPolygon
           .IMPORT     _var_busState_8c1bb9d0
           .IMPORT     _var_8c22643c
-          .IMPORT     _var_demo_8c1bb8d0
+          .IMPORT     _var_playMode_8c1bb8d0
           .IMPORT     _var_markTexlist_8c1bc418
           .IMPORT     _init_8c045334
           .IMPORT     _init_8c045374
@@ -297,7 +297,7 @@ LP_GEN_37481:
           .DATA.L _var_busState_8c1bb9d0 ; H'8C01FC88
           .DATA.L _drawSprite_8c014f54 ; H'8C01FC8C
           .DATA.L _var_8c22643c ; H'8C01FC90
-          .DATA.L _var_demo_8c1bb8d0 ; H'8C01FC94
+          .DATA.L _var_playMode_8c1bb8d0 ; H'8C01FC94
           .DATA.L _var_8c2264a8 ; H'8C01FC98
           .DATA.L _var_markTexlist_8c1bc418 ; H'8C01FC9C
           .DATA.L H'BF99999A ; H'8C01FCA0

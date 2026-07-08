@@ -21,7 +21,7 @@
           .IMPORT     _var_8c1bb8b8
           .IMPORT     _var_8c1bb8bc
           .IMPORT     _FUN_8c016182
-          .IMPORT     _var_demo_8c1bb8d0
+          .IMPORT     _var_playMode_8c1bb8d0
           .IMPORT     _var_8c1ba2cc
           .IMPORT     _var_8c1ba2b8
           .IMPORT     _var_progress_8c1ba1cc
@@ -604,7 +604,7 @@ LP_GEN_43727:
           .DATA.L _var_8c1bb8b8
           .DATA.L _var_8c1bb8bc
           .DATA.L _FUN_8c016182
-          .DATA.L _var_demo_8c1bb8d0
+          .DATA.L _var_playMode_8c1bb8d0
           .DATA.L _var_8c1ba2cc
           .DATA.L _var_8c1ba2b8
           .DATA.L _var_progress_8c1ba1cc

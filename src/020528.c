@@ -14,7 +14,7 @@ typedef Struct8c2264b8;
 
 extern Task var_tasks_8c1ba5e8[16];
 extern TaskAction FUN_8c020214;
-extern int var_demo_8c1bb8d0;
+extern int var_playMode_8c1bb8d0;
 extern Struct8c2264b8 var_8c2264b8;
 
 void FUN_8c020528()
@@ -22,7 +22,7 @@ void FUN_8c020528()
     Task* created_task;
     void* created_state;
 
-    if (var_demo_8c1bb8d0 != 2) {
+    if (var_playMode_8c1bb8d0 != 2) {
         pushTask_8c014ae8(var_tasks_8c1ba5e8, &FUN_8c020214, &created_task, &created_state, 0);
         var_8c2264b8.field_0x00 = 0;
         var_8c2264b8.field_0x04 = AsqGetRandomInRangeB_121be(300) + 0x96;

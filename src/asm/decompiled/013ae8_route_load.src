@@ -30,8 +30,8 @@
           .IMPORT     _var_fogParam_8c226504
           .IMPORT     _var_fogParam_8c226508
           .IMPORT     _var_fogParam_8c227dd0
-          .IMPORT     _var_8c1bb900
-          .IMPORT     _var_demo_8c1bb8d0
+          .IMPORT     _var_maybeCutscene_8c1bb900
+          .IMPORT     _var_playMode_8c1bb8d0
           .IMPORT     _FUN_8c029ad4
           .IMPORT     _var_8c226534
           .IMPORT     _AsqRequestDat_11182
@@ -81,7 +81,7 @@
           .EXPORT     _routeLoadTask_8c014338
           .EXPORT     _pushInteriorLoadTask_8c01468e
           .EXPORT     _interiorLoadTask_8c014550
-          .EXPORT     _routeLoadBindInteriorTask_8c014784
+          .EXPORT     _unknownRouteLoadTask_8c014784
           .EXPORT     _pushRouteLoadTask_8c0144fc
           .EXPORT     _init_8c04410c ; 01b19c.src
           .EXPORT     _var_currentCourseConfig_8c18ad18 ; 02c884.src
@@ -958,8 +958,8 @@ LP_GEN_25668:
           .DATA.L _AsqRequestModels_12030
           .DATA.L _var_segmentModels_8c1bc3f0
           .DATA.L _var_routeModelIndexes_8c18adb0
-          .DATA.L _var_8c1bb900
-          .DATA.L _var_demo_8c1bb8d0
+          .DATA.L _var_maybeCutscene_8c1bb900
+          .DATA.L _var_playMode_8c1bb8d0
           .DATA.L _init_8c043fd4
           .DATA.L _FUN_8c029ad4
           .DATA.L _var_8c226534
@@ -1661,7 +1661,7 @@ LP_GEN_17698:
           .DATA.L __modls
           .DATA.L H'C0800000
           .DATA.L _var_8c1ba290
-          .DATA.L _var_demo_8c1bb8d0
+          .DATA.L _var_playMode_8c1bb8d0
           .DATA.L _var_8c2285c4
           .DATA.L _interiorLoadTask_8c014550
           .DATA.L _var_tasks_8c1ba3c8
@@ -1672,7 +1672,7 @@ LP_GEN_17698:
           .DATA.L H'FF418DFF
           .DATA.L _njSetBackColor
 
-_routeLoadBindInteriorTask_8c014784:
+_unknownRouteLoadTask_8c014784:
           MOV.L       R14,@-R15
           MOV         R4,R14
           MOV.L       R13,@-R15

@@ -2,6 +2,7 @@
 #include "011120_asset_queues.h"
 #include "013ae8_route_load.h"
 #include "014a9c_tasks.h"
+#include "014f54_text.h"
 #include "serial_debug.h"
 
 /* ====================
@@ -208,8 +209,7 @@ extern int var_fogParam_8c227dd0;
 
 extern int var_8c226534;
 
-extern int var_8c1bb900;
-extern int var_demo_8c1bb8d0;
+extern int var_maybeCutscene_8c1bb900;
 
 extern void FUN_8c021a24(void);
 extern void FUN_8c029ad4(void *arg);
@@ -432,9 +432,11 @@ void freeSegmentModels_8c013f22(void)
 
 /* Bring the current segment's assets in line: publish its fog params,
  * request its models, sync both model tables, and request its dat files.
- * When var_8c1bb900 is set (non-demo) it swaps in a minimal route-model
- * list (init_8c043fd4, one model) and runs an extra pass FUN_8c02aa36 --
- * likely the cockpit view, which doesn't need the full exterior set. */
+ * When var_maybeCutscene_8c1bb900 is set during real gameplay
+ * (var_playMode_8c1bb8d0 == PLAY_MODE_NORMAL), a story scene is playing --
+ * opening slideshow or passenger conversation -- so it swaps in a minimal
+ * route-model list (init_8c043fd4, one model) and runs the scene setup
+ * FUN_8c02aa36. Practice/attract modes skip this. */
 void syncSegmentModels_8c013f78(void)
 {
     CourseSegment *entry;
@@ -455,7 +457,7 @@ void syncSegmentModels_8c013f78(void)
         var_segmentModels_8c1bc3f0 = AsqRequestModels_12030(var_commonDir_8c18ad6c, entry->modelFiles_0x28, 0x10);
     }
 
-    if (var_8c1bb900 == 0 || var_demo_8c1bb8d0 != 0) {
+    if (var_maybeCutscene_8c1bb900 == 0 || var_playMode_8c1bb8d0 != PLAY_MODE_NORMAL) {
         if (entry->routeModelIndexes_0x10 != 0) {
             var_routeModelIndexes_8c18adb0 = entry->routeModelIndexes_0x10;
             syncRouteModelAssets_8c013c34(entry->routeModelIndexes_0x10);
@@ -482,7 +484,7 @@ void syncSegmentModels_8c013f78(void)
         }
     }
 
-    if (var_8c1bb900 != 0 && var_demo_8c1bb8d0 == 0) {
+    if (var_maybeCutscene_8c1bb900 != 0 && var_playMode_8c1bb8d0 == PLAY_MODE_NORMAL) {
         FUN_8c02aa36();
     }
 }
@@ -600,10 +602,13 @@ void setPvmReady_8c014330(void)
  * dat files, fog, scene objects and tile regions, streamed in as the bus
  * advances var_currentSegment_8c228708.
  *
- * Full load runs once at course entry -- routeLoadTask (exterior view) or
- * routeLoadBindInteriorTask (interior view: same, but binds the interior
- * texture on finish and drops one AsqProcessQueues callback). Crossing a
- * segment boundary runs the lighter interiorLoadTask (pushInteriorLoadTask):
+ * Full load runs once at course entry via routeLoadTask (story, free-run,
+ * practice and attract modes all use it; it leaves the exterior texture
+ * bound). unknownRouteLoadTask is a near-copy that binds the interior
+ * texture on finish and drops one AsqProcessQueues callback -- its trigger
+ * is unconfirmed (never seen in those four modes; candidate: album/replay
+ * or save-resume). Crossing a segment boundary runs the lighter
+ * interiorLoadTask (pushInteriorLoadTask):
  * no loadRouteModels, just freeSegmentModels then syncSegmentModels for the
  * new segment. startRouteModelLoadPass (a callback used from 028258)
  * reconciles route models as the segment index advances. */
@@ -744,7 +749,7 @@ void pushInteriorLoadTask_8c01468e(void)
     Task *task;
     void *state;
 
-    if (var_8c1ba290 < 2 || var_demo_8c1bb8d0 == 1) {
+    if (var_8c1ba290 < 2 || var_playMode_8c1bb8d0 == PLAY_MODE_PRACTICE) {
         var_8c2285c4[3] += 0x1e;
         if (var_8c2285c4[4] < var_8c2285c4[3]) {
             var_8c2285c4[3] = var_8c2285c4[4];
@@ -768,7 +773,7 @@ void pushInteriorLoadTask_8c01468e(void)
 
 /* Like routeLoadTask_8c014338, but on completion binds the interior texture and
  * hands off to the input task (as interiorLoadTask_8c014550 does). */
-void routeLoadBindInteriorTask_8c014784(Task *task, void *state)
+void unknownRouteLoadTask_8c014784(Task *task, void *state)
 {
     int frame;
 

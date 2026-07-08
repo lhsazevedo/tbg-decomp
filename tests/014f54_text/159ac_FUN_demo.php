@@ -30,7 +30,7 @@ return new class extends TestCase {
             });
 
         $this->shouldWriteLong($createdTask + 0x08, 0);
-        $this->shouldWriteLongTo('_var_demo_8c1bb8d0', 2);
+        $this->shouldWriteLongTo('_var_playMode_8c1bb8d0', 2);
         $this->shouldWriteLongTo('_var_8c1bb8d4', 1);
         $this->shouldWriteLongTo('_var_demoIndex_8c1bb8d8', $nextDemo);
 
@@ -82,7 +82,7 @@ return new class extends TestCase {
             });
 
         $this->shouldWriteLong($createdTask + 0x08, 0);
-        $this->shouldWriteLongTo('_var_demo_8c1bb8d0', 2);
+        $this->shouldWriteLongTo('_var_playMode_8c1bb8d0', 2);
         $this->shouldWriteLongTo('_var_8c1bb8d4', 1);
         $this->shouldWriteLongTo('_var_demoIndex_8c1bb8d8', $currentDemo + 1);
         $this->shouldWriteLongTo('_var_demoIndex_8c1bb8d8', $nextDemo);

@@ -26,7 +26,7 @@
           .IMPORT     _var_8c228560
           .IMPORT     _var_8c22851c
           .IMPORT     _FUN_8c016770
-          .IMPORT     _var_demo_8c1bb8d0
+          .IMPORT     _var_playMode_8c1bb8d0
           .IMPORT     _var_demoEntryValue_8c227e14
           .IMPORT     _var_demoEntryValue_8c22822c
           .IMPORT     _var_8c228704
@@ -580,7 +580,7 @@ LP_GEN_85265:
           .RES.W 1 ; H'8C02CC6A
           .DATA.L _AsqGetRandomInRangeA_12178 ; H'8C02CC6C
           .DATA.L _FUN_8c016770 ; H'8C02CC70
-          .DATA.L _var_demo_8c1bb8d0 ; H'8C02CC74
+          .DATA.L _var_playMode_8c1bb8d0 ; H'8C02CC74
           .DATA.L _var_demoEntryValue_8c227e14 ; H'8C02CC78
           .DATA.L _var_demoEntryValue_8c22822c ; H'8C02CC7C
           .DATA.L _var_8c228704 ; H'8C02CC80

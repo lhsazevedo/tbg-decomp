@@ -25,7 +25,7 @@ return new class extends TestCase {
         $this->initUint32($this->addressOf('_var_fogParams_8c18ad28'), $var_fogParams_8c18ad28Ptr);
 
         $this->initUint32($this->addressOf('_var_seed_8c157a64'), 0xcafe0001);
-        $this->initUint32($this->addressOf('_var_demo_8c1bb8d0'), 1);
+        $this->initUint32($this->addressOf('_var_playMode_8c1bb8d0'), 1);
 
         $createdTask = $this->alloc(0x0c);
         $this->initUint32(0xffffe4, $createdTask);
@@ -108,7 +108,7 @@ return new class extends TestCase {
         $this->initUint32($this->addressOf('_var_fogParams_8c18ad28'), $var_fogParams_8c18ad28Ptr);
 
         $this->initUint32($this->addressOf('_var_seed_8c157a64'), 0xcafe0001);
-        $this->initUint32($this->addressOf('_var_demo_8c1bb8d0'), 2);
+        $this->initUint32($this->addressOf('_var_playMode_8c1bb8d0'), 2);
 
         $var_8c1bb8d4Ptr = $this->allocRellocate('_var_8c1bb8d4', 4);
         $this->initUint32($var_8c1bb8d4Ptr, 0);
@@ -182,7 +182,7 @@ return new class extends TestCase {
         $this->initUint32($this->addressOf('_var_fogParams_8c18ad28'), $var_fogParams_8c18ad28Ptr);
 
         $this->initUint32($this->addressOf('_var_seed_8c157a64'), 0xcafe0001);
-        $this->initUint32($this->addressOf('_var_demo_8c1bb8d0'), 2);
+        $this->initUint32($this->addressOf('_var_playMode_8c1bb8d0'), 2);
         $this->initUint32($this->addressOf('_var_8c1bb8d4'), 1);
 
         $createdTask = $this->alloc(0x0c);

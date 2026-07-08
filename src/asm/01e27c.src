@@ -60,7 +60,7 @@
           .IMPORT     _CourseMenuFUN_8c017ef2
           .IMPORT     _CourseMenuBuildCourseUnlockList_8c0172dc
           .IMPORT     _CourseMenuApplyUnlocks_8c0173e6
-          .IMPORT     _var_demo_8c1bb8d0
+          .IMPORT     _var_playMode_8c1bb8d0
           .IMPORT     _init_dialogSequences_8c044c08
           .IMPORT     _var_tex_8c157af8
           .IMPORT     _njGarbageTexture
@@ -2029,7 +2029,7 @@ LAB_8c01f1bc:
           MOV.L       @R15+,R14
 LP_GEN_22524:
           .DATA.W H'0C00 ; H'8C01F1C6
-          .DATA.L _var_demo_8c1bb8d0 ; H'8C01F1C8
+          .DATA.L _var_playMode_8c1bb8d0 ; H'8C01F1C8
           .DATA.L LAB_8c01ebf2 ; H'8C01F1CC
           .DATA.L _setTaskAction_8c014b3e ; H'8C01F1D0
           .DATA.L _menuState_8c1bc7a8 ; H'8C01F1D4
@@ -2211,7 +2211,7 @@ LP_GEN_37649:
           .DATA.W H'0240 ; H'8C01F35E
           .DATA.W H'0180 ; H'8C01F360
           .RES.W 1 ; H'8C01F362
-          .DATA.L _var_demo_8c1bb8d0 ; H'8C01F364
+          .DATA.L _var_playMode_8c1bb8d0 ; H'8C01F364
           .DATA.L _pushInputTask_8c0128cc ; H'8C01F368
           .DATA.L _task_8c012f44 ; H'8C01F36C
           .DATA.L _var_tasks_8c1ba3c8 ; H'8C01F370

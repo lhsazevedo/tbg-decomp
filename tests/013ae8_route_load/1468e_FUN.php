@@ -45,7 +45,7 @@ return new class extends TestCase {
     {
         $this->resolveSizes();
         $this->initUint32($this->addressOf('_var_8c1ba290'), 5);
-        $this->initUint32($this->addressOf('_var_demo_8c1bb8d0'), 0);
+        $this->initUint32($this->addressOf('_var_playMode_8c1bb8d0'), 0);
 
         $this->call('_pushInteriorLoadTask_8c01468e');
 
@@ -87,7 +87,7 @@ return new class extends TestCase {
     {
         foreach ([
             '_var_8c1ba290' => 1,
-            '_var_demo_8c1bb8d0' => 4,
+            '_var_playMode_8c1bb8d0' => 4,
             '_var_8c2285c4' => 0x14,
             '_var_8c157a6c' => 4,
             '_var_loadingResourceGroup_8c1bc3f8' => 0x0c,

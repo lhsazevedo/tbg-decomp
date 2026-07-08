@@ -68,7 +68,6 @@ extern void *var_busFont_8c1ba1c8;
 extern int *var_demoBuf_8c1ba3c4;
 extern int var_currentCourse_8c1bb868;
 extern int var_inputMapSel_8c1bb8c8;
-extern int var_demo_8c1bb8d0;
 extern int var_8c1bb8d4;
 extern int var_demoIndex_8c1bb8d8;
 
@@ -774,7 +773,7 @@ void FUN_demo_8c0159ac()
     );
     created_task->field_0x08 = 0;
     // created_task->field_0x0c = NULL;
-    var_demo_8c1bb8d0 = 2;
+    var_playMode_8c1bb8d0 = 2;
     var_8c1bb8d4 = 1;
     if (++var_demoIndex_8c1bb8d8 >= 20) {
         var_demoIndex_8c1bb8d8 = 0;

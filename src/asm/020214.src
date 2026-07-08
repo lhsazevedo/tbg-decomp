@@ -10,7 +10,7 @@
           .IMPORT     _var_8c2264bc
           .IMPORT     _AsqGetRandomB_121a8
           .IMPORT     _vib_8c010f7a
-          .IMPORT     _var_demo_8c1bb8d0
+          .IMPORT     _var_playMode_8c1bb8d0
           .IMPORT     _var_8c226410
           .IMPORT     _var_route_8c18ad1c
           .IMPORT     _var_8c22640c
@@ -175,7 +175,7 @@ LP_GEN_12106:
           .DATA.L _var_8c2264bc ; H'8C020338
           .DATA.L _AsqGetRandomB_121a8 ; H'8C02033C
           .DATA.L _vib_8c010f7a ; H'8C020340
-          .DATA.L _var_demo_8c1bb8d0 ; H'8C020344
+          .DATA.L _var_playMode_8c1bb8d0 ; H'8C020344
 LAB_8c020348:
           TST         R4,R4
           BT          LAB_8c020430

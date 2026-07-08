@@ -141,8 +141,8 @@ return new class extends TestCase {
     private function setup(int $index, int $bb900, int $demo = 0): array
     {
         $this->setSize('_var_currentSegment_8c228708', 4);
-        $this->setSize('_var_8c1bb900', 4);
-        $this->setSize('_var_demo_8c1bb8d0', 4);
+        $this->setSize('_var_maybeCutscene_8c1bb900', 4);
+        $this->setSize('_var_playMode_8c1bb8d0', 4);
         $this->setSize('_var_fogParam_8c226504', 4);
         $this->setSize('_var_fogParam_8c226508', 4);
         $this->setSize('_var_fogParam_8c227dd0', 4);
@@ -165,8 +165,8 @@ return new class extends TestCase {
         $this->initUint32($this->addressOf('_var_currentCourseConfig_8c18ad18'), $holder);
         $this->initUint32($holder + 8, $array);
         $this->initUint32($this->addressOf('_var_currentSegment_8c228708'), $index);
-        $this->initUint32($this->addressOf('_var_8c1bb900'), $bb900);
-        $this->initUint32($this->addressOf('_var_demo_8c1bb8d0'), $demo);
+        $this->initUint32($this->addressOf('_var_maybeCutscene_8c1bb900'), $bb900);
+        $this->initUint32($this->addressOf('_var_playMode_8c1bb8d0'), $demo);
 
         return [$entry, $array];
     }

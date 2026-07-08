@@ -43,7 +43,7 @@
           .IMPORT     _init_8c0455a8
           .IMPORT     _njDrawPolygon
           .IMPORT     _var_8c22656c
-          .IMPORT     _var_demo_8c1bb8d0
+          .IMPORT     _var_playMode_8c1bb8d0
           .IMPORT     _var_8c226410
           .IMPORT     __divlu
           .IMPORT     _freeTask_8c014b66
@@ -633,7 +633,7 @@ LP_GEN_82363:
           .DATA.L _njDrawPolygon ; H'8C0228F4
           .DATA.L _var_8c22656c ; H'8C0228F8
           .DATA.L _var_8c22655c ; H'8C0228FC
-          .DATA.L _var_demo_8c1bb8d0 ; H'8C022900
+          .DATA.L _var_playMode_8c1bb8d0 ; H'8C022900
           .DATA.L _var_8c226410 ; H'8C022904
           .DATA.L _var_8c227d7c ; H'8C022908
           .DATA.L _isFading_8c226568 ; H'8C02290C

@@ -28,7 +28,7 @@
           .IMPORT     _prob_blinker_8c028022
           .IMPORT     _sdMidiStop
           .IMPORT     _move_bus_model_8c020594
-          .IMPORT     _var_demo_8c1bb8d0
+          .IMPORT     _var_playMode_8c1bb8d0
           .IMPORT     _gameplayRenderBusUpdateCamera_8c025078
           .IMPORT     _demoUpdateCamera_8c025906
           .IMPORT     _FUN_8c025604
@@ -977,7 +977,7 @@ LP_GEN_51967:
           .RES.W 1 ; H'8C0232F6
           .DATA.L _var_8c1bbd9c ; H'8C0232F8
           .DATA.L _move_bus_model_8c020594 ; H'8C0232FC
-          .DATA.L _var_demo_8c1bb8d0 ; H'8C023300
+          .DATA.L _var_playMode_8c1bb8d0 ; H'8C023300
           .DATA.L _gameplayRenderBusUpdateCamera_8c025078 ; H'8C023304
           .DATA.L _demoUpdateCamera_8c025906 ; H'8C023308
           .DATA.L _FUN_8c025604 ; H'8C02330C

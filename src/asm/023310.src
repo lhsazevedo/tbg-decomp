@@ -5,7 +5,7 @@
           .IMPORT     _var_sceneParams_8c18ad24
           .IMPORT     _FUN_8c020914
           .IMPORT     _FUN_8c020f7e
-          .IMPORT     _var_demo_8c1bb8d0
+          .IMPORT     _var_playMode_8c1bb8d0
           .IMPORT     _var_8c226410
           .IMPORT     _FUN_8c023938
           .IMPORT     _acosf
@@ -174,7 +174,7 @@ LP_GEN_83541:
           .DATA.L H'40200000 ; H'8C023420
           .DATA.L H'3FA00000 ; H'8C023424
           .DATA.L H'40266666 ; H'8C023428
-          .DATA.L _var_demo_8c1bb8d0 ; H'8C02342C
+          .DATA.L _var_playMode_8c1bb8d0 ; H'8C02342C
           .DATA.L _var_8c226410 ; H'8C023430
 LAB_8c023434:
           MOV.W       LP_GEN_55589,R0
@@ -397,7 +397,7 @@ LP_GEN_55589:
           .DATA.L H'47800000 ; H'8C0235E4
           .DATA.L H'40C90FD8 ; H'8C0235E8
           .DATA.L _var_8c227d9c ; H'8C0235EC
-          .DATA.L _var_demo_8c1bb8d0 ; H'8C0235F0
+          .DATA.L _var_playMode_8c1bb8d0 ; H'8C0235F0
 LAB_8c0235f4:
           BT          LAB_8c0235fe
           MOV.L       LP_GEN_28893+2,R1
@@ -803,7 +803,7 @@ LP_GEN_98696:
           .DATA.W H'02E4 ; H'8C023926
           .DATA.W H'03C8 ; H'8C023928
           .RES.W 1 ; H'8C02392A
-          .DATA.L _var_demo_8c1bb8d0 ; H'8C02392C
+          .DATA.L _var_playMode_8c1bb8d0 ; H'8C02392C
           .DATA.L _var_8c226410 ; H'8C023930
           .DATA.L _var_8c227d8c ; H'8C023934
           .END

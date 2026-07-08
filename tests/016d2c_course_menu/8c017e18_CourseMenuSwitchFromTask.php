@@ -34,7 +34,7 @@ return new class extends TestCase {
         );
         $this->shouldWriteLong($task + 0x08, 0);
         $this->shouldWriteLongTo('_var_menuTextboxCharLimit_8c225fb8', 0);
-        $this->shouldWriteLongTo('_var_demo_8c1bb8d0', 0);
+        $this->shouldWriteLongTo('_var_playMode_8c1bb8d0', 0);
 
         $this->shouldCall('_FUN_8c017d54');
         $this->shouldCall('_njGarbageTexture')->with(
@@ -79,7 +79,7 @@ return new class extends TestCase {
         );
         $this->shouldWriteLong($task + 0x08, 0);
         $this->shouldWriteLongTo('_var_menuTextboxCharLimit_8c225fb8', 0);
-        $this->shouldWriteLongTo('_var_demo_8c1bb8d0', 0);
+        $this->shouldWriteLongTo('_var_playMode_8c1bb8d0', 0);
 
         $this->shouldCall('_FUN_8c017d54');
         $this->shouldCall('_njGarbageTexture')->with(
@@ -120,7 +120,7 @@ return new class extends TestCase {
         );
         $this->shouldWriteLong($task + 0x08, 0);
         $this->shouldWriteLongTo('_var_menuTextboxCharLimit_8c225fb8', 0);
-        $this->shouldWriteLongTo('_var_demo_8c1bb8d0', 0);
+        $this->shouldWriteLongTo('_var_playMode_8c1bb8d0', 0);
 
         $this->shouldCall('_FUN_8c017d54');
         $this->shouldCall('_njGarbageTexture')->with(
@@ -166,7 +166,7 @@ return new class extends TestCase {
         );
         $this->shouldWriteLong($task + 0x08, 0);
         $this->shouldWriteLongTo('_var_menuTextboxCharLimit_8c225fb8', 0);
-        $this->shouldWriteLongTo('_var_demo_8c1bb8d0', 0);
+        $this->shouldWriteLongTo('_var_playMode_8c1bb8d0', 0);
 
         $this->shouldCall('_FUN_8c017d54');
         $this->shouldCall('_njGarbageTexture')->with(

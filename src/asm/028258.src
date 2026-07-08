@@ -61,7 +61,7 @@
           .IMPORT     _var_8c1bba54
           .IMPORT     _njCalcPoint
           .IMPORT     _init_8c046518
-          .IMPORT     _var_demo_8c1bb8d0
+          .IMPORT     _var_playMode_8c1bb8d0
           .IMPORT     _var_8c2285e4
           .IMPORT     _FUN_8c02d06c
           .IMPORT     _var_currentCourse_8c1bb868
@@ -2958,7 +2958,7 @@ LP_GEN_59898:
           .DATA.L _var_tasks_8c1ba808 ; H'8C02971C
           .DATA.L _execTasks_8c014b42 ; H'8C029720
           .DATA.L _FUN_8c0223ea ; H'8C029724
-          .DATA.L _var_demo_8c1bb8d0 ; H'8C029728
+          .DATA.L _var_playMode_8c1bb8d0 ; H'8C029728
           .DATA.L _FUN_8c028b74 ; H'8C02972C
           .DATA.L LAB_8c028a38 ; H'8C029730
           .DATA.L _var_8c2285e4 ; H'8C029734

@@ -46,7 +46,7 @@
           .IMPORT     _AsqGetRandomA_12166
           .IMPORT     _var_shouldShowFreeRunIntro_8c1bb8c0
           .IMPORT     _setTaskAction_8c014b3e
-          .IMPORT     _var_demo_8c1bb8d0
+          .IMPORT     _var_playMode_8c1bb8d0
           .IMPORT     _var_tex_8c157af8
           .IMPORT     _njGarbageTexture
           .IMPORT     _AsqInitQueues_11f36
@@ -2537,7 +2537,7 @@ LP_GEN_67544:
           .DATA.L _var_dialogQueue_8c225fbc ; H'8C017F48
           .DATA.L _init_dialogSequences_8c044c08 ; H'8C017F4C
           .DATA.L _var_menuTextboxCharLimit_8c225fb8 ; H'8C017F50
-          .DATA.L _var_demo_8c1bb8d0 ; H'8C017F54
+          .DATA.L _var_playMode_8c1bb8d0 ; H'8C017F54
           .DATA.L _var_tex_8c157af8 ; H'8C017F58
           .DATA.L _njGarbageTexture ; H'8C017F5C
           .DATA.L _AsqInitQueues_11f36 ; H'8C017F60
@@ -2712,7 +2712,7 @@ LP_GEN_56170:
           .DATA.L _FUN_8c02ae3e ; H'8C0180D8
           .DATA.L _const_8c03628c ; H'8C0180DC
           .DATA.L _swapMessageBoxFor_8c02aefc ; H'8C0180E0
-          .DATA.L _var_demo_8c1bb8d0 ; H'8C0180E4
+          .DATA.L _var_playMode_8c1bb8d0 ; H'8C0180E4
           .DATA.L _AsqInitQueues_11f36 ; H'8C0180E8
           .DATA.L _AsqResetQueues_11f6c ; H'8C0180EC
           .DATA.L _init_mainMenuResourceGroup_8c044264 ; H'8C0180F0

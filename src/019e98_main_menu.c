@@ -59,7 +59,7 @@ extern SDMIDI var_midiHandles_8c0fcd28[7];
 extern NJS_TEXMEMLIST var_tex_8c157af8[TEX_NUM];
 extern PDS_PERIPHERAL var_peripherals_8c1ba35c[2];
 extern int var_shouldShowFreeRunIntro_8c1bb8c0;
-extern int var_demo_8c1bb8d0;
+extern int var_playMode_8c1bb8d0;
 extern int var_game_mode_8c1bb8fc;
 extern void* var_8c1bc454;
 extern void* var_resourceGroup_8c2263a8;

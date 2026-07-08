@@ -242,7 +242,7 @@ extern MenuDialog *init_dialogSequences_8c044c08[];
 extern int var_game_mode_8c1bb8fc;
 extern int var_dialogQueue_8c225fbc[4]; // TODO: Confirm length
 extern Sint8 var_coursesToUnlock_8c225fd4[];
-extern int var_demo_8c1bb8d0;
+extern int var_playMode_8c1bb8d0;
 extern void resetPvmReady_8c014322();
 extern NJS_TEXMEMLIST var_tex_8c157af8[];
 extern int var_8c1bb8b8; // Maybe courseMenuHasResult or courseMenuHasDialog
@@ -1391,7 +1391,7 @@ void CourseMenuSwitchFromTask_8c017e18(Task *task)
         ]->instructorSpriteNo_0x04;
     task->field_0x08 = 0;
     var_menuTextboxCharLimit_8c225fb8 = 0;
-    var_demo_8c1bb8d0 = 0;
+    var_playMode_8c1bb8d0 = 0;
     FUN_8c017d54();
     njGarbageTexture(&var_tex_8c157af8, 0xc00);
     AsqInitQueues_11f36(8, 0, 0, 8);
@@ -1462,7 +1462,7 @@ void CourseMenuFUN_8c017ef2(void)
     njGarbageTexture(&var_tex_8c157af8, 0xc00);
     FUN_8c02ae3e(0x20, 0x180, -2.0, 0x240, 0x40, 0, 0, -1);
     swapMessageBoxFor_8c02aefc("");
-    var_demo_8c1bb8d0 = 0;
+    var_playMode_8c1bb8d0 = 0;
 
     FUN_8c017d54();
     AsqInitQueues_11f36(8, 0, 0, 8);

@@ -386,7 +386,7 @@ extern char init_8c0460b0[];
 
 extern float var_8c1bc450;
 extern int var_8c2260a8;
-extern int var_demo_8c1bb8d0;
+extern int var_playMode_8c1bb8d0;
 extern task_8c012cbc;
 extern task_8c01677e;
 extern var_8c1bb8d4;
@@ -436,7 +436,7 @@ void task_8c012f9c(Task *task, void* state) {
     Bool r7;
     Float speed_fr2;
 
-    if (var_demo_8c1bb8d0 != 1 && var_route_8c18ad1c == 2 && var_currentSegment_8c228708 == 0) {
+    if (var_playMode_8c1bb8d0 != 1 && var_route_8c18ad1c == 2 && var_currentSegment_8c228708 == 0) {
         r7 = TRUE;
     } else {
         r7 = FALSE;
@@ -514,7 +514,7 @@ void FUN_8c01306e(void)
 
     pushInputTask_8c0128cc(1);
 
-    if (var_demo_8c1bb8d0 != 2) {
+    if (var_playMode_8c1bb8d0 != 2) {
         pushTask_8c014ae8(var_tasks_8c1ba3c8, &task_8c012cbc, &created_task, &created_state, 0);
         pushTask_8c014ae8(var_tasks_8c1ba5e8, &task_8c01677e, &created_task, &created_state, 0);
     } else {
@@ -535,7 +535,7 @@ void FUN_8c01306e(void)
     FUN_8c023610();
     FUN_8c02845a();
 
-    if (var_demo_8c1bb8d0 != 2) {
+    if (var_playMode_8c1bb8d0 != 2) {
         FUN_8c029920();
     }
 
@@ -557,12 +557,12 @@ void FUN_8c01328c() {
     Task *created_task;
     void* created_state;
   
-    if (var_demo_8c1bb8d0 == 0) {
+    if (var_playMode_8c1bb8d0 == 0) {
         var_currentCourse_8c1bb868 = var_8c1bc824->field_0x00;
         var_8c228704 = var_8c1bc824->field_0x04;
         var_inputMapSel_8c1bb8c8 = var_8c1bc824->field_0x08;
         var_seed_8c157a64 = AsqGetRandomA_12166();
-    } else if ((var_demo_8c1bb8d0 == 2) && (var_8c1bb8d4 != 0)) {
+    } else if ((var_playMode_8c1bb8d0 == 2) && (var_8c1bb8d4 != 0)) {
         var_8c227dd4 = init_8c0460b0[var_currentCourse_8c1bb868 - 0x26];
         FUN_8c01895e();
     } else {
@@ -584,12 +584,12 @@ void pushLoadingTask_8c013310(int p1) {
     Task *created_task;
     void* created_state;
   
-    if (var_demo_8c1bb8d0 != 2) {
+    if (var_playMode_8c1bb8d0 != 2) {
         var_currentCourse_8c1bb868 = p1;
         var_8c228704 = 0;
         var_inputMapSel_8c1bb8c8 = (char) var_8c1ba291;
         var_seed_8c157a64 = AsqGetRandomA_12166();
-    } else if (var_demo_8c1bb8d0 == 2 && var_8c1bb8d4 != 0) {
+    } else if (var_playMode_8c1bb8d0 == 2 && var_8c1bb8d4 != 0) {
         var_8c227dd4 = init_8c0460b0[var_currentCourse_8c1bb868 - 0x26];
     } else {
         var_8c227dd4 = 0;

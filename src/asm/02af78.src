@@ -4,7 +4,7 @@
           .IMPORT     _var_8c1ba1e4
           .IMPORT     _var_8c1ba2b4
           .IMPORT     _var_8c228560
-          .IMPORT     _var_demo_8c1bb8d0
+          .IMPORT     _var_playMode_8c1bb8d0
           .IMPORT     _var_8c22851c
           .IMPORT     _var_route_8c18ad1c
           .IMPORT     _init_8c04b1f0
@@ -16,7 +16,7 @@
           .IMPORT     _var_8c2285dc
           .IMPORT     _var_8c2285d8
           .IMPORT     _var_currentSegment_8c228708
-          .IMPORT     _var_8c1bb900
+          .IMPORT     _var_maybeCutscene_8c1bb900
           .IMPORT     _AsqGetRandomInRangeB_121be
           .IMPORT     _var_8c228478
           .EXPORT     _FUN_8c02af78
@@ -185,7 +185,7 @@ LP_GEN_66558:
           .DATA.L _var_8c1ba1e4 ; H'8C02B08C
           .DATA.L _var_8c1ba2b4 ; H'8C02B090
           .DATA.L _var_8c228560 ; H'8C02B094
-          .DATA.L _var_demo_8c1bb8d0 ; H'8C02B098
+          .DATA.L _var_playMode_8c1bb8d0 ; H'8C02B098
           .DATA.L _var_8c22851c ; H'8C02B09C
           .DATA.L _var_route_8c18ad1c ; H'8C02B0A0
           .DATA.L _init_8c04b1f0 ; H'8C02B0A4
@@ -418,7 +418,7 @@ LP_GEN_88891:
           .DATA.W H'0200 ; H'8C02B246
           .DATA.W H'0300 ; H'8C02B248
           .DATA.W H'03FF ; H'8C02B24A
-          .DATA.L _var_demo_8c1bb8d0 ; H'8C02B24C
+          .DATA.L _var_playMode_8c1bb8d0 ; H'8C02B24C
           .DATA.L _var_game_mode_8c1bb8fc ; H'8C02B250
           .DATA.L _var_8c2285dc ; H'8C02B254
           .DATA.L _var_8c2285d8 ; H'8C02B258
@@ -426,7 +426,7 @@ LP_GEN_88891:
           .DATA.L _var_8c22851c ; H'8C02B260
           .DATA.L _var_currentSegment_8c228708 ; H'8C02B264
           .DATA.L _var_8c228560 ; H'8C02B268
-          .DATA.L _var_8c1bb900 ; H'8C02B26C
+          .DATA.L _var_maybeCutscene_8c1bb900 ; H'8C02B26C
           .DATA.L _AsqGetRandomInRangeB_121be ; H'8C02B270
           .DATA.L _var_8c228478 ; H'8C02B274
 LAB_8c02b278:
@@ -491,7 +491,7 @@ LP_GEN_51122:
           .DATA.W H'0200 ; H'8C02B2DE
           .DATA.W H'03FF ; H'8C02B2E0
           .RES.W 1 ; H'8C02B2E2
-          .DATA.L _var_8c1bb900 ; H'8C02B2E4
+          .DATA.L _var_maybeCutscene_8c1bb900 ; H'8C02B2E4
           .DATA.L _var_8c228478 ; H'8C02B2E8
           .DATA.L _var_8c22851c ; H'8C02B2EC
           .END
