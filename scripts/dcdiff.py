@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Diff two SH4 objects' data sections via `dcmatch inspect -x`.
+"""Diff two SH4 objects' data sections via `sh4objtest inspect -x`.
 
 Goal is functional equivalence, so section P (code, incl. literal pools) may differ;
 C (const), D (init data) and B (bss) should match when the objects are meant to be
@@ -14,20 +14,20 @@ data-only objects. A not-yet-matched unit whose compiler lays constants out in a
 different order will (correctly) report a difference.
 
 Usage: scripts/dcdiff.py <a.obj> <b.obj>
-Env:   DCMATCH=path/to/dcmatch   (default: ../dcmatch/dcmatch)
+Env:   SH4OBJTEST=path/to/sh4objtest   (default: sh4objtest)
 """
 import os, re, subprocess, sys
 
-DCMATCH = os.environ.get("DCMATCH", "../dcmatch/dcmatch")
+SH4OBJTEST = os.environ.get("SH4OBJTEST", "sh4objtest")
 SEC = re.compile(r"^Section \d+: (\w)\s+\[")
 IDX = re.compile(r"^Section (\d+): (\w)\s+\[")
-HEX = re.compile(r"^([0-9a-fA-F]{8})  (.*)$")
+HEX = re.compile(r"^\s*0x([0-9a-fA-F]+):\s+(.*)$")
 INT = re.compile(r"addr=0x([0-9a-fA-F]+)\s+-> section (\d+)\s+addend=(\S+)")
 EXT = re.compile(r"addr=0x([0-9a-fA-F]+)\s+(\S+)\s+addend=0x[0-9a-fA-F]+\s+width=")
 
 
 def inspect(obj):
-    txt = subprocess.run([DCMATCH, "inspect", obj, "-x"],
+    txt = subprocess.run([SH4OBJTEST, "inspect", obj, "-x"],
                          capture_output=True, text=True, check=True).stdout
     idx2letter, raw, cur = {}, {}, None
     for line in txt.splitlines():

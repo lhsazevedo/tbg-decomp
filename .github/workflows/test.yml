@@ -43,4 +43,7 @@ jobs:
           echo "SHC_INC=$(wibo path -w $DC_SDK/shc/include),$(wibo path -w $DC_SDK/shinobi/include)" >> "$GITHUB_ENV"
 
       - name: Test
-        run: bash scripts/run_tests.sh
+        run: bash scripts/run_tests.sh --parallel
+
+      - name: Check data section match
+        run: bash scripts/check_data_match.sh
