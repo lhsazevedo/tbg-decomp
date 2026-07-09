@@ -21,7 +21,7 @@ enum TIME_OF_DAY {
 
 typedef struct {
     int field_0x00;
-    int field_0x04; // holds a float bit-pattern (e.g. -300.0f), not an int
+    float field_0x04;
     Uint8 field_0x08;
     Uint8 field_0x09;
     Uint8 field_0x0a;

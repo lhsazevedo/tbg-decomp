@@ -205,7 +205,7 @@ extern LoadedModel *var_segmentModels_8c1bc3f0;
 
 extern int var_fogParam_8c226504;
 extern int var_fogParam_8c226508;
-extern int var_fogParam_8c227dd0;
+extern float var_fogParam_8c227dd0;
 
 extern int var_currentTileRegionList_8c226534;
 
