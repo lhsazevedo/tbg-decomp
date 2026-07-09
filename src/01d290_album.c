@@ -42,12 +42,6 @@ char *DEBUG_albumStateNames[] = {
  * =================
  */
 
-typedef struct {
-    int days_0x00;
-    char field_0x04[0x28];
-    int letters_0x2c[6];
-} PlayerProgress;
-
 enum ALBUM_STATE {
     ALBUM_STATE_INIT     = 0,
     ALBUM_STATE_FADE_IN  = 1,
@@ -83,7 +77,7 @@ void AlbumDrawGrid_8c01d290(void)
     }
 
     for (i = 0; i < 6; i++, spriteNo++) {
-        if (((PlayerProgress*)var_progress_8c1ba1cc)->letters_0x2c[i]) {
+        if (var_progress_8c1ba1cc.letters_0x2c[i]) {
             drawSprite_8c014f54(
                 &var_menuState_8c1bc7a8.resourceGroupB_0x0c,
                 spriteNo,
@@ -149,13 +143,13 @@ void AlbumMenuTask_8c01d300(Task *task, void *state)
                     int target = slot + 3;
                     int i;
                     for (i = 3; i < 6; i++) {
-                        if (((PlayerProgress*)var_progress_8c1ba1cc)->letters_0x2c[i]) break;
+                        if (var_progress_8c1ba1cc.letters_0x2c[i]) break;
                     }
                     if (i < 6) {
                         int best = 9999;
                         for (i = 3; i < 6; i++) {
                             int dist;
-                            if (!((PlayerProgress*)var_progress_8c1ba1cc)->letters_0x2c[i]) continue;
+                            if (!var_progress_8c1ba1cc.letters_0x2c[i]) continue;
                             dist = i - target;
                             if (dist < 0) dist = -dist;
                             if (best > dist) {
@@ -167,11 +161,11 @@ void AlbumMenuTask_8c01d300(Task *task, void *state)
                 } else if (press & PDD_DGT_KL) {
                     do {
                         if (--slot < 0) slot = 2;
-                    } while (!((PlayerProgress*)var_progress_8c1ba1cc)->letters_0x2c[slot]);
+                    } while (!var_progress_8c1ba1cc.letters_0x2c[slot]);
                 } else if (press & PDD_DGT_KR) {
                     do {
                         if (++slot > 2) slot = 0;
-                    } while (!((PlayerProgress*)var_progress_8c1ba1cc)->letters_0x2c[slot]);
+                    } while (!var_progress_8c1ba1cc.letters_0x2c[slot]);
                 }
             } else {
                 /* Bottom row (slots 3..5) */
@@ -181,13 +175,13 @@ void AlbumMenuTask_8c01d300(Task *task, void *state)
                     int target = slot - 3;
                     int i;
                     for (i = 0; i < 3; i++) {
-                        if (((PlayerProgress*)var_progress_8c1ba1cc)->letters_0x2c[i]) break;
+                        if (var_progress_8c1ba1cc.letters_0x2c[i]) break;
                     }
                     if (i < 3) {
                         int best = 9999;
                         for (i = 0; i < 3; i++) {
                             int dist;
-                            if (!((PlayerProgress*)var_progress_8c1ba1cc)->letters_0x2c[i]) continue;
+                            if (!var_progress_8c1ba1cc.letters_0x2c[i]) continue;
                             dist = i - target;
                             if (dist < 0) dist = -dist;
                             if (best > dist) {
@@ -199,11 +193,11 @@ void AlbumMenuTask_8c01d300(Task *task, void *state)
                 } else if (press & PDD_DGT_KL) {
                     do {
                         if (--slot < 3) slot = 5;
-                    } while (!((PlayerProgress*)var_progress_8c1ba1cc)->letters_0x2c[slot]);
+                    } while (!var_progress_8c1ba1cc.letters_0x2c[slot]);
                 } else if (press & PDD_DGT_KR) {
                     do {
                         if (++slot > 5) slot = 3;
-                    } while (!((PlayerProgress*)var_progress_8c1ba1cc)->letters_0x2c[slot]);
+                    } while (!var_progress_8c1ba1cc.letters_0x2c[slot]);
                 }
             }
 
@@ -302,7 +296,7 @@ void AlbumSwitchFromTask_8c01d6e2(Task *task)
     CHANGE_STATE(ALBUM_STATE_INIT);
 
     for (i = 0; i < 6; i++) {
-        if (((PlayerProgress*)var_progress_8c1ba1cc)->letters_0x2c[i]) {
+        if (var_progress_8c1ba1cc.letters_0x2c[i]) {
             var_menuState_8c1bc7a8.pos.cursor.cursor_0x20.x = init_8c045170[i].x;
             var_menuState_8c1bc7a8.pos.cursor.cursor_0x20.y = init_8c045170[i].y;
             var_menuState_8c1bc7a8.selected_0x38 = i;

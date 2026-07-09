@@ -1317,11 +1317,11 @@ void AsqApplyButtonConfig_8c0121e8() {
         init_btnRemap_8c03be80[i].physical_0x00 = init_btnRemap_8c03be80[i].logical_0x04;
     }
 
-    if (var_progress_8c1ba1cc[0xcc] != 0) {
-        if (var_progress_8c1ba1cc[0xcc] == 1) {
+    if (var_progress_8c1ba1cc.field_0xc7[5] != 0) {
+        if (var_progress_8c1ba1cc.field_0xc7[5] == 1) {
             init_btnRemap_8c03be80[0].physical_0x00 = PDD_DGT_TA;
             init_btnRemap_8c03be80[3].physical_0x00 = PDD_DGT_TX;
-        } else if (var_progress_8c1ba1cc[0xcc] == 2) {
+        } else if (var_progress_8c1ba1cc.field_0xc7[5] == 2) {
             init_btnRemap_8c03be80[1].physical_0x00 = PDD_DGT_TA;
             init_btnRemap_8c03be80[3].physical_0x00 = PDD_DGT_TB;
         }
@@ -1334,17 +1334,17 @@ void AsqApplyButtonConfig_8c0121e8() {
     init_btnRemapAlt_8c03beb8[4].physical_0x00 = PDD_DGT_KL;
     init_btnRemapAlt_8c03beb8[5].physical_0x00 = PDD_DGT_KR;
 
-    if (var_progress_8c1ba1cc[0xcd] != 0) {
-        if (var_progress_8c1ba1cc[0xcd] == 1) {
+    if (var_progress_8c1ba1cc.field_0xc7[6] != 0) {
+        if (var_progress_8c1ba1cc.field_0xc7[6] == 1) {
             init_btnRemapAlt_8c03beb8[0].physical_0x00 = PDD_DGT_TA;
             init_btnRemapAlt_8c03beb8[3].physical_0x00 = PDD_DGT_TX;
-        } else if (var_progress_8c1ba1cc[0xcd] == 2) {
+        } else if (var_progress_8c1ba1cc.field_0xc7[6] == 2) {
             init_btnRemapAlt_8c03beb8[1].physical_0x00 = PDD_DGT_TA;
             init_btnRemapAlt_8c03beb8[3].physical_0x00 = PDD_DGT_TB;
         }
     }
 
-    if (var_progress_8c1ba1cc[0xce] == 0 || var_progress_8c1ba1cc[0xce] != 1) {
+    if (var_progress_8c1ba1cc.field_0xc7[7] == 0 || var_progress_8c1ba1cc.field_0xc7[7] != 1) {
         init_btnRemapWheel_8c03bef0[0].physical_0x00 = PDD_DGT_KD;
         init_btnRemapWheel_8c03bef0[1].physical_0x00 = PDD_DGT_KU;
         init_btnRemapWheel_8c03bef0[2].physical_0x00 = PDD_DGT_TB;
@@ -1358,19 +1358,19 @@ void AsqApplyButtonConfig_8c0121e8() {
 
     init_btnRemapWheel_8c03bef0[4].physical_0x00 = PDD_DGT_ST;
 
-    if (var_progress_8c1ba1cc[0xcf] == 0) {
+    if (var_progress_8c1ba1cc.field_0xc7[8] == 0) {
         init_btnRemapWheelAlt_8c03bf18[0].physical_0x00 = PDD_DGT_KD;
         init_btnRemapWheelAlt_8c03bf18[1].physical_0x00 = PDD_DGT_KU;
         init_btnRemapWheelAlt_8c03bf18[2].physical_0x00 = PDD_DGT_TB;
         init_btnRemapWheelAlt_8c03bf18[3].physical_0x00 = PDD_DGT_TA;
     } else {
-        if (var_progress_8c1ba1cc[0xcf] == 1) {
+        if (var_progress_8c1ba1cc.field_0xc7[8] == 1) {
             init_btnRemapWheelAlt_8c03bf18[0].physical_0x00 = PDD_DGT_TB;
             init_btnRemapWheelAlt_8c03bf18[1].physical_0x00 = PDD_DGT_TA;
             init_btnRemapWheelAlt_8c03bf18[2].physical_0x00 = PDD_DGT_KD;
             init_btnRemapWheelAlt_8c03bf18[3].physical_0x00 = PDD_DGT_KU;
         } else {
-            if (var_progress_8c1ba1cc[0xcf] != 2) {
+            if (var_progress_8c1ba1cc.field_0xc7[8] != 2) {
                 init_btnRemapWheelAlt_8c03bf18[0].physical_0x00 = PDD_DGT_KD;
                 init_btnRemapWheelAlt_8c03bf18[1].physical_0x00 = PDD_DGT_KU;
                 init_btnRemapWheelAlt_8c03bf18[2].physical_0x00 = PDD_DGT_TB;

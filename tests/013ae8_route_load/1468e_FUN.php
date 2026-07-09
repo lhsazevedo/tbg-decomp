@@ -14,7 +14,7 @@ return new class extends TestCase {
     {
         $this->resolveSizes();
         $counter = $this->addressOf('_var_8c2285c4');
-        $this->initUint32($this->addressOf('_var_8c1ba290'), 0);
+        $this->initUint32($this->addressOf('_var_progress_8c1ba1cc') + 0xc4, 0);
         $this->initUint32($counter + 0x0c, 10);
         $this->initUint32($counter + 0x10, 100);
 
@@ -29,7 +29,7 @@ return new class extends TestCase {
     {
         $this->resolveSizes();
         $counter = $this->addressOf('_var_8c2285c4');
-        $this->initUint32($this->addressOf('_var_8c1ba290'), 0);
+        $this->initUint32($this->addressOf('_var_progress_8c1ba1cc') + 0xc4, 0);
         $this->initUint32($counter + 0x0c, 90);
         $this->initUint32($counter + 0x10, 100);
 
@@ -44,7 +44,7 @@ return new class extends TestCase {
     public function test_skips_counter_during_demo(): void
     {
         $this->resolveSizes();
-        $this->initUint32($this->addressOf('_var_8c1ba290'), 5);
+        $this->initUint32($this->addressOf('_var_progress_8c1ba1cc') + 0xc4, 5);
         $this->initUint32($this->addressOf('_var_playMode_8c1bb8d0'), 0);
 
         $this->call('_pushUnknownSegmentReloadTask_8c01468e');
@@ -86,7 +86,7 @@ return new class extends TestCase {
     private function resolveSizes(): void
     {
         foreach ([
-            '_var_8c1ba290' => 1,
+            '_var_progress_8c1ba1cc' => 0xd2,
             '_var_playMode_8c1bb8d0' => 4,
             '_var_8c2285c4' => 0x14,
             '_var_loadScreenActive_8c157a6c' => 4,
@@ -101,6 +101,10 @@ return new class extends TestCase {
         ] as $sym => $size) {
             $this->setSize($sym, $size);
         }
+
+        // The decompiled asm stub still addresses this byte by its old standalone
+        // name; alias it onto the same address as PlayerProgress.field_0xc4.
+        $this->rellocate('_var_8c1ba290', $this->addressOf('_var_progress_8c1ba1cc') + 0xc4);
     }
 
     protected function isAsmObject(): bool

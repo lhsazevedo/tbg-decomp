@@ -680,7 +680,7 @@ void pushUnknownSegmentReloadTask_8c01468e(void)
     Task *task;
     void *state;
 
-    if (var_8c1ba290 < 2 || var_playMode_8c1bb8d0 == PLAY_MODE_PRACTICE) {
+    if (var_progress_8c1ba1cc.field_0xc4 < 2 || var_playMode_8c1bb8d0 == PLAY_MODE_PRACTICE) {
         var_8c2285c4[3] += 0x1e;
         if (var_8c2285c4[4] < var_8c2285c4[3]) {
             var_8c2285c4[3] = var_8c2285c4[4];

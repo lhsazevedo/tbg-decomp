@@ -2050,6 +2050,7 @@ LP_GEN_22524:
           .DATA.L _AsqProcessQueues_8c011fe0 ; H'8C01F210
           .DATA.L _AsqFreeQueues_8c011f7e ; H'8C01F214
           .DATA.L _push_fadein_8c022a9c ; H'8C01F218
+; var_8c1ba264 here looks like a per-index best-record array, indexed by var_8c22640c
 _FUN_8c01f21c:
           MOV.L       R14,@-R15
           MOV.L       R13,@-R15

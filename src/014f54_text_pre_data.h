@@ -277,9 +277,37 @@ typedef struct {
     int field_0x3c4;
 } BusState;
 
-extern signed char var_8c1ba290;
-extern Uint32 var_8c1ba291;
-extern Uint32 var_8c1ba292;
+typedef struct {
+    Uint8 unlocked_0x00;
+    Uint8 new_0x01;
+    Uint8 field_0x02;
+    Uint8 storySpriteNo_0x03;
+    Uint8 freeRunSpriteNo_0x04;
+    Uint8 field_0x05[3]; // Padding?
+} CourseProgress;
+
+// TODO: offsets 0x04/0x18 (5 ints each) are unlock-flag bitsets set together by
+// FUN_8c02af78 and tested individually by FUN_8c02afbe/FUN_8c02aff0; 0xc7[9]
+// covers the bytes 011120_asset_queues.c indexes at 0xcc-0xcf; 0xd0/0xd1 look
+// like saved input deadzone thresholds (see FUN_8c024320/FUN_8c024606)
+typedef struct {
+    int days_0x00;
+    int field_0x04[5];
+    int field_0x18[5];
+    int letters_0x2c[6];
+    CourseProgress courses_0x44[9];
+    int field_0x8c;
+    int exp_0x90;
+    char field_0x94[4];
+    int field_0x98[11];
+    signed char field_0xc4;
+    char field_0xc5;
+    char field_0xc6;
+    char field_0xc7[9];
+    char field_0xd0;
+    char field_0xd1;
+} PlayerProgress;
+
 extern int var_8c1ba2b8[5]; // Maybe progress backup
 extern int var_8c1ba2cc[5]; // Maybe progress backup
 extern void* var_8c1ba2e0;
@@ -319,7 +347,6 @@ extern CurrentCourse var_currentCourse_8c1bb868;
 extern int var_cutsceneActive_8c1bb900;
 extern int* var_demoBuf_8c1ba3c4;
 extern int var_demoIndex_8c1bb8d8;
-extern int var_exp_8c1ba25c;
 extern void *var_frontNj_8c1bc434;
 extern NJS_TEXLIST *var_frontTexlist_8c1bc430;
 extern int var_gameMode_8c1bb8fc;
@@ -336,7 +363,7 @@ extern ModelSlot var_pedestrianAssets_8c1bbfdc[0x41];
 extern PDS_PERIPHERAL *var_peripheral_8c1ba358;
 extern PDS_PERIPHERAL var_peripherals_8c1ba35c[2];
 extern enum PLAY_MODE var_playMode_8c1bb8d0;
-extern char var_progress_8c1ba1cc[]; // real size exceeds PlayerProgress (011120_asset_queues.c indexes past it)
+extern PlayerProgress var_progress_8c1ba1cc;
 extern void* var_routeModels_8c1bc3ec;
 extern ModelSlot var_routeModelSlots_8c1bbddc[0x20];
 extern LoadedModel *var_segmentModels_8c1bc3f0;

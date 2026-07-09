@@ -28,6 +28,7 @@
           .EXPORT     _FUN_8c02b170
           .EXPORT     _FUN_8c02b292
           .SECTION     P, CODE, ALIGN=4
+; sets a bit in var_progress_8c1ba1cc+4 and +0x18 (paired unlock bitsets, see FUN_8c02afbe/aff0)
 _FUN_8c02af78:
           MOV         R4,R7
           CMP/PZ      R7
@@ -67,6 +68,7 @@ LAB_8c02af9a:
           OR          R5,R2
           RTS
           MOV.L       R2,@R3
+; tests a bit in var_progress_8c1ba1cc+4 (see FUN_8c02af78); called from FUN_8c02b03c
 _FUN_8c02afbe:
           MOV         R4,R6
           CMP/PZ      R6
@@ -96,6 +98,7 @@ LAB_8c02afe0:
           SHLD        R4,R5
           RTS
           AND         R5,R0
+; tests a bit in var_progress_8c1ba1cc+0x18 (see FUN_8c02af78)
 _FUN_8c02aff0:
           MOV         R4,R6
           CMP/PZ      R6
@@ -140,6 +143,8 @@ _FUN_8c02b030:
           MOV.L       @R3,R0
           RTS
           AND         R5,R0
+; course-unlock-list style scan over a day/course table, using PlayerProgress.days_0x00
+; and the FUN_8c02afbe/aff0 bitsets; also touches var_8c1ba2b4 (role unclear)
 _FUN_8c02b03c:
           MOV.L       R14,@-R15
           MOV.L       R13,@-R15
