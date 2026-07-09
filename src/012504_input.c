@@ -1,5 +1,7 @@
 #include <shinobi.h>
+#include "010e90.h"
 #include "011120_asset_queues.h"
+#include "012324_peripheral_support.h"
 #include "014a9c_tasks.h"
 #include "012504_input.h"
 #include "serial_debug.h"
@@ -16,9 +18,6 @@
                          BT(KU)  | BT(KD)  | BT(KL)  | BT(KR)  | \
                          BT(AX1) | BT(AL)  | BT(AR))
 
-extern PDS_PERIPHERAL const_peripheral_8c033318;
-extern int var_activeCtrlType_8c157a70;
-extern int var_resetRequested_8c157a78;
 extern Uint32 var_vibport_8c1ba354;
 extern PDS_PERIPHERAL *var_peripheral_8c1ba358;
 extern PDS_PERIPHERAL var_peripherals_8c1ba35c[2];
@@ -26,11 +25,7 @@ extern PDS_PERIPHERAL var_peripherals_8c1ba35c[2];
 extern float var_8c1bbc4c;
 extern int var_8c1bbcc4;
 extern Task var_tasks_8c1ba3c8[];
-extern int var_8c157ae4;
-extern int var_8c157ae8;
-extern int var_8c157ad4[4];
 extern int var_inputMapSel_8c1bb8c8;
-extern void PspTask_8c012324(void);
 
 STATIC char var_name_8c157aec[12];
 STATIC const char *init_fortyFive_8c03bf40 = "FortyFive";

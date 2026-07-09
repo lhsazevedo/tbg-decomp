@@ -1,9 +1,13 @@
 #include <shinobi.h>
 #include <sg_sd.h>
+#include "012f44.h"
+#include "013ae8_route_load.h"
 #include "015ab8_title.h"
 #include "014a9c_tasks.h"
+#include "014f54_text.h"
 #include "016d2c_course_menu.h"
 #include "011120_asset_queues.h"
+#include "0100bc_sound.h"
 #include "serial_debug.h"
 #include "01d290_album.h"
 
@@ -54,25 +58,15 @@ enum ALBUM_STATE {
  * =====================
  */
 
-extern void drawSprite_8c014f54(ResourceGroup *r4, int r5, float fr4, float fr5, float fr6);
-extern int isPvmReady_8c01432a(void);
-extern void snd_8c010cd6(int p1, int p2);
 extern void push_fadein_8c022a9c(int frames);
 extern void push_fadeout_8c022b60(int frames);
-extern void startAdxFadeOut_8c010bae(int p1);
 extern void FUN_8c016182(void);
-extern void setTaskAction_8c014b3e(Task *task, TaskAction action);
-extern void setPvmReady_8c014330(void);
-extern void resetPvmReady_8c014322(void);
 
 extern PlayerProgress var_progress_8c1ba1cc;
 extern PDS_PERIPHERAL var_peripherals_8c1ba35c[2];
-extern SDMIDI var_midiHandles_8c0fcd28[7];
 extern NJS_POINT2 init_8c045170[6];
-extern NJS_TEXMEMLIST var_tex_8c157af8;
 extern ResourceGroupInfo init_albumResourceGroup_8c045160;
 extern Bool var_isFading_8c226568;
-extern int init_8c03bd80;
 
 /* ====================
  * Forward Declarations
@@ -329,7 +323,7 @@ void AlbumSwitchFromTask_8c01d6e2(Task *task)
     task->field_0x08 = i < 6;
 
     CourseMenuFreeResourceGroup_8c0185c4(&var_menuState_8c1bc7a8.resourceGroupA_0x00);
-    njGarbageTexture(&var_tex_8c157af8, 0xc00);
+    njGarbageTexture(var_tex_8c157af8, 0xc00);
     AsqInitQueues_8c011f36(8, 0, 0, 8);
     AsqResetQueues_8c011f6c();
     CourseMenuRequestSysResgrp_8c018568(

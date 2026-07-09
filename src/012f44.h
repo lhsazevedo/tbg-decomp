@@ -2,7 +2,12 @@
 #ifndef _012F44_H
 #define _012F44_H
 
+#include <njdef.h>
 #include "014a9c_tasks.h"
+
+#define TEX_NUM 3072
+
+extern NJS_TEXMEMLIST var_tex_8c157af8[TEX_NUM];
 
 void task_8c012f44();
 void task_8c012f9c(Task *task, void* state);

@@ -4,6 +4,8 @@
 #include "sg_xpt.h"
 #include "014a9c_tasks.h"
 
+extern char* init_saveNames_8c044d50[11];
+
 void VmMenuMountVms_8c01940e();
 void VmMenuUnmountVms_8c0194de();
 void VmMenuFreeAndClear_8c019504(void);

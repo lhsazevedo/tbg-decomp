@@ -1,4 +1,5 @@
 #include <shinobi.h>
+#include "013ae8_route_load.h"
 #include "015ab8_title.h"
 #include "014a9c_tasks.h"
 #include "011120_asset_queues.h"
@@ -117,8 +118,6 @@ STATIC DemoEntry init_demos_8c044154[20] = {
  * Forward Declarations
  * ====================
  */
-
-extern void setPvmReady_8c014330();
 
 /* =========
  * Functions

@@ -2,8 +2,11 @@
 // #include <njdef.h>
 #include <sg_sd.h>
 #include "019e98_main_menu.h"
+#include "013ae8_route_load.h"
 #include "014a9c_tasks.h"
+#include "014f54_text.h"
 #include "015ab8_title.h"
+#include "0100bc_sound.h"
 #include "011120_asset_queues.h"
 #include "016d2c_course_menu.h"
 
@@ -48,21 +51,11 @@ enum MAIN_MENU_STATE {
  * =====================
  */
 
-extern void resetPvmReady_8c014322();
-extern void drawSprite_8c014f54(ResourceGroup *r4, int r5, float fr4, float fr5, float fr6);
-extern void FUN_8c01bfec(Task* task, void* state);
 extern void push_fadein_8c022a9c();
 extern void push_fadeout_8c022b60();
-extern ResourceGroupInfo init_mainMenuResourceGroup_8c044264;
-extern ResourceGroupInfo init_8c044e90;
-extern SDMIDI var_midiHandles_8c0fcd28[7];
-extern NJS_TEXMEMLIST var_tex_8c157af8[TEX_NUM];
 extern PDS_PERIPHERAL var_peripherals_8c1ba35c[2];
 extern int var_shouldShowFreeRunIntro_8c1bb8c0;
-extern int var_playMode_8c1bb8d0;
 extern int var_gameMode_8c1bb8fc;
-extern void* var_8c1bc454;
-extern void* var_resourceGroup_8c2263a8;
 extern Bool var_isFading_8c226568;
 
 /* =======================

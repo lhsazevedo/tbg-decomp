@@ -1,6 +1,8 @@
 #include <shinobi.h>
 #include <sg_sd.h>
+#include "0100bc_sound.h"
 #include "0193c8_vm_menu.h"
+#include "019e98_main_menu.h"
 #include "sg_xpt.h"
 #include "014a9c_tasks.h"
 #include "015ab8_title.h"
@@ -84,13 +86,6 @@ enum VMU_STATUS {
  * External Declarations
    =====================
  */
-
-extern MainMenuSwitchFromTask_8c01a09a(Task *task);
-
-extern int init_8c03bd80;
-
-
-extern SDMIDI var_midiHandles_8c0fcd28[7];
 
 extern int var_selectedVm_8c1ba34c;
 extern PDS_PERIPHERAL var_peripherals_8c1ba35c[2];

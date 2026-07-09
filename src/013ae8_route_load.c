@@ -1,5 +1,7 @@
 #include <shinobi.h>
 #include "011120_asset_queues.h"
+#include "012504_input.h"
+#include "012f44.h"
 #include "013ae8_route_load.h"
 #include "014a9c_tasks.h"
 #include "014f54_text.h"
@@ -202,17 +204,9 @@ extern void FUN_8c02aa36(void);
 
 extern ResourceGroup var_loadingResourceGroup_8c1bc3f8;
 
-// set while the route-load screen owns the display
-extern int var_loadScreenActive_8c157a6c;
-
-extern NJS_TEXMEMLIST var_tex_8c157af8;
-
 extern signed char var_8c1ba290;
 extern int var_8c2285c4[];
 
-extern void drawSprite_8c014f54(ResourceGroup *res, int textureId, float x, float y, float priority);
-extern void dispatchInputTask_8c012970(void);
-extern void FUN_8c01306e(void);
 extern void FUN_8c02175a(void);
 extern void FUN_8c026da4(void *handle);
 extern void FUN_8c028de8(void *handle);
@@ -675,7 +669,7 @@ void pushRouteLoadTask_8c0144fc(void)
     CHANGE_LOAD_STATE(task, ROUTE_LOAD_STATE_INIT);
     task->field_0x0c = 0;
 
-    njGarbageTexture(&var_tex_8c157af8, 0xc00);
+    njGarbageTexture(var_tex_8c157af8, 0xc00);
 
     AsqInitQueues_8c011f36(0x20, 0x800, 0x800, 0x40);
 }
@@ -750,7 +744,7 @@ void pushUnknownSegmentReloadTask_8c01468e(void)
     task->field_0x0c = 0;
     freeSegmentModels_8c013f22();
 
-    njGarbageTexture(&var_tex_8c157af8, 0xc00);
+    njGarbageTexture(var_tex_8c157af8, 0xc00);
     AsqInitQueues_8c011f36(0x20, 0x800, 0x800, 0x40);
     njSetTexture(var_loadingResourceGroup_8c1bc3f8.tlist_0x00);
     njLoadCacheTexture(var_loadingResourceGroup_8c1bc3f8.tlist_0x00);

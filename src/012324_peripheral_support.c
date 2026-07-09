@@ -1,9 +1,8 @@
 #include <shinobi.h>
+#include "010e90.h"
+#include "011120_asset_queues.h"
 #include "012324_peripheral_support.h"
 
-extern PDS_PERIPHERAL const_peripheral_8c033318;
-extern int var_activeCtrlType_8c157a70;
-extern int var_resetRequested_8c157a78;
 int var_8c157ad4[4];
 int var_8c157ae4;
 int var_8c157ae8;

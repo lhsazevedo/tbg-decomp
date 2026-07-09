@@ -2,11 +2,17 @@
 #include <sg_sd.h>
 #include <njdef.h>
 #include <sg_xpt.h>
+#include "012504_input.h"
+#include "012f44.h"
+#include "013ae8_route_load.h"
 #include "015ab8_title.h"
 #include "014a9c_tasks.h"
 #include "011120_asset_queues.h"
+#include "016c58_prompt.h"
 #include "019e98_main_menu.h"
 #include "016d2c_course_menu.h"
+#include "0100bc_sound.h"
+#include "01d290_album.h"
 #include "serial_debug.h"
 
 // TODO:
@@ -213,22 +219,14 @@ enum {
  * =======================
  */
 
-extern void snd_8c010cd6(int p1, int p2);
-extern void setPvmReady_8c014330();
-extern int CourseMenuRequestSysResgrp_8c018568(ResourceGroup* dds, ResourceGroupInfo* rg);
-extern void CourseMenuConfirmInit_8c0184cc(Task *task);
 extern void FUN_8c01f114(Task *task);
 extern void FUN_8c01ba64(Task *task);
 extern void FUN_8c01d1c4(Task *task);
-extern void AlbumSwitchFromTask_8c01d6e2(Task *task);
-extern void* const_8c03628c;
-extern SDMIDI var_midiHandles_8c0fcd28[7];
 extern PlayerProgress var_progress_8c1ba1cc;
 extern int var_exp_8c1ba25c;
 extern int var_dialogSequenceIsActive_8c225fb4;
 extern int var_menuTextboxCharLimit_8c225fb8;
 extern PDS_PERIPHERAL var_peripherals_8c1ba35c[2];
-extern ResourceGroupInfo init_mainMenuResourceGroup_8c044264;
 extern int var_8c1bb8e0; // course was unlocked
 extern int var_8c1bb8e4;
 extern int var_8c1bb8e8;
@@ -237,42 +235,37 @@ extern int var_8c1bb8f0;
 extern int var_8c1bb8f4;
 extern int var_8c1ba2b8[5]; // Maybe progress backup
 extern int var_8c1ba2cc[5]; // Maybe progress backup
-extern void pushLoadingTask_8c013310(int p1);
-extern MenuDialog *init_dialogSequences_8c044c08[];
 extern int var_gameMode_8c1bb8fc;
 extern int var_dialogQueue_8c225fbc[4]; // TODO: Confirm length
 extern Sint8 var_coursesToUnlock_8c225fd4[];
 extern int var_playMode_8c1bb8d0;
-extern void resetPvmReady_8c014322();
-extern NJS_TEXMEMLIST var_tex_8c157af8[];
 extern int var_8c1bb8b8; // Maybe courseMenuHasResult or courseMenuHasDialog
 extern int var_8c1bb8bc;
 extern int var_8c1bb8dc;
 extern int var_award_8c1bb8f8;
 extern Bool var_isFading_8c226568;
-extern int init_8c03bd80;
 extern void *var_currentSysResGroupInfo_8c225fb0;
 extern int var_shouldShowFreeRunIntro_8c1bb8c0;
-extern void pushInputTask_8c0128cc(int param);
-extern void task_8c012f44(Task *task, void *state);
 extern FUN_8c02ae3e(int p1, int p2, float fp1, int p3, int p4, int p5, int p6, int p7);
-extern int promptHandleBinary_8c016caa(int *promptState);
 
 /* Data defined after the functions so the shared "" literal is first seen in code
    (swapMessageBoxFor("")) and lands at the head of the constant pool. */
 STATIC CourseMenuButton init_courseMenuButtons_8c04442c[15];
 STATIC ResourceGroupInfo init_courseResourceGroup_8c044d40;
-extern Uint8 init_courseVariants_8c044d10[30];
-extern Uint8 init_routeInfoTime_8c044d2e[3 * 3 * 2];
 
 /* ====================
  * Forward Declarations
  * ====================
  */
 
-extern void CourseMenuFreeResourceGroup_8c0185c4(ResourceGroup *res_group);
-extern void CourseMenuFreeRunMenuTask_8c017ada(Task * task, void *state);
-extern void CourseMenuRequestCommonResources_8c01852c(void);
+int CourseMenuRequestSysResgrp_8c018568(ResourceGroup* dds, ResourceGroupInfo* rg);
+void CourseMenuConfirmInit_8c0184cc(Task *task);
+void CourseMenuFreeResourceGroup_8c0185c4(ResourceGroup *res_group);
+void CourseMenuFreeRunMenuTask_8c017ada(Task * task, void *state);
+void CourseMenuRequestCommonResources_8c01852c(void);
+MenuDialog *init_dialogSequences_8c044c08[66];
+Uint8 init_courseVariants_8c044d10[30];
+Uint8 init_routeInfoTime_8c044d2e[3 * 3 * 2];
 
 /* =========
  * Functions
@@ -1393,7 +1386,7 @@ void CourseMenuSwitchFromTask_8c017e18(Task *task)
     var_menuTextboxCharLimit_8c225fb8 = 0;
     var_playMode_8c1bb8d0 = 0;
     FUN_8c017d54();
-    njGarbageTexture(&var_tex_8c157af8, 0xc00);
+    njGarbageTexture(var_tex_8c157af8, 0xc00);
     AsqInitQueues_8c011f36(8, 0, 0, 8);
     AsqResetQueues_8c011f6c();
 
@@ -1459,7 +1452,7 @@ void CourseMenuFUN_8c017ef2(void)
 
     var_menuTextboxCharLimit_8c225fb8 = 0;
 
-    njGarbageTexture(&var_tex_8c157af8, 0xc00);
+    njGarbageTexture(var_tex_8c157af8, 0xc00);
     FUN_8c02ae3e(0x20, 0x180, -2.0, 0x240, 0x40, 0, 0, -1);
     swapMessageBoxFor_8c02aefc("");
     var_playMode_8c1bb8d0 = 0;
@@ -1688,7 +1681,7 @@ void CourseMenuConfirmInit_8c0184cc(Task *task)
 {
     LOG_INFO(("[COURSE_MENU] Initializing course confirmation menu\n"));
 
-    njGarbageTexture(&var_tex_8c157af8, 0xc00);
+    njGarbageTexture(var_tex_8c157af8, 0xc00);
     setTaskAction_8c014b3e(task, CourseConfirmMenuTask_8c0181b6);
     CHANGE_CONFIRM_STATE(COURSE_CONFIRM_STATE_INIT);
     var_menuState_8c1bc7a8.selected_0x38 = 0;

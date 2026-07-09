@@ -4,9 +4,14 @@
 
 #include <shinobi.h>
 #include <sg_sd.h>
+#include "012504_input.h"
+#include "012f44.h"
+#include "013ae8_route_load.h"
 #include "014a9c_tasks.h"
+#include "014f54_text.h"
 #include "015ab8_title.h"
 #include "serial_debug.h"
+#include "0100bc_sound.h"
 #include "0193c8_vm_menu.h"
 #include "011120_asset_queues.h"
 #include "016d2c_course_menu.h"
@@ -16,21 +21,16 @@
  * =======================
  */
 
-extern SDMIDI var_midiHandles_8c0fcd28[7];
 extern Bool var_isFading_8c226568;
 extern Bool var_8c1bb8c4;
 extern PDS_PERIPHERAL var_peripherals_8c1ba35c[2];
 extern Task var_tasks_8c1ba3c8[16];
-extern NJS_TEXMEMLIST var_tex_8c157af8;
 extern void* var_currentSysResGroupInfo_8c225fb0;
 
 /* ===================
  * Initialized Globals
  * ===================
  */
-
-extern char* init_saveNames_8c044d50[11];
-extern Bool init_8c03bd80;
 
 ResourceGroupInfo init_commonResourceGroup_8c044244 = {
     "common_parts.dat",
@@ -69,18 +69,10 @@ ResourceGroupInfo init_8c044284 = {
  * ====================
  */
 
-extern Bool isPvmReady_8c01432a();
 extern void push_fadein_8c022a9c();
 extern void push_fadeout_8c022b60();
-extern void drawSprite_8c014f54(ResourceGroup *r4, int r5, float fr4, float fr5, float fr6);
-extern void task_8c012f44(Task* task, void* state);
 extern FUN_8c02ae3e(int p1, int p2, float fp1, int p3, int p4, int p5, int p6, int p7);
-extern void resetPvmReady_8c014322();
 extern FUN_8c016182();
-extern FUN_8c0159ac();
-extern void setPvmReady_8c014330();
-extern void snd_8c010cd6(int p1, int p2);
-extern Bool setName_8c012984(void);
 
 /* =========
  * Functions
@@ -490,7 +482,7 @@ void pushTitle_8c015fd6 (Bool direct) {
     created_task->field_0x08 = direct;
     var_8c1bb8c4 = 1;
 
-    njGarbageTexture(&var_tex_8c157af8, 3072);
+    njGarbageTexture(var_tex_8c157af8, 3072);
     FUN_8c02ae3e(0x20, 0x178, -2.0, 0x240, 0x40, 0, 0, -1);
     AsqInitQueues_8c011f36(8, 0, 0, 8);
     AsqResetQueues_8c011f6c();

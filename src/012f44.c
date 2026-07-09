@@ -2,6 +2,9 @@
 #include <shinobi.h>
 #include <njdef.h>
 #include "012f44.h"
+#include "0100bc_sound.h"
+#include "014f54_text.h"
+#include "016bf4_demo_input.h"
 #include "includes.h"
 #include "serial_debug.h"
 #include "014a9c_tasks.h"
@@ -12,7 +15,6 @@
 #include "014b8c_backup.h"
 #include "02fb50_sh4nlfzn_post_data.h"
 
-#define TEX_NUM         3072
 // #define CACHE_BUFSIZE   0x20000
 // #define SHAPE_BUFSIZE   512
 #define RENDER_X        256
@@ -370,8 +372,6 @@ extern void* var_8c1bc410;
 extern void* var_8c1bc414;
 
 extern Uint32 var_vibport_8c1ba354;
-extern int init_8c03bd80;
-extern int init_8c03bd84;
 
 STATIC int var_gdErr_8c18ad14;
 
@@ -382,18 +382,15 @@ int var_8c18ad08;
 int var_8c18ad0c;
 int var_8c18ad10;
 
-extern uknStruct2 *var_8c1bc824;
 extern char init_8c0460b0[];
 
 extern float var_8c1bc450;
 extern int var_8c2260a8;
-extern int var_playMode_8c1bb8d0;
 extern task_8c012cbc;
 extern task_8c01677e;
 extern var_8c1bb8d4;
 extern task_8c012d06;
 extern task_8c012d5a;
-extern demoInputTask_8c016bf4;
 extern var_8c1bb8cc;
 extern var_8c22847c;
 extern int var_currentCourse_8c1bb868;
@@ -404,14 +401,9 @@ extern Uint32 var_8c227da0;
 extern Uint32 var_8c1ba292;
 extern Uint32 var_8c1ba291;
 extern int var_8c227da8;
-extern var_memblkSource_8c0fcd48;
-extern var_memblkSource_8c0fcd4c;
 
 extern var_currentSegment_8c228708;
 extern Bool var_8c22655c;
-
-extern Sint8 getSoundMode_8c010924();
-extern setSoundMode_8c0108c0(Bool);
 
 /* Matched :) */
 void task_8c012f44()
@@ -559,9 +551,9 @@ void FUN_8c01328c() {
     void* created_state;
   
     if (var_playMode_8c1bb8d0 == 0) {
-        var_currentCourse_8c1bb868 = var_8c1bc824->field_0x00;
-        var_8c228704 = var_8c1bc824->field_0x04;
-        var_inputMapSel_8c1bb8c8 = var_8c1bc824->field_0x08;
+        var_currentCourse_8c1bb868 = ((uknStruct2*)var_8c1bc824)->field_0x00;
+        var_8c228704 = ((uknStruct2*)var_8c1bc824)->field_0x04;
+        var_inputMapSel_8c1bb8c8 = ((uknStruct2*)var_8c1bc824)->field_0x08;
         var_seed_8c157a64 = AsqGetRandomA_8c012166();
     } else if ((var_playMode_8c1bb8d0 == 2) && (var_8c1bb8d4 != 0)) {
         var_8c227dd4 = init_8c0460b0[var_currentCourse_8c1bb868 - 0x26];
@@ -629,7 +621,7 @@ void task_8c013388(Task *task, void *state) {
             if (isPvmReady_8c01432a() != 0) {
                 AsqFreeQueues_8c011f7e();
                 freeTask_8c014b66(task);
-                initSoundMidiAdx_8c010e18();
+                initSoundMidiAdx_8c010e18("\\SOUND");
                 var_8c2260a8 = 1;
                 pushTitle_8c015fd6(0);
             }

@@ -1,9 +1,9 @@
 /* 8c016c58 */
 #include <shinobi.h>
 #include <sg_sd.h>
+#include "0100bc_sound.h"
 #include "016c58_prompt.h"
 
-extern SDMIDI var_midiHandles_8c0fcd28[7];
 extern PDS_PERIPHERAL var_peripherals_8c1ba35c[2];
 
 int promptHandleMultiple_8c016c58(int *option, int count)

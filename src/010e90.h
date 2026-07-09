@@ -2,6 +2,10 @@
 #ifndef _010E90_H
 #define _010E90_H
 
+#include <shinobi.h>
+
+extern const PDS_PERIPHERAL const_peripheral_8c033318;
+
 void vib_8c010e90(int port);
 void vibClear_8c010fbe();
 void vib_8c010f7a(int param);

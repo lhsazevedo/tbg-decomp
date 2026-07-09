@@ -3,6 +3,23 @@
 #define _SOUND_H
 
 #include <shinobi.h>
+#include <sg_sd.h>
+
+/* =========================
+ * External Declarations
+ * =========================
+ */
+
+extern int init_8c03bd80;
+extern int init_8c03bd84;
+extern void* var_memblkSource_8c0fcd48;
+extern void* var_memblkSource_8c0fcd4c;
+extern SDMIDI var_midiHandles_8c0fcd28[8];
+
+/* =========
+ * Functions
+ * =========
+ */
 
 void midiResetFxAndPlay_8c010846(int hld_idx, int data_num);
 void FUN_8c010ca6(Bool p1);
