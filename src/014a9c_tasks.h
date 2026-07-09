@@ -33,4 +33,9 @@ int pushTask_8c014ae8(Task *tasks, void *action, Task **created_task, void **cre
 
 void freeTask_8c014b66(Task *task);
 
+void clearTasks_8c014a9c(Task *tasks, Sint32 count);
+void freeTasks_8c014ab4(Task *tasks);
+void setTaskAction_8c014b3e(Task *task, TaskAction action);
+void execTasks_8c014b42(Task task[]);
+
 #endif /* _TASKS_H_ */

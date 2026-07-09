@@ -18,7 +18,7 @@ return new class extends TestCase {
         $this->resolveSymbols();
 
         $task = $this->alloc(0x20);
-        $this->initUint32($this->addressOf('_var_game_mode_8c1bb8fc'), 1);
+        $this->initUint32($this->addressOf('_var_gameMode_8c1bb8fc'), 1);
 
         $this->initUint32($this->addressOf('_var_dialogQueue_8c225fbc'), 1);
 
@@ -30,7 +30,7 @@ return new class extends TestCase {
         $this->shouldCall('_buildFreeRunMenuDialogFlow_8c017a20');
 
         $this->shouldWriteLong(
-            $this->addressOf('_menuState_8c1bc7a8') + 0x60, 0
+            $this->addressOf('_var_menuState_8c1bc7a8') + 0x60, 0
         );
         $this->shouldWriteLong($task + 0x08, 0);
         $this->shouldWriteLongTo('_var_menuTextboxCharLimit_8c225fb8', 0);
@@ -44,7 +44,7 @@ return new class extends TestCase {
         $this->shouldCall('_AsqResetQueues_11f6c');
 
         $this->shouldCall('_CourseMenuRequestSysResgrp_8c018568')->with(
-            $this->addressOf('_menuState_8c1bc7a8') + 0x0c,
+            $this->addressOf('_var_menuState_8c1bc7a8') + 0x0c,
             $this->addressOf('_init_mainMenuResourceGroup_8c044264'),
         )->andReturn(1);
 
@@ -56,7 +56,7 @@ return new class extends TestCase {
             0,
             $this->addressOf('_resetPvmReady_8c014322'),
         );
-        $this->shouldWriteLong($this->addressOf('_menuState_8c1bc7a8') + 0x18, 0);
+        $this->shouldWriteLong($this->addressOf('_var_menuState_8c1bc7a8') + 0x18, 0);
     }
 
     public function test_skips_loaded_resource_group_when_switching_to_free_run_mode()
@@ -64,7 +64,7 @@ return new class extends TestCase {
         $this->resolveSymbols();
 
         $task = $this->alloc(0x20);
-        $this->initUint32($this->addressOf('_var_game_mode_8c1bb8fc'), 1);
+        $this->initUint32($this->addressOf('_var_gameMode_8c1bb8fc'), 1);
         $this->initUint32($this->addressOf('_var_dialogQueue_8c225fbc'), 1);
 
         $this->call('_CourseMenuSwitchFromTask_8c017e18')->with($task);
@@ -75,7 +75,7 @@ return new class extends TestCase {
         $this->shouldCall('_buildFreeRunMenuDialogFlow_8c017a20');
 
         $this->shouldWriteLong(
-            $this->addressOf('_menuState_8c1bc7a8') + 0x60, 0
+            $this->addressOf('_var_menuState_8c1bc7a8') + 0x60, 0
         );
         $this->shouldWriteLong($task + 0x08, 0);
         $this->shouldWriteLongTo('_var_menuTextboxCharLimit_8c225fb8', 0);
@@ -89,12 +89,12 @@ return new class extends TestCase {
         $this->shouldCall('_AsqResetQueues_11f6c');
 
         $this->shouldCall('_CourseMenuRequestSysResgrp_8c018568')->with(
-            $this->addressOf('_menuState_8c1bc7a8') + 0x0c,
+            $this->addressOf('_var_menuState_8c1bc7a8') + 0x0c,
             $this->addressOf('_init_mainMenuResourceGroup_8c044264'),
         )->andReturn(0);
 
         $this->shouldCall('_AsqFreeQueues_11f7e');
-        $this->shouldWriteLong($this->addressOf('_menuState_8c1bc7a8') + 0x18, 1);
+        $this->shouldWriteLong($this->addressOf('_var_menuState_8c1bc7a8') + 0x18, 1);
         $this->shouldCall('_push_fadein_8c022a9c')->with(10);
         $this->shouldCall('_snd_8c010cd6')->with(0, 15);
     }
@@ -104,7 +104,7 @@ return new class extends TestCase {
         $this->resolveSymbols();
 
         $task = $this->alloc(0x20);
-        $this->initUint32($this->addressOf('_var_game_mode_8c1bb8fc'), 0);
+        $this->initUint32($this->addressOf('_var_gameMode_8c1bb8fc'), 0);
 
         $this->initUint32($this->addressOf('_var_dialogQueue_8c225fbc'), 1);
 
@@ -116,7 +116,7 @@ return new class extends TestCase {
         $this->shouldCall('_buildCourseMenuDialogFlow_8c017420');
 
         $this->shouldWriteLong(
-            $this->addressOf('_menuState_8c1bc7a8') + 0x60, 0
+            $this->addressOf('_var_menuState_8c1bc7a8') + 0x60, 0
         );
         $this->shouldWriteLong($task + 0x08, 0);
         $this->shouldWriteLongTo('_var_menuTextboxCharLimit_8c225fb8', 0);
@@ -130,7 +130,7 @@ return new class extends TestCase {
         $this->shouldCall('_AsqResetQueues_11f6c');
 
         $this->shouldCall('_CourseMenuRequestSysResgrp_8c018568')->with(
-            $this->addressOf('_menuState_8c1bc7a8') + 0x0c,
+            $this->addressOf('_var_menuState_8c1bc7a8') + 0x0c,
             $this->addressOf('_init_mainMenuResourceGroup_8c044264'),
         )->andReturn(1);
 
@@ -142,7 +142,7 @@ return new class extends TestCase {
             0,
             $this->addressOf('_resetPvmReady_8c014322'),
         );
-        $this->shouldWriteLong($this->addressOf('_menuState_8c1bc7a8') + 0x18, 0);
+        $this->shouldWriteLong($this->addressOf('_var_menuState_8c1bc7a8') + 0x18, 0);
     }
 
     public function test_skips_loaded_resource_group_when_switching_to_story_mode()
@@ -150,7 +150,7 @@ return new class extends TestCase {
         $this->resolveSymbols();
 
         $task = $this->alloc(0x20);
-        $this->initUint32($this->addressOf('_var_game_mode_8c1bb8fc'), 0);
+        $this->initUint32($this->addressOf('_var_gameMode_8c1bb8fc'), 0);
 
         $this->initUint32($this->addressOf('_var_dialogQueue_8c225fbc'), 1);
 
@@ -162,7 +162,7 @@ return new class extends TestCase {
         $this->shouldCall('_buildCourseMenuDialogFlow_8c017420');
 
         $this->shouldWriteLong(
-            $this->addressOf('_menuState_8c1bc7a8') + 0x60, 0
+            $this->addressOf('_var_menuState_8c1bc7a8') + 0x60, 0
         );
         $this->shouldWriteLong($task + 0x08, 0);
         $this->shouldWriteLongTo('_var_menuTextboxCharLimit_8c225fb8', 0);
@@ -176,19 +176,19 @@ return new class extends TestCase {
         $this->shouldCall('_AsqResetQueues_11f6c');
 
         $this->shouldCall('_CourseMenuRequestSysResgrp_8c018568')->with(
-            $this->addressOf('_menuState_8c1bc7a8') + 0x0c,
+            $this->addressOf('_var_menuState_8c1bc7a8') + 0x0c,
             $this->addressOf('_init_mainMenuResourceGroup_8c044264'),
         )->andReturn(0);
 
         $this->shouldCall('_AsqFreeQueues_11f7e');
-        $this->shouldWriteLong($this->addressOf('_menuState_8c1bc7a8') + 0x18, 1);
+        $this->shouldWriteLong($this->addressOf('_var_menuState_8c1bc7a8') + 0x18, 1);
         $this->shouldCall('_push_fadein_8c022a9c')->with(10);
         $this->shouldCall('_snd_8c010cd6')->with(0, 15);
     }
 
     public function resolveSymbols()
     {
-        $this->setSize('_menuState_8c1bc7a8', 0x6c);
+        $this->setSize('_var_menuState_8c1bc7a8', 0x6c);
         // Functions
     }
 };

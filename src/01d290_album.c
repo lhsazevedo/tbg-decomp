@@ -5,6 +5,7 @@
 #include "016d2c_course_menu.h"
 #include "011120_asset_queues.h"
 #include "serial_debug.h"
+#include "01d290_album.h"
 
 /* ====================
  * Compiler Definitions
@@ -24,7 +25,7 @@ char *DEBUG_albumStateNames[] = {
 #endif
 
 #define CHANGE_STATE(x)                                                        \
-    menuState_8c1bc7a8.state_0x18 = x;                                         \
+    var_menuState_8c1bc7a8.state_0x18 = x;                                         \
     LOG_DEBUG(("[ALBUM] State changed: %s\n", DEBUG_albumStateNames[x]))
 
 /* =================
@@ -69,8 +70,8 @@ extern PDS_PERIPHERAL var_peripherals_8c1ba35c[2];
 extern SDMIDI var_midiHandles_8c0fcd28[7];
 extern NJS_POINT2 init_8c045170[6];
 extern NJS_TEXMEMLIST var_tex_8c157af8;
-extern ResourceGroupInfo albumResourceGroup_8c045160;
-extern Bool isFading_8c226568;
+extern ResourceGroupInfo init_albumResourceGroup_8c045160;
+extern Bool var_isFading_8c226568;
 extern int init_8c03bd80;
 
 /* ====================
@@ -92,14 +93,14 @@ void AlbumDrawGrid_8c01d290(void)
     int spriteNo = 1;
 
     /* State 5 (viewing a letter) hides the grid. */
-    if (menuState_8c1bc7a8.state_0x18 == ALBUM_STATE_VIEWING) {
+    if (var_menuState_8c1bc7a8.state_0x18 == ALBUM_STATE_VIEWING) {
         return;
     }
 
     for (i = 0; i < 6; i++, spriteNo++) {
         if (var_progress_8c1ba1cc.letters_0x2c[i]) {
             drawSprite_8c014f54(
-                &menuState_8c1bc7a8.resourceGroupB_0x0c,
+                &var_menuState_8c1bc7a8.resourceGroupB_0x0c,
                 spriteNo,
                 0.0, 0.0, -4.0
             );
@@ -107,7 +108,7 @@ void AlbumDrawGrid_8c01d290(void)
     }
 
     drawSprite_8c014f54(
-        &menuState_8c1bc7a8.resourceGroupB_0x0c,
+        &var_menuState_8c1bc7a8.resourceGroupB_0x0c,
         0,
         0.0, 0.0, -5.0
     );
@@ -115,10 +116,10 @@ void AlbumDrawGrid_8c01d290(void)
 
 void AlbumMenuTask_8c01d300(Task *task, void *state)
 {
-    int slot = menuState_8c1bc7a8.selected_0x38;
+    int slot = var_menuState_8c1bc7a8.selected_0x38;
     int press = var_peripherals_8c1ba35c[0].press;
 
-    switch (menuState_8c1bc7a8.state_0x18) {
+    switch (var_menuState_8c1bc7a8.state_0x18) {
         case ALBUM_STATE_INIT: {
             if (isPvmReady_8c01432a()) {
                 return;
@@ -131,7 +132,7 @@ void AlbumMenuTask_8c01d300(Task *task, void *state)
         }
 
         case ALBUM_STATE_FADE_IN: {
-            if (!isFading_8c226568) {
+            if (!var_isFading_8c226568) {
                 if (task->field_0x08) {
                     CHANGE_STATE(ALBUM_STATE_IDLE);
                 } else {
@@ -221,15 +222,15 @@ void AlbumMenuTask_8c01d300(Task *task, void *state)
                 }
             }
 
-            if (slot != menuState_8c1bc7a8.selected_0x38) {
+            if (slot != var_menuState_8c1bc7a8.selected_0x38) {
                 /* Selection moved: lerp the cursor to the new slot. */
                 CHANGE_STATE(ALBUM_STATE_ANIMATING);
-                menuState_8c1bc7a8.pos.cursor.cursorTarget_0x28.x = init_8c045170[slot].x;
-                menuState_8c1bc7a8.pos.cursor.cursorTarget_0x28.y = init_8c045170[slot].y;
-                menuState_8c1bc7a8.cursorVelocity_0x30.x =
-                    (init_8c045170[slot].x - menuState_8c1bc7a8.pos.cursor.cursor_0x20.x) / 6.0;
-                menuState_8c1bc7a8.cursorVelocity_0x30.y =
-                    (init_8c045170[slot].y - menuState_8c1bc7a8.pos.cursor.cursor_0x20.y) / 6.0;
+                var_menuState_8c1bc7a8.pos.cursor.cursorTarget_0x28.x = init_8c045170[slot].x;
+                var_menuState_8c1bc7a8.pos.cursor.cursorTarget_0x28.y = init_8c045170[slot].y;
+                var_menuState_8c1bc7a8.cursorVelocity_0x30.x =
+                    (init_8c045170[slot].x - var_menuState_8c1bc7a8.pos.cursor.cursor_0x20.x) / 6.0;
+                var_menuState_8c1bc7a8.cursorVelocity_0x30.y =
+                    (init_8c045170[slot].y - var_menuState_8c1bc7a8.pos.cursor.cursor_0x20.y) / 6.0;
                 sdMidiPlay(var_midiHandles_8c0fcd28[0], 1, 3, 0);
             } else if (press & PDD_DGT_TA) {
                 /* Open the selected letter. */
@@ -245,10 +246,10 @@ void AlbumMenuTask_8c01d300(Task *task, void *state)
             }
 
             drawSprite_8c014f54(
-                &menuState_8c1bc7a8.resourceGroupB_0x0c,
+                &var_menuState_8c1bc7a8.resourceGroupB_0x0c,
                 0xd,
-                menuState_8c1bc7a8.pos.cursor.cursor_0x20.x,
-                menuState_8c1bc7a8.pos.cursor.cursor_0x20.y,
+                var_menuState_8c1bc7a8.pos.cursor.cursor_0x20.x,
+                var_menuState_8c1bc7a8.pos.cursor.cursor_0x20.y,
                 -2.0
             );
             break;
@@ -260,10 +261,10 @@ void AlbumMenuTask_8c01d300(Task *task, void *state)
             }
 
             drawSprite_8c014f54(
-                &menuState_8c1bc7a8.resourceGroupB_0x0c,
+                &var_menuState_8c1bc7a8.resourceGroupB_0x0c,
                 0xd,
-                menuState_8c1bc7a8.pos.cursor.cursor_0x20.x,
-                menuState_8c1bc7a8.pos.cursor.cursor_0x20.y,
+                var_menuState_8c1bc7a8.pos.cursor.cursor_0x20.x,
+                var_menuState_8c1bc7a8.pos.cursor.cursor_0x20.y,
                 -2.0
             );
             break;
@@ -276,7 +277,7 @@ void AlbumMenuTask_8c01d300(Task *task, void *state)
             }
 
             drawSprite_8c014f54(
-                &menuState_8c1bc7a8.resourceGroupB_0x0c,
+                &var_menuState_8c1bc7a8.resourceGroupB_0x0c,
                 slot + 7,
                 0.0, 0.0, -3.0
             );
@@ -284,14 +285,14 @@ void AlbumMenuTask_8c01d300(Task *task, void *state)
         }
 
         case ALBUM_STATE_FADE_OUT: {
-            if (!isFading_8c226568) {
+            if (!var_isFading_8c226568) {
                 if (init_8c03bd80) {
                     return;
                 }
                 LOG_DEBUG(("[ALBUM] AlbumMenuTask_8c01d300: fade-out complete, switching screen\n"));
-                menuState_8c1bc7a8.field_0x3c = 1;
-                menuState_8c1bc7a8.field_0x40 = 1;
-                menuState_8c1bc7a8.pos.cursor.cursor_0x20.x = 0.0;
+                var_menuState_8c1bc7a8.field_0x3c = 1;
+                var_menuState_8c1bc7a8.field_0x40 = 1;
+                var_menuState_8c1bc7a8.pos.cursor.cursor_0x20.x = 0.0;
                 FUN_8c016182();
                 CourseMenuFUN_8c017ef2();
                 return;
@@ -301,7 +302,7 @@ void AlbumMenuTask_8c01d300(Task *task, void *state)
     }
 
     AlbumDrawGrid_8c01d290();
-    menuState_8c1bc7a8.selected_0x38 = slot;
+    var_menuState_8c1bc7a8.selected_0x38 = slot;
 }
 
 /* Album task entry: reset to INIT, park the cursor on the first received
@@ -317,9 +318,9 @@ void AlbumSwitchFromTask_8c01d6e2(Task *task)
 
     for (i = 0; i < 6; i++) {
         if (var_progress_8c1ba1cc.letters_0x2c[i]) {
-            menuState_8c1bc7a8.pos.cursor.cursor_0x20.x = init_8c045170[i].x;
-            menuState_8c1bc7a8.pos.cursor.cursor_0x20.y = init_8c045170[i].y;
-            menuState_8c1bc7a8.selected_0x38 = i;
+            var_menuState_8c1bc7a8.pos.cursor.cursor_0x20.x = init_8c045170[i].x;
+            var_menuState_8c1bc7a8.pos.cursor.cursor_0x20.y = init_8c045170[i].y;
+            var_menuState_8c1bc7a8.selected_0x38 = i;
             break;
         }
     }
@@ -327,13 +328,13 @@ void AlbumSwitchFromTask_8c01d6e2(Task *task)
     /* field_0x08 tells FADE_IN whether a letter is available (-> IDLE vs DIALOG). */
     task->field_0x08 = i < 6;
 
-    CourseMenuFreeResourceGroup_8c0185c4(&menuState_8c1bc7a8.resourceGroupA_0x00);
+    CourseMenuFreeResourceGroup_8c0185c4(&var_menuState_8c1bc7a8.resourceGroupA_0x00);
     njGarbageTexture(&var_tex_8c157af8, 0xc00);
     AsqInitQueues_11f36(8, 0, 0, 8);
     AsqResetQueues_11f6c();
     CourseMenuRequestSysResgrp_8c018568(
-        &menuState_8c1bc7a8.resourceGroupB_0x0c,
-        &albumResourceGroup_8c045160
+        &var_menuState_8c1bc7a8.resourceGroupB_0x0c,
+        &init_albumResourceGroup_8c045160
     );
     setPvmReady_8c014330();
     AsqProcessQueues_11fe0(&AsqNop_11120, 0, 0, 0, &resetPvmReady_8c014322);

@@ -1,5 +1,6 @@
 /* 8c010e90 */
 #include <shinobi.h>
+#include "010e90.h"
 
 /* === Workarounds === */
 /* TODO */
@@ -133,7 +134,7 @@ void vib_8c010e90(int port) {
     }
 }
 
-vib_8c010f7a(int param) {
+void vib_8c010f7a(int param) {
     if (param < 8) {
         if (var_unknownVibStructA_8c157a48.field_0x0c == 1) {
             if (param > var_unknownVibStructA_8c157a48.index_0x00) {
@@ -146,13 +147,13 @@ vib_8c010f7a(int param) {
     }
 }
 
-vib_8c010fae(int port) {
+void vib_8c010fae(int port) {
     if (var_unknownVibStructA_8c157a48.index_0x00 != 7) {
         vib_8c010e90(port);
     }
 }
 
-vibClear_8c010fbe() {
+void vibClear_8c010fbe() {
     memset(&var_unknownVibStructA_8c157a48, 0, sizeof(UnknownVibStructA));
     var_unknownVibStructA_8c157a48.index_0x00 = 7;
 }

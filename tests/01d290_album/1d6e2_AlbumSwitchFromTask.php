@@ -11,7 +11,7 @@ if (!function_exists('fdec')) {
 return new class extends TestCase {
     public function test_parks_cursor_on_first_received_letter(): void
     {
-        $this->setSize('_menuState_8c1bc7a8', 0x7c);
+        $this->setSize('_var_menuState_8c1bc7a8', 0x7c);
         $this->setSize('_var_progress_8c1ba1cc', 0x94);
         $this->setSize('_init_8c045170', 0x30);
 
@@ -37,7 +37,7 @@ return new class extends TestCase {
 
     public function test_no_letters_leaves_task_pending_flag_clear(): void
     {
-        $this->setSize('_menuState_8c1bc7a8', 0x7c);
+        $this->setSize('_var_menuState_8c1bc7a8', 0x7c);
         $this->setSize('_var_progress_8c1ba1cc', 0x94);
         $this->setSize('_init_8c045170', 0x30);
 
@@ -61,7 +61,7 @@ return new class extends TestCase {
 
     private function m(int $offset): int
     {
-        return $this->addressOf('_menuState_8c1bc7a8') + $offset;
+        return $this->addressOf('_var_menuState_8c1bc7a8') + $offset;
     }
 
     private function seedLetters(array $letters): void
@@ -89,7 +89,7 @@ return new class extends TestCase {
         $this->shouldCall('_AsqResetQueues_11f6c');
         $this->shouldCall('_CourseMenuRequestSysResgrp_8c018568')->with(
             $this->m(0x0c),
-            $this->addressOf('_albumResourceGroup_8c045160'),
+            $this->addressOf('_init_albumResourceGroup_8c045160'),
         );
         $this->shouldCall('_setPvmReady_8c014330');
         $this->shouldCall('_AsqProcessQueues_11fe0')->with(

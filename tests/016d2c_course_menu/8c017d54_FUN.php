@@ -15,10 +15,10 @@ return new class extends TestCase {
         $this->resolveSymbols();
 
         // Seed game mode = Story (0)
-        $this->initUint32($this->addressOf('_var_game_mode_8c1bb8fc'), 0);
+        $this->initUint32($this->addressOf('_var_gameMode_8c1bb8fc'), 0);
 
         // Seed cursor target (two 32-bit values copied by the routine)
-        $menu = $this->addressOf('_menuState_8c1bc7a8');
+        $menu = $this->addressOf('_var_menuState_8c1bc7a8');
         $targetX = 0x11223344;
         $targetY = 0x55667788;
         $this->initUint32($menu + 0x28, $targetX);
@@ -87,10 +87,10 @@ return new class extends TestCase {
         $this->resolveSymbols();
 
         // Seed game mode = Free Run (non-zero)
-        $this->initUint32($this->addressOf('_var_game_mode_8c1bb8fc'), 1);
+        $this->initUint32($this->addressOf('_var_gameMode_8c1bb8fc'), 1);
 
         // Seed cursor target and current
-        $menu = $this->addressOf('_menuState_8c1bc7a8');
+        $menu = $this->addressOf('_var_menuState_8c1bc7a8');
         $targetX = 0x99AABBCC;
         $targetY = 0xDDEEFF00;
         $this->initUint32($menu + 0x28, $targetX);
@@ -149,12 +149,12 @@ return new class extends TestCase {
 
     private function resolveSymbols(): void {
         // Menu state must cover cursor pos/target and a flag at +0x72
-        $this->setSize('_menuState_8c1bc7a8', 0x80);
+        $this->setSize('_var_menuState_8c1bc7a8', 0x80);
 
         // PlayerProgress blob ? we only need courses array starting at +0x44
         $this->setSize('_var_progress_8c1ba1cc', 0x200);
 
         // Game mode flag (0 = Story, !=0 = Free Run)
-        $this->setSize('_var_game_mode_8c1bb8fc', 4);
+        $this->setSize('_var_gameMode_8c1bb8fc', 4);
     }
 };

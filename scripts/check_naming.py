@@ -54,8 +54,7 @@ DEBUG_NAMES_RE = re.compile(r"^DEBUG_[A-Za-z][A-Za-z0-9]*$")
 # are correct) plus hand-written infra/tooling and SDK-header inline helpers, neither
 # of which corresponds to a decompiled game address.
 NO_ADDR_ALLOWLIST = {
-    "BupInit", "BupExit", "BupGetErrorString", "BupGetOperationString",
-    "BupLoad", "BupSave", "BupDelete",
+    "BupExit",
     "main",
     "scif_flush", "scif_getchar", "scif_init", "scif_isdata",
     "scif_putchar", "scif_puts",

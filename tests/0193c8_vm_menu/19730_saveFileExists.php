@@ -172,7 +172,7 @@ return new class extends TestCase {
 
     private function initBackupInfo($i, $info)
     {
-        $address = $this->addressOf('_gBupInfo_8c1bc4ac') + $i * 0x5c;
+        $address = $this->addressOf('_var_gBupInfo_8c1bc4ac') + $i * 0x5c;
         $this->initUint32Array($address, array_fill(0, 0x5c / 4, 0));
         $this->initUint16($address + 0x0, $info['ready']);
         $this->initUint16($address + 0x3a, $info['free_user_blocks']);

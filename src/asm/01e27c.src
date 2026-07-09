@@ -1,10 +1,10 @@
 ; 8c01e27c
           .IMPORT     _menuTextboxText_8c02af1c
           .IMPORT     _drawSprite_8c014f54
-          .IMPORT     _menuState_8c1bc7a8
+          .IMPORT     _var_menuState_8c1bc7a8
           .IMPORT     _init_8c03bd80
           .IMPORT     _var_8c22640c
-          .IMPORT     _isFading_8c226568
+          .IMPORT     _var_isFading_8c226568
           .IMPORT     _isPvmReady_8c01432a
           .IMPORT     _AsqFreeQueues_11f7e
           .IMPORT     _init_8c0451b4
@@ -36,7 +36,7 @@
           .IMPORT     _AsqNop_11120
           .IMPORT     _AsqProcessQueues_11fe0
           .IMPORT     _init_8c0451ec
-          .IMPORT     _var_game_mode_8c1bb8fc
+          .IMPORT     _var_gameMode_8c1bb8fc
           .IMPORT     _CourseMenuDrawDateAndExp_8c016ee6
           .IMPORT     _init_8c0451f8
           .IMPORT     _njUserClipping
@@ -224,11 +224,11 @@ LP_GEN_72974:
           .DATA.L _menuTextboxText_8c02af1c ; H'8C01E378
           .DATA.L H'43600000 ; H'8C01E37C
           .DATA.L _drawSprite_8c014f54 ; H'8C01E380
-          .DATA.L _menuState_8c1bc7a8 ; H'8C01E384
+          .DATA.L _var_menuState_8c1bc7a8 ; H'8C01E384
           .DATA.L _init_8c03bd80 ; H'8C01E388
           .DATA.L H'C0900000 ; H'8C01E38C
           .DATA.L _var_8c22640c ; H'8C01E390
-          .DATA.L _isFading_8c226568 ; H'8C01E394
+          .DATA.L _var_isFading_8c226568 ; H'8C01E394
           .DATA.L _isPvmReady_8c01432a ; H'8C01E398
           .DATA.L _AsqFreeQueues_11f7e ; H'8C01E39C
           .DATA.L _init_8c0451b4 ; H'8C01E3A0
@@ -541,11 +541,11 @@ LP_GEN_38636:
           .DATA.L _pushLoadingTask_8c013310 ; H'8C01E608
           .DATA.L _FUN_8c01e27c ; H'8C01E60C
           .DATA.L _setTaskAction_8c014b3e ; H'8C01E610
-          .DATA.L _menuState_8c1bc7a8 + H'18 ; H'8C01E614
+          .DATA.L _var_menuState_8c1bc7a8 + H'18 ; H'8C01E614
           .DATA.L _AsqInitQueues_11f36 ; H'8C01E618
           .DATA.L _AsqResetQueues_11f6c ; H'8C01E61C
           .DATA.L _init_8c044284 ; H'8C01E620
-          .DATA.L _menuState_8c1bc7a8 + H'0C ; H'8C01E624
+          .DATA.L _var_menuState_8c1bc7a8 + H'0C ; H'8C01E624
           .DATA.L _CourseMenuRequestSysResgrp_8c018568 ; H'8C01E628
           .DATA.L _setPvmReady_8c014330 ; H'8C01E62C
           .DATA.L _resetPvmReady_8c014322 ; H'8C01E630
@@ -744,8 +744,8 @@ LAB_8c01e776:
 LP_GEN_92116:
           .RES.W 1 ; H'8C01E792
           .DATA.L _var_8c22640c ; H'8C01E794
-          .DATA.L _menuState_8c1bc7a8 ; H'8C01E798
-          .DATA.L _isFading_8c226568 ; H'8C01E79C
+          .DATA.L _var_menuState_8c1bc7a8 ; H'8C01E798
+          .DATA.L _var_isFading_8c226568 ; H'8C01E79C
           .DATA.L _var_midiHandles_8c0fcd28 ; H'8C01E7A0
           .DATA.L _sdMidiPlay ; H'8C01E7A4
           .DATA.L H'10+_var_peripherals_8c1ba35c ; H'8C01E7A8
@@ -905,7 +905,7 @@ LAB_8c01e8cc:
           MOV.L       @R15+,R14
 LP_GEN_46961:
           .DATA.W H'00FF ; H'8C01E8DE
-          .DATA.L _var_game_mode_8c1bb8fc ; H'8C01E8E0
+          .DATA.L _var_gameMode_8c1bb8fc ; H'8C01E8E0
           .DATA.L _CourseMenuDrawDateAndExp_8c016ee6 ; H'8C01E8E4
           .DATA.L H'C0800000 ; H'8C01E8E8
           .DATA.L _drawSprite_8c014f54 ; H'8C01E8EC
@@ -1225,7 +1225,7 @@ LAB_8c01eb08:
 LP_GEN_88702:
           .DATA.L _FUN_8c01e63c ; H'8C01EB48
           .DATA.L _setTaskAction_8c014b3e ; H'8C01EB4C
-          .DATA.L _menuState_8c1bc7a8 ; H'8C01EB50
+          .DATA.L _var_menuState_8c1bc7a8 ; H'8C01EB50
           .DATA.L _const_8c038984 ; H'8C01EB54
           .DATA.L _swapMessageBoxFor_8c02aefc ; H'8C01EB58
           .DATA.L _AsqInitQueues_11f36 ; H'8C01EB5C
@@ -1238,7 +1238,7 @@ LP_GEN_88702:
           .DATA.L _AsqProcessQueues_11fe0 ; H'8C01EB78
           .DATA.L _AsqFreeQueues_11f7e ; H'8C01EB7C
           .DATA.L _push_fadein_8c022a9c ; H'8C01EB80
-          .DATA.L _var_game_mode_8c1bb8fc ; H'8C01EB84
+          .DATA.L _var_gameMode_8c1bb8fc ; H'8C01EB84
           .DATA.L _var_8c1bb8b8 ; H'8C01EB88
           .DATA.L _var_8c1bb8bc ; H'8C01EB8C
           .DATA.L _var_progress_8c1ba1cc ; H'8C01EB90
@@ -1546,11 +1546,11 @@ LAB_8c01edc4:
           NOP
 LP_GEN_52292:
           .RES.W 1 ; H'8C01EDDA
-          .DATA.L _menuState_8c1bc7a8 ; H'8C01EDDC
+          .DATA.L _var_menuState_8c1bc7a8 ; H'8C01EDDC
           .DATA.L _var_progress_8c1ba1cc ; H'8C01EDE0
           .DATA.L _drawSprite_8c014f54 ; H'8C01EDE4
           .DATA.L _var_8c1bb8bc ; H'8C01EDE8
-          .DATA.L _isFading_8c226568 ; H'8C01EDEC
+          .DATA.L _var_isFading_8c226568 ; H'8C01EDEC
           .DATA.L _swapMessageBoxFor_8c02aefc ; H'8C01EDF0
           .DATA.L _sdMidiPlay ; H'8C01EDF4
           .DATA.L _var_midiHandles_8c0fcd28 ; H'8C01EDF8
@@ -1713,7 +1713,7 @@ LP_GEN_95699:
           .DATA.L _var_menuTextboxCharLimit_8c225fb8 ; H'8C01EF3C
           .DATA.L _var_8c22640c ; H'8C01EF40
           .DATA.L _init_8c03bd80 ; H'8C01EF44
-          .DATA.L _var_game_mode_8c1bb8fc ; H'8C01EF48
+          .DATA.L _var_gameMode_8c1bb8fc ; H'8C01EF48
           .DATA.L _var_8c1bb8b8 ; H'8C01EF4C
           .DATA.L _var_8c22642c ; H'8C01EF50
           .DATA.L H'0001869F ; H'8C01EF54
@@ -1790,7 +1790,7 @@ LP_GEN_11122:
           .DATA.L H'C0A00000 ; H'8C01EFE0
           .DATA.L H'43A00000 ; H'8C01EFE4
           .DATA.L H'43640000 ; H'8C01EFE8
-          .DATA.L _var_game_mode_8c1bb8fc ; H'8C01EFEC
+          .DATA.L _var_gameMode_8c1bb8fc ; H'8C01EFEC
           .DATA.L _CourseMenuDrawDateAndExp_8c016ee6 ; H'8C01EFF0
           .DATA.L H'42D80000 ; H'8C01EFF4
           .DATA.L H'42400000 ; H'8C01EFF8
@@ -1933,7 +1933,7 @@ LP_GEN_11294:
           .DATA.L H'C0A00000 ; H'8C01F100
           .DATA.L H'C0C00000 ; H'8C01F104
           .DATA.L H'C0400000 ; H'8C01F108
-          .DATA.L _var_game_mode_8c1bb8fc ; H'8C01F10C
+          .DATA.L _var_gameMode_8c1bb8fc ; H'8C01F10C
           .DATA.L H'C1000000 ; H'8C01F110
 _FUN_8c01f114:
           MOV.L       R14,@-R15
@@ -2032,7 +2032,7 @@ LP_GEN_22524:
           .DATA.L _var_playMode_8c1bb8d0 ; H'8C01F1C8
           .DATA.L LAB_8c01ebf2 ; H'8C01F1CC
           .DATA.L _setTaskAction_8c014b3e ; H'8C01F1D0
-          .DATA.L _menuState_8c1bc7a8 ; H'8C01F1D4
+          .DATA.L _var_menuState_8c1bc7a8 ; H'8C01F1D4
           .DATA.L _var_8c22642c ; H'8C01F1D8
           .DATA.L _var_award_8c1bb8f8 ; H'8C01F1DC
           .DATA.L _var_8c226414 ; H'8C01F1E0
@@ -2097,7 +2097,7 @@ LAB_8c01f264:
           NOP
 LP_GEN_80134:
           .RES.W 1 ; H'8C01F272
-          .DATA.L _menuState_8c1bc7a8 ; H'8C01F274
+          .DATA.L _var_menuState_8c1bc7a8 ; H'8C01F274
           .DATA.L _var_award_8c1bb8f8 ; H'8C01F278
           .DATA.L _var_8c226414 ; H'8C01F27C
           .DATA.L _var_8c1bb8bc ; H'8C01F280

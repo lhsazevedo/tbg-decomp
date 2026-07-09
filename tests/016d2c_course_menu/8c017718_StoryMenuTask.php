@@ -24,7 +24,7 @@ return new Class extends TestCase {
 
         $this->shouldCall('_isPvmReady_8c01432a')->andReturn(0);
         $this->shouldCall('_AsqFreeQueues_11f7e');
-        $this->shouldWriteLong($this->addressOf('_menuState_8c1bc7a8') + 0x18, 1);
+        $this->shouldWriteLong($this->addressOf('_var_menuState_8c1bc7a8') + 0x18, 1);
         $this->shouldCall('_FUN_8c010d8a');
         $this->shouldCall('_snd_8c010cd6')->with(0, 15);
         $this->shouldCall('_push_fadein_8c022a9c')->with(10);
@@ -36,7 +36,7 @@ return new Class extends TestCase {
 
         $this->initMenuStateUint32(0x18, 1);
         $this->initMenuStateUint32(0x60, 42);
-        $this->initUint32($this->addressOf('_isFading_8c226568'), 1);
+        $this->initUint32($this->addressOf('_var_isFading_8c226568'), 1);
         $this->initUint32($this->addressOf('_var_menuTextboxCharLimit_8c225fb8'), 21);
 
         $this->call('_CourseMenuStoryMenuTask_8c017718');
@@ -54,14 +54,14 @@ return new Class extends TestCase {
 
         $this->initMenuStateUint32(0x18, 1);
         $this->initMenuStateUint32(0x60, 42);
-        $this->initUint32($this->addressOf('_isFading_8c226568'), 0);
+        $this->initUint32($this->addressOf('_var_isFading_8c226568'), 0);
         $this->initUint32($this->addressOf('_var_menuTextboxCharLimit_8c225fb8'), 21);
         $this->initUint32($this->addressOf('_var_dialogQueue_8c225fbc') + 4 * 0, 32);
 
         $this->call('_CourseMenuStoryMenuTask_8c017718');
 
         $this->shouldCall('_CourseMenuPushDialogTask_8c0170c6')->with(32);
-        $this->shouldWriteLong($this->addressOf('_menuState_8c1bc7a8') + 0x18, 2);
+        $this->shouldWriteLong($this->addressOf('_var_menuState_8c1bc7a8') + 0x18, 2);
 
         $this->shouldRenderFrame(
             spriteNo: 42,
@@ -133,7 +133,7 @@ return new Class extends TestCase {
         $this->shouldWriteLong($task + 0x08, 1);
 
         // Last sequence: advance state and swap message box
-        $this->shouldWriteLong($this->addressOf('_menuState_8c1bc7a8') + 0x18, 3);
+        $this->shouldWriteLong($this->addressOf('_var_menuState_8c1bc7a8') + 0x18, 3);
         $this->shouldCall('_swapMessageBoxFor_8c02aefc')->with("");
 
         // Epilogue rendering
@@ -372,7 +372,7 @@ return new Class extends TestCase {
 
         // ANIMATING branch: interpolate returns true -> write state = IDLE (3)
         $this->shouldCall('_CourseMenuInterpolateCursor_8c016d2c')->andReturn(1);
-        $this->shouldWriteLong($this->addressOf('_menuState_8c1bc7a8') + 0x18, 3);
+        $this->shouldWriteLong($this->addressOf('_var_menuState_8c1bc7a8') + 0x18, 3);
 
         // Epilogue rendering
         $this->shouldRenderFrame(
@@ -399,7 +399,7 @@ return new Class extends TestCase {
 
         $this->call('_CourseMenuStoryMenuTask_8c017718')->with($task, 0);
 
-        $base = $this->addressOf('_menuState_8c1bc7a8');
+        $base = $this->addressOf('_var_menuState_8c1bc7a8');
 
         // timer++
         $this->shouldWriteLong($base + 0x68, 9);
@@ -426,7 +426,7 @@ return new Class extends TestCase {
 
         $this->call('_CourseMenuStoryMenuTask_8c017718')->with($task, 0);
 
-        $base = $this->addressOf('_menuState_8c1bc7a8');
+        $base = $this->addressOf('_var_menuState_8c1bc7a8');
 
         // timer++
         $this->shouldWriteLong($base + 0x68, 11);
@@ -444,14 +444,14 @@ return new Class extends TestCase {
 
         $this->initMenuStateUint32(0x18, 6);
         $this->initMenuStateUint32(0x68, 7);
-        $this->initUint32($this->addressOf('_isFading_8c226568'), 1);
+        $this->initUint32($this->addressOf('_var_isFading_8c226568'), 1);
         $this->initMenuStateUint32(0x60, 42);
         $this->initUint32($this->addressOf('_var_menuTextboxCharLimit_8c225fb8'), 21);
 
         $this->call('_CourseMenuStoryMenuTask_8c017718');
 
-        $this->shouldWriteLong($this->addressOf('_menuState_8c1bc7a8') + 0x68, 8);
-        $this->shouldWriteLong($this->addressOf('_menuState_8c1bc7a8') + 0x48, 0);
+        $this->shouldWriteLong($this->addressOf('_var_menuState_8c1bc7a8') + 0x68, 8);
+        $this->shouldWriteLong($this->addressOf('_var_menuState_8c1bc7a8') + 0x48, 0);
         $this->shouldRenderFrame(
             spriteNo: 42,
             textboxIndex: 21,
@@ -465,7 +465,7 @@ return new Class extends TestCase {
 
         $this->initMenuStateUint32(0x18, 6);
         $this->initMenuStateUint32(0x68, 7);
-        $this->initUint32($this->addressOf('_isFading_8c226568'), 0);
+        $this->initUint32($this->addressOf('_var_isFading_8c226568'), 0);
         $this->initMenuStateUint32(0x60, 42);
         $this->initUint32($this->addressOf('_var_menuTextboxCharLimit_8c225fb8'), 21);
         $this->initUint32($this->addressOf('_init_8c03bd80'), 1);
@@ -480,7 +480,7 @@ return new Class extends TestCase {
         // Enter FADE_OUT
         $this->initMenuStateUint32(0x18, 6);
         // No fade in progress, init flag cleared
-        $this->initUint32($this->addressOf('_isFading_8c226568'), 0);
+        $this->initUint32($this->addressOf('_var_isFading_8c226568'), 0);
         $this->initUint32($this->addressOf('_init_8c03bd80'), 0);
 
         // Choose coordinates that DISABLE the free path: field_0x3c == 1 && field_0x40 == 0
@@ -493,7 +493,7 @@ return new Class extends TestCase {
         // Invoke frame
         $this->call('_CourseMenuStoryMenuTask_8c017718')->with($task, 0);
 
-        $base = $this->addressOf('_menuState_8c1bc7a8');
+        $base = $this->addressOf('_var_menuState_8c1bc7a8');
 
         // No freeResourceGroup path here
 
@@ -517,7 +517,7 @@ return new Class extends TestCase {
 
         // Enter FADE_OUT and ensure wefre allowed to proceed
         $this->initMenuStateUint32(0x18, 6);
-        $this->initUint32($this->addressOf('_isFading_8c226568'), 0);
+        $this->initUint32($this->addressOf('_var_isFading_8c226568'), 0);
         $this->initUint32($this->addressOf('_init_8c03bd80'), 0);
 
         // Coordinates that TRIGGER the free path: field_0x3c != 1 (e.g., 2) || field_0x40 != 0
@@ -530,7 +530,7 @@ return new Class extends TestCase {
         // Invoke
         $this->call('_CourseMenuStoryMenuTask_8c017718')->with($task, 0);
 
-        $base = $this->addressOf('_menuState_8c1bc7a8');
+        $base = $this->addressOf('_var_menuState_8c1bc7a8');
 
         // Conditional free branch
         $this->shouldCall('_CourseMenuFreeResourceGroup_8c0185c4')->with($base + 0x0c);
@@ -557,7 +557,7 @@ return new Class extends TestCase {
 
         // Enter FADE_OUT_TO_MAIN_MENU
         $this->initMenuStateUint32(0x18, 7);
-        $this->initUint32($this->addressOf('_isFading_8c226568'), 1); // still fading -> break
+        $this->initUint32($this->addressOf('_var_isFading_8c226568'), 1); // still fading -> break
 
         // Epilogue inputs
         $this->initMenuStateUint32(0x60, 42);
@@ -581,7 +581,7 @@ return new Class extends TestCase {
 
         // Enter FADE_OUT_TO_MAIN_MENU
         $this->initMenuStateUint32(0x18, 7);
-        $this->initUint32($this->addressOf('_isFading_8c226568'), 0); // fade done
+        $this->initUint32($this->addressOf('_var_isFading_8c226568'), 0); // fade done
         $this->initUint32($this->addressOf('_init_8c03bd80'), 1);
 
         // Epilogue inputs
@@ -599,7 +599,7 @@ return new Class extends TestCase {
 
         // Enter FADE_OUT_TO_MAIN_MENU
         $this->initMenuStateUint32(0x18, 7);
-        $this->initUint32($this->addressOf('_isFading_8c226568'), 0); // fade finished
+        $this->initUint32($this->addressOf('_var_isFading_8c226568'), 0); // fade finished
         $this->initUint32($this->addressOf('_init_8c03bd80'), 0);
 
         // (Epilogue inputs would be irrelevant?this path returns early)
@@ -614,15 +614,15 @@ return new Class extends TestCase {
     }
 
     private function initMenuStateUint32($offset, $value) {
-        $this->initUint32($this->addressOf('_menuState_8c1bc7a8') + $offset, $value);
+        $this->initUint32($this->addressOf('_var_menuState_8c1bc7a8') + $offset, $value);
     }
 
     private function resolveSymbols(): void
     {
-        $this->setSize('_menuState_8c1bc7a8', 0x6c);
+        $this->setSize('_var_menuState_8c1bc7a8', 0x6c);
         $this->setSize('_var_dialogQueue_8c225fbc', 4 * 4);
         $this->setSize('_init_8c03bd80', 4);
-        $this->setSize('_isFading_8c226568', 4);
+        $this->setSize('_var_isFading_8c226568', 4);
         $this->setSize('_var_dialogSequenceIsActive_8c225fb4', 4); // dialog-running flag
         $this->setSize('_const_8c03628c', 4);
         $this->setSize('_var_progress_8c1ba1cc', 0x94);
@@ -677,7 +677,7 @@ return new Class extends TestCase {
         float $priority,
     ) {
         $this->shouldCall('_drawSprite_8c014f54')->with(
-            $this->addressOf('_menuState_8c1bc7a8') + $resourceGroup,
+            $this->addressOf('_var_menuState_8c1bc7a8') + $resourceGroup,
             $spriteNo,
             $x,
             $y,

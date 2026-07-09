@@ -28,10 +28,10 @@
           .IMPORT     _BupSave_8c014bcc
           .IMPORT     _var_8c157a7c
           .IMPORT     _drawSprite_8c014f54
-          .IMPORT     _menuState_8c1bc7a8
+          .IMPORT     _var_menuState_8c1bc7a8
           .IMPORT     _VmMenuUpdateVmuStatus_1967c
           .IMPORT     _var_vmuStatus_8c226048
-          .IMPORT     _isFading_8c226568
+          .IMPORT     _var_isFading_8c226568
           .IMPORT     _swapMessageBoxFor_8c02aefc
           .IMPORT     _isPvmReady_8c01432a
           .IMPORT     _AsqFreeQueues_11f7e
@@ -51,7 +51,7 @@
           .IMPORT     _const_8c0382a4
           .IMPORT     _var_midiHandles_8c0fcd28
           .IMPORT     _sdMidiPlay
-          .IMPORT     _var_game_mode_8c1bb8fc
+          .IMPORT     _var_gameMode_8c1bb8fc
           .IMPORT     _const_8c0382d8
           .IMPORT     _const_8c03830c
           .IMPORT     _VmMenuUnmountVms_194de
@@ -592,13 +592,13 @@ LP_GEN_91278:
           .DATA.L H'C0800000 ; H'8C01B560
           .DATA.L H'C0A00000 ; H'8C01B564
           .DATA.L _drawSprite_8c014f54 ; H'8C01B568
-          .DATA.L _menuState_8c1bc7a8 ; H'8C01B56C
+          .DATA.L _var_menuState_8c1bc7a8 ; H'8C01B56C
           .DATA.L _var_selectedVm_8c1ba34c ; H'8C01B570
           .DATA.L _var_8c1ba350 ; H'8C01B574
           .DATA.L _init_saveNames_8c044d50 ; H'8C01B578
           .DATA.L _VmMenuUpdateVmuStatus_1967c ; H'8C01B57C
           .DATA.L _var_vmuStatus_8c226048 ; H'8C01B580
-          .DATA.L _isFading_8c226568 ; H'8C01B584
+          .DATA.L _var_isFading_8c226568 ; H'8C01B584
           .DATA.L _swapMessageBoxFor_8c02aefc ; H'8C01B588
           .DATA.L _isPvmReady_8c01432a ; H'8C01B58C
           .DATA.L _AsqFreeQueues_11f7e ; H'8C01B590
@@ -769,7 +769,7 @@ LP_GEN_26888:
           .DATA.L _const_8c0382a4 ; H'8C01B6D0
           .DATA.L _var_midiHandles_8c0fcd28 ; H'8C01B6D4
           .DATA.L _sdMidiPlay ; H'8C01B6D8
-          .DATA.L _var_game_mode_8c1bb8fc ; H'8C01B6DC
+          .DATA.L _var_gameMode_8c1bb8fc ; H'8C01B6DC
           .DATA.L _const_8c0382d8 ; H'8C01B6E0
           .DATA.L _const_8c03830c ; H'8C01B6E4
           .DATA.L H'10+_var_peripherals_8c1ba35c ; H'8C01B6E8
@@ -1263,7 +1263,7 @@ LP_GEN_62205:
           .DATA.L H'C0E00000 ; H'8C01BAEC
           .DATA.L _FUN_8c01b3ac ; H'8C01BAF0
           .DATA.L _setTaskAction_8c014b3e ; H'8C01BAF4
-          .DATA.L _menuState_8c1bc7a8 ; H'8C01BAF8
+          .DATA.L _var_menuState_8c1bc7a8 ; H'8C01BAF8
           .DATA.L _syMalloc ; H'8C01BAFC
           .DATA.L _var_8c1ba2e0 ; H'8C01BB00
           .DATA.L _var_8c1ba350 ; H'8C01BB04

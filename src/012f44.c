@@ -1,6 +1,7 @@
 /* 8c012f44 */
 #include <shinobi.h>
 #include <njdef.h>
+#include "012f44.h"
 #include "includes.h"
 #include "serial_debug.h"
 #include "014a9c_tasks.h"
@@ -8,6 +9,7 @@
 #include "scif.h"
 #include "011120_asset_queues.h"
 #include "013ae8_route_load.h"
+#include "014b8c_backup.h"
 #include "02fb50_sh4nlfzn_post_data.h"
 
 #define TEX_NUM         3072
@@ -352,10 +354,10 @@ extern void* var_pedestrianAssets_8c1bbfdc;
 extern int var_8c1bb8c4;
 extern int var_demoIndex_8c1bb8d8;
 
-extern void* var_mark_parts_dat_8c1bc41c;
-extern void* var_mark_dat_8c1bc420;
-extern void* var_busstop_parts_dat_8c1bc428;
-extern void* var_busstop_dat_8c1bc42c;
+extern void* var_markPartsDat_8c1bc41c;
+extern void* var_markDat_8c1bc420;
+extern void* var_busstopPartsDat_8c1bc428;
+extern void* var_busstopDat_8c1bc42c;
 extern void* var_loadingResourceGroup_8c1bc3f8[3];
 extern void* var_busFont_8c1ba1c8;
 extern void* var_8c2260ac;
@@ -371,7 +373,6 @@ extern Uint32 var_vibport_8c1ba354;
 extern int init_8c03bd80;
 extern int init_8c03bd84;
 
-extern setPvmReady_8c014330();
 STATIC int var_gdErr_8c18ad14;
 
 STATIC NJS_FOG_TABLE var_fogTable_8c18aaf8;
@@ -719,8 +720,8 @@ void njUserInit_8c0134ec() {
     var_8c227e24 = (void *) -1;
     var_8c2288f8 = (void *) -1;
     var_interiorTexlist_8c1bc438 = (void *) -1;
-    menuState_8c1bc7a8.resourceGroupA_0x00.tlist_0x00 = (void*) -1;
-    menuState_8c1bc7a8.resourceGroupB_0x0c.tlist_0x00 = (void*) -1;
+    var_menuState_8c1bc7a8.resourceGroupA_0x00.tlist_0x00 = (void*) -1;
+    var_menuState_8c1bc7a8.resourceGroupB_0x0c.tlist_0x00 = (void*) -1;
     var_resourceGroup_8c2263a8 = (void *) -1;
     var_8c1ba2e0 = (void *) -1;
     var_8c1ba348 = (void *) -1;
@@ -748,10 +749,10 @@ void njUserInit_8c0134ec() {
     AsqInitQueues_11f36(16, 8, 0, 8);
     AsqResetQueues_11f6c();
 
-    AsqRequestDat_11182("\\SYSTEM", "mark_parts.dat", &var_mark_parts_dat_8c1bc41c);
-    AsqRequestDat_11182("\\SYSTEM", "mark.dat", &var_mark_dat_8c1bc420);
-    AsqRequestDat_11182("\\SYSTEM", "busstop_parts.dat", &var_busstop_parts_dat_8c1bc428);
-    AsqRequestDat_11182("\\SYSTEM", "busstop.dat", &var_busstop_dat_8c1bc42c);
+    AsqRequestDat_11182("\\SYSTEM", "mark_parts.dat", &var_markPartsDat_8c1bc41c);
+    AsqRequestDat_11182("\\SYSTEM", "mark.dat", &var_markDat_8c1bc420);
+    AsqRequestDat_11182("\\SYSTEM", "busstop_parts.dat", &var_busstopPartsDat_8c1bc428);
+    AsqRequestDat_11182("\\SYSTEM", "busstop.dat", &var_busstopDat_8c1bc42c);
 
     /*  TODO: Fix var_loadingResourceGroup_8c1bc3f8 type */ 
     AsqRequestPvm_11ac0("\\SYSTEM", "loading.pvm", &var_loadingResourceGroup_8c1bc3f8[0], 1, 0x80000000);

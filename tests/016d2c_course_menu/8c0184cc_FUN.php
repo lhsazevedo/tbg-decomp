@@ -29,7 +29,7 @@ return new class extends TestCase {
         );
 
         // Step 3: Initialize menuState fields
-        $menuStateBase = $this->addressOf('_menuState_8c1bc7a8');
+        $menuStateBase = $this->addressOf('_var_menuState_8c1bc7a8');
         $this->shouldWriteLong($menuStateBase + 0x18, 0);
         $this->shouldWriteLong($menuStateBase + 0x38, 0);
 
@@ -63,7 +63,7 @@ return new class extends TestCase {
 
     private function resolveSymbols(): void
     {
-        $this->setSize('_menuState_8c1bc7a8', 0x6c);
+        $this->setSize('_var_menuState_8c1bc7a8', 0x6c);
         $this->setSize('_var_tex_8c157af8', 0xc00);
 
         // Function pointers

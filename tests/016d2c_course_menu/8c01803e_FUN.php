@@ -127,7 +127,7 @@ return new class extends TestCase {
     private function shouldDrawDigit(float $x, float $y, int $digit): void
     {
         $this->shouldCall('_drawSprite_8c014f54')->with(
-            $this->addressOf('_menuState_8c1bc7a8') + 0x0c,
+            $this->addressOf('_var_menuState_8c1bc7a8') + 0x0c,
             12 + $digit,
             $x,
             $y,
@@ -137,7 +137,7 @@ return new class extends TestCase {
 
     private function resolveSymbols(): void
     {
-        $this->setSize('_menuState_8c1bc7a8', 0x6c);
+        $this->setSize('_var_menuState_8c1bc7a8', 0x6c);
         $this->setSize('__modls', 4);
         $this->setSize('__divls', 4);
 

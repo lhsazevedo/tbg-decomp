@@ -1,4 +1,5 @@
 #include <shinobi.h>
+#include "010fe8_heap.h"
 
 #define HEAP_FLAG_USED  1
 

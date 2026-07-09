@@ -40,7 +40,7 @@ return new class extends TestCase {
 
     private function resolveSymbols(): void
     {
-        $this->setSize('_gBupInfo_8c1bc4ac', 0x5c * 8);
+        $this->setSize('_var_gBupInfo_8c1bc4ac', 0x5c * 8);
         // Functions
         $this->setSize('_syFree', 0x4);
         $this->setSize('_ClearInfo_8c014c8a', 0x4);
@@ -55,7 +55,7 @@ return new class extends TestCase {
 
     private function initBackupInfo($i, $work)
     {
-        $address = $this->addressOf('_gBupInfo_8c1bc4ac') + $i * 0x5c;
+        $address = $this->addressOf('_var_gBupInfo_8c1bc4ac') + $i * 0x5c;
         $this->initUint32Array($address, array_fill(0, 0x5c / 4, 0));
         $this->initUint32($address + 0x50, $work);
         return $address;

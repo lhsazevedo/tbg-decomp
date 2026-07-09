@@ -1,9 +1,9 @@
 ; 8c01d290
-          .IMPORT     _menuState_8c1bc7a8
+          .IMPORT     _var_menuState_8c1bc7a8
           .IMPORT     _var_progress_8c1ba1cc
           .IMPORT     _drawSprite_8c014f54
           .IMPORT     _var_peripherals_8c1ba35c
-          .IMPORT     _isFading_8c226568
+          .IMPORT     _var_isFading_8c226568
           .IMPORT     _isPvmReady_8c01432a
           .IMPORT     _AsqFreeQueues_11f7e
           .IMPORT     _snd_8c010cd6
@@ -23,7 +23,7 @@
           .IMPORT     _njGarbageTexture
           .IMPORT     _AsqInitQueues_11f36
           .IMPORT     _AsqResetQueues_11f6c
-          .IMPORT     _albumResourceGroup_8c045160
+          .IMPORT     _init_albumResourceGroup_8c045160
           .IMPORT     _CourseMenuRequestSysResgrp_8c018568
           .IMPORT     _setPvmReady_8c014330
           .IMPORT     _resetPvmReady_8c014322
@@ -226,13 +226,13 @@ LAB_8c01d3c8:
           NOP
 LP_GEN_16673:
           .RES.W 1 ; H'8C01D3EE
-          .DATA.L _menuState_8c1bc7a8 ; H'8C01D3F0
+          .DATA.L _var_menuState_8c1bc7a8 ; H'8C01D3F0
           .DATA.L _var_progress_8c1ba1cc ; H'8C01D3F4
           .DATA.L _drawSprite_8c014f54 ; H'8C01D3F8
           .DATA.L H'C0800000 ; H'8C01D3FC
           .DATA.L H'C0A00000 ; H'8C01D400
           .DATA.L _var_peripherals_8c1ba35c ; H'8C01D404
-          .DATA.L _isFading_8c226568 ; H'8C01D408
+          .DATA.L _var_isFading_8c226568 ; H'8C01D408
           .DATA.L _isPvmReady_8c01432a ; H'8C01D40C
           .DATA.L _AsqFreeQueues_11f7e ; H'8C01D410
           .DATA.L _snd_8c010cd6 ; H'8C01D414
@@ -685,7 +685,7 @@ LP_GEN_43132:
           .DATA.L _CourseMenuFUN_8c017ef2 ; H'8C01D764
           .DATA.L _AlbumMenuTask_8c01d300 ; H'8C01D768
           .DATA.L _setTaskAction_8c014b3e ; H'8C01D76C
-          .DATA.L _menuState_8c1bc7a8 ; H'8C01D770
+          .DATA.L _var_menuState_8c1bc7a8 ; H'8C01D770
           .DATA.L _init_8c045170 ; H'8C01D774
           .DATA.L _var_progress_8c1ba1cc ; H'8C01D778
 LAB_8c01d77c:
@@ -738,7 +738,7 @@ LP_GEN_20271:
           .DATA.L _njGarbageTexture ; H'8C01D7D8
           .DATA.L _AsqInitQueues_11f36 ; H'8C01D7DC
           .DATA.L _AsqResetQueues_11f6c ; H'8C01D7E0
-          .DATA.L _albumResourceGroup_8c045160 ; H'8C01D7E4
+          .DATA.L _init_albumResourceGroup_8c045160 ; H'8C01D7E4
           .DATA.L _CourseMenuRequestSysResgrp_8c018568 ; H'8C01D7E8
           .DATA.L _setPvmReady_8c014330 ; H'8C01D7EC
           .DATA.L _resetPvmReady_8c014322 ; H'8C01D7F0

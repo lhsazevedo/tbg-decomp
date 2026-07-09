@@ -127,7 +127,7 @@
           .IMPORT     _var_8c227e24
           .IMPORT     _var_8c2288f8
           .IMPORT     _var_interiorTexlist_8c1bc438
-          .IMPORT     _menuState_8c1bc7a8
+          .IMPORT     _var_menuState_8c1bc7a8
           .IMPORT     _var_resourceGroup_8c2263a8
           .IMPORT     _var_8c1ba2e0
           .IMPORT     _var_8c1ba348
@@ -144,10 +144,10 @@
           .IMPORT     _vmsLcd_8c01c8fc
           .IMPORT     _vmsLcd_8c01c910
           .IMPORT     _AsqInitQueues_11f36
-          .IMPORT     _var_mark_parts_dat_8c1bc41c
-          .IMPORT     _var_mark_dat_8c1bc420
-          .IMPORT     _var_busstop_parts_dat_8c1bc428
-          .IMPORT     _var_busstop_dat_8c1bc42c
+          .IMPORT     _var_markPartsDat_8c1bc41c
+          .IMPORT     _var_markDat_8c1bc420
+          .IMPORT     _var_busstopPartsDat_8c1bc428
+          .IMPORT     _var_busstopDat_8c1bc42c
           .IMPORT     _var_loadingResourceGroup_8c1bc3f8
           .IMPORT     _AsqRequestPvm_11ac0
           .IMPORT     _var_busFont_8c1ba1c8
@@ -1196,7 +1196,7 @@ LP_GEN_90231:
           .DATA.L _var_8c227e24
           .DATA.L _var_8c2288f8
           .DATA.L _var_interiorTexlist_8c1bc438
-          .DATA.L _menuState_8c1bc7a8
+          .DATA.L _var_menuState_8c1bc7a8
           .DATA.L _var_resourceGroup_8c2263a8
           .DATA.L _var_8c1ba2e0
           .DATA.L _var_8c1ba348
@@ -1461,13 +1461,13 @@ LP_GEN_19861:
           .DATA.L     _AsqResetQueues_11f6c
           .DATA.L     _AsqRequestDat_11182
           .DATA.L     _const_8c033380
-          .DATA.L     _var_mark_parts_dat_8c1bc41c
+          .DATA.L     _var_markPartsDat_8c1bc41c
           .DATA.L     _const_8c033388
-          .DATA.L     _var_mark_dat_8c1bc420
+          .DATA.L     _var_markDat_8c1bc420
           .DATA.L     _const_8c033398
-          .DATA.L     _var_busstop_parts_dat_8c1bc428
+          .DATA.L     _var_busstopPartsDat_8c1bc428
           .DATA.L     _const_8c0333a4
-          .DATA.L     _var_busstop_dat_8c1bc42c
+          .DATA.L     _var_busstopDat_8c1bc42c
           .DATA.L     _const_8c0333b8
           .DATA.L     _var_loadingResourceGroup_8c1bc3f8
           .DATA.L     H'80000000

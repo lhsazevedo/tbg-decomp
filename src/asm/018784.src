@@ -23,11 +23,11 @@
           .IMPORT     _var_vmuStatus_8c226048
           .IMPORT     _var_8c22600c
           .IMPORT     _var_8c225fe4
-          .IMPORT     _menuState_8c1bc7a8
+          .IMPORT     _var_menuState_8c1bc7a8
           .IMPORT     _drawSprite_8c014f54
           .IMPORT     __modls
           .IMPORT     __divls
-          .IMPORT     _isFading_8c226568
+          .IMPORT     _var_isFading_8c226568
           .IMPORT     _swapMessageBoxFor_8c02aefc
           .IMPORT     _sdMidiPlay
           .IMPORT     _var_peripherals_8c1ba35c
@@ -549,7 +549,7 @@ LP_GEN_23929:
           .DATA.L _var_vmuStatus_8c226048 ; H'8C018B28
           .DATA.L _var_8c22600c ; H'8C018B2C
           .DATA.L _var_8c225fe4 ; H'8C018B30
-          .DATA.L _menuState_8c1bc7a8 ; H'8C018B34
+          .DATA.L _var_menuState_8c1bc7a8 ; H'8C018B34
           .DATA.L _drawSprite_8c014f54 ; H'8C018B38
           .DATA.L H'C0800000 ; H'8C018B3C
           .DATA.L H'41200000 ; H'8C018B40
@@ -708,7 +708,7 @@ LP_GEN_96259:
           .RES.W 1 ; H'8C018C62
           .DATA.L H'C0800000 ; H'8C018C64
           .DATA.L _drawSprite_8c014f54 ; H'8C018C68
-          .DATA.L _menuState_8c1bc7a8 ; H'8C018C6C
+          .DATA.L _var_menuState_8c1bc7a8 ; H'8C018C6C
           .DATA.L H'42F40000 ; H'8C018C70
           .DATA.L _var_8c225fe0 ; H'8C018C74
           .DATA.L H'42500000 ; H'8C018C78
@@ -870,7 +870,7 @@ LP_GEN_25093:
           .DATA.L H'43978000 ; H'8C018DAC
           .DATA.L _var_8c225fe0 ; H'8C018DB0
           .DATA.L _var_8c226018 ; H'8C018DB4
-          .DATA.L _menuState_8c1bc7a8 ; H'8C018DB8
+          .DATA.L _var_menuState_8c1bc7a8 ; H'8C018DB8
           .DATA.L _var_8c1ba2e0 ; H'8C018DBC
           .DATA.L H'43D18000 ; H'8C018DC0
           .DATA.L H'43360000 ; H'8C018DC4
@@ -1068,8 +1068,8 @@ LP_GEN_84467:
           .DATA.L H'C0800000 ; H'8C018F2C
           .DATA.L H'C089999A ; H'8C018F30
           .DATA.L H'C0A00000 ; H'8C018F34
-          .DATA.L _menuState_8c1bc7a8 ; H'8C018F38
-          .DATA.L _isFading_8c226568 ; H'8C018F3C
+          .DATA.L _var_menuState_8c1bc7a8 ; H'8C018F38
+          .DATA.L _var_isFading_8c226568 ; H'8C018F3C
           .DATA.L _swapMessageBoxFor_8c02aefc ; H'8C018F40
           .DATA.L _sdMidiPlay ; H'8C018F44
           .DATA.L H'10+_var_peripherals_8c1ba35c ; H'8C018F48
@@ -1643,7 +1643,7 @@ LP_GEN_41958:
           .DATA.L _FUN_8c018e7e ; H'8C01939C
           .DATA.L _setTaskAction_8c014b3e ; H'8C0193A0
           .DATA.L _var_8c22600c ; H'8C0193A4
-          .DATA.L _menuState_8c1bc7a8 ; H'8C0193A8
+          .DATA.L _var_menuState_8c1bc7a8 ; H'8C0193A8
           .DATA.L _var_selectedVm_8c1ba34c ; H'8C0193AC
           .DATA.L _var_vmuStatus_8c226048 ; H'8C0193B0
           .DATA.L _const_8c037ecc ; H'8C0193B4

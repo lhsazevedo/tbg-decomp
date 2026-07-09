@@ -31,7 +31,7 @@
           .IMPORT     __divls
           .IMPORT     _var_playMode_8c1bb8d0
           .IMPORT     _FUN_8c02d0fc
-          .IMPORT     _isFading_8c226568
+          .IMPORT     _var_isFading_8c226568
           .IMPORT     _var_8c2288f8
           .IMPORT     _execTasks_8c014b42
           .IMPORT     _var_cutsceneActive_8c1bb900
@@ -903,7 +903,7 @@ LP_GEN_70221:
           .DATA.L _var_8c2285c4 ; H'8C02D7EC
           .DATA.L _FUN_8c02d1f4 ; H'8C02D7F0
           .DATA.L _FUN_8c02d0fc ; H'8C02D7F4
-          .DATA.L _isFading_8c226568 ; H'8C02D7F8
+          .DATA.L _var_isFading_8c226568 ; H'8C02D7F8
           .DATA.L _var_8c22895c ; H'8C02D7FC
           .DATA.L H'3D888889 ; H'8C02D800
           .DATA.L _var_8c228960 ; H'8C02D804
@@ -1060,7 +1060,7 @@ LP_GEN_72278:
           .DATA.L _snd_8c010cd6 ; H'8C02D948
           .DATA.L _freeTask_8c014b66 ; H'8C02D94C
           .DATA.L _FUN_8c02d146 ; H'8C02D950
-          .DATA.L _isFading_8c226568 ; H'8C02D954
+          .DATA.L _var_isFading_8c226568 ; H'8C02D954
           .DATA.L _var_8c1bbc84 ; H'8C02D958
           .DATA.L _var_8c227d9c ; H'8C02D95C
           .DATA.L _var_8c227da4 ; H'8C02D960

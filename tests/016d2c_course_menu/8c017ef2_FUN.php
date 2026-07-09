@@ -6,9 +6,9 @@ use Lhsazevedo\Sh4ObjTest\Simulator\Types\U32;
 return new class extends TestCase {
     public function test_story_mode(): void
     {
-        $this->initUint32($this->addressOf('_var_game_mode_8c1bb8fc'), 0);
+        $this->initUint32($this->addressOf('_var_gameMode_8c1bb8fc'), 0);
 
-        $this->setSize('_menuState_8c1bc7a8', 0x80);
+        $this->setSize('_var_menuState_8c1bc7a8', 0x80);
         // First sequence is the second one (index 1)
         $this->initUint32($this->addressOf('_var_dialogQueue_8c225fbc'), 1);
 
@@ -39,7 +39,7 @@ return new class extends TestCase {
         $this->shouldCall('_buildCourseMenuDialogFlow_8c017420');
 
         $this->shouldWriteLong(
-            $this->addressOf('_menuState_8c1bc7a8') + 0x60,
+            $this->addressOf('_var_menuState_8c1bc7a8') + 0x60,
             0,
         );
 
@@ -61,7 +61,7 @@ return new class extends TestCase {
         $this->shouldCall('_AsqInitQueues_11f36')->with(8, 0, 0, 8);
         $this->shouldCall('_AsqResetQueues_11f6c');
         $this->shouldCall('_CourseMenuRequestSysResgrp_8c018568')->with(
-            $this->addressOf('_menuState_8c1bc7a8') + 0x0c,
+            $this->addressOf('_var_menuState_8c1bc7a8') + 0x0c,
             $this->addressOf('_init_mainMenuResourceGroup_8c044264'),
         );
         $this->shouldCall('_CourseMenuRequestCommonResources_8c01852c');
@@ -74,7 +74,7 @@ return new class extends TestCase {
             $this->addressOf('_resetPvmReady_8c014322')
         );
         $this->shouldWriteLong(
-            $this->addressOf('_menuState_8c1bc7a8') + 0x18,
+            $this->addressOf('_var_menuState_8c1bc7a8') + 0x18,
             0
         );
     }
@@ -82,7 +82,7 @@ return new class extends TestCase {
     /*
      * Returning from the practice screen in Free-Run mode (game_mode != 0).
      *
-     * The original FUN_8c017ef2 branches on var_game_mode_8c1bb8fc and, for
+     * The original FUN_8c017ef2 branches on var_gameMode_8c1bb8fc and, for
      * Free-Run, installs CourseMenuFreeRunMenuTask_8c017ada +
      * buildFreeRunMenuDialogFlow_8c017a20. It also passes 0 to
      * pushInputTask_8c0128cc (MOV #0,R4) so the menu input pump is
@@ -96,9 +96,9 @@ return new class extends TestCase {
      */
     public function test_free_run_mode(): void
     {
-        $this->initUint32($this->addressOf('_var_game_mode_8c1bb8fc'), 1);
+        $this->initUint32($this->addressOf('_var_gameMode_8c1bb8fc'), 1);
 
-        $this->setSize('_menuState_8c1bc7a8', 0x80);
+        $this->setSize('_var_menuState_8c1bc7a8', 0x80);
         // First sequence is the second one (index 1)
         $this->initUint32($this->addressOf('_var_dialogQueue_8c225fbc'), 1);
 
@@ -131,7 +131,7 @@ return new class extends TestCase {
         $this->shouldCall('_buildFreeRunMenuDialogFlow_8c017a20');
 
         $this->shouldWriteLong(
-            $this->addressOf('_menuState_8c1bc7a8') + 0x60,
+            $this->addressOf('_var_menuState_8c1bc7a8') + 0x60,
             0,
         );
 
@@ -153,7 +153,7 @@ return new class extends TestCase {
         $this->shouldCall('_AsqInitQueues_11f36')->with(8, 0, 0, 8);
         $this->shouldCall('_AsqResetQueues_11f6c');
         $this->shouldCall('_CourseMenuRequestSysResgrp_8c018568')->with(
-            $this->addressOf('_menuState_8c1bc7a8') + 0x0c,
+            $this->addressOf('_var_menuState_8c1bc7a8') + 0x0c,
             $this->addressOf('_init_mainMenuResourceGroup_8c044264'),
         );
         $this->shouldCall('_CourseMenuRequestCommonResources_8c01852c');
@@ -166,7 +166,7 @@ return new class extends TestCase {
             $this->addressOf('_resetPvmReady_8c014322')
         );
         $this->shouldWriteLong(
-            $this->addressOf('_menuState_8c1bc7a8') + 0x18,
+            $this->addressOf('_var_menuState_8c1bc7a8') + 0x18,
             0
         );
     }

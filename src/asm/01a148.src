@@ -1,10 +1,10 @@
 ; 8c01a148
           .IMPORT     _var_8c226074
-          .IMPORT     _menuState_8c1bc7a8
+          .IMPORT     _var_menuState_8c1bc7a8
           .IMPORT     _sdMidiPlay
           .IMPORT     _var_midiHandles_8c0fcd28
           .IMPORT     _var_peripherals_8c1ba35c
-          .IMPORT     _isFading_8c226568
+          .IMPORT     _var_isFading_8c226568
           .IMPORT     _FUN_8c018862
           .IMPORT     _push_fadeout_8c022b60
           .IMPORT     _init_8c044de0
@@ -197,11 +197,11 @@ LAB_8c01a21c:
 LP_GEN_11111:
           .RES.W 1 ; H'8C01A24A
           .DATA.L _var_8c226074 ; H'8C01A24C
-          .DATA.L _menuState_8c1bc7a8 ; H'8C01A250
+          .DATA.L _var_menuState_8c1bc7a8 ; H'8C01A250
           .DATA.L _sdMidiPlay ; H'8C01A254
           .DATA.L _var_midiHandles_8c0fcd28 ; H'8C01A258
           .DATA.L H'10+_var_peripherals_8c1ba35c ; H'8C01A25C
-          .DATA.L _isFading_8c226568 ; H'8C01A260
+          .DATA.L _var_isFading_8c226568 ; H'8C01A260
           .DATA.L _FUN_8c018862 ; H'8C01A264
           .DATA.L _push_fadeout_8c022b60 ; H'8C01A268
           .DATA.L _init_8c044de0 ; H'8C01A26C
@@ -337,7 +337,7 @@ LAB_8c01a350:
 LP_GEN_35922:
           .DATA.W H'0080 ; H'8C01A35C
           .RES.W 1 ; H'8C01A35E
-          .DATA.L _isFading_8c226568 ; H'8C01A360
+          .DATA.L _var_isFading_8c226568 ; H'8C01A360
           .DATA.L H'42600000 ; H'8C01A364
           .DATA.L H'C0800000 ; H'8C01A368
           .DATA.L H'C0A00000 ; H'8C01A36C
@@ -486,7 +486,7 @@ LP_GEN_85851:
           .DATA.L H'C0E00000 ; H'8C01A480
           .DATA.L _FUN_8c01a148 ; H'8C01A484
           .DATA.L _setTaskAction_8c014b3e ; H'8C01A488
-          .DATA.L _menuState_8c1bc7a8 ; H'8C01A48C
+          .DATA.L _var_menuState_8c1bc7a8 ; H'8C01A48C
           .DATA.L _push_fadein_8c022a9c ; H'8C01A490
           .DATA.L H'10+_var_peripherals_8c1ba35c ; H'8C01A494
           .DATA.L _var_midiHandles_8c0fcd28 ; H'8C01A498
@@ -689,7 +689,7 @@ LAB_8c01a5f8:
           NOP
 LP_GEN_91649:
           .RES.W 1 ; H'8C01A606
-          .DATA.L _menuState_8c1bc7a8 ; H'8C01A608
+          .DATA.L _var_menuState_8c1bc7a8 ; H'8C01A608
           .DATA.L _var_activeCtrlType_8c157a70 ; H'8C01A60C
           .DATA.L H'000F06FE ; H'8C01A610
           .DATA.L H'000700FE ; H'8C01A614
@@ -697,7 +697,7 @@ LP_GEN_91649:
           .DATA.L _var_midiHandles_8c0fcd28 ; H'8C01A61C
           .DATA.L _sdMidiPlay ; H'8C01A620
           .DATA.L _var_progress_8c1ba1cc ; H'8C01A624
-          .DATA.L _isFading_8c226568 ; H'8C01A628
+          .DATA.L _var_isFading_8c226568 ; H'8C01A628
           .DATA.L _var_peripherals_8c1ba35c ; H'8C01A62C
           .DATA.L _FUN_8c0188bc ; H'8C01A630
           .DATA.L _push_fadeout_8c022b60 ; H'8C01A634
@@ -1266,7 +1266,7 @@ LP_GEN_75770:
           .DATA.L H'C0E00000 ; H'8C01AA40
           .DATA.L _FUN_8c01a50c ; H'8C01AA44
           .DATA.L _setTaskAction_8c014b3e ; H'8C01AA48
-          .DATA.L _menuState_8c1bc7a8 ; H'8C01AA4C
+          .DATA.L _var_menuState_8c1bc7a8 ; H'8C01AA4C
           .DATA.L _push_fadein_8c022a9c ; H'8C01AA50
           .DATA.L H'10+_var_peripherals_8c1ba35c ; H'8C01AA54
           .DATA.L _var_midiHandles_8c0fcd28 ; H'8C01AA58
@@ -1547,12 +1547,12 @@ LP_GEN_82753:
           .DATA.L _FUN_8c010ca6 ; H'8C01AC50
           .DATA.L _sdMidiPlay ; H'8C01AC54
           .DATA.L _drawSprite_8c014f54 ; H'8C01AC58
-          .DATA.L _menuState_8c1bc7a8 ; H'8C01AC5C
+          .DATA.L _var_menuState_8c1bc7a8 ; H'8C01AC5C
           .DATA.L H'C0800000 ; H'8C01AC60
           .DATA.L H'41D00000 ; H'8C01AC64
           .DATA.L _var_8c226078 ; H'8C01AC68
           .DATA.L _var_progress_8c1ba1cc ; H'8C01AC6C
-          .DATA.L _isFading_8c226568 ; H'8C01AC70
+          .DATA.L _var_isFading_8c226568 ; H'8C01AC70
           .DATA.L H'43DA0000 ; H'8C01AC74
           .DATA.L H'C0400000 ; H'8C01AC78
           .DATA.L H'10+_var_peripherals_8c1ba35c ; H'8C01AC7C
@@ -2189,12 +2189,12 @@ LP_GEN_51773:
           .DATA.L H'C0E00000 ; H'8C01B148
           .DATA.L _FUN_8c01ab08 ; H'8C01B14C
           .DATA.L _setTaskAction_8c014b3e ; H'8C01B150
-          .DATA.L _menuState_8c1bc7a8 ; H'8C01B154
+          .DATA.L _var_menuState_8c1bc7a8 ; H'8C01B154
           .DATA.L _var_8c226078 ; H'8C01B158
           .DATA.L _var_8c226080 ; H'8C01B15C
           .DATA.L _var_8c226088 ; H'8C01B160
           .DATA.L _push_fadein_8c022a9c ; H'8C01B164
-          .DATA.L _isFading_8c226568 ; H'8C01B168
+          .DATA.L _var_isFading_8c226568 ; H'8C01B168
           .DATA.L _var_midiHandles_8c0fcd28 ; H'8C01B16C
           .DATA.L _sdMidiPlay ; H'8C01B170
           .DATA.L H'10+_var_peripherals_8c1ba35c ; H'8C01B174

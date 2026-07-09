@@ -17,7 +17,7 @@ return new class extends TestCase {
     {
         $this->resolveSymbols();
 
-        $this->initUint32($this->addressOf('_menuState_8c1bc7a8') + 0x00, 0xcafe0001);
+        $this->initUint32($this->addressOf('_var_menuState_8c1bc7a8') + 0x00, 0xcafe0001);
 
         $this->call('_drawInteger_8c016e6c')->with(
             100,
@@ -27,7 +27,7 @@ return new class extends TestCase {
 
         $this->shouldCall('__modls');
         $this->shouldCall('_drawSprite_8c014f54')->with(
-            $this->addressOf('_menuState_8c1bc7a8') + 0,
+            $this->addressOf('_var_menuState_8c1bc7a8') + 0,
             15,
             42.0,
             69.0,
@@ -37,7 +37,7 @@ return new class extends TestCase {
         $this->shouldCall('__divls');
         $this->shouldCall('__modls');
         $this->shouldCall('_drawSprite_8c014f54')->with(
-            $this->addressOf('_menuState_8c1bc7a8') + 0,
+            $this->addressOf('_var_menuState_8c1bc7a8') + 0,
             15,
             32.0,
             69.0,
@@ -47,7 +47,7 @@ return new class extends TestCase {
         $this->shouldCall('__divls');
         $this->shouldCall('__modls');
         $this->shouldCall('_drawSprite_8c014f54')->with(
-            $this->addressOf('_menuState_8c1bc7a8') + 0,
+            $this->addressOf('_var_menuState_8c1bc7a8') + 0,
             16,
             22.0,
             69.0,
@@ -59,7 +59,7 @@ return new class extends TestCase {
 
     public function resolveSymbols()
     {
-        $this->setSize('_menuState_8c1bc7a8', 0x6c);
+        $this->setSize('_var_menuState_8c1bc7a8', 0x6c);
 
         // Functions
         $this->setSize('__modls', 4);

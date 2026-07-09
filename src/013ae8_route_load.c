@@ -59,14 +59,6 @@ enum SEGMENT_RELOAD_STATE {
     SEGMENT_RELOAD_STATE_DONE      = 3,
 };
 
-/* One entry of var_routeModelSlots_8c1bbddc. */
-typedef struct {
-    int requested_0x00;
-    int needsLoad_0x04;
-    NJS_TEXLIST *texlist_0x08; // -1 when unloaded
-    void *nj_0x0c;
-} ModelSlot;
-
 typedef struct {
     // 0..3
     Uint16 ukn_0x00;
@@ -127,13 +119,6 @@ typedef struct { char *a, *b; int n0, n1; } Rec_ssii;
 typedef struct { char *a, *b; int n; float f0, f1; } Rec_ssiff;
 typedef struct { char *a, *b; int n; char *c; } Rec_ssis;
 typedef struct { char *a, *b; int n; char *c; Uint8 flags[4]; } Rec_ssisb;
-
-/* TODO: include from 015ab8_title.h */
-typedef struct {
-    NJS_TEXLIST *tlist_0x00;
-    NJS_TEXANIM *tanim_0x04;
-    void *contents_0x08;
-} ResourceGroup;
 
 /* ==========================
  * Non-initialized Globals

@@ -1,11 +1,11 @@
 ; 8c01d7fc
-          .IMPORT     _menuState_8c1bc7a8
+          .IMPORT     _var_menuState_8c1bc7a8
           .IMPORT     _drawSprite_8c014f54
           .IMPORT     __modls
           .IMPORT     __divls
           .IMPORT     _menuTextboxText_8c02af1c
           .IMPORT     _var_selectedVm_8c1ba34c
-          .IMPORT     _isFading_8c226568
+          .IMPORT     _var_isFading_8c226568
           .IMPORT     _swapMessageBoxFor_8c02aefc
           .IMPORT     _var_8c1ba350
           .IMPORT     _init_saveNames_8c044d50
@@ -26,7 +26,7 @@
           .IMPORT     _var_8c2263f4
           .IMPORT     _var_8c2263f0
           .IMPORT     _var_8c2263ec
-          .IMPORT     _var_game_mode_8c1bb8fc
+          .IMPORT     _var_gameMode_8c1bb8fc
           .IMPORT     _var_progress_8c1ba1cc
           .IMPORT     _push_fadeout_8c022b60
           .IMPORT     _var_vmuStatus_8c226048
@@ -65,7 +65,7 @@
           .IMPORT     _FUN_8c02ae3e
           .IMPORT     _AsqInitQueues_11f36
           .IMPORT     _AsqResetQueues_11f6c
-          .IMPORT     _titleResourceGroup_8c044254
+          .IMPORT     _init_titleResourceGroup_8c044254
           .IMPORT     _CourseMenuRequestSysResgrp_8c018568
           .IMPORT     _CourseMenuRequestCommonResources_8c01852c
           .IMPORT     _var_8c1ba344
@@ -187,7 +187,7 @@ LAB_8c01d8a6:
 LP_GEN_57051:
           .DATA.W H'00FF ; H'8C01D8AE
           .DATA.L H'43E80000 ; H'8C01D8B0
-          .DATA.L _menuState_8c1bc7a8 ; H'8C01D8B4
+          .DATA.L _var_menuState_8c1bc7a8 ; H'8C01D8B4
           .DATA.L _drawSprite_8c014f54 ; H'8C01D8B8
           .DATA.L H'C0400000 ; H'8C01D8BC
           .DATA.L H'41900000 ; H'8C01D8C0
@@ -252,9 +252,9 @@ LP_GEN_44131:
           .DATA.L H'42C00000 ; H'8C01D940
           .DATA.L H'C0800000 ; H'8C01D944
           .DATA.L _var_selectedVm_8c1ba34c ; H'8C01D948
-          .DATA.L _isFading_8c226568 ; H'8C01D94C
+          .DATA.L _var_isFading_8c226568 ; H'8C01D94C
           .DATA.L _swapMessageBoxFor_8c02aefc ; H'8C01D950
-          .DATA.L _menuState_8c1bc7a8 ; H'8C01D954
+          .DATA.L _var_menuState_8c1bc7a8 ; H'8C01D954
           .DATA.L _var_8c1ba350 ; H'8C01D958
           .DATA.L _init_saveNames_8c044d50 ; H'8C01D95C
           .DATA.L H'10+_var_peripherals_8c1ba35c ; H'8C01D960
@@ -550,7 +550,7 @@ LP_GEN_73625:
           .DATA.L H'43240000 ; H'8C01DB90
           .DATA.L _var_8c2263f0 ; H'8C01DB94
           .DATA.L _var_8c2263ec ; H'8C01DB98
-          .DATA.L _var_game_mode_8c1bb8fc ; H'8C01DB9C
+          .DATA.L _var_gameMode_8c1bb8fc ; H'8C01DB9C
           .DATA.L _var_progress_8c1ba1cc ; H'8C01DBA0
           .DATA.L _push_fadeout_8c022b60 ; H'8C01DBA4
           .DATA.L _drawSprite_8c014f54 ; H'8C01DBA8
@@ -1155,15 +1155,15 @@ LP_GEN_43538:
           .DATA.L _var_tasks_8c1ba3c8 ; H'8C01E05C
           .DATA.L _pushTask_8c014ae8 ; H'8C01E060
           .DATA.L _task_8c01d8e0 ; H'8C01E064
-          .DATA.L _menuState_8c1bc7a8 + H'18 ; H'8C01E068
+          .DATA.L _var_menuState_8c1bc7a8 + H'18 ; H'8C01E068
           .DATA.L _var_tex_8c157af8 ; H'8C01E06C
           .DATA.L _njGarbageTexture ; H'8C01E070
           .DATA.L H'C0000000 ; H'8C01E074
           .DATA.L _FUN_8c02ae3e ; H'8C01E078
           .DATA.L _AsqInitQueues_11f36 ; H'8C01E07C
           .DATA.L _AsqResetQueues_11f6c ; H'8C01E080
-          .DATA.L _titleResourceGroup_8c044254 ; H'8C01E084
-          .DATA.L _menuState_8c1bc7a8 + H'0C ; H'8C01E088
+          .DATA.L _init_titleResourceGroup_8c044254 ; H'8C01E084
+          .DATA.L _var_menuState_8c1bc7a8 + H'0C ; H'8C01E088
           .DATA.L _CourseMenuRequestSysResgrp_8c018568 ; H'8C01E08C
           .DATA.L _CourseMenuRequestCommonResources_8c01852c ; H'8C01E090
           .DATA.L _var_8c1ba344 ; H'8C01E094

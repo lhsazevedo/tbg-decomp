@@ -356,7 +356,7 @@ return new class extends TestCase {
     public function test_njUserInit_8c0134ec_Vga_getSoundMode_8c010924Returns1()
     {
         // Resolutions/Bindings
-        $this->setSize('_menuState_8c1bc7a8', 0x6c);
+        $this->setSize('_var_menuState_8c1bc7a8', 0x6c);
 
         /* Stack locals */
         $infoLocal = 0xffffbc;
@@ -438,8 +438,8 @@ return new class extends TestCase {
         $this->shouldWriteTo('_var_8c227e24', -1);
         $this->shouldWriteTo('_var_8c2288f8', -1);
         $this->shouldWriteTo('_var_interiorTexlist_8c1bc438', -1);
-        $this->shouldWrite($this->addressOf('_menuState_8c1bc7a8') + 0x0 + 0, -1);
-        $this->shouldWrite($this->addressOf('_menuState_8c1bc7a8') + 0xc + 0, -1);
+        $this->shouldWrite($this->addressOf('_var_menuState_8c1bc7a8') + 0x0 + 0, -1);
+        $this->shouldWrite($this->addressOf('_var_menuState_8c1bc7a8') + 0xc + 0, -1);
         $this->shouldWriteTo('_var_resourceGroup_8c2263a8', -1);
         $this->shouldWriteTo('_var_8c1ba2e0', -1);
         $this->shouldWriteTo('_var_8c1ba348', -1);
@@ -476,10 +476,10 @@ return new class extends TestCase {
         $this->shouldCall('_AsqInitQueues_11f36')->with(0x10, 8, 0, 8);
         $this->shouldCall('_AsqResetQueues_11f6c');
 
-        $this->shouldCall('_AsqRequestDat_11182')->with("\\SYSTEM", "mark_parts.dat", $this->addressOf('_var_mark_parts_dat_8c1bc41c'));
-        $this->shouldCall('_AsqRequestDat_11182')->with("\\SYSTEM", "mark.dat", $this->addressOf('_var_mark_dat_8c1bc420'));
-        $this->shouldCall('_AsqRequestDat_11182')->with("\\SYSTEM", "busstop_parts.dat", $this->addressOf('_var_busstop_parts_dat_8c1bc428'));
-        $this->shouldCall('_AsqRequestDat_11182')->with("\\SYSTEM", "busstop.dat", $this->addressOf('_var_busstop_dat_8c1bc42c'));
+        $this->shouldCall('_AsqRequestDat_11182')->with("\\SYSTEM", "mark_parts.dat", $this->addressOf('_var_markPartsDat_8c1bc41c'));
+        $this->shouldCall('_AsqRequestDat_11182')->with("\\SYSTEM", "mark.dat", $this->addressOf('_var_markDat_8c1bc420'));
+        $this->shouldCall('_AsqRequestDat_11182')->with("\\SYSTEM", "busstop_parts.dat", $this->addressOf('_var_busstopPartsDat_8c1bc428'));
+        $this->shouldCall('_AsqRequestDat_11182')->with("\\SYSTEM", "busstop.dat", $this->addressOf('_var_busstopDat_8c1bc42c'));
 
         $this->shouldCall('_AsqRequestPvm_11ac0')->with("\\SYSTEM", "loading.pvm", $this->addressOf('_var_loadingResourceGroup_8c1bc3f8'), 1, 0x80000000);
         $this->shouldCall('_AsqRequestDat_11182')->with("\\SYSTEM", "load_parts.dat", $this->addressOf('_var_loadingResourceGroup_8c1bc3f8') + 4);
@@ -509,7 +509,7 @@ return new class extends TestCase {
     public function test_njUserInit_8c0134ec_Vga_getSoundMode_8c010924ReturnsNegative()
     {
         // Resolutions/Bindings
-        $this->setSize('_menuState_8c1bc7a8', 0x6c);
+        $this->setSize('_var_menuState_8c1bc7a8', 0x6c);
 
         /* Stack locals */
         $infoLocal = 0xffffbc;
@@ -592,8 +592,8 @@ return new class extends TestCase {
         $this->shouldWriteTo('_var_8c227e24', -1);
         $this->shouldWriteTo('_var_8c2288f8', -1);
         $this->shouldWriteTo('_var_interiorTexlist_8c1bc438', -1);
-        $this->shouldWrite($this->addressOf('_menuState_8c1bc7a8') + 0x0 + 0, -1);
-        $this->shouldWrite($this->addressOf('_menuState_8c1bc7a8') + 0xc + 0, -1);
+        $this->shouldWrite($this->addressOf('_var_menuState_8c1bc7a8') + 0x0 + 0, -1);
+        $this->shouldWrite($this->addressOf('_var_menuState_8c1bc7a8') + 0xc + 0, -1);
         $this->shouldWriteTo('_var_resourceGroup_8c2263a8', -1);
         $this->shouldWriteTo('_var_8c1ba2e0', -1);
         $this->shouldWriteTo('_var_8c1ba348', -1);
@@ -630,10 +630,10 @@ return new class extends TestCase {
         $this->shouldCall('_AsqInitQueues_11f36')->with(0x10, 8, 0, 8);
         $this->shouldCall('_AsqResetQueues_11f6c');
 
-        $this->shouldCall('_AsqRequestDat_11182')->with("\\SYSTEM", "mark_parts.dat", $this->addressOf('_var_mark_parts_dat_8c1bc41c'));
-        $this->shouldCall('_AsqRequestDat_11182')->with("\\SYSTEM", "mark.dat", $this->addressOf('_var_mark_dat_8c1bc420'));
-        $this->shouldCall('_AsqRequestDat_11182')->with("\\SYSTEM", "busstop_parts.dat", $this->addressOf('_var_busstop_parts_dat_8c1bc428'));
-        $this->shouldCall('_AsqRequestDat_11182')->with("\\SYSTEM", "busstop.dat", $this->addressOf('_var_busstop_dat_8c1bc42c'));
+        $this->shouldCall('_AsqRequestDat_11182')->with("\\SYSTEM", "mark_parts.dat", $this->addressOf('_var_markPartsDat_8c1bc41c'));
+        $this->shouldCall('_AsqRequestDat_11182')->with("\\SYSTEM", "mark.dat", $this->addressOf('_var_markDat_8c1bc420'));
+        $this->shouldCall('_AsqRequestDat_11182')->with("\\SYSTEM", "busstop_parts.dat", $this->addressOf('_var_busstopPartsDat_8c1bc428'));
+        $this->shouldCall('_AsqRequestDat_11182')->with("\\SYSTEM", "busstop.dat", $this->addressOf('_var_busstopDat_8c1bc42c'));
 
         $this->shouldCall('_AsqRequestPvm_11ac0')->with("\\SYSTEM", "loading.pvm", $this->addressOf('_var_loadingResourceGroup_8c1bc3f8'), 1, 0x80000000);
         $this->shouldCall('_AsqRequestDat_11182')->with("\\SYSTEM", "load_parts.dat", $this->addressOf('_var_loadingResourceGroup_8c1bc3f8') + 4);
@@ -663,7 +663,7 @@ return new class extends TestCase {
     public function test_njUserInit_8c0134ec_Ntsci_getSoundMode_8c010924Returns1()
     {
         // Resolutions/Bindings
-        $this->setSize('_menuState_8c1bc7a8', 0x6c);
+        $this->setSize('_var_menuState_8c1bc7a8', 0x6c);
 
         /* Stack locals */
         $infoLocal = 0xffffbc;
@@ -746,8 +746,8 @@ return new class extends TestCase {
         $this->shouldWriteTo('_var_8c227e24', -1);
         $this->shouldWriteTo('_var_8c2288f8', -1);
         $this->shouldWriteTo('_var_interiorTexlist_8c1bc438', -1);
-        $this->shouldWrite($this->addressOf('_menuState_8c1bc7a8') + 0x0 + 0, -1);
-        $this->shouldWrite($this->addressOf('_menuState_8c1bc7a8') + 0xc + 0, -1);
+        $this->shouldWrite($this->addressOf('_var_menuState_8c1bc7a8') + 0x0 + 0, -1);
+        $this->shouldWrite($this->addressOf('_var_menuState_8c1bc7a8') + 0xc + 0, -1);
         $this->shouldWriteTo('_var_resourceGroup_8c2263a8', -1);
         $this->shouldWriteTo('_var_8c1ba2e0', -1);
         $this->shouldWriteTo('_var_8c1ba348', -1);
@@ -784,10 +784,10 @@ return new class extends TestCase {
         $this->shouldCall('_AsqInitQueues_11f36')->with(0x10, 8, 0, 8);
         $this->shouldCall('_AsqResetQueues_11f6c');
 
-        $this->shouldCall('_AsqRequestDat_11182')->with("\\SYSTEM", "mark_parts.dat", $this->addressOf('_var_mark_parts_dat_8c1bc41c'));
-        $this->shouldCall('_AsqRequestDat_11182')->with("\\SYSTEM", "mark.dat", $this->addressOf('_var_mark_dat_8c1bc420'));
-        $this->shouldCall('_AsqRequestDat_11182')->with("\\SYSTEM", "busstop_parts.dat", $this->addressOf('_var_busstop_parts_dat_8c1bc428'));
-        $this->shouldCall('_AsqRequestDat_11182')->with("\\SYSTEM", "busstop.dat", $this->addressOf('_var_busstop_dat_8c1bc42c'));
+        $this->shouldCall('_AsqRequestDat_11182')->with("\\SYSTEM", "mark_parts.dat", $this->addressOf('_var_markPartsDat_8c1bc41c'));
+        $this->shouldCall('_AsqRequestDat_11182')->with("\\SYSTEM", "mark.dat", $this->addressOf('_var_markDat_8c1bc420'));
+        $this->shouldCall('_AsqRequestDat_11182')->with("\\SYSTEM", "busstop_parts.dat", $this->addressOf('_var_busstopPartsDat_8c1bc428'));
+        $this->shouldCall('_AsqRequestDat_11182')->with("\\SYSTEM", "busstop.dat", $this->addressOf('_var_busstopDat_8c1bc42c'));
 
         $this->shouldCall('_AsqRequestPvm_11ac0')->with("\\SYSTEM", "loading.pvm", $this->addressOf('_var_loadingResourceGroup_8c1bc3f8'), 1, 0x80000000);
         $this->shouldCall('_AsqRequestDat_11182')->with("\\SYSTEM", "load_parts.dat", $this->addressOf('_var_loadingResourceGroup_8c1bc3f8') + 4);
@@ -817,7 +817,7 @@ return new class extends TestCase {
     public function test_njUserInit_8c0134ec_Ntsci_getSoundMode_8c010924ReturnsNegative()
     {
         // Resolutions/Bindings
-        $this->setSize('_menuState_8c1bc7a8', 0x6c);
+        $this->setSize('_var_menuState_8c1bc7a8', 0x6c);
 
         /* Stack locals */
         $infoLocal = 0xffffbc;
@@ -901,8 +901,8 @@ return new class extends TestCase {
         $this->shouldWriteTo('_var_8c227e24', -1);
         $this->shouldWriteTo('_var_8c2288f8', -1);
         $this->shouldWriteTo('_var_interiorTexlist_8c1bc438', -1);
-        $this->shouldWrite($this->addressOf('_menuState_8c1bc7a8') + 0x0 + 0, -1);
-        $this->shouldWrite($this->addressOf('_menuState_8c1bc7a8') + 0xc + 0, -1);
+        $this->shouldWrite($this->addressOf('_var_menuState_8c1bc7a8') + 0x0 + 0, -1);
+        $this->shouldWrite($this->addressOf('_var_menuState_8c1bc7a8') + 0xc + 0, -1);
         $this->shouldWriteTo('_var_resourceGroup_8c2263a8', -1);
         $this->shouldWriteTo('_var_8c1ba2e0', -1);
         $this->shouldWriteTo('_var_8c1ba348', -1);
@@ -938,10 +938,10 @@ return new class extends TestCase {
         $this->shouldCall('_AsqInitQueues_11f36')->with(0x10, 8, 0, 8);
         $this->shouldCall('_AsqResetQueues_11f6c');
 
-        $this->shouldCall('_AsqRequestDat_11182')->with("\\SYSTEM", "mark_parts.dat", $this->addressOf('_var_mark_parts_dat_8c1bc41c'));
-        $this->shouldCall('_AsqRequestDat_11182')->with("\\SYSTEM", "mark.dat", $this->addressOf('_var_mark_dat_8c1bc420'));
-        $this->shouldCall('_AsqRequestDat_11182')->with("\\SYSTEM", "busstop_parts.dat", $this->addressOf('_var_busstop_parts_dat_8c1bc428'));
-        $this->shouldCall('_AsqRequestDat_11182')->with("\\SYSTEM", "busstop.dat", $this->addressOf('_var_busstop_dat_8c1bc42c'));
+        $this->shouldCall('_AsqRequestDat_11182')->with("\\SYSTEM", "mark_parts.dat", $this->addressOf('_var_markPartsDat_8c1bc41c'));
+        $this->shouldCall('_AsqRequestDat_11182')->with("\\SYSTEM", "mark.dat", $this->addressOf('_var_markDat_8c1bc420'));
+        $this->shouldCall('_AsqRequestDat_11182')->with("\\SYSTEM", "busstop_parts.dat", $this->addressOf('_var_busstopPartsDat_8c1bc428'));
+        $this->shouldCall('_AsqRequestDat_11182')->with("\\SYSTEM", "busstop.dat", $this->addressOf('_var_busstopDat_8c1bc42c'));
 
         $this->shouldCall('_AsqRequestPvm_11ac0')->with("\\SYSTEM", "loading.pvm", $this->addressOf('_var_loadingResourceGroup_8c1bc3f8'), 1, 0x80000000);
         $this->shouldCall('_AsqRequestDat_11182')->with("\\SYSTEM", "load_parts.dat", $this->addressOf('_var_loadingResourceGroup_8c1bc3f8') + 4);

@@ -1,6 +1,7 @@
 /* 8c014934 */
 #include <shinobi.h>
 #include "014a9c_tasks.h"
+#include "014934.h"
 #include "011120_asset_queues.h"
 
 extern Task var_tasks_8c1ba3c8[16];

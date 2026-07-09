@@ -21,7 +21,7 @@
  * Structure to store the information of memory card.
  * (See backup.h)
  */
-extern BACKUPINFO gBupInfo_8c1bc4ac[8];
+extern BACKUPINFO var_gBupInfo_8c1bc4ac[8];
 
 
 
@@ -37,7 +37,7 @@ void ClearInfo_8c014c8a(Sint32 drive);
 
 void bupInit_8c014b8c(void)
 {
-    memset(gBupInfo_8c1bc4ac, 0, sizeof(gBupInfo_8c1bc4ac));
+    memset(var_gBupInfo_8c1bc4ac, 0, sizeof(var_gBupInfo_8c1bc4ac));
     buInit(MAX_CAPS, USE_DRIVES, NULL, BupInitCallback_8c014e5e);
 }
 
@@ -48,7 +48,7 @@ void BupExit(void)
 
 const BACKUPINFO* BupGetInfo_8c014bba(Sint32 drive)
 {
-    return (const BACKUPINFO*)&gBupInfo_8c1bc4ac[drive];
+    return (const BACKUPINFO*)&var_gBupInfo_8c1bc4ac[drive];
 }
 
 Sint32 BupLoad_8c014bc6(Sint32 drive, const char* fname, void* buf)
@@ -88,7 +88,7 @@ void BupMount_8c014c00(Sint32 drive)
 {
     BACKUPINFO* info;
 
-    info = &gBupInfo_8c1bc4ac[drive];
+    info = &var_gBupInfo_8c1bc4ac[drive];
 
     if (info->Work) return;
 
@@ -102,7 +102,7 @@ void BupUnmount_8c014c46(Sint32 drive)
     BACKUPINFO* info;
     Sint32 err;
 
-    info = &gBupInfo_8c1bc4ac[drive];
+    info = &var_gBupInfo_8c1bc4ac[drive];
 
     if (info->Work == NULL) return;
 
@@ -117,7 +117,7 @@ void ClearInfo_8c014c8a(Sint32 drive)
 {
     BACKUPINFO* info;
 
-    info = &gBupInfo_8c1bc4ac[drive];
+    info = &var_gBupInfo_8c1bc4ac[drive];
     info->ProgressCount = 0;
     info->ProgressMax = 0;
     info->Operation = 0;
@@ -182,7 +182,7 @@ static Sint32 BupComplete_8c014e70(Sint32 drive, Sint32 op, Sint32 stat, Uint32 
     Sint32 ret;
 
 
-    info = &gBupInfo_8c1bc4ac[drive];
+    info = &var_gBupInfo_8c1bc4ac[drive];
 
     switch (op) {
         case BUD_OP_CONNECT:
@@ -220,7 +220,7 @@ static Sint32 BupProgress_8c014f04(Sint32 drive, Sint32 op, Sint32 count, Sint32
 {
     BACKUPINFO* info;
 
-    info = &gBupInfo_8c1bc4ac[drive];
+    info = &var_gBupInfo_8c1bc4ac[drive];
 
     info->ProgressCount = count;
     info->ProgressMax = max;

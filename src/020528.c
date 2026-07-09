@@ -1,5 +1,6 @@
 /* 8c020528 */
 #include "014a9c_tasks.h"
+#include "020528.h"
 
 struct Struct8c2264b8 {
     int field_0x00;

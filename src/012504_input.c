@@ -1,6 +1,7 @@
 #include <shinobi.h>
 #include "011120_asset_queues.h"
 #include "014a9c_tasks.h"
+#include "012504_input.h"
 #include "serial_debug.h"
 
 #define BT(a)     PDD_DEV_SUPPORT_##a

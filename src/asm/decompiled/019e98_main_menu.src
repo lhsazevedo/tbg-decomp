@@ -1,6 +1,6 @@
 ; 8c019e98
-          .IMPORT     _menuState_8c1bc7a8
-          .IMPORT     _isFading_8c226568
+          .IMPORT     _var_menuState_8c1bc7a8
+          .IMPORT     _var_isFading_8c226568
           .IMPORT     _isPvmReady_8c01432a
           .IMPORT     _AsqFreeQueues_11f7e
           .IMPORT     _push_fadein_8c022a9c
@@ -8,7 +8,7 @@
           .IMPORT     _var_peripherals_8c1ba35c
           .IMPORT     _var_midiHandles_8c0fcd28
           .IMPORT     _push_fadeout_8c022b60
-          .IMPORT     _var_game_mode_8c1bb8fc
+          .IMPORT     _var_gameMode_8c1bb8fc
           .IMPORT     _var_shouldShowFreeRunIntro_8c1bb8c0
           .IMPORT     _CourseMenuSwitchFromTask_8c017e18
           .IMPORT     _FUN_8c01b122
@@ -156,8 +156,8 @@ LAB_8c019f64:
           NOP
 LP_GEN_56609:
           .DATA.W H'0080 ; H'8C019F82
-          .DATA.L _menuState_8c1bc7a8 ; H'8C019F84
-          .DATA.L _isFading_8c226568 ; H'8C019F88
+          .DATA.L _var_menuState_8c1bc7a8 ; H'8C019F84
+          .DATA.L _var_isFading_8c226568 ; H'8C019F88
           .DATA.L _isPvmReady_8c01432a ; H'8C019F8C
           .DATA.L _AsqFreeQueues_11f7e ; H'8C019F90
           .DATA.L _push_fadein_8c022a9c ; H'8C019F94
@@ -346,7 +346,7 @@ _MainMenuSwitchFromTask_8c01a09a:
           MOV.L       @R15+,R14
 LP_GEN_13822:
           .RES.W 1 ; H'8C01A0F6
-          .DATA.L _var_game_mode_8c1bb8fc ; H'8C01A0F8
+          .DATA.L _var_gameMode_8c1bb8fc ; H'8C01A0F8
           .DATA.L _var_shouldShowFreeRunIntro_8c1bb8c0 ; H'8C01A0FC
           .DATA.L _CourseMenuSwitchFromTask_8c017e18 ; H'8C01A100
           .DATA.L _FUN_8c01b122 ; H'8C01A104
@@ -357,7 +357,7 @@ LP_GEN_13822:
           .DATA.L H'C0E00000 ; H'8C01A118
           .DATA.L _MainMenuTask_8c019e98 ; H'8C01A11C
           .DATA.L _setTaskAction_8c014b3e ; H'8C01A120
-          .DATA.L _menuState_8c1bc7a8 ; H'8C01A124
+          .DATA.L _var_menuState_8c1bc7a8 ; H'8C01A124
           .DATA.L _AsqInitQueues_11f36 ; H'8C01A128
           .DATA.L _AsqResetQueues_11f6c ; H'8C01A12C
           .DATA.L _init_mainMenuResourceGroup_8c044264 ; H'8C01A130

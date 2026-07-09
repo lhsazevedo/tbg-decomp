@@ -16,7 +16,6 @@
 #define GLYPH_TEXTURE_SIZE  GLYPH_TEXTURE_WIDTH * GLYPH_TEXTURE_WIDTH
 #define GLYPH_WIDTH         24
 #define GLYPH_HEIGHT        32
-#define GLYPH_PALETTE_SIZE  4
 #define GLYPH_COUNT         0x200
 
 #define ARGB1555(a, r, g, b) ( \
@@ -40,25 +39,6 @@ typedef struct {
     int field_0x08;
 } DemoEntry;
 
-typedef struct {
-    int x_0x00;
-    int y_0x04;
-    float priority_0x08;
-    int width_0x0c;
-    int height_0x10;
-    int x2_0x14;
-    int y2_0x18;
-    Uint16 processed_char_count_0x1c;
-    Uint16 processed_tag_count_0x1e;
-    Uint16 character_count_0x20;
-    Uint16 tag_count_0x22;
-    Uint16 palette_0x24[GLYPH_PALETTE_SIZE];
-    Uint16 *tokens_0x2c;
-    int enable_offset_0x30;
-    Float *line_offsets_0x34;
-    char *text_0x38;
-} TextBox;
-
 /* =======================
  * Non-initialized Globals
  * =======================
@@ -77,11 +57,11 @@ STATIC ResourceGroup var_fontResourceGroup_8c1bc794;
 STATIC Sint16 *var_8c1bc7a0;
 STATIC void *var_glyphBuffer_8c1bc7a4;
 
-MenuState menuState_8c1bc7a8;
+MenuState var_menuState_8c1bc7a8;
 void *var_8c1bc824;
-ReplayInput demoBuffer_8c1bc828[REPLAY_BUFFER_CAPACITY];
-ReplayInput *demoCursor_8c225fa8;
-Uint32 demoPrevOn_8c225fac;
+ReplayInput var_demoBuffer_8c1bc828[REPLAY_BUFFER_CAPACITY];
+ReplayInput *var_demoCursor_8c225fa8;
+Uint32 var_demoPrevOn_8c225fac;
 
 extern int var_demoEntryValue_8c227e14;
 extern int var_demoEntryValue_8c22822c;
@@ -755,7 +735,7 @@ STATIC void FUN_8c01594c(Task *task)
     var_currentCourse_8c1bb868 = var_demoBuf_8c1ba3c4[1];
     var_inputMapSel_8c1bb8c8 = var_demoBuf_8c1ba3c4[2];
     var_seed_8c157a64 = var_demoBuf_8c1ba3c4[3];
-    local = demoBuffer_8c1bc828;
+    local = var_demoBuffer_8c1bc828;
     FUN_8c02f320();
     FUN_readDemo_8c02fa14(&var_demoBuf_8c1ba3c4[4], &local, var_demoBuf_8c1ba3c4[0]);
     syFree(var_demoBuf_8c1ba3c4);
@@ -764,7 +744,7 @@ STATIC void FUN_8c01594c(Task *task)
     FUN_8c01328c();
 }
 
-void FUN_demo_8c0159ac()
+void FUN_8c0159ac()
 {
     Task *created_task;
     void *created_state;

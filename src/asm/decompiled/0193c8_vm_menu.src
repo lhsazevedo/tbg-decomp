@@ -9,12 +9,12 @@
           .IMPORT     _buStat
           .IMPORT     _syFree
           .IMPORT     _ClearInfo_8c014c8a
-          .IMPORT     _gBupInfo_8c1bc4ac
+          .IMPORT     _var_gBupInfo_8c1bc4ac
           .IMPORT     _buIsExistFile
           .IMPORT     _var_vmuStatus_8c226048
-          .IMPORT     _menuState_8c1bc7a8
+          .IMPORT     _var_menuState_8c1bc7a8
           .IMPORT     _drawSprite_8c014f54
-          .IMPORT     _isFading_8c226568
+          .IMPORT     _var_isFading_8c226568
           .IMPORT     __quick_evn_mvn
           .IMPORT     _swapMessageBoxFor_8c02aefc
           .IMPORT     _FUN_8c010d8a
@@ -339,7 +339,7 @@ LP_GEN_33095:
           .DATA.L _TaskUnmountVms_1946a ; H'8C0195C0
           .DATA.L _syFree ; H'8C0195C4
           .DATA.L _ClearInfo_8c014c8a ; H'8C0195C8
-          .DATA.L _gBupInfo_8c1bc4ac ; H'8C0195CC
+          .DATA.L _var_gBupInfo_8c1bc4ac ; H'8C0195CC
 LAB_8c0195d0:
           MOV.L       LP_GEN_86643+4,R2
           MOV         #H'1,R10
@@ -909,7 +909,7 @@ LAB_8c0199ca:
 LP_GEN_31723:
           .RES.W 1 ; H'8C0199DE
           .DATA.L _init_vmIconsPositions_8c044d7c ; H'8C0199E0
-          .DATA.L _menuState_8c1bc7a8 ; H'8C0199E4
+          .DATA.L _var_menuState_8c1bc7a8 ; H'8C0199E4
           .DATA.L H'40C00000 ; H'8C0199E8
           .DATA.L _drawSprite_8c014f54 ; H'8C0199EC
           .DATA.L H'C0800000 ; H'8C0199F0
@@ -920,7 +920,7 @@ LP_GEN_31723:
           .DATA.L H'C0E00000 ; H'8C019A04
           .DATA.L H'43980000 ; H'8C019A08
           .DATA.L H'43640000 ; H'8C019A0C
-          .DATA.L _isFading_8c226568 ; H'8C019A10
+          .DATA.L _var_isFading_8c226568 ; H'8C019A10
           .DATA.L _init_saveNames_8c044d50 ; H'8C019A14
           .DATA.L __quick_evn_mvn ; H'8C019A18
           .DATA.L _init_vmuStatusMessages_8c044dc4 ; H'8C019A1C
@@ -1523,7 +1523,7 @@ LP_GEN_77899:
           .DATA.L _MainMenuSwitchFromTask_8c01a09a ; H'8C019E88
           .DATA.L _VmMenuTask_198a0 ; H'8C019E8C
           .DATA.L _setTaskAction_8c014b3e ; H'8C019E90
-          .DATA.L _menuState_8c1bc7a8 ; H'8C019E94
+          .DATA.L _var_menuState_8c1bc7a8 ; H'8C019E94
           .SECTION     C, DATA, ALIGN=4
 _const_8c037ef8:
           .SDATA      "ÇÊÇÎÇµÇ¢Ç≈Ç∑Ç©ÅH"

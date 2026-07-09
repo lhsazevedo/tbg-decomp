@@ -4,7 +4,7 @@
           .IMPORT     _init_8c044ffc
           .IMPORT     _FUN_8c02aff0
           .IMPORT     _drawSprite_8c014f54
-          .IMPORT     _menuState_8c1bc7a8
+          .IMPORT     _var_menuState_8c1bc7a8
           .IMPORT     __divls
           .IMPORT     __modls
           .IMPORT     _var_resourceGroup_8c2263a8
@@ -25,7 +25,7 @@
           .IMPORT     _push_fadein_8c022a9c
           .IMPORT     _push_fadeout_8c022b60
           .IMPORT     _var_peripherals_8c1ba35c
-          .IMPORT     _isFading_8c226568
+          .IMPORT     _var_isFading_8c226568
           .IMPORT     _isPvmReady_8c01432a
           .IMPORT     _AsqFreeQueues_11f7e
           .IMPORT     _CourseMenuInterpolateCursor_8c016d2c
@@ -201,7 +201,7 @@ LP_GEN_27148:
           .DATA.L _FUN_8c02aff0 ; H'8C01CAA8
           .DATA.L H'C0400000 ; H'8C01CAAC
           .DATA.L _drawSprite_8c014f54 ; H'8C01CAB0
-          .DATA.L _menuState_8c1bc7a8 ; H'8C01CAB4
+          .DATA.L _var_menuState_8c1bc7a8 ; H'8C01CAB4
           .DATA.L __divls ; H'8C01CAB8
           .DATA.L __modls ; H'8C01CABC
           .DATA.L H'C0000000 ; H'8C01CAC0
@@ -334,7 +334,7 @@ LAB_8c01cb80:
           MOV.L       @R15+,R14
 LP_GEN_23877:
           .DATA.W H'00FF ; H'8C01CBB6
-          .DATA.L _menuState_8c1bc7a8 ; H'8C01CBB8
+          .DATA.L _var_menuState_8c1bc7a8 ; H'8C01CBB8
           .DATA.L _init_8c044ffc ; H'8C01CBBC
           .DATA.L H'42C00000 ; H'8C01CBC0
           .DATA.L H'43858000 ; H'8C01CBC4
@@ -448,7 +448,7 @@ LAB_8c01cc9c:
 LP_GEN_72378:
           .DATA.W H'0C00 ; H'8C01CCA4
           .RES.W 1 ; H'8C01CCA6
-          .DATA.L _menuState_8c1bc7a8 ; H'8C01CCA8
+          .DATA.L _var_menuState_8c1bc7a8 ; H'8C01CCA8
           .DATA.L _init_8c045148 ; H'8C01CCAC
           .DATA.L _var_currentSysResGroupInfo_8c225fb0 ; H'8C01CCB0
           .DATA.L _var_resourceGroup_8c2263a8 ; H'8C01CCB4
@@ -520,8 +520,8 @@ LP_GEN_41643:
           .DATA.L _sdMidiPlay ; H'8C01CD54
           .DATA.L _var_midiHandles_8c0fcd28 ; H'8C01CD58
           .DATA.L _var_peripherals_8c1ba35c ; H'8C01CD5C
-          .DATA.L _menuState_8c1bc7a8 ; H'8C01CD60
-          .DATA.L _isFading_8c226568 ; H'8C01CD64
+          .DATA.L _var_menuState_8c1bc7a8 ; H'8C01CD60
+          .DATA.L _var_isFading_8c226568 ; H'8C01CD64
           .DATA.W H'003E ; H'8C01CD68
           .DATA.W H'0058 ; H'8C01CD6A
           .DATA.W H'0066 ; H'8C01CD6C
@@ -1198,7 +1198,7 @@ LP_GEN_13275:
           .DATA.W H'0C00 ; H'8C01D256
           .DATA.L _FUN_8c01ccec ; H'8C01D258
           .DATA.L _setTaskAction_8c014b3e ; H'8C01D25C
-          .DATA.L _menuState_8c1bc7a8 ; H'8C01D260
+          .DATA.L _var_menuState_8c1bc7a8 ; H'8C01D260
           .DATA.L _CourseMenuFreeResourceGroup_8c0185c4 ; H'8C01D264
           .DATA.L _var_tex_8c157af8 ; H'8C01D268
           .DATA.L _njGarbageTexture ; H'8C01D26C

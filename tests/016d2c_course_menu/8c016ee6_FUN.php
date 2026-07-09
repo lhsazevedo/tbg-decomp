@@ -26,7 +26,7 @@ return new class extends TestCase {
         $this->shouldCall('_drawInteger_8c016e6c')->with(9, 84.0, 82.0);
         $this->shouldCall('_getWeekDayIndex_8c016ed2')->andReturn(2);
         $this->shouldCall('_drawSprite_8c014f54')->with(
-            $this->addressOf('_menuState_8c1bc7a8'),
+            $this->addressOf('_var_menuState_8c1bc7a8'),
             8,
             112.0,
             82.0,
@@ -50,7 +50,7 @@ return new class extends TestCase {
         $this->shouldCall('_drawInteger_8c016e6c')->with(10, 95.0, 82.0);
         $this->shouldCall('_getWeekDayIndex_8c016ed2')->andReturn(4);
         $this->shouldCall('_drawSprite_8c014f54')->with(
-            $this->addressOf('_menuState_8c1bc7a8'),
+            $this->addressOf('_var_menuState_8c1bc7a8'),
             6 + 4,
             112.0,
             82.0,
@@ -73,7 +73,7 @@ return new class extends TestCase {
 
         $this->shouldCall('_drawInteger_8c016e6c')->with(15, 95.0, 82.0);
         $this->shouldCall('_drawSprite_8c014f54')->with(
-            $this->addressOf('_menuState_8c1bc7a8'),
+            $this->addressOf('_var_menuState_8c1bc7a8'),
             13,
             112.0,
             82.0,
@@ -96,7 +96,7 @@ return new class extends TestCase {
 
         $this->shouldCall('_drawInteger_8c016e6c')->with(23, 95.0, 82.0);
         $this->shouldCall('_drawSprite_8c014f54')->with(
-            $this->addressOf('_menuState_8c1bc7a8'),
+            $this->addressOf('_var_menuState_8c1bc7a8'),
             14,
             112.0,
             82.0,
@@ -120,7 +120,7 @@ return new class extends TestCase {
         $this->shouldCall('_drawInteger_8c016e6c')->with(24, 95.0, 82.0);
         $this->shouldCall('_getWeekDayIndex_8c016ed2')->andReturn(3);
         $this->shouldCall('_drawSprite_8c014f54')->with(
-            $this->addressOf('_menuState_8c1bc7a8'),
+            $this->addressOf('_var_menuState_8c1bc7a8'),
             9,
             112.0,
             82.0,

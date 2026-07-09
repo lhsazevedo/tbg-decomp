@@ -12,7 +12,7 @@
           .IMPORT     _init_8c04b920
           .IMPORT     _var_timeOfDay_8c18ad20
           .IMPORT     _var_8c228520
-          .IMPORT     _var_game_mode_8c1bb8fc
+          .IMPORT     _var_gameMode_8c1bb8fc
           .IMPORT     _var_8c2285dc
           .IMPORT     _var_8c2285d8
           .IMPORT     _var_currentSegment_8c228708
@@ -419,7 +419,7 @@ LP_GEN_88891:
           .DATA.W H'0300 ; H'8C02B248
           .DATA.W H'03FF ; H'8C02B24A
           .DATA.L _var_playMode_8c1bb8d0 ; H'8C02B24C
-          .DATA.L _var_game_mode_8c1bb8fc ; H'8C02B250
+          .DATA.L _var_gameMode_8c1bb8fc ; H'8C02B250
           .DATA.L _var_8c2285dc ; H'8C02B254
           .DATA.L _var_8c2285d8 ; H'8C02B258
           .DATA.L _var_8c228520 ; H'8C02B25C

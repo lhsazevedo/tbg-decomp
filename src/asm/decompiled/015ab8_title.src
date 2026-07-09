@@ -8,13 +8,13 @@
           .IMPORT     _VmMenuMountVms_1940e
           .IMPORT     _push_fadein_8c022a9c
           .IMPORT     _var_midiHandles_8c0fcd28
-          .IMPORT     _isFading_8c226568
+          .IMPORT     _var_isFading_8c226568
           .IMPORT     _drawSprite_8c014f54
           .IMPORT     _push_fadeout_8c022b60
           .IMPORT     _init_saveNames_8c044d50
           .IMPORT     _init_8c03bd80
           .IMPORT     _var_8c1bb8c4
-          .IMPORT     _menuState_8c1bc7a8
+          .IMPORT     _var_menuState_8c1bc7a8
           .IMPORT     _var_peripherals_8c1ba35c
           .IMPORT     _var_tasks_8c1ba3c8
           .IMPORT     _task_8c012f44
@@ -27,7 +27,7 @@
           .IMPORT     _VmMenuUpdateVmusStatus_19550
           .IMPORT     _VmMenuSwitchFromTask_19e44
           .IMPORT     _FUN_8c016182
-          .IMPORT     _FUN_demo_8c0159ac
+          .IMPORT     _FUN_8c0159ac
           .IMPORT     _AsqResetQueues_11f6c
           .IMPORT     _CourseMenuRequestSysResgrp_8c018568
           .IMPORT     _CourseMenuRequestCommonResources_8c01852c
@@ -37,14 +37,14 @@
           .IMPORT     _setName_8c012984
           .IMPORT     _startAdxFadeOut_8c010bae
           .IMPORT     _pushInputTask_8c0128cc
-          .EXPORT     _task_title_8c015ab8
+          .EXPORT     _TitleTask_8c015ab8
           .EXPORT     _pushTitle_8c015fd6
-          .EXPORT     _titleResourceGroup_8c044254 ; 015ab8_title.c, 015ab8_title.src, 01d7fc.src
+          .EXPORT     _init_titleResourceGroup_8c044254 ; 015ab8_title.c, 015ab8_title.src, 01d7fc.src
           .EXPORT     _init_mainMenuResourceGroup_8c044264 ; 016d2c_course_menu.c, 016d2c_course_menu.src, 019e98_main_menu.c, 019e98_main_menu.src
           .EXPORT     _init_8c044274 ; 01e27c.src
           .EXPORT     _init_8c044284 ; 01e27c.src
           .SECTION    P,CODE,ALIGN=4
-_task_title_8c015ab8:            ; function: task_title_8c015ab8
+_TitleTask_8c015ab8:            ; function: TitleTask_8c015ab8
                                  ; frame size=?
           MOV.L       R14,@-R15
           MOV.L       R13,@-R15
@@ -60,13 +60,13 @@ _task_title_8c015ab8:            ; function: task_title_8c015ab8
           STS.L       PR,@-R15
           ADD         #-4,R15
           MOVA        L3+2,R0
-          MOV.L       L3+18,R14; _menuState_8c1bc7a8
+          MOV.L       L3+18,R14; _var_menuState_8c1bc7a8
           FMOV.S      @R0,FR12
           MOVA        L3+6,R0
           FMOV.S      @R0,FR13
           MOVA        L3+10,R0
           MOV         #11,R3
-          MOV.L       L3+26,R12; _isFading_8c226568
+          MOV.L       L3+26,R12; _var_isFading_8c226568
           MOV.L       L3+22,R9 ; _var_peripherals_8c1ba35c
           FMOV.S      @R0,FR14
           MOV.L       R4,@R15
@@ -118,9 +118,9 @@ L3:
           .DATA.L     H'C0800000 ; -4.0
           .DATA.L     H'C0A00000 ; -5.0 H'8c015b40
           .DATA.L     _drawSprite_8c014f54
-          .DATA.L     _menuState_8c1bc7a8
+          .DATA.L     _var_menuState_8c1bc7a8
           .DATA.L     _var_peripherals_8c1ba35c
-          .DATA.L     _isFading_8c226568 ; H'8c015b50
+          .DATA.L     _var_isFading_8c226568 ; H'8c015b50
           .DATA.L     _var_midiHandles_8c0fcd28
           .DATA.L     _sdMidiPlay
           .DATA.L     _push_fadein_8c022a9c
@@ -653,7 +653,7 @@ L48:
           .DATA.L     _var_8c1bb8c4 ; H'8c015f50
           .DATA.L     _VmMenuSwitchFromTask_19e44
           .DATA.L     _FUN_8c016182
-          .DATA.L     _FUN_demo_8c0159ac
+          .DATA.L     _FUN_8c0159ac
 
 L49:                              
           MOV         R14,R4
@@ -746,14 +746,14 @@ _pushTitle_8c015fd6:                   ; function: pushTitle_8c015fd6
           MOV         #0,R3
           MOV.L       L53+32,R4; _var_tasks_8c1ba3c8
           MOV.L       R3,@-R15
-          MOV.L       L53+44,R5; _task_title_8c015ab8
+          MOV.L       L53+44,R5; _TitleTask_8c015ab8
           MOV         R15,R7
           MOV.L       L53+36,R2; _pushTask_8c014ae8
           ADD         #12,R7
           MOV         R15,R6
           JSR         @R2
           ADD         #8,R6
-          MOV.L       L53+48,R14; _menuState_8c1bc7a8
+          MOV.L       L53+48,R14; _var_menuState_8c1bc7a8
           MOV         #100,R0
           MOV         #0,R3
           MOV.L       L53+52,R1; _var_8c1bb8c4
@@ -794,7 +794,7 @@ _pushTitle_8c015fd6:                   ; function: pushTitle_8c015fd6
           NOP
           MOV.L       L53+80,R2; _var_currentSysResGroupInfo_8c225fb0
           MOV         #-1,R3
-          MOV.L       L53+84,R5; _titleResourceGroup_8c044254
+          MOV.L       L53+84,R5; _init_titleResourceGroup_8c044254
           MOV         R14,R4
           MOV.L       R3,@R2
           MOV.L       L53+88,R3; _CourseMenuRequestSysResgrp_8c018568
@@ -833,8 +833,8 @@ L53:
           .DATA.L     _var_tasks_8c1ba3c8
           .DATA.L     _pushTask_8c014ae8
           .DATA.L     _njSetBackColor ; H'8c0160c0
-          .DATA.L     _task_title_8c015ab8
-          .DATA.L     _menuState_8c1bc7a8
+          .DATA.L     _TitleTask_8c015ab8
+          .DATA.L     _var_menuState_8c1bc7a8
           .DATA.L     _var_8c1bb8c4
           .DATA.L     _var_tex_8c157af8 ; H'8c0160d0
           .DATA.L     _njGarbageTexture
@@ -843,7 +843,7 @@ L53:
           .DATA.L     _AsqInitQueues_11f36 ; H'8c0160e0
           .DATA.L     _AsqResetQueues_11f6c
           .DATA.L     _var_currentSysResGroupInfo_8c225fb0
-          .DATA.L     _titleResourceGroup_8c044254
+          .DATA.L     _init_titleResourceGroup_8c044254
           .DATA.L     _CourseMenuRequestSysResgrp_8c018568 ; H'8c0160f0
           .DATA.L     _CourseMenuRequestCommonResources_8c01852c
           .DATA.L     _setPvmReady_8c014330
@@ -856,7 +856,7 @@ L53:
           .DATA.L      _const_8c035fcc ; ukn
           .DATA.L      _const_8c035fd8 ; ukn
           .DATA.L      H'01
-_titleResourceGroup_8c044254:        ; from defines
+_init_titleResourceGroup_8c044254:        ; from defines
           .DATA.L      _const_8c035fe4 ; ukn
           .DATA.L      _const_8c035ff4 ; ukn
           .DATA.L      _const_8c036000 ; ukn

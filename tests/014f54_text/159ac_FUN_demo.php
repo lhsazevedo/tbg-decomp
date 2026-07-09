@@ -55,7 +55,7 @@ return new class extends TestCase {
                 $this->addressOf('_setPvmReady_8c014330')
             );
 
-        $this->singleCall('_FUN_demo_8c0159ac')->with(0xbeba1337)->run();
+        $this->singleCall('_FUN_8c0159ac')->with(0xbeba1337)->run();
     }
 
     public function test_it_loops_demos()
@@ -108,7 +108,7 @@ return new class extends TestCase {
                 $this->addressOf('_setPvmReady_8c014330')
             );
 
-        $this->singleCall('_FUN_demo_8c0159ac')->with(0xbeba1337)->run();
+        $this->singleCall('_FUN_8c0159ac')->with(0xbeba1337)->run();
     }
 
     protected function resolveSymbols(): void

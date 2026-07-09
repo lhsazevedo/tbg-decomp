@@ -1,5 +1,5 @@
 #include <shinobi.h>
-// sizeof _demoCursor_8c225fa8 = 8
+// sizeof _var_demoCursor_8c225fa8 = 8
 
 typedef struct Struct8c225fa8 Struct8c225fa8;
 
@@ -13,11 +13,11 @@ struct Struct8c225fa8
 };
 
 
-extern Struct8c225fa8* demoCursor_8c225fa8;
-extern Struct8c225fa8* demoCursor_8c225fa8_2;
+extern Struct8c225fa8* var_demoCursor_8c225fa8;
+extern Struct8c225fa8* var_demoCursor_8c225fa8_2;
 extern int var_8c1bbc84;
 //extern int var_8c1ba364;
-extern int demoPrevOn_8c225fac;
+extern int var_demoPrevOn_8c225fac;
 extern PDS_PERIPHERAL var_peripherals_8c1ba35c[2];
 
 void demoInputTask_8c016bf4()
@@ -25,29 +25,29 @@ void demoInputTask_8c016bf4()
     Struct8c225fa8* temp;
 
     if (var_8c1bbc84 >= 1) {
-        temp = &demoCursor_8c225fa8->field_0x00;
+        temp = &var_demoCursor_8c225fa8->field_0x00;
 
-        if (temp < &demoCursor_8c225fa8_2) {
-            // var_8c1ba364 = *_demoCursor_8c225fa8;
+        if (temp < &var_demoCursor_8c225fa8_2) {
+            // var_8c1ba364 = *_var_demoCursor_8c225fa8;
             var_peripherals_8c1ba35c[0].on = (int) &temp;
 
-            // var_8c1ba36c = var_8c1ba364 & (_demoPrevOn_8c225fac ^ var_8c1ba364);
-            var_peripherals_8c1ba35c[0].press = var_peripherals_8c1ba35c[0].on & (demoPrevOn_8c225fac ^ var_peripherals_8c1ba35c[0].on);
+            // var_8c1ba36c = var_8c1ba364 & (_var_demoPrevOn_8c225fac ^ var_8c1ba364);
+            var_peripherals_8c1ba35c[0].press = var_peripherals_8c1ba35c[0].on & (var_demoPrevOn_8c225fac ^ var_peripherals_8c1ba35c[0].on);
 
-            // var_8c1ba378 = (short)*(char *)(_demoCursor_8c225fa8 + 1);
-            var_peripherals_8c1ba35c[0].x2 = demoCursor_8c225fa8->field_0x04;
+            // var_8c1ba378 = (short)*(char *)(_var_demoCursor_8c225fa8 + 1);
+            var_peripherals_8c1ba35c[0].x2 = var_demoCursor_8c225fa8->field_0x04;
 
-            // var_8c1ba374 = (ushort)*(byte *)((int)_demoCursor_8c225fa8 + 5);
-            var_peripherals_8c1ba35c[0].x1 = demoCursor_8c225fa8->field_0x05;
+            // var_8c1ba374 = (ushort)*(byte *)((int)_var_demoCursor_8c225fa8 + 5);
+            var_peripherals_8c1ba35c[0].x1 = var_demoCursor_8c225fa8->field_0x05;
 
-            // var_8c1ba376 = (ushort)*(byte *)((int)_demoCursor_8c225fa8 + 6);
-            var_peripherals_8c1ba35c[0].y1 = demoCursor_8c225fa8->field_0x06;
+            // var_8c1ba376 = (ushort)*(byte *)((int)_var_demoCursor_8c225fa8 + 6);
+            var_peripherals_8c1ba35c[0].y1 = var_demoCursor_8c225fa8->field_0x06;
 
-            // _demoCursor_8c225fa8 = _demoCursor_8c225fa8 + 2;
-            demoCursor_8c225fa8++;
+            // _var_demoCursor_8c225fa8 = _var_demoCursor_8c225fa8 + 2;
+            var_demoCursor_8c225fa8++;
 
-            // _demoPrevOn_8c225fac = var_8c1ba364;
-            demoPrevOn_8c225fac = var_peripherals_8c1ba35c[0].on;
+            // _var_demoPrevOn_8c225fac = var_8c1ba364;
+            var_demoPrevOn_8c225fac = var_peripherals_8c1ba35c[0].on;
         }
     }
 }

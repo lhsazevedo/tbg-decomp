@@ -1,8 +1,8 @@
 ; 8c016bf4
-          .IMPORT     _demoCursor_8c225fa8
+          .IMPORT     _var_demoCursor_8c225fa8
           .IMPORT     _var_8c1bbc84
-          .IMPORT     _demoPrevOn_8c225fac
-          .IMPORT     _demoBuffer_8c1bc828
+          .IMPORT     _var_demoPrevOn_8c225fac
+          .IMPORT     _var_demoBuffer_8c1bc828
           .IMPORT     _var_peripherals_8c1ba35c
           .EXPORT     _demoInputTask_8c016bf4
           .SECTION    P,CODE,ALIGN=4
@@ -14,8 +14,8 @@ _demoInputTask_8c016bf4:                   ; function: demoInputTask_8c016bf4
           MOV.L       @R1,R2
           CMP/GE      R3,R2
           BF          L0
-          MOV.L       L1+4,R5 ; _demoCursor_8c225fa8
-          MOV.L       L1+8,R2 ; _demoCursor_8c225fa8_2
+          MOV.L       L1+4,R5 ; _var_demoCursor_8c225fa8
+          MOV.L       L1+8,R2 ; _var_demoCursor_8c225fa8_2
           MOV.L       @R5,R6
           CMP/HS      R2,R6
           BT          L0
@@ -51,8 +51,8 @@ L0:
           ADD         #4,R15
 L1:                               
           .DATA.L _var_8c1bbc84 ; H'8C016C44
-          .DATA.L _demoCursor_8c225fa8 ; H'8C016C48
-          .DATA.L _demoBuffer_8c1bc828+432000 ; H'8C016C4C (end of replay buffer)
+          .DATA.L _var_demoCursor_8c225fa8 ; H'8C016C48
+          .DATA.L _var_demoBuffer_8c1bc828+432000 ; H'8C016C4C (end of replay buffer)
           .DATA.L _var_peripherals_8c1ba35c ; H'8C016C50
-          .DATA.L _demoPrevOn_8c225fac ; H'8C016C54
+          .DATA.L _var_demoPrevOn_8c225fac ; H'8C016C54
           .END

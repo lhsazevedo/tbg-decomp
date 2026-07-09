@@ -22,10 +22,10 @@ return new class extends TestCase {
 
         $this->resolveSymbols();
 
-        $this->initUint32($this->addressOf('_menuState_8c1bc7a8') + 0x18, 0); // state
-        $this->initUint32($this->addressOf('_menuState_8c1bc7a8') + 0x68, 3); // timer
+        $this->initUint32($this->addressOf('_var_menuState_8c1bc7a8') + 0x18, 0); // state
+        $this->initUint32($this->addressOf('_var_menuState_8c1bc7a8') + 0x68, 3); // timer
 
-        $this->shouldWriteLong($this->addressOf('_menuState_8c1bc7a8') + 0x68, 4);
+        $this->shouldWriteLong($this->addressOf('_var_menuState_8c1bc7a8') + 0x68, 4);
 
 
         $this->singleCall($this->entryName())->with(0, 0)->run();
@@ -38,13 +38,13 @@ return new class extends TestCase {
 
         $this->resolveSymbols();
 
-        $this->initUint32($this->addressOf('_menuState_8c1bc7a8') + 0x18, 0); // state
-        $this->initUint32($this->addressOf('_menuState_8c1bc7a8') + 0x68, 4); // timer
+        $this->initUint32($this->addressOf('_var_menuState_8c1bc7a8') + 0x18, 0); // state
+        $this->initUint32($this->addressOf('_var_menuState_8c1bc7a8') + 0x68, 4); // timer
 
         $this->initUint32($this->addressOf('_var_vmuStatus_8c226048') + 0x00, 0);
         $this->initUint32($this->addressOf('_var_vmuStatus_8c226048') + 0x04, 4);
 
-        $this->shouldWriteLong($this->addressOf('_menuState_8c1bc7a8') + 0x68, 5);
+        $this->shouldWriteLong($this->addressOf('_var_menuState_8c1bc7a8') + 0x68, 5);
 
         $this->shouldCall('_VmMenuUpdateVmusStatus_19550')
             ->with($this->addressOf('_init_saveNames_8c044d50'), 3)
@@ -56,7 +56,7 @@ return new class extends TestCase {
 
         // TODO: Move implementation to Simulator
         // TODO: Handle calling conventions for expectations in Simulator
-        $menuState = $this->addressOf('_menuState_8c1bc7a8');
+        $menuState = $this->addressOf('_var_menuState_8c1bc7a8');
         $mvn = function () use ($menuState) {
             $src = $this->registers[2];
             $dst = $this->registers[1];
@@ -93,12 +93,12 @@ return new class extends TestCase {
         $this->resolveSymbols();
 
         $state = $this->alloc(8 * 4);
-        $this->initUint32($this->addressOf('_menuState_8c1bc7a8') + 0x18, 0); // state
-        $this->initUint32($this->addressOf('_menuState_8c1bc7a8') + 0x68, 4); // timer
+        $this->initUint32($this->addressOf('_var_menuState_8c1bc7a8') + 0x18, 0); // state
+        $this->initUint32($this->addressOf('_var_menuState_8c1bc7a8') + 0x68, 4); // timer
         $this->initUint32($this->addressOf('_var_vmuStatus_8c226048') + 0x00, 0);
         $this->initUint32($this->addressOf('_var_vmuStatus_8c226048') + 0x04, 4);
 
-        $this->shouldWriteLong($this->addressOf('_menuState_8c1bc7a8') + 0x68, 5);
+        $this->shouldWriteLong($this->addressOf('_var_menuState_8c1bc7a8') + 0x68, 5);
 
         $this->shouldCall('_VmMenuUpdateVmusStatus_19550')
             ->with($this->addressOf('_init_saveNames_8c044d50'), 3)
@@ -107,7 +107,7 @@ return new class extends TestCase {
         // Advance state
         $this->shouldWriteMenuState(6);
         $this->shouldWriteLong($state + 0x08, 0);
-        $this->shouldWriteLong($this->addressOf('_menuState_8c1bc7a8') + 0x3c, 0);
+        $this->shouldWriteLong($this->addressOf('_var_menuState_8c1bc7a8') + 0x3c, 0);
 
         $this->shouldCall('_push_fadein_8c022a9c')->with(10);
 
@@ -122,8 +122,8 @@ return new class extends TestCase {
         $this->resolveSymbols();
 
         $state = $this->alloc(8 * 4);
-        $this->initUint32($this->addressOf('_menuState_8c1bc7a8') + 0x18, 1); // state
-        $this->initUint32($this->addressOf('_isFading_8c226568'), 1);
+        $this->initUint32($this->addressOf('_var_menuState_8c1bc7a8') + 0x18, 1); // state
+        $this->initUint32($this->addressOf('_var_isFading_8c226568'), 1);
 
         $this->shouldCall('_drawVmMenu_197c0');
         $this->shouldWriteSelectedSlot(0);
@@ -139,8 +139,8 @@ return new class extends TestCase {
         $this->resolveSymbols();
 
         $state = $this->alloc(8 * 4);
-        $this->initUint32($this->addressOf('_menuState_8c1bc7a8') + 0x18, 1); // state
-        $this->initUint32($this->addressOf('_isFading_8c226568'), 0);
+        $this->initUint32($this->addressOf('_var_menuState_8c1bc7a8') + 0x18, 1); // state
+        $this->initUint32($this->addressOf('_var_isFading_8c226568'), 0);
 
         $this->shouldWriteMenuState(2);
         $this->shouldCall('_drawVmMenu_197c0');
@@ -156,7 +156,7 @@ return new class extends TestCase {
 
         $this->resolveSymbols();
 
-        $this->initUint32($this->addressOf('_menuState_8c1bc7a8') + 0x18, 2); // state
+        $this->initUint32($this->addressOf('_var_menuState_8c1bc7a8') + 0x18, 2); // state
         // Init slots
         $this->initUint32($this->addressOf('_var_vmuStatus_8c226048') + 0 * 4, 0); // Unavailable
         $this->initUint32($this->addressOf('_var_vmuStatus_8c226048') + 1 * 4, 0); // Unavailable
@@ -381,8 +381,8 @@ return new class extends TestCase {
     {
         $this->resolveSymbols();
 
-        $this->initUint32($this->addressOf('_menuState_8c1bc7a8') + 0x18, 2); // state
-        $this->initUint32($this->addressOf('_menuState_8c1bc7a8') + 0x38, 1); // slot
+        $this->initUint32($this->addressOf('_var_menuState_8c1bc7a8') + 0x18, 2); // state
+        $this->initUint32($this->addressOf('_var_menuState_8c1bc7a8') + 0x38, 1); // slot
         $this->initUint32($this->addressOf('_var_peripherals_8c1ba35c') + 0x10, PDD_DGT_TA);
         // Init slots
         $this->initUint32Array($this->addressOf('_var_vmuStatus_8c226048'), [
@@ -395,11 +395,11 @@ return new class extends TestCase {
 
         $this->shouldCall('_sdMidiPlay')->with(0xbeef0000, 1, 0, 0);
         $this->shouldCall('_swapMessageBoxFor_8c02aefc')->with("よろしいですか？");
-        $this->shouldWriteLong($this->addressOf('_menuState_8c1bc7a8') + 0x6c, 1);
+        $this->shouldWriteLong($this->addressOf('_var_menuState_8c1bc7a8') + 0x6c, 1);
         $this->shouldCall('_BupGetInfo_8c014bba')->with(1)->andReturn(0x5a5a5a5a);
-        $this->shouldWriteLong($this->addressOf('_menuState_8c1bc7a8') + 0x78, 0x5a5a5a5a);
+        $this->shouldWriteLong($this->addressOf('_var_menuState_8c1bc7a8') + 0x78, 0x5a5a5a5a);
         $this->shouldWriteMenuState(4);
-        $this->shouldWriteLong($this->addressOf('_menuState_8c1bc7a8') + 0x3c, 0);
+        $this->shouldWriteLong($this->addressOf('_var_menuState_8c1bc7a8') + 0x3c, 0);
 
         $this->shouldCall('_drawVmMenu_197c0');
         $this->shouldCall('_menuTextboxText_8c02af1c')->with(0x20);
@@ -412,8 +412,8 @@ return new class extends TestCase {
     {
         $this->resolveSymbols();
 
-        $this->initUint32($this->addressOf('_menuState_8c1bc7a8') + 0x18, 2); // state
-        $this->initUint32($this->addressOf('_menuState_8c1bc7a8') + 0x38, 1); // slot
+        $this->initUint32($this->addressOf('_var_menuState_8c1bc7a8') + 0x18, 2); // state
+        $this->initUint32($this->addressOf('_var_menuState_8c1bc7a8') + 0x38, 1); // slot
         $this->initUint32($this->addressOf('_var_peripherals_8c1ba35c') + 0x10, PDD_DGT_TA);
         // Init slots
         $this->initUint32Array($this->addressOf('_var_vmuStatus_8c226048'), [
@@ -426,11 +426,11 @@ return new class extends TestCase {
 
         $this->shouldCall('_sdMidiPlay')->with(0xbeef0000, 1, 0, 0);
         $this->shouldCall('_swapMessageBoxFor_8c02aefc')->with("よろしいですか？");
-        $this->shouldWriteLong($this->addressOf('_menuState_8c1bc7a8') + 0x6c, 1);
+        $this->shouldWriteLong($this->addressOf('_var_menuState_8c1bc7a8') + 0x6c, 1);
         $this->shouldCall('_BupGetInfo_8c014bba')->with(1)->andReturn(0x5a5a5a5a);
-        $this->shouldWriteLong($this->addressOf('_menuState_8c1bc7a8') + 0x78, 0x5a5a5a5a);
+        $this->shouldWriteLong($this->addressOf('_var_menuState_8c1bc7a8') + 0x78, 0x5a5a5a5a);
         $this->shouldWriteMenuState(4);
-        $this->shouldWriteLong($this->addressOf('_menuState_8c1bc7a8') + 0x3c, 0);
+        $this->shouldWriteLong($this->addressOf('_var_menuState_8c1bc7a8') + 0x3c, 0);
 
         $this->shouldCall('_drawVmMenu_197c0');
         $this->shouldCall('_menuTextboxText_8c02af1c')->with(0x20);
@@ -443,8 +443,8 @@ return new class extends TestCase {
     {
         $this->resolveSymbols();
 
-        $this->initUint32($this->addressOf('_menuState_8c1bc7a8') + 0x18, 2); // state
-        $this->initUint32($this->addressOf('_menuState_8c1bc7a8') + 0x38, 1); // slot
+        $this->initUint32($this->addressOf('_var_menuState_8c1bc7a8') + 0x18, 2); // state
+        $this->initUint32($this->addressOf('_var_menuState_8c1bc7a8') + 0x38, 1); // slot
         $this->initUint32($this->addressOf('_var_peripherals_8c1ba35c') + 0x10, PDD_DGT_TA);
         // Init slots
         $this->initUint32Array($this->addressOf('_var_vmuStatus_8c226048'), [
@@ -457,11 +457,11 @@ return new class extends TestCase {
 
         $this->shouldCall('_sdMidiPlay')->with(0xbeef0000, 1, 0, 0);
         $this->shouldCall('_swapMessageBoxFor_8c02aefc')->with("よろしいですか？");
-        $this->shouldWriteLong($this->addressOf('_menuState_8c1bc7a8') + 0x6c, 1);
+        $this->shouldWriteLong($this->addressOf('_var_menuState_8c1bc7a8') + 0x6c, 1);
         $this->shouldCall('_BupGetInfo_8c014bba')->with(1)->andReturn(0x5a5a5a5a);
-        $this->shouldWriteLong($this->addressOf('_menuState_8c1bc7a8') + 0x78, 0x5a5a5a5a);
+        $this->shouldWriteLong($this->addressOf('_var_menuState_8c1bc7a8') + 0x78, 0x5a5a5a5a);
         $this->shouldWriteMenuState(4);
-        $this->shouldWriteLong($this->addressOf('_menuState_8c1bc7a8') + 0x3c, 0);
+        $this->shouldWriteLong($this->addressOf('_var_menuState_8c1bc7a8') + 0x3c, 0);
 
         $this->shouldCall('_drawVmMenu_197c0');
         $this->shouldCall('_menuTextboxText_8c02af1c')->with(0x20);
@@ -474,8 +474,8 @@ return new class extends TestCase {
     {
         $this->resolveSymbols();
 
-        $this->initUint32($this->addressOf('_menuState_8c1bc7a8') + 0x18, 2); // state
-        $this->initUint32($this->addressOf('_menuState_8c1bc7a8') + 0x38, 8); // slot
+        $this->initUint32($this->addressOf('_var_menuState_8c1bc7a8') + 0x18, 2); // state
+        $this->initUint32($this->addressOf('_var_menuState_8c1bc7a8') + 0x38, 8); // slot
         $this->initUint32($this->addressOf('_var_peripherals_8c1ba35c') + 0x10, PDD_DGT_TA);
         // Init slots
         $this->initUint32Array($this->addressOf('_var_vmuStatus_8c226048'), [
@@ -488,8 +488,8 @@ return new class extends TestCase {
 
         $this->shouldCall('_sdMidiPlay')->with(0xbeef0000, 1, 0, 0);
         $this->shouldCall('_swapMessageBoxFor_8c02aefc')->with("ファイルを設定しないとセーブできません<E>このままゲームを開始してもよろしいですか？");
-        $this->shouldWriteLong($this->addressOf('_menuState_8c1bc7a8') + 0x18, 5);
-        $this->shouldWriteLong($this->addressOf('_menuState_8c1bc7a8') + 0x3c, 0);
+        $this->shouldWriteLong($this->addressOf('_var_menuState_8c1bc7a8') + 0x18, 5);
+        $this->shouldWriteLong($this->addressOf('_var_menuState_8c1bc7a8') + 0x3c, 0);
 
         $this->shouldCall('_drawVmMenu_197c0');
         $this->shouldCall('_menuTextboxText_8c02af1c')->with(0x20);
@@ -502,8 +502,8 @@ return new class extends TestCase {
     {
         $this->resolveSymbols();
 
-        $this->initUint32($this->addressOf('_menuState_8c1bc7a8') + 0x18, 2); // state
-        $this->initUint32($this->addressOf('_menuState_8c1bc7a8') + 0x38, 1); // slot
+        $this->initUint32($this->addressOf('_var_menuState_8c1bc7a8') + 0x18, 2); // state
+        $this->initUint32($this->addressOf('_var_menuState_8c1bc7a8') + 0x38, 1); // slot
         $this->initUint32($this->addressOf('_var_peripherals_8c1ba35c') + 0x10, PDD_DGT_TA);
         // Init slots
         $this->initUint32Array($this->addressOf('_var_vmuStatus_8c226048'), [
@@ -515,7 +515,7 @@ return new class extends TestCase {
             ->with($this->addressOf('_init_saveNames_8c044d50'), 3);
 
         $this->shouldCall('_sdMidiPlay')->with(0xbeef0000, 1, 2, 0);
-        $this->shouldWriteLong($this->addressOf('_menuState_8c1bc7a8') + 0x3c, 0);
+        $this->shouldWriteLong($this->addressOf('_var_menuState_8c1bc7a8') + 0x3c, 0);
 
         $this->shouldCall('_drawVmMenu_197c0');
         $this->shouldCall('_menuTextboxText_8c02af1c')->with(0x20);
@@ -541,8 +541,8 @@ return new class extends TestCase {
     {
         $this->resolveSymbols();
 
-        $this->initUint32($this->addressOf('_menuState_8c1bc7a8') + 0x18, 3); // state
-        $this->initUint32($this->addressOf('_menuState_8c1bc7a8') + 0x38, 1); // slot
+        $this->initUint32($this->addressOf('_var_menuState_8c1bc7a8') + 0x18, 3); // state
+        $this->initUint32($this->addressOf('_var_menuState_8c1bc7a8') + 0x38, 1); // slot
 
         $this->shouldCall('_CourseMenuInterpolateCursor_8c016d2c')->andReturn(0);
 
@@ -557,8 +557,8 @@ return new class extends TestCase {
     {
         $this->resolveSymbols();
 
-        $this->initUint32($this->addressOf('_menuState_8c1bc7a8') + 0x18, 3); // state
-        $this->initUint32($this->addressOf('_menuState_8c1bc7a8') + 0x38, 1); // slot
+        $this->initUint32($this->addressOf('_var_menuState_8c1bc7a8') + 0x18, 3); // state
+        $this->initUint32($this->addressOf('_var_menuState_8c1bc7a8') + 0x38, 1); // slot
         // Init slots
         $this->initUint32Array($this->addressOf('_var_vmuStatus_8c226048'), [
             0, 4, 0, 0,
@@ -584,8 +584,8 @@ return new class extends TestCase {
 
         $this->resolveSymbols();
 
-        $this->initUint32($this->addressOf('_menuState_8c1bc7a8') + 0x18, 4); // state
-        $this->initUint32($this->addressOf('_menuState_8c1bc7a8') + 0x38, 1); // slot
+        $this->initUint32($this->addressOf('_var_menuState_8c1bc7a8') + 0x18, 4); // state
+        $this->initUint32($this->addressOf('_var_menuState_8c1bc7a8') + 0x38, 1); // slot
         // Init slots
         $this->initUint32Array($this->addressOf('_var_vmuStatus_8c226048'), [
             0, 4, 0, 0,
@@ -593,11 +593,11 @@ return new class extends TestCase {
         ]);
 
         $this->shouldCall('_promptHandleBinary_16caa')
-            ->with($this->addressOf('_menuState_8c1bc7a8') + 0x3c)
+            ->with($this->addressOf('_var_menuState_8c1bc7a8') + 0x3c)
             ->andReturn(0);
 
         $this->shouldCall('_drawSprite_8c014f54')
-            ->with($this->addressOf('_menuState_8c1bc7a8') + 0x00,
+            ->with($this->addressOf('_var_menuState_8c1bc7a8') + 0x00,
             2,
             228.0,
             304.0,
@@ -615,9 +615,9 @@ return new class extends TestCase {
     {
         $this->resolveSymbols();
 
-        $this->initUint32($this->addressOf('_menuState_8c1bc7a8') + 0x18, 4); // state
-        $this->initUint32($this->addressOf('_menuState_8c1bc7a8') + 0x38, 3); // slot
-        $this->initUint32($this->addressOf('_menuState_8c1bc7a8') + 0x6c, 3); // slot
+        $this->initUint32($this->addressOf('_var_menuState_8c1bc7a8') + 0x18, 4); // state
+        $this->initUint32($this->addressOf('_var_menuState_8c1bc7a8') + 0x38, 3); // slot
+        $this->initUint32($this->addressOf('_var_menuState_8c1bc7a8') + 0x6c, 3); // slot
         // Init slots
         $this->initUint32Array($this->addressOf('_var_vmuStatus_8c226048'), [
             0, 4, 0, 0,
@@ -625,7 +625,7 @@ return new class extends TestCase {
         ]);
 
         $this->shouldCall('_promptHandleBinary_16caa')
-            ->with($this->addressOf('_menuState_8c1bc7a8') + 0x3c)
+            ->with($this->addressOf('_var_menuState_8c1bc7a8') + 0x3c)
             ->do(function ($params) {
                 $this->memory->writeUInt32($params[0], U32::of(1));
             })
@@ -636,7 +636,7 @@ return new class extends TestCase {
         $this->shouldCall('_push_fadeout_8c022b60')->with(10);
 
         $this->shouldCall('_drawSprite_8c014f54')
-            ->with($this->addressOf('_menuState_8c1bc7a8') + 0x00,
+            ->with($this->addressOf('_var_menuState_8c1bc7a8') + 0x00,
             3,
             228.0,
             304.0,
@@ -654,9 +654,9 @@ return new class extends TestCase {
     {
         $this->resolveSymbols();
 
-        $this->initUint32($this->addressOf('_menuState_8c1bc7a8') + 0x18, 4); // state
-        $this->initUint32($this->addressOf('_menuState_8c1bc7a8') + 0x38, 3); // slot
-        $this->initUint32($this->addressOf('_menuState_8c1bc7a8') + 0x6c, 3); // slot
+        $this->initUint32($this->addressOf('_var_menuState_8c1bc7a8') + 0x18, 4); // state
+        $this->initUint32($this->addressOf('_var_menuState_8c1bc7a8') + 0x38, 3); // slot
+        $this->initUint32($this->addressOf('_var_menuState_8c1bc7a8') + 0x6c, 3); // slot
         // Init slots
         $this->initUint32Array($this->addressOf('_var_vmuStatus_8c226048'), [
             0, 4, 0, 4,
@@ -664,7 +664,7 @@ return new class extends TestCase {
         ]);
 
         $this->shouldCall('_promptHandleBinary_16caa')
-            ->with($this->addressOf('_menuState_8c1bc7a8') + 0x3c)
+            ->with($this->addressOf('_var_menuState_8c1bc7a8') + 0x3c)
             ->do(function ($params) {
                 $this->memory->writeUInt32($params[0], U32::of(2));
             })
@@ -674,7 +674,7 @@ return new class extends TestCase {
         $this->shouldWriteMenuState(2);
 
         $this->shouldCall('_drawSprite_8c014f54')
-            ->with($this->addressOf('_menuState_8c1bc7a8') + 0x00,
+            ->with($this->addressOf('_var_menuState_8c1bc7a8') + 0x00,
             4,
             228.0,
             304.0,
@@ -695,8 +695,8 @@ return new class extends TestCase {
 
         $this->resolveSymbols();
 
-        $this->initUint32($this->addressOf('_menuState_8c1bc7a8') + 0x18, 5); // state
-        $this->initUint32($this->addressOf('_menuState_8c1bc7a8') + 0x38, 8); // slot
+        $this->initUint32($this->addressOf('_var_menuState_8c1bc7a8') + 0x18, 5); // state
+        $this->initUint32($this->addressOf('_var_menuState_8c1bc7a8') + 0x38, 8); // slot
         // Init slots
         $this->initUint32Array($this->addressOf('_var_vmuStatus_8c226048'), [
             0, 4, 0, 0,
@@ -704,11 +704,11 @@ return new class extends TestCase {
         ]);
 
         $this->shouldCall('_promptHandleBinary_16caa')
-            ->with($this->addressOf('_menuState_8c1bc7a8') + 0x3c)
+            ->with($this->addressOf('_var_menuState_8c1bc7a8') + 0x3c)
             ->andReturn(0);
 
         $this->shouldCall('_drawSprite_8c014f54')
-            ->with($this->addressOf('_menuState_8c1bc7a8') + 0x00,
+            ->with($this->addressOf('_var_menuState_8c1bc7a8') + 0x00,
             2,
             228.0,
             304.0,
@@ -726,9 +726,9 @@ return new class extends TestCase {
     {
         $this->resolveSymbols();
 
-        $this->initUint32($this->addressOf('_menuState_8c1bc7a8') + 0x18, 5); // state
-        $this->initUint32($this->addressOf('_menuState_8c1bc7a8') + 0x38, 8); // slot
-        $this->initUint32($this->addressOf('_menuState_8c1bc7a8') + 0x6c, 8); // slot
+        $this->initUint32($this->addressOf('_var_menuState_8c1bc7a8') + 0x18, 5); // state
+        $this->initUint32($this->addressOf('_var_menuState_8c1bc7a8') + 0x38, 8); // slot
+        $this->initUint32($this->addressOf('_var_menuState_8c1bc7a8') + 0x6c, 8); // slot
         // Init slots
         $this->initUint32Array($this->addressOf('_var_vmuStatus_8c226048'), [
             0, 4, 0, 0,
@@ -736,7 +736,7 @@ return new class extends TestCase {
         ]);
 
         $this->shouldCall('_promptHandleBinary_16caa')
-            ->with($this->addressOf('_menuState_8c1bc7a8') + 0x3c)
+            ->with($this->addressOf('_var_menuState_8c1bc7a8') + 0x3c)
             ->do(function ($params) {
                 $this->memory->writeUInt32($params[0], U32::of(1));
             })
@@ -750,7 +750,7 @@ return new class extends TestCase {
         $this->shouldCall('_push_fadeout_8c022b60')->with(10);
 
         $this->shouldCall('_drawSprite_8c014f54')
-            ->with($this->addressOf('_menuState_8c1bc7a8') + 0x00,
+            ->with($this->addressOf('_var_menuState_8c1bc7a8') + 0x00,
             3,
             228.0,
             304.0,
@@ -768,9 +768,9 @@ return new class extends TestCase {
     {
         $this->resolveSymbols();
 
-        $this->initUint32($this->addressOf('_menuState_8c1bc7a8') + 0x18, 5); // state
-        $this->initUint32($this->addressOf('_menuState_8c1bc7a8') + 0x38, 8); // slot
-        $this->initUint32($this->addressOf('_menuState_8c1bc7a8') + 0x6c, 8); // slot
+        $this->initUint32($this->addressOf('_var_menuState_8c1bc7a8') + 0x18, 5); // state
+        $this->initUint32($this->addressOf('_var_menuState_8c1bc7a8') + 0x38, 8); // slot
+        $this->initUint32($this->addressOf('_var_menuState_8c1bc7a8') + 0x6c, 8); // slot
         // Init slots
         $this->initUint32Array($this->addressOf('_var_vmuStatus_8c226048'), [
             0, 4, 0, 4,
@@ -778,7 +778,7 @@ return new class extends TestCase {
         ]);
 
         $this->shouldCall('_promptHandleBinary_16caa')
-            ->with($this->addressOf('_menuState_8c1bc7a8') + 0x3c)
+            ->with($this->addressOf('_var_menuState_8c1bc7a8') + 0x3c)
             ->do(function ($params) {
                 $this->memory->writeUInt32($params[0], U32::of(2));
             })
@@ -788,7 +788,7 @@ return new class extends TestCase {
         $this->shouldWriteMenuState(2);
 
         $this->shouldCall('_drawSprite_8c014f54')
-            ->with($this->addressOf('_menuState_8c1bc7a8') + 0x00,
+            ->with($this->addressOf('_var_menuState_8c1bc7a8') + 0x00,
             4,
             228.0,
             304.0,
@@ -806,9 +806,9 @@ return new class extends TestCase {
     {
         $this->resolveSymbols();
 
-        $this->initUint32($this->addressOf('_menuState_8c1bc7a8') + 0x18, 6); // state
-        $this->initUint32($this->addressOf('_menuState_8c1bc7a8') + 0x38, 1); // slot
-        $this->initUint32($this->addressOf('_isFading_8c226568'), 1);
+        $this->initUint32($this->addressOf('_var_menuState_8c1bc7a8') + 0x18, 6); // state
+        $this->initUint32($this->addressOf('_var_menuState_8c1bc7a8') + 0x38, 1); // slot
+        $this->initUint32($this->addressOf('_var_isFading_8c226568'), 1);
 
         $this->shouldCall('_DrawVmWarning_19852');
         $this->shouldWriteSelectedSlot(1);
@@ -820,9 +820,9 @@ return new class extends TestCase {
     {
         $this->resolveSymbols();
 
-        $this->initUint32($this->addressOf('_menuState_8c1bc7a8') + 0x18, 6); // state
-        $this->initUint32($this->addressOf('_menuState_8c1bc7a8') + 0x38, 1); // slot
-        $this->initUint32($this->addressOf('_isFading_8c226568'), 0);
+        $this->initUint32($this->addressOf('_var_menuState_8c1bc7a8') + 0x18, 6); // state
+        $this->initUint32($this->addressOf('_var_menuState_8c1bc7a8') + 0x38, 1); // slot
+        $this->initUint32($this->addressOf('_var_isFading_8c226568'), 0);
 
         $this->shouldWriteMenuState(7);
         $this->shouldCall('_DrawVmWarning_19852');
@@ -835,8 +835,8 @@ return new class extends TestCase {
     {
         $this->resolveSymbols();
 
-        $this->initUint32($this->addressOf('_menuState_8c1bc7a8') + 0x18, 7); // state
-        $this->initUint32($this->addressOf('_menuState_8c1bc7a8') + 0x38, 1); // slot
+        $this->initUint32($this->addressOf('_var_menuState_8c1bc7a8') + 0x18, 7); // state
+        $this->initUint32($this->addressOf('_var_menuState_8c1bc7a8') + 0x38, 1); // slot
         $task = $this->alloc(0x0c);
         $this->initUint32($task + 0x08, 0); // substate
 
@@ -845,7 +845,7 @@ return new class extends TestCase {
             ->andReturn(0);
 
         $this->shouldCall('_promptHandleBinary_16caa')
-            ->with($this->addressOf('_menuState_8c1bc7a8') + 0x3c)
+            ->with($this->addressOf('_var_menuState_8c1bc7a8') + 0x3c)
             ->andReturn(0);
 
         $this->shouldCall('_DrawVmWarning_19852');
@@ -857,8 +857,8 @@ return new class extends TestCase {
     {
         $this->resolveSymbols();
 
-        $this->initUint32($this->addressOf('_menuState_8c1bc7a8') + 0x18, 7); // state
-        $this->initUint32($this->addressOf('_menuState_8c1bc7a8') + 0x38, 1); // slot
+        $this->initUint32($this->addressOf('_var_menuState_8c1bc7a8') + 0x18, 7); // state
+        $this->initUint32($this->addressOf('_var_menuState_8c1bc7a8') + 0x38, 1); // slot
         $task = $this->alloc(0x0c);
         $this->initUint32($task + 0x08, 0); // substate
 
@@ -867,7 +867,7 @@ return new class extends TestCase {
             ->andReturn(0);
 
         $this->shouldCall('_promptHandleBinary_16caa')
-            ->with($this->addressOf('_menuState_8c1bc7a8') + 0x3c)
+            ->with($this->addressOf('_var_menuState_8c1bc7a8') + 0x3c)
             ->andReturn(1);
 
         $this->shouldWriteLongTo('_var_selectedVm_8c1ba34c', -1);
@@ -884,8 +884,8 @@ return new class extends TestCase {
     {
         $this->resolveSymbols();
 
-        $this->initUint32($this->addressOf('_menuState_8c1bc7a8') + 0x18, 7); // state
-        $this->initUint32($this->addressOf('_menuState_8c1bc7a8') + 0x38, 1); // slot
+        $this->initUint32($this->addressOf('_var_menuState_8c1bc7a8') + 0x18, 7); // state
+        $this->initUint32($this->addressOf('_var_menuState_8c1bc7a8') + 0x38, 1); // slot
         $task = $this->alloc(0x0c);
         $this->initUint32($task + 0x08, 0); // substate
         // Init slots
@@ -899,11 +899,11 @@ return new class extends TestCase {
             ->andReturn(0);
 
         $this->shouldCall('_promptHandleBinary_16caa')
-            ->with($this->addressOf('_menuState_8c1bc7a8') + 0x3c)
+            ->with($this->addressOf('_var_menuState_8c1bc7a8') + 0x3c)
             ->andReturn(2);
 
         $this->shouldCall('_initCursorLerp_19788')->with(6);
-        $menuState = $this->addressOf('_menuState_8c1bc7a8');
+        $menuState = $this->addressOf('_var_menuState_8c1bc7a8');
         $mvn = function () use ($menuState) {
             $src = $this->registers[2];
             $dst = $this->registers[1];
@@ -936,8 +936,8 @@ return new class extends TestCase {
     {
         $this->resolveSymbols();
 
-        $this->initUint32($this->addressOf('_menuState_8c1bc7a8') + 0x18, 7); // state
-        $this->initUint32($this->addressOf('_menuState_8c1bc7a8') + 0x38, 1); // slot
+        $this->initUint32($this->addressOf('_var_menuState_8c1bc7a8') + 0x18, 7); // state
+        $this->initUint32($this->addressOf('_var_menuState_8c1bc7a8') + 0x38, 1); // slot
         $task = $this->alloc(0x0c);
         $this->initUint32($task + 0x08, 0); // substate
 
@@ -956,11 +956,11 @@ return new class extends TestCase {
     {
         $this->resolveSymbols();
 
-        $this->initUint32($this->addressOf('_menuState_8c1bc7a8') + 0x18, 7); // state
-        $this->initUint32($this->addressOf('_menuState_8c1bc7a8') + 0x38, 1); // slot
+        $this->initUint32($this->addressOf('_var_menuState_8c1bc7a8') + 0x18, 7); // state
+        $this->initUint32($this->addressOf('_var_menuState_8c1bc7a8') + 0x38, 1); // slot
         $task = $this->alloc(0x0c);
         $this->initUint32($task + 0x08, 1); // substate
-        $this->initUint32($this->addressOf('_isFading_8c226568'), 1);
+        $this->initUint32($this->addressOf('_var_isFading_8c226568'), 1);
 
         $this->shouldCall('_DrawVmWarning_19852');
 
@@ -971,14 +971,14 @@ return new class extends TestCase {
     {
         $this->resolveSymbols();
 
-        $this->initUint32($this->addressOf('_menuState_8c1bc7a8') + 0x18, 7); // state
-        $this->initUint32($this->addressOf('_menuState_8c1bc7a8') + 0x38, 1); // slot
+        $this->initUint32($this->addressOf('_var_menuState_8c1bc7a8') + 0x18, 7); // state
+        $this->initUint32($this->addressOf('_var_menuState_8c1bc7a8') + 0x38, 1); // slot
         $task = $this->alloc(0x0c);
         $this->initUint32($task + 0x08, 1); // substate
-        $this->initUint32($this->addressOf('_isFading_8c226568'), 0);
+        $this->initUint32($this->addressOf('_var_isFading_8c226568'), 0);
 
-        $this->shouldWriteLong($this->addressOf('_menuState_8c1bc7a8') + 0x68, 10);
-        $this->shouldWriteLong($this->addressOf('_menuState_8c1bc7a8') + 0x18, 0);
+        $this->shouldWriteLong($this->addressOf('_var_menuState_8c1bc7a8') + 0x68, 10);
+        $this->shouldWriteLong($this->addressOf('_var_menuState_8c1bc7a8') + 0x18, 0);
 
         $this->singleCall($this->entryName())->with($task, 0)->run();
     }
@@ -987,11 +987,11 @@ return new class extends TestCase {
     {
         $this->resolveSymbols();
 
-        $this->initUint32($this->addressOf('_menuState_8c1bc7a8') + 0x18, 7); // state
-        $this->initUint32($this->addressOf('_menuState_8c1bc7a8') + 0x38, 1); // slot
+        $this->initUint32($this->addressOf('_var_menuState_8c1bc7a8') + 0x18, 7); // state
+        $this->initUint32($this->addressOf('_var_menuState_8c1bc7a8') + 0x38, 1); // slot
         $task = $this->alloc(0x0c);
         $this->initUint32($task + 0x08, 2); // substate
-        $this->initUint32($this->addressOf('_isFading_8c226568'), 1);
+        $this->initUint32($this->addressOf('_var_isFading_8c226568'), 1);
 
         $this->shouldCall('_DrawVmWarning_19852');
 
@@ -1002,11 +1002,11 @@ return new class extends TestCase {
     {
         $this->resolveSymbols();
 
-        $this->initUint32($this->addressOf('_menuState_8c1bc7a8') + 0x18, 7); // state
-        $this->initUint32($this->addressOf('_menuState_8c1bc7a8') + 0x38, 1); // slot
+        $this->initUint32($this->addressOf('_var_menuState_8c1bc7a8') + 0x18, 7); // state
+        $this->initUint32($this->addressOf('_var_menuState_8c1bc7a8') + 0x38, 1); // slot
         $task = $this->alloc(0x0c);
         $this->initUint32($task + 0x08, 2); // substate
-        $this->initUint32($this->addressOf('_isFading_8c226568'), 0);
+        $this->initUint32($this->addressOf('_var_isFading_8c226568'), 0);
 
         $this->shouldCall('_MainMenuSwitchFromTask_8c01a09a')->with($task);
 
@@ -1017,11 +1017,11 @@ return new class extends TestCase {
     {
         $this->resolveSymbols();
 
-        $this->initUint32($this->addressOf('_menuState_8c1bc7a8') + 0x18, 7); // state
-        $this->initUint32($this->addressOf('_menuState_8c1bc7a8') + 0x38, 1); // slot
+        $this->initUint32($this->addressOf('_var_menuState_8c1bc7a8') + 0x18, 7); // state
+        $this->initUint32($this->addressOf('_var_menuState_8c1bc7a8') + 0x38, 1); // slot
         $task = $this->alloc(0x0c);
         $this->initUint32($task + 0x08, 3); // substate
-        $this->initUint32($this->addressOf('_isFading_8c226568'), 1);
+        $this->initUint32($this->addressOf('_var_isFading_8c226568'), 1);
 
         $this->shouldCall('_DrawVmWarning_19852');
 
@@ -1032,13 +1032,13 @@ return new class extends TestCase {
     {
         $this->resolveSymbols();
 
-        $this->initUint32($this->addressOf('_menuState_8c1bc7a8') + 0x18, 7); // state
-        $this->initUint32($this->addressOf('_menuState_8c1bc7a8') + 0x38, 1); // slot
+        $this->initUint32($this->addressOf('_var_menuState_8c1bc7a8') + 0x18, 7); // state
+        $this->initUint32($this->addressOf('_var_menuState_8c1bc7a8') + 0x38, 1); // slot
         $task = $this->alloc(0x0c);
         $this->initUint32($task + 0x08, 3); // substate
-        $this->initUint32($this->addressOf('_isFading_8c226568'), 0);
+        $this->initUint32($this->addressOf('_var_isFading_8c226568'), 0);
 
-        $this->shouldWriteLong($this->addressOf('_menuState_8c1bc7a8') + 0x18, 10);
+        $this->shouldWriteLong($this->addressOf('_var_menuState_8c1bc7a8') + 0x18, 10);
         //$this->shouldCall('_MainMenuSwitchFromTask_8c01a09a');
 
         $this->singleCall($this->entryName())->with($task, 0)->run();
@@ -1048,13 +1048,13 @@ return new class extends TestCase {
     {
         $this->resolveSymbols();
 
-        $this->initUint32($this->addressOf('_menuState_8c1bc7a8') + 0x18, 8); // state
-        $this->initUint32($this->addressOf('_menuState_8c1bc7a8') + 0x38, 3); // slot
-        $this->initUint32($this->addressOf('_menuState_8c1bc7a8') + 0x3c, 0);
-        $this->initUint32($this->addressOf('_isFading_8c226568'), 1);
+        $this->initUint32($this->addressOf('_var_menuState_8c1bc7a8') + 0x18, 8); // state
+        $this->initUint32($this->addressOf('_var_menuState_8c1bc7a8') + 0x38, 3); // slot
+        $this->initUint32($this->addressOf('_var_menuState_8c1bc7a8') + 0x3c, 0);
+        $this->initUint32($this->addressOf('_var_isFading_8c226568'), 1);
 
         $this->shouldCall('_drawSprite_8c014f54')->with(
-            $this->addressOf('_menuState_8c1bc7a8') + 0x00,
+            $this->addressOf('_var_menuState_8c1bc7a8') + 0x00,
             2,
             228.0,
             304.0,
@@ -1062,7 +1062,7 @@ return new class extends TestCase {
         );
 
         $this->shouldCall('_drawVmMenu_197c0');
-        $this->shouldWriteLong($this->addressOf('_menuState_8c1bc7a8') + 0x38, 3);
+        $this->shouldWriteLong($this->addressOf('_var_menuState_8c1bc7a8') + 0x38, 3);
 
         $this->singleCall($this->entryName())->with(0, 0)->run();
     }
@@ -1071,10 +1071,10 @@ return new class extends TestCase {
     {
         $this->resolveSymbols();
 
-        $this->initUint32($this->addressOf('_menuState_8c1bc7a8') + 0x18, 8); // state
-        $this->initUint32($this->addressOf('_menuState_8c1bc7a8') + 0x38, 3); // slot
-        $this->initUint32($this->addressOf('_menuState_8c1bc7a8') + 0x3c, 0);
-        $this->initUint32($this->addressOf('_isFading_8c226568'), 0);
+        $this->initUint32($this->addressOf('_var_menuState_8c1bc7a8') + 0x18, 8); // state
+        $this->initUint32($this->addressOf('_var_menuState_8c1bc7a8') + 0x38, 3); // slot
+        $this->initUint32($this->addressOf('_var_menuState_8c1bc7a8') + 0x3c, 0);
+        $this->initUint32($this->addressOf('_var_isFading_8c226568'), 0);
 
         $this->shouldCall('_FUN_8c019334')->with(0xcafecafe);
 
@@ -1085,12 +1085,12 @@ return new class extends TestCase {
     {
         $this->resolveSymbols();
 
-        $this->initUint32($this->addressOf('_menuState_8c1bc7a8') + 0x18, 9); // state
-        $this->initUint32($this->addressOf('_menuState_8c1bc7a8') + 0x38, 3); // slot
-        $this->initUint32($this->addressOf('_isFading_8c226568'), 1);
+        $this->initUint32($this->addressOf('_var_menuState_8c1bc7a8') + 0x18, 9); // state
+        $this->initUint32($this->addressOf('_var_menuState_8c1bc7a8') + 0x38, 3); // slot
+        $this->initUint32($this->addressOf('_var_isFading_8c226568'), 1);
         $this->initUint32($this->addressOf('_init_8c03bd80'), 0);
 
-        $this->shouldWriteLong($this->addressOf('_menuState_8c1bc7a8') + 0x38, 3);
+        $this->shouldWriteLong($this->addressOf('_var_menuState_8c1bc7a8') + 0x38, 3);
 
         $this->singleCall($this->entryName())->with(0, 0)->run();
     }
@@ -1099,9 +1099,9 @@ return new class extends TestCase {
     {
         $this->resolveSymbols();
 
-        $this->initUint32($this->addressOf('_menuState_8c1bc7a8') + 0x18, 9); // state
-        $this->initUint32($this->addressOf('_menuState_8c1bc7a8') + 0x38, 3); // slot
-        $this->initUint32($this->addressOf('_isFading_8c226568'), 0);
+        $this->initUint32($this->addressOf('_var_menuState_8c1bc7a8') + 0x18, 9); // state
+        $this->initUint32($this->addressOf('_var_menuState_8c1bc7a8') + 0x38, 3); // slot
+        $this->initUint32($this->addressOf('_var_isFading_8c226568'), 0);
         $this->initUint32($this->addressOf('_init_8c03bd80'), 1);
 
         $this->singleCall($this->entryName())->with(0, 0)->run();
@@ -1111,9 +1111,9 @@ return new class extends TestCase {
     {
         $this->resolveSymbols();
 
-        $this->initUint32($this->addressOf('_menuState_8c1bc7a8') + 0x18, 9); // state
-        $this->initUint32($this->addressOf('_menuState_8c1bc7a8') + 0x38, 3); // slot
-        $this->initUint32($this->addressOf('_isFading_8c226568'), 0);
+        $this->initUint32($this->addressOf('_var_menuState_8c1bc7a8') + 0x18, 9); // state
+        $this->initUint32($this->addressOf('_var_menuState_8c1bc7a8') + 0x38, 3); // slot
+        $this->initUint32($this->addressOf('_var_isFading_8c226568'), 0);
         $this->initUint32($this->addressOf('_init_8c03bd80'), 0);
 
         $this->shouldCall('_MainMenuSwitchFromTask_8c01a09a')->with(0xcafecafe);
@@ -1125,12 +1125,12 @@ return new class extends TestCase {
     {
         $this->resolveSymbols();
 
-        $this->initUint32($this->addressOf('_menuState_8c1bc7a8') + 0x18, 10); // state
-        $this->initUint32($this->addressOf('_menuState_8c1bc7a8') + 0x38, 3); // slot
-        $this->initUint32($this->addressOf('_isFading_8c226568'), 1);
+        $this->initUint32($this->addressOf('_var_menuState_8c1bc7a8') + 0x18, 10); // state
+        $this->initUint32($this->addressOf('_var_menuState_8c1bc7a8') + 0x38, 3); // slot
+        $this->initUint32($this->addressOf('_var_isFading_8c226568'), 1);
 
         $this->shouldCall('_drawVmMenu_197c0');
-        $this->shouldWriteLong($this->addressOf('_menuState_8c1bc7a8') + 0x38, 3);
+        $this->shouldWriteLong($this->addressOf('_var_menuState_8c1bc7a8') + 0x38, 3);
 
         $this->singleCall($this->entryName())->with(0, 0)->run();
     }
@@ -1139,13 +1139,13 @@ return new class extends TestCase {
     {
         $this->resolveSymbols();
 
-        $this->initUint32($this->addressOf('_menuState_8c1bc7a8') + 0x18, 10); // state
-        $this->initUint32($this->addressOf('_menuState_8c1bc7a8') + 0x38, 3); // slot
-        $this->initUint32($this->addressOf('_isFading_8c226568'), 0);
+        $this->initUint32($this->addressOf('_var_menuState_8c1bc7a8') + 0x18, 10); // state
+        $this->initUint32($this->addressOf('_var_menuState_8c1bc7a8') + 0x38, 3); // slot
+        $this->initUint32($this->addressOf('_var_isFading_8c226568'), 0);
 
-        $this->shouldWriteLong($this->addressOf('_menuState_8c1bc7a8') + 0x18, 2);
+        $this->shouldWriteLong($this->addressOf('_var_menuState_8c1bc7a8') + 0x18, 2);
         $this->shouldCall('_drawVmMenu_197c0');
-        $this->shouldWriteLong($this->addressOf('_menuState_8c1bc7a8') + 0x38, 3);
+        $this->shouldWriteLong($this->addressOf('_var_menuState_8c1bc7a8') + 0x38, 3);
 
         $this->singleCall($this->entryName())->with(0, 0)->run();
     }
@@ -1154,18 +1154,18 @@ return new class extends TestCase {
     {
         $this->resolveSymbols();
 
-        $this->initUint32($this->addressOf('_menuState_8c1bc7a8') + 0x18, 15); // state
-        $this->initUint32($this->addressOf('_menuState_8c1bc7a8') + 0x38, 3); // slot
-        $this->shouldWriteLong($this->addressOf('_menuState_8c1bc7a8') + 0x38, 3);
+        $this->initUint32($this->addressOf('_var_menuState_8c1bc7a8') + 0x18, 15); // state
+        $this->initUint32($this->addressOf('_var_menuState_8c1bc7a8') + 0x38, 3); // slot
+        $this->shouldWriteLong($this->addressOf('_var_menuState_8c1bc7a8') + 0x38, 3);
 
         $this->singleCall($this->entryName())->with(0, 0)->run();
     }
 
     private function resolveSymbols(): void
     {
-        $this->setSize('_menuState_8c1bc7a8', 0x6c);
+        $this->setSize('_var_menuState_8c1bc7a8', 0x6c);
         $this->setSize('_var_peripherals_8c1ba35c', 0x34 * 2);
-        $this->setSize('_isFading_8c226568', 4);
+        $this->setSize('_var_isFading_8c226568', 4);
         $this->setSize('_var_vmuStatus_8c226048', 0x24);
         $this->setSize('_var_midiHandles_8c0fcd28', 7 * 4);
 
@@ -1199,20 +1199,20 @@ return new class extends TestCase {
 
     private function shouldWriteSelectedSlot(int $slot): void
     {
-        $this->shouldWriteLong($this->addressOf('_menuState_8c1bc7a8') + 0x38, $slot);
+        $this->shouldWriteLong($this->addressOf('_var_menuState_8c1bc7a8') + 0x38, $slot);
     }
 
     private function shouldWriteMenuState(int $state): void
     {
-        $this->shouldWriteLong($this->addressOf('_menuState_8c1bc7a8') + 0x18, $state);
+        $this->shouldWriteLong($this->addressOf('_var_menuState_8c1bc7a8') + 0x18, $state);
     }
 
     private function runSelectTest(array $slots, int $initialSlot, $expectedSlot, $press): void
     {
         $this->resolveSymbols();
 
-        $this->initUint32($this->addressOf('_menuState_8c1bc7a8') + 0x18, 2); // state
-        $this->initUint32($this->addressOf('_menuState_8c1bc7a8') + 0x38, $initialSlot);
+        $this->initUint32($this->addressOf('_var_menuState_8c1bc7a8') + 0x18, 2); // state
+        $this->initUint32($this->addressOf('_var_menuState_8c1bc7a8') + 0x38, $initialSlot);
         $this->initUint32($this->addressOf('_var_peripherals_8c1ba35c') + 0x10, $press);
         // Init slots
         $this->initUint32Array($this->addressOf('_var_vmuStatus_8c226048'), $slots);

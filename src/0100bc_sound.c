@@ -1,6 +1,7 @@
 #include <shinobi.h>
 #include <sg_sd.h>
 #include <cri_adxt.h>
+#include "0100bc_sound.h"
 #include <cri_adxf.h>
 #include <string.h>
 
@@ -80,7 +81,7 @@ void* var_memblkSource_8c0fcd4c;
 UnknownVolStructA var_uknVol_8c0fcd50;
 
 char var_work_8c0fcd74[WKSIZE * 2];
-char var_adxf_work_8c156efc[ADXF_CALC_PTINFO_SIZE(MAX_NFILES)];
+char var_adxfWork_8c156efc[ADXF_CALC_PTINFO_SIZE(MAX_NFILES)];
 
 AdxFadeState var_adxFade_8c157a34;
 
@@ -298,7 +299,7 @@ void* unusedReadFile_8c0104d6(char* fname)
 }
 
 /* Matched */
-void usr_adx_err_func_8c010532(void *obj, char *msg)
+void AdxErrFunc_8c010532(void *obj, char *msg)
 {
     char lmsg[9] = "E8101214";
 
@@ -323,7 +324,7 @@ void adxLoad_8c01057a()
         ADXF_LoadPartition(
             i,
             init_adxfPartitionInfo_8c03bd94[i].fname_0x00,
-            &var_adxf_work_8c156efc[j],
+            &var_adxfWork_8c156efc[j],
             init_adxfPartitionInfo_8c03bd94[i].nfile_0x04
         );
         j += ADXF_GetPtinfoSize(i);
@@ -347,7 +348,7 @@ void finishSoundInit_8c010614()
 void adxInit_8c01064c()
 {
     ADXT_Init();
-    ADXT_EntryErrFunc(usr_adx_err_func_8c010532, NULL);
+    ADXT_EntryErrFunc(AdxErrFunc_8c010532, NULL);
 }
 
 /* Matched */
@@ -486,7 +487,7 @@ Bool setSoundMode_8c0108c0(Sint32 mode)
 }
 
 /* Matched */
-getSoundMode_8c010924() {
+int getSoundMode_8c010924() {
     void* dat;
     int r;
     Sint32 mode;

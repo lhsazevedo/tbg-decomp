@@ -1,4 +1,5 @@
 #include <shinobi.h>
+#include "012324_peripheral_support.h"
 
 extern PDS_PERIPHERAL const_peripheral_8c033318;
 extern int var_activeCtrlType_8c157a70;

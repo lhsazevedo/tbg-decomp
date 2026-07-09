@@ -9,7 +9,7 @@ return new class extends TestCase {
     {
         $this->resolveSymbols();
 
-        $menuStateBase = $this->addressOf('_menuState_8c1bc7a8');
+        $menuStateBase = $this->addressOf('_var_menuState_8c1bc7a8');
 
         $this->call('_CourseMenuRequestCommonResources_8c01852c');
 
@@ -39,7 +39,7 @@ return new class extends TestCase {
 
     private function resolveSymbols(): void
     {
-        $this->setSize('_menuState_8c1bc7a8', 0x6c);
+        $this->setSize('_var_menuState_8c1bc7a8', 0x6c);
 
         // Allocate string constants in ROM
         $this->rellocate('_const_8c036290', $this->allocString("\\SYSTEM"));

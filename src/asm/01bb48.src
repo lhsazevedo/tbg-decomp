@@ -19,7 +19,7 @@
           .IMPORT     _buDefragDisk
           .IMPORT     _buLoadFileEx
           .IMPORT     _buRewriteExecFile
-          .IMPORT     _menuState_8c1bc7a8
+          .IMPORT     _var_menuState_8c1bc7a8
           .IMPORT     _drawSprite_8c014f54
           .IMPORT     _var_resourceGroup_8c2263a8
           .IMPORT     _var_vmuStatus_8c226048
@@ -30,7 +30,7 @@
           .IMPORT     _const_8c03867c
           .IMPORT     _init_8c044e48
           .IMPORT     _VmMenuUpdateVmusStatus_19550
-          .IMPORT     _isFading_8c226568
+          .IMPORT     _var_isFading_8c226568
           .IMPORT     _isPvmReady_8c01432a
           .IMPORT     _AsqFreeQueues_11f7e
           .IMPORT     _promptHandleMultiple_16c58
@@ -702,7 +702,7 @@ LP_GEN_34738:
           .DATA.L _var_8c2260d0 ; H'8C01BFA4
           .DATA.L _buLoadFileEx ; H'8C01BFA8
           .DATA.L _buRewriteExecFile ; H'8C01BFAC
-          .DATA.L _menuState_8c1bc7a8 ; H'8C01BFB0
+          .DATA.L _var_menuState_8c1bc7a8 ; H'8C01BFB0
           .DATA.L _drawSprite_8c014f54 ; H'8C01BFB4
           .DATA.L _var_resourceGroup_8c2263a8 ; H'8C01BFB8
           .DATA.L H'C0800000 ; H'8C01BFBC
@@ -774,10 +774,10 @@ LP_GEN_95139:
           .DATA.L H'43960000 ; H'8C01C050
           .DATA.L H'C0E00000 ; H'8C01C054
           .DATA.L H'C0A00000 ; H'8C01C058
-          .DATA.L _menuState_8c1bc7a8 ; H'8C01C05C
+          .DATA.L _var_menuState_8c1bc7a8 ; H'8C01C05C
           .DATA.L _init_8c044e48 ; H'8C01C060
           .DATA.L _VmMenuUpdateVmusStatus_19550 ; H'8C01C064
-          .DATA.L _isFading_8c226568 ; H'8C01C068
+          .DATA.L _var_isFading_8c226568 ; H'8C01C068
           .DATA.L _swapMessageBoxFor_8c02aefc ; H'8C01C06C
           .DATA.L _var_vmuStatus_8c226048 ; H'8C01C070
           .DATA.W H'0042 ; H'8C01C074
@@ -1952,7 +1952,7 @@ LP_GEN_73212:
           .RES.W 1 ; H'8C01C91E
           .DATA.L _FUN_8c01bfec ; H'8C01C920
           .DATA.L _setTaskAction_8c014b3e ; H'8C01C924
-          .DATA.L _menuState_8c1bc7a8 ; H'8C01C928
+          .DATA.L _var_menuState_8c1bc7a8 ; H'8C01C928
           .DATA.L _AsqInitQueues_11f36 ; H'8C01C92C
           .DATA.L _AsqResetQueues_11f6c ; H'8C01C930
           .DATA.L _init_8c044e90 ; H'8C01C934

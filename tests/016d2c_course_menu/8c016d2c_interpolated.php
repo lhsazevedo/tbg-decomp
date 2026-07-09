@@ -150,27 +150,27 @@ return new class extends TestCase {
     }
 
     private function initCursor(float $x, float $y) {
-        $this->initUint32($this->addressOf('_menuState_8c1bc7a8') + 0x20, fdec($x));
-        $this->initUint32($this->addressOf('_menuState_8c1bc7a8') + 0x24, fdec($y));
+        $this->initUint32($this->addressOf('_var_menuState_8c1bc7a8') + 0x20, fdec($x));
+        $this->initUint32($this->addressOf('_var_menuState_8c1bc7a8') + 0x24, fdec($y));
     }
 
     private function initTarget(float $x, float $y) {
-        $this->initUint32($this->addressOf('_menuState_8c1bc7a8') + 0x28, fdec($x));
-        $this->initUint32($this->addressOf('_menuState_8c1bc7a8') + 0x2c, fdec($y));
+        $this->initUint32($this->addressOf('_var_menuState_8c1bc7a8') + 0x28, fdec($x));
+        $this->initUint32($this->addressOf('_var_menuState_8c1bc7a8') + 0x2c, fdec($y));
     }
 
     private function initVelocity(float $x, float $y) {
-        $this->initUint32($this->addressOf('_menuState_8c1bc7a8') + 0x30, fdec($x));
-        $this->initUint32($this->addressOf('_menuState_8c1bc7a8') + 0x34, fdec($y));
+        $this->initUint32($this->addressOf('_var_menuState_8c1bc7a8') + 0x30, fdec($x));
+        $this->initUint32($this->addressOf('_var_menuState_8c1bc7a8') + 0x34, fdec($y));
     }
 
     private function shouldWriteCursor(float $x, float $y) {
-        $this->shouldWriteFloat($this->addressOf('_menuState_8c1bc7a8') + 0x20, $x);
-        $this->shouldWriteFloat($this->addressOf('_menuState_8c1bc7a8') + 0x24, $y);
+        $this->shouldWriteFloat($this->addressOf('_var_menuState_8c1bc7a8') + 0x20, $x);
+        $this->shouldWriteFloat($this->addressOf('_var_menuState_8c1bc7a8') + 0x24, $y);
     }
 
     public function resolveSymbols() {
-        $this->setSize('_menuState_8c1bc7a8', 0x6c);
+        $this->setSize('_var_menuState_8c1bc7a8', 0x6c);
 
         // Functions
         $this->setSize('__quick_evn_mvn', 4);

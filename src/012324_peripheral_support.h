@@ -1,0 +1,7 @@
+/* 8c012324 */
+#ifndef _PERIPHERAL_SUPPORT_H
+#define _PERIPHERAL_SUPPORT_H
+
+void PspTask_8c012324();
+
+#endif // _PERIPHERAL_SUPPORT_H

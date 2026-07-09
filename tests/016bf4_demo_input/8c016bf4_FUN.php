@@ -5,12 +5,12 @@ declare(strict_types=1);
 use Lhsazevedo\Sh4ObjTest\TestCase;
 
 /*
- * _demoInputTask_8c016bf4: pops one replay record from the queue at _demoCursor_8c225fa8 and
+ * _demoInputTask_8c016bf4: pops one replay record from the queue at _var_demoCursor_8c225fa8 and
  * folds it into peripheral slot 0 (_var_peripherals_8c1ba35c[0]).
  *
  * Guard (both must hold, else no-op):
  *   _var_8c1bbc84 > 0                          (records remaining)
- *   cursor < &_demoBuffer_8c1bc828[REPLAY_BUFFER_CAPACITY]  (still inside buffer)
+ *   cursor < &_var_demoBuffer_8c1bc828[REPLAY_BUFFER_CAPACITY]  (still inside buffer)
  *
  * Record layout (8 bytes, advanced by 8 each call):
  *   [0..3] on (Uint32)   [4] x1 src (char)   [5] r src (byte)   [6] l src (byte)
@@ -24,11 +24,11 @@ return new class extends TestCase {
         $this->resolveSymbols();
 
         $buf = $this->addressOf('_var_peripherals_8c1ba35c');
-        $record = $this->addressOf('_demoBuffer_8c1bc828');
+        $record = $this->addressOf('_var_demoBuffer_8c1bc828');
 
-        $this->initUint32($this->addressOf('_demoCursor_8c225fa8'), $record); // cursor at start
+        $this->initUint32($this->addressOf('_var_demoCursor_8c225fa8'), $record); // cursor at start
         $this->initUint32($this->addressOf('_var_8c1bbc84'), 1);  // records remaining > 0
-        $this->initUint32($this->addressOf('_demoPrevOn_8c225fac'), 0);  // previous "on" (for press calc)
+        $this->initUint32($this->addressOf('_var_demoPrevOn_8c225fac'), 0);  // previous "on" (for press calc)
 
         $this->initUint32($record + 0, 0x5);      // on raw
         $this->initUint8($record + 4, 0x12);      // x1 src
@@ -40,11 +40,11 @@ return new class extends TestCase {
         // press = on & (oldOn ^ on) = 5 & (0 ^ 5) = 5
         $this->shouldWriteLong($buf + 0x08, 0x5);          // on
         $this->shouldWriteLong($buf + 0x10, 0x5);          // press
-        $this->shouldWriteLongTo('_demoPrevOn_8c225fac', 0x5);    // save on as previous
+        $this->shouldWriteLongTo('_var_demoPrevOn_8c225fac', 0x5);    // save on as previous
         $this->shouldWriteWord($buf + 0x1c, 0x12);         // x1 = (short)(char)src
         $this->shouldWriteWord($buf + 0x18, 0x34);         // r
         $this->shouldWriteWord($buf + 0x1a, 0x56);         // l
-        $this->shouldWriteLongTo('_demoCursor_8c225fa8', $record + 8); // advance cursor
+        $this->shouldWriteLongTo('_var_demoCursor_8c225fa8', $record + 8); // advance cursor
     }
 
     public function test_noop_when_count_zero(): void
@@ -52,8 +52,8 @@ return new class extends TestCase {
         $this->resolveSymbols();
 
         $this->initUint32(
-            $this->addressOf('_demoCursor_8c225fa8'),
-            $this->addressOf('_demoBuffer_8c1bc828')
+            $this->addressOf('_var_demoCursor_8c225fa8'),
+            $this->addressOf('_var_demoBuffer_8c1bc828')
         );
         $this->initUint32($this->addressOf('_var_8c1bbc84'), 0);  // no records remaining
 
@@ -67,9 +67,9 @@ return new class extends TestCase {
     {
         $this->resolveSymbols();
 
-        $end = $this->addressOf('_demoBuffer_8c1bc828') + self::REPLAY_BUFFER_SIZE;
+        $end = $this->addressOf('_var_demoBuffer_8c1bc828') + self::REPLAY_BUFFER_SIZE;
 
-        $this->initUint32($this->addressOf('_demoCursor_8c225fa8'), $end);  // cursor == end
+        $this->initUint32($this->addressOf('_var_demoCursor_8c225fa8'), $end);  // cursor == end
         $this->initUint32($this->addressOf('_var_8c1bbc84'), 1);     // records remaining > 0
 
         $this->call('_demoInputTask_8c016bf4');
@@ -81,8 +81,8 @@ return new class extends TestCase {
     {
         $this->setSize('_var_peripherals_8c1ba35c', 0x34 * 2);
         $this->setSize('_var_8c1bbc84', 4);
-        $this->setSize('_demoPrevOn_8c225fac', 4);
-        $this->setSize('_demoCursor_8c225fa8', 4);
-        $this->setSize('_demoBuffer_8c1bc828', self::REPLAY_BUFFER_SIZE);
+        $this->setSize('_var_demoPrevOn_8c225fac', 4);
+        $this->setSize('_var_demoCursor_8c225fa8', 4);
+        $this->setSize('_var_demoBuffer_8c1bc828', self::REPLAY_BUFFER_SIZE);
     }
 };

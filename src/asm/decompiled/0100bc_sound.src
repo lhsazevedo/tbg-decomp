@@ -55,7 +55,7 @@
           .EXPORT     _var_memblkSource_8c0fcd4c
           .EXPORT     _var_uknVol_8c0fcd50
           .EXPORT     _var_work_8c0fcd74
-          .EXPORT     _var_adxf_work_8c156efc
+          .EXPORT     _var_adxfWork_8c156efc
           .EXPORT     _var_adxFade_8c157a34
           .EXPORT     _midiResetFxAndPlay_8c010846
           .EXPORT     _FUN_8c010ca6
@@ -69,7 +69,7 @@
           .EXPORT     _createAdxAndMidiHandles_8c01048e
           .EXPORT     _unused_8c0104bc
           .EXPORT     _unusedReadFile_8c0104d6
-          .EXPORT     _usr_adx_err_func_8c010532
+          .EXPORT     _AdxErrFunc_8c010532
           .EXPORT     _adxLoad_8c01057a
           .EXPORT     _finishSoundInit_8c010614
           .EXPORT     _adxInit_8c01064c
@@ -669,7 +669,7 @@ L17:
           MOV.L       @R15+,R13
           RTS
           MOV.L       @R15+,R14
-_usr_adx_err_func_8c010532:      ; function: usr_adx_err_func_8c010532
+_AdxErrFunc_8c010532:      ; function: AdxErrFunc_8c010532
                                  ; frame size=24
                                  ; used runtime library name:
                                  ; __slow_mvn
@@ -729,7 +729,7 @@ _adxLoad_8c01057a:               ; function: adxLoad_8c01057a
           MOV         R4,R14
 L19:                              
           EXTS.B      R14,R10
-          MOV.L       L21+58,R6; _var_adxf_work_8c156efc
+          MOV.L       L21+58,R6; _var_adxfWork_8c156efc
           SHLL2       R10
           SHLL        R10
           ADD         R13,R10
@@ -776,7 +776,7 @@ L21:
           .DATA.L     _ADXF_LoadPartition
           .DATA.L     _ADXF_GetPtinfoSize
           .DATA.L     _init_adxfPartitionInfo_8c03bd94
-          .DATA.L     _var_adxf_work_8c156efc
+          .DATA.L     _var_adxfWork_8c156efc
 _finishSoundInit_8c010614:       ; function: finishSoundInit_8c010614
                                  ; frame size=12
           STS.L       PR,@-R15
@@ -815,7 +815,7 @@ _adxInit_8c01064c:               ; function: adxInit_8c01064c
           NOP
           MOV.L       L29+36,R2; _ADXT_EntryErrFunc
           MOV         #0,R5
-          MOV.L       L29+32,R4; _usr_adx_err_func_8c010532
+          MOV.L       L29+32,R4; _AdxErrFunc_8c010532
           JMP         @R2
           LDS.L       @R15+,PR
 _soundInit_8c01065e:             ; function: soundInit_8c01065e
@@ -953,7 +953,7 @@ L29:
           .DATA.L     _syFree
           .DATA.L     _sdMemBlkDestroy
           .DATA.L     _ADXT_Init
-          .DATA.L     _usr_adx_err_func_8c010532
+          .DATA.L     _AdxErrFunc_8c010532
           .DATA.L     _ADXT_EntryErrFunc
           .DATA.L     _sdLibInit
           .DATA.L     _var_memblkSource_8c0fcd48
@@ -1950,7 +1950,7 @@ _var_uknVol_8c0fcd50:                      ; static: var_uknVol_8c0fcd50
           .RES.L      9
 _var_work_8c0fcd74:                  ; static: var_work_8c0fcd74
           .RES.B      369032
-_var_adxf_work_8c156efc:             ; static: var_adxf_work_8c156efc
+_var_adxfWork_8c156efc:             ; static: var_adxfWork_8c156efc
           .RES.B      2872
 _var_adxFade_8c157a34:                      ; static: var_adxFade_8c157a34
           .RES.L      5

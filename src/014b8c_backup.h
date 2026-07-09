@@ -26,14 +26,14 @@ typedef struct {
 } BACKUPINFO;
 
 
-void BupInit(void);
+void bupInit_8c014b8c(void);
 void BupExit(void);
 const BACKUPINFO* BupGetInfo_8c014bba(Sint32 drive);
-const char* BupGetErrorString(Sint32 err);
-const char* BupGetOperationString(Sint32 op);
-Sint32 BupLoad(Sint32 drive, const char* fname, void* buf);
-Sint32 BupSave(Sint32 drive, const char* fname, void* buf, Sint32 nblock);
-Sint32 BupDelete(Sint32 drive, const char* fname);
+const char* BupGetErrorString_8c014cfc(Sint32 err);
+const char* BupGetOperationString_8c014e0c(Sint32 op);
+Sint32 BupLoad_8c014bc6(Sint32 drive, const char* fname, void* buf);
+Sint32 BupSave_8c014bcc(Sint32 drive, const char* fname, void* buf, Sint32 nblock);
+Sint32 BupDelete_8c014bfa(Sint32 drive, const char* fname);
 void BupMount_8c014c00(Sint32 drive);
 void BupUnmount_8c014c46(Sint32 drive);
 void ClearInfo_8c014c8a(Sint32 drive);

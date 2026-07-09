@@ -16,7 +16,7 @@
           .IMPORT     _var_8c18ad08
           .IMPORT     _var_markTexlist_8c1bc418
           .IMPORT     _push_fadeout_8c022b60
-          .IMPORT     _isFading_8c226568
+          .IMPORT     _var_isFading_8c226568
           .IMPORT     _var_8c1bb8dc
           .IMPORT     _var_8c1bb8b8
           .IMPORT     _var_8c1bb8bc
@@ -43,7 +43,7 @@
           .IMPORT     _updateAdxVolFade_8c010a40
           .IMPORT     _startAdxFadeOut_8c010bae
           .IMPORT     _var_peripherals_8c1ba35c
-          .IMPORT     _menuState_8c1bc7a8
+          .IMPORT     _var_menuState_8c1bc7a8
           .EXPORT     _FUN_8c0129cc
           .EXPORT     _task_8c012cbc
           .EXPORT     _task_8c012d06
@@ -599,7 +599,7 @@ LAB_8c012db0:
 
 LP_GEN_43727:
           .RES.W      1
-          .DATA.L _isFading_8c226568
+          .DATA.L _var_isFading_8c226568
           .DATA.L _var_8c1bb8dc
           .DATA.L _var_8c1bb8b8
           .DATA.L _var_8c1bb8bc
@@ -614,7 +614,7 @@ LP_GEN_43727:
           .DATA.L _njDrawPolygon
           .DATA.L _CourseMenuFUN_8c017ef2
           .DATA.L _var_8c22640c
-          .DATA.L _menuState_8c1bc7a8 + H'38
+          .DATA.L _var_menuState_8c1bc7a8 + H'38
           .DATA.L _FUN_8c01f21c
           .DATA.L _var_resetRequested_8c157a78
           .DATA.L _var_8c157a7c
