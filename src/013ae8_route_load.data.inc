@@ -86,9 +86,9 @@ STATIC char *init_courseOmeSeg20PacFiles[4] = {
     "O_ROAD_UV_OHDAN4_2.pac",
 };
 /* fog param structs (CourseSegment.fog_0x24) */
-STATIC FogParams init_8c03c278 = { 5, -1013579776, 0x32, 0x64, 0x3c, 0x00, -200.0f, -300.0f };
-STATIC FogParams init_8c03c28c = { 5, -1013579776, 0x32, 0x50, 0x64, 0x00, -200.0f, -300.0f };
-STATIC FogParams init_8c03c2a0 = { 5, -1013579776, 0x00, 0x00, 0x00, 0x00, -150.0f, -300.0f };
+STATIC FogParams init_8c03c278 = { 5, -300.0f, 0x32, 0x64, 0x3c, 0x00, -200.0f, -300.0f };
+STATIC FogParams init_8c03c28c = { 5, -300.0f, 0x32, 0x50, 0x64, 0x00, -200.0f, -300.0f };
+STATIC FogParams init_8c03c2a0 = { 5, -300.0f, 0x00, 0x00, 0x00, 0x00, -150.0f, -300.0f };
 STATIC CourseSceneParams init_8c03c2b4 = {
     /* dir0_0x00 */ { 1.0f, -1.0f, 0.0f },
     /* rec0_0x0c */ {
@@ -1497,9 +1497,9 @@ STATIC CourseSceneParams init_8c03d958 = {
     /* dir2_0x68 */ { 0.0f, -1.44f, 0.0f },
     /* rec2_0x74 */ { 0.2f, 0.4f, 0.5f, 0.7f, 0.81f },
 };
-STATIC FogParams init_8c03d9e0 = { 5, -1013579776, 0x80, 0x50, 0x40, 0x00, -200.0f, -300.0f };
-STATIC FogParams init_8c03d9f4 = { 5, -1013579776, 0x32, 0x50, 0x64, 0x00, -200.0f, -300.0f };
-STATIC FogParams init_8c03da08 = { 5, -1013579776, 0x00, 0x00, 0x00, 0x00, -200.0f, -300.0f };
+STATIC FogParams init_8c03d9e0 = { 5, -300.0f, 0x80, 0x50, 0x40, 0x00, -200.0f, -300.0f };
+STATIC FogParams init_8c03d9f4 = { 5, -300.0f, 0x32, 0x50, 0x64, 0x00, -200.0f, -300.0f };
+STATIC FogParams init_8c03da08 = { 5, -300.0f, 0x00, 0x00, 0x00, 0x00, -200.0f, -300.0f };
 STATIC ModelFiles init_8c03da1c[2] = {
     { "sd_dome.njd", "sd_dome.pvm" },
     { "", "" },
@@ -4916,9 +4916,9 @@ STATIC char *init_courseWanganSeg12PacFiles[4] = {
     "w_uv00_FF_wd_uv00_3.pac",
     "w_uv01_FF_wd_uv01_3.pac",
 };
-STATIC FogParams init_8c040c64 = { 5, -1013579776, 0xbe, 0x91, 0x7f, 0x80, -200.0f, -300.0f };
-STATIC FogParams init_8c040c78 = { 5, -1013579776, 0x32, 0x50, 0x64, 0x00, -200.0f, -300.0f };
-STATIC FogParams init_8c040c8c = { 5, -1013579776, 0x00, 0x00, 0x00, 0x00, -150.0f, -300.0f };
+STATIC FogParams init_8c040c64 = { 5, -300.0f, 0xbe, 0x91, 0x7f, 0x80, -200.0f, -300.0f };
+STATIC FogParams init_8c040c78 = { 5, -300.0f, 0x32, 0x50, 0x64, 0x00, -200.0f, -300.0f };
+STATIC FogParams init_8c040c8c = { 5, -300.0f, 0x00, 0x00, 0x00, 0x00, -150.0f, -300.0f };
 STATIC CourseSceneParams init_8c040ca0 = {
     /* dir0_0x00 */ { -1.0f, -1.0f, -0.8f },
     /* rec0_0x0c */ {
