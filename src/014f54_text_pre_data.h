@@ -1,4 +1,4 @@
-/* 8c157a34-ish region: undecompiled data section referenced from many units */
+/* 8c1ba1c8: undecompiled BSS block (section B) referenced from many units */
 #ifndef _014F54_TEXT_PRE_DATA_H
 #define _014F54_TEXT_PRE_DATA_H
 
@@ -58,7 +58,6 @@ extern int var_gameMode_8c1bb8fc;
 extern BACKUPINFO var_gBupInfo_8c1bc4ac[8];
 extern int var_inputMapSel_8c1bb8c8;
 extern void *var_interiorNj_8c1bc43c;
-extern enum PLAY_MODE var_playMode_8c1bb8d0;
 extern NJS_TEXLIST *var_interiorTexlist_8c1bc438;
 extern NJS_MOTION* var_loadedFooNjm_8c1bc448;
 extern ResourceGroup var_loadingResourceGroup_8c1bc3f8;
@@ -68,6 +67,7 @@ extern NJS_TEXLIST *var_markTexlist_8c1bc418;
 extern ModelSlot var_pedestrianAssets_8c1bbfdc[0x41];
 extern PDS_PERIPHERAL *var_peripheral_8c1ba358;
 extern PDS_PERIPHERAL var_peripherals_8c1ba35c[2];
+extern enum PLAY_MODE var_playMode_8c1bb8d0;
 extern char var_progress_8c1ba1cc[]; // real size exceeds PlayerProgress (011120_asset_queues.c indexes past it)
 extern void* var_routeModels_8c1bc3ec;
 extern ModelSlot var_routeModelSlots_8c1bbddc[0x20];

@@ -84,7 +84,6 @@ struct MenuState {
 typedef MenuState;
 
 extern MenuState var_menuState_8c1bc7a8;
-extern void* var_currentSysResGroupInfo_8c225fb0;
 extern ResourceGroupInfo init_mainMenuResourceGroup_8c044264;
 
 void TitleTask_8c015ab8(Task* task, void *state);
