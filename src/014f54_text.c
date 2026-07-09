@@ -4,6 +4,7 @@
 #include "014a9c_tasks.h"
 #include "011120_asset_queues.h"
 #include "014f54_text.h"
+#include "014f54_text_pre_data.h"
 #include "serial_debug.h"
 
 /* ====================
@@ -44,13 +45,6 @@ typedef struct {
  * Non-initialized Globals
  * =======================
  */
-
-extern void *var_busFont_8c1ba1c8;
-extern int *var_demoBuf_8c1ba3c4;
-extern int var_currentCourse_8c1bb868;
-extern int var_inputMapSel_8c1bb8c8;
-extern int var_8c1bb8d4;
-extern int var_demoIndex_8c1bb8d8;
 
 STATIC NJS_TEXNAME *var_glyphTexnames_8c1bc78c;
 STATIC NJS_TEXLIST *var_glyphTexlists_8c1bc790;
@@ -731,7 +725,7 @@ STATIC void FUN_8c01594c(Task *task)
         return;
     }
 
-    var_currentCourse_8c1bb868 = var_demoBuf_8c1ba3c4[1];
+    var_currentCourse_8c1bb868.courseId_0x00 = var_demoBuf_8c1ba3c4[1];
     var_inputMapSel_8c1bb8c8 = var_demoBuf_8c1ba3c4[2];
     var_seed_8c157a64 = var_demoBuf_8c1ba3c4[3];
     local = var_demoBuffer_8c1bc828;

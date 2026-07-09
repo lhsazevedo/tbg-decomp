@@ -13,6 +13,11 @@
 #include "016d2c_course_menu.h"
 #include "0100bc_sound.h"
 #include "01d290_album.h"
+#include "01b19c.h"
+#include "01c980.h"
+#include "01e27c.h"
+#include "028258.h"
+#include "014f54_text_pre_data.h"
 #include "serial_debug.h"
 
 // TODO:
@@ -219,34 +224,12 @@ enum {
  * =======================
  */
 
-extern void FUN_8c01f114(Task *task);
-extern void FUN_8c01ba64(Task *task);
-extern void FUN_8c01d1c4(Task *task);
-extern PlayerProgress var_progress_8c1ba1cc;
-extern int var_exp_8c1ba25c;
 extern int var_dialogSequenceIsActive_8c225fb4;
 extern int var_menuTextboxCharLimit_8c225fb8;
-extern PDS_PERIPHERAL var_peripherals_8c1ba35c[2];
-extern int var_8c1bb8e0; // course was unlocked
-extern int var_8c1bb8e4;
-extern int var_8c1bb8e8;
-extern int var_8c1bb8ec;
-extern int var_8c1bb8f0;
-extern int var_8c1bb8f4;
-extern int var_8c1ba2b8[5]; // Maybe progress backup
-extern int var_8c1ba2cc[5]; // Maybe progress backup
-extern int var_gameMode_8c1bb8fc;
 extern int var_dialogQueue_8c225fbc[4]; // TODO: Confirm length
 extern Sint8 var_coursesToUnlock_8c225fd4[];
-extern int var_playMode_8c1bb8d0;
-extern int var_8c1bb8b8; // Maybe courseMenuHasResult or courseMenuHasDialog
-extern int var_8c1bb8bc;
-extern int var_8c1bb8dc;
-extern int var_award_8c1bb8f8;
 extern Bool var_isFading_8c226568;
 extern void *var_currentSysResGroupInfo_8c225fb0;
-extern int var_shouldShowFreeRunIntro_8c1bb8c0;
-extern FUN_8c02ae3e(int p1, int p2, float fp1, int p3, int p4, int p5, int p6, int p7);
 
 /* Data defined after the functions so the shared "" literal is first seen in code
    (swapMessageBoxFor("")) and lands at the head of the constant pool. */
@@ -358,7 +341,7 @@ STATIC void drawInteger_8c016e6c(int value, float x, float y)
 
 STATIC unsigned int getWeekDayIndex_8c016ed2()
 {
-    unsigned int r = var_progress_8c1ba1cc.days_0x00 + 1;
+    unsigned int r = ((PlayerProgress*)var_progress_8c1ba1cc)->days_0x00 + 1;
     return r % 7;
 }
 
@@ -368,7 +351,7 @@ void CourseMenuDrawDateAndExp_8c016ee6()
     int days, sprite_id;
 
     // Draw date
-    days = var_progress_8c1ba1cc.days_0x00;
+    days = ((PlayerProgress*)var_progress_8c1ba1cc)->days_0x00;
     if (days < 10) {
         x = 84.0;
     } else {
@@ -393,7 +376,7 @@ void CourseMenuDrawDateAndExp_8c016ee6()
         -4.0
     );
 
-    drawInteger_8c016e6c(var_progress_8c1ba1cc.field_0x90, 534.0, 82.0);
+    drawInteger_8c016e6c(((PlayerProgress*)var_progress_8c1ba1cc)->field_0x90, 534.0, 82.0);
 }
 
 STATIC void dialogSequenceTask_8c016f98(DialogSequenceTask *task, DialogSequenceTaskState *state)
@@ -588,7 +571,7 @@ int CourseMenuBuildCourseUnlockList_8c0172dc()
     int i = 0;
     int j = 0;
     for (; i < 9; i++) {
-        if (var_progress_8c1ba1cc.courses_0x44[i].unlocked_0x00)
+        if (((PlayerProgress*)var_progress_8c1ba1cc)->courses_0x44[i].unlocked_0x00)
             continue;
 
         switch (i) {
@@ -597,7 +580,7 @@ int CourseMenuBuildCourseUnlockList_8c0172dc()
 
             case 1:
                 if (
-                    var_progress_8c1ba1cc.days_0x00 < 8 ||
+                    ((PlayerProgress*)var_progress_8c1ba1cc)->days_0x00 < 8 ||
                     var_exp_8c1ba25c < 4000
                 )
                     continue;
@@ -605,7 +588,7 @@ int CourseMenuBuildCourseUnlockList_8c0172dc()
 
             case 2:
                 if (
-                    var_progress_8c1ba1cc.days_0x00 < 9 ||
+                    ((PlayerProgress*)var_progress_8c1ba1cc)->days_0x00 < 9 ||
                     var_exp_8c1ba25c < 5500
                 )
                     continue;
@@ -613,7 +596,7 @@ int CourseMenuBuildCourseUnlockList_8c0172dc()
 
             case 3:
                 if (
-                    var_progress_8c1ba1cc.days_0x00 < 5 ||
+                    ((PlayerProgress*)var_progress_8c1ba1cc)->days_0x00 < 5 ||
                     var_exp_8c1ba25c < 2000
                 )
                     continue;
@@ -621,7 +604,7 @@ int CourseMenuBuildCourseUnlockList_8c0172dc()
 
             case 4:
                 if (
-                    var_progress_8c1ba1cc.days_0x00 < 11 ||
+                    ((PlayerProgress*)var_progress_8c1ba1cc)->days_0x00 < 11 ||
                     var_exp_8c1ba25c < 8000
                 )
                     continue;
@@ -629,7 +612,7 @@ int CourseMenuBuildCourseUnlockList_8c0172dc()
 
             case 5:
                 if (
-                    var_progress_8c1ba1cc.days_0x00 < 13 ||
+                    ((PlayerProgress*)var_progress_8c1ba1cc)->days_0x00 < 13 ||
                     var_exp_8c1ba25c < 12000
                 )
                     continue;
@@ -640,7 +623,7 @@ int CourseMenuBuildCourseUnlockList_8c0172dc()
 
             case 7:
                 if (
-                    var_progress_8c1ba1cc.days_0x00 < 3 ||
+                    ((PlayerProgress*)var_progress_8c1ba1cc)->days_0x00 < 3 ||
                     var_exp_8c1ba25c < 500
                 )
                     continue;
@@ -648,7 +631,7 @@ int CourseMenuBuildCourseUnlockList_8c0172dc()
 
             case 8:
                 if (
-                    var_progress_8c1ba1cc.days_0x00 < 6 ||
+                    ((PlayerProgress*)var_progress_8c1ba1cc)->days_0x00 < 6 ||
                     var_exp_8c1ba25c < 3000
                 )
                     continue;
@@ -668,8 +651,8 @@ void CourseMenuApplyUnlocks_8c0173e6(void)
     int i;
     for (i = 0; var_coursesToUnlock_8c225fd4[i] != -1; i++) {
         int j = var_coursesToUnlock_8c225fd4[i];
-        var_progress_8c1ba1cc.courses_0x44[j].unlocked_0x00 = 1;
-        var_progress_8c1ba1cc.courses_0x44[j].new_0x01 = 1;
+        ((PlayerProgress*)var_progress_8c1ba1cc)->courses_0x44[j].unlocked_0x00 = 1;
+        ((PlayerProgress*)var_progress_8c1ba1cc)->courses_0x44[j].new_0x01 = 1;
     }
 }
 
@@ -685,7 +668,7 @@ STATIC void buildCourseMenuDialogFlow_8c017420(void)
     }
 
     // On the first day, show the intro briefing
-    if (var_progress_8c1ba1cc.days_0x00 == 1) {
+    if (((PlayerProgress*)var_progress_8c1ba1cc)->days_0x00 == 1) {
         var_dialogQueue_8c225fbc[cur++] = SEQ_STORY_INTRO;
         var_dialogQueue_8c225fbc[cur++] = SEQ_STORY_CHOOSE_COURSE;
         var_dialogQueue_8c225fbc[cur]   = -1;
@@ -717,10 +700,10 @@ STATIC void buildCourseMenuDialogFlow_8c017420(void)
     }
 
     // Passenger letter received
-    if (((var_progress_8c1ba1cc.days_0x00 + 1) % 7) == 0) {
+    if (((((PlayerProgress*)var_progress_8c1ba1cc)->days_0x00 + 1) % 7) == 0) {
         int r = AsqGetRandomInRangeB_8c0121be(6);
-        if (var_progress_8c1ba1cc.letters_0x2c[r] == 0) {
-            var_progress_8c1ba1cc.letters_0x2c[r] = 1;
+        if (((PlayerProgress*)var_progress_8c1ba1cc)->letters_0x2c[r] == 0) {
+            ((PlayerProgress*)var_progress_8c1ba1cc)->letters_0x2c[r] = 1;
             var_dialogQueue_8c225fbc[cur++] = SEQ_PASSENGER_LETTER;
         }
     }
@@ -756,7 +739,7 @@ void buildCourseMenuDialogFlow_8c017420()
             iVar2 = iVar4_curDialog;
             if (var_8c1bb8b8 != 0)
             {
-                if (var_progress_8c1ba1cc.field_0x00 == 1)
+                if (((PlayerProgress*)var_progress_8c1ba1cc)->field_0x00 == 1)
                 {
                     iVar2 = iVar4_curDialog + 1;
                     // SEQ_STORY_INTRO
@@ -827,13 +810,13 @@ void buildCourseMenuDialogFlow_8c017420()
             }
             else if (iVar3_index == 3)
             {
-                iVar2 = (var_progress_8c1ba1cc.field_0x00 + 1) % 7;
+                iVar2 = (((PlayerProgress*)var_progress_8c1ba1cc)->field_0x00 + 1) % 7;
                 if (iVar2 == 0)
                 {
                     iVar2 = AsqGetRandomInRangeB_8c0121be(6);
-                    if (var_progress_8c1ba1cc.field_0x2c[iVar2] == 0)
+                    if (((PlayerProgress*)var_progress_8c1ba1cc)->field_0x2c[iVar2] == 0)
                     {
-                        var_progress_8c1ba1cc.field_0x2c[iVar2] = 1;
+                        ((PlayerProgress*)var_progress_8c1ba1cc)->field_0x2c[iVar2] = 1;
                         // SEQ_PASSENGER_LETTER
                         var_dialogQueue_8c225fbc[iVar4_curDialog] = 14;
                         iVar4_curDialog = iVar4_curDialog + 1;
@@ -886,8 +869,8 @@ STATIC void drawCourseButtons_8c017590()
     // TODO: Extract length constant
     for (i = 0; i < 9; i++) {
         char spriteNo = var_gameMode_8c1bb8fc == 0
-            ? var_progress_8c1ba1cc.courses_0x44[i].storySpriteNo_0x03
-            : var_progress_8c1ba1cc.courses_0x44[i].freeRunSpriteNo_0x04;
+            ? ((PlayerProgress*)var_progress_8c1ba1cc)->courses_0x44[i].storySpriteNo_0x03
+            : ((PlayerProgress*)var_progress_8c1ba1cc)->courses_0x44[i].freeRunSpriteNo_0x04;
 
         if (!spriteNo)
             continue;
@@ -957,20 +940,20 @@ void drawCourseButtons_8c017590()
         do {
             x = fVar6 * (float)iVar5 + fVar7;
             if (var_gameMode_8c1bb8fc == 0) { // TODO: Extract constant
-                if (var_progress_8c1ba1cc.courses_0x44[iVar1 + iVar5].field_0x03 != 0) {
+                if (((PlayerProgress*)var_progress_8c1ba1cc)->courses_0x44[iVar1 + iVar5].field_0x03 != 0) {
                     drawSprite_8c014f54(
                         &var_menuState_8c1bc7a8.resourceGroupB_0x0c,
-                        0x18 - var_progress_8c1ba1cc.courses_0x44[iVar1 + iVar5].field_0x03,
+                        0x18 - ((PlayerProgress*)var_progress_8c1ba1cc)->courses_0x44[iVar1 + iVar5].field_0x03,
                         x,
                         y,
                         priority
                     );
                 }
             }
-            else if (var_progress_8c1ba1cc.courses_0x44[iVar1 + iVar5].field_0x04[0] != 0) {
+            else if (((PlayerProgress*)var_progress_8c1ba1cc)->courses_0x44[iVar1 + iVar5].field_0x04[0] != 0) {
                 drawSprite_8c014f54(
                     &var_menuState_8c1bc7a8.resourceGroupB_0x0c,
-                    0x18 - var_progress_8c1ba1cc.courses_0x44[iVar1 + iVar5].field_0x04[0],
+                    0x18 - ((PlayerProgress*)var_progress_8c1ba1cc)->courses_0x44[iVar1 + iVar5].field_0x04[0],
                     x,
                     y,
                     priority
@@ -1020,7 +1003,7 @@ void CourseMenuStoryMenuTask_8c017718(Task * task, void *state)
                         // We offset by 2 because the first two entries
                         // of each row are not courses buttons.
                         init_courseMenuButtons_8c04442c[2 + row * 5 + col].unlocked_0x04 =
-                            var_progress_8c1ba1cc.courses_0x44[row * 3 + col].unlocked_0x00;
+                            ((PlayerProgress*)var_progress_8c1ba1cc)->courses_0x44[row * 3 + col].unlocked_0x00;
                     }
                 }
                 sdMidiPlay(var_midiHandles_8c0fcd28[5], 1, 0x16, 0);
@@ -1173,7 +1156,7 @@ void CourseMenuFreeRunMenuTask_8c017ada(Task * task, void *state)
                         // We offset by 2 because the first two entries
                         // of each row are not courses buttons.
                         init_courseMenuButtons_8c04442c[2 + row * 5 + col].unlocked_0x04 =
-                            var_progress_8c1ba1cc.courses_0x44[row * 3 + col].unlocked_0x00;
+                            ((PlayerProgress*)var_progress_8c1ba1cc)->courses_0x44[row * 3 + col].unlocked_0x00;
                     }
                 }
                 sdMidiPlay(var_midiHandles_8c0fcd28[5], 1, 0x16, 0);
@@ -1359,8 +1342,8 @@ STATIC void FUN_8c017d54(void)
             int buttonIdx = 2 + row * 5 + col; // offset by 2 each row
             init_courseMenuButtons_8c04442c[buttonIdx].unlocked_0x04 =
                 game_mode == 0
-                    ? var_progress_8c1ba1cc.courses_0x44[courseIdx].unlocked_0x00
-                    : var_progress_8c1ba1cc.courses_0x44[courseIdx].new_0x01;
+                    ? ((PlayerProgress*)var_progress_8c1ba1cc)->courses_0x44[courseIdx].unlocked_0x00
+                    : ((PlayerProgress*)var_progress_8c1ba1cc)->courses_0x44[courseIdx].new_0x01;
         }
     }
 }
@@ -1495,7 +1478,7 @@ STATIC void drawRouteInfo_8c018118(void)
     int index = var_menuState_8c1bc7a8.field_0x40 * 6 + (var_menuState_8c1bc7a8.field_0x3c - 2) * 2;
 
     // Draw day
-    drawFixedInteger_8c01803e(219.0, 108.0, var_progress_8c1ba1cc.days_0x00, 0);
+    drawFixedInteger_8c01803e(219.0, 108.0, ((PlayerProgress*)var_progress_8c1ba1cc)->days_0x00, 0);
 
     // Draw weekday sprite
     drawSprite_8c014f54(
@@ -1599,10 +1582,10 @@ STATIC void CourseConfirmMenuTask_8c0181b6(Task * task, void *state)
                 FUN_8c016182();
 
                 // Step 2: Get course index and check if unlocked
-                if (var_progress_8c1ba1cc.courses_0x44[courseIndex].field_0x02 == 0) {
+                if (((PlayerProgress*)var_progress_8c1ba1cc)->courses_0x44[courseIndex].field_0x02 == 0) {
                     // Course not unlocked, mark it
                     var_8c1bb8e0 = 1;
-                    var_progress_8c1ba1cc.courses_0x44[courseIndex].field_0x02 = 1;
+                    ((PlayerProgress*)var_progress_8c1ba1cc)->courses_0x44[courseIndex].field_0x02 = 1;
                 } else {
                     var_8c1bb8e0 = 0;
                 }
@@ -1616,13 +1599,13 @@ STATIC void CourseConfirmMenuTask_8c0181b6(Task * task, void *state)
 
                 // Step 4: Copy progress data to two arrays (5 uint32 values each)
                 for (i = 0; i < 5; i++) {
-                    var_8c1ba2b8[i] = ((int*)(&var_progress_8c1ba1cc.field_0x04))[i];
-                    var_8c1ba2cc[i] = ((int*)(&var_progress_8c1ba1cc.field_0x04))[i + 5];
+                    var_8c1ba2b8[i] = ((int*)(&((PlayerProgress*)var_progress_8c1ba1cc)->field_0x04))[i];
+                    var_8c1ba2cc[i] = ((int*)(&((PlayerProgress*)var_progress_8c1ba1cc)->field_0x04))[i + 5];
                 }
 
                 // Step 5: Update courseId_0x50 by adding day-based lookup value
                 var_menuState_8c1bc7a8.courseId_0x50 += 
-                    init_courseVariants_8c044d10[var_progress_8c1ba1cc.days_0x00 - 1];
+                    init_courseVariants_8c044d10[((PlayerProgress*)var_progress_8c1ba1cc)->days_0x00 - 1];
 
                 // Step 6: Initialize game and push loading task
                 pushLoadingTask_8c013310(var_menuState_8c1bc7a8.courseId_0x50);

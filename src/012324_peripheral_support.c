@@ -2,13 +2,11 @@
 #include "010e90.h"
 #include "011120_asset_queues.h"
 #include "012324_peripheral_support.h"
+#include "014f54_text_pre_data.h"
 
 int var_8c157ad4[4];
 int var_8c157ae4;
 int var_8c157ae8;
-extern Uint32 var_vibport_8c1ba354;
-extern PDS_PERIPHERAL *var_peripheral_8c1ba358;
-extern PDS_PERIPHERAL var_peripherals_8c1ba35c[2];
 
 #define DGT_ABXY (PDD_DGT_TA | PDD_DGT_TB | PDD_DGT_TX | PDD_DGT_TY)
 #define DGT_UDLR (PDD_DGT_KU | PDD_DGT_KD | PDD_DGT_KL | PDD_DGT_KR)

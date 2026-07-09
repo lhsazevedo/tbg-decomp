@@ -5,6 +5,7 @@
 
 #include <shinobi.h>
 #include "014b8c_backup.h"
+#include "014f54_text_pre_data.h"
 
 /*
  * Mamimum volume to use.
@@ -16,12 +17,6 @@
  */
 #define MAX_DRIVES 8
 #define USE_DRIVES BUD_USE_DRIVE_ALL
-
-/*
- * Structure to store the information of memory card.
- * (See backup.h)
- */
-extern BACKUPINFO var_gBupInfo_8c1bc4ac[8];
 
 
 

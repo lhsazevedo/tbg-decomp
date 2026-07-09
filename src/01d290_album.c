@@ -9,6 +9,10 @@
 #include "011120_asset_queues.h"
 #include "0100bc_sound.h"
 #include "serial_debug.h"
+#include "01614c.h"
+#include "022464.h"
+#include "03bd80_sectionD.h"
+#include "014f54_text_pre_data.h"
 #include "01d290_album.h"
 
 /* ====================
@@ -58,14 +62,6 @@ enum ALBUM_STATE {
  * =====================
  */
 
-extern void push_fadein_8c022a9c(int frames);
-extern void push_fadeout_8c022b60(int frames);
-extern void FUN_8c016182(void);
-
-extern PlayerProgress var_progress_8c1ba1cc;
-extern PDS_PERIPHERAL var_peripherals_8c1ba35c[2];
-extern NJS_POINT2 init_8c045170[6];
-extern ResourceGroupInfo init_albumResourceGroup_8c045160;
 extern Bool var_isFading_8c226568;
 
 /* ====================
@@ -92,7 +88,7 @@ void AlbumDrawGrid_8c01d290(void)
     }
 
     for (i = 0; i < 6; i++, spriteNo++) {
-        if (var_progress_8c1ba1cc.letters_0x2c[i]) {
+        if (((PlayerProgress*)var_progress_8c1ba1cc)->letters_0x2c[i]) {
             drawSprite_8c014f54(
                 &var_menuState_8c1bc7a8.resourceGroupB_0x0c,
                 spriteNo,
@@ -158,13 +154,13 @@ void AlbumMenuTask_8c01d300(Task *task, void *state)
                     int target = slot + 3;
                     int i;
                     for (i = 3; i < 6; i++) {
-                        if (var_progress_8c1ba1cc.letters_0x2c[i]) break;
+                        if (((PlayerProgress*)var_progress_8c1ba1cc)->letters_0x2c[i]) break;
                     }
                     if (i < 6) {
                         int best = 9999;
                         for (i = 3; i < 6; i++) {
                             int dist;
-                            if (!var_progress_8c1ba1cc.letters_0x2c[i]) continue;
+                            if (!((PlayerProgress*)var_progress_8c1ba1cc)->letters_0x2c[i]) continue;
                             dist = i - target;
                             if (dist < 0) dist = -dist;
                             if (best > dist) {
@@ -176,11 +172,11 @@ void AlbumMenuTask_8c01d300(Task *task, void *state)
                 } else if (press & PDD_DGT_KL) {
                     do {
                         if (--slot < 0) slot = 2;
-                    } while (!var_progress_8c1ba1cc.letters_0x2c[slot]);
+                    } while (!((PlayerProgress*)var_progress_8c1ba1cc)->letters_0x2c[slot]);
                 } else if (press & PDD_DGT_KR) {
                     do {
                         if (++slot > 2) slot = 0;
-                    } while (!var_progress_8c1ba1cc.letters_0x2c[slot]);
+                    } while (!((PlayerProgress*)var_progress_8c1ba1cc)->letters_0x2c[slot]);
                 }
             } else {
                 /* Bottom row (slots 3..5) */
@@ -190,13 +186,13 @@ void AlbumMenuTask_8c01d300(Task *task, void *state)
                     int target = slot - 3;
                     int i;
                     for (i = 0; i < 3; i++) {
-                        if (var_progress_8c1ba1cc.letters_0x2c[i]) break;
+                        if (((PlayerProgress*)var_progress_8c1ba1cc)->letters_0x2c[i]) break;
                     }
                     if (i < 3) {
                         int best = 9999;
                         for (i = 0; i < 3; i++) {
                             int dist;
-                            if (!var_progress_8c1ba1cc.letters_0x2c[i]) continue;
+                            if (!((PlayerProgress*)var_progress_8c1ba1cc)->letters_0x2c[i]) continue;
                             dist = i - target;
                             if (dist < 0) dist = -dist;
                             if (best > dist) {
@@ -208,11 +204,11 @@ void AlbumMenuTask_8c01d300(Task *task, void *state)
                 } else if (press & PDD_DGT_KL) {
                     do {
                         if (--slot < 3) slot = 5;
-                    } while (!var_progress_8c1ba1cc.letters_0x2c[slot]);
+                    } while (!((PlayerProgress*)var_progress_8c1ba1cc)->letters_0x2c[slot]);
                 } else if (press & PDD_DGT_KR) {
                     do {
                         if (++slot > 5) slot = 3;
-                    } while (!var_progress_8c1ba1cc.letters_0x2c[slot]);
+                    } while (!((PlayerProgress*)var_progress_8c1ba1cc)->letters_0x2c[slot]);
                 }
             }
 
@@ -311,7 +307,7 @@ void AlbumSwitchFromTask_8c01d6e2(Task *task)
     CHANGE_STATE(ALBUM_STATE_INIT);
 
     for (i = 0; i < 6; i++) {
-        if (var_progress_8c1ba1cc.letters_0x2c[i]) {
+        if (((PlayerProgress*)var_progress_8c1ba1cc)->letters_0x2c[i]) {
             var_menuState_8c1bc7a8.pos.cursor.cursor_0x20.x = init_8c045170[i].x;
             var_menuState_8c1bc7a8.pos.cursor.cursor_0x20.y = init_8c045170[i].y;
             var_menuState_8c1bc7a8.selected_0x38 = i;

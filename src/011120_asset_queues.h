@@ -1,4 +1,6 @@
 /* 8c011120 */
+#ifndef _011120_ASSET_QUEUES_H
+#define _011120_ASSET_QUEUES_H
 
 #include <shinobi.h>
 #include <string.h>
@@ -102,3 +104,5 @@ int AsqGetRandomB_8c0121a8();
 int AsqGetRandomInRangeB_8c0121be(unsigned int p1);
 
 void AsqApplyButtonConfig_8c0121e8();
+
+#endif // _011120_ASSET_QUEUES_H

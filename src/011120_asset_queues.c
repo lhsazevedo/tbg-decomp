@@ -5,9 +5,8 @@
 #include "011120_asset_queues.h"
 #include "serial_debug.h"
 #include "014a9c_tasks.h"
+#include "014f54_text_pre_data.h"
 #include "stdio.h"
-
-extern char var_progress_8c1ba1cc[];
 
 /* ====================
  * Compiler Definitions

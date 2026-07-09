@@ -15,6 +15,10 @@
 #include "0193c8_vm_menu.h"
 #include "011120_asset_queues.h"
 #include "016d2c_course_menu.h"
+#include "01614c.h"
+#include "022464.h"
+#include "028258.h"
+#include "014f54_text_pre_data.h"
 
 /* =======================
  * Non-initialized Globals
@@ -22,9 +26,6 @@
  */
 
 extern Bool var_isFading_8c226568;
-extern Bool var_8c1bb8c4;
-extern PDS_PERIPHERAL var_peripherals_8c1ba35c[2];
-extern Task var_tasks_8c1ba3c8[16];
 extern void* var_currentSysResGroupInfo_8c225fb0;
 
 /* ===================
@@ -69,10 +70,6 @@ ResourceGroupInfo init_8c044284 = {
  * ====================
  */
 
-extern void push_fadein_8c022a9c();
-extern void push_fadeout_8c022b60();
-extern FUN_8c02ae3e(int p1, int p2, float fp1, int p3, int p4, int p5, int p6, int p7);
-extern FUN_8c016182();
 
 /* =========
  * Functions

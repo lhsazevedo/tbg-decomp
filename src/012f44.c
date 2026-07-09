@@ -5,6 +5,10 @@
 #include "0100bc_sound.h"
 #include "014f54_text.h"
 #include "016bf4_demo_input.h"
+#include "0129cc.h"
+#include "01614c.h"
+#include "03bd80_sectionD.h"
+#include "014f54_text_pre_data.h"
 #include "includes.h"
 #include "serial_debug.h"
 #include "014a9c_tasks.h"
@@ -322,56 +326,18 @@ int init_8c03bf8c[] = {
 };
 int init_8c03bfa8 = 0;
 
-extern Task var_tasks_8c1ba3c8[];
-extern Task var_tasks_8c1ba5e8[];
-extern Task var_tasks_8c1ba808[];
-extern Task var_tasks_8c1bac28[];
-extern Task var_tasks_8c1bb448[];
-
-extern void* var_8c1bb86c;
-extern void* var_routeModels_8c1bc3ec;
-extern void* var_segmentModels_8c1bc3f0;
-extern void* var_trafficModels_8c1bc3f4;
-extern void* var_8c1bc404;
 extern void* var_8c226434;
 extern void* var_8c226438;
 extern void* var_8c228234;
 extern void* var_8c227e20;
 extern void* var_8c227e24;
 extern void* var_8c2288f8;
-extern void* var_interiorTexlist_8c1bc438;
 extern void* var_resourceGroup_8c2263a8;
-extern void* var_8c1ba2e0;
-extern void* var_8c1ba348;
-extern void* var_8c1ba344;
 extern void* var_currentSysResGroupInfo_8c225fb0;
-extern int* var_demoBuf_8c1ba3c4;
-extern void* var_8c1bc454;
-extern void* var_selectedVm_8c1ba34c;
-extern BusState var_busState_8c1bb9d0;
 
-extern void* var_routeModelSlots_8c1bbddc;
-extern void* var_pedestrianAssets_8c1bbfdc;
-
-extern int var_8c1bb8c4;
-extern int var_demoIndex_8c1bb8d8;
-
-extern void* var_markPartsDat_8c1bc41c;
-extern void* var_markDat_8c1bc420;
-extern void* var_busstopPartsDat_8c1bc428;
-extern void* var_busstopDat_8c1bc42c;
-extern void* var_loadingResourceGroup_8c1bc3f8[3];
-extern void* var_busFont_8c1ba1c8;
 extern void* var_8c2260ac;
 extern void* var_8c2260b8;
 extern void* var_8c2260c4;
-extern void* var_8c1bc440;
-extern void* var_8c1bc444;
-extern NJS_MOTION* var_loadedFooNjm_8c1bc448;
-extern void* var_8c1bc410;
-extern void* var_8c1bc414;
-
-extern Uint32 var_vibport_8c1ba354;
 
 STATIC int var_gdErr_8c18ad14;
 
@@ -382,24 +348,11 @@ int var_8c18ad08;
 int var_8c18ad0c;
 int var_8c18ad10;
 
-extern char init_8c0460b0[];
-
-extern float var_8c1bc450;
 extern int var_8c2260a8;
-extern task_8c012cbc;
-extern task_8c01677e;
-extern var_8c1bb8d4;
-extern task_8c012d06;
-extern task_8c012d5a;
-extern var_8c1bb8cc;
 extern var_8c22847c;
-extern int var_currentCourse_8c1bb868;
 extern int var_8c228704;
-extern int var_inputMapSel_8c1bb8c8;
 extern var_8c227dd4;
 extern Uint32 var_8c227da0;
-extern Uint32 var_8c1ba292;
-extern Uint32 var_8c1ba291;
 extern int var_8c227da8;
 
 extern var_currentSegment_8c228708;
@@ -435,21 +388,21 @@ void task_8c012f9c(Task *task, void* state) {
         r7 = FALSE;
     }
 
-    if (var_busState_8c1bb9d0.speed_0x27c == 0) {
+    if (((BusState*)var_busState_8c1bb9d0)->speed_0x27c == 0) {
         switch (task->field_0x08) {
             case 0:
-                if (var_busState_8c1bb9d0.bus_substate_0x3c0 == 0) {
+                if (((BusState*)var_busState_8c1bb9d0)->bus_substate_0x3c0 == 0) {
                     var_8c22655c = 0;
                     if (r7 == FALSE) {
-                        var_busState_8c1bb9d0.mirror_0x268 = 2;
+                        ((BusState*)var_busState_8c1bb9d0)->mirror_0x268 = 2;
                     } else {
-                        var_busState_8c1bb9d0.mirror_0x268 = 0;
+                        ((BusState*)var_busState_8c1bb9d0)->mirror_0x268 = 0;
                     }
 
                     /* 8c012ff6 */
                     task->field_0x08 = 1;
                 } else {
-                    if (var_busState_8c1bb9d0.mirror_0x268 != 3) {
+                    if (((BusState*)var_busState_8c1bb9d0)->mirror_0x268 != 3) {
                         var_8c22655c = 0;
                         freeTask_8c014b66(task);
                     }
@@ -464,10 +417,10 @@ void task_8c012f9c(Task *task, void* state) {
     } else {
         var_8c22655c = 0;
         if (r7 == FALSE) {
-            var_busState_8c1bb9d0.field_0x25c = 0;
+            ((BusState*)var_busState_8c1bb9d0)->field_0x25c = 0;
         }
 
-        var_busState_8c1bb9d0.mirror_0x268 = 0;
+        ((BusState*)var_busState_8c1bb9d0)->mirror_0x268 = 0;
 
         freeTask_8c014b66(task);
     }
@@ -551,12 +504,12 @@ void FUN_8c01328c() {
     void* created_state;
   
     if (var_playMode_8c1bb8d0 == 0) {
-        var_currentCourse_8c1bb868 = ((uknStruct2*)var_8c1bc824)->field_0x00;
+        var_currentCourse_8c1bb868.courseId_0x00 = ((uknStruct2*)var_8c1bc824)->field_0x00;
         var_8c228704 = ((uknStruct2*)var_8c1bc824)->field_0x04;
         var_inputMapSel_8c1bb8c8 = ((uknStruct2*)var_8c1bc824)->field_0x08;
         var_seed_8c157a64 = AsqGetRandomA_8c012166();
     } else if ((var_playMode_8c1bb8d0 == 2) && (var_8c1bb8d4 != 0)) {
-        var_8c227dd4 = init_8c0460b0[var_currentCourse_8c1bb868 - 0x26];
+        var_8c227dd4 = init_8c0460b0[var_currentCourse_8c1bb868.courseId_0x00 - 0x26];
         FUN_8c01895e();
     } else {
         var_8c227dd4 = 0;
@@ -578,12 +531,12 @@ void pushLoadingTask_8c013310(int p1) {
     void* created_state;
   
     if (var_playMode_8c1bb8d0 != 2) {
-        var_currentCourse_8c1bb868 = p1;
+        var_currentCourse_8c1bb868.courseId_0x00 = p1;
         var_8c228704 = 0;
         var_inputMapSel_8c1bb8c8 = (char) var_8c1ba291;
         var_seed_8c157a64 = AsqGetRandomA_8c012166();
     } else if (var_playMode_8c1bb8d0 == 2 && var_8c1bb8d4 != 0) {
-        var_8c227dd4 = init_8c0460b0[var_currentCourse_8c1bb868 - 0x26];
+        var_8c227dd4 = init_8c0460b0[var_currentCourse_8c1bb868.courseId_0x00 - 0x26];
     } else {
         var_8c227dd4 = 0;
     }
@@ -693,12 +646,12 @@ void njUserInit_8c0134ec() {
 
     var_8c1bb86c = (void *) -1;
 
-    clearModelSlots_8c013bbc(&var_routeModelSlots_8c1bbddc, 0x20);
-    clearModelSlots_8c013bbc(&var_pedestrianAssets_8c1bbfdc, 0x41);
+    clearModelSlots_8c013bbc(var_routeModelSlots_8c1bbddc, 0x20);
+    clearModelSlots_8c013bbc(var_pedestrianAssets_8c1bbfdc, 0x41);
 
     var_routeModels_8c1bc3ec = (void *) -1;
-    var_segmentModels_8c1bc3f0 = (void *) -1;
-    var_trafficModels_8c1bc3f4 = (void *) -1;
+    var_segmentModels_8c1bc3f0 = (LoadedModel *) -1;
+    var_trafficModels_8c1bc3f4 = (LoadedModel *) -1;
 
     clearUnknownVar_8c02171c();
     clearUnknownVar_8c029acc();
@@ -711,7 +664,7 @@ void njUserInit_8c0134ec() {
     var_8c227e20 = (void *) -1;
     var_8c227e24 = (void *) -1;
     var_8c2288f8 = (void *) -1;
-    var_interiorTexlist_8c1bc438 = (void *) -1;
+    var_interiorTexlist_8c1bc438 = (NJS_TEXLIST *) -1;
     var_menuState_8c1bc7a8.resourceGroupA_0x00.tlist_0x00 = (void*) -1;
     var_menuState_8c1bc7a8.resourceGroupB_0x0c.tlist_0x00 = (void*) -1;
     var_resourceGroup_8c2263a8 = (void *) -1;
@@ -721,7 +674,7 @@ void njUserInit_8c0134ec() {
     var_currentSysResGroupInfo_8c225fb0 = (void *) -1;
     var_demoBuf_8c1ba3c4 = (void *) -1;
     var_8c1bc454 = (void *) -1;
-    var_selectedVm_8c1ba34c = (void *) -1;
+    var_selectedVm_8c1ba34c = -1;
 
     var_8c1bb8c4 = 0;
 
@@ -746,10 +699,9 @@ void njUserInit_8c0134ec() {
     AsqRequestDat_8c011182("\\SYSTEM", "busstop_parts.dat", &var_busstopPartsDat_8c1bc428);
     AsqRequestDat_8c011182("\\SYSTEM", "busstop.dat", &var_busstopDat_8c1bc42c);
 
-    /*  TODO: Fix var_loadingResourceGroup_8c1bc3f8 type */ 
-    AsqRequestPvm_8c011ac0("\\SYSTEM", "loading.pvm", &var_loadingResourceGroup_8c1bc3f8[0], 1, 0x80000000);
-    AsqRequestDat_8c011182("\\SYSTEM", "load_parts.dat", &var_loadingResourceGroup_8c1bc3f8[1]);
-    AsqRequestDat_8c011182("\\SYSTEM", "loading.dat", &var_loadingResourceGroup_8c1bc3f8[2]);
+    AsqRequestPvm_8c011ac0("\\SYSTEM", "loading.pvm", &var_loadingResourceGroup_8c1bc3f8.tlist_0x00, 1, 0x80000000);
+    AsqRequestDat_8c011182("\\SYSTEM", "load_parts.dat", &var_loadingResourceGroup_8c1bc3f8.tanim_0x04);
+    AsqRequestDat_8c011182("\\SYSTEM", "loading.dat", &var_loadingResourceGroup_8c1bc3f8.contents_0x08);
 
     AsqRequestDat_8c011182("\\SYSTEM", "bus_font.fff", &var_busFont_8c1ba1c8);
     AsqRequestDat_8c011182("\\SYSTEM", "vm_bus.lcd", &var_8c2260ac);

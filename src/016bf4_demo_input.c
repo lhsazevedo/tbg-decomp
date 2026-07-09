@@ -1,10 +1,8 @@
 /* 8c016bf4 */
 #include <shinobi.h>
 #include "014f54_text.h"
+#include "014f54_text_pre_data.h"
 #include "016bf4_demo_input.h"
-
-extern PDS_PERIPHERAL var_peripherals_8c1ba35c[2];
-extern int var_8c1bbc84;
 
 void demoInputTask_8c016bf4()
 {

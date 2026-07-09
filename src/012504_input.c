@@ -4,6 +4,7 @@
 #include "012324_peripheral_support.h"
 #include "014a9c_tasks.h"
 #include "012504_input.h"
+#include "014f54_text_pre_data.h"
 #include "serial_debug.h"
 
 #define BT(a)     PDD_DEV_SUPPORT_##a
@@ -18,14 +19,7 @@
                          BT(KU)  | BT(KD)  | BT(KL)  | BT(KR)  | \
                          BT(AX1) | BT(AL)  | BT(AR))
 
-extern Uint32 var_vibport_8c1ba354;
-extern PDS_PERIPHERAL *var_peripheral_8c1ba358;
-extern PDS_PERIPHERAL var_peripherals_8c1ba35c[2];
 /* var_8c1bbc4c: paddle remap timer (must be 0); var_8c1bbcc4: remap target (5=Up, 0=Down) */
-extern float var_8c1bbc4c;
-extern int var_8c1bbcc4;
-extern Task var_tasks_8c1ba3c8[];
-extern int var_inputMapSel_8c1bb8c8;
 
 STATIC char var_name_8c157aec[12];
 STATIC const char *init_fortyFive_8c03bf40 = "FortyFive";

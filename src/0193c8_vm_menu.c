@@ -7,6 +7,7 @@
 #include "014a9c_tasks.h"
 #include "015ab8_title.h"
 #include "014b8c_backup.h"
+#include "014f54_text_pre_data.h"
 #include "serial_debug.h"
 
 /* ====================
@@ -86,12 +87,6 @@ enum VMU_STATUS {
  * External Declarations
    =====================
  */
-
-extern int var_selectedVm_8c1ba34c;
-extern PDS_PERIPHERAL var_peripherals_8c1ba35c[2];
-extern Task var_tasks_8c1ba3c8[];
-
-extern BACKUPINFO var_gBupInfo_8c1bc4ac[8];
 
 extern int var_vmuStatus_8c226048[9];
 extern int var_8c22606c;

@@ -5,6 +5,13 @@
 #include "013ae8_route_load.h"
 #include "014a9c_tasks.h"
 #include "014f54_text.h"
+#include "02171c.h"
+#include "026710.h"
+#include "028258.h"
+#include "02af78.h"
+#include "02c884.h"
+#include "03bd80_sectionD.h"
+#include "014f54_text_pre_data.h"
 #include "serial_debug.h"
 
 /* ====================
@@ -108,12 +115,6 @@ typedef struct {
     char *filenames_0x1c[19];
 } CourseConfig;
 
-typedef struct {
-    int courseId_0x00;
-    // asset handles filled by loadRouteModels
-    void *slots_0x04[19];
-} CurrentCourse;
-
 /* Placeholder types for the nested table/record
    tree hung off the CourseSegment pointer slots. */
 typedef struct { int count; void *ptr; } IntPtr;           /* {count, rec*} lists, {-1,NULL}-terminated */
@@ -150,28 +151,6 @@ Sint8 *var_routeModelIndexes_8c18adb0;
 
 void *var_datFiles_8c18adb4[4];
 
-extern ModelSlot var_routeModelSlots_8c1bbddc[0x20];
-
-extern ModelSlot var_pedestrianAssets_8c1bbfdc[0x41];
-
-/* shared filename strings living in the next TU */
-extern char init_8c04ce10[];
-extern char init_8c04df38[];
-extern char init_8c04e988[];
-
-/* current courseId + the asset handles loadRouteModels fills */
-extern CurrentCourse var_currentCourse_8c1bb868;
-
-extern void *var_routeModels_8c1bc3ec;
-
-extern void *var_frontNj_8c1bc434;
-extern NJS_TEXLIST *var_frontTexlist_8c1bc430;
-extern void *var_interiorNj_8c1bc43c;
-extern NJS_TEXLIST *var_interiorTexlist_8c1bc438;
-extern NJS_TEXLIST *var_markTexlist_8c1bc418;
-extern NJS_TEXLIST *var_busStopTexlist_8c1bc424;
-extern LoadedModel *var_trafficModels_8c1bc3f4;
-
 /* ======================
  * Initialized Globals
  * ======================
@@ -188,7 +167,6 @@ void setPvmReady_8c014330(void);
 void resetPvmReady_8c014322(void);
 
 extern int var_currentSegment_8c228708;
-extern LoadedModel *var_segmentModels_8c1bc3f0;
 
 extern int var_fogParam_8c226504;
 extern int var_fogParam_8c226508;
@@ -196,25 +174,7 @@ extern float var_fogParam_8c227dd0;
 
 extern int var_currentTileRegionList_8c226534;
 
-extern int var_cutsceneActive_8c1bb900;
-
-extern void FUN_8c021a24(void);
-extern void FUN_8c029ad4(void *arg);
-extern void FUN_8c02aa36(void);
-
-extern ResourceGroup var_loadingResourceGroup_8c1bc3f8;
-
-extern signed char var_8c1ba290;
 extern int var_8c2285c4[];
-
-extern void FUN_8c02175a(void);
-extern void FUN_8c026da4(void *handle);
-extern void FUN_8c028de8(void *handle);
-extern void FUN_8c028dd0(void *handle);
-extern void FUN_8c02caba(void);
-extern void FUN_8c02b170(void);
-extern void FUN_8c021810(void);
-extern void FUN_8c02190a(void);
 
 /* ==========
  * Functions

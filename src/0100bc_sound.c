@@ -2,6 +2,7 @@
 #include <sg_sd.h>
 #include <cri_adxt.h>
 #include "0100bc_sound.h"
+#include "014f54_text_pre_data.h"
 #include <cri_adxf.h>
 #include <string.h>
 
@@ -65,7 +66,6 @@ typedef struct {
  * =====================
  */
 
-extern Uint32 var_8c1bbcb0;
 extern UnknownVolStructB var_uknVol_8c226468;
 
 

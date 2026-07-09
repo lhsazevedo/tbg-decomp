@@ -41,7 +41,6 @@ typedef struct {
     char *text_0x38;
 } TextBox;
 
-extern enum PLAY_MODE var_playMode_8c1bb8d0;
 extern ReplayInput var_demoBuffer_8c1bc828[REPLAY_BUFFER_CAPACITY];
 extern ReplayInput *var_demoCursor_8c225fa8;
 extern Uint32 var_demoPrevOn_8c225fac;

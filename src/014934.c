@@ -5,8 +5,7 @@
 #include "014a9c_tasks.h"
 #include "014934.h"
 #include "011120_asset_queues.h"
-
-extern Task var_tasks_8c1ba3c8[16];
+#include "014f54_text_pre_data.h"
 
 void FUN_8c014934()
 {

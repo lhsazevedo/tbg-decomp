@@ -9,6 +9,8 @@
 #include "0100bc_sound.h"
 #include "011120_asset_queues.h"
 #include "016d2c_course_menu.h"
+#include "022464.h"
+#include "014f54_text_pre_data.h"
 
 /* ====================
  * Compiler Definitions
@@ -51,11 +53,6 @@ enum MAIN_MENU_STATE {
  * =====================
  */
 
-extern void push_fadein_8c022a9c();
-extern void push_fadeout_8c022b60();
-extern PDS_PERIPHERAL var_peripherals_8c1ba35c[2];
-extern int var_shouldShowFreeRunIntro_8c1bb8c0;
-extern int var_gameMode_8c1bb8fc;
 extern Bool var_isFading_8c226568;
 
 /* =======================

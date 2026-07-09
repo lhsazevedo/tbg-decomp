@@ -1,5 +1,7 @@
 /* 8c020528 */
 #include "014a9c_tasks.h"
+#include "020214.h"
+#include "014f54_text_pre_data.h"
 #include "020528.h"
 
 struct Struct8c2264b8 {
@@ -13,9 +15,6 @@ struct Struct8c2264b8 {
 }
 typedef Struct8c2264b8;
 
-extern Task var_tasks_8c1ba5e8[16];
-extern TaskAction FUN_8c020214;
-extern int var_playMode_8c1bb8d0;
 extern Struct8c2264b8 var_8c2264b8;
 
 void FUN_8c020528()

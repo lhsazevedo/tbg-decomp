@@ -1,4 +1,6 @@
 /* 8c013ae8 */
+#ifndef _013AE8_ROUTE_LOAD_H
+#define _013AE8_ROUTE_LOAD_H
 
 #include <shinobi.h>
 #include "014a9c_tasks.h"
@@ -39,6 +41,12 @@ typedef struct {
     void *nj_0x0c;
 } ModelSlot;
 
+typedef struct {
+    int courseId_0x00;
+    // asset handles filled by loadRouteModels
+    void *slots_0x04[19];
+} CurrentCourse;
+
 /* =====================
  * External Declarations
  * =====================
@@ -73,3 +81,5 @@ int isPvmReady_8c01432a(void);
 void routeLoadTask_8c014338(Task *task, void *state);
 void unknownSegmentReloadTask_8c014550(Task *task, void *state);
 void unknownRouteLoadTask_8c014784(Task *task, void *state);
+
+#endif // _013AE8_ROUTE_LOAD_H
