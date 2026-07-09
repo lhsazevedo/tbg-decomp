@@ -11,7 +11,7 @@ return new class extends TestCase {
     public function test_frees_loaded_slots_marks_them_unloaded()
     {
         $this->setSize('_var_routeModelSlots_8c1bbddc', self::SLOTS * 0x10);
-        $this->setSize('_AsqReleaseAndFreeTexlist_11e3c', 4);
+        $this->setSize('_AsqReleaseAndFreeTexlist_8c011e3c', 4);
         $this->setSize('_syFree', 4);
 
         $base = $this->addressOf('_var_routeModelSlots_8c1bbddc');
@@ -25,11 +25,11 @@ return new class extends TestCase {
 
         $this->call('_freeAllRouteModels_8c013dae');
 
-        $this->shouldCall('_AsqReleaseAndFreeTexlist_11e3c')->with(0x8c500000);
+        $this->shouldCall('_AsqReleaseAndFreeTexlist_8c011e3c')->with(0x8c500000);
         $this->shouldCall('_syFree')->with(0x8c500010);
         $this->shouldWriteLong($base + 2 * 0x10 + 0x8, self::UNLOADED);
 
-        $this->shouldCall('_AsqReleaseAndFreeTexlist_11e3c')->with(0x8c700000);
+        $this->shouldCall('_AsqReleaseAndFreeTexlist_8c011e3c')->with(0x8c700000);
         $this->shouldCall('_syFree')->with(0x8c700010);
         $this->shouldWriteLong($base + 7 * 0x10 + 0x8, self::UNLOADED);
     }
@@ -37,7 +37,7 @@ return new class extends TestCase {
     public function test_all_unloaded_does_nothing()
     {
         $this->setSize('_var_routeModelSlots_8c1bbddc', self::SLOTS * 0x10);
-        $this->setSize('_AsqReleaseAndFreeTexlist_11e3c', 4);
+        $this->setSize('_AsqReleaseAndFreeTexlist_8c011e3c', 4);
         $this->setSize('_syFree', 4);
 
         $base = $this->addressOf('_var_routeModelSlots_8c1bbddc');

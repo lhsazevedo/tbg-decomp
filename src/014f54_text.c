@@ -758,9 +758,9 @@ void FUN_8c0159ac()
     if (++var_demoIndex_8c1bb8d8 >= 20) {
         var_demoIndex_8c1bb8d8 = 0;
     }
-    AsqInitQueues_11f36(1,0,0,0);
-    AsqResetQueues_11f6c();
-    AsqRequestDat_11182(
+    AsqInitQueues_8c011f36(1,0,0,0);
+    AsqResetQueues_8c011f6c();
+    AsqRequestDat_8c011182(
         "\\SYSTEM",
         init_demos_8c044154[var_demoIndex_8c1bb8d8].filename,
         &var_demoBuf_8c1ba3c4
@@ -770,6 +770,6 @@ void FUN_8c0159ac()
     var_demoEntryValue_8c22822c =
         init_demos_8c044154[var_demoIndex_8c1bb8d8].field_0x08;
     resetPvmReady_8c014322();
-    AsqProcessQueues_11fe0(AsqNop_11120, 0, 0, 0, setPvmReady_8c014330);
+    AsqProcessQueues_8c011fe0(AsqNop_8c011120, 0, 0, 0, setPvmReady_8c014330);
     return;
 }

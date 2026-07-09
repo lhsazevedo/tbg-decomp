@@ -35,7 +35,7 @@
           .IMPORT     _var_currentSegment_8c228708
           .IMPORT     _task_8c02d5ca
           .IMPORT     _init_8c04c3e4
-          .IMPORT     _AsqGetRandomInRangeA_12178
+          .IMPORT     _AsqGetRandomInRangeA_8c012178
           .IMPORT     __quick_evn_mvn
           .IMPORT     _FUN_8c02d46c
           .IMPORT     _syFree
@@ -754,7 +754,7 @@ LP_GEN_19590:
           .DATA.L _var_8c2288f8 ; H'8C02DF1C
           .DATA.L _pushTask_8c014ae8 ; H'8C02DF20
           .DATA.L _init_8c04c3e4 ; H'8C02DF24
-          .DATA.L _AsqGetRandomInRangeA_12178 ; H'8C02DF28
+          .DATA.L _AsqGetRandomInRangeA_8c012178 ; H'8C02DF28
           .DATA.L __quick_evn_mvn ; H'8C02DF2C
           .DATA.L _FUN_8c02d46c ; H'8C02DF30
           .DATA.L _init_8c04c4dc ; H'8C02DF34

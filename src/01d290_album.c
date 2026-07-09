@@ -124,7 +124,7 @@ void AlbumMenuTask_8c01d300(Task *task, void *state)
             if (isPvmReady_8c01432a()) {
                 return;
             }
-            AsqFreeQueues_11f7e();
+            AsqFreeQueues_8c011f7e();
             CHANGE_STATE(ALBUM_STATE_FADE_IN);
             snd_8c010cd6(0, 0x10);
             push_fadein_8c022a9c(10);
@@ -330,12 +330,12 @@ void AlbumSwitchFromTask_8c01d6e2(Task *task)
 
     CourseMenuFreeResourceGroup_8c0185c4(&var_menuState_8c1bc7a8.resourceGroupA_0x00);
     njGarbageTexture(&var_tex_8c157af8, 0xc00);
-    AsqInitQueues_11f36(8, 0, 0, 8);
-    AsqResetQueues_11f6c();
+    AsqInitQueues_8c011f36(8, 0, 0, 8);
+    AsqResetQueues_8c011f6c();
     CourseMenuRequestSysResgrp_8c018568(
         &var_menuState_8c1bc7a8.resourceGroupB_0x0c,
         &init_albumResourceGroup_8c045160
     );
     setPvmReady_8c014330();
-    AsqProcessQueues_11fe0(&AsqNop_11120, 0, 0, 0, &resetPvmReady_8c014322);
+    AsqProcessQueues_8c011fe0(&AsqNop_8c011120, 0, 0, 0, &resetPvmReady_8c014322);
 }

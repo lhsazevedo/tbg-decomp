@@ -25,7 +25,7 @@ return new Class extends TestCase {
         $this->call('_CourseMenuFreeRunMenuTask_8c017ada');
 
         $this->shouldCall('_isPvmReady_8c01432a')->andReturn(0);
-        $this->shouldCall('_AsqFreeQueues_11f7e');
+        $this->shouldCall('_AsqFreeQueues_8c011f7e');
         $this->shouldWriteLong($this->addressOf('_var_menuState_8c1bc7a8') + 0x18, 1);
         $this->shouldCall('_FUN_8c010d8a');
         $this->shouldCall('_snd_8c010cd6')->with(0, 15);
@@ -508,7 +508,7 @@ return new Class extends TestCase {
         }
         $this->shouldDrawSprite(0x0c, $spriteNo, 0.0, 0.0, -6.0);
         $this->shouldDrawSprite(0x00, 0x00, 0.0, 0.0, -7.0);
-        $this->shouldCall('_AsqGetRandomA_12166');
+        $this->shouldCall('_AsqGetRandomA_8c012166');
     }
 
     private function shouldDrawSprite(

@@ -98,7 +98,7 @@ return new class extends TestCase {
         $this->shouldPushSequence(self::SEQ_SUCCESS);
         $this->shouldCall('_CourseMenuBuildCourseUnlockList_8c0172dc')->andReturn(0);
         $this->shouldCall('__modls');
-        $this->shouldCall('_AsqGetRandomInRangeB_121be')->andReturn(5);
+        $this->shouldCall('_AsqGetRandomInRangeB_8c0121be')->andReturn(5);
         $this->shouldWriteLong(
             $this->addressOf('_var_progress_8c1ba1cc') + 0x2c + 5 * 4 + 0, 1
         );
@@ -152,7 +152,7 @@ return new class extends TestCase {
         $this->shouldCall('_CourseMenuBuildCourseUnlockList_8c0172dc')->andReturn(1);
         $this->shouldPushSequence(self::SEQ_COURSE_UNLOCKED);
         $this->shouldCall('__modls');
-        $this->shouldCall('_AsqGetRandomInRangeB_121be')->andReturn(5);
+        $this->shouldCall('_AsqGetRandomInRangeB_8c0121be')->andReturn(5);
         $this->shouldWriteLong(
             $this->addressOf('_var_progress_8c1ba1cc') + 0x2c + 5 * 4 + 0, 1
         );
@@ -191,7 +191,7 @@ return new class extends TestCase {
         $this->onCall('__modls', function () {
             $this->setRegister(0, $this->getRegister(1)->mod($this->getRegister(0)));
         });
-        $this->setSize('_AsqGetRandomInRangeB_121be', 4);
+        $this->setSize('_AsqGetRandomInRangeB_8c0121be', 4);
 
         $this->initUint32($this->addressOf('_var_8c1bb8b8'), 1);
         $this->initUint32($this->addressOf('_var_progress_8c1ba1cc') + 0, 6);
@@ -203,7 +203,7 @@ return new class extends TestCase {
         $this->shouldPushSequence(self::SEQ_FAILURE);
         $this->shouldCall('_CourseMenuBuildCourseUnlockList_8c0172dc')->andReturn(0);
         $this->shouldCall('__modls');
-        $this->shouldCall('_AsqGetRandomInRangeB_121be')->andReturn(5);
+        $this->shouldCall('_AsqGetRandomInRangeB_8c0121be')->andReturn(5);
         $this->shouldWriteLong(
             $this->addressOf('_var_progress_8c1ba1cc') + 0x2c + 5 * 4 + 0, 1
         );
@@ -243,7 +243,7 @@ return new class extends TestCase {
         $this->onCall('__modls', function () {
             $this->setRegister(0, $this->getRegister(1)->mod($this->getRegister(0)));
         });
-        $this->setSize('_AsqGetRandomInRangeB_121be', 4);
+        $this->setSize('_AsqGetRandomInRangeB_8c0121be', 4);
 
         $this->initUint32($this->addressOf('_var_8c1bb8b8'), 1);
         $this->initUint32($this->addressOf('_var_progress_8c1ba1cc') + 0, 6);
@@ -256,7 +256,7 @@ return new class extends TestCase {
         $this->shouldCall('_CourseMenuBuildCourseUnlockList_8c0172dc')->andReturn(1);
         $this->shouldPushSequence(self::SEQ_COURSE_UNLOCKED);
         $this->shouldCall('__modls');
-        $this->shouldCall('_AsqGetRandomInRangeB_121be')->andReturn(5);
+        $this->shouldCall('_AsqGetRandomInRangeB_8c0121be')->andReturn(5);
         $this->shouldWriteLong(
             $this->addressOf('_var_progress_8c1ba1cc') + 0x2c + 5 * 4 + 0, 1
         );
@@ -437,7 +437,7 @@ return new class extends TestCase {
         }
 
         if ($letter) {
-            $this->shouldCall('_AsqGetRandomInRangeB_121be')->andReturn(5);
+            $this->shouldCall('_AsqGetRandomInRangeB_8c0121be')->andReturn(5);
             $this->shouldWriteLong(
                 $this->addressOf('_var_progress_8c1ba1cc') + 0x2c + 5 * 4 + 0, 1
             );

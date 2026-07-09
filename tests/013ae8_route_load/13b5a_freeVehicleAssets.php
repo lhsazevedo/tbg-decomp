@@ -28,12 +28,12 @@ return new class extends TestCase {
         $this->shouldCall('_njReleaseCacheTextureNum')->with(1);
         $this->shouldCall('_njReleaseCacheTextureNum')->with(2);
 
-        $this->shouldCall('_AsqReleaseAndFreeTexlist_11e3c')->with($texlist);
+        $this->shouldCall('_AsqReleaseAndFreeTexlist_8c011e3c')->with($texlist);
         $this->shouldCall('_syFree')->with(0x8c200010);
-        $this->shouldCall('_AsqReleaseAndFreeTexlist_11e3c')->with(0x8c200020);
+        $this->shouldCall('_AsqReleaseAndFreeTexlist_8c011e3c')->with(0x8c200020);
         $this->shouldCall('_syFree')->with(0x8c200030);
-        $this->shouldCall('_AsqReleaseAndFreeTexlist_11e3c')->with(0x8c200040);
-        $this->shouldCall('_AsqReleaseAndFreeTexlist_11e3c')->with(0x8c200050);
+        $this->shouldCall('_AsqReleaseAndFreeTexlist_8c011e3c')->with(0x8c200040);
+        $this->shouldCall('_AsqReleaseAndFreeTexlist_8c011e3c')->with(0x8c200050);
 
         $this->shouldWriteLongTo('_var_interiorTexlist_8c1bc438', 0xffffffff);
     }
@@ -57,12 +57,12 @@ return new class extends TestCase {
 
         $this->shouldCall('_njSetTexture')->with($texlist);
 
-        $this->shouldCall('_AsqReleaseAndFreeTexlist_11e3c')->with($texlist);
+        $this->shouldCall('_AsqReleaseAndFreeTexlist_8c011e3c')->with($texlist);
         $this->shouldCall('_syFree')->with(0x8c200010);
-        $this->shouldCall('_AsqReleaseAndFreeTexlist_11e3c')->with(0x8c200020);
+        $this->shouldCall('_AsqReleaseAndFreeTexlist_8c011e3c')->with(0x8c200020);
         $this->shouldCall('_syFree')->with(0x8c200030);
-        $this->shouldCall('_AsqReleaseAndFreeTexlist_11e3c')->with(0x8c200040);
-        $this->shouldCall('_AsqReleaseAndFreeTexlist_11e3c')->with(0x8c200050);
+        $this->shouldCall('_AsqReleaseAndFreeTexlist_8c011e3c')->with(0x8c200040);
+        $this->shouldCall('_AsqReleaseAndFreeTexlist_8c011e3c')->with(0x8c200050);
 
         $this->shouldWriteLongTo('_var_interiorTexlist_8c1bc438', 0xffffffff);
     }
@@ -88,7 +88,7 @@ return new class extends TestCase {
 
         $this->setSize('_njSetTexture', 4);
         $this->setSize('_njReleaseCacheTextureNum', 4);
-        $this->setSize('_AsqReleaseAndFreeTexlist_11e3c', 4);
+        $this->setSize('_AsqReleaseAndFreeTexlist_8c011e3c', 4);
         $this->setSize('_syFree', 4);
     }
 };

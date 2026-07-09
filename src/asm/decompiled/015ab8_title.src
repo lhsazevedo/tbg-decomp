@@ -4,8 +4,8 @@
           .IMPORT     _sdMidiPlay
           .IMPORT     _pushTask_8c014ae8
           .IMPORT     _isPvmReady_8c01432a
-          .IMPORT     _AsqFreeQueues_11f7e
-          .IMPORT     _VmMenuMountVms_1940e
+          .IMPORT     _AsqFreeQueues_8c011f7e
+          .IMPORT     _VmMenuMountVms_8c01940e
           .IMPORT     _push_fadein_8c022a9c
           .IMPORT     _var_midiHandles_8c0fcd28
           .IMPORT     _var_isFading_8c226568
@@ -20,19 +20,19 @@
           .IMPORT     _task_8c012f44
           .IMPORT     _var_tex_8c157af8
           .IMPORT     _FUN_8c02ae3e
-          .IMPORT     _AsqInitQueues_11f36
-          .IMPORT     _AsqNop_11120
+          .IMPORT     _AsqInitQueues_8c011f36
+          .IMPORT     _AsqNop_8c011120
           .IMPORT     _resetPvmReady_8c014322
           .IMPORT     _var_currentSysResGroupInfo_8c225fb0
-          .IMPORT     _VmMenuUpdateVmusStatus_19550
-          .IMPORT     _VmMenuSwitchFromTask_19e44
+          .IMPORT     _VmMenuUpdateVmusStatus_8c019550
+          .IMPORT     _VmMenuSwitchFromTask_8c019e44
           .IMPORT     _FUN_8c016182
           .IMPORT     _FUN_8c0159ac
-          .IMPORT     _AsqResetQueues_11f6c
+          .IMPORT     _AsqResetQueues_8c011f6c
           .IMPORT     _CourseMenuRequestSysResgrp_8c018568
           .IMPORT     _CourseMenuRequestCommonResources_8c01852c
           .IMPORT     _setPvmReady_8c014330
-          .IMPORT     _AsqProcessQueues_11fe0
+          .IMPORT     _AsqProcessQueues_8c011fe0
           .IMPORT     _snd_8c010cd6
           .IMPORT     _setName_8c012984
           .IMPORT     _startAdxFadeOut_8c010bae
@@ -153,10 +153,10 @@ L5:                               ; case label 0
           BRA         L52
           NOP
 L6:                               
-          MOV.L       L37+4,R3;AsqFreeQueues_11f7e
+          MOV.L       L37+4,R3;AsqFreeQueues_8c011f7e
           JSR         @R3
           NOP
-          MOV.L       L37+8,R2;VmMenuMountVms_1940e
+          MOV.L       L37+8,R2;VmMenuMountVms_8c01940e
           JSR         @R2
           NOP
           MOV.L       @R15,R3
@@ -469,13 +469,13 @@ L36:
 
 L37:                              
           .DATA.L     _isPvmReady_8c01432a ; H'8c015dcc
-          .DATA.L     _AsqFreeQueues_11f7e ; H'8c015dd0
-          .DATA.L     _VmMenuMountVms_1940e
+          .DATA.L     _AsqFreeQueues_8c011f7e ; H'8c015dd0
+          .DATA.L     _VmMenuMountVms_8c01940e
           .DATA.L     H'FF000000
           .DATA.L     _njSetBackColor
           .DATA.L     _setName_8c012984 ; H'8c015de0
           .DATA.L     _init_saveNames_8c044d50
-          .DATA.L     _VmMenuUpdateVmusStatus_19550
+          .DATA.L     _VmMenuUpdateVmusStatus_8c019550
           .DATA.L     _var_midiHandles_8c0fcd28
           .DATA.L     _sdMidiPlay ; H'8c015df0
           .DATA.L     H'44200000 ; 640.0
@@ -648,10 +648,10 @@ L48:
           .DATA.L     _var_midiHandles_8c0fcd28
           .DATA.L     _sdMidiPlay ; H'8c015f40
           .DATA.L     _init_saveNames_8c044d50
-          .DATA.L     _VmMenuUpdateVmusStatus_19550
+          .DATA.L     _VmMenuUpdateVmusStatus_8c019550
           .DATA.L     _init_8c03bd80
           .DATA.L     _var_8c1bb8c4 ; H'8c015f50
-          .DATA.L     _VmMenuSwitchFromTask_19e44
+          .DATA.L     _VmMenuSwitchFromTask_8c019e44
           .DATA.L     _FUN_8c016182
           .DATA.L     _FUN_8c0159ac
 
@@ -783,13 +783,13 @@ _pushTitle_8c015fd6:                   ; function: pushTitle_8c015fd6
           FMOV.S      @R0,FR4
           JSR         @R1
           MOV         #32,R4
-          MOV.L       L53+72,R3; _AsqInitQueues_11f36
+          MOV.L       L53+72,R3; _AsqInitQueues_8c011f36
           MOV         #0,R6
           MOV         #8,R7
           MOV         R6,R5
           JSR         @R3
           MOV         R7,R4
-          MOV.L       L53+76,R2; AsqResetQueues_11f6c
+          MOV.L       L53+76,R2; AsqResetQueues_8c011f6c
           JSR         @R2
           NOP
           MOV.L       L53+80,R2; _var_currentSysResGroupInfo_8c225fb0
@@ -808,9 +808,9 @@ _pushTitle_8c015fd6:                   ; function: pushTitle_8c015fd6
           NOP
           MOV.L       L53+100,R2; _resetPvmReady_8c014322
           MOV         #0,R7
-          MOV.L       L53+104,R4; _AsqNop_11120
+          MOV.L       L53+104,R4; _AsqNop_8c011120
           MOV         R7,R6
-          MOV.L       L53+108,R3; AsqProcessQueues_11fe0
+          MOV.L       L53+108,R3; AsqProcessQueues_8c011fe0
           MOV.L       R2,@-R15
           JSR         @R3
           MOV         R7,R5
@@ -840,16 +840,16 @@ L53:
           .DATA.L     _njGarbageTexture
           .DATA.L     H'C0000000 ; -2.0
           .DATA.L     _FUN_8c02ae3e
-          .DATA.L     _AsqInitQueues_11f36 ; H'8c0160e0
-          .DATA.L     _AsqResetQueues_11f6c
+          .DATA.L     _AsqInitQueues_8c011f36 ; H'8c0160e0
+          .DATA.L     _AsqResetQueues_8c011f6c
           .DATA.L     _var_currentSysResGroupInfo_8c225fb0
           .DATA.L     _init_titleResourceGroup_8c044254
           .DATA.L     _CourseMenuRequestSysResgrp_8c018568 ; H'8c0160f0
           .DATA.L     _CourseMenuRequestCommonResources_8c01852c
           .DATA.L     _setPvmReady_8c014330
           .DATA.L     _resetPvmReady_8c014322
-          .DATA.L     _AsqNop_11120
-          .DATA.L     _AsqProcessQueues_11fe0
+          .DATA.L     _AsqNop_8c011120
+          .DATA.L     _AsqProcessQueues_8c011fe0
 
           .SECTION    D, DATA, ALIGN=4
           .DATA.L      _const_8c035fb8 ; ukn

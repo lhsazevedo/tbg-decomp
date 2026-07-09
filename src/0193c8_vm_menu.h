@@ -4,11 +4,11 @@
 #include "sg_xpt.h"
 #include "014a9c_tasks.h"
 
-void VmMenuMountVms_1940e();
-void VmMenuUnmountVms_194de();
-void VmMenuFreeAndClear_19504(void);
-int VmMenuUpdateVmusStatus_19550(char **saveNames, Uint16 blocks);
-void VmMenuUpdateVmuStatus_1967c(Sint32 drive, char *saveName, Uint16 blocks);
-void VmMenuSwitchFromTask_19e44(Task *task);
+void VmMenuMountVms_8c01940e();
+void VmMenuUnmountVms_8c0194de();
+void VmMenuFreeAndClear_8c019504(void);
+int VmMenuUpdateVmusStatus_8c019550(char **saveNames, Uint16 blocks);
+void VmMenuUpdateVmuStatus_8c01967c(Sint32 drive, char *saveName, Uint16 blocks);
+void VmMenuSwitchFromTask_8c019e44(Task *task);
 
 #endif // _VM_MENU_H

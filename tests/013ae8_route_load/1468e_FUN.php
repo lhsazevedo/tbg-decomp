@@ -77,7 +77,7 @@ return new class extends TestCase {
         $this->shouldWriteLong($createdTask + 0x0c, 0);
         $this->shouldCall('_freeSegmentModels_8c013f22');
         $this->shouldCall('_njGarbageTexture')->with($this->addressOf('_var_tex_8c157af8'), 0xc00);
-        $this->shouldCall('_AsqInitQueues_11f36')->with(0x20, 0x800, 0x800, 0x40);
+        $this->shouldCall('_AsqInitQueues_8c011f36')->with(0x20, 0x800, 0x800, 0x40);
         $this->shouldCall('_njSetTexture')->with(self::TLIST);
         $this->shouldCall('_njLoadCacheTexture')->with(self::TLIST);
         $this->shouldCall('_njSetBackColor')->with(0xff418dff, 0xff418dff, 0xff418dff);
@@ -94,7 +94,7 @@ return new class extends TestCase {
             '_var_tasks_8c1ba3c8' => 4,
             '_var_tex_8c157af8' => 4,
             '_njGarbageTexture' => 4,
-            '_AsqInitQueues_11f36' => 4,
+            '_AsqInitQueues_8c011f36' => 4,
             '_njSetTexture' => 4,
             '_njLoadCacheTexture' => 4,
             '_njSetBackColor' => 4,

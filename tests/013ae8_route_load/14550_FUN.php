@@ -17,11 +17,11 @@ return new class extends TestCase {
         $this->call('_unknownSegmentReloadTask_8c014550')->with($task, 0);
 
         $this->shouldCall('_FUN_8c02b170');
-        $this->shouldCall('_AsqResetQueues_11f6c');
+        $this->shouldCall('_AsqResetQueues_8c011f6c');
         $this->shouldCall('_syncSegmentModels_8c013f78');
         $this->shouldCall('_resetPvmReady_8c014322');
-        $this->shouldCall('_AsqProcessQueues_11fe0')->with(
-            $this->addressOf('_AsqNop_11120'),
+        $this->shouldCall('_AsqProcessQueues_8c011fe0')->with(
+            $this->addressOf('_AsqNop_8c011120'),
             $this->addressOf('_FUN_8c021810'),
             $this->addressOf('_FUN_8c02190a'),
             0,
@@ -78,7 +78,7 @@ return new class extends TestCase {
         $this->call('_unknownSegmentReloadTask_8c014550')->with($task, 0);
 
         $this->shouldCall('_freeTask_8c014b66')->with($task);
-        $this->shouldCall('_AsqFreeQueues_11f7e');
+        $this->shouldCall('_AsqFreeQueues_8c011f7e');
         $this->shouldWriteLong($this->addressOf('_var_loadScreenActive_8c157a6c'), 0);
         $this->shouldCall('_njReleaseTexture')->with(self::TLIST);
         $this->shouldCall('_njSetTexture')->with($interior);
@@ -134,10 +134,10 @@ return new class extends TestCase {
             '_var_loadingResourceGroup_8c1bc3f8' => 0x0c,
             '_var_loadScreenActive_8c157a6c' => 4,
             '_var_interiorTexlist_8c1bc438' => 4,
-            '_AsqResetQueues_11f6c' => 4,
-            '_AsqFreeQueues_11f7e' => 4,
-            '_AsqProcessQueues_11fe0' => 4,
-            '_AsqNop_11120' => 4,
+            '_AsqResetQueues_8c011f6c' => 4,
+            '_AsqFreeQueues_8c011f7e' => 4,
+            '_AsqProcessQueues_8c011fe0' => 4,
+            '_AsqNop_8c011120' => 4,
             '_njSetTexture' => 4,
             '_njLoadCacheTexture' => 4,
             '_njReleaseTexture' => 4,

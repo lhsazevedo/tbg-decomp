@@ -172,7 +172,7 @@ STATIC void TaskWaitForVmsReady_193c8(Task *task)
 }
 
 /* Tested */
-void VmMenuMountVms_1940e()
+void VmMenuMountVms_8c01940e()
 {
     int drive;
     Task *createdTask;
@@ -213,7 +213,7 @@ STATIC void TaskUnmountVms_1946a(Task *task, void *state)
 }
 
 /* Tested */
-void VmMenuUnmountVms_194de()
+void VmMenuUnmountVms_8c0194de()
 {
     Task *createdTask;
     void *createdState;
@@ -223,7 +223,7 @@ void VmMenuUnmountVms_194de()
 }
 
 /* Tested */
-void VmMenuFreeAndClear_19504(void)
+void VmMenuFreeAndClear_8c019504(void)
 {
     int drive;
 
@@ -236,7 +236,7 @@ void VmMenuFreeAndClear_19504(void)
 }
 
 /* Tested */
-int VmMenuUpdateVmusStatus_19550(char **saveNames, Uint16 blocks)
+int VmMenuUpdateVmusStatus_8c019550(char **saveNames, Uint16 blocks)
 {
     int drive;
     int count = 0;
@@ -314,7 +314,7 @@ int VmMenuUpdateVmusStatus_19550(char **saveNames, Uint16 blocks)
 }
 
 /* Tested */
-void VmMenuUpdateVmuStatus_1967c(Sint32 drive, char* saveName, Uint16 blocks)
+void VmMenuUpdateVmuStatus_8c01967c(Sint32 drive, char* saveName, Uint16 blocks)
 {
     const BACKUPINFO *bupInfo = BupGetInfo_8c014bba(drive);
 
@@ -458,7 +458,7 @@ STATIC void VmMenuTask_198a0(Task* task, void *actionState)
 
             LOG_INFO(("[VM_MENU] Initializing VM Select menu\n"));
 
-            if (VmMenuUpdateVmusStatus_19550(init_saveNames_8c044d50, 3)) {
+            if (VmMenuUpdateVmusStatus_8c019550(init_saveNames_8c044d50, 3)) {
                 CHANGE_STATE(VM_MENU_STATE_FADE_IN);
 
                 // Skip empty slots
@@ -491,7 +491,7 @@ STATIC void VmMenuTask_198a0(Task* task, void *actionState)
 
         // Idle
         case VM_MENU_STATE_IDLE: {
-            VmMenuUpdateVmusStatus_19550(init_saveNames_8c044d50, 3);
+            VmMenuUpdateVmusStatus_8c019550(init_saveNames_8c044d50, 3);
 
             if (!var_vmuStatus_8c226048[slot]) {
                 for (slot = 0; !var_vmuStatus_8c226048[slot]; slot++);
@@ -612,7 +612,7 @@ STATIC void VmMenuTask_198a0(Task* task, void *actionState)
 
         /* Confirm */
         case VM_MENU_STATE_CONFIRM: {
-            int promptResult = promptHandleBinary_16caa(&var_menuState_8c1bc7a8.field_0x3c);
+            int promptResult = promptHandleBinary_8c016caa(&var_menuState_8c1bc7a8.field_0x3c);
             if (promptResult == 1) {
                 var_selectedVm_8c1ba34c = var_menuState_8c1bc7a8.selectedVmuSlot_0x6c;
                 CHANGE_STATE(VM_MENU_STATE_CONFIRM_FADE_OUT_TO_MAIN_MENU);
@@ -636,7 +636,7 @@ STATIC void VmMenuTask_198a0(Task* task, void *actionState)
 
         // Proceed without saving?
         case VM_MENU_STATE_PROCEED_WITHOUT_SAVING: {
-            int promptResult = promptHandleBinary_16caa(&var_menuState_8c1bc7a8.field_0x3c);
+            int promptResult = promptHandleBinary_8c016caa(&var_menuState_8c1bc7a8.field_0x3c);
             if (promptResult == 1) {
                 var_selectedVm_8c1ba34c = -1;
                 FUN_8c01895e();
@@ -677,8 +677,8 @@ STATIC void VmMenuTask_198a0(Task* task, void *actionState)
             switch (task->field_0x08) {
                 // Idle
                 case 0: {
-                    if (!VmMenuUpdateVmusStatus_19550(init_saveNames_8c044d50, 3)) {
-                        int promptResult = promptHandleBinary_16caa(&var_menuState_8c1bc7a8.field_0x3c);
+                    if (!VmMenuUpdateVmusStatus_8c019550(init_saveNames_8c044d50, 3)) {
+                        int promptResult = promptHandleBinary_8c016caa(&var_menuState_8c1bc7a8.field_0x3c);
                         if (promptResult == 1) {
                             var_selectedVm_8c1ba34c = -1;
                             FUN_8c01895e();
@@ -777,7 +777,7 @@ STATIC void VmMenuTask_198a0(Task* task, void *actionState)
 }
 
 /* Tested */
-void VmMenuSwitchFromTask_19e44(Task *task)
+void VmMenuSwitchFromTask_8c019e44(Task *task)
 {
     setTaskAction_8c014b3e(task, VmMenuTask_198a0);
     var_menuState_8c1bc7a8.state_0x18 = VM_MENU_STATE_INIT;

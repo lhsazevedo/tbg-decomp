@@ -38,7 +38,7 @@ return new class extends TestCase {
             ->andReturn($destPairs);
 
         // First pair
-        $this->shouldCall('_AsqRequestNj_11492')
+        $this->shouldCall('_AsqRequestNj_8c011492')
             ->with(
                 $basedir,
                 $pairANjFilename,
@@ -47,7 +47,7 @@ return new class extends TestCase {
             )
             ->andReturn(1);
 
-        $this->shouldCall('_AsqRequestPvm_11ac0')
+        $this->shouldCall('_AsqRequestPvm_8c011ac0')
             ->with(
                 $basedir,
                 $pairAPvmFilename,
@@ -58,7 +58,7 @@ return new class extends TestCase {
             ->andReturn(1);
 
         // Second pair
-        $this->shouldCall('_AsqRequestNj_11492')
+        $this->shouldCall('_AsqRequestNj_8c011492')
             ->with(
                 $basedir,
                 $pairBNjFilename,
@@ -67,7 +67,7 @@ return new class extends TestCase {
             )
             ->andReturn(1);
 
-        $this->shouldCall('_AsqRequestPvm_11ac0')
+        $this->shouldCall('_AsqRequestPvm_8c011ac0')
             ->with(
                 $basedir,
                 $pairBPvmFilename,
@@ -80,7 +80,7 @@ return new class extends TestCase {
 
         $this->shouldWrite($destPairs + 2 * $destPairSize + 0x0, 0);
 
-        $this->singleCall('_AsqRequestModels_12030')
+        $this->singleCall('_AsqRequestModels_8c012030')
             ->with($basedir, $pairs, 3)
             ->singleShouldReturn($destPairs)
             ->run();
@@ -118,7 +118,7 @@ return new class extends TestCase {
             ->andReturn($destPairs);
 
         // First pair
-        $this->shouldCall('_AsqRequestNj_11492')
+        $this->shouldCall('_AsqRequestNj_8c011492')
             ->with(
                 $basedir,
                 $pairANjFilename,
@@ -129,7 +129,7 @@ return new class extends TestCase {
 
         $this->shouldWrite($destPairs + 0 * $destPairSize + 0x4, -1);
 
-        $this->shouldCall('_AsqRequestPvm_11ac0')
+        $this->shouldCall('_AsqRequestPvm_8c011ac0')
             ->with(
                 $basedir,
                 $pairAPvmFilename,
@@ -140,7 +140,7 @@ return new class extends TestCase {
             ->andReturn(1);
 
         // Second pair
-        $this->shouldCall('_AsqRequestNj_11492')
+        $this->shouldCall('_AsqRequestNj_8c011492')
             ->with(
                 $basedir,
                 $pairBNjFilename,
@@ -149,7 +149,7 @@ return new class extends TestCase {
             )
             ->andReturn(1);
 
-        $this->shouldCall('_AsqRequestPvm_11ac0')
+        $this->shouldCall('_AsqRequestPvm_8c011ac0')
             ->with(
                 $basedir,
                 $pairBPvmFilename,
@@ -162,7 +162,7 @@ return new class extends TestCase {
 
         $this->shouldWrite($destPairs + 2 * $destPairSize + 0x0, 0);
 
-        $this->singleCall('_AsqRequestModels_12030')
+        $this->singleCall('_AsqRequestModels_8c012030')
             ->with($basedir, $pairs, 3)
             ->singleShouldReturn($destPairs)
             ->run();
@@ -200,7 +200,7 @@ return new class extends TestCase {
             ->andReturn($destPairs);
 
         // First pair
-        $this->shouldCall('_AsqRequestNj_11492')
+        $this->shouldCall('_AsqRequestNj_8c011492')
             ->with(
                 $basedir,
                 $pairANjFilename,
@@ -209,7 +209,7 @@ return new class extends TestCase {
             )
             ->andReturn(1);
 
-        $this->shouldCall('_AsqRequestPvm_11ac0')
+        $this->shouldCall('_AsqRequestPvm_8c011ac0')
             ->with(
                 $basedir,
                 $pairAPvmFilename,
@@ -222,7 +222,7 @@ return new class extends TestCase {
         $this->shouldWrite($destPairs + 0 * $destPairSize + 0x0, -1);
 
         // Second pair
-        $this->shouldCall('_AsqRequestNj_11492')
+        $this->shouldCall('_AsqRequestNj_8c011492')
             ->with(
                 $basedir,
                 $pairBNjFilename,
@@ -231,7 +231,7 @@ return new class extends TestCase {
             )
             ->andReturn(1);
 
-        $this->shouldCall('_AsqRequestPvm_11ac0')
+        $this->shouldCall('_AsqRequestPvm_8c011ac0')
             ->with(
                 $basedir,
                 $pairBPvmFilename,
@@ -244,7 +244,7 @@ return new class extends TestCase {
 
         $this->shouldWrite($destPairs + 2 * $destPairSize + 0x0, 0);
 
-        $this->singleCall('_AsqRequestModels_12030')
+        $this->singleCall('_AsqRequestModels_8c012030')
             ->with($basedir, $pairs, 3)
             ->singleShouldReturn($destPairs)
             ->run();

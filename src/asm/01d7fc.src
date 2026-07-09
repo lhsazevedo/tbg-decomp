@@ -10,9 +10,9 @@
           .IMPORT     _var_8c1ba350
           .IMPORT     _init_saveNames_8c044d50
           .IMPORT     _var_peripherals_8c1ba35c
-          .IMPORT     _VmMenuUpdateVmuStatus_1967c
+          .IMPORT     _VmMenuUpdateVmuStatus_8c01967c
           .IMPORT     _isPvmReady_8c01432a
-          .IMPORT     _AsqFreeQueues_11f7e
+          .IMPORT     _AsqFreeQueues_8c011f7e
           .IMPORT     _var_8c226408
           .IMPORT     _var_8c1bb8dc
           .IMPORT     _midiResetFxAndPlay_8c010846
@@ -36,7 +36,7 @@
           .IMPORT     _const_8c038894
           .IMPORT     _const_8c0388b8
           .IMPORT     _const_8c0388f0
-          .IMPORT     _promptHandleBinary_16caa
+          .IMPORT     _promptHandleBinary_8c016caa
           .IMPORT     _push_fadein_8c022a9c
           .IMPORT     _FUN_8c01890a
           .IMPORT     _FUN_8c01b26c
@@ -63,19 +63,19 @@
           .IMPORT     _var_tex_8c157af8
           .IMPORT     _njGarbageTexture
           .IMPORT     _FUN_8c02ae3e
-          .IMPORT     _AsqInitQueues_11f36
-          .IMPORT     _AsqResetQueues_11f6c
+          .IMPORT     _AsqInitQueues_8c011f36
+          .IMPORT     _AsqResetQueues_8c011f6c
           .IMPORT     _init_titleResourceGroup_8c044254
           .IMPORT     _CourseMenuRequestSysResgrp_8c018568
           .IMPORT     _CourseMenuRequestCommonResources_8c01852c
           .IMPORT     _var_8c1ba344
           .IMPORT     _const_8c038960
           .IMPORT     _const_8c038958
-          .IMPORT     _AsqRequestDat_11182
+          .IMPORT     _AsqRequestDat_8c011182
           .IMPORT     _setPvmReady_8c014330
           .IMPORT     _resetPvmReady_8c014322
-          .IMPORT     _AsqNop_11120
-          .IMPORT     _AsqProcessQueues_11fe0
+          .IMPORT     _AsqNop_8c011120
+          .IMPORT     _AsqProcessQueues_8c011fe0
           .IMPORT     _var_timeOfDay_8c18ad20
           .IMPORT     _var_route_8c18ad1c
           .IMPORT     _init_8c0451a0
@@ -529,9 +529,9 @@ LAB_8c01db36:
           BRA         LAB_8c01df50
           NOP
 LP_GEN_73625:
-          .DATA.L _VmMenuUpdateVmuStatus_1967c ; H'8C01DB48
+          .DATA.L _VmMenuUpdateVmuStatus_8c01967c ; H'8C01DB48
           .DATA.L _isPvmReady_8c01432a ; H'8C01DB4C
-          .DATA.L _AsqFreeQueues_11f7e ; H'8C01DB50
+          .DATA.L _AsqFreeQueues_8c011f7e ; H'8C01DB50
           .DATA.L _var_8c226408 ; H'8C01DB54
           .DATA.L _var_8c1bb8dc ; H'8C01DB58
           .DATA.L _midiResetFxAndPlay_8c010846 ; H'8C01DB5C
@@ -682,7 +682,7 @@ LP_GEN_38701:
           .RES.W 1 ; H'8C01DC86
           .DATA.L _var_8c1ba350 ; H'8C01DC88
           .DATA.L _init_saveNames_8c044d50 ; H'8C01DC8C
-          .DATA.L _VmMenuUpdateVmuStatus_1967c ; H'8C01DC90
+          .DATA.L _VmMenuUpdateVmuStatus_8c01967c ; H'8C01DC90
           .DATA.L _var_vmuStatus_8c226048 ; H'8C01DC94
           .DATA.L _const_8c0387fc ; H'8C01DC98
           .DATA.L _const_8c038828 ; H'8C01DC9C
@@ -977,8 +977,8 @@ LAB_8c01dea6:
           JMP         @R2
           MOV.L       @R15+,R14
 LP_GEN_50614:
-          .DATA.L _VmMenuUpdateVmuStatus_1967c ; H'8C01DEC4
-          .DATA.L _promptHandleBinary_16caa ; H'8C01DEC8
+          .DATA.L _VmMenuUpdateVmuStatus_8c01967c ; H'8C01DEC4
+          .DATA.L _promptHandleBinary_8c016caa ; H'8C01DEC8
           .DATA.L _push_fadeout_8c022b60 ; H'8C01DECC
           .DATA.L _push_fadein_8c022a9c ; H'8C01DED0
           .DATA.L _var_vmuStatus_8c226048 ; H'8C01DED4
@@ -1160,8 +1160,8 @@ LP_GEN_43538:
           .DATA.L _njGarbageTexture ; H'8C01E070
           .DATA.L H'C0000000 ; H'8C01E074
           .DATA.L _FUN_8c02ae3e ; H'8C01E078
-          .DATA.L _AsqInitQueues_11f36 ; H'8C01E07C
-          .DATA.L _AsqResetQueues_11f6c ; H'8C01E080
+          .DATA.L _AsqInitQueues_8c011f36 ; H'8C01E07C
+          .DATA.L _AsqResetQueues_8c011f6c ; H'8C01E080
           .DATA.L _init_titleResourceGroup_8c044254 ; H'8C01E084
           .DATA.L _var_menuState_8c1bc7a8 + H'0C ; H'8C01E088
           .DATA.L _CourseMenuRequestSysResgrp_8c018568 ; H'8C01E08C
@@ -1169,11 +1169,11 @@ LP_GEN_43538:
           .DATA.L _var_8c1ba344 ; H'8C01E094
           .DATA.L _const_8c038960 ; H'8C01E098
           .DATA.L _const_8c038958 ; H'8C01E09C
-          .DATA.L _AsqRequestDat_11182 ; H'8C01E0A0
+          .DATA.L _AsqRequestDat_8c011182 ; H'8C01E0A0
           .DATA.L _setPvmReady_8c014330 ; H'8C01E0A4
           .DATA.L _resetPvmReady_8c014322 ; H'8C01E0A8
-          .DATA.L _AsqNop_11120 ; H'8C01E0AC
-          .DATA.L _AsqProcessQueues_11fe0 ; H'8C01E0B0
+          .DATA.L _AsqNop_8c011120 ; H'8C01E0AC
+          .DATA.L _AsqProcessQueues_8c011fe0 ; H'8C01E0B0
 _FUN_8c01e0b4:
           MOV.L       LP_GEN_76652+14,R2
           MOV.L       R14,@-R15

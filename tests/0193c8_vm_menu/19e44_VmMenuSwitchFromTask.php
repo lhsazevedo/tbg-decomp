@@ -18,7 +18,7 @@ return new class extends TestCase {
         $this->shouldWriteLong($this->addressOf('_var_menuState_8c1bc7a8') + 0x38, 0);
         $this->shouldWriteLong($this->addressOf('_var_menuState_8c1bc7a8') + 0x68, 0);
 
-        $this->singleCall('_VmMenuSwitchFromTask_19e44')->with($task)->run();
+        $this->singleCall('_VmMenuSwitchFromTask_8c019e44')->with($task)->run();
     }
 
     private function resolveSymbols(): void

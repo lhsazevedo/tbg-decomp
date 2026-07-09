@@ -17,7 +17,7 @@
           .IMPORT     _var_8c2285d8
           .IMPORT     _var_currentSegment_8c228708
           .IMPORT     _var_cutsceneActive_8c1bb900
-          .IMPORT     _AsqGetRandomInRangeB_121be
+          .IMPORT     _AsqGetRandomInRangeB_8c0121be
           .IMPORT     _var_8c228478
           .EXPORT     _FUN_8c02af78
           .EXPORT     _FUN_8c02afbe
@@ -427,7 +427,7 @@ LP_GEN_88891:
           .DATA.L _var_currentSegment_8c228708 ; H'8C02B264
           .DATA.L _var_8c228560 ; H'8C02B268
           .DATA.L _var_cutsceneActive_8c1bb900 ; H'8C02B26C
-          .DATA.L _AsqGetRandomInRangeB_121be ; H'8C02B270
+          .DATA.L _AsqGetRandomInRangeB_8c0121be ; H'8C02B270
           .DATA.L _var_8c228478 ; H'8C02B274
 LAB_8c02b278:
           MOV.L       LP_GEN_51122+6,R0

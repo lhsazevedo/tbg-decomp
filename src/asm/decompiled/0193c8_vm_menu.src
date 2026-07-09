@@ -24,7 +24,7 @@
           .IMPORT     _var_peripherals_8c1ba35c
           .IMPORT     _sdMidiPlay
           .IMPORT     _CourseMenuInterpolateCursor_8c016d2c
-          .IMPORT     _promptHandleBinary_16caa
+          .IMPORT     _promptHandleBinary_8c016caa
           .IMPORT     _var_selectedVm_8c1ba34c
           .IMPORT     _push_fadeout_8c022b60
           .IMPORT     _FUN_8c01895e
@@ -53,12 +53,12 @@
           .EXPORT     _init_saveNames_8c044d50
           .EXPORT     _init_vmIconsPositions_8c044d7c
           .EXPORT     _init_vmuStatusMessages_8c044dc4
-          .EXPORT     _VmMenuMountVms_1940e
-          .EXPORT     _VmMenuUnmountVms_194de
-          .EXPORT     _VmMenuFreeAndClear_19504
-          .EXPORT     _VmMenuUpdateVmusStatus_19550
-          .EXPORT     _VmMenuUpdateVmuStatus_1967c
-          .EXPORT     _VmMenuSwitchFromTask_19e44
+          .EXPORT     _VmMenuMountVms_8c01940e
+          .EXPORT     _VmMenuUnmountVms_8c0194de
+          .EXPORT     _VmMenuFreeAndClear_8c019504
+          .EXPORT     _VmMenuUpdateVmusStatus_8c019550
+          .EXPORT     _VmMenuUpdateVmuStatus_8c01967c
+          .EXPORT     _VmMenuSwitchFromTask_8c019e44
 
           .AIFDEF UNIT_TESTING
           .EXPORT     _TaskWaitForVmsReady_193c8
@@ -110,7 +110,7 @@ LAB_8c019402:
           MOV.L       @R15+,R13
           RTS
           MOV.L       @R15+,R14
-_VmMenuMountVms_1940e:
+_VmMenuMountVms_8c01940e:
           MOV.L       R14,@-R15
           MOV.L       R13,@-R15
           MOV.L       R12,@-R15
@@ -223,7 +223,7 @@ LAB_8c0194ca:
           MOV.L       @R15+,R13
           RTS
           MOV.L       @R15+,R14
-_VmMenuUnmountVms_194de:
+_VmMenuUnmountVms_8c0194de:
           STS.L       PR,@-R15
           ADD         #-H'8,R15
           MOV         #H'0,R1
@@ -243,7 +243,7 @@ _VmMenuUnmountVms_194de:
           LDS.L       @R15+,PR
           RTS
           NOP
-_VmMenuFreeAndClear_19504:
+_VmMenuFreeAndClear_8c019504:
           MOV.L       R14,@-R15
           MOV.L       R13,@-R15
           MOV.L       R12,@-R15
@@ -285,7 +285,7 @@ LAB_8c01953a:
           MOV.L       @R15+,R13
           RTS
           MOV.L       @R15+,R14
-_VmMenuUpdateVmusStatus_19550:
+_VmMenuUpdateVmusStatus_8c019550:
           MOV.L       R14,@-R15
           MOV.L       R13,@-R15
           MOV.L       R12,@-R15
@@ -438,7 +438,7 @@ LP_GEN_86643:
           .RES.W 1 ; H'8C019672
           .DATA.L _buIsExistFile ; H'8C019674
           .DATA.L _var_vmuStatus_8c226048 ; H'8C019678
-_VmMenuUpdateVmuStatus_1967c:
+_VmMenuUpdateVmuStatus_8c01967c:
           MOV.L       R14,@-R15
           MOV.L       R13,@-R15
           MOV.L       R12,@-R15
@@ -821,7 +821,7 @@ LAB_8c019930:
           NOP
 LAB_8c019940:
           MOV.L       LP_GEN_31723+54,R4
-          BSR         _VmMenuUpdateVmusStatus_19550
+          BSR         _VmMenuUpdateVmusStatus_8c019550
           MOV         #H'3,R5
           TST         R0,R0
           BT          LAB_8c019992
@@ -896,7 +896,7 @@ LAB_8c0199c4:
           BRA         LAB_8c019e24
           MOV.L       R3,@(H'18,R12)
 LAB_8c0199ca:
-          BSR         _VmMenuUpdateVmusStatus_19550
+          BSR         _VmMenuUpdateVmusStatus_8c019550
           MOV         #H'3,R5
           MOV.L       LP_GEN_31723+82,R2
           MOV.L       R2,@R15
@@ -1304,7 +1304,7 @@ LAB_8c019cbe:
 LP_GEN_17403:
           .DATA.W H'00FF ; H'8C019CD8
           .RES.W 1 ; H'8C019CDA
-          .DATA.L _promptHandleBinary_16caa ; H'8C019CDC
+          .DATA.L _promptHandleBinary_8c016caa ; H'8C019CDC
           .DATA.L _var_selectedVm_8c1ba34c ; H'8C019CE0
           .DATA.L _push_fadeout_8c022b60 ; H'8C019CE4
           .DATA.L _init_vmuStatusMessages_8c044dc4 ; H'8C019CE8
@@ -1314,7 +1314,7 @@ LP_GEN_17403:
           .DATA.L _drawSprite_8c014f54 ; H'8C019CF8
           .DATA.L _menuTextboxText_8c02af1c ; H'8C019CFC
 LAB_8c019d00:
-          BSR         _VmMenuUpdateVmusStatus_19550
+          BSR         _VmMenuUpdateVmusStatus_8c019550
           MOV         #H'3,R5
           TST         R0,R0
           BT          LAB_8c019d12
@@ -1494,7 +1494,7 @@ LAB_8c019e2a:
           MOV.L       @R15+,R13
           RTS
           MOV.L       @R15+,R14
-_VmMenuSwitchFromTask_19e44:
+_VmMenuSwitchFromTask_8c019e44:
           STS.L       PR,@-R15
           MOV.L       LP_GEN_77899+50,R3
           MOV.L       LP_GEN_77899+46,R5
@@ -1510,7 +1510,7 @@ _VmMenuSwitchFromTask_19e44:
           MOV.L       R4,@(R0,R5)
 LP_GEN_77899:
           .RES.W 1 ; H'8C019E5E
-          .DATA.L _promptHandleBinary_16caa ; H'8C019E60
+          .DATA.L _promptHandleBinary_8c016caa ; H'8C019E60
           .DATA.L _var_selectedVm_8c1ba34c ; H'8C019E64
           .DATA.L _FUN_8c01895e ; H'8C019E68
           .DATA.L __quick_evn_mvn ; H'8C019E6C

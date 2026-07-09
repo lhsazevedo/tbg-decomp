@@ -43,12 +43,12 @@
           .IMPORT     _FUN_8c01b19c
           .IMPORT     _startAdxFadeOut_8c010bae
           .IMPORT     _const_8c037ec8
-          .IMPORT     _VmMenuUnmountVms_194de
+          .IMPORT     _VmMenuUnmountVms_8c0194de
           .IMPORT     _var_8c22606c
           .IMPORT     _init_8c03bd80
           .IMPORT     _var_currentSysResGroupInfo_8c225fb0
           .IMPORT     _MainMenuSwitchFromTask_8c01a09a
-          .IMPORT     _VmMenuSwitchFromTask_19e44
+          .IMPORT     _VmMenuSwitchFromTask_8c019e44
           .IMPORT     _setTaskAction_8c014b3e
           .IMPORT     _const_8c037ecc
           .IMPORT     _push_fadein_8c022a9c
@@ -1523,7 +1523,7 @@ LP_GEN_73468:
           .DATA.L _push_fadeout_8c022b60 ; H'8C0192AC
           .DATA.L _const_8c037ec8 ; H'8C0192B0
           .DATA.L _menuTextboxText_8c02af1c ; H'8C0192B4
-          .DATA.L _VmMenuUnmountVms_194de ; H'8C0192B8
+          .DATA.L _VmMenuUnmountVms_8c0194de ; H'8C0192B8
           .DATA.L _var_8c22606c ; H'8C0192BC
           .DATA.L _init_8c03bd80 ; H'8C0192C0
           .DATA.L _var_currentSysResGroupInfo_8c225fb0 ; H'8C0192C4
@@ -1639,7 +1639,7 @@ LAB_8c019382:
 LP_GEN_41958:
           .RES.W 1 ; H'8C019392
           .DATA.L _var_8c22606c ; H'8C019394
-          .DATA.L _VmMenuSwitchFromTask_19e44 ; H'8C019398
+          .DATA.L _VmMenuSwitchFromTask_8c019e44 ; H'8C019398
           .DATA.L _FUN_8c018e7e ; H'8C01939C
           .DATA.L _setTaskAction_8c014b3e ; H'8C0193A0
           .DATA.L _var_8c22600c ; H'8C0193A4

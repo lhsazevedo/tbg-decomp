@@ -30,7 +30,7 @@ return new class extends TestCase {
 
         $this->shouldWrite($structPtr, 0);
 
-        $this->shouldCall('_AsqGetRandomInRangeB_121be')->with(300)->andReturn(0xbebacafe);
+        $this->shouldCall('_AsqGetRandomInRangeB_8c0121be')->with(300)->andReturn(0xbebacafe);
         $this->shouldWrite($structPtr + 0x04, 0xbebacb94);
         $this->shouldWrite($structPtr + 0x08, 3);
         $this->shouldWrite($structPtr + 0x0c, 1);

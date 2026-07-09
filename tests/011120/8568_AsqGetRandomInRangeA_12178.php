@@ -15,10 +15,10 @@ return new class extends TestCase {
             $this->setRegister(0, $this->getRegister(1)->mod($this->getRegister(0)));
         });
 
-        $this->shouldCall('_AsqGetRandomA_12166')->andReturn(42);
+        $this->shouldCall('_AsqGetRandomA_8c012166')->andReturn(42);
         $this->shouldCall('__modlu');
 
-        $this->singleCall('_AsqGetRandomInRangeA_12178')
+        $this->singleCall('_AsqGetRandomInRangeA_8c012178')
             ->with(20)
             ->singleShouldReturn(2)
             ->run();
@@ -29,7 +29,7 @@ return new class extends TestCase {
         // Resolve modlu symbol
         $this->setSize('__modlu', 4);
 
-        $this->singleCall('_AsqGetRandomInRangeA_12178')
+        $this->singleCall('_AsqGetRandomInRangeA_8c012178')
             ->with(0)
             ->singleShouldReturn(0)
             ->run();

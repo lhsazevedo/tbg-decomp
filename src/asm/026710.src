@@ -12,7 +12,7 @@
           .IMPORT     _njCos
           .IMPORT     _njSin
           .IMPORT     _init_8c0461c8
-          .IMPORT     _AsqGetRandomA_12166
+          .IMPORT     _AsqGetRandomA_8c012166
           .IMPORT     _FUN_8c02df3c
           .IMPORT     _njSqrt
           .IMPORT     _acosf
@@ -658,7 +658,7 @@ LP_GEN_22736:
           .DATA.L H'47800000 ; H'8C026B88
           .DATA.L _init_8c0461c8 ; H'8C026B8C
           .DATA.L H'461C3C00 ; H'8C026B90
-          .DATA.L _AsqGetRandomA_12166 ; H'8C026B94
+          .DATA.L _AsqGetRandomA_8c012166 ; H'8C026B94
           .DATA.L H'4F800000 ; H'8C026B98
           .DATA.L H'40200000 ; H'8C026B9C
           .DATA.L _FUN_8c02df3c ; H'8C026BA0
@@ -1840,7 +1840,7 @@ LP_GEN_50256:
           .DATA.L _FUN_8c02e51c ; H'8C027464
           .DATA.L _var_routeModelSlots_8c1bbddc ; H'8C027468
           .DATA.L _freeTask_8c014b66 ; H'8C02746C
-          .DATA.L _AsqGetRandomA_12166 ; H'8C027470
+          .DATA.L _AsqGetRandomA_8c012166 ; H'8C027470
           .DATA.L H'41000000 ; H'8C027474
           .DATA.L _FUN_8c02f0c8 ; H'8C027478
 LAB_8c02747c:

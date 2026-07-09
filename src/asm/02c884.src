@@ -13,7 +13,7 @@
           .IMPORT     _var_8c2286a4
           .IMPORT     _var_8c22890c
           .IMPORT     _var_8c1bb894
-          .IMPORT     _AsqGetRandomInRangeA_12178
+          .IMPORT     _AsqGetRandomInRangeA_8c012178
           .IMPORT     _var_8c228798
           .IMPORT     _var_route_8c18ad1c
           .IMPORT     _rand
@@ -440,7 +440,7 @@ LP_GEN_58192:
           .DATA.L _var_8c2286a4 ; H'8C02CB48
           .DATA.L _var_8c22890c ; H'8C02CB4C
           .DATA.L _var_8c1bb894 ; H'8C02CB50
-          .DATA.L _AsqGetRandomInRangeA_12178 ; H'8C02CB54
+          .DATA.L _AsqGetRandomInRangeA_8c012178 ; H'8C02CB54
           .DATA.L H'47000000 ; H'8C02CB58
           .DATA.L H'BF000000 ; H'8C02CB5C
           .DATA.L _var_8c228798 ; H'8C02CB60
@@ -578,7 +578,7 @@ LP_GEN_85265:
           .DATA.W H'00C8 ; H'8C02CC66
           .DATA.W H'FE3E ; H'8C02CC68
           .RES.W 1 ; H'8C02CC6A
-          .DATA.L _AsqGetRandomInRangeA_12178 ; H'8C02CC6C
+          .DATA.L _AsqGetRandomInRangeA_8c012178 ; H'8C02CC6C
           .DATA.L _FUN_8c016770 ; H'8C02CC70
           .DATA.L _var_playMode_8c1bb8d0 ; H'8C02CC74
           .DATA.L _var_demoEntryValue_8c227e14 ; H'8C02CC78

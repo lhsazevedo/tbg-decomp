@@ -11,7 +11,7 @@ return new class extends TestCase {
     public function test_frees_loaded_slots_marks_them_unloaded()
     {
         $this->setSize('_var_pedestrianAssets_8c1bbfdc', self::SLOTS * 0x10);
-        $this->setSize('_AsqReleaseAndFreeTexlist_11e3c', 4);
+        $this->setSize('_AsqReleaseAndFreeTexlist_8c011e3c', 4);
 
         $base = $this->addressOf('_var_pedestrianAssets_8c1bbfdc');
         $this->seedAllUnloaded($base);
@@ -22,17 +22,17 @@ return new class extends TestCase {
 
         $this->call('_freePedestrianAssets_8c013ee4');
 
-        $this->shouldCall('_AsqReleaseAndFreeTexlist_11e3c')->with(0x8c500000);
+        $this->shouldCall('_AsqReleaseAndFreeTexlist_8c011e3c')->with(0x8c500000);
         $this->shouldWriteLong($base + 3 * 0x10 + 0x8, self::UNLOADED);
 
-        $this->shouldCall('_AsqReleaseAndFreeTexlist_11e3c')->with(0x8c700000);
+        $this->shouldCall('_AsqReleaseAndFreeTexlist_8c011e3c')->with(0x8c700000);
         $this->shouldWriteLong($base + 40 * 0x10 + 0x8, self::UNLOADED);
     }
 
     public function test_all_unloaded_does_nothing()
     {
         $this->setSize('_var_pedestrianAssets_8c1bbfdc', self::SLOTS * 0x10);
-        $this->setSize('_AsqReleaseAndFreeTexlist_11e3c', 4);
+        $this->setSize('_AsqReleaseAndFreeTexlist_8c011e3c', 4);
 
         $base = $this->addressOf('_var_pedestrianAssets_8c1bbfdc');
         $this->seedAllUnloaded($base);

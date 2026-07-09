@@ -107,8 +107,8 @@ void TitleTask_8c015ab8(Task* task, void *state) {
         case TITLE_STATE_0X00_INIT: {
             if (isPvmReady_8c01432a() == FALSE) {
                 /* 8c015b96 */
-                AsqFreeQueues_11f7e();
-                VmMenuMountVms_1940e();
+                AsqFreeQueues_8c011f7e();
+                VmMenuMountVms_8c01940e();
 
                 if (task->field_0x08 == FALSE) {
                     /* 8c015bd8 */
@@ -210,7 +210,7 @@ void TitleTask_8c015ab8(Task* task, void *state) {
         case TITLE_STATE_0X06_ADX_FADE_OUT: {
             if (var_isFading_8c226568 == FALSE) {
                 // VMU Check?
-                if (setName_8c012984() != FALSE && VmMenuUpdateVmusStatus_19550(init_saveNames_8c044d50, 3) == FALSE) {
+                if (setName_8c012984() != FALSE && VmMenuUpdateVmusStatus_8c019550(init_saveNames_8c044d50, 3) == FALSE) {
                     /* 8c015c62 */
                     var_menuState_8c1bc7a8.state_0x18 = TITLE_STATE_0X07_VMU_WARNING_FADE_IN;
                     LOG_DEBUG(("[TITLE] State changed: 0X07_VMU_WARNING_FADE_IN\n"));
@@ -252,7 +252,7 @@ void TitleTask_8c015ab8(Task* task, void *state) {
         case TITLE_STATE_0X08_VMU_WARNING: {
             if (
                 var_peripherals_8c1ba35c[0].press & (PDD_DGT_TA | PDD_DGT_ST)
-                || VmMenuUpdateVmusStatus_19550(init_saveNames_8c044d50, 3)
+                || VmMenuUpdateVmusStatus_8c019550(init_saveNames_8c044d50, 3)
             ) {
                 sdMidiPlay(var_midiHandles_8c0fcd28[0], 1, 0, 0);
                 var_menuState_8c1bc7a8.state_0x18 = TITLE_STATE_0X09_VMU_WARNING_FADE_OUT;
@@ -422,7 +422,7 @@ void TitleTask_8c015ab8(Task* task, void *state) {
 
         /* 0x8c015e98 (0x8c015b32 + 4 + 0x362) */
         case TITLE_STATE_0X10_START_PRESSED_FADE_OUT: {
-            VmMenuUpdateVmusStatus_19550(init_saveNames_8c044d50, 3);
+            VmMenuUpdateVmusStatus_8c019550(init_saveNames_8c044d50, 3);
 
             if (var_isFading_8c226568 == FALSE) {
                 if (!init_8c03bd80) {
@@ -430,7 +430,7 @@ void TitleTask_8c015ab8(Task* task, void *state) {
                     var_8c1bb8c4 = FALSE;
 
                     /* Push menu task */
-                    VmMenuSwitchFromTask_19e44(task);
+                    VmMenuSwitchFromTask_8c019e44(task);
                 }
 
                 return;
@@ -492,11 +492,11 @@ void pushTitle_8c015fd6 (Bool direct) {
 
     njGarbageTexture(&var_tex_8c157af8, 3072);
     FUN_8c02ae3e(0x20, 0x178, -2.0, 0x240, 0x40, 0, 0, -1);
-    AsqInitQueues_11f36(8, 0, 0, 8);
-    AsqResetQueues_11f6c();
+    AsqInitQueues_8c011f36(8, 0, 0, 8);
+    AsqResetQueues_8c011f6c();
     var_currentSysResGroupInfo_8c225fb0 = (void *) -1;
     CourseMenuRequestSysResgrp_8c018568(&var_menuState_8c1bc7a8.resourceGroupB_0x0c, &init_titleResourceGroup_8c044254);
     CourseMenuRequestCommonResources_8c01852c();
     setPvmReady_8c014330();
-    AsqProcessQueues_11fe0(&AsqNop_11120, 0, 0, 0, &resetPvmReady_8c014322);
+    AsqProcessQueues_8c011fe0(&AsqNop_8c011120, 0, 0, 0, &resetPvmReady_8c014322);
 }

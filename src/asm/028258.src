@@ -47,7 +47,7 @@
           .IMPORT     _FUN_8c020b6c
           .IMPORT     _var_8c228238
           .IMPORT     _rand
-          .IMPORT     _AsqGetRandomA_12166
+          .IMPORT     _AsqGetRandomA_8c012166
           .IMPORT     _var_pedestrianAssets_8c1bbfdc
           .IMPORT     _freeTask_8c014b66
           .IMPORT     _init_8c04623c
@@ -77,11 +77,11 @@
           .IMPORT     _init_8c0466a4
           .IMPORT     _var_8c1bbac8
           .IMPORT     _var_8c228408
-          .IMPORT     _AsqRequestPvm_11ac0
-          .IMPORT     _AsqRequestNj_11492
+          .IMPORT     _AsqRequestPvm_8c011ac0
+          .IMPORT     _AsqRequestNj_8c011492
           .IMPORT     _var_commonDirCopy_8c18ad8c
           .IMPORT     _var_8c228288
-          .IMPORT     _AsqRequestDat_11182
+          .IMPORT     _AsqRequestDat_8c011182
           .IMPORT     __quick_evn_mvn
           .IMPORT     _var_8c22840c
           .IMPORT     _const_8c03a0e0
@@ -103,10 +103,10 @@
           .IMPORT     _const_8c03a15c
           .IMPORT     _var_8c228430
           .IMPORT     _const_8c03a16c
-          .IMPORT     _AsqReleaseAndFreeTexlist_11e3c
+          .IMPORT     _AsqReleaseAndFreeTexlist_8c011e3c
           .IMPORT     _njSetTexture
           .IMPORT     _njCnkSimpleDrawMotion
-          .IMPORT     _AsqGetRandomInRangeA_12178
+          .IMPORT     _AsqGetRandomInRangeA_8c012178
           .IMPORT     _var_tasks_8c1bb448
           .IMPORT     _var_routeModelSlots_8c1bbddc
           .IMPORT     _njControl3D
@@ -2336,7 +2336,7 @@ LP_GEN_98778:
           .DATA.L _pushTask_8c014ae8 ; H'8C02922C
           .DATA.L H'47000000 ; H'8C029230
           .DATA.L _rand ; H'8C029234
-          .DATA.L _AsqGetRandomA_12166 ; H'8C029238
+          .DATA.L _AsqGetRandomA_8c012166 ; H'8C029238
           .DATA.L H'4F800000 ; H'8C02923C
           .DATA.L H'47800000 ; H'8C029240
           .DATA.L H'42480000 ; H'8C029244
@@ -3743,11 +3743,11 @@ LAB_8c029d1c:
 LP_GEN_99465:
           .RES.W 1 ; H'8C029D2A
           .DATA.L _var_8c228408 ; H'8C029D2C
-          .DATA.L _AsqRequestPvm_11ac0 ; H'8C029D30
-          .DATA.L _AsqRequestNj_11492 ; H'8C029D34
+          .DATA.L _AsqRequestPvm_8c011ac0 ; H'8C029D30
+          .DATA.L _AsqRequestNj_8c011492 ; H'8C029D34
           .DATA.L _var_commonDirCopy_8c18ad8c ; H'8C029D38
           .DATA.L _var_8c228288 ; H'8C029D3C
-          .DATA.L _AsqRequestDat_11182 ; H'8C029D40
+          .DATA.L _AsqRequestDat_8c011182 ; H'8C029D40
           .DATA.L __quick_evn_mvn ; H'8C029D44
           .DATA.L _var_8c22840c ; H'8C029D48
           .DATA.L _const_8c03a0e0 ; H'8C029D4C
@@ -3769,7 +3769,7 @@ LP_GEN_99465:
           .DATA.L _const_8c03a15c ; H'8C029D8C
           .DATA.L _var_8c228430 ; H'8C029D90
           .DATA.L _const_8c03a16c ; H'8C029D94
-          .DATA.L _AsqReleaseAndFreeTexlist_11e3c ; H'8C029D98
+          .DATA.L _AsqReleaseAndFreeTexlist_8c011e3c ; H'8C029D98
           .DATA.L _syFree ; H'8C029D9C
 LAB_8c029da0:
           MOV         R10,R12
@@ -4112,7 +4112,7 @@ LP_GEN_15421:
           .DATA.L LAB_8c029e46 ; H'8C02A020
           .DATA.L _FUN_8c0223ea ; H'8C02A024
           .DATA.L _freeTask_8c014b66 ; H'8C02A028
-          .DATA.L _AsqGetRandomInRangeA_12178 ; H'8C02A02C
+          .DATA.L _AsqGetRandomInRangeA_8c012178 ; H'8C02A02C
           .DATA.L LAB_8c029e68 ; H'8C02A030
           .DATA.L _var_tasks_8c1bb448 ; H'8C02A034
           .DATA.L _pushTask_8c014ae8 ; H'8C02A038
@@ -5285,7 +5285,7 @@ LP_GEN_67201:
           .DATA.L __quick_evn_mvn ; H'8C02A960
           .DATA.L LAB_8c02a4f8 ; H'8C02A964
           .DATA.L _var_8c228414 ; H'8C02A968
-          .DATA.L _AsqGetRandomInRangeA_12178 ; H'8C02A96C
+          .DATA.L _AsqGetRandomInRangeA_8c012178 ; H'8C02A96C
           .DATA.L _var_8c22842c ; H'8C02A970
 LAB_8c02a974:
           MOV.L       LP_GEN_79722+2,R1
@@ -5458,7 +5458,7 @@ LP_GEN_90475:
           .DATA.L _var_8c228514 ; H'8C02AAA4
           .DATA.L _var_8c228518 ; H'8C02AAA8
           .DATA.L _var_8c228480 ; H'8C02AAAC
-          .DATA.L _AsqRequestDat_11182 ; H'8C02AAB0
+          .DATA.L _AsqRequestDat_8c011182 ; H'8C02AAB0
           .DATA.L _var_commonDir_8c18ad6c ; H'8C02AAB4
           .DATA.L _var_route_8c18ad1c ; H'8C02AAB8
           .DATA.L _init_8c049a6c ; H'8C02AABC
@@ -5592,7 +5592,7 @@ LP_GEN_97247:
           .DATA.W H'00DE ; H'8C02ABBC
           .RES.W 1 ; H'8C02ABBE
           .DATA.L _init_8c046758 ; H'8C02ABC0
-          .DATA.L _AsqRequestPvm_11ac0 ; H'8C02ABC4
+          .DATA.L _AsqRequestPvm_8c011ac0 ; H'8C02ABC4
           .DATA.L H'0000FFFF ; H'8C02ABC8
           .DATA.L _var_peripheral_8c1ba358 ; H'8C02ABCC
 LAB_8c02abd0:
@@ -5983,7 +5983,7 @@ LP_GEN_16602:
           .DATA.L H'C0000000 ; H'8C02AECC
           .DATA.L _var_8c22847c ; H'8C02AED0
           .DATA.L _var_8c1bb8e8 ; H'8C02AED4
-          .DATA.L _AsqReleaseAndFreeTexlist_11e3c ; H'8C02AED8
+          .DATA.L _AsqReleaseAndFreeTexlist_8c011e3c ; H'8C02AED8
           .DATA.L _syFree ; H'8C02AEDC
           .DATA.L _var_8c228514 ; H'8C02AEE0
           .DATA.L _var_8c228484 ; H'8C02AEE4

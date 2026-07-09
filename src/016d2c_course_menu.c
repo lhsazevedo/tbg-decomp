@@ -256,7 +256,7 @@ extern int var_shouldShowFreeRunIntro_8c1bb8c0;
 extern void pushInputTask_8c0128cc(int param);
 extern void task_8c012f44(Task *task, void *state);
 extern FUN_8c02ae3e(int p1, int p2, float fp1, int p3, int p4, int p5, int p6, int p7);
-extern int promptHandleBinary_16caa(int *promptState);
+extern int promptHandleBinary_8c016caa(int *promptState);
 
 /* Data defined after the functions so the shared "" literal is first seen in code
    (swapMessageBoxFor("")) and lands at the head of the constant pool. */
@@ -725,7 +725,7 @@ STATIC void buildCourseMenuDialogFlow_8c017420(void)
 
     // Passenger letter received
     if (((var_progress_8c1ba1cc.days_0x00 + 1) % 7) == 0) {
-        int r = AsqGetRandomInRangeB_121be(6);
+        int r = AsqGetRandomInRangeB_8c0121be(6);
         if (var_progress_8c1ba1cc.letters_0x2c[r] == 0) {
             var_progress_8c1ba1cc.letters_0x2c[r] = 1;
             var_dialogQueue_8c225fbc[cur++] = SEQ_PASSENGER_LETTER;
@@ -837,7 +837,7 @@ void buildCourseMenuDialogFlow_8c017420()
                 iVar2 = (var_progress_8c1ba1cc.field_0x00 + 1) % 7;
                 if (iVar2 == 0)
                 {
-                    iVar2 = AsqGetRandomInRangeB_121be(6);
+                    iVar2 = AsqGetRandomInRangeB_8c0121be(6);
                     if (var_progress_8c1ba1cc.field_0x2c[iVar2] == 0)
                     {
                         var_progress_8c1ba1cc.field_0x2c[iVar2] = 1;
@@ -998,7 +998,7 @@ void CourseMenuStoryMenuTask_8c017718(Task * task, void *state)
             if (isPvmReady_8c01432a())
                 return;
 
-            AsqFreeQueues_11f7e();
+            AsqFreeQueues_8c011f7e();
             CHANGE_STATE(COURSE_MENU_STATE_FADE_IN);
             FUN_8c010d8a();
             snd_8c010cd6(0, 15);
@@ -1141,7 +1141,7 @@ void CourseMenuStoryMenuTask_8c017718(Task * task, void *state)
     drawSprite_8c014f54(
         &var_menuState_8c1bc7a8.resourceGroupA_0x00, 0, 0.0, 0.0, -7.0
     );
-    AsqGetRandomA_12166();
+    AsqGetRandomA_8c012166();
 }
 
 void CourseMenuFreeRunMenuTask_8c017ada(Task * task, void *state)
@@ -1151,7 +1151,7 @@ void CourseMenuFreeRunMenuTask_8c017ada(Task * task, void *state)
             if (isPvmReady_8c01432a())
                 return;
 
-            AsqFreeQueues_11f7e();
+            AsqFreeQueues_8c011f7e();
             CHANGE_STATE(COURSE_MENU_STATE_FADE_IN);
             FUN_8c010d8a();
             snd_8c010cd6(0, 15);
@@ -1294,7 +1294,7 @@ void CourseMenuFreeRunMenuTask_8c017ada(Task * task, void *state)
     drawSprite_8c014f54(
         &var_menuState_8c1bc7a8.resourceGroupA_0x00, 0, 0.0, 0.0, -7.0
     );
-    AsqGetRandomA_12166();
+    AsqGetRandomA_8c012166();
 }
 
 
@@ -1394,14 +1394,14 @@ void CourseMenuSwitchFromTask_8c017e18(Task *task)
     var_playMode_8c1bb8d0 = 0;
     FUN_8c017d54();
     njGarbageTexture(&var_tex_8c157af8, 0xc00);
-    AsqInitQueues_11f36(8, 0, 0, 8);
-    AsqResetQueues_11f6c();
+    AsqInitQueues_8c011f36(8, 0, 0, 8);
+    AsqResetQueues_8c011f6c();
 
     if (!CourseMenuRequestSysResgrp_8c018568(
         &var_menuState_8c1bc7a8.resourceGroupB_0x0c,
         &init_mainMenuResourceGroup_8c044264
     )) {
-        AsqFreeQueues_11f7e();
+        AsqFreeQueues_8c011f7e();
         CHANGE_STATE(COURSE_MENU_STATE_FADE_IN);
         push_fadein_8c022a9c(10);
         snd_8c010cd6(0, 15);
@@ -1409,7 +1409,7 @@ void CourseMenuSwitchFromTask_8c017e18(Task *task)
     }
 
     setPvmReady_8c014330();
-    AsqProcessQueues_11fe0(AsqNop_11120, 0, 0, 0, resetPvmReady_8c014322);
+    AsqProcessQueues_8c011fe0(AsqNop_8c011120, 0, 0, 0, resetPvmReady_8c014322);
     CHANGE_STATE(COURSE_MENU_STATE_INIT);
 }
 
@@ -1465,8 +1465,8 @@ void CourseMenuFUN_8c017ef2(void)
     var_playMode_8c1bb8d0 = 0;
 
     FUN_8c017d54();
-    AsqInitQueues_11f36(8, 0, 0, 8);
-    AsqResetQueues_11f6c();
+    AsqInitQueues_8c011f36(8, 0, 0, 8);
+    AsqResetQueues_8c011f6c();
 
     CourseMenuRequestSysResgrp_8c018568(
         &var_menuState_8c1bc7a8.resourceGroupB_0x0c,
@@ -1474,7 +1474,7 @@ void CourseMenuFUN_8c017ef2(void)
     );
     CourseMenuRequestCommonResources_8c01852c();
     setPvmReady_8c014330();
-    AsqProcessQueues_11fe0(AsqNop_11120, 0, 0, 0, resetPvmReady_8c014322);
+    AsqProcessQueues_8c011fe0(AsqNop_8c011120, 0, 0, 0, resetPvmReady_8c014322);
 
     CHANGE_STATE(COURSE_MENU_STATE_INIT);
 }
@@ -1534,7 +1534,7 @@ STATIC void CourseConfirmMenuTask_8c0181b6(Task * task, void *state)
             if (isPvmReady_8c01432a())
                 return;
 
-            AsqFreeQueues_11f7e();
+            AsqFreeQueues_8c011f7e();
             CHANGE_CONFIRM_STATE(COURSE_CONFIRM_STATE_FADE_IN);
             push_fadein_8c022a9c(10);
             snd_8c010cd6(0, 15);
@@ -1549,7 +1549,7 @@ STATIC void CourseConfirmMenuTask_8c0181b6(Task * task, void *state)
         }
 
         case COURSE_CONFIRM_STATE_PROMPT: {
-            int r = promptHandleBinary_16caa(&var_menuState_8c1bc7a8.selected_0x38);
+            int r = promptHandleBinary_8c016caa(&var_menuState_8c1bc7a8.selected_0x38);
             if (r == 1) {
                 CHANGE_CONFIRM_STATE(COURSE_CONFIRM_STATE_FADE_OUT);
                 push_fadeout_8c022b60(10);
@@ -1692,31 +1692,31 @@ void CourseMenuConfirmInit_8c0184cc(Task *task)
     setTaskAction_8c014b3e(task, CourseConfirmMenuTask_8c0181b6);
     CHANGE_CONFIRM_STATE(COURSE_CONFIRM_STATE_INIT);
     var_menuState_8c1bc7a8.selected_0x38 = 0;
-    AsqInitQueues_11f36(8, 0, 0, 8);
-    AsqResetQueues_11f6c();
+    AsqInitQueues_8c011f36(8, 0, 0, 8);
+    AsqResetQueues_8c011f6c();
     CourseMenuRequestSysResgrp_8c018568(
         &var_menuState_8c1bc7a8.resourceGroupB_0x0c,
         &init_courseResourceGroup_8c044d40
     );
     setPvmReady_8c014330();
-    AsqProcessQueues_11fe0(AsqNop_11120, 0, 0, 0, resetPvmReady_8c014322);
+    AsqProcessQueues_8c011fe0(AsqNop_8c011120, 0, 0, 0, resetPvmReady_8c014322);
     CHANGE_CONFIRM_STATE(COURSE_CONFIRM_STATE_INIT);
     return;
 }
 
 void CourseMenuRequestCommonResources_8c01852c(void)
 {
-    AsqRequestDat_11182(
+    AsqRequestDat_8c011182(
         "\\SYSTEM",
         "common_parts.dat",
         &var_menuState_8c1bc7a8.resourceGroupA_0x00.tanim_0x04
     );
-    AsqRequestDat_11182(
+    AsqRequestDat_8c011182(
         "\\SYSTEM",
         "common.dat",
         &var_menuState_8c1bc7a8.resourceGroupA_0x00.contents_0x08
     );
-    AsqRequestPvm_11ac0("\\SYSTEM", "common.pvm", &var_menuState_8c1bc7a8, 1, 0);
+    AsqRequestPvm_8c011ac0("\\SYSTEM", "common.pvm", &var_menuState_8c1bc7a8, 1, 0);
     return;
 }
 
@@ -1732,13 +1732,13 @@ int CourseMenuRequestSysResgrp_8c018568(ResourceGroup *res_group, ResourceGroupI
         CourseMenuFreeResourceGroup_8c0185c4(res_group);
     }
 
-    AsqRequestDat_11182(
+    AsqRequestDat_8c011182(
         "\\SYSTEM", res_group_info->parts, &res_group->tanim_0x04
     );
-    AsqRequestDat_11182(
+    AsqRequestDat_8c011182(
         "\\SYSTEM", res_group_info->dat, &res_group->contents_0x08
     );
-    AsqRequestPvm_11ac0(
+    AsqRequestPvm_8c011ac0(
         "\\SYSTEM",
         res_group_info->pvm, 
         res_group,
@@ -1754,7 +1754,7 @@ void CourseMenuFreeResourceGroup_8c0185c4(ResourceGroup *res_group)
     if (res_group->tlist_0x00 == (void *) -1) {
         return;
     }
-    AsqReleaseAndFreeTexlist_11e3c(res_group->tlist_0x00);
+    AsqReleaseAndFreeTexlist_8c011e3c(res_group->tlist_0x00);
     syFree(res_group->contents_0x08);
     syFree(res_group->tanim_0x04);
     res_group->tlist_0x00 = (void *) -1;

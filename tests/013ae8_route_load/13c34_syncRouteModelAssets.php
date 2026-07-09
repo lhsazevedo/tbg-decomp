@@ -42,13 +42,13 @@ return new class extends TestCase {
         $this->shouldWriteLong($base + 3 * 0x10 + 0x4, 1);
 
         // slot 3: request its files.
-        $this->shouldCall('_AsqRequestNj_11492')
+        $this->shouldCall('_AsqRequestNj_8c011492')
             ->with($basedir, "3s_2do1_s.njd", 0, $base + 3 * 0x10 + 0xc);
-        $this->shouldCall('_AsqRequestPvm_11ac0')
+        $this->shouldCall('_AsqRequestPvm_8c011ac0')
             ->with($basedir, "3t_2do1_s.pvm", $base + 3 * 0x10 + 0x8, 0x60, 0);
 
         // slot 5: free it and mark unloaded.
-        $this->shouldCall('_AsqReleaseAndFreeTexlist_11e3c')->with(0x8c500000);
+        $this->shouldCall('_AsqReleaseAndFreeTexlist_8c011e3c')->with(0x8c500000);
         $this->shouldCall('_syFree')->with(0x8c500010);
         $this->shouldWriteLong($base + 5 * 0x10 + 0x8, self::UNLOADED);
     }
@@ -74,9 +74,9 @@ return new class extends TestCase {
         $this->shouldWriteLong($base + 1 * 0x10 + 0x0, 1);
         $this->shouldWriteLong($base + 1 * 0x10 + 0x4, 1);
 
-        $this->shouldCall('_AsqRequestNj_11492')
+        $this->shouldCall('_AsqRequestNj_8c011492')
             ->with($basedir, "3s_2do0_sn.njd", 0, $base + 1 * 0x10 + 0xc);
-        $this->shouldCall('_AsqRequestPvm_11ac0')
+        $this->shouldCall('_AsqRequestPvm_8c011ac0')
             ->with($basedir, "3t_2do0_sn.pvm", $base + 1 * 0x10 + 0x8, 0x60, 0);
     }
 
@@ -117,9 +117,9 @@ return new class extends TestCase {
         // _var_timeOfDay_8c18ad20 and _var_commonDir_8c18ad6c are defined in the C object.
         $this->setSize('_var_routeModelSlots_8c1bbddc', self::SLOTS * 0x10);
 
-        $this->setSize('_AsqRequestNj_11492', 4);
-        $this->setSize('_AsqRequestPvm_11ac0', 4);
-        $this->setSize('_AsqReleaseAndFreeTexlist_11e3c', 4);
+        $this->setSize('_AsqRequestNj_8c011492', 4);
+        $this->setSize('_AsqRequestPvm_8c011ac0', 4);
+        $this->setSize('_AsqReleaseAndFreeTexlist_8c011e3c', 4);
         $this->setSize('_syFree', 4);
     }
 };

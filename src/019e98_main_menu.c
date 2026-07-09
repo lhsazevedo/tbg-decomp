@@ -89,7 +89,7 @@ void MainMenuTask_8c019e98(Task *task) {
                 return;
             }
 
-            AsqFreeQueues_11f7e();
+            AsqFreeQueues_8c011f7e();
             CHANGE_STATE(MAIN_MENU_STATE_FADE_IN);
             push_fadein_8c022a9c(10);
             return;
@@ -220,12 +220,12 @@ void MainMenuSwitchFromTask_8c01a09a(Task* task) {
     CHANGE_STATE(MAIN_MENU_STATE_INIT);
     var_menuState_8c1bc7a8.selected_0x38 = 0;
     var_menuState_8c1bc7a8.field_0x5c = 0;
-    AsqInitQueues_11f36(8, 0, 0, 8);
-    AsqResetQueues_11f6c();
+    AsqInitQueues_8c011f36(8, 0, 0, 8);
+    AsqResetQueues_8c011f6c();
     CourseMenuRequestSysResgrp_8c018568(
         &var_menuState_8c1bc7a8.resourceGroupB_0x0c,
         &init_mainMenuResourceGroup_8c044264
     );
     setPvmReady_8c014330();
-    AsqProcessQueues_11fe0(AsqNop_11120, 0, 0, 0, resetPvmReady_8c014322);
+    AsqProcessQueues_8c011fe0(AsqNop_8c011120, 0, 0, 0, resetPvmReady_8c014322);
 }

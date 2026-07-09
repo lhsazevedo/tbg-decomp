@@ -231,16 +231,16 @@ void requestVehicleAssets_8c013ae8(void)
 {
     LOG_DEBUG(("[ROUTE_LOAD] requesting vehicle assets\n"));
 
-    AsqRequestNj_11492(var_commonDir_8c18ad6c, "front.njd", &var_frontNj_8c1bc434, 0);
-    AsqRequestPvm_11ac0(var_commonDir_8c18ad6c, "front.pvm", &var_frontTexlist_8c1bc430, 0xf, 0);
+    AsqRequestNj_8c011492(var_commonDir_8c18ad6c, "front.njd", &var_frontNj_8c1bc434, 0);
+    AsqRequestPvm_8c011ac0(var_commonDir_8c18ad6c, "front.pvm", &var_frontTexlist_8c1bc430, 0xf, 0);
 
-    AsqRequestNj_11492(var_commonDir_8c18ad6c, "syanai.njd", &var_interiorNj_8c1bc43c, 0);
-    AsqRequestPvm_11ac0(var_commonDir_8c18ad6c, "syanai.pvm", &var_interiorTexlist_8c1bc438, 0x40, 0x80000000);
+    AsqRequestNj_8c011492(var_commonDir_8c18ad6c, "syanai.njd", &var_interiorNj_8c1bc43c, 0);
+    AsqRequestPvm_8c011ac0(var_commonDir_8c18ad6c, "syanai.pvm", &var_interiorTexlist_8c1bc438, 0x40, 0x80000000);
 
-    AsqRequestPvm_11ac0(var_commonDir_8c18ad6c, "mark.pvm", &var_markTexlist_8c1bc418, 3, 0);
-    AsqRequestPvm_11ac0(var_commonDir_8c18ad6c, "busstop.pvm", &var_busStopTexlist_8c1bc424, 1, 0);
+    AsqRequestPvm_8c011ac0(var_commonDir_8c18ad6c, "mark.pvm", &var_markTexlist_8c1bc418, 3, 0);
+    AsqRequestPvm_8c011ac0(var_commonDir_8c18ad6c, "busstop.pvm", &var_busStopTexlist_8c1bc424, 1, 0);
 
-    var_trafficModels_8c1bc3f4 = AsqRequestModels_12030(var_commonDir_8c18ad6c, init_trafficModelFiles_8c043d64, 0);
+    var_trafficModels_8c1bc3f4 = AsqRequestModels_8c012030(var_commonDir_8c18ad6c, init_trafficModelFiles_8c043d64, 0);
 }
 
 void freeVehicleAssets_8c013b5a(void)
@@ -254,14 +254,14 @@ void freeVehicleAssets_8c013b5a(void)
         for (i = 0; i < var_interiorTexlist_8c1bc438->nbTexture; i++) {
             njReleaseCacheTextureNum(i);
         }
-        AsqReleaseAndFreeTexlist_11e3c(var_interiorTexlist_8c1bc438);
+        AsqReleaseAndFreeTexlist_8c011e3c(var_interiorTexlist_8c1bc438);
         syFree(var_interiorNj_8c1bc43c);
 
-        AsqReleaseAndFreeTexlist_11e3c(var_frontTexlist_8c1bc430);
+        AsqReleaseAndFreeTexlist_8c011e3c(var_frontTexlist_8c1bc430);
         syFree(var_frontNj_8c1bc434);
 
-        AsqReleaseAndFreeTexlist_11e3c(var_markTexlist_8c1bc418);
-        AsqReleaseAndFreeTexlist_11e3c(var_busStopTexlist_8c1bc424);
+        AsqReleaseAndFreeTexlist_8c011e3c(var_markTexlist_8c1bc418);
+        AsqReleaseAndFreeTexlist_8c011e3c(var_busStopTexlist_8c1bc424);
 
         var_interiorTexlist_8c1bc438 = (NJS_TEXLIST *) -1;
     }
@@ -302,15 +302,15 @@ void syncRouteModelAssets_8c013c34(Sint8 *models)
     for (i = 0; i < 0x20; i++) {
         if (var_routeModelSlots_8c1bbddc[i].needsLoad_0x04 != 0) {
             if (var_timeOfDay_8c18ad20 == TIME_OF_DAY_NIGHT) {
-                AsqRequestNj_11492(var_commonDir_8c18ad6c, init_8c043ecc[i * 2], 0, &var_routeModelSlots_8c1bbddc[i].nj_0x0c);
+                AsqRequestNj_8c011492(var_commonDir_8c18ad6c, init_8c043ecc[i * 2], 0, &var_routeModelSlots_8c1bbddc[i].nj_0x0c);
                 names = init_8c043ecc;
             } else {
-                AsqRequestNj_11492(var_commonDir_8c18ad6c, init_8c043dc4[i * 2], 0, &var_routeModelSlots_8c1bbddc[i].nj_0x0c);
+                AsqRequestNj_8c011492(var_commonDir_8c18ad6c, init_8c043dc4[i * 2], 0, &var_routeModelSlots_8c1bbddc[i].nj_0x0c);
                 names = init_8c043dc4;
             }
-            AsqRequestPvm_11ac0(var_commonDir_8c18ad6c, names[i * 2 + 1], &var_routeModelSlots_8c1bbddc[i].texlist_0x08, 0x60, 0);
+            AsqRequestPvm_8c011ac0(var_commonDir_8c18ad6c, names[i * 2 + 1], &var_routeModelSlots_8c1bbddc[i].texlist_0x08, 0x60, 0);
         } else if (var_routeModelSlots_8c1bbddc[i].requested_0x00 == 0 && var_routeModelSlots_8c1bbddc[i].texlist_0x08 != (NJS_TEXLIST *) -1) {
-            AsqReleaseAndFreeTexlist_11e3c(var_routeModelSlots_8c1bbddc[i].texlist_0x08);
+            AsqReleaseAndFreeTexlist_8c011e3c(var_routeModelSlots_8c1bbddc[i].texlist_0x08);
             syFree(var_routeModelSlots_8c1bbddc[i].nj_0x0c);
             var_routeModelSlots_8c1bbddc[i].texlist_0x08 = (NJS_TEXLIST *) -1;
         }
@@ -323,7 +323,7 @@ void finishAssetLoad_8c013d42(void)
     LOG_DEBUG(("[ROUTE_LOAD] asset load finished\n"));
 
     setPvmReady_8c014330();
-    AsqFreeQueues_11f7e();
+    AsqFreeQueues_8c011f7e();
 }
 
 /* Initialize the asset queues and kick off one
@@ -332,11 +332,11 @@ void startRouteModelLoadPass_8c013d78(void)
 {
     LOG_DEBUG(("[ROUTE_LOAD] starting route-model load pass\n"));
 
-    AsqInitQueues_11f36(0, 0x40, 0, 0x40);
-    AsqResetQueues_11f6c();
+    AsqInitQueues_8c011f36(0, 0x40, 0, 0x40);
+    AsqResetQueues_8c011f6c();
     resetPvmReady_8c014322();
     syncRouteModelAssets_8c013c34(var_routeModelIndexes_8c18adb0);
-    AsqProcessQueues_11fe0(AsqNop_11120, 0, 0, 0, finishAssetLoad_8c013d42);
+    AsqProcessQueues_8c011fe0(AsqNop_8c011120, 0, 0, 0, finishAssetLoad_8c013d42);
 }
 
 void freeAllRouteModels_8c013dae(void)
@@ -347,7 +347,7 @@ void freeAllRouteModels_8c013dae(void)
 
     for (slot = var_routeModelSlots_8c1bbddc; slot < &var_routeModelSlots_8c1bbddc[0x20]; slot++) {
         if (slot->texlist_0x08 != (NJS_TEXLIST *) -1) {
-            AsqReleaseAndFreeTexlist_11e3c(slot->texlist_0x08);
+            AsqReleaseAndFreeTexlist_8c011e3c(slot->texlist_0x08);
             syFree(slot->nj_0x0c);
             slot->texlist_0x08 = (NJS_TEXLIST *) -1;
         }
@@ -377,9 +377,9 @@ void syncPedestrianAssets_8c013df6(Sint8 *models)
 
     for (i = 0; i < 0x41; i++) {
         if (var_pedestrianAssets_8c1bbfdc[i].needsLoad_0x04 != 0) {
-            AsqRequestPvm_11ac0(var_commonDir_8c18ad6c, init_pedestrianPvmNames_8c043fd8[i], &var_pedestrianAssets_8c1bbfdc[i].texlist_0x08, 2, 0);
+            AsqRequestPvm_8c011ac0(var_commonDir_8c18ad6c, init_pedestrianPvmNames_8c043fd8[i], &var_pedestrianAssets_8c1bbfdc[i].texlist_0x08, 2, 0);
         } else if (var_pedestrianAssets_8c1bbfdc[i].requested_0x00 == 0 && var_pedestrianAssets_8c1bbfdc[i].texlist_0x08 != (NJS_TEXLIST *) -1) {
-            AsqReleaseAndFreeTexlist_11e3c(var_pedestrianAssets_8c1bbfdc[i].texlist_0x08);
+            AsqReleaseAndFreeTexlist_8c011e3c(var_pedestrianAssets_8c1bbfdc[i].texlist_0x08);
             var_pedestrianAssets_8c1bbfdc[i].texlist_0x08 = (NJS_TEXLIST *) -1;
         }
     }
@@ -394,7 +394,7 @@ void freePedestrianAssets_8c013ee4(void)
 
     for (slot = var_pedestrianAssets_8c1bbfdc; slot < &var_pedestrianAssets_8c1bbfdc[0x41]; slot++) {
         if (slot->texlist_0x08 != (NJS_TEXLIST *) -1) {
-            AsqReleaseAndFreeTexlist_11e3c(slot->texlist_0x08);
+            AsqReleaseAndFreeTexlist_8c011e3c(slot->texlist_0x08);
             slot->texlist_0x08 = (NJS_TEXLIST *) -1;
         }
     }
@@ -408,7 +408,7 @@ void freeSegmentModels_8c013f22(void)
 
     entry = &var_currentCourseConfig_8c18ad18->segments_0x08[var_currentSegment_8c228708];
     if (entry->modelFiles_0x28 != 0) {
-        AsqFreeModels_120fe(&var_segmentModels_8c1bc3f0);
+        AsqFreeModels_8c0120fe(&var_segmentModels_8c1bc3f0);
     }
     if (entry->tileRegionList_0x0c != 0) {
         FUN_8c021a24();
@@ -439,7 +439,7 @@ void syncSegmentModels_8c013f78(void)
     }
 
     if (entry->modelFiles_0x28 != 0) {
-        var_segmentModels_8c1bc3f0 = AsqRequestModels_12030(var_commonDir_8c18ad6c, entry->modelFiles_0x28, 0x10);
+        var_segmentModels_8c1bc3f0 = AsqRequestModels_8c012030(var_commonDir_8c18ad6c, entry->modelFiles_0x28, 0x10);
     }
 
     if (var_cutsceneActive_8c1bb900 == 0 || var_playMode_8c1bb8d0 != PLAY_MODE_NORMAL) {
@@ -465,7 +465,7 @@ void syncSegmentModels_8c013f78(void)
     } else {
         var_currentTileRegionList_8c226534 = (int)entry->tileRegionList_0x0c;
         for (i = 0; i < 4; i++) {
-            AsqRequestDat_11182(var_datDir_8c18ad2c, entry->datFilenames_0x20[i], &var_datFiles_8c18adb4[i]);
+            AsqRequestDat_8c011182(var_datDir_8c18ad2c, entry->datFilenames_0x20[i], &var_datFiles_8c18adb4[i]);
         }
     }
 
@@ -539,28 +539,28 @@ void loadRouteModels_8c014088(void)
     strcpy(var_commonDirCopy_8c18ad8c, var_commonDir_8c18ad6c);
     strcpy(var_datDir_8c18ad2c, var_commonDir_8c18ad6c);
 
-    AsqRequestNj_11492(var_commonDir_8c18ad6c, var_currentCourseConfig_8c18ad18->filenames_0x1c[0], &var_currentCourse_8c1bb868.slots_0x04[0], 0);
-    AsqRequestNj_11492(var_commonDir_8c18ad6c, var_currentCourseConfig_8c18ad18->filenames_0x1c[1], &var_currentCourse_8c1bb868.slots_0x04[1], 0);
+    AsqRequestNj_8c011492(var_commonDir_8c18ad6c, var_currentCourseConfig_8c18ad18->filenames_0x1c[0], &var_currentCourse_8c1bb868.slots_0x04[0], 0);
+    AsqRequestNj_8c011492(var_commonDir_8c18ad6c, var_currentCourseConfig_8c18ad18->filenames_0x1c[1], &var_currentCourse_8c1bb868.slots_0x04[1], 0);
     var_currentCourse_8c1bb868.slots_0x04[2] = var_currentCourseConfig_8c18ad18->filenames_0x1c[2];
-    AsqRequestNj_11492(var_commonDir_8c18ad6c, var_currentCourseConfig_8c18ad18->filenames_0x1c[3], &var_currentCourse_8c1bb868.slots_0x04[3], 0);
-    AsqRequestNj_11492(var_commonDir_8c18ad6c, var_currentCourseConfig_8c18ad18->filenames_0x1c[4], &var_currentCourse_8c1bb868.slots_0x04[4], 0);
-    AsqRequestNj_11492(var_commonDir_8c18ad6c, var_currentCourseConfig_8c18ad18->filenames_0x1c[5], &var_currentCourse_8c1bb868.slots_0x04[5], 0);
-    AsqRequestNj_11492(var_commonDir_8c18ad6c, var_currentCourseConfig_8c18ad18->filenames_0x1c[6], &var_currentCourse_8c1bb868.slots_0x04[6], 0);
-    AsqRequestNj_11492(var_commonDir_8c18ad6c, var_currentCourseConfig_8c18ad18->filenames_0x1c[7], &var_currentCourse_8c1bb868.slots_0x04[7], 0);
-    AsqRequestDat_11182(var_commonDir_8c18ad6c, var_currentCourseConfig_8c18ad18->filenames_0x1c[8], &var_currentCourse_8c1bb868.slots_0x04[8]);
-    AsqRequestNj_11492(var_commonDir_8c18ad6c, var_currentCourseConfig_8c18ad18->filenames_0x1c[9], &var_currentCourse_8c1bb868.slots_0x04[9], 0);
-    AsqRequestNj_11492(var_commonDir_8c18ad6c, var_currentCourseConfig_8c18ad18->filenames_0x1c[10], 0, &var_currentCourse_8c1bb868.slots_0x04[10]);
-    AsqRequestDat_11182(var_commonDir_8c18ad6c, var_currentCourseConfig_8c18ad18->filenames_0x1c[11], &var_currentCourse_8c1bb868.slots_0x04[11]);
-    AsqRequestDat_11182(var_commonDir_8c18ad6c, var_currentCourseConfig_8c18ad18->filenames_0x1c[12], &var_currentCourse_8c1bb868.slots_0x04[12]);
-    AsqRequestDat_11182(var_commonDir_8c18ad6c, var_currentCourseConfig_8c18ad18->filenames_0x1c[13], &var_currentCourse_8c1bb868.slots_0x04[13]);
-    AsqRequestNj_11492(var_commonDir_8c18ad6c, var_currentCourseConfig_8c18ad18->filenames_0x1c[14], &var_currentCourse_8c1bb868.slots_0x04[14], 0);
-    AsqRequestNj_11492(var_commonDir_8c18ad6c, var_currentCourseConfig_8c18ad18->filenames_0x1c[15], &var_currentCourse_8c1bb868.slots_0x04[15], 0);
-    AsqRequestNj_11492(var_commonDir_8c18ad6c, var_currentCourseConfig_8c18ad18->filenames_0x1c[16], &var_currentCourse_8c1bb868.slots_0x04[16], 0);
-    AsqRequestNj_11492(var_commonDir_8c18ad6c, var_currentCourseConfig_8c18ad18->filenames_0x1c[17], &var_currentCourse_8c1bb868.slots_0x04[17], 0);
-    AsqRequestNj_11492(var_commonDir_8c18ad6c, var_currentCourseConfig_8c18ad18->filenames_0x1c[18], &var_currentCourse_8c1bb868.slots_0x04[18], 0);
+    AsqRequestNj_8c011492(var_commonDir_8c18ad6c, var_currentCourseConfig_8c18ad18->filenames_0x1c[3], &var_currentCourse_8c1bb868.slots_0x04[3], 0);
+    AsqRequestNj_8c011492(var_commonDir_8c18ad6c, var_currentCourseConfig_8c18ad18->filenames_0x1c[4], &var_currentCourse_8c1bb868.slots_0x04[4], 0);
+    AsqRequestNj_8c011492(var_commonDir_8c18ad6c, var_currentCourseConfig_8c18ad18->filenames_0x1c[5], &var_currentCourse_8c1bb868.slots_0x04[5], 0);
+    AsqRequestNj_8c011492(var_commonDir_8c18ad6c, var_currentCourseConfig_8c18ad18->filenames_0x1c[6], &var_currentCourse_8c1bb868.slots_0x04[6], 0);
+    AsqRequestNj_8c011492(var_commonDir_8c18ad6c, var_currentCourseConfig_8c18ad18->filenames_0x1c[7], &var_currentCourse_8c1bb868.slots_0x04[7], 0);
+    AsqRequestDat_8c011182(var_commonDir_8c18ad6c, var_currentCourseConfig_8c18ad18->filenames_0x1c[8], &var_currentCourse_8c1bb868.slots_0x04[8]);
+    AsqRequestNj_8c011492(var_commonDir_8c18ad6c, var_currentCourseConfig_8c18ad18->filenames_0x1c[9], &var_currentCourse_8c1bb868.slots_0x04[9], 0);
+    AsqRequestNj_8c011492(var_commonDir_8c18ad6c, var_currentCourseConfig_8c18ad18->filenames_0x1c[10], 0, &var_currentCourse_8c1bb868.slots_0x04[10]);
+    AsqRequestDat_8c011182(var_commonDir_8c18ad6c, var_currentCourseConfig_8c18ad18->filenames_0x1c[11], &var_currentCourse_8c1bb868.slots_0x04[11]);
+    AsqRequestDat_8c011182(var_commonDir_8c18ad6c, var_currentCourseConfig_8c18ad18->filenames_0x1c[12], &var_currentCourse_8c1bb868.slots_0x04[12]);
+    AsqRequestDat_8c011182(var_commonDir_8c18ad6c, var_currentCourseConfig_8c18ad18->filenames_0x1c[13], &var_currentCourse_8c1bb868.slots_0x04[13]);
+    AsqRequestNj_8c011492(var_commonDir_8c18ad6c, var_currentCourseConfig_8c18ad18->filenames_0x1c[14], &var_currentCourse_8c1bb868.slots_0x04[14], 0);
+    AsqRequestNj_8c011492(var_commonDir_8c18ad6c, var_currentCourseConfig_8c18ad18->filenames_0x1c[15], &var_currentCourse_8c1bb868.slots_0x04[15], 0);
+    AsqRequestNj_8c011492(var_commonDir_8c18ad6c, var_currentCourseConfig_8c18ad18->filenames_0x1c[16], &var_currentCourse_8c1bb868.slots_0x04[16], 0);
+    AsqRequestNj_8c011492(var_commonDir_8c18ad6c, var_currentCourseConfig_8c18ad18->filenames_0x1c[17], &var_currentCourse_8c1bb868.slots_0x04[17], 0);
+    AsqRequestNj_8c011492(var_commonDir_8c18ad6c, var_currentCourseConfig_8c18ad18->filenames_0x1c[18], &var_currentCourse_8c1bb868.slots_0x04[18], 0);
 
     requestVehicleAssets_8c013ae8();
-    var_routeModels_8c1bc3ec = AsqRequestModels_12030(var_commonDir_8c18ad6c, init_8c0440dc, 0x10);
+    var_routeModels_8c1bc3ec = AsqRequestModels_8c012030(var_commonDir_8c18ad6c, init_8c0440dc, 0x10);
 }
 
 void resetPvmReady_8c014322(void)
@@ -603,12 +603,12 @@ void routeLoadTask_8c014338(Task *task, void *state)
 
     switch (task->field_0x08) {
         case ROUTE_LOAD_STATE_INIT: {
-            AsqResetQueues_11f6c();
+            AsqResetQueues_8c011f6c();
             njSetTexture(var_loadingResourceGroup_8c1bc3f8.tlist_0x00);
             njLoadCacheTexture(var_loadingResourceGroup_8c1bc3f8.tlist_0x00);
             loadRouteModels_8c014088();
             resetPvmReady_8c014322();
-            AsqProcessQueues_11fe0(AsqNop_11120, 0, 0, 0, setPvmReady_8c014330);
+            AsqProcessQueues_8c011fe0(AsqNop_8c011120, 0, 0, 0, setPvmReady_8c014330);
             CHANGE_LOAD_STATE(task, ROUTE_LOAD_STATE_POST_LOAD);
             return;
         }
@@ -621,10 +621,10 @@ void routeLoadTask_8c014338(Task *task, void *state)
                 FUN_8c028dd0(var_currentCourse_8c1bb868.slots_0x04[12]);
                 FUN_8c02caba();
                 FUN_8c02b170();
-                AsqResetQueues_11f6c();
+                AsqResetQueues_8c011f6c();
                 syncSegmentModels_8c013f78();
                 resetPvmReady_8c014322();
-                AsqProcessQueues_11fe0(AsqNop_11120, FUN_8c021810, FUN_8c02190a, 0, setPvmReady_8c014330);
+                AsqProcessQueues_8c011fe0(AsqNop_8c011120, FUN_8c021810, FUN_8c02190a, 0, setPvmReady_8c014330);
                 CHANGE_LOAD_STATE(task, ROUTE_LOAD_STATE_WAIT);
             }
             break;
@@ -645,7 +645,7 @@ void routeLoadTask_8c014338(Task *task, void *state)
 
         case ROUTE_LOAD_STATE_DONE: {
             freeTask_8c014b66(task);
-            AsqFreeQueues_11f7e();
+            AsqFreeQueues_8c011f7e();
             var_loadScreenActive_8c157a6c = 0;
             njReleaseTexture(var_loadingResourceGroup_8c1bc3f8.tlist_0x00);
             FUN_8c01306e();
@@ -677,7 +677,7 @@ void pushRouteLoadTask_8c0144fc(void)
 
     njGarbageTexture(&var_tex_8c157af8, 0xc00);
 
-    AsqInitQueues_11f36(0x20, 0x800, 0x800, 0x40);
+    AsqInitQueues_8c011f36(0x20, 0x800, 0x800, 0x40);
 }
 
 /* Segment-boundary reload: stream the new segment's assets (no full route
@@ -689,10 +689,10 @@ void unknownSegmentReloadTask_8c014550(Task *task, void *state)
     switch (task->field_0x08) {
         case SEGMENT_RELOAD_STATE_POST_LOAD: {
             FUN_8c02b170();
-            AsqResetQueues_11f6c();
+            AsqResetQueues_8c011f6c();
             syncSegmentModels_8c013f78();
             resetPvmReady_8c014322();
-            AsqProcessQueues_11fe0(AsqNop_11120, FUN_8c021810, FUN_8c02190a, 0, setPvmReady_8c014330);
+            AsqProcessQueues_8c011fe0(AsqNop_8c011120, FUN_8c021810, FUN_8c02190a, 0, setPvmReady_8c014330);
             CHANGE_SEGMENT_RELOAD_STATE(task, SEGMENT_RELOAD_STATE_WAIT);
             break;
         }
@@ -712,7 +712,7 @@ void unknownSegmentReloadTask_8c014550(Task *task, void *state)
 
         case SEGMENT_RELOAD_STATE_DONE: {
             freeTask_8c014b66(task);
-            AsqFreeQueues_11f7e();
+            AsqFreeQueues_8c011f7e();
             var_loadScreenActive_8c157a6c = 0;
             njReleaseTexture(var_loadingResourceGroup_8c1bc3f8.tlist_0x00);
             njSetTexture(var_interiorTexlist_8c1bc438);
@@ -751,7 +751,7 @@ void pushUnknownSegmentReloadTask_8c01468e(void)
     freeSegmentModels_8c013f22();
 
     njGarbageTexture(&var_tex_8c157af8, 0xc00);
-    AsqInitQueues_11f36(0x20, 0x800, 0x800, 0x40);
+    AsqInitQueues_8c011f36(0x20, 0x800, 0x800, 0x40);
     njSetTexture(var_loadingResourceGroup_8c1bc3f8.tlist_0x00);
     njLoadCacheTexture(var_loadingResourceGroup_8c1bc3f8.tlist_0x00);
     njSetBackColor(0xff418dff, 0xff418dff, 0xff418dff);
@@ -765,12 +765,12 @@ void unknownRouteLoadTask_8c014784(Task *task, void *state)
 
     switch (task->field_0x08) {
         case ROUTE_LOAD_STATE_INIT: {
-            AsqResetQueues_11f6c();
+            AsqResetQueues_8c011f6c();
             njSetTexture(var_loadingResourceGroup_8c1bc3f8.tlist_0x00);
             njLoadCacheTexture(var_loadingResourceGroup_8c1bc3f8.tlist_0x00);
             loadRouteModels_8c014088();
             resetPvmReady_8c014322();
-            AsqProcessQueues_11fe0(AsqNop_11120, 0, 0, 0, setPvmReady_8c014330);
+            AsqProcessQueues_8c011fe0(AsqNop_8c011120, 0, 0, 0, setPvmReady_8c014330);
             CHANGE_LOAD_STATE(task, ROUTE_LOAD_STATE_POST_LOAD);
             break;
         }
@@ -783,10 +783,10 @@ void unknownRouteLoadTask_8c014784(Task *task, void *state)
                 FUN_8c028dd0(var_currentCourse_8c1bb868.slots_0x04[12]);
                 FUN_8c02caba();
                 FUN_8c02b170();
-                AsqResetQueues_11f6c();
+                AsqResetQueues_8c011f6c();
                 syncSegmentModels_8c013f78();
                 resetPvmReady_8c014322();
-                AsqProcessQueues_11fe0(AsqNop_11120, 0, FUN_8c02190a, 0, setPvmReady_8c014330);
+                AsqProcessQueues_8c011fe0(AsqNop_8c011120, 0, FUN_8c02190a, 0, setPvmReady_8c014330);
                 CHANGE_LOAD_STATE(task, ROUTE_LOAD_STATE_WAIT);
             }
             break;
@@ -807,7 +807,7 @@ void unknownRouteLoadTask_8c014784(Task *task, void *state)
 
         case ROUTE_LOAD_STATE_DONE: {
             freeTask_8c014b66(task);
-            AsqFreeQueues_11f7e();
+            AsqFreeQueues_8c011f7e();
             var_loadScreenActive_8c157a6c = 0;
             njReleaseTexture(var_loadingResourceGroup_8c1bc3f8.tlist_0x00);
             njSetTexture(var_interiorTexlist_8c1bc438);

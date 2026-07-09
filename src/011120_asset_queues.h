@@ -63,42 +63,42 @@ extern ButtonRemap init_btnRemapWheelAlt_8c03bf18[5];
    =========
  */
 
-void AsqNop_11120();
+void AsqNop_8c011120();
 
-int AsqRequestDat_11182(char* basedir, char* filename, void* dest);
+int AsqRequestDat_8c011182(char* basedir, char* filename, void* dest);
 
-int AsqRequestNj_11492(char* basedir, char* filename, void* dest, void* dest2);
+int AsqRequestNj_8c011492(char* basedir, char* filename, void* dest, void* dest2);
 
-int AsqRequestTexlist_1181c(char *basedir, NJS_TEXLIST *texlist);
+int AsqRequestTexlist_8c01181c(char *basedir, NJS_TEXLIST *texlist);
 
-int AsqRequestPvm_11ac0(char *basedir, char *filename, void *texlist, int count, int attr);
+int AsqRequestPvm_8c011ac0(char *basedir, char *filename, void *texlist, int count, int attr);
 
-void AsqReleaseAndFreeTexlist_11e3c(NJS_TEXLIST *texlist);
+void AsqReleaseAndFreeTexlist_8c011e3c(NJS_TEXLIST *texlist);
 
-void AsqFreeTexlist_11e60(NJS_TEXLIST *texlist);
+void AsqFreeTexlist_8c011e60(NJS_TEXLIST *texlist);
 
-void AsqInitQueues_11f36(int datCount,int njCount,int texlistCount,int pvmCount);
+void AsqInitQueues_8c011f36(int datCount,int njCount,int texlistCount,int pvmCount);
 
-void AsqResetQueues_11f6c();
+void AsqResetQueues_8c011f6c();
 
-void AsqFreeQueues_11f7e();
+void AsqFreeQueues_8c011f7e();
 
-void AsqProcessQueues_11fe0(void *func, void *afterDatCallback, void *afterNjCallback, void *afterPvmCallback, void *afterTexlistCallback);
+void AsqProcessQueues_8c011fe0(void *func, void *afterDatCallback, void *afterNjCallback, void *afterPvmCallback, void *afterTexlistCallback);
 
-LoadedModel* AsqRequestModels_12030(char *basedir, ModelFiles *pairs, int texlistCount);
+LoadedModel* AsqRequestModels_8c012030(char *basedir, ModelFiles *pairs, int texlistCount);
 
-void AsqFreeModels_120fe(LoadedModel **pairsPtr);
+void AsqFreeModels_8c0120fe(LoadedModel **pairsPtr);
 
-void AsqSetSeedA_12160(int p1);
+void AsqSetSeedA_8c012160(int p1);
 
-int AsqGetRandomA_12166();
+int AsqGetRandomA_8c012166();
 
-int AsqGetRandomInRangeA_12178(unsigned int p1);
+int AsqGetRandomInRangeA_8c012178(unsigned int p1);
 
-void AsqSetSeedB_121a2(int p1);
+void AsqSetSeedB_8c0121a2(int p1);
 
-int AsqGetRandomB_121a8();
+int AsqGetRandomB_8c0121a8();
 
-int AsqGetRandomInRangeB_121be(unsigned int p1);
+int AsqGetRandomInRangeB_8c0121be(unsigned int p1);
 
-void AsqApplyButtonConfig_121e8();
+void AsqApplyButtonConfig_8c0121e8();

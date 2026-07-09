@@ -40,8 +40,8 @@ return new class extends TestCase {
         $this->shouldCall('_njGarbageTexture')->with(
             $this->addressOf('_var_tex_8c157af8', 0xc00)
         );
-        $this->shouldCall('_AsqInitQueues_11f36')->with(8, 0, 0, 8);
-        $this->shouldCall('_AsqResetQueues_11f6c');
+        $this->shouldCall('_AsqInitQueues_8c011f36')->with(8, 0, 0, 8);
+        $this->shouldCall('_AsqResetQueues_8c011f6c');
 
         $this->shouldCall('_CourseMenuRequestSysResgrp_8c018568')->with(
             $this->addressOf('_var_menuState_8c1bc7a8') + 0x0c,
@@ -49,8 +49,8 @@ return new class extends TestCase {
         )->andReturn(1);
 
         $this->shouldCall('_setPvmReady_8c014330');
-        $this->shouldCall('_AsqProcessQueues_11fe0')->with(
-            $this->addressOf('_AsqNop_11120'),
+        $this->shouldCall('_AsqProcessQueues_8c011fe0')->with(
+            $this->addressOf('_AsqNop_8c011120'),
             0,
             0,
             0,
@@ -85,15 +85,15 @@ return new class extends TestCase {
         $this->shouldCall('_njGarbageTexture')->with(
             $this->addressOf('_var_tex_8c157af8', 0xc00)
         );
-        $this->shouldCall('_AsqInitQueues_11f36')->with(8, 0, 0, 8);
-        $this->shouldCall('_AsqResetQueues_11f6c');
+        $this->shouldCall('_AsqInitQueues_8c011f36')->with(8, 0, 0, 8);
+        $this->shouldCall('_AsqResetQueues_8c011f6c');
 
         $this->shouldCall('_CourseMenuRequestSysResgrp_8c018568')->with(
             $this->addressOf('_var_menuState_8c1bc7a8') + 0x0c,
             $this->addressOf('_init_mainMenuResourceGroup_8c044264'),
         )->andReturn(0);
 
-        $this->shouldCall('_AsqFreeQueues_11f7e');
+        $this->shouldCall('_AsqFreeQueues_8c011f7e');
         $this->shouldWriteLong($this->addressOf('_var_menuState_8c1bc7a8') + 0x18, 1);
         $this->shouldCall('_push_fadein_8c022a9c')->with(10);
         $this->shouldCall('_snd_8c010cd6')->with(0, 15);
@@ -126,8 +126,8 @@ return new class extends TestCase {
         $this->shouldCall('_njGarbageTexture')->with(
             $this->addressOf('_var_tex_8c157af8', 0xc00)
         );
-        $this->shouldCall('_AsqInitQueues_11f36')->with(8, 0, 0, 8);
-        $this->shouldCall('_AsqResetQueues_11f6c');
+        $this->shouldCall('_AsqInitQueues_8c011f36')->with(8, 0, 0, 8);
+        $this->shouldCall('_AsqResetQueues_8c011f6c');
 
         $this->shouldCall('_CourseMenuRequestSysResgrp_8c018568')->with(
             $this->addressOf('_var_menuState_8c1bc7a8') + 0x0c,
@@ -135,8 +135,8 @@ return new class extends TestCase {
         )->andReturn(1);
 
         $this->shouldCall('_setPvmReady_8c014330');
-        $this->shouldCall('_AsqProcessQueues_11fe0')->with(
-            $this->addressOf('_AsqNop_11120'),
+        $this->shouldCall('_AsqProcessQueues_8c011fe0')->with(
+            $this->addressOf('_AsqNop_8c011120'),
             0,
             0,
             0,
@@ -172,15 +172,15 @@ return new class extends TestCase {
         $this->shouldCall('_njGarbageTexture')->with(
             $this->addressOf('_var_tex_8c157af8', 0xc00)
         );
-        $this->shouldCall('_AsqInitQueues_11f36')->with(8, 0, 0, 8);
-        $this->shouldCall('_AsqResetQueues_11f6c');
+        $this->shouldCall('_AsqInitQueues_8c011f36')->with(8, 0, 0, 8);
+        $this->shouldCall('_AsqResetQueues_8c011f6c');
 
         $this->shouldCall('_CourseMenuRequestSysResgrp_8c018568')->with(
             $this->addressOf('_var_menuState_8c1bc7a8') + 0x0c,
             $this->addressOf('_init_mainMenuResourceGroup_8c044264'),
         )->andReturn(0);
 
-        $this->shouldCall('_AsqFreeQueues_11f7e');
+        $this->shouldCall('_AsqFreeQueues_8c011f7e');
         $this->shouldWriteLong($this->addressOf('_var_menuState_8c1bc7a8') + 0x18, 1);
         $this->shouldCall('_push_fadein_8c022a9c')->with(10);
         $this->shouldCall('_snd_8c010cd6')->with(0, 15);

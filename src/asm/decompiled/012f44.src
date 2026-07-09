@@ -33,8 +33,8 @@
           .IMPORT     _var_tasks_8c1bb448
           .IMPORT     _var_seed_8c157a64
           .IMPORT     _srand
-          .IMPORT     _AsqSetSeedA_12160
-          .IMPORT     _AsqSetSeedB_121a2
+          .IMPORT     _AsqSetSeedA_8c012160
+          .IMPORT     _AsqSetSeedB_8c0121a2
           .IMPORT     _pushInputTask_8c0128cc
           .IMPORT     _pushTask_8c014ae8
           .IMPORT     _var_tasks_8c1ba3c8
@@ -62,11 +62,11 @@
           .IMPORT     _var_8c1bc824
           .IMPORT     _var_8c228704
           .IMPORT     _var_inputMapSel_8c1bb8c8
-          .IMPORT     _AsqGetRandomA_12166
+          .IMPORT     _AsqGetRandomA_8c012166
           .IMPORT     _var_8c227dd4
           .IMPORT     _init_8c0460b0
           .IMPORT     _FUN_8c01895e
-          .IMPORT     _AsqApplyButtonConfig_121e8
+          .IMPORT     _AsqApplyButtonConfig_8c0121e8
           .IMPORT     _var_8c1ba292
           .IMPORT     _var_8c227da0
           .IMPORT     _var_8c227da8
@@ -74,15 +74,15 @@
           .IMPORT     _isPvmReady_8c01432a
           .IMPORT     _var_loadedFooNjm_8c1bc448
           .IMPORT     _var_8c1bc450
-          .IMPORT     _AsqResetQueues_11f6c
+          .IMPORT     _AsqResetQueues_8c011f6c
           .IMPORT     _var_memblkSource_8c0fcd48
-          .IMPORT     _AsqRequestDat_11182
+          .IMPORT     _AsqRequestDat_8c011182
           .IMPORT     _var_memblkSource_8c0fcd4c
           .IMPORT     _resetPvmReady_8c014322
           .IMPORT     _setPvmReady_8c014330
-          .IMPORT     _AsqNop_11120
-          .IMPORT     _AsqProcessQueues_11fe0
-          .IMPORT     _AsqFreeQueues_11f7e
+          .IMPORT     _AsqNop_8c011120
+          .IMPORT     _AsqProcessQueues_8c011fe0
+          .IMPORT     _AsqFreeQueues_8c011f7e
           .IMPORT     _initSoundMidiAdx_8c010e18
           .IMPORT     _var_8c2260a8
           .IMPORT     _njSetTextureMemorySize
@@ -143,19 +143,19 @@
           .IMPORT     _njSetBorderColor
           .IMPORT     _vmsLcd_8c01c8fc
           .IMPORT     _vmsLcd_8c01c910
-          .IMPORT     _AsqInitQueues_11f36
+          .IMPORT     _AsqInitQueues_8c011f36
           .IMPORT     _var_markPartsDat_8c1bc41c
           .IMPORT     _var_markDat_8c1bc420
           .IMPORT     _var_busstopPartsDat_8c1bc428
           .IMPORT     _var_busstopDat_8c1bc42c
           .IMPORT     _var_loadingResourceGroup_8c1bc3f8
-          .IMPORT     _AsqRequestPvm_11ac0
+          .IMPORT     _AsqRequestPvm_8c011ac0
           .IMPORT     _var_busFont_8c1ba1c8
           .IMPORT     _var_8c2260ac
           .IMPORT     _var_8c2260b8
           .IMPORT     _var_8c2260c4
           .IMPORT     _var_8c1bc440
-          .IMPORT     _AsqRequestNj_11492
+          .IMPORT     _AsqRequestNj_8c011492
           .IMPORT     _var_8c1bc444
           .IMPORT     _var_8c1bc410
           .IMPORT     _var_8c1bc414
@@ -498,8 +498,8 @@ LP_GEN_31464:
           .DATA.L _var_tasks_8c1bb448
           .DATA.L _var_seed_8c157a64
           .DATA.L _srand
-          .DATA.L _AsqSetSeedA_12160
-          .DATA.L _AsqSetSeedB_121a2
+          .DATA.L _AsqSetSeedA_8c012160
+          .DATA.L _AsqSetSeedB_8c0121a2
           .DATA.L _pushInputTask_8c0128cc
           .DATA.L _pushTask_8c014ae8
           .DATA.L _var_tasks_8c1ba3c8
@@ -774,15 +774,15 @@ LP_GEN_38000:
           .DATA.L _var_8c1bc824
           .DATA.L _var_8c228704
           .DATA.L _var_inputMapSel_8c1bb8c8
-          .DATA.L _AsqGetRandomA_12166
+          .DATA.L _AsqGetRandomA_8c012166
           .DATA.L _var_8c227dd4
           .DATA.L _var_8c1bb8d4
           .DATA.L _init_8c0460b0
           .DATA.L _FUN_8c01895e
           .DATA.L _srand
-          .DATA.L _AsqSetSeedA_12160
-          .DATA.L _AsqSetSeedB_121a2
-          .DATA.L _AsqApplyButtonConfig_121e8
+          .DATA.L _AsqSetSeedA_8c012160
+          .DATA.L _AsqSetSeedB_8c0121a2
+          .DATA.L _AsqApplyButtonConfig_8c0121e8
           .DATA.L _var_8c1ba292
           .DATA.L _var_8c227da0
           .DATA.L _var_8c227da8
@@ -912,17 +912,17 @@ LP_GEN_65923:
           .DATA.L _var_loadedFooNjm_8c1bc448
           .DATA.L H'4F800000
           .DATA.L _var_8c1bc450
-          .DATA.L _AsqResetQueues_11f6c
+          .DATA.L _AsqResetQueues_8c011f6c
           .DATA.L _var_memblkSource_8c0fcd48
           .DATA.L _const_8c03336c
-          .DATA.L _AsqRequestDat_11182
+          .DATA.L _AsqRequestDat_8c011182
           .DATA.L _var_memblkSource_8c0fcd4c
           .DATA.L _const_8c033378
           .DATA.L _resetPvmReady_8c014322
           .DATA.L _setPvmReady_8c014330
-          .DATA.L _AsqNop_11120
-          .DATA.L _AsqProcessQueues_11fe0
-          .DATA.L _AsqFreeQueues_11f7e
+          .DATA.L _AsqNop_8c011120
+          .DATA.L _AsqProcessQueues_8c011fe0
+          .DATA.L _AsqFreeQueues_8c011f7e
           .DATA.L _freeTask_8c014b66
           .DATA.L _initSoundMidiAdx_8c010e18
           .DATA.L _var_8c2260a8
@@ -1457,9 +1457,9 @@ LP_GEN_19861:
           .DATA.L     _task_8c013388
           .DATA.L     _var_tasks_8c1ba3c8
           .DATA.L     _pushTask_8c014ae8
-          .DATA.L     _AsqInitQueues_11f36
-          .DATA.L     _AsqResetQueues_11f6c
-          .DATA.L     _AsqRequestDat_11182
+          .DATA.L     _AsqInitQueues_8c011f36
+          .DATA.L     _AsqResetQueues_8c011f6c
+          .DATA.L     _AsqRequestDat_8c011182
           .DATA.L     _const_8c033380
           .DATA.L     _var_markPartsDat_8c1bc41c
           .DATA.L     _const_8c033388
@@ -1472,7 +1472,7 @@ LP_GEN_19861:
           .DATA.L     _var_loadingResourceGroup_8c1bc3f8
           .DATA.L     H'80000000
           .DATA.L     s_loading_pvm_8c0333c4
-          .DATA.L     _AsqRequestPvm_11ac0
+          .DATA.L     _AsqRequestPvm_8c011ac0
           .DATA.L     s_load_parts_dat_8c0333d0
           .DATA.L     s_loading_dat_8c0333e0
           .DATA.L     _var_busFont_8c1ba1c8
@@ -1485,7 +1485,7 @@ LP_GEN_19861:
           .DATA.L     s_now_loading_lcd_8c033418
           .DATA.L     _var_8c1bc440
           .DATA.L     s_fuu_pvm_8c033428
-          .DATA.L     _AsqRequestNj_11492
+          .DATA.L     _AsqRequestNj_8c011492
           .DATA.L     _var_8c1bc444
           .DATA.L     s_fuu_njd_8c033430
           .DATA.L     _var_loadedFooNjm_8c1bc448
@@ -1497,8 +1497,8 @@ LP_GEN_19861:
           .DATA.L     s_3s_bus_m2_njs_8c03345c
           .DATA.L     _resetPvmReady_8c014322
           .DATA.L     _setPvmReady_8c014330
-          .DATA.L     _AsqNop_11120
-          .DATA.L     _AsqProcessQueues_11fe0
+          .DATA.L     _AsqNop_8c011120
+          .DATA.L     _AsqProcessQueues_8c011fe0
           .DATA.L     _var_gdErr_8c18ad14
           .DATA.L     _FUN_8c0134d6
           .DATA.L     _gdFsEntryErrFuncAll

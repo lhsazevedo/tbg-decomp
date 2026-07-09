@@ -18,6 +18,6 @@ return new class extends TestCase {
         $this->shouldWriteStringTo('_var_queueBaseDir_8c157a80', 'DATA EMPTY');
         $this->shouldWriteTo('_var_pvmQueueIsIdle_8c157ac8', 1);
 
-        $this->singleCall('_AsqResetQueues_11f6c')->run();
+        $this->singleCall('_AsqResetQueues_8c011f6c')->run();
     }
 };

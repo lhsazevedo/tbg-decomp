@@ -510,8 +510,8 @@ void FUN_8c01306e(void)
     clearTasks_8c014a9c(var_tasks_8c1bb448, 0x20);
 
     njRandomSeed(var_seed_8c157a64);
-    AsqSetSeedA_12160(var_seed_8c157a64);
-    AsqSetSeedB_121a2(var_seed_8c157a64);
+    AsqSetSeedA_8c012160(var_seed_8c157a64);
+    AsqSetSeedB_8c0121a2(var_seed_8c157a64);
 
     pushInputTask_8c0128cc(1);
 
@@ -562,7 +562,7 @@ void FUN_8c01328c() {
         var_currentCourse_8c1bb868 = var_8c1bc824->field_0x00;
         var_8c228704 = var_8c1bc824->field_0x04;
         var_inputMapSel_8c1bb8c8 = var_8c1bc824->field_0x08;
-        var_seed_8c157a64 = AsqGetRandomA_12166();
+        var_seed_8c157a64 = AsqGetRandomA_8c012166();
     } else if ((var_playMode_8c1bb8d0 == 2) && (var_8c1bb8d4 != 0)) {
         var_8c227dd4 = init_8c0460b0[var_currentCourse_8c1bb868 - 0x26];
         FUN_8c01895e();
@@ -571,9 +571,9 @@ void FUN_8c01328c() {
     }
 
     njRandomSeed(var_seed_8c157a64);
-    AsqSetSeedA_12160(var_seed_8c157a64);
-    AsqSetSeedB_121a2(var_seed_8c157a64);
-    AsqApplyButtonConfig_121e8();
+    AsqSetSeedA_8c012160(var_seed_8c157a64);
+    AsqSetSeedB_8c0121a2(var_seed_8c157a64);
+    AsqApplyButtonConfig_8c0121e8();
     var_8c227da0 = (char) var_8c1ba292;
     var_8c227da8 = 0;
 
@@ -589,7 +589,7 @@ void pushLoadingTask_8c013310(int p1) {
         var_currentCourse_8c1bb868 = p1;
         var_8c228704 = 0;
         var_inputMapSel_8c1bb8c8 = (char) var_8c1ba291;
-        var_seed_8c157a64 = AsqGetRandomA_12166();
+        var_seed_8c157a64 = AsqGetRandomA_8c012166();
     } else if (var_playMode_8c1bb8d0 == 2 && var_8c1bb8d4 != 0) {
         var_8c227dd4 = init_8c0460b0[var_currentCourse_8c1bb868 - 0x26];
     } else {
@@ -597,9 +597,9 @@ void pushLoadingTask_8c013310(int p1) {
     }
 
     njRandomSeed(var_seed_8c157a64);
-    AsqSetSeedA_12160(var_seed_8c157a64);
-    AsqSetSeedB_121a2(var_seed_8c157a64);
-    AsqApplyButtonConfig_121e8();
+    AsqSetSeedA_8c012160(var_seed_8c157a64);
+    AsqSetSeedB_8c0121a2(var_seed_8c157a64);
+    AsqApplyButtonConfig_8c0121e8();
     var_8c227da0 = (char) var_8c1ba292;
     var_8c227da8 = 0;
 
@@ -616,18 +616,18 @@ void task_8c013388(Task *task, void *state) {
                 task->field_0x08++;
                 var_8c1bc450 = (Float) var_loadedFooNjm_8c1bc448->nbFrame - 1;
 
-                AsqResetQueues_11f6c();
-                AsqRequestDat_11182("\\SOUND", "manatee.drv", &var_memblkSource_8c0fcd48);
-                AsqRequestDat_11182("\\SOUND", "bus.mlt", &var_memblkSource_8c0fcd4c);
+                AsqResetQueues_8c011f6c();
+                AsqRequestDat_8c011182("\\SOUND", "manatee.drv", &var_memblkSource_8c0fcd48);
+                AsqRequestDat_8c011182("\\SOUND", "bus.mlt", &var_memblkSource_8c0fcd4c);
                 resetPvmReady_8c014322();
-                AsqProcessQueues_11fe0(&AsqNop_11120, 0, 0, 0, &setPvmReady_8c014330);
+                AsqProcessQueues_8c011fe0(&AsqNop_8c011120, 0, 0, 0, &setPvmReady_8c014330);
             }
             break;
         }
         case 1: {
             /* 8c0133a0, 8c0134ce */
             if (isPvmReady_8c01432a() != 0) {
-                AsqFreeQueues_11f7e();
+                AsqFreeQueues_8c011f7e();
                 freeTask_8c014b66(task);
                 initSoundMidiAdx_8c010e18();
                 var_8c2260a8 = 1;
@@ -746,33 +746,33 @@ void njUserInit_8c0134ec() {
     pushTask_8c014ae8(var_tasks_8c1ba3c8, &task_8c013388, &created_task, &created_state, 0);
     created_task->field_0x08 = 0;
 
-    AsqInitQueues_11f36(16, 8, 0, 8);
-    AsqResetQueues_11f6c();
+    AsqInitQueues_8c011f36(16, 8, 0, 8);
+    AsqResetQueues_8c011f6c();
 
-    AsqRequestDat_11182("\\SYSTEM", "mark_parts.dat", &var_markPartsDat_8c1bc41c);
-    AsqRequestDat_11182("\\SYSTEM", "mark.dat", &var_markDat_8c1bc420);
-    AsqRequestDat_11182("\\SYSTEM", "busstop_parts.dat", &var_busstopPartsDat_8c1bc428);
-    AsqRequestDat_11182("\\SYSTEM", "busstop.dat", &var_busstopDat_8c1bc42c);
+    AsqRequestDat_8c011182("\\SYSTEM", "mark_parts.dat", &var_markPartsDat_8c1bc41c);
+    AsqRequestDat_8c011182("\\SYSTEM", "mark.dat", &var_markDat_8c1bc420);
+    AsqRequestDat_8c011182("\\SYSTEM", "busstop_parts.dat", &var_busstopPartsDat_8c1bc428);
+    AsqRequestDat_8c011182("\\SYSTEM", "busstop.dat", &var_busstopDat_8c1bc42c);
 
     /*  TODO: Fix var_loadingResourceGroup_8c1bc3f8 type */ 
-    AsqRequestPvm_11ac0("\\SYSTEM", "loading.pvm", &var_loadingResourceGroup_8c1bc3f8[0], 1, 0x80000000);
-    AsqRequestDat_11182("\\SYSTEM", "load_parts.dat", &var_loadingResourceGroup_8c1bc3f8[1]);
-    AsqRequestDat_11182("\\SYSTEM", "loading.dat", &var_loadingResourceGroup_8c1bc3f8[2]);
+    AsqRequestPvm_8c011ac0("\\SYSTEM", "loading.pvm", &var_loadingResourceGroup_8c1bc3f8[0], 1, 0x80000000);
+    AsqRequestDat_8c011182("\\SYSTEM", "load_parts.dat", &var_loadingResourceGroup_8c1bc3f8[1]);
+    AsqRequestDat_8c011182("\\SYSTEM", "loading.dat", &var_loadingResourceGroup_8c1bc3f8[2]);
 
-    AsqRequestDat_11182("\\SYSTEM", "bus_font.fff", &var_busFont_8c1ba1c8);
-    AsqRequestDat_11182("\\SYSTEM", "vm_bus.lcd", &var_8c2260ac);
-    AsqRequestDat_11182("\\SYSTEM", "vm_danger.lcd", &var_8c2260b8);
-    AsqRequestDat_11182("\\SYSTEM", "now_loading.lcd", &var_8c2260c4);
+    AsqRequestDat_8c011182("\\SYSTEM", "bus_font.fff", &var_busFont_8c1ba1c8);
+    AsqRequestDat_8c011182("\\SYSTEM", "vm_bus.lcd", &var_8c2260ac);
+    AsqRequestDat_8c011182("\\SYSTEM", "vm_danger.lcd", &var_8c2260b8);
+    AsqRequestDat_8c011182("\\SYSTEM", "now_loading.lcd", &var_8c2260c4);
 
-    AsqRequestPvm_11ac0("\\SYSTEM", "fuu.pvm", &var_8c1bc440, 1, 0);
-    AsqRequestNj_11492("\\SYSTEM", "fuu.njd", &var_8c1bc444, 0);
-    AsqRequestNj_11492("\\SYSTEM", "fuu.njm", &var_loadedFooNjm_8c1bc448, 0);
+    AsqRequestPvm_8c011ac0("\\SYSTEM", "fuu.pvm", &var_8c1bc440, 1, 0);
+    AsqRequestNj_8c011492("\\SYSTEM", "fuu.njd", &var_8c1bc444, 0);
+    AsqRequestNj_8c011492("\\SYSTEM", "fuu.njm", &var_loadedFooNjm_8c1bc448, 0);
 
-    AsqRequestNj_11492("\\SD_COMMON","3s_bus_m2.njm", &var_8c1bc410, 0);
-    AsqRequestNj_11492("\\SD_COMMON","3s_bus_m2.njs", &var_8c1bc414, 0);
+    AsqRequestNj_8c011492("\\SD_COMMON","3s_bus_m2.njm", &var_8c1bc410, 0);
+    AsqRequestNj_8c011492("\\SD_COMMON","3s_bus_m2.njs", &var_8c1bc414, 0);
 
     resetPvmReady_8c014322();
-    AsqProcessQueues_11fe0(&AsqNop_11120, 0, 0, 0, &setPvmReady_8c014330);
+    AsqProcessQueues_8c011fe0(&AsqNop_8c011120, 0, 0, 0, &setPvmReady_8c014330);
     var_gdErr_8c18ad14 = 0;
     gdFsEntryErrFuncAll(&usrGdErrFunc_8c0134d6, (void *) 0);
 }

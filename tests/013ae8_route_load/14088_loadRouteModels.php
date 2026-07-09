@@ -106,16 +106,16 @@ return new class extends TestCase {
             if ($file[0] === '@') {
                 $this->shouldWriteLong($dest, $this->addressOf('_' . substr($file, 1)));
             } elseif (in_array($k, self::DAT_SLOTS, true)) {
-                $this->shouldCall('_AsqRequestDat_11182')->with($basedir, $file, $dest);
+                $this->shouldCall('_AsqRequestDat_8c011182')->with($basedir, $file, $dest);
             } elseif ($k === 10) {
-                $this->shouldCall('_AsqRequestNj_11492')->with($basedir, $file, 0, $dest);
+                $this->shouldCall('_AsqRequestNj_8c011492')->with($basedir, $file, 0, $dest);
             } else {
-                $this->shouldCall('_AsqRequestNj_11492')->with($basedir, $file, $dest, 0);
+                $this->shouldCall('_AsqRequestNj_8c011492')->with($basedir, $file, $dest, 0);
             }
         }
 
         $this->shouldCall('_requestVehicleAssets_8c013ae8');
-        $this->shouldCall('_AsqRequestModels_12030')
+        $this->shouldCall('_AsqRequestModels_8c012030')
             ->with($basedir, $this->addressOf('_init_8c0440dc'), 0x10)
             ->andReturn(0x8cff0000);
         $this->shouldWriteLong($this->addressOf('_var_routeModels_8c1bc3ec'), 0x8cff0000);
@@ -129,9 +129,9 @@ return new class extends TestCase {
             '_init_8c04e988' => 4,
             '_init_8c04ce10' => 4,
             '_init_8c04df38' => 4,
-            '_AsqRequestNj_11492' => 4,
-            '_AsqRequestDat_11182' => 4,
-            '_AsqRequestModels_12030' => 4,
+            '_AsqRequestNj_8c011492' => 4,
+            '_AsqRequestDat_8c011182' => 4,
+            '_AsqRequestModels_8c012030' => 4,
         ] as $sym => $size) {
             $this->setSize($sym, $size);
         }

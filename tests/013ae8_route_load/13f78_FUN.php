@@ -48,7 +48,7 @@ return new class extends TestCase {
 
         $this->call('_syncSegmentModels_8c013f78');
 
-        $this->shouldCall('_AsqRequestModels_12030')
+        $this->shouldCall('_AsqRequestModels_8c012030')
             ->with($this->addressOf('_var_commonDir_8c18ad6c'), $pairs, 0x10)
             ->andReturn(0x8c990000);
         $this->shouldWriteLong($this->addressOf('_var_segmentModels_8c1bc3f0'), 0x8c990000);
@@ -128,7 +128,7 @@ return new class extends TestCase {
         $basedir = $this->addressOf('_var_datDir_8c18ad2c');
         $dest = $this->addressOf('_var_datFiles_8c18adb4');
         for ($i = 0; $i < 4; $i++) {
-            $this->shouldCall('_AsqRequestDat_11182')
+            $this->shouldCall('_AsqRequestDat_8c011182')
                 ->with($basedir, 0x8cd00000 + $i, $dest + $i * 4)
                 ->andReturn(0);
         }
@@ -148,8 +148,8 @@ return new class extends TestCase {
         $this->setSize('_var_fogParam_8c227dd0', 4);
         $this->setSize('_var_currentTileRegionList_8c226534', 4);
         $this->setSize('_var_segmentModels_8c1bc3f0', 4);
-        $this->setSize('_AsqRequestModels_12030', 4);
-        $this->setSize('_AsqRequestDat_11182', 4);
+        $this->setSize('_AsqRequestModels_8c012030', 4);
+        $this->setSize('_AsqRequestDat_8c011182', 4);
         $this->setSize('_FUN_8c029ad4', 4);
         $this->setSize('_FUN_8c02aa36', 4);
 

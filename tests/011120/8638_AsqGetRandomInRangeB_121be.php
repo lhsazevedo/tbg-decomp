@@ -15,10 +15,10 @@ return new class extends TestCase {
             $this->setRegister(0, $this->getRegister(1)->mod($this->getRegister(0)));
         });
 
-        $this->shouldCall('_AsqGetRandomB_121a8')->andReturn(42);
+        $this->shouldCall('_AsqGetRandomB_8c0121a8')->andReturn(42);
         $this->shouldCall('__modlu');
 
-        $this->singleCall('_AsqGetRandomInRangeB_121be')
+        $this->singleCall('_AsqGetRandomInRangeB_8c0121be')
             ->with(20)
             ->singleShouldReturn(2)
             ->run();

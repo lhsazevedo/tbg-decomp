@@ -3,7 +3,7 @@
           .IMPORT     _FUN_8c020214
           .IMPORT     _var_playMode_8c1bb8d0
           .IMPORT     _var_8c2264b8
-          .IMPORT     _AsqGetRandomInRangeB_121be
+          .IMPORT     _AsqGetRandomInRangeB_8c0121be
           .EXPORT     _FUN_8c020528
           .SECTION    P,CODE,ALIGN=4
 _FUN_8c020528:                   ; function: FUN_8c020528
@@ -29,7 +29,7 @@ _FUN_8c020528:                   ; function: FUN_8c020528
           ADD         #4,R15
           MOV.W       L1,R4   ; H'012C
           MOV         #0,R13
-          MOV.L       L1+26,R3; _AsqGetRandomInRangeB_121be
+          MOV.L       L1+26,R3; _AsqGetRandomInRangeB_8c0121be
           MOV.L       L1+22,R14; _var_8c2264b8
           JSR         @R3
           MOV.L       R13,@R14
@@ -57,5 +57,5 @@ L1:
           .DATA.L     _var_tasks_8c1ba5e8 ; H'8C020584
           .DATA.L     _pushTask_8c014ae8 ; H'8C020588
           .DATA.L     _var_8c2264b8 ; H'8C02058C
-          .DATA.L     _AsqGetRandomInRangeB_121be ; H'8C020590
+          .DATA.L     _AsqGetRandomInRangeB_8c0121be ; H'8C020590
           .END

@@ -13,7 +13,7 @@ return new class extends TestCase {
         // 42 * 5 + 13 = 210 + 13 = 223
         $this->shouldWriteTo('_var_seed_8c157acc', 223);
 
-        $this->singleCall('_AsqGetRandomA_12166')
+        $this->singleCall('_AsqGetRandomA_8c012166')
             ->singleShouldReturn(223)
             ->run();
     }

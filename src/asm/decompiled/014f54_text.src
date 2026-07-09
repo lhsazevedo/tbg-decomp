@@ -24,15 +24,15 @@
           .IMPORT     _var_playMode_8c1bb8d0
           .IMPORT     _var_8c1bb8d4
           .IMPORT     _var_demoIndex_8c1bb8d8
-          .IMPORT     _AsqInitQueues_11f36
-          .IMPORT     _AsqResetQueues_11f6c
-          .IMPORT     _AsqRequestDat_11182
+          .IMPORT     _AsqInitQueues_8c011f36
+          .IMPORT     _AsqResetQueues_8c011f6c
+          .IMPORT     _AsqRequestDat_8c011182
           .IMPORT     _var_demoEntryValue_8c227e14
           .IMPORT     _var_demoEntryValue_8c22822c
           .IMPORT     _resetPvmReady_8c014322
           .IMPORT     _setPvmReady_8c014330
-          .IMPORT     _AsqNop_11120
-          .IMPORT     _AsqProcessQueues_11fe0
+          .IMPORT     _AsqNop_8c011120
+          .IMPORT     _AsqProcessQueues_8c011fe0
           .IMPORT     _njDrawSprite2D
           .EXPORT     _var_menuState_8c1bc7a8
           .EXPORT     _var_8c1bc824
@@ -1559,17 +1559,17 @@ LP_GEN_51554:
           .DATA.L _var_playMode_8c1bb8d0
           .DATA.L _var_8c1bb8d4
           .DATA.L _var_demoIndex_8c1bb8d8
-          .DATA.L _AsqInitQueues_11f36
-          .DATA.L _AsqResetQueues_11f6c
+          .DATA.L _AsqInitQueues_8c011f36
+          .DATA.L _AsqResetQueues_8c011f6c
           .DATA.L _init_demos_8c044154
           .DATA.L _const_system_8c035f74
-          .DATA.L _AsqRequestDat_11182
+          .DATA.L _AsqRequestDat_8c011182
           .DATA.L _var_demoEntryValue_8c227e14
           .DATA.L _var_demoEntryValue_8c22822c
           .DATA.L _resetPvmReady_8c014322
           .DATA.L _setPvmReady_8c014330
-          .DATA.L _AsqNop_11120
-          .DATA.L _AsqProcessQueues_11fe0
+          .DATA.L _AsqNop_8c011120
+          .DATA.L _AsqProcessQueues_8c011fe0
           .SECTION    C,DATA,ALIGN=4
 _const_8c035f24:        ; from defines
           .DATA.W     H'0000

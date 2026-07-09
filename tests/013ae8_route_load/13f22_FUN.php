@@ -11,7 +11,7 @@ return new class extends TestCase {
     {
         $entry = $this->setup(2, 1, 1);
         $this->call('_freeSegmentModels_8c013f22');
-        $this->shouldCall('_AsqFreeModels_120fe')->with($this->addressOf('_var_segmentModels_8c1bc3f0'));
+        $this->shouldCall('_AsqFreeModels_8c0120fe')->with($this->addressOf('_var_segmentModels_8c1bc3f0'));
         $this->shouldCall('_FUN_8c021a24');
     }
 
@@ -19,7 +19,7 @@ return new class extends TestCase {
     {
         $this->setup(0, 1, 0);
         $this->call('_freeSegmentModels_8c013f22');
-        $this->shouldCall('_AsqFreeModels_120fe')->with($this->addressOf('_var_segmentModels_8c1bc3f0'));
+        $this->shouldCall('_AsqFreeModels_8c0120fe')->with($this->addressOf('_var_segmentModels_8c1bc3f0'));
     }
 
     public function test_only_hands_off_when_free_flag_clear()
@@ -44,7 +44,7 @@ return new class extends TestCase {
         // _var_currentCourseConfig_8c18ad18 is defined in the C object; the other two are imported.
         $this->setSize('_var_currentSegment_8c228708', 4);
         $this->setSize('_var_segmentModels_8c1bc3f0', 4);
-        $this->setSize('_AsqFreeModels_120fe', 4);
+        $this->setSize('_AsqFreeModels_8c0120fe', 4);
         $this->setSize('_FUN_8c021a24', 4);
 
         $holder = $this->alloc(0x10);

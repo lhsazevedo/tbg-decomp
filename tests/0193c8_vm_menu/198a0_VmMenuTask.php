@@ -46,7 +46,7 @@ return new class extends TestCase {
 
         $this->shouldWriteLong($this->addressOf('_var_menuState_8c1bc7a8') + 0x68, 5);
 
-        $this->shouldCall('_VmMenuUpdateVmusStatus_19550')
+        $this->shouldCall('_VmMenuUpdateVmusStatus_8c019550')
             ->with($this->addressOf('_init_saveNames_8c044d50'), 3)
             ->andReturn(1);
 
@@ -100,7 +100,7 @@ return new class extends TestCase {
 
         $this->shouldWriteLong($this->addressOf('_var_menuState_8c1bc7a8') + 0x68, 5);
 
-        $this->shouldCall('_VmMenuUpdateVmusStatus_19550')
+        $this->shouldCall('_VmMenuUpdateVmusStatus_8c019550')
             ->with($this->addressOf('_init_saveNames_8c044d50'), 3)
             ->andReturn(0);
 
@@ -162,7 +162,7 @@ return new class extends TestCase {
         $this->initUint32($this->addressOf('_var_vmuStatus_8c226048') + 1 * 4, 0); // Unavailable
         $this->initUint32($this->addressOf('_var_vmuStatus_8c226048') + 2 * 4, 4); // Available
 
-        $this->shouldCall('_VmMenuUpdateVmusStatus_19550')
+        $this->shouldCall('_VmMenuUpdateVmusStatus_8c019550')
             ->with($this->addressOf('_init_saveNames_8c044d50'), 3);
 
         $this->shouldCall('_sdMidiPlay')->with(0xbeef0000, 1, 3, 0);
@@ -390,7 +390,7 @@ return new class extends TestCase {
             0, 0, 0, 0, 3,
         ]);
 
-        $this->shouldCall('_VmMenuUpdateVmusStatus_19550')
+        $this->shouldCall('_VmMenuUpdateVmusStatus_8c019550')
             ->with($this->addressOf('_init_saveNames_8c044d50'), 3);
 
         $this->shouldCall('_sdMidiPlay')->with(0xbeef0000, 1, 0, 0);
@@ -421,7 +421,7 @@ return new class extends TestCase {
             0, 0, 0, 0, 3,
         ]);
 
-        $this->shouldCall('_VmMenuUpdateVmusStatus_19550')
+        $this->shouldCall('_VmMenuUpdateVmusStatus_8c019550')
             ->with($this->addressOf('_init_saveNames_8c044d50'), 3);
 
         $this->shouldCall('_sdMidiPlay')->with(0xbeef0000, 1, 0, 0);
@@ -452,7 +452,7 @@ return new class extends TestCase {
             0, 0, 0, 0, 3,
         ]);
 
-        $this->shouldCall('_VmMenuUpdateVmusStatus_19550')
+        $this->shouldCall('_VmMenuUpdateVmusStatus_8c019550')
             ->with($this->addressOf('_init_saveNames_8c044d50'), 3);
 
         $this->shouldCall('_sdMidiPlay')->with(0xbeef0000, 1, 0, 0);
@@ -483,7 +483,7 @@ return new class extends TestCase {
             0, 0, 0, 0, 3,
         ]);
 
-        $this->shouldCall('_VmMenuUpdateVmusStatus_19550')
+        $this->shouldCall('_VmMenuUpdateVmusStatus_8c019550')
             ->with($this->addressOf('_init_saveNames_8c044d50'), 3);
 
         $this->shouldCall('_sdMidiPlay')->with(0xbeef0000, 1, 0, 0);
@@ -511,7 +511,7 @@ return new class extends TestCase {
             0, 0, 0, 0, 3,
         ]);
 
-        $this->shouldCall('_VmMenuUpdateVmusStatus_19550')
+        $this->shouldCall('_VmMenuUpdateVmusStatus_8c019550')
             ->with($this->addressOf('_init_saveNames_8c044d50'), 3);
 
         $this->shouldCall('_sdMidiPlay')->with(0xbeef0000, 1, 2, 0);
@@ -592,7 +592,7 @@ return new class extends TestCase {
             0, 0, 0, 0, 3,
         ]);
 
-        $this->shouldCall('_promptHandleBinary_16caa')
+        $this->shouldCall('_promptHandleBinary_8c016caa')
             ->with($this->addressOf('_var_menuState_8c1bc7a8') + 0x3c)
             ->andReturn(0);
 
@@ -624,7 +624,7 @@ return new class extends TestCase {
             0, 0, 0, 0, 3,
         ]);
 
-        $this->shouldCall('_promptHandleBinary_16caa')
+        $this->shouldCall('_promptHandleBinary_8c016caa')
             ->with($this->addressOf('_var_menuState_8c1bc7a8') + 0x3c)
             ->do(function ($params) {
                 $this->memory->writeUInt32($params[0], U32::of(1));
@@ -663,7 +663,7 @@ return new class extends TestCase {
             0, 0, 0, 0, 3,
         ]);
 
-        $this->shouldCall('_promptHandleBinary_16caa')
+        $this->shouldCall('_promptHandleBinary_8c016caa')
             ->with($this->addressOf('_var_menuState_8c1bc7a8') + 0x3c)
             ->do(function ($params) {
                 $this->memory->writeUInt32($params[0], U32::of(2));
@@ -703,7 +703,7 @@ return new class extends TestCase {
             0, 0, 0, 0, 3,
         ]);
 
-        $this->shouldCall('_promptHandleBinary_16caa')
+        $this->shouldCall('_promptHandleBinary_8c016caa')
             ->with($this->addressOf('_var_menuState_8c1bc7a8') + 0x3c)
             ->andReturn(0);
 
@@ -735,7 +735,7 @@ return new class extends TestCase {
             0, 0, 0, 0, 3,
         ]);
 
-        $this->shouldCall('_promptHandleBinary_16caa')
+        $this->shouldCall('_promptHandleBinary_8c016caa')
             ->with($this->addressOf('_var_menuState_8c1bc7a8') + 0x3c)
             ->do(function ($params) {
                 $this->memory->writeUInt32($params[0], U32::of(1));
@@ -777,7 +777,7 @@ return new class extends TestCase {
             0, 0, 0, 0, 3,
         ]);
 
-        $this->shouldCall('_promptHandleBinary_16caa')
+        $this->shouldCall('_promptHandleBinary_8c016caa')
             ->with($this->addressOf('_var_menuState_8c1bc7a8') + 0x3c)
             ->do(function ($params) {
                 $this->memory->writeUInt32($params[0], U32::of(2));
@@ -840,11 +840,11 @@ return new class extends TestCase {
         $task = $this->alloc(0x0c);
         $this->initUint32($task + 0x08, 0); // substate
 
-        $this->shouldCall('_VmMenuUpdateVmusStatus_19550')
+        $this->shouldCall('_VmMenuUpdateVmusStatus_8c019550')
             ->with($this->addressOf('_init_saveNames_8c044d50'), 3)
             ->andReturn(0);
 
-        $this->shouldCall('_promptHandleBinary_16caa')
+        $this->shouldCall('_promptHandleBinary_8c016caa')
             ->with($this->addressOf('_var_menuState_8c1bc7a8') + 0x3c)
             ->andReturn(0);
 
@@ -862,11 +862,11 @@ return new class extends TestCase {
         $task = $this->alloc(0x0c);
         $this->initUint32($task + 0x08, 0); // substate
 
-        $this->shouldCall('_VmMenuUpdateVmusStatus_19550')
+        $this->shouldCall('_VmMenuUpdateVmusStatus_8c019550')
             ->with($this->addressOf('_init_saveNames_8c044d50'), 3)
             ->andReturn(0);
 
-        $this->shouldCall('_promptHandleBinary_16caa')
+        $this->shouldCall('_promptHandleBinary_8c016caa')
             ->with($this->addressOf('_var_menuState_8c1bc7a8') + 0x3c)
             ->andReturn(1);
 
@@ -894,11 +894,11 @@ return new class extends TestCase {
             0, 0, 4, 0, 3,
         ]);
 
-        $this->shouldCall('_VmMenuUpdateVmusStatus_19550')
+        $this->shouldCall('_VmMenuUpdateVmusStatus_8c019550')
             ->with($this->addressOf('_init_saveNames_8c044d50'), 3)
             ->andReturn(0);
 
-        $this->shouldCall('_promptHandleBinary_16caa')
+        $this->shouldCall('_promptHandleBinary_8c016caa')
             ->with($this->addressOf('_var_menuState_8c1bc7a8') + 0x3c)
             ->andReturn(2);
 
@@ -941,7 +941,7 @@ return new class extends TestCase {
         $task = $this->alloc(0x0c);
         $this->initUint32($task + 0x08, 0); // substate
 
-        $this->shouldCall('_VmMenuUpdateVmusStatus_19550')
+        $this->shouldCall('_VmMenuUpdateVmusStatus_8c019550')
             ->with($this->addressOf('_init_saveNames_8c044d50'), 3)
             ->andReturn(1);
         $this->shouldWriteLong($task + 0x08, 1); // substate
@@ -1217,7 +1217,7 @@ return new class extends TestCase {
         // Init slots
         $this->initUint32Array($this->addressOf('_var_vmuStatus_8c226048'), $slots);
 
-        $this->shouldCall('_VmMenuUpdateVmusStatus_19550')
+        $this->shouldCall('_VmMenuUpdateVmusStatus_8c019550')
             ->with($this->addressOf('_init_saveNames_8c044d50'), 3);
 
         if ($expectedSlot !== $initialSlot) {

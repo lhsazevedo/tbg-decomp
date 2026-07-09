@@ -26,27 +26,27 @@
           .IMPORT     _vmsLcd_8c01c910
           .IMPORT     __modlu
           .IMPORT     _var_progress_8c1ba1cc
-          .EXPORT     _AsqNop_11120
-          .EXPORT     _AsqRequestDat_11182
-          .EXPORT     _AsqRequestNj_11492
-          .EXPORT     _AsqRequestTexlist_1181c
-          .EXPORT     _AsqRequestPvm_11ac0
-          .EXPORT     _AsqReleaseAndFreeTexlist_11e3c
-          .EXPORT     _AsqFreeTexlist_11e60
+          .EXPORT     _AsqNop_8c011120
+          .EXPORT     _AsqRequestDat_8c011182
+          .EXPORT     _AsqRequestNj_8c011492
+          .EXPORT     _AsqRequestTexlist_8c01181c
+          .EXPORT     _AsqRequestPvm_8c011ac0
+          .EXPORT     _AsqReleaseAndFreeTexlist_8c011e3c
+          .EXPORT     _AsqFreeTexlist_8c011e60
           .EXPORT     _task_processQueues_8c011e80
-          .EXPORT     _AsqInitQueues_11f36
-          .EXPORT     _AsqResetQueues_11f6c
-          .EXPORT     _AsqFreeQueues_11f7e
-          .EXPORT     _AsqProcessQueues_11fe0
-          .EXPORT     _AsqRequestModels_12030
-          .EXPORT     _AsqFreeModels_120fe
-          .EXPORT     _AsqSetSeedA_12160
-          .EXPORT     _AsqGetRandomA_12166
-          .EXPORT     _AsqGetRandomInRangeA_12178
-          .EXPORT     _AsqSetSeedB_121a2
-          .EXPORT     _AsqGetRandomB_121a8
-          .EXPORT     _AsqGetRandomInRangeB_121be
-          .EXPORT     _AsqApplyButtonConfig_121e8
+          .EXPORT     _AsqInitQueues_8c011f36
+          .EXPORT     _AsqResetQueues_8c011f6c
+          .EXPORT     _AsqFreeQueues_8c011f7e
+          .EXPORT     _AsqProcessQueues_8c011fe0
+          .EXPORT     _AsqRequestModels_8c012030
+          .EXPORT     _AsqFreeModels_8c0120fe
+          .EXPORT     _AsqSetSeedA_8c012160
+          .EXPORT     _AsqGetRandomA_8c012166
+          .EXPORT     _AsqGetRandomInRangeA_8c012178
+          .EXPORT     _AsqSetSeedB_8c0121a2
+          .EXPORT     _AsqGetRandomB_8c0121a8
+          .EXPORT     _AsqGetRandomInRangeB_8c0121be
+          .EXPORT     _AsqApplyButtonConfig_8c0121e8
 
           .EXPORT     _init_btnRemap_8c03be80
           .EXPORT     _init_btnRemapAlt_8c03beb8
@@ -110,7 +110,7 @@
           .EXPORT     _var_seed_8c157ad0
           .AENDI
           .SECTION    P,CODE,ALIGN=4
-_AsqNop_11120:                   ; function: AsqNop_11120
+_AsqNop_8c011120:                   ; function: AsqNop_8c011120
                                  ; frame size=0
           RTS
           NOP
@@ -169,7 +169,7 @@ _resetDatQueue_8c01116a:                   ; function: _resetDatQueue_8c01116a
           MOV.L       L14+24,R0; _var_datQueueIsIdle_8c157a98
           RTS
           MOV.L       R1,@R0
-_AsqRequestDat_11182:           ; function: AsqRequestDat_11182
+_AsqRequestDat_8c011182:           ; function: AsqRequestDat_8c011182
                                  ; frame size=0
           MOV.B       @R5,R3
           TST         R3,R3
@@ -578,7 +578,7 @@ _resetNjQueue_8c01147a:                   ; function: _resetNjQueue_8c01147a
           MOV.L       L36+26,R0; _var_njQueueIsIdle_8c157aa8
           RTS
           MOV.L       R1,@R0
-_AsqRequestNj_11492:             ; function: AsqRequestNj_11492
+_AsqRequestNj_8c011492:             ; function: AsqRequestNj_8c011492
                                  ; frame size=4
           MOV.L       R14,@-R15
           MOV.B       @R5,R3
@@ -1052,7 +1052,7 @@ _resetTexlistQueue_8c0117fe:
           MOV.L       L84+64,R1
           RTS
           MOV.L       R3,@R1
-_AsqRequestTexlist_1181c:
+_AsqRequestTexlist_8c01181c:
           MOV.L       L84+52,R2
           MOV.L       L84+56,R6
           MOV.L       @R2,R3
@@ -1407,7 +1407,7 @@ L96:
           MOV.L       L101+60,R0
           RTS
           MOV.L       R1,@R0
-_AsqRequestPvm_11ac0:
+_AsqRequestPvm_8c011ac0:
           MOV.L       R14,@-R15
           MOV.B       @R5,R3
           TST         R3,R3
@@ -1856,7 +1856,7 @@ _freePvmQueue_8c011e28:
 L129:
           RTS
           NOP
-_AsqReleaseAndFreeTexlist_11e3c:
+_AsqReleaseAndFreeTexlist_8c011e3c:
           MOV.L       R14,@-R15
           MOV.L       R13,@-R15
           STS.L       PR,@-R15
@@ -1875,7 +1875,7 @@ _AsqReleaseAndFreeTexlist_11e3c:
           MOV.L       @R15+,R13
           RTS
           MOV.L       @R15+,R14
-_AsqFreeTexlist_11e60:
+_AsqFreeTexlist_8c011e60:
           MOV.L       R14,@-R15
           MOV         R4,R14
           MOV.L       R13,@-R15
@@ -1993,7 +1993,7 @@ L138:
           LDS.L       @R15+,PR
           RTS
           MOV.L       @R15+,R14
-_AsqInitQueues_11f36:
+_AsqInitQueues_8c011f36:
           STS.L       PR,@-R15
           ADD         #-H'10,R15
           MOV.L       R4,@(H'c,R15)
@@ -2021,7 +2021,7 @@ _AsqInitQueues_11f36:
           LDS.L       @R15+,PR
           RTS
           NOP
-_AsqResetQueues_11f6c:
+_AsqResetQueues_8c011f6c:
           STS.L       PR,@-R15
           BSR         _resetDatQueue_8c01116a
           NOP
@@ -2031,7 +2031,7 @@ _AsqResetQueues_11f6c:
           NOP
           BRA         L96
           LDS.L       @R15+,PR
-_AsqFreeQueues_11f7e:
+_AsqFreeQueues_8c011f7e:
           STS.L       PR,@-R15
           BSR         _freeDatQueue_8c0113d8
           NOP
@@ -2067,7 +2067,7 @@ L139:
           .DATA.L     _vmsLcd_8c01c8fc
           .DATA.L     _vmsLcd_8c01c910
           .DATA.L     _var_queuesAreInitialized_8c157a60
-_AsqProcessQueues_11fe0:
+_AsqProcessQueues_8c011fe0:
           STS.L       PR,@-R15
           ADD         #-H'18,R15
           MOV         #H'18,R3
@@ -2108,7 +2108,7 @@ _AsqProcessQueues_11fe0:
           LDS.L       @R15+,PR
           RTS
           NOP
-_AsqRequestModels_12030:
+_AsqRequestModels_8c012030:
           MOV.L       R14,@-R15
           MOV.L       R13,@-R15
           MOV.L       R12,@-R15
@@ -2170,7 +2170,7 @@ LAB_8c012090:
           MOV.L       @(R0,R9),R5
           ADD         #H'4,R7
           MOV         #H'0,R6
-          BSR         _AsqRequestNj_11492
+          BSR         _AsqRequestNj_8c011492
           MOV.L       @R15,R4
           TST         R0,R0
           BF          LAB_8c0120b6
@@ -2184,7 +2184,7 @@ LAB_8c0120b6:
           MOV.L       @R11,R5
           MOV.L       @(H'8,R15),R6
           MOV.L       @(H'10,R15),R7
-          BSR         _AsqRequestPvm_11ac0
+          BSR         _AsqRequestPvm_8c011ac0
           MOV.L       @(H'4,R15),R4
           TST         R0,R0
           BF/S        LAB_8c0120cc
@@ -2218,7 +2218,7 @@ LAB_8c0120e0:
           MOV.L       @R15+,R13
           RTS
           MOV.L       @R15+,R14
-_AsqFreeModels_120fe:
+_AsqFreeModels_8c0120fe:
           MOV.L       R14,@-R15
           MOV.L       R13,@-R15
           MOV.L       R12,@-R15
@@ -2242,7 +2242,7 @@ LAB_8c01211c:
           MOV.L       @R14,R0
           CMP/EQ      #-H'1,R0
           BT          LAB_8c01212e
-          BSR         _AsqReleaseAndFreeTexlist_11e3c
+          BSR         _AsqReleaseAndFreeTexlist_8c011e3c
           MOV.L       @R14,R4
 LAB_8c01212e:
           MOV.L       @(H'4,R14),R0
@@ -2273,11 +2273,11 @@ LAB_8c012152:
           MOV.L       @R15+,R13
           RTS
           MOV.L       @R15+,R14
-_AsqSetSeedA_12160:
+_AsqSetSeedA_8c012160:
           MOV.L       LP_GEN_90004+22,R3
           RTS
           MOV.L       R4,@R3
-_AsqGetRandomA_12166:
+_AsqGetRandomA_8c012166:
           MOV.L       LP_GEN_90004+22,R4
           MOV.L       @R4,R3
           MOV         R3,R2
@@ -2287,14 +2287,14 @@ _AsqGetRandomA_12166:
           MOV.L       R3,@R4
           RTS
           MOV         R3,R0
-_AsqGetRandomInRangeA_12178:
+_AsqGetRandomInRangeA_8c012178:
           STS.L       PR,@-R15
           ADD         #-H'4,R15
           MOV         R4,R3
           TST         R3,R3
           BT/S        LAB_8c012198
           MOV.L       R4,@R15
-          BSR         _AsqGetRandomA_12166
+          BSR         _AsqGetRandomA_8c012166
           NOP
           MOV.L       LP_GEN_90004+26,R2
           MOV         R0,R1
@@ -2310,11 +2310,11 @@ LAB_8c012198:
           LDS.L       @R15+,PR
           RTS
           NOP
-_AsqSetSeedB_121a2:
+_AsqSetSeedB_8c0121a2:
           MOV.L       LP_GEN_90004+30,R3
           RTS
           MOV.L       R4,@R3
-_AsqGetRandomB_121a8:
+_AsqGetRandomB_8c0121a8:
           MOV.L       LP_GEN_90004+30,R4
           MOV.L       @R4,R3
           SHAR        R3
@@ -2326,14 +2326,14 @@ _AsqGetRandomB_121a8:
           MOV.L       R1,@R4
           RTS
           MOV         R1,R0
-_AsqGetRandomInRangeB_121be:
+_AsqGetRandomInRangeB_8c0121be:
           STS.L       PR,@-R15
           ADD         #-H'4,R15
           MOV         R4,R3
           TST         R3,R3
           BT/S        LAB_8c0121de
           MOV.L       R4,@R15
-          BSR         _AsqGetRandomB_121a8
+          BSR         _AsqGetRandomB_8c0121a8
           NOP
           MOV.L       LP_GEN_90004+26,R2
           MOV         R0,R1
@@ -2349,7 +2349,7 @@ LAB_8c0121de:
           LDS.L       @R15+,PR
           RTS
           NOP
-_AsqApplyButtonConfig_121e8:
+_AsqApplyButtonConfig_8c0121e8:
           MOV.L       R14,@-R15
           MOV         #H'4,R6
           MOV.L       R13,@-R15

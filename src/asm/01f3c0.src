@@ -20,7 +20,7 @@
           .IMPORT     _var_isFading_8c226568
           .IMPORT     _snd_8c010cd6
           .IMPORT     _isPvmReady_8c01432a
-          .IMPORT     _AsqFreeQueues_11f7e
+          .IMPORT     _AsqFreeQueues_8c011f7e
           .IMPORT     _push_fadein_8c022a9c
           .IMPORT     _CourseMenuPushDialogTask_8c0170c6
           .IMPORT     _var_dialogSequenceIsActive_8c225fb4
@@ -43,15 +43,15 @@
           .IMPORT     _FUN_8c02ae3e
           .IMPORT     _const_8c039f48
           .IMPORT     _swapMessageBoxFor_8c02aefc
-          .IMPORT     _AsqInitQueues_11f36
-          .IMPORT     _AsqResetQueues_11f6c
+          .IMPORT     _AsqInitQueues_8c011f36
+          .IMPORT     _AsqResetQueues_8c011f6c
           .IMPORT     _init_8c045324
           .IMPORT     _CourseMenuRequestSysResgrp_8c018568
           .IMPORT     _CourseMenuRequestCommonResources_8c01852c
           .IMPORT     _setPvmReady_8c014330
           .IMPORT     _resetPvmReady_8c014322
-          .IMPORT     _AsqNop_11120
-          .IMPORT     _AsqProcessQueues_11fe0
+          .IMPORT     _AsqNop_8c011120
+          .IMPORT     _AsqProcessQueues_8c011fe0
           .IMPORT     _FUN_8c01e24e
           .EXPORT     _FUN_8c01f3c0
           .EXPORT     _FUN_8c01f50e
@@ -508,7 +508,7 @@ LP_GEN_79838:
           .DATA.L _snd_8c010cd6 ; H'8C01F72C
           .DATA.L _var_menuState_8c1bc7a8 ; H'8C01F730
           .DATA.L _isPvmReady_8c01432a ; H'8C01F734
-          .DATA.L _AsqFreeQueues_11f7e ; H'8C01F738
+          .DATA.L _AsqFreeQueues_8c011f7e ; H'8C01F738
           .DATA.L H'42340000 ; H'8C01F73C
           .DATA.L H'42C80000 ; H'8C01F740
           .DATA.L _push_fadein_8c022a9c ; H'8C01F744
@@ -884,13 +884,13 @@ LP_GEN_38893:
           .DATA.L _const_8c039f48 ; H'8C01FA48
           .DATA.L _swapMessageBoxFor_8c02aefc ; H'8C01FA4C
           .DATA.L _var_menuTextboxCharLimit_8c225fb8 ; H'8C01FA50
-          .DATA.L _AsqInitQueues_11f36 ; H'8C01FA54
-          .DATA.L _AsqResetQueues_11f6c ; H'8C01FA58
+          .DATA.L _AsqInitQueues_8c011f36 ; H'8C01FA54
+          .DATA.L _AsqResetQueues_8c011f6c ; H'8C01FA58
           .DATA.L _init_8c045324 ; H'8C01FA5C
           .DATA.L _CourseMenuRequestSysResgrp_8c018568 ; H'8C01FA60
           .DATA.L _CourseMenuRequestCommonResources_8c01852c ; H'8C01FA64
           .DATA.L _setPvmReady_8c014330 ; H'8C01FA68
           .DATA.L _resetPvmReady_8c014322 ; H'8C01FA6C
-          .DATA.L _AsqNop_11120 ; H'8C01FA70
-          .DATA.L _AsqProcessQueues_11fe0 ; H'8C01FA74
+          .DATA.L _AsqNop_8c011120 ; H'8C01FA70
+          .DATA.L _AsqProcessQueues_8c011fe0 ; H'8C01FA74
           .END

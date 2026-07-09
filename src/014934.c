@@ -22,5 +22,5 @@ void FUN_8c014934()
 
     njGarbageTexture(&var_tex_8c157af8, 0xc00);
 
-    AsqInitQueues_11f36(0x20,0x400,0x400,0x40);
+    AsqInitQueues_8c011f36(0x20,0x400,0x400,0x40);
 }

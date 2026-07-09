@@ -24,7 +24,7 @@ return new class extends TestCase {
         $this->call('_CourseConfirmMenuTask_8c0181b6');
 
         $this->shouldCall('_isPvmReady_8c01432a')->andReturn(0);
-        $this->shouldCall('_AsqFreeQueues_11f7e');
+        $this->shouldCall('_AsqFreeQueues_8c011f7e');
         $this->shouldWriteLong($this->addressOf('_var_menuState_8c1bc7a8') + 0x18, 1);
         $this->shouldCall('_push_fadein_8c022a9c')->with(10);
         $this->shouldCall('_snd_8c010cd6')->with(0, 15);
@@ -116,7 +116,7 @@ return new class extends TestCase {
         $this->call('_CourseConfirmMenuTask_8c0181b6');
 
         // Prompt returns YES (1) ¨ advance to state 3 and fade out
-        $this->shouldCall('_promptHandleBinary_16caa')->with(
+        $this->shouldCall('_promptHandleBinary_8c016caa')->with(
             $this->addressOf('_var_menuState_8c1bc7a8') + 0x38
         )->andReturn(1);
         $this->shouldWriteLong($this->addressOf('_var_menuState_8c1bc7a8') + 0x18, 3);
@@ -159,7 +159,7 @@ return new class extends TestCase {
         $this->call('_CourseConfirmMenuTask_8c0181b6');
 
         // Prompt returns NO/Cancel (2) ¨ set state 7, do two startAdxFadeOut_8c010bae calls, then fade out
-        $this->shouldCall('_promptHandleBinary_16caa')->with(
+        $this->shouldCall('_promptHandleBinary_8c016caa')->with(
             $this->addressOf('_var_menuState_8c1bc7a8') + 0x38
         )->andReturn(2);
         $this->shouldWriteLong($this->addressOf('_var_menuState_8c1bc7a8') + 0x18, 7);
@@ -204,7 +204,7 @@ return new class extends TestCase {
         $this->call('_CourseConfirmMenuTask_8c0181b6');
 
         // Prompt returns 0 ¨ stay in state 2; no fade out; just epilogue draws
-        $this->shouldCall('_promptHandleBinary_16caa')->with(
+        $this->shouldCall('_promptHandleBinary_8c016caa')->with(
             $this->addressOf('_var_menuState_8c1bc7a8') + 0x38
         )->andReturn(0);
 
@@ -668,7 +668,7 @@ return new class extends TestCase {
         $this->setSize('_init_8c03bd80', 4);
         $this->setSize('_drawSprite_8c014f54', 4);
         $this->setSize('_handleBinaryPrompt_8c016caa', 4); // decompiled alias
-        $this->setSize('_promptHandleBinary_16caa', 4);    // original symbol name
+        $this->setSize('_promptHandleBinary_8c016caa', 4);    // original symbol name
         $this->setSize('_push_fadeout_8c022b60', 4);
         $this->setSize('__divls', 4);
         $this->onCall('__divls', function () {

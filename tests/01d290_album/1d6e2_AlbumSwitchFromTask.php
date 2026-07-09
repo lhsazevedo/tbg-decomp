@@ -85,15 +85,15 @@ return new class extends TestCase {
         $this->shouldCall('_njGarbageTexture')->with(
             $this->addressOf('_var_tex_8c157af8'), 0xc00
         );
-        $this->shouldCall('_AsqInitQueues_11f36')->with(8, 0, 0, 8);
-        $this->shouldCall('_AsqResetQueues_11f6c');
+        $this->shouldCall('_AsqInitQueues_8c011f36')->with(8, 0, 0, 8);
+        $this->shouldCall('_AsqResetQueues_8c011f6c');
         $this->shouldCall('_CourseMenuRequestSysResgrp_8c018568')->with(
             $this->m(0x0c),
             $this->addressOf('_init_albumResourceGroup_8c045160'),
         );
         $this->shouldCall('_setPvmReady_8c014330');
-        $this->shouldCall('_AsqProcessQueues_11fe0')->with(
-            $this->addressOf('_AsqNop_11120'),
+        $this->shouldCall('_AsqProcessQueues_8c011fe0')->with(
+            $this->addressOf('_AsqNop_8c011120'),
             0,
             0,
             0,

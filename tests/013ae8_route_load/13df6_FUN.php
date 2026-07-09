@@ -39,11 +39,11 @@ return new class extends TestCase {
         $this->shouldWriteLong($base + 0 * 0x10 + 0x4, 1);
 
         // slot 0: request its pvm.
-        $this->shouldCall('_AsqRequestPvm_11ac0')
+        $this->shouldCall('_AsqRequestPvm_8c011ac0')
             ->with($basedir, "MOV01.pvm", $base + 0 * 0x10 + 0x8, 2, 0);
 
         // slot 5: release and mark unloaded.
-        $this->shouldCall('_AsqReleaseAndFreeTexlist_11e3c')->with(0x8c500000);
+        $this->shouldCall('_AsqReleaseAndFreeTexlist_8c011e3c')->with(0x8c500000);
         $this->shouldWriteLong($base + 5 * 0x10 + 0x8, self::UNLOADED);
     }
 
@@ -82,7 +82,7 @@ return new class extends TestCase {
     {
         // _var_commonDir_8c18ad6c is defined in the C object.
         $this->setSize('_var_pedestrianAssets_8c1bbfdc', self::SLOTS * 0x10);
-        $this->setSize('_AsqRequestPvm_11ac0', 4);
-        $this->setSize('_AsqReleaseAndFreeTexlist_11e3c', 4);
+        $this->setSize('_AsqRequestPvm_8c011ac0', 4);
+        $this->setSize('_AsqReleaseAndFreeTexlist_8c011e3c', 4);
     }
 };

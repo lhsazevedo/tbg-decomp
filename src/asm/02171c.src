@@ -8,7 +8,7 @@
           .IMPORT     _var_datFiles_8c18adb4
           .IMPORT     _njReadBinary
           .IMPORT     _var_pvrDir_8c18ad4c
-          .IMPORT     _AsqRequestTexlist_1181c
+          .IMPORT     _AsqRequestTexlist_8c01181c
           .IMPORT     _var_8c1bb8a4
           .IMPORT     _var_8c22651c
           .IMPORT     _njReleaseTexture
@@ -575,7 +575,7 @@ LAB_8c021af8:
           MOV.L       @R15+,R14
 LP_GEN_62772:
           .DATA.L _var_pvrDir_8c18ad4c ; H'8C021B14
-          .DATA.L _AsqRequestTexlist_1181c ; H'8C021B18
+          .DATA.L _AsqRequestTexlist_8c01181c ; H'8C021B18
           .DATA.L _syFree ; H'8C021B1C
           .DATA.L _var_8c1bb8a4 ; H'8C021B20
           .DATA.L _var_8c226520 ; H'8C021B24
