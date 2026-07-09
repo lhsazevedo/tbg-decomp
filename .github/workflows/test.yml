@@ -47,3 +47,6 @@ jobs:
 
       - name: Check data section match
         run: bash scripts/check_data_match.sh
+
+      - name: Lint
+        run: bash scripts/lint.sh
