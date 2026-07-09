@@ -14,8 +14,8 @@ All build/test commands run inside Docker:
 # Build
 make
 
-# Test (full suite)
-./scripts/run_tests.sh
+# Test (full suite; --parallel speeds this up, sh4objtest v0.1.28+)
+./scripts/run_tests.sh --parallel
 
 # Test (single file)
 ./scripts/run_tests.sh -c /app/tests/path/to/test.php
