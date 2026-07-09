@@ -8,6 +8,7 @@
 #include "015ab8_title.h"
 #include "014b8c_backup.h"
 #include "014f54_text_pre_data.h"
+#include "0fcd20_sectionB.h"
 #include "serial_debug.h"
 
 /* ====================
@@ -82,15 +83,6 @@ enum VMU_STATUS {
     VMU_STATUS_SAVE_EXISTS_NO_SPACE = 6
 };
 
-
-/* =====================
- * External Declarations
-   =====================
- */
-
-extern int var_vmuStatus_8c226048[9];
-extern int var_8c22606c;
-extern Bool var_isFading_8c226568;
 
 
 /* =======================

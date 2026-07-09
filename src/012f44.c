@@ -9,6 +9,7 @@
 #include "01614c.h"
 #include "03bd80_sectionD.h"
 #include "014f54_text_pre_data.h"
+#include "0fcd20_sectionB.h"
 #include "includes.h"
 #include "serial_debug.h"
 #include "014a9c_tasks.h"
@@ -303,7 +304,6 @@ typedef BusState;
 
 NJS_TEXMEMLIST var_tex_8c157af8[TEX_NUM];
 STATIC NJS_TEXNAME    var_texname_8c18acf8[1];
-extern Sint8          var_soundMode_8c226070;
 
 NJS_TEXLIST init_texlist_8c03bf44 = {var_texname_8c18acf8, 1};
 int init_8c03bf48 = 1;
@@ -326,19 +326,6 @@ int init_8c03bf8c[] = {
 };
 int init_8c03bfa8 = 0;
 
-extern void* var_8c226434;
-extern void* var_8c226438;
-extern void* var_8c228234;
-extern void* var_8c227e20;
-extern void* var_8c227e24;
-extern void* var_8c2288f8;
-extern void* var_resourceGroup_8c2263a8;
-extern void* var_currentSysResGroupInfo_8c225fb0;
-
-extern void* var_8c2260ac;
-extern void* var_8c2260b8;
-extern void* var_8c2260c4;
-
 STATIC int var_gdErr_8c18ad14;
 
 STATIC NJS_FOG_TABLE var_fogTable_8c18aaf8;
@@ -347,16 +334,6 @@ int var_8c18ad04;
 int var_8c18ad08;
 int var_8c18ad0c;
 int var_8c18ad10;
-
-extern int var_8c2260a8;
-extern var_8c22847c;
-extern int var_8c228704;
-extern var_8c227dd4;
-extern Uint32 var_8c227da0;
-extern int var_8c227da8;
-
-extern var_currentSegment_8c228708;
-extern Bool var_8c22655c;
 
 /* Matched :) */
 void task_8c012f44()
@@ -667,7 +644,7 @@ void njUserInit_8c0134ec() {
     var_interiorTexlist_8c1bc438 = (NJS_TEXLIST *) -1;
     var_menuState_8c1bc7a8.resourceGroupA_0x00.tlist_0x00 = (void*) -1;
     var_menuState_8c1bc7a8.resourceGroupB_0x0c.tlist_0x00 = (void*) -1;
-    var_resourceGroup_8c2263a8 = (void *) -1;
+    var_resourceGroup_8c2263a8 = (ResourceGroup *) -1;
     var_8c1ba2e0 = (void *) -1;
     var_8c1ba348 = (void *) -1;
     var_8c1ba344 = (void *) -1;

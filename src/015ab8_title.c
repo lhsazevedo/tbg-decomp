@@ -19,14 +19,8 @@
 #include "022464.h"
 #include "028258.h"
 #include "014f54_text_pre_data.h"
+#include "0fcd20_sectionB.h"
 
-/* =======================
- * Non-initialized Globals
- * =======================
- */
-
-extern Bool var_isFading_8c226568;
-extern void* var_currentSysResGroupInfo_8c225fb0;
 
 /* ===================
  * Initialized Globals

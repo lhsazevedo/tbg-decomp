@@ -3,6 +3,7 @@
 #include <cri_adxt.h>
 #include "0100bc_sound.h"
 #include "014f54_text_pre_data.h"
+#include "0fcd20_sectionB.h"
 #include <cri_adxf.h>
 #include <string.h>
 
@@ -66,9 +67,6 @@ typedef struct {
  * =====================
  */
 
-extern UnknownVolStructB var_uknVol_8c226468;
-
-
 /* =======================
  * Non-initialized Globals
  * =======================
@@ -121,7 +119,7 @@ void initUknVol_8c0100bc() {
 
 /* Tested */
 void midiSetVol_8c010128() {
-    int r13var_uknVol_8c226468_as_int = var_uknVol_8c226468.field_0x00;
+    int r13var_uknVol_8c226468_as_int = var_uknVol_8c226468;
 
     if ((var_uknVol_8c0fcd50.field_0x00 & 2) == 2) {
         /* A */
@@ -170,7 +168,7 @@ void midiSetVol_8c010128() {
 /* Matched */
 void midiSetPitch_8c01023c()
 {
-    int var_uknVol_8c226468_as_int = var_uknVol_8c226468.field_0x00;
+    int var_uknVol_8c226468_as_int = var_uknVol_8c226468;
 
     if (var_uknVol_8c226468_as_int > 10.f && var_uknVol_8c226468_as_int < 3000.f) {
         sdMidiSetPitch(
@@ -201,7 +199,7 @@ void midiSetPitch_8c01023c()
 void FUN_8c0102d8()
 {
     int bcb0 = var_8c1bbcb0;
-    int var_uknVol_8c226468_as_int = var_uknVol_8c226468.field_0x00;
+    int var_uknVol_8c226468_as_int = var_uknVol_8c226468;
 
     if ((var_uknVol_8c0fcd50.field_0x00 & 1) != 1 && bcb0 == 1) {
         /* A */

@@ -12,6 +12,7 @@
 #include "02c884.h"
 #include "03bd80_sectionD.h"
 #include "014f54_text_pre_data.h"
+#include "0fcd20_sectionB.h"
 #include "serial_debug.h"
 
 /* ====================
@@ -165,16 +166,6 @@ void *var_datFiles_8c18adb4[4];
 
 void setPvmReady_8c014330(void);
 void resetPvmReady_8c014322(void);
-
-extern int var_currentSegment_8c228708;
-
-extern int var_fogParam_8c226504;
-extern int var_fogParam_8c226508;
-extern float var_fogParam_8c227dd0;
-
-extern int var_currentTileRegionList_8c226534;
-
-extern int var_8c2285c4[];
 
 /* ==========
  * Functions

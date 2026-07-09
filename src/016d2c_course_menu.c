@@ -18,6 +18,7 @@
 #include "01e27c.h"
 #include "028258.h"
 #include "014f54_text_pre_data.h"
+#include "0fcd20_sectionB.h"
 #include "serial_debug.h"
 
 // TODO:
@@ -223,13 +224,6 @@ enum {
  * Non-initialized Globals
  * =======================
  */
-
-extern int var_dialogSequenceIsActive_8c225fb4;
-extern int var_menuTextboxCharLimit_8c225fb8;
-extern int var_dialogQueue_8c225fbc[4]; // TODO: Confirm length
-extern Sint8 var_coursesToUnlock_8c225fd4[];
-extern Bool var_isFading_8c226568;
-extern void *var_currentSysResGroupInfo_8c225fb0;
 
 /* Data defined after the functions so the shared "" literal is first seen in code
    (swapMessageBoxFor("")) and lands at the head of the constant pool. */

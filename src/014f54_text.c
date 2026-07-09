@@ -5,6 +5,7 @@
 #include "011120_asset_queues.h"
 #include "014f54_text.h"
 #include "014f54_text_pre_data.h"
+#include "0fcd20_sectionB.h"
 #include "serial_debug.h"
 
 /* ====================
@@ -57,9 +58,6 @@ void *var_8c1bc824;
 ReplayInput var_demoBuffer_8c1bc828[REPLAY_BUFFER_CAPACITY];
 ReplayInput *var_demoCursor_8c225fa8;
 Uint32 var_demoPrevOn_8c225fac;
-
-extern int var_demoEntryValue_8c227e14;
-extern int var_demoEntryValue_8c22822c;
 
 
 /* ===================

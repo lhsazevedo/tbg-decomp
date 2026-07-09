@@ -11,6 +11,7 @@
 #include "016d2c_course_menu.h"
 #include "022464.h"
 #include "014f54_text_pre_data.h"
+#include "0fcd20_sectionB.h"
 
 /* ====================
  * Compiler Definitions
@@ -47,13 +48,6 @@ enum MAIN_MENU_STATE {
     MAIN_MENU_STATE_ANIMATING_LEFT  = 4,
     MAIN_MENU_STATE_SELECTED        = 5,
 };
-
-/* =====================
- * External Declarations
- * =====================
- */
-
-extern Bool var_isFading_8c226568;
 
 /* =======================
  * Non-initialized Globals

@@ -3,9 +3,7 @@
 #include "015ab8_title.h"
 #include "016d2c_course_menu.h"
 #include "016108.h"
-
-extern void* var_currentSysResGroupInfo_8c225fb0;
-extern ResourceGroup* var_resourceGroup_8c2263a8;
+#include "0fcd20_sectionB.h"
 
 /* Matched */
 void freeResourceGroups_8c016108()

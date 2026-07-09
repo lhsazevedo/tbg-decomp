@@ -13,6 +13,7 @@
 #include "022464.h"
 #include "03bd80_sectionD.h"
 #include "014f54_text_pre_data.h"
+#include "0fcd20_sectionB.h"
 #include "01d290_album.h"
 
 /* ====================
@@ -57,12 +58,6 @@ enum ALBUM_STATE {
     ALBUM_STATE_FADE_OUT = 6
 };
 
-/* =====================
- * External Declarations
- * =====================
- */
-
-extern Bool var_isFading_8c226568;
 
 /* ====================
  * Forward Declarations
