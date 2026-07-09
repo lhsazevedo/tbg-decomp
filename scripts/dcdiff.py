@@ -6,8 +6,11 @@ C (const), D (init data) and B (bss) should match when the objects are meant to 
 equivalent. Two things are normalised so faithful pointers don't look like diffs:
   * relocated 4-byte slots are masked out before the byte compare (the assembler
     stores addends in the reloc entry, the compiler stores them in-place);
-  * relocations are compared as an ordered list of TARGETS (external symbol, or
-    internal section letter), ignoring the addend.
+  * relocations are compared as an ordered list of (TARGET, address). TARGET is the
+    external symbol name, or internal section letter; address is the addend for
+    internal relocs (offset into the target section) or the addend for external
+    ones. Address is NOT checked for relocations that target section P: P's layout
+    isn't required to match, so an offset into it isn't meaningful to compare.
 
 Best for objects that should be identical: before/after a rename, or isolated
 data-only objects. A not-yet-matched unit whose compiler lays constants out in a
@@ -23,7 +26,7 @@ SEC = re.compile(r"^Section \d+: (\w)\s+\[")
 IDX = re.compile(r"^Section (\d+): (\w)\s+\[")
 HEX = re.compile(r"^\s*0x([0-9a-fA-F]+):\s+(.*)$")
 INT = re.compile(r"addr=0x([0-9a-fA-F]+)\s+-> section (\d+)\s+addend=(\S+)")
-EXT = re.compile(r"addr=0x([0-9a-fA-F]+)\s+(\S+)\s+addend=0x[0-9a-fA-F]+\s+width=")
+EXT = re.compile(r"addr=0x([0-9a-fA-F]+)\s+(\S+)\s+addend=(0x[0-9a-fA-F]+)\s+width=")
 
 
 def inspect(obj):
@@ -47,23 +50,31 @@ def inspect(obj):
             continue
         m = INT.search(line)
         if m:
-            raw[cur]["rel"].append((int(m.group(1), 16), ("S", m.group(2))))
+            # the compiler stores the addend in-place in the section bytes
+            # instead of the reloc entry; resolved to a number once we have
+            # the raw bytes for this section (below).
+            addend = m.group(3) if m.group(3) == "in-place" else int(m.group(3), 16)
+            raw[cur]["rel"].append((int(m.group(1), 16), "S", m.group(2), addend))
             continue
         m = EXT.search(line)
         if m:
-            raw[cur]["rel"].append((int(m.group(1), 16), ("X", m.group(2))))
+            raw[cur]["rel"].append((int(m.group(1), 16), "X", m.group(2), int(m.group(3), 16)))
     secs = {}
     for letter, r in raw.items():
         size = (max(r["bytes"]) + 1) if r["bytes"] else 0
         buf = bytearray(size)
         for off, b in r["bytes"].items():
             buf[off] = b
-        offsets = sorted(o for o, _ in r["rel"])
+        rel = [(addr, k, v, int.from_bytes(buf[addr:addr + 4], "little") if addend == "in-place" else addend)
+               for addr, k, v, addend in r["rel"]]
+        offsets = sorted(addr for addr, _, _, _ in rel)
         for o in offsets:
             buf[o:o + 4] = b"\0\0\0\0"                      # mask reloc slots
-        targets = [(k, idx2letter.get(v, v) if k == "S" else v)
-                   for _, (k, v) in sorted(r["rel"])]        # ordered, addend dropped
-        secs[letter] = (buf, targets)
+        entries = sorted(rel)                               # ordered by addr
+        targets = [(k, idx2letter.get(v, v) if k == "S" else v) for _, k, v, _ in entries]
+        addends = [None if k == "S" and idx2letter.get(v, v) == "P" else addend
+                   for _, k, v, addend in entries]           # skip address check into P
+        secs[letter] = (buf, targets, addends)
     return secs
 
 
@@ -78,7 +89,7 @@ def main():
             print(f"[{letter}] only in {sys.argv[1] if letter in a else sys.argv[2]}")
             diffs += letter != "P"
             continue
-        (ba, ta), (bb, tb) = a[letter], b[letter]
+        (ba, ta, aa), (bb, tb, ab) = a[letter], b[letter]
         msgs = []
         if ba != bb:
             n = min(len(ba), len(bb))
@@ -90,6 +101,12 @@ def main():
             first = f"{ta[i] if i < len(ta) else None} vs {tb[i] if i < len(tb) else None}"
             msgs.append(f"{sum(x != y for x, y in zip(ta, tb)) + abs(len(ta) - len(tb))} "
                         f"reloc target(s) differ; first at #{i}: {first}")
+        if aa != ab:
+            n = min(len(aa), len(ab))
+            i = next((k for k in range(n) if aa[k] != ab[k]), n)
+            first = f"{aa[i] if i < len(aa) else None} vs {ab[i] if i < len(ab) else None}"
+            msgs.append(f"{sum(x != y for x, y in zip(aa, ab)) + abs(len(aa) - len(ab))} "
+                        f"reloc address(es) differ; first at #{i}: {first}")
         if msgs:
             print(f"[{letter}] " + "; ".join(msgs) + (f"  ({tag})" if tag else ""))
             diffs += letter != "P" and bool(msgs)
