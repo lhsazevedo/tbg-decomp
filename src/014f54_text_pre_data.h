@@ -9,6 +9,274 @@
 #include "014b8c_backup.h"
 #include "014f54_text.h"
 
+/* =================
+ * Type Declarations
+ * =================
+ */
+
+// TODO:
+typedef struct {
+    int field_0x000;
+    int field_0x004;
+    int field_0x008;
+    int field_0x00c;
+    int field_0x010;
+    int field_0x014;
+    int field_0x018;
+    int field_0x01c;
+    int field_0x020;
+    int field_0x024;
+    int field_0x028;
+    int field_0x02c;
+    int field_0x030;
+    int field_0x034;
+    int field_0x038;
+    int field_0x03c;
+    int field_0x040;
+    int field_0x044;
+    int field_0x048;
+    int field_0x04c;
+    int field_0x050;
+    int field_0x054;
+    int field_0x058;
+    int field_0x05c;
+    int field_0x060;
+    int field_0x064;
+    int field_0x068;
+    int field_0x06c;
+
+    int distance_traveled_0x070;
+    int ang_0x074;
+    int acc_0x078;
+    int ang_0x07c;
+    int blinker_0x080;
+    int field_0x084;
+
+    int field_0x088;
+    int field_0x08c;
+    int field_0x090;
+    int field_0x094;
+    int field_0x098;
+    int field_0x09c;
+    int field_0x0a0;
+    int field_0x0a4;
+    int field_0x0a8;
+    int field_0x0ac;
+    int field_0x0b0;
+    int field_0x0b4;
+    int field_0x0b8;
+    int field_0x0bc;
+    int field_0x0c0;
+    int field_0x0c4;
+    int field_0x0c8;
+    int field_0x0cc;
+    int field_0x0d0;
+    int field_0x0d4;
+    int field_0x0d8;
+    int field_0x0dc;
+    int field_0x0e0;
+    int field_0x0e4;
+    int field_0x0e8;
+    int field_0x0ec;
+    int field_0x0f0;
+
+    float field_0x0f4;
+
+    int field_0x0f8;
+    int field_0x0fc;
+
+    float field_0x100;
+
+    int field_0x104;
+    int field_0x108;
+    int field_0x10c;
+    int field_0x110;
+    int field_0x114;
+    int field_0x118;
+    int field_0x11c;
+    int field_0x120;
+    int field_0x124;
+    int field_0x128;
+    int field_0x12c;
+    int field_0x130;
+    int field_0x134;
+    int field_0x138;
+    int field_0x13c;
+    int field_0x140;
+    int field_0x144;
+    int field_0x148;
+    int field_0x14c;
+    int field_0x150;
+    int field_0x154;
+    int field_0x158;
+    int field_0x15c;
+    int field_0x160;
+    int field_0x164;
+    int field_0x168;
+    int field_0x16c;
+    int field_0x170;
+    int field_0x174;
+    int field_0x178;
+    int field_0x17c;
+    int field_0x180;
+    int field_0x184;
+    int field_0x188;
+    int field_0x18c;
+    int field_0x190;
+    int field_0x194;
+    int field_0x198;
+    int field_0x19c;
+    int field_0x1a0;
+    int field_0x1a4;
+    int field_0x1a8;
+    int field_0x1ac;
+    int field_0x1b0;
+    int field_0x1b4;
+    int field_0x1b8;
+    int field_0x1bc;
+    int field_0x1c0;
+    int field_0x1c4;
+    int field_0x1c8;
+    int field_0x1cc;
+    int field_0x1d0;
+    int field_0x1d4;
+    int field_0x1d8;
+    int field_0x1dc;
+    int field_0x1e0;
+    int field_0x1e4;
+    int field_0x1e8;
+    int field_0x1ec;
+    int field_0x1f0;
+    int field_0x1f4;
+    int field_0x1f8;
+    int field_0x1fc;
+    int field_0x200;
+    int field_0x204;
+    int field_0x208;
+    int field_0x20c;
+    int field_0x210;
+    int field_0x214;
+    int field_0x218;
+    int field_0x21c;
+    int field_0x220;
+    int field_0x224;
+    int field_0x228;
+    int field_0x22c;
+    int field_0x230;
+    int field_0x234;
+    int field_0x238;
+    int field_0x23c;
+    int field_0x240;
+    int field_0x244;
+    int field_0x248;
+    int field_0x24c;
+
+    int ang_0x250;
+
+    int field_0x254;
+
+    int ang_0x258;
+
+    int field_0x25c;
+    int field_0x260;
+    int field_0x264;
+
+    int mirror_0x268;
+
+    int field_0x26c;
+    int field_0x270;
+    int field_0x274;
+
+    float field_0x278;
+    float speed_0x27c;
+    float acc_hist_0x280[4];
+
+    int field_0x290;
+    int field_0x294;
+    int field_0x298;
+    int field_0x29c;
+    int field_0x2a0;
+    int field_0x2a4;
+    int field_0x2a8;
+    int field_0x2ac;
+    int field_0x2b0;
+
+    int bus_state_0x2b4;
+
+    int field_0x2b8;
+    int field_0x2bc;
+    int field_0x2c0;
+    int field_0x2c4;
+    int field_0x2c8;
+    int field_0x2cc;
+    int field_0x2d0;
+    int field_0x2d4;
+    int field_0x2d8;
+    int field_0x2dc;
+    int field_0x2e0;
+    int field_0x2e4;
+    int field_0x2e8;
+    int field_0x2ec;
+    int field_0x2f0;
+
+    int gear_0x2f4;
+
+    int field_0x2f8;
+    int field_0x2fc;
+    int field_0x300;
+    int field_0x304;
+    int field_0x308;
+    int field_0x30c;
+    int field_0x310;
+    int field_0x314;
+    int field_0x318;
+    int field_0x31c;
+    int field_0x320;
+    int field_0x324;
+    int field_0x328;
+    int field_0x32c;
+    int field_0x330;
+    int field_0x334;
+    int field_0x338;
+    int field_0x33c;
+    int field_0x340;
+    int field_0x344;
+    int field_0x348;
+    int field_0x34c;
+    int field_0x350;
+    int field_0x354;
+    int field_0x358;
+    int field_0x35c;
+    int field_0x360;
+    int field_0x364;
+    int field_0x368;
+    int field_0x36c;
+    int field_0x370;
+    int field_0x374;
+    int field_0x378;
+    int field_0x37c;
+    int field_0x380;
+    int field_0x384;
+    int field_0x388;
+    int field_0x38c;
+    int field_0x390;
+    int field_0x394;
+    int field_0x398;
+    int field_0x39c;
+    int field_0x3a0;
+    int field_0x3a4;
+    int field_0x3a8;
+    int field_0x3ac;
+    int field_0x3b0;
+    int field_0x3b4;
+    int field_0x3b8;
+    int field_0x3bc;
+
+    int bus_substate_0x3c0;
+
+    int field_0x3c4;
+} BusState;
+
 extern signed char var_8c1ba290;
 extern Uint32 var_8c1ba291;
 extern Uint32 var_8c1ba292;
@@ -43,7 +311,7 @@ extern float var_8c1bc450;
 extern void* var_8c1bc454;
 extern int var_award_8c1bb8f8;
 extern void* var_busFont_8c1ba1c8;
-extern char var_busState_8c1bb9d0[]; // real type is 012f44.c's local BusState struct
+extern BusState var_busState_8c1bb9d0;
 extern void* var_busstopDat_8c1bc42c;
 extern void* var_busstopPartsDat_8c1bc428;
 extern NJS_TEXLIST *var_busStopTexlist_8c1bc424;

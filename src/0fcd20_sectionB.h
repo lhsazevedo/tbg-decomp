@@ -5,6 +5,21 @@
 #include <shinobi.h>
 #include "013ae8_route_load.h"
 
+/* =================
+ * Type Declarations
+ * =================
+ */
+
+typedef struct {
+    int field_0x00;
+    int field_0x04;
+    int field_0x08;
+    int field_0x0c;
+    int field_0x10;
+    int field_0x14;
+    int field_0x18;
+} Struct8c2264b8;
+
 extern int var_8c22606c;
 extern int var_8c2260a8;
 extern void* var_8c2260ac;
@@ -12,7 +27,7 @@ extern void* var_8c2260b8;
 extern void* var_8c2260c4;
 extern void* var_8c226434;
 extern void* var_8c226438;
-extern char var_8c2264b8[]; // real type is 020528.c's local Struct8c2264b8 struct
+extern Struct8c2264b8 var_8c2264b8;
 extern Bool var_8c22655c;
 extern Uint32 var_8c227da0;
 extern int var_8c227da8;
