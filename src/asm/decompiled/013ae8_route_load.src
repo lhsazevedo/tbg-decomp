@@ -10910,7 +10910,7 @@ _const_8c035dc8:        ; aggressive search
           ;.SDATA      "yaji.njd"
           ;.DATA.B     H'00
           ;.RES.B      3
-          .DATA.B      H'79, H'61, H'6A, H'69, H'2E, H'6E, H'6A, H'64, H'00, H'00, H'00, H'00
+          .DATA.B      H'79, H'61, H'6A, H'69, H'2E, H'6E, H'6A, H'64, H'00
           .SECTION    B,DATA,ALIGN=4
 _var_currentCourseConfig_8c18ad18:
           .RES.B      4
