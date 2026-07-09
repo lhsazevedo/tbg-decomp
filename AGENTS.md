@@ -105,6 +105,19 @@ Sections in order, each with a banner like the one below; omit empty sections:
 - Private globals in asm: export only under `.AIFDEF UNIT_TESTING` / `.AENDI`.
 - Each unit has two object files: `<addr>_src.obj` (asm) and `<addr>_c.obj` (C).
 - **ASCII only** in `src/` and `tests/` files — they are Shift-JIS encoded; non-ASCII characters (including Unicode arrows `→`, smart quotes, etc.) will corrupt the file. Use plain ASCII alternatives (e.g. `->` instead of `→`).
+- **No local `extern` declarations in `.c` files.** Every external symbol must come
+  from an `#include`d header: the owning unit's header if it already has one, or a
+  new minimal header for a still-undecompiled `asm` unit if it doesn't (declare
+  only the symbols actually referenced, not every export of that object). C never
+  checks an `extern` declaration against the real definition across translation
+  units, so a stale one silently compiles and links as long as the name matches
+  (this has caused real bugs, e.g. a header declaring `BupInit` when the actual
+  function was `bupInit_8c014b8c`). Checked by `scripts/check_naming.py`, which
+  also flags an `extern` for a symbol nothing in that file actually references
+  (dead code) and an `extern` for a function/variable defined later in the same
+  file (that's a forward declaration, not a cross-unit extern -- write it as a
+  plain declaration with no `extern` keyword, in the file's own Forward
+  Declarations section).
 
 ## Adding a New Unit
 
