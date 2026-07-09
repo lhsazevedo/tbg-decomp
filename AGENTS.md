@@ -71,6 +71,11 @@ rather than grepping source. Two kinds of names are exempt from the address suff
   the address suffix would be redundant.
 - Everything else must have the address suffix; there is no other exemption.
 
+`scripts/check_test_naming.py` checks (informationally -- it never fails the build)
+that a per-function test file's `$this->call(...)` entrypoint matches its own
+filename, to catch a test left behind under its old name after the function it
+covers got renamed.
+
 Every non-`STATIC` ("public") function must be declared in that unit's
 `<addr>_name.h` — create the header if the unit doesn't have one yet. `STATIC`
 functions (private to the unit) do not need a header declaration.

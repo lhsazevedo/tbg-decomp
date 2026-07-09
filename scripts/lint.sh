@@ -15,3 +15,7 @@ if python3 scripts/clear_unused_imports.py --dry-run src/asm/*.src src/asm/decom
   echo "FAIL: unused .IMPORT/.EXPORT directives found -- run scripts/clear_unused_imports.py to fix"
   exit 1
 fi
+
+echo
+echo "=== check_test_naming.py (informational) ==="
+python3 scripts/check_test_naming.py
