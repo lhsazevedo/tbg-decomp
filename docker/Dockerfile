@@ -5,6 +5,7 @@ RUN addgroup --gid 1000 user \
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
         wget \
+        python3 \
     && rm -rf /var/lib/apt/lists/* \
     && wget -nv https://github.com/decompals/wibo/releases/download/1.1.0/wibo-x86_64 -O /usr/local/bin/wibo \
     && chmod +x /usr/local/bin/wibo \

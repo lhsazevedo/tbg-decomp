@@ -5,7 +5,6 @@
 -show=noobj,source,expansion,w=80,l=0
 -comment=nonest
 -cpu=sh4
--define=__SHC__,SERIAL_DEBUG
 -division=cpu
 -endian=little
 -optimize=1
