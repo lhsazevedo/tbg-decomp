@@ -23,7 +23,6 @@
           .IMPORT     _var_tasks_8c1ba3c8
           .IMPORT     _pushTask_8c014ae8
           .IMPORT     _startAdxFadeOut_8c010bae
-          .IMPORT     _var_exp_8c1ba25c
           .IMPORT     _var_coursesToUnlock_8c225fd4
           .IMPORT     _var_8c1bb8b8
           .IMPORT     _var_8c1bb8bc
@@ -1012,7 +1011,7 @@ LP_GEN_30863:
           .DATA.W H'1F40 ; H'8C017398
           .DATA.W H'2EE0 ; H'8C01739A
           .DATA.L _var_progress_8c1ba1cc ; H'8C01739C
-          .DATA.L _var_exp_8c1ba25c ; H'8C0173A0
+          .DATA.L _var_progress_8c1ba1cc + H'90 ; H'8C0173A0
 LAB_8c0173a4:
           MOV         #H'3,R6
           CMP/GE      R6,R4
@@ -1152,7 +1151,7 @@ LP_GEN_89119:
           .DATA.W H'01F4 ; H'8C017496
           .DATA.W H'0BB8 ; H'8C017498
           .DATA.W H'00FF ; H'8C01749A
-          .DATA.L _var_exp_8c1ba25c ; H'8C01749C
+          .DATA.L _var_progress_8c1ba1cc + H'90 ; H'8C01749C
           .DATA.L _var_coursesToUnlock_8c225fd4 ; H'8C0174A0
           .DATA.L _var_progress_8c1ba1cc ; H'8C0174A4
           .DATA.L _var_8c1bb8b8 ; H'8C0174A8

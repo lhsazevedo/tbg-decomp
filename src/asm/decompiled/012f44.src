@@ -67,10 +67,9 @@
           .IMPORT     _init_8c0460b0
           .IMPORT     _FUN_8c01895e
           .IMPORT     _AsqApplyButtonConfig_8c0121e8
-          .IMPORT     _var_8c1ba292
+          .IMPORT     _var_progress_8c1ba1cc
           .IMPORT     _var_8c227da0
           .IMPORT     _var_8c227da8
-          .IMPORT     _var_8c1ba291
           .IMPORT     _isPvmReady_8c01432a
           .IMPORT     _var_loadedFooNjm_8c1bc448
           .IMPORT     _var_8c1bc450
@@ -783,11 +782,11 @@ LP_GEN_38000:
           .DATA.L _AsqSetSeedA_8c012160
           .DATA.L _AsqSetSeedB_8c0121a2
           .DATA.L _AsqApplyButtonConfig_8c0121e8
-          .DATA.L _var_8c1ba292
+          .DATA.L _var_progress_8c1ba1cc + H'C6
           .DATA.L _var_8c227da0
           .DATA.L _var_8c227da8
           .DATA.L _pushRouteLoadTask_8c0144fc
-          .DATA.L _var_8c1ba291
+          .DATA.L _var_progress_8c1ba1cc + H'C5
           .DATA.L _const_8c033364
 
 LAB_8c013440:

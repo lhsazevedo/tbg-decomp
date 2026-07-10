@@ -101,10 +101,6 @@ return new class extends TestCase {
         ] as $sym => $size) {
             $this->setSize($sym, $size);
         }
-
-        // The decompiled asm stub still addresses this byte by its old standalone
-        // name; alias it onto the same address as PlayerProgress.field_0xc4.
-        $this->rellocate('_var_8c1ba290', $this->addressOf('_var_progress_8c1ba1cc') + 0xc4);
     }
 
     protected function isAsmObject(): bool

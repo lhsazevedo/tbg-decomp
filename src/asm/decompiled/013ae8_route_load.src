@@ -60,7 +60,7 @@
           .IMPORT     _pushTask_8c014ae8
           .IMPORT     _var_tex_8c157af8
           .IMPORT     _njGarbageTexture
-          .IMPORT     _var_8c1ba290
+          .IMPORT     _var_progress_8c1ba1cc
           .IMPORT     _var_8c2285c4
           .IMPORT     _dispatchInputTask_8c012970
           .EXPORT     _requestVehicleAssets_8c013ae8
@@ -1660,7 +1660,7 @@ LP_GEN_17698:
           .DATA.L _drawSprite_8c014f54
           .DATA.L __modls
           .DATA.L H'C0800000
-          .DATA.L _var_8c1ba290
+          .DATA.L _var_progress_8c1ba1cc + H'C4
           .DATA.L _var_playMode_8c1bb8d0
           .DATA.L _var_8c2285c4
           .DATA.L _unknownSegmentReloadTask_8c014550

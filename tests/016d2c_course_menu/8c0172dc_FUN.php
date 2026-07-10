@@ -193,10 +193,6 @@ return new class extends TestCase {
     {
         $this->setSize('_var_coursesToUnlock_8c225fd4', 4 * 9);
         $this->setSize('_var_progress_8c1ba1cc', 0xd2);
-
-        // The decompiled asm stub still addresses this int by its old standalone
-        // name; alias it onto the same address as PlayerProgress.exp_0x90.
-        $this->rellocate('_var_exp_8c1ba25c', $this->addressOf('_var_progress_8c1ba1cc') + 0x90);
     }
 
     private function initVarCourseSettings8c1ba1cc(array $values)
