@@ -33,7 +33,11 @@ jobs:
 
       - name: Configure environment
         run: |
-          DC_SDK=$PWD/sdk
+          # Expose the SDK at a short path (Z:\sdk, matching the Docker dev env).
+          # The Hitachi linker rejects the long checkout paths in its subcommand
+          # file with "202 SYNTAX ERROR", breaking the plain build's link step.
+          sudo ln -sfn "$PWD/sdk" /sdk
+          DC_SDK=/sdk
           mkdir -p $PWD/build/tmp
           echo "SHINOBI_DIR=$(wibo path -w $DC_SDK/shinobi)" >> "$GITHUB_ENV"
           echo "KATANA_SDK_DIR=$(wibo path -w $DC_SDK)" >> "$GITHUB_ENV"
