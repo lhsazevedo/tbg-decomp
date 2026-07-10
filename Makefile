@@ -121,7 +121,7 @@ $(OUTPUT_DIR)/src/asm/%.obj: src/asm/%.src
 
 $(OUTPUT_DIR)/src/%.obj: src/%.c
 	wibo "$(SHC_BIN)/shc.exe" "$(subst /,\\,$<)" -object="$(subst /,\\,$@)" -sub=$(BUILD_DIR)/shc.sub $(SHC_DEFINE_ARG)
-	wibo "$(SHC_BIN)/shc.exe" "$(subst /,\\,$<)" -code=asm -object="$(subst /,\\,$@).src" -sub=$(BUILD_DIR)/shc_testing.sub
+	wibo "$(SHC_BIN)/shc.exe" "$(subst /,\\,$<)" -code=asm -object="$(subst /,\\,$@).src" -sub=$(BUILD_DIR)/shc.sub
 
 $(OUTPUT_DIR)/tbg.elf: $(OBJS) $(BUILD_DIR)/lnk.sub
 	wibo "$(SHC_BIN)/lnk.exe" -sub=build\\lnk.sub

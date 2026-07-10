@@ -2,4 +2,16 @@
 -debug 
 -section=p=P,c=C,d=D,b=B 
 -fpu=single 
--show=noobj,source,expansion,w=80,l=0 -comment=nonest -cpu=sh4 -define=__SHC__,UNIT_TESTING -division=cpu -endian=little -optimize=1 -pic=0 -macsave=0 -size -sjis -round=nearest -string=const 
+-show=noobj,source,expansion,w=80,l=0
+-comment=nonest
+-cpu=sh4
+-division=cpu
+-endian=little
+-optimize=1
+-pic=0
+-macsave=0
+-size
+-sjis
+-round=nearest
+-string=const 
+-define=__SHC__,UNIT_TESTING
