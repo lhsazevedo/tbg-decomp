@@ -689,129 +689,6 @@ STATIC void buildCourseMenuDialogFlow_8c017420(void)
     var_dialogQueue_8c225fbc[cur] = -1;
 }
 
-
-/* This is the original code for the function above. (with some gotos to be removed)
-void buildCourseMenuDialogFlow_8c017420()
-{
-    bool bVar1_done;
-    int iVar2;
-    int iVar3_index;
-    int iVar4_curDialog;
-
-    iVar4_curDialog = 0;
-    bVar1_done = false;
-    iVar3_index = 0;
-    do
-    {
-        if ((4 < iVar3_index) || (bVar1_done))
-        {
-            var_dialogQueue_8c225fbc[iVar4_curDialog] = -1;
-            return;
-        }
-        if (iVar3_index == 0)
-        {
-            // This path always marks and done,
-            // except if the loop is explicitly continued
-            iVar2 = iVar4_curDialog;
-            if (var_8c1bb8b8 != 0)
-            {
-                if (var_progress_8c1ba1cc.field_0x00 == 1)
-                {
-                    iVar2 = iVar4_curDialog + 1;
-                    // SEQ_STORY_INTRO
-                    var_dialogQueue_8c225fbc[iVar4_curDialog] = 0;
-                }
-                else
-                {
-
-                    if (var_8c1bb8bc == 0)
-                    {
-                        // This is the only path that can lead to a loop continue
-                        if (var_8c1bb8dc == 0)
-                        {
-                            // SEQ_FAILURE_RETRY
-                            var_dialogQueue_8c225fbc[iVar4_curDialog] = 12;
-                            iVar4_curDialog = iVar4_curDialog + 1;
-                        }
-                        else
-                        {
-                            if (var_award_8c1bb8f8 == 0)
-                            {
-                                // SEQ_SUCCESS
-                                iVar2 = 8;
-                            }
-                            else if (var_award_8c1bb8f8 == 1)
-                            {
-                                // SEQ_AWARD_BADGE_BRONZE
-                                iVar2 = 11;
-                            }
-                            else if (var_award_8c1bb8f8 == 2)
-                            {
-                                // SEQ_AWARD_BADGE_SILVER
-                                iVar2 = 10;
-                            }
-                            else
-                            {
-                                if (var_award_8c1bb8f8 != 3)
-                                    goto LAB_8c01754c;
-                                // SEQ_AWARD_BADGE_GOLD
-                                iVar2 = 9;
-                            }
-                            var_dialogQueue_8c225fbc[iVar4_curDialog] = iVar2;
-                            iVar4_curDialog = iVar4_curDialog + 1;
-                        }
-                        goto LAB_8c01754c;
-                    }
-                    // SEQ_SUCCESS_2
-                    var_dialogQueue_8c225fbc[iVar4_curDialog] = 7;
-                    iVar2 = iVar4_curDialog + 1;
-                }
-            }
-            // SEQ_STORY_CHOOSE_COURSE
-            var_dialogQueue_8c225fbc[iVar2] = 6;
-            bVar1_done = true;
-            iVar4_curDialog = iVar2 + 1;
-        }
-        else if (iVar3_index != 1)
-        {
-            if (iVar3_index == 2)
-            {
-                iVar2 = CourseMenuBuildCourseUnlockList_8c0172dc();
-                if (iVar2 != 0)
-                {
-                    // SEQ_COURSE_UNLOCKED
-                    var_dialogQueue_8c225fbc[iVar4_curDialog] = 13;
-                    iVar4_curDialog = iVar4_curDialog + 1;
-                }
-            }
-            else if (iVar3_index == 3)
-            {
-                iVar2 = (var_progress_8c1ba1cc.field_0x00 + 1) % 7;
-                if (iVar2 == 0)
-                {
-                    iVar2 = AsqGetRandomInRangeB_8c0121be(6);
-                    if (var_progress_8c1ba1cc.field_0x2c[iVar2] == 0)
-                    {
-                        var_progress_8c1ba1cc.field_0x2c[iVar2] = 1;
-                        // SEQ_PASSENGER_LETTER
-                        var_dialogQueue_8c225fbc[iVar4_curDialog] = 14;
-                        iVar4_curDialog = iVar4_curDialog + 1;
-                    }
-                }
-            }
-            else if (iVar3_index == 4)
-            {
-                // SEQ_STORY_CHOOSE_COURSE
-                var_dialogQueue_8c225fbc[iVar4_curDialog] = 6;
-                iVar4_curDialog = iVar4_curDialog + 1;
-            }
-        }
-    LAB_8c01754c:
-        iVar3_index = iVar3_index + 1;
-    } while (true);
-} */
-
-// This function has been refactored.
 STATIC void drawCourseButtons_8c017590()
 {
     int i;
@@ -1167,8 +1044,6 @@ void CourseMenuFreeRunMenuTask_8c017ada(Task * task, void *state)
     AsqGetRandomA_8c012166();
 }
 
-
-// This function has been refactored.
 STATIC void buildFreeRunMenuDialogFlow_8c017a20(void)
 {
     int idx = 0;
@@ -1182,31 +1057,6 @@ STATIC void buildFreeRunMenuDialogFlow_8c017a20(void)
 
     var_shouldShowFreeRunIntro_8c1bb8c0 = 0;
 }
-
-// This is the original code for the function above.
-/*
-void buildFreeRunMenuDialogFlow_8c017a20(void)
-{
-    int queueIndex = 0;
-    int step = 0;
-
-    for (step = 0; step < 2; step++) {
-        if (step == 0) {
-            if (var_shouldShowFreeRunIntro_8c1bb8c0 != 0) {
-                var_dialogQueue_8c225fbc[queueIndex] = SEQ_FREE_RUN_INTRO_2;
-                queueIndex++;
-            }
-        }
-        else if (step == 1) {
-            var_dialogQueue_8c225fbc[queueIndex] = SEQ_FREE_RUN_CHOOSE_COURSE;
-            queueIndex++;
-        }
-    }
-
-    var_dialogQueue_8c225fbc[queueIndex] = -1;
-    var_shouldShowFreeRunIntro_8c1bb8c0 = 0;
-}
-*/
 
 STATIC void FUN_8c017d54(void)
 {
