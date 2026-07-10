@@ -53,12 +53,12 @@ return new class extends TestCase {
         ],
     ];
 
-    public function test_route_summer_day(): void   { $this->assertRoute(9); }
-    public function test_route_summer_night(): void  { $this->assertRoute(15); }
-    public function test_route_winter_day(): void    { $this->assertRoute(3); }
-    public function test_route_winter_night(): void  { $this->assertRoute(6); }
-    public function test_route_autumn_day(): void    { $this->assertRoute(18); }
-    public function test_route_autumn_night(): void  { $this->assertRoute(24); }
+    public function test_route_shinjuku_day(): void     { $this->assertRoute(9); }
+    public function test_route_shinjuku_night(): void   { $this->assertRoute(15); }
+    public function test_route_wangan_evening(): void   { $this->assertRoute(3); }
+    public function test_route_wangan_night(): void     { $this->assertRoute(6); }
+    public function test_route_ome_day(): void          { $this->assertRoute(18); }
+    public function test_route_ome_night(): void        { $this->assertRoute(24); }
 
     /**
      * Area/time selectors out of range: no basedir/pvr strcpy runs, everything
@@ -67,9 +67,9 @@ return new class extends TestCase {
      * ad20 > 2 skips each inner switch.
      */
     public function test_area_out_of_range(): void      { $this->assertRoute(9, 3); }
-    public function test_time_out_of_range_summer(): void { $this->assertRoute(9, null, 3); }
-    public function test_time_out_of_range_winter(): void { $this->assertRoute(3, null, 3); }
-    public function test_time_out_of_range_autumn(): void { $this->assertRoute(18, null, 3); }
+    public function test_time_out_of_range_shinjuku(): void { $this->assertRoute(9, null, 3); }
+    public function test_time_out_of_range_wangan(): void   { $this->assertRoute(3, null, 3); }
+    public function test_time_out_of_range_ome(): void      { $this->assertRoute(18, null, 3); }
 
     private function assertRoute(int $routeId, ?int $forceAd1c = null, ?int $forceAd20 = null): void
     {
