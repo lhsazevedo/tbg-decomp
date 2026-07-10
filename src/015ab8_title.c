@@ -70,7 +70,7 @@ ResourceGroupInfo init_8c044284 = {
  * =========
  */
 
-void TitleTask_8c015ab8(Task* task, void *state) {
+STATIC void TitleTask_8c015ab8(Task* task, void *state) {
 
     if (var_menuState_8c1bc7a8.state_0x18 >= TITLE_STATE_0X0B_BUS_SLIDE /* 8c015aec */
         && var_menuState_8c1bc7a8.state_0x18 <= TITLE_STATE_0X0C_FLAG_REVEAL) { /* 8c015af6 */

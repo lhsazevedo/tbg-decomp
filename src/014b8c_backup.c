@@ -6,6 +6,7 @@
 #include <shinobi.h>
 #include "014b8c_backup.h"
 #include "014f54_text_pre_data.h"
+#include "serial_debug.h"
 
 /*
  * Mamimum volume to use.
@@ -74,7 +75,7 @@ Sint32 BupSave_8c014bcc(Sint32 drive, const char* fname, void* buf, Sint32 nbloc
                             BUD_FLAG_VERIFY | BUD_FLAG_COPY(0));
 }
 
-Sint32 BupDelete_8c014bfa(Sint32 drive, const char* fname)
+NM_STATIC Sint32 BupDelete_8c014bfa(Sint32 drive, const char* fname)
 {
     return buDeleteFile(drive, fname);
 }
@@ -122,7 +123,7 @@ void ClearInfo_8c014c8a(Sint32 drive)
     memset(&info->DiskInfo, 0, sizeof(BUS_DISKINFO));
 }
 
-const char* BupGetErrorString_8c014cfc(Sint32 err)
+NM_STATIC const char* BupGetErrorString_8c014cfc(Sint32 err)
 {
     switch (err) {
         case BUD_ERR_OK:             return "OK\0";
@@ -144,7 +145,7 @@ const char* BupGetErrorString_8c014cfc(Sint32 err)
     }
 }
 
-const char* BupGetOperationString_8c014e0c(Sint32 op)
+NM_STATIC const char* BupGetOperationString_8c014e0c(Sint32 op)
 {
     switch (op) {
         case BUD_OP_CONNECT:         return "CONNECTED\0";

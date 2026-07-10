@@ -722,10 +722,10 @@ STATIC void task_loadQueuedTexlists_8c01183e(Task *task, void *state) {
     QueuedTexlist *item = task->queuedItem_0x18;
     NJS_TEXLIST *texlist;
 
-    while (true) {
+    while (TRUE) {
         int i;
         /* Assume that the current texlist is already loaded */
-        bool alreadyLoaded = true;
+        Bool alreadyLoaded = TRUE;
 
         texlist = item->texlist_0x04;
 
@@ -770,7 +770,7 @@ STATIC void task_loadQueuedTexlists_8c01183e(Task *task, void *state) {
             /* If the current texture was not found in any of
                the compared texlists, then it should be loaded. */
             if (queueIdx == var_texlistQueueCount_8c157a68) {
-                alreadyLoaded = false;
+                alreadyLoaded = FALSE;
             }
         }
 
@@ -1101,7 +1101,7 @@ void AsqReleaseAndFreeTexlist_8c011e3c(NJS_TEXLIST *texlist) {
 
 /* Tested */
 /* Unused */
-void AsqFreeTexlist_8c011e60(NJS_TEXLIST *texlist) {
+STATIC void AsqFreeTexlist_8c011e60(NJS_TEXLIST *texlist) {
     syFree(texlist->textures[0].filename);
     syFree(texlist->textures);
     syFree(texlist);

@@ -1,6 +1,7 @@
 /* 8c010e90 */
 #include <shinobi.h>
 #include "010e90.h"
+#include "serial_debug.h"
 
 /* === Workarounds === */
 /* TODO */
@@ -84,7 +85,7 @@ UnknownVibStructB* init_unknownVibStructBArray_8c03be5c[] = {
 /* === Uninitialized vars === */
 UnknownVibStructA var_unknownVibStructA_8c157a48;
 
-void vib_8c010e90(int port) {
+NM_STATIC void vib_8c010e90(int port) {
     PDS_VIBPARAM param;
     UnknownVibStructB* unknownVibStructB;
 

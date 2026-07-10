@@ -6,6 +6,7 @@
 #include "0fcd20_sectionB.h"
 #include <cri_adxf.h>
 #include <string.h>
+#include "serial_debug.h"
 
 /* ====================
  * Compiler Definitions
@@ -108,7 +109,7 @@ void FUN_8c010ca6(Bool p1);
 int snd_8c010cd6(int p1, int p2);
 
 /* Tested */
-void initUknVol_8c0100bc() {
+STATIC void initUknVol_8c0100bc() {
     var_uknVol_8c0fcd50.field_0x18 = (float) init_vol_8c03bd90 / 2600;
     var_uknVol_8c0fcd50.field_0x1c = var_uknVol_8c0fcd50.field_0x18 * 2600 / 3000;
     var_uknVol_8c0fcd50.field_0x14 = init_vol_8c03bd90 * 30 / 100;
@@ -118,7 +119,7 @@ void initUknVol_8c0100bc() {
 }
 
 /* Tested */
-void midiSetVol_8c010128() {
+STATIC void midiSetVol_8c010128() {
     int r13var_uknVol_8c226468_as_int = var_uknVol_8c226468;
 
     if ((var_uknVol_8c0fcd50.field_0x00 & 2) == 2) {
@@ -166,7 +167,7 @@ void midiSetVol_8c010128() {
 }
 
 /* Matched */
-void midiSetPitch_8c01023c()
+STATIC void midiSetPitch_8c01023c()
 {
     int var_uknVol_8c226468_as_int = var_uknVol_8c226468;
 
@@ -196,7 +197,7 @@ void midiSetPitch_8c01023c()
 }
 
 /* Tested */
-void FUN_8c0102d8()
+STATIC void FUN_8c0102d8()
 {
     int bcb0 = var_8c1bbcb0;
     int var_uknVol_8c226468_as_int = var_uknVol_8c226468;
@@ -245,7 +246,7 @@ void FUN_8c0102d8()
 }
 
 /* Matched */
-void createAdxHandles_8c010428()
+STATIC void createAdxHandles_8c010428()
 {
     Sint8 i;
     for (i = 0; i < 2; i++)
@@ -255,7 +256,7 @@ void createAdxHandles_8c010428()
 }
 
 /* Matched */
-void createMidiHandles_8c010468()
+STATIC void createMidiHandles_8c010468()
 {
     int i;
     for (i = 0; i < 8; i++)
@@ -265,21 +266,21 @@ void createMidiHandles_8c010468()
 }
 
 /* Matched */
-void createAdxAndMidiHandles_8c01048e()
+STATIC void createAdxAndMidiHandles_8c01048e()
 {
     createAdxHandles_8c010428();
     createMidiHandles_8c010468();
 }
 
 /* Matched */
-Sint32 unused_8c0104bc(Sint32 fsize)
+STATIC Sint32 unused_8c0104bc(Sint32 fsize)
 {
     fsize += 2047;
     return (fsize / 2048) * 2048;
 }
 
 /* Matched */
-void* unusedReadFile_8c0104d6(char* fname)
+STATIC void* unusedReadFile_8c0104d6(char* fname)
 {
     void* dat;
     Sint32 fsize, nsct;
@@ -297,7 +298,7 @@ void* unusedReadFile_8c0104d6(char* fname)
 }
 
 /* Matched */
-void AdxErrFunc_8c010532(void *obj, char *msg)
+STATIC void AdxErrFunc_8c010532(void *obj, char *msg)
 {
     char lmsg[9] = "E8101214";
 
@@ -312,7 +313,7 @@ void AdxErrFunc_8c010532(void *obj, char *msg)
 }
 
 /* Matched */
-void adxLoad_8c01057a()
+STATIC void adxLoad_8c01057a()
 {
     int j = 0;
     Sint8 i = 0;
@@ -331,7 +332,7 @@ void adxLoad_8c01057a()
 }
 
 /* Matched */
-void finishSoundInit_8c010614()
+STATIC void finishSoundInit_8c010614()
 {
     SDMEMBLK memblk;
 
@@ -343,14 +344,14 @@ void finishSoundInit_8c010614()
 }
 
 /* Matched */
-void adxInit_8c01064c()
+STATIC void adxInit_8c01064c()
 {
     ADXT_Init();
     ADXT_EntryErrFunc(AdxErrFunc_8c010532, NULL);
 }
 
 /* Matched */
-void soundInit_8c01065e()
+STATIC void soundInit_8c01065e()
 {
     SDMEMBLK memblk = NULL;
 
@@ -673,7 +674,7 @@ void startAdxFadeOut_8c010bae(int param1) {
 }
 
 /* Tested */
-void startAdxCh1FadeIn_8c010c2c(Bool param1) {
+STATIC void startAdxCh1FadeIn_8c010c2c(Bool param1) {
     if ((var_adxFade_8c157a34.fadeFlags_0x00 & 0xf) == 0
         && param1 == 1
         && (var_adxFade_8c157a34.fadeFlags_0x00 & 0xf0) != 0x20)
@@ -757,7 +758,7 @@ void FUN_8c010d8a() {
 }
 
 /* Matched */
-void unusedStopMidiAdx_8c010de6() {
+STATIC void unusedStopMidiAdx_8c010de6() {
     sdMidiStopAll();
     ADXT_Stop(var_adxtHandles_8c0fcd20[0]);
     ADXT_Stop(var_adxtHandles_8c0fcd20[1]);

@@ -20,6 +20,7 @@
 #include "014f54_text_pre_data.h"
 #include "0fcd20_sectionB.h"
 #include "serial_debug.h"
+#include "serial_debug.h"
 
 // TODO:
 // - Review comments
@@ -218,9 +219,9 @@ STATIC ResourceGroupInfo init_courseResourceGroup_8c044d40;
  */
 
 int CourseMenuRequestSysResgrp_8c018568(ResourceGroup* dds, ResourceGroupInfo* rg);
-void CourseMenuConfirmInit_8c0184cc(Task *task);
+STATIC void CourseMenuConfirmInit_8c0184cc(Task *task);
 void CourseMenuFreeResourceGroup_8c0185c4(ResourceGroup *res_group);
-void CourseMenuFreeRunMenuTask_8c017ada(Task * task, void *state);
+STATIC void CourseMenuFreeRunMenuTask_8c017ada(Task * task, void *state);
 void CourseMenuRequestCommonResources_8c01852c(void);
 MenuDialog *init_dialogSequences_8c044c08[66];
 Uint8 init_courseVariants_8c044d10[30];
@@ -738,7 +739,7 @@ STATIC void drawCourseButtons_8c017590()
     }
 }
 
-void CourseMenuStoryMenuTask_8c017718(Task * task, void *state)
+STATIC void CourseMenuStoryMenuTask_8c017718(Task * task, void *state)
 {
     switch (var_menuState_8c1bc7a8.state_0x18) {
         case COURSE_MENU_STATE_INIT: {
@@ -891,7 +892,7 @@ void CourseMenuStoryMenuTask_8c017718(Task * task, void *state)
     AsqGetRandomA_8c012166();
 }
 
-void CourseMenuFreeRunMenuTask_8c017ada(Task * task, void *state)
+STATIC void CourseMenuFreeRunMenuTask_8c017ada(Task * task, void *state)
 {
     switch (var_menuState_8c1bc7a8.state_0x18) {
         case COURSE_MENU_STATE_INIT: {
@@ -1404,7 +1405,7 @@ STATIC void CourseConfirmMenuTask_8c0181b6(Task * task, void *state)
     );
 }
 
-void CourseMenuConfirmInit_8c0184cc(Task *task)
+STATIC void CourseMenuConfirmInit_8c0184cc(Task *task)
 {
     LOG_INFO(("[COURSE_MENU] Initializing course confirmation menu\n"));
 

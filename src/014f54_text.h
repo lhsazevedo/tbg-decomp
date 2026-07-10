@@ -53,17 +53,6 @@ void drawSprite_8c014f54(
     float y,
     float priority
 );
-void drawSpriteLerp_8c014ff6(
-    float start_x,
-    float start_y,
-    float priority,
-    float end_x,
-    float end_y,
-    int steps_x,
-    int steps_y,
-    ResourceGroup *res_group,
-    int texture_id
-);
 void TxtInit_8c01524c();
 void TxtDestroy_8c01529c();
 TextBox* TxtCreateTextBox_8c0152fc(

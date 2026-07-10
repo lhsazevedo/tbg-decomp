@@ -15,3 +15,5 @@ build/lnk_matching.sub
 /.env
 
 .claude/settings.local.json
+
+__pycache__/

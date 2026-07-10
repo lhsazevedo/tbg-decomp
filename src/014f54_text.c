@@ -186,7 +186,7 @@ void drawSprite_8c014f54(
  * @param res_group  Pointer to the ResourceGroup containing sprite data
  * @param texture_id ID of the texture to draw
  */
-void drawSpriteLerp_8c014ff6(
+STATIC void drawSpriteLerp_8c014ff6(
     float start_x,
     float start_y,
     float priority,

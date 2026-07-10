@@ -12,6 +12,7 @@
 #include "022464.h"
 #include "014f54_text_pre_data.h"
 #include "0fcd20_sectionB.h"
+#include "serial_debug.h"
 
 /* ====================
  * Compiler Definitions
@@ -65,7 +66,7 @@ enum MAIN_MENU_STATE {
  */
 
 
-void MainMenuTask_8c019e98(Task *task) {
+STATIC void MainMenuTask_8c019e98(Task *task) {
     switch (var_menuState_8c1bc7a8.state_0x18)
     {
         case MAIN_MENU_STATE_INIT: {

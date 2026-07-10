@@ -6,7 +6,6 @@
 
 extern const PDS_PERIPHERAL const_peripheral_8c033318;
 
-void vib_8c010e90(int port);
 void vibClear_8c010fbe();
 void vib_8c010f7a(int param);
 void vib_8c010fae(int port);

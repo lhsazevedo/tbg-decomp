@@ -91,7 +91,7 @@ void task_8c012f44()
 }
 
 /* Matched :) */
-void task_8c012f9c(Task *task, void* state) {
+STATIC void task_8c012f9c(Task *task, void* state) {
     Bool r7;
     Float speed_fr2;
 
@@ -265,7 +265,7 @@ void pushLoadingTask_8c013310(int p1) {
 }
 
 /** Tested */
-void task_8c013388(Task *task, void *state) {
+STATIC void task_8c013388(Task *task, void *state) {
     switch (task->field_0x08) {
         case 0: {
             /* 8c013440 */
@@ -299,7 +299,7 @@ void task_8c013388(Task *task, void *state) {
     }
 }
 
-void usrGdErrFunc_8c0134d6(void *obj, Sint32 errcode) {
+STATIC void usrGdErrFunc_8c0134d6(void *obj, Sint32 errcode) {
   if (errcode == GDD_ERR_TRAYOPEND || errcode == GDD_ERR_UNITATTENT) {
     var_gdErr_8c18ad14 = 1;
   }

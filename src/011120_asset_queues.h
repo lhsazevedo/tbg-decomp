@@ -77,7 +77,6 @@ int AsqRequestPvm_8c011ac0(char *basedir, char *filename, void *texlist, int cou
 
 void AsqReleaseAndFreeTexlist_8c011e3c(NJS_TEXLIST *texlist);
 
-void AsqFreeTexlist_8c011e60(NJS_TEXLIST *texlist);
 
 void AsqInitQueues_8c011f36(int datCount,int njCount,int texlistCount,int pvmCount);
 

@@ -58,7 +58,7 @@ enum ALBUM_STATE {
  * ====================
  */
 
-void AlbumDrawGrid_8c01d290(void);
+STATIC void AlbumDrawGrid_8c01d290(void);
 
 /* =========
  * Functions
@@ -66,7 +66,7 @@ void AlbumDrawGrid_8c01d290(void);
  */
 
 /* Draws the received-letter icons over the album grid, then the grid frame. */
-void AlbumDrawGrid_8c01d290(void)
+STATIC void AlbumDrawGrid_8c01d290(void)
 {
     int i;
     int spriteNo = 1;
@@ -93,7 +93,7 @@ void AlbumDrawGrid_8c01d290(void)
     );
 }
 
-void AlbumMenuTask_8c01d300(Task *task, void *state)
+STATIC void AlbumMenuTask_8c01d300(Task *task, void *state)
 {
     int slot = var_menuState_8c1bc7a8.selected_0x38;
     int press = var_peripherals_8c1ba35c[0].press;

@@ -24,7 +24,7 @@
 STATIC char var_name_8c157aec[12];
 STATIC const char *init_fortyFive_8c03bf40 = "FortyFive";
 
-void inputTask_8c012504(void)
+STATIC void inputTask_8c012504(void)
 {
     int support;
     int i;
@@ -116,7 +116,7 @@ void inputTask_8c012504(void)
 }
 
 /* Like inputTask_8c012504 but uses alt translation tables and skips paddle-shift remap. */
-void inputTaskAlt_8c012718(void)
+STATIC void inputTaskAlt_8c012718(void)
 {
     int support;
     int i;

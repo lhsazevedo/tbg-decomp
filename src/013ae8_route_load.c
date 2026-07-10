@@ -172,7 +172,7 @@ void resetPvmReady_8c014322(void);
  * ==========
  */
 
-void requestVehicleAssets_8c013ae8(void)
+STATIC void requestVehicleAssets_8c013ae8(void)
 {
     LOG_DEBUG(("[ROUTE_LOAD] requesting vehicle assets\n"));
 
@@ -223,7 +223,7 @@ void clearModelSlots_8c013bbc(ModelSlot *slots, int count)
 
 /* Reconcile loaded route-model assets with a -1-terminated list of model
  * indices: request files for newly-wanted models, free the ones dropped. */
-void syncRouteModelAssets_8c013c34(Sint8 *models)
+STATIC void syncRouteModelAssets_8c013c34(Sint8 *models)
 {
     ModelSlot *slot;
     char **names;
@@ -263,7 +263,7 @@ void syncRouteModelAssets_8c013c34(Sint8 *models)
 }
 
 /* Callback for an asset-load pass. */
-void finishAssetLoad_8c013d42(void)
+STATIC void finishAssetLoad_8c013d42(void)
 {
     LOG_DEBUG(("[ROUTE_LOAD] asset load finished\n"));
 
@@ -300,7 +300,7 @@ void freeAllRouteModels_8c013dae(void)
 }
 
 /* Unlike syncRouteModelAssets there is no njd, so no syFree. */
-void syncPedestrianAssets_8c013df6(Sint8 *models)
+STATIC void syncPedestrianAssets_8c013df6(Sint8 *models)
 {
     ModelSlot *slot;
     int i;
@@ -345,7 +345,7 @@ void freePedestrianAssets_8c013ee4(void)
     }
 }
 
-void freeSegmentModels_8c013f22(void)
+STATIC void freeSegmentModels_8c013f22(void)
 {
     CourseSegment *entry;
 
@@ -367,7 +367,7 @@ void freeSegmentModels_8c013f22(void)
  * opening slideshow or passenger conversation -- so it swaps in a minimal
  * route-model list (init_8c043fd4, one model) and runs the scene setup
  * FUN_8c02aa36. Practice/attract modes skip this. */
-void syncSegmentModels_8c013f78(void)
+STATIC void syncSegmentModels_8c013f78(void)
 {
     CourseSegment *entry;
     int i;
@@ -421,7 +421,7 @@ void syncSegmentModels_8c013f78(void)
 
 /* Select the route config record for the current
  * route id, and request all of its files. */
-void loadRouteModels_8c014088(void)
+STATIC void loadRouteModels_8c014088(void)
 {
     LOG_DEBUG(("[ROUTE_LOAD] requesting course %d models\n", var_currentCourse_8c1bb868.courseId_0x00));
 
@@ -542,7 +542,7 @@ void setPvmReady_8c014330(void)
  * no loadRouteModels, just freeSegmentModels then syncSegmentModels for the
  * new segment. startRouteModelLoadPass (a callback used from 028258)
  * reconciles route models as the segment index advances. */
-void routeLoadTask_8c014338(Task *task, void *state)
+STATIC void routeLoadTask_8c014338(Task *task, void *state)
 {
     int frame;
 
@@ -627,7 +627,7 @@ void pushRouteLoadTask_8c0144fc(void)
 
 /* Segment-boundary reload: stream the new segment's assets (no full route
  * reload), rebind the interior texture, then hand off to the input task. */
-void unknownSegmentReloadTask_8c014550(Task *task, void *state)
+STATIC void unknownSegmentReloadTask_8c014550(Task *task, void *state)
 {
     int frame;
 
