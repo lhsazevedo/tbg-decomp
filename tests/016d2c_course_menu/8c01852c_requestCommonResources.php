@@ -9,26 +9,26 @@ return new class extends TestCase {
     {
         $this->resolveSymbols();
 
-        $menuStateBase = $this->addressOf('_menuState_8c1bc7a8');
+        $menuStateBase = $this->addressOf('_var_menuState_8c1bc7a8');
 
         $this->call('_CourseMenuRequestCommonResources_8c01852c');
 
         // Step 1: Request common_parts.dat
-        $this->shouldCall('_AsqRequestDat_11182')->with(
+        $this->shouldCall('_AsqRequestDat_8c011182')->with(
             "\\SYSTEM",
             "common_parts.dat",
             $menuStateBase + 0x04  // resourceGroupA_0x00.tanim_0x04
         );
 
         // Step 2: Request common.dat
-        $this->shouldCall('_AsqRequestDat_11182')->with(
+        $this->shouldCall('_AsqRequestDat_8c011182')->with(
             "\\SYSTEM",
             "common.dat",
             $menuStateBase + 0x08  // resourceGroupA_0x00.contents_0x08
         );
 
         // Step 3: Request common.pvm
-        $this->shouldCall('_AsqRequestPvm_11ac0')->with(
+        $this->shouldCall('_AsqRequestPvm_8c011ac0')->with(
             "\\SYSTEM",
             "common.pvm",
             $menuStateBase,  // menuState address (for texlist)
@@ -39,7 +39,7 @@ return new class extends TestCase {
 
     private function resolveSymbols(): void
     {
-        $this->setSize('_menuState_8c1bc7a8', 0x6c);
+        $this->setSize('_var_menuState_8c1bc7a8', 0x6c);
 
         // Allocate string constants in ROM
         $this->rellocate('_const_8c036290', $this->allocString("\\SYSTEM"));

@@ -15,17 +15,17 @@ if (!function_exists('fdec')) {
 return new class extends TestCase {
     public function testFUN_8c01306e_DemoIsNot2()
     {
-        $var_8c18ad28Ptr = $this->alloc(0x14);
-        $this->initUint8($var_8c18ad28Ptr + 0x08, 0x10);
-        $this->initUint8($var_8c18ad28Ptr + 0x09, 0x20);
-        $this->initUint8($var_8c18ad28Ptr + 0x0a, 0x30);
-        $this->initUint8($var_8c18ad28Ptr + 0x0b, 0x40);
-        $this->initUint32($var_8c18ad28Ptr + 0x0c, fdec(42.0));
-        $this->initUint32($var_8c18ad28Ptr + 0x10, fdec(43.0));
-        $this->initUint32($this->addressOf('_var_8c18ad28'), $var_8c18ad28Ptr);
+        $var_fogParams_8c18ad28Ptr = $this->alloc(0x14);
+        $this->initUint8($var_fogParams_8c18ad28Ptr + 0x08, 0x10);
+        $this->initUint8($var_fogParams_8c18ad28Ptr + 0x09, 0x20);
+        $this->initUint8($var_fogParams_8c18ad28Ptr + 0x0a, 0x30);
+        $this->initUint8($var_fogParams_8c18ad28Ptr + 0x0b, 0x40);
+        $this->initUint32($var_fogParams_8c18ad28Ptr + 0x0c, fdec(42.0));
+        $this->initUint32($var_fogParams_8c18ad28Ptr + 0x10, fdec(43.0));
+        $this->initUint32($this->addressOf('_var_fogParams_8c18ad28'), $var_fogParams_8c18ad28Ptr);
 
         $this->initUint32($this->addressOf('_var_seed_8c157a64'), 0xcafe0001);
-        $this->initUint32($this->addressOf('_var_demo_8c1bb8d0'), 1);
+        $this->initUint32($this->addressOf('_var_playMode_8c1bb8d0'), 1);
 
         $createdTask = $this->alloc(0x0c);
         $this->initUint32(0xffffe4, $createdTask);
@@ -45,8 +45,8 @@ return new class extends TestCase {
 
         // njRandomSeed
         $this->shouldCall('_srand')->with(0xcafe0001);
-        $this->shouldCall('_AsqSetSeedA_12160')->with(0xcafe0001);
-        $this->shouldCall('_AsqSetSeedB_121a2')->with(0xcafe0001);
+        $this->shouldCall('_AsqSetSeedA_8c012160')->with(0xcafe0001);
+        $this->shouldCall('_AsqSetSeedB_8c0121a2')->with(0xcafe0001);
         
         $this->shouldCall('_pushInputTask_8c0128cc')->with(1);
 
@@ -98,17 +98,17 @@ return new class extends TestCase {
 
     public function testFUN_8c01306e_DemoIs2_8c1bb8d4Is0()
     {
-        $var_8c18ad28Ptr = $this->alloc(0x14);
-        $this->initUint8($var_8c18ad28Ptr + 0x08, 0x10);
-        $this->initUint8($var_8c18ad28Ptr + 0x09, 0x20);
-        $this->initUint8($var_8c18ad28Ptr + 0x0a, 0x30);
-        $this->initUint8($var_8c18ad28Ptr + 0x0b, 0x40);
-        $this->initUint32($var_8c18ad28Ptr + 0x0c, fdec(42.0));
-        $this->initUint32($var_8c18ad28Ptr + 0x10, fdec(43.0));
-        $this->initUint32($this->addressOf('_var_8c18ad28'), $var_8c18ad28Ptr);
+        $var_fogParams_8c18ad28Ptr = $this->alloc(0x14);
+        $this->initUint8($var_fogParams_8c18ad28Ptr + 0x08, 0x10);
+        $this->initUint8($var_fogParams_8c18ad28Ptr + 0x09, 0x20);
+        $this->initUint8($var_fogParams_8c18ad28Ptr + 0x0a, 0x30);
+        $this->initUint8($var_fogParams_8c18ad28Ptr + 0x0b, 0x40);
+        $this->initUint32($var_fogParams_8c18ad28Ptr + 0x0c, fdec(42.0));
+        $this->initUint32($var_fogParams_8c18ad28Ptr + 0x10, fdec(43.0));
+        $this->initUint32($this->addressOf('_var_fogParams_8c18ad28'), $var_fogParams_8c18ad28Ptr);
 
         $this->initUint32($this->addressOf('_var_seed_8c157a64'), 0xcafe0001);
-        $this->initUint32($this->addressOf('_var_demo_8c1bb8d0'), 2);
+        $this->initUint32($this->addressOf('_var_playMode_8c1bb8d0'), 2);
 
         $var_8c1bb8d4Ptr = $this->allocRellocate('_var_8c1bb8d4', 4);
         $this->initUint32($var_8c1bb8d4Ptr, 0);
@@ -131,8 +131,8 @@ return new class extends TestCase {
 
         // njRandomSeed
         $this->shouldCall('_srand')->with(0xcafe0001);
-        $this->shouldCall('_AsqSetSeedA_12160')->with(0xcafe0001);
-        $this->shouldCall('_AsqSetSeedB_121a2')->with(0xcafe0001);
+        $this->shouldCall('_AsqSetSeedA_8c012160')->with(0xcafe0001);
+        $this->shouldCall('_AsqSetSeedB_8c0121a2')->with(0xcafe0001);
         
         $this->shouldCall('_pushInputTask_8c0128cc')->with(1);
 
@@ -172,17 +172,17 @@ return new class extends TestCase {
 
     public function testFUN_8c01306e_DemoIs2_8c1bb8d4Is1()
     {
-        $var_8c18ad28Ptr = $this->alloc(0x14);
-        $this->initUint8($var_8c18ad28Ptr + 0x08, 0x10);
-        $this->initUint8($var_8c18ad28Ptr + 0x09, 0x20);
-        $this->initUint8($var_8c18ad28Ptr + 0x0a, 0x30);
-        $this->initUint8($var_8c18ad28Ptr + 0x0b, 0x40);
-        $this->initUint32($var_8c18ad28Ptr + 0x0c, fdec(42.0));
-        $this->initUint32($var_8c18ad28Ptr + 0x10, fdec(43.0));
-        $this->initUint32($this->addressOf('_var_8c18ad28'), $var_8c18ad28Ptr);
+        $var_fogParams_8c18ad28Ptr = $this->alloc(0x14);
+        $this->initUint8($var_fogParams_8c18ad28Ptr + 0x08, 0x10);
+        $this->initUint8($var_fogParams_8c18ad28Ptr + 0x09, 0x20);
+        $this->initUint8($var_fogParams_8c18ad28Ptr + 0x0a, 0x30);
+        $this->initUint8($var_fogParams_8c18ad28Ptr + 0x0b, 0x40);
+        $this->initUint32($var_fogParams_8c18ad28Ptr + 0x0c, fdec(42.0));
+        $this->initUint32($var_fogParams_8c18ad28Ptr + 0x10, fdec(43.0));
+        $this->initUint32($this->addressOf('_var_fogParams_8c18ad28'), $var_fogParams_8c18ad28Ptr);
 
         $this->initUint32($this->addressOf('_var_seed_8c157a64'), 0xcafe0001);
-        $this->initUint32($this->addressOf('_var_demo_8c1bb8d0'), 2);
+        $this->initUint32($this->addressOf('_var_playMode_8c1bb8d0'), 2);
         $this->initUint32($this->addressOf('_var_8c1bb8d4'), 1);
 
         $createdTask = $this->alloc(0x0c);
@@ -203,8 +203,8 @@ return new class extends TestCase {
 
         // njRandomSeed
         $this->shouldCall('_srand')->with(0xcafe0001);
-        $this->shouldCall('_AsqSetSeedA_12160')->with(0xcafe0001);
-        $this->shouldCall('_AsqSetSeedB_121a2')->with(0xcafe0001);
+        $this->shouldCall('_AsqSetSeedA_8c012160')->with(0xcafe0001);
+        $this->shouldCall('_AsqSetSeedB_8c0121a2')->with(0xcafe0001);
         
         $this->shouldCall('_pushInputTask_8c0128cc')->with(1);
 
@@ -279,7 +279,7 @@ return new class extends TestCase {
 
         $taskPtr = $this->alloc(0xc);
 
-        $this->shouldCall('_getUknPvmBool_8c01432a')
+        $this->shouldCall('_isPvmReady_8c01432a')
             ->andReturn(0);
 
         $this->singleCall('_task_8c013388')
@@ -298,16 +298,16 @@ return new class extends TestCase {
         $this->initUint32($this->addressOf('_var_loadedFooNjm_8c1bc448'), $var_loadedFooNjm_8c1bc448Ptr);
         $this->initUint32($var_loadedFooNjm_8c1bc448Ptr + 4, 42);
 
-        $this->shouldCall('_getUknPvmBool_8c01432a')->andReturn(1);
+        $this->shouldCall('_isPvmReady_8c01432a')->andReturn(1);
 
         $this->shouldWrite($taskPtr + 8, 1);
         $this->shouldWriteTo('_var_8c1bc450', fdec(41));
 
-        $this->shouldCall('_AsqResetQueues_11f6c');
-        $this->shouldCall('_AsqRequestDat_11182')->with("\\SOUND", "manatee.drv", $this->addressOf('_var_memblkSource_8c0fcd48'));
-        $this->shouldCall('_AsqRequestDat_11182')->with("\\SOUND", "bus.mlt", $this->addressOf('_var_memblkSource_8c0fcd4c'));
-        $this->shouldCall('_resetUknPvmBool_8c014322');
-        $this->shouldCall('_AsqProcessQueues_11fe0')->with($this->addressOf('_AsqNop_11120'), 0, 0, 0, $this->addressOf('_setUknPvmBool_8c014330'));
+        $this->shouldCall('_AsqResetQueues_8c011f6c');
+        $this->shouldCall('_AsqRequestDat_8c011182')->with("\\SOUND", "manatee.drv", $this->addressOf('_var_memblkSource_8c0fcd48'));
+        $this->shouldCall('_AsqRequestDat_8c011182')->with("\\SOUND", "bus.mlt", $this->addressOf('_var_memblkSource_8c0fcd4c'));
+        $this->shouldCall('_resetPvmReady_8c014322');
+        $this->shouldCall('_AsqProcessQueues_8c011fe0')->with($this->addressOf('_AsqNop_8c011120'), 0, 0, 0, $this->addressOf('_setPvmReady_8c014330'));
 
         $this->singleCall('_task_8c013388')
             ->with($taskPtr, 0)
@@ -322,7 +322,7 @@ return new class extends TestCase {
         $taskPtr = $this->alloc(0xc);
         $this->initUint32($taskPtr + 8, 1);
 
-        $this->shouldCall('_getUknPvmBool_8c01432a')->andReturn(0);
+        $this->shouldCall('_isPvmReady_8c01432a')->andReturn(0);
 
         $this->singleCall('_task_8c013388')
             ->with($taskPtr, 0)
@@ -338,9 +338,9 @@ return new class extends TestCase {
         $this->initUint32($taskPtr + 8, 1);
         //$var_8c2260a8Ptr = $this->allocRellocate('_var_8c2260a8', 4);
 
-        $this->shouldCall('_getUknPvmBool_8c01432a')->andReturn(1);
+        $this->shouldCall('_isPvmReady_8c01432a')->andReturn(1);
 
-        $this->shouldCall('_AsqFreeQueues_11f7e');
+        $this->shouldCall('_AsqFreeQueues_8c011f7e');
         $this->shouldCall('_freeTask_8c014b66')->with($taskPtr);
         $this->shouldCall('_initSoundMidiAdx_8c010e18');
         $this->shouldWriteTo('_var_8c2260a8', 1);
@@ -356,7 +356,7 @@ return new class extends TestCase {
     public function test_njUserInit_8c0134ec_Vga_getSoundMode_8c010924Returns1()
     {
         // Resolutions/Bindings
-        $this->setSize('_menuState_8c1bc7a8', 0x6c);
+        $this->setSize('_var_menuState_8c1bc7a8', 0x6c);
 
         /* Stack locals */
         $infoLocal = 0xffffbc;
@@ -419,12 +419,12 @@ return new class extends TestCase {
 
         $this->shouldWriteTo('_var_8c1bb86c', -1);
 
-        $this->shouldCall('_clearUnknowArray_8c013bbc')->with($this->addressOf('_var_8c1bbddc'), 0x20);
-        $this->shouldCall('_clearUnknowArray_8c013bbc')->with($this->addressOf('_var_8c1bbfdc'), 0x41);
+        $this->shouldCall('_clearModelSlots_8c013bbc')->with($this->addressOf('_var_routeModelSlots_8c1bbddc'), 0x20);
+        $this->shouldCall('_clearModelSlots_8c013bbc')->with($this->addressOf('_var_pedestrianAssets_8c1bbfdc'), 0x41);
 
-        $this->shouldWriteTo('_var_8c1bc3ec', -1);
-        $this->shouldWriteTo('_var_8c1bc3f0', -1);
-        $this->shouldWriteTo('_var_8c1bc3f4', -1);
+        $this->shouldWriteTo('_var_routeModels_8c1bc3ec', -1);
+        $this->shouldWriteTo('_var_segmentModels_8c1bc3f0', -1);
+        $this->shouldWriteTo('_var_trafficModels_8c1bc3f4', -1);
 
         $this->shouldCall('_clearUnknownVar_8c02171c');
         $this->shouldCall('_clearUnknownVar_8c029acc');
@@ -437,9 +437,9 @@ return new class extends TestCase {
         $this->shouldWriteTo('_var_8c227e20', -1);
         $this->shouldWriteTo('_var_8c227e24', -1);
         $this->shouldWriteTo('_var_8c2288f8', -1);
-        $this->shouldWriteTo('_var_8c1bc438', -1);
-        $this->shouldWrite($this->addressOf('_menuState_8c1bc7a8') + 0x0 + 0, -1);
-        $this->shouldWrite($this->addressOf('_menuState_8c1bc7a8') + 0xc + 0, -1);
+        $this->shouldWriteTo('_var_interiorTexlist_8c1bc438', -1);
+        $this->shouldWrite($this->addressOf('_var_menuState_8c1bc7a8') + 0x0 + 0, -1);
+        $this->shouldWrite($this->addressOf('_var_menuState_8c1bc7a8') + 0xc + 0, -1);
         $this->shouldWriteTo('_var_resourceGroup_8c2263a8', -1);
         $this->shouldWriteTo('_var_8c1ba2e0', -1);
         $this->shouldWriteTo('_var_8c1ba348', -1);
@@ -452,7 +452,7 @@ return new class extends TestCase {
 
         $this->shouldWriteTo('_var_8c1bb8c4', 0);
         $this->shouldWriteTo('_var_demoIndex_8c1bb8d8', 100);
-        $this->shouldWriteTo('_var_8c157a6c', 0);
+        $this->shouldWriteTo('_var_loadScreenActive_8c157a6c', 0);
 
         $this->shouldCall('_FUN_8c01c8dc');
         $this->shouldCall('_FUN_8c0189d2');
@@ -473,31 +473,31 @@ return new class extends TestCase {
         );
         $this->shouldWrite($createdTaskPtr + 0x08, 0);
 
-        $this->shouldCall('_AsqInitQueues_11f36')->with(0x10, 8, 0, 8);
-        $this->shouldCall('_AsqResetQueues_11f6c');
+        $this->shouldCall('_AsqInitQueues_8c011f36')->with(0x10, 8, 0, 8);
+        $this->shouldCall('_AsqResetQueues_8c011f6c');
 
-        $this->shouldCall('_AsqRequestDat_11182')->with("\\SYSTEM", "mark_parts.dat", $this->addressOf('_var_mark_parts_dat_8c1bc41c'));
-        $this->shouldCall('_AsqRequestDat_11182')->with("\\SYSTEM", "mark.dat", $this->addressOf('_var_mark_dat_8c1bc420'));
-        $this->shouldCall('_AsqRequestDat_11182')->with("\\SYSTEM", "busstop_parts.dat", $this->addressOf('_var_busstop_parts_dat_8c1bc428'));
-        $this->shouldCall('_AsqRequestDat_11182')->with("\\SYSTEM", "busstop.dat", $this->addressOf('_var_busstop_dat_8c1bc42c'));
+        $this->shouldCall('_AsqRequestDat_8c011182')->with("\\SYSTEM", "mark_parts.dat", $this->addressOf('_var_markPartsDat_8c1bc41c'));
+        $this->shouldCall('_AsqRequestDat_8c011182')->with("\\SYSTEM", "mark.dat", $this->addressOf('_var_markDat_8c1bc420'));
+        $this->shouldCall('_AsqRequestDat_8c011182')->with("\\SYSTEM", "busstop_parts.dat", $this->addressOf('_var_busstopPartsDat_8c1bc428'));
+        $this->shouldCall('_AsqRequestDat_8c011182')->with("\\SYSTEM", "busstop.dat", $this->addressOf('_var_busstopDat_8c1bc42c'));
 
-        $this->shouldCall('_AsqRequestPvm_11ac0')->with("\\SYSTEM", "loading.pvm", $this->addressOf('_var_8c1bc3f8'), 1, 0x80000000);
-        $this->shouldCall('_AsqRequestDat_11182')->with("\\SYSTEM", "load_parts.dat", $this->addressOf('_var_8c1bc3f8') + 4);
-        $this->shouldCall('_AsqRequestDat_11182')->with("\\SYSTEM", "loading.dat", $this->addressOf('_var_8c1bc3f8') + 8);
+        $this->shouldCall('_AsqRequestPvm_8c011ac0')->with("\\SYSTEM", "loading.pvm", $this->addressOf('_var_loadingResourceGroup_8c1bc3f8'), 1, 0x80000000);
+        $this->shouldCall('_AsqRequestDat_8c011182')->with("\\SYSTEM", "load_parts.dat", $this->addressOf('_var_loadingResourceGroup_8c1bc3f8') + 4);
+        $this->shouldCall('_AsqRequestDat_8c011182')->with("\\SYSTEM", "loading.dat", $this->addressOf('_var_loadingResourceGroup_8c1bc3f8') + 8);
 
-        $this->shouldCall('_AsqRequestDat_11182')->with("\\SYSTEM", "bus_font.fff", $this->addressOf('_var_busFont_8c1ba1c8'));
-        $this->shouldCall('_AsqRequestDat_11182')->with("\\SYSTEM", "vm_bus.lcd", $this->addressOf('_var_8c2260ac'));
-        $this->shouldCall('_AsqRequestDat_11182')->with("\\SYSTEM", "vm_danger.lcd", $this->addressOf('_var_8c2260b8'));
-        $this->shouldCall('_AsqRequestDat_11182')->with("\\SYSTEM", "now_loading.lcd", $this->addressOf('_var_8c2260c4'));
+        $this->shouldCall('_AsqRequestDat_8c011182')->with("\\SYSTEM", "bus_font.fff", $this->addressOf('_var_busFont_8c1ba1c8'));
+        $this->shouldCall('_AsqRequestDat_8c011182')->with("\\SYSTEM", "vm_bus.lcd", $this->addressOf('_var_8c2260ac'));
+        $this->shouldCall('_AsqRequestDat_8c011182')->with("\\SYSTEM", "vm_danger.lcd", $this->addressOf('_var_8c2260b8'));
+        $this->shouldCall('_AsqRequestDat_8c011182')->with("\\SYSTEM", "now_loading.lcd", $this->addressOf('_var_8c2260c4'));
 
-        $this->shouldCall('_AsqRequestPvm_11ac0')->with("\\SYSTEM", "fuu.pvm", $this->addressOf('_var_8c1bc440'), 1, 0);
-        $this->shouldCall('_AsqRequestNj_11492')->with("\\SYSTEM", "fuu.njd", $this->addressOf('_var_8c1bc444'), 0);
-        $this->shouldCall('_AsqRequestNj_11492')->with("\\SYSTEM", "fuu.njm", $this->addressOf('_var_loadedFooNjm_8c1bc448'), 0);
-        $this->shouldCall('_AsqRequestNj_11492')->with("\\SD_COMMON", "3s_bus_m2.njm", $this->addressOf('_var_8c1bc410'), 0);
-        $this->shouldCall('_AsqRequestNj_11492')->with("\\SD_COMMON", "3s_bus_m2.njs", $this->addressOf('_var_8c1bc414'), 0);
+        $this->shouldCall('_AsqRequestPvm_8c011ac0')->with("\\SYSTEM", "fuu.pvm", $this->addressOf('_var_8c1bc440'), 1, 0);
+        $this->shouldCall('_AsqRequestNj_8c011492')->with("\\SYSTEM", "fuu.njd", $this->addressOf('_var_8c1bc444'), 0);
+        $this->shouldCall('_AsqRequestNj_8c011492')->with("\\SYSTEM", "fuu.njm", $this->addressOf('_var_loadedFooNjm_8c1bc448'), 0);
+        $this->shouldCall('_AsqRequestNj_8c011492')->with("\\SD_COMMON", "3s_bus_m2.njm", $this->addressOf('_var_8c1bc410'), 0);
+        $this->shouldCall('_AsqRequestNj_8c011492')->with("\\SD_COMMON", "3s_bus_m2.njs", $this->addressOf('_var_8c1bc414'), 0);
 
-        $this->shouldCall('_resetUknPvmBool_8c014322');
-        $this->shouldCall('_AsqProcessQueues_11fe0')->with($this->addressOf('_AsqNop_11120'), 0, 0, 0, $this->addressOf('_setUknPvmBool_8c014330'));;
+        $this->shouldCall('_resetPvmReady_8c014322');
+        $this->shouldCall('_AsqProcessQueues_8c011fe0')->with($this->addressOf('_AsqNop_8c011120'), 0, 0, 0, $this->addressOf('_setPvmReady_8c014330'));;
 
         $this->shouldWriteTo('_var_gdErr_8c18ad14', 0);
 
@@ -509,7 +509,7 @@ return new class extends TestCase {
     public function test_njUserInit_8c0134ec_Vga_getSoundMode_8c010924ReturnsNegative()
     {
         // Resolutions/Bindings
-        $this->setSize('_menuState_8c1bc7a8', 0x6c);
+        $this->setSize('_var_menuState_8c1bc7a8', 0x6c);
 
         /* Stack locals */
         $infoLocal = 0xffffbc;
@@ -573,12 +573,12 @@ return new class extends TestCase {
 
         $this->shouldWriteTo('_var_8c1bb86c', -1);
 
-        $this->shouldCall('_clearUnknowArray_8c013bbc')->with($this->addressOf('_var_8c1bbddc'), 0x20);
-        $this->shouldCall('_clearUnknowArray_8c013bbc')->with($this->addressOf('_var_8c1bbfdc'), 0x41);
+        $this->shouldCall('_clearModelSlots_8c013bbc')->with($this->addressOf('_var_routeModelSlots_8c1bbddc'), 0x20);
+        $this->shouldCall('_clearModelSlots_8c013bbc')->with($this->addressOf('_var_pedestrianAssets_8c1bbfdc'), 0x41);
 
-        $this->shouldWriteTo('_var_8c1bc3ec', -1);
-        $this->shouldWriteTo('_var_8c1bc3f0', -1);
-        $this->shouldWriteTo('_var_8c1bc3f4', -1);
+        $this->shouldWriteTo('_var_routeModels_8c1bc3ec', -1);
+        $this->shouldWriteTo('_var_segmentModels_8c1bc3f0', -1);
+        $this->shouldWriteTo('_var_trafficModels_8c1bc3f4', -1);
 
         $this->shouldCall('_clearUnknownVar_8c02171c');
         $this->shouldCall('_clearUnknownVar_8c029acc');
@@ -591,9 +591,9 @@ return new class extends TestCase {
         $this->shouldWriteTo('_var_8c227e20', -1);
         $this->shouldWriteTo('_var_8c227e24', -1);
         $this->shouldWriteTo('_var_8c2288f8', -1);
-        $this->shouldWriteTo('_var_8c1bc438', -1);
-        $this->shouldWrite($this->addressOf('_menuState_8c1bc7a8') + 0x0 + 0, -1);
-        $this->shouldWrite($this->addressOf('_menuState_8c1bc7a8') + 0xc + 0, -1);
+        $this->shouldWriteTo('_var_interiorTexlist_8c1bc438', -1);
+        $this->shouldWrite($this->addressOf('_var_menuState_8c1bc7a8') + 0x0 + 0, -1);
+        $this->shouldWrite($this->addressOf('_var_menuState_8c1bc7a8') + 0xc + 0, -1);
         $this->shouldWriteTo('_var_resourceGroup_8c2263a8', -1);
         $this->shouldWriteTo('_var_8c1ba2e0', -1);
         $this->shouldWriteTo('_var_8c1ba348', -1);
@@ -606,7 +606,7 @@ return new class extends TestCase {
 
         $this->shouldWriteTo('_var_8c1bb8c4', 0);
         $this->shouldWriteTo('_var_demoIndex_8c1bb8d8', 100);
-        $this->shouldWriteTo('_var_8c157a6c', 0);
+        $this->shouldWriteTo('_var_loadScreenActive_8c157a6c', 0);
 
         $this->shouldCall('_FUN_8c01c8dc');
         $this->shouldCall('_FUN_8c0189d2');
@@ -627,31 +627,31 @@ return new class extends TestCase {
         );
         $this->shouldWrite($createdTaskPtr + 0x08, 0);
 
-        $this->shouldCall('_AsqInitQueues_11f36')->with(0x10, 8, 0, 8);
-        $this->shouldCall('_AsqResetQueues_11f6c');
+        $this->shouldCall('_AsqInitQueues_8c011f36')->with(0x10, 8, 0, 8);
+        $this->shouldCall('_AsqResetQueues_8c011f6c');
 
-        $this->shouldCall('_AsqRequestDat_11182')->with("\\SYSTEM", "mark_parts.dat", $this->addressOf('_var_mark_parts_dat_8c1bc41c'));
-        $this->shouldCall('_AsqRequestDat_11182')->with("\\SYSTEM", "mark.dat", $this->addressOf('_var_mark_dat_8c1bc420'));
-        $this->shouldCall('_AsqRequestDat_11182')->with("\\SYSTEM", "busstop_parts.dat", $this->addressOf('_var_busstop_parts_dat_8c1bc428'));
-        $this->shouldCall('_AsqRequestDat_11182')->with("\\SYSTEM", "busstop.dat", $this->addressOf('_var_busstop_dat_8c1bc42c'));
+        $this->shouldCall('_AsqRequestDat_8c011182')->with("\\SYSTEM", "mark_parts.dat", $this->addressOf('_var_markPartsDat_8c1bc41c'));
+        $this->shouldCall('_AsqRequestDat_8c011182')->with("\\SYSTEM", "mark.dat", $this->addressOf('_var_markDat_8c1bc420'));
+        $this->shouldCall('_AsqRequestDat_8c011182')->with("\\SYSTEM", "busstop_parts.dat", $this->addressOf('_var_busstopPartsDat_8c1bc428'));
+        $this->shouldCall('_AsqRequestDat_8c011182')->with("\\SYSTEM", "busstop.dat", $this->addressOf('_var_busstopDat_8c1bc42c'));
 
-        $this->shouldCall('_AsqRequestPvm_11ac0')->with("\\SYSTEM", "loading.pvm", $this->addressOf('_var_8c1bc3f8'), 1, 0x80000000);
-        $this->shouldCall('_AsqRequestDat_11182')->with("\\SYSTEM", "load_parts.dat", $this->addressOf('_var_8c1bc3f8') + 4);
-        $this->shouldCall('_AsqRequestDat_11182')->with("\\SYSTEM", "loading.dat", $this->addressOf('_var_8c1bc3f8') + 8);
+        $this->shouldCall('_AsqRequestPvm_8c011ac0')->with("\\SYSTEM", "loading.pvm", $this->addressOf('_var_loadingResourceGroup_8c1bc3f8'), 1, 0x80000000);
+        $this->shouldCall('_AsqRequestDat_8c011182')->with("\\SYSTEM", "load_parts.dat", $this->addressOf('_var_loadingResourceGroup_8c1bc3f8') + 4);
+        $this->shouldCall('_AsqRequestDat_8c011182')->with("\\SYSTEM", "loading.dat", $this->addressOf('_var_loadingResourceGroup_8c1bc3f8') + 8);
 
-        $this->shouldCall('_AsqRequestDat_11182')->with("\\SYSTEM", "bus_font.fff", $this->addressOf('_var_busFont_8c1ba1c8'));
-        $this->shouldCall('_AsqRequestDat_11182')->with("\\SYSTEM", "vm_bus.lcd", $this->addressOf('_var_8c2260ac'));
-        $this->shouldCall('_AsqRequestDat_11182')->with("\\SYSTEM", "vm_danger.lcd", $this->addressOf('_var_8c2260b8'));
-        $this->shouldCall('_AsqRequestDat_11182')->with("\\SYSTEM", "now_loading.lcd", $this->addressOf('_var_8c2260c4'));
+        $this->shouldCall('_AsqRequestDat_8c011182')->with("\\SYSTEM", "bus_font.fff", $this->addressOf('_var_busFont_8c1ba1c8'));
+        $this->shouldCall('_AsqRequestDat_8c011182')->with("\\SYSTEM", "vm_bus.lcd", $this->addressOf('_var_8c2260ac'));
+        $this->shouldCall('_AsqRequestDat_8c011182')->with("\\SYSTEM", "vm_danger.lcd", $this->addressOf('_var_8c2260b8'));
+        $this->shouldCall('_AsqRequestDat_8c011182')->with("\\SYSTEM", "now_loading.lcd", $this->addressOf('_var_8c2260c4'));
 
-        $this->shouldCall('_AsqRequestPvm_11ac0')->with("\\SYSTEM", "fuu.pvm", $this->addressOf('_var_8c1bc440'), 1, 0);
-        $this->shouldCall('_AsqRequestNj_11492')->with("\\SYSTEM", "fuu.njd", $this->addressOf('_var_8c1bc444'), 0);
-        $this->shouldCall('_AsqRequestNj_11492')->with("\\SYSTEM", "fuu.njm", $this->addressOf('_var_loadedFooNjm_8c1bc448'), 0);
-        $this->shouldCall('_AsqRequestNj_11492')->with("\\SD_COMMON", "3s_bus_m2.njm", $this->addressOf('_var_8c1bc410'), 0);
-        $this->shouldCall('_AsqRequestNj_11492')->with("\\SD_COMMON", "3s_bus_m2.njs", $this->addressOf('_var_8c1bc414'), 0);
+        $this->shouldCall('_AsqRequestPvm_8c011ac0')->with("\\SYSTEM", "fuu.pvm", $this->addressOf('_var_8c1bc440'), 1, 0);
+        $this->shouldCall('_AsqRequestNj_8c011492')->with("\\SYSTEM", "fuu.njd", $this->addressOf('_var_8c1bc444'), 0);
+        $this->shouldCall('_AsqRequestNj_8c011492')->with("\\SYSTEM", "fuu.njm", $this->addressOf('_var_loadedFooNjm_8c1bc448'), 0);
+        $this->shouldCall('_AsqRequestNj_8c011492')->with("\\SD_COMMON", "3s_bus_m2.njm", $this->addressOf('_var_8c1bc410'), 0);
+        $this->shouldCall('_AsqRequestNj_8c011492')->with("\\SD_COMMON", "3s_bus_m2.njs", $this->addressOf('_var_8c1bc414'), 0);
 
-        $this->shouldCall('_resetUknPvmBool_8c014322');
-        $this->shouldCall('_AsqProcessQueues_11fe0')->with($this->addressOf('_AsqNop_11120'), 0, 0, 0, $this->addressOf('_setUknPvmBool_8c014330'));;
+        $this->shouldCall('_resetPvmReady_8c014322');
+        $this->shouldCall('_AsqProcessQueues_8c011fe0')->with($this->addressOf('_AsqNop_8c011120'), 0, 0, 0, $this->addressOf('_setPvmReady_8c014330'));;
 
         $this->shouldWriteTo('_var_gdErr_8c18ad14', 0);
 
@@ -663,7 +663,7 @@ return new class extends TestCase {
     public function test_njUserInit_8c0134ec_Ntsci_getSoundMode_8c010924Returns1()
     {
         // Resolutions/Bindings
-        $this->setSize('_menuState_8c1bc7a8', 0x6c);
+        $this->setSize('_var_menuState_8c1bc7a8', 0x6c);
 
         /* Stack locals */
         $infoLocal = 0xffffbc;
@@ -727,12 +727,12 @@ return new class extends TestCase {
 
         $this->shouldWriteTo('_var_8c1bb86c', -1);
 
-        $this->shouldCall('_clearUnknowArray_8c013bbc')->with($this->addressOf('_var_8c1bbddc'), 0x20);
-        $this->shouldCall('_clearUnknowArray_8c013bbc')->with($this->addressOf('_var_8c1bbfdc'), 0x41);
+        $this->shouldCall('_clearModelSlots_8c013bbc')->with($this->addressOf('_var_routeModelSlots_8c1bbddc'), 0x20);
+        $this->shouldCall('_clearModelSlots_8c013bbc')->with($this->addressOf('_var_pedestrianAssets_8c1bbfdc'), 0x41);
 
-        $this->shouldWriteTo('_var_8c1bc3ec', -1);
-        $this->shouldWriteTo('_var_8c1bc3f0', -1);
-        $this->shouldWriteTo('_var_8c1bc3f4', -1);
+        $this->shouldWriteTo('_var_routeModels_8c1bc3ec', -1);
+        $this->shouldWriteTo('_var_segmentModels_8c1bc3f0', -1);
+        $this->shouldWriteTo('_var_trafficModels_8c1bc3f4', -1);
 
         $this->shouldCall('_clearUnknownVar_8c02171c');
         $this->shouldCall('_clearUnknownVar_8c029acc');
@@ -745,9 +745,9 @@ return new class extends TestCase {
         $this->shouldWriteTo('_var_8c227e20', -1);
         $this->shouldWriteTo('_var_8c227e24', -1);
         $this->shouldWriteTo('_var_8c2288f8', -1);
-        $this->shouldWriteTo('_var_8c1bc438', -1);
-        $this->shouldWrite($this->addressOf('_menuState_8c1bc7a8') + 0x0 + 0, -1);
-        $this->shouldWrite($this->addressOf('_menuState_8c1bc7a8') + 0xc + 0, -1);
+        $this->shouldWriteTo('_var_interiorTexlist_8c1bc438', -1);
+        $this->shouldWrite($this->addressOf('_var_menuState_8c1bc7a8') + 0x0 + 0, -1);
+        $this->shouldWrite($this->addressOf('_var_menuState_8c1bc7a8') + 0xc + 0, -1);
         $this->shouldWriteTo('_var_resourceGroup_8c2263a8', -1);
         $this->shouldWriteTo('_var_8c1ba2e0', -1);
         $this->shouldWriteTo('_var_8c1ba348', -1);
@@ -760,7 +760,7 @@ return new class extends TestCase {
 
         $this->shouldWriteTo('_var_8c1bb8c4', 0);
         $this->shouldWriteTo('_var_demoIndex_8c1bb8d8', 100);
-        $this->shouldWriteTo('_var_8c157a6c', 0);
+        $this->shouldWriteTo('_var_loadScreenActive_8c157a6c', 0);
 
         $this->shouldCall('_FUN_8c01c8dc');
         $this->shouldCall('_FUN_8c0189d2');
@@ -781,31 +781,31 @@ return new class extends TestCase {
         );
         $this->shouldWrite($createdTaskPtr + 0x08, 0);
 
-        $this->shouldCall('_AsqInitQueues_11f36')->with(0x10, 8, 0, 8);
-        $this->shouldCall('_AsqResetQueues_11f6c');
+        $this->shouldCall('_AsqInitQueues_8c011f36')->with(0x10, 8, 0, 8);
+        $this->shouldCall('_AsqResetQueues_8c011f6c');
 
-        $this->shouldCall('_AsqRequestDat_11182')->with("\\SYSTEM", "mark_parts.dat", $this->addressOf('_var_mark_parts_dat_8c1bc41c'));
-        $this->shouldCall('_AsqRequestDat_11182')->with("\\SYSTEM", "mark.dat", $this->addressOf('_var_mark_dat_8c1bc420'));
-        $this->shouldCall('_AsqRequestDat_11182')->with("\\SYSTEM", "busstop_parts.dat", $this->addressOf('_var_busstop_parts_dat_8c1bc428'));
-        $this->shouldCall('_AsqRequestDat_11182')->with("\\SYSTEM", "busstop.dat", $this->addressOf('_var_busstop_dat_8c1bc42c'));
+        $this->shouldCall('_AsqRequestDat_8c011182')->with("\\SYSTEM", "mark_parts.dat", $this->addressOf('_var_markPartsDat_8c1bc41c'));
+        $this->shouldCall('_AsqRequestDat_8c011182')->with("\\SYSTEM", "mark.dat", $this->addressOf('_var_markDat_8c1bc420'));
+        $this->shouldCall('_AsqRequestDat_8c011182')->with("\\SYSTEM", "busstop_parts.dat", $this->addressOf('_var_busstopPartsDat_8c1bc428'));
+        $this->shouldCall('_AsqRequestDat_8c011182')->with("\\SYSTEM", "busstop.dat", $this->addressOf('_var_busstopDat_8c1bc42c'));
 
-        $this->shouldCall('_AsqRequestPvm_11ac0')->with("\\SYSTEM", "loading.pvm", $this->addressOf('_var_8c1bc3f8'), 1, 0x80000000);
-        $this->shouldCall('_AsqRequestDat_11182')->with("\\SYSTEM", "load_parts.dat", $this->addressOf('_var_8c1bc3f8') + 4);
-        $this->shouldCall('_AsqRequestDat_11182')->with("\\SYSTEM", "loading.dat", $this->addressOf('_var_8c1bc3f8') + 8);
+        $this->shouldCall('_AsqRequestPvm_8c011ac0')->with("\\SYSTEM", "loading.pvm", $this->addressOf('_var_loadingResourceGroup_8c1bc3f8'), 1, 0x80000000);
+        $this->shouldCall('_AsqRequestDat_8c011182')->with("\\SYSTEM", "load_parts.dat", $this->addressOf('_var_loadingResourceGroup_8c1bc3f8') + 4);
+        $this->shouldCall('_AsqRequestDat_8c011182')->with("\\SYSTEM", "loading.dat", $this->addressOf('_var_loadingResourceGroup_8c1bc3f8') + 8);
 
-        $this->shouldCall('_AsqRequestDat_11182')->with("\\SYSTEM", "bus_font.fff", $this->addressOf('_var_busFont_8c1ba1c8'));
-        $this->shouldCall('_AsqRequestDat_11182')->with("\\SYSTEM", "vm_bus.lcd", $this->addressOf('_var_8c2260ac'));
-        $this->shouldCall('_AsqRequestDat_11182')->with("\\SYSTEM", "vm_danger.lcd", $this->addressOf('_var_8c2260b8'));
-        $this->shouldCall('_AsqRequestDat_11182')->with("\\SYSTEM", "now_loading.lcd", $this->addressOf('_var_8c2260c4'));
+        $this->shouldCall('_AsqRequestDat_8c011182')->with("\\SYSTEM", "bus_font.fff", $this->addressOf('_var_busFont_8c1ba1c8'));
+        $this->shouldCall('_AsqRequestDat_8c011182')->with("\\SYSTEM", "vm_bus.lcd", $this->addressOf('_var_8c2260ac'));
+        $this->shouldCall('_AsqRequestDat_8c011182')->with("\\SYSTEM", "vm_danger.lcd", $this->addressOf('_var_8c2260b8'));
+        $this->shouldCall('_AsqRequestDat_8c011182')->with("\\SYSTEM", "now_loading.lcd", $this->addressOf('_var_8c2260c4'));
 
-        $this->shouldCall('_AsqRequestPvm_11ac0')->with("\\SYSTEM", "fuu.pvm", $this->addressOf('_var_8c1bc440'), 1, 0);
-        $this->shouldCall('_AsqRequestNj_11492')->with("\\SYSTEM", "fuu.njd", $this->addressOf('_var_8c1bc444'), 0);
-        $this->shouldCall('_AsqRequestNj_11492')->with("\\SYSTEM", "fuu.njm", $this->addressOf('_var_loadedFooNjm_8c1bc448'), 0);
-        $this->shouldCall('_AsqRequestNj_11492')->with("\\SD_COMMON", "3s_bus_m2.njm", $this->addressOf('_var_8c1bc410'), 0);
-        $this->shouldCall('_AsqRequestNj_11492')->with("\\SD_COMMON", "3s_bus_m2.njs", $this->addressOf('_var_8c1bc414'), 0);
+        $this->shouldCall('_AsqRequestPvm_8c011ac0')->with("\\SYSTEM", "fuu.pvm", $this->addressOf('_var_8c1bc440'), 1, 0);
+        $this->shouldCall('_AsqRequestNj_8c011492')->with("\\SYSTEM", "fuu.njd", $this->addressOf('_var_8c1bc444'), 0);
+        $this->shouldCall('_AsqRequestNj_8c011492')->with("\\SYSTEM", "fuu.njm", $this->addressOf('_var_loadedFooNjm_8c1bc448'), 0);
+        $this->shouldCall('_AsqRequestNj_8c011492')->with("\\SD_COMMON", "3s_bus_m2.njm", $this->addressOf('_var_8c1bc410'), 0);
+        $this->shouldCall('_AsqRequestNj_8c011492')->with("\\SD_COMMON", "3s_bus_m2.njs", $this->addressOf('_var_8c1bc414'), 0);
 
-        $this->shouldCall('_resetUknPvmBool_8c014322');
-        $this->shouldCall('_AsqProcessQueues_11fe0')->with($this->addressOf('_AsqNop_11120'), 0, 0, 0, $this->addressOf('_setUknPvmBool_8c014330'));;
+        $this->shouldCall('_resetPvmReady_8c014322');
+        $this->shouldCall('_AsqProcessQueues_8c011fe0')->with($this->addressOf('_AsqNop_8c011120'), 0, 0, 0, $this->addressOf('_setPvmReady_8c014330'));;
 
         $this->shouldWriteTo('_var_gdErr_8c18ad14', 0);
 
@@ -817,7 +817,7 @@ return new class extends TestCase {
     public function test_njUserInit_8c0134ec_Ntsci_getSoundMode_8c010924ReturnsNegative()
     {
         // Resolutions/Bindings
-        $this->setSize('_menuState_8c1bc7a8', 0x6c);
+        $this->setSize('_var_menuState_8c1bc7a8', 0x6c);
 
         /* Stack locals */
         $infoLocal = 0xffffbc;
@@ -882,12 +882,12 @@ return new class extends TestCase {
 
         $this->shouldWriteTo('_var_8c1bb86c', -1);
 
-        $this->shouldCall('_clearUnknowArray_8c013bbc')->with($this->addressOf('_var_8c1bbddc'), 0x20);
-        $this->shouldCall('_clearUnknowArray_8c013bbc')->with($this->addressOf('_var_8c1bbfdc'), 0x41);
+        $this->shouldCall('_clearModelSlots_8c013bbc')->with($this->addressOf('_var_routeModelSlots_8c1bbddc'), 0x20);
+        $this->shouldCall('_clearModelSlots_8c013bbc')->with($this->addressOf('_var_pedestrianAssets_8c1bbfdc'), 0x41);
 
-        $this->shouldWriteTo('_var_8c1bc3ec', -1);
-        $this->shouldWriteTo('_var_8c1bc3f0', -1);
-        $this->shouldWriteTo('_var_8c1bc3f4', -1);
+        $this->shouldWriteTo('_var_routeModels_8c1bc3ec', -1);
+        $this->shouldWriteTo('_var_segmentModels_8c1bc3f0', -1);
+        $this->shouldWriteTo('_var_trafficModels_8c1bc3f4', -1);
 
         $this->shouldCall('_clearUnknownVar_8c02171c');
         $this->shouldCall('_clearUnknownVar_8c029acc');
@@ -900,9 +900,9 @@ return new class extends TestCase {
         $this->shouldWriteTo('_var_8c227e20', -1);
         $this->shouldWriteTo('_var_8c227e24', -1);
         $this->shouldWriteTo('_var_8c2288f8', -1);
-        $this->shouldWriteTo('_var_8c1bc438', -1);
-        $this->shouldWrite($this->addressOf('_menuState_8c1bc7a8') + 0x0 + 0, -1);
-        $this->shouldWrite($this->addressOf('_menuState_8c1bc7a8') + 0xc + 0, -1);
+        $this->shouldWriteTo('_var_interiorTexlist_8c1bc438', -1);
+        $this->shouldWrite($this->addressOf('_var_menuState_8c1bc7a8') + 0x0 + 0, -1);
+        $this->shouldWrite($this->addressOf('_var_menuState_8c1bc7a8') + 0xc + 0, -1);
         $this->shouldWriteTo('_var_resourceGroup_8c2263a8', -1);
         $this->shouldWriteTo('_var_8c1ba2e0', -1);
         $this->shouldWriteTo('_var_8c1ba348', -1);
@@ -914,7 +914,7 @@ return new class extends TestCase {
 
         $this->shouldWriteTo('_var_8c1bb8c4', 0);
         $this->shouldWriteTo('_var_demoIndex_8c1bb8d8', 100);
-        $this->shouldWriteTo('_var_8c157a6c', 0);
+        $this->shouldWriteTo('_var_loadScreenActive_8c157a6c', 0);
 
         $this->shouldCall('_FUN_8c01c8dc');
         $this->shouldCall('_FUN_8c0189d2');
@@ -935,31 +935,31 @@ return new class extends TestCase {
         );
         $this->shouldWrite($createdTaskPtr + 0x08, 0);
 
-        $this->shouldCall('_AsqInitQueues_11f36')->with(0x10, 8, 0, 8);
-        $this->shouldCall('_AsqResetQueues_11f6c');
+        $this->shouldCall('_AsqInitQueues_8c011f36')->with(0x10, 8, 0, 8);
+        $this->shouldCall('_AsqResetQueues_8c011f6c');
 
-        $this->shouldCall('_AsqRequestDat_11182')->with("\\SYSTEM", "mark_parts.dat", $this->addressOf('_var_mark_parts_dat_8c1bc41c'));
-        $this->shouldCall('_AsqRequestDat_11182')->with("\\SYSTEM", "mark.dat", $this->addressOf('_var_mark_dat_8c1bc420'));
-        $this->shouldCall('_AsqRequestDat_11182')->with("\\SYSTEM", "busstop_parts.dat", $this->addressOf('_var_busstop_parts_dat_8c1bc428'));
-        $this->shouldCall('_AsqRequestDat_11182')->with("\\SYSTEM", "busstop.dat", $this->addressOf('_var_busstop_dat_8c1bc42c'));
+        $this->shouldCall('_AsqRequestDat_8c011182')->with("\\SYSTEM", "mark_parts.dat", $this->addressOf('_var_markPartsDat_8c1bc41c'));
+        $this->shouldCall('_AsqRequestDat_8c011182')->with("\\SYSTEM", "mark.dat", $this->addressOf('_var_markDat_8c1bc420'));
+        $this->shouldCall('_AsqRequestDat_8c011182')->with("\\SYSTEM", "busstop_parts.dat", $this->addressOf('_var_busstopPartsDat_8c1bc428'));
+        $this->shouldCall('_AsqRequestDat_8c011182')->with("\\SYSTEM", "busstop.dat", $this->addressOf('_var_busstopDat_8c1bc42c'));
 
-        $this->shouldCall('_AsqRequestPvm_11ac0')->with("\\SYSTEM", "loading.pvm", $this->addressOf('_var_8c1bc3f8'), 1, 0x80000000);
-        $this->shouldCall('_AsqRequestDat_11182')->with("\\SYSTEM", "load_parts.dat", $this->addressOf('_var_8c1bc3f8') + 4);
-        $this->shouldCall('_AsqRequestDat_11182')->with("\\SYSTEM", "loading.dat", $this->addressOf('_var_8c1bc3f8') + 8);
+        $this->shouldCall('_AsqRequestPvm_8c011ac0')->with("\\SYSTEM", "loading.pvm", $this->addressOf('_var_loadingResourceGroup_8c1bc3f8'), 1, 0x80000000);
+        $this->shouldCall('_AsqRequestDat_8c011182')->with("\\SYSTEM", "load_parts.dat", $this->addressOf('_var_loadingResourceGroup_8c1bc3f8') + 4);
+        $this->shouldCall('_AsqRequestDat_8c011182')->with("\\SYSTEM", "loading.dat", $this->addressOf('_var_loadingResourceGroup_8c1bc3f8') + 8);
 
-        $this->shouldCall('_AsqRequestDat_11182')->with("\\SYSTEM", "bus_font.fff", $this->addressOf('_var_busFont_8c1ba1c8'));
-        $this->shouldCall('_AsqRequestDat_11182')->with("\\SYSTEM", "vm_bus.lcd", $this->addressOf('_var_8c2260ac'));
-        $this->shouldCall('_AsqRequestDat_11182')->with("\\SYSTEM", "vm_danger.lcd", $this->addressOf('_var_8c2260b8'));
-        $this->shouldCall('_AsqRequestDat_11182')->with("\\SYSTEM", "now_loading.lcd", $this->addressOf('_var_8c2260c4'));
+        $this->shouldCall('_AsqRequestDat_8c011182')->with("\\SYSTEM", "bus_font.fff", $this->addressOf('_var_busFont_8c1ba1c8'));
+        $this->shouldCall('_AsqRequestDat_8c011182')->with("\\SYSTEM", "vm_bus.lcd", $this->addressOf('_var_8c2260ac'));
+        $this->shouldCall('_AsqRequestDat_8c011182')->with("\\SYSTEM", "vm_danger.lcd", $this->addressOf('_var_8c2260b8'));
+        $this->shouldCall('_AsqRequestDat_8c011182')->with("\\SYSTEM", "now_loading.lcd", $this->addressOf('_var_8c2260c4'));
 
-        $this->shouldCall('_AsqRequestPvm_11ac0')->with("\\SYSTEM", "fuu.pvm", $this->addressOf('_var_8c1bc440'), 1, 0);
-        $this->shouldCall('_AsqRequestNj_11492')->with("\\SYSTEM", "fuu.njd", $this->addressOf('_var_8c1bc444'), 0);
-        $this->shouldCall('_AsqRequestNj_11492')->with("\\SYSTEM", "fuu.njm", $this->addressOf('_var_loadedFooNjm_8c1bc448'), 0);
-        $this->shouldCall('_AsqRequestNj_11492')->with("\\SD_COMMON", "3s_bus_m2.njm", $this->addressOf('_var_8c1bc410'), 0);
-        $this->shouldCall('_AsqRequestNj_11492')->with("\\SD_COMMON", "3s_bus_m2.njs", $this->addressOf('_var_8c1bc414'), 0);
+        $this->shouldCall('_AsqRequestPvm_8c011ac0')->with("\\SYSTEM", "fuu.pvm", $this->addressOf('_var_8c1bc440'), 1, 0);
+        $this->shouldCall('_AsqRequestNj_8c011492')->with("\\SYSTEM", "fuu.njd", $this->addressOf('_var_8c1bc444'), 0);
+        $this->shouldCall('_AsqRequestNj_8c011492')->with("\\SYSTEM", "fuu.njm", $this->addressOf('_var_loadedFooNjm_8c1bc448'), 0);
+        $this->shouldCall('_AsqRequestNj_8c011492')->with("\\SD_COMMON", "3s_bus_m2.njm", $this->addressOf('_var_8c1bc410'), 0);
+        $this->shouldCall('_AsqRequestNj_8c011492')->with("\\SD_COMMON", "3s_bus_m2.njs", $this->addressOf('_var_8c1bc414'), 0);
 
-        $this->shouldCall('_resetUknPvmBool_8c014322');
-        $this->shouldCall('_AsqProcessQueues_11fe0')->with($this->addressOf('_AsqNop_11120'), 0, 0, 0, $this->addressOf('_setUknPvmBool_8c014330'));;
+        $this->shouldCall('_resetPvmReady_8c014322');
+        $this->shouldCall('_AsqProcessQueues_8c011fe0')->with($this->addressOf('_AsqNop_8c011120'), 0, 0, 0, $this->addressOf('_setPvmReady_8c014330'));;
 
         $this->shouldWriteTo('_var_gdErr_8c18ad14', 0);
 

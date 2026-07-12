@@ -116,7 +116,7 @@ MASKED:
 MASKED:
           route_common_dir_8c18ad6c
 MASKED:
-          AsqRequestNjPvmPairs_12030
+          AsqRequestModels_12030
 MASKED:
           MASKED
 MASKED:
@@ -330,7 +330,7 @@ MASKED:
           _MOV      R13,R4
           BSR       request_some_fileMASKED
           _NOP
-          MOV.L     ->AsqRequestNjPvmPairs_12030,R2
+          MOV.L     ->AsqRequestModels_12030,R2
           MOV       #0x10,R6
           MOV.L     MASKED.njd_8c01444c,R5
           JSR       @R2

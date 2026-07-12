@@ -25,7 +25,7 @@
           .IMPORT     _FUN_8c026710
           .IMPORT     _FUN_8c02e400
           .IMPORT     _FUN_8c026bc4
-          .IMPORT     _var_8c18ad20
+          .IMPORT     _var_timeOfDay_8c18ad20
           .IMPORT     _prob_blinker_8c028022
           .IMPORT     _var_8c1bbac4
           .IMPORT     _var_8c1bbacc
@@ -1250,7 +1250,7 @@ LP_GEN_81398:
           .DATA.L _FUN_8c02f0c8 ; H'8C0264B4
           .DATA.L _FUN_8c027012 ; H'8C0264B8
           .DATA.L _FUN_8c026bc4 ; H'8C0264BC
-          .DATA.L _var_8c18ad20 ; H'8C0264C0
+          .DATA.L _var_timeOfDay_8c18ad20 ; H'8C0264C0
 LAB_8c0264c4:
           MOV.L       LP_GEN_51630+22,R3
           JSR         @R3

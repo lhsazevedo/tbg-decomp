@@ -1,4 +1,6 @@
 /build/output
+/build/output_matching
+/build/output_test
 /build/tmp
 /diskroot
 
@@ -13,3 +15,5 @@ build/lnk_matching.sub
 /.env
 
 .claude/settings.local.json
+
+__pycache__/

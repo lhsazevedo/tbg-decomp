@@ -1,6 +1,6 @@
 ; 8c022bdc
           .IMPORT     _sdMidiPlay
-          .IMPORT     _var_8c1bb868
+          .IMPORT     _var_currentCourse_8c1bb868
           .IMPORT     _var_midiHandles_8c0fcd28
           .IMPORT     _var_busState_8c1bb9d0
           .IMPORT     _var_8c2264d4
@@ -23,12 +23,12 @@
           .IMPORT     _FUN_8c023938
           .IMPORT     _FUN_8c023cba
           .IMPORT     _var_8c228b3c
-          .IMPORT     _var_8c18ad20
+          .IMPORT     _var_timeOfDay_8c18ad20
           .IMPORT     _var_8c1bbd9c
           .IMPORT     _prob_blinker_8c028022
           .IMPORT     _sdMidiStop
           .IMPORT     _move_bus_model_8c020594
-          .IMPORT     _var_demo_8c1bb8d0
+          .IMPORT     _var_playMode_8c1bb8d0
           .IMPORT     _gameplayRenderBusUpdateCamera_8c025078
           .IMPORT     _demoUpdateCamera_8c025906
           .IMPORT     _FUN_8c025604
@@ -180,7 +180,7 @@ LP_GEN_58738:
           .DATA.W H'03C4 ; H'8C022CE2
           .DATA.L H'47800000 ; H'8C022CE4
           .DATA.L _sdMidiPlay ; H'8C022CE8
-          .DATA.L _var_8c1bb868 ; H'8C022CEC
+          .DATA.L _var_currentCourse_8c1bb868 ; H'8C022CEC
           .DATA.L _var_midiHandles_8c0fcd28 ; H'8C022CF0
           .DATA.L _var_busState_8c1bb9d0 ; H'8C022CF4
           .DATA.L _var_8c2264d4 ; H'8C022CF8
@@ -926,7 +926,7 @@ LP_GEN_14264:
           .DATA.W H'0260 ; H'8C023290
           .RES.W 1 ; H'8C023292
           .DATA.L H'3E4CCCCD ; H'8C023294
-          .DATA.L _var_8c18ad20 ; H'8C023298
+          .DATA.L _var_timeOfDay_8c18ad20 ; H'8C023298
           .DATA.L _var_8c1bbd9c ; H'8C02329C
           .DATA.L _prob_blinker_8c028022 ; H'8C0232A0
           .DATA.L _sdMidiStop ; H'8C0232A4
@@ -977,7 +977,7 @@ LP_GEN_51967:
           .RES.W 1 ; H'8C0232F6
           .DATA.L _var_8c1bbd9c ; H'8C0232F8
           .DATA.L _move_bus_model_8c020594 ; H'8C0232FC
-          .DATA.L _var_demo_8c1bb8d0 ; H'8C023300
+          .DATA.L _var_playMode_8c1bb8d0 ; H'8C023300
           .DATA.L _gameplayRenderBusUpdateCamera_8c025078 ; H'8C023304
           .DATA.L _demoUpdateCamera_8c025906 ; H'8C023308
           .DATA.L _FUN_8c025604 ; H'8C02330C

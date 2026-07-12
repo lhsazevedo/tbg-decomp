@@ -79,7 +79,7 @@ return new class extends TestCase {
         
         $this->shouldWriteOffset3be80(2 * 23, 8);
 
-        $this->singleCall('_AsqApplyButtonConfig_121e8')->run();
+        $this->singleCall('_AsqApplyButtonConfig_8c0121e8')->run();
     }
 
     public function test_itFollowsPath_1_0_0_0()
@@ -158,7 +158,7 @@ return new class extends TestCase {
         
         $this->shouldWriteOffset3be80(2 * 23, 8);
 
-        $this->singleCall('_AsqApplyButtonConfig_121e8')->run();
+        $this->singleCall('_AsqApplyButtonConfig_8c0121e8')->run();
     }
 
     public function test_itFollowsPath_2_0_0_0()
@@ -237,7 +237,7 @@ return new class extends TestCase {
         
         $this->shouldWriteOffset3be80(2 * 23, 8);
 
-        $this->singleCall('_AsqApplyButtonConfig_121e8')->run();
+        $this->singleCall('_AsqApplyButtonConfig_8c0121e8')->run();
     }
 
     public function test_itFollowsPath_0_1_0_0()
@@ -316,7 +316,7 @@ return new class extends TestCase {
         
         $this->shouldWriteOffset3be80(2 * 23, 8);
 
-        $this->singleCall('_AsqApplyButtonConfig_121e8')->run();
+        $this->singleCall('_AsqApplyButtonConfig_8c0121e8')->run();
     }
 
     public function test_itFollowsPath_0_2_0_0()
@@ -395,7 +395,7 @@ return new class extends TestCase {
         
         $this->shouldWriteOffset3be80(2 * 23, 8);
 
-        $this->singleCall('_AsqApplyButtonConfig_121e8')->run();
+        $this->singleCall('_AsqApplyButtonConfig_8c0121e8')->run();
     }
 
     public function test_itFollowsPath_0_0_1_0()
@@ -471,7 +471,7 @@ return new class extends TestCase {
         
         $this->shouldWriteOffset3be80(2 * 23, 8);
 
-        $this->singleCall('_AsqApplyButtonConfig_121e8')->run();
+        $this->singleCall('_AsqApplyButtonConfig_8c0121e8')->run();
     }
 
     public function test_itFollowsPath_0_0_2_0()
@@ -547,7 +547,7 @@ return new class extends TestCase {
         
         $this->shouldWriteOffset3be80(2 * 23, 8);
 
-        $this->singleCall('_AsqApplyButtonConfig_121e8')->run();
+        $this->singleCall('_AsqApplyButtonConfig_8c0121e8')->run();
     }
 
     public function test_itFollowsPath_0_0_0_1()
@@ -624,7 +624,7 @@ return new class extends TestCase {
         
         $this->shouldWriteOffset3be80(2 * 23, 8);
 
-        $this->singleCall('_AsqApplyButtonConfig_121e8')->run();
+        $this->singleCall('_AsqApplyButtonConfig_8c0121e8')->run();
     }
 
     public function test_itFollowsPath_0_0_0_2()
@@ -701,7 +701,7 @@ return new class extends TestCase {
         
         $this->shouldWriteOffset3be80(2 * 23, 8);
 
-        $this->singleCall('_AsqApplyButtonConfig_121e8')->run();
+        $this->singleCall('_AsqApplyButtonConfig_8c0121e8')->run();
     }
 
     public function test_itFollowsPath_0_0_0_3()
@@ -777,7 +777,7 @@ return new class extends TestCase {
 
         $this->shouldWriteOffset3be80(2 * 23, 8);
 
-        $this->singleCall('_AsqApplyButtonConfig_121e8')->run();
+        $this->singleCall('_AsqApplyButtonConfig_8c0121e8')->run();
     }
 
     private function init3be80(int $offset, int $value): void

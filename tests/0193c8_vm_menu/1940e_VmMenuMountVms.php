@@ -46,7 +46,7 @@ return new class extends TestCase {
         );
         $this->shouldWriteLongTo('_var_8c22606c', 1);
 
-        $this->singleCall('_VmMenuMountVms_1940e')->run();
+        $this->singleCall('_VmMenuMountVms_8c01940e')->run();
     }
 
     public function test_skipsMountedVms()
@@ -86,7 +86,7 @@ return new class extends TestCase {
         );
         $this->shouldWriteLongTo('_var_8c22606c', 1);
 
-        $this->singleCall('_VmMenuMountVms_1940e')->run();
+        $this->singleCall('_VmMenuMountVms_8c01940e')->run();
     }
 
     private function resolveSymbols(): void

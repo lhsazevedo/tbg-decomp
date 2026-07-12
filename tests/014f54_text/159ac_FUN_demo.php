@@ -30,13 +30,13 @@ return new class extends TestCase {
             });
 
         $this->shouldWriteLong($createdTask + 0x08, 0);
-        $this->shouldWriteLongTo('_var_demo_8c1bb8d0', 2);
+        $this->shouldWriteLongTo('_var_playMode_8c1bb8d0', 2);
         $this->shouldWriteLongTo('_var_8c1bb8d4', 1);
         $this->shouldWriteLongTo('_var_demoIndex_8c1bb8d8', $nextDemo);
 
-        $this->shouldCall('_AsqInitQueues_11f36')->with(1, 0, 0, 0);
-        $this->shouldCall('_AsqResetQueues_11f6c');
-        $this->shouldCall('_AsqRequestDat_11182')->with(
+        $this->shouldCall('_AsqInitQueues_8c011f36')->with(1, 0, 0, 0);
+        $this->shouldCall('_AsqResetQueues_8c011f6c');
+        $this->shouldCall('_AsqRequestDat_8c011182')->with(
             '\\SYSTEM',
             'demo0.bin',
             $this->addressOf('_var_demoBuf_8c1ba3c4')
@@ -45,17 +45,17 @@ return new class extends TestCase {
         $this->shouldWriteLongTo('_var_demoEntryValue_8c227e14', 0x08);
         $this->shouldWriteLongTo('_var_demoEntryValue_8c22822c', 0x04);
 
-        $this->shouldCall('_resetUknPvmBool_8c014322');
-        $this->shouldCall('_AsqProcessQueues_11fe0')
+        $this->shouldCall('_resetPvmReady_8c014322');
+        $this->shouldCall('_AsqProcessQueues_8c011fe0')
             ->with(
-                $this->addressOf('_AsqNop_11120'),
+                $this->addressOf('_AsqNop_8c011120'),
                 0,
                 0,
                 0,
-                $this->addressOf('_setUknPvmBool_8c014330')
+                $this->addressOf('_setPvmReady_8c014330')
             );
 
-        $this->singleCall('_FUN_demo_8c0159ac')->with(0xbeba1337)->run();
+        $this->singleCall('_FUN_8c0159ac')->with(0xbeba1337)->run();
     }
 
     public function test_it_loops_demos()
@@ -82,14 +82,14 @@ return new class extends TestCase {
             });
 
         $this->shouldWriteLong($createdTask + 0x08, 0);
-        $this->shouldWriteLongTo('_var_demo_8c1bb8d0', 2);
+        $this->shouldWriteLongTo('_var_playMode_8c1bb8d0', 2);
         $this->shouldWriteLongTo('_var_8c1bb8d4', 1);
         $this->shouldWriteLongTo('_var_demoIndex_8c1bb8d8', $currentDemo + 1);
         $this->shouldWriteLongTo('_var_demoIndex_8c1bb8d8', $nextDemo);
 
-        $this->shouldCall('_AsqInitQueues_11f36')->with(1, 0, 0, 0);
-        $this->shouldCall('_AsqResetQueues_11f6c');
-        $this->shouldCall('_AsqRequestDat_11182')->with(
+        $this->shouldCall('_AsqInitQueues_8c011f36')->with(1, 0, 0, 0);
+        $this->shouldCall('_AsqResetQueues_8c011f6c');
+        $this->shouldCall('_AsqRequestDat_8c011182')->with(
             '\\SYSTEM',
             'demo2.bin',
             $this->addressOf('_var_demoBuf_8c1ba3c4')
@@ -98,23 +98,23 @@ return new class extends TestCase {
         $this->shouldWriteLongTo('_var_demoEntryValue_8c227e14', 0x1e);
         $this->shouldWriteLongTo('_var_demoEntryValue_8c22822c', 0x15);
 
-        $this->shouldCall('_resetUknPvmBool_8c014322');
-        $this->shouldCall('_AsqProcessQueues_11fe0')
+        $this->shouldCall('_resetPvmReady_8c014322');
+        $this->shouldCall('_AsqProcessQueues_8c011fe0')
             ->with(
-                $this->addressOf('_AsqNop_11120'),
+                $this->addressOf('_AsqNop_8c011120'),
                 0,
                 0,
                 0,
-                $this->addressOf('_setUknPvmBool_8c014330')
+                $this->addressOf('_setPvmReady_8c014330')
             );
 
-        $this->singleCall('_FUN_demo_8c0159ac')->with(0xbeba1337)->run();
+        $this->singleCall('_FUN_8c0159ac')->with(0xbeba1337)->run();
     }
 
     protected function resolveSymbols(): void
     {
         // Functions
-        $this->setSize('_getUknPvmBool_8c01432a', 4);
+        $this->setSize('_isPvmReady_8c01432a', 4);
     }
 
     protected function isAsmObject(): bool

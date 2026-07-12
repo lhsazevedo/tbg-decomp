@@ -5,9 +5,8 @@
 #include "011120_asset_queues.h"
 #include "serial_debug.h"
 #include "014a9c_tasks.h"
+#include "014f54_text_pre_data.h"
 #include "stdio.h"
-
-extern char var_progress_8c1ba1cc[];
 
 /* ====================
  * Compiler Definitions
@@ -94,7 +93,7 @@ typedef struct {
 int var_queuesAreInitialized_8c157a60;
 int var_seed_8c157a64;
 STATIC int var_texlistQueueCount_8c157a68;
-int var_8c157a6c;
+int var_loadScreenActive_8c157a6c;
 
 /* TODO: Confirm type */
 int var_activeCtrlType_8c157a70;
@@ -178,7 +177,7 @@ ButtonRemap init_btnRemapWheelAlt_8c03bf18[5] = {
  */
 
 /* Matched :) */
-void AsqNop_11120() {
+void AsqNop_8c011120() {
     /* Empty body */
 }
 
@@ -205,7 +204,7 @@ STATIC void resetDatQueue_8c01116a() {
 }
 
 /* Matched */
-int AsqRequestDat_11182(char* basedir, char* filename, void* dest) {
+int AsqRequestDat_8c011182(char* basedir, char* filename, void* dest) {
 
     if (*filename == 0) {
         return 0;
@@ -216,7 +215,7 @@ int AsqRequestDat_11182(char* basedir, char* filename, void* dest) {
         return 0;
     }
 
-    LOG_DEBUG(("[ASSET_QUEUES] DAT enqueued: \"%s\" (basedir \"%s\")\n", filename, basedir));
+    LOG_TRACE(("[ASSET_QUEUES] DAT enqueued: \"%s\" (basedir \"%s\")\n", filename, basedir));
 
     var_datQueueRear_8c157a90->basedir = basedir;
     var_datQueueRear_8c157a90->filename = filename;
@@ -439,7 +438,7 @@ STATIC void resetNjQueue_8c01147a() {
 }
 
 /* Matched */
-int AsqRequestNj_11492(char* basedir, char* filename, void* dest, void* dest2) {
+int AsqRequestNj_8c011492(char* basedir, char* filename, void* dest, void* dest2) {
 
     if (*filename == 0) {
         return 0;
@@ -449,7 +448,7 @@ int AsqRequestNj_11492(char* basedir, char* filename, void* dest, void* dest2) {
         return 0;
     }
 
-    LOG_DEBUG(("[ASSET_QUEUES] NJ enqueued: \"%s\" (basedir \"%s\")\n", filename, basedir));
+    LOG_TRACE(("[ASSET_QUEUES] NJ enqueued: \"%s\" (basedir \"%s\")\n", filename, basedir));
 
     var_njQueueRear_8c157aa0->basedir = basedir;
     var_njQueueRear_8c157aa0->filename = filename;
@@ -705,12 +704,12 @@ STATIC void resetTexlistQueue_8c0117fe() {
 }
 
 /* Tested */
-int AsqRequestTexlist_1181c(char *basedir, NJS_TEXLIST *texlist) {
+int AsqRequestTexlist_8c01181c(char *basedir, NJS_TEXLIST *texlist) {
     if (var_texlistQueueRear_8c157ab0 >= var_texlistQueueTail_8c157ab4) {
         return 0;
     }
 
-    LOG_DEBUG(("[ASSET_QUEUES] Texlist enqueued: %p (basedir \"%s\")\n", texlist, basedir));
+    LOG_TRACE(("[ASSET_QUEUES] Texlist enqueued: %p (basedir \"%s\")\n", texlist, basedir));
 
     var_texlistQueueRear_8c157ab0->basedir_0x00 = basedir;
     var_texlistQueueRear_8c157ab0->texlist_0x04 = texlist;
@@ -723,10 +722,10 @@ STATIC void task_loadQueuedTexlists_8c01183e(Task *task, void *state) {
     QueuedTexlist *item = task->queuedItem_0x18;
     NJS_TEXLIST *texlist;
 
-    while (true) {
+    while (TRUE) {
         int i;
         /* Assume that the current texlist is already loaded */
-        bool alreadyLoaded = true;
+        Bool alreadyLoaded = TRUE;
 
         texlist = item->texlist_0x04;
 
@@ -771,7 +770,7 @@ STATIC void task_loadQueuedTexlists_8c01183e(Task *task, void *state) {
             /* If the current texture was not found in any of
                the compared texlists, then it should be loaded. */
             if (queueIdx == var_texlistQueueCount_8c157a68) {
-                alreadyLoaded = false;
+                alreadyLoaded = FALSE;
             }
         }
 
@@ -860,12 +859,12 @@ STATIC int initPvmQueue_8c011a5c(int count) {
 }
 
 /* Tested */
-int AsqRequestPvm_11ac0(char *basedir, char *filename, void *texlist, int count, int attr) {
+int AsqRequestPvm_8c011ac0(char *basedir, char *filename, void *texlist, int count, int attr) {
     if (!*filename || var_pvmQueueRear_8c157ac0 >= var_pvmQueueTail_8c157ac4) {
         return 0;
     }
 
-    LOG_DEBUG(("[ASSET_QUEUES] PVM enqueued: %s (basedir %s)\n", filename, basedir));
+    LOG_TRACE(("[ASSET_QUEUES] PVM enqueued: %s (basedir %s)\n", filename, basedir));
 
     var_pvmQueueRear_8c157ac0->basedir = basedir;
     var_pvmQueueRear_8c157ac0->filename = filename;
@@ -1043,7 +1042,7 @@ STATIC int sortAndLoadPvmQueue_8c011d24() {
     temp = syMalloc((int) var_pvmQueueRear_8c157ac0 - (int) var_pvmQueue_8c157abc);
 
     /* TODO: Test this skip */
-    if (var_8c157a6c != 0) {
+    if (var_loadScreenActive_8c157a6c != 0) {
         while (1) {
             int swapped = 0;
             QueuedPvm *a = var_pvmQueue_8c157abc;
@@ -1093,7 +1092,7 @@ STATIC void freePvmQueue_8c011e28() {
 }
 
 /* Tested */
-void AsqReleaseAndFreeTexlist_11e3c(NJS_TEXLIST *texlist) {
+void AsqReleaseAndFreeTexlist_8c011e3c(NJS_TEXLIST *texlist) {
     njReleaseTexture(texlist);
     syFree(texlist->textures[0].filename);
     syFree(texlist->textures);
@@ -1102,7 +1101,7 @@ void AsqReleaseAndFreeTexlist_11e3c(NJS_TEXLIST *texlist) {
 
 /* Tested */
 /* Unused */
-void AsqFreeTexlist_11e60(NJS_TEXLIST *texlist) {
+STATIC void AsqFreeTexlist_8c011e60(NJS_TEXLIST *texlist) {
     syFree(texlist->textures[0].filename);
     syFree(texlist->textures);
     syFree(texlist);
@@ -1168,7 +1167,7 @@ STATIC void task_processQueues_8c011e80(Task *task, TaskProcessQueuesState *stat
 }
 
 /* Tested */
-void AsqInitQueues_11f36(int datCount,int njCount,int texlistCount,int pvmCount)
+void AsqInitQueues_8c011f36(int datCount,int njCount,int texlistCount,int pvmCount)
 {
     LOG_INFO(("[ASSET_QUEUES] Initializing queues: DAT %d, NJ %d, TEXLIST %d, PVM %d\n", datCount, njCount, texlistCount, pvmCount));
 
@@ -1182,7 +1181,7 @@ void AsqInitQueues_11f36(int datCount,int njCount,int texlistCount,int pvmCount)
 }
 
 /* Tested */
-void AsqResetQueues_11f6c() {
+void AsqResetQueues_8c011f6c() {
     LOG_INFO(("[ASSET_QUEUES] Resetting queues\n"));
 
     resetDatQueue_8c01116a();
@@ -1194,7 +1193,7 @@ void AsqResetQueues_11f6c() {
 }
 
 /* Tested */
-void AsqFreeQueues_11f7e() {
+void AsqFreeQueues_8c011f7e() {
     LOG_INFO(("[ASSET_QUEUES] Freeing queues\n"));
 
     freeDatQueue_8c0113d8();
@@ -1206,7 +1205,7 @@ void AsqFreeQueues_11f7e() {
 }
 
 /* Tested */
-void AsqProcessQueues_11fe0(void *func, void *afterDatCallback, void *afterNjCallback, void *afterPvmCallback, void *afterTexlistCallback) {
+void AsqProcessQueues_8c011fe0(void *func, void *afterDatCallback, void *afterNjCallback, void *afterPvmCallback, void *afterTexlistCallback) {
     Task* created_task;
     TaskProcessQueuesState* created_state;
 
@@ -1222,24 +1221,24 @@ void AsqProcessQueues_11fe0(void *func, void *afterDatCallback, void *afterNjCal
 }
 
 /* Tested */
-NjPvmPair* AsqRequestNjPvmPairs_12030(char *basedir, NjPvmPairFilenames *pairs, int texlistCount) {
+LoadedModel* AsqRequestModels_8c012030(char *basedir, ModelFiles *pairs, int texlistCount) {
     int pairCount = 0;
-    NjPvmPair *dest;
+    LoadedModel *dest;
     int currentPair;
 
     while (*pairs[pairCount].njFilename || *pairs[pairCount].pvmFilename) {
         pairCount++;
     }
 
-    dest = syMalloc((pairCount + 1) * sizeof(NjPvmPair));
+    dest = syMalloc((pairCount + 1) * sizeof(LoadedModel));
 
     if (pairCount > 0) {
         for (currentPair = 0; currentPair < pairCount; currentPair++) {
-            if (!AsqRequestNj_11492(basedir, pairs[currentPair].njFilename, 0, &dest[currentPair].njDest)) {
+            if (!AsqRequestNj_8c011492(basedir, pairs[currentPair].njFilename, 0, &dest[currentPair].njDest)) {
                 dest[currentPair].njDest = (void*) -1;
             }
 
-            if (!AsqRequestPvm_11ac0(basedir, pairs[currentPair].pvmFilename, &dest[currentPair].texlist, texlistCount, 0)) {
+            if (!AsqRequestPvm_8c011ac0(basedir, pairs[currentPair].pvmFilename, &dest[currentPair].texlist, texlistCount, 0)) {
                 dest[currentPair].texlist = (void*) -1;
             }
         }
@@ -1250,14 +1249,14 @@ NjPvmPair* AsqRequestNjPvmPairs_12030(char *basedir, NjPvmPairFilenames *pairs, 
 }
 
 /* Tested */
-void AsqFreeNjPvmPairs_120fe(NjPvmPair **pairsPtr) {
+void AsqFreeModels_8c0120fe(LoadedModel **pairsPtr) {
     int i;
-    NjPvmPair *pairs = *pairsPtr;
+    LoadedModel *pairs = *pairsPtr;
 
     if (pairs != (void*) -1) {
         for (i = 0; pairs[i].texlist != (void*) 0; i++) {
             if (pairs[i].texlist != (void*) -1) {
-                AsqReleaseAndFreeTexlist_11e3c(pairs[i].texlist);
+                AsqReleaseAndFreeTexlist_8c011e3c(pairs[i].texlist);
             }
 
             if (pairs[i].njDest != (void*) -1) {
@@ -1271,58 +1270,58 @@ void AsqFreeNjPvmPairs_120fe(NjPvmPair **pairsPtr) {
 }
 
 /* Tested */
-void AsqSetSeedA_12160(int seed) {
+void AsqSetSeedA_8c012160(int seed) {
     var_seed_8c157acc = seed;
 }
 
 /* Tested */
-int AsqGetRandomA_12166() {
+int AsqGetRandomA_8c012166() {
     var_seed_8c157acc = var_seed_8c157acc * 5 + 13;
     return var_seed_8c157acc;
 }
 
 /* Tested */
-int AsqGetRandomInRangeA_12178(unsigned int p1) {
+int AsqGetRandomInRangeA_8c012178(unsigned int p1) {
     if (p1) {
-        return AsqGetRandomA_12166() % p1;
+        return AsqGetRandomA_8c012166() % p1;
     }
 
     return 0;
 }
 
 /* Tested */
-void AsqSetSeedB_121a2(int seed) {
+void AsqSetSeedB_8c0121a2(int seed) {
     var_seed_8c157ad0 = seed;
 }
 
 /* Tested */
-int AsqGetRandomB_121a8() {
+int AsqGetRandomB_8c0121a8() {
     var_seed_8c157ad0 = (var_seed_8c157ad0 >> 1) * 7 + 0xb;
     return var_seed_8c157ad0;
 }
 
 /* Tested */
-int AsqGetRandomInRangeB_121be(unsigned int p1) {
+int AsqGetRandomInRangeB_8c0121be(unsigned int p1) {
     if (p1) {
-        return AsqGetRandomB_121a8() % p1;
+        return AsqGetRandomB_8c0121a8() % p1;
     }
 
     return 0;
 }
 
 /* Tested */
-void AsqApplyButtonConfig_121e8() {
+void AsqApplyButtonConfig_8c0121e8() {
     int i;
 
     for (i = 0; i < 7; i++) {
         init_btnRemap_8c03be80[i].physical_0x00 = init_btnRemap_8c03be80[i].logical_0x04;
     }
 
-    if (var_progress_8c1ba1cc[0xcc] != 0) {
-        if (var_progress_8c1ba1cc[0xcc] == 1) {
+    if (var_progress_8c1ba1cc.field_0xc7[5] != 0) {
+        if (var_progress_8c1ba1cc.field_0xc7[5] == 1) {
             init_btnRemap_8c03be80[0].physical_0x00 = PDD_DGT_TA;
             init_btnRemap_8c03be80[3].physical_0x00 = PDD_DGT_TX;
-        } else if (var_progress_8c1ba1cc[0xcc] == 2) {
+        } else if (var_progress_8c1ba1cc.field_0xc7[5] == 2) {
             init_btnRemap_8c03be80[1].physical_0x00 = PDD_DGT_TA;
             init_btnRemap_8c03be80[3].physical_0x00 = PDD_DGT_TB;
         }
@@ -1335,17 +1334,17 @@ void AsqApplyButtonConfig_121e8() {
     init_btnRemapAlt_8c03beb8[4].physical_0x00 = PDD_DGT_KL;
     init_btnRemapAlt_8c03beb8[5].physical_0x00 = PDD_DGT_KR;
 
-    if (var_progress_8c1ba1cc[0xcd] != 0) {
-        if (var_progress_8c1ba1cc[0xcd] == 1) {
+    if (var_progress_8c1ba1cc.field_0xc7[6] != 0) {
+        if (var_progress_8c1ba1cc.field_0xc7[6] == 1) {
             init_btnRemapAlt_8c03beb8[0].physical_0x00 = PDD_DGT_TA;
             init_btnRemapAlt_8c03beb8[3].physical_0x00 = PDD_DGT_TX;
-        } else if (var_progress_8c1ba1cc[0xcd] == 2) {
+        } else if (var_progress_8c1ba1cc.field_0xc7[6] == 2) {
             init_btnRemapAlt_8c03beb8[1].physical_0x00 = PDD_DGT_TA;
             init_btnRemapAlt_8c03beb8[3].physical_0x00 = PDD_DGT_TB;
         }
     }
 
-    if (var_progress_8c1ba1cc[0xce] == 0 || var_progress_8c1ba1cc[0xce] != 1) {
+    if (var_progress_8c1ba1cc.field_0xc7[7] == 0 || var_progress_8c1ba1cc.field_0xc7[7] != 1) {
         init_btnRemapWheel_8c03bef0[0].physical_0x00 = PDD_DGT_KD;
         init_btnRemapWheel_8c03bef0[1].physical_0x00 = PDD_DGT_KU;
         init_btnRemapWheel_8c03bef0[2].physical_0x00 = PDD_DGT_TB;
@@ -1359,19 +1358,19 @@ void AsqApplyButtonConfig_121e8() {
 
     init_btnRemapWheel_8c03bef0[4].physical_0x00 = PDD_DGT_ST;
 
-    if (var_progress_8c1ba1cc[0xcf] == 0) {
+    if (var_progress_8c1ba1cc.field_0xc7[8] == 0) {
         init_btnRemapWheelAlt_8c03bf18[0].physical_0x00 = PDD_DGT_KD;
         init_btnRemapWheelAlt_8c03bf18[1].physical_0x00 = PDD_DGT_KU;
         init_btnRemapWheelAlt_8c03bf18[2].physical_0x00 = PDD_DGT_TB;
         init_btnRemapWheelAlt_8c03bf18[3].physical_0x00 = PDD_DGT_TA;
     } else {
-        if (var_progress_8c1ba1cc[0xcf] == 1) {
+        if (var_progress_8c1ba1cc.field_0xc7[8] == 1) {
             init_btnRemapWheelAlt_8c03bf18[0].physical_0x00 = PDD_DGT_TB;
             init_btnRemapWheelAlt_8c03bf18[1].physical_0x00 = PDD_DGT_TA;
             init_btnRemapWheelAlt_8c03bf18[2].physical_0x00 = PDD_DGT_KD;
             init_btnRemapWheelAlt_8c03bf18[3].physical_0x00 = PDD_DGT_KU;
         } else {
-            if (var_progress_8c1ba1cc[0xcf] != 2) {
+            if (var_progress_8c1ba1cc.field_0xc7[8] != 2) {
                 init_btnRemapWheelAlt_8c03bf18[0].physical_0x00 = PDD_DGT_KD;
                 init_btnRemapWheelAlt_8c03bf18[1].physical_0x00 = PDD_DGT_KU;
                 init_btnRemapWheelAlt_8c03bf18[2].physical_0x00 = PDD_DGT_TB;

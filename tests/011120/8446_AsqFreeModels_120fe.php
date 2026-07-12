@@ -24,17 +24,17 @@ return new class extends TestCase {
         $this->initUint32($pairs + 2 * $pairSize + 0x0, 0);
         $this->initUint32($pairs + 2 * $pairSize + 0x4, 0);
 
-        $this->shouldCall('_AsqReleaseAndFreeTexlist_11e3c')->with(0xcafe0001);
+        $this->shouldCall('_AsqReleaseAndFreeTexlist_8c011e3c')->with(0xcafe0001);
         $this->shouldCall('_syFree')->with(0xcafe0002);
 
-        $this->shouldCall('_AsqReleaseAndFreeTexlist_11e3c')->with(0xcafe1001);
+        $this->shouldCall('_AsqReleaseAndFreeTexlist_8c011e3c')->with(0xcafe1001);
         $this->shouldCall('_syFree')->with(0xcafe1002);
 
         $this->shouldCall('_syFree')->with($pairs);
 
         $this->shouldWrite($pairsPtr, -1);
 
-        $this->singleCall('_AsqFreeNjPvmPairs_120fe')
+        $this->singleCall('_AsqFreeModels_8c0120fe')
             ->with($pairsPtr)
             ->run();
     }
@@ -58,7 +58,7 @@ return new class extends TestCase {
         $this->initUint32($pairs + 2 * $pairSize + 0x0, 0);
         $this->initUint32($pairs + 2 * $pairSize + 0x4, 0);
 
-        $this->singleCall('_AsqFreeNjPvmPairs_120fe')
+        $this->singleCall('_AsqFreeModels_8c0120fe')
             ->with($pairsPtr)
             ->run();
     }
@@ -83,14 +83,14 @@ return new class extends TestCase {
 
         $this->shouldCall('_syFree')->with(0xcafe0002);
 
-        $this->shouldCall('_AsqReleaseAndFreeTexlist_11e3c')->with(0xcafe1001);
+        $this->shouldCall('_AsqReleaseAndFreeTexlist_8c011e3c')->with(0xcafe1001);
         $this->shouldCall('_syFree')->with(0xcafe1002);
 
         $this->shouldCall('_syFree')->with($pairs);
 
         $this->shouldWrite($pairsPtr, -1);
 
-        $this->singleCall('_AsqFreeNjPvmPairs_120fe')
+        $this->singleCall('_AsqFreeModels_8c0120fe')
             ->with($pairsPtr)
             ->run();
     }
@@ -113,16 +113,16 @@ return new class extends TestCase {
         $this->initUint32($pairs + 2 * $pairSize + 0x0, 0);
         $this->initUint32($pairs + 2 * $pairSize + 0x4, 0);
 
-        $this->shouldCall('_AsqReleaseAndFreeTexlist_11e3c')->with(0xcafe0001);
+        $this->shouldCall('_AsqReleaseAndFreeTexlist_8c011e3c')->with(0xcafe0001);
 
-        $this->shouldCall('_AsqReleaseAndFreeTexlist_11e3c')->with(0xcafe1001);
+        $this->shouldCall('_AsqReleaseAndFreeTexlist_8c011e3c')->with(0xcafe1001);
         $this->shouldCall('_syFree')->with(0xcafe1002);
 
         $this->shouldCall('_syFree')->with($pairs);
 
         $this->shouldWrite($pairsPtr, -1);
 
-        $this->singleCall('_AsqFreeNjPvmPairs_120fe')
+        $this->singleCall('_AsqFreeModels_8c0120fe')
             ->with($pairsPtr)
             ->run();
     }

@@ -6,6 +6,7 @@
 #include <shinobi.h>
 #include <sg_syhw.h>
 #include "serial_debug.h"
+#include "0149b0_sbinit.h"
 
 #define WORK_TOP 0x8c000000
 #define WORK_END 0x8d000000

@@ -1,10 +1,5 @@
 /* 8c0207d4 */
-struct Struct8c0207d4 {
-    float field_0x00;
-    float field_0x04;
-    float field_0x08;
-}
-typedef Struct8c0207d4;
+#include "0207d4.h"
 
 float FUN_8c0207d4(Struct8c0207d4 *param1, Struct8c0207d4 *param2, Struct8c0207d4 *param3)
 {

@@ -19,7 +19,7 @@ jobs:
 
       - name: Install sh4objtest
         run: |
-          wget -nv https://github.com/lhsazevedo/sh4objtest/releases/latest/download/sh4objtest-linux-x86_64.tar.gz
+          wget -nv https://github.com/lhsazevedo/sh4objtest/releases/download/v0.1.31/sh4objtest-linux-x86_64.tar.gz
           tar -xzf sh4objtest-linux-x86_64.tar.gz
           mv sh4objtest /usr/local/bin/sh4objtest
           rm sh4objtest-linux-x86_64.tar.gz
@@ -33,7 +33,9 @@ jobs:
 
       - name: Configure environment
         run: |
-          DC_SDK=$PWD/sdk
+          # shc doesn't like dashes in paths.
+          sudo ln -sfn "$PWD/sdk" /sdk
+          DC_SDK=/sdk
           mkdir -p $PWD/build/tmp
           echo "SHINOBI_DIR=$(wibo path -w $DC_SDK/shinobi)" >> "$GITHUB_ENV"
           echo "KATANA_SDK_DIR=$(wibo path -w $DC_SDK)" >> "$GITHUB_ENV"
@@ -43,4 +45,10 @@ jobs:
           echo "SHC_INC=$(wibo path -w $DC_SDK/shc/include),$(wibo path -w $DC_SDK/shinobi/include)" >> "$GITHUB_ENV"
 
       - name: Test
-        run: bash scripts/run_tests.sh
+        run: bash scripts/run_tests.sh --parallel
+
+      - name: Check data section match
+        run: bash scripts/check_data_match.sh
+
+      - name: Lint
+        run: bash scripts/lint.sh

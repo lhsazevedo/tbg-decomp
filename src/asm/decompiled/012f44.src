@@ -10,9 +10,9 @@
           .IMPORT     _init_8c03bd80
           .IMPORT     _init_8c03bd84
           .IMPORT     _pushTitle_8c015fd6
-          .IMPORT     _var_demo_8c1bb8d0
-          .IMPORT     _var_8c18ad1c
-          .IMPORT     _var_8c228708
+          .IMPORT     _var_playMode_8c1bb8d0
+          .IMPORT     _var_route_8c18ad1c
+          .IMPORT     _var_currentSegment_8c228708
           .IMPORT     _var_8c22655c
           .IMPORT     _var_busState_8c1bb9d0
           .IMPORT     _freeTask_8c014b66
@@ -20,7 +20,7 @@
           .IMPORT     _var_matrix_8c2f8ca0
           .IMPORT     _njInitMatrix
           .IMPORT     _njSetBackColor
-          .IMPORT     _var_8c18ad28
+          .IMPORT     _var_fogParams_8c18ad28
           .IMPORT     _njSetFogColor
           .IMPORT     _njGenerateFogTable3
           .IMPORT     _njFogEnable
@@ -33,8 +33,8 @@
           .IMPORT     _var_tasks_8c1bb448
           .IMPORT     _var_seed_8c157a64
           .IMPORT     _srand
-          .IMPORT     _AsqSetSeedA_12160
-          .IMPORT     _AsqSetSeedB_121a2
+          .IMPORT     _AsqSetSeedA_8c012160
+          .IMPORT     _AsqSetSeedB_8c0121a2
           .IMPORT     _pushInputTask_8c0128cc
           .IMPORT     _pushTask_8c014ae8
           .IMPORT     _var_tasks_8c1ba3c8
@@ -58,31 +58,30 @@
           .IMPORT     _FUN_8c02d968
           .IMPORT     _FUN_8c020528
           .IMPORT     _FUN_8c0228a2
-          .IMPORT     _var_8c1bb868
+          .IMPORT     _var_currentCourse_8c1bb868
           .IMPORT     _var_8c1bc824
           .IMPORT     _var_8c228704
           .IMPORT     _var_inputMapSel_8c1bb8c8
-          .IMPORT     _AsqGetRandomA_12166
+          .IMPORT     _AsqGetRandomA_8c012166
           .IMPORT     _var_8c227dd4
           .IMPORT     _init_8c0460b0
           .IMPORT     _FUN_8c01895e
-          .IMPORT     _AsqApplyButtonConfig_121e8
-          .IMPORT     _var_8c1ba292
+          .IMPORT     _AsqApplyButtonConfig_8c0121e8
+          .IMPORT     _var_progress_8c1ba1cc
           .IMPORT     _var_8c227da0
           .IMPORT     _var_8c227da8
-          .IMPORT     _var_8c1ba291
-          .IMPORT     _getUknPvmBool_8c01432a
+          .IMPORT     _isPvmReady_8c01432a
           .IMPORT     _var_loadedFooNjm_8c1bc448
           .IMPORT     _var_8c1bc450
-          .IMPORT     _AsqResetQueues_11f6c
+          .IMPORT     _AsqResetQueues_8c011f6c
           .IMPORT     _var_memblkSource_8c0fcd48
-          .IMPORT     _AsqRequestDat_11182
+          .IMPORT     _AsqRequestDat_8c011182
           .IMPORT     _var_memblkSource_8c0fcd4c
-          .IMPORT     _resetUknPvmBool_8c014322
-          .IMPORT     _setUknPvmBool_8c014330
-          .IMPORT     _AsqNop_11120
-          .IMPORT     _AsqProcessQueues_11fe0
-          .IMPORT     _AsqFreeQueues_11f7e
+          .IMPORT     _resetPvmReady_8c014322
+          .IMPORT     _setPvmReady_8c014330
+          .IMPORT     _AsqNop_8c011120
+          .IMPORT     _AsqProcessQueues_8c011fe0
+          .IMPORT     _AsqFreeQueues_8c011f7e
           .IMPORT     _initSoundMidiAdx_8c010e18
           .IMPORT     _var_8c2260a8
           .IMPORT     _njSetTextureMemorySize
@@ -110,12 +109,12 @@
           .IMPORT     _njSetRenderWidth
           .IMPORT     _njLoadTexture
           .IMPORT     _var_8c1bb86c
-          .IMPORT     _var_8c1bbddc
-          .IMPORT     _clearUnknowArray_8c013bbc
-          .IMPORT     _var_8c1bbfdc
-          .IMPORT     _var_8c1bc3ec
-          .IMPORT     _var_8c1bc3f0
-          .IMPORT     _var_8c1bc3f4
+          .IMPORT     _var_routeModelSlots_8c1bbddc
+          .IMPORT     _clearModelSlots_8c013bbc
+          .IMPORT     _var_pedestrianAssets_8c1bbfdc
+          .IMPORT     _var_routeModels_8c1bc3ec
+          .IMPORT     _var_segmentModels_8c1bc3f0
+          .IMPORT     _var_trafficModels_8c1bc3f4
           .IMPORT     _clearUnknownVar_8c02171c
           .IMPORT     _clearUnknownVar_8c029acc
           .IMPORT     _clearUnknownVars_8c02aa28
@@ -126,8 +125,8 @@
           .IMPORT     _var_8c227e20
           .IMPORT     _var_8c227e24
           .IMPORT     _var_8c2288f8
-          .IMPORT     _var_8c1bc438
-          .IMPORT     _menuState_8c1bc7a8
+          .IMPORT     _var_interiorTexlist_8c1bc438
+          .IMPORT     _var_menuState_8c1bc7a8
           .IMPORT     _var_resourceGroup_8c2263a8
           .IMPORT     _var_8c1ba2e0
           .IMPORT     _var_8c1ba348
@@ -137,25 +136,25 @@
           .IMPORT     _var_8c1bc454
           .IMPORT     _var_selectedVm_8c1ba34c
           .IMPORT     _var_demoIndex_8c1bb8d8
-          .IMPORT     _var_8c157a6c
+          .IMPORT     _var_loadScreenActive_8c157a6c
           .IMPORT     _FUN_8c01c8dc
           .IMPORT     _FUN_8c0189d2
           .IMPORT     _njSetBorderColor
           .IMPORT     _vmsLcd_8c01c8fc
           .IMPORT     _vmsLcd_8c01c910
-          .IMPORT     _AsqInitQueues_11f36
-          .IMPORT     _var_mark_parts_dat_8c1bc41c
-          .IMPORT     _var_mark_dat_8c1bc420
-          .IMPORT     _var_busstop_parts_dat_8c1bc428
-          .IMPORT     _var_busstop_dat_8c1bc42c
-          .IMPORT     _var_8c1bc3f8
-          .IMPORT     _AsqRequestPvm_11ac0
+          .IMPORT     _AsqInitQueues_8c011f36
+          .IMPORT     _var_markPartsDat_8c1bc41c
+          .IMPORT     _var_markDat_8c1bc420
+          .IMPORT     _var_busstopPartsDat_8c1bc428
+          .IMPORT     _var_busstopDat_8c1bc42c
+          .IMPORT     _var_loadingResourceGroup_8c1bc3f8
+          .IMPORT     _AsqRequestPvm_8c011ac0
           .IMPORT     _var_busFont_8c1ba1c8
           .IMPORT     _var_8c2260ac
           .IMPORT     _var_8c2260b8
           .IMPORT     _var_8c2260c4
           .IMPORT     _var_8c1bc440
-          .IMPORT     _AsqRequestNj_11492
+          .IMPORT     _AsqRequestNj_8c011492
           .IMPORT     _var_8c1bc444
           .IMPORT     _var_8c1bc410
           .IMPORT     _var_8c1bc414
@@ -170,7 +169,7 @@
           .IMPORT     _sbExitSystem_8c014a24
           .IMPORT     _syBtExit
           .IMPORT     _task_8c012d5a
-          .IMPORT     _FUN_8c0144fc
+          .IMPORT     _pushRouteLoadTask_8c0144fc
           .EXPORT     _task_8c012f44
           .EXPORT     _FUN_8c01306e
           .EXPORT     _FUN_8c01328c
@@ -182,7 +181,7 @@
           .EXPORT     _njUserExit_8c0139d4
           .EXPORT     _init_texlist_8c03bf44
           .EXPORT     _init_8c03bf4c
-          .EXPORT     _var_tex_8c157af8 ; 013ae8.src, 014934.c, 015ab8_title.c, 015ab8_title.src, 016d2c_course_menu.c, 016d2c_course_menu.src, 019e98_main_menu.c, 01c980.src, 01d290_album.src, 01d7fc.src, 01e27c.src, 01f3c0.src
+          .EXPORT     _var_tex_8c157af8 ; 013ae8_route_load.src, 014934.c, 015ab8_title.c, 015ab8_title.src, 016d2c_course_menu.c, 016d2c_course_menu.src, 019e98_main_menu.c, 01c980.src, 01d290_album.src, 01d7fc.src, 01e27c.src, 01f3c0.src
           .EXPORT     _var_8c18ad04 ; 0129cc.src
           .EXPORT     _var_8c18ad08 ; 0129cc.src
           .EXPORT     _var_8c18ad0c ; 0129cc.src
@@ -321,9 +320,9 @@ LP_GEN_99840:
           .DATA.L _init_8c03bd80
           .DATA.L _init_8c03bd84
           .DATA.L _pushTitle_8c015fd6
-          .DATA.L _var_demo_8c1bb8d0
-          .DATA.L _var_8c18ad1c
-          .DATA.L _var_8c228708
+          .DATA.L _var_playMode_8c1bb8d0
+          .DATA.L _var_route_8c18ad1c
+          .DATA.L _var_currentSegment_8c228708
           .DATA.L _var_8c22655c
           .DATA.L _var_busState_8c1bb9d0
 
@@ -484,7 +483,7 @@ LP_GEN_31464:
           .DATA.L _var_matrix_8c2f8ca0
           .DATA.L _njInitMatrix
           .DATA.L _njSetBackColor
-          .DATA.L _var_8c18ad28
+          .DATA.L _var_fogParams_8c18ad28
           .DATA.L _njSetFogColor
           .DATA.L _var_fogTable_8c18aaf8
           .DATA.L _njGenerateFogTable3
@@ -498,12 +497,12 @@ LP_GEN_31464:
           .DATA.L _var_tasks_8c1bb448
           .DATA.L _var_seed_8c157a64
           .DATA.L _srand
-          .DATA.L _AsqSetSeedA_12160
-          .DATA.L _AsqSetSeedB_121a2
+          .DATA.L _AsqSetSeedA_8c012160
+          .DATA.L _AsqSetSeedB_8c0121a2
           .DATA.L _pushInputTask_8c0128cc
           .DATA.L _pushTask_8c014ae8
           .DATA.L _var_tasks_8c1ba3c8
-          .DATA.L _var_demo_8c1bb8d0
+          .DATA.L _var_playMode_8c1bb8d0
           .DATA.L _task_8c012cbc
           .DATA.L _task_8c01677e
           .DATA.L _var_8c1bb8d4
@@ -757,7 +756,7 @@ LP_GEN_38000:
           .DATA.L _var_8c22847c
           .DATA.L _FUN_8c023610
           .DATA.L _FUN_8c02845a
-          .DATA.L _var_demo_8c1bb8d0
+          .DATA.L _var_playMode_8c1bb8d0
           .DATA.L _FUN_8c029920
           .DATA.L _FUN_8c0296d6
           .DATA.L _FUN_8c02769e
@@ -769,25 +768,25 @@ LP_GEN_38000:
           .DATA.L _FUN_8c020528
           .DATA.L _FUN_8c012f9c
           .DATA.L _FUN_8c0228a2
-          .DATA.L _var_8c1bb868
+          .DATA.L _var_currentCourse_8c1bb868
           .DATA.L _var_seed_8c157a64
           .DATA.L _var_8c1bc824
           .DATA.L _var_8c228704
           .DATA.L _var_inputMapSel_8c1bb8c8
-          .DATA.L _AsqGetRandomA_12166
+          .DATA.L _AsqGetRandomA_8c012166
           .DATA.L _var_8c227dd4
           .DATA.L _var_8c1bb8d4
           .DATA.L _init_8c0460b0
           .DATA.L _FUN_8c01895e
           .DATA.L _srand
-          .DATA.L _AsqSetSeedA_12160
-          .DATA.L _AsqSetSeedB_121a2
-          .DATA.L _AsqApplyButtonConfig_121e8
-          .DATA.L _var_8c1ba292
+          .DATA.L _AsqSetSeedA_8c012160
+          .DATA.L _AsqSetSeedB_8c0121a2
+          .DATA.L _AsqApplyButtonConfig_8c0121e8
+          .DATA.L _var_progress_8c1ba1cc + H'C6
           .DATA.L _var_8c227da0
           .DATA.L _var_8c227da8
-          .DATA.L _FUN_8c0144fc
-          .DATA.L _var_8c1ba291
+          .DATA.L _pushRouteLoadTask_8c0144fc
+          .DATA.L _var_progress_8c1ba1cc + H'C5
           .DATA.L _const_8c033364
 
 LAB_8c013440:
@@ -908,21 +907,21 @@ _njUserInit_8c0134ec:
           NOP
 
 LP_GEN_65923:
-          .DATA.L _getUknPvmBool_8c01432a ; LP_GEN_65923+0
+          .DATA.L _isPvmReady_8c01432a ; LP_GEN_65923+0
           .DATA.L _var_loadedFooNjm_8c1bc448
           .DATA.L H'4F800000
           .DATA.L _var_8c1bc450
-          .DATA.L _AsqResetQueues_11f6c
+          .DATA.L _AsqResetQueues_8c011f6c
           .DATA.L _var_memblkSource_8c0fcd48
           .DATA.L _const_8c03336c
-          .DATA.L _AsqRequestDat_11182
+          .DATA.L _AsqRequestDat_8c011182
           .DATA.L _var_memblkSource_8c0fcd4c
           .DATA.L _const_8c033378
-          .DATA.L _resetUknPvmBool_8c014322
-          .DATA.L _setUknPvmBool_8c014330
-          .DATA.L _AsqNop_11120
-          .DATA.L _AsqProcessQueues_11fe0
-          .DATA.L _AsqFreeQueues_11f7e
+          .DATA.L _resetPvmReady_8c014322
+          .DATA.L _setPvmReady_8c014330
+          .DATA.L _AsqNop_8c011120
+          .DATA.L _AsqProcessQueues_8c011fe0
+          .DATA.L _AsqFreeQueues_8c011f7e
           .DATA.L _freeTask_8c014b66
           .DATA.L _initSoundMidiAdx_8c010e18
           .DATA.L _var_8c2260a8
@@ -1179,12 +1178,12 @@ LP_GEN_90231:
           .DATA.L _var_tasks_8c1bac28
           .DATA.L _var_tasks_8c1bb448
           .DATA.L _var_8c1bb86c
-          .DATA.L _var_8c1bbddc
-          .DATA.L _clearUnknowArray_8c013bbc
-          .DATA.L _var_8c1bbfdc
-          .DATA.L _var_8c1bc3ec
-          .DATA.L _var_8c1bc3f0
-          .DATA.L _var_8c1bc3f4
+          .DATA.L _var_routeModelSlots_8c1bbddc
+          .DATA.L _clearModelSlots_8c013bbc
+          .DATA.L _var_pedestrianAssets_8c1bbfdc
+          .DATA.L _var_routeModels_8c1bc3ec
+          .DATA.L _var_segmentModels_8c1bc3f0
+          .DATA.L _var_trafficModels_8c1bc3f4
           .DATA.L _clearUnknownVar_8c02171c
           .DATA.L _clearUnknownVar_8c029acc
           .DATA.L _clearUnknownVars_8c02aa28
@@ -1195,8 +1194,8 @@ LP_GEN_90231:
           .DATA.L _var_8c227e20
           .DATA.L _var_8c227e24
           .DATA.L _var_8c2288f8
-          .DATA.L _var_8c1bc438
-          .DATA.L _menuState_8c1bc7a8
+          .DATA.L _var_interiorTexlist_8c1bc438
+          .DATA.L _var_menuState_8c1bc7a8
           .DATA.L _var_resourceGroup_8c2263a8
           .DATA.L _var_8c1ba2e0
           .DATA.L _var_8c1ba348
@@ -1207,7 +1206,7 @@ LP_GEN_90231:
           .DATA.L _var_selectedVm_8c1ba34c
           .DATA.L _var_8c1bb8c4
           .DATA.L _var_demoIndex_8c1bb8d8
-          .DATA.L _var_8c157a6c
+          .DATA.L _var_loadScreenActive_8c157a6c
           .DATA.L _FUN_8c01c8dc
           .DATA.L _FUN_8c0189d2
           .DATA.L _njSetBorderColor
@@ -1457,22 +1456,22 @@ LP_GEN_19861:
           .DATA.L     _task_8c013388
           .DATA.L     _var_tasks_8c1ba3c8
           .DATA.L     _pushTask_8c014ae8
-          .DATA.L     _AsqInitQueues_11f36
-          .DATA.L     _AsqResetQueues_11f6c
-          .DATA.L     _AsqRequestDat_11182
+          .DATA.L     _AsqInitQueues_8c011f36
+          .DATA.L     _AsqResetQueues_8c011f6c
+          .DATA.L     _AsqRequestDat_8c011182
           .DATA.L     _const_8c033380
-          .DATA.L     _var_mark_parts_dat_8c1bc41c
+          .DATA.L     _var_markPartsDat_8c1bc41c
           .DATA.L     _const_8c033388
-          .DATA.L     _var_mark_dat_8c1bc420
+          .DATA.L     _var_markDat_8c1bc420
           .DATA.L     _const_8c033398
-          .DATA.L     _var_busstop_parts_dat_8c1bc428
+          .DATA.L     _var_busstopPartsDat_8c1bc428
           .DATA.L     _const_8c0333a4
-          .DATA.L     _var_busstop_dat_8c1bc42c
+          .DATA.L     _var_busstopDat_8c1bc42c
           .DATA.L     _const_8c0333b8
-          .DATA.L     _var_8c1bc3f8
+          .DATA.L     _var_loadingResourceGroup_8c1bc3f8
           .DATA.L     H'80000000
           .DATA.L     s_loading_pvm_8c0333c4
-          .DATA.L     _AsqRequestPvm_11ac0
+          .DATA.L     _AsqRequestPvm_8c011ac0
           .DATA.L     s_load_parts_dat_8c0333d0
           .DATA.L     s_loading_dat_8c0333e0
           .DATA.L     _var_busFont_8c1ba1c8
@@ -1485,7 +1484,7 @@ LP_GEN_19861:
           .DATA.L     s_now_loading_lcd_8c033418
           .DATA.L     _var_8c1bc440
           .DATA.L     s_fuu_pvm_8c033428
-          .DATA.L     _AsqRequestNj_11492
+          .DATA.L     _AsqRequestNj_8c011492
           .DATA.L     _var_8c1bc444
           .DATA.L     s_fuu_njd_8c033430
           .DATA.L     _var_loadedFooNjm_8c1bc448
@@ -1495,10 +1494,10 @@ LP_GEN_19861:
           .DATA.L     s_SD_COMMON_8c033440
           .DATA.L     _var_8c1bc414
           .DATA.L     s_3s_bus_m2_njs_8c03345c
-          .DATA.L     _resetUknPvmBool_8c014322
-          .DATA.L     _setUknPvmBool_8c014330
-          .DATA.L     _AsqNop_11120
-          .DATA.L     _AsqProcessQueues_11fe0
+          .DATA.L     _resetPvmReady_8c014322
+          .DATA.L     _setPvmReady_8c014330
+          .DATA.L     _AsqNop_8c011120
+          .DATA.L     _AsqProcessQueues_8c011fe0
           .DATA.L     _var_gdErr_8c18ad14
           .DATA.L     _FUN_8c0134d6
           .DATA.L     _gdFsEntryErrFuncAll

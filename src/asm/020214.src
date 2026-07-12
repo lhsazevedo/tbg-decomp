@@ -1,5 +1,5 @@
 ; 8c020214
-          .IMPORT     _AsqGetRandomInRangeB_121be
+          .IMPORT     _AsqGetRandomInRangeB_8c0121be
           .IMPORT     _var_midiHandles_8c0fcd28
           .IMPORT     _sdMidiPlay
           .IMPORT     _var_8c22870c
@@ -8,11 +8,11 @@
           .IMPORT     _freeTask_8c014b66
           .IMPORT     _var_8c1bbc4c
           .IMPORT     _var_8c2264bc
-          .IMPORT     _AsqGetRandomB_121a8
+          .IMPORT     _AsqGetRandomB_8c0121a8
           .IMPORT     _vib_8c010f7a
-          .IMPORT     _var_demo_8c1bb8d0
+          .IMPORT     _var_playMode_8c1bb8d0
           .IMPORT     _var_8c226410
-          .IMPORT     _var_8c18ad1c
+          .IMPORT     _var_route_8c18ad1c
           .IMPORT     _var_8c22640c
           .IMPORT     _snd_8c010cd6
           .IMPORT     _var_8c228710
@@ -163,7 +163,7 @@ LP_GEN_12106:
           .DATA.W H'012C ; H'8C02030E
           .DATA.W H'0096 ; H'8C020310
           .RES.W 1 ; H'8C020312
-          .DATA.L _AsqGetRandomInRangeB_121be ; H'8C020314
+          .DATA.L _AsqGetRandomInRangeB_8c0121be ; H'8C020314
           .DATA.L _var_midiHandles_8c0fcd28 ; H'8C020318
           .DATA.L _sdMidiPlay ; H'8C02031C
           .DATA.L _var_8c22870c ; H'8C020320
@@ -173,9 +173,9 @@ LP_GEN_12106:
           .DATA.L H'3DBDA12F ; H'8C020330
           .DATA.L _var_8c1bbc4c ; H'8C020334
           .DATA.L _var_8c2264bc ; H'8C020338
-          .DATA.L _AsqGetRandomB_121a8 ; H'8C02033C
+          .DATA.L _AsqGetRandomB_8c0121a8 ; H'8C02033C
           .DATA.L _vib_8c010f7a ; H'8C020340
-          .DATA.L _var_demo_8c1bb8d0 ; H'8C020344
+          .DATA.L _var_playMode_8c1bb8d0 ; H'8C020344
 LAB_8c020348:
           TST         R4,R4
           BT          LAB_8c020430
@@ -429,13 +429,13 @@ LAB_8c0204e6:
 LP_GEN_85437:
           .RES.W 1 ; H'8C0204FA
           .DATA.L _var_8c226410 ; H'8C0204FC
-          .DATA.L _var_8c18ad1c ; H'8C020500
+          .DATA.L _var_route_8c18ad1c ; H'8C020500
           .DATA.L _var_8c22640c ; H'8C020504
           .DATA.L _snd_8c010cd6 ; H'8C020508
           .DATA.L _var_8c228710 ; H'8C02050C
           .DATA.L _var_8c2285e4 ; H'8C020510
           .DATA.L _var_8c227d9c ; H'8C020514
-          .DATA.L _AsqGetRandomB_121a8 ; H'8C020518
+          .DATA.L _AsqGetRandomB_8c0121a8 ; H'8C020518
           .DATA.L _var_vibport_8c1ba354 ; H'8C02051C
           .DATA.L _var_8c1ba293 ; H'8C020520
           .DATA.L _vib_8c010fae ; H'8C020524

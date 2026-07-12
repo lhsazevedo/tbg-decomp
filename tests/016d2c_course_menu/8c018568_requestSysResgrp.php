@@ -49,21 +49,21 @@ return new class extends TestCase {
         $this->shouldWriteLongTo('_var_currentSysResGroupInfo_8c225fb0', $resGroupInfo);
 
         // Step 2: Request parts dat
-        $this->shouldCall('_AsqRequestDat_11182')->with(
+        $this->shouldCall('_AsqRequestDat_8c011182')->with(
             "\\SYSTEM",
             "test_parts.dat",
             $resGroup + 0x04
         );
 
         // Step 3: Request main dat
-        $this->shouldCall('_AsqRequestDat_11182')->with(
+        $this->shouldCall('_AsqRequestDat_8c011182')->with(
             "\\SYSTEM",
             "test.dat",
             $resGroup + 0x08
         );
 
         // Step 4: Request pvm
-        $this->shouldCall('_AsqRequestPvm_11ac0')->with(
+        $this->shouldCall('_AsqRequestPvm_8c011ac0')->with(
             "\\SYSTEM",
             "test.pvm",
             $resGroup,
@@ -106,21 +106,21 @@ return new class extends TestCase {
         $this->shouldCall('_CourseMenuFreeResourceGroup_8c0185c4')->with($resGroup);
 
         // Step 3: Request parts dat
-        $this->shouldCall('_AsqRequestDat_11182')->with(
+        $this->shouldCall('_AsqRequestDat_8c011182')->with(
             "\\SYSTEM",
             "course_parts.dat",
             $resGroup + 0x04
         );
 
         // Step 4: Request main dat
-        $this->shouldCall('_AsqRequestDat_11182')->with(
+        $this->shouldCall('_AsqRequestDat_8c011182')->with(
             "\\SYSTEM",
             "course.dat",
             $resGroup + 0x08
         );
 
         // Step 5: Request pvm
-        $this->shouldCall('_AsqRequestPvm_11ac0')->with(
+        $this->shouldCall('_AsqRequestPvm_8c011ac0')->with(
             "\\SYSTEM",
             "course.pvm",
             $resGroup,

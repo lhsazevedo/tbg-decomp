@@ -6,7 +6,7 @@
           .IMPORT     _njCnkSimpleDrawObject
           .IMPORT     _njControl3D
           .IMPORT     _njCnkModDrawObject
-          .IMPORT     _var_8c18ad20
+          .IMPORT     _var_timeOfDay_8c18ad20
           .IMPORT     _njCnkSetEasyLightIntensity
           .IMPORT     _njCnkSetEasyLightColor
           .IMPORT     _njCnkEasyDrawObject
@@ -341,7 +341,7 @@ LP_GEN_89751:
           .DATA.L _njCnkSimpleDrawObject ; H'8C027B90
           .DATA.L _njControl3D ; H'8C027B94
           .DATA.L _njCnkModDrawObject ; H'8C027B98
-          .DATA.L _var_8c18ad20 ; H'8C027B9C
+          .DATA.L _var_timeOfDay_8c18ad20 ; H'8C027B9C
           .DATA.L _njCnkSetEasyLightIntensity ; H'8C027BA0
           .DATA.L _njCnkSetEasyLightColor ; H'8C027BA4
           .DATA.L _njCnkEasyDrawObject ; H'8C027BA8

@@ -633,7 +633,7 @@
           .EXPORT     _init_8c045148 ; 01c980.src
 
           ; 01d290_album
-          .EXPORT     _albumResourceGroup_8c045160 ; 01d290_album.src
+          .EXPORT     _init_albumResourceGroup_8c045160 ; 01d290_album.src
           .EXPORT     _init_8c045170 ; 01d290_album.src
 
           ; 01d7fc
@@ -728,10 +728,10 @@
           .EXPORT     _init_8c04caec ; 026710.src
           .EXPORT     _init_8c04cd38 ; 026710.src
 
-          ; 013ae8
-          .EXPORT     _init_8c04ce10 ; 013ae8.src
-          .EXPORT     _init_8c04df38 ; 013ae8.src
-          .EXPORT     _init_8c04e988 ; 013ae8.src
+          ; 013ae8_route_load
+          .EXPORT     _init_8c04ce10 ; 013ae8_route_load.src
+          .EXPORT     _init_8c04df38 ; 013ae8_route_load.src
+          .EXPORT     _init_8c04e988 ; 013ae8_route_load.src
 
           ; 02fb50_sh4nlfzn
           .EXPORT     _init_8c04f6a8 ; 02fb50_sh4nlfzn.src
@@ -992,7 +992,7 @@ _init_8c045148:        ; from defines
           .DATA.L      _init_8c045118
           .DATA.L      _init_8c045128
           .DATA.L      _init_8c045138
-_albumResourceGroup_8c045160:        ; from defines
+_init_albumResourceGroup_8c045160:        ; from defines
           .DATA.L      _const_8c0387d4 ; ukn
           .DATA.L      _const_8c0387e4 ; ukn
           .DATA.L      _const_8c0387f0 ; ukn

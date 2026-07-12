@@ -3,7 +3,7 @@ MAKEFLAGS += --no-builtin-rules
 
 ASMSH_FLAGS=-define=MATCHING=1 -debug=d -cpu=sh4 -endian=little -sjis
 BUILD_DIR=build
-OUTPUT_DIR=$(BUILD_DIR)/output
+OUTPUT_DIR=$(BUILD_DIR)/output_matching
 SHA1_CHECKSUM=a6df9e0de39b2d11e9339aef915d20e35763ec81
 SHELL := /bin/bash
 
@@ -18,7 +18,7 @@ SRCS = \
 	src/asm/decompiled/012504_input.src \
 	src/asm/0129cc.src \
 	src/asm/decompiled/012f44.src \
-	src/asm/013ae8.src \
+	src/asm/decompiled/013ae8_route_load.src \
 	src/014934.c \
 	src/0149b0_sbinit.c \
 	src/014a9c_tasks.c \

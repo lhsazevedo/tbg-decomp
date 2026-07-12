@@ -11,19 +11,30 @@ return new class extends TestCase {
 
         $this->call('_drawFixedInteger_8c01803e')->with($x, $y, 42, 5);
 
+        $this->shouldCall('__modls');
         $this->shouldDrawDigit($x, $y, 2);
         $x -= 19.0;
 
+        $this->shouldCall('__divls');
+        $this->shouldCall('__modls');
         $this->shouldDrawDigit($x, $y, 4);
         $x -= 19.0;
 
+        $this->shouldCall('__divls');
+        $this->shouldCall('__modls');
         $this->shouldDrawDigit($x, $y, 0);
         $x -= 19.0;
 
+        $this->shouldCall('__divls');
+        $this->shouldCall('__modls');
         $this->shouldDrawDigit($x, $y, 0);
         $x -= 19.0;
 
+        $this->shouldCall('__divls');
+        $this->shouldCall('__modls');
         $this->shouldDrawDigit($x, $y, 0);
+
+        $this->shouldCall('__divls');
     }
 
     public function test_renders_value_longer_than_digits_param(): void
@@ -34,19 +45,30 @@ return new class extends TestCase {
 
         $this->call('_drawFixedInteger_8c01803e')->with($x, $y, 12345, 3);
 
+        $this->shouldCall('__modls');
         $this->shouldDrawDigit($x, $y, 5);
         $x -= 19.0;
 
+        $this->shouldCall('__divls');
+        $this->shouldCall('__modls');
         $this->shouldDrawDigit($x, $y, 4);
         $x -= 19.0;
 
+        $this->shouldCall('__divls');
+        $this->shouldCall('__modls');
         $this->shouldDrawDigit($x, $y, 3);
         $x -= 19.0;
 
+        $this->shouldCall('__divls');
+        $this->shouldCall('__modls');
         $this->shouldDrawDigit($x, $y, 2);
         $x -= 19.0;
 
+        $this->shouldCall('__divls');
+        $this->shouldCall('__modls');
         $this->shouldDrawDigit($x, $y, 1);
+
+        $this->shouldCall('__divls');
     }
 
     public function test_renders_value_exact_digits(): void
@@ -57,13 +79,20 @@ return new class extends TestCase {
 
         $this->call('_drawFixedInteger_8c01803e')->with($x, $y, 907, 3);
 
+        $this->shouldCall('__modls');
         $this->shouldDrawDigit($x, $y, 7);
         $x -= 19.0;
 
+        $this->shouldCall('__divls');
+        $this->shouldCall('__modls');
         $this->shouldDrawDigit($x, $y, 0);
         $x -= 19.0;
 
+        $this->shouldCall('__divls');
+        $this->shouldCall('__modls');
         $this->shouldDrawDigit($x, $y, 9);
+
+        $this->shouldCall('__divls');
     }
 
     public function test_renders_zero_with_padding(): void
@@ -74,22 +103,31 @@ return new class extends TestCase {
 
         $this->call('_drawFixedInteger_8c01803e')->with($x, $y, 0, 4);
 
+        $this->shouldCall('__modls');
         $this->shouldDrawDigit($x, $y, 0);
         $x -= 19.0;
 
+        $this->shouldCall('__divls');
+        $this->shouldCall('__modls');
         $this->shouldDrawDigit($x, $y, 0);
         $x -= 19.0;
 
+        $this->shouldCall('__divls');
+        $this->shouldCall('__modls');
         $this->shouldDrawDigit($x, $y, 0);
         $x -= 19.0;
 
+        $this->shouldCall('__divls');
+        $this->shouldCall('__modls');
         $this->shouldDrawDigit($x, $y, 0);
+
+        $this->shouldCall('__divls');
     }
 
     private function shouldDrawDigit(float $x, float $y, int $digit): void
     {
         $this->shouldCall('_drawSprite_8c014f54')->with(
-            $this->addressOf('_menuState_8c1bc7a8') + 0x0c,
+            $this->addressOf('_var_menuState_8c1bc7a8') + 0x0c,
             12 + $digit,
             $x,
             $y,
@@ -99,8 +137,15 @@ return new class extends TestCase {
 
     private function resolveSymbols(): void
     {
-        $this->setSize('_menuState_8c1bc7a8', 0x6c);
+        $this->setSize('_var_menuState_8c1bc7a8', 0x6c);
         $this->setSize('__modls', 4);
         $this->setSize('__divls', 4);
+
+        $this->onCall('__modls', function () {
+            $this->setRegister(0, $this->getRegister(1)->mod($this->getRegister(0)));
+        });
+        $this->onCall('__divls', function () {
+            $this->setRegister(0, $this->getRegister(1)->div($this->getRegister(0)));
+        });
     }
 };

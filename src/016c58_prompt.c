@@ -1,12 +1,11 @@
 /* 8c016c58 */
 #include <shinobi.h>
 #include <sg_sd.h>
+#include "0100bc_sound.h"
+#include "014f54_text_pre_data.h"
 #include "016c58_prompt.h"
 
-extern SDMIDI var_midiHandles_8c0fcd28[7];
-extern PDS_PERIPHERAL var_peripherals_8c1ba35c[2];
-
-int promptHandleMultiple_16c58(int *option, int count)
+int promptHandleMultiple_8c016c58(int *option, int count)
 {
     int newOption = *option;
 
@@ -28,7 +27,7 @@ int promptHandleMultiple_16c58(int *option, int count)
     return 1;
 }
 
-int promptHandleBinary_16caa(int* option) {
+int promptHandleBinary_8c016caa(int* option) {
     if (*option == 0) {
         if (var_peripherals_8c1ba35c[0].press & PDD_DGT_KR) {
             *option = 1;

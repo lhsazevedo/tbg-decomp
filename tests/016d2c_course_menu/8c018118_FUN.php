@@ -8,7 +8,7 @@ return new class extends TestCase {
         $this->resolveSymbols();
 
         $progressBase = $this->addressOf('_var_progress_8c1ba1cc');
-        $menuBase = $this->addressOf('_menuState_8c1bc7a8');
+        $menuBase = $this->addressOf('_var_menuState_8c1bc7a8');
         $timeTable = $this->addressOf('_init_routeInfoTime_8c044d2e');
 
         $dayCount = 123;
@@ -44,7 +44,7 @@ return new class extends TestCase {
 
     private function resolveSymbols(): void
     {
-        $this->setSize('_menuState_8c1bc7a8', 0x6c);
+        $this->setSize('_var_menuState_8c1bc7a8', 0x6c);
         $this->setSize('_var_progress_8c1ba1cc', 0x94);
     }
 };

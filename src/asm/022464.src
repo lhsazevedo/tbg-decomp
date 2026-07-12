@@ -26,7 +26,7 @@
           .IMPORT     _njRenderTextureNumG
           .IMPORT     _init_8c045558
           .IMPORT     _init_8c045438
-          .IMPORT     _var_8c1bc424
+          .IMPORT     _var_busStopTexlist_8c1bc424
           .IMPORT     _init_8c045568
           .IMPORT     _init_8c045498
           .IMPORT     _init_8c0455e8
@@ -36,14 +36,14 @@
           .IMPORT     _var_8c1bb984
           .IMPORT     _init_8c0454f8
           .IMPORT     _var_8c1bb904
-          .IMPORT     _isFading_8c226568
+          .IMPORT     _var_isFading_8c226568
           .IMPORT     _var_8c227d7c
           .IMPORT     _var_8c227d80
           .IMPORT     _var_8c226564
           .IMPORT     _init_8c0455a8
           .IMPORT     _njDrawPolygon
           .IMPORT     _var_8c22656c
-          .IMPORT     _var_demo_8c1bb8d0
+          .IMPORT     _var_playMode_8c1bb8d0
           .IMPORT     _var_8c226410
           .IMPORT     __divlu
           .IMPORT     _freeTask_8c014b66
@@ -343,7 +343,7 @@ LP_GEN_55916:
           .DATA.L _njRenderTextureNumG ; H'8C022698
           .DATA.L _init_8c045558 ; H'8C02269C
           .DATA.L _init_8c045438 ; H'8C0226A0
-          .DATA.L _var_8c1bc424 ; H'8C0226A4
+          .DATA.L _var_busStopTexlist_8c1bc424 ; H'8C0226A4
           .DATA.L _init_8c045568 ; H'8C0226A8
           .DATA.L _init_8c045498 ; H'8C0226AC
           .DATA.L _init_8c0455e8 ; H'8C0226B0
@@ -484,8 +484,8 @@ LP_GEN_42584:
           .DATA.L _init_8c0455e8 ; H'8C0227C8
           .DATA.L _init_8c0454f8 ; H'8C0227CC
           .DATA.L _var_8c1bb904 ; H'8C0227D0
-          .DATA.L _var_8c1bc424 ; H'8C0227D4
-          .DATA.L _isFading_8c226568 ; H'8C0227D8
+          .DATA.L _var_busStopTexlist_8c1bc424 ; H'8C0227D4
+          .DATA.L _var_isFading_8c226568 ; H'8C0227D8
           .DATA.L H'FF000000 ; H'8C0227DC
           .DATA.L _var_8c227d7c ; H'8C0227E0
           .DATA.L _var_8c227d80 ; H'8C0227E4
@@ -633,10 +633,10 @@ LP_GEN_82363:
           .DATA.L _njDrawPolygon ; H'8C0228F4
           .DATA.L _var_8c22656c ; H'8C0228F8
           .DATA.L _var_8c22655c ; H'8C0228FC
-          .DATA.L _var_demo_8c1bb8d0 ; H'8C022900
+          .DATA.L _var_playMode_8c1bb8d0 ; H'8C022900
           .DATA.L _var_8c226410 ; H'8C022904
           .DATA.L _var_8c227d7c ; H'8C022908
-          .DATA.L _isFading_8c226568 ; H'8C02290C
+          .DATA.L _var_isFading_8c226568 ; H'8C02290C
 _FUN_8c022910:
           MOV.L       R14,@-R15
           MOV.L       LP_GEN_60768+8,R2
@@ -732,7 +732,7 @@ LP_GEN_60768:
           .DATA.L _var_8c1bb904 ; H'8C0229C8
           .DATA.L _var_8c226558 ; H'8C0229CC
           .DATA.L H'FF000000 ; H'8C0229D0
-          .DATA.L _isFading_8c226568 ; H'8C0229D4
+          .DATA.L _var_isFading_8c226568 ; H'8C0229D4
           .DATA.L _var_8c227d7c ; H'8C0229D8
           .DATA.L _var_8c227d80 ; H'8C0229DC
           .DATA.L _var_8c226564 ; H'8C0229E0
@@ -970,7 +970,7 @@ _push_fadeout_8c022b60:
 LP_GEN_18675:
           .DATA.L H'00044000 ; H'8C022B98
           .DATA.L H'01000000 ; H'8C022B9C
-          .DATA.L _isFading_8c226568 ; H'8C022BA0
+          .DATA.L _var_isFading_8c226568 ; H'8C022BA0
           .DATA.L _var_8c226560 ; H'8C022BA4
           .DATA.L H'00FF0000 ; H'8C022BA8
           .DATA.L _init_8c0455a8 ; H'8C022BAC

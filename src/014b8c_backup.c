@@ -5,6 +5,8 @@
 
 #include <shinobi.h>
 #include "014b8c_backup.h"
+#include "014f54_text_pre_data.h"
+#include "serial_debug.h"
 
 /*
  * Mamimum volume to use.
@@ -16,12 +18,6 @@
  */
 #define MAX_DRIVES 8
 #define USE_DRIVES BUD_USE_DRIVE_ALL
-
-/*
- * Structure to store the information of memory card.
- * (See backup.h)
- */
-extern BACKUPINFO gBupInfo_8c1bc4ac[8];
 
 
 
@@ -37,7 +33,7 @@ void ClearInfo_8c014c8a(Sint32 drive);
 
 void bupInit_8c014b8c(void)
 {
-    memset(gBupInfo_8c1bc4ac, 0, sizeof(gBupInfo_8c1bc4ac));
+    memset(var_gBupInfo_8c1bc4ac, 0, sizeof(var_gBupInfo_8c1bc4ac));
     buInit(MAX_CAPS, USE_DRIVES, NULL, BupInitCallback_8c014e5e);
 }
 
@@ -48,7 +44,7 @@ void BupExit(void)
 
 const BACKUPINFO* BupGetInfo_8c014bba(Sint32 drive)
 {
-    return (const BACKUPINFO*)&gBupInfo_8c1bc4ac[drive];
+    return (const BACKUPINFO*)&var_gBupInfo_8c1bc4ac[drive];
 }
 
 Sint32 BupLoad_8c014bc6(Sint32 drive, const char* fname, void* buf)
@@ -79,7 +75,7 @@ Sint32 BupSave_8c014bcc(Sint32 drive, const char* fname, void* buf, Sint32 nbloc
                             BUD_FLAG_VERIFY | BUD_FLAG_COPY(0));
 }
 
-Sint32 BupDelete_8c014bfa(Sint32 drive, const char* fname)
+NM_STATIC Sint32 BupDelete_8c014bfa(Sint32 drive, const char* fname)
 {
     return buDeleteFile(drive, fname);
 }
@@ -88,7 +84,7 @@ void BupMount_8c014c00(Sint32 drive)
 {
     BACKUPINFO* info;
 
-    info = &gBupInfo_8c1bc4ac[drive];
+    info = &var_gBupInfo_8c1bc4ac[drive];
 
     if (info->Work) return;
 
@@ -102,7 +98,7 @@ void BupUnmount_8c014c46(Sint32 drive)
     BACKUPINFO* info;
     Sint32 err;
 
-    info = &gBupInfo_8c1bc4ac[drive];
+    info = &var_gBupInfo_8c1bc4ac[drive];
 
     if (info->Work == NULL) return;
 
@@ -117,7 +113,7 @@ void ClearInfo_8c014c8a(Sint32 drive)
 {
     BACKUPINFO* info;
 
-    info = &gBupInfo_8c1bc4ac[drive];
+    info = &var_gBupInfo_8c1bc4ac[drive];
     info->ProgressCount = 0;
     info->ProgressMax = 0;
     info->Operation = 0;
@@ -127,7 +123,7 @@ void ClearInfo_8c014c8a(Sint32 drive)
     memset(&info->DiskInfo, 0, sizeof(BUS_DISKINFO));
 }
 
-const char* BupGetErrorString_8c014cfc(Sint32 err)
+NM_STATIC const char* BupGetErrorString_8c014cfc(Sint32 err)
 {
     switch (err) {
         case BUD_ERR_OK:             return "OK\0";
@@ -149,7 +145,7 @@ const char* BupGetErrorString_8c014cfc(Sint32 err)
     }
 }
 
-const char* BupGetOperationString_8c014e0c(Sint32 op)
+NM_STATIC const char* BupGetOperationString_8c014e0c(Sint32 op)
 {
     switch (op) {
         case BUD_OP_CONNECT:         return "CONNECTED\0";
@@ -182,7 +178,7 @@ static Sint32 BupComplete_8c014e70(Sint32 drive, Sint32 op, Sint32 stat, Uint32 
     Sint32 ret;
 
 
-    info = &gBupInfo_8c1bc4ac[drive];
+    info = &var_gBupInfo_8c1bc4ac[drive];
 
     switch (op) {
         case BUD_OP_CONNECT:
@@ -220,7 +216,7 @@ static Sint32 BupProgress_8c014f04(Sint32 drive, Sint32 op, Sint32 count, Sint32
 {
     BACKUPINFO* info;
 
-    info = &gBupInfo_8c1bc4ac[drive];
+    info = &var_gBupInfo_8c1bc4ac[drive];
 
     info->ProgressCount = count;
     info->ProgressMax = max;

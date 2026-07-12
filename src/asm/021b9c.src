@@ -1,8 +1,8 @@
 ; 8c021b9c
           .IMPORT     _var_busState_8c1bb9d0
           .IMPORT     __divls
-          .IMPORT     _var_8c226508
-          .IMPORT     _var_8c226504
+          .IMPORT     _var_fogParam_8c226508
+          .IMPORT     _var_fogParam_8c226504
           .IMPORT     _njControl3D
           .IMPORT     _var_8c226520
           .IMPORT     _var_8c226544
@@ -26,7 +26,7 @@
           .IMPORT     _var_8c2264e8
           .IMPORT     _var_8c2264e4
           .IMPORT     _var_8c1bb904
-          .IMPORT     _var_8c18ad24
+          .IMPORT     _var_sceneParams_8c18ad24
           .IMPORT     _njCalcVector
           .IMPORT     _var_8c1bb944
           .IMPORT     _var_8c22650c
@@ -176,8 +176,8 @@ LP_GEN_32922:
           .DATA.W H'2500 ; H'8C021CA2
           .DATA.L _var_busState_8c1bb9d0 ; H'8C021CA4
           .DATA.L __divls ; H'8C021CA8
-          .DATA.L _var_8c226508 ; H'8C021CAC
-          .DATA.L _var_8c226504 ; H'8C021CB0
+          .DATA.L _var_fogParam_8c226508 ; H'8C021CAC
+          .DATA.L _var_fogParam_8c226504 ; H'8C021CB0
           .DATA.L _njControl3D ; H'8C021CB4
           .DATA.L _var_8c226520 ; H'8C021CB8
           .DATA.L _var_8c226544 ; H'8C021CBC
@@ -928,7 +928,7 @@ LP_GEN_78610:
           .DATA.L _var_8c1bb904 ; H'8C0222A4
           .DATA.L _njSetCamera ; H'8C0222A8
           .DATA.L _var_8c226538 ; H'8C0222AC
-          .DATA.L _var_8c18ad24 ; H'8C0222B0
+          .DATA.L _var_sceneParams_8c18ad24 ; H'8C0222B0
           .DATA.L _njCalcVector ; H'8C0222B4
           .DATA.L _var_8c2264d8 ; H'8C0222B8
           .DATA.L _var_8c1bb944 ; H'8C0222BC

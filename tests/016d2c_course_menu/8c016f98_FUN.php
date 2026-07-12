@@ -59,7 +59,7 @@ return new class extends TestCase {
             ->with("Hello, World!")
             ->andReturn(42);
         $this->shouldWriteLong($state + 0x08, 42);
-        $this->shouldWriteLong($this->addressOf('_menuState_8c1bc7a8') + 0x60, 0xbebacafe);
+        $this->shouldWriteLong($this->addressOf('_var_menuState_8c1bc7a8') + 0x60, 0xbebacafe);
         $this->shouldWriteLong($state + 0x0c, 1);
         $this->shouldWriteLong($state + 0x10, 0);
         $this->shouldWriteLong($state + 0x00, 1);
@@ -87,7 +87,7 @@ return new class extends TestCase {
             ->with("Hello, World!")
             ->andReturn(42);
         $this->shouldWriteLong($state + 0x08, 42);
-        $this->shouldWriteLong($this->addressOf('_menuState_8c1bc7a8') + 0x60, 0xbebacafe);
+        $this->shouldWriteLong($this->addressOf('_var_menuState_8c1bc7a8') + 0x60, 0xbebacafe);
         $this->shouldWriteLong($state + 0x0c, 1);
         $this->shouldWriteLong($state + 0x10, 0);
         $this->shouldWriteLong($state + 0x00, 1);
@@ -117,7 +117,7 @@ return new class extends TestCase {
             ->with("Hello, World!")
             ->andReturn(42);
         $this->shouldWriteLong($state + 0x08, 42);
-        $this->shouldWriteLong($this->addressOf('_menuState_8c1bc7a8') + 0x60, 0xbebacafe);
+        $this->shouldWriteLong($this->addressOf('_var_menuState_8c1bc7a8') + 0x60, 0xbebacafe);
         $this->shouldWriteLong($state + 0x0c, 1);
         $this->shouldWriteLong($state + 0x10, 0);
         $this->shouldWriteLong($state + 0x00, 1);
@@ -314,7 +314,7 @@ return new class extends TestCase {
             ->andReturn(0.5);
 
         $this->shouldCall('_drawSprite_8c014f54')->with(
-            $this->addressOf('_menuState_8c1bc7a8'),
+            $this->addressOf('_var_menuState_8c1bc7a8'),
             44,
             32.0,
             -16.0 + 8 * 0.5,
@@ -328,7 +328,7 @@ return new class extends TestCase {
     {
         $this->setSize('_var_peripherals_8c1ba35c', 52 * 2);
         $this->setSize('_var_dialogSequenceIsActive_8c225fb4', 4);
-        $this->setSize('_menuState_8c1bc7a8', 0x6c);
+        $this->setSize('_var_menuState_8c1bc7a8', 0x6c);
         // Functions
         $this->setSize('_snd_8c010cd6', 0x4);
         $this->setSize('_freeTask_8c014b66', 0x4);

@@ -7,7 +7,7 @@ ASMSH_FLAGS="-define=UNIT_TESTING=1 -debug -cpu=sh4 -endian=little -sjis"
 assemble() {
   local src_file="$1"
   local base_name=$(basename "$src_file" .src)
-  local obj_file="build\\output\\${base_name}_src.obj"
+  local obj_file="build\\output_test\\${base_name}_src.obj"
 
   wibo "$SHC_BIN/asmsh.exe" $(echo "$src_file"| tr / '\\') -object="$obj_file" $ASMSH_FLAGS
 }
@@ -15,8 +15,8 @@ assemble() {
 compile() {
   local src_file="$1"
   local base_name=$(basename "$src_file" .c)
-  local obj_file="build\\output\\${base_name}_c.obj"
-  local asm_file="build\\output\\${base_name}_c.src"
+  local obj_file="build\\output_test\\${base_name}_c.obj"
+  local asm_file="build\\output_test\\${base_name}_c.src"
 
   wibo "$SHC_BIN/shc.exe" $(echo "$src_file" | tr / '\\') -object="$obj_file" -sub=build/shc_testing.sub 
 
@@ -24,8 +24,8 @@ compile() {
   wibo "$SHC_BIN/shc.exe" $(echo "$src_file" | tr / '\\') -code=asm -object="$asm_file" -sub=build/shc_testing.sub 
 }
 
-rm -rf build/output build/tmp
-mkdir build/output build/tmp
+rm -rf build/output_test build/tmp
+mkdir build/output_test build/tmp
 
 # 012324
 assemble  src/asm/decompiled/012324_peripheral_support.src
@@ -86,5 +86,9 @@ compile  src/016bf4_demo_input.c
 # 01d290_album
 assemble  src/asm/decompiled/01d290_album.src
 compile  src/01d290_album.c
+
+# 013ae8_route_load
+assemble  src/asm/decompiled/013ae8_route_load.src
+compile  src/013ae8_route_load.c
 
 $sh4objtest suite -s tests.php "$@"

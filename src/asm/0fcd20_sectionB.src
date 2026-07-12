@@ -94,12 +94,12 @@
           .EXPORT     _var_8c2264f0 ; 021b9c.src, 0222dc.src, 028258.src, 02d06c.src
           .EXPORT     _var_8c2264f4 ; 028258.src, 02d06c.src
           .EXPORT     _var_8c2264f8 ; 021b9c.src, 0222dc.src, 028258.src, 02d06c.src
-          .EXPORT     _var_8c226504 ; 013ae8.src, 021b9c.src
-          .EXPORT     _var_8c226508 ; 013ae8.src, 021b9c.src
+          .EXPORT     _var_fogParam_8c226504 ; 013ae8_route_load.src, 021b9c.src
+          .EXPORT     _var_fogParam_8c226508 ; 013ae8_route_load.src, 021b9c.src
           .EXPORT     _var_8c22650c ; 02171c.src, 021b9c.src
           .EXPORT     _var_8c22651c ; 02171c.src
           .EXPORT     _var_8c226520 ; 02171c.src, 021b9c.src
-          .EXPORT     _var_8c226534 ; 013ae8.src, 02171c.src
+          .EXPORT     _var_currentTileRegionList_8c226534 ; 013ae8_route_load.src, 02171c.src
           .EXPORT     _var_8c226538 ; 021b9c.src
           .EXPORT     _var_8c226544 ; 021b9c.src, 0222dc.src
           .EXPORT     _var_8c22654c ; 021b9c.src, 0222dc.src
@@ -109,7 +109,7 @@
           .EXPORT     _var_8c22655c ; 012f44.c, 012f44.src, 022464.src, 02d19c.src
           .EXPORT     _var_8c226560 ; 022464.src, 028258.src, 02d19c.src
           .EXPORT     _var_8c226564 ; 022464.src, 028258.src, 02b464.src, 02d19c.src
-          .EXPORT     _isFading_8c226568 ; 0129cc.src, 015ab8_title, 016d2c_course_menu, 018784.src, 0193c8_vm_menu, 019e98_main_menu, 01a148.src, 01b19c.src, 01bb48.src, 01c980.src, 01d290_album.src, 01d7fc.src, 01e27c.src, 01f3c0.src, 022464.src,
+          .EXPORT     _var_isFading_8c226568 ; 0129cc.src, 015ab8_title, 016d2c_course_menu, 018784.src, 0193c8_vm_menu, 019e98_main_menu, 01a148.src, 01b19c.src, 01bb48.src, 01c980.src, 01d290_album.src, 01d7fc.src, 01e27c.src, 01f3c0.src, 022464.src,
                                          ; 028258.src, 02b464.src, 02d19c.src
           .EXPORT     _var_8c22656c ; 022464.src, 02b464.src, 02c884.src
           .EXPORT     _var_8c226570 ; 0222dc.src, 022464.src
@@ -133,7 +133,7 @@
           .EXPORT     _var_8c227db4 ; 022bdc.src, 023310.src
           .EXPORT     _var_8c227db8 ; 024b4c.src, 026710.src, 028258.src, 02d19c.src
           .EXPORT     _var_8c227dc4 ; 024b4c.src, 026710.src
-          .EXPORT     _var_8c227dd0 ; 013ae8.src, 024b4c.src
+          .EXPORT     _var_fogParam_8c227dd0 ; 013ae8_route_load.src, 024b4c.src
           .EXPORT     _var_8c227dd4 ; 012f44.c, 012f44.src, 025870.src
           .EXPORT     _var_8c227dd8 ; 024b4c.src
           .EXPORT     _var_8c227ddc ; 024b4c.src
@@ -198,7 +198,7 @@
           .EXPORT     _var_8c228520 ; 02af78.src, 02c884.src
           .EXPORT     _var_8c228560 ; 02af78.src, 02c884.src
           .EXPORT     _var_8c228564 ; 02b2f0.src, 02b464.src
-          .EXPORT     _var_8c2285c4 ; 013ae8.src, 01fa78.src, 020214.src, 022bdc.src, 024280.src, 026710.src, 028258.src, 02b464.src, 02c884.src, 02d19c.src, 02d968.src
+          .EXPORT     _var_8c2285c4 ; 013ae8_route_load.src, 01fa78.src, 020214.src, 022bdc.src, 024280.src, 026710.src, 028258.src, 02b464.src, 02c884.src, 02d19c.src, 02d968.src
           .EXPORT     _var_8c2285c8 ; 02b2f0.src
           .EXPORT     _var_8c2285d0 ; 01d7fc.src, 01e27c.src, 01fa78.src, 02b464.src
           .EXPORT     _var_8c2285d8 ; 02af78.src, 02b464.src, 02c884.src
@@ -231,7 +231,7 @@
           ; 02c884
           .EXPORT     _var_8c2286a4 ; 02c884.src
           .EXPORT     _var_8c228704 ; 012f44.c, 012f44.src, 02c884.src
-          .EXPORT     _var_8c228708 ; 012f44.c, 012f44.src, 013ae8.src, 023310.src, 026710.src, 02af78.src, 02c884.src, 02d19c.src, 02d968.src
+          .EXPORT     _var_currentSegment_8c228708 ; 012f44.c, 012f44.src, 013ae8_route_load.src, 023310.src, 026710.src, 02af78.src, 02c884.src, 02d19c.src, 02d968.src
           .EXPORT     _var_8c22870c ; 020214.src, 02c884.src
           .EXPORT     _var_8c228710 ; 020214.src, 02b464.src, 02c884.src
           .EXPORT     _var_8c228714 ; 02b464.src, 02c884.src
@@ -423,9 +423,9 @@ _var_8c2264f4:
           .RES.B      4
 _var_8c2264f8:
           .RES.B      12
-_var_8c226504:
+_var_fogParam_8c226504:
           .RES.B      4
-_var_8c226508:
+_var_fogParam_8c226508:
           .RES.B      4
 _var_8c22650c:
           .RES.B      16
@@ -433,7 +433,7 @@ _var_8c22651c:
           .RES.B      4
 _var_8c226520:
           .RES.B      20
-_var_8c226534:
+_var_currentTileRegionList_8c226534:
           .RES.B      4
 _var_8c226538:
           .RES.B      12
@@ -449,7 +449,7 @@ _var_8c226560:
           .RES.B      4
 _var_8c226564:
           .RES.B      4
-_isFading_8c226568:
+_var_isFading_8c226568:
           .RES.B      4
 _var_8c22656c:
           .RES.B      4
@@ -487,7 +487,7 @@ _var_8c227db8:
           .RES.B      12
 _var_8c227dc4:
           .RES.B      12
-_var_8c227dd0:
+_var_fogParam_8c227dd0:
           .RES.B      4
 _var_8c227dd4:
           .RES.B      4
@@ -659,7 +659,7 @@ _var_8c2286a4:
           .RES.B      96
 _var_8c228704:
           .RES.B      4
-_var_8c228708:
+_var_currentSegment_8c228708:
           .RES.B      4
 _var_8c22870c:
           .RES.B      4

@@ -458,7 +458,7 @@ return new class extends TestCase {
 
         // TODO: Move implementation to Simulator
         // TODO: Handle calling conventions for expectations in Simulator
-        $menuState = $this->addressOf('_menuState_8c1bc7a8');
+        $menuState = $this->addressOf('_var_menuState_8c1bc7a8');
         $mvn = function () use ($menuState) {
             $src = $this->registers[2];
             $dst = $this->registers[1];

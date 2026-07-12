@@ -1,11 +1,21 @@
-#ifndef _DEFINITIONS_H_
-#define _DEFINITIONS_H_
+#ifndef _SERIAL_DEBUG_H_
+#define _SERIAL_DEBUG_H_
 
 /* TODO: Move STATIC to a dedicated common defs header (not logging). */
 #ifdef UNIT_TESTING
 #define STATIC
 #else
 #define STATIC static
+#endif
+
+/* Like STATIC, but also expands to nothing in a matching build. A unit compiled
+   from C into that build (Makefile.matching SRCS) must emit each function as the
+   original did -- `static` would let SHC drop an uncalled one or inline it and
+   break the byte match. Use for private functions in those units. */
+#if defined(UNIT_TESTING) || defined(MATCHING)
+#define NM_STATIC
+#else
+#define NM_STATIC static
 #endif
 
 /* 
@@ -63,4 +73,4 @@ void serialprintf(const char *fmt, ...);
 #define LOG_TRACE(x)
 #endif
 
-#endif /* _DEFINITIONS_H_ */
+#endif /* _SERIAL_DEBUG_H_ */

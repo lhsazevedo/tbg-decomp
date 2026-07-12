@@ -1,8 +1,11 @@
 #include <shinobi.h>
+#include "013ae8_route_load.h"
 #include "015ab8_title.h"
 #include "014a9c_tasks.h"
 #include "011120_asset_queues.h"
 #include "014f54_text.h"
+#include "014f54_text_pre_data.h"
+#include "0fcd20_sectionB.h"
 #include "serial_debug.h"
 
 /* ====================
@@ -16,7 +19,6 @@
 #define GLYPH_TEXTURE_SIZE  GLYPH_TEXTURE_WIDTH * GLYPH_TEXTURE_WIDTH
 #define GLYPH_WIDTH         24
 #define GLYPH_HEIGHT        32
-#define GLYPH_PALETTE_SIZE  4
 #define GLYPH_COUNT         0x200
 
 #define ARGB1555(a, r, g, b) ( \
@@ -40,37 +42,10 @@ typedef struct {
     int field_0x08;
 } DemoEntry;
 
-typedef struct {
-    int x_0x00;
-    int y_0x04;
-    float priority_0x08;
-    int width_0x0c;
-    int height_0x10;
-    int x2_0x14;
-    int y2_0x18;
-    Uint16 processed_char_count_0x1c;
-    Uint16 processed_tag_count_0x1e;
-    Uint16 character_count_0x20;
-    Uint16 tag_count_0x22;
-    Uint16 palette_0x24[GLYPH_PALETTE_SIZE];
-    Uint16 *tokens_0x2c;
-    int enable_offset_0x30;
-    Float *line_offsets_0x34;
-    char *text_0x38;
-} TextBox;
-
 /* =======================
  * Non-initialized Globals
  * =======================
  */
-
-extern void *var_busFont_8c1ba1c8;
-extern int *var_demoBuf_8c1ba3c4;
-extern int var_8c1bb868;
-extern int var_inputMapSel_8c1bb8c8;
-extern int var_demo_8c1bb8d0;
-extern int var_8c1bb8d4;
-extern int var_demoIndex_8c1bb8d8;
 
 STATIC NJS_TEXNAME *var_glyphTexnames_8c1bc78c;
 STATIC NJS_TEXLIST *var_glyphTexlists_8c1bc790;
@@ -78,14 +53,11 @@ STATIC ResourceGroup var_fontResourceGroup_8c1bc794;
 STATIC Sint16 *var_8c1bc7a0;
 STATIC void *var_glyphBuffer_8c1bc7a4;
 
-MenuState menuState_8c1bc7a8;
+MenuState var_menuState_8c1bc7a8;
 void *var_8c1bc824;
-ReplayInput demoBuffer_8c1bc828[REPLAY_BUFFER_CAPACITY];
-ReplayInput *demoCursor_8c225fa8;
-Uint32 demoPrevOn_8c225fac;
-
-extern int var_demoEntryValue_8c227e14;
-extern int var_demoEntryValue_8c22822c;
+ReplayInput var_demoBuffer_8c1bc828[REPLAY_BUFFER_CAPACITY];
+ReplayInput *var_demoCursor_8c225fa8;
+Uint32 var_demoPrevOn_8c225fac;
 
 
 /* ===================
@@ -138,8 +110,6 @@ STATIC DemoEntry init_demos_8c044154[20] = {
  * Forward Declarations
  * ====================
  */
-
-extern void setUknPvmBool_8c014330();
 
 /* =========
  * Functions
@@ -216,7 +186,7 @@ void drawSprite_8c014f54(
  * @param res_group  Pointer to the ResourceGroup containing sprite data
  * @param texture_id ID of the texture to draw
  */
-void drawSpriteLerp_8c014ff6(
+STATIC void drawSpriteLerp_8c014ff6(
     float start_x,
     float start_y,
     float priority,
@@ -443,8 +413,8 @@ TextBox* TxtCreateTextBox_8c0152fc(
     int i;
     TextBox *box = syMalloc(sizeof(TextBox));
 
-    LOG_INFO((
-        "[TXT] Creating TextBox instance:\n"
+    LOG_INFO(("[TXT] Creating TextBox instance\n"));
+    LOG_DEBUG((
         "      x=%d, y=%d, priority=%f, width=%d, height=%d, "
         "      x2=%d, y2=%d, enable_offset=%d\n",
         x, y, priority, width, height, x2, y2, enable_offset
@@ -749,14 +719,14 @@ int TxtDrawTextbox_8c0155e0(TextBox *box, int limit)
 STATIC void FUN_8c01594c(Task *task)
 {
     void *local;
-    if (!getUknPvmBool_8c01432a()) {
+    if (!isPvmReady_8c01432a()) {
         return;
     }
 
-    var_8c1bb868 = var_demoBuf_8c1ba3c4[1];
+    var_currentCourse_8c1bb868.courseId_0x00 = var_demoBuf_8c1ba3c4[1];
     var_inputMapSel_8c1bb8c8 = var_demoBuf_8c1ba3c4[2];
     var_seed_8c157a64 = var_demoBuf_8c1ba3c4[3];
-    local = demoBuffer_8c1bc828;
+    local = var_demoBuffer_8c1bc828;
     FUN_8c02f320();
     FUN_readDemo_8c02fa14(&var_demoBuf_8c1ba3c4[4], &local, var_demoBuf_8c1ba3c4[0]);
     syFree(var_demoBuf_8c1ba3c4);
@@ -765,7 +735,7 @@ STATIC void FUN_8c01594c(Task *task)
     FUN_8c01328c();
 }
 
-void FUN_demo_8c0159ac()
+void FUN_8c0159ac()
 {
     Task *created_task;
     void *created_state;
@@ -774,14 +744,14 @@ void FUN_demo_8c0159ac()
     );
     created_task->field_0x08 = 0;
     // created_task->field_0x0c = NULL;
-    var_demo_8c1bb8d0 = 2;
+    var_playMode_8c1bb8d0 = 2;
     var_8c1bb8d4 = 1;
     if (++var_demoIndex_8c1bb8d8 >= 20) {
         var_demoIndex_8c1bb8d8 = 0;
     }
-    AsqInitQueues_11f36(1,0,0,0);
-    AsqResetQueues_11f6c();
-    AsqRequestDat_11182(
+    AsqInitQueues_8c011f36(1,0,0,0);
+    AsqResetQueues_8c011f6c();
+    AsqRequestDat_8c011182(
         "\\SYSTEM",
         init_demos_8c044154[var_demoIndex_8c1bb8d8].filename,
         &var_demoBuf_8c1ba3c4
@@ -790,7 +760,7 @@ void FUN_demo_8c0159ac()
         init_demos_8c044154[var_demoIndex_8c1bb8d8].field_0x04;
     var_demoEntryValue_8c22822c =
         init_demos_8c044154[var_demoIndex_8c1bb8d8].field_0x08;
-    resetUknPvmBool_8c014322();
-    AsqProcessQueues_11fe0(AsqNop_11120, 0, 0, 0, setUknPvmBool_8c014330);
+    resetPvmReady_8c014322();
+    AsqProcessQueues_8c011fe0(AsqNop_8c011120, 0, 0, 0, setPvmReady_8c014330);
     return;
 }

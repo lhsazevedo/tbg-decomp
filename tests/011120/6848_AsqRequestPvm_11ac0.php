@@ -26,7 +26,7 @@ return new class extends TestCase {
         $this->shouldWrite($queue + 0x14, 0);
         $this->shouldWriteTo('_var_pvmQueueRear_8c157ac0', $queue + $sizeOfQueuedPvm);
 
-        $this->singleCall('_AsqRequestPvm_11ac0')
+        $this->singleCall('_AsqRequestPvm_8c011ac0')
             ->with($dirname, $filename, 0xcafe0001, 0xcafe0002, 0xcafe0003)
             ->singleShouldReturn(1)
             ->run();
@@ -45,7 +45,7 @@ return new class extends TestCase {
         $dirname = $this->allocString('\\MY_DIR');
         $filename = $this->allocString('MY_FILE.PVM');
 
-        $this->singleCall('_AsqRequestPvm_11ac0')
+        $this->singleCall('_AsqRequestPvm_8c011ac0')
             ->with($dirname, $filename)
             ->singleShouldReturn(0)
             ->run();
@@ -64,7 +64,7 @@ return new class extends TestCase {
         $dirname = $this->allocString('\\MY_DIR');
         $filename = $this->allocString('');
 
-        $this->singleCall('_AsqRequestPvm_11ac0')
+        $this->singleCall('_AsqRequestPvm_8c011ac0')
             ->with($dirname, $filename)
             ->singleShouldReturn(0)
             ->run();

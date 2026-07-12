@@ -2,7 +2,7 @@ align_section
 udfcheck 
 ; debug 
 elf 
-output build\output\tbg.elf
+output build\output_matching\tbg.elf
 
 define _ADXT_Init(8C04F7A2)
 define _ADXT_Create(8C04F8C0)
@@ -184,7 +184,7 @@ define __BSG_END(8C0E7FCC)
 ; USER OBJS
 @INPUTS@
 
-print build\output\tbg.map
+print build\output_matching\tbg.map
 form a
 start P,C,D,SDK(8C010000)
 exit 

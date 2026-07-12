@@ -7,6 +7,25 @@ OUTPUT_DIR=$(BUILD_DIR)/output
 SHA1_CHECKSUM=a6df9e0de39b2d11e9339aef915d20e35763ec81
 SHELL := /bin/bash
 
+# SERIAL_DEBUG=1 enables serial logging (default, matches shipped behavior);
+# LOG_LEVEL (e.g. DEBUG, INFO, ...) overrides the default DEBUG_LEVEL threshold
+# from src/serial_debug.h. Example: make SERIAL_DEBUG=1 LOG_LEVEL=DEBUG clean all
+SERIAL_DEBUG ?= 1
+LOG_LEVEL ?=
+
+SHC_DEFINES := __SHC__
+ifeq ($(SERIAL_DEBUG),1)
+SHC_DEFINES += SERIAL_DEBUG
+endif
+ifneq ($(LOG_LEVEL),)
+SHC_DEFINES += DEBUG_LEVEL=LOG_LEVEL_$(LOG_LEVEL)
+endif
+
+empty :=
+space := $(empty) $(empty)
+comma := ,
+SHC_DEFINE_ARG = -define=$(subst $(space),$(comma),$(SHC_DEFINES))
+
 SRCS = \
 	src/010080_main.c \
 	src/0100bc_sound.c \
@@ -17,7 +36,7 @@ SRCS = \
 	src/012504_input.c \
 	src/asm/0129cc.src \
 	src/012f44.c \
-	src/asm/013ae8.src \
+	src/013ae8_route_load.c \
 	src/014934.c \
 	src/0149b0_sbinit.c \
 	src/014a9c_tasks.c \
@@ -101,13 +120,13 @@ $(OUTPUT_DIR)/src/asm/%.obj: src/asm/%.src
 	wibo "$(SHC_BIN)/asmsh.exe" "$(subst /,\\,$<)" -object="$(subst /,\\,$@)" $(ASMSH_FLAGS)
 
 $(OUTPUT_DIR)/src/%.obj: src/%.c
-	wibo "$(SHC_BIN)/shc.exe" "$(subst /,\\,$<)" -object="$(subst /,\\,$@)" -sub=$(BUILD_DIR)/shc.sub
-	wibo "$(SHC_BIN)/shc.exe" "$(subst /,\\,$<)" -code=asm -object="$(subst /,\\,$@).src" -sub=$(BUILD_DIR)/shc_testing.sub
+	wibo "$(SHC_BIN)/shc.exe" "$(subst /,\\,$<)" -object="$(subst /,\\,$@)" -sub=$(BUILD_DIR)/shc.sub $(SHC_DEFINE_ARG)
+	wibo "$(SHC_BIN)/shc.exe" "$(subst /,\\,$<)" -code=asm -object="$(subst /,\\,$@).src" -sub=$(BUILD_DIR)/shc.sub
 
 $(OUTPUT_DIR)/tbg.elf: $(OBJS) $(BUILD_DIR)/lnk.sub
 	wibo "$(SHC_BIN)/lnk.exe" -sub=build\\lnk.sub
 
-$(BUILD_DIR)/lnk.sub: $(BUILD_DIR)/lnk_template.sub
+$(BUILD_DIR)/lnk.sub: $(BUILD_DIR)/lnk_template.sub Makefile
 	sed "s|@DC_SDK@|$$(printf %q "$(KATANA_SDK_DIR)")|g" $(BUILD_DIR)/lnk_template.sub > $(BUILD_DIR)/lnk.sub
 	sed -i 's|@INPUTS@|$(foreach obj,$(LINKER_OBJS),input $(obj)\n)|g' $(BUILD_DIR)/lnk.sub
 

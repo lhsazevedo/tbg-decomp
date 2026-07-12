@@ -1,9 +1,9 @@
 ; 8c026710
           .IMPORT     _var_8c227e1c
           .IMPORT     _init_8c0460bc
-          .IMPORT     _var_8c18ad20
+          .IMPORT     _var_timeOfDay_8c18ad20
           .IMPORT     _FUN_8c02e51c
-          .IMPORT     _var_8c18ad24
+          .IMPORT     _var_sceneParams_8c18ad24
           .IMPORT     _var_8c1bbdb0
           .IMPORT     _var_8c1bbdd0
           .IMPORT     _FUN_8c020914
@@ -12,31 +12,31 @@
           .IMPORT     _njCos
           .IMPORT     _njSin
           .IMPORT     _init_8c0461c8
-          .IMPORT     _AsqGetRandomA_12166
+          .IMPORT     _AsqGetRandomA_8c012166
           .IMPORT     _FUN_8c02df3c
           .IMPORT     _njSqrt
           .IMPORT     _acosf
-          .IMPORT     _var_8c228708
+          .IMPORT     _var_currentSegment_8c228708
           .IMPORT     _FUN_8c02cd6a
           .IMPORT     _var_8c227e24
-          .IMPORT     _var_8c1bb868
+          .IMPORT     _var_currentCourse_8c1bb868
           .IMPORT     _var_8c1bbd9c
           .IMPORT     _FUN_8c02f212
           .IMPORT     _var_busState_8c1bb9d0
           .IMPORT     _var_progress_8c1ba1cc
-          .IMPORT     _var_8c18ad1c
+          .IMPORT     _var_route_8c18ad1c
           .IMPORT     _init_8c046208
           .IMPORT     _var_tasks_8c1bac28
           .IMPORT     _FUN_8c025b98
           .IMPORT     _pushTask_8c014ae8
           .IMPORT     _FUN_8c02eab4
           .IMPORT     _FUN_8c020b6c
-          .IMPORT     _var_8c1bbddc
+          .IMPORT     _var_routeModelSlots_8c1bbddc
           .IMPORT     _freeTask_8c014b66
           .IMPORT     _FUN_8c02f0c8
           .IMPORT     _var_demoEntryValue_8c227e14
           .IMPORT     _init_8c04622c
-          .IMPORT     _var_8c1bc3f4
+          .IMPORT     _var_trafficModels_8c1bc3f4
           .IMPORT     _FUN_8c02786c
           .IMPORT     _var_8c227db8
           .IMPORT     _var_8c227dc4
@@ -308,9 +308,9 @@ LP_GEN_58523:
           .DATA.W H'00C8 ; H'8C0268CA
           .DATA.W H'00CC ; H'8C0268CC
           .DATA.W H'00D0 ; H'8C0268CE
-          .DATA.L _var_8c18ad20 ; H'8C0268D0
+          .DATA.L _var_timeOfDay_8c18ad20 ; H'8C0268D0
           .DATA.L _FUN_8c02e51c ; H'8C0268D4
-          .DATA.L _var_8c18ad24 ; H'8C0268D8
+          .DATA.L _var_sceneParams_8c18ad24 ; H'8C0268D8
 LAB_8c0268dc:
           MOV.L       LP_GEN_59685+32,R4
           MOV.W       LP_GEN_59685,R0
@@ -658,7 +658,7 @@ LP_GEN_22736:
           .DATA.L H'47800000 ; H'8C026B88
           .DATA.L _init_8c0461c8 ; H'8C026B8C
           .DATA.L H'461C3C00 ; H'8C026B90
-          .DATA.L _AsqGetRandomA_12166 ; H'8C026B94
+          .DATA.L _AsqGetRandomA_8c012166 ; H'8C026B94
           .DATA.L H'4F800000 ; H'8C026B98
           .DATA.L H'40200000 ; H'8C026B9C
           .DATA.L _FUN_8c02df3c ; H'8C026BA0
@@ -1009,10 +1009,10 @@ LP_GEN_70087:
           .DATA.L _acosf ; H'8C026E34
           .DATA.L H'47800000 ; H'8C026E38
           .DATA.L H'40C90FD8 ; H'8C026E3C
-          .DATA.L _var_8c228708 ; H'8C026E40
+          .DATA.L _var_currentSegment_8c228708 ; H'8C026E40
           .DATA.L _FUN_8c02cd6a ; H'8C026E44
           .DATA.L _var_8c227e24 ; H'8C026E48
-          .DATA.L _var_8c1bb868 ; H'8C026E4C
+          .DATA.L _var_currentCourse_8c1bb868 ; H'8C026E4C
           .DATA.L _init_8c0460bc ; H'8C026E50
 LAB_8c026e54:
           CMP/EQ      #H'5,R0
@@ -1739,8 +1739,8 @@ LP_GEN_87611:
           .DATA.W H'02C8 ; H'8C027390
           .RES.W 1 ; H'8C027392
           .DATA.L _var_progress_8c1ba1cc ; H'8C027394
-          .DATA.L _var_8c18ad1c ; H'8C027398
-          .DATA.L _var_8c18ad20 ; H'8C02739C
+          .DATA.L _var_route_8c18ad1c ; H'8C027398
+          .DATA.L _var_timeOfDay_8c18ad20 ; H'8C02739C
           .DATA.L _init_8c046208 ; H'8C0273A0
           .DATA.L _var_tasks_8c1bac28 ; H'8C0273A4
           .DATA.L _FUN_8c025b98 ; H'8C0273A8
@@ -1838,9 +1838,9 @@ LP_GEN_50256:
           .RES.W 1 ; H'8C02745E
           .DATA.L _FUN_8c020b6c ; H'8C027460
           .DATA.L _FUN_8c02e51c ; H'8C027464
-          .DATA.L _var_8c1bbddc ; H'8C027468
+          .DATA.L _var_routeModelSlots_8c1bbddc ; H'8C027468
           .DATA.L _freeTask_8c014b66 ; H'8C02746C
-          .DATA.L _AsqGetRandomA_12166 ; H'8C027470
+          .DATA.L _AsqGetRandomA_8c012166 ; H'8C027470
           .DATA.L H'41000000 ; H'8C027474
           .DATA.L _FUN_8c02f0c8 ; H'8C027478
 LAB_8c02747c:
@@ -2009,7 +2009,7 @@ LP_GEN_41074:
           .DATA.L H'4F800000 ; H'8C0275B0
           .DATA.L _var_demoEntryValue_8c227e14 ; H'8C0275B4
           .DATA.L _init_8c04622c ; H'8C0275B8
-          .DATA.L _var_8c1bc3f4 ; H'8C0275BC
+          .DATA.L _var_trafficModels_8c1bc3f4 ; H'8C0275BC
           .DATA.L _FUN_8c02786c ; H'8C0275C0
           .DATA.L _var_8c227db8 ; H'8C0275C4
           .DATA.L _var_8c227dc4 ; H'8C0275C8
@@ -2299,7 +2299,7 @@ LAB_8c0277b0:
           NOP
 LP_GEN_74201:
           .DATA.L _var_8c2285c4 ; H'8C0277EC
-          .DATA.L _var_8c1bb868 ; H'8C0277F0
+          .DATA.L _var_currentCourse_8c1bb868 ; H'8C0277F0
           .DATA.L _var_8c2264d4 ; H'8C0277F4
           .DATA.L _var_8c228b3c ; H'8C0277F8
           .DATA.L _FUN_8c028958 ; H'8C0277FC
@@ -2314,13 +2314,13 @@ LP_GEN_74201:
           .DATA.L _execTasks_8c014b42 ; H'8C027820
           .DATA.L _var_8c227e1c ; H'8C027824
           .DATA.L _var_8c228b40 ; H'8C027828
-          .DATA.L _var_8c18ad1c ; H'8C02782C
+          .DATA.L _var_route_8c18ad1c ; H'8C02782C
           .DATA.L _init_8c04c980 ; H'8C027830
           .DATA.L _init_8c04caec ; H'8C027834
           .DATA.L _init_8c04cd38 ; H'8C027838
-          .DATA.L _var_8c18ad20 ; H'8C02783C
+          .DATA.L _var_timeOfDay_8c18ad20 ; H'8C02783C
           .DATA.L _var_8c1bbdb0 ; H'8C027840
-          .DATA.L _var_8c18ad24 ; H'8C027844
+          .DATA.L _var_sceneParams_8c18ad24 ; H'8C027844
           .DATA.L _var_8c1bbdd0 ; H'8C027848
           .DATA.L _var_8c1bbda8 ; H'8C02784C
           .DATA.L _var_8c1bbdc4 ; H'8C027850

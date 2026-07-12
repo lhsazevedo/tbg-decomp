@@ -46,7 +46,7 @@
           .IMPORT     __quick_evn_mvn
           .EXPORT     _init_8c03bd80
           .EXPORT     _init_8c03bd84
-          .EXPORT     _init_adxVolTargets_8c03bd88
+          .EXPORT     _init_adxVolumes_8c03bd88
           .EXPORT     _init_vol_8c03bd90
           .EXPORT     _init_adxfPartitionInfo_8c03bd94
           .EXPORT     _var_adxtHandles_8c0fcd20
@@ -55,7 +55,7 @@
           .EXPORT     _var_memblkSource_8c0fcd4c
           .EXPORT     _var_uknVol_8c0fcd50
           .EXPORT     _var_work_8c0fcd74
-          .EXPORT     _var_adxf_work_8c156efc
+          .EXPORT     _var_adxfWork_8c156efc
           .EXPORT     _var_adxFade_8c157a34
           .EXPORT     _midiResetFxAndPlay_8c010846
           .EXPORT     _FUN_8c010ca6
@@ -69,7 +69,7 @@
           .EXPORT     _createAdxAndMidiHandles_8c01048e
           .EXPORT     _unused_8c0104bc
           .EXPORT     _unusedReadFile_8c0104d6
-          .EXPORT     _usr_adx_err_func_8c010532
+          .EXPORT     _AdxErrFunc_8c010532
           .EXPORT     _adxLoad_8c01057a
           .EXPORT     _finishSoundInit_8c010614
           .EXPORT     _adxInit_8c01064c
@@ -669,7 +669,7 @@ L17:
           MOV.L       @R15+,R13
           RTS
           MOV.L       @R15+,R14
-_usr_adx_err_func_8c010532:      ; function: usr_adx_err_func_8c010532
+_AdxErrFunc_8c010532:      ; function: AdxErrFunc_8c010532
                                  ; frame size=24
                                  ; used runtime library name:
                                  ; __slow_mvn
@@ -729,7 +729,7 @@ _adxLoad_8c01057a:               ; function: adxLoad_8c01057a
           MOV         R4,R14
 L19:                              
           EXTS.B      R14,R10
-          MOV.L       L21+58,R6; _var_adxf_work_8c156efc
+          MOV.L       L21+58,R6; _var_adxfWork_8c156efc
           SHLL2       R10
           SHLL        R10
           ADD         R13,R10
@@ -776,7 +776,7 @@ L21:
           .DATA.L     _ADXF_LoadPartition
           .DATA.L     _ADXF_GetPtinfoSize
           .DATA.L     _init_adxfPartitionInfo_8c03bd94
-          .DATA.L     _var_adxf_work_8c156efc
+          .DATA.L     _var_adxfWork_8c156efc
 _finishSoundInit_8c010614:       ; function: finishSoundInit_8c010614
                                  ; frame size=12
           STS.L       PR,@-R15
@@ -815,7 +815,7 @@ _adxInit_8c01064c:               ; function: adxInit_8c01064c
           NOP
           MOV.L       L29+36,R2; _ADXT_EntryErrFunc
           MOV         #0,R5
-          MOV.L       L29+32,R4; _usr_adx_err_func_8c010532
+          MOV.L       L29+32,R4; _AdxErrFunc_8c010532
           JMP         @R2
           LDS.L       @R15+,PR
 _soundInit_8c01065e:             ; function: soundInit_8c01065e
@@ -953,7 +953,7 @@ L29:
           .DATA.L     _syFree
           .DATA.L     _sdMemBlkDestroy
           .DATA.L     _ADXT_Init
-          .DATA.L     _usr_adx_err_func_8c010532
+          .DATA.L     _AdxErrFunc_8c010532
           .DATA.L     _ADXT_EntryErrFunc
           .DATA.L     _sdLibInit
           .DATA.L     _var_memblkSource_8c0fcd48
@@ -1045,12 +1045,12 @@ L36:
 L37:                              
           TST         R4,R4
           BF          L39
-          MOV.L       L41+22,R3; _init_adxVolTargets_8c03bd88
+          MOV.L       L41+22,R3; _init_adxVolumes_8c03bd88
           MOV.L       @R3,R5
           ADD         R13,R5
           JSR         @R14
           MOV.L       @R11,R4
-          MOV.L       L41+26,R2; H'00000004+_init_adxVolTargets_8c03bd88
+          MOV.L       L41+26,R2; H'00000004+_init_adxVolumes_8c03bd88
           MOV.L       @R2,R5
           ADD         R13,R5
           JSR         @R14
@@ -1122,8 +1122,8 @@ L41:
           .DATA.L     _var_midiHandles_8c0fcd28
           .DATA.L     _ADXT_SetOutVol
           .DATA.L     _sdMidiPause
-          .DATA.L     _init_adxVolTargets_8c03bd88
-          .DATA.L     H'00000004+_init_adxVolTargets_8c03bd88
+          .DATA.L     _init_adxVolumes_8c03bd88
+          .DATA.L     H'00000004+_init_adxVolumes_8c03bd88
           .DATA.L     _sdMidiContinue
           .DATA.L     _sdSndSetFxPrg
           .DATA.L     _sdMidiSetFxLev
@@ -1252,7 +1252,7 @@ _setAdxVol_8c010972:                   ; function: setAdxVol_8c010972
           BRA         L54
           NOP
 L50:                              ; case label 
-          MOV.L       L51+42,R1; _init_adxVolTargets_8c03bd88
+          MOV.L       L51+42,R1; _init_adxVolumes_8c03bd88
           MOV.L       @R6,R3
           MOV.L       L51+46,R4; _var_adxtHandles_8c0fcd20
           MOV.L       R3,@R1
@@ -1274,7 +1274,7 @@ L51:
           .DATA.L     _syCfgGetSoundMode
           .DATA.L     L82
           .DATA.L     __quick_evn_mvn
-          .DATA.L     _init_adxVolTargets_8c03bd88
+          .DATA.L     _init_adxVolumes_8c03bd88
           .DATA.L     _var_adxtHandles_8c0fcd20
 L52:                              ; case label 
           MOV.L       L59+6,R1
@@ -1438,7 +1438,7 @@ L59:
           .DATA.W     H'FC22 ; L59
           .DATA.W     H'FED4 ; L59+2
           .RES.W      1
-          .DATA.L     H'00000004+_init_adxVolTargets_8c03bd88 ; L59+6
+          .DATA.L     H'00000004+_init_adxVolumes_8c03bd88 ; L59+6
           .DATA.L     H'00000004+_var_adxtHandles_8c0fcd20
           .DATA.L     _ADXT_SetOutVol
           .DATA.L     L83 ; Initialized var
@@ -1450,7 +1450,7 @@ L59:
           .DATA.L     _var_adxFade_8c157a34
           .DATA.L     _init_8c03bd80
           .DATA.L     _ADXT_Stop
-          .DATA.L     _init_adxVolTargets_8c03bd88 ; L59+54
+          .DATA.L     _init_adxVolumes_8c03bd88 ; L59+54
 L60:                              
           MOV.W       L67+0,R0
           TST         R4,R0
@@ -1527,7 +1527,7 @@ _startAdxFadeOut_8c010bae:                   ; function: startAdxFadeOut_8c010ba
           MOV.L       @R5,R6
           TST         R6,R3
           BF          L66
-          MOV.W       L67+2,R7  ; _init_adxVolTargets_8c03bd88
+          MOV.W       L67+2,R7  ; _init_adxVolumes_8c03bd88
           TST         R4,R4
           BF          L65
           MOV         #15,R0
@@ -1579,8 +1579,8 @@ L67:
           .DATA.W     H'00F0 ; L67+0
           .DATA.W     H'FC22
           .DATA.W     H'FED4
-          .DATA.L     _init_adxVolTargets_8c03bd88
-          .DATA.L     H'00000004+_init_adxVolTargets_8c03bd88 ; L67+10
+          .DATA.L     _init_adxVolumes_8c03bd88
+          .DATA.L     H'00000004+_init_adxVolumes_8c03bd88 ; L67+10
           .DATA.L     _var_adxFade_8c157a34
           .DATA.L     __divls
 
@@ -1739,7 +1739,7 @@ L74:
           .DATA.W     H'0000
           .DATA.L     _var_adxFade_8c157a34
           .DATA.L     _init_8c03bd80
-          .DATA.L     H'00000004+_init_adxVolTargets_8c03bd88
+          .DATA.L     H'00000004+_init_adxVolumes_8c03bd88
           .DATA.L     __divls
           .DATA.L     _var_adxtHandles_8c0fcd20
           .DATA.L     _ADXT_Stop
@@ -1786,7 +1786,7 @@ _FUN_8c010d8a:                   ; function: FUN_8c010d8a
           MOV.L       L80+8,R14 ; _var_adxtHandles_8c0fcd20
           JSR         @R3
           MOV.L       @R14,R4
-          MOV.L       L80+16,R2; _init_adxVolTargets_8c03bd88
+          MOV.L       L80+16,R2; _init_adxVolumes_8c03bd88
           MOV.W       L80,R3   ; H'FC22
           MOV.L       @R2,R5
           MOV.L       L80+20,R1; _ADXT_SetOutVol
@@ -1805,7 +1805,7 @@ _FUN_8c010d8a:                   ; function: FUN_8c010d8a
           MOV.L       R3,@R13
           JSR         @R2
           MOV.L       @R14,R4
-          MOV.L       L80+16,R2; _init_adxVolTargets_8c03bd88
+          MOV.L       L80+16,R2; _init_adxVolumes_8c03bd88
           MOV.W       L80,R3   ; H'FC22
           MOV.L       @R2,R5
           MOV.L       L80+20,R1; _ADXT_SetOutVol
@@ -1893,7 +1893,7 @@ L80:
           .DATA.L     H'7FFFFFFF
           .DATA.L     _var_adxtHandles_8c0fcd20
           .DATA.L     _ADXT_Stop
-          .DATA.L     _init_adxVolTargets_8c03bd88
+          .DATA.L     _init_adxVolumes_8c03bd88
           .DATA.L     _ADXT_SetOutVol
           .DATA.L     _var_adxFade_8c157a34
           .DATA.L     _init_8c03bd80
@@ -1907,7 +1907,7 @@ _init_8c03bd80:                      ; static: init_8c03bd80
           .DATA.L     H'00000000
 _init_8c03bd84:                      ; static: _init_8c03bd84
           .DATA.L     H'00000001
-_init_adxVolTargets_8c03bd88:                      ; static: init_adxVolTargets_8c03bd88
+_init_adxVolumes_8c03bd88:                      ; static: init_adxVolumes_8c03bd88
           .DATA.L     H'000003DE,H'000003DE
 _init_vol_8c03bd90:                      ; static: init_vol_8c03bd90
           .DATA.L     H'0000007F
@@ -1950,7 +1950,7 @@ _var_uknVol_8c0fcd50:                      ; static: var_uknVol_8c0fcd50
           .RES.L      9
 _var_work_8c0fcd74:                  ; static: var_work_8c0fcd74
           .RES.B      369032
-_var_adxf_work_8c156efc:             ; static: var_adxf_work_8c156efc
+_var_adxfWork_8c156efc:             ; static: var_adxfWork_8c156efc
           .RES.B      2872
 _var_adxFade_8c157a34:                      ; static: var_adxFade_8c157a34
           .RES.L      5

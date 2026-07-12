@@ -60,6 +60,10 @@ return new class extends TestCase {
             }
         }
 
+        if ($this->isAsmObject()) {
+            $this->shouldCall('__divls');
+        }
+
         $writes = [
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -169,6 +173,10 @@ return new class extends TestCase {
             }
         }
 
+        if ($this->isAsmObject()) {
+            $this->shouldCall('__divls');
+        }
+
         $writes = [
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -246,6 +254,12 @@ return new class extends TestCase {
         // Functions
         $this->setSize('__divls', 4);
         $this->setSize('_njTwiddledTexture', 4);
+
+        // offset = glyphIndex * PACKED_GLYPH_SIZE is computed as
+        // (glyphIndex * 3 << 8) / 4, i.e. glyphIndex * 0x300 divided by 4.
+        $this->onCall('__divls', function () {
+            $this->setRegister(0, $this->getRegister(1)->div($this->getRegister(0)));
+        });
     }
 
     protected function isAsmObject(): bool

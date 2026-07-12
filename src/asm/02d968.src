@@ -1,13 +1,13 @@
 ; 8c02d968
           .IMPORT     _var_8c228934
           .IMPORT     _var_tasks_8c1ba5e8
-          .IMPORT     _var_demo_8c1bb8d0
+          .IMPORT     _var_playMode_8c1bb8d0
           .IMPORT     _var_8c226410
           .IMPORT     _FUN_8c02d644
           .IMPORT     _pushTask_8c014ae8
           .IMPORT     _FUN_8c02d8f0
           .IMPORT     _var_8c2285c4
-          .IMPORT     _var_8c1bc438
+          .IMPORT     _var_interiorTexlist_8c1bc438
           .IMPORT     _njSetTexture
           .IMPORT     _njLoadCacheTexture
           .IMPORT     _FUN_8c025870
@@ -17,7 +17,7 @@
           .IMPORT     _var_8c228910
           .IMPORT     _var_8c228940
           .IMPORT     _var_8c22891c
-          .IMPORT     _var_8c18ad1c
+          .IMPORT     _var_route_8c18ad1c
           .IMPORT     _var_8c1bba54
           .IMPORT     _var_8c22895c
           .IMPORT     _var_8c228960
@@ -32,10 +32,10 @@
           .IMPORT     _var_8c228798
           .IMPORT     __quick_odd_mvn
           .IMPORT     _init_8c04c4dc
-          .IMPORT     _var_8c228708
+          .IMPORT     _var_currentSegment_8c228708
           .IMPORT     _task_8c02d5ca
           .IMPORT     _init_8c04c3e4
-          .IMPORT     _AsqGetRandomInRangeA_12178
+          .IMPORT     _AsqGetRandomInRangeA_8c012178
           .IMPORT     __quick_evn_mvn
           .IMPORT     _FUN_8c02d46c
           .IMPORT     _syFree
@@ -302,13 +302,13 @@ LAB_8c02db20:
 LP_GEN_52173:
           .DATA.L _var_8c228934 ; H'8C02DB58
           .DATA.L _var_tasks_8c1ba5e8 ; H'8C02DB5C
-          .DATA.L _var_demo_8c1bb8d0 ; H'8C02DB60
+          .DATA.L _var_playMode_8c1bb8d0 ; H'8C02DB60
           .DATA.L _var_8c226410 ; H'8C02DB64
           .DATA.L _FUN_8c02d644 ; H'8C02DB68
           .DATA.L _pushTask_8c014ae8 ; H'8C02DB6C
           .DATA.L _FUN_8c02d8f0 ; H'8C02DB70
           .DATA.L _var_8c2285c4 ; H'8C02DB74
-          .DATA.L _var_8c1bc438 ; H'8C02DB78
+          .DATA.L _var_interiorTexlist_8c1bc438 ; H'8C02DB78
           .DATA.L _njSetTexture ; H'8C02DB7C
           .DATA.L _njLoadCacheTexture ; H'8C02DB80
           .DATA.L _FUN_8c025870 ; H'8C02DB84
@@ -321,7 +321,7 @@ LP_GEN_52173:
           .DATA.L H'3F2E147B ; H'8C02DBA0
           .DATA.L _var_8c228940 ; H'8C02DBA4
           .DATA.L _var_8c22891c ; H'8C02DBA8
-          .DATA.L _var_8c18ad1c ; H'8C02DBAC
+          .DATA.L _var_route_8c18ad1c ; H'8C02DBAC
           .DATA.L H'BFCCCCCD ; H'8C02DBB0
           .DATA.L H'3F666666 ; H'8C02DBB4
           .DATA.L _var_8c1bba54 ; H'8C02DBB8
@@ -486,7 +486,7 @@ LP_GEN_81852:
           .DATA.L _var_8c228794 ; H'8C02DD1C
           .DATA.L _syMalloc ; H'8C02DD20
           .DATA.L H'3E3851EC ; H'8C02DD24
-          .DATA.L _var_8c228708 ; H'8C02DD28
+          .DATA.L _var_currentSegment_8c228708 ; H'8C02DD28
 LAB_8c02dd2c:
           MOV         #H'38,R3
           MOV.L       LP_GEN_19590+2,R5
@@ -754,7 +754,7 @@ LP_GEN_19590:
           .DATA.L _var_8c2288f8 ; H'8C02DF1C
           .DATA.L _pushTask_8c014ae8 ; H'8C02DF20
           .DATA.L _init_8c04c3e4 ; H'8C02DF24
-          .DATA.L _AsqGetRandomInRangeA_12178 ; H'8C02DF28
+          .DATA.L _AsqGetRandomInRangeA_8c012178 ; H'8C02DF28
           .DATA.L __quick_evn_mvn ; H'8C02DF2C
           .DATA.L _FUN_8c02d46c ; H'8C02DF30
           .DATA.L _init_8c04c4dc ; H'8C02DF34

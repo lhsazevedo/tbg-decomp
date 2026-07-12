@@ -28,8 +28,8 @@
           .IMPORT     _var_8c227db0
           .IMPORT     _njControl3D
           .IMPORT     _njCnkModDrawObject
-          .IMPORT     _var_8c1bc430
-          .IMPORT     _var_8c1bc434
+          .IMPORT     _var_frontTexlist_8c1bc430
+          .IMPORT     _var_frontNj_8c1bc434
           .IMPORT     _njCnkSimpleDrawObject
           .IMPORT     _njSqrt
           .IMPORT     _acosf
@@ -48,7 +48,7 @@
           .IMPORT     _var_8c1bbc84
           .IMPORT     _njInitCamera
           .IMPORT     _njSetCameraAngle
-          .IMPORT     _var_8c227dd0
+          .IMPORT     _var_fogParam_8c227dd0
           .IMPORT     _njSetCameraDepth
           .IMPORT     _var_progress_8c1ba1cc
           .IMPORT     _njSetMatrix
@@ -56,7 +56,7 @@
           .IMPORT     _njRollCameraInterest
           .IMPORT     _var_8c227d90
           .IMPORT     _njSetCamera
-          .IMPORT     _var_8c18ad24
+          .IMPORT     _var_sceneParams_8c18ad24
           .IMPORT     _njCalcVector
           .IMPORT     _FUN_8c0223ea
           .IMPORT     _var_8c1bb944
@@ -306,9 +306,9 @@ LP_GEN_54676:
           .DATA.L _njCnkSetSimpleLightIntensity ; H'8C024D50
           .DATA.L _njCnkSetSimpleLightColor ; H'8C024D54
           .DATA.L _njMultiMatrix ; H'8C024D58
-          .DATA.L _var_8c1bc430 ; H'8C024D5C
+          .DATA.L _var_frontTexlist_8c1bc430 ; H'8C024D5C
           .DATA.L _njSetTexture ; H'8C024D60
-          .DATA.L _var_8c1bc434 ; H'8C024D64
+          .DATA.L _var_frontNj_8c1bc434 ; H'8C024D64
           .DATA.L _njCnkSimpleDrawObject ; H'8C024D68
 _FUN_8c024d6c:
           MOV.L       R14,@-R15
@@ -1029,7 +1029,7 @@ LP_GEN_48962:
           .DATA.L _var_8c1bb904 ; H'8C0252EC
           .DATA.L _njInitCamera ; H'8C0252F0
           .DATA.L _njSetCameraAngle ; H'8C0252F4
-          .DATA.L _var_8c227dd0 ; H'8C0252F8
+          .DATA.L _var_fogParam_8c227dd0 ; H'8C0252F8
           .DATA.L _njSetCameraDepth ; H'8C0252FC
           .DATA.L _var_progress_8c1ba1cc ; H'8C025300
           .DATA.L H'43B40000 ; H'8C025304
@@ -1463,7 +1463,7 @@ LP_GEN_36343:
           .DATA.L _njTranslateCameraPosition ; H'8C02565C
           .DATA.L _njPointCameraInterest ; H'8C025660
           .DATA.L _njSetCamera ; H'8C025664
-          .DATA.L _var_8c18ad24 ; H'8C025668
+          .DATA.L _var_sceneParams_8c18ad24 ; H'8C025668
           .DATA.L _var_8c227db8 ; H'8C02566C
           .DATA.L _njCalcVector ; H'8C025670
           .DATA.L LAB_8c024cc8 ; H'8C025674
@@ -1686,7 +1686,7 @@ LP_GEN_86833:
           .DATA.L _njRollCameraInterest ; H'8C025850
           .DATA.L _njSqrt ; H'8C025854
           .DATA.L _njSetCamera ; H'8C025858
-          .DATA.L _var_8c18ad24 ; H'8C02585C
+          .DATA.L _var_sceneParams_8c18ad24 ; H'8C02585C
           .DATA.L _var_8c227dc4 ; H'8C025860
           .DATA.L _njCalcVector ; H'8C025864
           .DATA.L _FUN_8c024bb8 ; H'8C025868

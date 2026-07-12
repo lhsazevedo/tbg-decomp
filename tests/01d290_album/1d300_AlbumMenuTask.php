@@ -18,7 +18,7 @@ return new class extends TestCase {
         $this->resolveSymbols();
         $this->seedState(0);
 
-        $this->shouldCall('_getUknPvmBool_8c01432a')->andReturn(1);
+        $this->shouldCall('_isPvmReady_8c01432a')->andReturn(1);
 
         // Returns early, no draw / no selected write.
         $this->singleCall('_AlbumMenuTask_8c01d300')->with(0xbebacafe, 0)->run();
@@ -29,8 +29,8 @@ return new class extends TestCase {
         $this->resolveSymbols();
         $this->seedState(0);
 
-        $this->shouldCall('_getUknPvmBool_8c01432a')->andReturn(0);
-        $this->shouldCall('_AsqFreeQueues_11f7e');
+        $this->shouldCall('_isPvmReady_8c01432a')->andReturn(0);
+        $this->shouldCall('_AsqFreeQueues_8c011f7e');
         $this->shouldWriteLong($this->m(0x18), 1);
         $this->shouldCall('_snd_8c010cd6')->with(0, 0x10);
         $this->shouldCall('_push_fadein_8c022a9c')->with(10);
@@ -45,7 +45,7 @@ return new class extends TestCase {
         $this->resolveSymbols();
         $this->seedState(1);
         $this->seedSlot(0);
-        $this->initUint32($this->addressOf('_isFading_8c226568'), 1);
+        $this->initUint32($this->addressOf('_var_isFading_8c226568'), 1);
         $this->noLetters();
 
         $this->shouldCall('_AlbumDrawGrid_8c01d290');
@@ -59,7 +59,7 @@ return new class extends TestCase {
         $this->resolveSymbols();
         $this->seedState(1);
         $this->seedSlot(0);
-        $this->initUint32($this->addressOf('_isFading_8c226568'), 0);
+        $this->initUint32($this->addressOf('_var_isFading_8c226568'), 0);
         $this->noLetters();
 
         $task = $this->alloc(0x20);
@@ -77,7 +77,7 @@ return new class extends TestCase {
         $this->resolveSymbols();
         $this->seedState(1);
         $this->seedSlot(0);
-        $this->initUint32($this->addressOf('_isFading_8c226568'), 0);
+        $this->initUint32($this->addressOf('_var_isFading_8c226568'), 0);
         $this->noLetters();
 
         $task = $this->alloc(0x20);
@@ -335,7 +335,7 @@ return new class extends TestCase {
         $this->seedState(6);
         $this->seedSlot(0);
         $this->noLetters();
-        $this->initUint32($this->addressOf('_isFading_8c226568'), 1);
+        $this->initUint32($this->addressOf('_var_isFading_8c226568'), 1);
 
         $this->shouldCall('_AlbumDrawGrid_8c01d290');
         $this->shouldWriteLong($this->m(0x38), 0);
@@ -348,7 +348,7 @@ return new class extends TestCase {
         $this->resolveSymbols();
         $this->seedState(6);
         $this->seedSlot(0);
-        $this->initUint32($this->addressOf('_isFading_8c226568'), 0);
+        $this->initUint32($this->addressOf('_var_isFading_8c226568'), 0);
         $this->initUint32($this->addressOf('_init_8c03bd80'), 1);
 
         // Returns early: no draw / no selected write.
@@ -360,7 +360,7 @@ return new class extends TestCase {
         $this->resolveSymbols();
         $this->seedState(6);
         $this->seedSlot(0);
-        $this->initUint32($this->addressOf('_isFading_8c226568'), 0);
+        $this->initUint32($this->addressOf('_var_isFading_8c226568'), 0);
         $this->initUint32($this->addressOf('_init_8c03bd80'), 0);
 
         $this->shouldWriteLong($this->m(0x3c), 1);
@@ -391,7 +391,7 @@ return new class extends TestCase {
 
     private function m(int $offset): int
     {
-        return $this->addressOf('_menuState_8c1bc7a8') + $offset;
+        return $this->addressOf('_var_menuState_8c1bc7a8') + $offset;
     }
 
     private function seedState(int $state): void
@@ -448,19 +448,19 @@ return new class extends TestCase {
 
     private function resolveSymbols(): void
     {
-        $this->setSize('_menuState_8c1bc7a8', 0x7c);
+        $this->setSize('_var_menuState_8c1bc7a8', 0x7c);
         $this->setSize('_var_progress_8c1ba1cc', 0x94);
         $this->setSize('_var_peripherals_8c1ba35c', 52 * 2);
         $this->setSize('_init_8c045170', 0x30);
-        $this->setSize('_isFading_8c226568', 4);
+        $this->setSize('_var_isFading_8c226568', 4);
         $this->setSize('_init_8c03bd80', 4);
         $this->initUint32($this->addressOf('_var_midiHandles_8c0fcd28'), 0xbeef0000);
 
         // Functions
         $this->setSize('_drawSprite_8c014f54', 0x4);
         $this->setSize('_sdMidiPlay', 0x4);
-        $this->setSize('_getUknPvmBool_8c01432a', 0x4);
-        $this->setSize('_AsqFreeQueues_11f7e', 0x4);
+        $this->setSize('_isPvmReady_8c01432a', 0x4);
+        $this->setSize('_AsqFreeQueues_8c011f7e', 0x4);
         $this->setSize('_snd_8c010cd6', 0x4);
         $this->setSize('_push_fadein_8c022a9c', 0x4);
         $this->setSize('_push_fadeout_8c022b60', 0x4);

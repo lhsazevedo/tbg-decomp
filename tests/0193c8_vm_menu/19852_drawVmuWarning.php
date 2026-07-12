@@ -11,21 +11,21 @@ return new class extends TestCase {
     {
         $this->resolveSymbols();
 
-        $this->initUint32($this->addressOf('_menuState_8c1bc7a8') + 0x3c, 0x0);
+        $this->initUint32($this->addressOf('_var_menuState_8c1bc7a8') + 0x3c, 0x0);
 
         $this->shouldCall('_drawSprite_8c014f54')->with(
-            $this->addressOf('_menuState_8c1bc7a8') + 0x0c, 0x11,
+            $this->addressOf('_var_menuState_8c1bc7a8') + 0x0c, 0x11,
             0.0, 0.0, -5.0
         );
 
         $this->shouldCall('_drawSprite_8c014f54')->with(
-            $this->addressOf('_menuState_8c1bc7a8') + 0x00,
+            $this->addressOf('_var_menuState_8c1bc7a8') + 0x00,
             2,
             228.0, 304.0, -5.0
         );
 
         $this->shouldCall('_drawSprite_8c014f54')->with(
-            $this->addressOf('_menuState_8c1bc7a8') + 0x00, 0,
+            $this->addressOf('_var_menuState_8c1bc7a8') + 0x00, 0,
             0.0, 0.0, -7.0
         );
 
@@ -36,21 +36,21 @@ return new class extends TestCase {
     {
         $this->resolveSymbols();
 
-        $this->initUint32($this->addressOf('_menuState_8c1bc7a8') + 0x3c, 0x1);
+        $this->initUint32($this->addressOf('_var_menuState_8c1bc7a8') + 0x3c, 0x1);
 
         $this->shouldCall('_drawSprite_8c014f54')->with(
-            $this->addressOf('_menuState_8c1bc7a8') + 0x0c, 0x11,
+            $this->addressOf('_var_menuState_8c1bc7a8') + 0x0c, 0x11,
             0.0, 0.0, -5.0
         );
 
         $this->shouldCall('_drawSprite_8c014f54')->with(
-            $this->addressOf('_menuState_8c1bc7a8') + 0x00,
+            $this->addressOf('_var_menuState_8c1bc7a8') + 0x00,
             3,
             228.0, 304.0, -5.0
         );
 
         $this->shouldCall('_drawSprite_8c014f54')->with(
-            $this->addressOf('_menuState_8c1bc7a8') + 0x00, 0,
+            $this->addressOf('_var_menuState_8c1bc7a8') + 0x00, 0,
             0.0, 0.0, -7.0
         );
 
@@ -59,7 +59,7 @@ return new class extends TestCase {
 
     private function resolveSymbols(): void
     {
-        $this->setSize('_menuState_8c1bc7a8', 0x6c);
+        $this->setSize('_var_menuState_8c1bc7a8', 0x6c);
 
         // Functions
         $this->setSize('_drawSprite_8c014f54', 0x4);

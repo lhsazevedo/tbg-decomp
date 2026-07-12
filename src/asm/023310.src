@@ -1,17 +1,17 @@
 ; 8c023310
-          .IMPORT     _var_8c228708
+          .IMPORT     _var_currentSegment_8c228708
           .IMPORT     _FUN_8c02cd7a
           .IMPORT     _var_busState_8c1bb9d0
-          .IMPORT     _var_8c18ad24
+          .IMPORT     _var_sceneParams_8c18ad24
           .IMPORT     _FUN_8c020914
           .IMPORT     _FUN_8c020f7e
-          .IMPORT     _var_demo_8c1bb8d0
+          .IMPORT     _var_playMode_8c1bb8d0
           .IMPORT     _var_8c226410
           .IMPORT     _FUN_8c023938
           .IMPORT     _acosf
           .IMPORT     _var_8c227d9c
           .IMPORT     _var_8c227dac
-          .IMPORT     _var_8c1bb868
+          .IMPORT     _var_currentCourse_8c1bb868
           .IMPORT     _var_8c2264d4
           .IMPORT     _var_8c228b3c
           .IMPORT     _var_8c227d84
@@ -23,10 +23,10 @@
           .IMPORT     _pushTask_8c014ae8
           .IMPORT     _var_8c1bbd9c
           .IMPORT     _var_8c1bbf7c
-          .IMPORT     _var_8c1bc3f4
+          .IMPORT     _var_trafficModels_8c1bc3f4
           .IMPORT     _FUN_8c02786c
-          .IMPORT     _var_8c18ad20
-          .IMPORT     _var_8c18ad1c
+          .IMPORT     _var_timeOfDay_8c18ad20
+          .IMPORT     _var_route_8c18ad1c
           .IMPORT     _FUN_8c02e69c
           .IMPORT     _FUN_8c02eab4
           .IMPORT     _FUN_8c02ec50
@@ -164,17 +164,17 @@ LP_GEN_83541:
           .DATA.W H'024C ; H'8C0233FE
           .DATA.W H'025C ; H'8C023400
           .RES.W 1 ; H'8C023402
-          .DATA.L _var_8c228708 ; H'8C023404
+          .DATA.L _var_currentSegment_8c228708 ; H'8C023404
           .DATA.L _FUN_8c02cd7a ; H'8C023408
           .DATA.L _var_busState_8c1bb9d0 ; H'8C02340C
-          .DATA.L _var_8c18ad24 ; H'8C023410
+          .DATA.L _var_sceneParams_8c18ad24 ; H'8C023410
           .DATA.L _FUN_8c020914 ; H'8C023414
           .DATA.L _FUN_8c020f7e ; H'8C023418
           .DATA.L H'409CCCCD ; H'8C02341C
           .DATA.L H'40200000 ; H'8C023420
           .DATA.L H'3FA00000 ; H'8C023424
           .DATA.L H'40266666 ; H'8C023428
-          .DATA.L _var_demo_8c1bb8d0 ; H'8C02342C
+          .DATA.L _var_playMode_8c1bb8d0 ; H'8C02342C
           .DATA.L _var_8c226410 ; H'8C023430
 LAB_8c023434:
           MOV.W       LP_GEN_55589,R0
@@ -397,7 +397,7 @@ LP_GEN_55589:
           .DATA.L H'47800000 ; H'8C0235E4
           .DATA.L H'40C90FD8 ; H'8C0235E8
           .DATA.L _var_8c227d9c ; H'8C0235EC
-          .DATA.L _var_demo_8c1bb8d0 ; H'8C0235F0
+          .DATA.L _var_playMode_8c1bb8d0 ; H'8C0235F0
 LAB_8c0235f4:
           BT          LAB_8c0235fe
           MOV.L       LP_GEN_28893+2,R1
@@ -510,7 +510,7 @@ LAB_8c0236b8:
 LP_GEN_28893:
           .RES.W 1 ; H'8C0236BE
           .DATA.L _var_8c227dac ; H'8C0236C0
-          .DATA.L _var_8c1bb868 ; H'8C0236C4
+          .DATA.L _var_currentCourse_8c1bb868 ; H'8C0236C4
           .DATA.L _var_8c2264d4 ; H'8C0236C8
           .DATA.L _var_8c228b3c ; H'8C0236CC
           .DATA.L _var_8c227d84 ; H'8C0236D0
@@ -524,9 +524,9 @@ LP_GEN_28893:
           .DATA.L _var_busState_8c1bb9d0 ; H'8C0236F0
           .DATA.L _var_8c1bbd9c ; H'8C0236F4
           .DATA.L _var_8c1bbf7c ; H'8C0236F8
-          .DATA.L _var_8c1bc3f4 ; H'8C0236FC
+          .DATA.L _var_trafficModels_8c1bc3f4 ; H'8C0236FC
           .DATA.L _FUN_8c02786c ; H'8C023700
-          .DATA.L _var_8c18ad20 ; H'8C023704
+          .DATA.L _var_timeOfDay_8c18ad20 ; H'8C023704
 LAB_8c023708:
           MOV         R14,R4
           ADD         #H'58,R4
@@ -690,9 +690,9 @@ LP_GEN_45139:
           .DATA.W H'035C ; H'8C02383A
           .DATA.W H'0368 ; H'8C02383C
           .RES.W 1 ; H'8C02383E
-          .DATA.L _var_8c18ad1c ; H'8C023840
+          .DATA.L _var_route_8c18ad1c ; H'8C023840
           .DATA.L _FUN_8c02e69c ; H'8C023844
-          .DATA.L _var_8c228708 ; H'8C023848
+          .DATA.L _var_currentSegment_8c228708 ; H'8C023848
           .DATA.L _FUN_8c020fe4 ; H'8C02384C
           .DATA.L _FUN_8c02eab4 ; H'8C023850
           .DATA.L _FUN_8c02ec50 ; H'8C023854
@@ -803,7 +803,7 @@ LP_GEN_98696:
           .DATA.W H'02E4 ; H'8C023926
           .DATA.W H'03C8 ; H'8C023928
           .RES.W 1 ; H'8C02392A
-          .DATA.L _var_demo_8c1bb8d0 ; H'8C02392C
+          .DATA.L _var_playMode_8c1bb8d0 ; H'8C02392C
           .DATA.L _var_8c226410 ; H'8C023930
           .DATA.L _var_8c227d8c ; H'8C023934
           .END

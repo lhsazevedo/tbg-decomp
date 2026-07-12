@@ -10,6 +10,13 @@ return new class extends TestCase {
     {
         $this->resolveSymbols();
 
+        // characters_per_line = box->width_0x0c / GLYPH_WIDTH is a local
+        // const in the C source, so the recompile computes it eagerly at
+        // function entry via __divls, before any other work.
+        if (!$this->isAsmObject()) {
+            $this->shouldCall('__divls');
+        }
+
         $GLYPH_COUNT = 0x28 + (0x240 / 0x18) * (0x40 / 0x20);
 
         $glyphIndexes = $this->alloc($GLYPH_COUNT * 2);
@@ -41,8 +48,21 @@ return new class extends TestCase {
         $this->shouldCall('_njReleaseTexture')->with($var_glyphTexlists_8c1bc790 + 69 * 8);
         $this->shouldWriteWord($var_8c1bc7a0 + 69 * 2, -1);
 
+        // available_characters = 0x28 + characters_per_line * (height / GLYPH_HEIGHT)
+        // is computed as (width / GLYPH_WIDTH * height) / GLYPH_HEIGHT -- two
+        // __divls calls (width / 24 isn't a power of two). In the asm object the
+        // bound isn't hoisted: it's recomputed on every loop check, including the
+        // final failing one. The C recompile hoists it (see the single call above).
         for ($i = 0; $i < $GLYPH_COUNT; $i++) {
+            if ($this->isAsmObject()) {
+                $this->shouldCall('__divls');
+                $this->shouldCall('__divls');
+            }
             $this->shouldWriteWord($glyphIndexes + $i * 2, 0xffff);
+        }
+        if ($this->isAsmObject()) {
+            $this->shouldCall('__divls');
+            $this->shouldCall('__divls');
         }
 
         $this->shouldWriteLong($box + 0x38, $text);
@@ -56,6 +76,13 @@ return new class extends TestCase {
     public function test_handlesEmptyString()
     {
         $this->resolveSymbols();
+
+        // characters_per_line = box->width_0x0c / GLYPH_WIDTH is a local
+        // const in the C source, so the recompile computes it eagerly at
+        // function entry via __divls, before any other work.
+        if (!$this->isAsmObject()) {
+            $this->shouldCall('__divls');
+        }
 
         $glyphIndexes = $this->alloc(4);
         $box = $this->alloc(0x3c);
@@ -75,6 +102,13 @@ return new class extends TestCase {
     public function test_processBasic()
     {
         $this->resolveSymbols();
+
+        // characters_per_line = box->width_0x0c / GLYPH_WIDTH is a local
+        // const in the C source, so the recompile computes it eagerly at
+        // function entry via __divls, before any other work.
+        if (!$this->isAsmObject()) {
+            $this->shouldCall('__divls');
+        }
 
         $WIDTH = 0x240;
         $HEIGHT = 0x40;
@@ -101,6 +135,16 @@ return new class extends TestCase {
             $this->registers[0] = U32::of(strlen($this->memory->readString($text)));
         });
 
+        // characters_per_line = box->width_0x0c / GLYPH_WIDTH (24, not a power
+        // of two). In the asm object, line_count = box->height_0x10 /
+        // GLYPH_HEIGHT (32) is also computed via __divls right after; the C
+        // recompile already computed characters_per_line eagerly at entry (see
+        // below) and folds line_count into a shift.
+        if ($this->isAsmObject()) {
+            $this->shouldCall('__divls');
+            $this->shouldCall('__divls');
+        }
+
         $this->shouldWriteLong($box + 0x38, $text);
         $this->shouldWriteWord($box + 0x1c, 0);
         $this->shouldWriteWord($box + 0x1e, 0);
@@ -125,6 +169,13 @@ return new class extends TestCase {
     public function test_processLineBreak()
     {
         $this->resolveSymbols();
+
+        // characters_per_line = box->width_0x0c / GLYPH_WIDTH is a local
+        // const in the C source, so the recompile computes it eagerly at
+        // function entry via __divls, before any other work.
+        if (!$this->isAsmObject()) {
+            $this->shouldCall('__divls');
+        }
 
         $WIDTH = 0x240;
         $HEIGHT = 0x40;
@@ -151,6 +202,16 @@ return new class extends TestCase {
         $this->shouldCall('_strlen')->with($text)->do(function ($params) use ($text) {
             $this->registers[0] = U32::of(strlen($this->memory->readString($text)));
         });
+
+        // characters_per_line = box->width_0x0c / GLYPH_WIDTH (24, not a power
+        // of two). In the asm object, line_count = box->height_0x10 /
+        // GLYPH_HEIGHT (32) is also computed via __divls right after; the C
+        // recompile already computed characters_per_line eagerly at entry (see
+        // below) and folds line_count into a shift.
+        if ($this->isAsmObject()) {
+            $this->shouldCall('__divls');
+            $this->shouldCall('__divls');
+        }
 
         $this->shouldWriteLong($box + 0x38, $text);
         $this->shouldWriteWord($box + 0x1c, 0);
@@ -181,6 +242,13 @@ return new class extends TestCase {
     {
         $this->resolveSymbols();
 
+        // characters_per_line = box->width_0x0c / GLYPH_WIDTH is a local
+        // const in the C source, so the recompile computes it eagerly at
+        // function entry via __divls, before any other work.
+        if (!$this->isAsmObject()) {
+            $this->shouldCall('__divls');
+        }
+
         $WIDTH = 0x240;
         $HEIGHT = 0x40;
 
@@ -207,6 +275,16 @@ return new class extends TestCase {
         $this->shouldCall('_strlen')->with($text)->do(function ($params) use ($text) {
             $this->registers[0] = U32::of(strlen($this->memory->readString($text)));
         });
+
+        // characters_per_line = box->width_0x0c / GLYPH_WIDTH (24, not a power
+        // of two). In the asm object, line_count = box->height_0x10 /
+        // GLYPH_HEIGHT (32) is also computed via __divls right after; the C
+        // recompile already computed characters_per_line eagerly at entry (see
+        // below) and folds line_count into a shift.
+        if ($this->isAsmObject()) {
+            $this->shouldCall('__divls');
+            $this->shouldCall('__divls');
+        }
 
         $this->shouldWriteLong($box + 0x38, $text);
         $this->shouldWriteWord($box + 0x1c, 0);
@@ -241,6 +319,13 @@ return new class extends TestCase {
     {
         $this->resolveSymbols();
 
+        // characters_per_line = box->width_0x0c / GLYPH_WIDTH is a local
+        // const in the C source, so the recompile computes it eagerly at
+        // function entry via __divls, before any other work.
+        if (!$this->isAsmObject()) {
+            $this->shouldCall('__divls');
+        }
+
         $WIDTH = 0x240;
         $HEIGHT = 0x40;
 
@@ -268,6 +353,16 @@ return new class extends TestCase {
         $this->shouldCall('_strlen')->with($text)->do(function ($params) use ($text) {
             $this->registers[0] = U32::of(strlen($this->memory->readString($text)));
         });
+
+        // characters_per_line = box->width_0x0c / GLYPH_WIDTH (24, not a power
+        // of two). In the asm object, line_count = box->height_0x10 /
+        // GLYPH_HEIGHT (32) is also computed via __divls right after; the C
+        // recompile already computed characters_per_line eagerly at entry (see
+        // below) and folds line_count into a shift.
+        if ($this->isAsmObject()) {
+            $this->shouldCall('__divls');
+            $this->shouldCall('__divls');
+        }
 
         $this->shouldWriteLong($box + 0x38, $text);
         $this->shouldWriteWord($box + 0x1c, 0);
@@ -302,6 +397,13 @@ return new class extends TestCase {
     {
         $this->resolveSymbols();
 
+        // characters_per_line = box->width_0x0c / GLYPH_WIDTH is a local
+        // const in the C source, so the recompile computes it eagerly at
+        // function entry via __divls, before any other work.
+        if (!$this->isAsmObject()) {
+            $this->shouldCall('__divls');
+        }
+
         $WIDTH = 0x240;
         $HEIGHT = 0x40;
 
@@ -326,6 +428,16 @@ return new class extends TestCase {
         $this->shouldCall('_strlen')->with($text)->do(function ($params) use ($text) {
             $this->registers[0] = U32::of(strlen($this->memory->readString($text)));
         });
+
+        // characters_per_line = box->width_0x0c / GLYPH_WIDTH (24, not a power
+        // of two). In the asm object, line_count = box->height_0x10 /
+        // GLYPH_HEIGHT (32) is also computed via __divls right after; the C
+        // recompile already computed characters_per_line eagerly at entry (see
+        // below) and folds line_count into a shift.
+        if ($this->isAsmObject()) {
+            $this->shouldCall('__divls');
+            $this->shouldCall('__divls');
+        }
 
         $this->shouldWriteLong($box + 0x38, $text);
         $this->shouldWriteWord($box + 0x1c, 0);
@@ -356,6 +468,13 @@ return new class extends TestCase {
     {
         $this->resolveSymbols();
 
+        // characters_per_line = box->width_0x0c / GLYPH_WIDTH is a local
+        // const in the C source, so the recompile computes it eagerly at
+        // function entry via __divls, before any other work.
+        if (!$this->isAsmObject()) {
+            $this->shouldCall('__divls');
+        }
+
         $WIDTH = 0x240;
         $HEIGHT = 0x40;
 
@@ -380,6 +499,16 @@ return new class extends TestCase {
         $this->shouldCall('_strlen')->with($text)->do(function ($params) use ($text) {
             $this->registers[0] = U32::of(strlen($this->memory->readString($text)));
         });
+
+        // characters_per_line = box->width_0x0c / GLYPH_WIDTH (24, not a power
+        // of two). In the asm object, line_count = box->height_0x10 /
+        // GLYPH_HEIGHT (32) is also computed via __divls right after; the C
+        // recompile already computed characters_per_line eagerly at entry (see
+        // below) and folds line_count into a shift.
+        if ($this->isAsmObject()) {
+            $this->shouldCall('__divls');
+            $this->shouldCall('__divls');
+        }
 
         $this->shouldWriteLong($box + 0x38, $text);
         $this->shouldWriteWord($box + 0x1c, 0);
@@ -416,6 +545,10 @@ return new class extends TestCase {
         $this->setSize('_njReleaseTexture', 4);
         $this->setSize('__divls', 4);
         $this->setSize('_strlen', 4);
+
+        $this->onCall('__divls', function () {
+            $this->setRegister(0, $this->getRegister(1)->div($this->getRegister(0)));
+        });
     }
 
     protected function isAsmObject(): bool

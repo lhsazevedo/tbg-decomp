@@ -37,7 +37,7 @@ return new class extends TestCase {
         $this->call('_CourseMenuFreeResourceGroup_8c0185c4')->with($resGroup);
 
         // Step 1: Release and free texlist
-        $this->shouldCall('_AsqReleaseAndFreeTexlist_11e3c')->with($tlist);
+        $this->shouldCall('_AsqReleaseAndFreeTexlist_8c011e3c')->with($tlist);
 
         // Step 2: Free contents
         $this->shouldCall('_syFree')->with($contents);

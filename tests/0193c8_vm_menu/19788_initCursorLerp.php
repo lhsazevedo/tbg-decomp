@@ -20,20 +20,20 @@ return new class extends TestCase {
         $drive = 1;
         $saveName = $this->allocString('TOKYOBUS.003');
 
-        $this->initUint32($this->addressOf('_menuState_8c1bc7a8') + 0x20, fdec(290.0));
-        $this->initUint32($this->addressOf('_menuState_8c1bc7a8') + 0x24, fdec(194.0));
+        $this->initUint32($this->addressOf('_var_menuState_8c1bc7a8') + 0x20, fdec(290.0));
+        $this->initUint32($this->addressOf('_var_menuState_8c1bc7a8') + 0x24, fdec(194.0));
 
-        $this->shouldWriteLong($this->addressOf('_menuState_8c1bc7a8') + 0x28, fdec(255.0));
-        $this->shouldWriteLong($this->addressOf('_menuState_8c1bc7a8') + 0x2c, fdec(98.0));
-        $this->shouldWriteLong($this->addressOf('_menuState_8c1bc7a8') + 0x30, fdec((255.0 - 290.0) / 6));
-        $this->shouldWriteLong($this->addressOf('_menuState_8c1bc7a8') + 0x34, fdec((98.0 - 194.0) / 6));
+        $this->shouldWriteLong($this->addressOf('_var_menuState_8c1bc7a8') + 0x28, fdec(255.0));
+        $this->shouldWriteLong($this->addressOf('_var_menuState_8c1bc7a8') + 0x2c, fdec(98.0));
+        $this->shouldWriteLong($this->addressOf('_var_menuState_8c1bc7a8') + 0x30, fdec((255.0 - 290.0) / 6));
+        $this->shouldWriteLong($this->addressOf('_var_menuState_8c1bc7a8') + 0x34, fdec((98.0 - 194.0) / 6));
 
         $this->singleCall('_initCursorLerp_19788')->with($drive)->run();
     }
 
     private function resolveSymbols(): void
     {
-        $this->setSize('_menuState_8c1bc7a8', 0x6c);
+        $this->setSize('_var_menuState_8c1bc7a8', 0x6c);
     }
 
     private function initUint32Array(int $address, array $values): void

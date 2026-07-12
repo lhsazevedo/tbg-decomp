@@ -18,7 +18,6 @@ return new class extends TestCase {
         $this->resolveSymbols();
 
         $this->initUint32($this->addressOf('_var_progress_8c1ba1cc'), 9);
-        $this->initUint32($this->addressOf('_var_exp_8c1ba25c'), 1337);
         $this->initUint32($this->addressOf('_var_progress_8c1ba1cc') + 0x90, 0xcafe0001);
 
         $this->call('_CourseMenuDrawDateAndExp_8c016ee6');
@@ -26,7 +25,7 @@ return new class extends TestCase {
         $this->shouldCall('_drawInteger_8c016e6c')->with(9, 84.0, 82.0);
         $this->shouldCall('_getWeekDayIndex_8c016ed2')->andReturn(2);
         $this->shouldCall('_drawSprite_8c014f54')->with(
-            $this->addressOf('_menuState_8c1bc7a8'),
+            $this->addressOf('_var_menuState_8c1bc7a8'),
             8,
             112.0,
             82.0,
@@ -42,7 +41,6 @@ return new class extends TestCase {
         $this->resolveSymbols();
 
         $this->initUint32($this->addressOf('_var_progress_8c1ba1cc'), 10);
-        $this->initUint32($this->addressOf('_var_exp_8c1ba25c'), 1337);
         $this->initUint32($this->addressOf('_var_progress_8c1ba1cc') + 0x90, 0xcafe0001);
 
         $this->call('_CourseMenuDrawDateAndExp_8c016ee6');
@@ -50,7 +48,7 @@ return new class extends TestCase {
         $this->shouldCall('_drawInteger_8c016e6c')->with(10, 95.0, 82.0);
         $this->shouldCall('_getWeekDayIndex_8c016ed2')->andReturn(4);
         $this->shouldCall('_drawSprite_8c014f54')->with(
-            $this->addressOf('_menuState_8c1bc7a8'),
+            $this->addressOf('_var_menuState_8c1bc7a8'),
             6 + 4,
             112.0,
             82.0,
@@ -66,14 +64,13 @@ return new class extends TestCase {
         $this->resolveSymbols();
 
         $this->initUint32($this->addressOf('_var_progress_8c1ba1cc'), 15);
-        $this->initUint32($this->addressOf('_var_exp_8c1ba25c'), 1337);
         $this->initUint32($this->addressOf('_var_progress_8c1ba1cc') + 0x90, 0xcafe0001);
 
         $this->call('_CourseMenuDrawDateAndExp_8c016ee6');
 
         $this->shouldCall('_drawInteger_8c016e6c')->with(15, 95.0, 82.0);
         $this->shouldCall('_drawSprite_8c014f54')->with(
-            $this->addressOf('_menuState_8c1bc7a8'),
+            $this->addressOf('_var_menuState_8c1bc7a8'),
             13,
             112.0,
             82.0,
@@ -89,14 +86,13 @@ return new class extends TestCase {
         $this->resolveSymbols();
 
         $this->initUint32($this->addressOf('_var_progress_8c1ba1cc'), 23);
-        $this->initUint32($this->addressOf('_var_exp_8c1ba25c'), 1337);
         $this->initUint32($this->addressOf('_var_progress_8c1ba1cc') + 0x90, 0xcafe0001);
 
         $this->call('_CourseMenuDrawDateAndExp_8c016ee6');
 
         $this->shouldCall('_drawInteger_8c016e6c')->with(23, 95.0, 82.0);
         $this->shouldCall('_drawSprite_8c014f54')->with(
-            $this->addressOf('_menuState_8c1bc7a8'),
+            $this->addressOf('_var_menuState_8c1bc7a8'),
             14,
             112.0,
             82.0,
@@ -112,7 +108,6 @@ return new class extends TestCase {
         $this->resolveSymbols();
 
         $this->initUint32($this->addressOf('_var_progress_8c1ba1cc'), 24);
-        $this->initUint32($this->addressOf('_var_exp_8c1ba25c'), 1337);
         $this->initUint32($this->addressOf('_var_progress_8c1ba1cc') + 0x90, 0xcafe0001);
 
         $this->call('_CourseMenuDrawDateAndExp_8c016ee6');
@@ -120,7 +115,7 @@ return new class extends TestCase {
         $this->shouldCall('_drawInteger_8c016e6c')->with(24, 95.0, 82.0);
         $this->shouldCall('_getWeekDayIndex_8c016ed2')->andReturn(3);
         $this->shouldCall('_drawSprite_8c014f54')->with(
-            $this->addressOf('_menuState_8c1bc7a8'),
+            $this->addressOf('_var_menuState_8c1bc7a8'),
             9,
             112.0,
             82.0,
@@ -131,8 +126,7 @@ return new class extends TestCase {
 
     public function resolveSymbols()
     {
-        $this->setSize('_var_progress_8c1ba1cc', 4);
-        $this->setSize('_var_exp_8c1ba25c', 4);
+        $this->setSize('_var_progress_8c1ba1cc', 0xd2);
         // Functions
         $this->setSize('__modlu', 4);
     }

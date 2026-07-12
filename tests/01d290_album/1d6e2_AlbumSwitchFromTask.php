@@ -11,7 +11,7 @@ if (!function_exists('fdec')) {
 return new class extends TestCase {
     public function test_parks_cursor_on_first_received_letter(): void
     {
-        $this->setSize('_menuState_8c1bc7a8', 0x7c);
+        $this->setSize('_var_menuState_8c1bc7a8', 0x7c);
         $this->setSize('_var_progress_8c1ba1cc', 0x94);
         $this->setSize('_init_8c045170', 0x30);
 
@@ -37,7 +37,7 @@ return new class extends TestCase {
 
     public function test_no_letters_leaves_task_pending_flag_clear(): void
     {
-        $this->setSize('_menuState_8c1bc7a8', 0x7c);
+        $this->setSize('_var_menuState_8c1bc7a8', 0x7c);
         $this->setSize('_var_progress_8c1ba1cc', 0x94);
         $this->setSize('_init_8c045170', 0x30);
 
@@ -61,7 +61,7 @@ return new class extends TestCase {
 
     private function m(int $offset): int
     {
-        return $this->addressOf('_menuState_8c1bc7a8') + $offset;
+        return $this->addressOf('_var_menuState_8c1bc7a8') + $offset;
     }
 
     private function seedLetters(array $letters): void
@@ -85,19 +85,19 @@ return new class extends TestCase {
         $this->shouldCall('_njGarbageTexture')->with(
             $this->addressOf('_var_tex_8c157af8'), 0xc00
         );
-        $this->shouldCall('_AsqInitQueues_11f36')->with(8, 0, 0, 8);
-        $this->shouldCall('_AsqResetQueues_11f6c');
+        $this->shouldCall('_AsqInitQueues_8c011f36')->with(8, 0, 0, 8);
+        $this->shouldCall('_AsqResetQueues_8c011f6c');
         $this->shouldCall('_CourseMenuRequestSysResgrp_8c018568')->with(
             $this->m(0x0c),
-            $this->addressOf('_albumResourceGroup_8c045160'),
+            $this->addressOf('_init_albumResourceGroup_8c045160'),
         );
-        $this->shouldCall('_setUknPvmBool_8c014330');
-        $this->shouldCall('_AsqProcessQueues_11fe0')->with(
-            $this->addressOf('_AsqNop_11120'),
+        $this->shouldCall('_setPvmReady_8c014330');
+        $this->shouldCall('_AsqProcessQueues_8c011fe0')->with(
+            $this->addressOf('_AsqNop_8c011120'),
             0,
             0,
             0,
-            $this->addressOf('_resetUknPvmBool_8c014322'),
+            $this->addressOf('_resetPvmReady_8c014322'),
         );
     }
 };

@@ -33,7 +33,7 @@ return new class extends TestCase {
 
         $this->shouldCall('_sortAndLoadDatQueue_8c011310');
 
-        $this->singleCall('_AsqProcessQueues_11fe0')
+        $this->singleCall('_AsqProcessQueues_8c011fe0')
             ->with(0xcafe0001, 0xcafe0002, 0xcafe0003, 0xcafe0004, 0xcafe0005)
             ->run();
     }

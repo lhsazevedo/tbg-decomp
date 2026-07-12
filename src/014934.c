@@ -1,11 +1,11 @@
 /* 8c014934 */
 #include <shinobi.h>
+#include "012f44.h"
+#include "013ae8_route_load.h"
 #include "014a9c_tasks.h"
+#include "014934.h"
 #include "011120_asset_queues.h"
-
-extern Task var_tasks_8c1ba3c8[16];
-extern TaskAction prob_task_8c014784;
-extern NJS_TEXMEMLIST var_tex_8c157af8;
+#include "014f54_text_pre_data.h"
 
 void FUN_8c014934()
 {
@@ -13,13 +13,13 @@ void FUN_8c014934()
     void* state;
 
     njSetBackColor(0xff418dff, 0xff418dff, 0xff418dff);
-    var_8c157a6c = 1;
+    var_loadScreenActive_8c157a6c = 1;
 
-    pushTask_8c014ae8(var_tasks_8c1ba3c8, (void *) &prob_task_8c014784, &task, &state, 0);
+    pushTask_8c014ae8(var_tasks_8c1ba3c8, (void *) &unknownRouteLoadTask_8c014784, &task, &state, 0);
     task->field_0x08 = 0;
     task->field_0x0c = 0;
 
-    njGarbageTexture(&var_tex_8c157af8, 0xc00);
+    njGarbageTexture(var_tex_8c157af8, 0xc00);
 
-    AsqInitQueues_11f36(0x20,0x400,0x400,0x40);
+    AsqInitQueues_8c011f36(0x20,0x400,0x400,0x40);
 }

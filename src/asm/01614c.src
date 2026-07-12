@@ -8,14 +8,14 @@
           .IMPORT     _var_vibport_8c1ba354
           .IMPORT     _vibClear_8c010fbe
           .IMPORT     _var_tasks_8c1ba3c8
-          .IMPORT     _FUN_8c013ee4
-          .IMPORT     _FUN_8c013dae
-          .IMPORT     _AsqFreeNjPvmPairs_120fe
-          .IMPORT     _var_8c1bc3ec
-          .IMPORT     _var_8c1bc3f0
-          .IMPORT     _var_8c1bc3f4
-          .IMPORT     _FUN_8c013b5a
-          .IMPORT     _var_8c1bb868
+          .IMPORT     _freePedestrianAssets_8c013ee4
+          .IMPORT     _freeAllRouteModels_8c013dae
+          .IMPORT     _AsqFreeModels_8c0120fe
+          .IMPORT     _var_routeModels_8c1bc3ec
+          .IMPORT     _var_segmentModels_8c1bc3f0
+          .IMPORT     _var_trafficModels_8c1bc3f4
+          .IMPORT     _freeVehicleAssets_8c013b5a
+          .IMPORT     _var_currentCourse_8c1bb868
           .IMPORT     _var_demoBuf_8c1ba3c4
           .IMPORT     _var_8c1bc454
           .IMPORT     _freeResourceGroups_8c016108
@@ -27,14 +27,14 @@
           .IMPORT     _freeTask_8c014b66
           .IMPORT     _pushTask_8c014ae8
           .IMPORT     _var_8c1bc824
-          .IMPORT     _AsqGetRandomA_12166
+          .IMPORT     _AsqGetRandomA_8c012166
           .IMPORT     _pushInputTask_8c0128cc
-          .IMPORT     _demoBuffer_8c1bc828
-          .IMPORT     _demoCursor_8c225fa8
-          .IMPORT     _demoPrevOn_8c225fac
+          .IMPORT     _var_demoBuffer_8c1bc828
+          .IMPORT     _var_demoCursor_8c225fa8
+          .IMPORT     _var_demoPrevOn_8c225fac
           .IMPORT     _var_8c1bbc84
           .IMPORT     _var_peripherals_8c1ba35c
-          .IMPORT     _var_demo_8c1bb8d0
+          .IMPORT     _var_playMode_8c1bb8d0
           .IMPORT     _FUN_8c01328c
           .IMPORT     _var_8c228ba4
           .IMPORT     _BupSave_8c014bcc
@@ -64,8 +64,8 @@
           .IMPORT     _FUN_8c029cfe
           .IMPORT     _FUN_8c021724
           .IMPORT     _FUN_8c0187d0
-          .IMPORT     _VmMenuFreeAndClear_19504
-          .IMPORT     _VmMenuUpdateVmusStatus_19550
+          .IMPORT     _VmMenuFreeAndClear_8c019504
+          .IMPORT     _VmMenuUpdateVmusStatus_8c019550
           .IMPORT     _CourseMenuFUN_8c017ef2
           .EXPORT     _task_8c01677e
           .EXPORT     _FUN_8c016182
@@ -433,27 +433,27 @@ LP_GEN_42967:
           .DATA.L _var_tasks_8c1ba3c8 ; H'8C0163B0
           .DATA.L _FUN_8c02adee ; H'8C0163B4
           .DATA.L _FUN_8c029cfe ; H'8C0163B8
-          .DATA.L _FUN_8c013ee4 ; H'8C0163BC
-          .DATA.L _FUN_8c013dae ; H'8C0163C0
-          .DATA.L _AsqFreeNjPvmPairs_120fe ; H'8C0163C4
-          .DATA.L _var_8c1bc3ec ; H'8C0163C8
-          .DATA.L _var_8c1bc3f0 ; H'8C0163CC
-          .DATA.L _var_8c1bc3f4 ; H'8C0163D0
+          .DATA.L _freePedestrianAssets_8c013ee4 ; H'8C0163BC
+          .DATA.L _freeAllRouteModels_8c013dae ; H'8C0163C0
+          .DATA.L _AsqFreeModels_8c0120fe ; H'8C0163C4
+          .DATA.L _var_routeModels_8c1bc3ec ; H'8C0163C8
+          .DATA.L _var_segmentModels_8c1bc3f0 ; H'8C0163CC
+          .DATA.L _var_trafficModels_8c1bc3f4 ; H'8C0163D0
           .DATA.L _FUN_8c021724 ; H'8C0163D4
-          .DATA.L _FUN_8c013b5a ; H'8C0163D8
-          .DATA.L _var_8c1bb868 ; H'8C0163DC
+          .DATA.L _freeVehicleAssets_8c013b5a ; H'8C0163D8
+          .DATA.L _var_currentCourse_8c1bb868 ; H'8C0163DC
           .DATA.L _syFree ; H'8C0163E0
           .DATA.L _var_demoBuf_8c1ba3c4 ; H'8C0163E4
           .DATA.L _var_8c1bc454 ; H'8C0163E8
           .DATA.L _freeResourceGroups_8c016108 ; H'8C0163EC
           .DATA.L _FUN_8c0187d0 ; H'8C0163F0
-          .DATA.L _VmMenuFreeAndClear_19504 ; H'8C0163F4
+          .DATA.L _VmMenuFreeAndClear_8c019504 ; H'8C0163F4
           .DATA.L _var_selectedVm_8c1ba34c ; H'8C0163F8
           .DATA.L H'000A000A ; H'8C0163FC
           .DATA.L _njPrintC ; H'8C016400
           .DATA.L _init_8c044294 ; H'8C016404
           .DATA.L H'10+_var_peripherals_8c1ba35c ; H'8C016408
-          .DATA.L _VmMenuUpdateVmusStatus_19550 ; H'8C01640C
+          .DATA.L _VmMenuUpdateVmusStatus_8c019550 ; H'8C01640C
           .DATA.L _var_vmuStatus_8c226048 ; H'8C016410
           .DATA.L H'000F0000 ; H'8C016414
           .DATA.L _njPrintD ; H'8C016418
@@ -1012,7 +1012,7 @@ LAB_8c01681e:
           BRA         LAB_8c016918
           MOV.L       R1,@(H'8,R14)
 LP_GEN_94139:
-          .DATA.L _VmMenuUpdateVmusStatus_19550 ; H'8C016824
+          .DATA.L _VmMenuUpdateVmusStatus_8c019550 ; H'8C016824
           .DATA.L _const_8c036120 ; H'8C016828
           .DATA.L _freeTask_8c014b66 ; H'8C01682C
           .DATA.L H'0000C060 ; H'8C016830
@@ -1027,16 +1027,16 @@ LP_GEN_94139:
           .DATA.L H'000C0000 ; H'8C016854
           .DATA.L _const_8c0360b0 ; H'8C016858
           .DATA.L H'000A0000 ; H'8C01685C
-          .DATA.L _AsqGetRandomA_12166 ; H'8C016860
+          .DATA.L _AsqGetRandomA_8c012166 ; H'8C016860
           .DATA.L _pushInputTask_8c0128cc ; H'8C016864
           .DATA.L _FUN_8c01666a ; H'8C016868
-          .DATA.L _demoBuffer_8c1bc828 ; H'8C01686C
-          .DATA.L _demoCursor_8c225fa8 ; H'8C016870
-          .DATA.L _demoPrevOn_8c225fac ; H'8C016874
+          .DATA.L _var_demoBuffer_8c1bc828 ; H'8C01686C
+          .DATA.L _var_demoCursor_8c225fa8 ; H'8C016870
+          .DATA.L _var_demoPrevOn_8c225fac ; H'8C016874
           .DATA.L _var_8c1bbc84 ; H'8C016878
-          .DATA.L _demoCursor_8c225fa8 ; H'8C01687C
+          .DATA.L _var_demoCursor_8c225fa8 ; H'8C01687C
           .DATA.L _var_peripherals_8c1ba35c ; H'8C016880
-          .DATA.L _var_demo_8c1bb8d0 ; H'8C016884
+          .DATA.L _var_playMode_8c1bb8d0 ; H'8C016884
           .DATA.L _FUN_8c01328c ; H'8C016888
           .DATA.L _BupGetInfo_8c014bba ; H'8C01688C
           .DATA.L _var_demoBuf_8c1ba3c4 ; H'8C016890
@@ -1280,19 +1280,19 @@ LP_GEN_65913:
           .DATA.L _var_tasks_8c1ba3c8 ; H'8C016A6C
           .DATA.L _pushTask_8c014ae8 ; H'8C016A70
           .DATA.L _var_selectedVm_8c1ba34c ; H'8C016A74
-          .DATA.L _demoCursor_8c225fa8 ; H'8C016A78
-          .DATA.L _demoCursor_8c225fa8 ; H'8C016A7C
-          .DATA.L _demoBuffer_8c1bc828 ; H'8C016A80
+          .DATA.L _var_demoCursor_8c225fa8 ; H'8C016A78
+          .DATA.L _var_demoCursor_8c225fa8 ; H'8C016A7C
+          .DATA.L _var_demoBuffer_8c1bc828 ; H'8C016A80
           .DATA.L _var_demoBuf_8c1ba3c4 ; H'8C016A84
           .DATA.L _syMalloc ; H'8C016A88
           .DATA.L _FUN_8c02f320 ; H'8C016A8C
           .DATA.L _FUN_8c02f934 ; H'8C016A90
-          .DATA.L _var_8c1bb868 ; H'8C016A94
+          .DATA.L _var_currentCourse_8c1bb868 ; H'8C016A94
           .DATA.L _var_inputMapSel_8c1bb8c8 ; H'8C016A98
           .DATA.L _var_seed_8c157a64 ; H'8C016A9C
           .DATA.L _BupGetInfo_8c014bba ; H'8C016AA0
           .DATA.L _BupMount_8c014c00 ; H'8C016AA4
-          .DATA.L _var_demo_8c1bb8d0 ; H'8C016AA8
+          .DATA.L _var_playMode_8c1bb8d0 ; H'8C016AA8
 LAB_8c016aac:
           MOV.L       LP_GEN_41084+2,R3
           MOV.W       LP_GEN_41084,R4
@@ -1424,17 +1424,17 @@ LP_GEN_41084:
           .DATA.L H'00040008 ; H'8C016BA8
           .DATA.L _njPrint ; H'8C016BAC
           .DATA.L _buStat ; H'8C016BB0
-          .DATA.L _var_8c1bb868 ; H'8C016BB4
+          .DATA.L _var_currentCourse_8c1bb868 ; H'8C016BB4
           .DATA.L _var_inputMapSel_8c1bb8c8 ; H'8C016BB8
           .DATA.L _var_seed_8c157a64 ; H'8C016BBC
-          .DATA.L _demoBuffer_8c1bc828 ; H'8C016BC0
+          .DATA.L _var_demoBuffer_8c1bc828 ; H'8C016BC0
           .DATA.L _FUN_8c02f320 ; H'8C016BC4
           .DATA.L _FUN_readDemo_8c02fa14 ; H'8C016BC8
           .DATA.L _syFree ; H'8C016BCC
           .DATA.L _BupUnmount_8c014c46 ; H'8C016BD0
           .DATA.L _freeTask_8c014b66 ; H'8C016BD4
           .DATA.L _FUN_8c01328c ; H'8C016BD8
-          .DATA.L _var_demo_8c1bb8d0 ; H'8C016BDC
+          .DATA.L _var_playMode_8c1bb8d0 ; H'8C016BDC
           .DATA.L _var_selectedVm_8c1ba34c ; H'8C016BE0
           .DATA.L _var_8c1bb8d4 ; H'8C016BE4
           .DATA.L _FUN_8c0169bc ; H'8C016BE8

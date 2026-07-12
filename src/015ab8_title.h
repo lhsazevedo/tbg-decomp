@@ -2,6 +2,7 @@
 #define _TITLE_H_
 
 #include <shinobi.h>
+#include "014a9c_tasks.h"
 #include "014b8c_backup.h"
 
 enum TITLE_STATE {
@@ -68,7 +69,7 @@ struct MenuState {
     int field_0x44;
     int field_0x48;
     int field_0x4c;
-    int field_0x50;
+    int courseId_0x50;
     int field_0x54;
     int field_0x58;
     int field_0x5c;
@@ -82,7 +83,9 @@ struct MenuState {
 }
 typedef MenuState;
 
-extern MenuState menuState_8c1bc7a8;
-extern void* _8c225fb0;
+extern MenuState var_menuState_8c1bc7a8;
+extern ResourceGroupInfo init_mainMenuResourceGroup_8c044264;
+
+void pushTitle_8c015fd6(Bool direct);
 
 #endif /* _TITLE_H_ */

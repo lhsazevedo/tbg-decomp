@@ -25,7 +25,7 @@ return new class extends TestCase {
         );
         $this->shouldWriteLongTo('_var_8c22606c', 1);
 
-        $this->singleCall('_VmMenuUnmountVms_194de')->with($task)->run();
+        $this->singleCall('_VmMenuUnmountVms_8c0194de')->with($task)->run();
     }
 
     private function resolveSymbols(): void

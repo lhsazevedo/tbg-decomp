@@ -102,7 +102,7 @@ return new class extends TestCase {
 
         $this->shouldWriteLong($this->addressOf('_var_vmuStatus_8c226048') + 8 * 4, 3);
 
-        $this->singleCall('_VmMenuUpdateVmusStatus_19550')
+        $this->singleCall('_VmMenuUpdateVmusStatus_8c019550')
             ->with($this->addressOf('_init_saveNames_8c044d50'), 3)
             ->run();
     }
@@ -191,7 +191,7 @@ return new class extends TestCase {
 
         $this->shouldWriteLong($this->addressOf('_var_vmuStatus_8c226048') + 8 * 4, 3);
 
-        $this->singleCall('_VmMenuUpdateVmusStatus_19550')
+        $this->singleCall('_VmMenuUpdateVmusStatus_8c019550')
             ->with($this->addressOf('_init_saveNames_8c044d50'), 3)
             ->run();
     }
@@ -214,7 +214,7 @@ return new class extends TestCase {
 
     private function initBackupInfo($i, $info)
     {
-        $address = $this->addressOf('_gBupInfo_8c1bc4ac') + $i * 0x5c;
+        $address = $this->addressOf('_var_gBupInfo_8c1bc4ac') + $i * 0x5c;
         $this->initUint32Array($address, array_fill(0, 0x5c / 4, 0));
         $this->initUint16($address + 0x0, $info['ready']);
         $this->initUint16($address + 0x3a, $info['free_user_blocks']);

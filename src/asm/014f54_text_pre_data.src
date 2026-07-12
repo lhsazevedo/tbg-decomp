@@ -9,7 +9,7 @@
           .EXPORT     _var_8c1ba1e4 ; 02af78.src
           .EXPORT     _var_exp_8c1ba25c ; 016d2c_course_menu.c, 016d2c_course_menu.src, 01b19c.src
           .EXPORT     _var_8c1ba264 ; 01e27c.src
-          .EXPORT     _var_8c1ba290 ; 013ae8.src, 01a148.src, 02b464.src, 02c884.src
+          .EXPORT     _var_8c1ba290 ; 013ae8_route_load.src, 01a148.src, 02b464.src, 02c884.src
           .EXPORT     _var_8c1ba291 ; 012f44.c, 012f44.src
           .EXPORT     _var_8c1ba292 ; 012f44.c, 012f44.src
           .EXPORT     _var_8c1ba293 ; 020214.src
@@ -37,13 +37,14 @@
           .EXPORT     _var_8c1ba374 ; 024280.src, 02b464.src, _027636_8c016bf4.c
           .EXPORT     _var_8c1ba376 ; 024280.src, _027636_8c016bf4.c
           .EXPORT     _var_demoBuf_8c1ba3c4 ; 012f44.c, 012f44.src, 014f54_text.c, 014f54_text.src, 01614c.src
-          .EXPORT     _var_tasks_8c1ba3c8 ; 011120_asset_queues, 012504_input.src, 012f44.c, 012f44.src, 013ae8.src, 014934.c, 014f54_text, 015ab8_title, 01614c.src, 016d2c_course_menu, 018784.src, 0193c8_vm_menu, 01d7fc.src, 01e27c.src, 01f3c0.src,
+          .EXPORT     _var_tasks_8c1ba3c8 ; 011120_asset_queues, 012504_input.src, 012f44.c, 012f44.src, 013ae8_route_load.src, 014934.c, 014f54_text, 015ab8_title,
+                                          ; 01614c.src, 016d2c_course_menu, 018784.src, 0193c8_vm_menu, 01d7fc.src, 01e27c.src, 01f3c0.src,
                                           ; 022464.src, 028258.src, 02b464.src
           .EXPORT     _var_tasks_8c1ba5e8 ; 0129cc.src, 012f44.c, 012f44.src, 01614c.src, 01fa78.src, 020528.c, 0222dc.src, 023310.src, 025870.src, 026710.src, 028258.src, 02b464.src, 02d968.src, _066856_8c020528.src
           .EXPORT     _var_tasks_8c1ba808 ; 012f44.c, 012f44.src, 01614c.src, 028258.src
           .EXPORT     _var_tasks_8c1bac28 ; 012f44.c, 012f44.src, 01614c.src, 024280.src, 026710.src, 02b464.src, 02df3c.src, 02e2dc.src, 02e400.src, 02e51c.src, 02f0c8.src
           .EXPORT     _var_tasks_8c1bb448 ; 012f44.c, 012f44.src, 01614c.src, 028258.src, 02b464.src
-          .EXPORT     _var_8c1bb868 ; 012f44.c, 012f44.src, 013ae8.src, 014f54_text.c, 014f54_text.src, 01614c.src, 02171c.src, 022bdc.src, 023310.src, 026710.src, 028258.src
+          .EXPORT     _var_currentCourse_8c1bb868 ; 012f44.c, 012f44.src, 013ae8_route_load.src, 014f54_text.c, 014f54_text.src, 01614c.src, 02171c.src, 022bdc.src, 023310.src, 026710.src, 028258.src
           .EXPORT     _var_8c1bb86c ; 012f44.c, 012f44.src, 027958.src, 028258.src, 02c884.src
           .EXPORT     _var_8c1bb870 ; 02c884.src
           .EXPORT     _var_8c1bb878 ; 025b98.src
@@ -59,7 +60,8 @@
           .EXPORT     _var_8c1bb8c4 ; 012f44.c, 012f44.src, 015ab8_title.c, 015ab8_title.src
           .EXPORT     _var_inputMapSel_8c1bb8c8 ; 012504_input.src, 012f44.c, 012f44.src, 014f54_text.c, 014f54_text.src, 01614c.src, 022bdc.src, 024280.src, 02b464.src
           .EXPORT     _var_8c1bb8cc ; 0129cc.src, 012f44.c, 012f44.src
-          .EXPORT     _var_demo_8c1bb8d0 ; 0129cc.src, 012f44.c, 012f44.src, 013ae8.src, 014f54_text, 01614c.src, 016d2c_course_menu, 019e98_main_menu.c, 01e27c.src, 01fa78.src, 020214.src, 020528.c, 022464.src, 022bdc.src, 023310.src, 028258.src,
+          .EXPORT     _var_playMode_8c1bb8d0 ; 0129cc.src, 012f44.c, 012f44.src, 013ae8_route_load.src, 014f54_text, 01614c.src, 016d2c_course_menu,
+                                         ; 019e98_main_menu.c, 01e27c.src, 01fa78.src, 020214.src, 020528.c, 022464.src, 022bdc.src, 023310.src, 028258.src,
                                          ; 02af78.src, 02b464.src, 02c884.src, 02d19c.src, 02d968.src
           .EXPORT     _var_8c1bb8d4 ; 012f44.c, 012f44.src, 014f54_text.c, 014f54_text.src, 01614c.src
           .EXPORT     _var_demoIndex_8c1bb8d8 ; 012f44.c, 012f44.src, 014f54_text.c, 014f54_text.src
@@ -71,8 +73,8 @@
           .EXPORT     _var_8c1bb8f0 ; 016d2c_course_menu.c, 016d2c_course_menu.src, 01e27c.src, 02b464.src
           .EXPORT     _var_8c1bb8f4 ; 016d2c_course_menu.c, 016d2c_course_menu.src, 01e27c.src, 02b464.src
           .EXPORT     _var_award_8c1bb8f8 ; 016d2c_course_menu.c, 016d2c_course_menu.src, 01b19c.src, 01d7fc.src, 01e27c.src
-          .EXPORT     _var_game_mode_8c1bb8fc ; 016d2c_course_menu.c, 016d2c_course_menu.src, 019e98_main_menu.c, 019e98_main_menu.src, 01b19c.src, 01d7fc.src, 01e27c.src, 02af78.src, 02b464.src
-          .EXPORT     _var_8c1bb900 ; 013ae8.src, 02af78.src, 02d19c.src
+          .EXPORT     _var_gameMode_8c1bb8fc ; 016d2c_course_menu.c, 016d2c_course_menu.src, 019e98_main_menu.c, 019e98_main_menu.src, 01b19c.src, 01d7fc.src, 01e27c.src, 02af78.src, 02b464.src
+          .EXPORT     _var_cutsceneActive_8c1bb900 ; 013ae8_route_load.src, 02af78.src, 02d19c.src
           .EXPORT     _var_8c1bb904 ; 021b9c.src, 022464.src, 024b4c.src, 025870.src
           .EXPORT     _var_8c1bb944 ; 021b9c.src, 022464.src, 024b4c.src
           .EXPORT     _var_8c1bb984 ; 022464.src, 025870.src
@@ -111,29 +113,29 @@
           .EXPORT     _var_8c1bbdb8 ; 026710.src, 027958.src
           .EXPORT     _var_8c1bbdc4 ; 026710.src, 027958.src
           .EXPORT     _var_8c1bbdd0 ; 026710.src, 027958.src
-          .EXPORT     _var_8c1bbddc ; 012f44.c, 012f44.src, 013ae8.src, 026710.src, 028258.src
+          .EXPORT     _var_routeModelSlots_8c1bbddc ; 012f44.c, 012f44.src, 013ae8_route_load.src, 026710.src, 028258.src
           .EXPORT     _var_8c1bbf7c ; 023310.src
-          .EXPORT     _var_8c1bbfdc ; 012f44.c, 012f44.src, 013ae8.src, 028258.src
+          .EXPORT     _var_pedestrianAssets_8c1bbfdc ; 012f44.c, 012f44.src, 013ae8_route_load.src, 028258.src
           .EXPORT     _var_8c1bbfe4 ; 02d06c.src, 02d19c.src
-          .EXPORT     _var_8c1bc3ec ; 012f44.c, 012f44.src, 013ae8.src, 01614c.src, 028258.src
-          .EXPORT     _var_8c1bc3f0 ; 012f44.c, 012f44.src, 013ae8.src, 01614c.src, 0222dc.src
-          .EXPORT     _var_8c1bc3f4 ; 012f44.c, 012f44.src, 013ae8.src, 01614c.src, 023310.src, 026710.src
-          .EXPORT     _var_8c1bc3f8 ; 012f44.c, 012f44.src, 013ae8.src
+          .EXPORT     _var_routeModels_8c1bc3ec ; 012f44.c, 012f44.src, 013ae8_route_load.src, 01614c.src, 028258.src
+          .EXPORT     _var_segmentModels_8c1bc3f0 ; 012f44.c, 012f44.src, 013ae8_route_load.src, 01614c.src, 0222dc.src
+          .EXPORT     _var_trafficModels_8c1bc3f4 ; 012f44.c, 012f44.src, 013ae8_route_load.src, 01614c.src, 023310.src, 026710.src
+          .EXPORT     _var_loadingResourceGroup_8c1bc3f8 ; 012f44.c, 012f44.src, 013ae8_route_load.src
           .EXPORT     _var_8c1bc404 ; 012f44.c, 012f44.src, 01f3c0.src, 028258.src
           .EXPORT     _var_8c1bc408 ; 01f3c0.src, 028258.src
           .EXPORT     _var_8c1bc40c ; 028258.src
           .EXPORT     _var_8c1bc410 ; 012f44.c, 012f44.src, 023310.src, 024b4c.src
           .EXPORT     _var_8c1bc414 ; 012f44.c, 012f44.src, 024b4c.src
-          .EXPORT     _var_8c1bc418 ; 0129cc.src, 013ae8.src, 01fa78.src, 02b2f0.src, 02b464.src
-          .EXPORT     _var_mark_parts_dat_8c1bc41c ; 012f44.c, 012f44.src
-          .EXPORT     _var_mark_dat_8c1bc420 ; 012f44.c, 012f44.src
-          .EXPORT     _var_8c1bc424 ; 013ae8.src, 01fa78.src, 022464.src
-          .EXPORT     _var_busstop_parts_dat_8c1bc428 ; 012f44.c, 012f44.src
-          .EXPORT     _var_busstop_dat_8c1bc42c ; 012f44.c, 012f44.src
-          .EXPORT     _var_8c1bc430 ; 013ae8.src, 024b4c.src
-          .EXPORT     _var_8c1bc434 ; 013ae8.src, 024b4c.src
-          .EXPORT     _var_8c1bc438 ; 012f44.c, 012f44.src, 013ae8.src, 02d19c.src, 02d968.src
-          .EXPORT     _var_8c1bc43c ; 013ae8.src, 02d19c.src
+          .EXPORT     _var_markTexlist_8c1bc418 ; 0129cc.src, 013ae8_route_load.src, 01fa78.src, 02b2f0.src, 02b464.src
+          .EXPORT     _var_markPartsDat_8c1bc41c ; 012f44.c, 012f44.src
+          .EXPORT     _var_markDat_8c1bc420 ; 012f44.c, 012f44.src
+          .EXPORT     _var_busStopTexlist_8c1bc424 ; 013ae8_route_load.src, 01fa78.src, 022464.src
+          .EXPORT     _var_busstopPartsDat_8c1bc428 ; 012f44.c, 012f44.src
+          .EXPORT     _var_busstopDat_8c1bc42c ; 012f44.c, 012f44.src
+          .EXPORT     _var_frontTexlist_8c1bc430 ; 013ae8_route_load.src, 024b4c.src
+          .EXPORT     _var_frontNj_8c1bc434 ; 013ae8_route_load.src, 024b4c.src
+          .EXPORT     _var_interiorTexlist_8c1bc438 ; 012f44.c, 012f44.src, 013ae8_route_load.src, 02d19c.src, 02d968.src
+          .EXPORT     _var_interiorNj_8c1bc43c ; 013ae8_route_load.src, 02d19c.src
           .EXPORT     _var_8c1bc440 ; 012f44.c, 012f44.src, 02c884.src
           .EXPORT     _var_8c1bc444 ; 012f44.c, 012f44.src, 02c884.src
           .EXPORT     _var_loadedFooNjm_8c1bc448 ; 012f44.c, 012f44.src, 02c884.src
@@ -144,7 +146,7 @@
           .EXPORT     _var_8c1bc45c ; 023938.src
           .EXPORT     _var_8c1bc460 ; 023938.src, 024b4c.src, 025b98.src, 028258.src
           .EXPORT     _var_8c1bc46c ; 01fa78.src, 023938.src, 024b4c.src, 02c884.src
-          .EXPORT     _gBupInfo_8c1bc4ac ; 014b8c_backup.c, 0193c8_vm_menu.c, 0193c8_vm_menu.src
+          .EXPORT     _var_gBupInfo_8c1bc4ac ; 014b8c_backup.c, 0193c8_vm_menu.c, 0193c8_vm_menu.src
           .SECTION    B,DATA,ALIGN=4
 _var_busFont_8c1ba1c8:
           .RES.B      4
@@ -214,7 +216,7 @@ _var_tasks_8c1bac28:
           .RES.B      2080
 _var_tasks_8c1bb448:
           .RES.B      1056
-_var_8c1bb868:
+_var_currentCourse_8c1bb868:
           .RES.B      4
 _var_8c1bb86c:
           .RES.B      4
@@ -246,7 +248,7 @@ _var_inputMapSel_8c1bb8c8:
           .RES.B      4
 _var_8c1bb8cc:
           .RES.B      4
-_var_demo_8c1bb8d0:
+_var_playMode_8c1bb8d0:
           .RES.B      4
 _var_8c1bb8d4:
           .RES.B      4
@@ -268,9 +270,9 @@ _var_8c1bb8f4:
           .RES.B      4
 _var_award_8c1bb8f8:
           .RES.B      4
-_var_game_mode_8c1bb8fc:
+_var_gameMode_8c1bb8fc:
           .RES.B      4
-_var_8c1bb900:
+_var_cutsceneActive_8c1bb900:
           .RES.B      4
 _var_8c1bb904:
           .RES.B      64
@@ -346,21 +348,21 @@ _var_8c1bbdc4:
           .RES.B      12
 _var_8c1bbdd0:
           .RES.B      12
-_var_8c1bbddc:
+_var_routeModelSlots_8c1bbddc:
           .RES.B      416
 _var_8c1bbf7c:
           .RES.B      96
-_var_8c1bbfdc:
+_var_pedestrianAssets_8c1bbfdc:
           .RES.B      8
 _var_8c1bbfe4:
           .RES.B      1032
-_var_8c1bc3ec:
+_var_routeModels_8c1bc3ec:
           .RES.B      4
-_var_8c1bc3f0:
+_var_segmentModels_8c1bc3f0:
           .RES.B      4
-_var_8c1bc3f4:
+_var_trafficModels_8c1bc3f4:
           .RES.B      4
-_var_8c1bc3f8:
+_var_loadingResourceGroup_8c1bc3f8:
           .RES.B      12
 _var_8c1bc404:
           .RES.B      4
@@ -372,25 +374,25 @@ _var_8c1bc410:
           .RES.B      4
 _var_8c1bc414:
           .RES.B      4
-_var_8c1bc418:
+_var_markTexlist_8c1bc418:
           .RES.B      4
-_var_mark_parts_dat_8c1bc41c:
+_var_markPartsDat_8c1bc41c:
           .RES.B      4
-_var_mark_dat_8c1bc420:
+_var_markDat_8c1bc420:
           .RES.B      4
-_var_8c1bc424:
+_var_busStopTexlist_8c1bc424:
           .RES.B      4
-_var_busstop_parts_dat_8c1bc428:
+_var_busstopPartsDat_8c1bc428:
           .RES.B      4
-_var_busstop_dat_8c1bc42c:
+_var_busstopDat_8c1bc42c:
           .RES.B      4
-_var_8c1bc430:
+_var_frontTexlist_8c1bc430:
           .RES.B      4
-_var_8c1bc434:
+_var_frontNj_8c1bc434:
           .RES.B      4
-_var_8c1bc438:
+_var_interiorTexlist_8c1bc438:
           .RES.B      4
-_var_8c1bc43c:
+_var_interiorNj_8c1bc43c:
           .RES.B      4
 _var_8c1bc440:
           .RES.B      4
@@ -412,6 +414,6 @@ _var_8c1bc460:
           .RES.B      12
 _var_8c1bc46c:
           .RES.B      64
-_gBupInfo_8c1bc4ac:
+_var_gBupInfo_8c1bc4ac:
           .RES.B      736
           .END

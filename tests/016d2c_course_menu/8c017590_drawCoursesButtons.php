@@ -13,7 +13,7 @@ return new Class extends TestCase {
     {
         $this->resolveSymbols();
 
-        $this->initUint32($this->addressOf('_var_game_mode_8c1bb8fc'), 0);
+        $this->initUint32($this->addressOf('_var_gameMode_8c1bb8fc'), 0);
 
         $this->initMenuStateUint32(0x20, fdec(64.0));
         $this->initMenuStateUint32(0x24, fdec(42.0));
@@ -32,7 +32,15 @@ return new Class extends TestCase {
         $this->shouldDrawSprite(32, 0.0, 0.0, -4.0);
 
         // Unknown sprites: second loop
+        if (!$this->isAsmObject()) {
+            $this->shouldCall('__divls');
+            $this->shouldCall('__modls');
+        }
         $this->shouldDrawSprite(0x17, 240.0, 106.0, -3.5);
+        if (!$this->isAsmObject()) {
+            $this->shouldCall('__divls');
+            $this->shouldCall('__modls');
+        }
         $this->shouldDrawSprite(0x16, 333.0, 106.0, -3.5);
     }
 
@@ -40,7 +48,7 @@ return new Class extends TestCase {
     {
         $this->resolveSymbols();
 
-        $this->initUint32($this->addressOf('_var_game_mode_8c1bb8fc'), 1);
+        $this->initUint32($this->addressOf('_var_gameMode_8c1bb8fc'), 1);
 
         $this->initMenuStateUint32(0x20, fdec(64.0));
         $this->initMenuStateUint32(0x24, fdec(42.0));
@@ -59,7 +67,15 @@ return new Class extends TestCase {
         $this->shouldDrawSprite(32, 0.0, 0.0, -4.0);
 
         // Unknown sprites: second loop
+        if (!$this->isAsmObject()) {
+            $this->shouldCall('__divls');
+            $this->shouldCall('__modls');
+        }
         $this->shouldDrawSprite(0x17, 240.0, 106.0, -3.5);
+        if (!$this->isAsmObject()) {
+            $this->shouldCall('__divls');
+            $this->shouldCall('__modls');
+        }
         $this->shouldDrawSprite(0x16, 333.0, 106.0, -3.5);
     }
 
@@ -67,7 +83,7 @@ return new Class extends TestCase {
     {
         $this->resolveSymbols();
 
-        $this->initUint32($this->addressOf('_var_game_mode_8c1bb8fc'), 0);
+        $this->initUint32($this->addressOf('_var_gameMode_8c1bb8fc'), 0);
 
         $this->initMenuStateUint32(0x20, fdec(64.0));
         $this->initMenuStateUint32(0x24, fdec(42.0));
@@ -89,7 +105,7 @@ return new Class extends TestCase {
     {
         $this->resolveSymbols();
 
-        $this->initUint32($this->addressOf('_var_game_mode_8c1bb8fc'), 0);
+        $this->initUint32($this->addressOf('_var_gameMode_8c1bb8fc'), 0);
 
         $this->initMenuStateUint32(0x20, fdec(64.0));
         $this->initMenuStateUint32(0x24, fdec(42.0));
@@ -111,7 +127,7 @@ return new Class extends TestCase {
     {
         $this->resolveSymbols();
 
-        $this->initUint32($this->addressOf('_var_game_mode_8c1bb8fc'), 0);
+        $this->initUint32($this->addressOf('_var_gameMode_8c1bb8fc'), 0);
 
         $this->initMenuStateUint32(0x20, fdec(64.0));
         $this->initMenuStateUint32(0x24, fdec(42.0));
@@ -128,7 +144,7 @@ return new Class extends TestCase {
     }
 
     private function initMenuStateUint32($offset, $value) {
-        $this->initUint32($this->addressOf('_menuState_8c1bc7a8') + $offset, $value);
+        $this->initUint32($this->addressOf('_var_menuState_8c1bc7a8') + $offset, $value);
     }
 
     private function initCourseMenuButtons(array $values) {
@@ -157,9 +173,14 @@ return new Class extends TestCase {
         }
     }
 
+    protected function isAsmObject(): bool
+    {
+        return str_ends_with($this->objectFile, '_src.obj');
+    }
+
     private function shouldDrawSprite(int $spriteNo, float $x, float $y, float $priority) {
         $this->shouldCall('_drawSprite_8c014f54')->with(
-            $this->addressOf('_menuState_8c1bc7a8') + 0x0c,
+            $this->addressOf('_var_menuState_8c1bc7a8') + 0x0c,
             $spriteNo,
             $x,
             $y,
@@ -169,9 +190,16 @@ return new Class extends TestCase {
 
     private function resolveSymbols() {
         $this->setSize('_drawSprite_8c014f54', 0x04);
-        $this->setSize('_menuState_8c1bc7a8', 0x84);
+        $this->setSize('_var_menuState_8c1bc7a8', 0x84);
         $this->setSize('_var_progress_8c1ba1cc', 0x94);
         $this->setSize('__modls', 0x04);
         $this->setSize('__divls', 0x04);
+
+        $this->onCall('__modls', function () {
+            $this->setRegister(0, $this->getRegister(1)->mod($this->getRegister(0)));
+        });
+        $this->onCall('__divls', function () {
+            $this->setRegister(0, $this->getRegister(1)->div($this->getRegister(0)));
+        });
     }
 };

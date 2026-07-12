@@ -6,14 +6,14 @@ use Lhsazevedo\Sh4ObjTest\TestCase;
 
 return new class extends TestCase {
     public function testOnlyRunsWhen8c1bb8d0IsNot2() {
-        $this->shouldReadSymbolOffset('_var_demo_8c1bb8d0', 0, 2);
+        $this->shouldReadSymbolOffset('_var_playMode_8c1bb8d0', 0, 2);
 
         $this->singleCall('_FUN_8c020528')
             ->run();
     }
 
     public function testA() {
-        $this->shouldReadSymbolOffset('_var_demo_8c1bb8d0', 0, 1);
+        $this->shouldReadSymbolOffset('_var_playMode_8c1bb8d0', 0, 1);
 
         $tasksPtr = $this->alloc(8 * 4 * 16);
         $this->rellocate('_var_tasks_8c1ba5e8', $tasksPtr);
@@ -30,7 +30,7 @@ return new class extends TestCase {
 
         $this->shouldWrite($structPtr, 0);
 
-        $this->shouldCall('_AsqGetRandomInRangeB_121be')->with(300)->andReturn(0xbebacafe);
+        $this->shouldCall('_AsqGetRandomInRangeB_8c0121be')->with(300)->andReturn(0xbebacafe);
         $this->shouldWrite($structPtr + 0x04, 0xbebacb94);
         $this->shouldWrite($structPtr + 0x08, 3);
         $this->shouldWrite($structPtr + 0x0c, 1);

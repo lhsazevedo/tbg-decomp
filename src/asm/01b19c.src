@@ -28,14 +28,14 @@
           .IMPORT     _BupSave_8c014bcc
           .IMPORT     _var_8c157a7c
           .IMPORT     _drawSprite_8c014f54
-          .IMPORT     _menuState_8c1bc7a8
-          .IMPORT     _VmMenuUpdateVmuStatus_1967c
+          .IMPORT     _var_menuState_8c1bc7a8
+          .IMPORT     _VmMenuUpdateVmuStatus_8c01967c
           .IMPORT     _var_vmuStatus_8c226048
-          .IMPORT     _isFading_8c226568
+          .IMPORT     _var_isFading_8c226568
           .IMPORT     _swapMessageBoxFor_8c02aefc
-          .IMPORT     _getUknPvmBool_8c01432a
-          .IMPORT     _AsqFreeQueues_11f7e
-          .IMPORT     _promptHandleMultiple_16c58
+          .IMPORT     _isPvmReady_8c01432a
+          .IMPORT     _AsqFreeQueues_8c011f7e
+          .IMPORT     _promptHandleMultiple_8c016c58
           .IMPORT     _var_peripherals_8c1ba35c
           .IMPORT     _const_8c0380c8
           .IMPORT     _const_8c0380cc
@@ -51,12 +51,12 @@
           .IMPORT     _const_8c0382a4
           .IMPORT     _var_midiHandles_8c0fcd28
           .IMPORT     _sdMidiPlay
-          .IMPORT     _var_game_mode_8c1bb8fc
+          .IMPORT     _var_gameMode_8c1bb8fc
           .IMPORT     _const_8c0382d8
           .IMPORT     _const_8c03830c
-          .IMPORT     _VmMenuUnmountVms_194de
+          .IMPORT     _VmMenuUnmountVms_8c0194de
           .IMPORT     _push_fadeout_8c022b60
-          .IMPORT     _promptHandleBinary_16caa
+          .IMPORT     _promptHandleBinary_8c016caa
           .IMPORT     _var_8c1ba2e0
           .IMPORT     _BupLoad_8c014bc6
           .IMPORT     _const_8c038340
@@ -85,15 +85,15 @@
           .IMPORT     _CourseMenuSwitchFromTask_8c017e18
           .IMPORT     _setTaskAction_8c014b3e
           .IMPORT     _push_fadein_8c022a9c
-          .IMPORT     _AsqInitQueues_11f36
-          .IMPORT     _AsqResetQueues_11f6c
+          .IMPORT     _AsqInitQueues_8c011f36
+          .IMPORT     _AsqResetQueues_8c011f6c
           .IMPORT     _const_8c038454
           .IMPORT     _const_8c03844c
-          .IMPORT     _AsqRequestDat_11182
-          .IMPORT     _setUknPvmBool_8c014330
-          .IMPORT     _resetUknPvmBool_8c014322
-          .IMPORT     _AsqNop_11120
-          .IMPORT     _AsqProcessQueues_11fe0
+          .IMPORT     _AsqRequestDat_8c011182
+          .IMPORT     _setPvmReady_8c014330
+          .IMPORT     _resetPvmReady_8c014322
+          .IMPORT     _AsqNop_8c011120
+          .IMPORT     _AsqProcessQueues_8c011fe0
           .EXPORT     _FUN_8c01b19c
           .EXPORT     _FUN_8c01b1c0
           .EXPORT     _FUN_8c01b206
@@ -592,17 +592,17 @@ LP_GEN_91278:
           .DATA.L H'C0800000 ; H'8C01B560
           .DATA.L H'C0A00000 ; H'8C01B564
           .DATA.L _drawSprite_8c014f54 ; H'8C01B568
-          .DATA.L _menuState_8c1bc7a8 ; H'8C01B56C
+          .DATA.L _var_menuState_8c1bc7a8 ; H'8C01B56C
           .DATA.L _var_selectedVm_8c1ba34c ; H'8C01B570
           .DATA.L _var_8c1ba350 ; H'8C01B574
           .DATA.L _init_saveNames_8c044d50 ; H'8C01B578
-          .DATA.L _VmMenuUpdateVmuStatus_1967c ; H'8C01B57C
+          .DATA.L _VmMenuUpdateVmuStatus_8c01967c ; H'8C01B57C
           .DATA.L _var_vmuStatus_8c226048 ; H'8C01B580
-          .DATA.L _isFading_8c226568 ; H'8C01B584
+          .DATA.L _var_isFading_8c226568 ; H'8C01B584
           .DATA.L _swapMessageBoxFor_8c02aefc ; H'8C01B588
-          .DATA.L _getUknPvmBool_8c01432a ; H'8C01B58C
-          .DATA.L _AsqFreeQueues_11f7e ; H'8C01B590
-          .DATA.L _promptHandleMultiple_16c58 ; H'8C01B594
+          .DATA.L _isPvmReady_8c01432a ; H'8C01B58C
+          .DATA.L _AsqFreeQueues_8c011f7e ; H'8C01B590
+          .DATA.L _promptHandleMultiple_8c016c58 ; H'8C01B594
           .DATA.L H'10+_var_peripherals_8c1ba35c ; H'8C01B598
           .DATA.L _const_8c0380c8 ; H'8C01B59C
           .DATA.L _const_8c0380cc ; H'8C01B5A0
@@ -769,13 +769,13 @@ LP_GEN_26888:
           .DATA.L _const_8c0382a4 ; H'8C01B6D0
           .DATA.L _var_midiHandles_8c0fcd28 ; H'8C01B6D4
           .DATA.L _sdMidiPlay ; H'8C01B6D8
-          .DATA.L _var_game_mode_8c1bb8fc ; H'8C01B6DC
+          .DATA.L _var_gameMode_8c1bb8fc ; H'8C01B6DC
           .DATA.L _const_8c0382d8 ; H'8C01B6E0
           .DATA.L _const_8c03830c ; H'8C01B6E4
           .DATA.L H'10+_var_peripherals_8c1ba35c ; H'8C01B6E8
-          .DATA.L _VmMenuUnmountVms_194de ; H'8C01B6EC
+          .DATA.L _VmMenuUnmountVms_8c0194de ; H'8C01B6EC
           .DATA.L _push_fadeout_8c022b60 ; H'8C01B6F0
-          .DATA.L _promptHandleBinary_16caa ; H'8C01B6F4
+          .DATA.L _promptHandleBinary_8c016caa ; H'8C01B6F4
           .DATA.L _var_8c1ba2e0 ; H'8C01B6F8
           .DATA.L _var_8c1ba350 ; H'8C01B6FC
           .DATA.L _init_saveNames_8c044d50 ; H'8C01B700
@@ -1119,7 +1119,7 @@ LAB_8c01b97a:
           MOV.L       @R15+,R14
 LP_GEN_14610:
           .RES.W 1 ; H'8C01B9AE
-          .DATA.L _promptHandleBinary_16caa ; H'8C01B9B0
+          .DATA.L _promptHandleBinary_8c016caa ; H'8C01B9B0
           .DATA.L _const_8c0383e8 ; H'8C01B9B4
           .DATA.L _vmsLcd_8c01c8fc ; H'8C01B9B8
           .DATA.L _const_8c0380c8 ; H'8C01B9BC
@@ -1133,7 +1133,7 @@ LP_GEN_14610:
           .DATA.L _var_8c157a7c ; H'8C01B9DC
           .DATA.L _var_8c1ba348 ; H'8C01B9E0
           .DATA.L _syFree ; H'8C01B9E4
-          .DATA.L _VmMenuUnmountVms_194de ; H'8C01B9E8
+          .DATA.L _VmMenuUnmountVms_8c0194de ; H'8C01B9E8
           .DATA.L _push_fadeout_8c022b60 ; H'8C01B9EC
           .DATA.L _var_8c22606c ; H'8C01B9F0
           .DATA.L _FUN_8c0187d0 ; H'8C01B9F4
@@ -1263,24 +1263,24 @@ LP_GEN_62205:
           .DATA.L H'C0E00000 ; H'8C01BAEC
           .DATA.L _FUN_8c01b3ac ; H'8C01BAF0
           .DATA.L _setTaskAction_8c014b3e ; H'8C01BAF4
-          .DATA.L _menuState_8c1bc7a8 ; H'8C01BAF8
+          .DATA.L _var_menuState_8c1bc7a8 ; H'8C01BAF8
           .DATA.L _syMalloc ; H'8C01BAFC
           .DATA.L _var_8c1ba2e0 ; H'8C01BB00
           .DATA.L _var_8c1ba350 ; H'8C01BB04
           .DATA.L _init_saveNames_8c044d50 ; H'8C01BB08
           .DATA.L _var_selectedVm_8c1ba34c ; H'8C01BB0C
-          .DATA.L _VmMenuUpdateVmuStatus_1967c ; H'8C01BB10
+          .DATA.L _VmMenuUpdateVmuStatus_8c01967c ; H'8C01BB10
           .DATA.L _const_8c0380c8 ; H'8C01BB14
           .DATA.L _swapMessageBoxFor_8c02aefc ; H'8C01BB18
           .DATA.L _push_fadein_8c022a9c ; H'8C01BB1C
-          .DATA.L _AsqInitQueues_11f36 ; H'8C01BB20
-          .DATA.L _AsqResetQueues_11f6c ; H'8C01BB24
+          .DATA.L _AsqInitQueues_8c011f36 ; H'8C01BB20
+          .DATA.L _AsqResetQueues_8c011f6c ; H'8C01BB24
           .DATA.L _var_8c1ba344 ; H'8C01BB28
           .DATA.L _const_8c038454 ; H'8C01BB2C
           .DATA.L _const_8c03844c ; H'8C01BB30
-          .DATA.L _AsqRequestDat_11182 ; H'8C01BB34
-          .DATA.L _setUknPvmBool_8c014330 ; H'8C01BB38
-          .DATA.L _resetUknPvmBool_8c014322 ; H'8C01BB3C
-          .DATA.L _AsqNop_11120 ; H'8C01BB40
-          .DATA.L _AsqProcessQueues_11fe0 ; H'8C01BB44
+          .DATA.L _AsqRequestDat_8c011182 ; H'8C01BB34
+          .DATA.L _setPvmReady_8c014330 ; H'8C01BB38
+          .DATA.L _resetPvmReady_8c014322 ; H'8C01BB3C
+          .DATA.L _AsqNop_8c011120 ; H'8C01BB40
+          .DATA.L _AsqProcessQueues_8c011fe0 ; H'8C01BB44
           .END
