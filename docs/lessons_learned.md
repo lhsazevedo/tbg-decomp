@@ -11,6 +11,7 @@ one short and dated with the unit where it was found.
 - [Calls to sibling functions in the same TU are still mocked](#calls-to-sibling-functions-in-the-same-tu-are-still-mocked)
 - [A nested single-statement `if(cond){break;}` can compile to unreachable bytes](#a-nested-single-statement-ifcondbreak-can-compile-to-unreachable-bytes)
 - [Marking known-dead asm lines with coverage tags](#marking-known-dead-asm-lines-with-coverage-tags)
+- [Renaming an exported symbol: unit tests won't catch a missed caller](#renaming-an-exported-symbol-unit-tests-wont-catch-a-missed-caller)
 
 ## Struct fields can be separately-imported symbols in asm
 
@@ -157,3 +158,30 @@ rebuilding the local image (`docker build -t lhsazevedo/tbg-decomp docker/`)
 to pick up a version that supports the tags -- `docker-run.sh`/`docker-shell.sh`
 use a prebuilt image tag, so editing the Dockerfile alone does nothing until
 it's rebuilt.
+
+## Renaming an exported symbol: unit tests won't catch a missed caller
+
+**Found in:** `02af78` (2026-07-12)
+
+When you rename a `.EXPORT`ed function/variable, the rename has to reach
+*every* caller across the whole tree, not just the owning unit -- and a
+green test suite does **not** prove you got them all. Two structural blind
+spots in the harness hide a missed caller:
+
+- Each unit test loads only its own object(s), and cross-unit calls are
+  mocked (see the sibling-mock entry), so no test ever links the renamed
+  symbol against a stale importer in another unit.
+- A single-file compile of the renamed unit succeeds too -- nothing it
+  builds references the old name.
+
+The miss only surfaces at the **full `make` link** as
+`105 UNDEFINED EXTERNAL SYMBOL(<unit>._<oldname>)`, because still-undecompiled
+asm units keep `.IMPORT`ing the old name.
+
+**Fix:** after renaming an export, `grep -rn` the old name across `src/`
+(both `.c`/`.h` and *all* `.src` -- callers hold it as `.IMPORT` +
+`.DATA.L _oldname` literal-pool entries), `tests/` (mocks: `shouldCall`,
+`->andReturn` maps), and doc comments, and sed it everywhere in one pass.
+Then run the full `make` link (not just `run_tests.sh`) to confirm zero
+undefined externals -- that link is the only check that actually proves the
+rename is complete.
