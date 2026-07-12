@@ -71,6 +71,6 @@ void startRouteModelLoadPass_8c013d78(void);
 void freeAllRouteModels_8c013dae(void);
 void freePedestrianAssets_8c013ee4(void);
 int isPvmReady_8c01432a(void);
-void unknownRouteLoadTask_8c014784(Task *task, void *state);
+void unusedRouteLoadTask_8c014784(Task *task, void *state);
 
 #endif // _013AE8_ROUTE_LOAD_H

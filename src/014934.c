@@ -7,7 +7,7 @@
 #include "011120_asset_queues.h"
 #include "014f54_text_pre_data.h"
 
-void FUN_8c014934()
+void unusedPushRouteLoadTask_8c014934()
 {
     Task* task;
     void* state;
@@ -15,7 +15,7 @@ void FUN_8c014934()
     njSetBackColor(0xff418dff, 0xff418dff, 0xff418dff);
     var_loadScreenActive_8c157a6c = 1;
 
-    pushTask_8c014ae8(var_tasks_8c1ba3c8, (void *) &unknownRouteLoadTask_8c014784, &task, &state, 0);
+    pushTask_8c014ae8(var_tasks_8c1ba3c8, (void *) &unusedRouteLoadTask_8c014784, &task, &state, 0);
     task->field_0x08 = 0;
     task->field_0x0c = 0;
 
