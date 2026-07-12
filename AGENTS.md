@@ -128,6 +128,8 @@ Sections in order, each with a banner like the one below; omit empty sections:
 
 ## Detailed Guides
 
+- **Gameplay reference (what the code implements)** → `docs/gameplay.md`
+- **Next decompilation targets (relocation-graph analysis)** → `docs/next_units.md`
 - **Writing tests** → `tests/AGENTS.md`
 - **Moving data between files** → `.agents/skills/move-data/SKILL.md`
 - **Adding serial debug logging** → `.agents/skills/add-serial-logging/SKILL.md`
