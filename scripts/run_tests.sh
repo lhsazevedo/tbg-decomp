@@ -91,4 +91,8 @@ compile  src/01d290_album.c
 assemble  src/asm/decompiled/013ae8_route_load.src
 compile  src/013ae8_route_load.c
 
+# 02af78
+assemble  src/asm/decompiled/02af78.src
+compile  src/02af78.c
+
 $sh4objtest suite -s tests.php "$@"

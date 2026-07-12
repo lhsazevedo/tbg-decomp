@@ -69,7 +69,7 @@ SRCS = \
 	src/asm/02786c.src \
 	src/asm/027958.src \
 	src/asm/028258.src \
-	src/asm/02af78.src \
+	src/asm/decompiled/02af78.src \
 	src/asm/02b2f0.src \
 	src/asm/02b464.src \
 	src/asm/02c884.src \

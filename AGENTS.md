@@ -121,10 +121,33 @@ Sections in order, each with a banner like the one below; omit empty sections:
 
 ## Adding a New Unit
 
-1. Create `src/<addr>_name.c` and `src/asm/decompiled/<addr>_name.src`
-2. Add assemble/compile steps to `scripts/run_tests.sh`
-3. Add test group (tests + objects) to `tests.php`
-4. Add C source to `SRCS` in `Makefile`
+Initial setup, before decompiling any function (`git mv` the asm, not `mv` --
+the tests dir can be plain `mkdir` since it starts empty):
+
+1. `git mv src/asm/<addr>.src src/asm/decompiled/<addr>.src` (rename to
+   `<addr>_name.src` once a name is chosen; ok to leave hex-only if not yet).
+2. Create `src/<addr>.c` — can start as just `#include <shinobi.h>`, no
+   functions yet.
+3. `mkdir tests/<addr>` (empty for now; first test file gets added, along
+   with the test group in `tests.php`, once you decompile the first
+   function).
+4. In `scripts/run_tests.sh`, add an `assemble`/`compile` stanza pointing at
+   the two files from steps 1-2.
+5. In `Makefile` (non-matching), swap the `SRCS` entry from
+   `src/asm/<addr>.src` to `src/<addr>.c`.
+6. In `Makefile.matching`, swap the `SRCS` entry from `src/asm/<addr>.src` to
+   `src/asm/decompiled/<addr>.src` (same content, just the new path —
+   matching build keeps using the archived original asm until the unit's C
+   is proven byte-matching).
+
+Steps 5-6 intentionally break `make` (full non-matching build) until every
+function in the unit is decompiled — other units still import the
+not-yet-defined symbols. That's expected; use `./scripts/run_tests.sh` to
+verify in the meantime instead of a full `make`.
+
+Then, per function: decompile in `src/<addr>_name.c`, add its test file
+under `tests/<addr>/`, and register it in the matching group in `tests.php`
+(create the group on the first function).
 
 ## Detailed Guides
 
