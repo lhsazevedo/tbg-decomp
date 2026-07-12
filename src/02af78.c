@@ -5,6 +5,33 @@
 #include "03bd80_sectionD.h"
 
 /* ====================
+ * Compiler Definitions
+ * ====================
+ */
+
+/* Packed 10-bit unlock codes ({mode:2,flag:8}), LSB slot first, terminated by
+ * a 0x3ff (empty/padding) slot. Shared layout for conditions_0x08 (all 4
+ * modes) and actions_0x0c (only bit 0x200 is meaningful there). */
+#define UNLOCK_CODE_BITS  10
+#define UNLOCK_CODE_MASK  0x3ff
+#define UNLOCK_CODE_EMPTY 0x3ff
+#define UNLOCK_CODE_FLAG  0x0ff
+#define UNLOCK_CODE_MODE  0x300
+
+#define UNLOCK_MODE_FORBID_PROGRESS   0x000 /* fail if progress flag set */
+#define UNLOCK_MODE_REQUIRE_PROGRESS  0x100 /* fail if progress flag clear */
+#define UNLOCK_MODE_FORBID_EPHEMERAL  0x200 /* fail if var_8c1ba2b4 bit set */
+#define UNLOCK_MODE_REQUIRE_EPHEMERAL 0x300 /* fail if var_8c1ba2b4 bit clear */
+
+/* actions_0x0c reuses the same 10-bit slot layout but only a 1-bit mode
+ * (bit 0x200): clear sets a progress flag, set sets a var_8c1ba2b4 bit. */
+#define UNLOCK_ACTION_MODE 0x200
+
+/* Packed 5-bit day-value slots in dayMask_0x04, terminated by a 0 slot. */
+#define UNLOCK_DAY_BITS 5
+#define UNLOCK_DAY_MASK 0x1f
+
+/* ====================
  * Functions
  * ====================
  */
@@ -211,8 +238,9 @@ void applyUnlockCandidate_8c02b292(void)
 
         if ((code & UNLOCK_ACTION_MODE) == 0) {
             setProgressFlag_8c02af78(code & UNLOCK_CODE_FLAG);
-        } else {
-            FUN_8c02b022(code & UNLOCK_CODE_FLAG);
+            continue;
         }
+
+        FUN_8c02b022(code & UNLOCK_CODE_FLAG);
     }
 }
