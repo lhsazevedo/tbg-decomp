@@ -32,6 +32,7 @@ _setProgressFlag_8c02af78:
           CMP/PZ      R7
           BT/S        LAB_8c02af82
           MOV         #H'1,R5
+          ; coverage:ignore-next-line -- only reached for negative index, never used in practice
           ADD         #H'1f,R7
 LAB_8c02af82:
           MOV         R4,R0
@@ -42,11 +43,13 @@ LAB_8c02af82:
           BRA         LAB_8c02af9a
           AND         #H'1f,R0
 LAB_8c02af90:
+          ; coverage:disable -- negative-index modulo path, never used in practice
           NOT         R0,R0
           ADD         #H'1,R0
           AND         #H'1f,R0
           NOT         R0,R0
           ADD         #H'1,R0
+          ; coverage:enable
 LAB_8c02af9a:
           MOV.L       LP_GEN_66558+2,R6
           MOV         R0,R4
@@ -72,6 +75,7 @@ _hasProgressFlag_8c02afbe:
           CMP/PZ      R6
           BT/S        LAB_8c02afc8
           MOV         #H'1,R5
+          ; coverage:ignore-next-line -- only reached for negative index, never used in practice
           ADD         #H'1f,R6
 LAB_8c02afc8:
           MOV         R4,R0
@@ -82,11 +86,13 @@ LAB_8c02afc8:
           BRA         LAB_8c02afe0
           AND         #H'1f,R0
 LAB_8c02afd6:
+          ; coverage:disable -- negative-index modulo path, never used in practice
           NOT         R0,R0
           ADD         #H'1,R0
           AND         #H'1f,R0
           NOT         R0,R0
           ADD         #H'1,R0
+          ; coverage:enable
 LAB_8c02afe0:
           MOV         R0,R4
           MOV.L       LP_GEN_66558+6,R1
@@ -102,6 +108,7 @@ _hasProgressFlagAlt_8c02aff0:
           CMP/PZ      R6
           BT/S        LAB_8c02affa
           MOV         #H'1,R5
+          ; coverage:ignore-next-line -- only reached for negative index, never used in practice
           ADD         #H'1f,R6
 LAB_8c02affa:
           MOV         R4,R0
@@ -112,11 +119,13 @@ LAB_8c02affa:
           BRA         LAB_8c02b012
           AND         #H'1f,R0
 LAB_8c02b008:
+          ; coverage:disable -- negative-index modulo path, never used in practice
           NOT         R0,R0
           ADD         #H'1,R0
           AND         #H'1f,R0
           NOT         R0,R0
           ADD         #H'1,R0
+          ; coverage:enable
 LAB_8c02b012:
           MOV         R0,R4
           MOV.L       LP_GEN_66558+10,R1
@@ -171,8 +180,10 @@ _scanUnlockCandidates_8c02b03c:
           BT          LAB_8c02b07c
           CMP/EQ      #H'2,R0
           BT          LAB_8c02b0ac
+          ; coverage:disable -- var_route_8c18ad1c is always ROUTE_SHINJUKU/WANGAN/OME in practice
           BRA         LAB_8c02b0b0
           NOP
+          ; coverage:enable
 LAB_8c02b076:
           MOV.L       LP_GEN_66558+34,R2
           BRA         LAB_8c02b0b0
@@ -182,6 +193,7 @@ LAB_8c02b07c:
           BRA         LAB_8c02b0b0
           MOV.L       R0,@R4
 LP_GEN_66558:
+          ; coverage:ignore-next-line -- alignment padding, not executed code
           .RES.W 1 ; H'8C02B082
           .DATA.L _var_progress_8c1ba1cc ; H'8C02B084
           .DATA.L _var_progress_8c1ba1cc+H'04 ; H'8C02B088 (field_0x04)
@@ -243,8 +255,10 @@ LAB_8c02b0e8:
           NOP
           TST         R0,R0
           BF          LAB_8c02b11a
+          ; coverage:disable -- unreachable: BF above already branches on this condition (see docs/lessons_learned.md)
           BRA         LAB_8c02b112
           NOP
+          ; coverage:enable
 LAB_8c02b106:
           CMP/EQ      R9,R6
           BF          LAB_8c02b112
@@ -368,8 +382,10 @@ LAB_8c02b1d6:
           NOP
           TST         R0,R0
           BF          LAB_8c02b208
+          ; coverage:disable -- unreachable: BF above already branches on this condition (see docs/lessons_learned.md)
           BRA         LAB_8c02b200
           NOP
+          ; coverage:enable
 LAB_8c02b1f4:
           CMP/EQ      R12,R6
           BF          LAB_8c02b200

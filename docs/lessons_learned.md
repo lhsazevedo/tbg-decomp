@@ -10,6 +10,7 @@ one short and dated with the unit where it was found.
 - [Struct fields can be separately-imported symbols in asm](#struct-fields-can-be-separately-imported-symbols-in-asm)
 - [Calls to sibling functions in the same TU are still mocked](#calls-to-sibling-functions-in-the-same-tu-are-still-mocked)
 - [A nested single-statement `if(cond){break;}` can compile to unreachable bytes](#a-nested-single-statement-ifcondbreak-can-compile-to-unreachable-bytes)
+- [Marking known-dead asm lines with coverage tags](#marking-known-dead-asm-lines-with-coverage-tags)
 
 ## Struct fields can be separately-imported symbols in asm
 
@@ -87,3 +88,40 @@ generates one direct conditional branch with no leftover dead bytes, and the
 line becomes reachable/coverable. Worth trying this rewrite whenever a
 `break;` inside a nested `if` stays stubbornly uncovered despite a test that
 should hit it.
+
+This only applies to *our own* `.c` files, which we're free to restructure.
+The archived original `.src` asm (built by the same-era SHC compiler, so it
+exhibits the identical dead-byte pattern -- confirmed present verbatim in
+`02af78.src`'s `_scanUnlockCandidates_8c02b03c`/`_pickUnlockCandidate_8c02b170`)
+must stay byte-identical to the real game binary, so use the coverage tags
+below on it instead of rewriting.
+
+## Marking known-dead asm lines with coverage tags
+
+**Found in:** `02af78` (2026-07-12), sh4objtest v0.1.35+
+
+`sh4objtest suite --coverage` supports source-line exclusion tags, matched as
+plain substrings so they work in both `//`/`/* */` (C) and `;` (asm)
+comments:
+
+- `coverage:disable` / `coverage:enable` -- exclude an inclusive block
+- `coverage:ignore-next-line` -- exclude only the following line
+
+They require `tests.php` to declare a `sourcePaths` map from the Wine debug
+path prefix to a host directory relative to `tests.php`'s own location, e.g.
+`'sourcePaths' => ['Z:\\app\\src' => 'src']`. Without it the tags are
+silently ignored (`ignoredLinesFor()` returns nothing when the debug path
+doesn't resolve).
+
+**Use case:** original `.src` asm legitimately contains code that's
+unreachable in practice and that we must not rewrite (see the entry above,
+and negative-index-handling branches from `CMP/PZ`-guarded shift/modulo
+codegen that no real caller ever triggers, and one-off alignment `.RES.W`
+padding words in a literal pool, which aren't code at all). Tag these with a
+short comment explaining *why* they're unreachable instead of leaving
+`--coverage` to report them as gaps indistinguishable from a genuine missing
+test -- also requires bumping `docker/Dockerfile`'s sh4objtest version and
+rebuilding the local image (`docker build -t lhsazevedo/tbg-decomp docker/`)
+to pick up a version that supports the tags -- `docker-run.sh`/`docker-shell.sh`
+use a prebuilt image tag, so editing the Dockerfile alone does nothing until
+it's rebuilt.

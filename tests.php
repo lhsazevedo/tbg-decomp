@@ -1,6 +1,9 @@
 <?php
 
 return [
+    'sourcePaths' => [
+        'Z:\\app\\src' => 'src',
+    ],
     'groups' => [
         [
             'tests' => [
