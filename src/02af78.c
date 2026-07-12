@@ -108,3 +108,77 @@ void scanUnlockCandidates_8c02b03c(void)
         index++;
     }
 }
+
+/* Narrows scanUnlockCandidates_8c02b03c's candidates to the ones whose
+ * segmentId_0x02 matches the current segment and whose conditions_0x08
+ * var_8c1ba2b4-bit checks (mode 2/3) also pass, then randomly picks one into
+ * var_selectedUnlockEntry_8c228478 and arms var_cutsceneActive_8c1bb900.
+ * Skipped (cutsceneActive cleared) outside normal play, during the course
+ * menu (var_gameMode_8c1bb8fc), or while var_8c2285dc > var_8c2285d8. */
+void pickUnlockCandidate_8c02b170(void)
+{
+    UnlockEntry *entry;
+    int i;
+    int count;
+    int tableIndex;
+    Uint32 conditions;
+    int candidates[5];
+
+    if (var_playMode_8c1bb8d0 == PLAY_MODE_NORMAL && var_gameMode_8c1bb8fc == 0 &&
+        var_8c2285dc <= var_8c2285d8) {
+        count = 0;
+
+        for (i = 0; i < var_8c228560; i++) {
+            tableIndex = var_8c228520[i];
+            entry = var_8c22851c + tableIndex;
+
+            if (var_currentSegment_8c228708 == entry->segmentId_0x02) {
+                for (conditions = entry->conditions_0x08; conditions != 0; conditions >>= 10) {
+                    if ((conditions & 0x3ff) != 0x3ff) {
+                        if ((conditions & 0x300) == 0x200) {
+                            if (FUN_8c02b030(conditions & 0xff) != 0) {
+                                break;
+                            }
+                        } else if ((conditions & 0x300) == 0x300 &&
+                                   FUN_8c02b030(conditions & 0xff) == 0) {
+                            break;
+                        }
+                    }
+                }
+
+                if (conditions == 0) {
+                    candidates[count] = tableIndex;
+                    count++;
+                }
+            }
+        }
+
+        if (count != 0) {
+            var_cutsceneActive_8c1bb900 = 1;
+            var_selectedUnlockEntry_8c228478 = candidates[AsqGetRandomInRangeB_8c0121be(count)];
+            return;
+        }
+    }
+
+    var_cutsceneActive_8c1bb900 = 0;
+}
+
+/* Applies var_selectedUnlockEntry_8c228478's actions_0x0c codes: mode clear
+ * sets a progress flag, mode 0x200 sets a var_8c1ba2b4 bit. */
+void applyUnlockCandidate_8c02b292(void)
+{
+    UnlockEntry *entry;
+    Uint32 actions;
+
+    entry = var_8c22851c + var_selectedUnlockEntry_8c228478;
+
+    for (actions = entry->actions_0x0c; actions != 0; actions >>= 10) {
+        if ((actions & 0x3ff) != 0x3ff) {
+            if ((actions & 0x200) == 0) {
+                setProgressFlag_8c02af78(actions & 0xff);
+            } else {
+                FUN_8c02b022(actions & 0xff);
+            }
+        }
+    }
+}

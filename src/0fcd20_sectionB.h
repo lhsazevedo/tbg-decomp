@@ -45,10 +45,21 @@ extern int var_8c228520[];
 extern int var_8c228560;
 
 extern int var_8c2285c4[];
+
+/* gate for pickUnlockCandidate_8c02b170: only runs while
+ * var_8c2285dc <= var_8c2285d8 (role of each side unclear) */
+extern int var_8c2285d8;
+extern int var_8c2285dc;
+
 extern int var_8c228704;
 extern void* var_8c2288f8;
 extern Sint8 var_coursesToUnlock_8c225fd4[];
 extern int var_currentSegment_8c228708;
+
+/* table index (into the UnlockEntry array pointed to by var_8c22851c)
+ * chosen by pickUnlockCandidate_8c02b170, consumed by
+ * applyUnlockCandidate_8c02b292 */
+extern int var_selectedUnlockEntry_8c228478;
 extern void* var_currentSysResGroupInfo_8c225fb0;
 extern int var_currentTileRegionList_8c226534;
 extern int var_demoEntryValue_8c227e14;

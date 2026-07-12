@@ -15,8 +15,17 @@ typedef struct {
     Uint16 timeOfDay_0x00;
     Uint16 segmentId_0x02;
     Uint32 dayMask_0x04;
+
+    /* packed list of 10-bit {mode:2,flag:8} codes, terminated by a 0 (or
+     * padding) slot. mode 0/1 (must-not-have/must-have a progress flag) is
+     * checked by scanUnlockCandidates_8c02b03c; mode 2/3 (must-not-have/
+     * must-have a var_8c1ba2b4 bit) is checked by pickUnlockCandidate_8c02b170. */
     Uint32 conditions_0x08;
-    Uint32 field_0x0c;
+
+    /* packed list of 10-bit {mode:1,flag:8} codes applied by
+     * applyUnlockCandidate_8c02b292 once this entry is chosen: mode clear
+     * sets a progress flag, mode set (0x200) sets a var_8c1ba2b4 bit. */
+    Uint32 actions_0x0c;
 } UnlockEntry;
 
 void setProgressFlag_8c02af78(int index);
@@ -25,6 +34,7 @@ int hasProgressFlagAlt_8c02aff0(int index);
 void FUN_8c02b022(int index);
 int FUN_8c02b030(int index);
 void scanUnlockCandidates_8c02b03c(void);
-void FUN_8c02b170(void);
+void pickUnlockCandidate_8c02b170(void);
+void applyUnlockCandidate_8c02b292(void);
 
 #endif // _02AF78_H

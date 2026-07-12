@@ -241,6 +241,8 @@ return [
                 "tests/02af78/8c02b022_FUN.php",
                 "tests/02af78/8c02b030_FUN.php",
                 "tests/02af78/8c02b03c_scanUnlockCandidates.php",
+                "tests/02af78/8c02b170_pickUnlockCandidate.php",
+                "tests/02af78/8c02b292_applyUnlockCandidate.php",
             ],
             "objects" => [
                 "build/output_test/02af78_src.obj",

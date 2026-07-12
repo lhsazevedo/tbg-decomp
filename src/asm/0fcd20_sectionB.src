@@ -186,7 +186,7 @@
           .EXPORT     _var_8c22842c ; 028258.src
           .EXPORT     _var_8c228430 ; 028258.src
           .EXPORT     _var_8c228434 ; 028258.src
-          .EXPORT     _var_8c228478 ; 028258.src, 02af78.src
+          .EXPORT     _var_selectedUnlockEntry_8c228478 ; 028258.src, 02af78.src
           .EXPORT     _var_8c22847c ; 0129cc.src, 012f44.c, 012f44.src, 028258.src, 02b464.src, 02d19c.src
           .EXPORT     _var_8c228480 ; 028258.src
           .EXPORT     _var_8c228484 ; 028258.src
@@ -581,7 +581,7 @@ _var_8c228430:
           .RES.B      4
 _var_8c228434:
           .RES.B      68
-_var_8c228478:
+_var_selectedUnlockEntry_8c228478:
           .RES.B      4
 _var_8c22847c:
           .RES.B      4
