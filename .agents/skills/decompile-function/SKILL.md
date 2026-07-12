@@ -58,6 +58,11 @@ one of the two objects, you can write tests and run them against `<unit>_src.obj
 alone to pin the behavioral contract; then decompile the C to make the same tests
 pass. This avoids encoding a misread into both C and tests at once.
 
+## Lessons learned
+
+Check `docs/lessons_learned.md` for non-obvious toolchain/asm quirks already
+hit in past units, and add an entry there when you hit a new one.
+
 ## Gotchas
 
 - Uninitialized memory is **randomized** by default, so a read-modify-write (e.g.

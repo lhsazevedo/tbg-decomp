@@ -1,7 +1,5 @@
 ; 8c02af78
           .IMPORT     _var_progress_8c1ba1cc
-          .IMPORT     _var_8c1ba1d0
-          .IMPORT     _var_8c1ba1e4
           .IMPORT     _var_8c1ba2b4
           .IMPORT     _var_8c228560
           .IMPORT     _var_playMode_8c1bb8d0
@@ -20,8 +18,8 @@
           .IMPORT     _AsqGetRandomInRangeB_8c0121be
           .IMPORT     _var_8c228478
           .EXPORT     _setProgressFlag_8c02af78
-          .EXPORT     _FUN_8c02afbe
-          .EXPORT     _FUN_8c02aff0
+          .EXPORT     _hasProgressFlag_8c02afbe
+          .EXPORT     _hasProgressFlagAlt_8c02aff0
           .EXPORT     _FUN_8c02b022
           .EXPORT     _FUN_8c02b030
           .EXPORT     _FUN_8c02b03c
@@ -69,7 +67,7 @@ LAB_8c02af9a:
           RTS
           MOV.L       R2,@R3
 ; tests a bit in var_progress_8c1ba1cc+4 (see FUN_8c02af78); called from FUN_8c02b03c
-_FUN_8c02afbe:
+_hasProgressFlag_8c02afbe:
           MOV         R4,R6
           CMP/PZ      R6
           BT/S        LAB_8c02afc8
@@ -99,7 +97,7 @@ LAB_8c02afe0:
           RTS
           AND         R5,R0
 ; tests a bit in var_progress_8c1ba1cc+0x18 (see FUN_8c02af78)
-_FUN_8c02aff0:
+_hasProgressFlagAlt_8c02aff0:
           MOV         R4,R6
           CMP/PZ      R6
           BT/S        LAB_8c02affa
@@ -186,8 +184,8 @@ LAB_8c02b07c:
 LP_GEN_66558:
           .RES.W 1 ; H'8C02B082
           .DATA.L _var_progress_8c1ba1cc ; H'8C02B084
-          .DATA.L _var_8c1ba1d0 ; H'8C02B088
-          .DATA.L _var_8c1ba1e4 ; H'8C02B08C
+          .DATA.L _var_progress_8c1ba1cc+H'04 ; H'8C02B088 (field_0x04)
+          .DATA.L _var_progress_8c1ba1cc+H'18 ; H'8C02B08C (field_0x18)
           .DATA.L _var_8c1ba2b4 ; H'8C02B090
           .DATA.L _var_8c228560 ; H'8C02B094
           .DATA.L _var_playMode_8c1bb8d0 ; H'8C02B098
@@ -241,7 +239,7 @@ LAB_8c02b0e8:
           TST         R6,R6
           BF/S        LAB_8c02b106
           EXTU.B      R5,R4
-          BSR         _FUN_8c02afbe
+          BSR         _hasProgressFlag_8c02afbe
           NOP
           TST         R0,R0
           BF          LAB_8c02b11a
@@ -250,7 +248,7 @@ LAB_8c02b0e8:
 LAB_8c02b106:
           CMP/EQ      R9,R6
           BF          LAB_8c02b112
-          BSR         _FUN_8c02afbe
+          BSR         _hasProgressFlag_8c02afbe
           NOP
           TST         R0,R0
           BT          LAB_8c02b11a

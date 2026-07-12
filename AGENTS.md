@@ -154,6 +154,7 @@ under `tests/<addr>/`, and register it in the matching group in `tests.php`
 - **Reading/maintaining Ghidra via MCP** → `docs/ghidra-mcp.md`
 - **Gameplay reference (what the code implements)** → `docs/gameplay.md`
 - **Next decompilation targets (relocation-graph analysis)** → `docs/next_units.md`
+- **Lessons learned (non-obvious toolchain/asm quirks)** → `docs/lessons_learned.md`
 - **Writing tests** → `tests/AGENTS.md`
 - **Moving data between files** → `.agents/skills/move-data/SKILL.md`
 - **Adding serial debug logging** → `.agents/skills/add-serial-logging/SKILL.md`
