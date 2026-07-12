@@ -19,7 +19,7 @@
           .IMPORT     _var_cutsceneActive_8c1bb900
           .IMPORT     _AsqGetRandomInRangeB_8c0121be
           .IMPORT     _var_8c228478
-          .EXPORT     _FUN_8c02af78
+          .EXPORT     _setProgressFlag_8c02af78
           .EXPORT     _FUN_8c02afbe
           .EXPORT     _FUN_8c02aff0
           .EXPORT     _FUN_8c02b022
@@ -29,7 +29,7 @@
           .EXPORT     _FUN_8c02b292
           .SECTION     P, CODE, ALIGN=4
 ; sets a bit in var_progress_8c1ba1cc+4 and +0x18 (paired unlock bitsets, see FUN_8c02afbe/aff0)
-_FUN_8c02af78:
+_setProgressFlag_8c02af78:
           MOV         R4,R7
           CMP/PZ      R7
           BT/S        LAB_8c02af82
@@ -474,7 +474,7 @@ LAB_8c02b2b0:
           TST         R12,R3
           BF/S        LAB_8c02b2c8
           EXTU.B      R5,R4
-          BSR         _FUN_8c02af78
+          BSR         _setProgressFlag_8c02af78
           NOP
           BRA         LAB_8c02b2cc
           NOP

@@ -235,6 +235,15 @@ return [
         ],
         [
             "tests" => [
+                "tests/02af78/8c02af78_setProgressFlag.php",
+            ],
+            "objects" => [
+                "build/output_test/02af78_src.obj",
+                "build/output_test/02af78_c.obj",
+            ]
+        ],
+        [
+            "tests" => [
                 "tests/013ae8_route_load/13ae8_requestVehicleAssets.php",
                 "tests/013ae8_route_load/13b5a_freeVehicleAssets.php",
                 "tests/013ae8_route_load/13bbc_clearUnknownArray.php",
