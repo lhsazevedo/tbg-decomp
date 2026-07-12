@@ -81,19 +81,45 @@ because it genuinely never executes -- confirmed via `sh4objtest inspect
 branch for the enclosing `if` jumps directly over the `break;`'s address
 range.
 
-**Fix (sh4objtest < v0.1.35):** rewrite the first arm to match the second
-arm's shape -- combine the two conditions with `&&` into a single
-`if (mode_matches && some_call(...) != 0) { break; }` instead of nesting.
-Same behavior, but the compiler now generates one direct conditional branch
-with no leftover dead bytes, and the line becomes reachable/coverable.
+**Fix (best, in C):** split the `if/else if` into two independent top-level
+`if`s, ending the first arm with an explicit `continue;` instead of letting
+it fall out of the `if`:
+```c
+if (mode_matches) {
+    if (some_call(...) != 0) {
+        break;
+    }
+    continue;
+}
+if (other_mode && other_call(...) == 0) {
+    break;
+}
+```
+This isn't just cosmetic -- it changes codegen. With the `else if` chain, the
+compiler has to jump *past* the second condition entirely when the first
+arm's outer test is true, and that extra unconditional jump is what leaves
+the dead `break;` bytes behind. With two independent `if`s, the first arm's
+only fallthrough target *is* `continue`'s target, so the compiler folds the
+`break;`'s jump-out-of-loop directly into the same conditional branch that
+tests `some_call(...) != 0` -- confirmed via `sh4objtest inspect
+--format=json`'s `debugLines`: the `break;` line has no address range of its
+own at all (zero-width), rather than a range coverage reports as dead.
+Result: no coverage gap, no exclusion tag needed, and the shape (guard
+clause + independent checks) is arguably clearer than the original nested
+`if/else if` anyway.
 
-**Fix (sh4objtest >= v0.1.35, preferred):** don't restructure -- tag the
-dead `break;` with `coverage:ignore-next-line` (see the entry below) and
-keep the nested-`if` shape, which stays closer to Ghidra's natural
-decompilation output. Restructuring is a reasonable fallback on an older
-sh4objtest, but once the coverage tags are available they're the less
-invasive fix and don't require finding an equivalent-but-differently-shaped
-rewrite for every occurrence.
+**Fix (when the `continue` restructuring doesn't apply, e.g. no loop to
+`continue` in, or sh4objtest < v0.1.35):** rewrite the first arm to match
+the second arm's shape -- combine the two conditions with `&&` into a single
+`if (mode_matches && some_call(...) != 0) { break; }` instead of nesting.
+Same behavior, one direct conditional branch, no leftover dead bytes.
+
+**Fix (last resort):** tag the dead `break;` with `coverage:ignore-next-line`
+(see the entry below, requires sh4objtest >= v0.1.35) and leave the
+`if/else if` shape as-is. Only reach for this when neither restructuring
+above is a natural fit -- an exclusion tag hides a genuine dead-code
+artifact instead of removing it, so a real fix is always preferable when one
+exists.
 
 The dead-bytes pattern itself also shows up verbatim in the *original*
 `.src` asm (built by the same-era SHC compiler -- confirmed present in

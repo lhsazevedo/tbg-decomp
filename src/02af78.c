@@ -109,7 +109,6 @@ void scanUnlockCandidates_8c02b03c(void)
 
             if ((code & UNLOCK_CODE_MODE) == UNLOCK_MODE_FORBID_PROGRESS) {
                 if (hasProgressFlag_8c02afbe(code & UNLOCK_CODE_FLAG) != 0) {
-                    // coverage:ignore-next-line -- see docs/lessons_learned.md
                     break;
                 }
                 continue;
@@ -168,7 +167,6 @@ void pickUnlockCandidate_8c02b170(void)
 
             if ((code & UNLOCK_CODE_MODE) == UNLOCK_MODE_FORBID_EPHEMERAL) {
                 if (FUN_8c02b030(code & UNLOCK_CODE_FLAG) != 0) {
-                    // coverage:ignore-next-line -- see docs/lessons_learned.md
                     break;
                 }
                 continue;
