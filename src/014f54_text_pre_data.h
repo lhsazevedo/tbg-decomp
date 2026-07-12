@@ -286,14 +286,14 @@ typedef struct {
     Uint8 field_0x05[3]; // Padding?
 } CourseProgress;
 
-// TODO: offsets 0x04/0x18 (5 ints each) are unlock-flag bitsets set together by
-// FUN_8c02af78 and tested individually by FUN_8c02afbe/FUN_8c02aff0; 0xc7[9]
-// covers the bytes 011120_asset_queues.c indexes at 0xcc-0xcf; 0xd0/0xd1 look
-// like saved input deadzone thresholds (see FUN_8c024320/FUN_8c024606)
 typedef struct {
     int days_0x00;
+
+    /* unlock-flag bitsets set together by FUN_8c02af78
+     * and tested individually by FUN_8c02afbe/FUN_8c02aff0 */
     int field_0x04[5];
     int field_0x18[5];
+
     int letters_0x2c[6];
     CourseProgress courses_0x44[9];
     int field_0x8c;
@@ -303,7 +303,12 @@ typedef struct {
     signed char field_0xc4;
     char field_0xc5;
     char field_0xc6;
+
+    /* covers the bytes 011120_asset_queues.c indexes at 0xcc-0xcf */
     char field_0xc7[9];
+
+    /* 0xd0/0xd1 look like saved input deadzone
+     * thresholds (see FUN_8c024320/FUN_8c024606) */
     char field_0xd0;
     char field_0xd1;
 } PlayerProgress;

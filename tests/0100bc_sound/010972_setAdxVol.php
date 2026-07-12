@@ -37,7 +37,7 @@ return new class extends TestCase {
 
         $this->shouldCall('__quick_evn_mvn')->do($mvn);
 
-        $this->shouldWriteLong($this->addressOf('_init_adxVolTargets_8c03bd88') + 0, 440);
+        $this->shouldWriteLong($this->addressOf('_init_adxVolumes_8c03bd88') + 0, 440);
         $this->shouldCall('_ADXT_SetOutVol')->with(0xcafe0000, 440 - 990);
 
         $this->singleCall('_setAdxVol_8c010972')
@@ -101,7 +101,7 @@ return new class extends TestCase {
 
         $this->shouldCall('__quick_evn_mvn')->do($mvn);
 
-        $this->shouldWriteLong($this->addressOf('_init_adxVolTargets_8c03bd88') + 0, $vols[$volNo]);
+        $this->shouldWriteLong($this->addressOf('_init_adxVolumes_8c03bd88') + 0, $vols[$volNo]);
         $this->shouldCall('_ADXT_SetOutVol')->with(0xcafe0000, $vols[$volNo] - 990);
 
         $this->singleCall('_setAdxVol_8c010972')
@@ -126,7 +126,7 @@ return new class extends TestCase {
 
         $this->shouldCall('__quick_evn_mvn')->do($mvn);
 
-        $this->shouldWriteLong($this->addressOf('_init_adxVolTargets_8c03bd88') + 4, 220);
+        $this->shouldWriteLong($this->addressOf('_init_adxVolumes_8c03bd88') + 4, 220);
         $this->shouldCall('_ADXT_SetOutVol')->with(0xcafe0001, 220 - 990);
 
         $this->singleCall('_setAdxVol_8c010972')
@@ -151,7 +151,7 @@ return new class extends TestCase {
 
         $this->shouldCall('__quick_evn_mvn')->do($mvn);
 
-        $this->shouldWriteLong($this->addressOf('_init_adxVolTargets_8c03bd88') + 4, 440);
+        $this->shouldWriteLong($this->addressOf('_init_adxVolumes_8c03bd88') + 4, 440);
         $this->shouldCall('_ADXT_SetOutVol')->with(0xcafe0001, 440 - 990);
 
         $this->singleCall('_setAdxVol_8c010972')

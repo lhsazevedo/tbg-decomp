@@ -37,7 +37,7 @@ return new class extends TestCase {
         $this->resolveSymbols();
 
         $this->initUint32($this->addressOf('_var_adxFade_8c157a34') + 0x00, 0b100);
-        $this->initUint32($this->addressOf('_init_adxVolTargets_8c03bd88') + 0x00, 660);
+        $this->initUint32($this->addressOf('_init_adxVolumes_8c03bd88') + 0x00, 660);
 
         $this->shouldWrite($this->addressOf('_var_adxFade_8c157a34') + 0x00, 0b101);
         // step0 = (vol0 - 300) / 90, not a power of two.
@@ -53,7 +53,7 @@ return new class extends TestCase {
         $this->resolveSymbols();
 
         $this->initUint32($this->addressOf('_var_adxFade_8c157a34') + 0x00, 0b100);
-        $this->initUint32($this->addressOf('_init_adxVolTargets_8c03bd88') + 0x04, 660);
+        $this->initUint32($this->addressOf('_init_adxVolumes_8c03bd88') + 0x04, 660);
 
         $this->shouldWrite($this->addressOf('_var_adxFade_8c157a34') + 0x00, 0b110);
         // step1 = (vol1 - 300) / 90, not a power of two.

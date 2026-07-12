@@ -81,18 +81,6 @@ return new class extends TestCase {
 
     /*
      * Returning from the practice screen in Free-Run mode (game_mode != 0).
-     *
-     * The original FUN_8c017ef2 branches on var_gameMode_8c1bb8fc and, for
-     * Free-Run, installs CourseMenuFreeRunMenuTask_8c017ada +
-     * buildFreeRunMenuDialogFlow_8c017a20. It also passes 0 to
-     * pushInputTask_8c0128cc (MOV #0,R4) so the menu input pump is
-     * (re)installed.
-     *
-     * The current decomp omits both: it always pushes the Story task +
-     * buildCourseMenuDialogFlow and calls pushInputTask_8c0128cc() with no
-     * argument. With no input pump the dialog never sees the TA press and is
-     * stuck animating its sin/cos arrow. This test pins the original behavior;
-     * it is RED on the current C and GREEN once FUN_8c017ef2 is fixed.
      */
     public function test_free_run_mode(): void
     {

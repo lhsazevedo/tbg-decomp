@@ -69,7 +69,7 @@ struct MenuState {
     int field_0x44;
     int field_0x48;
     int field_0x4c;
-    int courseId_0x50;         /* selected courseId (base of a 3-variant block); day-of-month picks the variant */
+    int courseId_0x50;
     int field_0x54;
     int field_0x58;
     int field_0x5c;

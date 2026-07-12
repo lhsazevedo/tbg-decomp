@@ -32,8 +32,8 @@ A matching build prints `Matching project built! \o/`; a non-matching build prin
 src/
   <addr>_name.c              # Decompiled C unit
   <addr>_name.h              # Public interface for that unit
-  asm/<addr>.src             # Untouched assembly (not yet decompiled)
-  asm/decompiled/<addr>.src  # Parallel asm stub used only during unit tests
+  asm/<addr>.src             # Original assembly (not yet decompiled)
+  asm/decompiled/<addr>.src  # Original assembly, decompiled (used for archival and unit tests)
   includes.h                 # Shared macros (STATIC, logging levels)
 tests/
   <unit>/<addr>_name.php     # One PHP test file per function

@@ -362,11 +362,7 @@ STATIC void freeSegmentModels_8c013f22(void)
 
 /* Bring the current segment's assets in line: publish its fog params,
  * request its models, sync both model tables, and request its dat files.
- * When var_cutsceneActive_8c1bb900 is set during real gameplay
- * (var_playMode_8c1bb8d0 == PLAY_MODE_NORMAL), a story scene is playing --
- * opening slideshow or passenger conversation -- so it swaps in a minimal
- * route-model list (init_8c043fd4, one model) and runs the scene setup
- * FUN_8c02aa36. Practice/attract modes skip this. */
+ * Practice/attract modes skip this. */
 STATIC void syncSegmentModels_8c013f78(void)
 {
     CourseSegment *entry;
@@ -527,21 +523,8 @@ void setPvmReady_8c014330(void)
     var_pvmReady_8c18adac = 1;
 }
 
-/* The route loads in stages. A course is an array of segments
- * (CourseConfig.segments_0x08[]), each carrying its own models, pedestrians,
- * dat files, fog, scene objects and tile regions, streamed in as the bus
- * advances var_currentSegment_8c228708.
- *
- * Full load runs once at course entry via routeLoadTask (story, free-run,
- * practice and attract modes all use it; it leaves the exterior texture
- * bound). unknownRouteLoadTask is a near-copy that binds the interior
- * texture on finish and drops one AsqProcessQueues callback -- its trigger
- * is unconfirmed (never seen in those four modes; candidate: album/replay
- * or save-resume). Crossing a segment boundary runs the lighter
- * unknownSegmentReloadTask (pushUnknownSegmentReloadTask):
- * no loadRouteModels, just freeSegmentModels then syncSegmentModels for the
- * new segment. startRouteModelLoadPass (a callback used from 028258)
- * reconciles route models as the segment index advances. */
+/* The route loads in stages. Full load runs
+ * once at course entry via routeLoadTask. */
 STATIC void routeLoadTask_8c014338(Task *task, void *state)
 {
     int frame;
@@ -625,8 +608,8 @@ void pushRouteLoadTask_8c0144fc(void)
     AsqInitQueues_8c011f36(0x20, 0x800, 0x800, 0x40);
 }
 
-/* Segment-boundary reload: stream the new segment's assets (no full route
- * reload), rebind the interior texture, then hand off to the input task. */
+/* Segment-boundary reload: load the new segment's assets,
+ * rebind the interior texture, then hand off to the input task. */
 STATIC void unknownSegmentReloadTask_8c014550(Task *task, void *state)
 {
     int frame;

@@ -10,7 +10,7 @@ return new class extends TestCase {
         $this->resolveSymbols();
 
         $this->initUint32($this->addressOf('_var_adxFade_8c157a34') + 0x00, 0x40);
-        $this->initUint32($this->addressOf('_init_adxVolTargets_8c03bd88') + 0x04, 660);
+        $this->initUint32($this->addressOf('_init_adxVolumes_8c03bd88') + 0x04, 660);
         $this->initUint32($this->addressOf('_init_8c03bd80'), 0b0101_0101);
 
         $this->shouldWriteLong($this->addressOf('_var_adxFade_8c157a34') + 0x00, 0x60);
@@ -28,7 +28,7 @@ return new class extends TestCase {
         $this->resolveSymbols();
 
         $this->initUint32($this->addressOf('_var_adxFade_8c157a34') + 0x00, 0x40);
-        $this->initUint32($this->addressOf('_init_adxVolTargets_8c03bd88') + 0x04, 660);
+        $this->initUint32($this->addressOf('_init_adxVolumes_8c03bd88') + 0x04, 660);
         $this->initUint32($this->addressOf('_init_8c03bd80'), 0b0101_0101);
 
         $this->singleCall('_startAdxCh1FadeIn_8c010c2c')->with(0)->run();
@@ -39,7 +39,7 @@ return new class extends TestCase {
         $this->resolveSymbols();
 
         $this->initUint32($this->addressOf('_var_adxFade_8c157a34') + 0x00, 0x40);
-        $this->initUint32($this->addressOf('_init_adxVolTargets_8c03bd88') + 0x04, 660);
+        $this->initUint32($this->addressOf('_init_adxVolumes_8c03bd88') + 0x04, 660);
         $this->initUint32($this->addressOf('_init_8c03bd80'), 0b0101_0101);
 
         $this->singleCall('_startAdxCh1FadeIn_8c010c2c')->with(2)->run();
@@ -50,7 +50,7 @@ return new class extends TestCase {
         $this->resolveSymbols();
 
         $this->initUint32($this->addressOf('_var_adxFade_8c157a34') + 0x00, 0x41);
-        $this->initUint32($this->addressOf('_init_adxVolTargets_8c03bd88') + 0x04, 660);
+        $this->initUint32($this->addressOf('_init_adxVolumes_8c03bd88') + 0x04, 660);
         $this->initUint32($this->addressOf('_init_8c03bd80'), 0b0101_0101);
 
         $this->singleCall('_startAdxCh1FadeIn_8c010c2c')->with(1)->run();
@@ -61,7 +61,7 @@ return new class extends TestCase {
         $this->resolveSymbols();
 
         $this->initUint32($this->addressOf('_var_adxFade_8c157a34') + 0x00, 0x20);
-        $this->initUint32($this->addressOf('_init_adxVolTargets_8c03bd88') + 0x04, 660);
+        $this->initUint32($this->addressOf('_init_adxVolumes_8c03bd88') + 0x04, 660);
         $this->initUint32($this->addressOf('_init_8c03bd80'), 0b0101_0101);
 
         $this->singleCall('_startAdxCh1FadeIn_8c010c2c')->with(1)->run();
