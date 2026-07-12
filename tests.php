@@ -238,6 +238,8 @@ return [
                 "tests/02af78/8c02af78_setProgressFlag.php",
                 "tests/02af78/8c02afbe_hasProgressFlag.php",
                 "tests/02af78/8c02aff0_hasProgressFlagAlt.php",
+                "tests/02af78/8c02b022_FUN.php",
+                "tests/02af78/8c02b030_FUN.php",
             ],
             "objects" => [
                 "build/output_test/02af78_src.obj",

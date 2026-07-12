@@ -34,3 +34,15 @@ int hasProgressFlagAlt_8c02aff0(int index)
 
     return var_progress_8c1ba1cc.field_0x18[word] & mask;
 }
+
+/* Sets bit `index` of var_8c1ba2b4 (single-word bitset, role unclear). */
+void FUN_8c02b022(int index)
+{
+    var_8c1ba2b4 |= 1 << (index & 0x1f);
+}
+
+/* Tests bit `index` of var_8c1ba2b4 (see FUN_8c02b022). */
+int FUN_8c02b030(int index)
+{
+    return var_8c1ba2b4 & (1 << (index & 0x1f));
+}

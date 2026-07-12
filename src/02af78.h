@@ -4,6 +4,8 @@
 void setProgressFlag_8c02af78(int index);
 int hasProgressFlag_8c02afbe(int index);
 int hasProgressFlagAlt_8c02aff0(int index);
+void FUN_8c02b022(int index);
+int FUN_8c02b030(int index);
 void FUN_8c02b170(void);
 
 #endif // _02AF78_H
