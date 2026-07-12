@@ -9,6 +9,7 @@ one short and dated with the unit where it was found.
 
 - [Struct fields can be separately-imported symbols in asm](#struct-fields-can-be-separately-imported-symbols-in-asm)
 - [Calls to sibling functions in the same TU are still mocked](#calls-to-sibling-functions-in-the-same-tu-are-still-mocked)
+- [A nested single-statement `if(cond){break;}` can compile to unreachable bytes](#a-nested-single-statement-ifcondbreak-can-compile-to-unreachable-bytes)
 
 ## Struct fields can be separately-imported symbols in asm
 
@@ -53,3 +54,36 @@ function call to _<callee>`.
 than seeding the callee's real backing memory and expecting it to run for
 real -- this is simpler anyway and keeps the test focused on the function
 under test.
+
+## A nested single-statement `if(cond){break;}` can compile to unreachable bytes
+
+**Found in:** `02af78` (2026-07-12)
+
+Pattern:
+```c
+if (mode_matches) {
+    if (some_call(...) != 0) {
+        break;
+    }
+} else if (other_mode && other_call(...) == 0) {
+    break;
+}
+```
+For the *first* arm only, this compiler (SHC, 1997) folds the outer and inner
+condition into one instruction that branches straight past the loop body to
+the post-loop code -- but it still emits the literal `break;`'s own bytes
+(an unconditional branch to the same target) immediately after, as dead
+filler that no control-flow edge ever reaches. `sh4objtest --coverage` then
+reports that line as permanently uncovered no matter what the test does,
+because it genuinely never executes -- confirmed via `sh4objtest inspect
+--format=json`'s `debugLines` (per-line address ranges) plus `-d` trace: the
+branch for the enclosing `if` jumps directly over the `break;`'s address
+range.
+
+**Fix:** rewrite the first arm to match the second arm's shape -- combine
+the two conditions with `&&` into a single `if (mode_matches && some_call(...)
+!= 0) { break; }` instead of nesting. Same behavior, but the compiler now
+generates one direct conditional branch with no leftover dead bytes, and the
+line becomes reachable/coverable. Worth trying this rewrite whenever a
+`break;` inside a nested `if` stays stubbornly uncovered despite a test that
+should hit it.

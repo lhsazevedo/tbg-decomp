@@ -88,10 +88,9 @@ void scanUnlockCandidates_8c02b03c(void)
             if (dayMask != 0) {
                 for (conditions = entry->conditions_0x08; conditions != 0; conditions >>= 10) {
                     if ((conditions & 0x3ff) != 0x3ff) {
-                        if ((conditions & 0x300) == 0) {
-                            if (hasProgressFlag_8c02afbe(conditions & 0xff) != 0) {
-                                break;
-                            }
+                        if ((conditions & 0x300) == 0 &&
+                            hasProgressFlag_8c02afbe(conditions & 0xff) != 0) {
+                            break;
                         } else if ((conditions & 0x300) == 0x100 &&
                                    hasProgressFlag_8c02afbe(conditions & 0xff) == 0) {
                             break;
@@ -135,10 +134,9 @@ void pickUnlockCandidate_8c02b170(void)
             if (var_currentSegment_8c228708 == entry->segmentId_0x02) {
                 for (conditions = entry->conditions_0x08; conditions != 0; conditions >>= 10) {
                     if ((conditions & 0x3ff) != 0x3ff) {
-                        if ((conditions & 0x300) == 0x200) {
-                            if (FUN_8c02b030(conditions & 0xff) != 0) {
-                                break;
-                            }
+                        if ((conditions & 0x300) == 0x200 &&
+                            FUN_8c02b030(conditions & 0xff) != 0) {
+                            break;
                         } else if ((conditions & 0x300) == 0x300 &&
                                    FUN_8c02b030(conditions & 0xff) == 0) {
                             break;
