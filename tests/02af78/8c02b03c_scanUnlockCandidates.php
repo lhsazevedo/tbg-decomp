@@ -178,6 +178,28 @@ return new class extends TestCase {
         $this->shouldCall('_hasProgressFlag_8c02afbe')->with(3)->andReturn(1);
     }
 
+    public function test_adds_candidate_when_forbidden_flag_is_not_set(): void
+    {
+        $this->resolveSymbols();
+
+        $this->initUint32($this->addressOf('_var_playMode_8c1bb8d0'), 0);
+        $this->initUint32($this->addressOf('_var_route_8c18ad1c'), 0);
+        $this->initUint32($this->addressOf('_var_timeOfDay_8c18ad20'), 0);
+        $this->initUint32($this->addressOf('_var_progress_8c1ba1cc'), 5); // days_0x00
+
+        // condition code: mode 0 (must-not-have), flag index 3
+        $this->initEntry('_init_8c04b1f0', 0, 0, 5, 3);
+        $this->initSentinel('_init_8c04b1f0', 1);
+
+        $this->call('_scanUnlockCandidates_8c02b03c');
+
+        $this->shouldResetAtStart();
+        $this->shouldWriteLongTo('_var_8c22851c', $this->addressOf('_init_8c04b1f0'));
+        $this->shouldCall('_hasProgressFlag_8c02afbe')->with(3)->andReturn(0);
+        $this->shouldWriteLong($this->addressOf('_var_8c228520'), 0);
+        $this->shouldWriteLongTo('_var_8c228560', 1);
+    }
+
     public function test_skips_entry_when_required_flag_is_missing(): void
     {
         $this->resolveSymbols();

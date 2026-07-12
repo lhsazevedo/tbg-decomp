@@ -69,12 +69,19 @@ void scanUnlockCandidates_8c02b03c(void)
 
     var_8c1ba2b4 = 0;
 
-    if (var_route_8c18ad1c == ROUTE_SHINJUKU) {
-        var_8c22851c = init_8c04b1f0;
-    } else if (var_route_8c18ad1c == ROUTE_WANGAN) {
-        var_8c22851c = init_8c04abb0;
-    } else if (var_route_8c18ad1c == ROUTE_OME) {
-        var_8c22851c = init_8c04b920;
+    switch (var_route_8c18ad1c) {
+        case ROUTE_SHINJUKU: {
+            var_8c22851c = init_8c04b1f0;
+            break;
+        }
+        case ROUTE_WANGAN: {
+            var_8c22851c = init_8c04abb0;
+            break;
+        }
+        case ROUTE_OME: {
+            var_8c22851c = init_8c04b920;
+            break;
+        }
     }
 
     for (index = 0; var_8c22851c[index].timeOfDay_0x00 != 0xffff; index++) {
@@ -105,8 +112,11 @@ void scanUnlockCandidates_8c02b03c(void)
                     // coverage:ignore-next-line -- see docs/lessons_learned.md
                     break;
                 }
-            } else if ((code & UNLOCK_CODE_MODE) == UNLOCK_MODE_REQUIRE_PROGRESS &&
-                       hasProgressFlag_8c02afbe(code & UNLOCK_CODE_FLAG) == 0) {
+                continue;
+            }
+
+            if ((code & UNLOCK_CODE_MODE) == UNLOCK_MODE_REQUIRE_PROGRESS &&
+                hasProgressFlag_8c02afbe(code & UNLOCK_CODE_FLAG) == 0) {
                 break;
             }
         }
@@ -161,8 +171,11 @@ void pickUnlockCandidate_8c02b170(void)
                     // coverage:ignore-next-line -- see docs/lessons_learned.md
                     break;
                 }
-            } else if ((code & UNLOCK_CODE_MODE) == UNLOCK_MODE_REQUIRE_EPHEMERAL &&
-                       FUN_8c02b030(code & UNLOCK_CODE_FLAG) == 0) {
+                continue;
+            }
+
+            if ((code & UNLOCK_CODE_MODE) == UNLOCK_MODE_REQUIRE_EPHEMERAL &&
+                FUN_8c02b030(code & UNLOCK_CODE_FLAG) == 0) {
                 break;
             }
         }

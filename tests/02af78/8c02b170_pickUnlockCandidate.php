@@ -163,6 +163,24 @@ return new class extends TestCase {
         $this->shouldWriteLongTo('_var_cutsceneActive_8c1bb900', 0);
     }
 
+    public function test_selects_candidate_when_forbidden_bit_is_not_set(): void
+    {
+        $this->resolveSymbols();
+
+        $this->initGuardsOpen();
+        $table = $this->initCandidates([0]);
+        // condition code: mode 2 (must-not-have), flag index 4 -> 0x204
+        $this->initEntry($table, 0, 9, 0x204);
+        $this->initUint32($this->addressOf('_var_currentSegment_8c228708'), 9);
+
+        $this->call('_pickUnlockCandidate_8c02b170');
+
+        $this->shouldCall('_FUN_8c02b030')->with(4)->andReturn(0);
+        $this->shouldWriteLongTo('_var_cutsceneActive_8c1bb900', 1);
+        $this->shouldCall('_AsqGetRandomInRangeB_8c0121be')->with(1)->andReturn(0);
+        $this->shouldWriteLongTo('_var_selectedUnlockEntry_8c228478', 0);
+    }
+
     public function test_selects_candidate_when_required_bit_is_present(): void
     {
         $this->resolveSymbols();
