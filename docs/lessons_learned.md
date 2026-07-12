@@ -81,20 +81,26 @@ because it genuinely never executes -- confirmed via `sh4objtest inspect
 branch for the enclosing `if` jumps directly over the `break;`'s address
 range.
 
-**Fix:** rewrite the first arm to match the second arm's shape -- combine
-the two conditions with `&&` into a single `if (mode_matches && some_call(...)
-!= 0) { break; }` instead of nesting. Same behavior, but the compiler now
-generates one direct conditional branch with no leftover dead bytes, and the
-line becomes reachable/coverable. Worth trying this rewrite whenever a
-`break;` inside a nested `if` stays stubbornly uncovered despite a test that
-should hit it.
+**Fix (sh4objtest < v0.1.35):** rewrite the first arm to match the second
+arm's shape -- combine the two conditions with `&&` into a single
+`if (mode_matches && some_call(...) != 0) { break; }` instead of nesting.
+Same behavior, but the compiler now generates one direct conditional branch
+with no leftover dead bytes, and the line becomes reachable/coverable.
 
-This only applies to *our own* `.c` files, which we're free to restructure.
-The archived original `.src` asm (built by the same-era SHC compiler, so it
-exhibits the identical dead-byte pattern -- confirmed present verbatim in
-`02af78.src`'s `_scanUnlockCandidates_8c02b03c`/`_pickUnlockCandidate_8c02b170`)
-must stay byte-identical to the real game binary, so use the coverage tags
-below on it instead of rewriting.
+**Fix (sh4objtest >= v0.1.35, preferred):** don't restructure -- tag the
+dead `break;` with `coverage:ignore-next-line` (see the entry below) and
+keep the nested-`if` shape, which stays closer to Ghidra's natural
+decompilation output. Restructuring is a reasonable fallback on an older
+sh4objtest, but once the coverage tags are available they're the less
+invasive fix and don't require finding an equivalent-but-differently-shaped
+rewrite for every occurrence.
+
+The dead-bytes pattern itself also shows up verbatim in the *original*
+`.src` asm (built by the same-era SHC compiler -- confirmed present in
+`02af78.src`'s `_scanUnlockCandidates_8c02b03c`/`_pickUnlockCandidate_8c02b170`).
+There, restructuring is never an option regardless of sh4objtest version --
+the archived asm must stay byte-identical to the real game binary -- so the
+coverage tags below are the only fix.
 
 ## Marking known-dead asm lines with coverage tags
 
