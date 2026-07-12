@@ -77,36 +77,44 @@ void scanUnlockCandidates_8c02b03c(void)
         var_8c22851c = init_8c04b920;
     }
 
-    index = 0;
-    for (entry = var_8c22851c; entry->timeOfDay_0x00 != 0xffff; entry++) {
-        if (entry->timeOfDay_0x00 == var_timeOfDay_8c18ad20) {
-            for (dayMask = entry->dayMask_0x04;
-                 dayMask != 0 && var_progress_8c1ba1cc.days_0x00 != (int)(dayMask & 0x1f);
-                 dayMask >>= 5) {
+    for (index = 0; var_8c22851c[index].timeOfDay_0x00 != 0xffff; index++) {
+        entry = &var_8c22851c[index];
+
+        if (entry->timeOfDay_0x00 != var_timeOfDay_8c18ad20) {
+            continue;
+        }
+
+        for (dayMask = entry->dayMask_0x04;
+             dayMask != 0 && var_progress_8c1ba1cc.days_0x00 != (int)(dayMask & UNLOCK_DAY_MASK);
+             dayMask >>= UNLOCK_DAY_BITS) {
+        }
+
+        if (dayMask == 0) {
+            continue;
+        }
+
+        for (conditions = entry->conditions_0x08; conditions != 0; conditions >>= UNLOCK_CODE_BITS) {
+            int code = conditions & UNLOCK_CODE_MASK;
+
+            if (code == UNLOCK_CODE_EMPTY) {
+                continue;
             }
 
-            if (dayMask != 0) {
-                for (conditions = entry->conditions_0x08; conditions != 0; conditions >>= 10) {
-                    if ((conditions & 0x3ff) != 0x3ff) {
-                        if ((conditions & 0x300) == 0) {
-                            if (hasProgressFlag_8c02afbe(conditions & 0xff) != 0) {
-                                // coverage:ignore-next-line -- see docs/lessons_learned.md
-                                break;
-                            }
-                        } else if ((conditions & 0x300) == 0x100 &&
-                                   hasProgressFlag_8c02afbe(conditions & 0xff) == 0) {
-                            break;
-                        }
-                    }
+            if ((code & UNLOCK_CODE_MODE) == UNLOCK_MODE_FORBID_PROGRESS) {
+                if (hasProgressFlag_8c02afbe(code & UNLOCK_CODE_FLAG) != 0) {
+                    // coverage:ignore-next-line -- see docs/lessons_learned.md
+                    break;
                 }
-
-                if (conditions == 0) {
-                    var_8c228520[var_8c228560] = index;
-                    var_8c228560++;
-                }
+            } else if ((code & UNLOCK_CODE_MODE) == UNLOCK_MODE_REQUIRE_PROGRESS &&
+                       hasProgressFlag_8c02afbe(code & UNLOCK_CODE_FLAG) == 0) {
+                break;
             }
         }
-        index++;
+
+        if (conditions == 0) {
+            var_8c228520[var_8c228560] = index;
+            var_8c228560++;
+        }
     }
 }
 
@@ -125,44 +133,53 @@ void pickUnlockCandidate_8c02b170(void)
     Uint32 conditions;
     int candidates[5];
 
-    if (var_playMode_8c1bb8d0 == PLAY_MODE_NORMAL && var_gameMode_8c1bb8fc == 0 &&
-        var_8c2285dc <= var_8c2285d8) {
-        count = 0;
+    if (!(var_playMode_8c1bb8d0 == PLAY_MODE_NORMAL && var_gameMode_8c1bb8fc == 0 &&
+          var_8c2285dc <= var_8c2285d8)) {
+        var_cutsceneActive_8c1bb900 = 0;
+        return;
+    }
 
-        for (i = 0; i < var_8c228560; i++) {
-            tableIndex = var_8c228520[i];
-            entry = var_8c22851c + tableIndex;
+    count = 0;
 
-            if (var_currentSegment_8c228708 == entry->segmentId_0x02) {
-                for (conditions = entry->conditions_0x08; conditions != 0; conditions >>= 10) {
-                    if ((conditions & 0x3ff) != 0x3ff) {
-                        if ((conditions & 0x300) == 0x200) {
-                            if (FUN_8c02b030(conditions & 0xff) != 0) {
-                                // coverage:ignore-next-line -- see docs/lessons_learned.md
-                                break;
-                            }
-                        } else if ((conditions & 0x300) == 0x300 &&
-                                   FUN_8c02b030(conditions & 0xff) == 0) {
-                            break;
-                        }
-                    }
+    for (i = 0; i < var_8c228560; i++) {
+        tableIndex = var_8c228520[i];
+        entry = var_8c22851c + tableIndex;
+
+        if (var_currentSegment_8c228708 != entry->segmentId_0x02) {
+            continue;
+        }
+
+        for (conditions = entry->conditions_0x08; conditions != 0; conditions >>= UNLOCK_CODE_BITS) {
+            int code = conditions & UNLOCK_CODE_MASK;
+
+            if (code == UNLOCK_CODE_EMPTY) {
+                continue;
+            }
+
+            if ((code & UNLOCK_CODE_MODE) == UNLOCK_MODE_FORBID_EPHEMERAL) {
+                if (FUN_8c02b030(code & UNLOCK_CODE_FLAG) != 0) {
+                    // coverage:ignore-next-line -- see docs/lessons_learned.md
+                    break;
                 }
-
-                if (conditions == 0) {
-                    candidates[count] = tableIndex;
-                    count++;
-                }
+            } else if ((code & UNLOCK_CODE_MODE) == UNLOCK_MODE_REQUIRE_EPHEMERAL &&
+                       FUN_8c02b030(code & UNLOCK_CODE_FLAG) == 0) {
+                break;
             }
         }
 
-        if (count != 0) {
-            var_cutsceneActive_8c1bb900 = 1;
-            var_selectedUnlockEntry_8c228478 = candidates[AsqGetRandomInRangeB_8c0121be(count)];
-            return;
+        if (conditions == 0) {
+            candidates[count] = tableIndex;
+            count++;
         }
     }
 
-    var_cutsceneActive_8c1bb900 = 0;
+    if (count == 0) {
+        var_cutsceneActive_8c1bb900 = 0;
+        return;
+    }
+
+    var_cutsceneActive_8c1bb900 = 1;
+    var_selectedUnlockEntry_8c228478 = candidates[AsqGetRandomInRangeB_8c0121be(count)];
 }
 
 /* Applies var_selectedUnlockEntry_8c228478's actions_0x0c codes: mode clear
@@ -174,13 +191,17 @@ void applyUnlockCandidate_8c02b292(void)
 
     entry = var_8c22851c + var_selectedUnlockEntry_8c228478;
 
-    for (actions = entry->actions_0x0c; actions != 0; actions >>= 10) {
-        if ((actions & 0x3ff) != 0x3ff) {
-            if ((actions & 0x200) == 0) {
-                setProgressFlag_8c02af78(actions & 0xff);
-            } else {
-                FUN_8c02b022(actions & 0xff);
-            }
+    for (actions = entry->actions_0x0c; actions != 0; actions >>= UNLOCK_CODE_BITS) {
+        int code = actions & UNLOCK_CODE_MASK;
+
+        if (code == UNLOCK_CODE_EMPTY) {
+            continue;
+        }
+
+        if ((code & UNLOCK_ACTION_MODE) == 0) {
+            setProgressFlag_8c02af78(code & UNLOCK_CODE_FLAG);
+        } else {
+            FUN_8c02b022(code & UNLOCK_CODE_FLAG);
         }
     }
 }
