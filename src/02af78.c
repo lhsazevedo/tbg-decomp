@@ -3,6 +3,7 @@
 #include "014f54_text_pre_data.h"
 #include "0fcd20_sectionB.h"
 #include "03bd80_sectionD.h"
+#include "serial_debug.h"
 
 /* ====================
  * Compiler Definitions
@@ -91,6 +92,7 @@ void scanUnlockCandidates_8c02b03c(void)
     var_8c228560 = 0;
 
     if (var_playMode_8c1bb8d0 == PLAY_MODE_PRACTICE) {
+        LOG_DEBUG(("[UNLOCK] scanUnlockCandidates_8c02b03c: skipped (practice mode)\n"));
         return;
     }
 
@@ -152,6 +154,9 @@ void scanUnlockCandidates_8c02b03c(void)
             var_8c228560++;
         }
     }
+
+    LOG_DEBUG(("[UNLOCK] scanUnlockCandidates_8c02b03c: found %d candidate(s) for timeOfDay=%d\n",
+               var_8c228560, var_timeOfDay_8c18ad20));
 }
 
 /* Narrows scanUnlockCandidates_8c02b03c's candidates to the ones whose
@@ -172,6 +177,7 @@ void pickUnlockCandidate_8c02b170(void)
     if (!(var_playMode_8c1bb8d0 == PLAY_MODE_NORMAL && var_gameMode_8c1bb8fc == 0 &&
           var_8c2285dc <= var_8c2285d8)) {
         var_cutsceneActive_8c1bb900 = 0;
+        LOG_DEBUG(("[UNLOCK] pickUnlockCandidate_8c02b170: skipped (guard not open)\n"));
         return;
     }
 
@@ -213,11 +219,15 @@ void pickUnlockCandidate_8c02b170(void)
 
     if (count == 0) {
         var_cutsceneActive_8c1bb900 = 0;
+        LOG_DEBUG(("[UNLOCK] pickUnlockCandidate_8c02b170: no eligible candidates for segment=%d\n",
+                   var_currentSegment_8c228708));
         return;
     }
 
     var_cutsceneActive_8c1bb900 = 1;
     var_selectedUnlockEntry_8c228478 = candidates[AsqGetRandomInRangeB_8c0121be(count)];
+    LOG_DEBUG(("[UNLOCK] pickUnlockCandidate_8c02b170: selected entry %d from %d candidate(s)\n",
+               var_selectedUnlockEntry_8c228478, count));
 }
 
 /* Applies var_selectedUnlockEntry_8c228478's actions_0x0c codes: mode clear
@@ -228,6 +238,9 @@ void applyUnlockCandidate_8c02b292(void)
     Uint32 actions;
 
     entry = var_8c22851c + var_selectedUnlockEntry_8c228478;
+
+    LOG_DEBUG(("[UNLOCK] applyUnlockCandidate_8c02b292: applying entry %d\n",
+               var_selectedUnlockEntry_8c228478));
 
     for (actions = entry->actions_0x0c; actions != 0; actions >>= UNLOCK_CODE_BITS) {
         int code = actions & UNLOCK_CODE_MASK;
