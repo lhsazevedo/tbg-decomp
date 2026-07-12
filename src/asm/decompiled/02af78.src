@@ -22,7 +22,7 @@
           .EXPORT     _hasProgressFlagAlt_8c02aff0
           .EXPORT     _FUN_8c02b022
           .EXPORT     _FUN_8c02b030
-          .EXPORT     _FUN_8c02b03c
+          .EXPORT     _scanUnlockCandidates_8c02b03c
           .EXPORT     _FUN_8c02b170
           .EXPORT     _FUN_8c02b292
           .SECTION     P, CODE, ALIGN=4
@@ -143,7 +143,7 @@ _FUN_8c02b030:
           AND         R5,R0
 ; course-unlock-list style scan over a day/course table, using PlayerProgress.days_0x00
 ; and the FUN_8c02afbe/aff0 bitsets; also touches var_8c1ba2b4 (role unclear)
-_FUN_8c02b03c:
+_scanUnlockCandidates_8c02b03c:
           MOV.L       R14,@-R15
           MOV.L       R13,@-R15
           MOV.L       R12,@-R15

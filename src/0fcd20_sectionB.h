@@ -4,6 +4,7 @@
 
 #include <shinobi.h>
 #include "013ae8_route_load.h"
+#include "02af78.h"
 
 /* =================
  * Type Declarations
@@ -36,6 +37,13 @@ extern void* var_8c227e20;
 extern void* var_8c227e24;
 extern void* var_8c228234;
 extern int var_8c22847c;
+
+/* unlock-candidate scratch list built by scanUnlockCandidates_8c02b03c;
+ * var_8c22851c points at the active route's UnlockEntry table */
+extern UnlockEntry* var_8c22851c;
+extern int var_8c228520[];
+extern int var_8c228560;
+
 extern int var_8c2285c4[];
 extern int var_8c228704;
 extern void* var_8c2288f8;
