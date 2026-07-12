@@ -128,6 +128,7 @@ Sections in order, each with a banner like the one below; omit empty sections:
 
 ## Detailed Guides
 
+- **Reading/maintaining Ghidra via MCP** → `docs/ghidra-mcp.md`
 - **Gameplay reference (what the code implements)** → `docs/gameplay.md`
 - **Next decompilation targets (relocation-graph analysis)** → `docs/next_units.md`
 - **Writing tests** → `tests/AGENTS.md`
