@@ -26,7 +26,7 @@
           .EXPORT     _pickUnlockCandidate_8c02b170
           .EXPORT     _applyUnlockCandidate_8c02b292
           .SECTION     P, CODE, ALIGN=4
-; sets a bit in var_progress_8c1ba1cc+4 and +0x18 (paired unlock bitsets, see FUN_8c02afbe/aff0)
+; sets a bit in var_progress_8c1ba1cc+4 and +0x18 (paired unlock bitsets, see hasProgressFlag_8c02afbe/aff0)
 _setProgressFlag_8c02af78:
           MOV         R4,R7
           CMP/PZ      R7
@@ -69,7 +69,7 @@ LAB_8c02af9a:
           OR          R5,R2
           RTS
           MOV.L       R2,@R3
-; tests a bit in var_progress_8c1ba1cc+4 (see FUN_8c02af78); called from FUN_8c02b03c
+; tests a bit in var_progress_8c1ba1cc+4 (see setProgressFlag_8c02af78); called from scanUnlockCandidates_8c02b03c
 _hasProgressFlag_8c02afbe:
           MOV         R4,R6
           CMP/PZ      R6
@@ -102,7 +102,7 @@ LAB_8c02afe0:
           SHLD        R4,R5
           RTS
           AND         R5,R0
-; tests a bit in var_progress_8c1ba1cc+0x18 (see FUN_8c02af78)
+; tests a bit in var_progress_8c1ba1cc+0x18 (see setProgressFlag_8c02af78)
 _hasProgressFlagAlt_8c02aff0:
           MOV         R4,R6
           CMP/PZ      R6
@@ -151,7 +151,7 @@ _FUN_8c02b030:
           RTS
           AND         R5,R0
 ; course-unlock-list style scan over a day/course table, using PlayerProgress.days_0x00
-; and the FUN_8c02afbe/aff0 bitsets; also touches var_8c1ba2b4 (role unclear)
+; and the hasProgressFlag_8c02afbe/aff0 bitsets; also touches var_8c1ba2b4 (role unclear)
 _scanUnlockCandidates_8c02b03c:
           MOV.L       R14,@-R15
           MOV.L       R13,@-R15

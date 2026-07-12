@@ -548,7 +548,7 @@ STATIC void routeLoadTask_8c014338(Task *task, void *state)
                 FUN_8c028de8(var_currentCourse_8c1bb868.slots_0x04[11]);
                 FUN_8c028dd0(var_currentCourse_8c1bb868.slots_0x04[12]);
                 FUN_8c02caba();
-                FUN_8c02b170();
+                pickUnlockCandidate_8c02b170();
                 AsqResetQueues_8c011f6c();
                 syncSegmentModels_8c013f78();
                 resetPvmReady_8c014322();
@@ -616,7 +616,7 @@ STATIC void unknownSegmentReloadTask_8c014550(Task *task, void *state)
 
     switch (task->field_0x08) {
         case SEGMENT_RELOAD_STATE_POST_LOAD: {
-            FUN_8c02b170();
+            pickUnlockCandidate_8c02b170();
             AsqResetQueues_8c011f6c();
             syncSegmentModels_8c013f78();
             resetPvmReady_8c014322();
@@ -710,7 +710,7 @@ void unknownRouteLoadTask_8c014784(Task *task, void *state)
                 FUN_8c028de8(var_currentCourse_8c1bb868.slots_0x04[11]);
                 FUN_8c028dd0(var_currentCourse_8c1bb868.slots_0x04[12]);
                 FUN_8c02caba();
-                FUN_8c02b170();
+                pickUnlockCandidate_8c02b170();
                 AsqResetQueues_8c011f6c();
                 syncSegmentModels_8c013f78();
                 resetPvmReady_8c014322();

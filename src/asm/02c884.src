@@ -21,7 +21,7 @@
           .IMPORT     _var_8c2288f8
           .IMPORT     _freeTasks_8c014ab4
           .IMPORT     _var_currentCourseConfig_8c18ad18
-          .IMPORT     _FUN_8c02b03c
+          .IMPORT     _scanUnlockCandidates_8c02b03c
           .IMPORT     _var_8c228520
           .IMPORT     _var_8c228560
           .IMPORT     _var_8c22851c
@@ -450,7 +450,7 @@ LP_GEN_58192:
           .DATA.L _var_8c2288f8 ; H'8C02CB70
           .DATA.L _freeTasks_8c014ab4 ; H'8C02CB74
           .DATA.L _var_currentCourseConfig_8c18ad18 ; H'8C02CB78
-          .DATA.L _FUN_8c02b03c ; H'8C02CB7C
+          .DATA.L _scanUnlockCandidates_8c02b03c ; H'8C02CB7C
           .DATA.L _var_8c228520 ; H'8C02CB80
           .DATA.L _var_8c228560 ; H'8C02CB84
           .DATA.L _var_8c22851c ; H'8C02CB88

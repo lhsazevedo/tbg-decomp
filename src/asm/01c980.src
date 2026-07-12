@@ -2,7 +2,7 @@
           .IMPORT     _var_8c2263a4
           .IMPORT     _var_8c2263b4
           .IMPORT     _init_8c044ffc
-          .IMPORT     _FUN_8c02aff0
+          .IMPORT     _hasProgressFlagAlt_8c02aff0
           .IMPORT     _drawSprite_8c014f54
           .IMPORT     _var_menuState_8c1bc7a8
           .IMPORT     __divls
@@ -198,7 +198,7 @@ LP_GEN_27148:
           .DATA.L _var_8c2263a4 ; H'8C01CA9C
           .DATA.L _var_8c2263b4 ; H'8C01CAA0
           .DATA.L _init_8c044ffc ; H'8C01CAA4
-          .DATA.L _FUN_8c02aff0 ; H'8C01CAA8
+          .DATA.L _hasProgressFlagAlt_8c02aff0 ; H'8C01CAA8
           .DATA.L H'C0400000 ; H'8C01CAAC
           .DATA.L _drawSprite_8c014f54 ; H'8C01CAB0
           .DATA.L _var_menuState_8c1bc7a8 ; H'8C01CAB4
@@ -338,7 +338,7 @@ LP_GEN_23877:
           .DATA.L _init_8c044ffc ; H'8C01CBBC
           .DATA.L H'42C00000 ; H'8C01CBC0
           .DATA.L H'43858000 ; H'8C01CBC4
-          .DATA.L _FUN_8c02aff0 ; H'8C01CBC8
+          .DATA.L _hasProgressFlagAlt_8c02aff0 ; H'8C01CBC8
           .DATA.L H'4400C000 ; H'8C01CBCC
           .DATA.L _drawSprite_8c014f54 ; H'8C01CBD0
           .DATA.L H'C0000000 ; H'8C01CBD4

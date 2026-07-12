@@ -289,8 +289,8 @@ typedef struct {
 typedef struct {
     int days_0x00;
 
-    /* unlock-flag bitsets set together by FUN_8c02af78
-     * and tested individually by FUN_8c02afbe/FUN_8c02aff0 */
+    /* unlock-flag bitsets set together by setProgressFlag_8c02af78
+     * and tested individually by hasProgressFlag_8c02afbe/hasProgressFlagAlt_8c02aff0 */
     int field_0x04[5];
     int field_0x18[5];
 
