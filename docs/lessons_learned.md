@@ -12,6 +12,7 @@ one short and dated with the unit where it was found.
 - [A nested single-statement `if(cond){break;}` can compile to unreachable bytes](#a-nested-single-statement-ifcondbreak-can-compile-to-unreachable-bytes)
 - [Marking known-dead asm lines with coverage tags](#marking-known-dead-asm-lines-with-coverage-tags)
 - [Renaming an exported symbol: unit tests won't catch a missed caller](#renaming-an-exported-symbol-unit-tests-wont-catch-a-missed-caller)
+- [Strength-reduced loops and nested ifs fold back to idiomatic C](#strength-reduced-loops-and-nested-ifs-fold-back-to-idiomatic-c)
 
 ## Struct fields can be separately-imported symbols in asm
 
@@ -178,10 +179,46 @@ The miss only surfaces at the **full `make` link** as
 `105 UNDEFINED EXTERNAL SYMBOL(<unit>._<oldname>)`, because still-undecompiled
 asm units keep `.IMPORT`ing the old name.
 
-**Fix:** after renaming an export, `grep -rn` the old name across `src/`
-(both `.c`/`.h` and *all* `.src` -- callers hold it as `.IMPORT` +
-`.DATA.L _oldname` literal-pool entries), `tests/` (mocks: `shouldCall`,
-`->andReturn` maps), and doc comments, and sed it everywhere in one pass.
-Then run the full `make` link (not just `run_tests.sh`) to confirm zero
-undefined externals -- that link is the only check that actually proves the
-rename is complete.
+**Fix:** blanket-sed the old name across the whole tree in one shot --
+`find src tests -type f -exec sed -i 's/<old>/<new>/g' {} +` -- rather than
+grepping first and sed'ing a filtered list. There's no need to know *where*
+the callers are up front; a single recursive pass covers `.c`/`.h`, *all*
+`.src` (callers hold it as `.IMPORT` + `.DATA.L _oldname` literal-pool
+entries), `tests/` mocks, and comments together. Omit the leading `_` so
+`foo`->`bar` also catches the asm `_foo`. Then run the full `make` link (not
+just `run_tests.sh`): that link, via UNDEFINED EXTERNAL SYMBOL, is the only
+check that proves the sed reached every caller -- it's the verification step,
+not a pre-sed grep.
+
+## Strength-reduced loops and nested ifs fold back to idiomatic C
+
+**Found in:** `02af78` (2026-07-12)
+
+Because the goal is functional equivalence -- and the exact original
+structure stays archived byte-for-byte in `.src` -- the decompiled C is free
+to take a more idiomatic shape than the Ghidra/asm output, and usually
+should. Reshaping isn't just cosmetic: it changes codegen, and can remove
+compiler dead-code artifacts (see the break-bytes entry). Two recurring
+foldbacks:
+
+- **Pointer-walk + separate trailing counter -> plain indexed loop.** A loop
+  that advances a struct pointer (`entry++` in the `for` step) while a
+  *second* variable counts (`index++` at the bottom of the body, used only to
+  index a parallel array) is the compiler's strength-reduction of one indexed
+  loop. When `index == entry - base` holds every iteration, drop the walking
+  pointer: `for (index = 0; base[index]...; index++)` with a local
+  `entry = &base[index]`. One variable instead of two kept in lockstep, and
+  `continue` guards then work correctly (they still reach the loop's own
+  `index++`, which a hand-placed bottom-of-body `index++` would skip).
+
+- **Nested `if`/`else if` chains -> guard clauses with early
+  `continue`/`return`.** Invert per-iteration `if (match) { body }` nests into
+  `if (!match) continue;` + flat body, split an `if/else if` pair into two
+  independent `if`s where the first ends in `continue`, and duplicate a
+  trivial tail write (e.g. `cutsceneActive = 0`) across early-return exits
+  rather than nesting to share it. Flatter, and -- per the break-bytes entry
+  -- the independent-`if`+`continue` form is what actually deletes the dead
+  `break;` bytes.
+
+Both are behavior-identical; prove it with the dual-object test plus
+`--coverage` (100% on both objects, no new uncovered ranges).
