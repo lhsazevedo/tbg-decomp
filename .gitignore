@@ -2,6 +2,8 @@
 /build/output_matching
 /build/output_test
 /build/tmp
+/build/inspect
+/build/inspect_graph
 /diskroot
 
 # Ignore game binary

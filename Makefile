@@ -142,6 +142,9 @@ $(OUTPUT_DIR)/tbg.bin: $(OUTPUT_DIR)/tbg.elf
 		echo "===========================" ;\
 	fi
 
+graph: all
+	python3 scripts/generate_graph.py
+
 clean:
 	rm -rf $(OUTPUT_DIR) $(BUILD_DIR)/lnk.sub
 
@@ -149,6 +152,6 @@ depend:
 	makedepend -Y -o .obj -f- $(C_SRCS) 2>/dev/null > Makefile.d
 	sed -i 's/^src/$$(OUTPUT_DIR)/' Makefile.d
 
-.PHONY: all clean create_dirs $(OUTPUT_DIR)/tbg.bin
+.PHONY: all graph clean create_dirs $(OUTPUT_DIR)/tbg.bin
 
 include Makefile.d
