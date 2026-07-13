@@ -31,9 +31,6 @@ return new class extends TestCase {
         $this->setSize('_var_routeEvents_8c22851c', 4);
         $this->setSize('_var_8c228520', 0x40);
         $this->setSize('_var_8c228560', 4);
-        $this->setSize('_init_shinjukuEvents_8c04b1f0', self::ENTRY_SIZE * 2);
-        $this->setSize('_init_wanganEvents_8c04abb0', self::ENTRY_SIZE * 2);
-        $this->setSize('_init_omeEvents_8c04b920', self::ENTRY_SIZE * 2);
     }
 
     private function initEntry(string $symbol, int $index, int $timeOfDay, int $dayMask, int $conditions): int

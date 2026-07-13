@@ -87,6 +87,7 @@ SRCS = \
 	src/asm/02786c.src \
 	src/asm/027958.src \
 	src/asm/028258.src \
+	src/asm/02af78_pre_data.src \
 	src/02af78.c \
 	src/asm/02b2f0.src \
 	src/asm/02b464.src \
