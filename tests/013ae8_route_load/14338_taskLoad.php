@@ -61,7 +61,7 @@ return new class extends TestCase {
         $this->shouldCall('_FUN_8c028de8')->with(0x8cd0000b);
         $this->shouldCall('_FUN_8c028dd0')->with(0x8cd0000c);
         $this->shouldCall('_FUN_8c02caba');
-        $this->shouldCall('_pickUnlockCandidate_8c02b170');
+        $this->shouldCall('_pickSegmentEvent_8c02b170');
         $this->shouldCall('_AsqResetQueues_8c011f6c');
         $this->shouldCall('_syncSegmentModels_8c013f78');
         $this->shouldCall('_resetPvmReady_8c014322');
@@ -193,7 +193,7 @@ return new class extends TestCase {
             '_FUN_8c028de8' => 4,
             '_FUN_8c028dd0' => 4,
             '_FUN_8c02caba' => 4,
-            '_pickUnlockCandidate_8c02b170' => 4,
+            '_pickSegmentEvent_8c02b170' => 4,
             '_FUN_8c021810' => 4,
             '_FUN_8c02190a' => 4,
             '__modls' => 4,

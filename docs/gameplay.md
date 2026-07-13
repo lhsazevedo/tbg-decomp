@@ -44,10 +44,23 @@ bus along a predefined route with predefined passenger stop requests.
 - During the interior scene, passengers move in a low-fps stop-motion manner;
   no texture animation.
 
+## Story event selection (`02af78`)
+
+Which cutscene fires at a stop is resolved by `02af78`. Each route
+(Shinjuku/Wangan/Ome) has an `EventEntry` table
+(`init_8c04b1f0`/`init_8c04abb0`/`init_8c04b920`); an entry is eligible for a
+segment if its time-of-day matches the current course, its packed
+day-of-week mask contains the in-run day (`var_progress.days_0x00` -- so day-
+of-month IS an input, confirming the prior guess), and its packed
+prerequisite codes against progress flags pass. `scanEventCandidates_8c02b03c`
+computes eligible entries once per course load;
+`pickSegmentEvent_8c02b170` narrows to the current segment and randomly
+picks one, arming `var_cutsceneActive_8c1bb900`; `applyEventFlags_8c02b292`
+then applies the chosen entry's post-conditions (sets progress/unlock flags
+or a same-run "already fired" flag) once the cutscene plays. Practice mode
+and the course menu skip selection entirely.
+
 ## Open questions
 
-- What determines whether a story cutscene fires at a given stop? (The
-  day-of-month courseId variant from `016d2c_course_menu.c` is a candidate
-  input, but the rule is unconfirmed.)
 - Practice runs = courseId 27+ is a player recollection, not verified in
   code.

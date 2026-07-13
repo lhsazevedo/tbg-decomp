@@ -1,13 +1,13 @@
 ; 8c02af78
           .IMPORT     _var_progress_8c1ba1cc
-          .IMPORT     _var_8c1ba2b4
+          .IMPORT     _var_runEventFlags_8c1ba2b4
           .IMPORT     _var_8c228560
           .IMPORT     _var_playMode_8c1bb8d0
-          .IMPORT     _var_8c22851c
+          .IMPORT     _var_routeEvents_8c22851c
           .IMPORT     _var_route_8c18ad1c
-          .IMPORT     _init_8c04b1f0
-          .IMPORT     _init_8c04abb0
-          .IMPORT     _init_8c04b920
+          .IMPORT     _init_shinjukuEvents_8c04b1f0
+          .IMPORT     _init_wanganEvents_8c04abb0
+          .IMPORT     _init_omeEvents_8c04b920
           .IMPORT     _var_timeOfDay_8c18ad20
           .IMPORT     _var_8c228520
           .IMPORT     _var_gameMode_8c1bb8fc
@@ -16,15 +16,15 @@
           .IMPORT     _var_currentSegment_8c228708
           .IMPORT     _var_cutsceneActive_8c1bb900
           .IMPORT     _AsqGetRandomInRangeB_8c0121be
-          .IMPORT     _var_selectedUnlockEntry_8c228478
+          .IMPORT     _var_selectedEventEntry_8c228478
           .EXPORT     _setProgressFlag_8c02af78
           .EXPORT     _hasProgressFlag_8c02afbe
           .EXPORT     _hasProgressFlagAlt_8c02aff0
-          .EXPORT     _FUN_8c02b022
-          .EXPORT     _FUN_8c02b030
-          .EXPORT     _scanUnlockCandidates_8c02b03c
-          .EXPORT     _pickUnlockCandidate_8c02b170
-          .EXPORT     _applyUnlockCandidate_8c02b292
+          .EXPORT     _setRunEventFlag_8c02b022
+          .EXPORT     _hasRunEventFlag_8c02b030
+          .EXPORT     _scanEventCandidates_8c02b03c
+          .EXPORT     _pickSegmentEvent_8c02b170
+          .EXPORT     _applyEventFlags_8c02b292
           .SECTION     P, CODE, ALIGN=4
 ; sets a bit in var_progress_8c1ba1cc+4 and +0x18 (paired unlock bitsets, see hasProgressFlag_8c02afbe/aff0)
 _setProgressFlag_8c02af78:
@@ -69,7 +69,7 @@ LAB_8c02af9a:
           OR          R5,R2
           RTS
           MOV.L       R2,@R3
-; tests a bit in var_progress_8c1ba1cc+4 (see setProgressFlag_8c02af78); called from scanUnlockCandidates_8c02b03c
+; tests a bit in var_progress_8c1ba1cc+4 (see setProgressFlag_8c02af78); called from scanEventCandidates_8c02b03c
 _hasProgressFlag_8c02afbe:
           MOV         R4,R6
           CMP/PZ      R6
@@ -135,7 +135,7 @@ LAB_8c02b012:
           SHLD        R4,R5
           RTS
           AND         R5,R0
-_FUN_8c02b022:
+_setRunEventFlag_8c02b022:
           MOV         #H'1,R5
           SHLD        R4,R5
           MOV.L       LP_GEN_66558+14,R4
@@ -143,7 +143,7 @@ _FUN_8c02b022:
           OR          R5,R3
           RTS
           MOV.L       R3,@R4
-_FUN_8c02b030:
+_hasRunEventFlag_8c02b030:
           MOV.L       LP_GEN_66558+14,R3
           MOV         #H'1,R5
           SHLD        R4,R5
@@ -151,8 +151,8 @@ _FUN_8c02b030:
           RTS
           AND         R5,R0
 ; course-unlock-list style scan over a day/course table, using PlayerProgress.days_0x00
-; and the hasProgressFlag_8c02afbe/aff0 bitsets; also touches var_8c1ba2b4 (role unclear)
-_scanUnlockCandidates_8c02b03c:
+; and the hasProgressFlag_8c02afbe/aff0 bitsets; also touches var_runEventFlags_8c1ba2b4 (role unclear)
+_scanEventCandidates_8c02b03c:
           MOV.L       R14,@-R15
           MOV.L       R13,@-R15
           MOV.L       R12,@-R15
@@ -198,13 +198,13 @@ LP_GEN_66558:
           .DATA.L _var_progress_8c1ba1cc ; H'8C02B084
           .DATA.L _var_progress_8c1ba1cc+H'04 ; H'8C02B088 (field_0x04)
           .DATA.L _var_progress_8c1ba1cc+H'18 ; H'8C02B08C (field_0x18)
-          .DATA.L _var_8c1ba2b4 ; H'8C02B090
+          .DATA.L _var_runEventFlags_8c1ba2b4 ; H'8C02B090
           .DATA.L _var_8c228560 ; H'8C02B094
           .DATA.L _var_playMode_8c1bb8d0 ; H'8C02B098
-          .DATA.L _var_8c22851c ; H'8C02B09C
+          .DATA.L _var_routeEvents_8c22851c ; H'8C02B09C
           .DATA.L _var_route_8c18ad1c ; H'8C02B0A0
-          .DATA.L _init_8c04b1f0 ; H'8C02B0A4
-          .DATA.L _init_8c04abb0 ; H'8C02B0A8
+          .DATA.L _init_shinjukuEvents_8c04b1f0 ; H'8C02B0A4
+          .DATA.L _init_wanganEvents_8c04abb0 ; H'8C02B0A8
 LAB_8c02b0ac:
           MOV.L       LP_GEN_28749+8,R1
           MOV.L       R1,@R4
@@ -310,12 +310,12 @@ LP_GEN_28749:
           .DATA.W H'0100 ; H'8C02B156
           .DATA.W H'03FF ; H'8C02B158
           .RES.W 1 ; H'8C02B15A
-          .DATA.L _init_8c04b920 ; H'8C02B15C
+          .DATA.L _init_omeEvents_8c04b920 ; H'8C02B15C
           .DATA.L _var_timeOfDay_8c18ad20 ; H'8C02B160
           .DATA.L _var_progress_8c1ba1cc ; H'8C02B164
           .DATA.L _var_8c228520 ; H'8C02B168
           .DATA.L H'0000FFFF ; H'8C02B16C
-_pickUnlockCandidate_8c02b170:
+_pickSegmentEvent_8c02b170:
           MOV.L       R14,@-R15
           MOV.L       R13,@-R15
           MOV.L       R12,@-R15
@@ -378,7 +378,7 @@ LAB_8c02b1d6:
           CMP/EQ      R9,R6
           BF/S        LAB_8c02b1f4
           EXTU.B      R5,R4
-          BSR         _FUN_8c02b030
+          BSR         _hasRunEventFlag_8c02b030
           NOP
           TST         R0,R0
           BF          LAB_8c02b208
@@ -389,7 +389,7 @@ LAB_8c02b1d6:
 LAB_8c02b1f4:
           CMP/EQ      R12,R6
           BF          LAB_8c02b200
-          BSR         _FUN_8c02b030
+          BSR         _hasRunEventFlag_8c02b030
           NOP
           TST         R0,R0
           BT          LAB_8c02b208
@@ -442,12 +442,12 @@ LP_GEN_88891:
           .DATA.L _var_8c2285dc ; H'8C02B254
           .DATA.L _var_8c2285d8 ; H'8C02B258
           .DATA.L _var_8c228520 ; H'8C02B25C
-          .DATA.L _var_8c22851c ; H'8C02B260
+          .DATA.L _var_routeEvents_8c22851c ; H'8C02B260
           .DATA.L _var_currentSegment_8c228708 ; H'8C02B264
           .DATA.L _var_8c228560 ; H'8C02B268
           .DATA.L _var_cutsceneActive_8c1bb900 ; H'8C02B26C
           .DATA.L _AsqGetRandomInRangeB_8c0121be ; H'8C02B270
-          .DATA.L _var_selectedUnlockEntry_8c228478 ; H'8C02B274
+          .DATA.L _var_selectedEventEntry_8c228478 ; H'8C02B274
 LAB_8c02b278:
           MOV.L       LP_GEN_51122+6,R0
           MOV         #H'0,R2
@@ -463,7 +463,7 @@ LAB_8c02b27e:
           MOV.L       @R15+,R13
           RTS
           MOV.L       @R15+,R14
-_applyUnlockCandidate_8c02b292:
+_applyEventFlags_8c02b292:
           MOV.L       LP_GEN_51122+10,R3
           MOV.L       R14,@-R15
           MOV.L       R13,@-R15
@@ -493,7 +493,7 @@ LAB_8c02b2b0:
           BRA         LAB_8c02b2cc
           NOP
 LAB_8c02b2c8:
-          BSR         _FUN_8c02b022
+          BSR         _setRunEventFlag_8c02b022
           NOP
 LAB_8c02b2cc:
           SHLR8       R13
@@ -511,6 +511,6 @@ LP_GEN_51122:
           .DATA.W H'03FF ; H'8C02B2E0
           .RES.W 1 ; H'8C02B2E2
           .DATA.L _var_cutsceneActive_8c1bb900 ; H'8C02B2E4
-          .DATA.L _var_selectedUnlockEntry_8c228478 ; H'8C02B2E8
-          .DATA.L _var_8c22851c ; H'8C02B2EC
+          .DATA.L _var_selectedEventEntry_8c228478 ; H'8C02B2E8
+          .DATA.L _var_routeEvents_8c22851c ; H'8C02B2EC
           .END

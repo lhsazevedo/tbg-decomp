@@ -15,7 +15,7 @@
           .EXPORT     _var_8c1ba293 ; 020214.src
           .EXPORT     _var_8c1ba29c ; 024280.src
           .EXPORT     _var_8c1ba29d ; 024280.src
-          .EXPORT     _var_8c1ba2b4 ; 02af78.src
+          .EXPORT     _var_runEventFlags_8c1ba2b4 ; 02af78.src
           .EXPORT     _var_8c1ba2b8 ; 0129cc.src, 016d2c_course_menu.c, 016d2c_course_menu.src
           .EXPORT     _var_8c1ba2cc ; 0129cc.src, 016d2c_course_menu.c, 016d2c_course_menu.src
 
@@ -174,7 +174,7 @@ _var_8c1ba29c:
           .RES.B      1
 _var_8c1ba29d:
           .RES.B      23
-_var_8c1ba2b4:
+_var_runEventFlags_8c1ba2b4:
           .RES.B      4
 _var_8c1ba2b8:
           .RES.B      20

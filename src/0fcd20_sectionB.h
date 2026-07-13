@@ -38,15 +38,15 @@ extern void* var_8c227e24;
 extern void* var_8c228234;
 extern int var_8c22847c;
 
-/* unlock-candidate scratch list built by scanUnlockCandidates_8c02b03c;
- * var_8c22851c points at the active route's UnlockEntry table */
-extern UnlockEntry* var_8c22851c;
+/* unlock-candidate scratch list built by scanEventCandidates_8c02b03c;
+ * var_routeEvents_8c22851c points at the active route's EventEntry table */
+extern EventEntry* var_routeEvents_8c22851c;
 extern int var_8c228520[];
 extern int var_8c228560;
 
 extern int var_8c2285c4[];
 
-/* gate for pickUnlockCandidate_8c02b170: only runs while
+/* gate for pickSegmentEvent_8c02b170: only runs while
  * var_8c2285dc <= var_8c2285d8 (role of each side unclear) */
 extern int var_8c2285d8;
 extern int var_8c2285dc;
@@ -56,10 +56,10 @@ extern void* var_8c2288f8;
 extern Sint8 var_coursesToUnlock_8c225fd4[];
 extern int var_currentSegment_8c228708;
 
-/* table index (into the UnlockEntry array pointed to by var_8c22851c)
- * chosen by pickUnlockCandidate_8c02b170, consumed by
- * applyUnlockCandidate_8c02b292 */
-extern int var_selectedUnlockEntry_8c228478;
+/* table index (into the EventEntry array pointed to by var_routeEvents_8c22851c)
+ * chosen by pickSegmentEvent_8c02b170, consumed by
+ * applyEventFlags_8c02b292 */
+extern int var_selectedEventEntry_8c228478;
 extern void* var_currentSysResGroupInfo_8c225fb0;
 extern int var_currentTileRegionList_8c226534;
 extern int var_demoEntryValue_8c227e14;

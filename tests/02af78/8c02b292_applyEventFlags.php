@@ -5,12 +5,12 @@ declare(strict_types=1);
 use Lhsazevedo\Sh4ObjTest\TestCase;
 
 /*
- * _applyUnlockCandidate_8c02b292(void): applies the actions_0x0c codes of
- * the UnlockEntry chosen by pickUnlockCandidate_8c02b170
- * (var_selectedUnlockEntry_8c228478, indexing into the table pointed to by
- * var_8c22851c). Each packed 10-bit code either sets a progress flag
- * (setProgressFlag_8c02af78, mode clear) or a var_8c1ba2b4 bit
- * (FUN_8c02b022, mode 0x200), until a 0/padding (0x3ff) slot ends the list.
+ * _applyEventFlags_8c02b292(void): applies the actions_0x0c codes of
+ * the EventEntry chosen by pickSegmentEvent_8c02b170
+ * (var_selectedEventEntry_8c228478, indexing into the table pointed to by
+ * var_routeEvents_8c22851c). Each packed 10-bit code either sets a progress flag
+ * (setProgressFlag_8c02af78, mode clear) or a var_runEventFlags_8c1ba2b4 bit
+ * (setRunEventFlag_8c02b022, mode 0x200), until a 0/padding (0x3ff) slot ends the list.
  */
 return new class extends TestCase {
     const ENTRY_SIZE = 0x10;
@@ -18,16 +18,16 @@ return new class extends TestCase {
 
     private function resolveSymbols(): void
     {
-        $this->setSize('_var_8c22851c', 4);
-        $this->setSize('_var_selectedUnlockEntry_8c228478', 4);
+        $this->setSize('_var_routeEvents_8c22851c', 4);
+        $this->setSize('_var_selectedEventEntry_8c228478', 4);
     }
 
     private function initEntry(int $index, int $actions): int
     {
         $table = $this->alloc(($index + 1) * self::ENTRY_SIZE);
         $this->initUint32($table + $index * self::ENTRY_SIZE + self::ACTIONS_0X0C, $actions);
-        $this->initUint32($this->addressOf('_var_8c22851c'), $table);
-        $this->initUint32($this->addressOf('_var_selectedUnlockEntry_8c228478'), $index);
+        $this->initUint32($this->addressOf('_var_routeEvents_8c22851c'), $table);
+        $this->initUint32($this->addressOf('_var_selectedEventEntry_8c228478'), $index);
         return $table;
     }
 
@@ -38,7 +38,7 @@ return new class extends TestCase {
         // action code: mode clear, flag index 5
         $this->initEntry(0, 5);
 
-        $this->call('_applyUnlockCandidate_8c02b292');
+        $this->call('_applyEventFlags_8c02b292');
 
         $this->shouldCall('_setProgressFlag_8c02af78')->with(5);
     }
@@ -50,22 +50,22 @@ return new class extends TestCase {
         // action code: mode 0x200, flag index 7
         $this->initEntry(0, 0x207);
 
-        $this->call('_applyUnlockCandidate_8c02b292');
+        $this->call('_applyEventFlags_8c02b292');
 
-        $this->shouldCall('_FUN_8c02b022')->with(7);
+        $this->shouldCall('_setRunEventFlag_8c02b022')->with(7);
     }
 
     public function test_applies_multiple_packed_actions_in_order(): void
     {
         $this->resolveSymbols();
 
-        // two codes: flag 2 (mode clear), then var_8c1ba2b4 bit 9 (mode 0x200)
+        // two codes: flag 2 (mode clear), then var_runEventFlags_8c1ba2b4 bit 9 (mode 0x200)
         $this->initEntry(0, (0x209 << 10) | 2);
 
-        $this->call('_applyUnlockCandidate_8c02b292');
+        $this->call('_applyEventFlags_8c02b292');
 
         $this->shouldCall('_setProgressFlag_8c02af78')->with(2);
-        $this->shouldCall('_FUN_8c02b022')->with(9);
+        $this->shouldCall('_setRunEventFlag_8c02b022')->with(9);
     }
 
     public function test_skips_padding_slot(): void
@@ -75,7 +75,7 @@ return new class extends TestCase {
         // padding (0x3ff), then flag 4 (mode clear)
         $this->initEntry(0, (4 << 10) | 0x3ff);
 
-        $this->call('_applyUnlockCandidate_8c02b292');
+        $this->call('_applyEventFlags_8c02b292');
 
         $this->shouldCall('_setProgressFlag_8c02af78')->with(4);
     }
@@ -86,7 +86,7 @@ return new class extends TestCase {
 
         $this->initEntry(0, 0);
 
-        $this->call('_applyUnlockCandidate_8c02b292');
+        $this->call('_applyEventFlags_8c02b292');
     }
 
     public function test_uses_selected_index_into_table(): void
@@ -98,10 +98,10 @@ return new class extends TestCase {
         $this->initUint32($table + 0 * self::ENTRY_SIZE + self::ACTIONS_0X0C, 0x3ff);
         $this->initUint32($table + 1 * self::ENTRY_SIZE + self::ACTIONS_0X0C, 0x3ff);
         $this->initUint32($table + 2 * self::ENTRY_SIZE + self::ACTIONS_0X0C, 6);
-        $this->initUint32($this->addressOf('_var_8c22851c'), $table);
-        $this->initUint32($this->addressOf('_var_selectedUnlockEntry_8c228478'), 2);
+        $this->initUint32($this->addressOf('_var_routeEvents_8c22851c'), $table);
+        $this->initUint32($this->addressOf('_var_selectedEventEntry_8c228478'), 2);
 
-        $this->call('_applyUnlockCandidate_8c02b292');
+        $this->call('_applyEventFlags_8c02b292');
 
         $this->shouldCall('_setProgressFlag_8c02af78')->with(6);
     }

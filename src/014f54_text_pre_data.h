@@ -313,8 +313,8 @@ typedef struct {
     char field_0xd1;
 } PlayerProgress;
 
-/* single-word bitset, set/tested by FUN_8c02b022/FUN_8c02b030; role unclear */
-extern int var_8c1ba2b4;
+/* single-word bitset, set/tested by setRunEventFlag_8c02b022/hasRunEventFlag_8c02b030; role unclear */
+extern int var_runEventFlags_8c1ba2b4;
 
 extern int var_8c1ba2b8[5]; // Maybe progress backup
 extern int var_8c1ba2cc[5]; // Maybe progress backup

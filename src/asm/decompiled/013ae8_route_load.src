@@ -46,7 +46,7 @@
           .IMPORT     _FUN_8c028de8
           .IMPORT     _FUN_8c028dd0
           .IMPORT     _FUN_8c02caba
-          .IMPORT     _pickUnlockCandidate_8c02b170
+          .IMPORT     _pickSegmentEvent_8c02b170
           .IMPORT     _FUN_8c02190a
           .IMPORT     _FUN_8c021810
           .IMPORT     _freeTask_8c014b66
@@ -1329,7 +1329,7 @@ LP_GEN_90737:
           .DATA.L _FUN_8c028de8
           .DATA.L _FUN_8c028dd0
           .DATA.L _FUN_8c02caba
-          .DATA.L _pickUnlockCandidate_8c02b170
+          .DATA.L _pickSegmentEvent_8c02b170
           .DATA.L _FUN_8c02190a
           .DATA.L _FUN_8c021810
           .DATA.L _freeTask_8c014b66
@@ -1494,7 +1494,7 @@ LP_GEN_28406:
           .DATA.L _var_tex_8c157af8
           .DATA.L _njGarbageTexture
           .DATA.L _AsqInitQueues_8c011f36
-          .DATA.L _pickUnlockCandidate_8c02b170
+          .DATA.L _pickSegmentEvent_8c02b170
           .DATA.L _AsqResetQueues_8c011f6c
           .DATA.L _setPvmReady_8c014330
           .DATA.L _FUN_8c02190a
@@ -1860,7 +1860,7 @@ LP_GEN_48435:
           .DATA.L _FUN_8c028de8
           .DATA.L _FUN_8c028dd0
           .DATA.L _FUN_8c02caba
-          .DATA.L _pickUnlockCandidate_8c02b170
+          .DATA.L _pickSegmentEvent_8c02b170
           .DATA.L _FUN_8c02190a
           .DATA.L _freeTask_8c014b66
           .DATA.L _AsqFreeQueues_8c011f7e

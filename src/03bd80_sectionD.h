@@ -14,9 +14,9 @@ extern char init_8c04e988[];
 extern ResourceGroupInfo init_albumResourceGroup_8c045160;
 
 /* per-route unlock-rule tables, indexed via var_route_8c18ad1c (see
- * scanUnlockCandidates_8c02b03c) */
-extern UnlockEntry init_8c04b1f0[];
-extern UnlockEntry init_8c04abb0[];
-extern UnlockEntry init_8c04b920[];
+ * scanEventCandidates_8c02b03c) */
+extern EventEntry init_shinjukuEvents_8c04b1f0[];
+extern EventEntry init_wanganEvents_8c04abb0[];
+extern EventEntry init_omeEvents_8c04b920[];
 
 #endif // _03BD80_SECTIOND_H

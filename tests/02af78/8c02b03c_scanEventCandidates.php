@@ -5,8 +5,8 @@ declare(strict_types=1);
 use Lhsazevedo\Sh4ObjTest\TestCase;
 
 /*
- * _scanUnlockCandidates_8c02b03c(void): scans the active route's UnlockEntry
- * table (init_8c04b1f0/abb0/b920, selected by var_route_8c18ad1c) for entries
+ * _scanEventCandidates_8c02b03c(void): scans the active route's EventEntry
+ * table (init_shinjukuEvents_8c04b1f0/abb0/b920, selected by var_route_8c18ad1c) for entries
  * whose timeOfDay_0x00 matches var_timeOfDay_8c18ad20, whose dayMask_0x04
  * contains the current PlayerProgress.days_0x00 value (packed as 5-bit
  * slots), and whose conditions_0x08 (packed 10-bit {mode:2,flag:8} codes,
@@ -24,16 +24,16 @@ return new class extends TestCase {
     private function resolveSymbols(): void
     {
         $this->setSize('_var_playMode_8c1bb8d0', 4);
-        $this->setSize('_var_8c1ba2b4', 4);
+        $this->setSize('_var_runEventFlags_8c1ba2b4', 4);
         $this->setSize('_var_route_8c18ad1c', 4);
         $this->setSize('_var_timeOfDay_8c18ad20', 4);
         $this->setSize('_var_progress_8c1ba1cc', 0xd2);
-        $this->setSize('_var_8c22851c', 4);
+        $this->setSize('_var_routeEvents_8c22851c', 4);
         $this->setSize('_var_8c228520', 0x40);
         $this->setSize('_var_8c228560', 4);
-        $this->setSize('_init_8c04b1f0', self::ENTRY_SIZE * 2);
-        $this->setSize('_init_8c04abb0', self::ENTRY_SIZE * 2);
-        $this->setSize('_init_8c04b920', self::ENTRY_SIZE * 2);
+        $this->setSize('_init_shinjukuEvents_8c04b1f0', self::ENTRY_SIZE * 2);
+        $this->setSize('_init_wanganEvents_8c04abb0', self::ENTRY_SIZE * 2);
+        $this->setSize('_init_omeEvents_8c04b920', self::ENTRY_SIZE * 2);
     }
 
     private function initEntry(string $symbol, int $index, int $timeOfDay, int $dayMask, int $conditions): int
@@ -54,7 +54,7 @@ return new class extends TestCase {
     private function shouldResetAtStart(): void
     {
         $this->shouldWriteLongTo('_var_8c228560', 0);
-        $this->shouldWriteLongTo('_var_8c1ba2b4', 0);
+        $this->shouldWriteLongTo('_var_runEventFlags_8c1ba2b4', 0);
     }
 
     public function test_skips_everything_during_practice_mode(): void
@@ -63,7 +63,7 @@ return new class extends TestCase {
 
         $this->initUint32($this->addressOf('_var_playMode_8c1bb8d0'), 1); // PLAY_MODE_PRACTICE
 
-        $this->call('_scanUnlockCandidates_8c02b03c');
+        $this->call('_scanEventCandidates_8c02b03c');
 
         $this->shouldWriteLongTo('_var_8c228560', 0);
         $this->forceStop();
@@ -78,13 +78,13 @@ return new class extends TestCase {
         $this->initUint32($this->addressOf('_var_timeOfDay_8c18ad20'), 0); // TIME_OF_DAY_DAY
         $this->initUint32($this->addressOf('_var_progress_8c1ba1cc'), 5); // days_0x00
 
-        $this->initEntry('_init_8c04b1f0', 0, 0, 5, 0);
-        $this->initSentinel('_init_8c04b1f0', 1);
+        $this->initEntry('_init_shinjukuEvents_8c04b1f0', 0, 0, 5, 0);
+        $this->initSentinel('_init_shinjukuEvents_8c04b1f0', 1);
 
-        $this->call('_scanUnlockCandidates_8c02b03c');
+        $this->call('_scanEventCandidates_8c02b03c');
 
         $this->shouldResetAtStart();
-        $this->shouldWriteLongTo('_var_8c22851c', $this->addressOf('_init_8c04b1f0'));
+        $this->shouldWriteLongTo('_var_routeEvents_8c22851c', $this->addressOf('_init_shinjukuEvents_8c04b1f0'));
         $this->shouldWriteLong($this->addressOf('_var_8c228520'), 0);
         $this->shouldWriteLongTo('_var_8c228560', 1);
     }
@@ -98,12 +98,12 @@ return new class extends TestCase {
         $this->initUint32($this->addressOf('_var_timeOfDay_8c18ad20'), 0);
         $this->initUint32($this->addressOf('_var_progress_8c1ba1cc'), 0);
 
-        $this->initSentinel('_init_8c04abb0', 0);
+        $this->initSentinel('_init_wanganEvents_8c04abb0', 0);
 
-        $this->call('_scanUnlockCandidates_8c02b03c');
+        $this->call('_scanEventCandidates_8c02b03c');
 
         $this->shouldResetAtStart();
-        $this->shouldWriteLongTo('_var_8c22851c', $this->addressOf('_init_8c04abb0'));
+        $this->shouldWriteLongTo('_var_routeEvents_8c22851c', $this->addressOf('_init_wanganEvents_8c04abb0'));
     }
 
     public function test_selects_ome_table_when_route_is_ome(): void
@@ -115,12 +115,12 @@ return new class extends TestCase {
         $this->initUint32($this->addressOf('_var_timeOfDay_8c18ad20'), 0);
         $this->initUint32($this->addressOf('_var_progress_8c1ba1cc'), 0);
 
-        $this->initSentinel('_init_8c04b920', 0);
+        $this->initSentinel('_init_omeEvents_8c04b920', 0);
 
-        $this->call('_scanUnlockCandidates_8c02b03c');
+        $this->call('_scanEventCandidates_8c02b03c');
 
         $this->shouldResetAtStart();
-        $this->shouldWriteLongTo('_var_8c22851c', $this->addressOf('_init_8c04b920'));
+        $this->shouldWriteLongTo('_var_routeEvents_8c22851c', $this->addressOf('_init_omeEvents_8c04b920'));
     }
 
     public function test_skips_entry_with_mismatched_time_of_day(): void
@@ -131,13 +131,13 @@ return new class extends TestCase {
         $this->initUint32($this->addressOf('_var_route_8c18ad1c'), 0);
         $this->initUint32($this->addressOf('_var_timeOfDay_8c18ad20'), 0); // TIME_OF_DAY_DAY
 
-        $this->initEntry('_init_8c04b1f0', 0, 1, 0, 0); // entry is TIME_OF_DAY_EVENING
-        $this->initSentinel('_init_8c04b1f0', 1);
+        $this->initEntry('_init_shinjukuEvents_8c04b1f0', 0, 1, 0, 0); // entry is TIME_OF_DAY_EVENING
+        $this->initSentinel('_init_shinjukuEvents_8c04b1f0', 1);
 
-        $this->call('_scanUnlockCandidates_8c02b03c');
+        $this->call('_scanEventCandidates_8c02b03c');
 
         $this->shouldResetAtStart();
-        $this->shouldWriteLongTo('_var_8c22851c', $this->addressOf('_init_8c04b1f0'));
+        $this->shouldWriteLongTo('_var_routeEvents_8c22851c', $this->addressOf('_init_shinjukuEvents_8c04b1f0'));
     }
 
     public function test_skips_entry_with_no_matching_day(): void
@@ -149,13 +149,13 @@ return new class extends TestCase {
         $this->initUint32($this->addressOf('_var_timeOfDay_8c18ad20'), 0);
         $this->initUint32($this->addressOf('_var_progress_8c1ba1cc'), 99); // days_0x00
 
-        $this->initEntry('_init_8c04b1f0', 0, 0, 5, 0); // only accepts day 5
-        $this->initSentinel('_init_8c04b1f0', 1);
+        $this->initEntry('_init_shinjukuEvents_8c04b1f0', 0, 0, 5, 0); // only accepts day 5
+        $this->initSentinel('_init_shinjukuEvents_8c04b1f0', 1);
 
-        $this->call('_scanUnlockCandidates_8c02b03c');
+        $this->call('_scanEventCandidates_8c02b03c');
 
         $this->shouldResetAtStart();
-        $this->shouldWriteLongTo('_var_8c22851c', $this->addressOf('_init_8c04b1f0'));
+        $this->shouldWriteLongTo('_var_routeEvents_8c22851c', $this->addressOf('_init_shinjukuEvents_8c04b1f0'));
     }
 
     public function test_skips_entry_when_forbidden_flag_is_set(): void
@@ -168,13 +168,13 @@ return new class extends TestCase {
         $this->initUint32($this->addressOf('_var_progress_8c1ba1cc'), 5); // days_0x00
 
         // condition code: mode 0 (must-not-have), flag index 3
-        $this->initEntry('_init_8c04b1f0', 0, 0, 5, 3);
-        $this->initSentinel('_init_8c04b1f0', 1);
+        $this->initEntry('_init_shinjukuEvents_8c04b1f0', 0, 0, 5, 3);
+        $this->initSentinel('_init_shinjukuEvents_8c04b1f0', 1);
 
-        $this->call('_scanUnlockCandidates_8c02b03c');
+        $this->call('_scanEventCandidates_8c02b03c');
 
         $this->shouldResetAtStart();
-        $this->shouldWriteLongTo('_var_8c22851c', $this->addressOf('_init_8c04b1f0'));
+        $this->shouldWriteLongTo('_var_routeEvents_8c22851c', $this->addressOf('_init_shinjukuEvents_8c04b1f0'));
         $this->shouldCall('_hasProgressFlag_8c02afbe')->with(3)->andReturn(1);
     }
 
@@ -188,13 +188,13 @@ return new class extends TestCase {
         $this->initUint32($this->addressOf('_var_progress_8c1ba1cc'), 5); // days_0x00
 
         // condition code: mode 0 (must-not-have), flag index 3
-        $this->initEntry('_init_8c04b1f0', 0, 0, 5, 3);
-        $this->initSentinel('_init_8c04b1f0', 1);
+        $this->initEntry('_init_shinjukuEvents_8c04b1f0', 0, 0, 5, 3);
+        $this->initSentinel('_init_shinjukuEvents_8c04b1f0', 1);
 
-        $this->call('_scanUnlockCandidates_8c02b03c');
+        $this->call('_scanEventCandidates_8c02b03c');
 
         $this->shouldResetAtStart();
-        $this->shouldWriteLongTo('_var_8c22851c', $this->addressOf('_init_8c04b1f0'));
+        $this->shouldWriteLongTo('_var_routeEvents_8c22851c', $this->addressOf('_init_shinjukuEvents_8c04b1f0'));
         $this->shouldCall('_hasProgressFlag_8c02afbe')->with(3)->andReturn(0);
         $this->shouldWriteLong($this->addressOf('_var_8c228520'), 0);
         $this->shouldWriteLongTo('_var_8c228560', 1);
@@ -210,13 +210,13 @@ return new class extends TestCase {
         $this->initUint32($this->addressOf('_var_progress_8c1ba1cc'), 5); // days_0x00
 
         // condition code: mode 1 (must-have), flag index 3 -> 0x103
-        $this->initEntry('_init_8c04b1f0', 0, 0, 5, 0x103);
-        $this->initSentinel('_init_8c04b1f0', 1);
+        $this->initEntry('_init_shinjukuEvents_8c04b1f0', 0, 0, 5, 0x103);
+        $this->initSentinel('_init_shinjukuEvents_8c04b1f0', 1);
 
-        $this->call('_scanUnlockCandidates_8c02b03c');
+        $this->call('_scanEventCandidates_8c02b03c');
 
         $this->shouldResetAtStart();
-        $this->shouldWriteLongTo('_var_8c22851c', $this->addressOf('_init_8c04b1f0'));
+        $this->shouldWriteLongTo('_var_routeEvents_8c22851c', $this->addressOf('_init_shinjukuEvents_8c04b1f0'));
         $this->shouldCall('_hasProgressFlag_8c02afbe')->with(3)->andReturn(0);
     }
 
@@ -230,13 +230,13 @@ return new class extends TestCase {
         $this->initUint32($this->addressOf('_var_progress_8c1ba1cc'), 5); // days_0x00
 
         // condition code: mode 1 (must-have), flag index 3 -> 0x103
-        $this->initEntry('_init_8c04b1f0', 0, 0, 5, 0x103);
-        $this->initSentinel('_init_8c04b1f0', 1);
+        $this->initEntry('_init_shinjukuEvents_8c04b1f0', 0, 0, 5, 0x103);
+        $this->initSentinel('_init_shinjukuEvents_8c04b1f0', 1);
 
-        $this->call('_scanUnlockCandidates_8c02b03c');
+        $this->call('_scanEventCandidates_8c02b03c');
 
         $this->shouldResetAtStart();
-        $this->shouldWriteLongTo('_var_8c22851c', $this->addressOf('_init_8c04b1f0'));
+        $this->shouldWriteLongTo('_var_routeEvents_8c22851c', $this->addressOf('_init_shinjukuEvents_8c04b1f0'));
         $this->shouldCall('_hasProgressFlag_8c02afbe')->with(3)->andReturn(1);
         $this->shouldWriteLong($this->addressOf('_var_8c228520'), 0);
         $this->shouldWriteLongTo('_var_8c228560', 1);

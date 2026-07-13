@@ -706,9 +706,9 @@
           .EXPORT     _init_8c04ab3c ; 028258.src
 
           ; 02af78
-          .EXPORT     _init_8c04abb0 ; 02af78.src
-          .EXPORT     _init_8c04b1f0 ; 02af78.src
-          .EXPORT     _init_8c04b920 ; 02af78.src
+          .EXPORT     _init_wanganEvents_8c04abb0 ; 02af78.src
+          .EXPORT     _init_shinjukuEvents_8c04b1f0 ; 02af78.src
+          .EXPORT     _init_omeEvents_8c04b920 ; 02af78.src
 
           ; 02b464
           .EXPORT     _init_8c04c35c ; 02b464.src
@@ -5739,7 +5739,7 @@ _init_8c04ab60:        ; from ghidra
           .DATA.B      H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00
           .DATA.B      H'00, H'00, H'00, H'00, H'0A, H'00, H'10, H'02, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00
           .DATA.B      H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'FF, H'FF, H'FF, H'FF
-_init_8c04abb0:        ; from defines
+_init_wanganEvents_8c04abb0:        ; from defines
           .DATA.B      H'00, H'00, H'09, H'00, H'83, H'14, H'00, H'00, H'32, H'FC, H'FF, H'3F, H'32, H'FD, H'FF, H'3F
           .DATA.B      H'00, H'00, H'09, H'00, H'A4, H'00, H'00, H'00, H'32, H'FD, H'FF, H'3F, H'FF, H'FF, H'FF, H'3F
           .DATA.B      H'00, H'00, H'09, H'00, H'6A, H'31, H'00, H'00, H'33, H'FC, H'FF, H'3F, H'33, H'FD, H'FF, H'3F
@@ -5840,7 +5840,7 @@ _init_8c04abb0:        ; from defines
           .DATA.B      H'02, H'00, H'0D, H'00, H'14, H'00, H'00, H'00, H'5B, H'71, H'41, H'30, H'5C, H'FD, H'FF, H'3F
           .DATA.B      H'02, H'00, H'0D, H'00, H'1B, H'00, H'00, H'00, H'5E, H'FC, H'FF, H'3F, H'5E, H'FD, H'FF, H'3F
           .DATA.B      H'FF, H'FF, H'0D, H'00, H'1B, H'00, H'00, H'00, H'5E, H'FC, H'FF, H'3F, H'5E, H'FD, H'FF, H'3F
-_init_8c04b1f0:        ; from defines
+_init_shinjukuEvents_8c04b1f0:        ; from defines
           .DATA.B      H'00, H'00, H'02, H'00, H'06, H'01, H'00, H'00, H'00, H'FC, H'FF, H'3F, H'00, H'FD, H'FF, H'3F
           .DATA.B      H'00, H'00, H'02, H'00, H'08, H'00, H'00, H'00, H'00, H'FD, H'FF, H'3F, H'FF, H'FF, H'FF, H'3F
           .DATA.B      H'00, H'00, H'02, H'00, H'ED, H'01, H'00, H'00, H'01, H'FC, H'FF, H'3F, H'01, H'FD, H'FF, H'3F
@@ -5956,7 +5956,7 @@ _init_8c04b1f0:        ; from defines
           .DATA.B      H'02, H'00, H'0B, H'00, H'DD, H'03, H'00, H'00, H'27, H'FC, H'FF, H'3F, H'27, H'FD, H'FF, H'3F
           .DATA.B      H'02, H'00, H'0B, H'00, H'1E, H'00, H'00, H'00, H'27, H'FD, H'FF, H'3F, H'FF, H'FF, H'FF, H'3F
           .DATA.B      H'FF, H'FF, H'0B, H'00, H'1E, H'00, H'00, H'00, H'27, H'FD, H'FF, H'3F, H'FF, H'FF, H'FF, H'3F
-_init_8c04b920:        ; from defines
+_init_omeEvents_8c04b920:        ; from defines
           .DATA.B      H'00, H'00, H'04, H'00, H'E3, H'28, H'00, H'00, H'64, H'FC, H'FF, H'3F, H'64, H'FD, H'FF, H'3F
           .DATA.B      H'00, H'00, H'04, H'00, H'47, H'01, H'00, H'00, H'64, H'FD, H'FF, H'3F, H'FF, H'FF, H'FF, H'3F
           .DATA.B      H'00, H'00, H'04, H'00, H'2E, H'02, H'00, H'00, H'65, H'FC, H'FF, H'3F, H'65, H'FD, H'FF, H'3F

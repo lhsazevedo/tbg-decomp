@@ -22,15 +22,20 @@ the streaming surface: `var_currentTileRegionList_8c226534`,
 "unconfirmed" in `CourseSegment`), likely resolves several `ukn_` fields,
 completes the load pipeline end-to-end.
 
-## 2. `02af78` -- post-load mode/cutscene setup (888 B, 8 functions)
+## 2. `02af78` -- story event selection (888 B, 8 functions) -- DONE
 
-`FUN_8c02b170` is called in every route_load post-load block. Imports read
-like game-mode dispatch: `var_playMode_8c1bb8d0`, `var_gameMode_8c1bb8fc`,
-`var_cutsceneActive_8c1bb900`, `var_progress_8c1ba1cc`, route x timeOfDay,
-plus three sectionD init tables.
+`pickSegmentEvent_8c02b170` is called in every route_load post-load block.
+Resolved: this is the story-cutscene-event picker. Each route has an
+`EventEntry` table (`init_8c04b1f0`/`init_8c04abb0`/`init_8c04b920` for
+Shinjuku/Wangan/Ome), entries carry a time-of-day field plus a packed
+day-of-week mask and prerequisite/action condition codes;
+`scanEventCandidates_8c02b03c` filters by tod+day+progress each course load,
+`pickSegmentEvent_8c02b170` narrows to the current segment and randomly
+selects one, `applyEventFlags_8c02b292` applies its post-conditions. See
+`docs/gameplay.md` for the resolved open question this answers.
 
-**Gain:** good odds it resolves how cutscenes/events get armed per course
-(open question left by route_load). Tiny -- an afternoon unit.
+**Gain:** confirmed how cutscenes/events get armed per course/segment
+(previously an open question left by route_load).
 
 ## 3. `026710` -- traffic vehicle spawner (4.4 KB, 13 functions)
 
@@ -77,5 +82,4 @@ after one or two small ones, or carved into the pedestrian half first.
 
 ## Suggested order
 
-`02171c` -> `02af78` -> `022464` (palate cleanser) -> `026710`+`02c884` ->
-`028258`.
+`02171c` -> `022464` (palate cleanser) -> `026710`+`02c884` -> `028258`.
