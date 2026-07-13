@@ -349,7 +349,7 @@ STATIC void freeSegmentModels_8c013f22(void)
 {
     CourseSegment *entry;
 
-    LOG_DEBUG(("[ROUTE_LOAD] freeing pairs for selected entry (index=%d)\n", var_currentSegment_8c228708));
+    LOG_DEBUG(("[ROUTE_LOAD] freeing pairs for segment (index=%d)\n", var_currentSegment_8c228708));
 
     entry = &var_currentCourseConfig_8c18ad18->segments_0x08[var_currentSegment_8c228708];
     if (entry->modelFiles_0x28 != 0) {
@@ -368,7 +368,7 @@ STATIC void syncSegmentModels_8c013f78(void)
     CourseSegment *entry;
     int i;
 
-    LOG_DEBUG(("[ROUTE_LOAD] syncing assets for selected entry (index=%d)\n", var_currentSegment_8c228708));
+    LOG_DEBUG(("[ROUTE_LOAD] syncing assets for segment (index=%d)\n", var_currentSegment_8c228708));
 
     entry = &var_currentCourseConfig_8c18ad18->segments_0x08[var_currentSegment_8c228708];
 
@@ -383,6 +383,9 @@ STATIC void syncSegmentModels_8c013f78(void)
         var_segmentModels_8c1bc3f0 = AsqRequestModels_8c012030(var_commonDir_8c18ad6c, entry->modelFiles_0x28, 0x10);
     }
 
+    /* When pickSegmentEvent_8c02b170 armed a cutscene for this segment,
+     * load the cutscene's actor set (init_8c043fd4) instead of the segment's
+     * normal traffic models. */
     if (var_cutsceneActive_8c1bb900 == 0 || var_playMode_8c1bb8d0 != PLAY_MODE_NORMAL) {
         if (entry->routeModelIndexes_0x10 != 0) {
             var_routeModelIndexes_8c18adb0 = entry->routeModelIndexes_0x10;
@@ -410,6 +413,7 @@ STATIC void syncSegmentModels_8c013f78(void)
         }
     }
 
+    /* Cutscene armed for this segment: run its setup. */
     if (var_cutsceneActive_8c1bb900 != 0 && var_playMode_8c1bb8d0 == PLAY_MODE_NORMAL) {
         FUN_8c02aa36();
     }
@@ -548,6 +552,7 @@ STATIC void routeLoadTask_8c014338(Task *task, void *state)
                 FUN_8c028de8(var_currentCourse_8c1bb868.slots_0x04[11]);
                 FUN_8c028dd0(var_currentCourse_8c1bb868.slots_0x04[12]);
                 FUN_8c02caba();
+                // Arm this segment's cutscene first: syncSegmentModels reads cutsceneActive.
                 pickSegmentEvent_8c02b170();
                 AsqResetQueues_8c011f6c();
                 syncSegmentModels_8c013f78();
@@ -616,6 +621,7 @@ STATIC void unknownSegmentReloadTask_8c014550(Task *task, void *state)
 
     switch (task->field_0x08) {
         case SEGMENT_RELOAD_STATE_POST_LOAD: {
+            // Arm this segment's cutscene first: syncSegmentModels reads cutsceneActive.
             pickSegmentEvent_8c02b170();
             AsqResetQueues_8c011f6c();
             syncSegmentModels_8c013f78();
@@ -710,6 +716,7 @@ void unknownRouteLoadTask_8c014784(Task *task, void *state)
                 FUN_8c028de8(var_currentCourse_8c1bb868.slots_0x04[11]);
                 FUN_8c028dd0(var_currentCourse_8c1bb868.slots_0x04[12]);
                 FUN_8c02caba();
+                // Arm this segment's cutscene first: syncSegmentModels reads cutsceneActive.
                 pickSegmentEvent_8c02b170();
                 AsqResetQueues_8c011f6c();
                 syncSegmentModels_8c013f78();
