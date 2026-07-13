@@ -2276,7 +2276,7 @@ STATIC EventEntry init_omeEvents_8c04b920[] = {
  */
 
 /* Marks progress flag `index` in both paired bitsets of the progress struct. */
-void setProgressFlag_8c02af78(int index)
+STATIC void setProgressFlag_8c02af78(int index)
 {
     int word = index >> 5;
     int mask = 1 << (index & 0x1f);
@@ -2286,7 +2286,7 @@ void setProgressFlag_8c02af78(int index)
 }
 
 /* Tests progress flag `index` in the field_0x04 bitset (see setProgressFlag_8c02af78). */
-int hasProgressFlag_8c02afbe(int index)
+STATIC int hasProgressFlag_8c02afbe(int index)
 {
     int word = index >> 5;
     int mask = 1 << (index & 0x1f);
@@ -2306,13 +2306,13 @@ int hasProgressFlagAlt_8c02aff0(int index)
 /* Sets bit `index` of var_runEventFlags_8c1ba2b4, the same-run "already
  * fired" bitset checked by conditions_0x08 modes 2/3 (cleared each
  * scanEventCandidates_8c02b03c call). */
-void setRunEventFlag_8c02b022(int index)
+STATIC void setRunEventFlag_8c02b022(int index)
 {
     var_runEventFlags_8c1ba2b4 |= 1 << (index & 0x1f);
 }
 
 /* Tests bit `index` of var_runEventFlags_8c1ba2b4 (see setRunEventFlag_8c02b022). */
-int hasRunEventFlag_8c02b030(int index)
+STATIC int hasRunEventFlag_8c02b030(int index)
 {
     return var_runEventFlags_8c1ba2b4 & (1 << (index & 0x1f));
 }

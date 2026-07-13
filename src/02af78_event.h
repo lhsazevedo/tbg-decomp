@@ -28,11 +28,7 @@ typedef struct {
     Uint32 actions_0x0c;
 } EventEntry;
 
-void setProgressFlag_8c02af78(int index);
-int hasProgressFlag_8c02afbe(int index);
 int hasProgressFlagAlt_8c02aff0(int index);
-void setRunEventFlag_8c02b022(int index);
-int hasRunEventFlag_8c02b030(int index);
 void scanEventCandidates_8c02b03c(void);
 void pickSegmentEvent_8c02b170(void);
 void applyEventFlags_8c02b292(void);
