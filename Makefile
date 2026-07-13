@@ -108,6 +108,8 @@ SRCS = \
 	src/asm/0fcd20_sectionB.src \
 	src/02fb50_sh4nlfzn_post_data.c \
 
+C_SRCS = $(filter %.c,$(SRCS))
+
 OBJS = $(patsubst src/%.c,$(OUTPUT_DIR)/src/%.obj,$(SRCS))
 OBJS := $(patsubst src/asm/%.src,$(OUTPUT_DIR)/src/asm/%.obj,$(OBJS))
 LINKER_OBJS = $(subst /,\\, $(OBJS))
