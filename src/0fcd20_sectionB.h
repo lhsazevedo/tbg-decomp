@@ -41,8 +41,8 @@ extern int var_8c22847c;
 /* unlock-candidate scratch list built by scanEventCandidates_8c02b03c;
  * var_routeEvents_8c22851c points at the active route's EventEntry table */
 extern EventEntry* var_routeEvents_8c22851c;
-extern int var_8c228520[];
-extern int var_8c228560;
+extern int var_eventCandidates_8c228520[];
+extern int var_eventCandidateCount_8c228560;
 
 extern int var_8c2285c4[];
 

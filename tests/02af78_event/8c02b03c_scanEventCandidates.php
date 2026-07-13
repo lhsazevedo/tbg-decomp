@@ -12,8 +12,8 @@ use Lhsazevedo\Sh4ObjTest\TestCase;
  * slots), and whose conditions_0x08 (packed 10-bit {mode:2,flag:8} codes,
  * mode 0 = must-not-have, mode 1 = must-have, tested via
  * hasProgressFlag_8c02afbe) are all satisfied. Matching entries' table index
- * is appended to var_8c228520, counted by var_8c228560. Always resets
- * var_8c228560 to 0 first; does nothing else during PLAY_MODE_PRACTICE.
+ * is appended to var_eventCandidates_8c228520, counted by var_eventCandidateCount_8c228560. Always resets
+ * var_eventCandidateCount_8c228560 to 0 first; does nothing else during PLAY_MODE_PRACTICE.
  */
 return new class extends TestCase {
     const ENTRY_SIZE = 0x10;
@@ -29,8 +29,8 @@ return new class extends TestCase {
         $this->setSize('_var_timeOfDay_8c18ad20', 4);
         $this->setSize('_var_progress_8c1ba1cc', 0xd2);
         $this->setSize('_var_routeEvents_8c22851c', 4);
-        $this->setSize('_var_8c228520', 0x40);
-        $this->setSize('_var_8c228560', 4);
+        $this->setSize('_var_eventCandidates_8c228520', 0x40);
+        $this->setSize('_var_eventCandidateCount_8c228560', 4);
     }
 
     private function initEntry(string $symbol, int $index, int $timeOfDay, int $dayMask, int $conditions): int
@@ -50,7 +50,7 @@ return new class extends TestCase {
 
     private function shouldResetAtStart(): void
     {
-        $this->shouldWriteLongTo('_var_8c228560', 0);
+        $this->shouldWriteLongTo('_var_eventCandidateCount_8c228560', 0);
         $this->shouldWriteLongTo('_var_runEventFlags_8c1ba2b4', 0);
     }
 
@@ -62,7 +62,7 @@ return new class extends TestCase {
 
         $this->call('_scanEventCandidates_8c02b03c');
 
-        $this->shouldWriteLongTo('_var_8c228560', 0);
+        $this->shouldWriteLongTo('_var_eventCandidateCount_8c228560', 0);
         $this->forceStop();
     }
 
@@ -82,8 +82,8 @@ return new class extends TestCase {
 
         $this->shouldResetAtStart();
         $this->shouldWriteLongTo('_var_routeEvents_8c22851c', $this->addressOf('_init_shinjukuEvents_8c04b1f0'));
-        $this->shouldWriteLong($this->addressOf('_var_8c228520'), 0);
-        $this->shouldWriteLongTo('_var_8c228560', 1);
+        $this->shouldWriteLong($this->addressOf('_var_eventCandidates_8c228520'), 0);
+        $this->shouldWriteLongTo('_var_eventCandidateCount_8c228560', 1);
     }
 
     public function test_selects_wangan_table_when_route_is_wangan(): void
@@ -193,8 +193,8 @@ return new class extends TestCase {
         $this->shouldResetAtStart();
         $this->shouldWriteLongTo('_var_routeEvents_8c22851c', $this->addressOf('_init_shinjukuEvents_8c04b1f0'));
         $this->shouldCall('_hasProgressFlag_8c02afbe')->with(3)->andReturn(0);
-        $this->shouldWriteLong($this->addressOf('_var_8c228520'), 0);
-        $this->shouldWriteLongTo('_var_8c228560', 1);
+        $this->shouldWriteLong($this->addressOf('_var_eventCandidates_8c228520'), 0);
+        $this->shouldWriteLongTo('_var_eventCandidateCount_8c228560', 1);
     }
 
     public function test_skips_entry_when_required_flag_is_missing(): void
@@ -235,7 +235,7 @@ return new class extends TestCase {
         $this->shouldResetAtStart();
         $this->shouldWriteLongTo('_var_routeEvents_8c22851c', $this->addressOf('_init_shinjukuEvents_8c04b1f0'));
         $this->shouldCall('_hasProgressFlag_8c02afbe')->with(3)->andReturn(1);
-        $this->shouldWriteLong($this->addressOf('_var_8c228520'), 0);
-        $this->shouldWriteLongTo('_var_8c228560', 1);
+        $this->shouldWriteLong($this->addressOf('_var_eventCandidates_8c228520'), 0);
+        $this->shouldWriteLongTo('_var_eventCandidateCount_8c228560', 1);
     }
 };

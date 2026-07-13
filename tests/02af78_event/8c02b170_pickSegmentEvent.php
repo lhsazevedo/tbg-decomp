@@ -6,7 +6,7 @@ use Lhsazevedo\Sh4ObjTest\TestCase;
 
 /*
  * _pickSegmentEvent_8c02b170(void): filters the candidate table indices
- * in var_8c228520 (built by scanEventCandidates_8c02b03c) down to the ones
+ * in var_eventCandidates_8c228520 (built by scanEventCandidates_8c02b03c) down to the ones
  * whose segmentId_0x02 matches var_currentSegment_8c228708 and whose
  * conditions_0x08 var_runEventFlags_8c1ba2b4-bit checks (mode 2 = must-not-have, mode 3 =
  * must-have, tested via hasRunEventFlag_8c02b030) also pass. Picks one at random into
@@ -26,10 +26,10 @@ return new class extends TestCase {
         $this->setSize('_var_gameMode_8c1bb8fc', 4);
         $this->setSize('_var_8c2285dc', 4);
         $this->setSize('_var_8c2285d8', 4);
-        $this->setSize('_var_8c228520', 0x40);
+        $this->setSize('_var_eventCandidates_8c228520', 0x40);
         $this->setSize('_var_routeEvents_8c22851c', 4);
         $this->setSize('_var_currentSegment_8c228708', 4);
-        $this->setSize('_var_8c228560', 4);
+        $this->setSize('_var_eventCandidateCount_8c228560', 4);
         $this->setSize('_var_cutsceneActive_8c1bb900', 4);
         $this->setSize('_var_selectedEventEntry_8c228478', 4);
         $this->setSize('_AsqGetRandomInRangeB_8c0121be', 4);
@@ -55,8 +55,8 @@ return new class extends TestCase {
         $table = $this->alloc((($tableIndices === [] ? 0 : max($tableIndices)) + 1) * self::ENTRY_SIZE);
         $this->initUint32($this->addressOf('_var_routeEvents_8c22851c'), $table);
 
-        $this->initUint32($this->addressOf('_var_8c228560'), count($tableIndices));
-        $base = $this->addressOf('_var_8c228520');
+        $this->initUint32($this->addressOf('_var_eventCandidateCount_8c228560'), count($tableIndices));
+        $base = $this->addressOf('_var_eventCandidates_8c228520');
         foreach ($tableIndices as $i => $tableIndex) {
             $this->initUint32($base + $i * 4, $tableIndex);
         }

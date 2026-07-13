@@ -1,12 +1,12 @@
 ; 8c02af78
           .IMPORT     _var_progress_8c1ba1cc
           .IMPORT     _var_runEventFlags_8c1ba2b4
-          .IMPORT     _var_8c228560
+          .IMPORT     _var_eventCandidateCount_8c228560
           .IMPORT     _var_playMode_8c1bb8d0
           .IMPORT     _var_routeEvents_8c22851c
           .IMPORT     _var_route_8c18ad1c
           .IMPORT     _var_timeOfDay_8c18ad20
-          .IMPORT     _var_8c228520
+          .IMPORT     _var_eventCandidates_8c228520
           .IMPORT     _var_gameMode_8c1bb8fc
           .IMPORT     _var_8c2285dc
           .IMPORT     _var_8c2285d8
@@ -199,7 +199,7 @@ LP_GEN_66558:
           .DATA.L _var_progress_8c1ba1cc+H'04 ; H'8C02B088 (field_0x04)
           .DATA.L _var_progress_8c1ba1cc+H'18 ; H'8C02B08C (field_0x18)
           .DATA.L _var_runEventFlags_8c1ba2b4 ; H'8C02B090
-          .DATA.L _var_8c228560 ; H'8C02B094
+          .DATA.L _var_eventCandidateCount_8c228560 ; H'8C02B094
           .DATA.L _var_playMode_8c1bb8d0 ; H'8C02B098
           .DATA.L _var_routeEvents_8c22851c ; H'8C02B09C
           .DATA.L _var_route_8c18ad1c ; H'8C02B0A0
@@ -313,7 +313,7 @@ LP_GEN_28749:
           .DATA.L _init_omeEvents_8c04b920 ; H'8C02B15C
           .DATA.L _var_timeOfDay_8c18ad20 ; H'8C02B160
           .DATA.L _var_progress_8c1ba1cc ; H'8C02B164
-          .DATA.L _var_8c228520 ; H'8C02B168
+          .DATA.L _var_eventCandidates_8c228520 ; H'8C02B168
           .DATA.L H'0000FFFF ; H'8C02B16C
 _pickSegmentEvent_8c02b170:
           MOV.L       R14,@-R15
@@ -441,10 +441,10 @@ LP_GEN_88891:
           .DATA.L _var_gameMode_8c1bb8fc ; H'8C02B250
           .DATA.L _var_8c2285dc ; H'8C02B254
           .DATA.L _var_8c2285d8 ; H'8C02B258
-          .DATA.L _var_8c228520 ; H'8C02B25C
+          .DATA.L _var_eventCandidates_8c228520 ; H'8C02B25C
           .DATA.L _var_routeEvents_8c22851c ; H'8C02B260
           .DATA.L _var_currentSegment_8c228708 ; H'8C02B264
-          .DATA.L _var_8c228560 ; H'8C02B268
+          .DATA.L _var_eventCandidateCount_8c228560 ; H'8C02B268
           .DATA.L _var_cutsceneActive_8c1bb900 ; H'8C02B26C
           .DATA.L _AsqGetRandomInRangeB_8c0121be ; H'8C02B270
           .DATA.L _var_selectedEventEntry_8c228478 ; H'8C02B274

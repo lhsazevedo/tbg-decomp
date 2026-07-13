@@ -2319,7 +2319,7 @@ int hasRunEventFlag_8c02b030(int index)
 
 /* Scans the active route's EventEntry table for entries matching the
  * current time of day whose prerequisites are met, and collects their
- * indices into var_8c228520/var_8c228560 as event candidates. Skipped
+ * indices into var_eventCandidates_8c228520/var_eventCandidateCount_8c228560 as event candidates. Skipped
  * entirely (other than resetting the candidate count) during practice
  * mode. */
 void scanEventCandidates_8c02b03c(void)
@@ -2329,10 +2329,10 @@ void scanEventCandidates_8c02b03c(void)
     Uint32 dayMask;
     Uint32 conditions;
 
-    var_8c228560 = 0;
+    var_eventCandidateCount_8c228560 = 0;
 
     if (var_playMode_8c1bb8d0 == PLAY_MODE_PRACTICE) {
-        LOG_DEBUG(("[EVENT] scanEventCandidates_8c02b03c: skipped (practice mode)\n"));
+        LOG_DEBUG(("[EVENT] skipped scanning candidates (practice mode)\n"));
         return;
     }
 
@@ -2390,13 +2390,13 @@ void scanEventCandidates_8c02b03c(void)
         }
 
         if (conditions == 0) {
-            var_8c228520[var_8c228560] = index;
-            var_8c228560++;
+            var_eventCandidates_8c228520[var_eventCandidateCount_8c228560] = index;
+            var_eventCandidateCount_8c228560++;
         }
     }
 
-    LOG_DEBUG(("[EVENT] scanEventCandidates_8c02b03c: found %d candidate(s) for timeOfDay=%d\n",
-               var_8c228560, var_timeOfDay_8c18ad20));
+    LOG_DEBUG(("[EVENT] found %d candidate(s) for timeOfDay=%d\n",
+               var_eventCandidateCount_8c228560, var_timeOfDay_8c18ad20));
 }
 
 /* Narrows scanEventCandidates_8c02b03c's candidates to the ones whose
@@ -2417,14 +2417,14 @@ void pickSegmentEvent_8c02b170(void)
     if (!(var_playMode_8c1bb8d0 == PLAY_MODE_NORMAL && var_gameMode_8c1bb8fc == 0 &&
           var_8c2285dc <= var_8c2285d8)) {
         var_cutsceneActive_8c1bb900 = 0;
-        LOG_DEBUG(("[EVENT] pickSegmentEvent_8c02b170: skipped (guard not open)\n"));
+        LOG_DEBUG(("[EVENT] skipped picking for segment (guard not open)\n"));
         return;
     }
 
     count = 0;
 
-    for (i = 0; i < var_8c228560; i++) {
-        tableIndex = var_8c228520[i];
+    for (i = 0; i < var_eventCandidateCount_8c228560; i++) {
+        tableIndex = var_eventCandidates_8c228520[i];
         entry = var_routeEvents_8c22851c + tableIndex;
 
         if (var_currentSegment_8c228708 != entry->segmentId_0x02) {
@@ -2459,14 +2459,14 @@ void pickSegmentEvent_8c02b170(void)
 
     if (count == 0) {
         var_cutsceneActive_8c1bb900 = 0;
-        LOG_DEBUG(("[EVENT] pickSegmentEvent_8c02b170: no eligible candidates for segment=%d\n",
+        LOG_DEBUG(("[EVENT] no eligible candidates for segment=%d\n",
                    var_currentSegment_8c228708));
         return;
     }
 
     var_cutsceneActive_8c1bb900 = 1;
     var_selectedEventEntry_8c228478 = candidates[AsqGetRandomInRangeB_8c0121be(count)];
-    LOG_DEBUG(("[EVENT] pickSegmentEvent_8c02b170: selected entry %d from %d candidate(s)\n",
+    LOG_DEBUG(("[EVENT] selected entry %d from %d candidate(s)\n",
                var_selectedEventEntry_8c228478, count));
 }
 
@@ -2479,7 +2479,7 @@ void applyEventFlags_8c02b292(void)
 
     entry = var_routeEvents_8c22851c + var_selectedEventEntry_8c228478;
 
-    LOG_DEBUG(("[EVENT] applyEventFlags_8c02b292: applying entry %d\n",
+    LOG_DEBUG(("[EVENT] applying entry %d\n",
                var_selectedEventEntry_8c228478));
 
     for (actions = entry->actions_0x0c; actions != 0; actions >>= UNLOCK_CODE_BITS) {

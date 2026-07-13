@@ -195,8 +195,8 @@
 
           ; 02af78_event
           .EXPORT     _var_routeEvents_8c22851c ; 02af78_event.src, 02c884.src
-          .EXPORT     _var_8c228520 ; 02af78_event.src, 02c884.src
-          .EXPORT     _var_8c228560 ; 02af78_event.src, 02c884.src
+          .EXPORT     _var_eventCandidates_8c228520 ; 02af78_event.src, 02c884.src
+          .EXPORT     _var_eventCandidateCount_8c228560 ; 02af78_event.src, 02c884.src
           .EXPORT     _var_8c228564 ; 02b2f0.src, 02b464.src
           .EXPORT     _var_8c2285c4 ; 013ae8_route_load.src, 01fa78.src, 020214.src, 022bdc.src, 024280.src, 026710.src, 028258.src, 02b464.src, 02c884.src, 02d19c.src, 02d968.src
           .EXPORT     _var_8c2285c8 ; 02b2f0.src
@@ -595,9 +595,9 @@ _var_8c228518:
           .RES.B      4
 _var_routeEvents_8c22851c:
           .RES.B      4
-_var_8c228520:
+_var_eventCandidates_8c228520:
           .RES.B      64
-_var_8c228560:
+_var_eventCandidateCount_8c228560:
           .RES.B      4
 _var_8c228564:
           .RES.B      96
