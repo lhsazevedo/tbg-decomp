@@ -1,26 +1,51 @@
 # Next Decompilation Targets
 
 Snapshot from a relocation-graph analysis (2026-07-12, right after finishing
-`013ae8_route_load.c`). Method: `sh4objtest inspect --format=json` on every
-built object (`build/output/src/*.obj` + `build/output/src/asm/*.obj`), map
-exports to owning units, then external relocations give unit-to-unit edges.
-Re-run the analysis when this list goes stale; it only takes a few minutes.
+`013ae8_route_load.c`); entry #1 refreshed 2026-07-13 with a full Ghidra read of
+`02171c`. Method: `sh4objtest inspect --format=json` on every built object
+(`build/output/src/*.obj` + `build/output/src/asm/*.obj`), map exports to owning
+units, then external relocations give unit-to-unit edges. Re-run the analysis
+when this list goes stale; it only takes a few minutes.
 
 Ranking criteria used: continuation of the route-load pipeline, plus fan-in
 from already-decompiled units.
 
-## 1. `02171c` -- tile/segment streaming engine (1.1 KB, 8 functions)
+## 1. `02171c` -- map-tile streaming engine (1.1 KB, 8 functions) -- READY, next
 
-Most direct continuation of route_load. `FUN_8c021810`/`FUN_8c02190a` are the
-per-frame callbacks route_load hands to `AsqProcessQueues_8c011fe0`;
-`FUN_8c02175a`/`FUN_8c021a24` run at post-load/teardown. Imports are exactly
-the streaming surface: `var_currentTileRegionList_8c226534`,
-`var_datFiles_8c18adb4`, `var_pvrDir_8c18ad4c`, `AsqRequestTexlist_8c01181c`,
-`njReadBinary`/`njReleaseTexture`.
+Most direct continuation of route_load, and fully understood via Ghidra
+(2026-07-13). Unblocked: every import already resolves -- `AsqRequestTexlist_8c01181c`
+lives in the decompiled `011120_asset_queues`, the rest are SDK (`njReadBinary`/
+`njReleaseTexture`/`njSetTexture`/`njCnkSimpleDrawObject`/`njControl3D`/`njFog*`/
+`njTranslate`, `syMalloc`/`syFree`).
 
-**Gain:** confirms the `tileRegionList_0x0c` element layout (marked
-"unconfirmed" in `CourseSegment`), likely resolves several `ukn_` fields,
-completes the load pipeline end-to-end.
+The unit owns a grid of streamed map tiles. State lives in one static block:
+- `var_8c22650c[5]` -- layer descriptors, each a pointer to `{width, height, ...}`,
+  copied from the route's `var_8c1bb8a4` at init.
+- `var_8c226520[5]` -- per-layer tile buffers, each `malloc(width*height*8)`: a grid
+  of `{NJS_TEXLIST *texlist, void *cnkModel}` slots (8 B each). `var_8c226520 == -1`
+  is the "not allocated" sentinel.
+- `var_currentTileRegionList_8c226534` -- the region-rect list (see gain below).
+
+The 8 functions:
+- `clearUnknownVar_8c02171c` -- one-time reset (buffers sentinel = -1), called from `njUserInit`.
+- `FUN_8c02175a` -- init: copy layer dims from the route, `malloc`+zero the 5 tile grids.
+- `FUN_8c0217de` -- tile lookup in a datFile: `datFile[col + row*width + 2]` offset table, returns the tile blob pointer or 0.
+- `FUN_8c021810` -- load: for each of the 4 texel layers, walk the region rects, look up each tile in its `var_datFiles_8c18adb4[i]` and `njReadBinary` the texlist+model pair into the grid; frees the datFiles after.
+- `FUN_8c02190a` -- for the region, `AsqRequestTexlist(var_pvrDir_8c18ad4c, ...)` every loaded tile (async VRAM upload).
+- `FUN_8c021a24` -- release all: `njReleaseTexture`+`syFree` every loaded slot across the full grid.
+- `FUN_8c021724` -- teardown: `021a24` then free the 5 grid buffers, set sentinel = -1.
+- `FUN_8c021b34` -- draw one tile: `njControl3D`/fog off, `njTranslate` to the bus
+  position (`var_busState_8c1bb9d0`), `njSetTexture(slot.texlist)`,
+  `njCnkSimpleDrawObject(slot.model)`.
+
+**Gain:** resolves `CourseSegment.tileRegionList_0x0c` (currently `void *`,
+"unconfirmed"): it points to an array of 4-byte rects `{startCol, startRow,
+endCol, endRow}` (bytes), terminated by a rect whose `endCol==0 && endRow==0`.
+Also nails down the `var_datFiles_8c18adb4[4]` layout (header `{width, height}`
++ a per-tile int offset table at word 2) and confirms the 4 datFiles map 1:1 to
+the 4 renderable tile layers. Note the 5th layer (`var_8c226530`, model-only, no
+texlist) is allocated here but populated by another unit -- a loose thread, not a
+blocker.
 
 ## 2. `02af78_event` -- story event selection (888 B, 8 functions) -- DONE
 
