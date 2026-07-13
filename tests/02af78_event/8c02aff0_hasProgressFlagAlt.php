@@ -5,7 +5,7 @@ declare(strict_types=1);
 use Lhsazevedo\Sh4ObjTest\TestCase;
 
 /*
- * _hasProgressFlagAlt_8c02aff0(index): tests unlock bit `index` in the
+ * _hasProgressFlagAlt_8c02aff0(index): tests progress flag bit `index` in the
  * field_0x18 bitset of var_progress_8c1ba1cc (see setProgressFlag_8c02af78).
  * Returns the masked word, not normalized to 0/1.
  */

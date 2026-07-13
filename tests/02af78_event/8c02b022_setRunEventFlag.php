@@ -6,7 +6,8 @@ use Lhsazevedo\Sh4ObjTest\TestCase;
 
 /*
  * _setRunEventFlag_8c02b022(index): sets bit `index` of the single-word bitset
- * var_runEventFlags_8c1ba2b4 (role unclear, see hasRunEventFlag_8c02b030).
+ * var_runEventFlags_8c1ba2b4 -- per-day scratch flags (cleared each scan) that
+ * let an event fired on one segment gate a later segment's pick.
  */
 return new class extends TestCase {
     private function resolveSymbols(): void

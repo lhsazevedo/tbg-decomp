@@ -5,7 +5,7 @@ declare(strict_types=1);
 use Lhsazevedo\Sh4ObjTest\TestCase;
 
 /*
- * _setProgressFlag_8c02af78(index): sets unlock bit `index` in the two paired
+ * _setProgressFlag_8c02af78(index): sets progress flag bit `index` in the two paired
  * bitsets of the progress struct at var_progress_8c1ba1cc+0x04 and +0x18.
  *
  *   word = index >> 5;   mask = 1 << (index & 0x1f);

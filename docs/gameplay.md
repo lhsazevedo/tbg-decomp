@@ -56,9 +56,13 @@ prerequisite codes against progress flags pass. `scanEventCandidates_8c02b03c`
 computes eligible entries once per course load;
 `pickSegmentEvent_8c02b170` narrows to the current segment and randomly
 picks one, arming `var_cutsceneActive_8c1bb900`; `applyEventFlags_8c02b292`
-then applies the chosen entry's post-conditions (sets progress/unlock flags
-or a same-run "already fired" flag) once the cutscene plays. Practice mode
-and the course menu skip selection entirely.
+then applies the chosen entry's actions once the cutscene plays: persistent
+progress flags, and/or a per-day "run flag" (`var_runEventFlags`) that lets an
+event fired on an earlier segment gate a later segment's pick. Run flags are
+cleared at the start of each scan and never saved. One scan == one course
+attempt == one day: the day counter advances whether the course is passed or
+failed (confirmed by play), so run flags are effectively per-day scratch state.
+Practice mode and the course menu skip selection entirely.
 
 ## Open questions
 

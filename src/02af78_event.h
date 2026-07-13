@@ -8,23 +8,28 @@
  * =================
  */
 
-/* course/segment unlock rule, 16 bytes, arrays terminated by timeOfDay_0x00 ==
- * 0xffff. dayMask_0x04 and conditions_0x08 each pack a list of 5/10-bit codes
- * (see scanEventCandidates_8c02b03c). */
 typedef struct {
     Uint16 timeOfDay_0x00;
     Uint16 segmentId_0x02;
+
+    /*
+     * Six 5-bit day slots, stored least-significant slot first.
+     *
+     * Day 0 uses bits 0-4. Day 5 uses bits 25-29.
+     * Zero-valued trailing slots are omitted and terminate the scan.
+     */
     Uint32 dayMask_0x04;
 
-    /* packed list of 10-bit {mode:2,flag:8} codes, terminated by a 0 (or
-     * padding) slot. mode 0/1 (must-not-have/must-have a progress flag) is
-     * checked by scanEventCandidates_8c02b03c; mode 2/3 (must-not-have/
-     * must-have a var_runEventFlags_8c1ba2b4 bit) is checked by pickSegmentEvent_8c02b170. */
+    /*
+     * Three 10-bit code slots, stored least-significant slot first.
+     *
+     * Slot 0 uses bits 0-9. Slot 2 uses bits 20-29.
+     * Bits 30-31 are unused.
+     *
+     * Each slot contains an 8-bit flag and a 2-bit mode.
+     * A value of 0x3ff represents UNLOCK_NONE.
+     */
     Uint32 conditions_0x08;
-
-    /* packed list of 10-bit {mode:1,flag:8} codes applied by
-     * applyEventFlags_8c02b292 once this entry is chosen: mode clear
-     * sets a progress flag, mode set (0x200) sets a var_runEventFlags_8c1ba2b4 bit. */
     Uint32 actions_0x0c;
 } EventEntry;
 
