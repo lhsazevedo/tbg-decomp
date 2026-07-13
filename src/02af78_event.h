@@ -1,5 +1,5 @@
-#ifndef _02AF78_H
-#define _02AF78_H
+#ifndef _EVENT_H
+#define _EVENT_H
 
 #include <shinobi.h>
 
@@ -37,4 +37,4 @@ void scanEventCandidates_8c02b03c(void);
 void pickSegmentEvent_8c02b170(void);
 void applyEventFlags_8c02b292(void);
 
-#endif // _02AF78_H
+#endif // _EVENT_H
