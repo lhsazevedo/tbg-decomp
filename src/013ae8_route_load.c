@@ -8,7 +8,7 @@
 #include "02171c.h"
 #include "026710.h"
 #include "028258.h"
-#include "02af78.h"
+#include "02af78_event.h"
 #include "02c884.h"
 #include "03bd80_sectionD.h"
 #include "014f54_text_pre_data.h"

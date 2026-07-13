@@ -28,7 +28,7 @@
 
           ; 028258
 
-          ; 02af78
+          ; 02af78_event
 
           ; 02b464
           .EXPORT     _init_8c04c35c ; 02b464.src

@@ -238,18 +238,18 @@ return [
         ],
         [
             "tests" => [
-                "tests/02af78/8c02af78_setProgressFlag.php",
-                "tests/02af78/8c02afbe_hasProgressFlag.php",
-                "tests/02af78/8c02aff0_hasProgressFlagAlt.php",
-                "tests/02af78/8c02b022_setRunEventFlag.php",
-                "tests/02af78/8c02b030_hasRunEventFlag.php",
-                "tests/02af78/8c02b03c_scanEventCandidates.php",
-                "tests/02af78/8c02b170_pickSegmentEvent.php",
-                "tests/02af78/8c02b292_applyEventFlags.php",
+                "tests/02af78_event/8c02af78_setProgressFlag.php",
+                "tests/02af78_event/8c02afbe_hasProgressFlag.php",
+                "tests/02af78_event/8c02aff0_hasProgressFlagAlt.php",
+                "tests/02af78_event/8c02b022_setRunEventFlag.php",
+                "tests/02af78_event/8c02b030_hasRunEventFlag.php",
+                "tests/02af78_event/8c02b03c_scanEventCandidates.php",
+                "tests/02af78_event/8c02b170_pickSegmentEvent.php",
+                "tests/02af78_event/8c02b292_applyEventFlags.php",
             ],
             "objects" => [
-                "build/output_test/02af78_src.obj",
-                "build/output_test/02af78_c.obj",
+                "build/output_test/02af78_event_src.obj",
+                "build/output_test/02af78_event_c.obj",
             ]
         ],
         [

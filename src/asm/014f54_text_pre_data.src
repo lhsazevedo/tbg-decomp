@@ -4,9 +4,9 @@
 
           ; 016d2c_course_menu
           .EXPORT     _var_progress_8c1ba1cc ; 011120_asset_queues, 0129cc.src, 016d2c_course_menu, 018784.src, 01a148.src, 01b19c.src, 01bb48.src,
-                                             ; 01d290_album.src, 01d7fc.src, 01e27c.src, 01f3c0.src, 024280.src, 024b4c.src, 026710.src, 02af78.src, 02b464.src
-          .EXPORT     _var_8c1ba1d0 ; 02af78.src
-          .EXPORT     _var_8c1ba1e4 ; 02af78.src
+                                             ; 01d290_album.src, 01d7fc.src, 01e27c.src, 01f3c0.src, 024280.src, 024b4c.src, 026710.src, 02af78_event.src, 02b464.src
+          .EXPORT     _var_8c1ba1d0 ; 02af78_event.src
+          .EXPORT     _var_8c1ba1e4 ; 02af78_event.src
           .EXPORT     _var_exp_8c1ba25c ; 016d2c_course_menu.c, 016d2c_course_menu.src, 01b19c.src
           .EXPORT     _var_8c1ba264 ; 01e27c.src
           .EXPORT     _var_8c1ba290 ; 013ae8_route_load.src, 01a148.src, 02b464.src, 02c884.src
@@ -15,7 +15,7 @@
           .EXPORT     _var_8c1ba293 ; 020214.src
           .EXPORT     _var_8c1ba29c ; 024280.src
           .EXPORT     _var_8c1ba29d ; 024280.src
-          .EXPORT     _var_runEventFlags_8c1ba2b4 ; 02af78.src
+          .EXPORT     _var_runEventFlags_8c1ba2b4 ; 02af78_event.src
           .EXPORT     _var_8c1ba2b8 ; 0129cc.src, 016d2c_course_menu.c, 016d2c_course_menu.src
           .EXPORT     _var_8c1ba2cc ; 0129cc.src, 016d2c_course_menu.c, 016d2c_course_menu.src
 
@@ -62,7 +62,7 @@
           .EXPORT     _var_8c1bb8cc ; 0129cc.src, 012f44.c, 012f44.src
           .EXPORT     _var_playMode_8c1bb8d0 ; 0129cc.src, 012f44.c, 012f44.src, 013ae8_route_load.src, 014f54_text, 01614c.src, 016d2c_course_menu,
                                          ; 019e98_main_menu.c, 01e27c.src, 01fa78.src, 020214.src, 020528.c, 022464.src, 022bdc.src, 023310.src, 028258.src,
-                                         ; 02af78.src, 02b464.src, 02c884.src, 02d19c.src, 02d968.src
+                                         ; 02af78_event.src, 02b464.src, 02c884.src, 02d19c.src, 02d968.src
           .EXPORT     _var_8c1bb8d4 ; 012f44.c, 012f44.src, 014f54_text.c, 014f54_text.src, 01614c.src
           .EXPORT     _var_demoIndex_8c1bb8d8 ; 012f44.c, 012f44.src, 014f54_text.c, 014f54_text.src
           .EXPORT     _var_8c1bb8dc ; 0129cc.src, 016d2c_course_menu.c, 016d2c_course_menu.src, 01b19c.src, 01d7fc.src, 01e27c.src, 02b464.src
@@ -73,8 +73,8 @@
           .EXPORT     _var_8c1bb8f0 ; 016d2c_course_menu.c, 016d2c_course_menu.src, 01e27c.src, 02b464.src
           .EXPORT     _var_8c1bb8f4 ; 016d2c_course_menu.c, 016d2c_course_menu.src, 01e27c.src, 02b464.src
           .EXPORT     _var_award_8c1bb8f8 ; 016d2c_course_menu.c, 016d2c_course_menu.src, 01b19c.src, 01d7fc.src, 01e27c.src
-          .EXPORT     _var_gameMode_8c1bb8fc ; 016d2c_course_menu.c, 016d2c_course_menu.src, 019e98_main_menu.c, 019e98_main_menu.src, 01b19c.src, 01d7fc.src, 01e27c.src, 02af78.src, 02b464.src
-          .EXPORT     _var_cutsceneActive_8c1bb900 ; 013ae8_route_load.src, 02af78.src, 02d19c.src
+          .EXPORT     _var_gameMode_8c1bb8fc ; 016d2c_course_menu.c, 016d2c_course_menu.src, 019e98_main_menu.c, 019e98_main_menu.src, 01b19c.src, 01d7fc.src, 01e27c.src, 02af78_event.src, 02b464.src
+          .EXPORT     _var_cutsceneActive_8c1bb900 ; 013ae8_route_load.src, 02af78_event.src, 02d19c.src
           .EXPORT     _var_8c1bb904 ; 021b9c.src, 022464.src, 024b4c.src, 025870.src
           .EXPORT     _var_8c1bb944 ; 021b9c.src, 022464.src, 024b4c.src
           .EXPORT     _var_8c1bb984 ; 022464.src, 025870.src

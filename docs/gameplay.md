@@ -44,9 +44,9 @@ bus along a predefined route with predefined passenger stop requests.
 - During the interior scene, passengers move in a low-fps stop-motion manner;
   no texture animation.
 
-## Story event selection (`02af78`)
+## Story event selection (`02af78_event`)
 
-Which cutscene fires at a stop is resolved by `02af78`. Each route
+Which cutscene fires at a stop is resolved by `02af78_event`. Each route
 (Shinjuku/Wangan/Ome) has an `EventEntry` table
 (`init_8c04b1f0`/`init_8c04abb0`/`init_8c04b920`); an entry is eligible for a
 segment if its time-of-day matches the current course, its packed

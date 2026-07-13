@@ -16,7 +16,7 @@ one short and dated with the unit where it was found.
 
 ## Struct fields can be separately-imported symbols in asm
 
-**Found in:** `02af78` (2026-07-12)
+**Found in:** `02af78_event` (2026-07-12)
 
 A field we already model as part of a C struct (e.g. `PlayerProgress.field_0x04`
 within `var_progress_8c1ba1cc`) can show up in some *other* unit's asm as its
@@ -42,11 +42,11 @@ decompiled yet — it's harmless dead export, not worth touching out of scope.
 
 ## Calls to sibling functions in the same TU are still mocked
 
-**Found in:** `02af78` (2026-07-12)
+**Found in:** `02af78_event` (2026-07-12)
 
 A function that calls another function decompiled earlier *in the same
 `.c`/`.src` file* (e.g. `scanUnlockCandidates_8c02b03c` calling
-`hasProgressFlag_8c02afbe`, both in `02af78.c`) does **not** execute the
+`hasProgressFlag_8c02afbe`, both in `02af78_event.c`) does **not** execute the
 callee for real during a unit test, even though both end up in the same
 object file. The test harness still intercepts the `BSR`/call and requires
 an explicit `shouldCall(...)->andReturn(...)` expectation, exactly as for a
@@ -60,7 +60,7 @@ under test.
 
 ## A nested single-statement `if(cond){break;}` can compile to unreachable bytes
 
-**Found in:** `02af78` (2026-07-12)
+**Found in:** `02af78_event` (2026-07-12)
 
 Pattern:
 ```c
@@ -125,14 +125,14 @@ exists.
 
 The dead-bytes pattern itself also shows up verbatim in the *original*
 `.src` asm (built by the same-era SHC compiler -- confirmed present in
-`02af78.src`'s `_scanUnlockCandidates_8c02b03c`/`_pickUnlockCandidate_8c02b170`).
+`02af78_event.src`'s `_scanUnlockCandidates_8c02b03c`/`_pickUnlockCandidate_8c02b170`).
 There, restructuring is never an option regardless of sh4objtest version --
 the archived asm must stay byte-identical to the real game binary -- so the
 coverage tags below are the only fix.
 
 ## Marking known-dead asm lines with coverage tags
 
-**Found in:** `02af78` (2026-07-12), sh4objtest v0.1.35+
+**Found in:** `02af78_event` (2026-07-12), sh4objtest v0.1.35+
 
 `sh4objtest suite --coverage` supports source-line exclusion tags, matched as
 plain substrings so they work in both `//`/`/* */` (C) and `;` (asm)
@@ -162,7 +162,7 @@ it's rebuilt.
 
 ## Renaming an exported symbol: unit tests won't catch a missed caller
 
-**Found in:** `02af78` (2026-07-12)
+**Found in:** `02af78_event` (2026-07-12)
 
 When you rename a `.EXPORT`ed function/variable, the rename has to reach
 *every* caller across the whole tree, not just the owning unit -- and a
@@ -192,7 +192,7 @@ not a pre-sed grep.
 
 ## Strength-reduced loops and nested ifs fold back to idiomatic C
 
-**Found in:** `02af78` (2026-07-12)
+**Found in:** `02af78_event` (2026-07-12)
 
 Because the goal is functional equivalence -- and the exact original
 structure stays archived byte-for-byte in `.src` -- the decompiled C is free

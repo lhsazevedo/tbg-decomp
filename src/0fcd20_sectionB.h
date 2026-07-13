@@ -4,7 +4,7 @@
 
 #include <shinobi.h>
 #include "013ae8_route_load.h"
-#include "02af78.h"
+#include "02af78_event.h"
 
 /* =================
  * Type Declarations

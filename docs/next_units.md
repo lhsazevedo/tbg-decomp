@@ -22,7 +22,7 @@ the streaming surface: `var_currentTileRegionList_8c226534`,
 "unconfirmed" in `CourseSegment`), likely resolves several `ukn_` fields,
 completes the load pipeline end-to-end.
 
-## 2. `02af78` -- story event selection (888 B, 8 functions) -- DONE
+## 2. `02af78_event` -- story event selection (888 B, 8 functions) -- DONE
 
 `pickSegmentEvent_8c02b170` is called in every route_load post-load block.
 Resolved: this is the story-cutscene-event picker. Each route has an

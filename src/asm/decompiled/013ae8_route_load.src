@@ -85,8 +85,8 @@
           .EXPORT     _pushRouteLoadTask_8c0144fc
           .EXPORT     _init_8c04410c ; 01b19c.src
           .EXPORT     _var_currentCourseConfig_8c18ad18 ; 02c884.src
-          .EXPORT     _var_route_8c18ad1c ; 012f44.c, 012f44.src, 01d7fc.src, 020214.src, 023310.src, 025870.src, 026710.src, 028258.src, 02af78.src, 02b464.src, 02c884.src, 02d19c.src, 02d968.src
-          .EXPORT     _var_timeOfDay_8c18ad20 ; 01d7fc.src, 022bdc.src, 023310.src, 025b98.src, 026710.src, 027958.src, 02af78.src, 02d19c.src
+          .EXPORT     _var_route_8c18ad1c ; 012f44.c, 012f44.src, 01d7fc.src, 020214.src, 023310.src, 025870.src, 026710.src, 028258.src, 02af78_event.src, 02b464.src, 02c884.src, 02d19c.src, 02d968.src
+          .EXPORT     _var_timeOfDay_8c18ad20 ; 01d7fc.src, 022bdc.src, 023310.src, 025b98.src, 026710.src, 027958.src, 02af78_event.src, 02d19c.src
           .EXPORT     _var_sceneParams_8c18ad24 ; 021b9c.src, 0222dc.src, 023310.src, 024b4c.src, 026710.src
           .EXPORT     _var_fogParams_8c18ad28 ; 012f44.c, 012f44.src
           .EXPORT     _var_datDir_8c18ad2c
