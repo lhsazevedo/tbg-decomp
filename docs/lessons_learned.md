@@ -10,6 +10,7 @@ one short and dated with the unit where it was found.
 - [Struct fields can be separately-imported symbols in asm](#struct-fields-can-be-separately-imported-symbols-in-asm)
 - [Calls to sibling functions in the same TU are still mocked](#calls-to-sibling-functions-in-the-same-tu-are-still-mocked)
 - [A nested single-statement `if(cond){break;}` can compile to unreachable bytes](#a-nested-single-statement-ifcondbreak-can-compile-to-unreachable-bytes)
+- [`asmsh -debug` embeds symbols in the .obj; `-debug=d` writes a side .DWF](#asmsh--debug-embeds-symbols-in-the-obj--debugd-writes-a-side-dwf)
 - [Marking known-dead asm lines with coverage tags](#marking-known-dead-asm-lines-with-coverage-tags)
 - [Renaming an exported symbol: unit tests won't catch a missed caller](#renaming-an-exported-symbol-unit-tests-wont-catch-a-missed-caller)
 - [Strength-reduced loops and nested ifs fold back to idiomatic C](#strength-reduced-loops-and-nested-ifs-fold-back-to-idiomatic-c)
@@ -222,3 +223,15 @@ foldbacks:
 
 Both are behavior-identical; prove it with the dual-object test plus
 `--coverage` (100% on both objects, no new uncovered ranges).
+
+## `asmsh -debug` embeds symbols in the .obj; `-debug=d` writes a side .DWF
+
+`asmsh`'s `-debug` puts debug info **inside the .obj**; `-debug=d` writes it to a
+separate `.DWF` and leaves the .obj without it. So `sh4objtest inspect
+--format=json` only reports `debugSymbols` (asm emits type `Label`, `shc` emits
+`Func`/`Var`) under plain `-debug`. Those debug symbols are the only place
+**statics** appear -- `exports` lists just the public symbols. `Makefile.matching`
+uses `-debug` for this reason; `scripts/sync_ghidra_symbols.py` depends on it.
+
+Real symbols carry a leading `_`; internal auto-labels (`LAB_`, `LP_GEN_`, the
+section symbol `P`) do not -- a clean filter.

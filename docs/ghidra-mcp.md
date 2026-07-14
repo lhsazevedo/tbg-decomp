@@ -7,8 +7,10 @@ names/types directly. Tools are deferred — fetch schemas with ToolSearch
 
 ## The program
 
-- Target program is **`1ST_READ.BIN`** (the game binary; `ip.bin` also exists but
-  is usually closed). Pass `program="1ST_READ.BIN"` if ever ambiguous.
+- Current project is **`../tbg-ghidra`** ("Tokyo Bus Guide Decomp"), program
+  **`flycast_ram.bin`** (a Flycast RAM dump; single `ram` space, `8c000000`-`8cffffff`).
+  It replaced the corrupted `1ST_READ.BIN` project; older notes below still say
+  `1ST_READ.BIN` but the live target is `flycast_ram.bin`.
 - **Addresses are full `8c0xxxxx`** — same as the repo's `8c<addr>` suffixes.
   Range `8c010000`–`8c4fffff`. (image_base is 0, but functions/data live in the
   `8c...` block, so always use the full address.)
@@ -34,3 +36,16 @@ names/types directly. Tools are deferred — fetch schemas with ToolSearch
 - Maintain: `rename_function_by_address` (has `dry_run`), `rename_data`,
   `set_function_prototype`, `create_struct` / `apply_data_type`, `set_plate_comment`.
 - Persist edits with `save_program` / `save_all_programs`.
+
+## Bulk-syncing names from the build
+
+`scripts/sync_ghidra_symbols.py` pushes every named symbol from the matching build
+into the live project (functions + data, public + static; build wins). Run it after
+naming a batch of things in the source tree to re-seed Ghidra.
+
+- Needs the matching build current and assembled with `-debug` (embeds debug
+  symbols in the .obj, which is where statics come from -- see
+  docs/lessons_learned.md), and Ghidra open with the plugin on `127.0.0.1:8089`.
+- Addresses are resolved map-free: each symbol name encodes its address, and the
+  few that don't are placed from their object-section's anchor.
+- Prints a summary by default; pass `--apply` to write. Save the program afterward.
