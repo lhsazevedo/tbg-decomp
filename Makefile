@@ -1,7 +1,7 @@
 MAKEFLAGS += --no-builtin-rules
 .SUFFIXES:
 
-ASMSH_FLAGS=-debug=d -cpu=sh4 -endian=little -sjis
+ASMSH_FLAGS=-debug -cpu=sh4 -endian=little -sjis
 BUILD_DIR=build
 OUTPUT_DIR=$(BUILD_DIR)/output
 SHA1_CHECKSUM=a6df9e0de39b2d11e9339aef915d20e35763ec81
