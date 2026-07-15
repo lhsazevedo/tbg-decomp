@@ -105,6 +105,16 @@
 
 **UNIT 0129cc COMPLETE -- all 4 functions decompiled. c.obj now covers 54-227.**
 
+## custom task type
+- PauseDemoEndTask_8c012d5a takes PauseDemoEndTaskData* (Task-layout overlay,
+  same 0x20 bytes) instead of Task*: names phase_0x08 + counter_0x0c and drops
+  the void*<->int casts on the counter. Idiom mirrors 011120_asset_queues
+  (TaskLoadQueued*), but unlike those (all STATIC), this task is public, so
+  PauseDemoEndTaskData is declared in 0129cc_pause.h with the typed prototype
+  -- the install site in 012f44.c keeps created_task as plain Task* (matches
+  pushTask_8c014ae8's signature) and is unaffected. Tests use raw offsets,
+  unaffected; both objects pass.
+
 ## serial logging
 - Added `[PAUSE]` LOG_* instrumentation (serial_debug.h). Tag reused across all 4 fns.
 - retirePhase transitions go through CHANGE_RETIRE_PHASE(x) macro +

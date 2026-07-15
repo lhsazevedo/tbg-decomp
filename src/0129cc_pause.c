@@ -51,7 +51,7 @@ char *DEBUG_retirePhaseNames[] = {
     var_retirePhase_8c18ad08 = x;                                              \
     LOG_DEBUG(("[PAUSE] Retire phase changed: %s\n", DEBUG_retirePhaseNames[x]))
 
-/* PauseDemoEndTask_8c012d5a: demo ending marks and phases (task->field_0x08) */
+/* PauseDemoEndTask_8c012d5a: demo ending marks and phases (see phase_0x08) */
 #define MARK_DEMO          0x7b /* drawn every frame */
 #define MARK_DEMO_BLINK    0x7c /* blinks on counter & 0x18 */
 
@@ -271,9 +271,8 @@ void PauseToggleTask_8c012d06()
  * when var_8c1bb8d4 != 0): the attract loop plays out, then either Start
  * (phase 1) or a ~0x708-frame timeout (phase 2) fades out and returns to the
  * title -- pushTitle_8c015fd6(1) for the Start skip, (0) for the timeout.
- * task->field_0x08 is the phase, task->field_0x0c a frame counter.
  */
-void PauseDemoEndTask_8c012d5a(Task *task)
+void PauseDemoEndTask_8c012d5a(PauseDemoEndTaskData *task)
 {
     LOG_TRACE(("[PAUSE] PauseDemoEndTask_8c012d5a\n"));
 
@@ -288,18 +287,18 @@ void PauseDemoEndTask_8c012d5a(Task *task)
 
     updateAdxVolFade_8c010a40();
 
-    switch (task->field_0x08) {
+    switch (task->phase_0x08) {
     case DEMO_END_PLAYING:
         if ((var_peripherals_8c1ba35c[0].press & PDD_DGT_ST) != 0) {
             sdMidiPlay(var_midiHandles_8c0fcd28[0], 1, 0, 0);
-            task->field_0x08 = DEMO_END_SKIPPED;
+            task->phase_0x08 = DEMO_END_SKIPPED;
             LOG_DEBUG(("[PAUSE] PauseDemoEndTask_8c012d5a: demo skipped (Start), fading out\n"));
         } else {
-            task->field_0x0c = (void *)((int)task->field_0x0c + 1);
-            if ((int)task->field_0x0c <= DEMO_END_TIMEOUT) {
+            task->counter_0x0c++;
+            if (task->counter_0x0c <= DEMO_END_TIMEOUT) {
                 break;
             }
-            task->field_0x08 = DEMO_END_TIMED_OUT;
+            task->phase_0x08 = DEMO_END_TIMED_OUT;
             LOG_DEBUG(("[PAUSE] PauseDemoEndTask_8c012d5a: demo timed out, fading out\n"));
         }
         startAdxFadeOut_8c010bae(0);
@@ -310,14 +309,14 @@ void PauseDemoEndTask_8c012d5a(Task *task)
     case DEMO_END_SKIPPED:
     case DEMO_END_TIMED_OUT:
         if (var_isFading_8c226568 != 0) {
-            task->field_0x0c = (void *)((int)task->field_0x0c + 1);
+            task->counter_0x0c++;
             break;
         }
         if (init_8c03bd80 != 0) {
             return;
         }
         FUN_8c016182();
-        pushTitle_8c015fd6(task->field_0x08 == DEMO_END_SKIPPED ? 1 : 0);
+        pushTitle_8c015fd6(task->phase_0x08 == DEMO_END_SKIPPED ? 1 : 0);
         LOG_INFO(("[PAUSE] PauseDemoEndTask_8c012d5a: demo ended, returning to title\n"));
         return;
     }
@@ -326,7 +325,7 @@ void PauseDemoEndTask_8c012d5a(Task *task)
     execTasks_8c014b42(var_tasks_8c1ba5e8);
     FUN_8c022910();
     drawSprite_8c014f54((ResourceGroup *)&var_markTexlist_8c1bc418, MARK_DEMO, 0.0f, 0.0f, MARK_Z_BASE);
-    if (((int)task->field_0x0c & 0x18) != 0) {
+    if ((task->counter_0x0c & 0x18) != 0) {
         drawSprite_8c014f54((ResourceGroup *)&var_markTexlist_8c1bc418, MARK_DEMO_BLINK, 0.0f, 0.0f, MARK_Z_BASE);
     }
 }
