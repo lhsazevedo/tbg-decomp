@@ -62,6 +62,7 @@ extern int var_currentSegment_8c228708;
 extern int var_selectedEventEntry_8c228478;
 extern void* var_currentSysResGroupInfo_8c225fb0;
 extern int var_currentTileRegionList_8c226534;
+extern int var_8c22640c;
 extern int var_demoEntryValue_8c227e14;
 extern int var_demoEntryValue_8c22822c;
 extern int var_dialogQueue_8c225fbc[4]; // TODO: Confirm length

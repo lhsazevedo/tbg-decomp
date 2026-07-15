@@ -95,4 +95,8 @@ compile  src/013ae8_route_load.c
 assemble  src/asm/decompiled/02af78_event.src
 compile  src/02af78_event.c
 
+# 0129cc
+assemble  src/asm/decompiled/0129cc_pause.src
+compile  src/0129cc_pause.c
+
 $sh4objtest suite -s tests.php "$@"

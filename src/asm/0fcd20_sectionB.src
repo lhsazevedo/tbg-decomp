@@ -60,7 +60,7 @@
           .EXPORT     _var_8c226408 ; 01d7fc.src
 
           ; 01e27c
-          .EXPORT     _var_8c22640c ; 0129cc.src, 01e27c.src, 020214.src, 02b464.src
+          .EXPORT     _var_8c22640c ; 0129cc_pause.src, 01e27c.src, 020214.src, 02b464.src
           .EXPORT     _var_8c226410 ; 01e27c.src, 020214.src, 022464.src, 023310.src, 02b464.src, 02c884.src, 02d968.src
           .EXPORT     _var_8c226414 ; 01e27c.src
           .EXPORT     _var_8c22642c ; 01e27c.src
@@ -109,8 +109,8 @@
           .EXPORT     _var_8c22655c ; 012f44.c, 012f44.src, 022464.src, 02d19c.src
           .EXPORT     _var_8c226560 ; 022464.src, 028258.src, 02d19c.src
           .EXPORT     _var_8c226564 ; 022464.src, 028258.src, 02b464.src, 02d19c.src
-          .EXPORT     _var_isFading_8c226568 ; 0129cc.src, 015ab8_title, 016d2c_course_menu, 018784.src, 0193c8_vm_menu, 019e98_main_menu, 01a148.src, 01b19c.src, 01bb48.src, 01c980.src, 01d290_album.src, 01d7fc.src, 01e27c.src, 01f3c0.src, 022464.src,
-                                         ; 028258.src, 02b464.src, 02d19c.src
+          .EXPORT     _var_isFading_8c226568 ; 0129cc_pause.src, 015ab8_title, 016d2c_course_menu, 018784.src, 0193c8_vm_menu, 019e98_main_menu, 01a148.src, 01b19c.src, 01bb48.src, 01c980.src, 01d290_album.src, 01d7fc.src, 01e27c.src, 01f3c0.src,
+                                         ; 022464.src, 028258.src, 02b464.src, 02d19c.src
           .EXPORT     _var_8c22656c ; 022464.src, 02b464.src, 02c884.src
           .EXPORT     _var_8c226570 ; 0222dc.src, 022464.src
           .EXPORT     _var_8c22657c ; 0222dc.src, 022464.src
@@ -187,7 +187,7 @@
           .EXPORT     _var_8c228430 ; 028258.src
           .EXPORT     _var_8c228434 ; 028258.src
           .EXPORT     _var_selectedEventEntry_8c228478 ; 028258.src, 02af78_event.src
-          .EXPORT     _var_8c22847c ; 0129cc.src, 012f44.c, 012f44.src, 028258.src, 02b464.src, 02d19c.src
+          .EXPORT     _var_8c22847c ; 0129cc_pause.src, 012f44.c, 012f44.src, 028258.src, 02b464.src, 02d19c.src
           .EXPORT     _var_8c228480 ; 028258.src
           .EXPORT     _var_8c228484 ; 028258.src
           .EXPORT     _var_8c228514 ; 028258.src

@@ -34,7 +34,7 @@ SRCS = \
 	src/011120_asset_queues.c \
 	src/012324_peripheral_support.c \
 	src/012504_input.c \
-	src/asm/0129cc.src \
+	src/0129cc_pause.c \
 	src/012f44.c \
 	src/013ae8_route_load.c \
 	src/014934.c \

@@ -9,6 +9,12 @@
 
 extern NJS_TEXMEMLIST var_tex_8c157af8[TEX_NUM];
 
+extern int var_pauseSettle_8c18ad04;
+extern int var_retirePhase_8c18ad08;
+extern int var_confirmChoice_8c18ad0c;
+extern int var_onRetire_8c18ad10;
+extern char init_8c03bf4c[];
+
 void task_8c012f44();
 void FUN_8c01306e(void);
 void FUN_8c01328c();

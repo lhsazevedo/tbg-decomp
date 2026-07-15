@@ -16,7 +16,7 @@ SRCS = \
 	src/asm/decompiled/011120_asset_queues.src \
 	src/asm/decompiled/012324_peripheral_support.src \
 	src/asm/decompiled/012504_input.src \
-	src/asm/0129cc.src \
+	src/asm/decompiled/0129cc_pause.src \
 	src/asm/decompiled/012f44.src \
 	src/asm/decompiled/013ae8_route_load.src \
 	src/014934.c \

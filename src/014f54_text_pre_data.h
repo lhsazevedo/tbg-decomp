@@ -325,7 +325,7 @@ extern void* var_8c1bb86c;
 extern int var_8c1bb8b8; // Maybe courseMenuHasResult or courseMenuHasDialog
 extern int var_8c1bb8bc;
 extern int var_8c1bb8c4;
-extern int var_8c1bb8cc;
+extern int var_pauseActive_8c1bb8cc;
 extern int var_8c1bb8d4;
 extern int var_8c1bb8dc;
 extern int var_8c1bb8e0; // course was unlocked

@@ -5,7 +5,7 @@
 #include "0100bc_sound.h"
 #include "014f54_text.h"
 #include "016bf4_demo_input.h"
-#include "0129cc.h"
+#include "0129cc_pause.h"
 #include "01614c.h"
 #include "03bd80_sectionD.h"
 #include "014f54_text_pre_data.h"
@@ -66,10 +66,10 @@ STATIC int var_gdErr_8c18ad14;
 
 STATIC NJS_FOG_TABLE var_fogTable_8c18aaf8;
 
-int var_8c18ad04;
-int var_8c18ad08;
-int var_8c18ad0c;
-int var_8c18ad10;
+int var_pauseSettle_8c18ad04;
+int var_retirePhase_8c18ad08;
+int var_confirmChoice_8c18ad0c;
+int var_onRetire_8c18ad10;
 
 /* Matched :) */
 void task_8c012f44()
@@ -174,13 +174,13 @@ void FUN_8c01306e(void)
     pushInputTask_8c0128cc(1);
 
     if (var_playMode_8c1bb8d0 != 2) {
-        pushTask_8c014ae8(var_tasks_8c1ba3c8, &task_8c012cbc, &created_task, &created_state, 0);
+        pushTask_8c014ae8(var_tasks_8c1ba3c8, &PauseTask_8c012cbc, &created_task, &created_state, 0);
         pushTask_8c014ae8(var_tasks_8c1ba5e8, &task_8c01677e, &created_task, &created_state, 0);
     } else {
         if (var_8c1bb8d4 == 0) {
-            pushTask_8c014ae8(var_tasks_8c1ba3c8, &task_8c012d06, &created_task, &created_state, 0);
+            pushTask_8c014ae8(var_tasks_8c1ba3c8, &PauseToggleTask_8c012d06, &created_task, &created_state, 0);
         } else {
-            pushTask_8c014ae8(var_tasks_8c1ba3c8, &task_8c012d5a, &created_task, &created_state, 0);
+            pushTask_8c014ae8(var_tasks_8c1ba3c8, &PauseDemoEndTask_8c012d5a, &created_task, &created_state, 0);
             created_task->field_0x08 = 0;
             created_task->field_0x0c = (void*) 0;
         }
@@ -188,7 +188,7 @@ void FUN_8c01306e(void)
         FUN_8c025af4();
     }
 
-    var_8c1bb8cc = 0;
+    var_pauseActive_8c1bb8cc = 0;
     var_8c22847c = 0;
 
     FUN_8c023610();

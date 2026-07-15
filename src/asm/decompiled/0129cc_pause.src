@@ -1,19 +1,19 @@
 ; 8c0129cc
-          .IMPORT     _var_8c1bb8cc
-          .IMPORT     _var_8c18ad04
+          .IMPORT     _var_pauseActive_8c1bb8cc
+          .IMPORT     _var_pauseSettle_8c18ad04
           .IMPORT     _var_midiHandles_8c0fcd28
           .IMPORT     _sdMidiPlay
           .IMPORT     _var_peripheral_8c1ba358
           .IMPORT     _var_activeCtrlType_8c157a70
           .IMPORT     _var_8c22847c
-          .IMPORT     _var_8c18ad10
+          .IMPORT     _var_onRetire_8c18ad10
           .IMPORT     _controlAdxtWithOutVol_8c0107d2
           .IMPORT     _var_vibport_8c1ba354
           .IMPORT     _pdVibMxStop
           .IMPORT     _FUN_8c022560
           .IMPORT     _drawSprite_8c014f54
-          .IMPORT     _var_8c18ad0c
-          .IMPORT     _var_8c18ad08
+          .IMPORT     _var_confirmChoice_8c18ad0c
+          .IMPORT     _var_retirePhase_8c18ad08
           .IMPORT     _var_markTexlist_8c1bc418
           .IMPORT     _push_fadeout_8c022b60
           .IMPORT     _var_isFading_8c226568
@@ -44,12 +44,12 @@
           .IMPORT     _startAdxFadeOut_8c010bae
           .IMPORT     _var_peripherals_8c1ba35c
           .IMPORT     _var_menuState_8c1bc7a8
-          .EXPORT     _FUN_8c0129cc
-          .EXPORT     _task_8c012cbc
-          .EXPORT     _task_8c012d06
-          .EXPORT     _task_8c012d5a
+          .EXPORT     _Update_8c0129cc
+          .EXPORT     _PauseTask_8c012cbc
+          .EXPORT     _PauseToggleTask_8c012d06
+          .EXPORT     _PauseDemoEndTask_8c012d5a
           .SECTION     P, CODE, ALIGN=4
-_FUN_8c0129cc:
+_Update_8c0129cc:
           MOV.L       R14,@-R15
           MOV.L       R13,@-R15
           MOV.L       R12,@-R15
@@ -323,22 +323,22 @@ LAB_8c012ba6:
           NOP
 
 LP_GEN_41107:
-          .DATA.L _var_8c1bb8cc ; LP_GEN_41107+0
-          .DATA.L _var_8c18ad04
+          .DATA.L _var_pauseActive_8c1bb8cc ; LP_GEN_41107+0
+          .DATA.L _var_pauseSettle_8c18ad04
           .DATA.L _var_midiHandles_8c0fcd28
           .DATA.L _sdMidiPlay
           .DATA.L _var_peripheral_8c1ba358
           .DATA.L _var_activeCtrlType_8c157a70
           .DATA.L _var_8c22847c
-          .DATA.L _var_8c18ad10
+          .DATA.L _var_onRetire_8c18ad10
           .DATA.L _controlAdxtWithOutVol_8c0107d2
           .DATA.L _var_vibport_8c1ba354
           .DATA.L _pdVibMxStop
           .DATA.L _FUN_8c022560
           .DATA.L _drawSprite_8c014f54
-          .DATA.L _var_8c18ad0c
+          .DATA.L _var_confirmChoice_8c18ad0c
           .DATA.L H'BF8B851F
-          .DATA.L _var_8c18ad08
+          .DATA.L _var_retirePhase_8c18ad08
           .DATA.L _var_markTexlist_8c1bc418
           .DATA.L _push_fadeout_8c022b60
 
@@ -449,7 +449,7 @@ LAB_8c012ca6:
           MOV.L       @R15+,R13
           RTS
           MOV.L       @R15+,R14
-_task_8c012cbc:
+_PauseTask_8c012cbc:
           MOV.L       LP_GEN_43727+70,R2
           STS.L       PR,@-R15
           MOV.L       @R2,R3
@@ -471,7 +471,7 @@ _task_8c012cbc:
           JMP         @R2
           LDS.L       @R15+,PR
 LAB_8c012ce4:
-          BSR         _FUN_8c0129cc
+          BSR         _Update_8c0129cc
           NOP
           TST         R0,R0
           BT          LAB_8c012d00
@@ -489,7 +489,7 @@ LAB_8c012d00:
           LDS.L       @R15+,PR
           RTS
           NOP
-_task_8c012d06:
+_PauseToggleTask_8c012d06:
           MOV.L       LP_GEN_43727+70,R2
           STS.L       PR,@-R15
           MOV.L       @R2,R3
@@ -535,7 +535,7 @@ LAB_8c012d54:
           MOV.L       LP_GEN_43727+110,R3
           JMP         @R3
           LDS.L       @R15+,PR
-_task_8c012d5a:
+_PauseDemoEndTask_8c012d5a:
           MOV.L       R14,@-R15
           MOV.L       R13,@-R15
           MOV.L       R12,@-R15
@@ -624,7 +624,7 @@ LP_GEN_43727:
           .DATA.L _var_tasks_8c1ba5e8
           .DATA.L _execTasks_8c014b42
           .DATA.L _FUN_8c022560
-          .DATA.L _var_8c1bb8cc
+          .DATA.L _var_pauseActive_8c1bb8cc
           .DATA.L _var_peripheral_8c1ba358
           .DATA.L _FUN_8c022910
           .DATA.L _init_8c03bd80

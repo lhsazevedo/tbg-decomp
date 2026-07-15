@@ -279,6 +279,18 @@ return [
                 "build/output_test/013ae8_route_load_src.obj",
                 "build/output_test/013ae8_route_load_c.obj",
             ]
-        ]
+        ],
+        [
+            "tests" => [
+                "tests/0129cc_pause/8c0129cc_Update.php",
+                "tests/0129cc_pause/8c012cbc_PauseTask.php",
+                "tests/0129cc_pause/8c012d06_PauseToggleTask.php",
+                "tests/0129cc_pause/8c012d5a_PauseDemoEndTask.php",
+            ],
+            "objects" => [
+                "build/output_test/0129cc_pause_src.obj",
+                "build/output_test/0129cc_pause_c.obj",
+            ]
+        ],
     ],
 ];
