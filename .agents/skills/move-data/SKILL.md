@@ -7,6 +7,32 @@ description: Moves global data ownership between pre-data asm files and unit fil
 
 Use this workflow when a variable currently lives in a shared pre-data file (for example `src/asm/014f54_text_pre_data.src`) and should be owned by a specific unit (`.c` and/or `src/asm/decompiled/*.src`).
 
+## Automated: `.src` -> `.src` moves
+
+For the asm-to-asm case (temp file -> owning unit's `src/asm/decompiled/*.src`), use
+`scripts/move_data.py` instead of hand-editing:
+
+```
+scripts/move_data.py --src <temp.src> --dest <owner.src> --from <_sym> \
+    [--to <_sym>] [--after <_sym> | --before <_sym>] [--dry-run]
+```
+
+It moves the labeled block(s) for a single symbol or a file-order-inclusive span
+(`--from`..`--to`), handles sections C/D/B, creates a missing section in the dest,
+and recomputes `.IMPORT`/`.EXPORT` in both files (`imports == referenced - defined`;
+the moved symbol's export travels to the dest). Shift-JIS in `;.SDATA` comments is
+byte-preserved. It warns if a moved block -- or the block the cut leaves exposed in
+the origin -- starts at a non-4-aligned address, which signals a wrong span boundary
+/ mis-decompiled object. (A misaligned section *end* is fine; the linker realigns.)
+
+By default the block lands at the end of the dest's matching section; use
+`--after`/`--before` to place it next to an existing dest symbol (needed to keep
+link output byte-identical when the owner already has data in that section).
+Either way, confirm with `scripts/dcdiff.py` + the matching build after a move.
+
+The manual steps below still apply to the **C-file / test half** of an ownership
+move (`STATIC` gating, headers, `tests/*` fixups), which the script does not touch.
+
 ## Goals
 
 - Keep one clear owner for each symbol.
