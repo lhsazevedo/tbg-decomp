@@ -1,4 +1,7 @@
 ; 8c01bb48
+          .IMPORT     _const_8c038680
+          .IMPORT     _const_8c038690
+          .IMPORT     _const_8c038698
           .IMPORT     _pdVmsLcdIsReady
           .IMPORT     _var_8c2260d4
           .IMPORT     _memset
@@ -23,12 +26,7 @@
           .IMPORT     _TxtDrawSprite_8c014f54
           .IMPORT     _var_resourceGroup_8c2263a8
           .IMPORT     _var_vmuStatus_8c226048
-          .IMPORT     _init_8c044e50
           .IMPORT     _swapMessageBoxFor_8c02aefc
-          .IMPORT     _const_8c038460
-          .IMPORT     _const_8c03847c
-          .IMPORT     _const_8c03867c
-          .IMPORT     _init_8c044e48
           .IMPORT     _VmMenuUpdateVmusStatus_8c019550
           .IMPORT     _var_isFading_8c226568
           .IMPORT     _RouteLoadIsPvmReady_8c01432a
@@ -40,26 +38,13 @@
           .IMPORT     _var_midiHandles_8c0fcd28
           .IMPORT     _sdMidiPlay
           .IMPORT     __quick_evn_mvn
-          .IMPORT     _const_8c038498
-          .IMPORT     _const_8c0384b0
-          .IMPORT     _const_8c0384e8
           .IMPORT     _CourseMenuInterpolateCursor_8c016d2c
           .IMPORT     _PromptHandleBinary_8c016caa
-          .IMPORT     _const_8c03866c
           .IMPORT     _var_8c1bc454
-          .IMPORT     _const_8c038510
           .IMPORT     _var_8c157a7c
-          .IMPORT     _const_8c038544
-          .IMPORT     _const_8c038560
-          .IMPORT     _const_8c03859c
           .IMPORT     _var_8c2260b8
-          .IMPORT     _const_8c0385bc
           .IMPORT     _var_texbuf_8c277ca0
-          .IMPORT     _const_8c0385d8
           .IMPORT     _var_progress_8c1ba1cc
-          .IMPORT     _const_8c038618
-          .IMPORT     _const_8c038638
-          .IMPORT     _const_8c0385f8
           .IMPORT     _push_fadein_8c022a9c
           .IMPORT     _var_8c22606c
           .IMPORT     _CourseMenuFreeResourceGroup_8c0185c4
@@ -69,10 +54,7 @@
           .IMPORT     _TaskSetAction_8c014b3e
           .IMPORT     _AsqInitQueues_8c011f36
           .IMPORT     _AsqResetQueues_8c011f6c
-          .IMPORT     _init_8c044e90
           .IMPORT     _CourseMenuRequestSysResgrp_8c018568
-          .IMPORT     _const_8c038660
-          .IMPORT     _const_8c038658
           .IMPORT     _AsqRequestDat_8c011182
           .IMPORT     _RouteLoadSetPvmReady_8c014330
           .IMPORT     _RouteLoadResetPvmReady_8c014322
@@ -81,7 +63,6 @@
           .IMPORT     _var_8c2260ac
           .IMPORT     _var_8c2260c4
           .IMPORT     _var_8c2263a0
-          .IMPORT     _init_8c044e38
           .EXPORT     _FUN_8c01bb48
           .EXPORT     _FUN_8c01bc44
           .EXPORT     _FUN_8c01bd30
@@ -95,6 +76,28 @@
           .EXPORT     _FUN_8c01c8dc
           .EXPORT     _vmsLcd_8c01c8fc
           .EXPORT     _vmsLcd_8c01c910
+          .EXPORT     _const_8c038460 ; 01bb48.src
+          .EXPORT     _const_8c03847c ; 01bb48.src
+          .EXPORT     _const_8c038498 ; 01bb48.src
+          .EXPORT     _const_8c0384b0 ; 01bb48.src
+          .EXPORT     _const_8c0384e8 ; 01bb48.src
+          .EXPORT     _const_8c038510 ; 01bb48.src
+          .EXPORT     _const_8c038544 ; 01bb48.src
+          .EXPORT     _const_8c038560 ; 01bb48.src
+          .EXPORT     _const_8c03859c ; 01bb48.src
+          .EXPORT     _const_8c0385bc ; 01bb48.src
+          .EXPORT     _const_8c0385d8 ; 01bb48.src
+          .EXPORT     _const_8c0385f8 ; 01bb48.src
+          .EXPORT     _const_8c038618 ; 01bb48.src
+          .EXPORT     _const_8c038638 ; 01bb48.src
+          .EXPORT     _const_8c038658 ; 01bb48.src
+          .EXPORT     _const_8c038660 ; 01bb48.src
+          .EXPORT     _const_8c03866c ; 01bb48.src, 03bd80_sectionD.src
+          .EXPORT     _const_8c03867c ; 01bb48.src, 03bd80_sectionD.src
+          .EXPORT     _init_8c044e38 ; 01bb48.src
+          .EXPORT     _init_8c044e48 ; 01bb48.src
+          .EXPORT     _init_8c044e50 ; 01bb48.src
+          .EXPORT     _init_8c044e90 ; 019e98_main_menu.c, 01bb48.src
           .SECTION     P, CODE, ALIGN=4
 _FUN_8c01bb48:
           MOV.L       R14,@-R15
@@ -1974,4 +1977,130 @@ LP_GEN_73212:
           .DATA.L _var_8c2263a0 ; H'8C01C974
           .DATA.L _var_8c2260a8 ; H'8C01C978
           .DATA.L _init_8c044e38 ; H'8C01C97C
+          .SECTION    C, DATA, ALIGN=4
+_const_8c038460:        ; from defines
+          ;.SDATA      "交通標識クイズがありません"
+          ;.DATA.B     H'00
+          ;.RES.B      1
+          .DATA.B      H'8C, H'F0, H'92, H'CA, H'95, H'57, H'8E, H'AF, H'83, H'4E, H'83, H'43, H'83, H'59, H'82, H'AA
+          .DATA.B      H'82, H'A0, H'82, H'E8, H'82, H'DC, H'82, H'B9, H'82, H'F1, H'00, H'00
+_const_8c03847c:        ; from defines
+          ;.SDATA      "交通標識クイズがあります"
+          ;.DATA.B     H'00
+          ;.RES.B      3
+          .DATA.B      H'8C, H'F0, H'92, H'CA, H'95, H'57, H'8E, H'AF, H'83, H'4E, H'83, H'43, H'83, H'59, H'82, H'AA
+          .DATA.B      H'82, H'A0, H'82, H'E8, H'82, H'DC, H'82, H'B7, H'00, H'00, H'00, H'00
+_const_8c038498:        ; from defines
+          ;.SDATA      "ＶＭをセットして下さい"
+          ;.DATA.B     H'00
+          ;.RES.B      1
+          .DATA.B      H'82, H'75, H'82, H'6C, H'82, H'F0, H'83, H'5A, H'83, H'62, H'83, H'67, H'82, H'B5, H'82, H'C4
+          .DATA.B      H'89, H'BA, H'82, H'B3, H'82, H'A2, H'00, H'00
+_const_8c0384b0:        ; from defines
+          ;.SDATA      "交通標識クイズをダウンロードします<E>よろしいですか？"
+          ;.DATA.B     H'00
+          ;.RES.B      2
+          .DATA.B      H'8C, H'F0, H'92, H'CA, H'95, H'57, H'8E, H'AF, H'83, H'4E, H'83, H'43, H'83, H'59, H'82, H'F0
+          .DATA.B      H'83, H'5F, H'83, H'45, H'83, H'93, H'83, H'8D, H'81, H'5B, H'83, H'68, H'82, H'B5, H'82, H'DC
+          .DATA.B      H'82, H'B7, H'3C, H'45, H'3E, H'82, H'E6, H'82, H'EB, H'82, H'B5, H'82, H'A2, H'82, H'C5, H'82
+          .DATA.B      H'B7, H'82, H'A9, H'81, H'48, H'00, H'00, H'00
+_const_8c0384e8:        ; from defines
+          ;.SDATA      "ポイントを加算します<E>よろしいですか？"
+          ;.DATA.B     H'00
+          .DATA.B      H'83, H'7C, H'83, H'43, H'83, H'93, H'83, H'67, H'82, H'F0, H'89, H'C1, H'8E, H'5A, H'82, H'B5
+          .DATA.B      H'82, H'DC, H'82, H'B7, H'3C, H'45, H'3E, H'82, H'E6, H'82, H'EB, H'82, H'B5, H'82, H'A2, H'82
+          .DATA.B      H'C5, H'82, H'B7, H'82, H'A9, H'81, H'48, H'00
+_const_8c038510:        ; from defines
+          ;.SDATA      "ダウンロード中です<E>ＶＭを絶対に抜かないで下さい"
+          ;.DATA.B     H'00
+          ;.RES.B      2
+          .DATA.B      H'83, H'5F, H'83, H'45, H'83, H'93, H'83, H'8D, H'81, H'5B, H'83, H'68, H'92, H'86, H'82, H'C5
+          .DATA.B      H'82, H'B7, H'3C, H'45, H'3E, H'82, H'75, H'82, H'6C, H'82, H'F0, H'90, H'E2, H'91, H'CE, H'82
+          .DATA.B      H'C9, H'94, H'B2, H'82, H'A9, H'82, H'C8, H'82, H'A2, H'82, H'C5, H'89, H'BA, H'82, H'B3, H'82
+          .DATA.B      H'A2, H'00, H'00, H'00
+_const_8c038544:        ; from defines
+          ;.SDATA      "ダウンロードに失敗しました"
+          ;.DATA.B     H'00
+          ;.RES.B      1
+          .DATA.B      H'83, H'5F, H'83, H'45, H'83, H'93, H'83, H'8D, H'81, H'5B, H'83, H'68, H'82, H'C9, H'8E, H'B8
+          .DATA.B      H'94, H'73, H'82, H'B5, H'82, H'DC, H'82, H'B5, H'82, H'BD, H'00, H'00
+_const_8c038560:        ; from defines
+          ;.SDATA      "空き容量が足りません<E>ダウンロードには４５ブロック必要です"
+          ;.DATA.B     H'00
+          .DATA.B      H'8B, H'F3, H'82, H'AB, H'97, H'65, H'97, H'CA, H'82, H'AA, H'91, H'AB, H'82, H'E8, H'82, H'DC
+          .DATA.B      H'82, H'B9, H'82, H'F1, H'3C, H'45, H'3E, H'83, H'5F, H'83, H'45, H'83, H'93, H'83, H'8D, H'81
+          .DATA.B      H'5B, H'83, H'68, H'82, H'C9, H'82, H'CD, H'82, H'53, H'82, H'54, H'83, H'75, H'83, H'8D, H'83
+          .DATA.B      H'62, H'83, H'4E, H'95, H'4B, H'97, H'76, H'82, H'C5, H'82, H'B7, H'00
+_const_8c03859c:        ; from defines
+          ;.SDATA      "既に実行ファイルが存在します"
+          ;.DATA.B     H'00
+          ;.RES.B      3
+          .DATA.B      H'8A, H'F9, H'82, H'C9, H'8E, H'C0, H'8D, H'73, H'83, H'74, H'83, H'40, H'83, H'43, H'83, H'8B
+          .DATA.B      H'82, H'AA, H'91, H'B6, H'8D, H'DD, H'82, H'B5, H'82, H'DC, H'82, H'B7, H'00, H'00, H'00, H'00
+_const_8c0385bc:        ; from defines
+          ;.SDATA      "ダウンロードが完了しました"
+          ;.DATA.B     H'00
+          ;.RES.B      1
+          .DATA.B      H'83, H'5F, H'83, H'45, H'83, H'93, H'83, H'8D, H'81, H'5B, H'83, H'68, H'82, H'AA, H'8A, H'AE
+          .DATA.B      H'97, H'B9, H'82, H'B5, H'82, H'DC, H'82, H'B5, H'82, H'BD, H'00, H'00
+_const_8c0385d8:        ; from defines
+          ;.SDATA      "ＶＭを絶対に抜かないで下さい"
+          ;.DATA.B     H'00
+          ;.RES.B      3
+          .DATA.B      H'82, H'75, H'82, H'6C, H'82, H'F0, H'90, H'E2, H'91, H'CE, H'82, H'C9, H'94, H'B2, H'82, H'A9
+          .DATA.B      H'82, H'C8, H'82, H'A2, H'82, H'C5, H'89, H'BA, H'82, H'B3, H'82, H'A2, H'00, H'00, H'00, H'00
+_const_8c0385f8:        ; from defines
+          ;.SDATA      "データの書き込みに失敗しました"
+          ;.DATA.B     H'00
+          ;.RES.B      1
+          .DATA.B      H'83, H'66, H'81, H'5B, H'83, H'5E, H'82, H'CC, H'8F, H'91, H'82, H'AB, H'8D, H'9E, H'82, H'DD
+          .DATA.B      H'82, H'C9, H'8E, H'B8, H'94, H'73, H'82, H'B5, H'82, H'DC, H'82, H'B5, H'82, H'BD, H'00, H'00
+_const_8c038618:        ; from defines
+          ;.SDATA      "データの読み込みに失敗しました"
+          ;.DATA.B     H'00
+          ;.RES.B      1
+          .DATA.B      H'83, H'66, H'81, H'5B, H'83, H'5E, H'82, H'CC, H'93, H'C7, H'82, H'DD, H'8D, H'9E, H'82, H'DD
+          .DATA.B      H'82, H'C9, H'8E, H'B8, H'94, H'73, H'82, H'B5, H'82, H'DC, H'82, H'B5, H'82, H'BD, H'00, H'00
+_const_8c038638:        ; from defines
+          ;.SDATA      "ポイントの加算が完了しました"
+          ;.DATA.B     H'00
+          ;.RES.B      3
+          .DATA.B      H'83, H'7C, H'83, H'43, H'83, H'93, H'83, H'67, H'82, H'CC, H'89, H'C1, H'8E, H'5A, H'82, H'AA
+          .DATA.B      H'8A, H'AE, H'97, H'B9, H'82, H'B5, H'82, H'DC, H'82, H'B5, H'82, H'BD, H'00, H'00, H'00, H'00
+_const_8c038658:        ; from defines
+          ;.SDATA      "\SYSTEM"
+          ;.DATA.B     H'00
+          .DATA.B      H'5C, H'53, H'59, H'53, H'54, H'45, H'4D, H'00
+_const_8c038660:        ; from defines
+          ;.SDATA      "PDAQUIZ.bin"
+          ;.DATA.B     H'00
+          .DATA.B      H'50, H'44, H'41, H'51, H'55, H'49, H'5A, H'2E, H'62, H'69, H'6E, H'00
+_const_8c03866c:        ; from defines
+          ;.SDATA      "TOKYOBUS._VM"
+          ;.DATA.B     H'00
+          ;.RES.B      3
+          .DATA.B      H'54, H'4F, H'4B, H'59, H'4F, H'42, H'55, H'53, H'2E, H'5F, H'56, H'4D, H'00, H'00, H'00, H'00
+_const_8c03867c:        ; from defines
+          .DATA.B      H'00, H'00, H'00, H'00
+          .SECTION    D, DATA, ALIGN=4
+_init_8c044e38:        ; from defines
+          .DATA.L      _var_8c2260ac ; ukn
+          .DATA.L      _var_8c2260b8 ; ukn
+          .DATA.L      _var_8c2260c4 ; ukn
+          .DATA.B      H'00, H'00, H'00, H'00
+_init_8c044e48:        ; from defines
+          .DATA.L      _const_8c03866c ; ukn
+          .DATA.L      _const_8c03867c ; ukn
+_init_8c044e50:        ; from defines
+          .DATA.B      H'00, H'00, H'3A, H'43
+_init_8c044e54:        ; from ghidra
+          .DATA.B      H'00, H'00, H'C4, H'42, H'00, H'00, H'80, H'43, H'00, H'00, H'C4, H'42, H'00, H'00, H'A3, H'43
+          .DATA.B      H'00, H'00, H'C4, H'42, H'00, H'00, H'C6, H'43, H'00, H'00, H'C4, H'42, H'00, H'00, H'3A, H'43
+          .DATA.B      H'00, H'00, H'42, H'43, H'00, H'00, H'80, H'43, H'00, H'00, H'42, H'43, H'00, H'00, H'A3, H'43
+          .DATA.B      H'00, H'00, H'42, H'43, H'00, H'00, H'C6, H'43, H'00, H'00, H'42, H'43
+_init_8c044e90:        ; from defines
+          .DATA.L      _const_8c038680 ; ukn
+          .DATA.L      _const_8c038690 ; ukn
+          .DATA.L      _const_8c038698 ; ukn
+          .DATA.B      H'04, H'00, H'00, H'00
           .END

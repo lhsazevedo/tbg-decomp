@@ -7,7 +7,6 @@
           .IMPORT     __modls
           .IMPORT     __divls
           .IMPORT     _var_8c226098
-          .IMPORT     _const_8c0380a4
           .IMPORT     _strcpy
           .IMPORT     _var_exp_8c1ba25c
           .IMPORT     _FUN_8c01c980
@@ -15,7 +14,6 @@
           .IMPORT     _var_8c1ba2e4
           .IMPORT     _memset
           .IMPORT     _njMemCopy
-          .IMPORT     _const_8c0380b0
           .IMPORT     _init_8c04410c
           .IMPORT     _var_8c1ba344
           .IMPORT     _buCalcBackupFileSize
@@ -37,48 +35,25 @@
           .IMPORT     _AsqFreeQueues_8c011f7e
           .IMPORT     _PromptHandleMultiple_8c016c58
           .IMPORT     _var_peripherals_8c1ba35c
-          .IMPORT     _const_8c0380c8
-          .IMPORT     _const_8c0380cc
-          .IMPORT     _const_8c0380f8
-          .IMPORT     _const_8c038128
-          .IMPORT     _const_8c038158
-          .IMPORT     _const_8c03817c
-          .IMPORT     _const_8c0381b0
-          .IMPORT     _const_8c0381dc
-          .IMPORT     _const_8c03820c
-          .IMPORT     _const_8c038248
-          .IMPORT     _const_8c03826c
-          .IMPORT     _const_8c0382a4
           .IMPORT     _var_midiHandles_8c0fcd28
           .IMPORT     _sdMidiPlay
           .IMPORT     _var_gameMode_8c1bb8fc
-          .IMPORT     _const_8c0382d8
-          .IMPORT     _const_8c03830c
           .IMPORT     _VmMenuUnmountVms_8c0194de
           .IMPORT     _push_fadeout_8c022b60
           .IMPORT     _PromptHandleBinary_8c016caa
           .IMPORT     _var_8c1ba2e0
           .IMPORT     _BupLoad_8c014bc6
-          .IMPORT     _const_8c038340
           .IMPORT     _vmsLcd_8c01c8fc
-          .IMPORT     _const_8c03836c
           .IMPORT     _buStat
           .IMPORT     _buGetLastError
           .IMPORT     _buAnalyzeBackupFileImage
           .IMPORT     _var_8c1ba33c
           .IMPORT     _FUN_8c018804
           .IMPORT     _FUN_8c0189fc
-          .IMPORT     _const_8c03838c
-          .IMPORT     _const_8c0383a4
-          .IMPORT     _const_8c0383d0
           .IMPORT     _FUN_8c016182
           .IMPORT     _TitlePushTitle_8c015fd6
           .IMPORT     _menuTextboxText_8c02af1c
-          .IMPORT     _const_8c0383e8
-          .IMPORT     _const_8c038414
           .IMPORT     _BupGetInfo_8c014bba
-          .IMPORT     _const_8c038428
-          .IMPORT     _const_8c038434
           .IMPORT     _syFree
           .IMPORT     _var_8c22606c
           .IMPORT     _FUN_8c0187d0
@@ -87,8 +62,6 @@
           .IMPORT     _push_fadein_8c022a9c
           .IMPORT     _AsqInitQueues_8c011f36
           .IMPORT     _AsqResetQueues_8c011f6c
-          .IMPORT     _const_8c038454
-          .IMPORT     _const_8c03844c
           .IMPORT     _AsqRequestDat_8c011182
           .IMPORT     _RouteLoadSetPvmReady_8c014330
           .IMPORT     _RouteLoadResetPvmReady_8c014322
@@ -100,6 +73,33 @@
           .EXPORT     _FUN_8c01b26c
           .EXPORT     _FUN_8c01b3ac
           .EXPORT     _FUN_8c01ba64
+          .EXPORT     _const_8c0380a4 ; 01b19c.src
+          .EXPORT     _const_8c0380b0 ; 01b19c.src
+          .EXPORT     _const_8c0380c8 ; 01b19c.src
+          .EXPORT     _const_8c0380cc ; 01b19c.src
+          .EXPORT     _const_8c0380f8 ; 01b19c.src
+          .EXPORT     _const_8c038128 ; 01b19c.src
+          .EXPORT     _const_8c038158 ; 01b19c.src
+          .EXPORT     _const_8c03817c ; 01b19c.src
+          .EXPORT     _const_8c0381b0 ; 01b19c.src
+          .EXPORT     _const_8c0381dc ; 01b19c.src
+          .EXPORT     _const_8c03820c ; 01b19c.src
+          .EXPORT     _const_8c038248 ; 01b19c.src
+          .EXPORT     _const_8c03826c ; 01b19c.src
+          .EXPORT     _const_8c0382a4 ; 01b19c.src
+          .EXPORT     _const_8c0382d8 ; 01b19c.src
+          .EXPORT     _const_8c03830c ; 01b19c.src
+          .EXPORT     _const_8c038340 ; 01b19c.src
+          .EXPORT     _const_8c03836c ; 01b19c.src
+          .EXPORT     _const_8c03838c ; 01b19c.src
+          .EXPORT     _const_8c0383a4 ; 01b19c.src
+          .EXPORT     _const_8c0383d0 ; 01b19c.src
+          .EXPORT     _const_8c0383e8 ; 01b19c.src
+          .EXPORT     _const_8c038414 ; 01b19c.src
+          .EXPORT     _const_8c038428 ; 01b19c.src
+          .EXPORT     _const_8c038434 ; 01b19c.src
+          .EXPORT     _const_8c03844c ; 01b19c.src
+          .EXPORT     _const_8c038454 ; 01b19c.src
           .SECTION     P, CODE, ALIGN=4
 _FUN_8c01b19c:
           MOV.W       LP_GEN_63917,R0
@@ -1283,4 +1283,175 @@ LP_GEN_62205:
           .DATA.L _RouteLoadResetPvmReady_8c014322 ; H'8C01BB3C
           .DATA.L _AsqNop_8c011120 ; H'8C01BB40
           .DATA.L _AsqProcessQueues_8c011fe0 ; H'8C01BB44
+          .SECTION    C, DATA, ALIGN=4
+_const_8c0380a4:        ; from defines
+          ;.SDATA      "9/   EXP "
+          ;.DATA.B     H'00
+          ;.RES.B      2
+          .DATA.B      H'39, H'2F, H'20, H'20, H'20, H'45, H'58, H'50, H'20, H'00, H'00, H'00
+_const_8c0380b0:        ; from defines
+          ;.SDATA      "東京バス案内　データ"
+          ;.DATA.B     H'00
+          ;.RES.B      3
+          .DATA.B      H'93, H'8C, H'8B, H'9E, H'83, H'6F, H'83, H'58, H'88, H'C4, H'93, H'E0, H'81, H'40, H'83, H'66
+          .DATA.B      H'81, H'5B, H'83, H'5E, H'00, H'00, H'00, H'00
+_const_8c0380c8:        ; from defines
+          .DATA.B      H'00, H'00, H'00, H'00
+_const_8c0380cc:        ; from defines
+          ;.SDATA      "ファイルをロードします。<E>よろしいですか？"
+          ;.DATA.B     H'00
+          .DATA.B      H'83, H'74, H'83, H'40, H'83, H'43, H'83, H'8B, H'82, H'F0, H'83, H'8D, H'81, H'5B, H'83, H'68
+          .DATA.B      H'82, H'B5, H'82, H'DC, H'82, H'B7, H'81, H'42, H'3C, H'45, H'3E, H'82, H'E6, H'82, H'EB, H'82
+          .DATA.B      H'B5, H'82, H'A2, H'82, H'C5, H'82, H'B7, H'82, H'A9, H'81, H'48, H'00
+_const_8c0380f8:        ; from defines
+          ;.SDATA      "設定されたファイルが無いため<E>ロードできません"
+          ;.DATA.B     H'00
+          .DATA.B      H'90, H'DD, H'92, H'E8, H'82, H'B3, H'82, H'EA, H'82, H'BD, H'83, H'74, H'83, H'40, H'83, H'43
+          .DATA.B      H'83, H'8B, H'82, H'AA, H'96, H'B3, H'82, H'A2, H'82, H'BD, H'82, H'DF, H'3C, H'45, H'3E, H'83
+          .DATA.B      H'8D, H'81, H'5B, H'83, H'68, H'82, H'C5, H'82, H'AB, H'82, H'DC, H'82, H'B9, H'82, H'F1, H'00
+_const_8c038128:        ; from defines
+          ;.SDATA      "設定されたポートにＶＭが<E>接続されていません"
+          ;.DATA.B     H'00
+          ;.RES.B      2
+          .DATA.B      H'90, H'DD, H'92, H'E8, H'82, H'B3, H'82, H'EA, H'82, H'BD, H'83, H'7C, H'81, H'5B, H'83, H'67
+          .DATA.B      H'82, H'C9, H'82, H'75, H'82, H'6C, H'82, H'AA, H'3C, H'45, H'3E, H'90, H'DA, H'91, H'B1, H'82
+          .DATA.B      H'B3, H'82, H'EA, H'82, H'C4, H'82, H'A2, H'82, H'DC, H'82, H'B9, H'82, H'F1, H'00, H'00, H'00
+_const_8c038158:        ; from defines
+          ;.SDATA      "このＶＭはロードできない状態です"
+          ;.DATA.B     H'00
+          ;.RES.B      3
+          .DATA.B      H'82, H'B1, H'82, H'CC, H'82, H'75, H'82, H'6C, H'82, H'CD, H'83, H'8D, H'81, H'5B, H'83, H'68
+          .DATA.B      H'82, H'C5, H'82, H'AB, H'82, H'C8, H'82, H'A2, H'8F, H'F3, H'91, H'D4, H'82, H'C5, H'82, H'B7
+          .DATA.B      H'00, H'00, H'00, H'00
+_const_8c03817c:        ; from defines
+          ;.SDATA      "ファイルが設定されていないため<E>ロードできません"
+          ;.DATA.B     H'00
+          ;.RES.B      2
+          .DATA.B      H'83, H'74, H'83, H'40, H'83, H'43, H'83, H'8B, H'82, H'AA, H'90, H'DD, H'92, H'E8, H'82, H'B3
+          .DATA.B      H'82, H'EA, H'82, H'C4, H'82, H'A2, H'82, H'C8, H'82, H'A2, H'82, H'BD, H'82, H'DF, H'3C, H'45
+          .DATA.B      H'3E, H'83, H'8D, H'81, H'5B, H'83, H'68, H'82, H'C5, H'82, H'AB, H'82, H'DC, H'82, H'B9, H'82
+          .DATA.B      H'F1, H'00, H'00, H'00
+_const_8c0381b0:        ; from defines
+          ;.SDATA      "ファイルを作成します。<E>よろしいですか？"
+          ;.DATA.B     H'00
+          ;.RES.B      2
+          .DATA.B      H'83, H'74, H'83, H'40, H'83, H'43, H'83, H'8B, H'82, H'F0, H'8D, H'EC, H'90, H'AC, H'82, H'B5
+          .DATA.B      H'82, H'DC, H'82, H'B7, H'81, H'42, H'3C, H'45, H'3E, H'82, H'E6, H'82, H'EB, H'82, H'B5, H'82
+          .DATA.B      H'A2, H'82, H'C5, H'82, H'B7, H'82, H'A9, H'81, H'48, H'00, H'00, H'00
+_const_8c0381dc:        ; from defines
+          ;.SDATA      "ファイルが上書きされます。<E>よろしいですか？"
+          ;.DATA.B     H'00
+          ;.RES.B      2
+          .DATA.B      H'83, H'74, H'83, H'40, H'83, H'43, H'83, H'8B, H'82, H'AA, H'8F, H'E3, H'8F, H'91, H'82, H'AB
+          .DATA.B      H'82, H'B3, H'82, H'EA, H'82, H'DC, H'82, H'B7, H'81, H'42, H'3C, H'45, H'3E, H'82, H'E6, H'82
+          .DATA.B      H'EB, H'82, H'B5, H'82, H'A2, H'82, H'C5, H'82, H'B7, H'82, H'A9, H'81, H'48, H'00, H'00, H'00
+_const_8c03820c:        ; from defines
+          ;.SDATA      "空きブロックが不足しています<E>セーブには３ブロック必要です"
+          ;.DATA.B     H'00
+          .DATA.B      H'8B, H'F3, H'82, H'AB, H'83, H'75, H'83, H'8D, H'83, H'62, H'83, H'4E, H'82, H'AA, H'95, H'73
+          .DATA.B      H'91, H'AB, H'82, H'B5, H'82, H'C4, H'82, H'A2, H'82, H'DC, H'82, H'B7, H'3C, H'45, H'3E, H'83
+          .DATA.B      H'5A, H'81, H'5B, H'83, H'75, H'82, H'C9, H'82, H'CD, H'82, H'52, H'83, H'75, H'83, H'8D, H'83
+          .DATA.B      H'62, H'83, H'4E, H'95, H'4B, H'97, H'76, H'82, H'C5, H'82, H'B7, H'00
+_const_8c038248:        ; from defines
+          ;.SDATA      "このＶＭはセーブできない状態です"
+          ;.DATA.B     H'00
+          ;.RES.B      3
+          .DATA.B      H'82, H'B1, H'82, H'CC, H'82, H'75, H'82, H'6C, H'82, H'CD, H'83, H'5A, H'81, H'5B, H'83, H'75
+          .DATA.B      H'82, H'C5, H'82, H'AB, H'82, H'C8, H'82, H'A2, H'8F, H'F3, H'91, H'D4, H'82, H'C5, H'82, H'B7
+          .DATA.B      H'00, H'00, H'00, H'00
+_const_8c03826c:        ; from defines
+          ;.SDATA      "ＶＭが接続されていません<E>セーブには３ブロック必要です"
+          ;.DATA.B     H'00
+          .DATA.B      H'82, H'75, H'82, H'6C, H'82, H'AA, H'90, H'DA, H'91, H'B1, H'82, H'B3, H'82, H'EA, H'82, H'C4
+          .DATA.B      H'82, H'A2, H'82, H'DC, H'82, H'B9, H'82, H'F1, H'3C, H'45, H'3E, H'83, H'5A, H'81, H'5B, H'83
+          .DATA.B      H'75, H'82, H'C9, H'82, H'CD, H'82, H'52, H'83, H'75, H'83, H'8D, H'83, H'62, H'83, H'4E, H'95
+          .DATA.B      H'4B, H'97, H'76, H'82, H'C5, H'82, H'B7, H'00
+_const_8c0382a4:        ; from defines
+          ;.SDATA      "ファイルが設定されていないため<E>セーブできません"
+          ;.DATA.B     H'00
+          ;.RES.B      2
+          .DATA.B      H'83, H'74, H'83, H'40, H'83, H'43, H'83, H'8B, H'82, H'AA, H'90, H'DD, H'92, H'E8, H'82, H'B3
+          .DATA.B      H'82, H'EA, H'82, H'C4, H'82, H'A2, H'82, H'C8, H'82, H'A2, H'82, H'BD, H'82, H'DF, H'3C, H'45
+          .DATA.B      H'3E, H'83, H'5A, H'81, H'5B, H'83, H'75, H'82, H'C5, H'82, H'AB, H'82, H'DC, H'82, H'B9, H'82
+          .DATA.B      H'F1, H'00, H'00, H'00
+_const_8c0382d8:        ; from defines
+          ;.SDATA      "ストーリーモードを終了します。<E>よろしいですか？"
+          ;.DATA.B     H'00
+          ;.RES.B      2
+          .DATA.B      H'83, H'58, H'83, H'67, H'81, H'5B, H'83, H'8A, H'81, H'5B, H'83, H'82, H'81, H'5B, H'83, H'68
+          .DATA.B      H'82, H'F0, H'8F, H'49, H'97, H'B9, H'82, H'B5, H'82, H'DC, H'82, H'B7, H'81, H'42, H'3C, H'45
+          .DATA.B      H'3E, H'82, H'E6, H'82, H'EB, H'82, H'B5, H'82, H'A2, H'82, H'C5, H'82, H'B7, H'82, H'A9, H'81
+          .DATA.B      H'48, H'00, H'00, H'00
+_const_8c03830c:        ; from defines
+          ;.SDATA      "フリーランモードを終了します。<E>よろしいですか？"
+          ;.DATA.B     H'00
+          ;.RES.B      2
+          .DATA.B      H'83, H'74, H'83, H'8A, H'81, H'5B, H'83, H'89, H'83, H'93, H'83, H'82, H'81, H'5B, H'83, H'68
+          .DATA.B      H'82, H'F0, H'8F, H'49, H'97, H'B9, H'82, H'B5, H'82, H'DC, H'82, H'B7, H'81, H'42, H'3C, H'45
+          .DATA.B      H'3E, H'82, H'E6, H'82, H'EB, H'82, H'B5, H'82, H'A2, H'82, H'C5, H'82, H'B7, H'82, H'A9, H'81
+          .DATA.B      H'48, H'00, H'00, H'00
+_const_8c038340:        ; from defines
+          ;.SDATA      "ロード実行中です<E>電源を切らないで下さい"
+          ;.DATA.B     H'00
+          ;.RES.B      2
+          .DATA.B      H'83, H'8D, H'81, H'5B, H'83, H'68, H'8E, H'C0, H'8D, H'73, H'92, H'86, H'82, H'C5, H'82, H'B7
+          .DATA.B      H'3C, H'45, H'3E, H'93, H'64, H'8C, H'B9, H'82, H'F0, H'90, H'D8, H'82, H'E7, H'82, H'C8, H'82
+          .DATA.B      H'A2, H'82, H'C5, H'89, H'BA, H'82, H'B3, H'82, H'A2, H'00, H'00, H'00
+_const_8c03836c:        ; from defines
+          ;.SDATA      "ロードするファイルがありません"
+          ;.DATA.B     H'00
+          ;.RES.B      1
+          .DATA.B      H'83, H'8D, H'81, H'5B, H'83, H'68, H'82, H'B7, H'82, H'E9, H'83, H'74, H'83, H'40, H'83, H'43
+          .DATA.B      H'83, H'8B, H'82, H'AA, H'82, H'A0, H'82, H'E8, H'82, H'DC, H'82, H'B9, H'82, H'F1, H'00, H'00
+_const_8c03838c:        ; from defines
+          ;.SDATA      "ロードが終了しました"
+          ;.DATA.B     H'00
+          ;.RES.B      3
+          .DATA.B      H'83, H'8D, H'81, H'5B, H'83, H'68, H'82, H'AA, H'8F, H'49, H'97, H'B9, H'82, H'B5, H'82, H'DC
+          .DATA.B      H'82, H'B5, H'82, H'BD, H'00, H'00, H'00, H'00
+_const_8c0383a4:        ; from defines
+          ;.SDATA      "ロードが失敗しました<E>ゲームを中断します"
+          ;.DATA.B     H'00
+          ;.RES.B      2
+          .DATA.B      H'83, H'8D, H'81, H'5B, H'83, H'68, H'82, H'AA, H'8E, H'B8, H'94, H'73, H'82, H'B5, H'82, H'DC
+          .DATA.B      H'82, H'B5, H'82, H'BD, H'3C, H'45, H'3E, H'83, H'51, H'81, H'5B, H'83, H'80, H'82, H'F0, H'92
+          .DATA.B      H'86, H'92, H'66, H'82, H'B5, H'82, H'DC, H'82, H'B7, H'00, H'00, H'00
+_const_8c0383d0:        ; from defines
+          ;.SDATA      "ロードが失敗しました"
+          ;.DATA.B     H'00
+          ;.RES.B      3
+          .DATA.B      H'83, H'8D, H'81, H'5B, H'83, H'68, H'82, H'AA, H'8E, H'B8, H'94, H'73, H'82, H'B5, H'82, H'DC
+          .DATA.B      H'82, H'B5, H'82, H'BD, H'00, H'00, H'00, H'00
+_const_8c0383e8:        ; from defines
+          ;.SDATA      "セーブ実行中です<E>電源を切らないで下さい"
+          ;.DATA.B     H'00
+          ;.RES.B      2
+          .DATA.B      H'83, H'5A, H'81, H'5B, H'83, H'75, H'8E, H'C0, H'8D, H'73, H'92, H'86, H'82, H'C5, H'82, H'B7
+          .DATA.B      H'3C, H'45, H'3E, H'93, H'64, H'8C, H'B9, H'82, H'F0, H'90, H'D8, H'82, H'E7, H'82, H'C8, H'82
+          .DATA.B      H'A2, H'82, H'C5, H'89, H'BA, H'82, H'B3, H'82, H'A2, H'00, H'00, H'00
+_const_8c038414:        ; from defines
+          ;.SDATA      "セーブできません"
+          ;.DATA.B     H'00
+          ;.RES.B      3
+          .DATA.B      H'83, H'5A, H'81, H'5B, H'83, H'75, H'82, H'C5, H'82, H'AB, H'82, H'DC, H'82, H'B9, H'82, H'F1
+          .DATA.B      H'00, H'00, H'00, H'00
+_const_8c038428:        ; from defines
+          ;.SDATA      "セーブ終了"
+          ;.DATA.B     H'00
+          ;.RES.B      1
+          .DATA.B      H'83, H'5A, H'81, H'5B, H'83, H'75, H'8F, H'49, H'97, H'B9, H'00, H'00
+_const_8c038434:        ; from defines
+          ;.SDATA      "セーブが失敗しました"
+          ;.DATA.B     H'00
+          ;.RES.B      3
+          .DATA.B      H'83, H'5A, H'81, H'5B, H'83, H'75, H'82, H'AA, H'8E, H'B8, H'94, H'73, H'82, H'B5, H'82, H'DC
+          .DATA.B      H'82, H'B5, H'82, H'BD, H'00, H'00, H'00, H'00
+_const_8c03844c:        ; from defines
+          ;.SDATA      "\SYSTEM"
+          ;.DATA.B     H'00
+          .DATA.B      H'5C, H'53, H'59, H'53, H'54, H'45, H'4D, H'00
+_const_8c038454:        ; from defines
+          ;.SDATA      "bus_mem.VMI"
+          ;.DATA.B     H'00
+          .DATA.B      H'62, H'75, H'73, H'5F, H'6D, H'65, H'6D, H'2E, H'56, H'4D, H'49, H'00
           .END

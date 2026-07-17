@@ -7,11 +7,9 @@
           .IMPORT     _var_isFading_8c226568
           .IMPORT     _FUN_8c018862
           .IMPORT     _push_fadeout_8c022b60
-          .IMPORT     _init_8c044de0
           .IMPORT     _TxtDrawSprite_8c014f54
           .IMPORT     _TaskSetAction_8c014b3e
           .IMPORT     _push_fadein_8c022a9c
-          .IMPORT     _init_8c044de8
           .IMPORT     _njDrawPolygon
           .IMPORT     _var_activeCtrlType_8c157a70
           .IMPORT     _var_progress_8c1ba1cc
@@ -32,7 +30,6 @@
           .IMPORT     _FUN_8c0106d2
           .IMPORT     _var_8c226088
           .IMPORT     _FUN_8c010720
-          .IMPORT     _init_8c044e28
           .IMPORT     _MainMenuSwitchFromTask_8c01a09a
           .IMPORT     _var_8c1ba290
           .EXPORT     _FUN_8c01a148
@@ -2207,4 +2204,24 @@ LP_GEN_51773:
           .DATA.L _FUN_8c01b00a ; H'8C01B190
           .DATA.L _var_8c1ba290 ; H'8C01B194
           .DATA.L _var_8c226074 ; H'8C01B198
+          .SECTION    D, DATA, ALIGN=4
+_init_8c044de0:        ; from defines
+          .DATA.B      H'03, H'02, H'04, H'02, H'02, H'00, H'00, H'00
+_init_8c044de8:        ; from defines
+          .DATA.B      H'00, H'00, H'00, H'00
+_init_8c044dec:        ; from ghidra
+          .DATA.B      H'00, H'00, H'00, H'00, H'FB, H'91, H'53, H'3F, H'00, H'F4, H'F4, H'C4
+_init_8c044df8:        ; from ghidra
+          .DATA.B      H'00, H'00, H'00, H'00
+_init_8c044dfc:        ; from ghidra
+          .DATA.B      H'00, H'00, H'00, H'00, H'FB, H'91, H'53, H'3F, H'00, H'F4, H'F4, H'C4, H'00, H'00, H'10, H'44
+_init_8c044e0c:        ; from ghidra
+          .DATA.B      H'00, H'00, H'00, H'00, H'FB, H'91, H'53, H'3F, H'00, H'00, H'F4, H'C4, H'00, H'00, H'10, H'44
+_init_8c044e1c:        ; from ghidra
+          .DATA.B      H'00, H'00, H'00, H'00, H'FB, H'91, H'53, H'3F, H'00, H'00, H'F4, H'C4
+_init_8c044e28:        ; from defines
+          .DATA.L      _FUN_8c01a3c0 ; ukn
+          .DATA.L      _FUN_8c01a89c ; ukn
+          .DATA.L      _FUN_8c01afd8 ; ukn
+          .DATA.L      _MainMenuSwitchFromTask_8c01a09a ; ukn
           .END

@@ -1,14 +1,33 @@
 ; 8c01c980
+          .IMPORT     _const_8c0386a0
+          .IMPORT     _const_8c0386b4
+          .IMPORT     _const_8c0386c0
+          .IMPORT     _const_8c0386cc
+          .IMPORT     _const_8c0386e0
+          .IMPORT     _const_8c0386ec
+          .IMPORT     _const_8c0386f8
+          .IMPORT     _const_8c03870c
+          .IMPORT     _const_8c038718
+          .IMPORT     _const_8c038724
+          .IMPORT     _const_8c038738
+          .IMPORT     _const_8c038744
+          .IMPORT     _const_8c038750
+          .IMPORT     _const_8c038764
+          .IMPORT     _const_8c038770
+          .IMPORT     _const_8c03877c
+          .IMPORT     _const_8c038790
+          .IMPORT     _const_8c03879c
+          .IMPORT     _const_8c0387a8
+          .IMPORT     _const_8c0387bc
+          .IMPORT     _const_8c0387c8
           .IMPORT     _var_8c2263a4
           .IMPORT     _var_8c2263b4
-          .IMPORT     _init_8c044ffc
           .IMPORT     _EventHasProgressFlagAlt_8c02aff0
           .IMPORT     _TxtDrawSprite_8c014f54
           .IMPORT     _var_menuState_8c1bc7a8
           .IMPORT     __divls
           .IMPORT     __modls
           .IMPORT     _var_resourceGroup_8c2263a8
-          .IMPORT     _init_8c045148
           .IMPORT     _var_currentSysResGroupInfo_8c225fb0
           .IMPORT     _CourseMenuFreeResourceGroup_8c0185c4
           .IMPORT     _var_tex_8c157af8
@@ -34,13 +53,15 @@
           .IMPORT     _CourseMenuFUN_8c017ef2
           .IMPORT     _njSetBackColor
           .IMPORT     _TaskSetAction_8c014b3e
-          .IMPORT     _init_8c0450d8
           .EXPORT     _FUN_8c01c980
           .EXPORT     _FUN_8c01c9f2
           .EXPORT     _FUN_8c01cac8
           .EXPORT     _FUN_8c01cbec
           .EXPORT     _FUN_8c01ccec
           .EXPORT     _FUN_8c01d1c4
+          .EXPORT     _init_8c044ffc ; 01c980.src
+          .EXPORT     _init_8c0450d8 ; 01c980.src
+          .EXPORT     _init_8c045148 ; 01c980.src
           .SECTION     P, CODE, ALIGN=4
 _FUN_8c01c980:
           MOV.L       R14,@-R15
@@ -1210,4 +1231,221 @@ LP_GEN_13275:
           .DATA.L _RouteLoadResetPvmReady_8c014322 ; H'8C01D284
           .DATA.L _AsqNop_8c011120 ; H'8C01D288
           .DATA.L _AsqProcessQueues_8c011fe0 ; H'8C01D28C
+          .SECTION    D, DATA, ALIGN=4
+_init_8c044ea0:        ; from ghidra
+          .DATA.B      H'32
+_init_8c044ea1:        ; from ghidra
+          .DATA.B      H'33, H'7C, H'34, H'7D, H'35, H'7E, H'3B, H'FF
+_init_8c044ea9:        ; from ghidra
+          .DATA.B      H'32, H'33, H'34, H'35, H'3B, H'FF
+_init_8c044eaf:        ; aggressive search
+          .DATA.B      H'36, H'37, H'38, H'3A, H'3B, H'8E, H'8F, H'FF
+_init_8c044eb7:        ; aggressive search
+          .DATA.B      H'39, H'36, H'37, H'38, H'FF
+_init_8c044ebc:        ; aggressive search
+          .DATA.B      H'3C, H'3D, H'3E, H'FF
+_init_8c044ec0:        ; aggressive search
+          .DATA.B      H'3C, H'3D, H'3E, H'FF
+_init_8c044ec4:        ; aggressive search
+          .DATA.B      H'3C, H'3D, H'3E, H'FF
+_init_8c044ec8:        ; aggressive search
+          .DATA.B      H'3F, H'71, H'5B, H'82, H'83, H'5C, H'45, H'84, H'80, H'91, H'81, H'28, H'8D, H'10, H'11, H'5E
+          .DATA.B      H'27, H'FF
+_init_8c044eda:        ; aggressive search
+          .DATA.B      H'40, H'41, H'73, H'85, H'12, H'42, H'4D, H'74, H'13, H'1E, H'1C, H'29, H'43, H'4E, H'44, H'45
+          .DATA.B      H'86, H'72, H'14, H'20, H'21, H'60, H'5C, H'4F, H'2A, H'87, H'15, H'1F, H'10, H'11, H'61, H'5E
+          .DATA.B      H'92, H'8F, H'2B, H'27, H'FF
+_init_8c044eff:        ; aggressive search
+          .DATA.B      H'40, H'41, H'73, H'85, H'12, H'42, H'4D, H'74, H'13, H'1E, H'1C, H'29, H'43, H'4E, H'44, H'45
+          .DATA.B      H'86, H'72, H'14, H'20, H'21, H'60, H'5C, H'4F, H'2A, H'87, H'15, H'1F, H'10, H'11, H'61, H'5E
+          .DATA.B      H'92, H'8F, H'2B, H'27, H'FF
+_init_8c044f24:        ; aggressive search
+          .DATA.B      H'46, H'47, H'48, H'FF
+_init_8c044f28:        ; aggressive search
+          .DATA.B      H'46, H'47, H'48, H'FF
+_init_8c044f2c:        ; aggressive search
+          .DATA.B      H'46, H'47, H'48, H'FF
+_init_8c044f30:        ; aggressive search
+          .DATA.B      H'50, H'51, H'52, H'53, H'54, H'55, H'FF
+_init_8c044f37:        ; aggressive search
+          .DATA.B      H'50, H'53, H'55, H'FF
+_init_8c044f3b:        ; aggressive search
+          .DATA.B      H'51, H'5B, H'56, H'54, H'55, H'FF
+_init_8c044f41:        ; aggressive search
+          .DATA.B      H'52, H'55, H'FF
+_init_8c044f44:        ; aggressive search
+          .DATA.B      H'58, H'57, H'5A, H'FF
+_init_8c044f48:        ; aggressive search
+          .DATA.B      H'58, H'57, H'5A, H'FF
+_init_8c044f4c:        ; aggressive search
+          .DATA.B      H'49, H'4A, H'4B, H'4C, H'FF
+_init_8c044f51:        ; aggressive search
+          .DATA.B      H'00, H'01, H'02, H'03, H'FF
+_init_8c044f56:        ; aggressive search
+          .DATA.B      H'00, H'01, H'02, H'03, H'FF
+_init_8c044f5b:        ; aggressive search
+          .DATA.B      H'04, H'05, H'06, H'FF
+_init_8c044f5f:        ; aggressive search
+          .DATA.B      H'04, H'05, H'06, H'FF
+_init_8c044f63:        ; aggressive search
+          .DATA.B      H'07, H'08, H'0D, H'09, H'0A, H'0F, H'24, H'FF
+_init_8c044f6b:        ; aggressive search
+          .DATA.B      H'07, H'08, H'0D, H'09, H'0A, H'0F, H'24, H'FF
+_init_8c044f73:        ; aggressive search
+          .DATA.B      H'0B, H'0C, H'0D, H'0E, H'24, H'FF
+_init_8c044f79:        ; aggressive search
+          .DATA.B      H'0B, H'0C, H'0D, H'FF
+_init_8c044f7d:        ; aggressive search
+          .DATA.B      H'16, H'17, H'18, H'19, H'FF
+_init_8c044f82:        ; aggressive search
+          .DATA.B      H'16, H'17, H'18, H'19, H'FF
+_init_8c044f87:        ; aggressive search
+          .DATA.B      H'1C, H'25, H'1D, H'26, H'27, H'FF
+_init_8c044f8d:        ; aggressive search
+          .DATA.B      H'1C, H'25, H'1D, H'26, H'FF
+_init_8c044f92:        ; aggressive search
+          .DATA.B      H'1A, H'22, H'1B, H'FF
+_init_8c044f96:        ; aggressive search
+          .DATA.B      H'1A, H'22, H'1B, H'FF
+_init_8c044f9a:        ; aggressive search
+          .DATA.B      H'1A, H'22, H'1B, H'FF
+_init_8c044f9e:        ; aggressive search
+          .DATA.B      H'2C, H'22, H'FF
+_init_8c044fa1:        ; aggressive search
+          .DATA.B      H'2C, H'22, H'FF
+_init_8c044fa4:        ; aggressive search
+          .DATA.B      H'64, H'65, H'8E, H'66, H'68, H'8F, H'FF
+_init_8c044fab:        ; aggressive search
+          .DATA.B      H'64, H'65, H'66, H'68, H'FF
+_init_8c044fb0:        ; aggressive search
+          .DATA.B      H'64, H'65, H'66, H'68, H'FF
+_init_8c044fb5:        ; aggressive search
+          .DATA.B      H'6E, H'6F, H'67, H'70, H'FF
+_init_8c044fba:        ; aggressive search
+          .DATA.B      H'6E, H'7F, H'83, H'8C, H'6F, H'80, H'81, H'8D, H'67, H'70, H'FF
+_init_8c044fc5:        ; aggressive search
+          .DATA.B      H'69, H'6A, H'6B, H'FF
+_init_8c044fc9:        ; aggressive search
+          .DATA.B      H'69, H'6A, H'6B, H'FF
+_init_8c044fcd:        ; aggressive search
+          .DATA.B      H'6C, H'6D, H'FF
+_init_8c044fd0:        ; aggressive search
+          .DATA.B      H'6C, H'6D, H'FF
+_init_8c044fd3:        ; aggressive search
+          .DATA.B      H'6C, H'6D, H'FF
+_init_8c044fd6:        ; aggressive search
+          .DATA.B      H'6C, H'6D, H'FF
+_init_8c044fd9:        ; aggressive search
+          .DATA.B      H'75, H'76, H'77, H'78, H'FF
+_init_8c044fde:        ; aggressive search
+          .DATA.B      H'75, H'76, H'77, H'78, H'FF
+_init_8c044fe3:        ; aggressive search
+          .DATA.B      H'75, H'76, H'77, H'78, H'FF
+_init_8c044fe8:        ; aggressive search
+          .DATA.B      H'75, H'76, H'77, H'78, H'FF
+_init_8c044fed:        ; aggressive search
+          .DATA.B      H'79, H'7A, H'7B, H'FF
+_init_8c044ff1:        ; aggressive search
+          .DATA.B      H'79, H'7A, H'7B, H'FF
+_init_8c044ff5:        ; aggressive search
+          .DATA.B      H'88, H'89, H'8A, H'8B, H'FF, H'00, H'00
+_init_8c044ffc:        ; from defines
+          .DATA.L      _init_8c044ea0
+_init_8c045000:        ; from ghidra
+          .DATA.L      _init_8c044ea9
+          .DATA.L      _init_8c044eaf
+          .DATA.L      _init_8c044eb7
+          .DATA.L      _init_8c044ebc
+          .DATA.L      _init_8c044ec0
+          .DATA.L      _init_8c044ec4
+          .DATA.L      _init_8c044f24
+          .DATA.L      _init_8c044f28
+          .DATA.L      _init_8c044f2c
+          .DATA.L      _init_8c044f4c
+          .DATA.L      _init_8c044f30
+          .DATA.L      _init_8c044f37
+          .DATA.L      _init_8c044f3b
+          .DATA.L      _init_8c044f41
+          .DATA.L      _init_8c044f44
+          .DATA.L      _init_8c044f48
+          .DATA.L      _init_8c044f51
+          .DATA.L      _init_8c044f56
+          .DATA.L      _init_8c044f5b
+          .DATA.L      _init_8c044f5f
+          .DATA.L      _init_8c044f63
+          .DATA.L      _init_8c044f6b
+          .DATA.L      _init_8c044f73
+          .DATA.L      _init_8c044f79
+          .DATA.L      _init_8c044f7d
+          .DATA.L      _init_8c044f82
+          .DATA.L      _init_8c044f92
+          .DATA.L      _init_8c044f96
+          .DATA.L      _init_8c044f9a
+          .DATA.L      _init_8c044f87
+          .DATA.L      _init_8c044f8d
+          .DATA.L      _init_8c044f9e
+          .DATA.L      _init_8c044fa1
+          .DATA.L      _init_8c044fa4
+          .DATA.L      _init_8c044fab
+          .DATA.L      _init_8c044fb0
+          .DATA.L      _init_8c044fc5
+          .DATA.L      _init_8c044fc9
+          .DATA.L      _init_8c044fcd
+          .DATA.L      _init_8c044fd0
+          .DATA.L      _init_8c044fd3
+          .DATA.L      _init_8c044fd6
+          .DATA.L      _init_8c044fb5
+          .DATA.L      _init_8c044fba
+          .DATA.L      _init_8c044fd9
+          .DATA.L      _init_8c044fde
+          .DATA.L      _init_8c044fe3
+          .DATA.L      _init_8c044fe8
+          .DATA.L      _init_8c044fed
+          .DATA.L      _init_8c044ff1
+          .DATA.L      _init_8c044ff5
+          .DATA.L      _init_8c044eda
+          .DATA.L      _init_8c044eff
+          .DATA.L      _init_8c044ec8
+_init_8c0450d8:        ; from defines
+          .DATA.L      _const_8c0386a0 ; ukn
+          .DATA.L      _const_8c0386b4 ; ukn
+          .DATA.L      _const_8c0386c0 ; ukn
+          .DATA.B      H'02, H'00, H'00, H'00
+_init_8c0450e8:        ; from ghidra
+          .DATA.L      _const_8c0386cc ; ukn
+          .DATA.L      _const_8c0386e0 ; ukn
+          .DATA.L      _const_8c0386ec ; ukn
+          .DATA.B      H'04, H'00, H'00, H'00
+_init_8c0450f8:        ; aggressive search
+          .DATA.L      _const_8c0386f8 ; ukn
+          .DATA.L      _const_8c03870c ; ukn
+          .DATA.L      _const_8c038718 ; ukn
+          .DATA.B      H'04, H'00, H'00, H'00
+_init_8c045108:        ; aggressive search
+          .DATA.L      _const_8c038724 ; ukn
+          .DATA.L      _const_8c038738 ; ukn
+          .DATA.L      _const_8c038744 ; ukn
+          .DATA.B      H'04, H'00, H'00, H'00
+_init_8c045118:        ; aggressive search
+          .DATA.L      _const_8c038750 ; ukn
+          .DATA.L      _const_8c038764 ; ukn
+          .DATA.L      _const_8c038770 ; ukn
+          .DATA.B      H'04, H'00, H'00, H'00
+_init_8c045128:        ; aggressive search
+          .DATA.L      _const_8c03877c ; ukn
+          .DATA.L      _const_8c038790 ; ukn
+          .DATA.L      _const_8c03879c ; ukn
+          .DATA.B      H'04, H'00, H'00, H'00
+_init_8c045138:        ; aggressive search
+          .DATA.L      _const_8c0387a8 ; ukn
+          .DATA.L      _const_8c0387bc ; ukn
+          .DATA.L      _const_8c0387c8 ; ukn
+          .DATA.B      H'04, H'00, H'00, H'00
+_init_8c045148:        ; from defines
+          .DATA.L      _init_8c0450e8
+          .DATA.L      _init_8c0450f8
+          .DATA.L      _init_8c045108
+          .DATA.L      _init_8c045118
+          .DATA.L      _init_8c045128
+          .DATA.L      _init_8c045138
           .END
