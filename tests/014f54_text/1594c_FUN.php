@@ -14,7 +14,7 @@ return new class extends TestCase {
         $this->initUint32($var_demoBuf_8c1ba3c4 + 3 * 4, 0xcafe0003);
         $this->initUint32($this->addressOf('_var_demoBuf_8c1ba3c4'), $var_demoBuf_8c1ba3c4);
 
-        $this->shouldCall('_isPvmReady_8c01432a')->andReturn(1);
+        $this->shouldCall('_RouteLoadIsPvmReady_8c01432a')->andReturn(1);
 
         $this->shouldWriteTo('_var_currentCourse_8c1bb868', 0xcafe0001);
         $this->shouldWriteTo('_var_inputMapSel_8c1bb8c8', 0xcafe0002);
@@ -33,7 +33,7 @@ return new class extends TestCase {
             );
         $this->shouldCall('_syFree')->with($var_demoBuf_8c1ba3c4);
         $this->shouldWriteLongTo('_var_demoBuf_8c1ba3c4', -1);
-        $this->shouldCall('_freeTask_8c014b66')->with(0xbeba1337);
+        $this->shouldCall('_TaskFree_8c014b66')->with(0xbeba1337);
         $this->shouldCall('_FUN_8c01328c');
 
         $this->singleCall('_FUN_8c01594c')
@@ -43,7 +43,7 @@ return new class extends TestCase {
 
     public function test_skip()
     {
-        $this->shouldCall('_isPvmReady_8c01432a')->andReturn(0);
+        $this->shouldCall('_RouteLoadIsPvmReady_8c01432a')->andReturn(0);
 
         $this->singleCall('_FUN_8c01594c')
             ->with()
@@ -53,7 +53,7 @@ return new class extends TestCase {
     protected function resolveSymbols(): void
     {
         // Functions
-        $this->setSize('_isPvmReady_8c01432a', 4);
+        $this->setSize('_RouteLoadIsPvmReady_8c01432a', 4);
         // $this->setSize('_strlen', 4);
     }
 

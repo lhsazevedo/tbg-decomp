@@ -1,7 +1,7 @@
 MAKEFLAGS += --no-builtin-rules
 .SUFFIXES:
 
-ASMSH_FLAGS=-define=MATCHING=1 -debug=d -cpu=sh4 -endian=little -sjis
+ASMSH_FLAGS=-define=MATCHING=1 -debug -cpu=sh4 -endian=little -sjis
 BUILD_DIR=build
 OUTPUT_DIR=$(BUILD_DIR)/output_matching
 SHA1_CHECKSUM=a6df9e0de39b2d11e9339aef915d20e35763ec81
@@ -16,8 +16,8 @@ SRCS = \
 	src/asm/decompiled/011120_asset_queues.src \
 	src/asm/decompiled/012324_peripheral_support.src \
 	src/asm/decompiled/012504_input.src \
-	src/asm/0129cc.src \
-	src/asm/decompiled/012f44.src \
+	src/asm/decompiled/0129cc_pause.src \
+	src/asm/decompiled/012f44_game.src \
 	src/asm/decompiled/013ae8_route_load.src \
 	src/014934.c \
 	src/0149b0_sbinit.c \
@@ -69,7 +69,8 @@ SRCS = \
 	src/asm/02786c.src \
 	src/asm/027958.src \
 	src/asm/028258.src \
-	src/asm/02af78.src \
+	src/asm/02af78_pre_data.src \
+	src/asm/decompiled/02af78_event.src \
 	src/asm/02b2f0.src \
 	src/asm/02b464.src \
 	src/asm/02c884.src \

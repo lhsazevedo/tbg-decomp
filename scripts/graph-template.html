@@ -1,0 +1,614 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TBG Reference Graph</title>
+<style>
+  :root {
+    --bg: #14161c; --panel: #1d2029; --fg: #d7dae0; --muted: #8b909c;
+    --code: #4c7fff; --data: #ffab3d; --asm: #6b7280; --c: #33c481;
+    --edge: #3a3f4b; --border: #2a2e38;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; height: 100%; background: var(--bg); color: var(--fg);
+    font: 13px/1.4 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+  #app { display: flex; height: 100vh; }
+  #side { width: 250px; flex: none; background: var(--panel); border-right: 1px solid var(--border);
+    padding: 14px 16px; overflow-y: auto; }
+  #side h1 { font-size: 14px; margin: 0 0 4px; }
+  #side .sub { color: var(--muted); font-size: 11px; margin-bottom: 14px; }
+  .group { margin-bottom: 16px; }
+  .group h2 { font-size: 11px; text-transform: uppercase; letter-spacing: .05em;
+    color: var(--muted); margin: 0 0 8px; }
+  label.row { display: flex; align-items: center; gap: 8px; padding: 3px 0; cursor: pointer; }
+  label.row input { accent-color: var(--code); }
+  .swatch { width: 12px; height: 12px; border-radius: 3px; flex: none; }
+  .line { width: 16px; height: 0; border-top-width: 3px; border-top-style: solid; flex: none; }
+  #search { width: 100%; padding: 6px 8px; background: var(--bg); border: 1px solid var(--border);
+    border-radius: 6px; color: var(--fg); }
+  .stat { color: var(--muted); font-size: 11px; }
+  .slider-row { margin: 8px 0; }
+  .slider-row .lbl { display: flex; justify-content: space-between; font-size: 11.5px;
+    color: var(--fg); margin-bottom: 3px; }
+  .slider-row .lbl span.v { color: var(--muted); font-variant-numeric: tabular-nums; }
+  .slider-row input[type=range] { width: 100%; accent-color: var(--code); }
+  button.btn { width: 100%; padding: 7px 8px; background: var(--bg); color: var(--fg);
+    border: 1px solid var(--border); border-radius: 6px; cursor: pointer; font-size: 12px; }
+  button.btn:hover { border-color: var(--code); }
+  details.group summary { font-size: 11px; text-transform: uppercase; letter-spacing: .05em;
+    color: var(--muted); margin: 0 0 8px; cursor: pointer; list-style: none; }
+  details.group summary::-webkit-details-marker { display: none; }
+  details.group summary::before { content: "\25B8  "; }
+  details.group[open] summary::before { content: "\25BE  "; }
+  #stage { flex: 1; position: relative; overflow: hidden; }
+  canvas { display: block; }
+  #tip { position: absolute; pointer-events: none; z-index: 10; max-width: 340px;
+    background: #0c0d11ee; border: 1px solid var(--border); border-radius: 6px;
+    padding: 8px 10px; font-size: 12px; display: none; }
+  #tip .t { font-weight: 600; margin-bottom: 4px; }
+  #tip .k { color: var(--muted); }
+  #tip ul { margin: 4px 0 0; padding-left: 16px; max-height: 200px; overflow-y: auto; }
+  #tip code { color: var(--fg); }
+  .hint { color: var(--muted); font-size: 11px; margin-top: 10px; }
+</style>
+</head>
+<body>
+<div id="app">
+  <div id="side">
+    <h1>TBG Reference Graph</h1>
+    <div class="sub" id="counts"></div>
+
+    <div class="group">
+      <h2>Search</h2>
+      <input id="search" placeholder="filter units...">
+    </div>
+
+    <div class="group">
+      <h2>Edges (by target)</h2>
+      <label class="row"><input type="checkbox" id="e-code" checked>
+        <span class="line" style="border-top-color: var(--code)"></span> code (calls)</label>
+      <label class="row"><input type="checkbox" id="e-data" checked>
+        <span class="line" style="border-top-color: var(--data)"></span> data (globals)</label>
+    </div>
+
+    <div class="group">
+      <h2>Units</h2>
+      <label class="row"><input type="checkbox" id="n-c" checked>
+        <span class="swatch" style="background: var(--c)"></span> decompiled (C)</label>
+      <label class="row"><input type="checkbox" id="n-asm" checked>
+        <span class="swatch" style="background: var(--asm)"></span> not decompiled (asm)</label>
+      <label class="row"><input type="checkbox" id="n-iso">
+        <span class="swatch" style="background: transparent; border: 1px solid var(--muted)"></span> show isolated</label>
+    </div>
+
+    <div class="group">
+      <h2>Clusters</h2>
+      <label class="row"><input type="checkbox" id="n-hull" checked>
+        <span class="swatch" style="background: linear-gradient(135deg,#e06c9f,#6ca8ff)"></span> cluster halos</label>
+      <div class="hint" style="margin-top:6px">Colored ring = cluster (found by ignoring
+        the top-degree hub units). Gray nodes with no ring are hubs/bridges.</div>
+    </div>
+
+    <details class="group" id="layout-panel">
+      <summary>Layout</summary>
+
+      <div class="slider-row">
+        <div class="lbl">Hub cutoff <span class="v" id="v-hubpct"></span></div>
+        <input type="range" id="p-hubpct" min="5" max="40" step="1">
+      </div>
+      <div class="slider-row">
+        <div class="lbl">Min cluster size <span class="v" id="v-minsize"></span></div>
+        <input type="range" id="p-minsize" min="2" max="8" step="1">
+      </div>
+      <div class="slider-row">
+        <div class="lbl">Cluster pull <span class="v" id="v-cluster"></span></div>
+        <input type="range" id="p-cluster" min="0" max="0.4" step="0.01">
+      </div>
+      <div class="slider-row">
+        <div class="lbl">Cluster separation <span class="v" id="v-crossboost"></span></div>
+        <input type="range" id="p-crossboost" min="1" max="10" step="0.1">
+      </div>
+      <div class="slider-row">
+        <div class="lbl">Repulsion <span class="v" id="v-repulsion"></span></div>
+        <input type="range" id="p-repulsion" min="2000" max="40000" step="500">
+      </div>
+      <div class="slider-row">
+        <div class="lbl">Link length <span class="v" id="v-rest"></span></div>
+        <input type="range" id="p-rest" min="20" max="300" step="5">
+      </div>
+      <div class="slider-row">
+        <div class="lbl">Link stiffness <span class="v" id="v-stiff"></span></div>
+        <input type="range" id="p-stiff" min="0.005" max="0.2" step="0.005">
+      </div>
+      <div class="slider-row">
+        <div class="lbl">Center gravity <span class="v" id="v-gravity"></span></div>
+        <input type="range" id="p-gravity" min="0" max="0.05" step="0.001">
+      </div>
+
+      <button class="btn" id="btn-reset" style="margin-top:6px">Re-run layout</button>
+      <button class="btn" id="btn-defaults" style="margin-top:6px">Reset to defaults</button>
+    </details>
+
+    <div class="hint">Drag nodes. Scroll to zoom. Drag background to pan.
+      Hover a node or edge for detail.</div>
+  </div>
+
+  <div id="stage">
+    <canvas id="c"></canvas>
+    <div id="tip"></div>
+  </div>
+</div>
+
+<!-- GRAPH_DATA -->
+<script>
+(function () {
+  if (typeof GRAPH === "undefined") { document.getElementById("counts").textContent =
+    "No graph data injected."; return; }
+
+  const COL = { code: "#4c7fff", data: "#ffab3d", asm: "#6b7280", c: "#33c481", edge: "#3a3f4b" };
+  const canvas = document.getElementById("c");
+  const ctx = canvas.getContext("2d");
+  const stage = document.getElementById("stage");
+  const tip = document.getElementById("tip");
+
+  // --- model ---------------------------------------------------------------
+  const nodes = GRAPH.nodes.map(n => Object.assign({}, n));
+  const byId = new Map(nodes.map(n => [n.id, n]));
+  const edges = GRAPH.edges.filter(e => byId.has(e.source) && byId.has(e.target))
+    .map(e => ({ ...e, s: byId.get(e.source), t: byId.get(e.target) }));
+
+  // degree, for isolated-node filtering and sizing (counts every edge regardless
+  // of the code/data toggle, so node size stays stable while filtering)
+  for (const n of nodes) n.deg = 0;
+  for (const e of edges) { e.s.deg++; e.t.deg++; }
+
+  // --- community detection --------------------------------------------------
+  // This graph is hub-dominated: a handful of shared-service units (text, sectionB,
+  // tasks, route_load, ...) link to nearly everything, so plain clustering collapses
+  // into one blob. We treat the top-degree units -- among the currently visible edge
+  // kinds -- as *bridges* (comm = null, they float between clusters) and run weighted
+  // label propagation on the rest, then drop clusters too small to be meaningful.
+  // Recomputed whenever the code/data edge filters change: "everything calls
+  // everything" and "everything touches the same globals" are different graphs.
+  const PALETTE = ["#e06c9f", "#7bd88f", "#6ca8ff", "#e8c15a", "#c08bff",
+                   "#4fd0d0", "#ff9d6c", "#9fb85a", "#f07070", "#6cb0e0"];
+  let hubs = new Set(), adj = new Map(), subAdj = new Map(), commList = [], commColor = new Map();
+
+  function computeClusters() {
+    const kindEdges = edges.filter(e => flt[e.kind]);
+    const deg = new Map(nodes.map(n => [n.id, 0]));
+    for (const e of kindEdges) {
+      deg.set(e.source, deg.get(e.source) + 1);
+      deg.set(e.target, deg.get(e.target) + 1);
+    }
+
+    const HUB_COUNT = Math.max(4, Math.round(nodes.length * (phys.hubPct / 100)));
+    hubs = new Set([...nodes].sort((a, b) => deg.get(b.id) - deg.get(a.id))
+      .slice(0, HUB_COUNT).map(n => n.id));
+    for (const n of nodes) n.isHub = hubs.has(n.id);
+
+    adj = new Map(nodes.map(n => [n.id, []]));      // visible-kind graph, for hover/neighbor pull
+    subAdj = new Map(nodes.map(n => [n.id, []]));   // hub edges removed, for clustering
+    for (const e of kindEdges) {
+      adj.get(e.source).push([e.target, e.count]);
+      adj.get(e.target).push([e.source, e.count]);
+      if (hubs.has(e.source) || hubs.has(e.target)) continue;
+      subAdj.get(e.source).push([e.target, e.count]);
+      subAdj.get(e.target).push([e.source, e.count]);
+    }
+
+    for (const n of nodes) n.comm = n.isHub ? null : n.id;
+    for (let it = 0; it < 30; it++) {
+      let changed = false;
+      for (const n of [...nodes].sort(() => Math.random() - 0.5)) {
+        if (n.isHub) continue;
+        const tally = new Map();
+        for (const [nb, c] of subAdj.get(n.id)) {
+          const l = byId.get(nb).comm;
+          if (l === null) continue;
+          tally.set(l, (tally.get(l) || 0) + c);
+        }
+        if (!tally.size) continue;
+        let best = n.comm, bestv = -1;
+        for (const [l, v] of tally) if (v > bestv || (v === bestv && l < best)) { best = l; bestv = v; }
+        if (best !== n.comm) { n.comm = best; changed = true; }
+      }
+      if (!changed) break;
+    }
+    // demote clusters smaller than 3 to floaters (comm = null)
+    const size = {};
+    for (const n of nodes) if (n.comm !== null) size[n.comm] = (size[n.comm] || 0) + 1;
+    for (const n of nodes) if (n.comm !== null && size[n.comm] < phys.minClusterSize) n.comm = null;
+
+    commList = [...new Set(nodes.filter(n => n.comm !== null).map(n => n.comm))];
+    commColor = new Map(commList.map((c, i) => [c, PALETTE[i % PALETTE.length]]));
+
+    document.getElementById("counts").textContent =
+      `${nodes.length} units, ${kindEdges.length} edges shown, ${commList.length} clusters, ` +
+      `${Object.keys(GRAPH.sdkImports).length} SDK imports`;
+  }
+
+  // initial layout: circle
+  let W = stage.clientWidth, H = stage.clientHeight;
+  function seedPositions() {
+    // seed each cluster around its own anchor on a big ring, so the sim converges
+    // into separated blobs instead of untangling from one shared circle
+    const R = Math.min(W, H) * 0.40;
+    const anchor = new Map(commList.map((c, i) => {
+      const a = (i / commList.length) * Math.PI * 2;
+      return [c, { x: Math.cos(a) * R, y: Math.sin(a) * R }];
+    }));
+    nodes.forEach((n) => {
+      const a = n.comm !== null ? anchor.get(n.comm) : { x: 0, y: 0 };  // floaters start center
+      n.x = a.x + (Math.random() - 0.5) * 60;
+      n.y = a.y + (Math.random() - 0.5) * 60;
+      n.vx = 0; n.vy = 0;
+      n.fixed = false;
+    });
+  }
+
+  // --- view transform ------------------------------------------------------
+  const view = { x: 0, y: 0, k: 1 };
+  function resize() {
+    W = stage.clientWidth; H = stage.clientHeight;
+    const dpr = window.devicePixelRatio || 1;
+    canvas.width = W * dpr; canvas.height = H * dpr;
+    canvas.style.width = W + "px"; canvas.style.height = H + "px";
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  }
+  window.addEventListener("resize", resize);
+  resize();
+  view.x = W / 2; view.y = H / 2;
+
+  const toScreen = p => ({ x: p.x * view.k + view.x, y: p.y * view.k + view.y });
+  const toWorld = (sx, sy) => ({ x: (sx - view.x) / view.k, y: (sy - view.y) / view.k });
+
+  // --- filters -------------------------------------------------------------
+  const flt = { code: true, data: true, c: true, asm: true, iso: false, hull: true, q: "" };
+  function bind(id, key, recluster) {
+    const el = document.getElementById(id);
+    el.addEventListener("change", () => {
+      flt[key] = el.checked;
+      // code/data toggles change which edges exist at all -- recompute communities
+      // and re-seed around them, rather than just redrawing the stale layout.
+      if (recluster) { computeClusters(); seedPositions(); settle(200, 0.15); }
+    });
+  }
+  bind("e-code", "code", true); bind("e-data", "data", true);
+  bind("n-c", "c"); bind("n-asm", "asm"); bind("n-iso", "iso"); bind("n-hull", "hull");
+  document.getElementById("search").addEventListener("input", e => {
+    flt.q = e.target.value.trim().toLowerCase();
+  });
+
+  function edgeVisible(e) {
+    if (!flt[e.kind]) return false;
+    return nodeTypeVisible(e.s) && nodeTypeVisible(e.t);
+  }
+  function nodeTypeVisible(n) { return n.type === "c" ? flt.c : flt.asm; }
+  function nodeVisible(n) {
+    if (!nodeTypeVisible(n)) return false;
+    if (!flt.iso && n.deg === 0) return false;
+    return true;
+  }
+  function matches(n) { return flt.q && n.id.toLowerCase().includes(flt.q); }
+
+  // --- force simulation ----------------------------------------------------
+  // Cooling schedule: alpha decays monotonically toward 0 and the sim freezes at
+  // alphaMin (no perpetual jitter). reheat() bumps it on drag / filter / resize.
+  // `phys` is a plain object (not consts) so the settings panel can tune it live.
+  const phys = {
+    repulsion: 18000, rest: 110, stiff: 0.05, gravity: 0.008, cluster: 0.1,
+    crossBoost: 3.5,   // extra repulsion between different clusters -> spreads groups apart
+    decay: 0.985, alphaMin: 0.004, damp: 0.8, maxStep: 18,
+    hubPct: 15, minClusterSize: 3,   // clustering knobs, read by computeClusters()
+  };
+  const PHYS_DEFAULTS = { ...phys };
+  let alpha = 1;
+  function reheat(v = 0.5) { alpha = Math.max(alpha, v); }
+
+  function step() {
+    if (alpha < phys.alphaMin) return false;
+    alpha *= phys.decay;
+    const k = alpha;
+    for (let i = 0; i < nodes.length; i++) {
+      const a = nodes[i];
+      for (let j = i + 1; j < nodes.length; j++) {
+        const b = nodes[j];
+        let dx = a.x - b.x, dy = a.y - b.y;
+        let d2 = dx * dx + dy * dy || 0.01;
+        const d = Math.sqrt(d2);
+        // different (non-null) clusters push harder apart, so groups separate
+        // instead of just packing side by side at the same density as within a group
+        const cross = (a.comm !== null && b.comm !== null && a.comm !== b.comm) ? phys.crossBoost : 1;
+        const f = (phys.repulsion * cross * k) / d2;
+        const fx = (dx / d) * f, fy = (dy / d) * f;
+        if (!a.fixed) { a.vx += fx; a.vy += fy; }
+        if (!b.fixed) { b.vx -= fx; b.vy -= fy; }
+      }
+    }
+    for (const e of edges) {
+      if (!flt[e.kind]) continue;  // hidden-kind edges shouldn't hold the layout together
+      let dx = e.t.x - e.s.x, dy = e.t.y - e.s.y;
+      const d = Math.sqrt(dx * dx + dy * dy) || 0.01;
+      const f = (d - phys.rest) * phys.stiff * k;
+      const fx = (dx / d) * f, fy = (dy / d) * f;
+      if (!e.s.fixed) { e.s.vx += fx; e.s.vy += fy; }
+      if (!e.t.fixed) { e.t.vx -= fx; e.t.vy -= fy; }
+    }
+    // community cohesion: cluster members pull toward their cluster centroid;
+    // hubs/floaters have no cluster, so they drift to the mean of their neighbors
+    // (settling between the clusters they bridge).
+    const cen = new Map();
+    for (const n of nodes) {
+      if (n.comm === null) continue;
+      let c = cen.get(n.comm);
+      if (!c) { c = { x: 0, y: 0, n: 0 }; cen.set(n.comm, c); }
+      c.x += n.x; c.y += n.y; c.n++;
+    }
+    for (const c of cen.values()) { c.x /= c.n; c.y /= c.n; }
+    for (const n of nodes) {
+      if (n.fixed) continue;
+      if (n.comm !== null) {
+        const c = cen.get(n.comm);
+        n.vx += (c.x - n.x) * phys.cluster * k;
+        n.vy += (c.y - n.y) * phys.cluster * k;
+      } else {
+        const nb = adj.get(n.id);
+        if (!nb.length) continue;
+        let mx = 0, my = 0;
+        for (const [id] of nb) { const p = byId.get(id); mx += p.x; my += p.y; }
+        n.vx += (mx / nb.length - n.x) * phys.cluster * 0.5 * k;
+        n.vy += (my / nb.length - n.y) * phys.cluster * 0.5 * k;
+      }
+    }
+    for (const n of nodes) {
+      if (n.fixed) continue;
+      n.vx += -n.x * phys.gravity * k;
+      n.vy += -n.y * phys.gravity * k;
+      n.vx *= phys.damp; n.vy *= phys.damp;
+      // clamp per-tick displacement so the layout never flings across the screen
+      n.vx = Math.max(-phys.maxStep, Math.min(phys.maxStep, n.vx));
+      n.vy = Math.max(-phys.maxStep, Math.min(phys.maxStep, n.vy));
+      n.x += n.vx; n.y += n.vy;
+    }
+    return true;
+  }
+
+  // Pre-warm off-screen so the graph reveals already near-settled, not mid-explosion.
+  function settle(steps = 250, finalAlpha = 0.12) {
+    alpha = 1;
+    for (let i = 0; i < steps && step(); i++) { /* settle */ }
+    alpha = finalAlpha;
+  }
+
+  computeClusters();
+  seedPositions();
+  settle();
+
+  // --- layout settings panel ------------------------------------------------
+  // Sliders read/write `phys` directly. The two clustering knobs (hub cutoff, min
+  // cluster size) need a full recompute; the rest are live forces that just need
+  // the sim woken back up so the change is visible while dragging.
+  const SLIDERS = [
+    ["p-hubpct", "hubPct", v => v + "%", true],
+    ["p-minsize", "minClusterSize", v => v, true],
+    ["p-cluster", "cluster", v => v.toFixed(2), false],
+    ["p-crossboost", "crossBoost", v => v.toFixed(1) + "x", false],
+    ["p-repulsion", "repulsion", v => Math.round(v), false],
+    ["p-rest", "rest", v => Math.round(v), false],
+    ["p-stiff", "stiff", v => v.toFixed(3), false],
+    ["p-gravity", "gravity", v => v.toFixed(3), false],
+  ];
+  function initSlider(id, key, fmt) {
+    const el = document.getElementById(id);
+    const out = document.getElementById("v-" + id.slice(2));
+    el.value = phys[key];
+    out.textContent = fmt(phys[key]);
+  }
+  function wireSlider(id, key, fmt, recluster) {
+    const el = document.getElementById(id);
+    const out = document.getElementById("v-" + id.slice(2));
+    el.addEventListener("input", () => {
+      const v = parseFloat(el.value);
+      phys[key] = v;
+      out.textContent = fmt(v);
+      if (recluster) { computeClusters(); seedPositions(); settle(200, 0.15); }
+      else reheat(0.5);
+    });
+  }
+  for (const [id, key, fmt] of SLIDERS) initSlider(id, key, fmt);
+  for (const [id, key, fmt, recluster] of SLIDERS) wireSlider(id, key, fmt, recluster);
+
+  document.getElementById("btn-reset").addEventListener("click", () => {
+    computeClusters(); seedPositions(); settle();
+  });
+  document.getElementById("btn-defaults").addEventListener("click", () => {
+    Object.assign(phys, PHYS_DEFAULTS);
+    for (const [id, key, fmt] of SLIDERS) initSlider(id, key, fmt);
+    computeClusters(); seedPositions(); settle();
+  });
+
+  function radius(n) { return 4 + Math.sqrt(n.deg) * 1.6; }
+  function nodeColor(n) { return n.type === "c" ? COL.c : COL.asm; }
+
+  let hoverNode = null, hoverEdge = null, drag = null, pan = null;
+
+  // neighbours of the hovered node, for focus-dimming the rest
+  let focus = null;
+  function computeFocus() {
+    if (!hoverNode) { focus = null; return; }
+    focus = new Set([hoverNode.id]);
+    for (const [id] of adj.get(hoverNode.id)) focus.add(id);
+  }
+  const dimmed = n => (focus && !focus.has(n.id)) || (flt.q && !matches(n));
+
+  function draw() {
+    ctx.clearRect(0, 0, W, H);
+
+    // cluster halos: a soft filled blob behind each community's members
+    if (flt.hull) {
+      for (const c of commList) {
+        const mem = nodes.filter(n => n.comm === c && nodeVisible(n));
+        if (mem.length < 3) continue;
+        let cx = 0, cy = 0;
+        for (const n of mem) { cx += n.x; cy += n.y; }
+        cx /= mem.length; cy /= mem.length;
+        let rad = 0;
+        for (const n of mem) rad = Math.max(rad, Math.hypot(n.x - cx, n.y - cy));
+        const p = toScreen({ x: cx, y: cy });
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, (rad + 26) * view.k, 0, Math.PI * 2);
+        ctx.fillStyle = commColor.get(c) + "1c";
+        ctx.fill();
+      }
+    }
+
+    // edges
+    for (const e of edges) {
+      if (!edgeVisible(e)) continue;
+      const hot = e === hoverEdge || e.s === hoverNode || e.t === hoverNode;
+      const faded = focus && !hot;
+      const s = toScreen(e.s), t = toScreen(e.t);
+      ctx.strokeStyle = COL[e.kind] + (hot ? "" : faded ? "18" : "55");
+      ctx.lineWidth = hot ? 2 : Math.min(1 + e.count * 0.12, 3);
+      ctx.beginPath();
+      ctx.moveTo(s.x, s.y); ctx.lineTo(t.x, t.y);
+      ctx.stroke();
+    }
+
+    // nodes
+    for (const n of nodes) {
+      if (!nodeVisible(n)) continue;
+      const p = toScreen(n);
+      const r = radius(n) * Math.min(view.k, 1.5);
+      ctx.globalAlpha = dimmed(n) ? 0.12 : 1;
+      // community ring (skip hubs/floaters)
+      if (n.comm !== null) {
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, r + 2.5, 0, Math.PI * 2);
+        ctx.fillStyle = commColor.get(n.comm);
+        ctx.fill();
+      }
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, r, 0, Math.PI * 2);
+      ctx.fillStyle = nodeColor(n);
+      ctx.fill();
+      if (n === hoverNode || matches(n)) {
+        ctx.lineWidth = 2; ctx.strokeStyle = "#fff"; ctx.stroke();
+      }
+      ctx.globalAlpha = 1;
+      // labels for hovered / matched / focused / large nodes when zoomed in
+      const label = n === hoverNode || matches(n) || (focus && focus.has(n.id)) ||
+        (!focus && view.k > 1.1 && n.deg > 3);
+      if (label && !dimmed(n)) {
+        ctx.fillStyle = "#d7dae0";
+        ctx.font = "11px sans-serif";
+        ctx.fillText(n.id, p.x + r + 3, p.y + 3);
+      }
+    }
+  }
+
+  function frame() { step(); draw(); requestAnimationFrame(frame); }
+  frame();
+
+  // --- interaction ---------------------------------------------------------
+  function pick(sx, sy) {
+    let best = null, bestD = 12;
+    for (const n of nodes) {
+      if (!nodeVisible(n)) continue;
+      const p = toScreen(n);
+      const d = Math.hypot(p.x - sx, p.y - sy);
+      if (d < Math.max(radius(n) * view.k + 3, bestD)) { best = n; bestD = d; }
+    }
+    return best;
+  }
+  function pickEdge(sx, sy) {
+    let best = null, bestD = 5;
+    for (const e of edges) {
+      if (!edgeVisible(e)) continue;
+      const a = toScreen(e.s), b = toScreen(e.t);
+      const d = distToSeg(sx, sy, a.x, a.y, b.x, b.y);
+      if (d < bestD) { best = e; bestD = d; }
+    }
+    return best;
+  }
+  function distToSeg(px, py, x1, y1, x2, y2) {
+    const dx = x2 - x1, dy = y2 - y1;
+    const l2 = dx * dx + dy * dy || 1;
+    let t = ((px - x1) * dx + (py - y1) * dy) / l2;
+    t = Math.max(0, Math.min(1, t));
+    return Math.hypot(px - (x1 + t * dx), py - (y1 + t * dy));
+  }
+
+  function relPos(ev) {
+    const r = canvas.getBoundingClientRect();
+    return { x: ev.clientX - r.left, y: ev.clientY - r.top };
+  }
+
+  canvas.addEventListener("mousedown", ev => {
+    const p = relPos(ev);
+    const n = pick(p.x, p.y);
+    if (n) { drag = n; n.fixed = true; reheat(0.3); }
+    else { pan = { x: ev.clientX, y: ev.clientY, vx: view.x, vy: view.y }; }
+  });
+  window.addEventListener("mousemove", ev => {
+    const p = relPos(ev);
+    if (drag) {
+      const w = toWorld(p.x, p.y);
+      drag.x = w.x; drag.y = w.y; drag.vx = drag.vy = 0;
+      return;
+    }
+    if (pan) {
+      view.x = pan.vx + (ev.clientX - pan.x);
+      view.y = pan.vy + (ev.clientY - pan.y);
+      return;
+    }
+    hoverNode = pick(p.x, p.y);
+    hoverEdge = hoverNode ? null : pickEdge(p.x, p.y);
+    computeFocus();
+    updateTip(ev, p);
+  });
+  window.addEventListener("mouseup", () => {
+    if (drag) drag.fixed = false;
+    drag = null; pan = null;
+  });
+  canvas.addEventListener("wheel", ev => {
+    ev.preventDefault();
+    const p = relPos(ev);
+    const w = toWorld(p.x, p.y);
+    const f = Math.exp(-ev.deltaY * 0.0015);
+    view.k = Math.max(0.2, Math.min(6, view.k * f));
+    view.x = p.x - w.x * view.k;
+    view.y = p.y - w.y * view.k;
+  }, { passive: false });
+
+  function updateTip(ev, p) {
+    if (hoverNode) {
+      const n = hoverNode;
+      const outs = edges.filter(e => e.s === n && edgeVisible(e));
+      const ins = edges.filter(e => e.t === n && edgeVisible(e));
+      tip.innerHTML = `<div class="t">${n.id}</div>` +
+        `<div class="k">${n.type === "c" ? "decompiled (C)" : "not decompiled (asm)"}` +
+        ` &middot; ${n.nExports} exports` +
+        `${n.hasCode ? " &middot; code" : ""}${n.hasData ? " &middot; data" : ""}</div>` +
+        `<div class="k">out: ${outs.length} &nbsp; in: ${ins.length}</div>`;
+    } else if (hoverEdge) {
+      const e = hoverEdge;
+      const syms = e.symbols.slice(0, 40).map(s => `<li><code>${s}</code></li>`).join("");
+      const more = e.symbols.length > 40 ? `<li class="k">+${e.symbols.length - 40} more</li>` : "";
+      tip.innerHTML = `<div class="t">${e.source} &rarr; ${e.target}</div>` +
+        `<div class="k">${e.kind} reference &middot; ${e.count} reloc(s)</div>` +
+        `<ul>${syms}${more}</ul>`;
+    } else { tip.style.display = "none"; return; }
+    tip.style.display = "block";
+    const tr = tip.getBoundingClientRect();
+    let x = p.x + 14, y = p.y + 14;
+    if (x + tr.width > W) x = p.x - tr.width - 14;
+    if (y + tr.height > H) y = Math.max(4, p.y - tr.height - 14);
+    tip.style.left = x + "px"; tip.style.top = y + "px";
+  }
+})();
+</script>
+</body>
+</html>

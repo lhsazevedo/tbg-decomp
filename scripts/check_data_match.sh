@@ -10,7 +10,7 @@
 set -e
 
 CONFIRMED="013ae8_route_load 016d2c_course_menu"
-ALL="012324_peripheral_support 014f54_text 0100bc_sound 010fe8_heap 015ab8_title 0193c8_vm_menu 0207d4 016c58_prompt 012f44 011120_asset_queues 019e98_main_menu 016d2c_course_menu 012504_input 016bf4_demo_input 01d290_album 013ae8_route_load"
+ALL="012324_peripheral_support 014f54_text 0100bc_sound 010fe8_heap 015ab8_title 0193c8_vm_menu 0207d4 016c58_prompt 012f44_game 011120_asset_queues 019e98_main_menu 016d2c_course_menu 012504_input 016bf4_demo_input 01d290_album 013ae8_route_load"
 
 make -f Makefile.matching clean all
 make clean

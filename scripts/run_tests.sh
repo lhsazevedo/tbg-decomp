@@ -59,9 +59,9 @@ compile  src/0207d4.c
 assemble  src/asm/decompiled/016c58_prompt.src
 compile  src/016c58_prompt.c
 
-# 012f44
-assemble  src/asm/decompiled/012f44.src
-compile  src/012f44.c
+# 012f44_game
+assemble  src/asm/decompiled/012f44_game.src
+compile  src/012f44_game.c
 
 # 011120
 assemble  src/asm/decompiled/011120_asset_queues.src
@@ -90,5 +90,13 @@ compile  src/01d290_album.c
 # 013ae8_route_load
 assemble  src/asm/decompiled/013ae8_route_load.src
 compile  src/013ae8_route_load.c
+
+# 02af78_event
+assemble  src/asm/decompiled/02af78_event.src
+compile  src/02af78_event.c
+
+# 0129cc
+assemble  src/asm/decompiled/0129cc_pause.src
+compile  src/0129cc_pause.c
 
 $sh4objtest suite -s tests.php "$@"

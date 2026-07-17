@@ -12,10 +12,10 @@ return new class extends TestCase {
         $state = $this->alloc(0x18);
         $stateLocal = $this->isAsmObject() ? 0xffffdc : 0xffffdc;
 
-        $this->shouldCall('_pushTask_8c014ae8')
+        $this->shouldCall('_TaskPush_8c014ae8')
             ->with(
                 $this->addressOf('_var_tasks_8c1ba3c8'),
-                $this->addressOf('_task_processQueues_8c011e80'),
+                $this->addressOf('_taskProcessQueues_8c011e80'),
                 0xffffe0,
                 $stateLocal,
                 0x18

@@ -15,11 +15,11 @@
   <!-- Progress bar background with the same border radius -->
   <rect rx="4" x="0" width="300" height="20" fill="#555" />
   <!-- Progress fill with the same border radius to avoid sharp corners -->
-  <rect rx="4" x="0" width="90.90" height="20" fill="teal" />
+  <rect rx="4" x="0" width="93.30" height="20" fill="teal" />
   <!-- Apply the clipping path to keep everything inside the border radius -->
   <rect rx="4" width="300" height="20" fill="url(#a)" clip-path="url(#clip)" />
   <g fill="#fff" text-anchor="middle" font-family="DejaVu Sans,Verdana,Geneva,sans-serif" font-size="11">
-      <text x="150.0" y="15" fill="#010101" fill-opacity=".3">30.3% decompiled</text>
-      <text x="150.0" y="14">30.3% decompiled</text>
+      <text x="150.0" y="15" fill="#010101" fill-opacity=".3">31.1% decompiled</text>
+      <text x="150.0" y="14">31.1% decompiled</text>
   </g>
 </svg>

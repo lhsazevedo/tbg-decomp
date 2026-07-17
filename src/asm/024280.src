@@ -20,7 +20,7 @@
           .IMPORT     __divls
           .IMPORT     _var_peripherals_8c1ba35c
           .IMPORT     _var_progress_8c1ba1cc
-          .IMPORT     _vib_8c010f7a
+          .IMPORT     _VibStart_8c010f7a
           .IMPORT     _var_vibport_8c1ba354
           .IMPORT     _pdVibMxStop
           .EXPORT     _FUN_8c024280
@@ -678,7 +678,7 @@ LP_GEN_30719:
           .DATA.L _var_peripherals_8c1ba35c ; H'8C024784
           .DATA.L _var_busState_8c1bb9d0 ; H'8C024788
           .DATA.L _var_progress_8c1ba1cc ; H'8C02478C
-          .DATA.L _vib_8c010f7a ; H'8C024790
+          .DATA.L _VibStart_8c010f7a ; H'8C024790
 LAB_8c024794:
           MOV.W       LP_GEN_66287,R0
           MOV.L       LP_GEN_66287+16,R3
@@ -942,7 +942,7 @@ LP_GEN_83961:
           .DATA.W H'0268 ; H'8C02497A
           .DATA.L H'3C23D70A ; H'8C02497C
           .DATA.L H'46800000 ; H'8C024980
-          .DATA.L _vib_8c010f7a ; H'8C024984
+          .DATA.L _VibStart_8c010f7a ; H'8C024984
           .DATA.L H'10000000 ; H'8C024988
           .DATA.L _var_inputMapSel_8c1bb8c8 ; H'8C02498C
 LAB_8c024990:

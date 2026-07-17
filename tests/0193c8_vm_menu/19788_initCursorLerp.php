@@ -28,7 +28,7 @@ return new class extends TestCase {
         $this->shouldWriteLong($this->addressOf('_var_menuState_8c1bc7a8') + 0x30, fdec((255.0 - 290.0) / 6));
         $this->shouldWriteLong($this->addressOf('_var_menuState_8c1bc7a8') + 0x34, fdec((98.0 - 194.0) / 6));
 
-        $this->singleCall('_initCursorLerp_19788')->with($drive)->run();
+        $this->singleCall('_initCursorLerp_8c019788')->with($drive)->run();
     }
 
     private function resolveSymbols(): void

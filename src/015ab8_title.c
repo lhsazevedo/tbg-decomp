@@ -1,3 +1,4 @@
+/* @unit Title */
 /* 8c015ab8 */
 // April 24, 2022
 // For now we don't need to keep reversing this one...
@@ -5,7 +6,7 @@
 #include <shinobi.h>
 #include <sg_sd.h>
 #include "012504_input.h"
-#include "012f44.h"
+#include "012f44_game.h"
 #include "013ae8_route_load.h"
 #include "014a9c_tasks.h"
 #include "014f54_text.h"
@@ -70,7 +71,7 @@ ResourceGroupInfo init_8c044284 = {
  * =========
  */
 
-STATIC void TitleTask_8c015ab8(Task* task, void *state) {
+STATIC void titleTask_8c015ab8(Task* task, void *state) {
 
     if (var_menuState_8c1bc7a8.state_0x18 >= TITLE_STATE_0X0B_BUS_SLIDE /* 8c015aec */
         && var_menuState_8c1bc7a8.state_0x18 <= TITLE_STATE_0X0C_FLAG_REVEAL) { /* 8c015af6 */
@@ -88,7 +89,7 @@ STATIC void TitleTask_8c015ab8(Task* task, void *state) {
     switch (var_menuState_8c1bc7a8.state_0x18) {
         /* 0x8c015b88 (0x8c015b32 + 4 + 0x052) */
         case TITLE_STATE_0X00_INIT: {
-            if (isPvmReady_8c01432a() == FALSE) {
+            if (RouteLoadIsPvmReady_8c01432a() == FALSE) {
                 /* 8c015b96 */
                 AsqFreeQueues_8c011f7e();
                 VmMenuMountVms_8c01940e();
@@ -125,7 +126,7 @@ STATIC void TitleTask_8c015ab8(Task* task, void *state) {
             }
 
             /* 0x8c015c1a (shared) */
-            drawSprite_8c014f54(&var_menuState_8c1bc7a8.resourceGroupB_0x0c, 0, 0.0, 0.0, -5.0);
+            TxtDrawSprite_8c014f54(&var_menuState_8c1bc7a8.resourceGroupB_0x0c, 0, 0.0, 0.0, -5.0);
 
             break;
         }
@@ -140,7 +141,7 @@ STATIC void TitleTask_8c015ab8(Task* task, void *state) {
             }
 
             /* 0x8c015c1a (shared) */
-            drawSprite_8c014f54(&var_menuState_8c1bc7a8.resourceGroupB_0x0c, 0, 0.0, 0.0, -5.0);
+            TxtDrawSprite_8c014f54(&var_menuState_8c1bc7a8.resourceGroupB_0x0c, 0, 0.0, 0.0, -5.0);
 
             break;
         }
@@ -155,7 +156,7 @@ STATIC void TitleTask_8c015ab8(Task* task, void *state) {
             }
 
             /* 0x8c015c1a (shared) */
-            drawSprite_8c014f54(&var_menuState_8c1bc7a8.resourceGroupB_0x0c, 0, 0.0, 0.0, -5.0);
+            TxtDrawSprite_8c014f54(&var_menuState_8c1bc7a8.resourceGroupB_0x0c, 0, 0.0, 0.0, -5.0);
 
             break;
         }
@@ -169,7 +170,7 @@ STATIC void TitleTask_8c015ab8(Task* task, void *state) {
             }
 
             /* 8c015c68 (shared) */
-            drawSprite_8c014f54(&var_menuState_8c1bc7a8.resourceGroupB_0x0c, 3, 0.0, 0.0, -5.0);
+            TxtDrawSprite_8c014f54(&var_menuState_8c1bc7a8.resourceGroupB_0x0c, 3, 0.0, 0.0, -5.0);
 
             break;
         }
@@ -184,7 +185,7 @@ STATIC void TitleTask_8c015ab8(Task* task, void *state) {
             }
 
             /* 8c015c68 (shared) */
-            drawSprite_8c014f54(&var_menuState_8c1bc7a8.resourceGroupB_0x0c, 3, 0.0, 0.0, -5.0);
+            TxtDrawSprite_8c014f54(&var_menuState_8c1bc7a8.resourceGroupB_0x0c, 3, 0.0, 0.0, -5.0);
 
             break;
         }
@@ -193,7 +194,7 @@ STATIC void TitleTask_8c015ab8(Task* task, void *state) {
         case TITLE_STATE_0X06_ADX_FADE_OUT: {
             if (var_isFading_8c226568 == FALSE) {
                 // VMU Check?
-                if (setName_8c012984() != FALSE && VmMenuUpdateVmusStatus_8c019550(init_saveNames_8c044d50, 3) == FALSE) {
+                if (InputSetName_8c012984() != FALSE && VmMenuUpdateVmusStatus_8c019550(init_saveNames_8c044d50, 3) == FALSE) {
                     /* 8c015c62 */
                     var_menuState_8c1bc7a8.state_0x18 = TITLE_STATE_0X07_VMU_WARNING_FADE_IN;
                     LOG_DEBUG(("[TITLE] State changed: 0X07_VMU_WARNING_FADE_IN\n"));
@@ -211,7 +212,7 @@ STATIC void TitleTask_8c015ab8(Task* task, void *state) {
             } 
 
             /* 8c015c68 (shared) */
-            drawSprite_8c014f54(&var_menuState_8c1bc7a8.resourceGroupB_0x0c, 3, 0.0, 0.0, -5.0);
+            TxtDrawSprite_8c014f54(&var_menuState_8c1bc7a8.resourceGroupB_0x0c, 3, 0.0, 0.0, -5.0);
 
             break;
         }
@@ -224,7 +225,7 @@ STATIC void TitleTask_8c015ab8(Task* task, void *state) {
             }
 
             /* 8c015c78 */
-            drawSprite_8c014f54(&var_menuState_8c1bc7a8.resourceGroupB_0x0c, 17, 0.0, 0.0, -5.0);
+            TxtDrawSprite_8c014f54(&var_menuState_8c1bc7a8.resourceGroupB_0x0c, 17, 0.0, 0.0, -5.0);
 
             /* 8c015c84 (shared) */
             njSetBackColor(0xffffffff, 0xffffffff, 0xffffffff);
@@ -244,7 +245,7 @@ STATIC void TitleTask_8c015ab8(Task* task, void *state) {
             }
 
             /* 8c015ce8 (shared) */
-            drawSprite_8c014f54(&var_menuState_8c1bc7a8.resourceGroupB_0x0c, 17, 0.0, 0.0, -5.0);
+            TxtDrawSprite_8c014f54(&var_menuState_8c1bc7a8.resourceGroupB_0x0c, 17, 0.0, 0.0, -5.0);
 
             break;
         }
@@ -259,7 +260,7 @@ STATIC void TitleTask_8c015ab8(Task* task, void *state) {
             }
 
             /* 8c015ce8 (shared) */
-            drawSprite_8c014f54(&var_menuState_8c1bc7a8.resourceGroupB_0x0c, 17, 0.0, 0.0, -5.0);
+            TxtDrawSprite_8c014f54(&var_menuState_8c1bc7a8.resourceGroupB_0x0c, 17, 0.0, 0.0, -5.0);
             break;
         }
 
@@ -272,12 +273,12 @@ STATIC void TitleTask_8c015ab8(Task* task, void *state) {
                 var_menuState_8c1bc7a8.pos.title.busX_0x20 = 640;
 
                 /* Related to music */
-                snd_8c010cd6(0, 0);
+                SndProc_8c010cd6(0, 0);
             }
 
             /* 8c015d7c (shared) - Draw title */
-            drawSprite_8c014f54(&var_menuState_8c1bc7a8.resourceGroupB_0x0c, 2, 0.0, 0.0, -5.0);
-            drawSprite_8c014f54(&var_menuState_8c1bc7a8.resourceGroupA_0x00, 46, 0.0, 0.0, -7.0);
+            TxtDrawSprite_8c014f54(&var_menuState_8c1bc7a8.resourceGroupB_0x0c, 2, 0.0, 0.0, -5.0);
+            TxtDrawSprite_8c014f54(&var_menuState_8c1bc7a8.resourceGroupA_0x00, 46, 0.0, 0.0, -7.0);
 
             break;
         }
@@ -296,11 +297,11 @@ STATIC void TitleTask_8c015ab8(Task* task, void *state) {
             }
 
             /* 8c015d38 - Draw bus */
-            drawSprite_8c014f54(&var_menuState_8c1bc7a8.resourceGroupB_0x0c, 1, var_menuState_8c1bc7a8.pos.title.busX_0x20, 0.0, -4.0);
+            TxtDrawSprite_8c014f54(&var_menuState_8c1bc7a8.resourceGroupB_0x0c, 1, var_menuState_8c1bc7a8.pos.title.busX_0x20, 0.0, -4.0);
 
             /* 8c015d7c (shared) - Draw title */
-            drawSprite_8c014f54(&var_menuState_8c1bc7a8.resourceGroupB_0x0c, 2, 0.0, 0.0, -5.0);
-            drawSprite_8c014f54(&var_menuState_8c1bc7a8.resourceGroupA_0x00, 46, 0.0, 0.0, -7.0);
+            TxtDrawSprite_8c014f54(&var_menuState_8c1bc7a8.resourceGroupB_0x0c, 2, 0.0, 0.0, -5.0);
+            TxtDrawSprite_8c014f54(&var_menuState_8c1bc7a8.resourceGroupA_0x00, 46, 0.0, 0.0, -7.0);
 
             break;
         }
@@ -316,14 +317,14 @@ STATIC void TitleTask_8c015ab8(Task* task, void *state) {
             }
 
             /* 8c015d6a - Draw flag */
-            drawSprite_8c014f54(&var_menuState_8c1bc7a8.resourceGroupB_0x0c, 4, 302, var_menuState_8c1bc7a8.pos.title.flagY_0x24, -4.5);
+            TxtDrawSprite_8c014f54(&var_menuState_8c1bc7a8.resourceGroupB_0x0c, 4, 302, var_menuState_8c1bc7a8.pos.title.flagY_0x24, -4.5);
 
             /* 8c015da4 - Draw bus */
-            drawSprite_8c014f54(&var_menuState_8c1bc7a8.resourceGroupB_0x0c, 1, 180, 0.0, -4.0);
+            TxtDrawSprite_8c014f54(&var_menuState_8c1bc7a8.resourceGroupB_0x0c, 1, 180, 0.0, -4.0);
 
             /* 8c015db4 - Draw title */
-            drawSprite_8c014f54(&var_menuState_8c1bc7a8.resourceGroupB_0x0c, 2, 0.0, 0.0, -5.0);
-            drawSprite_8c014f54(&var_menuState_8c1bc7a8.resourceGroupA_0x00, 46, 0.0, 0.0, -7.0);
+            TxtDrawSprite_8c014f54(&var_menuState_8c1bc7a8.resourceGroupB_0x0c, 2, 0.0, 0.0, -5.0);
+            TxtDrawSprite_8c014f54(&var_menuState_8c1bc7a8.resourceGroupA_0x00, 46, 0.0, 0.0, -7.0);
 
             break;
         }
@@ -336,12 +337,12 @@ STATIC void TitleTask_8c015ab8(Task* task, void *state) {
             }
 
             /* 8c015f60 (shared) */
-            drawSprite_8c014f54(&var_menuState_8c1bc7a8.resourceGroupB_0x0c, 5, 0, 0, -4.0);
-            drawSprite_8c014f54(&var_menuState_8c1bc7a8.resourceGroupB_0x0c, 6, 0, 0, -4.5);
-            drawSprite_8c014f54(&var_menuState_8c1bc7a8.resourceGroupB_0x0c, 4, 302, 97, -4.5);
-            drawSprite_8c014f54(&var_menuState_8c1bc7a8.resourceGroupB_0x0c, 1, 180, 0, -4.0);
-            drawSprite_8c014f54(&var_menuState_8c1bc7a8.resourceGroupB_0x0c, 2, 0, 0, -5.0);
-            drawSprite_8c014f54(&var_menuState_8c1bc7a8.resourceGroupA_0x00, 46, 0, 0, -7.0);
+            TxtDrawSprite_8c014f54(&var_menuState_8c1bc7a8.resourceGroupB_0x0c, 5, 0, 0, -4.0);
+            TxtDrawSprite_8c014f54(&var_menuState_8c1bc7a8.resourceGroupB_0x0c, 6, 0, 0, -4.5);
+            TxtDrawSprite_8c014f54(&var_menuState_8c1bc7a8.resourceGroupB_0x0c, 4, 302, 97, -4.5);
+            TxtDrawSprite_8c014f54(&var_menuState_8c1bc7a8.resourceGroupB_0x0c, 1, 180, 0, -4.0);
+            TxtDrawSprite_8c014f54(&var_menuState_8c1bc7a8.resourceGroupB_0x0c, 2, 0, 0, -5.0);
+            TxtDrawSprite_8c014f54(&var_menuState_8c1bc7a8.resourceGroupA_0x00, 46, 0, 0, -7.0);
 
             break;
         }
@@ -350,8 +351,8 @@ STATIC void TitleTask_8c015ab8(Task* task, void *state) {
         case TITLE_STATE_0X0E_PRESS_START: {
             if (var_peripherals_8c1ba35c[0].press & PDD_DGT_ST) {
                 /* 8c015e20 */
-                startAdxFadeOut_8c010bae(0);
-                startAdxFadeOut_8c010bae(1);
+                SndStartAdxFadeOut_8c010bae(0);
+                SndStartAdxFadeOut_8c010bae(1);
 
                 sdMidiPlay(var_midiHandles_8c0fcd28[0], 1, 0, 0);
 
@@ -364,20 +365,20 @@ STATIC void TitleTask_8c015ab8(Task* task, void *state) {
                     /* 8c015e54 */
                     var_menuState_8c1bc7a8.state_0x18 = TITLE_STATE_0X11_TIME_OUT;
                     LOG_DEBUG(("[TITLE] State changed: 0X11_TIME_OUT\n"));
-                    startAdxFadeOut_8c010bae(0);
-                    startAdxFadeOut_8c010bae(1);
+                    SndStartAdxFadeOut_8c010bae(0);
+                    SndStartAdxFadeOut_8c010bae(1);
 
                     push_fadeout_8c022b60(60);
                 }
             }
 
             /* 8c015f60 (shared) */
-            drawSprite_8c014f54(&var_menuState_8c1bc7a8.resourceGroupB_0x0c, 5, 0, 0, -4.0);
-            drawSprite_8c014f54(&var_menuState_8c1bc7a8.resourceGroupB_0x0c, 6, 0, 0, -4.5);
-            drawSprite_8c014f54(&var_menuState_8c1bc7a8.resourceGroupB_0x0c, 4, 302, 97, -4.5);
-            drawSprite_8c014f54(&var_menuState_8c1bc7a8.resourceGroupB_0x0c, 1, 180, 0, -4.0);
-            drawSprite_8c014f54(&var_menuState_8c1bc7a8.resourceGroupB_0x0c, 2, 0, 0, -5.0);
-            drawSprite_8c014f54(&var_menuState_8c1bc7a8.resourceGroupA_0x00, 46, 0, 0, -7.0);
+            TxtDrawSprite_8c014f54(&var_menuState_8c1bc7a8.resourceGroupB_0x0c, 5, 0, 0, -4.0);
+            TxtDrawSprite_8c014f54(&var_menuState_8c1bc7a8.resourceGroupB_0x0c, 6, 0, 0, -4.5);
+            TxtDrawSprite_8c014f54(&var_menuState_8c1bc7a8.resourceGroupB_0x0c, 4, 302, 97, -4.5);
+            TxtDrawSprite_8c014f54(&var_menuState_8c1bc7a8.resourceGroupB_0x0c, 1, 180, 0, -4.0);
+            TxtDrawSprite_8c014f54(&var_menuState_8c1bc7a8.resourceGroupB_0x0c, 2, 0, 0, -5.0);
+            TxtDrawSprite_8c014f54(&var_menuState_8c1bc7a8.resourceGroupA_0x00, 46, 0, 0, -7.0);
 
             break;
         }
@@ -391,15 +392,15 @@ STATIC void TitleTask_8c015ab8(Task* task, void *state) {
             }
 
             /* 8c015e7e */
-            drawSprite_8c014f54(&var_menuState_8c1bc7a8.resourceGroupB_0x0c, 5, 0, 0, -4.0);
+            TxtDrawSprite_8c014f54(&var_menuState_8c1bc7a8.resourceGroupB_0x0c, 5, 0, 0, -4.0);
             if ((var_menuState_8c1bc7a8.logo_timer_0x68 & 1) != 0) {
-                drawSprite_8c014f54(&var_menuState_8c1bc7a8.resourceGroupB_0x0c, 6, 0, 0, -4.5);
+                TxtDrawSprite_8c014f54(&var_menuState_8c1bc7a8.resourceGroupB_0x0c, 6, 0, 0, -4.5);
             }
             /* 8c015f7c */
-            drawSprite_8c014f54(&var_menuState_8c1bc7a8.resourceGroupB_0x0c, 4, 302, 97, -4.5);
-            drawSprite_8c014f54(&var_menuState_8c1bc7a8.resourceGroupB_0x0c, 1, 180, 0, -4.0);
-            drawSprite_8c014f54(&var_menuState_8c1bc7a8.resourceGroupB_0x0c, 2, 0, 0, -5.0);
-            drawSprite_8c014f54(&var_menuState_8c1bc7a8.resourceGroupA_0x00, 46, 0, 0, -7.0);
+            TxtDrawSprite_8c014f54(&var_menuState_8c1bc7a8.resourceGroupB_0x0c, 4, 302, 97, -4.5);
+            TxtDrawSprite_8c014f54(&var_menuState_8c1bc7a8.resourceGroupB_0x0c, 1, 180, 0, -4.0);
+            TxtDrawSprite_8c014f54(&var_menuState_8c1bc7a8.resourceGroupB_0x0c, 2, 0, 0, -5.0);
+            TxtDrawSprite_8c014f54(&var_menuState_8c1bc7a8.resourceGroupA_0x00, 46, 0, 0, -7.0);
             break;
         }
 
@@ -420,16 +421,16 @@ STATIC void TitleTask_8c015ab8(Task* task, void *state) {
             }
             
             /* 8c015ed6 */
-            drawSprite_8c014f54(&var_menuState_8c1bc7a8.resourceGroupB_0x0c, 5, 0, 0, -4.0);
+            TxtDrawSprite_8c014f54(&var_menuState_8c1bc7a8.resourceGroupB_0x0c, 5, 0, 0, -4.0);
 
             if ((++var_menuState_8c1bc7a8.logo_timer_0x68 & 1) != 0) {
-                drawSprite_8c014f54(&var_menuState_8c1bc7a8.resourceGroupB_0x0c, 6, 0, 0, -4.5);
+                TxtDrawSprite_8c014f54(&var_menuState_8c1bc7a8.resourceGroupB_0x0c, 6, 0, 0, -4.5);
             }
             /* 8c015f7c */
-            drawSprite_8c014f54(&var_menuState_8c1bc7a8.resourceGroupB_0x0c, 4, 302, 97, -4.5);
-            drawSprite_8c014f54(&var_menuState_8c1bc7a8.resourceGroupB_0x0c, 1, 180, 0, -4.0);
-            drawSprite_8c014f54(&var_menuState_8c1bc7a8.resourceGroupB_0x0c, 2, 0, 0, -5.0);
-            drawSprite_8c014f54(&var_menuState_8c1bc7a8.resourceGroupA_0x00, 46, 0, 0, -7.0);
+            TxtDrawSprite_8c014f54(&var_menuState_8c1bc7a8.resourceGroupB_0x0c, 4, 302, 97, -4.5);
+            TxtDrawSprite_8c014f54(&var_menuState_8c1bc7a8.resourceGroupB_0x0c, 1, 180, 0, -4.0);
+            TxtDrawSprite_8c014f54(&var_menuState_8c1bc7a8.resourceGroupB_0x0c, 2, 0, 0, -5.0);
+            TxtDrawSprite_8c014f54(&var_menuState_8c1bc7a8.resourceGroupA_0x00, 46, 0, 0, -7.0);
 
             break;
         }
@@ -446,12 +447,12 @@ STATIC void TitleTask_8c015ab8(Task* task, void *state) {
             }
 
             /* 8c015f60 (shared) */
-            drawSprite_8c014f54(&var_menuState_8c1bc7a8.resourceGroupB_0x0c, 5, 0, 0, -4.0);
-            drawSprite_8c014f54(&var_menuState_8c1bc7a8.resourceGroupB_0x0c, 6, 0, 0, -4.5);
-            drawSprite_8c014f54(&var_menuState_8c1bc7a8.resourceGroupB_0x0c, 4, 302, 97, -4.5);
-            drawSprite_8c014f54(&var_menuState_8c1bc7a8.resourceGroupB_0x0c, 1, 180, 0, -4.0);
-            drawSprite_8c014f54(&var_menuState_8c1bc7a8.resourceGroupB_0x0c, 2, 0, 0, -5.0);
-            drawSprite_8c014f54(&var_menuState_8c1bc7a8.resourceGroupA_0x00, 46, 0, 0, -7.0);
+            TxtDrawSprite_8c014f54(&var_menuState_8c1bc7a8.resourceGroupB_0x0c, 5, 0, 0, -4.0);
+            TxtDrawSprite_8c014f54(&var_menuState_8c1bc7a8.resourceGroupB_0x0c, 6, 0, 0, -4.5);
+            TxtDrawSprite_8c014f54(&var_menuState_8c1bc7a8.resourceGroupB_0x0c, 4, 302, 97, -4.5);
+            TxtDrawSprite_8c014f54(&var_menuState_8c1bc7a8.resourceGroupB_0x0c, 1, 180, 0, -4.0);
+            TxtDrawSprite_8c014f54(&var_menuState_8c1bc7a8.resourceGroupB_0x0c, 2, 0, 0, -5.0);
+            TxtDrawSprite_8c014f54(&var_menuState_8c1bc7a8.resourceGroupA_0x00, 46, 0, 0, -7.0);
             break;
         }
 
@@ -459,14 +460,14 @@ STATIC void TitleTask_8c015ab8(Task* task, void *state) {
 }
 
 /* Matched */
-void pushTitle_8c015fd6 (Bool direct) {
+void TitlePushTitle_8c015fd6 (Bool direct) {
     Task* created_task;
     void* created_state;
-    pushInputTask_8c0128cc(0);
-    pushTask_8c014ae8(var_tasks_8c1ba3c8, &task_8c012f44, &created_task, &created_state, 0);
+    InputPushTask_8c0128cc(0);
+    TaskPush_8c014ae8(var_tasks_8c1ba3c8, &GameTask_8c012f44, &created_task, &created_state, 0);
 
     njSetBackColor(0,0,0);
-    pushTask_8c014ae8(var_tasks_8c1ba3c8, &TitleTask_8c015ab8, &created_task, &created_state, 0);
+    TaskPush_8c014ae8(var_tasks_8c1ba3c8, &titleTask_8c015ab8, &created_task, &created_state, 0);
     var_menuState_8c1bc7a8.state_0x18 = TITLE_STATE_0X00_INIT;
     LOG_DEBUG(("[TITLE] State changed: 0X00_INIT\n"));
     var_menuState_8c1bc7a8.startTimer_0x64 = 0;
@@ -480,6 +481,6 @@ void pushTitle_8c015fd6 (Bool direct) {
     var_currentSysResGroupInfo_8c225fb0 = (void *) -1;
     CourseMenuRequestSysResgrp_8c018568(&var_menuState_8c1bc7a8.resourceGroupB_0x0c, &init_titleResourceGroup_8c044254);
     CourseMenuRequestCommonResources_8c01852c();
-    setPvmReady_8c014330();
-    AsqProcessQueues_8c011fe0(&AsqNop_8c011120, 0, 0, 0, &resetPvmReady_8c014322);
+    RouteLoadSetPvmReady_8c014330();
+    AsqProcessQueues_8c011fe0(&AsqNop_8c011120, 0, 0, 0, &RouteLoadResetPvmReady_8c014322);
 }

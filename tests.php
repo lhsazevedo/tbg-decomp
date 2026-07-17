@@ -1,6 +1,9 @@
 <?php
 
 return [
+    'sourcePaths' => [
+        'Z:\\app\\src' => 'src',
+    ],
     'groups' => [
         [
             'tests' => [
@@ -104,11 +107,11 @@ return [
         ],
         [
             'tests' => [
-                "tests/012f44.php",
+                "tests/012f44_game.php",
             ],
             'objects' => [
-                "build/output_test/012f44_src.obj",
-                "build/output_test/012f44_c.obj",
+                "build/output_test/012f44_game_src.obj",
+                "build/output_test/012f44_game_c.obj",
             ],
         ],
         [
@@ -116,27 +119,27 @@ return [
                 "tests/011120/4338_initDatQueue_8c011124.php",
                 "tests/011120/4384_AsqNop_11120.php",
                 "tests/011120/4458_resetDatQueue_8c01116a.php",
-                "tests/011120/4532_task_loadQueuedDats_8c0111b4.php",
+                "tests/011120/4532_taskLoadQueuedDats_8c0111b4.php",
                 "tests/011120/4880_sortAndLoadDatQueue_8c011310.php",
-                "tests/011120/5324_task_loadQueuedNjs_8c0114cc.php",
+                "tests/011120/5324_taskLoadQueuedNjs_8c0114cc.php",
                 "tests/011120/5814_sortAndLoadNjQueue_8c0116b6.php",
                 "tests/011120/6052_freeNjQueue_8c0117a4.php",
                 "tests/011120/6072_initTexlistQueue_8c0117b8.php",
                 "tests/011120/6142_resetTexlistQueue_8c0117fe.php",
                 "tests/011120/6172_AsqRequestTexlist_1181c.php",
-                "tests/011120/6206_task_loadQueuedTexlists_8c01183e.php",
+                "tests/011120/6206_taskLoadQueuedTexlists_8c01183e.php",
                 "tests/011120/6648_loadTexlistQueue_8c0119f8.php",
                 "tests/011120/6722_texlistQueueIsIdle_8c011a42.php",
                 "tests/011120/6728_freeTexlistQueue_8c011a48.php",
                 "tests/011120/6748_initPvmQueue_8c011a5c.php",
                 "tests/011120/6848_AsqRequestPvm_11ac0.php",
-                "tests/011120/6912_task_loadQueuedPvms_8c011b00.php",
+                "tests/011120/6912_taskLoadQueuedPvms_8c011b00.php",
                 "tests/011120/7460_sortAndLoadPvmQueue_8c011d24.php",
                 "tests/011120/7714_pvmQueueIsIdle_8c011e22.php",
                 "tests/011120/7720_freePvmQueue_8c011e28.php",
                 "tests/011120/7740_AsqReleaseAndFreeTexlist_11e3c.php",
                 "tests/011120/7776_AsqFreeTexlist_11e60.php",
-                "tests/011120/7808_task_processQueues_8c011e80.php",
+                "tests/011120/7808_taskProcessQueues_8c011e80.php",
                 "tests/011120/7990_AsqInitQueues_11f36.php",
                 "tests/011120/8044_AsqResetQueues_11f6c.php",
                 "tests/011120/8062_AsqFreeQueues_11f7e.php",
@@ -168,29 +171,29 @@ return [
         ],
         [
             "tests" => [
-                "tests/016d2c_course_menu/8c016d2c_interpolated.php",
-                "tests/016d2c_course_menu/8c016dc6_FUN.php",
-                "tests/016d2c_course_menu/8c016e6c_FUN.php",
-                "tests/016d2c_course_menu/8c016ed2_FUN.php",
-                "tests/016d2c_course_menu/8c016ee6_FUN.php",
-                "tests/016d2c_course_menu/8c016f98_FUN.php",
+                "tests/016d2c_course_menu/8c016d2c_CourseMenuInterpolateCursor.php",
+                "tests/016d2c_course_menu/8c016dc6_cursorOffTarget.php",
+                "tests/016d2c_course_menu/8c016e6c_drawInteger.php",
+                "tests/016d2c_course_menu/8c016ed2_getWeekDayIndex.php",
+                "tests/016d2c_course_menu/8c016ee6_CourseMenuDrawDateAndExp.php",
+                "tests/016d2c_course_menu/8c016f98_dialogSequenceTask.php",
                 "tests/016d2c_course_menu/8c0170c6_FUN_pushDialogTask.php",
-                "tests/016d2c_course_menu/8c017108_FUN.php",
-                "tests/016d2c_course_menu/8c017126_FUN.php",
-                "tests/016d2c_course_menu/8c0172dc_FUN.php",
-                "tests/016d2c_course_menu/8c0173e6_FUN.php",
-                "tests/016d2c_course_menu/8c017420_FUN.php",
-                "tests/016d2c_course_menu/8c017590_drawCoursesButtons.php",
+                "tests/016d2c_course_menu/8c017108_swapDialogMessageBox.php",
+                "tests/016d2c_course_menu/8c017126_handleCourseMenuInput.php",
+                "tests/016d2c_course_menu/8c0172dc_CourseMenuBuildCourseUnlockList.php",
+                "tests/016d2c_course_menu/8c0173e6_CourseMenuApplyUnlocks.php",
+                "tests/016d2c_course_menu/8c017420_buildCourseMenuDialogFlow.php",
+                "tests/016d2c_course_menu/8c017590_drawCourseButtons.php",
                 "tests/016d2c_course_menu/8c017718_StoryMenuTask.php",
-                "tests/016d2c_course_menu/8c017a20_FUN.php",
+                "tests/016d2c_course_menu/8c017a20_buildFreeRunMenuDialogFlow.php",
                 "tests/016d2c_course_menu/8c017ada_FreeRunMenuTask.php",
                 "tests/016d2c_course_menu/8c017d54_FUN.php",
                 "tests/016d2c_course_menu/8c017e18_CourseMenuSwitchFromTask.php",
                 "tests/016d2c_course_menu/8c017ef2_FUN.php",
-                "tests/016d2c_course_menu/8c01803e_FUN.php",
-                "tests/016d2c_course_menu/8c018118_FUN.php",
-                "tests/016d2c_course_menu/8c0181b6_FUN.php",
-                "tests/016d2c_course_menu/8c0184cc_FUN.php",
+                "tests/016d2c_course_menu/8c01803e_drawFixedInteger.php",
+                "tests/016d2c_course_menu/8c018118_drawRouteInfo.php",
+                "tests/016d2c_course_menu/8c0181b6_courseConfirmMenuTask.php",
+                "tests/016d2c_course_menu/8c0184cc_courseMenuConfirmInit.php",
                 "tests/016d2c_course_menu/8c01852c_requestCommonResources.php",
                 "tests/016d2c_course_menu/8c018568_requestSysResgrp.php",
                 "tests/016d2c_course_menu/8c0185c4_freeResourceGroup.php",
@@ -203,10 +206,10 @@ return [
         [
             "tests" => [
                 "tests/012504_input/8c012504_task.php",
-                "tests/012504_input/8c012718_FUN.php",
-                "tests/012504_input/8c0128cc_FUN.php",
-                "tests/012504_input/8c012970_FUN.php",
-                "tests/012504_input/8c012984_FUN.php",
+                "tests/012504_input/8c012718_inputTaskAlt.php",
+                "tests/012504_input/8c0128cc_InputPushTask.php",
+                "tests/012504_input/8c012970_InputDispatchTask.php",
+                "tests/012504_input/8c012984_InputSetName.php",
             ],
             "objects" => [
                 "build/output_test/012504_input_src.obj",
@@ -215,7 +218,7 @@ return [
         ],
         [
             "tests" => [
-                "tests/016bf4_demo_input/8c016bf4_FUN.php"
+                "tests/016bf4_demo_input/8c016bf4_DemoInputTask.php"
             ],
             "objects" => [
                 "build/output_test/016bf4_demo_input_src.obj",
@@ -235,31 +238,59 @@ return [
         ],
         [
             "tests" => [
+                "tests/02af78_event/8c02af78_setProgressFlag.php",
+                "tests/02af78_event/8c02afbe_hasProgressFlag.php",
+                "tests/02af78_event/8c02aff0_hasProgressFlagAlt.php",
+                "tests/02af78_event/8c02b022_setRunEventFlag.php",
+                "tests/02af78_event/8c02b030_hasRunEventFlag.php",
+                "tests/02af78_event/8c02b03c_EventScanCandidates.php",
+                "tests/02af78_event/8c02b170_EventPickForSegment.php",
+                "tests/02af78_event/8c02b292_EventApplyFlags.php",
+            ],
+            "objects" => [
+                "build/output_test/02af78_event_src.obj",
+                "build/output_test/02af78_event_c.obj",
+            ]
+        ],
+        [
+            "tests" => [
                 "tests/013ae8_route_load/13ae8_requestVehicleAssets.php",
                 "tests/013ae8_route_load/13b5a_freeVehicleAssets.php",
-                "tests/013ae8_route_load/13bbc_clearUnknownArray.php",
+                "tests/013ae8_route_load/13bbc_RouteLoadClearModelSlots.php",
                 "tests/013ae8_route_load/13c34_syncRouteModelAssets.php",
                 "tests/013ae8_route_load/13d42_finishAssetLoad.php",
-                "tests/013ae8_route_load/13d78_FUN.php",
-                "tests/013ae8_route_load/13dae_FUN.php",
-                "tests/013ae8_route_load/13df6_FUN.php",
-                "tests/013ae8_route_load/13ee4_FUN.php",
-                "tests/013ae8_route_load/13f22_FUN.php",
-                "tests/013ae8_route_load/13f78_FUN.php",
+                "tests/013ae8_route_load/13d78_RouteLoadStartRouteModelLoadPass.php",
+                "tests/013ae8_route_load/13dae_RouteLoadFreeAllRouteModels.php",
+                "tests/013ae8_route_load/13df6_syncPedestrianAssets.php",
+                "tests/013ae8_route_load/13ee4_RouteLoadFreePedestrianAssets.php",
+                "tests/013ae8_route_load/13f22_freeSegmentModels.php",
+                "tests/013ae8_route_load/13f78_syncSegmentModels.php",
                 "tests/013ae8_route_load/14088_loadRouteModels.php",
-                "tests/013ae8_route_load/14322_resetUknPvmBool.php",
-                "tests/013ae8_route_load/1432a_getUknPvmBool.php",
-                "tests/013ae8_route_load/14330_setUknPvmBool.php",
-                "tests/013ae8_route_load/14338_taskLoad.php",
-                "tests/013ae8_route_load/144fc_FUN.php",
-                "tests/013ae8_route_load/14550_FUN.php",
-                "tests/013ae8_route_load/1468e_FUN.php",
-                "tests/013ae8_route_load/14784_probTask.php",
+                "tests/013ae8_route_load/14322_RouteLoadResetPvmReady.php",
+                "tests/013ae8_route_load/1432a_RouteLoadIsPvmReady.php",
+                "tests/013ae8_route_load/14330_RouteLoadSetPvmReady.php",
+                "tests/013ae8_route_load/14338_routeLoadTask.php",
+                "tests/013ae8_route_load/144fc_RouteLoadPushTask.php",
+                "tests/013ae8_route_load/14550_unknownSegmentReloadTask.php",
+                "tests/013ae8_route_load/1468e_RouteLoadPushSegmentReloadTask.php",
+                "tests/013ae8_route_load/14784_RouteLoadUnusedTask.php",
             ],
             "objects" => [
                 "build/output_test/013ae8_route_load_src.obj",
                 "build/output_test/013ae8_route_load_c.obj",
             ]
-        ]
+        ],
+        [
+            "tests" => [
+                "tests/0129cc_pause/8c0129cc_Update.php",
+                "tests/0129cc_pause/8c012cbc_PauseTask.php",
+                "tests/0129cc_pause/8c012d06_PauseToggleTask.php",
+                "tests/0129cc_pause/8c012d5a_PauseDemoEndTask.php",
+            ],
+            "objects" => [
+                "build/output_test/0129cc_pause_src.obj",
+                "build/output_test/0129cc_pause_c.obj",
+            ]
+        ],
     ],
 ];

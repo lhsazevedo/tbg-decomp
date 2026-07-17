@@ -1,34 +1,34 @@
 ; 8c01614c
-          .IMPORT     _freeTasks_8c014ab4
+          .IMPORT     _TaskFreeGroup_8c014ab4
           .IMPORT     _var_tasks_8c1bb448
           .IMPORT     _var_tasks_8c1bac28
           .IMPORT     _var_tasks_8c1ba808
           .IMPORT     _var_tasks_8c1ba5e8
           .IMPORT     _FUN_8c010c7c
           .IMPORT     _var_vibport_8c1ba354
-          .IMPORT     _vibClear_8c010fbe
+          .IMPORT     _VibClear_8c010fbe
           .IMPORT     _var_tasks_8c1ba3c8
-          .IMPORT     _freePedestrianAssets_8c013ee4
-          .IMPORT     _freeAllRouteModels_8c013dae
+          .IMPORT     _RouteLoadFreePedestrianAssets_8c013ee4
+          .IMPORT     _RouteLoadFreeAllRouteModels_8c013dae
           .IMPORT     _AsqFreeModels_8c0120fe
           .IMPORT     _var_routeModels_8c1bc3ec
           .IMPORT     _var_segmentModels_8c1bc3f0
           .IMPORT     _var_trafficModels_8c1bc3f4
-          .IMPORT     _freeVehicleAssets_8c013b5a
+          .IMPORT     _RouteLoadFreeVehicleAssets_8c013b5a
           .IMPORT     _var_currentCourse_8c1bb868
           .IMPORT     _var_demoBuf_8c1ba3c4
           .IMPORT     _var_8c1bc454
-          .IMPORT     _freeResourceGroups_8c016108
+          .IMPORT     _RgFreeResourceGroups_8c016108
           .IMPORT     _var_selectedVm_8c1ba34c
           .IMPORT     _var_vmuStatus_8c226048
           .IMPORT     _BupGetInfo_8c014bba
           .IMPORT     _BupMount_8c014c00
           .IMPORT     _BupUnmount_8c014c46
-          .IMPORT     _freeTask_8c014b66
-          .IMPORT     _pushTask_8c014ae8
+          .IMPORT     _TaskFree_8c014b66
+          .IMPORT     _TaskPush_8c014ae8
           .IMPORT     _var_8c1bc824
           .IMPORT     _AsqGetRandomA_8c012166
-          .IMPORT     _pushInputTask_8c0128cc
+          .IMPORT     _InputPushTask_8c0128cc
           .IMPORT     _var_demoBuffer_8c1bc828
           .IMPORT     _var_demoCursor_8c225fa8
           .IMPORT     _var_demoPrevOn_8c225fac
@@ -420,7 +420,7 @@ LP_GEN_42967:
           .DATA.L _FUN_8c0297da ; H'8C01637C
           .DATA.L _FUN_8c0288be ; H'8C016380
           .DATA.L _FUN_8c02ca96 ; H'8C016384
-          .DATA.L _freeTasks_8c014ab4 ; H'8C016388
+          .DATA.L _TaskFreeGroup_8c014ab4 ; H'8C016388
           .DATA.L _var_tasks_8c1bb448 ; H'8C01638C
           .DATA.L _var_tasks_8c1bac28 ; H'8C016390
           .DATA.L _var_tasks_8c1ba808 ; H'8C016394
@@ -429,23 +429,23 @@ LP_GEN_42967:
           .DATA.L _sdMidiStopAll ; H'8C0163A0
           .DATA.L _var_vibport_8c1ba354 ; H'8C0163A4
           .DATA.L _pdVibMxStop ; H'8C0163A8
-          .DATA.L _vibClear_8c010fbe ; H'8C0163AC
+          .DATA.L _VibClear_8c010fbe ; H'8C0163AC
           .DATA.L _var_tasks_8c1ba3c8 ; H'8C0163B0
           .DATA.L _FUN_8c02adee ; H'8C0163B4
           .DATA.L _FUN_8c029cfe ; H'8C0163B8
-          .DATA.L _freePedestrianAssets_8c013ee4 ; H'8C0163BC
-          .DATA.L _freeAllRouteModels_8c013dae ; H'8C0163C0
+          .DATA.L _RouteLoadFreePedestrianAssets_8c013ee4 ; H'8C0163BC
+          .DATA.L _RouteLoadFreeAllRouteModels_8c013dae ; H'8C0163C0
           .DATA.L _AsqFreeModels_8c0120fe ; H'8C0163C4
           .DATA.L _var_routeModels_8c1bc3ec ; H'8C0163C8
           .DATA.L _var_segmentModels_8c1bc3f0 ; H'8C0163CC
           .DATA.L _var_trafficModels_8c1bc3f4 ; H'8C0163D0
           .DATA.L _FUN_8c021724 ; H'8C0163D4
-          .DATA.L _freeVehicleAssets_8c013b5a ; H'8C0163D8
+          .DATA.L _RouteLoadFreeVehicleAssets_8c013b5a ; H'8C0163D8
           .DATA.L _var_currentCourse_8c1bb868 ; H'8C0163DC
           .DATA.L _syFree ; H'8C0163E0
           .DATA.L _var_demoBuf_8c1ba3c4 ; H'8C0163E4
           .DATA.L _var_8c1bc454 ; H'8C0163E8
-          .DATA.L _freeResourceGroups_8c016108 ; H'8C0163EC
+          .DATA.L _RgFreeResourceGroups_8c016108 ; H'8C0163EC
           .DATA.L _FUN_8c0187d0 ; H'8C0163F0
           .DATA.L _VmMenuFreeAndClear_8c019504 ; H'8C0163F4
           .DATA.L _var_selectedVm_8c1ba34c ; H'8C0163F8
@@ -1014,12 +1014,12 @@ LAB_8c01681e:
 LP_GEN_94139:
           .DATA.L _VmMenuUpdateVmusStatus_8c019550 ; H'8C016824
           .DATA.L _const_8c036120 ; H'8C016828
-          .DATA.L _freeTask_8c014b66 ; H'8C01682C
+          .DATA.L _TaskFree_8c014b66 ; H'8C01682C
           .DATA.L H'0000C060 ; H'8C016830
           .DATA.L _njSetBackColor ; H'8C016834
           .DATA.L _FUN_8c01628c ; H'8C016838
           .DATA.L _var_tasks_8c1ba3c8 ; H'8C01683C
-          .DATA.L _pushTask_8c014ae8 ; H'8C016840
+          .DATA.L _TaskPush_8c014ae8 ; H'8C016840
           .DATA.L _init_8c04429c ; H'8C016844
           .DATA.L H'10+_var_peripherals_8c1ba35c ; H'8C016848
           .DATA.L _var_8c1bc824 ; H'8C01684C
@@ -1028,7 +1028,7 @@ LP_GEN_94139:
           .DATA.L _const_8c0360b0 ; H'8C016858
           .DATA.L H'000A0000 ; H'8C01685C
           .DATA.L _AsqGetRandomA_8c012166 ; H'8C016860
-          .DATA.L _pushInputTask_8c0128cc ; H'8C016864
+          .DATA.L _InputPushTask_8c0128cc ; H'8C016864
           .DATA.L _FUN_8c01666a ; H'8C016868
           .DATA.L _var_demoBuffer_8c1bc828 ; H'8C01686C
           .DATA.L _var_demoCursor_8c225fa8 ; H'8C016870
@@ -1274,11 +1274,11 @@ LP_GEN_65913:
           .DATA.L _buStat ; H'8C016A54
           .DATA.L _syFree ; H'8C016A58
           .DATA.L _BupUnmount_8c014c46 ; H'8C016A5C
-          .DATA.L _freeTask_8c014b66 ; H'8C016A60
+          .DATA.L _TaskFree_8c014b66 ; H'8C016A60
           .DATA.L _CourseMenuFUN_8c017ef2 ; H'8C016A64
           .DATA.L _FUN_8c0167ca ; H'8C016A68
           .DATA.L _var_tasks_8c1ba3c8 ; H'8C016A6C
-          .DATA.L _pushTask_8c014ae8 ; H'8C016A70
+          .DATA.L _TaskPush_8c014ae8 ; H'8C016A70
           .DATA.L _var_selectedVm_8c1ba34c ; H'8C016A74
           .DATA.L _var_demoCursor_8c225fa8 ; H'8C016A78
           .DATA.L _var_demoCursor_8c225fa8 ; H'8C016A7C
@@ -1432,14 +1432,14 @@ LP_GEN_41084:
           .DATA.L _FUN_readDemo_8c02fa14 ; H'8C016BC8
           .DATA.L _syFree ; H'8C016BCC
           .DATA.L _BupUnmount_8c014c46 ; H'8C016BD0
-          .DATA.L _freeTask_8c014b66 ; H'8C016BD4
+          .DATA.L _TaskFree_8c014b66 ; H'8C016BD4
           .DATA.L _FUN_8c01328c ; H'8C016BD8
           .DATA.L _var_playMode_8c1bb8d0 ; H'8C016BDC
           .DATA.L _var_selectedVm_8c1ba34c ; H'8C016BE0
           .DATA.L _var_8c1bb8d4 ; H'8C016BE4
           .DATA.L _FUN_8c0169bc ; H'8C016BE8
           .DATA.L _var_tasks_8c1ba3c8 ; H'8C016BEC
-          .DATA.L _pushTask_8c014ae8 ; H'8C016BF0
+          .DATA.L _TaskPush_8c014ae8 ; H'8C016BF0
 
           .SECTION    D, DATA, ALIGN=4
 _init_8c044294:        ; from defines

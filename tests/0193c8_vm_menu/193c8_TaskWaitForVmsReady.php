@@ -28,10 +28,10 @@ return new class extends TestCase {
             $this->shouldCall('_BupGetInfo_8c014bba')->with($i)->andReturn($bupInfo);
         }
 
-        $this->shouldCall('_freeTask_8c014b66')->with($task);
+        $this->shouldCall('_TaskFree_8c014b66')->with($task);
         $this->shouldWriteLongTo('_var_8c22606c', 0);
 
-        $this->singleCall('_TaskWaitForVmsReady_193c8')->with($task, 0)->run();
+        $this->singleCall('_taskWaitForVmsReady_8c0193c8')->with($task, 0)->run();
     }
 
     public function test_freeWhenNoneConnected()
@@ -55,10 +55,10 @@ return new class extends TestCase {
             $this->shouldCall('_BupGetInfo_8c014bba')->with($i)->andReturn($bupInfo);
         }
 
-        $this->shouldCall('_freeTask_8c014b66')->with($task);
+        $this->shouldCall('_TaskFree_8c014b66')->with($task);
         $this->shouldWriteLongTo('_var_8c22606c', 0);
 
-        $this->singleCall('_TaskWaitForVmsReady_193c8')->with($task, 0)->run();
+        $this->singleCall('_taskWaitForVmsReady_8c0193c8')->with($task, 0)->run();
     }
 
     public function test_waitsForReady()
@@ -82,7 +82,7 @@ return new class extends TestCase {
             $this->shouldCall('_BupGetInfo_8c014bba')->with($i)->andReturn($bupInfo);
         }
 
-        $this->singleCall('_TaskWaitForVmsReady_193c8')->with($task, 0)->run();
+        $this->singleCall('_taskWaitForVmsReady_8c0193c8')->with($task, 0)->run();
     }
 
     private function resolveSymbols(): void

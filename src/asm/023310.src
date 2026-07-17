@@ -20,7 +20,7 @@
           .IMPORT     _var_8c227db4
           .IMPORT     _task_bus_8c022bdc
           .IMPORT     _var_tasks_8c1ba5e8
-          .IMPORT     _pushTask_8c014ae8
+          .IMPORT     _TaskPush_8c014ae8
           .IMPORT     _var_8c1bbd9c
           .IMPORT     _var_8c1bbf7c
           .IMPORT     _var_trafficModels_8c1bc3f4
@@ -520,7 +520,7 @@ LP_GEN_28893:
           .DATA.L _var_8c227db4 ; H'8C0236E0
           .DATA.L _task_bus_8c022bdc ; H'8C0236E4
           .DATA.L _var_tasks_8c1ba5e8 ; H'8C0236E8
-          .DATA.L _pushTask_8c014ae8 ; H'8C0236EC
+          .DATA.L _TaskPush_8c014ae8 ; H'8C0236EC
           .DATA.L _var_busState_8c1bb9d0 ; H'8C0236F0
           .DATA.L _var_8c1bbd9c ; H'8C0236F4
           .DATA.L _var_8c1bbf7c ; H'8C0236F8

@@ -1,6 +1,6 @@
 ; 8c01d7fc
           .IMPORT     _var_menuState_8c1bc7a8
-          .IMPORT     _drawSprite_8c014f54
+          .IMPORT     _TxtDrawSprite_8c014f54
           .IMPORT     __modls
           .IMPORT     __divls
           .IMPORT     _menuTextboxText_8c02af1c
@@ -11,11 +11,11 @@
           .IMPORT     _init_saveNames_8c044d50
           .IMPORT     _var_peripherals_8c1ba35c
           .IMPORT     _VmMenuUpdateVmuStatus_8c01967c
-          .IMPORT     _isPvmReady_8c01432a
+          .IMPORT     _RouteLoadIsPvmReady_8c01432a
           .IMPORT     _AsqFreeQueues_8c011f7e
           .IMPORT     _var_8c226408
           .IMPORT     _var_8c1bb8dc
-          .IMPORT     _midiResetFxAndPlay_8c010846
+          .IMPORT     _SndMidiResetFxAndPlay_8c010846
           .IMPORT     _var_midiHandles_8c0fcd28
           .IMPORT     _sdMidiPlay
           .IMPORT     _var_award_8c1bb8f8
@@ -36,7 +36,7 @@
           .IMPORT     _const_8c038894
           .IMPORT     _const_8c0388b8
           .IMPORT     _const_8c0388f0
-          .IMPORT     _promptHandleBinary_8c016caa
+          .IMPORT     _PromptHandleBinary_8c016caa
           .IMPORT     _push_fadein_8c022a9c
           .IMPORT     _FUN_8c01890a
           .IMPORT     _FUN_8c01b26c
@@ -54,12 +54,12 @@
           .IMPORT     _CourseMenuFUN_8c017ef2
           .IMPORT     _CourseMenuBuildCourseUnlockList_8c0172dc
           .IMPORT     _CourseMenuApplyUnlocks_8c0173e6
-          .IMPORT     _pushTitle_8c015fd6
+          .IMPORT     _TitlePushTitle_8c015fd6
           .IMPORT     _njSetBackColor
-          .IMPORT     _pushInputTask_8c0128cc
-          .IMPORT     _task_8c012f44
+          .IMPORT     _InputPushTask_8c0128cc
+          .IMPORT     _GameTask_8c012f44
           .IMPORT     _var_tasks_8c1ba3c8
-          .IMPORT     _pushTask_8c014ae8
+          .IMPORT     _TaskPush_8c014ae8
           .IMPORT     _var_tex_8c157af8
           .IMPORT     _njGarbageTexture
           .IMPORT     _FUN_8c02ae3e
@@ -72,8 +72,8 @@
           .IMPORT     _const_8c038960
           .IMPORT     _const_8c038958
           .IMPORT     _AsqRequestDat_8c011182
-          .IMPORT     _setPvmReady_8c014330
-          .IMPORT     _resetPvmReady_8c014322
+          .IMPORT     _RouteLoadSetPvmReady_8c014330
+          .IMPORT     _RouteLoadResetPvmReady_8c014322
           .IMPORT     _AsqNop_8c011120
           .IMPORT     _AsqProcessQueues_8c011fe0
           .IMPORT     _var_timeOfDay_8c18ad20
@@ -188,7 +188,7 @@ LP_GEN_57051:
           .DATA.W H'00FF ; H'8C01D8AE
           .DATA.L H'43E80000 ; H'8C01D8B0
           .DATA.L _var_menuState_8c1bc7a8 ; H'8C01D8B4
-          .DATA.L _drawSprite_8c014f54 ; H'8C01D8B8
+          .DATA.L _TxtDrawSprite_8c014f54 ; H'8C01D8B8
           .DATA.L H'C0400000 ; H'8C01D8BC
           .DATA.L H'41900000 ; H'8C01D8C0
           .DATA.L __modls ; H'8C01D8C4
@@ -530,11 +530,11 @@ LAB_8c01db36:
           NOP
 LP_GEN_73625:
           .DATA.L _VmMenuUpdateVmuStatus_8c01967c ; H'8C01DB48
-          .DATA.L _isPvmReady_8c01432a ; H'8C01DB4C
+          .DATA.L _RouteLoadIsPvmReady_8c01432a ; H'8C01DB4C
           .DATA.L _AsqFreeQueues_8c011f7e ; H'8C01DB50
           .DATA.L _var_8c226408 ; H'8C01DB54
           .DATA.L _var_8c1bb8dc ; H'8C01DB58
-          .DATA.L _midiResetFxAndPlay_8c010846 ; H'8C01DB5C
+          .DATA.L _SndMidiResetFxAndPlay_8c010846 ; H'8C01DB5C
           .DATA.L _var_midiHandles_8c0fcd28+16 ; H'8C01DB60
           .DATA.L _sdMidiPlay ; H'8C01DB64
           .DATA.L _var_award_8c1bb8f8 ; H'8C01DB68
@@ -553,7 +553,7 @@ LP_GEN_73625:
           .DATA.L _var_gameMode_8c1bb8fc ; H'8C01DB9C
           .DATA.L _var_progress_8c1ba1cc ; H'8C01DBA0
           .DATA.L _push_fadeout_8c022b60 ; H'8C01DBA4
-          .DATA.L _drawSprite_8c014f54 ; H'8C01DBA8
+          .DATA.L _TxtDrawSprite_8c014f54 ; H'8C01DBA8
 LAB_8c01dbac:
           MOV.L       LP_GEN_38701+4,R3
           MOV         #H'3,R6
@@ -978,7 +978,7 @@ LAB_8c01dea6:
           MOV.L       @R15+,R14
 LP_GEN_50614:
           .DATA.L _VmMenuUpdateVmuStatus_8c01967c ; H'8C01DEC4
-          .DATA.L _promptHandleBinary_8c016caa ; H'8C01DEC8
+          .DATA.L _PromptHandleBinary_8c016caa ; H'8C01DEC8
           .DATA.L _push_fadeout_8c022b60 ; H'8C01DECC
           .DATA.L _push_fadein_8c022a9c ; H'8C01DED0
           .DATA.L _var_vmuStatus_8c226048 ; H'8C01DED4
@@ -1004,7 +1004,7 @@ LP_GEN_50614:
           .DATA.L _CourseMenuBuildCourseUnlockList_8c0172dc ; H'8C01DF24
           .DATA.L _CourseMenuApplyUnlocks_8c0173e6 ; H'8C01DF28
           .DATA.L _FUN_8c01f954 ; H'8C01DF2C
-          .DATA.L _pushTitle_8c015fd6 ; H'8C01DF30
+          .DATA.L _TitlePushTitle_8c015fd6 ; H'8C01DF30
 LAB_8c01df34:
           MOV.L       LP_GEN_43538+10,R3
           MOV.W       LP_GEN_43538,R4
@@ -1147,13 +1147,13 @@ LP_GEN_43538:
           .RES.W 1 ; H'8C01E03E
           .DATA.L _menuTextboxText_8c02af1c ; H'8C01E040
           .DATA.L H'C089999A ; H'8C01E044
-          .DATA.L _drawSprite_8c014f54 ; H'8C01E048
+          .DATA.L _TxtDrawSprite_8c014f54 ; H'8C01E048
           .DATA.L H'FF418DFF ; H'8C01E04C
           .DATA.L _njSetBackColor ; H'8C01E050
-          .DATA.L _pushInputTask_8c0128cc ; H'8C01E054
-          .DATA.L _task_8c012f44 ; H'8C01E058
+          .DATA.L _InputPushTask_8c0128cc ; H'8C01E054
+          .DATA.L _GameTask_8c012f44 ; H'8C01E058
           .DATA.L _var_tasks_8c1ba3c8 ; H'8C01E05C
-          .DATA.L _pushTask_8c014ae8 ; H'8C01E060
+          .DATA.L _TaskPush_8c014ae8 ; H'8C01E060
           .DATA.L _task_8c01d8e0 ; H'8C01E064
           .DATA.L _var_menuState_8c1bc7a8 + H'18 ; H'8C01E068
           .DATA.L _var_tex_8c157af8 ; H'8C01E06C
@@ -1170,8 +1170,8 @@ LP_GEN_43538:
           .DATA.L _const_8c038960 ; H'8C01E098
           .DATA.L _const_8c038958 ; H'8C01E09C
           .DATA.L _AsqRequestDat_8c011182 ; H'8C01E0A0
-          .DATA.L _setPvmReady_8c014330 ; H'8C01E0A4
-          .DATA.L _resetPvmReady_8c014322 ; H'8C01E0A8
+          .DATA.L _RouteLoadSetPvmReady_8c014330 ; H'8C01E0A4
+          .DATA.L _RouteLoadResetPvmReady_8c014322 ; H'8C01E0A8
           .DATA.L _AsqNop_8c011120 ; H'8C01E0AC
           .DATA.L _AsqProcessQueues_8c011fe0 ; H'8C01E0B0
 _FUN_8c01e0b4:

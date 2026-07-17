@@ -1,39 +1,39 @@
 ; 8c0193c8
           .IMPORT     _BupGetInfo_8c014bba
-          .IMPORT     _freeTask_8c014b66
+          .IMPORT     _TaskFree_8c014b66
           .IMPORT     _var_8c22606c
           .IMPORT     _BupMount_8c014c00
           .IMPORT     _var_tasks_8c1ba3c8
-          .IMPORT     _pushTask_8c014ae8
+          .IMPORT     _TaskPush_8c014ae8
           .IMPORT     _BupUnmount_8c014c46
           .IMPORT     _buStat
           .IMPORT     _syFree
-          .IMPORT     _ClearInfo_8c014c8a
+          .IMPORT     _BupClearInfo_8c014c8a
           .IMPORT     _var_gBupInfo_8c1bc4ac
           .IMPORT     _buIsExistFile
           .IMPORT     _var_vmuStatus_8c226048
           .IMPORT     _var_menuState_8c1bc7a8
-          .IMPORT     _drawSprite_8c014f54
+          .IMPORT     _TxtDrawSprite_8c014f54
           .IMPORT     _var_isFading_8c226568
           .IMPORT     __quick_evn_mvn
           .IMPORT     _swapMessageBoxFor_8c02aefc
           .IMPORT     _FUN_8c010d8a
-          .IMPORT     _snd_8c010cd6
+          .IMPORT     _SndProc_8c010cd6
           .IMPORT     _push_fadein_8c022a9c
           .IMPORT     _var_midiHandles_8c0fcd28
           .IMPORT     _var_peripherals_8c1ba35c
           .IMPORT     _sdMidiPlay
           .IMPORT     _CourseMenuInterpolateCursor_8c016d2c
-          .IMPORT     _promptHandleBinary_8c016caa
+          .IMPORT     _PromptHandleBinary_8c016caa
           .IMPORT     _var_selectedVm_8c1ba34c
           .IMPORT     _push_fadeout_8c022b60
           .IMPORT     _FUN_8c01895e
-          .IMPORT     _startAdxFadeOut_8c010bae
+          .IMPORT     _SndStartAdxFadeOut_8c010bae
           .IMPORT     _menuTextboxText_8c02af1c
           .IMPORT     _FUN_8c019334
           .IMPORT     _init_8c03bd80
           .IMPORT     _MainMenuSwitchFromTask_8c01a09a
-          .IMPORT     _setTaskAction_8c014b3e
+          .IMPORT     _TaskSetAction_8c014b3e
           .EXPORT     _const_8c037f60
           .EXPORT     _const_8c037f70
           .EXPORT     _const_8c037f80
@@ -61,16 +61,16 @@
           .EXPORT     _VmMenuSwitchFromTask_8c019e44
 
           .AIFDEF UNIT_TESTING
-          .EXPORT     _TaskWaitForVmsReady_193c8
-          .EXPORT     _TaskUnmountVms_1946a
-          .EXPORT     _saveFileExists_19730
-          .EXPORT     _initCursorLerp_19788
-          .EXPORT     _drawVmMenu_197c0
-          .EXPORT     _DrawVmWarning_19852
-          .EXPORT     _VmMenuTask_198a0
+          .EXPORT     _taskWaitForVmsReady_8c0193c8
+          .EXPORT     _taskUnmountVms_8c01946a
+          .EXPORT     _saveFileExists_8c019730
+          .EXPORT     _initCursorLerp_8c019788
+          .EXPORT     _drawVmMenu_8c0197c0
+          .EXPORT     _drawVmWarning_8c019852
+          .EXPORT     _vmMenuTask_8c0198a0
           .AENDI
           .SECTION     P, CODE, ALIGN=4
-_TaskWaitForVmsReady_193c8:
+_taskWaitForVmsReady_8c0193c8:
           MOV.L       R14,@-R15
           MOV.L       R13,@-R15
           MOV.L       R12,@-R15
@@ -159,7 +159,7 @@ LAB_8c01943c:
           MOV.L       @R15+,R13
           RTS
           MOV.L       @R15+,R14
-_TaskUnmountVms_1946a:
+_taskUnmountVms_8c01946a:
           MOV.L       R14,@-R15
           MOV.L       R13,@-R15
           MOV.L       R12,@-R15
@@ -328,17 +328,17 @@ LAB_8c019592:
           MOV.L       @(H'4,R15),R11
 LP_GEN_33095:
           .DATA.L _BupGetInfo_8c014bba ; H'8C01959C
-          .DATA.L _freeTask_8c014b66 ; H'8C0195A0
+          .DATA.L _TaskFree_8c014b66 ; H'8C0195A0
           .DATA.L _var_8c22606c ; H'8C0195A4
           .DATA.L _BupMount_8c014c00 ; H'8C0195A8
-          .DATA.L _TaskWaitForVmsReady_193c8 ; H'8C0195AC
+          .DATA.L _taskWaitForVmsReady_8c0193c8 ; H'8C0195AC
           .DATA.L _var_tasks_8c1ba3c8 ; H'8C0195B0
-          .DATA.L _pushTask_8c014ae8 ; H'8C0195B4
+          .DATA.L _TaskPush_8c014ae8 ; H'8C0195B4
           .DATA.L _BupUnmount_8c014c46 ; H'8C0195B8
           .DATA.L _buStat ; H'8C0195BC
-          .DATA.L _TaskUnmountVms_1946a ; H'8C0195C0
+          .DATA.L _taskUnmountVms_8c01946a ; H'8C0195C0
           .DATA.L _syFree ; H'8C0195C4
-          .DATA.L _ClearInfo_8c014c8a ; H'8C0195C8
+          .DATA.L _BupClearInfo_8c014c8a ; H'8C0195C8
           .DATA.L _var_gBupInfo_8c1bc4ac ; H'8C0195CC
 LAB_8c0195d0:
           MOV.L       LP_GEN_86643+4,R2
@@ -541,7 +541,7 @@ LAB_8c019722:
           MOV.L       @R15+,R13
           RTS
           MOV.L       @R15+,R14
-_saveFileExists_19730:
+_saveFileExists_8c019730:
           STS.L       PR,@-R15
           ADD         #-H'8,R15
           MOV.L       LP_GEN_27799+4,R3
@@ -584,7 +584,7 @@ LP_GEN_27799:
           .DATA.L _var_vmuStatus_8c226048 ; H'8C01977C
           .DATA.L _BupMount_8c014c00 ; H'8C019780
           .DATA.L _buIsExistFile ; H'8C019784
-_initCursorLerp_19788:
+_initCursorLerp_8c019788:
           MOV         R4,R5
           MOV.L       LP_GEN_31723+2,R3
           SHLL2       R5
@@ -613,7 +613,7 @@ _initCursorLerp_19788:
           FDIV        FR6,FR5
           RTS
           FMOV        FR5,@(R0,R4)
-_drawVmMenu_197c0:
+_drawVmMenu_8c0197c0:
           MOV.L       R14,@-R15
           MOVA        LP_GEN_31723+18,R0
           MOV.L       R13,@-R15
@@ -689,7 +689,7 @@ LAB_8c01980c:
           MOV.L       @R15+,R13
           RTS
           MOV.L       @R15+,R14
-_DrawVmWarning_19852:
+_drawVmWarning_8c019852:
           MOV.L       R14,@-R15
           MOVA        LP_GEN_31723+26,R0
           MOV.L       R13,@-R15
@@ -729,7 +729,7 @@ _DrawVmWarning_19852:
           MOV.L       @R15+,R13
           RTS
           MOV.L       @R15+,R14
-_VmMenuTask_198a0:
+_vmMenuTask_8c0198a0:
           MOV.L       R14,@-R15
           MOV.L       R13,@-R15
           MOV.L       R12,@-R15
@@ -837,7 +837,7 @@ LAB_8c019954:
           MOV.L       @(R0,R13),R3
           TST         R3,R3
           BT          LAB_8c019952
-          BSR         _initCursorLerp_19788
+          BSR         _initCursorLerp_8c019788
           MOV         R14,R4
           MOV         R12,R2
           MOV.L       LP_GEN_31723+58,R3
@@ -911,7 +911,7 @@ LP_GEN_31723:
           .DATA.L _init_vmIconsPositions_8c044d7c ; H'8C0199E0
           .DATA.L _var_menuState_8c1bc7a8 ; H'8C0199E4
           .DATA.L H'40C00000 ; H'8C0199E8
-          .DATA.L _drawSprite_8c014f54 ; H'8C0199EC
+          .DATA.L _TxtDrawSprite_8c014f54 ; H'8C0199EC
           .DATA.L H'C0800000 ; H'8C0199F0
           .DATA.L _var_vmuStatus_8c226048 ; H'8C0199F4
           .DATA.L H'C0A00000 ; H'8C0199F8
@@ -926,7 +926,7 @@ LP_GEN_31723:
           .DATA.L _init_vmuStatusMessages_8c044dc4 ; H'8C019A1C
           .DATA.L _swapMessageBoxFor_8c02aefc ; H'8C019A20
           .DATA.L _FUN_8c010d8a ; H'8C019A24
-          .DATA.L _snd_8c010cd6 ; H'8C019A28
+          .DATA.L _SndProc_8c010cd6 ; H'8C019A28
           .DATA.L _push_fadein_8c022a9c ; H'8C019A2C
           .DATA.L _var_midiHandles_8c0fcd28 ; H'8C019A30
 LAB_8c019a34:
@@ -1140,7 +1140,7 @@ LAB_8c019b8c:
           MOV         #H'3,R6
           JSR         @R3
           MOV.L       @R4,R4
-          BSR         _initCursorLerp_19788
+          BSR         _initCursorLerp_8c019788
           MOV         R14,R4
           MOV         R14,R0
           SHLL2       R0
@@ -1169,7 +1169,7 @@ LAB_8c019bba:
           JSR         @R3
           MOV.L       @(R0,R4),R4
 LAB_8c019bd6:
-          BSR         _drawVmMenu_197c0
+          BSR         _drawVmMenu_8c0197c0
           NOP
           BRA         LAB_8c019ca2
           MOV         #H'20,R4
@@ -1267,7 +1267,7 @@ LAB_8c019c8c:
           FMOV        FR15,FR6
           JSR         @R3
           FMOV        FR13,FR4
-          BSR         _drawVmMenu_197c0
+          BSR         _drawVmMenu_8c0197c0
           NOP
           MOV.W       LP_GEN_17403,R4
 LAB_8c019ca2:
@@ -1283,7 +1283,7 @@ LAB_8c019cac:
           MOV         #H'7,R3
           MOV.L       R3,@(H'18,R12)
 LAB_8c019cb6:
-          BSR         _DrawVmWarning_19852
+          BSR         _drawVmWarning_8c019852
           NOP
           BRA         LAB_8c019e28
           NOP
@@ -1304,14 +1304,14 @@ LAB_8c019cbe:
 LP_GEN_17403:
           .DATA.W H'00FF ; H'8C019CD8
           .RES.W 1 ; H'8C019CDA
-          .DATA.L _promptHandleBinary_8c016caa ; H'8C019CDC
+          .DATA.L _PromptHandleBinary_8c016caa ; H'8C019CDC
           .DATA.L _var_selectedVm_8c1ba34c ; H'8C019CE0
           .DATA.L _push_fadeout_8c022b60 ; H'8C019CE4
           .DATA.L _init_vmuStatusMessages_8c044dc4 ; H'8C019CE8
           .DATA.L _swapMessageBoxFor_8c02aefc ; H'8C019CEC
           .DATA.L _FUN_8c01895e ; H'8C019CF0
-          .DATA.L _startAdxFadeOut_8c010bae ; H'8C019CF4
-          .DATA.L _drawSprite_8c014f54 ; H'8C019CF8
+          .DATA.L _SndStartAdxFadeOut_8c010bae ; H'8C019CF4
+          .DATA.L _TxtDrawSprite_8c014f54 ; H'8C019CF8
           .DATA.L _menuTextboxText_8c02af1c ; H'8C019CFC
 LAB_8c019d00:
           BSR         _VmMenuUpdateVmusStatus_8c019550
@@ -1355,7 +1355,7 @@ LAB_8c019d3e:
           MOV.L       @(R0,R13),R3
           TST         R3,R3
           BT          LAB_8c019d3c
-          BSR         _initCursorLerp_19788
+          BSR         _initCursorLerp_8c019788
           MOV         R14,R4
           MOV         R12,R2
           MOV.L       LP_GEN_77899+14,R3
@@ -1412,7 +1412,7 @@ LAB_8c019d9a:
           MOV.L       @R15+,R11
           MOV.L       @R15+,R12
           MOV.L       @R15+,R13
-          BRA         _DrawVmWarning_19852
+          BRA         _drawVmWarning_8c019852
           MOV.L       @R15+,R14
 LAB_8c019db4:
           MOV.L       @R5,R3
@@ -1476,7 +1476,7 @@ LAB_8c019e1a:
           MOV         #H'2,R3
           MOV.L       R3,@(H'18,R12)
 LAB_8c019e24:
-          BSR         _drawVmMenu_197c0
+          BSR         _drawVmMenu_8c0197c0
           NOP
 LAB_8c019e28:
           MOV.L       R14,@(H'38,R12)
@@ -1510,7 +1510,7 @@ _VmMenuSwitchFromTask_8c019e44:
           MOV.L       R4,@(R0,R5)
 LP_GEN_77899:
           .RES.W 1 ; H'8C019E5E
-          .DATA.L _promptHandleBinary_8c016caa ; H'8C019E60
+          .DATA.L _PromptHandleBinary_8c016caa ; H'8C019E60
           .DATA.L _var_selectedVm_8c1ba34c ; H'8C019E64
           .DATA.L _FUN_8c01895e ; H'8C019E68
           .DATA.L __quick_evn_mvn ; H'8C019E6C
@@ -1518,11 +1518,11 @@ LP_GEN_77899:
           .DATA.L _swapMessageBoxFor_8c02aefc ; H'8C019E74
           .DATA.L _push_fadeout_8c022b60 ; H'8C019E78
           .DATA.L _FUN_8c019334 ; H'8C019E7C
-          .DATA.L _drawSprite_8c014f54 ; H'8C019E80
+          .DATA.L _TxtDrawSprite_8c014f54 ; H'8C019E80
           .DATA.L _init_8c03bd80 ; H'8C019E84
           .DATA.L _MainMenuSwitchFromTask_8c01a09a ; H'8C019E88
-          .DATA.L _VmMenuTask_198a0 ; H'8C019E8C
-          .DATA.L _setTaskAction_8c014b3e ; H'8C019E90
+          .DATA.L _vmMenuTask_8c0198a0 ; H'8C019E8C
+          .DATA.L _TaskSetAction_8c014b3e ; H'8C019E90
           .DATA.L _var_menuState_8c1bc7a8 ; H'8C019E94
           .SECTION     C, DATA, ALIGN=4
 _const_8c037ef8:

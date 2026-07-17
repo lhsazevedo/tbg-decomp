@@ -19,7 +19,7 @@ jobs:
 
       - name: Install sh4objtest
         run: |
-          wget -nv https://github.com/lhsazevedo/sh4objtest/releases/download/v0.1.31/sh4objtest-linux-x86_64.tar.gz
+          wget -nv https://github.com/lhsazevedo/sh4objtest/releases/download/v0.1.35/sh4objtest-linux-x86_64.tar.gz
           tar -xzf sh4objtest-linux-x86_64.tar.gz
           mv sh4objtest /usr/local/bin/sh4objtest
           rm sh4objtest-linux-x86_64.tar.gz

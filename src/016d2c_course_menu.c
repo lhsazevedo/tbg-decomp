@@ -1,9 +1,10 @@
+/* @unit CourseMenu */
 #include <shinobi.h>
 #include <sg_sd.h>
 #include <njdef.h>
 #include <sg_xpt.h>
 #include "012504_input.h"
-#include "012f44.h"
+#include "012f44_game.h"
 #include "013ae8_route_load.h"
 #include "015ab8_title.h"
 #include "014a9c_tasks.h"
@@ -219,9 +220,9 @@ STATIC ResourceGroupInfo init_courseResourceGroup_8c044d40;
  */
 
 int CourseMenuRequestSysResgrp_8c018568(ResourceGroup* dds, ResourceGroupInfo* rg);
-STATIC void CourseMenuConfirmInit_8c0184cc(Task *task);
+STATIC void courseMenuConfirmInit_8c0184cc(Task *task);
 void CourseMenuFreeResourceGroup_8c0185c4(ResourceGroup *res_group);
-STATIC void CourseMenuFreeRunMenuTask_8c017ada(Task * task, void *state);
+STATIC void courseMenuFreeRunMenuTask_8c017ada(Task * task, void *state);
 void CourseMenuRequestCommonResources_8c01852c(void);
 MenuDialog *init_dialogSequences_8c044c08[66];
 Uint8 init_courseVariants_8c044d10[30];
@@ -305,7 +306,7 @@ STATIC int cursorOffTarget_8c016dc6()
 STATIC void drawInteger_8c016e6c(int value, float x, float y)
 {
     do {
-        drawSprite_8c014f54(
+        TxtDrawSprite_8c014f54(
             &var_menuState_8c1bc7a8.resourceGroupA_0x00,
             15 + value % 10,
             x,
@@ -345,7 +346,7 @@ void CourseMenuDrawDateAndExp_8c016ee6()
         sprite_id = 6 + getWeekDayIndex_8c016ed2();
     }
 
-    drawSprite_8c014f54(
+    TxtDrawSprite_8c014f54(
         &var_menuState_8c1bc7a8.resourceGroupA_0x00,
         sprite_id,
         112.0,
@@ -364,12 +365,12 @@ STATIC void dialogSequenceTask_8c016f98(DialogSequenceTask *task, DialogSequence
 
             if (!*(state->dialog_0x04->text_0x00)) {
                 var_dialogSequenceIsActive_8c225fb4 = 0;
-                freeTask_8c014b66((void *) task);
+                TaskFree_8c014b66((void *) task);
                 return;
             }
 
             if (task->field_0x18 && *task->field_0x18) {
-                snd_8c010cd6(2, *task->field_0x18);
+                SndProc_8c010cd6(2, *task->field_0x18);
                 task->field_0x18++;
             }
 
@@ -422,7 +423,7 @@ STATIC void dialogSequenceTask_8c016f98(DialogSequenceTask *task, DialogSequence
             }
 
             state->field_0x14 += 0x1111;
-            drawSprite_8c014f54(
+            TxtDrawSprite_8c014f54(
                 &var_menuState_8c1bc7a8.resourceGroupA_0x00,
                 44,
                 32.0,
@@ -442,7 +443,7 @@ void CourseMenuPushDialogTask_8c0170c6(int dialog_index, int *p2)
     DialogSequenceTask *task;
     DialogSequenceTaskState *state;
 
-    pushTask_8c014ae8(
+    TaskPush_8c014ae8(
         var_tasks_8c1ba3c8,
         &dialogSequenceTask_8c016f98,
         &task,
@@ -476,8 +477,8 @@ STATIC void handleCourseMenuInput_8c017126()
             sdMidiPlay(var_midiHandles_8c0fcd28[0], 1, 2, 0);
             swapDialogMessageBox_8c017108(SEQ_COURSE_LOCKED);
         } else {
-            startAdxFadeOut_8c010bae(0);
-            startAdxFadeOut_8c010bae(1);
+            SndStartAdxFadeOut_8c010bae(0);
+            SndStartAdxFadeOut_8c010bae(1);
             sdMidiPlay(var_midiHandles_8c0fcd28[0], 1, 0, 0);
             CHANGE_STATE(COURSE_MENU_STATE_COURSE_SELECTED);
             var_menuState_8c1bc7a8.logo_timer_0x68 = 0;
@@ -695,7 +696,7 @@ STATIC void drawCourseButtons_8c017590()
     int i;
 
     if (var_menuState_8c1bc7a8.field_0x48) {
-        drawSprite_8c014f54(
+        TxtDrawSprite_8c014f54(
             &var_menuState_8c1bc7a8.resourceGroupB_0x0c,
             0x18,
             var_menuState_8c1bc7a8.pos.cursor.cursor_0x20.x,
@@ -711,7 +712,7 @@ STATIC void drawCourseButtons_8c017590()
         if (btn->unlocked_0x04 == 0 || btn->spriteNo_0x10 == 0)
             continue;
 
-        drawSprite_8c014f54(
+        TxtDrawSprite_8c014f54(
             &var_menuState_8c1bc7a8.resourceGroupB_0x0c,
             btn->spriteNo_0x10,
             0.0,
@@ -729,7 +730,7 @@ STATIC void drawCourseButtons_8c017590()
         if (!spriteNo)
             continue;
 
-        drawSprite_8c014f54(
+        TxtDrawSprite_8c014f54(
             &var_menuState_8c1bc7a8.resourceGroupB_0x0c,
             0x18 - spriteNo,
             240.0 + (i % 3) * 93.0,
@@ -739,17 +740,17 @@ STATIC void drawCourseButtons_8c017590()
     }
 }
 
-STATIC void CourseMenuStoryMenuTask_8c017718(Task * task, void *state)
+STATIC void courseMenuStoryMenuTask_8c017718(Task * task, void *state)
 {
     switch (var_menuState_8c1bc7a8.state_0x18) {
         case COURSE_MENU_STATE_INIT: {
-            if (isPvmReady_8c01432a())
+            if (RouteLoadIsPvmReady_8c01432a())
                 return;
 
             AsqFreeQueues_8c011f7e();
             CHANGE_STATE(COURSE_MENU_STATE_FADE_IN);
             FUN_8c010d8a();
-            snd_8c010cd6(0, 15);
+            SndProc_8c010cd6(0, 15);
             push_fadein_8c022a9c(10);
             return;
         }
@@ -793,7 +794,7 @@ STATIC void CourseMenuStoryMenuTask_8c017718(Task * task, void *state)
             else {
                 CourseMenuPushDialogTask_8c0170c6(var_dialogQueue_8c225fbc[task->field_0x08], 0);
                 if (var_dialogQueue_8c225fbc[task->field_0x08] == SEQ_COURSE_UNLOCKED) {
-                    midiResetFxAndPlay_8c010846(0, 0);
+                    SndMidiResetFxAndPlay_8c010846(0, 0);
                 }
             }
             break;
@@ -865,20 +866,20 @@ STATIC void CourseMenuStoryMenuTask_8c017718(Task * task, void *state)
 
     CourseMenuDrawDateAndExp_8c016ee6();
     drawCourseButtons_8c017590();
-    drawSprite_8c014f54(
+    TxtDrawSprite_8c014f54(
         &var_menuState_8c1bc7a8.resourceGroupB_0x0c, 10, 0.0, 0.0, -5.0
     );
-    drawSprite_8c014f54(
+    TxtDrawSprite_8c014f54(
         &var_menuState_8c1bc7a8.resourceGroupA_0x00, 0x2b, 0.0, 0.0, -4.0
     );
     if (menuTextboxText_8c02af1c(var_menuTextboxCharLimit_8c225fb8) ) {
-        drawSprite_8c014f54(
+        TxtDrawSprite_8c014f54(
             &var_menuState_8c1bc7a8.resourceGroupA_0x00, 1, 0.0, 0.0, -5.0
         );
     }
 
     // Draw instructor
-    drawSprite_8c014f54(
+    TxtDrawSprite_8c014f54(
         &var_menuState_8c1bc7a8.resourceGroupB_0x0c,
         var_menuState_8c1bc7a8.instructorSprite_0x60,
         0.0,
@@ -886,23 +887,23 @@ STATIC void CourseMenuStoryMenuTask_8c017718(Task * task, void *state)
         -6.0
     );
 
-    drawSprite_8c014f54(
+    TxtDrawSprite_8c014f54(
         &var_menuState_8c1bc7a8.resourceGroupA_0x00, 0, 0.0, 0.0, -7.0
     );
     AsqGetRandomA_8c012166();
 }
 
-STATIC void CourseMenuFreeRunMenuTask_8c017ada(Task * task, void *state)
+STATIC void courseMenuFreeRunMenuTask_8c017ada(Task * task, void *state)
 {
     switch (var_menuState_8c1bc7a8.state_0x18) {
         case COURSE_MENU_STATE_INIT: {
-            if (isPvmReady_8c01432a())
+            if (RouteLoadIsPvmReady_8c01432a())
                 return;
 
             AsqFreeQueues_8c011f7e();
             CHANGE_STATE(COURSE_MENU_STATE_FADE_IN);
             FUN_8c010d8a();
-            snd_8c010cd6(0, 15);
+            SndProc_8c010cd6(0, 15);
             push_fadein_8c022a9c(10);
             return;
         }
@@ -946,7 +947,7 @@ STATIC void CourseMenuFreeRunMenuTask_8c017ada(Task * task, void *state)
             else {
                 CourseMenuPushDialogTask_8c0170c6(var_dialogQueue_8c225fbc[task->field_0x08], 0);
                 if (var_dialogQueue_8c225fbc[task->field_0x08] == SEQ_COURSE_UNLOCKED) {
-                    midiResetFxAndPlay_8c010846(0, 0);
+                    SndMidiResetFxAndPlay_8c010846(0, 0);
                 }
             }
             break;
@@ -1018,20 +1019,20 @@ STATIC void CourseMenuFreeRunMenuTask_8c017ada(Task * task, void *state)
 
     // CourseMenuDrawDateAndExp_8c016ee6();
     drawCourseButtons_8c017590();
-    drawSprite_8c014f54(
+    TxtDrawSprite_8c014f54(
         &var_menuState_8c1bc7a8.resourceGroupB_0x0c, 9, 0.0, 0.0, -5.0
     );
-    // drawSprite_8c014f54(
+    // TxtDrawSprite_8c014f54(
     //     &var_menuState_8c1bc7a8.resourceGroupA_0x00, 0x2b, 0.0, 0.0, -4.0
     // );
     if (menuTextboxText_8c02af1c(var_menuTextboxCharLimit_8c225fb8) ) {
-        drawSprite_8c014f54(
+        TxtDrawSprite_8c014f54(
             &var_menuState_8c1bc7a8.resourceGroupA_0x00, 1, 0.0, 0.0, -5.0
         );
     }
 
     // Draw instructor
-    drawSprite_8c014f54(
+    TxtDrawSprite_8c014f54(
         &var_menuState_8c1bc7a8.resourceGroupB_0x0c,
         var_menuState_8c1bc7a8.instructorSprite_0x60,
         0.0,
@@ -1039,7 +1040,7 @@ STATIC void CourseMenuFreeRunMenuTask_8c017ada(Task * task, void *state)
         -6.0
     );
 
-    drawSprite_8c014f54(
+    TxtDrawSprite_8c014f54(
         &var_menuState_8c1bc7a8.resourceGroupA_0x00, 0, 0.0, 0.0, -7.0
     );
     AsqGetRandomA_8c012166();
@@ -1098,10 +1099,10 @@ void CourseMenuSwitchFromTask_8c017e18(Task *task)
     LOG_INFO(("[COURSE_MENU] Initializing course menu (mode=%d)\n", var_gameMode_8c1bb8fc));
 
     if (var_gameMode_8c1bb8fc == 0) {
-        setTaskAction_8c014b3e(task, CourseMenuStoryMenuTask_8c017718);
+        TaskSetAction_8c014b3e(task, courseMenuStoryMenuTask_8c017718);
         buildCourseMenuDialogFlow_8c017420();
     } else {
-        setTaskAction_8c014b3e(task, CourseMenuFreeRunMenuTask_8c017ada);
+        TaskSetAction_8c014b3e(task, courseMenuFreeRunMenuTask_8c017ada);
         buildFreeRunMenuDialogFlow_8c017a20();
     }
 
@@ -1125,12 +1126,12 @@ void CourseMenuSwitchFromTask_8c017e18(Task *task)
         AsqFreeQueues_8c011f7e();
         CHANGE_STATE(COURSE_MENU_STATE_FADE_IN);
         push_fadein_8c022a9c(10);
-        snd_8c010cd6(0, 15);
+        SndProc_8c010cd6(0, 15);
         return;
     }
 
-    setPvmReady_8c014330();
-    AsqProcessQueues_8c011fe0(AsqNop_8c011120, 0, 0, 0, resetPvmReady_8c014322);
+    RouteLoadSetPvmReady_8c014330();
+    AsqProcessQueues_8c011fe0(AsqNop_8c011120, 0, 0, 0, RouteLoadResetPvmReady_8c014322);
     CHANGE_STATE(COURSE_MENU_STATE_INIT);
 }
 
@@ -1141,29 +1142,29 @@ void CourseMenuFUN_8c017ef2(void)
 
     LOG_INFO(("[COURSE_MENU] Setting up story course menu\n"));
 
-    pushInputTask_8c0128cc(0);
+    InputPushTask_8c0128cc(0);
 
-    pushTask_8c014ae8(
+    TaskPush_8c014ae8(
         var_tasks_8c1ba3c8,
-        &task_8c012f44,
+        &GameTask_8c012f44,
         &createdTask,
         &createdState,
         0
     );
 
     if (var_gameMode_8c1bb8fc == 0) {
-        pushTask_8c014ae8(
+        TaskPush_8c014ae8(
             var_tasks_8c1ba3c8,
-            &CourseMenuStoryMenuTask_8c017718,
+            &courseMenuStoryMenuTask_8c017718,
             &createdTask,
             &createdState,
             0
         );
         buildCourseMenuDialogFlow_8c017420();
     } else {
-        pushTask_8c014ae8(
+        TaskPush_8c014ae8(
             var_tasks_8c1ba3c8,
-            &CourseMenuFreeRunMenuTask_8c017ada,
+            &courseMenuFreeRunMenuTask_8c017ada,
             &createdTask,
             &createdState,
             0
@@ -1194,8 +1195,8 @@ void CourseMenuFUN_8c017ef2(void)
         &init_mainMenuResourceGroup_8c044264
     );
     CourseMenuRequestCommonResources_8c01852c();
-    setPvmReady_8c014330();
-    AsqProcessQueues_8c011fe0(AsqNop_8c011120, 0, 0, 0, resetPvmReady_8c014322);
+    RouteLoadSetPvmReady_8c014330();
+    AsqProcessQueues_8c011fe0(AsqNop_8c011120, 0, 0, 0, RouteLoadResetPvmReady_8c014322);
 
     CHANGE_STATE(COURSE_MENU_STATE_INIT);
 }
@@ -1205,7 +1206,7 @@ STATIC void drawFixedInteger_8c01803e(float x, float y, int value, int digits)
     float tracking = 19.0;
     do {
         do {
-            drawSprite_8c014f54(
+            TxtDrawSprite_8c014f54(
                 &var_menuState_8c1bc7a8.resourceGroupB_0x0c,
                 12 + value % 10,
                 x,
@@ -1226,7 +1227,7 @@ STATIC void drawRouteInfo_8c018118(void)
     drawFixedInteger_8c01803e(219.0, 108.0, var_progress_8c1ba1cc.days_0x00, 0);
 
     // Draw weekday sprite
-    drawSprite_8c014f54(
+    TxtDrawSprite_8c014f54(
         &var_menuState_8c1bc7a8.resourceGroupB_0x0c,
         getWeekDayIndex_8c016ed2() + 0x16,
         281.0,
@@ -1239,7 +1240,7 @@ STATIC void drawRouteInfo_8c018118(void)
     drawFixedInteger_8c01803e(471.0, 108.0, init_routeInfoTime_8c044d2e[index + 1], 2);
 
     // Draw route info
-    drawSprite_8c014f54(
+    TxtDrawSprite_8c014f54(
         &var_menuState_8c1bc7a8.resourceGroupB_0x0c,
         var_menuState_8c1bc7a8.field_0x40 + 9,
         0.0,
@@ -1248,17 +1249,17 @@ STATIC void drawRouteInfo_8c018118(void)
     );
 }
 
-STATIC void CourseConfirmMenuTask_8c0181b6(Task * task, void *state)
+STATIC void courseConfirmMenuTask_8c0181b6(Task * task, void *state)
 {
     switch (var_menuState_8c1bc7a8.state_0x18) {
         case COURSE_CONFIRM_STATE_INIT: {
-            if (isPvmReady_8c01432a())
+            if (RouteLoadIsPvmReady_8c01432a())
                 return;
 
             AsqFreeQueues_8c011f7e();
             CHANGE_CONFIRM_STATE(COURSE_CONFIRM_STATE_FADE_IN);
             push_fadein_8c022a9c(10);
-            snd_8c010cd6(0, 15);
+            SndProc_8c010cd6(0, 15);
             return;
         }
 
@@ -1270,14 +1271,14 @@ STATIC void CourseConfirmMenuTask_8c0181b6(Task * task, void *state)
         }
 
         case COURSE_CONFIRM_STATE_PROMPT: {
-            int r = promptHandleBinary_8c016caa(&var_menuState_8c1bc7a8.selected_0x38);
+            int r = PromptHandleBinary_8c016caa(&var_menuState_8c1bc7a8.selected_0x38);
             if (r == 1) {
                 CHANGE_CONFIRM_STATE(COURSE_CONFIRM_STATE_FADE_OUT);
                 push_fadeout_8c022b60(10);
             } else if (r == 2) {
                 CHANGE_CONFIRM_STATE(COURSE_CONFIRM_STATE_FADE_OUT_TO_COURSE_MENU);
-                startAdxFadeOut_8c010bae(0);
-                startAdxFadeOut_8c010bae(1);
+                SndStartAdxFadeOut_8c010bae(0);
+                SndStartAdxFadeOut_8c010bae(1);
                 push_fadeout_8c022b60(10);
             }
             break;
@@ -1305,8 +1306,8 @@ STATIC void CourseConfirmMenuTask_8c0181b6(Task * task, void *state)
             var_menuState_8c1bc7a8.logo_timer_0x68++;
             if (var_menuState_8c1bc7a8.logo_timer_0x68 > 30) {
                 CHANGE_CONFIRM_STATE(COURSE_CONFIRM_STATE_START_LOADING);
-                startAdxFadeOut_8c010bae(0);
-                startAdxFadeOut_8c010bae(1);
+                SndStartAdxFadeOut_8c010bae(0);
+                SndStartAdxFadeOut_8c010bae(1);
                 push_fadeout_8c022b60(20);
             }
             // State 5 uses drawRouteInfo instead of epilogue rendering
@@ -1353,7 +1354,7 @@ STATIC void CourseConfirmMenuTask_8c0181b6(Task * task, void *state)
                     init_courseVariants_8c044d10[var_progress_8c1ba1cc.days_0x00 - 1];
 
                 // Step 6: Initialize game and push loading task
-                pushLoadingTask_8c013310(var_menuState_8c1bc7a8.courseId_0x50);
+                GamePushLoadingTask_8c013310(var_menuState_8c1bc7a8.courseId_0x50);
                 return;
             }
             // State 6 uses drawRouteInfo instead of epilogue rendering
@@ -1378,7 +1379,7 @@ STATIC void CourseConfirmMenuTask_8c0181b6(Task * task, void *state)
     }
 
     // Epilogue rendering that runs every frame for this task
-    drawSprite_8c014f54(
+    TxtDrawSprite_8c014f54(
         &var_menuState_8c1bc7a8.resourceGroupB_0x0c,
         var_menuState_8c1bc7a8.courseId_0x50 / 3,
         0.0,
@@ -1387,7 +1388,7 @@ STATIC void CourseConfirmMenuTask_8c0181b6(Task * task, void *state)
     );
 
     // 2) Draw confirm/cancel prompt (sprite id = field_0x38 + 2)
-    drawSprite_8c014f54(
+    TxtDrawSprite_8c014f54(
         &var_menuState_8c1bc7a8.resourceGroupA_0x00,
         var_menuState_8c1bc7a8.selected_0x38 + 2,
         376.0,
@@ -1396,7 +1397,7 @@ STATIC void CourseConfirmMenuTask_8c0181b6(Task * task, void *state)
     );
 
     // 3) Foreground overlay
-    drawSprite_8c014f54(
+    TxtDrawSprite_8c014f54(
         &var_menuState_8c1bc7a8.resourceGroupA_0x00,
         0,
         0.0,
@@ -1405,12 +1406,12 @@ STATIC void CourseConfirmMenuTask_8c0181b6(Task * task, void *state)
     );
 }
 
-STATIC void CourseMenuConfirmInit_8c0184cc(Task *task)
+STATIC void courseMenuConfirmInit_8c0184cc(Task *task)
 {
     LOG_INFO(("[COURSE_MENU] Initializing course confirmation menu\n"));
 
     njGarbageTexture(var_tex_8c157af8, 0xc00);
-    setTaskAction_8c014b3e(task, CourseConfirmMenuTask_8c0181b6);
+    TaskSetAction_8c014b3e(task, courseConfirmMenuTask_8c0181b6);
     CHANGE_CONFIRM_STATE(COURSE_CONFIRM_STATE_INIT);
     var_menuState_8c1bc7a8.selected_0x38 = 0;
     AsqInitQueues_8c011f36(8, 0, 0, 8);
@@ -1419,8 +1420,8 @@ STATIC void CourseMenuConfirmInit_8c0184cc(Task *task)
         &var_menuState_8c1bc7a8.resourceGroupB_0x0c,
         &init_courseResourceGroup_8c044d40
     );
-    setPvmReady_8c014330();
-    AsqProcessQueues_8c011fe0(AsqNop_8c011120, 0, 0, 0, resetPvmReady_8c014322);
+    RouteLoadSetPvmReady_8c014330();
+    AsqProcessQueues_8c011fe0(AsqNop_8c011120, 0, 0, 0, RouteLoadResetPvmReady_8c014322);
     CHANGE_CONFIRM_STATE(COURSE_CONFIRM_STATE_INIT);
     return;
 }
@@ -1512,7 +1513,7 @@ STATIC CourseMenuButton init_courseMenuButtons_8c04442c[15] = {
         /* unlocked */ 1,
         /* x, y     */ 190.0f, 109.0f,
         /* spriteNo */ 11,
-        /* onSelect */ CourseMenuConfirmInit_8c0184cc,
+        /* onSelect */ courseMenuConfirmInit_8c0184cc,
         /* courseId */ 0,
     },
     {   /* [3] */
@@ -1520,7 +1521,7 @@ STATIC CourseMenuButton init_courseMenuButtons_8c04442c[15] = {
         /* unlocked */ 1,
         /* x, y     */ 284.0f, 109.0f,
         /* spriteNo */ 12,
-        /* onSelect */ CourseMenuConfirmInit_8c0184cc,
+        /* onSelect */ courseMenuConfirmInit_8c0184cc,
         /* courseId */ 3,
     },
     {   /* [4] */
@@ -1528,7 +1529,7 @@ STATIC CourseMenuButton init_courseMenuButtons_8c04442c[15] = {
         /* unlocked */ 1,
         /* x, y     */ 377.0f, 109.0f,
         /* spriteNo */ 13,
-        /* onSelect */ CourseMenuConfirmInit_8c0184cc,
+        /* onSelect */ courseMenuConfirmInit_8c0184cc,
         /* courseId */ 6,
     },
     {   /* [5] */
@@ -1552,7 +1553,7 @@ STATIC CourseMenuButton init_courseMenuButtons_8c04442c[15] = {
         /* unlocked */ 1,
         /* x, y     */ 190.0f, 182.0f,
         /* spriteNo */ 14,
-        /* onSelect */ CourseMenuConfirmInit_8c0184cc,
+        /* onSelect */ courseMenuConfirmInit_8c0184cc,
         /* courseId */ 9,
     },
     {   /* [8] */
@@ -1560,7 +1561,7 @@ STATIC CourseMenuButton init_courseMenuButtons_8c04442c[15] = {
         /* unlocked */ 1,
         /* x, y     */ 285.0f, 182.0f,
         /* spriteNo */ 15,
-        /* onSelect */ CourseMenuConfirmInit_8c0184cc,
+        /* onSelect */ courseMenuConfirmInit_8c0184cc,
         /* courseId */ 12,
     },
     {   /* [9] */
@@ -1568,7 +1569,7 @@ STATIC CourseMenuButton init_courseMenuButtons_8c04442c[15] = {
         /* unlocked */ 1,
         /* x, y     */ 378.0f, 182.0f,
         /* spriteNo */ 16,
-        /* onSelect */ CourseMenuConfirmInit_8c0184cc,
+        /* onSelect */ courseMenuConfirmInit_8c0184cc,
         /* courseId */ 15,
     },
     {   /* [10] */
@@ -1592,7 +1593,7 @@ STATIC CourseMenuButton init_courseMenuButtons_8c04442c[15] = {
         /* unlocked */ 1,
         /* x, y     */ 191.0f, 256.0f,
         /* spriteNo */ 17,
-        /* onSelect */ CourseMenuConfirmInit_8c0184cc,
+        /* onSelect */ courseMenuConfirmInit_8c0184cc,
         /* courseId */ 18,
     },
     {   /* [13] */
@@ -1600,7 +1601,7 @@ STATIC CourseMenuButton init_courseMenuButtons_8c04442c[15] = {
         /* unlocked */ 1,
         /* x, y     */ 285.0f, 256.0f,
         /* spriteNo */ 18,
-        /* onSelect */ CourseMenuConfirmInit_8c0184cc,
+        /* onSelect */ courseMenuConfirmInit_8c0184cc,
         /* courseId */ 21,
     },
     {   /* [14] */
@@ -1608,7 +1609,7 @@ STATIC CourseMenuButton init_courseMenuButtons_8c04442c[15] = {
         /* unlocked */ 1,
         /* x, y     */ 378.0f, 256.0f,
         /* spriteNo */ 19,
-        /* onSelect */ CourseMenuConfirmInit_8c0184cc,
+        /* onSelect */ courseMenuConfirmInit_8c0184cc,
         /* courseId */ 24,
     },
 };

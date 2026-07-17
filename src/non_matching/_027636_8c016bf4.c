@@ -20,7 +20,7 @@ extern int var_8c1bbc84;
 extern int var_demoPrevOn_8c225fac;
 extern PDS_PERIPHERAL var_peripherals_8c1ba35c[2];
 
-void demoInputTask_8c016bf4()
+void DemoInputTask_8c016bf4()
 {
     Struct8c225fa8* temp;
 

@@ -1,11 +1,37 @@
 ---
 name: move-data
-description: Moves global data ownership between pre-data asm files and unit files (C or decompiled asm), including exports/imports, section B allocations, and test visibility gating. Use when relocating variables between groups like 012f44/013ae8/0149b0, fixing undefined extern symbols after moves, or converting private globals to STATIC/AIFDEF UNIT_TESTING patterns.
+description: Moves global data ownership between pre-data asm files and unit files (C or decompiled asm), including exports/imports, section B allocations, and test visibility gating. Use when relocating variables between groups like 012f44_game/013ae8/0149b0, fixing undefined extern symbols after moves, or converting private globals to STATIC/AIFDEF UNIT_TESTING patterns.
 ---
 
 # Move Data Ownership
 
 Use this workflow when a variable currently lives in a shared pre-data file (for example `src/asm/014f54_text_pre_data.src`) and should be owned by a specific unit (`.c` and/or `src/asm/decompiled/*.src`).
+
+## Automated: `.src` -> `.src` moves
+
+For the asm-to-asm case (temp file -> owning unit's `src/asm/decompiled/*.src`), use
+`scripts/move_data.py` instead of hand-editing:
+
+```
+scripts/move_data.py --src <temp.src> --dest <owner.src> --from <_sym> \
+    [--to <_sym>] [--after <_sym> | --before <_sym>] [--dry-run]
+```
+
+It moves the labeled block(s) for a single symbol or a file-order-inclusive span
+(`--from`..`--to`), handles sections C/D/B, creates a missing section in the dest,
+and recomputes `.IMPORT`/`.EXPORT` in both files (`imports == referenced - defined`;
+the moved symbol's export travels to the dest). Shift-JIS in `;.SDATA` comments is
+byte-preserved. It warns if a moved block -- or the block the cut leaves exposed in
+the origin -- starts at a non-4-aligned address, which signals a wrong span boundary
+/ mis-decompiled object. (A misaligned section *end* is fine; the linker realigns.)
+
+By default the block lands at the end of the dest's matching section; use
+`--after`/`--before` to place it next to an existing dest symbol (needed to keep
+link output byte-identical when the owner already has data in that section).
+Either way, confirm with `scripts/dcdiff.py` + the matching build after a move.
+
+The manual steps below still apply to the **C-file / test half** of an ownership
+move (`STATIC` gating, headers, `tests/*` fixups), which the script does not touch.
 
 ## Goals
 
@@ -88,18 +114,18 @@ Use this workflow when a variable currently lives in a shared pre-data file (for
 
 When a unit's `init_*` data array in section D references `_const_8cXXXXXX` symbols from `0332a4_sectionC.src`, those consts can be moved into the unit's `.src` file verbatim so ownership is consolidated. Procedure:
 
-1. **Extract the const block** from `sectionC.src` — copy the `.SECTION C, DATA, ALIGN=4` line plus the data labels/bytes verbatim.
-2. **Keep the section header in `sectionC.src`** — after removing the const data lines, ensure a `.SECTION C, DATA, ALIGN=4` directive remains before the first surviving data label. Failure to do this causes the assembler to silently drop all remaining section C data, shifting every subsequent const address and breaking the matching build.
-3. **Add the block to the unit `.src`** — append it before `.END`, after the section D data. Switching back and forth between section C and section D in a single `.src` file is fine; the assembler merges same-named sections.
-4. **Update exports in the unit `.src`** — add `.EXPORT _const_8cXXXXXX` for each moved const (remove the corresponding `.IMPORT`; local symbols need no import).
-5. **Remove exports from `sectionC.src`** — delete the `.EXPORT` lines for the moved consts.
-6. **C file** — use direct SJIS string literals (same style as MenuDialog sequences in `course_menu.c`). The compiler puts anonymous strings in section C of the unit's obj; they do not conflict with the named `_const_*` labels in the matching build because those are separate symbols.
+1. **Extract the const block** from `sectionC.src` �? copy the `.SECTION C, DATA, ALIGN=4` line plus the data labels/bytes verbatim.
+2. **Keep the section header in `sectionC.src`** �? after removing the const data lines, ensure a `.SECTION C, DATA, ALIGN=4` directive remains before the first surviving data label. Failure to do this causes the assembler to silently drop all remaining section C data, shifting every subsequent const address and breaking the matching build.
+3. **Add the block to the unit `.src`** �? append it before `.END`, after the section D data. Switching back and forth between section C and section D in a single `.src` file is fine; the assembler merges same-named sections.
+4. **Update exports in the unit `.src`** �? add `.EXPORT _const_8cXXXXXX` for each moved const (remove the corresponding `.IMPORT`; local symbols need no import).
+5. **Remove exports from `sectionC.src`** �? delete the `.EXPORT` lines for the moved consts.
+6. **C file** �? use direct SJIS string literals (same style as MenuDialog sequences in `course_menu.c`). The compiler puts anonymous strings in section C of the unit's obj; they do not conflict with the named `_const_*` labels in the matching build because those are separate symbols.
 
 ### Why the binary stays identical
 The section C layout in the linked binary is determined by link order. As long as:
 - the unit `.src` is linked at the same relative position (before `sectionC.src`), and
 - the const block is appended AFTER the unit's existing section C data (so order within the unit obj is preserved),
-the byte sequence in the final section C is identical to before — just split across different obj files.
+the byte sequence in the final section C is identical to before �? just split across different obj files.
 
 ## Fixing Tests After Moving Initialized Data
 
@@ -117,15 +143,15 @@ After moving a symbol from `*_pre_data.src` / `sectionD.src` to a TU (section D 
 ### String address expectations when data moves to TU
 - Each test file runs twice: once against `_src.obj` (asm stub), once against `_c.obj` (C compiled). The TU-owned section C/D string addresses differ between the two objects (`_const_8cXXXXXX` asm labels vs. anonymous C compiler strings).
 - Address-based expectations (e.g. `->with($this->addressOf('_const_8c037f60'))`) only work for one obj variant.
-- **Fix**: use PHP string literals in `with()` — the framework compares by C string content: `->with("TOKYOBUS.001")`. This works for both obj variants.
+- **Fix**: use PHP string literals in `with()` �? the framework compares by C string content: `->with("TOKYOBUS.001")`. This works for both obj variants.
 
 ### Loop count changes when array sentinel moves
 - If a test previously overrode a TU-owned array with fewer entries (e.g. 4 entries ending with `""`) to bound a loop, removing that override means the loop now runs to the TU-defined sentinel (e.g. 11 entries). Update expected call counts accordingly.
-- Example: `_init_saveNames_8c044d50` — old tests used 4 entries with `""` sentinel; TU has 10 names + `""`. Tests that expected 3 `_buIsExistFile` not-found calls for "saving possible" now need 10.
+- Example: `_init_saveNames_8c044d50` �? old tests used 4 entries with `""` sentinel; TU has 10 names + `""`. Tests that expected 3 `_buIsExistFile` not-found calls for "saving possible" now need 10.
 
 ### vmuStatusMessages / pointer arrays used as message selectors
 - If a function indexes into a TU-owned `char*` array to pass to another function, and tests previously overrode that array with fake addresses (0xcafe000x), those overrides no longer work.
-- **Fix**: remove the `initUint32Array` override; update `->with(0xcafe000x)` expectations to use the actual SJIS string content: `->with("セーブ可能です")`.
+- **Fix**: remove the `initUint32Array` override; update `->with(0xcafe000x)` expectations to use the actual SJIS string content: `->with("セーブ可能で�?")`.
 
 ## Conversation-Derived Conventions
 

@@ -1,6 +1,6 @@
 /* 8c014934 */
 #include <shinobi.h>
-#include "012f44.h"
+#include "012f44_game.h"
 #include "013ae8_route_load.h"
 #include "014a9c_tasks.h"
 #include "014934.h"
@@ -15,7 +15,7 @@ void FUN_8c014934()
     njSetBackColor(0xff418dff, 0xff418dff, 0xff418dff);
     var_loadScreenActive_8c157a6c = 1;
 
-    pushTask_8c014ae8(var_tasks_8c1ba3c8, (void *) &unknownRouteLoadTask_8c014784, &task, &state, 0);
+    TaskPush_8c014ae8(var_tasks_8c1ba3c8, (void *) &RouteLoadUnusedTask_8c014784, &task, &state, 0);
     task->field_0x08 = 0;
     task->field_0x0c = 0;
 

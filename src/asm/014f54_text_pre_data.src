@@ -1,51 +1,51 @@
 
           ; 014f54_text
-          .EXPORT     _var_busFont_8c1ba1c8 ; 012f44.c, 012f44.src, 014f54_text.c, 014f54_text.src
+          .EXPORT     _var_busFont_8c1ba1c8 ; 012f44_game.c, 012f44_game.src, 014f54_text.c, 014f54_text.src
 
           ; 016d2c_course_menu
-          .EXPORT     _var_progress_8c1ba1cc ; 011120_asset_queues, 0129cc.src, 016d2c_course_menu, 018784.src, 01a148.src, 01b19c.src, 01bb48.src,
-                                             ; 01d290_album.src, 01d7fc.src, 01e27c.src, 01f3c0.src, 024280.src, 024b4c.src, 026710.src, 02af78.src, 02b464.src
-          .EXPORT     _var_8c1ba1d0 ; 02af78.src
-          .EXPORT     _var_8c1ba1e4 ; 02af78.src
+          .EXPORT     _var_progress_8c1ba1cc ; 011120_asset_queues, 0129cc_pause.src, 016d2c_course_menu, 018784.src, 01a148.src, 01b19c.src, 01bb48.src,
+                                             ; 01d290_album.src, 01d7fc.src, 01e27c.src, 01f3c0.src, 024280.src, 024b4c.src, 026710.src, 02af78_event.src, 02b464.src
+          .EXPORT     _var_8c1ba1d0 ; 02af78_event.src
+          .EXPORT     _var_8c1ba1e4 ; 02af78_event.src
           .EXPORT     _var_exp_8c1ba25c ; 016d2c_course_menu.c, 016d2c_course_menu.src, 01b19c.src
           .EXPORT     _var_8c1ba264 ; 01e27c.src
           .EXPORT     _var_8c1ba290 ; 013ae8_route_load.src, 01a148.src, 02b464.src, 02c884.src
-          .EXPORT     _var_8c1ba291 ; 012f44.c, 012f44.src
-          .EXPORT     _var_8c1ba292 ; 012f44.c, 012f44.src
+          .EXPORT     _var_8c1ba291 ; 012f44_game.c, 012f44_game.src
+          .EXPORT     _var_8c1ba292 ; 012f44_game.c, 012f44_game.src
           .EXPORT     _var_8c1ba293 ; 020214.src
           .EXPORT     _var_8c1ba29c ; 024280.src
           .EXPORT     _var_8c1ba29d ; 024280.src
-          .EXPORT     _var_8c1ba2b4 ; 02af78.src
-          .EXPORT     _var_8c1ba2b8 ; 0129cc.src, 016d2c_course_menu.c, 016d2c_course_menu.src
-          .EXPORT     _var_8c1ba2cc ; 0129cc.src, 016d2c_course_menu.c, 016d2c_course_menu.src
+          .EXPORT     _var_runEventFlags_8c1ba2b4 ; 02af78_event.src
+          .EXPORT     _var_8c1ba2b8 ; 0129cc_pause.src, 016d2c_course_menu.c, 016d2c_course_menu.src
+          .EXPORT     _var_8c1ba2cc ; 0129cc_pause.src, 016d2c_course_menu.c, 016d2c_course_menu.src
 
           ; 018644
-          .EXPORT     _var_8c1ba2e0 ; 012f44.c, 012f44.src, 018784.src, 01b19c.src
+          .EXPORT     _var_8c1ba2e0 ; 012f44_game.c, 012f44_game.src, 018784.src, 01b19c.src
           .EXPORT     _var_8c1ba2e4 ; 018644.src, 01b19c.src
           .EXPORT     _var_8c1ba33c ; 018644.src, 01b19c.src
-          .EXPORT     _var_8c1ba344 ; 012f44.c, 012f44.src, 018784.src, 01b19c.src, 01d7fc.src
-          .EXPORT     _var_8c1ba348 ; 012f44.c, 012f44.src, 018644.src, 01b19c.src, 01d7fc.src
-          .EXPORT     _var_selectedVm_8c1ba34c ; 012f44.c, 012f44.src, 01614c.src, 018644.src, 018784.src, 0193c8_vm_menu.c, 0193c8_vm_menu.src, 01b19c.src, 01d7fc.src, 01f3c0.src
+          .EXPORT     _var_8c1ba344 ; 012f44_game.c, 012f44_game.src, 018784.src, 01b19c.src, 01d7fc.src
+          .EXPORT     _var_8c1ba348 ; 012f44_game.c, 012f44_game.src, 018644.src, 01b19c.src, 01d7fc.src
+          .EXPORT     _var_selectedVm_8c1ba34c ; 012f44_game.c, 012f44_game.src, 01614c.src, 018644.src, 018784.src, 0193c8_vm_menu.c, 0193c8_vm_menu.src, 01b19c.src, 01d7fc.src, 01f3c0.src
 
           ; 
           .EXPORT     _var_8c1ba350 ; 018784.src, 01b19c.src, 01d7fc.src
-          .EXPORT     _var_vibport_8c1ba354 ; 012324_peripheral_support.c, 012324_peripheral_support.src, 012504_input.src, 0129cc.src, 012f44.c, 012f44.src, 01614c.src, 020214.src, 024280.src, 02b464.src
-          .EXPORT     _var_peripheral_8c1ba358 ; 012324_peripheral_support.c, 012324_peripheral_support.src, 012504_input.src, 0129cc.src, 028258.src
-          .EXPORT     _var_peripherals_8c1ba35c ; 012324_peripheral_support, 012504_input.src, 0129cc.src, 015ab8_title, 01614c.src, 016bf4_demo_input.src,
+          .EXPORT     _var_vibport_8c1ba354 ; 012324_peripheral_support.c, 012324_peripheral_support.src, 012504_input.src, 0129cc_pause.src, 012f44_game.c, 012f44_game.src, 01614c.src, 020214.src, 024280.src, 02b464.src
+          .EXPORT     _var_peripheral_8c1ba358 ; 012324_peripheral_support.c, 012324_peripheral_support.src, 012504_input.src, 0129cc_pause.src, 028258.src
+          .EXPORT     _var_peripherals_8c1ba35c ; 012324_peripheral_support, 012504_input.src, 0129cc_pause.src, 015ab8_title, 01614c.src, 016bf4_demo_input.src,
                                                 ; 016c58_prompt, 016d2c_course_menu, 018784.src, 0193c8_vm_menu, 019e98_main_menu, 01a148.src, 01b19c.src,
                                                 ; 01bb48.src, 01c980.src, 01d290_album.src, 01d7fc.src, 01e27c.src, 022bdc.src, 024280.src, 024b4c.src
           .EXPORT     _var_8c1ba374 ; 024280.src, 02b464.src, _027636_8c016bf4.c
           .EXPORT     _var_8c1ba376 ; 024280.src, _027636_8c016bf4.c
-          .EXPORT     _var_demoBuf_8c1ba3c4 ; 012f44.c, 012f44.src, 014f54_text.c, 014f54_text.src, 01614c.src
-          .EXPORT     _var_tasks_8c1ba3c8 ; 011120_asset_queues, 012504_input.src, 012f44.c, 012f44.src, 013ae8_route_load.src, 014934.c, 014f54_text, 015ab8_title,
+          .EXPORT     _var_demoBuf_8c1ba3c4 ; 012f44_game.c, 012f44_game.src, 014f54_text.c, 014f54_text.src, 01614c.src
+          .EXPORT     _var_tasks_8c1ba3c8 ; 011120_asset_queues, 012504_input.src, 012f44_game.c, 012f44_game.src, 013ae8_route_load.src, 014934.c, 014f54_text, 015ab8_title,
                                           ; 01614c.src, 016d2c_course_menu, 018784.src, 0193c8_vm_menu, 01d7fc.src, 01e27c.src, 01f3c0.src,
                                           ; 022464.src, 028258.src, 02b464.src
-          .EXPORT     _var_tasks_8c1ba5e8 ; 0129cc.src, 012f44.c, 012f44.src, 01614c.src, 01fa78.src, 020528.c, 0222dc.src, 023310.src, 025870.src, 026710.src, 028258.src, 02b464.src, 02d968.src, _066856_8c020528.src
-          .EXPORT     _var_tasks_8c1ba808 ; 012f44.c, 012f44.src, 01614c.src, 028258.src
-          .EXPORT     _var_tasks_8c1bac28 ; 012f44.c, 012f44.src, 01614c.src, 024280.src, 026710.src, 02b464.src, 02df3c.src, 02e2dc.src, 02e400.src, 02e51c.src, 02f0c8.src
-          .EXPORT     _var_tasks_8c1bb448 ; 012f44.c, 012f44.src, 01614c.src, 028258.src, 02b464.src
-          .EXPORT     _var_currentCourse_8c1bb868 ; 012f44.c, 012f44.src, 013ae8_route_load.src, 014f54_text.c, 014f54_text.src, 01614c.src, 02171c.src, 022bdc.src, 023310.src, 026710.src, 028258.src
-          .EXPORT     _var_8c1bb86c ; 012f44.c, 012f44.src, 027958.src, 028258.src, 02c884.src
+          .EXPORT     _var_tasks_8c1ba5e8 ; 0129cc_pause.src, 012f44_game.c, 012f44_game.src, 01614c.src, 01fa78.src, 020528.c, 0222dc.src, 023310.src, 025870.src, 026710.src, 028258.src, 02b464.src, 02d968.src, _066856_8c020528.src
+          .EXPORT     _var_tasks_8c1ba808 ; 012f44_game.c, 012f44_game.src, 01614c.src, 028258.src
+          .EXPORT     _var_tasks_8c1bac28 ; 012f44_game.c, 012f44_game.src, 01614c.src, 024280.src, 026710.src, 02b464.src, 02df3c.src, 02e2dc.src, 02e400.src, 02e51c.src, 02f0c8.src
+          .EXPORT     _var_tasks_8c1bb448 ; 012f44_game.c, 012f44_game.src, 01614c.src, 028258.src, 02b464.src
+          .EXPORT     _var_currentCourse_8c1bb868 ; 012f44_game.c, 012f44_game.src, 013ae8_route_load.src, 014f54_text.c, 014f54_text.src, 01614c.src, 02171c.src, 022bdc.src, 023310.src, 026710.src, 028258.src
+          .EXPORT     _var_8c1bb86c ; 012f44_game.c, 012f44_game.src, 027958.src, 028258.src, 02c884.src
           .EXPORT     _var_8c1bb870 ; 02c884.src
           .EXPORT     _var_8c1bb878 ; 025b98.src
           .EXPORT     _var_8c1bb880 ; 027958.src
@@ -54,18 +54,18 @@
           .EXPORT     _var_8c1bb894 ; 02c884.src
           .EXPORT     _var_8c1bb8a0 ; 028258.src
           .EXPORT     _var_8c1bb8a4 ; 02171c.src
-          .EXPORT     _var_8c1bb8b8 ; 0129cc.src, 016d2c_course_menu.c, 016d2c_course_menu.src, 018784.src, 01b19c.src, 01e27c.src, 02b464.src
-          .EXPORT     _var_8c1bb8bc ; 0129cc.src, 016d2c_course_menu.c, 016d2c_course_menu.src, 018784.src, 01b19c.src, 01e27c.src, 02b464.src
+          .EXPORT     _var_8c1bb8b8 ; 0129cc_pause.src, 016d2c_course_menu.c, 016d2c_course_menu.src, 018784.src, 01b19c.src, 01e27c.src, 02b464.src
+          .EXPORT     _var_8c1bb8bc ; 0129cc_pause.src, 016d2c_course_menu.c, 016d2c_course_menu.src, 018784.src, 01b19c.src, 01e27c.src, 02b464.src
           .EXPORT     _var_shouldShowFreeRunIntro_8c1bb8c0 ; 016d2c_course_menu.c, 016d2c_course_menu.src, 019e98_main_menu.c, 019e98_main_menu.src, 02b464.src
-          .EXPORT     _var_8c1bb8c4 ; 012f44.c, 012f44.src, 015ab8_title.c, 015ab8_title.src
-          .EXPORT     _var_inputMapSel_8c1bb8c8 ; 012504_input.src, 012f44.c, 012f44.src, 014f54_text.c, 014f54_text.src, 01614c.src, 022bdc.src, 024280.src, 02b464.src
-          .EXPORT     _var_8c1bb8cc ; 0129cc.src, 012f44.c, 012f44.src
-          .EXPORT     _var_playMode_8c1bb8d0 ; 0129cc.src, 012f44.c, 012f44.src, 013ae8_route_load.src, 014f54_text, 01614c.src, 016d2c_course_menu,
+          .EXPORT     _var_8c1bb8c4 ; 012f44_game.c, 012f44_game.src, 015ab8_title.c, 015ab8_title.src
+          .EXPORT     _var_inputMapSel_8c1bb8c8 ; 012504_input.src, 012f44_game.c, 012f44_game.src, 014f54_text.c, 014f54_text.src, 01614c.src, 022bdc.src, 024280.src, 02b464.src
+          .EXPORT     _var_pauseActive_8c1bb8cc ; 0129cc_pause.src, 012f44_game.c, 012f44_game.src
+          .EXPORT     _var_playMode_8c1bb8d0 ; 0129cc_pause.src, 012f44_game.c, 012f44_game.src, 013ae8_route_load.src, 014f54_text, 01614c.src, 016d2c_course_menu,
                                          ; 019e98_main_menu.c, 01e27c.src, 01fa78.src, 020214.src, 020528.c, 022464.src, 022bdc.src, 023310.src, 028258.src,
-                                         ; 02af78.src, 02b464.src, 02c884.src, 02d19c.src, 02d968.src
-          .EXPORT     _var_8c1bb8d4 ; 012f44.c, 012f44.src, 014f54_text.c, 014f54_text.src, 01614c.src
-          .EXPORT     _var_demoIndex_8c1bb8d8 ; 012f44.c, 012f44.src, 014f54_text.c, 014f54_text.src
-          .EXPORT     _var_8c1bb8dc ; 0129cc.src, 016d2c_course_menu.c, 016d2c_course_menu.src, 01b19c.src, 01d7fc.src, 01e27c.src, 02b464.src
+                                         ; 02af78_event.src, 02b464.src, 02c884.src, 02d19c.src, 02d968.src
+          .EXPORT     _var_8c1bb8d4 ; 012f44_game.c, 012f44_game.src, 014f54_text.c, 014f54_text.src, 01614c.src
+          .EXPORT     _var_demoIndex_8c1bb8d8 ; 012f44_game.c, 012f44_game.src, 014f54_text.c, 014f54_text.src
+          .EXPORT     _var_8c1bb8dc ; 0129cc_pause.src, 016d2c_course_menu.c, 016d2c_course_menu.src, 01b19c.src, 01d7fc.src, 01e27c.src, 02b464.src
           .EXPORT     _var_8c1bb8e0 ; 016d2c_course_menu.c, 016d2c_course_menu.src, 01d7fc.src
           .EXPORT     _var_8c1bb8e4 ; 016d2c_course_menu.c, 016d2c_course_menu.src, 01d7fc.src, 02d968.src
           .EXPORT     _var_8c1bb8e8 ; 016d2c_course_menu.c, 016d2c_course_menu.src, 01d7fc.src, 028258.src
@@ -73,12 +73,12 @@
           .EXPORT     _var_8c1bb8f0 ; 016d2c_course_menu.c, 016d2c_course_menu.src, 01e27c.src, 02b464.src
           .EXPORT     _var_8c1bb8f4 ; 016d2c_course_menu.c, 016d2c_course_menu.src, 01e27c.src, 02b464.src
           .EXPORT     _var_award_8c1bb8f8 ; 016d2c_course_menu.c, 016d2c_course_menu.src, 01b19c.src, 01d7fc.src, 01e27c.src
-          .EXPORT     _var_gameMode_8c1bb8fc ; 016d2c_course_menu.c, 016d2c_course_menu.src, 019e98_main_menu.c, 019e98_main_menu.src, 01b19c.src, 01d7fc.src, 01e27c.src, 02af78.src, 02b464.src
-          .EXPORT     _var_cutsceneActive_8c1bb900 ; 013ae8_route_load.src, 02af78.src, 02d19c.src
+          .EXPORT     _var_gameMode_8c1bb8fc ; 016d2c_course_menu.c, 016d2c_course_menu.src, 019e98_main_menu.c, 019e98_main_menu.src, 01b19c.src, 01d7fc.src, 01e27c.src, 02af78_event.src, 02b464.src
+          .EXPORT     _var_cutsceneActive_8c1bb900 ; 013ae8_route_load.src, 02af78_event.src, 02d19c.src
           .EXPORT     _var_8c1bb904 ; 021b9c.src, 022464.src, 024b4c.src, 025870.src
           .EXPORT     _var_8c1bb944 ; 021b9c.src, 022464.src, 024b4c.src
           .EXPORT     _var_8c1bb984 ; 022464.src, 025870.src
-          .EXPORT     _var_busState_8c1bb9d0 ; 012f44, 01fa78.src, 02171c.src, 021b9c.src, 022bdc.src, 023310.src, 023938.src, 02412c.src, 024280.src, 024b4c.src, 025870.src, 026710.src, 027958.src, 028258.src, 02b464.src, 02c884.src, 02d19c.src,
+          .EXPORT     _var_busState_8c1bb9d0 ; 012f44_game, 01fa78.src, 02171c.src, 021b9c.src, 022bdc.src, 023310.src, 023938.src, 02412c.src, 024280.src, 024b4c.src, 025870.src, 026710.src, 027958.src, 028258.src, 02b464.src, 02c884.src, 02d19c.src,
                                              ; 02df3c.src, 02f0c8.src
           .EXPORT     _var_8c1bba54 ; 028258.src, 02d968.src, 02e2dc.src
           .EXPORT     _var_8c1bbac4 ; 025b98.src
@@ -113,35 +113,35 @@
           .EXPORT     _var_8c1bbdb8 ; 026710.src, 027958.src
           .EXPORT     _var_8c1bbdc4 ; 026710.src, 027958.src
           .EXPORT     _var_8c1bbdd0 ; 026710.src, 027958.src
-          .EXPORT     _var_routeModelSlots_8c1bbddc ; 012f44.c, 012f44.src, 013ae8_route_load.src, 026710.src, 028258.src
+          .EXPORT     _var_routeModelSlots_8c1bbddc ; 012f44_game.c, 012f44_game.src, 013ae8_route_load.src, 026710.src, 028258.src
           .EXPORT     _var_8c1bbf7c ; 023310.src
-          .EXPORT     _var_pedestrianAssets_8c1bbfdc ; 012f44.c, 012f44.src, 013ae8_route_load.src, 028258.src
+          .EXPORT     _var_pedestrianAssets_8c1bbfdc ; 012f44_game.c, 012f44_game.src, 013ae8_route_load.src, 028258.src
           .EXPORT     _var_8c1bbfe4 ; 02d06c.src, 02d19c.src
-          .EXPORT     _var_routeModels_8c1bc3ec ; 012f44.c, 012f44.src, 013ae8_route_load.src, 01614c.src, 028258.src
-          .EXPORT     _var_segmentModels_8c1bc3f0 ; 012f44.c, 012f44.src, 013ae8_route_load.src, 01614c.src, 0222dc.src
-          .EXPORT     _var_trafficModels_8c1bc3f4 ; 012f44.c, 012f44.src, 013ae8_route_load.src, 01614c.src, 023310.src, 026710.src
-          .EXPORT     _var_loadingResourceGroup_8c1bc3f8 ; 012f44.c, 012f44.src, 013ae8_route_load.src
-          .EXPORT     _var_8c1bc404 ; 012f44.c, 012f44.src, 01f3c0.src, 028258.src
+          .EXPORT     _var_routeModels_8c1bc3ec ; 012f44_game.c, 012f44_game.src, 013ae8_route_load.src, 01614c.src, 028258.src
+          .EXPORT     _var_segmentModels_8c1bc3f0 ; 012f44_game.c, 012f44_game.src, 013ae8_route_load.src, 01614c.src, 0222dc.src
+          .EXPORT     _var_trafficModels_8c1bc3f4 ; 012f44_game.c, 012f44_game.src, 013ae8_route_load.src, 01614c.src, 023310.src, 026710.src
+          .EXPORT     _var_loadingResourceGroup_8c1bc3f8 ; 012f44_game.c, 012f44_game.src, 013ae8_route_load.src
+          .EXPORT     _var_8c1bc404 ; 012f44_game.c, 012f44_game.src, 01f3c0.src, 028258.src
           .EXPORT     _var_8c1bc408 ; 01f3c0.src, 028258.src
           .EXPORT     _var_8c1bc40c ; 028258.src
-          .EXPORT     _var_8c1bc410 ; 012f44.c, 012f44.src, 023310.src, 024b4c.src
-          .EXPORT     _var_8c1bc414 ; 012f44.c, 012f44.src, 024b4c.src
-          .EXPORT     _var_markTexlist_8c1bc418 ; 0129cc.src, 013ae8_route_load.src, 01fa78.src, 02b2f0.src, 02b464.src
-          .EXPORT     _var_markPartsDat_8c1bc41c ; 012f44.c, 012f44.src
-          .EXPORT     _var_markDat_8c1bc420 ; 012f44.c, 012f44.src
+          .EXPORT     _var_8c1bc410 ; 012f44_game.c, 012f44_game.src, 023310.src, 024b4c.src
+          .EXPORT     _var_8c1bc414 ; 012f44_game.c, 012f44_game.src, 024b4c.src
+          .EXPORT     _var_markTexlist_8c1bc418 ; 0129cc_pause.src, 013ae8_route_load.src, 01fa78.src, 02b2f0.src, 02b464.src
+          .EXPORT     _var_markPartsDat_8c1bc41c ; 012f44_game.c, 012f44_game.src
+          .EXPORT     _var_markDat_8c1bc420 ; 012f44_game.c, 012f44_game.src
           .EXPORT     _var_busStopTexlist_8c1bc424 ; 013ae8_route_load.src, 01fa78.src, 022464.src
-          .EXPORT     _var_busstopPartsDat_8c1bc428 ; 012f44.c, 012f44.src
-          .EXPORT     _var_busstopDat_8c1bc42c ; 012f44.c, 012f44.src
+          .EXPORT     _var_busstopPartsDat_8c1bc428 ; 012f44_game.c, 012f44_game.src
+          .EXPORT     _var_busstopDat_8c1bc42c ; 012f44_game.c, 012f44_game.src
           .EXPORT     _var_frontTexlist_8c1bc430 ; 013ae8_route_load.src, 024b4c.src
           .EXPORT     _var_frontNj_8c1bc434 ; 013ae8_route_load.src, 024b4c.src
-          .EXPORT     _var_interiorTexlist_8c1bc438 ; 012f44.c, 012f44.src, 013ae8_route_load.src, 02d19c.src, 02d968.src
+          .EXPORT     _var_interiorTexlist_8c1bc438 ; 012f44_game.c, 012f44_game.src, 013ae8_route_load.src, 02d19c.src, 02d968.src
           .EXPORT     _var_interiorNj_8c1bc43c ; 013ae8_route_load.src, 02d19c.src
-          .EXPORT     _var_8c1bc440 ; 012f44.c, 012f44.src, 02c884.src
-          .EXPORT     _var_8c1bc444 ; 012f44.c, 012f44.src, 02c884.src
-          .EXPORT     _var_loadedFooNjm_8c1bc448 ; 012f44.c, 012f44.src, 02c884.src
+          .EXPORT     _var_8c1bc440 ; 012f44_game.c, 012f44_game.src, 02c884.src
+          .EXPORT     _var_8c1bc444 ; 012f44_game.c, 012f44_game.src, 02c884.src
+          .EXPORT     _var_loadedFooNjm_8c1bc448 ; 012f44_game.c, 012f44_game.src, 02c884.src
           .EXPORT     _var_8c1bc44c ; 02c884.src
-          .EXPORT     _var_8c1bc450 ; 012f44.c, 012f44.src, 02c884.src
-          .EXPORT     _var_8c1bc454 ; 012f44.c, 012f44.src, 01614c.src, 019e98_main_menu.c, 01bb48.src
+          .EXPORT     _var_8c1bc450 ; 012f44_game.c, 012f44_game.src, 02c884.src
+          .EXPORT     _var_8c1bc454 ; 012f44_game.c, 012f44_game.src, 01614c.src, 019e98_main_menu.c, 01bb48.src
           .EXPORT     _var_8c1bc458 ; 023938.src, 028258.src
           .EXPORT     _var_8c1bc45c ; 023938.src
           .EXPORT     _var_8c1bc460 ; 023938.src, 024b4c.src, 025b98.src, 028258.src
@@ -174,7 +174,7 @@ _var_8c1ba29c:
           .RES.B      1
 _var_8c1ba29d:
           .RES.B      23
-_var_8c1ba2b4:
+_var_runEventFlags_8c1ba2b4:
           .RES.B      4
 _var_8c1ba2b8:
           .RES.B      20
@@ -246,7 +246,7 @@ _var_8c1bb8c4:
           .RES.B      4
 _var_inputMapSel_8c1bb8c8:
           .RES.B      4
-_var_8c1bb8cc:
+_var_pauseActive_8c1bb8cc:
           .RES.B      4
 _var_playMode_8c1bb8d0:
           .RES.B      4

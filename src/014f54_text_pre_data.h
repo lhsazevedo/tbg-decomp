@@ -289,8 +289,8 @@ typedef struct {
 typedef struct {
     int days_0x00;
 
-    /* unlock-flag bitsets set together by FUN_8c02af78
-     * and tested individually by FUN_8c02afbe/FUN_8c02aff0 */
+    /* unlock-flag bitsets set together by setProgressFlag_8c02af78
+     * and tested individually by hasProgressFlag_8c02afbe/EventHasProgressFlagAlt_8c02aff0 */
     int field_0x04[5];
     int field_0x18[5];
 
@@ -313,6 +313,9 @@ typedef struct {
     char field_0xd1;
 } PlayerProgress;
 
+/* single-word bitset, set/tested by setRunEventFlag_8c02b022/hasRunEventFlag_8c02b030; role unclear */
+extern int var_runEventFlags_8c1ba2b4;
+
 extern int var_8c1ba2b8[5]; // Maybe progress backup
 extern int var_8c1ba2cc[5]; // Maybe progress backup
 extern void* var_8c1ba2e0;
@@ -322,7 +325,7 @@ extern void* var_8c1bb86c;
 extern int var_8c1bb8b8; // Maybe courseMenuHasResult or courseMenuHasDialog
 extern int var_8c1bb8bc;
 extern int var_8c1bb8c4;
-extern int var_8c1bb8cc;
+extern int var_pauseActive_8c1bb8cc;
 extern int var_8c1bb8d4;
 extern int var_8c1bb8dc;
 extern int var_8c1bb8e0; // course was unlocked

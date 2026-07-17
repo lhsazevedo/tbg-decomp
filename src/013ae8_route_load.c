@@ -1,14 +1,15 @@
+/* @unit RouteLoad */
 #include <shinobi.h>
 #include "011120_asset_queues.h"
 #include "012504_input.h"
-#include "012f44.h"
+#include "012f44_game.h"
 #include "013ae8_route_load.h"
 #include "014a9c_tasks.h"
 #include "014f54_text.h"
 #include "02171c.h"
 #include "026710.h"
 #include "028258.h"
-#include "02af78.h"
+#include "02af78_event.h"
 #include "02c884.h"
 #include "03bd80_sectionD.h"
 #include "014f54_text_pre_data.h"
@@ -164,8 +165,8 @@ void *var_datFiles_8c18adb4[4];
  * ======================
  */
 
-void setPvmReady_8c014330(void);
-void resetPvmReady_8c014322(void);
+void RouteLoadSetPvmReady_8c014330(void);
+void RouteLoadResetPvmReady_8c014322(void);
 
 /* ==========
  * Functions
@@ -188,7 +189,7 @@ STATIC void requestVehicleAssets_8c013ae8(void)
     var_trafficModels_8c1bc3f4 = AsqRequestModels_8c012030(var_commonDir_8c18ad6c, init_trafficModelFiles_8c043d64, 0);
 }
 
-void freeVehicleAssets_8c013b5a(void)
+void RouteLoadFreeVehicleAssets_8c013b5a(void)
 {
     Uint32 i;
 
@@ -212,7 +213,7 @@ void freeVehicleAssets_8c013b5a(void)
     }
 }
 
-void clearModelSlots_8c013bbc(ModelSlot *slots, int count)
+void RouteLoadClearModelSlots_8c013bbc(ModelSlot *slots, int count)
 {
     ModelSlot *slot = &slots[--count];
 
@@ -267,24 +268,24 @@ STATIC void finishAssetLoad_8c013d42(void)
 {
     LOG_DEBUG(("[ROUTE_LOAD] asset load finished\n"));
 
-    setPvmReady_8c014330();
+    RouteLoadSetPvmReady_8c014330();
     AsqFreeQueues_8c011f7e();
 }
 
 /* Initialize the asset queues and kick off one
  * load pass for the currently-wanted route models. */
-void startRouteModelLoadPass_8c013d78(void)
+void RouteLoadStartRouteModelLoadPass_8c013d78(void)
 {
     LOG_DEBUG(("[ROUTE_LOAD] starting route-model load pass\n"));
 
     AsqInitQueues_8c011f36(0, 0x40, 0, 0x40);
     AsqResetQueues_8c011f6c();
-    resetPvmReady_8c014322();
+    RouteLoadResetPvmReady_8c014322();
     syncRouteModelAssets_8c013c34(var_routeModelIndexes_8c18adb0);
     AsqProcessQueues_8c011fe0(AsqNop_8c011120, 0, 0, 0, finishAssetLoad_8c013d42);
 }
 
-void freeAllRouteModels_8c013dae(void)
+void RouteLoadFreeAllRouteModels_8c013dae(void)
 {
     ModelSlot *slot;
 
@@ -331,7 +332,7 @@ STATIC void syncPedestrianAssets_8c013df6(Sint8 *models)
 }
 
 /* texlist only */
-void freePedestrianAssets_8c013ee4(void)
+void RouteLoadFreePedestrianAssets_8c013ee4(void)
 {
     ModelSlot *slot;
 
@@ -349,7 +350,7 @@ STATIC void freeSegmentModels_8c013f22(void)
 {
     CourseSegment *entry;
 
-    LOG_DEBUG(("[ROUTE_LOAD] freeing pairs for selected entry (index=%d)\n", var_currentSegment_8c228708));
+    LOG_DEBUG(("[ROUTE_LOAD] freeing pairs for segment (index=%d)\n", var_currentSegment_8c228708));
 
     entry = &var_currentCourseConfig_8c18ad18->segments_0x08[var_currentSegment_8c228708];
     if (entry->modelFiles_0x28 != 0) {
@@ -368,7 +369,7 @@ STATIC void syncSegmentModels_8c013f78(void)
     CourseSegment *entry;
     int i;
 
-    LOG_DEBUG(("[ROUTE_LOAD] syncing assets for selected entry (index=%d)\n", var_currentSegment_8c228708));
+    LOG_DEBUG(("[ROUTE_LOAD] syncing assets for segment (index=%d)\n", var_currentSegment_8c228708));
 
     entry = &var_currentCourseConfig_8c18ad18->segments_0x08[var_currentSegment_8c228708];
 
@@ -383,6 +384,9 @@ STATIC void syncSegmentModels_8c013f78(void)
         var_segmentModels_8c1bc3f0 = AsqRequestModels_8c012030(var_commonDir_8c18ad6c, entry->modelFiles_0x28, 0x10);
     }
 
+    /* When EventPickForSegment_8c02b170 armed a cutscene for this segment,
+     * load the cutscene's actor set (init_8c043fd4) instead of the segment's
+     * normal traffic models. */
     if (var_cutsceneActive_8c1bb900 == 0 || var_playMode_8c1bb8d0 != PLAY_MODE_NORMAL) {
         if (entry->routeModelIndexes_0x10 != 0) {
             var_routeModelIndexes_8c18adb0 = entry->routeModelIndexes_0x10;
@@ -410,6 +414,7 @@ STATIC void syncSegmentModels_8c013f78(void)
         }
     }
 
+    /* Cutscene armed for this segment: run its setup. */
     if (var_cutsceneActive_8c1bb900 != 0 && var_playMode_8c1bb8d0 == PLAY_MODE_NORMAL) {
         FUN_8c02aa36();
     }
@@ -504,19 +509,19 @@ STATIC void loadRouteModels_8c014088(void)
     var_routeModels_8c1bc3ec = AsqRequestModels_8c012030(var_commonDir_8c18ad6c, init_8c0440dc, 0x10);
 }
 
-void resetPvmReady_8c014322(void)
+void RouteLoadResetPvmReady_8c014322(void)
 {
     LOG_DEBUG(("[ROUTE_LOAD] pvm ready reset\n"));
 
     var_pvmReady_8c18adac = 0;
 }
 
-int isPvmReady_8c01432a(void)
+int RouteLoadIsPvmReady_8c01432a(void)
 {
     return var_pvmReady_8c18adac;
 }
 
-void setPvmReady_8c014330(void)
+void RouteLoadSetPvmReady_8c014330(void)
 {
     LOG_DEBUG(("[ROUTE_LOAD] pvm ready set\n"));
 
@@ -535,31 +540,32 @@ STATIC void routeLoadTask_8c014338(Task *task, void *state)
             njSetTexture(var_loadingResourceGroup_8c1bc3f8.tlist_0x00);
             njLoadCacheTexture(var_loadingResourceGroup_8c1bc3f8.tlist_0x00);
             loadRouteModels_8c014088();
-            resetPvmReady_8c014322();
-            AsqProcessQueues_8c011fe0(AsqNop_8c011120, 0, 0, 0, setPvmReady_8c014330);
+            RouteLoadResetPvmReady_8c014322();
+            AsqProcessQueues_8c011fe0(AsqNop_8c011120, 0, 0, 0, RouteLoadSetPvmReady_8c014330);
             CHANGE_LOAD_STATE(task, ROUTE_LOAD_STATE_POST_LOAD);
             return;
         }
 
         case ROUTE_LOAD_STATE_POST_LOAD: {
-            if (isPvmReady_8c01432a() != 0) {
+            if (RouteLoadIsPvmReady_8c01432a() != 0) {
                 FUN_8c02175a();
                 FUN_8c026da4(var_currentCourse_8c1bb868.slots_0x04[8]);
                 FUN_8c028de8(var_currentCourse_8c1bb868.slots_0x04[11]);
                 FUN_8c028dd0(var_currentCourse_8c1bb868.slots_0x04[12]);
                 FUN_8c02caba();
-                FUN_8c02b170();
+                // Arm this segment's cutscene first: syncSegmentModels reads cutsceneActive.
+                EventPickForSegment_8c02b170();
                 AsqResetQueues_8c011f6c();
                 syncSegmentModels_8c013f78();
-                resetPvmReady_8c014322();
-                AsqProcessQueues_8c011fe0(AsqNop_8c011120, FUN_8c021810, FUN_8c02190a, 0, setPvmReady_8c014330);
+                RouteLoadResetPvmReady_8c014322();
+                AsqProcessQueues_8c011fe0(AsqNop_8c011120, FUN_8c021810, FUN_8c02190a, 0, RouteLoadSetPvmReady_8c014330);
                 CHANGE_LOAD_STATE(task, ROUTE_LOAD_STATE_WAIT);
             }
             break;
         }
 
         case ROUTE_LOAD_STATE_WAIT: {
-            if (isPvmReady_8c01432a() != 0) {
+            if (RouteLoadIsPvmReady_8c01432a() != 0) {
                 CHANGE_LOAD_STATE(task, ROUTE_LOAD_STATE_IDLE);
                 return;
             }
@@ -572,24 +578,24 @@ STATIC void routeLoadTask_8c014338(Task *task, void *state)
         }
 
         case ROUTE_LOAD_STATE_DONE: {
-            freeTask_8c014b66(task);
+            TaskFree_8c014b66(task);
             AsqFreeQueues_8c011f7e();
             var_loadScreenActive_8c157a6c = 0;
             njReleaseTexture(var_loadingResourceGroup_8c1bc3f8.tlist_0x00);
             FUN_8c01306e();
-            dispatchInputTask_8c012970();
+            InputDispatchTask_8c012970();
             return;
         }
     }
 
-    drawSprite_8c014f54(&var_loadingResourceGroup_8c1bc3f8, 0, 0.0f, 0.0f, -5.0f);
+    TxtDrawSprite_8c014f54(&var_loadingResourceGroup_8c1bc3f8, 0, 0.0f, 0.0f, -5.0f);
     // Loading animation
     frame = (int) task->field_0x0c;
     task->field_0x0c = (void *) (frame + 1);
-    drawSprite_8c014f54(&var_loadingResourceGroup_8c1bc3f8, (frame >> 2) % 6 + 1, 0.0f, 0.0f, -4.0f);
+    TxtDrawSprite_8c014f54(&var_loadingResourceGroup_8c1bc3f8, (frame >> 2) % 6 + 1, 0.0f, 0.0f, -4.0f);
 }
 
-void pushRouteLoadTask_8c0144fc(void)
+void RouteLoadPushTask_8c0144fc(void)
 {
     Task *task;
     void *state;
@@ -599,7 +605,7 @@ void pushRouteLoadTask_8c0144fc(void)
     njSetBackColor(0xff418dff, 0xff418dff, 0xff418dff);
     var_loadScreenActive_8c157a6c = 1;
 
-    pushTask_8c014ae8(var_tasks_8c1ba3c8, (void *) routeLoadTask_8c014338, &task, &state, 0);
+    TaskPush_8c014ae8(var_tasks_8c1ba3c8, (void *) routeLoadTask_8c014338, &task, &state, 0);
     CHANGE_LOAD_STATE(task, ROUTE_LOAD_STATE_INIT);
     task->field_0x0c = 0;
 
@@ -616,17 +622,18 @@ STATIC void unknownSegmentReloadTask_8c014550(Task *task, void *state)
 
     switch (task->field_0x08) {
         case SEGMENT_RELOAD_STATE_POST_LOAD: {
-            FUN_8c02b170();
+            // Arm this segment's cutscene first: syncSegmentModels reads cutsceneActive.
+            EventPickForSegment_8c02b170();
             AsqResetQueues_8c011f6c();
             syncSegmentModels_8c013f78();
-            resetPvmReady_8c014322();
-            AsqProcessQueues_8c011fe0(AsqNop_8c011120, FUN_8c021810, FUN_8c02190a, 0, setPvmReady_8c014330);
+            RouteLoadResetPvmReady_8c014322();
+            AsqProcessQueues_8c011fe0(AsqNop_8c011120, FUN_8c021810, FUN_8c02190a, 0, RouteLoadSetPvmReady_8c014330);
             CHANGE_SEGMENT_RELOAD_STATE(task, SEGMENT_RELOAD_STATE_WAIT);
             break;
         }
 
         case SEGMENT_RELOAD_STATE_WAIT: {
-            if (isPvmReady_8c01432a() != 0) {
+            if (RouteLoadIsPvmReady_8c01432a() != 0) {
                 CHANGE_SEGMENT_RELOAD_STATE(task, SEGMENT_RELOAD_STATE_IDLE);
                 return;
             }
@@ -639,26 +646,26 @@ STATIC void unknownSegmentReloadTask_8c014550(Task *task, void *state)
         }
 
         case SEGMENT_RELOAD_STATE_DONE: {
-            freeTask_8c014b66(task);
+            TaskFree_8c014b66(task);
             AsqFreeQueues_8c011f7e();
             var_loadScreenActive_8c157a6c = 0;
             njReleaseTexture(var_loadingResourceGroup_8c1bc3f8.tlist_0x00);
             njSetTexture(var_interiorTexlist_8c1bc438);
             njLoadCacheTexture(var_interiorTexlist_8c1bc438);
             FUN_8c01306e();
-            dispatchInputTask_8c012970();
+            InputDispatchTask_8c012970();
             return;
         }
     }
 
-    drawSprite_8c014f54(&var_loadingResourceGroup_8c1bc3f8, 0, 0.0f, 0.0f, -5.0f);
+    TxtDrawSprite_8c014f54(&var_loadingResourceGroup_8c1bc3f8, 0, 0.0f, 0.0f, -5.0f);
     // Loading animation
     frame = (int) task->field_0x0c;
     task->field_0x0c = (void *) (frame + 1);
-    drawSprite_8c014f54(&var_loadingResourceGroup_8c1bc3f8, (frame >> 2) % 6 + 1, 0.0f, 0.0f, -4.0f);
+    TxtDrawSprite_8c014f54(&var_loadingResourceGroup_8c1bc3f8, (frame >> 2) % 6 + 1, 0.0f, 0.0f, -4.0f);
 }
 
-void pushUnknownSegmentReloadTask_8c01468e(void)
+void RouteLoadPushSegmentReloadTask_8c01468e(void)
 {
     Task *task;
     void *state;
@@ -673,7 +680,7 @@ void pushUnknownSegmentReloadTask_8c01468e(void)
     LOG_DEBUG(("[ROUTE_LOAD] pushing unknownSegmentReloadTask_8c014550\n"));
 
     var_loadScreenActive_8c157a6c = 1;
-    pushTask_8c014ae8(var_tasks_8c1ba3c8, (void *) unknownSegmentReloadTask_8c014550, &task, &state, 0);
+    TaskPush_8c014ae8(var_tasks_8c1ba3c8, (void *) unknownSegmentReloadTask_8c014550, &task, &state, 0);
     CHANGE_SEGMENT_RELOAD_STATE(task, SEGMENT_RELOAD_STATE_POST_LOAD);
     task->field_0x0c = 0;
     freeSegmentModels_8c013f22();
@@ -687,7 +694,7 @@ void pushUnknownSegmentReloadTask_8c01468e(void)
 
 /* Like routeLoadTask_8c014338, but on completion binds the interior texture and
  * hands off to the input task (as unknownSegmentReloadTask_8c014550 does). */
-void unknownRouteLoadTask_8c014784(Task *task, void *state)
+void RouteLoadUnusedTask_8c014784(Task *task, void *state)
 {
     int frame;
 
@@ -697,31 +704,32 @@ void unknownRouteLoadTask_8c014784(Task *task, void *state)
             njSetTexture(var_loadingResourceGroup_8c1bc3f8.tlist_0x00);
             njLoadCacheTexture(var_loadingResourceGroup_8c1bc3f8.tlist_0x00);
             loadRouteModels_8c014088();
-            resetPvmReady_8c014322();
-            AsqProcessQueues_8c011fe0(AsqNop_8c011120, 0, 0, 0, setPvmReady_8c014330);
+            RouteLoadResetPvmReady_8c014322();
+            AsqProcessQueues_8c011fe0(AsqNop_8c011120, 0, 0, 0, RouteLoadSetPvmReady_8c014330);
             CHANGE_LOAD_STATE(task, ROUTE_LOAD_STATE_POST_LOAD);
             break;
         }
 
         case ROUTE_LOAD_STATE_POST_LOAD: {
-            if (isPvmReady_8c01432a() != 0) {
+            if (RouteLoadIsPvmReady_8c01432a() != 0) {
                 FUN_8c02175a();
                 FUN_8c026da4(var_currentCourse_8c1bb868.slots_0x04[8]);
                 FUN_8c028de8(var_currentCourse_8c1bb868.slots_0x04[11]);
                 FUN_8c028dd0(var_currentCourse_8c1bb868.slots_0x04[12]);
                 FUN_8c02caba();
-                FUN_8c02b170();
+                // Arm this segment's cutscene first: syncSegmentModels reads cutsceneActive.
+                EventPickForSegment_8c02b170();
                 AsqResetQueues_8c011f6c();
                 syncSegmentModels_8c013f78();
-                resetPvmReady_8c014322();
-                AsqProcessQueues_8c011fe0(AsqNop_8c011120, 0, FUN_8c02190a, 0, setPvmReady_8c014330);
+                RouteLoadResetPvmReady_8c014322();
+                AsqProcessQueues_8c011fe0(AsqNop_8c011120, 0, FUN_8c02190a, 0, RouteLoadSetPvmReady_8c014330);
                 CHANGE_LOAD_STATE(task, ROUTE_LOAD_STATE_WAIT);
             }
             break;
         }
 
         case ROUTE_LOAD_STATE_WAIT: {
-            if (isPvmReady_8c01432a() != 0) {
+            if (RouteLoadIsPvmReady_8c01432a() != 0) {
                 CHANGE_LOAD_STATE(task, ROUTE_LOAD_STATE_IDLE);
                 return;
             }
@@ -734,21 +742,21 @@ void unknownRouteLoadTask_8c014784(Task *task, void *state)
         }
 
         case ROUTE_LOAD_STATE_DONE: {
-            freeTask_8c014b66(task);
+            TaskFree_8c014b66(task);
             AsqFreeQueues_8c011f7e();
             var_loadScreenActive_8c157a6c = 0;
             njReleaseTexture(var_loadingResourceGroup_8c1bc3f8.tlist_0x00);
             njSetTexture(var_interiorTexlist_8c1bc438);
             njLoadCacheTexture(var_interiorTexlist_8c1bc438);
             FUN_8c01306e();
-            dispatchInputTask_8c012970();
+            InputDispatchTask_8c012970();
             return;
         }
     }
 
-    drawSprite_8c014f54(&var_loadingResourceGroup_8c1bc3f8, 0, 0.0f, 0.0f, -5.0f);
+    TxtDrawSprite_8c014f54(&var_loadingResourceGroup_8c1bc3f8, 0, 0.0f, 0.0f, -5.0f);
     // Loading animation
     frame = (int) task->field_0x0c;
     task->field_0x0c = (void *) (frame + 1);
-    drawSprite_8c014f54(&var_loadingResourceGroup_8c1bc3f8, (frame >> 2) % 6 + 1, 0.0f, 0.0f, -4.0f);
+    TxtDrawSprite_8c014f54(&var_loadingResourceGroup_8c1bc3f8, (frame >> 2) % 6 + 1, 0.0f, 0.0f, -4.0f);
 }

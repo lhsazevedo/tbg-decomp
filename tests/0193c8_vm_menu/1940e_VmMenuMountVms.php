@@ -36,10 +36,10 @@ return new class extends TestCase {
         $this->shouldCall('_BupMount_8c014c00')->with(6);
         $this->shouldCall('_BupGetInfo_8c014bba')->with(7)->andReturn($bupAddresses[7]);
 
-        $this->shouldCall('_pushTask_8c014ae8')
+        $this->shouldCall('_TaskPush_8c014ae8')
         ->with(
             $this->addressOf('_var_tasks_8c1ba3c8'),
-            $this->addressOf('_TaskWaitForVmsReady_193c8'),
+            $this->addressOf('_taskWaitForVmsReady_8c0193c8'),
             $createdTask,
             $createdState,
             0
@@ -76,10 +76,10 @@ return new class extends TestCase {
         $this->shouldCall('_BupGetInfo_8c014bba')->with(6)->andReturn($bupAddresses[6]);
         $this->shouldCall('_BupGetInfo_8c014bba')->with(7)->andReturn($bupAddresses[7]);
 
-        $this->shouldCall('_pushTask_8c014ae8')
+        $this->shouldCall('_TaskPush_8c014ae8')
         ->with(
             $this->addressOf('_var_tasks_8c1ba3c8'),
-            $this->addressOf('_TaskWaitForVmsReady_193c8'),
+            $this->addressOf('_taskWaitForVmsReady_8c0193c8'),
             $createdTask,
             $createdState,
             0

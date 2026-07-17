@@ -22,9 +22,9 @@ return new class extends TestCase {
         $task = $this->alloc(0x20);
         $this->call('_AlbumSwitchFromTask_8c01d6e2')->with($task);
 
-        $this->shouldCall('_setTaskAction_8c014b3e')->with(
+        $this->shouldCall('_TaskSetAction_8c014b3e')->with(
             $task,
-            $this->addressOf('_AlbumMenuTask_8c01d300'),
+            $this->addressOf('_albumMenuTask_8c01d300'),
         );
         $this->shouldWriteLong($this->m(0x18), 0);
         $this->shouldWriteFloat($this->m(0x20), 100.0);
@@ -46,9 +46,9 @@ return new class extends TestCase {
         $task = $this->alloc(0x20);
         $this->call('_AlbumSwitchFromTask_8c01d6e2')->with($task);
 
-        $this->shouldCall('_setTaskAction_8c014b3e')->with(
+        $this->shouldCall('_TaskSetAction_8c014b3e')->with(
             $task,
-            $this->addressOf('_AlbumMenuTask_8c01d300'),
+            $this->addressOf('_albumMenuTask_8c01d300'),
         );
         $this->shouldWriteLong($this->m(0x18), 0);
         // No cursor / selected writes: nothing to park on.
@@ -91,13 +91,13 @@ return new class extends TestCase {
             $this->m(0x0c),
             $this->addressOf('_init_albumResourceGroup_8c045160'),
         );
-        $this->shouldCall('_setPvmReady_8c014330');
+        $this->shouldCall('_RouteLoadSetPvmReady_8c014330');
         $this->shouldCall('_AsqProcessQueues_8c011fe0')->with(
             $this->addressOf('_AsqNop_8c011120'),
             0,
             0,
             0,
-            $this->addressOf('_resetPvmReady_8c014322'),
+            $this->addressOf('_RouteLoadResetPvmReady_8c014322'),
         );
     }
 };

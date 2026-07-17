@@ -13,7 +13,7 @@ return new class extends TestCase {
 
         $task = 0xbebacafe;
 
-        $this->shouldCall('_setTaskAction_8c014b3e')->with($task, $this->addressOf('_MainMenuTask_8c019e98'));
+        $this->shouldCall('_TaskSetAction_8c014b3e')->with($task, $this->addressOf('_mainMenuTask_8c019e98'));
         $this->shouldWriteLong($this->addressOf('_var_menuState_8c1bc7a8') + 0x18, 0);
         $this->shouldWriteLong($this->addressOf('_var_menuState_8c1bc7a8') + 0x38, 0);
         $this->shouldWriteLong($this->addressOf('_var_menuState_8c1bc7a8') + 0x5c, 0);
@@ -23,13 +23,13 @@ return new class extends TestCase {
             $this->addressOf('_var_menuState_8c1bc7a8') + 0x0c,
             $this->addressOf('_init_mainMenuResourceGroup_8c044264'),
         );
-        $this->shouldCall('_setPvmReady_8c014330');
+        $this->shouldCall('_RouteLoadSetPvmReady_8c014330');
         $this->shouldCall('_AsqProcessQueues_8c011fe0')->with(
             $this->addressOf('_AsqNop_8c011120'),
             0,
             0,
             0,
-            $this->addressOf('_resetPvmReady_8c014322')
+            $this->addressOf('_RouteLoadResetPvmReady_8c014322')
         );
 
         $this->singleCall('_MainMenuSwitchFromTask_8c01a09a')->with($task)->run();
@@ -40,6 +40,6 @@ return new class extends TestCase {
         $this->setSize('_var_menuState_8c1bc7a8', 0x6c);
 
         // Functions
-        //$this->setSize('_setTaskAction_8c014b3e', 0x4);
+        //$this->setSize('_TaskSetAction_8c014b3e', 0x4);
     }
 };

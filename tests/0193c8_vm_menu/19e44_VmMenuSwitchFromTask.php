@@ -13,7 +13,7 @@ return new class extends TestCase {
 
         $task = 0xbebacafe;
 
-        $this->shouldCall('_setTaskAction_8c014b3e')->with($task, $this->addressOf('_VmMenuTask_198a0'));
+        $this->shouldCall('_TaskSetAction_8c014b3e')->with($task, $this->addressOf('_vmMenuTask_8c0198a0'));
         $this->shouldWriteLong($this->addressOf('_var_menuState_8c1bc7a8') + 0x18, 0);
         $this->shouldWriteLong($this->addressOf('_var_menuState_8c1bc7a8') + 0x38, 0);
         $this->shouldWriteLong($this->addressOf('_var_menuState_8c1bc7a8') + 0x68, 0);
@@ -26,6 +26,6 @@ return new class extends TestCase {
         $this->setSize('_var_menuState_8c1bc7a8', 0x6c);
 
         // Functions
-        $this->setSize('_setTaskAction_8c014b3e', 0x4);
+        $this->setSize('_TaskSetAction_8c014b3e', 0x4);
     }
 };

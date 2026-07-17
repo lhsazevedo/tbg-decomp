@@ -27,7 +27,7 @@ return new class extends TestCase {
         $this->initUint32($tail + 0x08, 0);
         $this->initUint32($tail + 0x0c, 0);
 
-        $this->call('_heapFree_8c0110c4')->with($heap + 0x20);
+        $this->call('_HeapFree_8c0110c4')->with($heap + 0x20);
 
         $this->shouldWriteLong($heap + 0x0c, 0);
 
@@ -63,7 +63,7 @@ return new class extends TestCase {
         $this->initUint32($tail + 0x08, 0);
         $this->initUint32($tail + 0x0c, 0);
 
-        $this->call('_heapFree_8c0110c4')->with($heap + 0x20);
+        $this->call('_HeapFree_8c0110c4')->with($heap + 0x20);
 
         // Clear used flag
         $this->shouldWriteLong($heap + 0x0c, 0);
@@ -105,7 +105,7 @@ return new class extends TestCase {
         $this->initUint32($tail + 0x08, 0);
         $this->initUint32($tail + 0x0c, 0);
 
-        $this->call('_heapFree_8c0110c4')->with($chunk + 0x20);
+        $this->call('_HeapFree_8c0110c4')->with($chunk + 0x20);
 
         // Clear used flag
         $this->shouldWriteLong($chunk + 0x0c, 0);
@@ -154,7 +154,7 @@ return new class extends TestCase {
         $this->initUint32($tail + 0x08, 0);
         $this->initUint32($tail + 0x0c, 0);
 
-        $this->call('_heapFree_8c0110c4')->with($chunk + 0x20);
+        $this->call('_HeapFree_8c0110c4')->with($chunk + 0x20);
 
         // Clear used flag
         $this->shouldWriteLong($chunk + 0x0c, 0);

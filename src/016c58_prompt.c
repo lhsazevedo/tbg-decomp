@@ -1,3 +1,4 @@
+/* @unit Prompt */
 /* 8c016c58 */
 #include <shinobi.h>
 #include <sg_sd.h>
@@ -5,7 +6,7 @@
 #include "014f54_text_pre_data.h"
 #include "016c58_prompt.h"
 
-int promptHandleMultiple_8c016c58(int *option, int count)
+int PromptHandleMultiple_8c016c58(int *option, int count)
 {
     int newOption = *option;
 
@@ -27,7 +28,7 @@ int promptHandleMultiple_8c016c58(int *option, int count)
     return 1;
 }
 
-int promptHandleBinary_8c016caa(int* option) {
+int PromptHandleBinary_8c016caa(int* option) {
     if (*option == 0) {
         if (var_peripherals_8c1ba35c[0].press & PDD_DGT_KR) {
             *option = 1;

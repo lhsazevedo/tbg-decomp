@@ -9,7 +9,7 @@ return new class extends TestCase {
         $heap = $this->alloc(0x1000);
         $heapEnd = $heap + 0x1000;
 
-        $this->call('_heapInit_8c010fe8')->with($heap, $heapEnd);
+        $this->call('_HeapInit_8c010fe8')->with($heap, $heapEnd);
 
         $this->shouldWriteLongTo('_var_heapHead_8c157a58', $heap);
         $this->shouldWriteLong($heap + 0x0c, 0);
@@ -30,7 +30,7 @@ return new class extends TestCase {
         $heap = $this->alloc(0x20);
         $heapEnd = $heap + 0x20;
 
-        $this->call('_heapInit_8c010fe8')->with($heap, $heapEnd);
+        $this->call('_HeapInit_8c010fe8')->with($heap, $heapEnd);
 
         $this->shouldWriteLongTo('_var_heapHead_8c157a58', $heap);
         $this->shouldWriteLong($heap + 0x0c, 0);
@@ -50,7 +50,7 @@ return new class extends TestCase {
         $heapEnd = $heap + 0x40;
         $tail = $heapEnd - 0x20;
 
-        $this->call('_heapInit_8c010fe8')->with($heap, $heapEnd);
+        $this->call('_HeapInit_8c010fe8')->with($heap, $heapEnd);
 
         $this->shouldWriteLongTo('_var_heapHead_8c157a58', $heap);
         $this->shouldWriteLong($heap + 0x0c, 0);
@@ -70,7 +70,7 @@ return new class extends TestCase {
         $heapEnd = $heap + 0x60;
         $tail = $heapEnd - 0x20;
 
-        $this->call('_heapInit_8c010fe8')->with($heap, $heapEnd);
+        $this->call('_HeapInit_8c010fe8')->with($heap, $heapEnd);
 
         $this->shouldWriteLongTo('_var_heapHead_8c157a58', $heap);
         $this->shouldWriteLong($heap + 0x0c, 0);
@@ -90,7 +90,7 @@ return new class extends TestCase {
         $heapEnd = $heap + 0x50;
         $tail = $heapEnd - 0x20;
 
-        $this->call('_heapInit_8c010fe8')->with($heap, $heapEnd);
+        $this->call('_HeapInit_8c010fe8')->with($heap, $heapEnd);
 
         $this->shouldWriteLongTo('_var_heapHead_8c157a58', $heap);
         $this->shouldWriteLong($heap + 0x0c, 0);

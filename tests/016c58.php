@@ -5,7 +5,7 @@ declare(strict_types=1);
 use Lhsazevedo\Sh4ObjTest\TestCase;
 
 return new class extends TestCase {
-    public function testpromptHandleMultiple_8c016c58()
+    public function testPromptHandleMultiple_8c016c58()
     {
         $this->resolveImports();
 
@@ -15,13 +15,13 @@ return new class extends TestCase {
 
         $this->shouldWrite($optionPtr, 0);
 
-        $this->singleCall('_promptHandleMultiple_8c016c58')
+        $this->singleCall('_PromptHandleMultiple_8c016c58')
             ->with($optionPtr, 3)
             ->singleShouldReturn(0)
             ->run();
     }
 
-    public function testpromptHandleMultiple_8c016c58_right()
+    public function testPromptHandleMultiple_8c016c58_right()
     {
         $this->resolveImports();
 
@@ -34,13 +34,13 @@ return new class extends TestCase {
 
         $this->shouldWrite($optionPtr, 1);
 
-        $this->singleCall('_promptHandleMultiple_8c016c58')
+        $this->singleCall('_PromptHandleMultiple_8c016c58')
             ->with($optionPtr, 3)
             ->singleShouldReturn(1)
             ->run();
     }
 
-    public function testpromptHandleMultiple_8c016c58_left()
+    public function testPromptHandleMultiple_8c016c58_left()
     {
         $this->resolveImports();
 
@@ -53,13 +53,13 @@ return new class extends TestCase {
 
         $this->shouldWrite($optionPtr, 2);
 
-        $this->singleCall('_promptHandleMultiple_8c016c58')
+        $this->singleCall('_PromptHandleMultiple_8c016c58')
             ->with($optionPtr, 3)
             ->singleShouldReturn(1)
             ->run();
     }
 
-    public function testpromptHandleMultiple_8c016c58_rightWrapAround()
+    public function testPromptHandleMultiple_8c016c58_rightWrapAround()
     {
         $this->resolveImports();
 
@@ -72,13 +72,13 @@ return new class extends TestCase {
 
         $this->shouldWrite($optionPtr, 0);
 
-        $this->singleCall('_promptHandleMultiple_8c016c58')
+        $this->singleCall('_PromptHandleMultiple_8c016c58')
             ->with($optionPtr, 3)
             ->singleShouldReturn(1)
             ->run();
     }
 
-    public function testpromptHandleMultiple_8c016c58_leftWrapAround()
+    public function testPromptHandleMultiple_8c016c58_leftWrapAround()
     {
         $this->resolveImports();
 
@@ -91,13 +91,13 @@ return new class extends TestCase {
 
         $this->shouldWrite($optionPtr, 2);
 
-        $this->singleCall('_promptHandleMultiple_8c016c58')
+        $this->singleCall('_PromptHandleMultiple_8c016c58')
             ->with($optionPtr, 3)
             ->singleShouldReturn(1)
             ->run();
     }
 
-    public function testpromptHandleMultiple_8c016c58_noInput()
+    public function testPromptHandleMultiple_8c016c58_noInput()
     {
         $this->resolveImports();
 
@@ -107,7 +107,7 @@ return new class extends TestCase {
 
         $this->shouldWrite($optionPtr, 1);
 
-        $this->singleCall('_promptHandleMultiple_8c016c58')
+        $this->singleCall('_PromptHandleMultiple_8c016c58')
             ->with($optionPtr, 3)
             ->singleShouldReturn(0)
             ->run();

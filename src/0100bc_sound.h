@@ -21,23 +21,23 @@ extern SDMIDI var_midiHandles_8c0fcd28[8];
  * =========
  */
 
-void midiResetFxAndPlay_8c010846(int hld_idx, int data_num);
+void SndMidiResetFxAndPlay_8c010846(int hld_idx, int data_num);
 void FUN_8c010ca6(Bool p1);
-int snd_8c010cd6(int p1, int p2);
+int SndProc_8c010cd6(int p1, int p2);
 void FUN_8c0106ac();
 Bool FUN_8c0106d2(Sint32 param);
 Bool FUN_8c010720(Sint32 param);
 int FUN_8c0107ac(Sint32 param);
-void controlAdxtWithOutVol_8c0107d2(Bool play);
-Bool setSoundMode_8c0108c0(Sint32 mode);
-int getSoundMode_8c010924();
-void setAdxVol_8c010972(int volNo, int handle);
-void setMidiVolAndInitStruct_8c0109f4(int param1);
-void updateAdxVolFade_8c010a40();
-void startAdxFadeOut_8c010bae(int param1);
+void SndControlAdxtWithOutVol_8c0107d2(Bool play);
+Bool SndSetSoundMode_8c0108c0(Sint32 mode);
+int SndGetSoundMode_8c010924();
+void SndSetAdxVol_8c010972(int volNo, int handle);
+void SndSetMidiVolAndInitStruct_8c0109f4(int param1);
+void SndUpdateAdxVolFade_8c010a40();
+void SndStartAdxFadeOut_8c010bae(int param1);
 void FUN_8c010c6e();
 void FUN_8c010c7c();
 void FUN_8c010d8a();
-void initSoundMidiAdx_8c010e18(char *dirname);
+void SndInitSoundMidiAdx_8c010e18(char *dirname);
 
 #endif // _SOUND_H

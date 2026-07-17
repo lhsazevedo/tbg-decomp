@@ -40,10 +40,10 @@ return new class extends TestCase {
         $this->shouldCall('_buStat')->with(6)->andReturn(0);
         $this->shouldCall('_BupGetInfo_8c014bba')->with(7)->andReturn($bupAddresses[7]);
 
-        $this->shouldCall('_freeTask_8c014b66')->with($task);
+        $this->shouldCall('_TaskFree_8c014b66')->with($task);
         $this->shouldWriteLongTo('_var_8c22606c', 0);
 
-        $this->singleCall('_TaskUnmountVms_1946a')->with($task)->run();
+        $this->singleCall('_taskUnmountVms_8c01946a')->with($task)->run();
     }
 
     public function test_doNotFreeWhenThereAreBusyVmus()
@@ -79,7 +79,7 @@ return new class extends TestCase {
         $this->shouldCall('_buStat')->with(6)->andReturn(0);
         $this->shouldCall('_BupGetInfo_8c014bba')->with(7)->andReturn($bupAddresses[7]);
 
-        $this->singleCall('_TaskUnmountVms_1946a')->with($task)->run();
+        $this->singleCall('_taskUnmountVms_8c01946a')->with($task)->run();
     }
 
     private function resolveSymbols(): void

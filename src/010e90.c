@@ -1,3 +1,4 @@
+/* @unit Vib */
 /* 8c010e90 */
 #include <shinobi.h>
 #include "010e90.h"
@@ -110,7 +111,7 @@ NM_STATIC void vib_8c010e90(int port) {
         var_unknownVibStructA_8c157a48.field_0x04 = 0;
 
         if (unknownVibStructB[var_unknownVibStructA_8c157a48.index_0x08].field_0x00 == 0) {
-            vibClear_8c010fbe();
+            VibClear_8c010fbe();
         } else {
             param.unit = 1;
 
@@ -135,26 +136,26 @@ NM_STATIC void vib_8c010e90(int port) {
     }
 }
 
-void vib_8c010f7a(int param) {
+void VibStart_8c010f7a(int param) {
     if (param < 8) {
         if (var_unknownVibStructA_8c157a48.field_0x0c == 1) {
             if (param > var_unknownVibStructA_8c157a48.index_0x00) {
                 var_unknownVibStructA_8c157a48.index_0x00 = param;
             }
         } else if (var_unknownVibStructA_8c157a48.field_0x0c == 0) {
-            vibClear_8c010fbe();
+            VibClear_8c010fbe();
             var_unknownVibStructA_8c157a48.index_0x00 = param;
         }
     }
 }
 
-void vib_8c010fae(int port) {
+void VibStop_8c010fae(int port) {
     if (var_unknownVibStructA_8c157a48.index_0x00 != 7) {
         vib_8c010e90(port);
     }
 }
 
-void vibClear_8c010fbe() {
+void VibClear_8c010fbe() {
     memset(&var_unknownVibStructA_8c157a48, 0, sizeof(UnknownVibStructA));
     var_unknownVibStructA_8c157a48.index_0x00 = 7;
 }

@@ -28,7 +28,7 @@ return new class extends TestCase {
         $this->shouldCall('_njDrawSprite2D')
             ->with($spriteLocal, 52, 4.5, 32);
 
-        $this->singleCall('_drawSprite_8c014f54')
+        $this->singleCall('_TxtDrawSprite_8c014f54')
             ->with($res, 2, 42.0, 69.0, 4.5)
             ->run();
     }
@@ -101,8 +101,8 @@ return new class extends TestCase {
         $this->shouldCall('_njDrawSprite2D')
             ->with($spriteLocal, 116, -4.9991, 32);
 
-        // drawSprite_8c014f54(&var_menuState_8c1bc7a8.resourceGroupB_0x0c, 0, 0.0, 0.0, -5.0);
-        $this->singleCall('_drawSprite_8c014f54')
+        // TxtDrawSprite_8c014f54(&var_menuState_8c1bc7a8.resourceGroupB_0x0c, 0, 0.0, 0.0, -5.0);
+        $this->singleCall('_TxtDrawSprite_8c014f54')
             ->with($res, 0, 0.0, 0.0, -5.0)
             ->run();
     }
@@ -130,8 +130,8 @@ return new class extends TestCase {
         $this->shouldCall('_njDrawSprite2D')
             ->with($spriteLocal, 11, -4.0, 32);
 
-        // drawSprite_8c014f54(&var_menuState_8c1bc7a8.resourceGroupB_0x0c, 1, 180, 0, -4.0);
-        $this->singleCall('_drawSprite_8c014f54')
+        // TxtDrawSprite_8c014f54(&var_menuState_8c1bc7a8.resourceGroupB_0x0c, 1, 180, 0, -4.0);
+        $this->singleCall('_TxtDrawSprite_8c014f54')
             ->with($res, 1, 180.0, 0.0, -4.0)
             ->run();
     }
@@ -160,8 +160,8 @@ return new class extends TestCase {
     //     $this->shouldCall('_njDrawSprite2D')
     //         ->with($spriteLocal, 0, -4.0, 32);
 
-    //     // drawSprite_8c014f54(&var_menuState_8c1bc7a8.resourceGroupB_0x0c, 1, 180, 0, -4.0);
-    //     $this->singleCall('_drawSprite_8c014f54')
+    //     // TxtDrawSprite_8c014f54(&var_menuState_8c1bc7a8.resourceGroupB_0x0c, 1, 180, 0, -4.0);
+    //     $this->singleCall('_TxtDrawSprite_8c014f54')
     //         ->with($res, 2000, 180.0, 90.0, -4.0)
     //         ->run();
     // }

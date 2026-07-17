@@ -1,6 +1,6 @@
 ; 8c0222dc
           .IMPORT     _var_tasks_8c1ba5e8
-          .IMPORT     _pushTask_8c014ae8
+          .IMPORT     _TaskPush_8c014ae8
           .IMPORT     _var_segmentModels_8c1bc3f0
           .IMPORT     _var_8c226544
           .IMPORT     _var_sceneParams_8c18ad24
@@ -97,7 +97,7 @@ LP_GEN_22999:
           .RES.W 1 ; H'8C022376
           .DATA.L _FUN_8c0221d0 ; H'8C022378
           .DATA.L _var_tasks_8c1ba5e8 ; H'8C02237C
-          .DATA.L _pushTask_8c014ae8 ; H'8C022380
+          .DATA.L _TaskPush_8c014ae8 ; H'8C022380
           .DATA.L _var_segmentModels_8c1bc3f0 ; H'8C022384
           .DATA.L _var_8c226544 ; H'8C022388
           .DATA.L _var_sceneParams_8c18ad24 ; H'8C02238C

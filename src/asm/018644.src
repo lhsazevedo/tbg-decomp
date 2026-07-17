@@ -5,7 +5,7 @@
           .IMPORT     _buIsExistFile
           .IMPORT     _BupLoad_8c014bc6
           .IMPORT     _var_8c225fe4
-          .IMPORT     _freeTask_8c014b66
+          .IMPORT     _TaskFree_8c014b66
           .IMPORT     _var_8c226010
           .IMPORT     _buStat
           .IMPORT     _buGetLastError
@@ -159,7 +159,7 @@ LP_GEN_13769:
           .DATA.L _buIsExistFile ; H'8C01874C
           .DATA.L _BupLoad_8c014bc6 ; H'8C018750
           .DATA.L _var_8c225fe4 ; H'8C018754
-          .DATA.L _freeTask_8c014b66 ; H'8C018758
+          .DATA.L _TaskFree_8c014b66 ; H'8C018758
           .DATA.L _var_8c226010 ; H'8C01875C
           .DATA.L _buStat ; H'8C018760
           .DATA.L _buGetLastError ; H'8C018764

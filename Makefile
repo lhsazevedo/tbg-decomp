@@ -1,7 +1,7 @@
 MAKEFLAGS += --no-builtin-rules
 .SUFFIXES:
 
-ASMSH_FLAGS=-debug=d -cpu=sh4 -endian=little -sjis
+ASMSH_FLAGS=-debug -cpu=sh4 -endian=little -sjis
 BUILD_DIR=build
 OUTPUT_DIR=$(BUILD_DIR)/output
 SHA1_CHECKSUM=a6df9e0de39b2d11e9339aef915d20e35763ec81
@@ -34,8 +34,8 @@ SRCS = \
 	src/011120_asset_queues.c \
 	src/012324_peripheral_support.c \
 	src/012504_input.c \
-	src/asm/0129cc.src \
-	src/012f44.c \
+	src/0129cc_pause.c \
+	src/012f44_game.c \
 	src/013ae8_route_load.c \
 	src/014934.c \
 	src/0149b0_sbinit.c \
@@ -87,7 +87,8 @@ SRCS = \
 	src/asm/02786c.src \
 	src/asm/027958.src \
 	src/asm/028258.src \
-	src/asm/02af78.src \
+	src/asm/02af78_pre_data.src \
+	src/02af78_event.c \
 	src/asm/02b2f0.src \
 	src/asm/02b464.src \
 	src/asm/02c884.src \
@@ -106,6 +107,8 @@ SRCS = \
 	src/asm/03bd80_sectionD.src \
 	src/asm/0fcd20_sectionB.src \
 	src/02fb50_sh4nlfzn_post_data.c \
+
+C_SRCS = $(filter %.c,$(SRCS))
 
 OBJS = $(patsubst src/%.c,$(OUTPUT_DIR)/src/%.obj,$(SRCS))
 OBJS := $(patsubst src/asm/%.src,$(OUTPUT_DIR)/src/asm/%.obj,$(OBJS))
@@ -142,6 +145,9 @@ $(OUTPUT_DIR)/tbg.bin: $(OUTPUT_DIR)/tbg.elf
 		echo "===========================" ;\
 	fi
 
+graph: all
+	python3 scripts/generate_graph.py
+
 clean:
 	rm -rf $(OUTPUT_DIR) $(BUILD_DIR)/lnk.sub
 
@@ -149,6 +155,6 @@ depend:
 	makedepend -Y -o .obj -f- $(C_SRCS) 2>/dev/null > Makefile.d
 	sed -i 's/^src/$$(OUTPUT_DIR)/' Makefile.d
 
-.PHONY: all clean create_dirs $(OUTPUT_DIR)/tbg.bin
+.PHONY: all graph clean create_dirs $(OUTPUT_DIR)/tbg.bin
 
 include Makefile.d

@@ -24,7 +24,7 @@ RUN chmod uga+x /usr/local/bin/install-php-extensions && sync \
     && rm /usr/local/bin/install-php-extensions
 
 USER user
-RUN composer global require lhsazevedo/sh4objtest:v0.1.31
+RUN composer global require lhsazevedo/sh4objtest:v0.1.35
 
 ENV PATH="${PATH}:/home/user/.composer/vendor/bin"
 ENV DC_SDK=/sdk

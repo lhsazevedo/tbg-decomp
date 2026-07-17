@@ -16,19 +16,19 @@ return new class extends TestCase {
 
         $createdTaskLocal = 0xffffe8;
         $createdStateLocal = 0xffffec;
-        $this->shouldCall('_pushInputTask_8c0128cc');
-        $this->shouldCall('_pushTask_8c014ae8')->with(
+        $this->shouldCall('_InputPushTask_8c0128cc');
+        $this->shouldCall('_TaskPush_8c014ae8')->with(
             $this->addressOf('_var_tasks_8c1ba3c8'),
-            $this->addressOf('_task_8c012f44'),
+            $this->addressOf('_GameTask_8c012f44'),
             $createdTaskLocal,
             $createdStateLocal,
             0,
         );
 
         $createdTask = $this->alloc(0xc);
-        $this->shouldCall('_pushTask_8c014ae8')->with(
+        $this->shouldCall('_TaskPush_8c014ae8')->with(
             $this->addressOf('_var_tasks_8c1ba3c8'),
-            $this->addressOf('_CourseMenuStoryMenuTask_8c017718'),
+            $this->addressOf('_courseMenuStoryMenuTask_8c017718'),
             $createdTaskLocal,
             $createdStateLocal,
             0,
@@ -65,13 +65,13 @@ return new class extends TestCase {
             $this->addressOf('_init_mainMenuResourceGroup_8c044264'),
         );
         $this->shouldCall('_CourseMenuRequestCommonResources_8c01852c');
-        $this->shouldCall('_setPvmReady_8c014330');
+        $this->shouldCall('_RouteLoadSetPvmReady_8c014330');
         $this->shouldCall('_AsqProcessQueues_8c011fe0')->with(
             $this->addressOf('_AsqNop_8c011120'),
             0,
             0,
             0,
-            $this->addressOf('_resetPvmReady_8c014322')
+            $this->addressOf('_RouteLoadResetPvmReady_8c014322')
         );
         $this->shouldWriteLong(
             $this->addressOf('_var_menuState_8c1bc7a8') + 0x18,
@@ -91,24 +91,24 @@ return new class extends TestCase {
         $this->initUint32($this->addressOf('_var_dialogQueue_8c225fbc'), 1);
 
         // Enter with a non-zero arg register so the missing `MOV #0,R4`
-        // (pushInputTask_8c0128cc(0)) is observable.
+        // (InputPushTask_8c0128cc(0)) is observable.
         $this->call('_CourseMenuFUN_8c017ef2')->with(0xdeadbeef);
 
         $createdTaskLocal = 0xffffe8;
         $createdStateLocal = 0xffffec;
-        $this->shouldCall('_pushInputTask_8c0128cc')->with(0);
-        $this->shouldCall('_pushTask_8c014ae8')->with(
+        $this->shouldCall('_InputPushTask_8c0128cc')->with(0);
+        $this->shouldCall('_TaskPush_8c014ae8')->with(
             $this->addressOf('_var_tasks_8c1ba3c8'),
-            $this->addressOf('_task_8c012f44'),
+            $this->addressOf('_GameTask_8c012f44'),
             $createdTaskLocal,
             $createdStateLocal,
             0,
         );
 
         $createdTask = $this->alloc(0xc);
-        $this->shouldCall('_pushTask_8c014ae8')->with(
+        $this->shouldCall('_TaskPush_8c014ae8')->with(
             $this->addressOf('_var_tasks_8c1ba3c8'),
-            $this->addressOf('_CourseMenuFreeRunMenuTask_8c017ada'),
+            $this->addressOf('_courseMenuFreeRunMenuTask_8c017ada'),
             $createdTaskLocal,
             $createdStateLocal,
             0,
@@ -145,13 +145,13 @@ return new class extends TestCase {
             $this->addressOf('_init_mainMenuResourceGroup_8c044264'),
         );
         $this->shouldCall('_CourseMenuRequestCommonResources_8c01852c');
-        $this->shouldCall('_setPvmReady_8c014330');
+        $this->shouldCall('_RouteLoadSetPvmReady_8c014330');
         $this->shouldCall('_AsqProcessQueues_8c011fe0')->with(
             $this->addressOf('_AsqNop_8c011120'),
             0,
             0,
             0,
-            $this->addressOf('_resetPvmReady_8c014322')
+            $this->addressOf('_RouteLoadResetPvmReady_8c014322')
         );
         $this->shouldWriteLong(
             $this->addressOf('_var_menuState_8c1bc7a8') + 0x18,

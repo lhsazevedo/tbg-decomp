@@ -2,7 +2,7 @@
           .IMPORT     _var_8c2264a8
           .IMPORT     __divls
           .IMPORT     __modls
-          .IMPORT     _drawSprite_8c014f54
+          .IMPORT     _TxtDrawSprite_8c014f54
           .IMPORT     _var_busStopTexlist_8c1bc424
           .IMPORT     _var_8c2285c4
           .IMPORT     _njDrawPolygon
@@ -25,7 +25,7 @@
           .IMPORT     _var_8c2285d0
           .IMPORT     _FUN_8c0223ea
           .IMPORT     _var_tasks_8c1ba5e8
-          .IMPORT     _pushTask_8c014ae8
+          .IMPORT     _TaskPush_8c014ae8
           .EXPORT     _FUN_8c01fa78
           .EXPORT     _FUN_8c01fa80
           .EXPORT     _FUN_8c01fbac
@@ -169,7 +169,7 @@ LP_GEN_77638:
           .DATA.L __divls ; H'8C01FB80
           .DATA.L __modls ; H'8C01FB84
           .DATA.L H'BF9AE148 ; H'8C01FB88
-          .DATA.L _drawSprite_8c014f54 ; H'8C01FB8C
+          .DATA.L _TxtDrawSprite_8c014f54 ; H'8C01FB8C
           .DATA.L _var_busStopTexlist_8c1bc424 ; H'8C01FB90
           .DATA.L H'43E00000 ; H'8C01FB94
           .DATA.L H'43DA0000 ; H'8C01FB98
@@ -295,7 +295,7 @@ LP_GEN_37481:
           .DATA.L _njDrawPolygon ; H'8C01FC80
           .DATA.L H'BF9AE148 ; H'8C01FC84
           .DATA.L _var_busState_8c1bb9d0 ; H'8C01FC88
-          .DATA.L _drawSprite_8c014f54 ; H'8C01FC8C
+          .DATA.L _TxtDrawSprite_8c014f54 ; H'8C01FC8C
           .DATA.L _var_8c22643c ; H'8C01FC90
           .DATA.L _var_playMode_8c1bb8d0 ; H'8C01FC94
           .DATA.L _var_8c2264a8 ; H'8C01FC98
@@ -992,7 +992,7 @@ LP_GEN_28448:
           .DATA.L _FUN_8c0223ea ; H'8C0201F8
           .DATA.L _FUN_8c01ff48 ; H'8C0201FC
           .DATA.L _var_tasks_8c1ba5e8 ; H'8C020200
-          .DATA.L _pushTask_8c014ae8 ; H'8C020204
+          .DATA.L _TaskPush_8c014ae8 ; H'8C020204
           .DATA.L _var_8c22643c ; H'8C020208
           .DATA.L _var_8c226478 ; H'8C02020C
           .DATA.L H'FFFF0000 ; H'8C020210

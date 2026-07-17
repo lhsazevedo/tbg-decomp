@@ -1,3 +1,4 @@
+/* @unit Asq */
 /* 8c011120 */
 
 #include <shinobi.h>
@@ -227,7 +228,7 @@ int AsqRequestDat_8c011182(char* basedir, char* filename, void* dest) {
 }
 
 /* Almost matching */
-STATIC void task_loadQueuedDats_8c0111b4(TaskLoadQueuedDats* task, void* state) {
+STATIC void taskLoadQueuedDats_8c0111b4(TaskLoadQueuedDats* task, void* state) {
     QueuedDat* item = task->queuedDat_0x18;
     Sint32 size;
 
@@ -306,7 +307,7 @@ STATIC void task_loadQueuedDats_8c0111b4(TaskLoadQueuedDats* task, void* state) 
             } else {
                 /* 8c011262 */
                 var_datQueueIsIdle_8c157a98 = 1;
-                freeTask_8c014b66((Task*) task);
+                TaskFree_8c014b66((Task*) task);
                 /* return; */
             }
             break;
@@ -391,7 +392,7 @@ STATIC int sortAndLoadDatQueue_8c011310() {
 
     syFree(temp_r11);
 
-    if (!pushTask_8c014ae8(var_tasks_8c1ba3c8, &task_loadQueuedDats_8c0111b4, &created_task, &created_state, 0)) {
+    if (!TaskPush_8c014ae8(var_tasks_8c1ba3c8, &taskLoadQueuedDats_8c0111b4, &created_task, &created_state, 0)) {
         return 0;
     }
 
@@ -461,7 +462,7 @@ int AsqRequestNj_8c011492(char* basedir, char* filename, void* dest, void* dest2
 }
 
 /* Tested */
-STATIC void task_loadQueuedNjs_8c0114cc(TaskLoadQueuedNjs* task, void* state) {
+STATIC void taskLoadQueuedNjs_8c0114cc(TaskLoadQueuedNjs* task, void* state) {
     QueuedNj* qnj = task->queuedNj_0x18;
     Sint32 size;
     Uint32 fpos = 0, rtype;
@@ -553,7 +554,7 @@ STATIC void task_loadQueuedNjs_8c0114cc(TaskLoadQueuedNjs* task, void* state) {
                 var_queueBaseDir_8c157a80 = "DATA EMPTY";
             } else {
                 var_njQueueIsIdle_8c157aa8 = 1;
-                freeTask_8c014b66((Task*) task);
+                TaskFree_8c014b66((Task*) task);
             }
 
             break;
@@ -655,7 +656,7 @@ STATIC int sortAndLoadNjQueue_8c0116b6() {
 
     syFree(temp);
 
-    if (!pushTask_8c014ae8(var_tasks_8c1ba3c8, &task_loadQueuedNjs_8c0114cc, &created_task, &created_state, 0)) {
+    if (!TaskPush_8c014ae8(var_tasks_8c1ba3c8, &taskLoadQueuedNjs_8c0114cc, &created_task, &created_state, 0)) {
         return 0;
     }
 
@@ -718,7 +719,7 @@ int AsqRequestTexlist_8c01181c(char *basedir, NJS_TEXLIST *texlist) {
 }
 
 /* Tested */
-STATIC void task_loadQueuedTexlists_8c01183e(Task *task, void *state) {
+STATIC void taskLoadQueuedTexlists_8c01183e(Task *task, void *state) {
     QueuedTexlist *item = task->queuedItem_0x18;
     NJS_TEXLIST *texlist;
 
@@ -799,7 +800,7 @@ STATIC void task_loadQueuedTexlists_8c01183e(Task *task, void *state) {
         var_texlistQueueCount_8c157a68++;
         if (item >= var_texlistQueueRear_8c157ab0) {
             var_texlistQueueIsIdle_8c157ab8 = 1;
-            freeTask_8c014b66(task);
+            TaskFree_8c014b66(task);
             return;
         }
 
@@ -821,7 +822,7 @@ STATIC int loadTexlistQueue_8c0119f8() {
     }
 
     var_texlistQueueIsIdle_8c157ab8 = 0;
-    if (!pushTask_8c014ae8(var_tasks_8c1ba3c8, task_loadQueuedTexlists_8c01183e, &created_task, &created_state, 0)) {
+    if (!TaskPush_8c014ae8(var_tasks_8c1ba3c8, taskLoadQueuedTexlists_8c01183e, &created_task, &created_state, 0)) {
         return 0;
     }
 
@@ -879,7 +880,7 @@ int AsqRequestPvm_8c011ac0(char *basedir, char *filename, void *texlist, int cou
 }
 
 /* Tested */
-STATIC void task_loadQueuedPvms_8c011b00(TaskLoadQueuedPvms* task, void* state) {
+STATIC void taskLoadQueuedPvms_8c011b00(TaskLoadQueuedPvms* task, void* state) {
     QueuedPvm *pvm = (QueuedPvm*) task->queuedPvm_0x18;
     Sint32 size;
 
@@ -960,7 +961,7 @@ STATIC void task_loadQueuedPvms_8c011b00(TaskLoadQueuedPvms* task, void* state) 
                 var_queueBaseDir_8c157a80 = "DATA EMPTY";
             } else {
                 var_pvmQueueIsIdle_8c157ac8 = 1;
-                freeTask_8c014b66((Task*) task);
+                TaskFree_8c014b66((Task*) task);
             }
 
             break;
@@ -1067,7 +1068,7 @@ STATIC int sortAndLoadPvmQueue_8c011d24() {
 
     syFree(temp);
 
-    if (!pushTask_8c014ae8(var_tasks_8c1ba3c8, &task_loadQueuedPvms_8c011b00, &created_task, &created_state, 0)) {
+    if (!TaskPush_8c014ae8(var_tasks_8c1ba3c8, &taskLoadQueuedPvms_8c011b00, &created_task, &created_state, 0)) {
         return 0;
     }
 
@@ -1101,14 +1102,14 @@ void AsqReleaseAndFreeTexlist_8c011e3c(NJS_TEXLIST *texlist) {
 
 /* Tested */
 /* Unused */
-STATIC void AsqFreeTexlist_8c011e60(NJS_TEXLIST *texlist) {
+STATIC void asqFreeTexlist_8c011e60(NJS_TEXLIST *texlist) {
     syFree(texlist->textures[0].filename);
     syFree(texlist->textures);
     syFree(texlist);
 }
 
 /* Tested */
-STATIC void task_processQueues_8c011e80(Task *task, TaskProcessQueuesState *state) {
+STATIC void taskProcessQueues_8c011e80(Task *task, TaskProcessQueuesState *state) {
     switch (state->queue_0x00) {
         /* TODO: Use enum */
         case 0: {
@@ -1149,7 +1150,7 @@ STATIC void task_processQueues_8c011e80(Task *task, TaskProcessQueuesState *stat
 
         case 3: {
             if (texlistQueueIsIdle_8c011a42()) {
-                freeTask_8c014b66(task);
+                TaskFree_8c014b66(task);
                 if (state->afterTexlistCallback_0x14) {
                     state->afterTexlistCallback_0x14();
                 }
@@ -1209,7 +1210,7 @@ void AsqProcessQueues_8c011fe0(void *func, void *afterDatCallback, void *afterNj
     Task* created_task;
     TaskProcessQueuesState* created_state;
 
-    pushTask_8c014ae8(var_tasks_8c1ba3c8, &task_processQueues_8c011e80, &created_task, (void**) &created_state, 0x18);
+    TaskPush_8c014ae8(var_tasks_8c1ba3c8, &taskProcessQueues_8c011e80, &created_task, (void**) &created_state, 0x18);
     created_state->queue_0x00 = 0;
     created_state->afterDatCallback_0x08 = afterDatCallback;
     created_state->afterNjCallback_0x0c = afterNjCallback;

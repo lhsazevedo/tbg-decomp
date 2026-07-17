@@ -8,7 +8,7 @@
           .IMPORT     _var_8c2285c4
           .IMPORT     _FUN_8c0223ea
           .IMPORT     _var_8c227e20
-          .IMPORT     _execTasks_8c014b42
+          .IMPORT     _TaskExecGroup_8c014b42
           .IMPORT     _var_8c1bb890
           .IMPORT     _var_8c2264d4
           .IMPORT     _var_8c1bc460
@@ -19,16 +19,16 @@
           .IMPORT     _syMalloc
           .IMPORT     _var_8c227e28
           .IMPORT     _FUN_8c026dcc
-          .IMPORT     _clearTasks_8c014a9c
+          .IMPORT     _TaskClear_8c014a9c
           .IMPORT     _var_routeModels_8c1bc3ec
-          .IMPORT     _pushTask_8c014ae8
+          .IMPORT     _TaskPush_8c014ae8
           .IMPORT     __quick_odd_mvn
           .IMPORT     _njUnitMatrix
           .IMPORT     _njTranslate
           .IMPORT     _njRotateY
           .IMPORT     _var_tasks_8c1ba5e8
           .IMPORT     _syFree
-          .IMPORT     _freeTasks_8c014ab4
+          .IMPORT     _TaskFreeGroup_8c014ab4
           .IMPORT     _var_8c227e2c
           .IMPORT     _var_8c22802c
           .IMPORT     _var_8c228230
@@ -49,7 +49,7 @@
           .IMPORT     _rand
           .IMPORT     _AsqGetRandomA_8c012166
           .IMPORT     _var_pedestrianAssets_8c1bbfdc
-          .IMPORT     _freeTask_8c014b66
+          .IMPORT     _TaskFree_8c014b66
           .IMPORT     _init_8c04623c
           .IMPORT     _var_8c1bbd8c
           .IMPORT     _var_demoEntryValue_8c22822c
@@ -134,15 +134,15 @@
           .IMPORT     _init_8c04a9c8
           .IMPORT     _const_8c03a194
           .IMPORT     _var_8c228484
-          .IMPORT     _var_8c228478
+          .IMPORT     _var_selectedEventEntry_8c228478
           .IMPORT     _init_8c046758
           .IMPORT     _var_peripheral_8c1ba358
-          .IMPORT     _snd_8c010cd6
+          .IMPORT     _SndProc_8c010cd6
           .IMPORT     _FUN_8c010ca6
           .IMPORT     _var_8c226564
           .IMPORT     _var_isFading_8c226568
-          .IMPORT     _FUN_8c02b292
-          .IMPORT     _startRouteModelLoadPass_8c013d78
+          .IMPORT     _EventApplyFlags_8c02b292
+          .IMPORT     _RouteLoadStartRouteModelLoadPass_8c013d78
           .IMPORT     _var_8c226560
           .IMPORT     _var_8c22847c
           .IMPORT     _init_8c04ab3c
@@ -503,7 +503,7 @@ LP_GEN_65253:
           .DATA.L LAB_8c0283d4 ; H'8C028498
           .DATA.L _FUN_8c0223ea ; H'8C02849C
           .DATA.L _var_8c227e20 ; H'8C0284A0
-          .DATA.L _execTasks_8c014b42 ; H'8C0284A4
+          .DATA.L _TaskExecGroup_8c014b42 ; H'8C0284A4
           .DATA.L _var_8c1bb890 ; H'8C0284A8
           .DATA.L _var_8c2264d4 ; H'8C0284AC
           .DATA.L _var_8c1bc460 ; H'8C0284B0
@@ -606,7 +606,7 @@ LP_GEN_52240:
           .DATA.L _FUN_8c026dcc ; H'8C02856C
           .DATA.L _var_8c1bb8a0 ; H'8C028570
           .DATA.L _var_8c227e20 ; H'8C028574
-          .DATA.L _clearTasks_8c014a9c ; H'8C028578
+          .DATA.L _TaskClear_8c014a9c ; H'8C028578
           .DATA.L H'43B40000 ; H'8C02857C
           .DATA.L H'47800000 ; H'8C028580
           .DATA.L _var_routeModels_8c1bc3ec ; H'8C028584
@@ -780,7 +780,7 @@ LP_GEN_92174:
           .DATA.W H'00B8 ; H'8C0286CC
           .RES.W 1 ; H'8C0286CE
           .DATA.L _FUN_8c028258 ; H'8C0286D0
-          .DATA.L _pushTask_8c014ae8 ; H'8C0286D4
+          .DATA.L _TaskPush_8c014ae8 ; H'8C0286D4
           .DATA.L __quick_odd_mvn ; H'8C0286D8
           .DATA.L _njUnitMatrix ; H'8C0286DC
           .DATA.L _njTranslate ; H'8C0286E0
@@ -942,7 +942,7 @@ LP_GEN_58642:
           .DATA.L _var_8c227e28 ; H'8C028800
           .DATA.L _var_8c1bb8a0 ; H'8C028804
           .DATA.L LAB_8c02833c ; H'8C028808
-          .DATA.L _pushTask_8c014ae8 ; H'8C02880C
+          .DATA.L _TaskPush_8c014ae8 ; H'8C02880C
 LAB_8c028810:
           MOV.W       LP_GEN_38963,R0
           MOV.L       @(H'10,R4),R3
@@ -1110,11 +1110,11 @@ LP_GEN_38963:
           .DATA.W H'0200 ; H'8C028932
           .DATA.L LAB_8c0283e8 ; H'8C028934
           .DATA.L _var_tasks_8c1ba5e8 ; H'8C028938
-          .DATA.L _pushTask_8c014ae8 ; H'8C02893C
+          .DATA.L _TaskPush_8c014ae8 ; H'8C02893C
           .DATA.L _var_8c227e28 ; H'8C028940
           .DATA.L _syFree ; H'8C028944
           .DATA.L _var_8c227e20 ; H'8C028948
-          .DATA.L _freeTasks_8c014ab4 ; H'8C02894C
+          .DATA.L _TaskFreeGroup_8c014ab4 ; H'8C02894C
           .DATA.L _var_8c227e24 ; H'8C028950
           .DATA.L _var_8c227e2c ; H'8C028954
 _FUN_8c028958:
@@ -2333,7 +2333,7 @@ LP_GEN_98778:
           .DATA.L H'0000FFFF ; H'8C029220
           .DATA.L _var_8c228238 ; H'8C029224
           .DATA.L _task_pedestrian_8c028e00 ; H'8C029228
-          .DATA.L _pushTask_8c014ae8 ; H'8C02922C
+          .DATA.L _TaskPush_8c014ae8 ; H'8C02922C
           .DATA.L H'47000000 ; H'8C029230
           .DATA.L _rand ; H'8C029234
           .DATA.L _AsqGetRandomA_8c012166 ; H'8C029238
@@ -2644,15 +2644,15 @@ LAB_8c029464:
           MOV.L       R3,@(H'4,R15)
 LP_GEN_26341:
           .DATA.L LAB_8c02903e ; H'8C02947C
-          .DATA.L _pushTask_8c014ae8 ; H'8C029480
+          .DATA.L _TaskPush_8c014ae8 ; H'8C029480
           .DATA.L _FUN_8c020914 ; H'8C029484
           .DATA.L _FUN_8c020f7e ; H'8C029488
           .DATA.L H'3C75C28F ; H'8C02948C
           .DATA.L _var_pedestrianAssets_8c1bbfdc ; H'8C029490
-          .DATA.L _freeTask_8c014b66 ; H'8C029494
+          .DATA.L _TaskFree_8c014b66 ; H'8C029494
           .DATA.L _init_8c04623c ; H'8C029498
-          .DATA.L _execTasks_8c014b42 ; H'8C02949C
-          .DATA.L _freeTasks_8c014ab4 ; H'8C0294A0
+          .DATA.L _TaskExecGroup_8c014b42 ; H'8C02949C
+          .DATA.L _TaskFreeGroup_8c014ab4 ; H'8C0294A0
           .DATA.L _syFree ; H'8C0294A4
           .DATA.L _var_8c2285c4 ; H'8C0294A8
           .DATA.L _var_8c1bb890 ; H'8C0294AC
@@ -2816,10 +2816,10 @@ LAB_8c0295d6:
 LP_GEN_46486:
           .DATA.W H'0220 ; H'8C0295EA
           .DATA.L _syMalloc ; H'8C0295EC
-          .DATA.L _clearTasks_8c014a9c ; H'8C0295F0
+          .DATA.L _TaskClear_8c014a9c ; H'8C0295F0
           .DATA.L _task_pedgroup_8c029078 ; H'8C0295F4
           .DATA.L _var_tasks_8c1ba808 ; H'8C0295F8
-          .DATA.L _pushTask_8c014ae8 ; H'8C0295FC
+          .DATA.L _TaskPush_8c014ae8 ; H'8C0295FC
           .DATA.L _syFree ; H'8C029600
           .DATA.L _FUN_8c02e486 ; H'8C029604
           .DATA.L _FUN_8c02890c ; H'8C029608
@@ -2956,7 +2956,7 @@ LP_GEN_59898:
           .DATA.L _FUN_8c0206f0 ; H'8C029714
           .DATA.L _var_8c228234 ; H'8C029718
           .DATA.L _var_tasks_8c1ba808 ; H'8C02971C
-          .DATA.L _execTasks_8c014b42 ; H'8C029720
+          .DATA.L _TaskExecGroup_8c014b42 ; H'8C029720
           .DATA.L _FUN_8c0223ea ; H'8C029724
           .DATA.L _var_playMode_8c1bb8d0 ; H'8C029728
           .DATA.L _FUN_8c028b74 ; H'8C02972C
@@ -3110,9 +3110,9 @@ LP_GEN_63109:
           .DATA.L _syMalloc ; H'8C02984C
           .DATA.L _task_pedestrians_8c0293f6 ; H'8C029850
           .DATA.L _var_tasks_8c1ba5e8 ; H'8C029854
-          .DATA.L _pushTask_8c014ae8 ; H'8C029858
+          .DATA.L _TaskPush_8c014ae8 ; H'8C029858
           .DATA.L _var_8c228234 ; H'8C02985C
-          .DATA.L _freeTasks_8c014ab4 ; H'8C029860
+          .DATA.L _TaskFreeGroup_8c014ab4 ; H'8C029860
           .DATA.L _syFree ; H'8C029864
 _FUN_8c029868:
           MOV.L       @R4,R5
@@ -3404,7 +3404,7 @@ LP_GEN_39842:
           .DATA.L _init_8c0466a4 ; H'8C029A90
           .DATA.L LAB_8c029904 ; H'8C029A94
           .DATA.L _var_tasks_8c1ba5e8 ; H'8C029A98
-          .DATA.L _pushTask_8c014ae8 ; H'8C029A9C
+          .DATA.L _TaskPush_8c014ae8 ; H'8C029A9C
           .DATA.L _FUN_8c020f7e ; H'8C029AA0
           .DATA.L _njRotateY ; H'8C029AA4
           .DATA.L H'47800000 ; H'8C029AA8
@@ -4111,11 +4111,11 @@ LP_GEN_15421:
           .DATA.L _njCnkSimpleDrawMotion ; H'8C02A01C
           .DATA.L LAB_8c029e46 ; H'8C02A020
           .DATA.L _FUN_8c0223ea ; H'8C02A024
-          .DATA.L _freeTask_8c014b66 ; H'8C02A028
+          .DATA.L _TaskFree_8c014b66 ; H'8C02A028
           .DATA.L _AsqGetRandomInRangeA_8c012178 ; H'8C02A02C
           .DATA.L LAB_8c029e68 ; H'8C02A030
           .DATA.L _var_tasks_8c1bb448 ; H'8C02A034
-          .DATA.L _pushTask_8c014ae8 ; H'8C02A038
+          .DATA.L _TaskPush_8c014ae8 ; H'8C02A038
           .DATA.L _var_routeModelSlots_8c1bbddc ; H'8C02A03C
           .DATA.L _njCnkSimpleDrawObject ; H'8C02A040
           .DATA.L LAB_8c029f2a ; H'8C02A044
@@ -4389,7 +4389,7 @@ LP_GEN_26723:
           .DATA.L _var_8c1bbd8c ; H'8C02A248
           .DATA.L LAB_8c02a0d6 ; H'8C02A24C
           .DATA.L _FUN_8c0223ea ; H'8C02A250
-          .DATA.L _freeTask_8c014b66 ; H'8C02A254
+          .DATA.L _TaskFree_8c014b66 ; H'8C02A254
           .DATA.L _njControl3D ; H'8C02A258
           .DATA.L _njFogDisable ; H'8C02A25C
           .DATA.L _njSetTexture ; H'8C02A260
@@ -4929,7 +4929,7 @@ LP_GEN_23851:
           .DATA.L _var_8c2285c4 ; H'8C02A69C
           .DATA.L LAB_8c02a5d0 ; H'8C02A6A0
           .DATA.L _var_tasks_8c1bb448 ; H'8C02A6A4
-          .DATA.L _execTasks_8c014b42 ; H'8C02A6A8
+          .DATA.L _TaskExecGroup_8c014b42 ; H'8C02A6A8
 _FUN_8c02a6ac:
           MOV.L       R14,@-R15
           MOV.L       R13,@-R15
@@ -5273,7 +5273,7 @@ LP_GEN_67201:
           .RES.W 1 ; H'8C02A932
           .DATA.L _var_8c228408 ; H'8C02A934
           .DATA.L _var_8c228288 ; H'8C02A938
-          .DATA.L _pushTask_8c014ae8 ; H'8C02A93C
+          .DATA.L _TaskPush_8c014ae8 ; H'8C02A93C
           .DATA.L _var_tasks_8c1bb448 ; H'8C02A940
           .DATA.L LAB_8c029e94 ; H'8C02A944
           .DATA.L H'4F800000 ; H'8C02A948
@@ -5468,7 +5468,7 @@ LP_GEN_90475:
           .DATA.L _init_8c04a9c8 ; H'8C02AACC
           .DATA.L _const_8c03a194 ; H'8C02AAD0
           .DATA.L _var_8c228484 ; H'8C02AAD4
-          .DATA.L _var_8c228478 ; H'8C02AAD8
+          .DATA.L _var_selectedEventEntry_8c228478 ; H'8C02AAD8
 LAB_8c02aadc:
           MOV         R4,R3
           SHLL        R3
@@ -5800,14 +5800,14 @@ LAB_8c02ad28:
 LP_GEN_90033:
           .RES.W 1 ; H'8C02AD3E
           .DATA.L _var_8c228518 ; H'8C02AD40
-          .DATA.L _snd_8c010cd6 ; H'8C02AD44
+          .DATA.L _SndProc_8c010cd6 ; H'8C02AD44
           .DATA.L _var_peripheral_8c1ba358 ; H'8C02AD48
           .DATA.L _FUN_8c010ca6 ; H'8C02AD4C
           .DATA.L _var_8c226564 ; H'8C02AD50
           .DATA.L _var_isFading_8c226568 ; H'8C02AD54
-          .DATA.L _freeTask_8c014b66 ; H'8C02AD58
-          .DATA.L _FUN_8c02b292 ; H'8C02AD5C
-          .DATA.L _startRouteModelLoadPass_8c013d78 ; H'8C02AD60
+          .DATA.L _TaskFree_8c014b66 ; H'8C02AD58
+          .DATA.L _EventApplyFlags_8c02b292 ; H'8C02AD5C
+          .DATA.L _RouteLoadStartRouteModelLoadPass_8c013d78 ; H'8C02AD60
           .DATA.L _var_8c226560 ; H'8C02AD64
           .DATA.L _var_8c22847c ; H'8C02AD68
           .DATA.L _init_8c04ab3c ; H'8C02AD6C
@@ -5977,8 +5977,8 @@ LP_GEN_16602:
           .DATA.L _var_8c228518 ; H'8C02AEB4
           .DATA.L LAB_8c02ab7a ; H'8C02AEB8
           .DATA.L _var_tasks_8c1ba3c8 ; H'8C02AEBC
-          .DATA.L _pushTask_8c014ae8 ; H'8C02AEC0
-          .DATA.L _var_8c228478 ; H'8C02AEC4
+          .DATA.L _TaskPush_8c014ae8 ; H'8C02AEC0
+          .DATA.L _var_selectedEventEntry_8c228478 ; H'8C02AEC4
           .DATA.L _var_8c228480 ; H'8C02AEC8
           .DATA.L H'C0000000 ; H'8C02AECC
           .DATA.L _var_8c22847c ; H'8C02AED0

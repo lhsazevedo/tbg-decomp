@@ -1,3 +1,4 @@
+/* @unit Bup */
 /* 8c014b8c */
 /*
  * Adjusted backup sample from SDK 155j
@@ -24,17 +25,17 @@
 /*
  * Prototypes of static functions.
  */
-static Sint32 BupComplete_8c014e70(Sint32 drive, Sint32 op, Sint32 stat, Uint32 param);
-static Sint32 BupProgress_8c014f04(Sint32 drive, Sint32 op, Sint32 count, Sint32 max);
-static void BupInitCallback_8c014e5e(void);
-void ClearInfo_8c014c8a(Sint32 drive);
+static Sint32 bupComplete_8c014e70(Sint32 drive, Sint32 op, Sint32 stat, Uint32 param);
+static Sint32 bupProgress_8c014f04(Sint32 drive, Sint32 op, Sint32 count, Sint32 max);
+static void bupInitCallback_8c014e5e(void);
+void BupClearInfo_8c014c8a(Sint32 drive);
 
 
 
-void bupInit_8c014b8c(void)
+void BupInit_8c014b8c(void)
 {
     memset(var_gBupInfo_8c1bc4ac, 0, sizeof(var_gBupInfo_8c1bc4ac));
-    buInit(MAX_CAPS, USE_DRIVES, NULL, BupInitCallback_8c014e5e);
+    buInit(MAX_CAPS, USE_DRIVES, NULL, bupInitCallback_8c014e5e);
 }
 
 void BupExit(void)
@@ -105,11 +106,11 @@ void BupUnmount_8c014c46(Sint32 drive)
     if (buStat(drive) == BUD_STAT_READY) {
         buUnmount(drive);
         syFree(info->Work);
-        ClearInfo_8c014c8a(drive);
+        BupClearInfo_8c014c8a(drive);
     }
 }
 
-void ClearInfo_8c014c8a(Sint32 drive)
+void BupClearInfo_8c014c8a(Sint32 drive)
 {
     BACKUPINFO* info;
 
@@ -164,15 +165,15 @@ NM_STATIC const char* BupGetOperationString_8c014e0c(Sint32 op)
  * Callback functions.
  */
 
-static void BupInitCallback_8c014e5e(void)
+static void bupInitCallback_8c014e5e(void)
 {
     Sint32 i;
 
-    buSetCompleteCallback(BupComplete_8c014e70);
-    buSetProgressCallback(BupProgress_8c014f04);
+    buSetCompleteCallback(bupComplete_8c014e70);
+    buSetProgressCallback(bupProgress_8c014f04);
 }
 
-static Sint32 BupComplete_8c014e70(Sint32 drive, Sint32 op, Sint32 stat, Uint32 param)
+static Sint32 bupComplete_8c014e70(Sint32 drive, Sint32 op, Sint32 stat, Uint32 param)
 {
     BACKUPINFO* info;
     Sint32 ret;
@@ -198,7 +199,7 @@ static Sint32 BupComplete_8c014e70(Sint32 drive, Sint32 op, Sint32 stat, Uint32 
             break;
         case BUD_OP_UNMOUNT:
             if (info->Work) syFree(info->Work);
-            ClearInfo_8c014c8a(drive);
+            BupClearInfo_8c014c8a(drive);
             info->Connect = FALSE;
             break;
         default:
@@ -212,7 +213,7 @@ static Sint32 BupComplete_8c014e70(Sint32 drive, Sint32 op, Sint32 stat, Uint32 
     return BUD_CBRET_OK;
 }
 
-static Sint32 BupProgress_8c014f04(Sint32 drive, Sint32 op, Sint32 count, Sint32 max)
+static Sint32 bupProgress_8c014f04(Sint32 drive, Sint32 op, Sint32 count, Sint32 max)
 {
     BACKUPINFO* info;
 

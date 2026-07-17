@@ -7,7 +7,7 @@
           .IMPORT     _njSetQuadTextureG
           .IMPORT     _var_8c228564
           .IMPORT     _njQuadTextureEnd
-          .IMPORT     _drawSprite_8c014f54
+          .IMPORT     _TxtDrawSprite_8c014f54
           .EXPORT     _FUN_8c02b2f0
           .EXPORT     _FUN_8c02b388
           .SECTION     P, CODE, ALIGN=4
@@ -188,5 +188,5 @@ LP_GEN_28247:
           .DATA.L H'43400000 ; H'8C02B454
           .DATA.L _njQuadTextureEnd ; H'8C02B458
           .DATA.L H'BF947AE1 ; H'8C02B45C
-          .DATA.L _drawSprite_8c014f54 ; H'8C02B460
+          .DATA.L _TxtDrawSprite_8c014f54 ; H'8C02B460
           .END

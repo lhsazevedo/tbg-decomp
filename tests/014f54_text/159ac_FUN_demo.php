@@ -18,7 +18,7 @@ return new class extends TestCase {
             $this->addressOf('_init_demos_8c044154') + $nextDemo * 0xc;
 
         $createdTask = 0xffffec;
-        $this->shouldCall('_pushTask_8c014ae8')
+        $this->shouldCall('_TaskPush_8c014ae8')
             ->with(
                 $this->addressOf('_var_tasks_8c1ba3c8'),
                 $this->addressOf('_FUN_8c01594c'),
@@ -45,14 +45,14 @@ return new class extends TestCase {
         $this->shouldWriteLongTo('_var_demoEntryValue_8c227e14', 0x08);
         $this->shouldWriteLongTo('_var_demoEntryValue_8c22822c', 0x04);
 
-        $this->shouldCall('_resetPvmReady_8c014322');
+        $this->shouldCall('_RouteLoadResetPvmReady_8c014322');
         $this->shouldCall('_AsqProcessQueues_8c011fe0')
             ->with(
                 $this->addressOf('_AsqNop_8c011120'),
                 0,
                 0,
                 0,
-                $this->addressOf('_setPvmReady_8c014330')
+                $this->addressOf('_RouteLoadSetPvmReady_8c014330')
             );
 
         $this->singleCall('_FUN_8c0159ac')->with(0xbeba1337)->run();
@@ -70,7 +70,7 @@ return new class extends TestCase {
             $this->addressOf('_init_demos_8c044154') + $nextDemo * 0xc;
 
         $createdTask = 0xffffec;
-        $this->shouldCall('_pushTask_8c014ae8')
+        $this->shouldCall('_TaskPush_8c014ae8')
             ->with(
                 $this->addressOf('_var_tasks_8c1ba3c8'),
                 $this->addressOf('_FUN_8c01594c'),
@@ -98,14 +98,14 @@ return new class extends TestCase {
         $this->shouldWriteLongTo('_var_demoEntryValue_8c227e14', 0x1e);
         $this->shouldWriteLongTo('_var_demoEntryValue_8c22822c', 0x15);
 
-        $this->shouldCall('_resetPvmReady_8c014322');
+        $this->shouldCall('_RouteLoadResetPvmReady_8c014322');
         $this->shouldCall('_AsqProcessQueues_8c011fe0')
             ->with(
                 $this->addressOf('_AsqNop_8c011120'),
                 0,
                 0,
                 0,
-                $this->addressOf('_setPvmReady_8c014330')
+                $this->addressOf('_RouteLoadSetPvmReady_8c014330')
             );
 
         $this->singleCall('_FUN_8c0159ac')->with(0xbeba1337)->run();
@@ -114,7 +114,7 @@ return new class extends TestCase {
     protected function resolveSymbols(): void
     {
         // Functions
-        $this->setSize('_isPvmReady_8c01432a', 4);
+        $this->setSize('_RouteLoadIsPvmReady_8c01432a', 4);
     }
 
     protected function isAsmObject(): bool

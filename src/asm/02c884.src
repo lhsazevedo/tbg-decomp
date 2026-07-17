@@ -19,12 +19,12 @@
           .IMPORT     _rand
           .IMPORT     _syFree
           .IMPORT     _var_8c2288f8
-          .IMPORT     _freeTasks_8c014ab4
+          .IMPORT     _TaskFreeGroup_8c014ab4
           .IMPORT     _var_currentCourseConfig_8c18ad18
-          .IMPORT     _FUN_8c02b03c
-          .IMPORT     _var_8c228520
-          .IMPORT     _var_8c228560
-          .IMPORT     _var_8c22851c
+          .IMPORT     _EventScanCandidates_8c02b03c
+          .IMPORT     _var_eventCandidates_8c228520
+          .IMPORT     _var_eventCandidateCount_8c228560
+          .IMPORT     _var_routeEvents_8c22851c
           .IMPORT     _FUN_8c016770
           .IMPORT     _var_playMode_8c1bb8d0
           .IMPORT     _var_demoEntryValue_8c227e14
@@ -61,7 +61,7 @@
           .IMPORT     _var_8c1bbc4c
           .IMPORT     _var_8c22656c
           .IMPORT     _FUN_8c02c586
-          .IMPORT     _startAdxFadeOut_8c010bae
+          .IMPORT     _SndStartAdxFadeOut_8c010bae
           .IMPORT     _FUN_8c02c784
           .EXPORT     _FUN_8c02c884
           .EXPORT     _FUN_8c02c8ae
@@ -448,12 +448,12 @@ LP_GEN_58192:
           .DATA.L _rand ; H'8C02CB68
           .DATA.L _syFree ; H'8C02CB6C
           .DATA.L _var_8c2288f8 ; H'8C02CB70
-          .DATA.L _freeTasks_8c014ab4 ; H'8C02CB74
+          .DATA.L _TaskFreeGroup_8c014ab4 ; H'8C02CB74
           .DATA.L _var_currentCourseConfig_8c18ad18 ; H'8C02CB78
-          .DATA.L _FUN_8c02b03c ; H'8C02CB7C
-          .DATA.L _var_8c228520 ; H'8C02CB80
-          .DATA.L _var_8c228560 ; H'8C02CB84
-          .DATA.L _var_8c22851c ; H'8C02CB88
+          .DATA.L _EventScanCandidates_8c02b03c ; H'8C02CB7C
+          .DATA.L _var_eventCandidates_8c228520 ; H'8C02CB80
+          .DATA.L _var_eventCandidateCount_8c228560 ; H'8C02CB84
+          .DATA.L _var_routeEvents_8c22851c ; H'8C02CB88
 LAB_8c02cb8c:
           MOV         R10,R4
           SHLL2       R4
@@ -1061,5 +1061,5 @@ LP_GEN_27124:
           .DATA.L _FUN_8c02c784 ; H'8C02D05C
           .DATA.L _var_8c22656c ; H'8C02D060
           .DATA.L _FUN_8c02c586 ; H'8C02D064
-          .DATA.L _startAdxFadeOut_8c010bae ; H'8C02D068
+          .DATA.L _SndStartAdxFadeOut_8c010bae ; H'8C02D068
           .END

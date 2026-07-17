@@ -1,3 +1,4 @@
+/* @unit Input */
 #include <shinobi.h>
 #include "010e90.h"
 #include "011120_asset_queues.h"
@@ -197,14 +198,14 @@ STATIC void inputTaskAlt_8c012718(void)
 
 /* param 0: install peripheral-support task, clear auto-fire state;
  * param 1: install the mapped input handler. */
-void pushInputTask_8c0128cc(int param)
+void InputPushTask_8c0128cc(int param)
 {
     void (*action)(void);
     void *created_state;
 
     if (param == 0) {
-        LOG_DEBUG(("[INPUT] pushInputTask_8c0128cc: queueing peripheral-support task\n"));
-        pushTask_8c014ae8(var_tasks_8c1ba3c8, PspTask_8c012324,
+        LOG_DEBUG(("[INPUT] InputPushTask_8c0128cc: queueing peripheral-support task\n"));
+        TaskPush_8c014ae8(var_tasks_8c1ba3c8, PspTask_8c012324,
                           &var_8c157a74, &created_state, 0);
         var_8c157ae4 = 0;
         var_8c157ae8 = 0;
@@ -215,33 +216,33 @@ void pushInputTask_8c0128cc(int param)
         } else {
             action = inputTaskAlt_8c012718;
         }
-        LOG_DEBUG(("[INPUT] pushInputTask_8c0128cc: queueing input handler (%s)\n",
+        LOG_DEBUG(("[INPUT] InputPushTask_8c0128cc: queueing input handler (%s)\n",
                    var_inputMapSel_8c1bb8c8 == 0 ? "inputTask_8c012504" : "inputTaskAlt_8c012718"));
-        pushTask_8c014ae8(var_tasks_8c1ba3c8, action,
+        TaskPush_8c014ae8(var_tasks_8c1ba3c8, action,
                           &var_8c157a74, &created_state, 0);
     }
 }
 
 /* Tail call in asm; dispatches inputTask or Alt via var_inputMapSel_8c1bb8c8. */
-void dispatchInputTask_8c012970(void)
+void InputDispatchTask_8c012970(void)
 {
     if (var_inputMapSel_8c1bb8c8 == 0) {
-        LOG_TRACE(("[INPUT] dispatchInputTask_8c012970: dispatch inputTask_8c012504\n"));
+        LOG_TRACE(("[INPUT] InputDispatchTask_8c012970: dispatch inputTask_8c012504\n"));
         inputTask_8c012504();
     } else {
-        LOG_TRACE(("[INPUT] dispatchInputTask_8c012970: dispatch inputTaskAlt_8c012718\n"));
+        LOG_TRACE(("[INPUT] InputDispatchTask_8c012970: dispatch inputTaskAlt_8c012718\n"));
         inputTaskAlt_8c012718();
     }
 }
 
 /* Returns 1 if name was just initialized, 0 if already "FortyFive". */
-int setName_8c012984(void)
+int InputSetName_8c012984(void)
 {
     if (strcmp(var_name_8c157aec, init_fortyFive_8c03bf40) == 0) {
-        LOG_DEBUG(("[INPUT] setName_8c012984: name already \"%s\"\n", var_name_8c157aec));
+        LOG_DEBUG(("[INPUT] InputSetName_8c012984: name already \"%s\"\n", var_name_8c157aec));
         return 0;
     }
-    LOG_DEBUG(("[INPUT] setName_8c012984: setting name to \"%s\"\n", init_fortyFive_8c03bf40));
+    LOG_DEBUG(("[INPUT] InputSetName_8c012984: setting name to \"%s\"\n", init_fortyFive_8c03bf40));
     strcpy(var_name_8c157aec, init_fortyFive_8c03bf40);
     return 1;
 }

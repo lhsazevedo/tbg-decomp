@@ -1,0 +1,830 @@
+; 8c02af78
+          .IMPORT     _var_progress_8c1ba1cc
+          .IMPORT     _var_runEventFlags_8c1ba2b4
+          .IMPORT     _var_eventCandidateCount_8c228560
+          .IMPORT     _var_playMode_8c1bb8d0
+          .IMPORT     _var_routeEvents_8c22851c
+          .IMPORT     _var_route_8c18ad1c
+          .IMPORT     _var_timeOfDay_8c18ad20
+          .IMPORT     _var_eventCandidates_8c228520
+          .IMPORT     _var_gameMode_8c1bb8fc
+          .IMPORT     _var_8c2285dc
+          .IMPORT     _var_8c2285d8
+          .IMPORT     _var_currentSegment_8c228708
+          .IMPORT     _var_cutsceneActive_8c1bb900
+          .IMPORT     _AsqGetRandomInRangeB_8c0121be
+          .IMPORT     _var_selectedEventEntry_8c228478
+          .EXPORT     _EventHasProgressFlagAlt_8c02aff0
+          .EXPORT     _EventScanCandidates_8c02b03c
+          .EXPORT     _EventPickForSegment_8c02b170
+          .EXPORT     _EventApplyFlags_8c02b292
+          .EXPORT     _init_wanganEvents_8c04abb0
+          .EXPORT     _init_shinjukuEvents_8c04b1f0
+          .EXPORT     _init_omeEvents_8c04b920
+          .AIFDEF UNIT_TESTING
+          .EXPORT     _setProgressFlag_8c02af78
+          .EXPORT     _hasProgressFlag_8c02afbe
+          .EXPORT     _setRunEventFlag_8c02b022
+          .EXPORT     _hasRunEventFlag_8c02b030
+          .AENDI
+          .SECTION     P, CODE, ALIGN=4
+; sets a bit in var_progress_8c1ba1cc+4 and +0x18 (paired unlock bitsets, see hasProgressFlag_8c02afbe/aff0)
+_setProgressFlag_8c02af78:
+          MOV         R4,R7
+          CMP/PZ      R7
+          BT/S        LAB_8c02af82
+          MOV         #H'1,R5
+          ; coverage:ignore-next-line -- only reached for negative index, never used in practice
+          ADD         #H'1f,R7
+LAB_8c02af82:
+          MOV         R4,R0
+          CMP/PZ      R0
+          MOV         #-H'5,R3
+          BF/S        LAB_8c02af90
+          SHAD        R3,R7
+          BRA         LAB_8c02af9a
+          AND         #H'1f,R0
+LAB_8c02af90:
+          ; coverage:disable -- negative-index modulo path, never used in practice
+          NOT         R0,R0
+          ADD         #H'1,R0
+          AND         #H'1f,R0
+          NOT         R0,R0
+          ADD         #H'1,R0
+          ; coverage:enable
+LAB_8c02af9a:
+          MOV.L       LP_GEN_66558+2,R6
+          MOV         R0,R4
+          SHLD        R4,R5
+          MOV         R7,R4
+          MOV         R6,R3
+          ADD         #H'4,R3
+          SHLL2       R4
+          ADD         R4,R3
+          MOV.L       @R3,R2
+          OR          R5,R2
+          MOV.L       R2,@R3
+          MOV         R6,R3
+          ADD         #H'18,R3
+          ADD         R4,R3
+          MOV.L       @R3,R2
+          OR          R5,R2
+          RTS
+          MOV.L       R2,@R3
+; tests a bit in var_progress_8c1ba1cc+4 (see setProgressFlag_8c02af78); called from EventScanCandidates_8c02b03c
+_hasProgressFlag_8c02afbe:
+          MOV         R4,R6
+          CMP/PZ      R6
+          BT/S        LAB_8c02afc8
+          MOV         #H'1,R5
+          ; coverage:ignore-next-line -- only reached for negative index, never used in practice
+          ADD         #H'1f,R6
+LAB_8c02afc8:
+          MOV         R4,R0
+          CMP/PZ      R0
+          MOV         #-H'5,R3
+          BF/S        LAB_8c02afd6
+          SHAD        R3,R6
+          BRA         LAB_8c02afe0
+          AND         #H'1f,R0
+LAB_8c02afd6:
+          ; coverage:disable -- negative-index modulo path, never used in practice
+          NOT         R0,R0
+          ADD         #H'1,R0
+          AND         #H'1f,R0
+          NOT         R0,R0
+          ADD         #H'1,R0
+          ; coverage:enable
+LAB_8c02afe0:
+          MOV         R0,R4
+          MOV.L       LP_GEN_66558+6,R1
+          MOV         R6,R0
+          SHLL2       R0
+          MOV.L       @(R0,R1),R0
+          SHLD        R4,R5
+          RTS
+          AND         R5,R0
+; tests a bit in var_progress_8c1ba1cc+0x18 (see setProgressFlag_8c02af78)
+_EventHasProgressFlagAlt_8c02aff0:
+          MOV         R4,R6
+          CMP/PZ      R6
+          BT/S        LAB_8c02affa
+          MOV         #H'1,R5
+          ; coverage:ignore-next-line -- only reached for negative index, never used in practice
+          ADD         #H'1f,R6
+LAB_8c02affa:
+          MOV         R4,R0
+          CMP/PZ      R0
+          MOV         #-H'5,R3
+          BF/S        LAB_8c02b008
+          SHAD        R3,R6
+          BRA         LAB_8c02b012
+          AND         #H'1f,R0
+LAB_8c02b008:
+          ; coverage:disable -- negative-index modulo path, never used in practice
+          NOT         R0,R0
+          ADD         #H'1,R0
+          AND         #H'1f,R0
+          NOT         R0,R0
+          ADD         #H'1,R0
+          ; coverage:enable
+LAB_8c02b012:
+          MOV         R0,R4
+          MOV.L       LP_GEN_66558+10,R1
+          MOV         R6,R0
+          SHLL2       R0
+          MOV.L       @(R0,R1),R0
+          SHLD        R4,R5
+          RTS
+          AND         R5,R0
+_setRunEventFlag_8c02b022:
+          MOV         #H'1,R5
+          SHLD        R4,R5
+          MOV.L       LP_GEN_66558+14,R4
+          MOV.L       @R4,R3
+          OR          R5,R3
+          RTS
+          MOV.L       R3,@R4
+_hasRunEventFlag_8c02b030:
+          MOV.L       LP_GEN_66558+14,R3
+          MOV         #H'1,R5
+          SHLD        R4,R5
+          MOV.L       @R3,R0
+          RTS
+          AND         R5,R0
+; course-unlock-list style scan over a day/course table, using PlayerProgress.days_0x00
+; and the hasProgressFlag_8c02afbe/aff0 bitsets; also touches var_runEventFlags_8c1ba2b4 (role unclear)
+_EventScanCandidates_8c02b03c:
+          MOV.L       R14,@-R15
+          MOV.L       R13,@-R15
+          MOV.L       R12,@-R15
+          MOV.L       R11,@-R15
+          MOV.L       R10,@-R15
+          MOV.L       R9,@-R15
+          MOV.L       R8,@-R15
+          STS.L       PR,@-R15
+          ADD         #-H'4,R15
+          MOV.L       LP_GEN_66558+22,R3
+          MOV         #H'0,R5
+          MOV.L       LP_GEN_66558+18,R13
+          MOV.L       R5,@R13
+          MOV.L       @R3,R0
+          CMP/EQ      #H'1,R0
+          BT          LAB_8c02b140
+          MOV.L       LP_GEN_66558+30,R3
+          MOV.L       LP_GEN_66558+14,R1
+          MOV.L       LP_GEN_66558+26,R4
+          MOV.L       R5,@R1
+          MOV.L       @R3,R0
+          CMP/EQ      #H'0,R0
+          BT          LAB_8c02b076
+          CMP/EQ      #H'1,R0
+          BT          LAB_8c02b07c
+          CMP/EQ      #H'2,R0
+          BT          LAB_8c02b0ac
+          ; coverage:disable -- var_route_8c18ad1c is always ROUTE_SHINJUKU/WANGAN/OME in practice
+          BRA         LAB_8c02b0b0
+          NOP
+          ; coverage:enable
+LAB_8c02b076:
+          MOV.L       LP_GEN_66558+34,R2
+          BRA         LAB_8c02b0b0
+          MOV.L       R2,@R4
+LAB_8c02b07c:
+          MOV.L       LP_GEN_66558+38,R0
+          BRA         LAB_8c02b0b0
+          MOV.L       R0,@R4
+LP_GEN_66558:
+          ; coverage:ignore-next-line -- alignment padding, not executed code
+          .RES.W 1 ; H'8C02B082
+          .DATA.L _var_progress_8c1ba1cc ; H'8C02B084
+          .DATA.L _var_progress_8c1ba1cc+H'04 ; H'8C02B088 (field_0x04)
+          .DATA.L _var_progress_8c1ba1cc+H'18 ; H'8C02B08C (field_0x18)
+          .DATA.L _var_runEventFlags_8c1ba2b4 ; H'8C02B090
+          .DATA.L _var_eventCandidateCount_8c228560 ; H'8C02B094
+          .DATA.L _var_playMode_8c1bb8d0 ; H'8C02B098
+          .DATA.L _var_routeEvents_8c22851c ; H'8C02B09C
+          .DATA.L _var_route_8c18ad1c ; H'8C02B0A0
+          .DATA.L _init_shinjukuEvents_8c04b1f0 ; H'8C02B0A4
+          .DATA.L _init_wanganEvents_8c04abb0 ; H'8C02B0A8
+LAB_8c02b0ac:
+          MOV.L       LP_GEN_28749+8,R1
+          MOV.L       R1,@R4
+LAB_8c02b0b0:
+          MOV.W       LP_GEN_28749+2,R9
+          MOV.W       LP_GEN_28749+4,R11
+          MOV.W       LP_GEN_28749,R8
+          MOV.L       @R4,R12
+          MOV.L       R5,@R15
+          BRA         LAB_8c02b136
+          MOV         #H'1f,R10
+LAB_8c02b0be:
+          MOV.L       LP_GEN_28749+12,R3
+          MOV.L       @R3,R2
+          CMP/EQ      R2,R4
+          BF          LAB_8c02b12e
+          BRA         LAB_8c02b0dc
+          MOV.L       @(H'4,R12),R4
+LAB_8c02b0ca:
+          MOV.L       LP_GEN_28749+16,R2
+          MOV         R4,R5
+          AND         R10,R5
+          MOV.L       @R2,R3
+          CMP/EQ      R5,R3
+          BT          LAB_8c02b0e0
+          SHLR2       R4
+          SHLR2       R4
+          SHLR        R4
+LAB_8c02b0dc:
+          TST         R4,R4
+          BF          LAB_8c02b0ca
+LAB_8c02b0e0:
+          TST         R4,R4
+          BT          LAB_8c02b12e
+          BRA         LAB_8c02b116
+          MOV.L       @(H'8,R12),R14
+LAB_8c02b0e8:
+          MOV         R14,R5
+          AND         R11,R5
+          CMP/EQ      R11,R5
+          BT          LAB_8c02b112
+          MOV         R5,R6
+          AND         R8,R6
+          TST         R6,R6
+          BF/S        LAB_8c02b106
+          EXTU.B      R5,R4
+          BSR         _hasProgressFlag_8c02afbe
+          NOP
+          TST         R0,R0
+          BF          LAB_8c02b11a
+          ; coverage:disable -- unreachable: BF above already branches on this condition (see docs/lessons_learned.md)
+          BRA         LAB_8c02b112
+          NOP
+          ; coverage:enable
+LAB_8c02b106:
+          CMP/EQ      R9,R6
+          BF          LAB_8c02b112
+          BSR         _hasProgressFlag_8c02afbe
+          NOP
+          TST         R0,R0
+          BT          LAB_8c02b11a
+LAB_8c02b112:
+          SHLR8       R14
+          SHLR2       R14
+LAB_8c02b116:
+          TST         R14,R14
+          BF          LAB_8c02b0e8
+LAB_8c02b11a:
+          TST         R14,R14
+          BF          LAB_8c02b12e
+          MOV.L       @R13,R3
+          MOV.L       @R15,R2
+          MOV.L       LP_GEN_28749+20,R0
+          SHLL2       R3
+          MOV.L       R2,@(R0,R3)
+          MOV.L       @R13,R3
+          ADD         #H'1,R3
+          MOV.L       R3,@R13
+LAB_8c02b12e:
+          MOV.L       @R15,R2
+          ADD         #H'10,R12
+          ADD         #H'1,R2
+          MOV.L       R2,@R15
+LAB_8c02b136:
+          MOV.W       @R12,R4
+          MOV.L       LP_GEN_28749+24,R3
+          EXTU.W      R4,R4
+          CMP/EQ      R3,R4
+          BF          LAB_8c02b0be
+LAB_8c02b140:
+          ADD         #H'4,R15
+          LDS.L       @R15+,PR
+          MOV.L       @R15+,R8
+          MOV.L       @R15+,R9
+          MOV.L       @R15+,R10
+          MOV.L       @R15+,R11
+          MOV.L       @R15+,R12
+          MOV.L       @R15+,R13
+          RTS
+          MOV.L       @R15+,R14
+LP_GEN_28749:
+          .DATA.W H'0300 ; H'8C02B154
+          .DATA.W H'0100 ; H'8C02B156
+          .DATA.W H'03FF ; H'8C02B158
+          .RES.W 1 ; H'8C02B15A
+          .DATA.L _init_omeEvents_8c04b920 ; H'8C02B15C
+          .DATA.L _var_timeOfDay_8c18ad20 ; H'8C02B160
+          .DATA.L _var_progress_8c1ba1cc ; H'8C02B164
+          .DATA.L _var_eventCandidates_8c228520 ; H'8C02B168
+          .DATA.L H'0000FFFF ; H'8C02B16C
+_EventPickForSegment_8c02b170:
+          MOV.L       R14,@-R15
+          MOV.L       R13,@-R15
+          MOV.L       R12,@-R15
+          MOV.L       R11,@-R15
+          MOV.L       R10,@-R15
+          MOV.L       R9,@-R15
+          MOV.L       R8,@-R15
+          STS.L       PR,@-R15
+          ADD         #-H'14,R15
+          MOV.L       LP_GEN_88891+6,R1
+          MOV.L       @R1,R2
+          TST         R2,R2
+          BF          LAB_8c02b278
+          MOV.L       LP_GEN_88891+10,R0
+          MOV.L       @R0,R2
+          TST         R2,R2
+          BF          LAB_8c02b278
+          MOV.L       LP_GEN_88891+14,R3
+          MOV.L       LP_GEN_88891+18,R1
+          MOV.L       @R3,R2
+          MOV.L       @R1,R3
+          CMP/GE      R2,R3
+          BF          LAB_8c02b278
+          MOV.L       LP_GEN_88891+22,R4
+          MOV         #H'0,R11
+          MOV.W       LP_GEN_88891+2,R12
+          MOV         R11,R8
+          MOV.W       LP_GEN_88891,R9
+          MOV         R4,R10
+          MOV.W       LP_GEN_88891+4,R13
+          BRA         LAB_8c02b220
+          MOV.L       R4,@R15
+LAB_8c02b1b0:
+          MOV.L       @R15,R5
+          MOV.L       LP_GEN_88891+26,R2
+          ADD         #H'4,R5
+          MOV.L       LP_GEN_88891+30,R1
+          MOV.L       R5,@R15
+          ADD         #-H'4,R5
+          MOV.L       @R5,R5
+          MOV.L       @R2,R3
+          MOV         R5,R4
+          SHLL2       R4
+          SHLL2       R4
+          ADD         R3,R4
+          MOV.L       @R1,R3
+          MOV.W       @(H'2,R4),R0
+          EXTU.W      R0,R0
+          CMP/EQ      R0,R3
+          BF          LAB_8c02b21c
+          BRA         LAB_8c02b204
+          MOV.L       @(H'8,R4),R14
+LAB_8c02b1d6:
+          MOV         R14,R5
+          AND         R13,R5
+          CMP/EQ      R13,R5
+          BT          LAB_8c02b200
+          MOV         R5,R6
+          AND         R12,R6
+          CMP/EQ      R9,R6
+          BF/S        LAB_8c02b1f4
+          EXTU.B      R5,R4
+          BSR         _hasRunEventFlag_8c02b030
+          NOP
+          TST         R0,R0
+          BF          LAB_8c02b208
+          ; coverage:disable -- unreachable: BF above already branches on this condition (see docs/lessons_learned.md)
+          BRA         LAB_8c02b200
+          NOP
+          ; coverage:enable
+LAB_8c02b1f4:
+          CMP/EQ      R12,R6
+          BF          LAB_8c02b200
+          BSR         _hasRunEventFlag_8c02b030
+          NOP
+          TST         R0,R0
+          BT          LAB_8c02b208
+LAB_8c02b200:
+          SHLR8       R14
+          SHLR2       R14
+LAB_8c02b204:
+          TST         R14,R14
+          BF          LAB_8c02b1d6
+LAB_8c02b208:
+          TST         R14,R14
+          BF          LAB_8c02b21c
+          MOV         R15,R2
+          MOV         R11,R3
+          MOV.L       @R10,R1
+          ADD         #H'4,R2
+          SHLL2       R3
+          ADD         R2,R3
+          ADD         #H'1,R11
+          MOV.L       R1,@R3
+LAB_8c02b21c:
+          ADD         #H'4,R10
+          ADD         #H'1,R8
+LAB_8c02b220:
+          MOV.L       LP_GEN_88891+34,R2
+          MOV.L       @R2,R3
+          CMP/GE      R3,R8
+          BF          LAB_8c02b1b0
+          TST         R11,R11
+          BT          LAB_8c02b278
+          MOV.L       LP_GEN_88891+38,R0
+          MOV         #H'1,R1
+          MOV.L       LP_GEN_88891+42,R3
+          MOV.L       R1,@R0
+          JSR         @R3
+          MOV         R11,R4
+          MOV         R15,R2
+          ADD         #H'4,R2
+          SHLL2       R0
+          MOV.L       LP_GEN_88891+46,R1
+          MOV.L       @(R0,R2),R3
+          BRA         LAB_8c02b27e
+          MOV.L       R3,@R1
+LP_GEN_88891:
+          .DATA.W H'0200 ; H'8C02B246
+          .DATA.W H'0300 ; H'8C02B248
+          .DATA.W H'03FF ; H'8C02B24A
+          .DATA.L _var_playMode_8c1bb8d0 ; H'8C02B24C
+          .DATA.L _var_gameMode_8c1bb8fc ; H'8C02B250
+          .DATA.L _var_8c2285dc ; H'8C02B254
+          .DATA.L _var_8c2285d8 ; H'8C02B258
+          .DATA.L _var_eventCandidates_8c228520 ; H'8C02B25C
+          .DATA.L _var_routeEvents_8c22851c ; H'8C02B260
+          .DATA.L _var_currentSegment_8c228708 ; H'8C02B264
+          .DATA.L _var_eventCandidateCount_8c228560 ; H'8C02B268
+          .DATA.L _var_cutsceneActive_8c1bb900 ; H'8C02B26C
+          .DATA.L _AsqGetRandomInRangeB_8c0121be ; H'8C02B270
+          .DATA.L _var_selectedEventEntry_8c228478 ; H'8C02B274
+LAB_8c02b278:
+          MOV.L       LP_GEN_51122+6,R0
+          MOV         #H'0,R2
+          MOV.L       R2,@R0
+LAB_8c02b27e:
+          ADD         #H'14,R15
+          LDS.L       @R15+,PR
+          MOV.L       @R15+,R8
+          MOV.L       @R15+,R9
+          MOV.L       @R15+,R10
+          MOV.L       @R15+,R11
+          MOV.L       @R15+,R12
+          MOV.L       @R15+,R13
+          RTS
+          MOV.L       @R15+,R14
+_EventApplyFlags_8c02b292:
+          MOV.L       LP_GEN_51122+10,R3
+          MOV.L       R14,@-R15
+          MOV.L       R13,@-R15
+          MOV.L       LP_GEN_51122+14,R1
+          MOV.L       R12,@-R15
+          STS.L       PR,@-R15
+          MOV.L       @R3,R13
+          MOV.L       @R1,R2
+          SHLL2       R13
+          MOV.W       LP_GEN_51122,R12
+          MOV.W       LP_GEN_51122+2,R14
+          SHLL2       R13
+          ADD         R2,R13
+          BRA         LAB_8c02b2d0
+          MOV.L       @(H'c,R13),R13
+LAB_8c02b2b0:
+          MOV         R13,R5
+          AND         R14,R5
+          CMP/EQ      R14,R5
+          BT          LAB_8c02b2cc
+          MOV         R5,R3
+          TST         R12,R3
+          BF/S        LAB_8c02b2c8
+          EXTU.B      R5,R4
+          BSR         _setProgressFlag_8c02af78
+          NOP
+          BRA         LAB_8c02b2cc
+          NOP
+LAB_8c02b2c8:
+          BSR         _setRunEventFlag_8c02b022
+          NOP
+LAB_8c02b2cc:
+          SHLR8       R13
+          SHLR2       R13
+LAB_8c02b2d0:
+          TST         R13,R13
+          BF          LAB_8c02b2b0
+          LDS.L       @R15+,PR
+          MOV.L       @R15+,R12
+          MOV.L       @R15+,R13
+          RTS
+          MOV.L       @R15+,R14
+LP_GEN_51122:
+          .DATA.W H'0200 ; H'8C02B2DE
+          .DATA.W H'03FF ; H'8C02B2E0
+          .RES.W 1 ; H'8C02B2E2
+          .DATA.L _var_cutsceneActive_8c1bb900 ; H'8C02B2E4
+          .DATA.L _var_selectedEventEntry_8c228478 ; H'8C02B2E8
+          .DATA.L _var_routeEvents_8c22851c ; H'8C02B2EC
+          .SECTION     D, DATA, ALIGN=4
+_init_wanganEvents_8c04abb0:        ; from defines
+          .DATA.B      H'00, H'00, H'09, H'00, H'83, H'14, H'00, H'00, H'32, H'FC, H'FF, H'3F, H'32, H'FD, H'FF, H'3F
+          .DATA.B      H'00, H'00, H'09, H'00, H'A4, H'00, H'00, H'00, H'32, H'FD, H'FF, H'3F, H'FF, H'FF, H'FF, H'3F
+          .DATA.B      H'00, H'00, H'09, H'00, H'6A, H'31, H'00, H'00, H'33, H'FC, H'FF, H'3F, H'33, H'FD, H'FF, H'3F
+          .DATA.B      H'00, H'00, H'09, H'00, H'8B, H'01, H'00, H'00, H'33, H'FD, H'FF, H'3F, H'FF, H'FF, H'FF, H'3F
+          .DATA.B      H'00, H'00, H'09, H'00, H'51, H'4E, H'00, H'00, H'34, H'FC, H'FF, H'3F, H'34, H'FD, H'FF, H'3F
+          .DATA.B      H'00, H'00, H'09, H'00, H'72, H'02, H'00, H'00, H'34, H'FD, H'FF, H'3F, H'FF, H'FF, H'FF, H'3F
+          .DATA.B      H'00, H'00, H'09, H'00, H'38, H'6B, H'00, H'00, H'35, H'EC, H'F0, H'3F, H'35, H'0D, H'FC, H'3F
+          .DATA.B      H'00, H'00, H'09, H'00, H'59, H'03, H'00, H'00, H'35, H'ED, H'F0, H'3F, H'03, H'FF, H'FF, H'3F
+          .DATA.B      H'00, H'00, H'09, H'00, H'DD, H'03, H'00, H'00, H'FF, H'FF, H'FF, H'3F, H'03, H'FF, H'FF, H'3F
+          .DATA.B      H'00, H'00, H'0A, H'00, H'A4, H'00, H'00, H'00, H'36, H'FC, H'FF, H'3F, H'36, H'FD, H'FF, H'3F
+          .DATA.B      H'00, H'00, H'0A, H'00, H'05, H'00, H'00, H'00, H'36, H'FD, H'FF, H'3F, H'FF, H'FF, H'FF, H'3F
+          .DATA.B      H'00, H'00, H'0A, H'00, H'8B, H'01, H'00, H'00, H'37, H'FC, H'FF, H'3F, H'37, H'FD, H'FF, H'3F
+          .DATA.B      H'00, H'00, H'0A, H'00, H'0C, H'00, H'00, H'00, H'37, H'FD, H'FF, H'3F, H'FF, H'FF, H'FF, H'3F
+          .DATA.B      H'00, H'00, H'0A, H'00, H'72, H'02, H'00, H'00, H'38, H'FC, H'FF, H'3F, H'38, H'FD, H'FF, H'3F
+          .DATA.B      H'00, H'00, H'0A, H'00, H'13, H'00, H'00, H'00, H'38, H'FD, H'FF, H'3F, H'FF, H'FF, H'FF, H'3F
+          .DATA.B      H'00, H'00, H'0A, H'00, H'C7, H'55, H'0E, H'00, H'39, H'FC, H'FF, H'3F, H'39, H'FD, H'FF, H'3F
+          .DATA.B      H'00, H'00, H'0A, H'00, H'AE, H'72, H'00, H'00, H'39, H'FD, H'FF, H'3F, H'FF, H'FF, H'FF, H'3F
+          .DATA.B      H'00, H'00, H'0A, H'00, H'EF, H'EA, H'EE, H'01, H'3A, H'0C, H'F8, H'3F, H'3A, H'FD, H'FF, H'3F
+          .DATA.B      H'00, H'00, H'0A, H'00, H'57, H'77, H'0F, H'00, H'3A, H'0D, H'F8, H'3F, H'FF, H'FF, H'FF, H'3F
+          .DATA.B      H'00, H'00, H'00, H'00, H'1F, H'00, H'00, H'00, H'C8, H'FD, H'FF, H'3F, H'C8, H'FD, H'FF, H'3F
+          .DATA.B      H'00, H'00, H'00, H'00, H'1F, H'00, H'00, H'00, H'C8, H'FD, H'FF, H'3F, H'C8, H'FD, H'FF, H'3F
+          .DATA.B      H'00, H'00, H'00, H'00, H'1F, H'00, H'00, H'00, H'C8, H'FD, H'FF, H'3F, H'C8, H'FD, H'FF, H'3F
+          .DATA.B      H'00, H'00, H'0B, H'00, H'41, H'0C, H'73, H'10, H'3C, H'FC, H'FF, H'3F, H'3C, H'FD, H'FF, H'3F
+          .DATA.B      H'00, H'00, H'0B, H'00, H'62, H'98, H'83, H'00, H'3C, H'FD, H'FF, H'3F, H'FF, H'FF, H'FF, H'3F
+          .DATA.B      H'00, H'00, H'0B, H'00, H'62, H'98, H'83, H'00, H'3C, H'FD, H'FF, H'3F, H'FF, H'FF, H'FF, H'3F
+          .DATA.B      H'00, H'00, H'0B, H'00, H'62, H'98, H'83, H'00, H'3C, H'FD, H'FF, H'3F, H'FF, H'FF, H'FF, H'3F
+          .DATA.B      H'00, H'00, H'0B, H'00, H'AA, H'39, H'18, H'29, H'3D, H'FC, H'FF, H'3F, H'3D, H'FD, H'FF, H'3F
+          .DATA.B      H'00, H'00, H'0B, H'00, H'CD, H'C1, H'48, H'01, H'3D, H'FD, H'FF, H'3F, H'FF, H'FF, H'FF, H'3F
+          .DATA.B      H'00, H'00, H'0B, H'00, H'CD, H'C1, H'48, H'01, H'3D, H'FD, H'FF, H'3F, H'FF, H'FF, H'FF, H'3F
+          .DATA.B      H'00, H'00, H'0B, H'00, H'CD, H'C1, H'48, H'01, H'3D, H'FD, H'FF, H'3F, H'FF, H'FF, H'FF, H'3F
+          .DATA.B      H'00, H'00, H'0B, H'00, H'16, H'6F, H'DE, H'3D, H'3E, H'FC, H'FF, H'3F, H'3E, H'FD, H'FF, H'3F
+          .DATA.B      H'00, H'00, H'0B, H'00, H'78, H'F3, H'EE, H'01, H'3E, H'FD, H'FF, H'3F, H'FF, H'FF, H'FF, H'3F
+          .DATA.B      H'00, H'00, H'0B, H'00, H'78, H'F3, H'EE, H'01, H'3E, H'FD, H'FF, H'3F, H'FF, H'FF, H'FF, H'3F
+          .DATA.B      H'00, H'00, H'0D, H'00, H'41, H'A0, H'04, H'00, H'3F, H'FC, H'FF, H'3F, H'3F, H'05, H'FC, H'3F
+          .DATA.B      H'00, H'00, H'0D, H'00, H'02, H'25, H'00, H'00, H'3F, H'FD, H'FF, H'3F, H'01, H'FF, H'FF, H'3F
+          .DATA.B      H'00, H'00, H'00, H'00, H'41, H'00, H'00, H'00, H'40, H'FC, H'FF, H'3F, H'40, H'FD, H'FF, H'3F
+          .DATA.B      H'00, H'00, H'00, H'00, H'02, H'00, H'00, H'00, H'40, H'FD, H'FF, H'3F, H'FF, H'FF, H'FF, H'3F
+          .DATA.B      H'00, H'00, H'0A, H'00, H'41, H'00, H'00, H'00, H'41, H'FC, H'FF, H'3F, H'41, H'FD, H'FF, H'3F
+          .DATA.B      H'00, H'00, H'0A, H'00, H'02, H'00, H'00, H'00, H'41, H'FD, H'FF, H'3F, H'FF, H'FF, H'FF, H'3F
+          .DATA.B      H'00, H'00, H'00, H'00, H'28, H'01, H'00, H'00, H'42, H'FC, H'FF, H'3F, H'42, H'FD, H'FF, H'3F
+          .DATA.B      H'00, H'00, H'00, H'00, H'09, H'00, H'00, H'00, H'42, H'FD, H'FF, H'3F, H'FF, H'FF, H'FF, H'3F
+          .DATA.B      H'00, H'00, H'00, H'00, H'0F, H'02, H'00, H'00, H'43, H'FC, H'FF, H'3F, H'43, H'FD, H'FF, H'3F
+          .DATA.B      H'00, H'00, H'00, H'00, H'10, H'00, H'00, H'00, H'43, H'FD, H'FF, H'3F, H'FF, H'FF, H'FF, H'3F
+          .DATA.B      H'00, H'00, H'00, H'00, H'1F, H'00, H'00, H'00, H'C8, H'FD, H'FF, H'3F, H'C8, H'FD, H'FF, H'3F
+          .DATA.B      H'00, H'00, H'00, H'00, H'1F, H'00, H'00, H'00, H'C8, H'FD, H'FF, H'3F, H'C8, H'FD, H'FF, H'3F
+          .DATA.B      H'00, H'00, H'00, H'00, H'1F, H'00, H'00, H'00, H'C8, H'FD, H'FF, H'3F, H'C8, H'FD, H'FF, H'3F
+          .DATA.B      H'00, H'00, H'00, H'00, H'1F, H'00, H'00, H'00, H'C8, H'FD, H'FF, H'3F, H'C8, H'FD, H'FF, H'3F
+          .DATA.B      H'01, H'00, H'09, H'00, H'EC, H'01, H'00, H'00, H'46, H'FC, H'FF, H'3F, H'46, H'FD, H'FF, H'3F
+          .DATA.B      H'01, H'00, H'09, H'00, H'0F, H'00, H'00, H'00, H'46, H'FD, H'FF, H'3F, H'FF, H'FF, H'FF, H'3F
+          .DATA.B      H'01, H'00, H'09, H'00, H'13, H'00, H'00, H'00, H'47, H'FC, H'FF, H'3F, H'47, H'FD, H'FF, H'3F
+          .DATA.B      H'01, H'00, H'09, H'00, H'57, H'03, H'00, H'00, H'48, H'FC, H'FF, H'3F, H'48, H'FD, H'FF, H'3F
+          .DATA.B      H'01, H'00, H'09, H'00, H'1A, H'00, H'00, H'00, H'48, H'FD, H'FF, H'3F, H'FF, H'FF, H'FF, H'3F
+          .DATA.B      H'01, H'00, H'02, H'00, H'49, H'01, H'00, H'00, H'49, H'FC, H'FF, H'3F, H'49, H'FD, H'FF, H'3F
+          .DATA.B      H'01, H'00, H'02, H'00, H'0A, H'00, H'00, H'00, H'49, H'FD, H'FF, H'3F, H'FF, H'FF, H'FF, H'3F
+          .DATA.B      H'01, H'00, H'02, H'00, H'0B, H'02, H'00, H'00, H'4A, H'FC, H'FF, H'3F, H'4A, H'FD, H'FF, H'3F
+          .DATA.B      H'01, H'00, H'02, H'00, H'10, H'00, H'00, H'00, H'4A, H'FD, H'FF, H'3F, H'FF, H'FF, H'FF, H'3F
+          .DATA.B      H'01, H'00, H'02, H'00, H'51, H'02, H'00, H'00, H'4B, H'FC, H'FF, H'3F, H'4B, H'FD, H'FF, H'3F
+          .DATA.B      H'01, H'00, H'02, H'00, H'12, H'00, H'00, H'00, H'4B, H'FD, H'FF, H'3F, H'FF, H'FF, H'FF, H'3F
+          .DATA.B      H'01, H'00, H'02, H'00, H'38, H'7B, H'00, H'00, H'4C, H'FC, H'FF, H'3F, H'4C, H'FD, H'FF, H'3F
+          .DATA.B      H'01, H'00, H'02, H'00, H'D9, H'03, H'00, H'00, H'4C, H'FD, H'FF, H'3F, H'FF, H'FF, H'FF, H'3F
+          .DATA.B      H'01, H'00, H'06, H'00, H'28, H'01, H'00, H'00, H'4D, H'FC, H'FF, H'3F, H'4D, H'FD, H'FF, H'3F
+          .DATA.B      H'01, H'00, H'06, H'00, H'09, H'00, H'00, H'00, H'4D, H'FD, H'FF, H'3F, H'FF, H'FF, H'FF, H'3F
+          .DATA.B      H'01, H'00, H'06, H'00, H'0F, H'02, H'00, H'00, H'4E, H'FC, H'FF, H'3F, H'4E, H'FD, H'FF, H'3F
+          .DATA.B      H'01, H'00, H'06, H'00, H'10, H'00, H'00, H'00, H'4E, H'FD, H'FF, H'3F, H'FF, H'FF, H'FF, H'3F
+          .DATA.B      H'01, H'00, H'06, H'00, H'16, H'00, H'00, H'00, H'4F, H'FC, H'FF, H'3F, H'4F, H'FD, H'FF, H'3F
+          .DATA.B      H'02, H'00, H'08, H'00, H'CA, H'45, H'00, H'00, H'50, H'FC, H'FF, H'3F, H'50, H'FD, H'FF, H'3F
+          .DATA.B      H'02, H'00, H'08, H'00, H'2E, H'02, H'00, H'00, H'50, H'FD, H'FF, H'3F, H'FF, H'FF, H'FF, H'3F
+          .DATA.B      H'02, H'00, H'08, H'00, H'EB, H'49, H'00, H'00, H'51, H'FC, H'FF, H'3F, H'51, H'FD, H'FF, H'3F
+          .DATA.B      H'02, H'00, H'08, H'00, H'4F, H'02, H'00, H'00, H'51, H'FD, H'FF, H'3F, H'FF, H'FF, H'FF, H'3F
+          .DATA.B      H'02, H'00, H'08, H'00, H'6C, H'02, H'00, H'00, H'52, H'FC, H'FF, H'3F, H'52, H'FD, H'FF, H'3F
+          .DATA.B      H'02, H'00, H'08, H'00, H'13, H'00, H'00, H'00, H'52, H'FD, H'FF, H'3F, H'FF, H'FF, H'FF, H'3F
+          .DATA.B      H'02, H'00, H'08, H'00, H'16, H'03, H'00, H'00, H'53, H'FC, H'FF, H'3F, H'53, H'FD, H'FF, H'3F
+          .DATA.B      H'02, H'00, H'08, H'00, H'18, H'00, H'00, H'00, H'53, H'FD, H'FF, H'3F, H'FF, H'FF, H'FF, H'3F
+          .DATA.B      H'02, H'00, H'08, H'00, H'37, H'03, H'00, H'00, H'54, H'FC, H'FF, H'3F, H'54, H'FD, H'FF, H'3F
+          .DATA.B      H'02, H'00, H'08, H'00, H'19, H'00, H'00, H'00, H'54, H'FD, H'FF, H'3F, H'FF, H'FF, H'FF, H'3F
+          .DATA.B      H'02, H'00, H'08, H'00, H'1A, H'00, H'00, H'00, H'55, H'FC, H'FF, H'3F, H'55, H'FD, H'FF, H'3F
+          .DATA.B      H'02, H'00, H'08, H'00, H'14, H'00, H'00, H'00, H'56, H'FC, H'FF, H'3F, H'56, H'11, H'FC, H'3F
+          .DATA.B      H'02, H'00, H'05, H'00, H'8D, H'7A, H'00, H'00, H'57, H'FC, H'FF, H'3F, H'57, H'FD, H'FF, H'3F
+          .DATA.B      H'02, H'00, H'05, H'00, H'D4, H'03, H'00, H'00, H'57, H'FD, H'FF, H'3F, H'FF, H'FF, H'FF, H'3F
+          .DATA.B      H'02, H'00, H'05, H'00, H'2A, H'02, H'00, H'00, H'58, H'FC, H'FF, H'3F, H'58, H'FD, H'FF, H'3F
+          .DATA.B      H'02, H'00, H'05, H'00, H'11, H'00, H'00, H'00, H'58, H'FD, H'FF, H'3F, H'FF, H'FF, H'FF, H'3F
+          .DATA.B      H'02, H'00, H'05, H'00, H'78, H'03, H'00, H'00, H'5A, H'FC, H'FF, H'3F, H'5A, H'FD, H'FF, H'3F
+          .DATA.B      H'02, H'00, H'05, H'00, H'1B, H'00, H'00, H'00, H'5A, H'FD, H'FF, H'3F, H'FF, H'FF, H'FF, H'3F
+          .DATA.B      H'02, H'00, H'0D, H'00, H'8D, H'02, H'00, H'00, H'5B, H'10, H'F8, H'3F, H'5B, H'FD, H'FF, H'3F
+          .DATA.B      H'02, H'00, H'0D, H'00, H'14, H'00, H'00, H'00, H'5B, H'11, H'F8, H'3F, H'FF, H'FF, H'FF, H'3F
+          .DATA.B      H'00, H'00, H'00, H'00, H'1F, H'00, H'00, H'00, H'C8, H'FD, H'FF, H'3F, H'C8, H'FD, H'FF, H'3F
+          .DATA.B      H'00, H'00, H'00, H'00, H'1F, H'00, H'00, H'00, H'C8, H'FD, H'FF, H'3F, H'C8, H'FD, H'FF, H'3F
+          .DATA.B      H'00, H'00, H'00, H'00, H'1F, H'00, H'00, H'00, H'C8, H'FD, H'FF, H'3F, H'C8, H'FD, H'FF, H'3F
+          .DATA.B      H'00, H'00, H'00, H'00, H'1F, H'00, H'00, H'00, H'C8, H'FD, H'FF, H'3F, H'C8, H'FD, H'FF, H'3F
+          .DATA.B      H'02, H'00, H'00, H'00, H'14, H'00, H'00, H'00, H'60, H'FC, H'FF, H'3F, H'60, H'FD, H'FF, H'3F
+          .DATA.B      H'02, H'00, H'00, H'00, H'1B, H'00, H'00, H'00, H'61, H'FC, H'FF, H'3F, H'61, H'FD, H'FF, H'3F
+          .DATA.B      H'00, H'00, H'0A, H'00, H'BA, H'7B, H'00, H'00, H'3B, H'0C, H'FC, H'3F, H'3B, H'FD, H'FF, H'3F
+          .DATA.B      H'00, H'00, H'0A, H'00, H'DD, H'03, H'00, H'00, H'3B, H'0D, H'FC, H'3F, H'FF, H'FF, H'FF, H'3F
+          .DATA.B      H'00, H'00, H'0A, H'00, H'DD, H'03, H'00, H'00, H'3B, H'0D, H'FC, H'3F, H'FF, H'FF, H'FF, H'3F
+          .DATA.B      H'00, H'00, H'0D, H'00, H'0F, H'02, H'00, H'00, H'44, H'14, H'11, H'30, H'44, H'15, H'F5, H'3F
+          .DATA.B      H'00, H'00, H'0D, H'00, H'10, H'00, H'00, H'00, H'44, H'FD, H'FF, H'3F, H'FF, H'FF, H'FF, H'3F
+          .DATA.B      H'02, H'00, H'0D, H'00, H'14, H'00, H'00, H'00, H'5B, H'70, H'41, H'30, H'5B, H'71, H'F5, H'3F
+          .DATA.B      H'02, H'00, H'0D, H'00, H'14, H'00, H'00, H'00, H'5B, H'71, H'41, H'30, H'5C, H'FD, H'FF, H'3F
+          .DATA.B      H'02, H'00, H'0D, H'00, H'1B, H'00, H'00, H'00, H'5E, H'FC, H'FF, H'3F, H'5E, H'FD, H'FF, H'3F
+          .DATA.B      H'FF, H'FF, H'0D, H'00, H'1B, H'00, H'00, H'00, H'5E, H'FC, H'FF, H'3F, H'5E, H'FD, H'FF, H'3F
+_init_shinjukuEvents_8c04b1f0:        ; from defines
+          .DATA.B      H'00, H'00, H'02, H'00, H'06, H'01, H'00, H'00, H'00, H'FC, H'FF, H'3F, H'00, H'FD, H'FF, H'3F
+          .DATA.B      H'00, H'00, H'02, H'00, H'08, H'00, H'00, H'00, H'00, H'FD, H'FF, H'3F, H'FF, H'FF, H'FF, H'3F
+          .DATA.B      H'00, H'00, H'02, H'00, H'ED, H'01, H'00, H'00, H'01, H'FC, H'FF, H'3F, H'01, H'FD, H'FF, H'3F
+          .DATA.B      H'00, H'00, H'02, H'00, H'0F, H'00, H'00, H'00, H'01, H'FD, H'FF, H'3F, H'FF, H'FF, H'FF, H'3F
+          .DATA.B      H'00, H'00, H'02, H'00, H'D4, H'02, H'00, H'00, H'02, H'FC, H'FF, H'3F, H'02, H'FD, H'FF, H'3F
+          .DATA.B      H'00, H'00, H'02, H'00, H'16, H'00, H'00, H'00, H'02, H'FD, H'FF, H'3F, H'FF, H'FF, H'FF, H'3F
+          .DATA.B      H'00, H'00, H'02, H'00, H'BB, H'03, H'00, H'00, H'03, H'FC, H'FF, H'3F, H'03, H'FD, H'FF, H'3F
+          .DATA.B      H'00, H'00, H'02, H'00, H'1D, H'00, H'00, H'00, H'03, H'FD, H'FF, H'3F, H'FF, H'FF, H'FF, H'3F
+          .DATA.B      H'00, H'00, H'03, H'00, H'46, H'01, H'00, H'00, H'04, H'FC, H'FF, H'3F, H'04, H'FD, H'FF, H'3F
+          .DATA.B      H'00, H'00, H'03, H'00, H'0A, H'00, H'00, H'00, H'04, H'FD, H'FF, H'3F, H'FF, H'FF, H'FF, H'3F
+          .DATA.B      H'00, H'00, H'03, H'00, H'2D, H'02, H'00, H'00, H'05, H'FC, H'FF, H'3F, H'05, H'FD, H'FF, H'3F
+          .DATA.B      H'00, H'00, H'03, H'00, H'11, H'00, H'00, H'00, H'05, H'FD, H'FF, H'3F, H'FF, H'FF, H'FF, H'3F
+          .DATA.B      H'00, H'00, H'03, H'00, H'14, H'6F, H'00, H'00, H'06, H'FC, H'FF, H'3F, H'06, H'FD, H'FF, H'3F
+          .DATA.B      H'00, H'00, H'03, H'00, H'78, H'03, H'00, H'00, H'06, H'FD, H'FF, H'3F, H'FF, H'FF, H'FF, H'3F
+          .DATA.B      H'00, H'00, H'07, H'00, H'27, H'2D, H'00, H'00, H'07, H'FC, H'FF, H'3F, H'07, H'FD, H'FF, H'3F
+          .DATA.B      H'00, H'00, H'07, H'00, H'69, H'01, H'00, H'00, H'07, H'FD, H'FF, H'3F, H'FF, H'FF, H'FF, H'3F
+          .DATA.B      H'00, H'00, H'07, H'00, H'0E, H'4A, H'00, H'00, H'08, H'FC, H'FF, H'3F, H'08, H'01, H'FC, H'3F
+          .DATA.B      H'00, H'00, H'07, H'00, H'50, H'02, H'00, H'00, H'08, H'FD, H'FF, H'3F, H'00, H'FF, H'FF, H'3F
+          .DATA.B      H'00, H'00, H'07, H'00, H'B4, H'5A, H'9C, H'01, H'09, H'FC, H'FF, H'3F, H'09, H'FD, H'FF, H'3F
+          .DATA.B      H'00, H'00, H'07, H'00, H'D5, H'E2, H'0C, H'00, H'09, H'FD, H'FF, H'3F, H'FF, H'FF, H'FF, H'3F
+          .DATA.B      H'00, H'00, H'07, H'00, H'D5, H'E2, H'0C, H'00, H'09, H'FD, H'FF, H'3F, H'FF, H'FF, H'FF, H'3F
+          .DATA.B      H'00, H'00, H'07, H'00, H'9B, H'77, H'00, H'00, H'0A, H'FC, H'FF, H'3F, H'0A, H'01, H'FC, H'3F
+          .DATA.B      H'00, H'00, H'07, H'00, H'BC, H'03, H'00, H'00, H'0A, H'FD, H'FF, H'3F, H'00, H'FF, H'FF, H'3F
+          .DATA.B      H'00, H'00, H'0A, H'00, H'27, H'2D, H'00, H'00, H'0B, H'FC, H'FF, H'3F, H'0B, H'FD, H'FF, H'3F
+          .DATA.B      H'00, H'00, H'0A, H'00, H'69, H'01, H'00, H'00, H'0B, H'FD, H'FF, H'3F, H'FF, H'FF, H'FF, H'3F
+          .DATA.B      H'00, H'00, H'0A, H'00, H'0E, H'4A, H'00, H'00, H'0C, H'00, H'F8, H'3F, H'0C, H'FD, H'FF, H'3F
+          .DATA.B      H'00, H'00, H'0A, H'00, H'50, H'02, H'00, H'00, H'0C, H'01, H'F8, H'3F, H'FF, H'FF, H'FF, H'3F
+          .DATA.B      H'00, H'00, H'00, H'00, H'1F, H'00, H'00, H'00, H'C8, H'FD, H'FF, H'3F, H'C8, H'FD, H'FF, H'3F
+          .DATA.B      H'00, H'00, H'00, H'00, H'1F, H'00, H'00, H'00, H'C8, H'FD, H'FF, H'3F, H'C8, H'FD, H'FF, H'3F
+          .DATA.B      H'00, H'00, H'0A, H'00, H'9B, H'77, H'00, H'00, H'0E, H'00, H'F8, H'3F, H'0E, H'FD, H'FF, H'3F
+          .DATA.B      H'00, H'00, H'0A, H'00, H'BC, H'03, H'00, H'00, H'0E, H'01, H'F8, H'3F, H'FF, H'FF, H'FF, H'3F
+          .DATA.B      H'00, H'00, H'00, H'00, H'1F, H'00, H'00, H'00, H'C8, H'FD, H'FF, H'3F, H'C8, H'FD, H'FF, H'3F
+          .DATA.B      H'00, H'00, H'00, H'00, H'1F, H'00, H'00, H'00, H'C8, H'FD, H'FF, H'3F, H'C8, H'FD, H'FF, H'3F
+          .DATA.B      H'00, H'00, H'00, H'00, H'1F, H'00, H'00, H'00, H'C8, H'FD, H'FF, H'3F, H'C8, H'FD, H'FF, H'3F
+          .DATA.B      H'00, H'00, H'00, H'00, H'1F, H'00, H'00, H'00, H'C8, H'FD, H'FF, H'3F, H'C8, H'FD, H'FF, H'3F
+          .DATA.B      H'00, H'00, H'00, H'00, H'1F, H'00, H'00, H'00, H'C8, H'FD, H'FF, H'3F, H'C8, H'FD, H'FF, H'3F
+          .DATA.B      H'00, H'00, H'00, H'00, H'1F, H'00, H'00, H'00, H'C8, H'FD, H'FF, H'3F, H'C8, H'FD, H'FF, H'3F
+          .DATA.B      H'00, H'00, H'00, H'00, H'1F, H'00, H'00, H'00, H'C8, H'FD, H'FF, H'3F, H'C8, H'FD, H'FF, H'3F
+          .DATA.B      H'00, H'00, H'00, H'00, H'1F, H'00, H'00, H'00, H'C8, H'FD, H'FF, H'3F, H'C8, H'FD, H'FF, H'3F
+          .DATA.B      H'00, H'00, H'00, H'00, H'1F, H'00, H'00, H'00, H'C8, H'FD, H'FF, H'3F, H'C8, H'FD, H'FF, H'3F
+          .DATA.B      H'00, H'00, H'00, H'00, H'1F, H'00, H'00, H'00, H'C8, H'FD, H'FF, H'3F, H'C8, H'FD, H'FF, H'3F
+          .DATA.B      H'00, H'00, H'00, H'00, H'C5, H'00, H'00, H'00, H'12, H'FC, H'FF, H'3F, H'12, H'FD, H'FF, H'3F
+          .DATA.B      H'00, H'00, H'00, H'00, H'06, H'00, H'00, H'00, H'12, H'FD, H'FF, H'3F, H'FF, H'FF, H'FF, H'3F
+          .DATA.B      H'00, H'00, H'00, H'00, H'8B, H'01, H'00, H'00, H'13, H'FC, H'FF, H'3F, H'13, H'FD, H'FF, H'3F
+          .DATA.B      H'00, H'00, H'00, H'00, H'0C, H'00, H'00, H'00, H'13, H'FD, H'FF, H'3F, H'FF, H'FF, H'FF, H'3F
+          .DATA.B      H'00, H'00, H'00, H'00, H'72, H'02, H'00, H'00, H'14, H'FC, H'FF, H'3F, H'14, H'FD, H'FF, H'3F
+          .DATA.B      H'00, H'00, H'00, H'00, H'13, H'00, H'00, H'00, H'14, H'FD, H'FF, H'3F, H'FF, H'FF, H'FF, H'3F
+          .DATA.B      H'00, H'00, H'00, H'00, H'59, H'03, H'00, H'00, H'15, H'FC, H'FF, H'3F, H'15, H'FD, H'FF, H'3F
+          .DATA.B      H'00, H'00, H'00, H'00, H'1A, H'00, H'00, H'00, H'15, H'FD, H'FF, H'3F, H'FF, H'FF, H'FF, H'3F
+          .DATA.B      H'01, H'00, H'03, H'00, H'CB, H'41, H'00, H'00, H'16, H'FC, H'FF, H'3F, H'16, H'FD, H'FF, H'3F
+          .DATA.B      H'01, H'00, H'03, H'00, H'0E, H'02, H'00, H'00, H'16, H'FD, H'FF, H'3F, H'FF, H'FF, H'FF, H'3F
+          .DATA.B      H'01, H'00, H'03, H'00, H'B2, H'02, H'00, H'00, H'17, H'FC, H'FF, H'3F, H'17, H'FD, H'FF, H'3F
+          .DATA.B      H'01, H'00, H'03, H'00, H'15, H'00, H'00, H'00, H'17, H'FD, H'FF, H'3F, H'FF, H'FF, H'FF, H'3F
+          .DATA.B      H'01, H'00, H'03, H'00, H'37, H'03, H'00, H'00, H'18, H'FC, H'FF, H'3F, H'18, H'FD, H'FF, H'3F
+          .DATA.B      H'01, H'00, H'03, H'00, H'19, H'00, H'00, H'00, H'18, H'FD, H'FF, H'3F, H'FF, H'FF, H'FF, H'3F
+          .DATA.B      H'01, H'00, H'03, H'00, H'DC, H'03, H'00, H'00, H'19, H'FC, H'FF, H'3F, H'19, H'FD, H'FF, H'3F
+          .DATA.B      H'01, H'00, H'03, H'00, H'1E, H'00, H'00, H'00, H'19, H'FD, H'FF, H'3F, H'FF, H'FF, H'FF, H'3F
+          .DATA.B      H'01, H'00, H'07, H'00, H'CD, H'C1, H'08, H'00, H'1A, H'FC, H'FF, H'3F, H'1A, H'FD, H'FF, H'3F
+          .DATA.B      H'01, H'00, H'07, H'00, H'0E, H'46, H'00, H'00, H'1A, H'FD, H'FF, H'3F, H'FF, H'FF, H'FF, H'3F
+          .DATA.B      H'01, H'00, H'07, H'00, H'0E, H'46, H'00, H'00, H'1A, H'FD, H'FF, H'3F, H'FF, H'FF, H'FF, H'3F
+          .DATA.B      H'01, H'00, H'07, H'00, H'76, H'F3, H'EE, H'01, H'1B, H'FC, H'FF, H'3F, H'1B, H'FD, H'FF, H'3F
+          .DATA.B      H'01, H'00, H'07, H'00, H'9B, H'77, H'0F, H'00, H'1B, H'FD, H'FF, H'3F, H'FF, H'FF, H'FF, H'3F
+          .DATA.B      H'01, H'00, H'07, H'00, H'9B, H'77, H'0F, H'00, H'1B, H'FD, H'FF, H'3F, H'FF, H'FF, H'FF, H'3F
+          .DATA.B      H'00, H'00, H'00, H'00, H'1F, H'00, H'00, H'00, H'C8, H'FD, H'FF, H'3F, H'C8, H'FD, H'FF, H'3F
+          .DATA.B      H'00, H'00, H'00, H'00, H'1F, H'00, H'00, H'00, H'C8, H'FD, H'FF, H'3F, H'C8, H'FD, H'FF, H'3F
+          .DATA.B      H'00, H'00, H'00, H'00, H'1F, H'00, H'00, H'00, H'C8, H'FD, H'FF, H'3F, H'C8, H'FD, H'FF, H'3F
+          .DATA.B      H'00, H'00, H'00, H'00, H'1F, H'00, H'00, H'00, H'C8, H'FD, H'FF, H'3F, H'C8, H'FD, H'FF, H'3F
+          .DATA.B      H'01, H'00, H'0B, H'00, H'59, H'03, H'00, H'00, H'1D, H'FC, H'FF, H'3F, H'1D, H'FD, H'FF, H'3F
+          .DATA.B      H'01, H'00, H'0B, H'00, H'1A, H'00, H'00, H'00, H'1D, H'FD, H'FF, H'3F, H'FF, H'FF, H'FF, H'3F
+          .DATA.B      H'01, H'00, H'00, H'00, H'8B, H'01, H'00, H'00, H'1E, H'FC, H'FF, H'3F, H'1E, H'FD, H'FF, H'3F
+          .DATA.B      H'01, H'00, H'00, H'00, H'0C, H'00, H'00, H'00, H'1E, H'FD, H'FF, H'3F, H'FF, H'FF, H'FF, H'3F
+          .DATA.B      H'01, H'00, H'00, H'00, H'59, H'03, H'00, H'00, H'1F, H'FC, H'FF, H'3F, H'1F, H'FD, H'FF, H'3F
+          .DATA.B      H'01, H'00, H'00, H'00, H'1A, H'00, H'00, H'00, H'1F, H'FD, H'FF, H'3F, H'FF, H'FF, H'FF, H'3F
+          .DATA.B      H'01, H'00, H'00, H'00, H'72, H'02, H'00, H'00, H'20, H'FC, H'FF, H'3F, H'20, H'FD, H'FF, H'3F
+          .DATA.B      H'01, H'00, H'00, H'00, H'13, H'00, H'00, H'00, H'20, H'FD, H'FF, H'3F, H'FF, H'FF, H'FF, H'3F
+          .DATA.B      H'01, H'00, H'0E, H'00, H'72, H'02, H'00, H'00, H'21, H'FC, H'FF, H'3F, H'21, H'FD, H'FF, H'3F
+          .DATA.B      H'01, H'00, H'0E, H'00, H'13, H'00, H'00, H'00, H'21, H'FD, H'FF, H'3F, H'FF, H'FF, H'FF, H'3F
+          .DATA.B      H'02, H'00, H'03, H'00, H'B4, H'62, H'00, H'00, H'2C, H'FC, H'FF, H'3F, H'2C, H'09, H'FC, H'3F
+          .DATA.B      H'00, H'00, H'00, H'00, H'1F, H'00, H'00, H'00, H'C8, H'FD, H'FF, H'3F, H'C8, H'FD, H'FF, H'3F
+          .DATA.B      H'02, H'00, H'07, H'00, H'15, H'03, H'00, H'00, H'22, H'FD, H'FF, H'3F, H'FF, H'FF, H'FF, H'3F
+          .DATA.B      H'00, H'00, H'00, H'00, H'1F, H'00, H'00, H'00, H'C8, H'FD, H'FF, H'3F, H'C8, H'FD, H'FF, H'3F
+          .DATA.B      H'02, H'00, H'07, H'00, H'1E, H'00, H'00, H'00, H'24, H'FC, H'FF, H'3F, H'24, H'FD, H'FF, H'3F
+          .DATA.B      H'02, H'00, H'0F, H'00, H'4F, H'4E, H'00, H'00, H'25, H'FC, H'FF, H'3F, H'25, H'FD, H'FF, H'3F
+          .DATA.B      H'02, H'00, H'0F, H'00, H'72, H'02, H'00, H'00, H'25, H'FD, H'FF, H'3F, H'FF, H'FF, H'FF, H'3F
+          .DATA.B      H'02, H'00, H'0F, H'00, H'59, H'03, H'00, H'00, H'26, H'FC, H'FF, H'3F, H'26, H'FD, H'FF, H'3F
+          .DATA.B      H'02, H'00, H'0F, H'00, H'1A, H'00, H'00, H'00, H'26, H'FD, H'FF, H'3F, H'FF, H'FF, H'FF, H'3F
+          .DATA.B      H'00, H'00, H'00, H'00, H'1F, H'00, H'00, H'00, H'C8, H'FD, H'FF, H'3F, H'C8, H'FD, H'FF, H'3F
+          .DATA.B      H'00, H'00, H'00, H'00, H'1F, H'00, H'00, H'00, H'C8, H'FD, H'FF, H'3F, H'C8, H'FD, H'FF, H'3F
+          .DATA.B      H'00, H'00, H'00, H'00, H'1F, H'00, H'00, H'00, H'C8, H'FD, H'FF, H'3F, H'C8, H'FD, H'FF, H'3F
+          .DATA.B      H'00, H'00, H'00, H'00, H'1F, H'00, H'00, H'00, H'C8, H'FD, H'FF, H'3F, H'C8, H'FD, H'FF, H'3F
+          .DATA.B      H'02, H'00, H'0B, H'00, H'96, H'03, H'00, H'00, H'28, H'FC, H'FF, H'3F, H'28, H'FD, H'FF, H'3F
+          .DATA.B      H'02, H'00, H'0B, H'00, H'1C, H'00, H'00, H'00, H'28, H'FD, H'FF, H'3F, H'FF, H'FF, H'FF, H'3F
+          .DATA.B      H'02, H'00, H'00, H'00, H'CD, H'01, H'00, H'00, H'29, H'FC, H'FF, H'3F, H'29, H'FD, H'FF, H'3F
+          .DATA.B      H'02, H'00, H'00, H'00, H'0E, H'00, H'00, H'00, H'29, H'FD, H'FF, H'3F, H'FF, H'FF, H'FF, H'3F
+          .DATA.B      H'02, H'00, H'00, H'00, H'17, H'00, H'00, H'00, H'2A, H'FC, H'FF, H'3F, H'2A, H'FD, H'FF, H'3F
+          .DATA.B      H'02, H'00, H'00, H'00, H'DD, H'03, H'00, H'00, H'2B, H'FC, H'FF, H'3F, H'2B, H'FD, H'FF, H'3F
+          .DATA.B      H'02, H'00, H'00, H'00, H'1E, H'00, H'00, H'00, H'2B, H'FD, H'FF, H'3F, H'FF, H'FF, H'FF, H'3F
+          .DATA.B      H'00, H'00, H'0A, H'00, H'0E, H'4A, H'00, H'00, H'0C, H'34, H'00, H'30, H'0C, H'35, H'F4, H'3F
+          .DATA.B      H'00, H'00, H'0A, H'00, H'50, H'02, H'00, H'00, H'0C, H'35, H'00, H'30, H'0D, H'FD, H'FF, H'3F
+          .DATA.B      H'00, H'00, H'0A, H'00, H'50, H'02, H'00, H'00, H'0C, H'35, H'04, H'30, H'FF, H'FF, H'FF, H'3F
+          .DATA.B      H'00, H'00, H'0A, H'00, H'9B, H'77, H'00, H'00, H'0E, H'3C, H'00, H'30, H'0E, H'3D, H'F4, H'3F
+          .DATA.B      H'00, H'00, H'0A, H'00, H'BC, H'03, H'00, H'00, H'0E, H'3D, H'00, H'30, H'0F, H'FD, H'FF, H'3F
+          .DATA.B      H'00, H'00, H'0A, H'00, H'BC, H'03, H'00, H'00, H'0E, H'3D, H'04, H'30, H'FF, H'FF, H'FF, H'3F
+          .DATA.B      H'00, H'00, H'0B, H'00, H'59, H'03, H'00, H'00, H'10, H'FC, H'FF, H'3F, H'10, H'05, H'FC, H'3F
+          .DATA.B      H'00, H'00, H'0B, H'00, H'1A, H'00, H'00, H'00, H'10, H'FD, H'FF, H'3F, H'01, H'FF, H'FF, H'3F
+          .DATA.B      H'00, H'00, H'14, H'00, H'59, H'03, H'00, H'00, H'11, H'04, H'FC, H'3F, H'11, H'FD, H'FF, H'3F
+          .DATA.B      H'00, H'00, H'14, H'00, H'1A, H'00, H'00, H'00, H'11, H'05, H'FC, H'3F, H'FF, H'FF, H'FF, H'3F
+          .DATA.B      H'01, H'00, H'0B, H'00, H'8B, H'C9, H'09, H'00, H'1C, H'FC, H'FF, H'3F, H'1C, H'FD, H'FF, H'3F
+          .DATA.B      H'01, H'00, H'0B, H'00, H'4C, H'4E, H'00, H'00, H'1C, H'FD, H'FF, H'3F, H'FF, H'FF, H'FF, H'3F
+          .DATA.B      H'02, H'00, H'07, H'00, H'00, H'00, H'00, H'00, H'C8, H'FD, H'FF, H'3F, H'C8, H'FD, H'FF, H'3F
+          .DATA.B      H'02, H'00, H'07, H'00, H'B4, H'62, H'00, H'00, H'22, H'08, H'FC, H'3F, H'22, H'FD, H'FF, H'3F
+          .DATA.B      H'02, H'00, H'07, H'00, H'15, H'03, H'00, H'00, H'22, H'8D, H'20, H'30, H'23, H'FD, H'FF, H'3F
+          .DATA.B      H'02, H'00, H'0B, H'00, H'DD, H'03, H'00, H'00, H'27, H'FC, H'FF, H'3F, H'27, H'FD, H'FF, H'3F
+          .DATA.B      H'02, H'00, H'0B, H'00, H'1E, H'00, H'00, H'00, H'27, H'FD, H'FF, H'3F, H'FF, H'FF, H'FF, H'3F
+          .DATA.B      H'FF, H'FF, H'0B, H'00, H'1E, H'00, H'00, H'00, H'27, H'FD, H'FF, H'3F, H'FF, H'FF, H'FF, H'3F
+_init_omeEvents_8c04b920:        ; from defines
+          .DATA.B      H'00, H'00, H'04, H'00, H'E3, H'28, H'00, H'00, H'64, H'FC, H'FF, H'3F, H'64, H'FD, H'FF, H'3F
+          .DATA.B      H'00, H'00, H'04, H'00, H'47, H'01, H'00, H'00, H'64, H'FD, H'FF, H'3F, H'FF, H'FF, H'FF, H'3F
+          .DATA.B      H'00, H'00, H'04, H'00, H'2E, H'02, H'00, H'00, H'65, H'FC, H'FF, H'3F, H'65, H'FD, H'FF, H'3F
+          .DATA.B      H'00, H'00, H'04, H'00, H'11, H'00, H'00, H'00, H'65, H'FD, H'FF, H'3F, H'FF, H'FF, H'FF, H'3F
+          .DATA.B      H'00, H'00, H'04, H'00, H'15, H'03, H'00, H'00, H'66, H'14, H'F8, H'3F, H'66, H'FD, H'FF, H'3F
+          .DATA.B      H'00, H'00, H'04, H'00, H'18, H'00, H'00, H'00, H'66, H'15, H'F8, H'3F, H'FF, H'FF, H'FF, H'3F
+          .DATA.B      H'00, H'00, H'00, H'00, H'1F, H'00, H'00, H'00, H'C8, H'FD, H'FF, H'3F, H'C8, H'FD, H'FF, H'3F
+          .DATA.B      H'00, H'00, H'04, H'00, H'1C, H'00, H'00, H'00, H'68, H'FC, H'FF, H'3F, H'68, H'FD, H'FF, H'3F
+          .DATA.B      H'00, H'00, H'0D, H'00, H'01, H'01, H'00, H'00, H'69, H'FC, H'FF, H'3F, H'69, H'FD, H'FF, H'3F
+          .DATA.B      H'00, H'00, H'0D, H'00, H'08, H'00, H'00, H'00, H'69, H'FD, H'FF, H'3F, H'FF, H'FF, H'FF, H'3F
+          .DATA.B      H'00, H'00, H'0D, H'00, H'0F, H'00, H'00, H'00, H'6A, H'FC, H'FF, H'3F, H'6A, H'FD, H'FF, H'3F
+          .DATA.B      H'00, H'00, H'0D, H'00, H'B6, H'03, H'00, H'00, H'6B, H'FC, H'FF, H'3F, H'6B, H'FD, H'FF, H'3F
+          .DATA.B      H'00, H'00, H'0D, H'00, H'1D, H'00, H'00, H'00, H'6B, H'FD, H'FF, H'3F, H'FF, H'FF, H'FF, H'3F
+          .DATA.B      H'00, H'00, H'00, H'00, H'64, H'49, H'00, H'00, H'6C, H'FC, H'FF, H'3F, H'6C, H'FD, H'FF, H'3F
+          .DATA.B      H'00, H'00, H'00, H'00, H'4B, H'02, H'00, H'00, H'6C, H'FD, H'FF, H'3F, H'FF, H'FF, H'FF, H'3F
+          .DATA.B      H'00, H'00, H'00, H'00, H'19, H'00, H'00, H'00, H'6D, H'FC, H'FF, H'3F, H'6D, H'FD, H'FF, H'3F
+          .DATA.B      H'00, H'00, H'03, H'00, H'C2, H'24, H'00, H'00, H'6E, H'FC, H'FF, H'3F, H'6E, H'FD, H'FF, H'3F
+          .DATA.B      H'00, H'00, H'03, H'00, H'26, H'01, H'00, H'00, H'6E, H'FD, H'FF, H'3F, H'FF, H'FF, H'FF, H'3F
+          .DATA.B      H'00, H'00, H'03, H'00, H'0D, H'52, H'00, H'00, H'6F, H'FC, H'FF, H'3F, H'6F, H'FD, H'FF, H'3F
+          .DATA.B      H'00, H'00, H'03, H'00, H'90, H'02, H'00, H'00, H'6F, H'FD, H'FF, H'3F, H'FF, H'FF, H'FF, H'3F
+          .DATA.B      H'00, H'00, H'03, H'00, H'78, H'7B, H'00, H'00, H'70, H'FC, H'FF, H'3F, H'05, H'C3, H'F5, H'3F
+          .DATA.B      H'00, H'00, H'03, H'00, H'DB, H'03, H'00, H'00, H'70, H'FD, H'FF, H'3F, H'05, H'FF, H'FF, H'3F
+          .DATA.B      H'00, H'00, H'00, H'00, H'43, H'01, H'00, H'00, H'71, H'FC, H'FF, H'3F, H'71, H'FD, H'FF, H'3F
+          .DATA.B      H'00, H'00, H'00, H'00, H'0A, H'00, H'00, H'00, H'71, H'FD, H'FF, H'3F, H'FF, H'FF, H'FF, H'3F
+          .DATA.B      H'00, H'00, H'05, H'00, H'11, H'03, H'00, H'00, H'72, H'FC, H'FF, H'3F, H'72, H'FD, H'FF, H'3F
+          .DATA.B      H'00, H'00, H'05, H'00, H'18, H'00, H'00, H'00, H'72, H'FD, H'FF, H'3F, H'FF, H'FF, H'FF, H'3F
+          .DATA.B      H'00, H'00, H'05, H'00, H'83, H'00, H'00, H'00, H'73, H'FC, H'FF, H'3F, H'73, H'FD, H'FF, H'3F
+          .DATA.B      H'00, H'00, H'05, H'00, H'04, H'00, H'00, H'00, H'73, H'FD, H'FF, H'3F, H'FF, H'FF, H'FF, H'3F
+          .DATA.B      H'00, H'00, H'05, H'00, H'0A, H'00, H'00, H'00, H'74, H'FC, H'FF, H'3F, H'74, H'FD, H'FF, H'3F
+          .DATA.B      H'01, H'00, H'05, H'00, H'C3, H'20, H'00, H'00, H'75, H'FC, H'FF, H'3F, H'75, H'FD, H'FF, H'3F
+          .DATA.B      H'01, H'00, H'05, H'00, H'06, H'01, H'00, H'00, H'75, H'FD, H'FF, H'3F, H'FF, H'FF, H'FF, H'3F
+          .DATA.B      H'01, H'00, H'05, H'00, H'AA, H'45, H'00, H'00, H'76, H'FC, H'FF, H'3F, H'76, H'FD, H'FF, H'3F
+          .DATA.B      H'01, H'00, H'05, H'00, H'2D, H'02, H'00, H'00, H'76, H'FD, H'FF, H'3F, H'FF, H'FF, H'FF, H'3F
+          .DATA.B      H'01, H'00, H'05, H'00, H'D4, H'62, H'00, H'00, H'77, H'FC, H'FF, H'3F, H'77, H'FD, H'FF, H'3F
+          .DATA.B      H'01, H'00, H'05, H'00, H'16, H'03, H'00, H'00, H'77, H'FD, H'FF, H'3F, H'FF, H'FF, H'FF, H'3F
+          .DATA.B      H'01, H'00, H'05, H'00, H'BB, H'03, H'00, H'00, H'78, H'FC, H'FF, H'3F, H'78, H'FD, H'FF, H'3F
+          .DATA.B      H'01, H'00, H'05, H'00, H'1D, H'00, H'00, H'00, H'78, H'FD, H'FF, H'3F, H'FF, H'FF, H'FF, H'3F
+          .DATA.B      H'01, H'00, H'03, H'00, H'26, H'35, H'00, H'00, H'79, H'FC, H'FF, H'3F, H'79, H'FD, H'FF, H'3F
+          .DATA.B      H'01, H'00, H'03, H'00, H'A9, H'01, H'00, H'00, H'79, H'FD, H'FF, H'3F, H'FF, H'FF, H'FF, H'3F
+          .DATA.B      H'01, H'00, H'03, H'00, H'90, H'5E, H'00, H'00, H'7A, H'FC, H'FF, H'3F, H'7A, H'FD, H'FF, H'3F
+          .DATA.B      H'01, H'00, H'03, H'00, H'F4, H'02, H'00, H'00, H'7A, H'FD, H'FF, H'3F, H'FF, H'FF, H'FF, H'3F
+          .DATA.B      H'01, H'00, H'03, H'00, H'DB, H'03, H'00, H'00, H'7B, H'FC, H'FF, H'3F, H'7B, H'FD, H'FF, H'3F
+          .DATA.B      H'01, H'00, H'03, H'00, H'1E, H'00, H'00, H'00, H'7B, H'FD, H'FF, H'3F, H'FF, H'FF, H'FF, H'3F
+          .DATA.B      H'01, H'00, H'00, H'00, H'83, H'14, H'C5, H'00, H'7C, H'FC, H'FF, H'3F, H'7C, H'FD, H'FF, H'3F
+          .DATA.B      H'01, H'00, H'00, H'00, H'A4, H'28, H'06, H'00, H'7C, H'FD, H'FF, H'3F, H'FF, H'FF, H'FF, H'3F
+          .DATA.B      H'01, H'00, H'00, H'00, H'51, H'4E, H'00, H'00, H'7D, H'FC, H'FF, H'3F, H'7D, H'FD, H'FF, H'3F
+          .DATA.B      H'01, H'00, H'00, H'00, H'72, H'02, H'00, H'00, H'7D, H'FD, H'FF, H'3F, H'FF, H'FF, H'FF, H'3F
+          .DATA.B      H'01, H'00, H'00, H'00, H'38, H'6B, H'00, H'00, H'7E, H'FC, H'FF, H'3F, H'7E, H'FD, H'FF, H'3F
+          .DATA.B      H'01, H'00, H'00, H'00, H'59, H'03, H'00, H'00, H'7E, H'FD, H'FF, H'3F, H'FF, H'FF, H'FF, H'3F
+          .DATA.B      H'01, H'00, H'03, H'00, H'E4, H'2C, H'97, H'01, H'7F, H'FC, H'FF, H'3F, H'7F, H'19, H'FC, H'3F
+          .DATA.B      H'01, H'00, H'03, H'00, H'67, H'B9, H'0C, H'00, H'7F, H'FD, H'FF, H'3F, H'06, H'FF, H'FF, H'3F
+          .DATA.B      H'00, H'00, H'00, H'00, H'1F, H'00, H'00, H'00, H'C8, H'FD, H'FF, H'3F, H'C8, H'FD, H'FF, H'3F
+          .DATA.B      H'00, H'00, H'00, H'00, H'1F, H'00, H'00, H'00, H'C8, H'FD, H'FF, H'3F, H'C8, H'FD, H'FF, H'3F
+          .DATA.B      H'00, H'00, H'00, H'00, H'1F, H'00, H'00, H'00, H'C8, H'FD, H'FF, H'3F, H'C8, H'FD, H'FF, H'3F
+          .DATA.B      H'00, H'00, H'00, H'00, H'1F, H'00, H'00, H'00, H'C8, H'FD, H'FF, H'3F, H'C8, H'FD, H'FF, H'3F
+          .DATA.B      H'01, H'00, H'00, H'00, H'67, H'39, H'00, H'00, H'82, H'FC, H'FF, H'3F, H'82, H'FD, H'FF, H'3F
+          .DATA.B      H'01, H'00, H'00, H'00, H'CB, H'01, H'00, H'00, H'82, H'FD, H'FF, H'3F, H'FF, H'FF, H'FF, H'3F
+          .DATA.B      H'01, H'00, H'0C, H'00, H'67, H'39, H'00, H'00, H'83, H'18, H'FC, H'3F, H'83, H'FD, H'FF, H'3F
+          .DATA.B      H'01, H'00, H'0C, H'00, H'CB, H'01, H'00, H'00, H'83, H'19, H'FC, H'3F, H'FF, H'FF, H'FF, H'3F
+          .DATA.B      H'01, H'00, H'00, H'00, H'B2, H'02, H'00, H'00, H'84, H'FC, H'FF, H'3F, H'84, H'FD, H'FF, H'3F
+          .DATA.B      H'01, H'00, H'00, H'00, H'15, H'00, H'00, H'00, H'84, H'FD, H'FF, H'3F, H'FF, H'FF, H'FF, H'3F
+          .DATA.B      H'01, H'00, H'03, H'00, H'43, H'01, H'00, H'00, H'85, H'FC, H'FF, H'3F, H'85, H'FD, H'FF, H'3F
+          .DATA.B      H'01, H'00, H'03, H'00, H'0A, H'00, H'00, H'00, H'85, H'FD, H'FF, H'3F, H'FF, H'FF, H'FF, H'3F
+          .DATA.B      H'01, H'00, H'03, H'00, H'11, H'00, H'00, H'00, H'86, H'FC, H'FF, H'3F, H'86, H'FD, H'FF, H'3F
+          .DATA.B      H'01, H'00, H'03, H'00, H'98, H'03, H'00, H'00, H'87, H'FC, H'FF, H'3F, H'87, H'FD, H'FF, H'3F
+          .DATA.B      H'01, H'00, H'03, H'00, H'1C, H'00, H'00, H'00, H'87, H'FD, H'FF, H'3F, H'FF, H'FF, H'FF, H'3F
+          .DATA.B      H'02, H'00, H'00, H'00, H'E6, H'A0, H'A4, H'00, H'88, H'FC, H'FF, H'3F, H'88, H'FD, H'FF, H'3F
+          .DATA.B      H'02, H'00, H'00, H'00, H'07, H'25, H'05, H'00, H'88, H'FD, H'FF, H'3F, H'FF, H'FF, H'FF, H'3F
+          .DATA.B      H'02, H'00, H'00, H'00, H'07, H'25, H'05, H'00, H'88, H'FD, H'FF, H'3F, H'FF, H'FF, H'FF, H'3F
+          .DATA.B      H'02, H'00, H'00, H'00, H'CD, H'C1, H'08, H'00, H'89, H'FC, H'FF, H'3F, H'89, H'FD, H'FF, H'3F
+          .DATA.B      H'02, H'00, H'00, H'00, H'0E, H'46, H'00, H'00, H'89, H'FD, H'FF, H'3F, H'FF, H'FF, H'FF, H'3F
+          .DATA.B      H'02, H'00, H'00, H'00, H'0E, H'46, H'00, H'00, H'89, H'FD, H'FF, H'3F, H'FF, H'FF, H'FF, H'3F
+          .DATA.B      H'02, H'00, H'00, H'00, H'D4, H'02, H'00, H'00, H'8A, H'FC, H'FF, H'3F, H'8A, H'FD, H'FF, H'3F
+          .DATA.B      H'02, H'00, H'00, H'00, H'16, H'00, H'00, H'00, H'8A, H'FD, H'FF, H'3F, H'FF, H'FF, H'FF, H'3F
+          .DATA.B      H'02, H'00, H'00, H'00, H'16, H'00, H'00, H'00, H'8A, H'FD, H'FF, H'3F, H'FF, H'FF, H'FF, H'3F
+          .DATA.B      H'02, H'00, H'00, H'00, H'BB, H'7B, H'00, H'00, H'8B, H'FC, H'FF, H'3F, H'8B, H'FD, H'FF, H'3F
+          .DATA.B      H'02, H'00, H'00, H'00, H'DD, H'03, H'00, H'00, H'8B, H'FD, H'FF, H'3F, H'FF, H'FF, H'FF, H'3F
+          .DATA.B      H'02, H'00, H'00, H'00, H'DD, H'03, H'00, H'00, H'8B, H'FD, H'FF, H'3F, H'FF, H'FF, H'FF, H'3F
+          .DATA.B      H'02, H'00, H'03, H'00, H'2A, H'02, H'00, H'00, H'8C, H'FC, H'FF, H'3F, H'8C, H'FD, H'FF, H'3F
+          .DATA.B      H'02, H'00, H'03, H'00, H'11, H'00, H'00, H'00, H'8C, H'FD, H'FF, H'3F, H'FF, H'FF, H'FF, H'3F
+          .DATA.B      H'02, H'00, H'03, H'00, H'18, H'00, H'00, H'00, H'8D, H'FC, H'FF, H'3F, H'8D, H'FD, H'FF, H'3F
+          .DATA.B      H'02, H'00, H'04, H'00, H'15, H'00, H'00, H'00, H'8E, H'FC, H'FF, H'3F, H'8E, H'FD, H'FF, H'3F
+          .DATA.B      H'00, H'00, H'00, H'00, H'1F, H'00, H'00, H'00, H'C8, H'FD, H'FF, H'3F, H'C8, H'FD, H'FF, H'3F
+          .DATA.B      H'00, H'00, H'00, H'00, H'1F, H'00, H'00, H'00, H'C8, H'FD, H'FF, H'3F, H'C8, H'FD, H'FF, H'3F
+          .DATA.B      H'02, H'00, H'00, H'00, H'B2, H'5E, H'0C, H'00, H'91, H'FC, H'FF, H'3F, H'91, H'FD, H'FF, H'3F
+          .DATA.B      H'02, H'00, H'00, H'00, H'F5, H'62, H'00, H'00, H'91, H'FD, H'FF, H'3F, H'FF, H'FF, H'FF, H'3F
+          .DATA.B      H'02, H'00, H'00, H'00, H'1C, H'00, H'00, H'00, H'92, H'FC, H'FF, H'3F, H'92, H'FD, H'FF, H'3F
+          .DATA.B      H'00, H'00, H'04, H'00, H'18, H'00, H'00, H'00, H'66, H'9C, H'51, H'30, H'66, H'9D, H'F5, H'3F
+          .DATA.B      H'00, H'00, H'04, H'00, H'18, H'00, H'00, H'00, H'66, H'15, H'FC, H'3F, H'67, H'FD, H'FF, H'3F
+          .DATA.B      H'01, H'00, H'03, H'00, H'B2, H'02, H'00, H'00, H'80, H'18, H'FC, H'3F, H'80, H'FD, H'FF, H'3F
+          .DATA.B      H'01, H'00, H'03, H'00, H'15, H'00, H'00, H'00, H'80, H'19, H'FC, H'3F, H'81, H'FD, H'FF, H'3F
+          .DATA.B      H'02, H'00, H'04, H'00, H'1C, H'00, H'00, H'00, H'8F, H'FC, H'FF, H'3F, H'8F, H'FD, H'FF, H'3F
+          .DATA.B      H'FF, H'FF, H'04, H'00, H'1C, H'00, H'00, H'00, H'8F, H'FC, H'FF, H'3F, H'8F, H'FD, H'FF, H'3F
+          .END

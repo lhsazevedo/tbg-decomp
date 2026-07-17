@@ -13,9 +13,9 @@
           .EXPORT     _init_unknownVibStructBArray_8c03be5c
           .EXPORT     _var_unknownVibStructA_8c157a48
           .EXPORT     _vib_8c010e90
-          .EXPORT     _vibClear_8c010fbe
-          .EXPORT     _vib_8c010f7a
-          .EXPORT     _vib_8c010fae
+          .EXPORT     _VibClear_8c010fbe
+          .EXPORT     _VibStart_8c010f7a
+          .EXPORT     _VibStop_8c010fae
           .SECTION    P,CODE,ALIGN=4
 _vib_8c010e90:                   ; function: vib_8c010e90
                                  ; frame size=36
@@ -88,7 +88,7 @@ L0:
           MOV.L       @R2,R3
           TST         R3,R3
           BF          L1
-          BSR         _vibClear_8c010fbe
+          BSR         _VibClear_8c010fbe
           NOP
           BRA         L3
           NOP
@@ -141,7 +141,7 @@ L4:
           MOV.L       @R15+,R13
           RTS
           MOV.L       @R15+,R14
-_vib_8c010f7a:                   ; function: vib_8c010f7a
+_VibStart_8c010f7a:                   ; function: VibStart_8c010f7a
                                  ; frame size=12
           MOV.L       R14,@-R15
           MOV         #8,R3
@@ -163,7 +163,7 @@ _vib_8c010f7a:                   ; function: vib_8c010f7a
 L5:                               
           TST         R4,R4
           BF          L7
-          BSR         _vibClear_8c010fbe
+          BSR         _VibClear_8c010fbe
           NOP
 L6:
           MOV.L       R14,@R13
@@ -172,7 +172,7 @@ L7:
           MOV.L       @R15+,R13
           RTS
           MOV.L       @R15+,R14
-_vib_8c010fae:                   ; function: vib_8c010fae
+_VibStop_8c010fae:                   ; function: VibStop_8c010fae
                                  ; frame size=0
           MOV.L       L9,R3   ; _var_unknownVibStructA_8c157a48
           MOV.L       @R3,R0
@@ -183,7 +183,7 @@ _vib_8c010fae:                   ; function: vib_8c010fae
 L8:                               
           RTS
           NOP
-_vibClear_8c010fbe:                   ; function: vibClear_8c010fbe
+_VibClear_8c010fbe:                   ; function: VibClear_8c010fbe
                                  ; frame size=4
           STS.L       PR,@-R15
           MOV.L       L9,R4   ; _var_unknownVibStructA_8c157a48
