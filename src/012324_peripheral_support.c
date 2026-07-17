@@ -1,3 +1,4 @@
+/* @unit Psp */
 #include <shinobi.h>
 #include "010e90.h"
 #include "011120_asset_queues.h"
@@ -121,5 +122,5 @@ void PspTask_8c012324()
     }
 
     vmsLcd_8c01c910();
-    updateAdxVolFade_8c010a40();
+    SndUpdateAdxVolFade_8c010a40();
 }

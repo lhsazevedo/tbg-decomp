@@ -20,7 +20,7 @@
           .IMPORT     _buLoadFileEx
           .IMPORT     _buRewriteExecFile
           .IMPORT     _var_menuState_8c1bc7a8
-          .IMPORT     _drawSprite_8c014f54
+          .IMPORT     _TxtDrawSprite_8c014f54
           .IMPORT     _var_resourceGroup_8c2263a8
           .IMPORT     _var_vmuStatus_8c226048
           .IMPORT     _init_8c044e50
@@ -31,9 +31,9 @@
           .IMPORT     _init_8c044e48
           .IMPORT     _VmMenuUpdateVmusStatus_8c019550
           .IMPORT     _var_isFading_8c226568
-          .IMPORT     _isPvmReady_8c01432a
+          .IMPORT     _RouteLoadIsPvmReady_8c01432a
           .IMPORT     _AsqFreeQueues_8c011f7e
-          .IMPORT     _promptHandleMultiple_8c016c58
+          .IMPORT     _PromptHandleMultiple_8c016c58
           .IMPORT     _var_peripherals_8c1ba35c
           .IMPORT     _VmMenuUnmountVms_8c0194de
           .IMPORT     _push_fadeout_8c022b60
@@ -44,7 +44,7 @@
           .IMPORT     _const_8c0384b0
           .IMPORT     _const_8c0384e8
           .IMPORT     _CourseMenuInterpolateCursor_8c016d2c
-          .IMPORT     _promptHandleBinary_8c016caa
+          .IMPORT     _PromptHandleBinary_8c016caa
           .IMPORT     _const_8c03866c
           .IMPORT     _var_8c1bc454
           .IMPORT     _const_8c038510
@@ -66,7 +66,7 @@
           .IMPORT     _syFree
           .IMPORT     _MainMenuSwitchFromTask_8c01a09a
           .IMPORT     _menuTextboxText_8c02af1c
-          .IMPORT     _setTaskAction_8c014b3e
+          .IMPORT     _TaskSetAction_8c014b3e
           .IMPORT     _AsqInitQueues_8c011f36
           .IMPORT     _AsqResetQueues_8c011f6c
           .IMPORT     _init_8c044e90
@@ -74,8 +74,8 @@
           .IMPORT     _const_8c038660
           .IMPORT     _const_8c038658
           .IMPORT     _AsqRequestDat_8c011182
-          .IMPORT     _setPvmReady_8c014330
-          .IMPORT     _resetPvmReady_8c014322
+          .IMPORT     _RouteLoadSetPvmReady_8c014330
+          .IMPORT     _RouteLoadResetPvmReady_8c014322
           .IMPORT     _AsqNop_8c011120
           .IMPORT     _AsqProcessQueues_8c011fe0
           .IMPORT     _var_8c2260ac
@@ -703,7 +703,7 @@ LP_GEN_34738:
           .DATA.L _buLoadFileEx ; H'8C01BFA8
           .DATA.L _buRewriteExecFile ; H'8C01BFAC
           .DATA.L _var_menuState_8c1bc7a8 ; H'8C01BFB0
-          .DATA.L _drawSprite_8c014f54 ; H'8C01BFB4
+          .DATA.L _TxtDrawSprite_8c014f54 ; H'8C01BFB4
           .DATA.L _var_resourceGroup_8c2263a8 ; H'8C01BFB8
           .DATA.L H'C0800000 ; H'8C01BFBC
           .DATA.L _var_vmuStatus_8c226048 ; H'8C01BFC0
@@ -1078,10 +1078,10 @@ LAB_8c01c276:
           BRA         LAB_8c01c2bc
           MOV.L       R3,@R15
 LP_GEN_76857:
-          .DATA.L _isPvmReady_8c01432a ; H'8C01C284
+          .DATA.L _RouteLoadIsPvmReady_8c01432a ; H'8C01C284
           .DATA.L _AsqFreeQueues_8c011f7e ; H'8C01C288
-          .DATA.L _drawSprite_8c014f54 ; H'8C01C28C
-          .DATA.L _promptHandleMultiple_8c016c58 ; H'8C01C290
+          .DATA.L _TxtDrawSprite_8c014f54 ; H'8C01C28C
+          .DATA.L _PromptHandleMultiple_8c016c58 ; H'8C01C290
           .DATA.L H'10+_var_peripherals_8c1ba35c ; H'8C01C294
           .DATA.L _VmMenuUnmountVms_8c0194de ; H'8C01C298
           .DATA.L _push_fadeout_8c022b60 ; H'8C01C29C
@@ -1342,7 +1342,7 @@ LP_GEN_25641:
           .DATA.L _push_fadeout_8c022b60 ; H'8C01C468
           .DATA.L _const_8c038498 ; H'8C01C46C
           .DATA.L _CourseMenuInterpolateCursor_8c016d2c ; H'8C01C470
-          .DATA.L _promptHandleBinary_8c016caa ; H'8C01C474
+          .DATA.L _PromptHandleBinary_8c016caa ; H'8C01C474
 LAB_8c01c478:
           MOV         #H'6c,R0
           MOV.L       LP_GEN_18425,R5
@@ -1581,10 +1581,10 @@ LP_GEN_18425:
           .DATA.L _var_8c2260b8 ; H'8C01C630
           .DATA.L _const_8c0385bc ; H'8C01C634
           .DATA.L _var_texbuf_8c277ca0 ; H'8C01C638
-          .DATA.L _promptHandleBinary_8c016caa ; H'8C01C63C
+          .DATA.L _PromptHandleBinary_8c016caa ; H'8C01C63C
           .DATA.L _const_8c0385d8 ; H'8C01C640
           .DATA.L H'43640000 ; H'8C01C644
-          .DATA.L _drawSprite_8c014f54 ; H'8C01C648
+          .DATA.L _TxtDrawSprite_8c014f54 ; H'8C01C648
 LAB_8c01c64c:
           MOV.W       LP_GEN_69230+2,R0
           MOV         #H'64,R3
@@ -1863,7 +1863,7 @@ LP_GEN_33412:
           .DATA.L _MainMenuSwitchFromTask_8c01a09a ; H'8C01C870
           .DATA.L _menuTextboxText_8c02af1c ; H'8C01C874
           .DATA.L H'C0800000 ; H'8C01C878
-          .DATA.L _drawSprite_8c014f54 ; H'8C01C87C
+          .DATA.L _TxtDrawSprite_8c014f54 ; H'8C01C87C
 _FUN_8c01c880:
           STS.L       PR,@-R15
           MOV.L       LP_GEN_73212+6,R3
@@ -1951,7 +1951,7 @@ _vmsLcd_8c01c910:
 LP_GEN_73212:
           .RES.W 1 ; H'8C01C91E
           .DATA.L _FUN_8c01bfec ; H'8C01C920
-          .DATA.L _setTaskAction_8c014b3e ; H'8C01C924
+          .DATA.L _TaskSetAction_8c014b3e ; H'8C01C924
           .DATA.L _var_menuState_8c1bc7a8 ; H'8C01C928
           .DATA.L _AsqInitQueues_8c011f36 ; H'8C01C92C
           .DATA.L _AsqResetQueues_8c011f6c ; H'8C01C930
@@ -1962,8 +1962,8 @@ LP_GEN_73212:
           .DATA.L _const_8c038660 ; H'8C01C944
           .DATA.L _const_8c038658 ; H'8C01C948
           .DATA.L _AsqRequestDat_8c011182 ; H'8C01C94C
-          .DATA.L _setPvmReady_8c014330 ; H'8C01C950
-          .DATA.L _resetPvmReady_8c014322 ; H'8C01C954
+          .DATA.L _RouteLoadSetPvmReady_8c014330 ; H'8C01C950
+          .DATA.L _RouteLoadResetPvmReady_8c014322 ; H'8C01C954
           .DATA.L _AsqNop_8c011120 ; H'8C01C958
           .DATA.L _AsqProcessQueues_8c011fe0 ; H'8C01C95C
           .DATA.L _const_8c03867c ; H'8C01C960

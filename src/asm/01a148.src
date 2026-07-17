@@ -8,8 +8,8 @@
           .IMPORT     _FUN_8c018862
           .IMPORT     _push_fadeout_8c022b60
           .IMPORT     _init_8c044de0
-          .IMPORT     _drawSprite_8c014f54
-          .IMPORT     _setTaskAction_8c014b3e
+          .IMPORT     _TxtDrawSprite_8c014f54
+          .IMPORT     _TaskSetAction_8c014b3e
           .IMPORT     _push_fadein_8c022a9c
           .IMPORT     _init_8c044de8
           .IMPORT     _njDrawPolygon
@@ -24,9 +24,9 @@
           .IMPORT     _var_8c226078
           .IMPORT     _FUN_8c0188dc
           .IMPORT     _var_soundMode_8c226070
-          .IMPORT     _setSoundMode_8c0108c0
-          .IMPORT     _setAdxVol_8c010972
-          .IMPORT     _setMidiVolAndInitStruct_8c0109f4
+          .IMPORT     _SndSetSoundMode_8c0108c0
+          .IMPORT     _SndSetAdxVol_8c010972
+          .IMPORT     _SndSetMidiVolAndInitStruct_8c0109f4
           .IMPORT     _FUN_8c0107ac
           .IMPORT     _var_8c226080
           .IMPORT     _FUN_8c0106d2
@@ -341,7 +341,7 @@ LP_GEN_35922:
           .DATA.L H'42600000 ; H'8C01A364
           .DATA.L H'C0800000 ; H'8C01A368
           .DATA.L H'C0A00000 ; H'8C01A36C
-          .DATA.L _drawSprite_8c014f54 ; H'8C01A370
+          .DATA.L _TxtDrawSprite_8c014f54 ; H'8C01A370
           .DATA.L H'429A0000 ; H'8C01A374
           .DATA.L H'43A88000 ; H'8C01A378
           .DATA.L H'42800000 ; H'8C01A37C
@@ -485,7 +485,7 @@ LP_GEN_85851:
           .DATA.W H'0080 ; H'8C01A47E
           .DATA.L H'C0E00000 ; H'8C01A480
           .DATA.L _FUN_8c01a148 ; H'8C01A484
-          .DATA.L _setTaskAction_8c014b3e ; H'8C01A488
+          .DATA.L _TaskSetAction_8c014b3e ; H'8C01A488
           .DATA.L _var_menuState_8c1bc7a8 ; H'8C01A48C
           .DATA.L _push_fadein_8c022a9c ; H'8C01A490
           .DATA.L H'10+_var_peripherals_8c1ba35c ; H'8C01A494
@@ -827,7 +827,7 @@ LP_GEN_30580:
           .RES.W 1 ; H'8C01A712
           .DATA.L H'000F06FE ; H'8C01A714
           .DATA.L H'000700FE ; H'8C01A718
-          .DATA.L _drawSprite_8c014f54 ; H'8C01A71C
+          .DATA.L _TxtDrawSprite_8c014f54 ; H'8C01A71C
           .DATA.L H'C0A00000 ; H'8C01A720
 LAB_8c01a724:
           MOV         R9,R5
@@ -1265,7 +1265,7 @@ LAB_8c01aa36:
 LP_GEN_75770:
           .DATA.L H'C0E00000 ; H'8C01AA40
           .DATA.L _FUN_8c01a50c ; H'8C01AA44
-          .DATA.L _setTaskAction_8c014b3e ; H'8C01AA48
+          .DATA.L _TaskSetAction_8c014b3e ; H'8C01AA48
           .DATA.L _var_menuState_8c1bc7a8 ; H'8C01AA4C
           .DATA.L _push_fadein_8c022a9c ; H'8C01AA50
           .DATA.L H'10+_var_peripherals_8c1ba35c ; H'8C01AA54
@@ -1546,7 +1546,7 @@ LP_GEN_82753:
           .RES.W 1 ; H'8C01AC4E
           .DATA.L _FUN_8c010ca6 ; H'8C01AC50
           .DATA.L _sdMidiPlay ; H'8C01AC54
-          .DATA.L _drawSprite_8c014f54 ; H'8C01AC58
+          .DATA.L _TxtDrawSprite_8c014f54 ; H'8C01AC58
           .DATA.L _var_menuState_8c1bc7a8 ; H'8C01AC5C
           .DATA.L H'C0800000 ; H'8C01AC60
           .DATA.L H'41D00000 ; H'8C01AC64
@@ -1558,7 +1558,7 @@ LP_GEN_82753:
           .DATA.L H'10+_var_peripherals_8c1ba35c ; H'8C01AC7C
           .DATA.L _FUN_8c0188dc ; H'8C01AC80
           .DATA.L _var_soundMode_8c226070 ; H'8C01AC84
-          .DATA.L _setSoundMode_8c0108c0 ; H'8C01AC88
+          .DATA.L _SndSetSoundMode_8c0108c0 ; H'8C01AC88
           .DATA.L _push_fadeout_8c022b60 ; H'8C01AC8C
           .DATA.L _var_midiHandles_8c0fcd28 ; H'8C01AC90
 LAB_8c01ac94:
@@ -1690,8 +1690,8 @@ LP_GEN_27951:
           .DATA.W H'00D6 ; H'8C01AD74
           .RES.W 1 ; H'8C01AD76
           .DATA.L H'10+_var_peripherals_8c1ba35c ; H'8C01AD78
-          .DATA.L _setAdxVol_8c010972 ; H'8C01AD7C
-          .DATA.L _setMidiVolAndInitStruct_8c0109f4 ; H'8C01AD80
+          .DATA.L _SndSetAdxVol_8c010972 ; H'8C01AD7C
+          .DATA.L _SndSetMidiVolAndInitStruct_8c0109f4 ; H'8C01AD80
           .DATA.L _FUN_8c0107ac ; H'8C01AD84
           .DATA.L H'435C0000 ; H'8C01AD88
           .DATA.L _var_8c226080 ; H'8C01AD8C
@@ -2188,7 +2188,7 @@ _FUN_8c01b122:
 LP_GEN_51773:
           .DATA.L H'C0E00000 ; H'8C01B148
           .DATA.L _FUN_8c01ab08 ; H'8C01B14C
-          .DATA.L _setTaskAction_8c014b3e ; H'8C01B150
+          .DATA.L _TaskSetAction_8c014b3e ; H'8C01B150
           .DATA.L _var_menuState_8c1bc7a8 ; H'8C01B154
           .DATA.L _var_8c226078 ; H'8C01B158
           .DATA.L _var_8c226080 ; H'8C01B15C
@@ -2201,7 +2201,7 @@ LP_GEN_51773:
           .DATA.L _init_8c044e28 ; H'8C01B178
           .DATA.L _push_fadeout_8c022b60 ; H'8C01B17C
           .DATA.L _MainMenuSwitchFromTask_8c01a09a ; H'8C01B180
-          .DATA.L _drawSprite_8c014f54 ; H'8C01B184
+          .DATA.L _TxtDrawSprite_8c014f54 ; H'8C01B184
           .DATA.L H'C0800000 ; H'8C01B188
           .DATA.L H'C0A00000 ; H'8C01B18C
           .DATA.L _FUN_8c01b00a ; H'8C01B190

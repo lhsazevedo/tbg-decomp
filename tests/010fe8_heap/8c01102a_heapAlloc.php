@@ -45,7 +45,7 @@ return new class extends TestCase {
         $tail = $heap + 0xe0;
         $this->initHeap($heap, $tail);
 
-        $this->call('_heapAlloc_8c01102a')->with(0x20);
+        $this->call('_HeapAlloc_8c01102a')->with(0x20);
 
         $remainder = $heap + 0x40;
 
@@ -88,7 +88,7 @@ return new class extends TestCase {
         $this->initUint32($tail + 0x08, 0);
         $this->initUint32($tail + 0x0c, 0);
 
-        $this->call('_heapAlloc_8c01102a')->with(0x20);
+        $this->call('_HeapAlloc_8c01102a')->with(0x20);
 
         $this->shouldCall('_heapAllocOutOfMemoryHook_8c01102a');
         $this->forceStop();
@@ -103,7 +103,7 @@ return new class extends TestCase {
         $tail = $heap + 0xe0;
         $this->initHeap($heap, $tail);
 
-        $this->call('_heapAlloc_8c01102a')->with(0xc0);
+        $this->call('_HeapAlloc_8c01102a')->with(0xc0);
 
         $this->shouldWriteLong($heap + 0x08, 7);
         $this->shouldWriteLong($heap + 0x04, $tail);
@@ -148,7 +148,7 @@ return new class extends TestCase {
         $this->initUint32($tail + 0x08, 0);
         $this->initUint32($tail + 0x0c, 0);
 
-        $this->call('_heapAlloc_8c01102a')->with(0x20);
+        $this->call('_HeapAlloc_8c01102a')->with(0x20);
 
         $remainder = $chunk1 + 0x40;
 
@@ -205,7 +205,7 @@ return new class extends TestCase {
         $this->initUint32($tail + 0x08, 0);
         $this->initUint32($tail + 0x0c, 0);
 
-        $this->call('_heapAlloc_8c01102a')->with(0x20);
+        $this->call('_HeapAlloc_8c01102a')->with(0x20);
 
         $remainder = $heap + 0x40;
 

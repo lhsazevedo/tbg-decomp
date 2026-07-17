@@ -1,4 +1,4 @@
-          .IMPORT     _pushTask_8c014ae8
+          .IMPORT     _TaskPush_8c014ae8
           .IMPORT     _var_tasks_8c1ba5e8
           .IMPORT     _FUN_8c020214
           .IMPORT     _var_playMode_8c1bb8d0
@@ -21,7 +21,7 @@ _FUN_8c020528:                   ; function: FUN_8c020528
           MOV.L       R1,@-R15
           MOV.L       L1+10,R5; _FUN_8c020214
           MOV         R15,R7
-          MOV.L       L1+18,R2; _pushTask_8c014ae8
+          MOV.L       L1+18,R2; _TaskPush_8c014ae8
           ADD         #8,R7
           MOV         R15,R6
           JSR         @R2
@@ -55,7 +55,7 @@ L1:
           .DATA.L     _var_playMode_8c1bb8d0 ; H'8C02057C
           .DATA.L     _FUN_8c020214 ; H'8C020580
           .DATA.L     _var_tasks_8c1ba5e8 ; H'8C020584
-          .DATA.L     _pushTask_8c014ae8 ; H'8C020588
+          .DATA.L     _TaskPush_8c014ae8 ; H'8C020588
           .DATA.L     _var_8c2264b8 ; H'8C02058C
           .DATA.L     _AsqGetRandomInRangeB_8c0121be ; H'8C020590
           .END

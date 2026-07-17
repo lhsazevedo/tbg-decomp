@@ -46,7 +46,7 @@ extern ReplayInput *var_demoCursor_8c225fa8;
 extern Uint32 var_demoPrevOn_8c225fac;
 extern void* var_8c1bc824;
 
-void drawSprite_8c014f54(
+void TxtDrawSprite_8c014f54(
     ResourceGroup *resource_group,
     int texture_id,
     float x,

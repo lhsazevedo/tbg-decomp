@@ -33,9 +33,9 @@ typedef struct {
     Uint32 actions_0x0c;
 } EventEntry;
 
-int hasProgressFlagAlt_8c02aff0(int index);
-void scanEventCandidates_8c02b03c(void);
-void pickSegmentEvent_8c02b170(void);
-void applyEventFlags_8c02b292(void);
+int EventHasProgressFlagAlt_8c02aff0(int index);
+void EventScanCandidates_8c02b03c(void);
+void EventPickForSegment_8c02b170(void);
+void EventApplyFlags_8c02b292(void);
 
 #endif // _EVENT_H

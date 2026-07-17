@@ -26,20 +26,20 @@
           .IMPORT     _var_8c228934
           .IMPORT     _var_8c228940
           .IMPORT     _var_8c22894c
-          .IMPORT     _freeTask_8c014b66
+          .IMPORT     _TaskFree_8c014b66
           .IMPORT     _var_8c2285c4
           .IMPORT     __divls
           .IMPORT     _var_playMode_8c1bb8d0
           .IMPORT     _FUN_8c02d0fc
           .IMPORT     _var_isFading_8c226568
           .IMPORT     _var_8c2288f8
-          .IMPORT     _execTasks_8c014b42
+          .IMPORT     _TaskExecGroup_8c014b42
           .IMPORT     _var_cutsceneActive_8c1bb900
           .IMPORT     _var_8c226564
           .IMPORT     _var_8c226560
           .IMPORT     _FUN_8c02ad8c
           .IMPORT     _var_8c22847c
-          .IMPORT     _isPvmReady_8c01432a
+          .IMPORT     _RouteLoadIsPvmReady_8c01432a
           .IMPORT     _FUN_8c02ca96
           .IMPORT     _njReleaseTexture
           .IMPORT     _var_8c227d9c
@@ -50,7 +50,7 @@
           .IMPORT     _var_currentSegment_8c228708
           .IMPORT     _var_8c22655c
           .IMPORT     _var_timeOfDay_8c18ad20
-          .IMPORT     _snd_8c010cd6
+          .IMPORT     _SndProc_8c010cd6
           .IMPORT     _FUN_8c02d146
           .IMPORT     _var_8c1bbc84
           .EXPORT     _FUN_8c02d19c
@@ -665,7 +665,7 @@ LP_GEN_80933:
           .DATA.L __quick_odd_mvn ; H'8C02D628
           .DATA.L _AsqGetRandomInRangeB_8c0121be ; H'8C02D62C
           .DATA.L _var_8c22894c ; H'8C02D630
-          .DATA.L _freeTask_8c014b66 ; H'8C02D634
+          .DATA.L _TaskFree_8c014b66 ; H'8C02D634
           .DATA.L _FUN_8c0223ea ; H'8C02D638
           .DATA.L _var_8c2285c4 ; H'8C02D63C
           .DATA.L __divls ; H'8C02D640
@@ -909,13 +909,13 @@ LP_GEN_70221:
           .DATA.L _var_8c228960 ; H'8C02D804
           .DATA.L _var_8c228958 ; H'8C02D808
           .DATA.L _var_8c2288f8 ; H'8C02D80C
-          .DATA.L _execTasks_8c014b42 ; H'8C02D810
+          .DATA.L _TaskExecGroup_8c014b42 ; H'8C02D810
           .DATA.L _var_cutsceneActive_8c1bb900 ; H'8C02D814
           .DATA.L _var_8c226564 ; H'8C02D818
           .DATA.L _var_8c226560 ; H'8C02D81C
           .DATA.L _FUN_8c02ad8c ; H'8C02D820
           .DATA.L _var_8c22847c ; H'8C02D824
-          .DATA.L _isPvmReady_8c01432a ; H'8C02D828
+          .DATA.L _RouteLoadIsPvmReady_8c01432a ; H'8C02D828
           .DATA.L _var_midiHandles_8c0fcd28 ; H'8C02D82C
           .DATA.L _sdMidiPlay ; H'8C02D830
           .DATA.L _FUN_8c02ca96 ; H'8C02D834
@@ -1057,8 +1057,8 @@ LP_GEN_72278:
           .DATA.L _var_currentSegment_8c228708 ; H'8C02D93C
           .DATA.L _var_8c22655c ; H'8C02D940
           .DATA.L _var_timeOfDay_8c18ad20 ; H'8C02D944
-          .DATA.L _snd_8c010cd6 ; H'8C02D948
-          .DATA.L _freeTask_8c014b66 ; H'8C02D94C
+          .DATA.L _SndProc_8c010cd6 ; H'8C02D948
+          .DATA.L _TaskFree_8c014b66 ; H'8C02D94C
           .DATA.L _FUN_8c02d146 ; H'8C02D950
           .DATA.L _var_isFading_8c226568 ; H'8C02D954
           .DATA.L _var_8c1bbc84 ; H'8C02D958

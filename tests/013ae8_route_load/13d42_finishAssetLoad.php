@@ -11,7 +11,7 @@ return new class extends TestCase {
 
         $this->call('_finishAssetLoad_8c013d42');
 
-        $this->shouldCall('_setPvmReady_8c014330');
+        $this->shouldCall('_RouteLoadSetPvmReady_8c014330');
         $this->shouldCall('_AsqFreeQueues_8c011f7e');
     }
 };

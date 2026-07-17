@@ -17,7 +17,7 @@ SRCS = \
 	src/asm/decompiled/012324_peripheral_support.src \
 	src/asm/decompiled/012504_input.src \
 	src/asm/decompiled/0129cc_pause.src \
-	src/asm/decompiled/012f44.src \
+	src/asm/decompiled/012f44_game.src \
 	src/asm/decompiled/013ae8_route_load.src \
 	src/014934.c \
 	src/0149b0_sbinit.c \

@@ -22,7 +22,7 @@ return new class extends TestCase {
         $this->rellocate('_FUN_8c020214', $actionPtr);
 
         // TODO: Implement a way to expect local vars (stack) as parameters
-        $this->shouldCall('_pushTask_8c014ae8')
+        $this->shouldCall('_TaskPush_8c014ae8')
             ->with($tasksPtr, $actionPtr, 0xFFFFEB, 0xFFFFEF, 0);
 
         $structPtr = $this->alloc(0x1c);

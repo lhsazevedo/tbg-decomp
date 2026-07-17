@@ -2,10 +2,10 @@
           .IMPORT     _sdMidiPlay
           .IMPORT     _var_midiHandles_8c0fcd28
           .IMPORT     _var_peripherals_8c1ba35c
-          .EXPORT     _promptHandleMultiple_8c016c58
-          .EXPORT     _promptHandleBinary_8c016caa
+          .EXPORT     _PromptHandleMultiple_8c016c58
+          .EXPORT     _PromptHandleBinary_8c016caa
           .SECTION    P,CODE,ALIGN=4
-_promptHandleMultiple_8c016c58:                   ; function: promptHandleMultiple_8c016c58
+_PromptHandleMultiple_8c016c58:                   ; function: PromptHandleMultiple_8c016c58
                                  ; frame size=12
           MOV.L       R14,@-R15
           STS.L       PR,@-R15
@@ -51,7 +51,7 @@ L2:
           LDS.L       @R15+,PR
           RTS
           MOV.L       @R15+,R14
-_promptHandleBinary_8c016caa:
+_PromptHandleBinary_8c016caa:
           MOV.L       R14,@-R15
           MOV         R4,R14
           MOV.L       R13,@-R15

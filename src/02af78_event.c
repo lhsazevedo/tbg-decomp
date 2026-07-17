@@ -1,3 +1,4 @@
+/* @unit Event */
 #include <shinobi.h>
 
 #include "02af78_event.h"
@@ -2248,7 +2249,7 @@ STATIC int hasProgressFlag_8c02afbe(int index)
 }
 
 /* Tests progress flag in the field_0x18 bitset */
-int hasProgressFlagAlt_8c02aff0(int index)
+int EventHasProgressFlagAlt_8c02aff0(int index)
 {
     int word = index >> 5;
     int mask = 1 << (index & 0x1f);
@@ -2268,7 +2269,7 @@ STATIC int hasRunEventFlag_8c02b030(int index)
 
 /* Scans EventEntry table for matching entries, and collects their
  * indices as event candidates. Skipped during practice mode. */
-void scanEventCandidates_8c02b03c(void)
+void EventScanCandidates_8c02b03c(void)
 {
     EventEntry *entry;
     int index;
@@ -2351,7 +2352,7 @@ void scanEventCandidates_8c02b03c(void)
 /* Narrows event candidates to the ones matching the current segment and whose
  * conditions also pass, then randomly picks one and arms the cutscene.
  * Skipped in some conditions (todo: figure out what they are). */
-void pickSegmentEvent_8c02b170(void)
+void EventPickForSegment_8c02b170(void)
 {
     EventEntry *entry;
     int i;
@@ -2417,7 +2418,7 @@ void pickSegmentEvent_8c02b170(void)
 }
 
 /* Applies the selected event's actions */
-void applyEventFlags_8c02b292(void)
+void EventApplyFlags_8c02b292(void)
 {
     EventEntry *entry;
     Uint32 actions;

@@ -40,7 +40,7 @@ return new class extends TestCase {
         $this->shouldWriteLong($this->addressOf('_init_adxVolumes_8c03bd88') + 0, 440);
         $this->shouldCall('_ADXT_SetOutVol')->with(0xcafe0000, 440 - 990);
 
-        $this->singleCall('_setAdxVol_8c010972')
+        $this->singleCall('_SndSetAdxVol_8c010972')
             ->with(4, 0)
             ->run();
     }
@@ -104,7 +104,7 @@ return new class extends TestCase {
         $this->shouldWriteLong($this->addressOf('_init_adxVolumes_8c03bd88') + 0, $vols[$volNo]);
         $this->shouldCall('_ADXT_SetOutVol')->with(0xcafe0000, $vols[$volNo] - 990);
 
-        $this->singleCall('_setAdxVol_8c010972')
+        $this->singleCall('_SndSetAdxVol_8c010972')
             ->with($volNo, 0)
             ->run();
     }
@@ -129,7 +129,7 @@ return new class extends TestCase {
         $this->shouldWriteLong($this->addressOf('_init_adxVolumes_8c03bd88') + 4, 220);
         $this->shouldCall('_ADXT_SetOutVol')->with(0xcafe0001, 220 - 990);
 
-        $this->singleCall('_setAdxVol_8c010972')
+        $this->singleCall('_SndSetAdxVol_8c010972')
             ->with(2, 1)
             ->run();
     }
@@ -154,7 +154,7 @@ return new class extends TestCase {
         $this->shouldWriteLong($this->addressOf('_init_adxVolumes_8c03bd88') + 4, 440);
         $this->shouldCall('_ADXT_SetOutVol')->with(0xcafe0001, 440 - 990);
 
-        $this->singleCall('_setAdxVol_8c010972')
+        $this->singleCall('_SndSetAdxVol_8c010972')
             ->with(4, 1)
             ->run();
     }

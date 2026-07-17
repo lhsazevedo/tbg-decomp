@@ -1,3 +1,4 @@
+/* @unit Txt */
 #include <shinobi.h>
 #include "013ae8_route_load.h"
 #include "015ab8_title.h"
@@ -127,7 +128,7 @@ STATIC DemoEntry init_demos_8c044154[20] = {
  * @param y          Y-coordinate for the sprite's position
  * @param priority   Initial draw priority for the sprite
  */
-void drawSprite_8c014f54(
+void TxtDrawSprite_8c014f54(
     ResourceGroup *resource_group,
     int texture_id,
     float x,
@@ -206,7 +207,7 @@ STATIC void drawSpriteLerp_8c014ff6(
     float lerp_x = start_x + steps_x_float * x_step;
     float lerp_y = start_y + steps_y_float * y_step;
 
-    drawSprite_8c014f54(res_group, texture_id, lerp_x, lerp_y, priority);
+    TxtDrawSprite_8c014f54(res_group, texture_id, lerp_x, lerp_y, priority);
 }
 
 /**
@@ -683,7 +684,7 @@ int TxtDrawTextbox_8c0155e0(TextBox *box, int limit)
 
                     x += box->line_offsets_0x34[row] * GLYPH_WIDTH;
 
-                    drawSprite_8c014f54(
+                    TxtDrawSprite_8c014f54(
                         &var_fontResourceGroup_8c1bc794,
                         2000,
                         x,
@@ -693,7 +694,7 @@ int TxtDrawTextbox_8c0155e0(TextBox *box, int limit)
                 } else {
                     int x = col + box->x_0x00 + box->x2_0x14;
                     int y = row + box->y_0x04 + box->y2_0x18;
-                    drawSprite_8c014f54(
+                    TxtDrawSprite_8c014f54(
                         &var_fontResourceGroup_8c1bc794,
                         2000,
                         x,
@@ -719,7 +720,7 @@ int TxtDrawTextbox_8c0155e0(TextBox *box, int limit)
 STATIC void FUN_8c01594c(Task *task)
 {
     void *local;
-    if (!isPvmReady_8c01432a()) {
+    if (!RouteLoadIsPvmReady_8c01432a()) {
         return;
     }
 
@@ -731,7 +732,7 @@ STATIC void FUN_8c01594c(Task *task)
     FUN_readDemo_8c02fa14(&var_demoBuf_8c1ba3c4[4], &local, var_demoBuf_8c1ba3c4[0]);
     syFree(var_demoBuf_8c1ba3c4);
     var_demoBuf_8c1ba3c4 = (int *) -1;
-    freeTask_8c014b66(task);
+    TaskFree_8c014b66(task);
     FUN_8c01328c();
 }
 
@@ -739,7 +740,7 @@ void FUN_8c0159ac()
 {
     Task *created_task;
     void *created_state;
-    pushTask_8c014ae8(
+    TaskPush_8c014ae8(
         var_tasks_8c1ba3c8, FUN_8c01594c, &created_task, &created_state, 0
     );
     created_task->field_0x08 = 0;
@@ -760,7 +761,7 @@ void FUN_8c0159ac()
         init_demos_8c044154[var_demoIndex_8c1bb8d8].field_0x04;
     var_demoEntryValue_8c22822c =
         init_demos_8c044154[var_demoIndex_8c1bb8d8].field_0x08;
-    resetPvmReady_8c014322();
-    AsqProcessQueues_8c011fe0(AsqNop_8c011120, 0, 0, 0, setPvmReady_8c014330);
+    RouteLoadResetPvmReady_8c014322();
+    AsqProcessQueues_8c011fe0(AsqNop_8c011120, 0, 0, 0, RouteLoadSetPvmReady_8c014330);
     return;
 }

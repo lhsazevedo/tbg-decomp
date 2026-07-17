@@ -9,8 +9,8 @@
           .IMPORT     _gdFsGetTransStat
           .IMPORT     _syMalloc
           .IMPORT     _syFree
-          .IMPORT     _pushTask_8c014ae8
-          .IMPORT     _freeTask_8c014b66
+          .IMPORT     _TaskPush_8c014ae8
+          .IMPORT     _TaskFree_8c014b66
           .IMPORT     _var_tasks_8c1ba3c8
           .IMPORT     _strcmp
           .IMPORT     __quick_evn_mvn
@@ -32,8 +32,6 @@
           .EXPORT     _AsqRequestTexlist_8c01181c
           .EXPORT     _AsqRequestPvm_8c011ac0
           .EXPORT     _AsqReleaseAndFreeTexlist_8c011e3c
-          .EXPORT     _AsqFreeTexlist_8c011e60
-          .EXPORT     _task_processQueues_8c011e80
           .EXPORT     _AsqInitQueues_8c011f36
           .EXPORT     _AsqResetQueues_8c011f6c
           .EXPORT     _AsqFreeQueues_8c011f7e
@@ -62,18 +60,20 @@
           .EXPORT     _var_8c157a7c
 
           .AIFDEF UNIT_TESTING
+          .EXPORT     _asqFreeTexlist_8c011e60
+          .EXPORT     _taskProcessQueues_8c011e80
           .EXPORT     _initDatQueue_8c011124
           .EXPORT     _initNjQueue_8c011430
           .EXPORT     _initTexlistQueue_8c0117b8
           .EXPORT     _initPvmQueue_8c011a5c
-          .EXPORT     _task_loadQueuedTexlists_8c01183e
+          .EXPORT     _taskLoadQueuedTexlists_8c01183e
           .EXPORT     _resetDatQueue_8c01116a
-          .EXPORT     _task_loadQueuedDats_8c0111b4
+          .EXPORT     _taskLoadQueuedDats_8c0111b4
           .EXPORT     _sortAndLoadDatQueue_8c011310
           .EXPORT     _datQueueIsIdle_8c0113d2
           .EXPORT     _freeDatQueue_8c0113d8
           .EXPORT     _resetNjQueue_8c01147a
-          .EXPORT     _task_loadQueuedNjs_8c0114cc
+          .EXPORT     _taskLoadQueuedNjs_8c0114cc
           .EXPORT     _sortAndLoadNjQueue_8c0116b6
           .EXPORT     _njQueueIsIdle_8c01179e
           .EXPORT     _freeNjQueue_8c0117a4
@@ -86,7 +86,7 @@
           .EXPORT     _freePvmQueue_8c011e28
 
           .EXPORT     _var_texlistQueueCount_8c157a68
-          .EXPORT     _task_loadQueuedPvms_8c011b00
+          .EXPORT     _taskLoadQueuedPvms_8c011b00
           .EXPORT     _var_queueBaseDir_8c157a80
           .EXPORT     _var_queueBuffer_8c157a84
           .EXPORT     _var_8c157a88
@@ -199,7 +199,7 @@ L5:
 L6:                               
           RTS
           NOP
-_task_loadQueuedDats_8c0111b4:                  ; function: task_loadQueuedDats_8c0111b4
+_taskLoadQueuedDats_8c0111b4:                  ; function: taskLoadQueuedDats_8c0111b4
                                  ; frame size=32
                                  ; used runtime library name:
                                  ; _strcmp
@@ -333,7 +333,7 @@ L14:
           .DATA.L     _gdFsOpen
           .DATA.L     _gdFsGetFileSctSize
           .DATA.L     _gdFsRead ; H'8c0112c0
-          .DATA.L     _freeTask_8c014b66
+          .DATA.L     _TaskFree_8c014b66
           .DATA.L     _gdFsGetStat
           .DATA.L     _gdFsClose
 
@@ -446,9 +446,9 @@ L23:
           MOV         #0,R2
           MOV.L       L28+48,R4; _var_tasks_8c1ba3c8
           MOV.L       R2,@-R15
-          MOV.L       L28+44,R5; _task_loadQueuedDats_8c0111b4
+          MOV.L       L28+44,R5; _taskLoadQueuedDats_8c0111b4
           MOV         R15,R7
-          MOV.L       L28+52,R3; _pushTask_8c014ae8
+          MOV.L       L28+52,R3; _TaskPush_8c014ae8
           ADD         #8,R7
           MOV         R15,R6
           JSR         @R3
@@ -514,9 +514,9 @@ L28:
         .DATA.L     _syMalloc
           .DATA.L     _strcmp
           .DATA.L     __quick_evn_mvn
-          .DATA.L     _task_loadQueuedDats_8c0111b4
+          .DATA.L     _taskLoadQueuedDats_8c0111b4
           .DATA.L     _var_tasks_8c1ba3c8
-          .DATA.L     _pushTask_8c014ae8
+          .DATA.L     _TaskPush_8c014ae8
           .DATA.L     _var_8c157a88
           .DATA.L     _init_8c03be7c
           .DATA.L     _var_queueBaseDir_8c157a80
@@ -611,7 +611,7 @@ L34:
           MOV.L       R2,@R14
           RTS
           MOV.L       @R15+,R14
-_task_loadQueuedNjs_8c0114cc:
+_taskLoadQueuedNjs_8c0114cc:
           MOV.L       R14,@-R15
           MOV.L       R13,@-R15
           MOV.L       R12,@-R15
@@ -767,7 +767,7 @@ L46:
           .DATA.L     _var_njQueue_8c157a9c ; L46+32
           .DATA.L     _init_8c03be7c
           .DATA.L     _var_njQueueIsIdle_8c157aa8
-          .DATA.L     _freeTask_8c014b66
+          .DATA.L     _TaskFree_8c014b66
           .DATA.L     _gdFsGetStat ; L46+48
 
 L47:
@@ -1071,7 +1071,7 @@ L69:
           MOV.L       R2,@R6
           RTS
           NOP
-_task_loadQueuedTexlists_8c01183e:
+_taskLoadQueuedTexlists_8c01183e:
           MOV.L       R14,@-R15
           MOV.L       R13,@-R15
           MOV.L       R12,@-R15
@@ -1228,9 +1228,9 @@ L84:
           .DATA.L     _strcmp ; L84
           .DATA.L     __quick_odd_mvn
           .DATA.L     _syFree
-          .DATA.L     _task_loadQueuedNjs_8c0114cc
+          .DATA.L     _taskLoadQueuedNjs_8c0114cc
           .DATA.L     _var_tasks_8c1ba3c8 ; L84+16
-          .DATA.L     _pushTask_8c014ae8
+          .DATA.L     _TaskPush_8c014ae8
           .DATA.L     _var_8c157a88
           .DATA.L     _init_8c03be7c
           .DATA.L     _var_queueBaseDir_8c157a80 ; L84+32
@@ -1442,7 +1442,7 @@ L98:
           MOV.L       R2,@R14
           RTS
           MOV.L       @R15+,R14
-_task_loadQueuedPvms_8c011b00:
+_taskLoadQueuedPvms_8c011b00:
           MOV.L       R14,@-R15
           MOV.L       R13,@-R15
           MOV.L       R12,@-R15
@@ -1484,11 +1484,11 @@ L101:
           .DATA.L     _var_texlistQueueCount_8c157a68 ; L101
           .DATA.L     _var_texlistQueueRear_8c157ab0
           .DATA.L     _var_texlistQueueIsIdle_8c157ab8
-          .DATA.L     _freeTask_8c014b66 ; L101+12
+          .DATA.L     _TaskFree_8c014b66 ; L101+12
           .DATA.L     _var_texlistQueue_8c157aac
-          .DATA.L     _task_loadQueuedTexlists_8c01183e
+          .DATA.L     _taskLoadQueuedTexlists_8c01183e
           .DATA.L     _var_tasks_8c1ba3c8
-          .DATA.L     _pushTask_8c014ae8 ; L101+28
+          .DATA.L     _TaskPush_8c014ae8 ; L101+28
           .DATA.L     _syFree
           .DATA.L     _var_pvmQueue_8c157abc
           .DATA.L     _syMalloc
@@ -1630,7 +1630,7 @@ L113:
           .DATA.L     _var_pvmQueue_8c157abc
           .DATA.L     _init_8c03be7c ; L113+32
           .DATA.L     _var_pvmQueueIsIdle_8c157ac8
-          .DATA.L     _freeTask_8c014b66
+          .DATA.L     _TaskFree_8c014b66
           .DATA.L     _gdFsGetStat
           .DATA.L     _gdFsClose ; L113+48
 
@@ -1875,7 +1875,7 @@ _AsqReleaseAndFreeTexlist_8c011e3c:
           MOV.L       @R15+,R13
           RTS
           MOV.L       @R15+,R14
-_AsqFreeTexlist_8c011e60:
+_asqFreeTexlist_8c011e60:
           MOV.L       R14,@-R15
           MOV         R4,R14
           MOV.L       R13,@-R15
@@ -1892,7 +1892,7 @@ _AsqFreeTexlist_8c011e60:
           MOV.L       @R15+,R13
           RTS
           MOV.L       @R15+,R14
-_task_processQueues_8c011e80:
+_taskProcessQueues_8c011e80:
           MOV.L       R14,@-R15
           STS.L       PR,@-R15
           ADD         #-H'4,R15
@@ -2054,16 +2054,16 @@ L139:
           .DATA.L     _strcmp ; L139
           .DATA.L     __quick_evn_mvn
           .DATA.L     _syFree
-          .DATA.L     _task_loadQueuedPvms_8c011b00
+          .DATA.L     _taskLoadQueuedPvms_8c011b00
           .DATA.L     _var_tasks_8c1ba3c8 ; L139+16
-          .DATA.L     _pushTask_8c014ae8
+          .DATA.L     _TaskPush_8c014ae8
           .DATA.L     _var_8c157a88
           .DATA.L     _init_8c03be7c
           .DATA.L     _var_queueBaseDir_8c157a80 ; L139+32
           .DATA.L     _var_pvmQueueIsIdle_8c157ac8
           .DATA.L     _var_pvmQueue_8c157abc
           .DATA.L     _njReleaseTexture
-          .DATA.L     _freeTask_8c014b66 ; L139+48
+          .DATA.L     _TaskFree_8c014b66 ; L139+48
           .DATA.L     _vmsLcd_8c01c8fc
           .DATA.L     _vmsLcd_8c01c910
           .DATA.L     _var_queuesAreInitialized_8c157a60
@@ -2368,9 +2368,9 @@ _AsqApplyButtonConfig_8c0121e8:
 
 LP_GEN_90004:
           .RES.W      1 ; H'8c012206
-          .DATA.L     _task_processQueues_8c011e80
+          .DATA.L     _taskProcessQueues_8c011e80
           .DATA.L     _var_tasks_8c1ba3c8
-          .DATA.L     _pushTask_8c014ae8
+          .DATA.L     _TaskPush_8c014ae8
           .DATA.L     _syMalloc
           .DATA.L     _syFree
           .DATA.L     _var_seed_8c157acc

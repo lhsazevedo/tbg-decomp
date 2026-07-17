@@ -7,7 +7,7 @@
           .IMPORT     _init_8c04525c
           .IMPORT     _init_8c045278
           .IMPORT     _var_menuState_8c1bc7a8
-          .IMPORT     _drawSprite_8c014f54
+          .IMPORT     _TxtDrawSprite_8c014f54
           .IMPORT     _var_menuTextboxCharLimit_8c225fb8
           .IMPORT     _menuTextboxText_8c02af1c
           .IMPORT     _njSetBackColor
@@ -16,10 +16,10 @@
           .IMPORT     _TxtPrepareTextBoxLayout_8c01543a
           .IMPORT     _TxtDrawTextbox_8c0155e0
           .IMPORT     _init_8c03bd80
-          .IMPORT     _startAdxFadeOut_8c010bae
+          .IMPORT     _SndStartAdxFadeOut_8c010bae
           .IMPORT     _var_isFading_8c226568
-          .IMPORT     _snd_8c010cd6
-          .IMPORT     _isPvmReady_8c01432a
+          .IMPORT     _SndProc_8c010cd6
+          .IMPORT     _RouteLoadIsPvmReady_8c01432a
           .IMPORT     _AsqFreeQueues_8c011f7e
           .IMPORT     _push_fadein_8c022a9c
           .IMPORT     _CourseMenuPushDialogTask_8c0170c6
@@ -32,12 +32,12 @@
           .IMPORT     _init_8c045290
           .IMPORT     _FUN_8c016182
           .IMPORT     _var_selectedVm_8c1ba34c
-          .IMPORT     _pushTitle_8c015fd6
+          .IMPORT     _TitlePushTitle_8c015fd6
           .IMPORT     _init_dialogSequences_8c044c08
-          .IMPORT     _pushInputTask_8c0128cc
-          .IMPORT     _task_8c012f44
+          .IMPORT     _InputPushTask_8c0128cc
+          .IMPORT     _GameTask_8c012f44
           .IMPORT     _var_tasks_8c1ba3c8
-          .IMPORT     _pushTask_8c014ae8
+          .IMPORT     _TaskPush_8c014ae8
           .IMPORT     _var_tex_8c157af8
           .IMPORT     _njGarbageTexture
           .IMPORT     _FUN_8c02ae3e
@@ -48,8 +48,8 @@
           .IMPORT     _init_8c045324
           .IMPORT     _CourseMenuRequestSysResgrp_8c018568
           .IMPORT     _CourseMenuRequestCommonResources_8c01852c
-          .IMPORT     _setPvmReady_8c014330
-          .IMPORT     _resetPvmReady_8c014322
+          .IMPORT     _RouteLoadSetPvmReady_8c014330
+          .IMPORT     _RouteLoadResetPvmReady_8c014322
           .IMPORT     _AsqNop_8c011120
           .IMPORT     _AsqProcessQueues_8c011fe0
           .IMPORT     _FUN_8c01e24e
@@ -346,7 +346,7 @@ LP_GEN_39506:
           .DATA.L _var_menuState_8c1bc7a8 ; H'8C01F5DC
           .DATA.L H'43960000 ; H'8C01F5E0
           .DATA.L H'42B40000 ; H'8C01F5E4
-          .DATA.L _drawSprite_8c014f54 ; H'8C01F5E8
+          .DATA.L _TxtDrawSprite_8c014f54 ; H'8C01F5E8
           .DATA.L H'C1080000 ; H'8C01F5EC
           .DATA.L _var_menuTextboxCharLimit_8c225fb8 ; H'8C01F5F0
           .DATA.L _menuTextboxText_8c02af1c ; H'8C01F5F4
@@ -503,11 +503,11 @@ LP_GEN_79838:
           .RES.W 1 ; H'8C01F71A
           .DATA.L _TxtDrawTextbox_8c0155e0 ; H'8C01F71C
           .DATA.L _init_8c03bd80 ; H'8C01F720
-          .DATA.L _startAdxFadeOut_8c010bae ; H'8C01F724
+          .DATA.L _SndStartAdxFadeOut_8c010bae ; H'8C01F724
           .DATA.L _var_isFading_8c226568 ; H'8C01F728
-          .DATA.L _snd_8c010cd6 ; H'8C01F72C
+          .DATA.L _SndProc_8c010cd6 ; H'8C01F72C
           .DATA.L _var_menuState_8c1bc7a8 ; H'8C01F730
-          .DATA.L _isPvmReady_8c01432a ; H'8C01F734
+          .DATA.L _RouteLoadIsPvmReady_8c01432a ; H'8C01F734
           .DATA.L _AsqFreeQueues_8c011f7e ; H'8C01F738
           .DATA.L H'42340000 ; H'8C01F73C
           .DATA.L H'42C80000 ; H'8C01F740
@@ -768,7 +768,7 @@ LP_GEN_28976:
           .DATA.L _FUN_8c016182 ; H'8C01F944
           .DATA.L _var_selectedVm_8c1ba34c ; H'8C01F948
           .DATA.L _FUN_8c01e24e ; H'8C01F94C
-          .DATA.L _pushTitle_8c015fd6 ; H'8C01F950
+          .DATA.L _TitlePushTitle_8c015fd6 ; H'8C01F950
 _FUN_8c01f954:
           MOV.L       R14,@-R15
           STS.L       PR,@-R15
@@ -872,10 +872,10 @@ LP_GEN_38893:
           .DATA.L _var_menuState_8c1bc7a8 ; H'8C01FA18
           .DATA.L _var_dialogQueue_8c225fbc ; H'8C01FA1C
           .DATA.L _init_dialogSequences_8c044c08 ; H'8C01FA20
-          .DATA.L _pushInputTask_8c0128cc ; H'8C01FA24
-          .DATA.L _task_8c012f44 ; H'8C01FA28
+          .DATA.L _InputPushTask_8c0128cc ; H'8C01FA24
+          .DATA.L _GameTask_8c012f44 ; H'8C01FA28
           .DATA.L _var_tasks_8c1ba3c8 ; H'8C01FA2C
-          .DATA.L _pushTask_8c014ae8 ; H'8C01FA30
+          .DATA.L _TaskPush_8c014ae8 ; H'8C01FA30
           .DATA.L LAB_8c01f658 ; H'8C01FA34
           .DATA.L _var_tex_8c157af8 ; H'8C01FA38
           .DATA.L _njGarbageTexture ; H'8C01FA3C
@@ -889,8 +889,8 @@ LP_GEN_38893:
           .DATA.L _init_8c045324 ; H'8C01FA5C
           .DATA.L _CourseMenuRequestSysResgrp_8c018568 ; H'8C01FA60
           .DATA.L _CourseMenuRequestCommonResources_8c01852c ; H'8C01FA64
-          .DATA.L _setPvmReady_8c014330 ; H'8C01FA68
-          .DATA.L _resetPvmReady_8c014322 ; H'8C01FA6C
+          .DATA.L _RouteLoadSetPvmReady_8c014330 ; H'8C01FA68
+          .DATA.L _RouteLoadResetPvmReady_8c014322 ; H'8C01FA6C
           .DATA.L _AsqNop_8c011120 ; H'8C01FA70
           .DATA.L _AsqProcessQueues_8c011fe0 ; H'8C01FA74
           .END

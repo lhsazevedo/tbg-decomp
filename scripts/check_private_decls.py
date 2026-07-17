@@ -42,11 +42,11 @@ TRAILING_COMMENT = re.compile(r"\s*//.*$")
 # them across units (so the object-level check would call them private):
 #   - heap* : a general-purpose heap API, meant to be public; simply unused in the
 #     decomp so far.
-#   - FUN_8c014934 : uncalled, but registers unknownRouteLoadTask_8c014784 (unit
+#   - FUN_8c014934 : uncalled, but registers RouteLoadUnusedTask_8c014784 (unit
 #     013ae8); making it static would let SHC eliminate it and orphan that callee,
 #     which must stay public for 014934.c's source to compile.
 KEEP_PUBLIC = {
-    "heapInit_8c010fe8", "heapAlloc_8c01102a", "heapFree_8c0110c4",
+    "HeapInit_8c010fe8", "HeapAlloc_8c01102a", "HeapFree_8c0110c4",
     "FUN_8c014934",
 }
 

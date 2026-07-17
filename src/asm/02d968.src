@@ -4,7 +4,7 @@
           .IMPORT     _var_playMode_8c1bb8d0
           .IMPORT     _var_8c226410
           .IMPORT     _FUN_8c02d644
-          .IMPORT     _pushTask_8c014ae8
+          .IMPORT     _TaskPush_8c014ae8
           .IMPORT     _FUN_8c02d8f0
           .IMPORT     _var_8c2285c4
           .IMPORT     _var_interiorTexlist_8c1bc438
@@ -25,7 +25,7 @@
           .IMPORT     _var_8c228794
           .IMPORT     _syMalloc
           .IMPORT     _var_8c2288f8
-          .IMPORT     _clearTasks_8c014a9c
+          .IMPORT     _TaskClear_8c014a9c
           .IMPORT     _var_8c1bb8e4
           .IMPORT     _rand
           .IMPORT     _FUN_8c02d21c
@@ -305,7 +305,7 @@ LP_GEN_52173:
           .DATA.L _var_playMode_8c1bb8d0 ; H'8C02DB60
           .DATA.L _var_8c226410 ; H'8C02DB64
           .DATA.L _FUN_8c02d644 ; H'8C02DB68
-          .DATA.L _pushTask_8c014ae8 ; H'8C02DB6C
+          .DATA.L _TaskPush_8c014ae8 ; H'8C02DB6C
           .DATA.L _FUN_8c02d8f0 ; H'8C02DB70
           .DATA.L _var_8c2285c4 ; H'8C02DB74
           .DATA.L _var_interiorTexlist_8c1bc438 ; H'8C02DB78
@@ -338,7 +338,7 @@ LP_GEN_52173:
           .DATA.L _var_8c228794 ; H'8C02DBE4
           .DATA.L _syMalloc ; H'8C02DBE8
           .DATA.L _var_8c2288f8 ; H'8C02DBEC
-          .DATA.L _clearTasks_8c014a9c ; H'8C02DBF0
+          .DATA.L _TaskClear_8c014a9c ; H'8C02DBF0
           .DATA.L _var_8c1bb8e4 ; H'8C02DBF4
           .DATA.L _rand ; H'8C02DBF8
           .DATA.L H'3E4CCCCD ; H'8C02DBFC
@@ -479,7 +479,7 @@ LP_GEN_81852:
           .RES.W 1 ; H'8C02DD02
           .DATA.L _FUN_8c02d21c ; H'8C02DD04
           .DATA.L _var_8c2288f8 ; H'8C02DD08
-          .DATA.L _pushTask_8c014ae8 ; H'8C02DD0C
+          .DATA.L _TaskPush_8c014ae8 ; H'8C02DD0C
           .DATA.L _var_8c228798 ; H'8C02DD10
           .DATA.L __quick_odd_mvn ; H'8C02DD14
           .DATA.L _init_8c04c4dc ; H'8C02DD18
@@ -752,7 +752,7 @@ LP_GEN_19590:
           .RES.W 1 ; H'8C02DF16
           .DATA.L _task_8c02d5ca ; H'8C02DF18
           .DATA.L _var_8c2288f8 ; H'8C02DF1C
-          .DATA.L _pushTask_8c014ae8 ; H'8C02DF20
+          .DATA.L _TaskPush_8c014ae8 ; H'8C02DF20
           .DATA.L _init_8c04c3e4 ; H'8C02DF24
           .DATA.L _AsqGetRandomInRangeA_8c012178 ; H'8C02DF28
           .DATA.L __quick_evn_mvn ; H'8C02DF2C

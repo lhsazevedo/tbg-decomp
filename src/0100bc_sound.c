@@ -1,3 +1,4 @@
+/* @unit Snd */
 #include <shinobi.h>
 #include <sg_sd.h>
 #include <cri_adxt.h>
@@ -103,10 +104,10 @@ AdxfPartitionInfo init_adxfPartitionInfo_8c03bd94[] = {
 };
 
 /* === Prototypes === */
-void midiResetFxAndPlay_8c010846(int hld_idx, int data_num);
+void SndMidiResetFxAndPlay_8c010846(int hld_idx, int data_num);
 void FUN_8c0109c0();
 void FUN_8c010ca6(Bool p1);
-int snd_8c010cd6(int p1, int p2);
+int SndProc_8c010cd6(int p1, int p2);
 
 /* Tested */
 STATIC void initUknVol_8c0100bc() {
@@ -298,7 +299,7 @@ STATIC void* unusedReadFile_8c0104d6(char* fname)
 }
 
 /* Matched */
-STATIC void AdxErrFunc_8c010532(void *obj, char *msg)
+STATIC void adxErrFunc_8c010532(void *obj, char *msg)
 {
     char lmsg[9] = "E8101214";
 
@@ -347,7 +348,7 @@ STATIC void finishSoundInit_8c010614()
 STATIC void adxInit_8c01064c()
 {
     ADXT_Init();
-    ADXT_EntryErrFunc(AdxErrFunc_8c010532, NULL);
+    ADXT_EntryErrFunc(adxErrFunc_8c010532, NULL);
 }
 
 /* Matched */
@@ -381,7 +382,7 @@ Bool FUN_8c0106d2(Sint32 param)
     }
 
     if (param >= 0 && param < 10) {
-        midiResetFxAndPlay_8c010846(0, param);
+        SndMidiResetFxAndPlay_8c010846(0, param);
         return TRUE;
     } else {
         if (param >= 10 && param <= 70) {
@@ -397,11 +398,11 @@ Bool FUN_8c0106d2(Sint32 param)
 Bool FUN_8c010720(Sint32 param)
 {
     if (param >= 0 && param < 63) {
-        snd_8c010cd6(1, param + 17);
+        SndProc_8c010cd6(1, param + 17);
         return TRUE;
     } else {
         if (param >= 63 && param <= 1388) {
-            snd_8c010cd6(2, param - 63);
+            SndProc_8c010cd6(2, param - 63);
             return TRUE;
         }
 
@@ -413,14 +414,14 @@ Bool FUN_8c010720(Sint32 param)
 int FUN_8c0107ac(Sint32 param)
 {
     if (param >= 0 && param < 17) {
-        snd_8c010cd6(0, param);
+        SndProc_8c010cd6(0, param);
         return 1;
     }
     return 0;
 }
 
 /* Matched */
-void controlAdxtWithOutVol_8c0107d2(Bool play)
+void SndControlAdxtWithOutVol_8c0107d2(Bool play)
 {
     Uint32 i;
 
@@ -440,7 +441,7 @@ void controlAdxtWithOutVol_8c0107d2(Bool play)
 }
 
 /* Matched */
-void midiResetFxAndPlay_8c010846(int hld_idx, int data_num)
+void SndMidiResetFxAndPlay_8c010846(int hld_idx, int data_num)
 {
     Sint8 i;
 
@@ -455,7 +456,7 @@ void midiResetFxAndPlay_8c010846(int hld_idx, int data_num)
 /* Matched
  * Re-check after param type change
  */
-Bool setSoundMode_8c0108c0(Sint32 mode)
+Bool SndSetSoundMode_8c0108c0(Sint32 mode)
 {
     void *dat;
     int r;
@@ -486,7 +487,7 @@ Bool setSoundMode_8c0108c0(Sint32 mode)
 }
 
 /* Matched */
-int getSoundMode_8c010924() {
+int SndGetSoundMode_8c010924() {
     void* dat;
     int r;
     Sint32 mode;
@@ -511,7 +512,7 @@ int getSoundMode_8c010924() {
 }
 
 /* Tested */
-void setAdxVol_8c010972(int volNo, int handle) {
+void SndSetAdxVol_8c010972(int volNo, int handle) {
     // Initialized data
     const int vols_from_8c0332b0[10] = {
         0,
@@ -542,7 +543,7 @@ void setAdxVol_8c010972(int volNo, int handle) {
 }
 
 /* Matched */
-void setMidiVolAndInitStruct_8c0109f4(int param1) {
+void SndSetMidiVolAndInitStruct_8c0109f4(int param1) {
     // Initialized data
     int i;
     int vols_8c0332d8[10] = {
@@ -567,7 +568,7 @@ void setMidiVolAndInitStruct_8c0109f4(int param1) {
 }
 
 /* Tested */
-void updateAdxVolFade_8c010a40() {
+void SndUpdateAdxVolFade_8c010a40() {
     /* 8c010a56 */
     if ((var_adxFade_8c157a34.fadeFlags_0x00 & 0xf) != 0)
     {
@@ -655,7 +656,7 @@ void updateAdxVolFade_8c010a40() {
 }
 
 /* Tested */
-void startAdxFadeOut_8c010bae(int param1) {
+void SndStartAdxFadeOut_8c010bae(int param1) {
     if ((var_adxFade_8c157a34.fadeFlags_0x00 & 0xf0) == 0) {
         /* 8c010bba */
         if (param1 == 0 && (var_adxFade_8c157a34.fadeFlags_0x00 & 0xf) != 1) {
@@ -717,7 +718,7 @@ void FUN_8c010ca6(Bool p1) {
 }
 
 /* Tested */
-int snd_8c010cd6(int p1, int p2) {
+int SndProc_8c010cd6(int p1, int p2) {
     switch (p1) {
         case 0: {
             ADXT_Stop(var_adxtHandles_8c0fcd20[p1]);
@@ -769,7 +770,7 @@ STATIC void unusedStopMidiAdx_8c010de6() {
 }
 
 /* Matched */
-void initSoundMidiAdx_8c010e18(char *dirname) {
+void SndInitSoundMidiAdx_8c010e18(char *dirname) {
     init_8c03bd80 = 0;
     init_8c03bd84 = 1;
     gdFsChangeDir(dirname);

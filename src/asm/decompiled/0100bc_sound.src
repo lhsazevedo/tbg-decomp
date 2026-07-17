@@ -57,40 +57,42 @@
           .EXPORT     _var_work_8c0fcd74
           .EXPORT     _var_adxfWork_8c156efc
           .EXPORT     _var_adxFade_8c157a34
-          .EXPORT     _midiResetFxAndPlay_8c010846
+          .EXPORT     _SndMidiResetFxAndPlay_8c010846
           .EXPORT     _FUN_8c010ca6
-          .EXPORT     _snd_8c010cd6
+          .EXPORT     _SndProc_8c010cd6
+          .EXPORT     _FUN_8c0102d8
+          .AIFDEF UNIT_TESTING
           .EXPORT     _initUknVol_8c0100bc
           .EXPORT     _midiSetVol_8c010128
           .EXPORT     _midiSetPitch_8c01023c
-          .EXPORT     _FUN_8c0102d8
           .EXPORT     _createAdxHandles_8c010428
           .EXPORT     _createMidiHandles_8c010468
           .EXPORT     _createAdxAndMidiHandles_8c01048e
           .EXPORT     _unused_8c0104bc
           .EXPORT     _unusedReadFile_8c0104d6
-          .EXPORT     _AdxErrFunc_8c010532
           .EXPORT     _adxLoad_8c01057a
           .EXPORT     _finishSoundInit_8c010614
           .EXPORT     _adxInit_8c01064c
           .EXPORT     _soundInit_8c01065e
+          .EXPORT     _startAdxCh1FadeIn_8c010c2c
+          .EXPORT     _unusedStopMidiAdx_8c010de6
+          .EXPORT     _adxErrFunc_8c010532
+          .AENDI
           .EXPORT     _FUN_8c0106ac
           .EXPORT     _FUN_8c0106d2
           .EXPORT     _FUN_8c010720
           .EXPORT     _FUN_8c0107ac
-          .EXPORT     _controlAdxtWithOutVol_8c0107d2
-          .EXPORT     _setSoundMode_8c0108c0
-          .EXPORT     _getSoundMode_8c010924
-          .EXPORT     _setAdxVol_8c010972
-          .EXPORT     _setMidiVolAndInitStruct_8c0109f4
-          .EXPORT     _updateAdxVolFade_8c010a40
-          .EXPORT     _startAdxFadeOut_8c010bae
-          .EXPORT     _startAdxCh1FadeIn_8c010c2c
+          .EXPORT     _SndControlAdxtWithOutVol_8c0107d2
+          .EXPORT     _SndSetSoundMode_8c0108c0
+          .EXPORT     _SndGetSoundMode_8c010924
+          .EXPORT     _SndSetAdxVol_8c010972
+          .EXPORT     _SndSetMidiVolAndInitStruct_8c0109f4
+          .EXPORT     _SndUpdateAdxVolFade_8c010a40
+          .EXPORT     _SndStartAdxFadeOut_8c010bae
           .EXPORT     _FUN_8c010c6e
           .EXPORT     _FUN_8c010c7c
           .EXPORT     _FUN_8c010d8a
-          .EXPORT     _unusedStopMidiAdx_8c010de6
-          .EXPORT     _initSoundMidiAdx_8c010e18
+          .EXPORT     _SndInitSoundMidiAdx_8c010e18
           .SECTION    P,CODE,ALIGN=4
 _initUknVol_8c0100bc:             ; function: initUknVol_8c0100bc
                                  ; frame size=4
@@ -669,7 +671,7 @@ L17:
           MOV.L       @R15+,R13
           RTS
           MOV.L       @R15+,R14
-_AdxErrFunc_8c010532:      ; function: AdxErrFunc_8c010532
+_adxErrFunc_8c010532:      ; function: adxErrFunc_8c010532
                                  ; frame size=24
                                  ; used runtime library name:
                                  ; __slow_mvn
@@ -815,7 +817,7 @@ _adxInit_8c01064c:               ; function: adxInit_8c01064c
           NOP
           MOV.L       L29+36,R2; _ADXT_EntryErrFunc
           MOV         #0,R5
-          MOV.L       L29+32,R4; _AdxErrFunc_8c010532
+          MOV.L       L29+32,R4; _adxErrFunc_8c010532
           JMP         @R2
           LDS.L       @R15+,PR
 _soundInit_8c01065e:             ; function: soundInit_8c01065e
@@ -898,7 +900,7 @@ L24:
           CMP/GE      R2,R14
           BT          L25
           MOV         R14,R5
-          BSR         _midiResetFxAndPlay_8c010846
+          BSR         _SndMidiResetFxAndPlay_8c010846
           MOV         #0,R4
           BRA         L26
           NOP
@@ -940,7 +942,7 @@ _FUN_8c010720:                   ; function: FUN_8c010720
           BT          L30
           MOV         R14,R5
           ADD         #17,R5
-          BSR         _snd_8c010cd6
+          BSR         _SndProc_8c010cd6
           MOV         #1,R4
           BRA         L31
           NOP
@@ -953,7 +955,7 @@ L29:
           .DATA.L     _syFree
           .DATA.L     _sdMemBlkDestroy
           .DATA.L     _ADXT_Init
-          .DATA.L     _AdxErrFunc_8c010532
+          .DATA.L     _adxErrFunc_8c010532
           .DATA.L     _ADXT_EntryErrFunc
           .DATA.L     _sdLibInit
           .DATA.L     _var_memblkSource_8c0fcd48
@@ -973,7 +975,7 @@ L30:
           BT          L32
           MOV         R14,R5
           ADD         #-63,R5
-          BSR         _snd_8c010cd6
+          BSR         _SndProc_8c010cd6
           MOV         #2,R4
 L31:
           LDS.L       @R15+,PR
@@ -997,7 +999,7 @@ _FUN_8c0107ac:                   ; function: FUN_8c0107ac
           CMP/GE      R2,R14
           BT          L34
           MOV         R14,R5
-          BSR         _snd_8c010cd6
+          BSR         _SndProc_8c010cd6
           MOV         #0,R4
           LDS.L       @R15+,PR
           MOV         #1,R0
@@ -1009,7 +1011,7 @@ L35:
           LDS.L       @R15+,PR
           RTS
           MOV.L       @R15+,R14
-_controlAdxtWithOutVol_8c0107d2: ; function: controlAdxtWithOutVol_8c0107d2
+_SndControlAdxtWithOutVol_8c0107d2: ; function: SndControlAdxtWithOutVol_8c0107d2
                                  ; frame size=24
           MOV.L       R14,@-R15
           MOV         R4,R0
@@ -1073,7 +1075,7 @@ L39:
           MOV.L       @R15+,R13
           RTS
           MOV.L       @R15+,R14
-_midiResetFxAndPlay_8c010846:    ; function: midiResetFxAndPlay_8c010846
+_SndMidiResetFxAndPlay_8c010846:    ; function: SndMidiResetFxAndPlay_8c010846
                                  ; frame size=28
           MOV.L       R14,@-R15
           MOV.L       R13,@-R15
@@ -1128,7 +1130,7 @@ L41:
           .DATA.L     _sdSndSetFxPrg
           .DATA.L     _sdMidiSetFxLev
           .DATA.L     _sdMidiPlay
-_setSoundMode_8c0108c0:          ; function: setSoundMode_8c0108c0
+_SndSetSoundMode_8c0108c0:          ; function: SndSetSoundMode_8c0108c0
                                  ; frame size=12
           MOV.L       R14,@-R15
           MOV.L       R13,@-R15
@@ -1185,7 +1187,7 @@ L46:
           MOV.L       @R15+,R13
           RTS
           MOV.L       @R15+,R14
-_getSoundMode_8c010924:                   ; function: getSoundMode_8c010924
+_SndGetSoundMode_8c010924:                   ; function: SndGetSoundMode_8c010924
                                  ; frame size=12
           MOV.L       R14,@-R15
           STS.L       PR,@-R15
@@ -1229,7 +1231,7 @@ L49:
           LDS.L       @R15+,PR
           RTS
           MOV.L       @R15+,R14
-_setAdxVol_8c010972:                   ; function: setAdxVol_8c010972
+_SndSetAdxVol_8c010972:                   ; function: SndSetAdxVol_8c010972
                                  ; frame size=48
                                  ; used runtime library name:
                                  ; __quick_evn_mvn
@@ -1293,7 +1295,7 @@ L54:
           LDS.L       @R15+,PR
           RTS
           NOP
-_setMidiVolAndInitStruct_8c0109f4:                   ; function: setMidiVolAndInitStruct_8c0109f4
+_SndSetMidiVolAndInitStruct_8c0109f4:                   ; function: SndSetMidiVolAndInitStruct_8c0109f4
                                  ; frame size=60
                                  ; used runtime library name:
                                  ; __quick_evn_mvn
@@ -1336,7 +1338,7 @@ L55:
           MOV.L       @R15+,R13
           RTS
           MOV.L       @R15+,R14
-_updateAdxVolFade_8c010a40:            ; function: updateAdxVolFade_8c010a40
+_SndUpdateAdxVolFade_8c010a40:            ; function: SndUpdateAdxVolFade_8c010a40
                                  ; frame size=24
           MOV.L       R14,@-R15
           MOV.L       R13,@-R15
@@ -1517,7 +1519,7 @@ L64:
           MOV.L       @R15+,R13
           RTS
           MOV.L       @R15+,R14
-_startAdxFadeOut_8c010bae:                   ; function: startAdxFadeOut_8c010bae
+_SndStartAdxFadeOut_8c010bae:                   ; function: SndStartAdxFadeOut_8c010bae
                                  ; frame size=4
                                  ; used runtime library name:
                                  ; __divls
@@ -1683,7 +1685,7 @@ L71:
           MOV.L       @(R0,R4),R4
           JMP         @R3
           MOV.L       @R15+,R14
-_snd_8c010cd6:                   ; function: snd_8c010cd6
+_SndProc_8c010cd6:                   ; function: SndProc_8c010cd6
                                  ; frame size=24
           MOV.L       R14,@-R15
           MOV.L       R13,@-R15
@@ -1851,7 +1853,7 @@ _unusedStopMidiAdx_8c010de6:                   ; function: unusedStopMidiAdx_8c0
           MOV         #20,R6
           BRA         _initUknVol_8c0100bc
           LDS.L       @R15+,PR
-_initSoundMidiAdx_8c010e18:                   ; function: initSoundMidiAdx_8c010e18
+_SndInitSoundMidiAdx_8c010e18:                   ; function: SndInitSoundMidiAdx_8c010e18
                                  ; frame size=8
           MOV.L       R14,@-R15
           MOV         #0,R3

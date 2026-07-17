@@ -5,22 +5,22 @@
           .IMPORT     _var_8c22870c
           .IMPORT     _var_8c2264b8
           .IMPORT     _var_8c2285c4
-          .IMPORT     _freeTask_8c014b66
+          .IMPORT     _TaskFree_8c014b66
           .IMPORT     _var_8c1bbc4c
           .IMPORT     _var_8c2264bc
           .IMPORT     _AsqGetRandomB_8c0121a8
-          .IMPORT     _vib_8c010f7a
+          .IMPORT     _VibStart_8c010f7a
           .IMPORT     _var_playMode_8c1bb8d0
           .IMPORT     _var_8c226410
           .IMPORT     _var_route_8c18ad1c
           .IMPORT     _var_8c22640c
-          .IMPORT     _snd_8c010cd6
+          .IMPORT     _SndProc_8c010cd6
           .IMPORT     _var_8c228710
           .IMPORT     _var_8c2285e4
           .IMPORT     _var_8c227d9c
           .IMPORT     _var_vibport_8c1ba354
           .IMPORT     _var_8c1ba293
-          .IMPORT     _vib_8c010fae
+          .IMPORT     _VibStop_8c010fae
           .EXPORT     _FUN_8c020214
           .SECTION     P, CODE, ALIGN=4
 _FUN_8c020214:
@@ -169,12 +169,12 @@ LP_GEN_12106:
           .DATA.L _var_8c22870c ; H'8C020320
           .DATA.L _var_8c2264b8 ; H'8C020324
           .DATA.L _var_8c2285c4 ; H'8C020328
-          .DATA.L _freeTask_8c014b66 ; H'8C02032C
+          .DATA.L _TaskFree_8c014b66 ; H'8C02032C
           .DATA.L H'3DBDA12F ; H'8C020330
           .DATA.L _var_8c1bbc4c ; H'8C020334
           .DATA.L _var_8c2264bc ; H'8C020338
           .DATA.L _AsqGetRandomB_8c0121a8 ; H'8C02033C
-          .DATA.L _vib_8c010f7a ; H'8C020340
+          .DATA.L _VibStart_8c010f7a ; H'8C020340
           .DATA.L _var_playMode_8c1bb8d0 ; H'8C020344
 LAB_8c020348:
           TST         R4,R4
@@ -431,12 +431,12 @@ LP_GEN_85437:
           .DATA.L _var_8c226410 ; H'8C0204FC
           .DATA.L _var_route_8c18ad1c ; H'8C020500
           .DATA.L _var_8c22640c ; H'8C020504
-          .DATA.L _snd_8c010cd6 ; H'8C020508
+          .DATA.L _SndProc_8c010cd6 ; H'8C020508
           .DATA.L _var_8c228710 ; H'8C02050C
           .DATA.L _var_8c2285e4 ; H'8C020510
           .DATA.L _var_8c227d9c ; H'8C020514
           .DATA.L _AsqGetRandomB_8c0121a8 ; H'8C020518
           .DATA.L _var_vibport_8c1ba354 ; H'8C02051C
           .DATA.L _var_8c1ba293 ; H'8C020520
-          .DATA.L _vib_8c010fae ; H'8C020524
+          .DATA.L _VibStop_8c010fae ; H'8C020524
           .END

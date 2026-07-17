@@ -628,7 +628,7 @@ return new class extends TestCase {
             $var_glyphTexlists_8c1bc790 + $glyphIndex * 0x8,
         );
 
-        $this->shouldCall('_drawSprite_8c014f54')->with(
+        $this->shouldCall('_TxtDrawSprite_8c014f54')->with(
             $this->addressOf('_var_fontResourceGroup_8c1bc794'),
             2000,
             $x,

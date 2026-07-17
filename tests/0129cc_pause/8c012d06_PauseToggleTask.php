@@ -12,7 +12,7 @@ return new class extends TestCase {
         $this->call('_PauseToggleTask_8c012d06');
 
         $this->shouldCall('_FUN_8c016182');
-        $this->shouldCall('_pushTitle_8c015fd6')->with(1);
+        $this->shouldCall('_TitlePushTitle_8c015fd6')->with(1);
     }
 
     public function test_reset_requested_but_unk157a7c_set_runs_normally()
@@ -51,7 +51,7 @@ return new class extends TestCase {
 
         $this->shouldWriteTo('_var_pauseActive_8c1bb8cc', 0);
         $this->shouldCall('_FUN_8c02239c');
-        $this->shouldCall('_execTasks_8c014b42')->with($this->addressOf('_var_tasks_8c1ba5e8'));
+        $this->shouldCall('_TaskExecGroup_8c014b42')->with($this->addressOf('_var_tasks_8c1ba5e8'));
         $this->shouldCall('_FUN_8c022910');
     }
 
@@ -62,7 +62,7 @@ return new class extends TestCase {
         $this->call('_PauseToggleTask_8c012d06');
 
         $this->shouldCall('_FUN_8c02239c');
-        $this->shouldCall('_execTasks_8c014b42')->with($this->addressOf('_var_tasks_8c1ba5e8'));
+        $this->shouldCall('_TaskExecGroup_8c014b42')->with($this->addressOf('_var_tasks_8c1ba5e8'));
         $this->shouldCall('_FUN_8c022910');
     }
 
@@ -83,9 +83,9 @@ return new class extends TestCase {
         int $pauseActive = 0,
     ): void {
         $this->setSize('_FUN_8c016182', 4);
-        $this->setSize('_pushTitle_8c015fd6', 4);
+        $this->setSize('_TitlePushTitle_8c015fd6', 4);
         $this->setSize('_FUN_8c02239c', 4);
-        $this->setSize('_execTasks_8c014b42', 4);
+        $this->setSize('_TaskExecGroup_8c014b42', 4);
         $this->setSize('_FUN_8c022910', 4);
         $this->setSize('_var_tasks_8c1ba5e8', 4);
 

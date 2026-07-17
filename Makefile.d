@@ -27,22 +27,22 @@ $(OUTPUT_DIR)/012504_input.obj: src/014b8c_backup.h src/014f54_text.h
 $(OUTPUT_DIR)/012504_input.obj: src/015ab8_title.h
 $(OUTPUT_DIR)/0129cc_pause.obj: src/0129cc_pause.h src/014a9c_tasks.h
 $(OUTPUT_DIR)/0129cc_pause.obj: src/0100bc_sound.h src/011120_asset_queues.h
-$(OUTPUT_DIR)/0129cc_pause.obj: src/serial_debug.h src/012f44.h src/014f54_text.h
+$(OUTPUT_DIR)/0129cc_pause.obj: src/serial_debug.h src/012f44_game.h src/014f54_text.h
 $(OUTPUT_DIR)/0129cc_pause.obj: src/015ab8_title.h src/014b8c_backup.h
 $(OUTPUT_DIR)/0129cc_pause.obj: src/014f54_text_pre_data.h src/013ae8_route_load.h
 $(OUTPUT_DIR)/0129cc_pause.obj: src/01614c.h src/016d2c_course_menu.h src/01e27c.h
 $(OUTPUT_DIR)/0129cc_pause.obj: src/022464.h src/0222dc.h src/0fcd20_sectionB.h
 $(OUTPUT_DIR)/0129cc_pause.obj: src/02af78_event.h
-$(OUTPUT_DIR)/012f44.obj: src/012f44.h src/014a9c_tasks.h src/0100bc_sound.h
-$(OUTPUT_DIR)/012f44.obj: src/014f54_text.h src/015ab8_title.h src/014b8c_backup.h
-$(OUTPUT_DIR)/012f44.obj: src/016bf4_demo_input.h src/0129cc_pause.h src/01614c.h
-$(OUTPUT_DIR)/012f44.obj: src/03bd80_sectionD.h src/014f54_text_pre_data.h
-$(OUTPUT_DIR)/012f44.obj: src/011120_asset_queues.h src/serial_debug.h
-$(OUTPUT_DIR)/012f44.obj: src/013ae8_route_load.h src/0fcd20_sectionB.h
-$(OUTPUT_DIR)/012f44.obj: src/02af78_event.h src/includes.h src/scif.h
-$(OUTPUT_DIR)/012f44.obj: src/02fb50_sh4nlfzn_post_data.h
+$(OUTPUT_DIR)/012f44_game.obj: src/012f44_game.h src/014a9c_tasks.h src/0100bc_sound.h
+$(OUTPUT_DIR)/012f44_game.obj: src/014f54_text.h src/015ab8_title.h src/014b8c_backup.h
+$(OUTPUT_DIR)/012f44_game.obj: src/016bf4_demo_input.h src/0129cc_pause.h src/01614c.h
+$(OUTPUT_DIR)/012f44_game.obj: src/03bd80_sectionD.h src/014f54_text_pre_data.h
+$(OUTPUT_DIR)/012f44_game.obj: src/011120_asset_queues.h src/serial_debug.h
+$(OUTPUT_DIR)/012f44_game.obj: src/013ae8_route_load.h src/0fcd20_sectionB.h
+$(OUTPUT_DIR)/012f44_game.obj: src/02af78_event.h src/includes.h src/scif.h
+$(OUTPUT_DIR)/012f44_game.obj: src/02fb50_sh4nlfzn_post_data.h
 $(OUTPUT_DIR)/013ae8_route_load.obj: src/011120_asset_queues.h src/serial_debug.h
-$(OUTPUT_DIR)/013ae8_route_load.obj: src/014a9c_tasks.h src/012504_input.h src/012f44.h
+$(OUTPUT_DIR)/013ae8_route_load.obj: src/014a9c_tasks.h src/012504_input.h src/012f44_game.h
 $(OUTPUT_DIR)/013ae8_route_load.obj: src/013ae8_route_load.h src/014f54_text.h
 $(OUTPUT_DIR)/013ae8_route_load.obj: src/015ab8_title.h src/014b8c_backup.h
 $(OUTPUT_DIR)/013ae8_route_load.obj: src/02171c.h src/026710.h src/028258.h
@@ -50,7 +50,7 @@ $(OUTPUT_DIR)/013ae8_route_load.obj: src/02af78_event.h src/02c884.h
 $(OUTPUT_DIR)/013ae8_route_load.obj: src/03bd80_sectionD.h src/014f54_text_pre_data.h
 $(OUTPUT_DIR)/013ae8_route_load.obj: src/0fcd20_sectionB.h
 $(OUTPUT_DIR)/013ae8_route_load.obj: src/013ae8_route_load.data.inc
-$(OUTPUT_DIR)/014934.obj: src/012f44.h src/014a9c_tasks.h src/013ae8_route_load.h
+$(OUTPUT_DIR)/014934.obj: src/012f44_game.h src/014a9c_tasks.h src/013ae8_route_load.h
 $(OUTPUT_DIR)/014934.obj: src/014934.h src/011120_asset_queues.h src/serial_debug.h
 $(OUTPUT_DIR)/014934.obj: src/014f54_text_pre_data.h src/014b8c_backup.h
 $(OUTPUT_DIR)/014934.obj: src/014f54_text.h src/015ab8_title.h
@@ -65,7 +65,7 @@ $(OUTPUT_DIR)/014f54_text.obj: src/015ab8_title.h src/014b8c_backup.h
 $(OUTPUT_DIR)/014f54_text.obj: src/011120_asset_queues.h src/serial_debug.h
 $(OUTPUT_DIR)/014f54_text.obj: src/014f54_text.h src/014f54_text_pre_data.h
 $(OUTPUT_DIR)/014f54_text.obj: src/0fcd20_sectionB.h src/02af78_event.h
-$(OUTPUT_DIR)/015ab8_title.obj: src/012504_input.h src/012f44.h src/014a9c_tasks.h
+$(OUTPUT_DIR)/015ab8_title.obj: src/012504_input.h src/012f44_game.h src/014a9c_tasks.h
 $(OUTPUT_DIR)/015ab8_title.obj: src/013ae8_route_load.h src/014f54_text.h
 $(OUTPUT_DIR)/015ab8_title.obj: src/015ab8_title.h src/014b8c_backup.h
 $(OUTPUT_DIR)/015ab8_title.obj: src/serial_debug.h src/0100bc_sound.h
@@ -86,7 +86,7 @@ $(OUTPUT_DIR)/016c58_prompt.obj: src/011120_asset_queues.h src/serial_debug.h
 $(OUTPUT_DIR)/016c58_prompt.obj: src/014a9c_tasks.h src/013ae8_route_load.h
 $(OUTPUT_DIR)/016c58_prompt.obj: src/014b8c_backup.h src/014f54_text.h
 $(OUTPUT_DIR)/016c58_prompt.obj: src/015ab8_title.h src/016c58_prompt.h
-$(OUTPUT_DIR)/016d2c_course_menu.obj: src/012504_input.h src/012f44.h
+$(OUTPUT_DIR)/016d2c_course_menu.obj: src/012504_input.h src/012f44_game.h
 $(OUTPUT_DIR)/016d2c_course_menu.obj: src/014a9c_tasks.h src/013ae8_route_load.h
 $(OUTPUT_DIR)/016d2c_course_menu.obj: src/015ab8_title.h src/014b8c_backup.h
 $(OUTPUT_DIR)/016d2c_course_menu.obj: src/011120_asset_queues.h src/serial_debug.h
@@ -110,7 +110,7 @@ $(OUTPUT_DIR)/019e98_main_menu.obj: src/0100bc_sound.h src/011120_asset_queues.h
 $(OUTPUT_DIR)/019e98_main_menu.obj: src/serial_debug.h src/016d2c_course_menu.h
 $(OUTPUT_DIR)/019e98_main_menu.obj: src/022464.h src/014f54_text_pre_data.h
 $(OUTPUT_DIR)/019e98_main_menu.obj: src/0fcd20_sectionB.h src/02af78_event.h
-$(OUTPUT_DIR)/01d290_album.obj: src/012f44.h src/014a9c_tasks.h src/013ae8_route_load.h
+$(OUTPUT_DIR)/01d290_album.obj: src/012f44_game.h src/014a9c_tasks.h src/013ae8_route_load.h
 $(OUTPUT_DIR)/01d290_album.obj: src/015ab8_title.h src/014b8c_backup.h
 $(OUTPUT_DIR)/01d290_album.obj: src/014f54_text.h src/016d2c_course_menu.h
 $(OUTPUT_DIR)/01d290_album.obj: src/011120_asset_queues.h src/serial_debug.h

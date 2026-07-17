@@ -28,11 +28,11 @@
           .IMPORT     _init_8c046208
           .IMPORT     _var_tasks_8c1bac28
           .IMPORT     _FUN_8c025b98
-          .IMPORT     _pushTask_8c014ae8
+          .IMPORT     _TaskPush_8c014ae8
           .IMPORT     _FUN_8c02eab4
           .IMPORT     _FUN_8c020b6c
           .IMPORT     _var_routeModelSlots_8c1bbddc
-          .IMPORT     _freeTask_8c014b66
+          .IMPORT     _TaskFree_8c014b66
           .IMPORT     _FUN_8c02f0c8
           .IMPORT     _var_demoEntryValue_8c227e14
           .IMPORT     _init_8c04622c
@@ -50,7 +50,7 @@
           .IMPORT     _var_8c1bbd8c
           .IMPORT     _var_8c227e18
           .IMPORT     _FUN_8c0223ea
-          .IMPORT     _execTasks_8c014b42
+          .IMPORT     _TaskExecGroup_8c014b42
           .IMPORT     _var_8c228b40
           .IMPORT     _init_8c04c980
           .IMPORT     _init_8c04caec
@@ -1744,7 +1744,7 @@ LP_GEN_87611:
           .DATA.L _init_8c046208 ; H'8C0273A0
           .DATA.L _var_tasks_8c1bac28 ; H'8C0273A4
           .DATA.L _FUN_8c025b98 ; H'8C0273A8
-          .DATA.L _pushTask_8c014ae8 ; H'8C0273AC
+          .DATA.L _TaskPush_8c014ae8 ; H'8C0273AC
           .DATA.L _FUN_8c02656a ; H'8C0273B0
           .DATA.L H'00008000 ; H'8C0273B4
           .DATA.L _FUN_8c021290 ; H'8C0273B8
@@ -1839,7 +1839,7 @@ LP_GEN_50256:
           .DATA.L _FUN_8c020b6c ; H'8C027460
           .DATA.L _FUN_8c02e51c ; H'8C027464
           .DATA.L _var_routeModelSlots_8c1bbddc ; H'8C027468
-          .DATA.L _freeTask_8c014b66 ; H'8C02746C
+          .DATA.L _TaskFree_8c014b66 ; H'8C02746C
           .DATA.L _AsqGetRandomA_8c012166 ; H'8C027470
           .DATA.L H'41000000 ; H'8C027474
           .DATA.L _FUN_8c02f0c8 ; H'8C027478
@@ -2311,7 +2311,7 @@ LP_GEN_74201:
           .DATA.L LAB_8c02756a ; H'8C027814
           .DATA.L _FUN_8c0223ea ; H'8C027818
           .DATA.L _var_tasks_8c1bac28 ; H'8C02781C
-          .DATA.L _execTasks_8c014b42 ; H'8C027820
+          .DATA.L _TaskExecGroup_8c014b42 ; H'8C027820
           .DATA.L _var_8c227e1c ; H'8C027824
           .DATA.L _var_8c228b40 ; H'8C027828
           .DATA.L _var_route_8c18ad1c ; H'8C02782C
@@ -2329,5 +2329,5 @@ LP_GEN_74201:
           .DATA.L _var_8c1bbdb8 ; H'8C02785C
           .DATA.L LAB_8c0275d4 ; H'8C027860
           .DATA.L _var_tasks_8c1ba5e8 ; H'8C027864
-          .DATA.L _pushTask_8c014ae8 ; H'8C027868
+          .DATA.L _TaskPush_8c014ae8 ; H'8C027868
           .END

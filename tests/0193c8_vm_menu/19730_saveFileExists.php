@@ -25,7 +25,7 @@ return new class extends TestCase {
 
         $this->shouldCall('_BupGetInfo_8c014bba')->with($drive)->andReturn($bupInfo);
 
-        $this->singleCall('_saveFileExists_19730')
+        $this->singleCall('_saveFileExists_8c019730')
             ->with($drive, $saveName)
             ->singleShouldReturn(0)
             ->run();
@@ -49,7 +49,7 @@ return new class extends TestCase {
 
         $this->shouldCall('_BupGetInfo_8c014bba')->with($drive)->andReturn($bupInfo);
 
-        $this->singleCall('_saveFileExists_19730')
+        $this->singleCall('_saveFileExists_8c019730')
             ->with($drive, $saveName)
             ->singleShouldReturn(0)
             ->run();
@@ -73,7 +73,7 @@ return new class extends TestCase {
 
         $this->shouldCall('_BupGetInfo_8c014bba')->with($drive)->andReturn($bupInfo);
 
-        $this->singleCall('_saveFileExists_19730')
+        $this->singleCall('_saveFileExists_8c019730')
             ->with($drive, $saveName)
             ->singleShouldReturn(0)
             ->run();
@@ -98,7 +98,7 @@ return new class extends TestCase {
         $this->shouldCall('_BupGetInfo_8c014bba')->with($drive)->andReturn($bupInfo);
         $this->shouldCall('_buIsExistFile')->with($drive)->andReturn(0); // BUD_ERR_OK
 
-        $this->singleCall('_saveFileExists_19730')
+        $this->singleCall('_saveFileExists_8c019730')
             ->with($drive, $saveName)
             ->singleShouldReturn(1)
             ->run();
@@ -123,7 +123,7 @@ return new class extends TestCase {
         $this->shouldCall('_BupGetInfo_8c014bba')->with($drive)->andReturn($bupInfo);
         $this->shouldCall('_buIsExistFile')->with($drive)->andReturn(0xffffff03); // BUD_ERR_UNFORMAT
 
-        $this->singleCall('_saveFileExists_19730')
+        $this->singleCall('_saveFileExists_8c019730')
             ->with($drive, $saveName)
             ->singleShouldReturn(0)
             ->run();
@@ -148,7 +148,7 @@ return new class extends TestCase {
         $this->shouldCall('_BupGetInfo_8c014bba')->with($drive)->andReturn($bupInfo);
         $this->shouldCall('_buIsExistFile')->with($drive)->andReturn(0xffffffff); // BUD_ERR_BUSY
 
-        $this->singleCall('_saveFileExists_19730')
+        $this->singleCall('_saveFileExists_8c019730')
             ->with($drive, $saveName)
             ->singleShouldReturn(0)
             ->run();

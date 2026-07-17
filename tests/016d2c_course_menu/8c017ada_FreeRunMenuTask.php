@@ -11,9 +11,9 @@ return new Class extends TestCase {
 
         $this->initMenuStateUint32(0x18, 0);
 
-        $this->call('_CourseMenuFreeRunMenuTask_8c017ada');
+        $this->call('_courseMenuFreeRunMenuTask_8c017ada');
 
-        $this->shouldCall('_isPvmReady_8c01432a')->andReturn(1);
+        $this->shouldCall('_RouteLoadIsPvmReady_8c01432a')->andReturn(1);
     }
 
     public function test_init_state_advances()
@@ -22,13 +22,13 @@ return new Class extends TestCase {
 
         $this->initMenuStateUint32(0x18, 0);
 
-        $this->call('_CourseMenuFreeRunMenuTask_8c017ada');
+        $this->call('_courseMenuFreeRunMenuTask_8c017ada');
 
-        $this->shouldCall('_isPvmReady_8c01432a')->andReturn(0);
+        $this->shouldCall('_RouteLoadIsPvmReady_8c01432a')->andReturn(0);
         $this->shouldCall('_AsqFreeQueues_8c011f7e');
         $this->shouldWriteLong($this->addressOf('_var_menuState_8c1bc7a8') + 0x18, 1);
         $this->shouldCall('_FUN_8c010d8a');
-        $this->shouldCall('_snd_8c010cd6')->with(0, 15);
+        $this->shouldCall('_SndProc_8c010cd6')->with(0, 15);
         $this->shouldCall('_push_fadein_8c022a9c')->with(10);
     }
 
@@ -41,7 +41,7 @@ return new Class extends TestCase {
         $this->initUint32($this->addressOf('_var_isFading_8c226568'), 1);
         $this->initUint32($this->addressOf('_var_menuTextboxCharLimit_8c225fb8'), 21);
 
-        $this->call('_CourseMenuFreeRunMenuTask_8c017ada');
+        $this->call('_courseMenuFreeRunMenuTask_8c017ada');
 
         $this->shouldRenderFrame(
             spriteNo: 42,
@@ -60,7 +60,7 @@ return new Class extends TestCase {
         $this->initUint32($this->addressOf('_var_menuTextboxCharLimit_8c225fb8'), 21);
         $this->initUint32($this->addressOf('_var_dialogQueue_8c225fbc') + 4 * 0, 32);
 
-        $this->call('_CourseMenuFreeRunMenuTask_8c017ada');
+        $this->call('_courseMenuFreeRunMenuTask_8c017ada');
 
         $this->shouldCall('_CourseMenuPushDialogTask_8c0170c6')->with(32);
         $this->shouldWriteLong($this->addressOf('_var_menuState_8c1bc7a8') + 0x18, 2);
@@ -84,7 +84,7 @@ return new Class extends TestCase {
 
         $this->initUint32($this->addressOf('_var_menuTextboxCharLimit_8c225fb8'), 21);
 
-        $this->call('_CourseMenuFreeRunMenuTask_8c017ada');
+        $this->call('_courseMenuFreeRunMenuTask_8c017ada');
 
         // End-of-frame rendering should always run
         $this->shouldRenderFrame(
@@ -115,7 +115,7 @@ return new Class extends TestCase {
         $task = $this->alloc(0x10);
         $this->initUint32($task + 0x08, 0);
 
-        $this->call('_CourseMenuFreeRunMenuTask_8c017ada')->with($task, 0);
+        $this->call('_courseMenuFreeRunMenuTask_8c017ada')->with($task, 0);
 
         // Effects (no course-unlock branch, just advance + push next)
         $this->shouldWriteLong($task + 0x08, 1);                // ++dialogSequenceIndex
@@ -148,7 +148,7 @@ return new Class extends TestCase {
         $task = $this->alloc(0x10);
         $this->initUint32($task + 0x08, 0);
 
-        $this->call('_CourseMenuFreeRunMenuTask_8c017ada')->with($task, 0);
+        $this->call('_courseMenuFreeRunMenuTask_8c017ada')->with($task, 0);
 
         // Effects
         $this->shouldWriteLong($task + 0x08, 1); // ++dialogSequenceIndex
@@ -173,7 +173,7 @@ return new Class extends TestCase {
         $task = $this->alloc(0x10);
         $this->initUint32($task + 0x08, 0);
 
-        $this->call('_CourseMenuFreeRunMenuTask_8c017ada')->with($task, 0);
+        $this->call('_courseMenuFreeRunMenuTask_8c017ada')->with($task, 0);
 
         $this->shouldCall('_handleCourseMenuInput_8c017126');
         $this->shouldRenderFrame(spriteNo: 42, textboxIndex: 21, menuTextboxReturns: 1);
@@ -193,7 +193,7 @@ return new Class extends TestCase {
         $task = $this->alloc(0x10);
 
         // Invoke
-        $this->call('_CourseMenuFreeRunMenuTask_8c017ada')->with($task, 0);
+        $this->call('_courseMenuFreeRunMenuTask_8c017ada')->with($task, 0);
 
         // ANIMATING branch: interpolate returns false -> remain in state 4
         $this->shouldCall('_CourseMenuInterpolateCursor_8c016d2c')->andReturn(0);
@@ -220,7 +220,7 @@ return new Class extends TestCase {
         $task = $this->alloc(0x10);
 
         // Invoke
-        $this->call('_CourseMenuFreeRunMenuTask_8c017ada')->with($task, 0);
+        $this->call('_courseMenuFreeRunMenuTask_8c017ada')->with($task, 0);
 
         // ANIMATING branch: interpolate returns true -> write state = IDLE (3)
         $this->shouldCall('_CourseMenuInterpolateCursor_8c016d2c')->andReturn(1);
@@ -249,7 +249,7 @@ return new Class extends TestCase {
 
         $task = $this->alloc(0x10);
 
-        $this->call('_CourseMenuFreeRunMenuTask_8c017ada')->with($task, 0);
+        $this->call('_courseMenuFreeRunMenuTask_8c017ada')->with($task, 0);
 
         $base = $this->addressOf('_var_menuState_8c1bc7a8');
 
@@ -276,7 +276,7 @@ return new Class extends TestCase {
 
         $task = $this->alloc(0x10);
 
-        $this->call('_CourseMenuFreeRunMenuTask_8c017ada')->with($task, 0);
+        $this->call('_courseMenuFreeRunMenuTask_8c017ada')->with($task, 0);
 
         $base = $this->addressOf('_var_menuState_8c1bc7a8');
 
@@ -300,7 +300,7 @@ return new Class extends TestCase {
         $this->initMenuStateUint32(0x60, 42);
         $this->initUint32($this->addressOf('_var_menuTextboxCharLimit_8c225fb8'), 21);
 
-        $this->call('_CourseMenuFreeRunMenuTask_8c017ada');
+        $this->call('_courseMenuFreeRunMenuTask_8c017ada');
 
         $this->shouldWriteLong($this->addressOf('_var_menuState_8c1bc7a8') + 0x68, 8);
         $this->shouldWriteLong($this->addressOf('_var_menuState_8c1bc7a8') + 0x48, 0);
@@ -322,7 +322,7 @@ return new Class extends TestCase {
         $this->initUint32($this->addressOf('_var_menuTextboxCharLimit_8c225fb8'), 21);
         $this->initUint32($this->addressOf('_init_8c03bd80'), 1);
 
-        $this->call('_CourseMenuFreeRunMenuTask_8c017ada');
+        $this->call('_courseMenuFreeRunMenuTask_8c017ada');
     }
 
     public function test_fade_out_state_happy_path_without_free()
@@ -343,7 +343,7 @@ return new Class extends TestCase {
         $task = $this->alloc(0x10);
 
         // Invoke frame
-        $this->call('_CourseMenuFreeRunMenuTask_8c017ada')->with($task, 0);
+        $this->call('_courseMenuFreeRunMenuTask_8c017ada')->with($task, 0);
 
         $base = $this->addressOf('_var_menuState_8c1bc7a8');
 
@@ -375,7 +375,7 @@ return new Class extends TestCase {
         $task = $this->alloc(0x10);
 
         // Invoke
-        $this->call('_CourseMenuFreeRunMenuTask_8c017ada')->with($task, 0);
+        $this->call('_courseMenuFreeRunMenuTask_8c017ada')->with($task, 0);
 
         $base = $this->addressOf('_var_menuState_8c1bc7a8');
 
@@ -390,7 +390,7 @@ return new Class extends TestCase {
         $this->shouldWriteLong($base + 0x50, 0);
 
         // Indirect callback invoked with task
-        $this->shouldCall('_CourseMenuConfirmInit_8c0184cc')->with($task);
+        $this->shouldCall('_courseMenuConfirmInit_8c0184cc')->with($task);
     }
 
     public function test_fade_out_to_main_menu_waits_while_fading()
@@ -407,7 +407,7 @@ return new Class extends TestCase {
 
         $task = $this->alloc(0x10);
 
-        $this->call('_CourseMenuFreeRunMenuTask_8c017ada')->with($task, 0);
+        $this->call('_courseMenuFreeRunMenuTask_8c017ada')->with($task, 0);
 
         // No state writes or menu switch while fading; epilogue rendering runs
         $this->shouldRenderFrame(
@@ -432,7 +432,7 @@ return new Class extends TestCase {
 
         $task = $this->alloc(0x10);
 
-        $this->call('_CourseMenuFreeRunMenuTask_8c017ada')->with($task, 0);
+        $this->call('_courseMenuFreeRunMenuTask_8c017ada')->with($task, 0);
     }
 
     public function test_fade_out_to_main_menu()
@@ -448,7 +448,7 @@ return new Class extends TestCase {
 
         $task = $this->alloc(0x10);
 
-        $this->call('_CourseMenuFreeRunMenuTask_8c017ada')->with($task, 0);
+        $this->call('_courseMenuFreeRunMenuTask_8c017ada')->with($task, 0);
 
         // Writes and call in order, then return (no epilogue rendering)
         // $this->shouldWriteLong($this->addressOf('_var_8c1bb8b8'), 0);
@@ -518,7 +518,7 @@ return new Class extends TestCase {
         float $y,
         float $priority,
     ) {
-        $this->shouldCall('_drawSprite_8c014f54')->with(
+        $this->shouldCall('_TxtDrawSprite_8c014f54')->with(
             $this->addressOf('_var_menuState_8c1bc7a8') + $resourceGroup,
             $spriteNo,
             $x,

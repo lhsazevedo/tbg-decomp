@@ -680,7 +680,7 @@
           .EXPORT     _init_8c045674 ; 025870.src
           .EXPORT     _init_8c045b60 ; 025870.src
           .EXPORT     _init_8c045ee4 ; 025870.src
-          .EXPORT     _init_8c0460b0 ; 012f44.c, 012f44.src
+          .EXPORT     _init_8c0460b0 ; 012f44_game.c, 012f44_game.src
           .EXPORT     _init_8c0460bc ; 026710.src
 
           ; 026710

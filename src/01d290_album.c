@@ -1,6 +1,7 @@
+/* @unit Album */
 #include <shinobi.h>
 #include <sg_sd.h>
-#include "012f44.h"
+#include "012f44_game.h"
 #include "013ae8_route_load.h"
 #include "015ab8_title.h"
 #include "014a9c_tasks.h"
@@ -58,7 +59,7 @@ enum ALBUM_STATE {
  * ====================
  */
 
-STATIC void AlbumDrawGrid_8c01d290(void);
+STATIC void albumDrawGrid_8c01d290(void);
 
 /* =========
  * Functions
@@ -66,7 +67,7 @@ STATIC void AlbumDrawGrid_8c01d290(void);
  */
 
 /* Draws the received-letter icons over the album grid, then the grid frame. */
-STATIC void AlbumDrawGrid_8c01d290(void)
+STATIC void albumDrawGrid_8c01d290(void)
 {
     int i;
     int spriteNo = 1;
@@ -78,7 +79,7 @@ STATIC void AlbumDrawGrid_8c01d290(void)
 
     for (i = 0; i < 6; i++, spriteNo++) {
         if (var_progress_8c1ba1cc.letters_0x2c[i]) {
-            drawSprite_8c014f54(
+            TxtDrawSprite_8c014f54(
                 &var_menuState_8c1bc7a8.resourceGroupB_0x0c,
                 spriteNo,
                 0.0, 0.0, -4.0
@@ -86,26 +87,26 @@ STATIC void AlbumDrawGrid_8c01d290(void)
         }
     }
 
-    drawSprite_8c014f54(
+    TxtDrawSprite_8c014f54(
         &var_menuState_8c1bc7a8.resourceGroupB_0x0c,
         0,
         0.0, 0.0, -5.0
     );
 }
 
-STATIC void AlbumMenuTask_8c01d300(Task *task, void *state)
+STATIC void albumMenuTask_8c01d300(Task *task, void *state)
 {
     int slot = var_menuState_8c1bc7a8.selected_0x38;
     int press = var_peripherals_8c1ba35c[0].press;
 
     switch (var_menuState_8c1bc7a8.state_0x18) {
         case ALBUM_STATE_INIT: {
-            if (isPvmReady_8c01432a()) {
+            if (RouteLoadIsPvmReady_8c01432a()) {
                 return;
             }
             AsqFreeQueues_8c011f7e();
             CHANGE_STATE(ALBUM_STATE_FADE_IN);
-            snd_8c010cd6(0, 0x10);
+            SndProc_8c010cd6(0, 0x10);
             push_fadein_8c022a9c(10);
             return;
         }
@@ -127,8 +128,8 @@ STATIC void AlbumMenuTask_8c01d300(Task *task, void *state)
             } else if (press & PDD_DGT_TB) {
                 CHANGE_STATE(ALBUM_STATE_FADE_OUT);
                 sdMidiPlay(var_midiHandles_8c0fcd28[0], 1, 1, 0);
-                startAdxFadeOut_8c010bae(0);
-                startAdxFadeOut_8c010bae(1);
+                SndStartAdxFadeOut_8c010bae(0);
+                SndStartAdxFadeOut_8c010bae(1);
                 push_fadeout_8c022b60(10);
             }
             break;
@@ -219,12 +220,12 @@ STATIC void AlbumMenuTask_8c01d300(Task *task, void *state)
                 /* Leave the album. */
                 CHANGE_STATE(ALBUM_STATE_FADE_OUT);
                 sdMidiPlay(var_midiHandles_8c0fcd28[0], 1, 1, 0);
-                startAdxFadeOut_8c010bae(0);
-                startAdxFadeOut_8c010bae(1);
+                SndStartAdxFadeOut_8c010bae(0);
+                SndStartAdxFadeOut_8c010bae(1);
                 push_fadeout_8c022b60(10);
             }
 
-            drawSprite_8c014f54(
+            TxtDrawSprite_8c014f54(
                 &var_menuState_8c1bc7a8.resourceGroupB_0x0c,
                 0xd,
                 var_menuState_8c1bc7a8.pos.cursor.cursor_0x20.x,
@@ -239,7 +240,7 @@ STATIC void AlbumMenuTask_8c01d300(Task *task, void *state)
                 CHANGE_STATE(ALBUM_STATE_IDLE);
             }
 
-            drawSprite_8c014f54(
+            TxtDrawSprite_8c014f54(
                 &var_menuState_8c1bc7a8.resourceGroupB_0x0c,
                 0xd,
                 var_menuState_8c1bc7a8.pos.cursor.cursor_0x20.x,
@@ -255,7 +256,7 @@ STATIC void AlbumMenuTask_8c01d300(Task *task, void *state)
                 sdMidiPlay(var_midiHandles_8c0fcd28[0], 1, 0, 0);
             }
 
-            drawSprite_8c014f54(
+            TxtDrawSprite_8c014f54(
                 &var_menuState_8c1bc7a8.resourceGroupB_0x0c,
                 slot + 7,
                 0.0, 0.0, -3.0
@@ -268,7 +269,7 @@ STATIC void AlbumMenuTask_8c01d300(Task *task, void *state)
                 if (init_8c03bd80) {
                     return;
                 }
-                LOG_DEBUG(("[ALBUM] AlbumMenuTask_8c01d300: fade-out complete, switching screen\n"));
+                LOG_DEBUG(("[ALBUM] albumMenuTask_8c01d300: fade-out complete, switching screen\n"));
                 var_menuState_8c1bc7a8.field_0x3c = 1;
                 var_menuState_8c1bc7a8.field_0x40 = 1;
                 var_menuState_8c1bc7a8.pos.cursor.cursor_0x20.x = 0.0;
@@ -280,7 +281,7 @@ STATIC void AlbumMenuTask_8c01d300(Task *task, void *state)
         }
     }
 
-    AlbumDrawGrid_8c01d290();
+    albumDrawGrid_8c01d290();
     var_menuState_8c1bc7a8.selected_0x38 = slot;
 }
 
@@ -292,7 +293,7 @@ void AlbumSwitchFromTask_8c01d6e2(Task *task)
 
     LOG_DEBUG(("[ALBUM] AlbumSwitchFromTask_8c01d6e2: install album task\n"));
 
-    setTaskAction_8c014b3e(task, AlbumMenuTask_8c01d300);
+    TaskSetAction_8c014b3e(task, albumMenuTask_8c01d300);
     CHANGE_STATE(ALBUM_STATE_INIT);
 
     for (i = 0; i < 6; i++) {
@@ -315,6 +316,6 @@ void AlbumSwitchFromTask_8c01d6e2(Task *task)
         &var_menuState_8c1bc7a8.resourceGroupB_0x0c,
         &init_albumResourceGroup_8c045160
     );
-    setPvmReady_8c014330();
-    AsqProcessQueues_8c011fe0(&AsqNop_8c011120, 0, 0, 0, &resetPvmReady_8c014322);
+    RouteLoadSetPvmReady_8c014330();
+    AsqProcessQueues_8c011fe0(&AsqNop_8c011120, 0, 0, 0, &RouteLoadResetPvmReady_8c014322);
 }

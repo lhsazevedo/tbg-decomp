@@ -4,9 +4,9 @@
           .IMPORT     _var_demoPrevOn_8c225fac
           .IMPORT     _var_demoBuffer_8c1bc828
           .IMPORT     _var_peripherals_8c1ba35c
-          .EXPORT     _demoInputTask_8c016bf4
+          .EXPORT     _DemoInputTask_8c016bf4
           .SECTION    P,CODE,ALIGN=4
-_demoInputTask_8c016bf4:                   ; function: demoInputTask_8c016bf4
+_DemoInputTask_8c016bf4:                   ; function: DemoInputTask_8c016bf4
                                  ; frame size=4
           ADD         #-H'4,R15
           MOV.L       L1,R1   ; _var_8c1bbc84

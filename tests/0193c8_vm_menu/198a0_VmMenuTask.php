@@ -52,7 +52,7 @@ return new class extends TestCase {
 
         $this->shouldWriteMenuState(1);
 
-        $this->shouldCall('_initCursorLerp_19788')->with(1);
+        $this->shouldCall('_initCursorLerp_8c019788')->with(1);
 
         // TODO: Move implementation to Simulator
         // TODO: Handle calling conventions for expectations in Simulator
@@ -78,7 +78,7 @@ return new class extends TestCase {
         $this->shouldCall('__quick_evn_mvn')->do($mvn);
         $this->shouldCall('_swapMessageBoxFor_8c02aefc')->with("セーブ可能です");
         $this->shouldCall('_FUN_8c010d8a');
-        $this->shouldCall('_snd_8c010cd6');
+        $this->shouldCall('_SndProc_8c010cd6');
 
         $this->shouldCall('_push_fadein_8c022a9c')->with(10);
 
@@ -125,7 +125,7 @@ return new class extends TestCase {
         $this->initUint32($this->addressOf('_var_menuState_8c1bc7a8') + 0x18, 1); // state
         $this->initUint32($this->addressOf('_var_isFading_8c226568'), 1);
 
-        $this->shouldCall('_drawVmMenu_197c0');
+        $this->shouldCall('_drawVmMenu_8c0197c0');
         $this->shouldWriteSelectedSlot(0);
 
         $this->singleCall($this->entryName())->with($state, 0)->run();
@@ -143,7 +143,7 @@ return new class extends TestCase {
         $this->initUint32($this->addressOf('_var_isFading_8c226568'), 0);
 
         $this->shouldWriteMenuState(2);
-        $this->shouldCall('_drawVmMenu_197c0');
+        $this->shouldCall('_drawVmMenu_8c0197c0');
         $this->shouldWriteSelectedSlot(0);
 
         $this->singleCall($this->entryName())->with($state, 0)->run();
@@ -166,11 +166,11 @@ return new class extends TestCase {
             ->with($this->addressOf('_init_saveNames_8c044d50'), 3);
 
         $this->shouldCall('_sdMidiPlay')->with(0xbeef0000, 1, 3, 0);
-        $this->shouldCall('_initCursorLerp_19788')->with(2);
+        $this->shouldCall('_initCursorLerp_8c019788')->with(2);
         $this->shouldWriteMenuState(3);
         $this->shouldCall('_swapMessageBoxFor_8c02aefc')->with("セーブ可能です");
 
-        $this->shouldCall('_drawVmMenu_197c0');
+        $this->shouldCall('_drawVmMenu_8c0197c0');
         $this->shouldCall('_menuTextboxText_8c02af1c')->with(0x20);
         $this->shouldWriteSelectedSlot(2);
 
@@ -401,7 +401,7 @@ return new class extends TestCase {
         $this->shouldWriteMenuState(4);
         $this->shouldWriteLong($this->addressOf('_var_menuState_8c1bc7a8') + 0x3c, 0);
 
-        $this->shouldCall('_drawVmMenu_197c0');
+        $this->shouldCall('_drawVmMenu_8c0197c0');
         $this->shouldCall('_menuTextboxText_8c02af1c')->with(0x20);
         $this->shouldWriteSelectedSlot(1);
 
@@ -432,7 +432,7 @@ return new class extends TestCase {
         $this->shouldWriteMenuState(4);
         $this->shouldWriteLong($this->addressOf('_var_menuState_8c1bc7a8') + 0x3c, 0);
 
-        $this->shouldCall('_drawVmMenu_197c0');
+        $this->shouldCall('_drawVmMenu_8c0197c0');
         $this->shouldCall('_menuTextboxText_8c02af1c')->with(0x20);
         $this->shouldWriteSelectedSlot(1);
 
@@ -463,7 +463,7 @@ return new class extends TestCase {
         $this->shouldWriteMenuState(4);
         $this->shouldWriteLong($this->addressOf('_var_menuState_8c1bc7a8') + 0x3c, 0);
 
-        $this->shouldCall('_drawVmMenu_197c0');
+        $this->shouldCall('_drawVmMenu_8c0197c0');
         $this->shouldCall('_menuTextboxText_8c02af1c')->with(0x20);
         $this->shouldWriteSelectedSlot(1);
 
@@ -491,7 +491,7 @@ return new class extends TestCase {
         $this->shouldWriteLong($this->addressOf('_var_menuState_8c1bc7a8') + 0x18, 5);
         $this->shouldWriteLong($this->addressOf('_var_menuState_8c1bc7a8') + 0x3c, 0);
 
-        $this->shouldCall('_drawVmMenu_197c0');
+        $this->shouldCall('_drawVmMenu_8c0197c0');
         $this->shouldCall('_menuTextboxText_8c02af1c')->with(0x20);
         $this->shouldWriteSelectedSlot(8);
 
@@ -517,7 +517,7 @@ return new class extends TestCase {
         $this->shouldCall('_sdMidiPlay')->with(0xbeef0000, 1, 2, 0);
         $this->shouldWriteLong($this->addressOf('_var_menuState_8c1bc7a8') + 0x3c, 0);
 
-        $this->shouldCall('_drawVmMenu_197c0');
+        $this->shouldCall('_drawVmMenu_8c0197c0');
         $this->shouldCall('_menuTextboxText_8c02af1c')->with(0x20);
         $this->shouldWriteSelectedSlot(1);
 
@@ -546,7 +546,7 @@ return new class extends TestCase {
 
         $this->shouldCall('_CourseMenuInterpolateCursor_8c016d2c')->andReturn(0);
 
-        $this->shouldCall('_drawVmMenu_197c0');
+        $this->shouldCall('_drawVmMenu_8c0197c0');
         $this->shouldCall('_menuTextboxText_8c02af1c')->with(0x20);
         $this->shouldWriteSelectedSlot(1);
 
@@ -570,7 +570,7 @@ return new class extends TestCase {
         $this->shouldWriteMenuState(2);
         $this->shouldCall('_swapMessageBoxFor_8c02aefc')->with("セーブ可能です");
 
-        $this->shouldCall('_drawVmMenu_197c0');
+        $this->shouldCall('_drawVmMenu_8c0197c0');
         $this->shouldCall('_menuTextboxText_8c02af1c')->with(0x20);
         $this->shouldWriteSelectedSlot(1);
 
@@ -592,11 +592,11 @@ return new class extends TestCase {
             0, 0, 0, 0, 3,
         ]);
 
-        $this->shouldCall('_promptHandleBinary_8c016caa')
+        $this->shouldCall('_PromptHandleBinary_8c016caa')
             ->with($this->addressOf('_var_menuState_8c1bc7a8') + 0x3c)
             ->andReturn(0);
 
-        $this->shouldCall('_drawSprite_8c014f54')
+        $this->shouldCall('_TxtDrawSprite_8c014f54')
             ->with($this->addressOf('_var_menuState_8c1bc7a8') + 0x00,
             2,
             228.0,
@@ -604,7 +604,7 @@ return new class extends TestCase {
             -5.0,
         );
 
-        $this->shouldCall('_drawVmMenu_197c0');
+        $this->shouldCall('_drawVmMenu_8c0197c0');
         $this->shouldCall('_menuTextboxText_8c02af1c')->with(0xff);
         $this->shouldWriteSelectedSlot(1);
 
@@ -624,7 +624,7 @@ return new class extends TestCase {
             0, 0, 0, 0, 3,
         ]);
 
-        $this->shouldCall('_promptHandleBinary_8c016caa')
+        $this->shouldCall('_PromptHandleBinary_8c016caa')
             ->with($this->addressOf('_var_menuState_8c1bc7a8') + 0x3c)
             ->do(function ($params) {
                 $this->memory->writeUInt32($params[0], U32::of(1));
@@ -635,7 +635,7 @@ return new class extends TestCase {
         $this->shouldWriteMenuState(8);
         $this->shouldCall('_push_fadeout_8c022b60')->with(10);
 
-        $this->shouldCall('_drawSprite_8c014f54')
+        $this->shouldCall('_TxtDrawSprite_8c014f54')
             ->with($this->addressOf('_var_menuState_8c1bc7a8') + 0x00,
             3,
             228.0,
@@ -643,7 +643,7 @@ return new class extends TestCase {
             -5.0,
         );
 
-        $this->shouldCall('_drawVmMenu_197c0');
+        $this->shouldCall('_drawVmMenu_8c0197c0');
         $this->shouldCall('_menuTextboxText_8c02af1c')->with(0xff);
         $this->shouldWriteSelectedSlot(3);
 
@@ -663,7 +663,7 @@ return new class extends TestCase {
             0, 0, 0, 0, 3,
         ]);
 
-        $this->shouldCall('_promptHandleBinary_8c016caa')
+        $this->shouldCall('_PromptHandleBinary_8c016caa')
             ->with($this->addressOf('_var_menuState_8c1bc7a8') + 0x3c)
             ->do(function ($params) {
                 $this->memory->writeUInt32($params[0], U32::of(2));
@@ -673,7 +673,7 @@ return new class extends TestCase {
         $this->shouldCall('_swapMessageBoxFor_8c02aefc')->with("セーブ可能です");
         $this->shouldWriteMenuState(2);
 
-        $this->shouldCall('_drawSprite_8c014f54')
+        $this->shouldCall('_TxtDrawSprite_8c014f54')
             ->with($this->addressOf('_var_menuState_8c1bc7a8') + 0x00,
             4,
             228.0,
@@ -681,7 +681,7 @@ return new class extends TestCase {
             -5.0,
         );
 
-        $this->shouldCall('_drawVmMenu_197c0');
+        $this->shouldCall('_drawVmMenu_8c0197c0');
         $this->shouldCall('_menuTextboxText_8c02af1c')->with(0xff);
         $this->shouldWriteSelectedSlot(3);
 
@@ -703,11 +703,11 @@ return new class extends TestCase {
             0, 0, 0, 0, 3,
         ]);
 
-        $this->shouldCall('_promptHandleBinary_8c016caa')
+        $this->shouldCall('_PromptHandleBinary_8c016caa')
             ->with($this->addressOf('_var_menuState_8c1bc7a8') + 0x3c)
             ->andReturn(0);
 
-        $this->shouldCall('_drawSprite_8c014f54')
+        $this->shouldCall('_TxtDrawSprite_8c014f54')
             ->with($this->addressOf('_var_menuState_8c1bc7a8') + 0x00,
             2,
             228.0,
@@ -715,7 +715,7 @@ return new class extends TestCase {
             -5.0,
         );
 
-        $this->shouldCall('_drawVmMenu_197c0');
+        $this->shouldCall('_drawVmMenu_8c0197c0');
         $this->shouldCall('_menuTextboxText_8c02af1c')->with(0xff);
         $this->shouldWriteSelectedSlot(8);
 
@@ -735,7 +735,7 @@ return new class extends TestCase {
             0, 0, 0, 0, 3,
         ]);
 
-        $this->shouldCall('_promptHandleBinary_8c016caa')
+        $this->shouldCall('_PromptHandleBinary_8c016caa')
             ->with($this->addressOf('_var_menuState_8c1bc7a8') + 0x3c)
             ->do(function ($params) {
                 $this->memory->writeUInt32($params[0], U32::of(1));
@@ -745,11 +745,11 @@ return new class extends TestCase {
         $this->shouldWriteLongTo('_var_selectedVm_8c1ba34c', -1);
         $this->shouldCall('_FUN_8c01895e');
         $this->shouldWriteMenuState(9);
-        $this->shouldCall('_startAdxFadeOut_8c010bae')->with(0);
-        $this->shouldCall('_startAdxFadeOut_8c010bae')->with(1);
+        $this->shouldCall('_SndStartAdxFadeOut_8c010bae')->with(0);
+        $this->shouldCall('_SndStartAdxFadeOut_8c010bae')->with(1);
         $this->shouldCall('_push_fadeout_8c022b60')->with(10);
 
-        $this->shouldCall('_drawSprite_8c014f54')
+        $this->shouldCall('_TxtDrawSprite_8c014f54')
             ->with($this->addressOf('_var_menuState_8c1bc7a8') + 0x00,
             3,
             228.0,
@@ -757,7 +757,7 @@ return new class extends TestCase {
             -5.0,
         );
 
-        $this->shouldCall('_drawVmMenu_197c0');
+        $this->shouldCall('_drawVmMenu_8c0197c0');
         $this->shouldCall('_menuTextboxText_8c02af1c')->with(0xff);
         $this->shouldWriteSelectedSlot(8);
 
@@ -777,7 +777,7 @@ return new class extends TestCase {
             0, 0, 0, 0, 3,
         ]);
 
-        $this->shouldCall('_promptHandleBinary_8c016caa')
+        $this->shouldCall('_PromptHandleBinary_8c016caa')
             ->with($this->addressOf('_var_menuState_8c1bc7a8') + 0x3c)
             ->do(function ($params) {
                 $this->memory->writeUInt32($params[0], U32::of(2));
@@ -787,7 +787,7 @@ return new class extends TestCase {
         $this->shouldCall('_swapMessageBoxFor_8c02aefc')->with("ファイルを設定せずに<E>ゲームを開始します");
         $this->shouldWriteMenuState(2);
 
-        $this->shouldCall('_drawSprite_8c014f54')
+        $this->shouldCall('_TxtDrawSprite_8c014f54')
             ->with($this->addressOf('_var_menuState_8c1bc7a8') + 0x00,
             4,
             228.0,
@@ -795,7 +795,7 @@ return new class extends TestCase {
             -5.0,
         );
 
-        $this->shouldCall('_drawVmMenu_197c0');
+        $this->shouldCall('_drawVmMenu_8c0197c0');
         $this->shouldCall('_menuTextboxText_8c02af1c')->with(0xff);
         $this->shouldWriteSelectedSlot(8);
 
@@ -810,7 +810,7 @@ return new class extends TestCase {
         $this->initUint32($this->addressOf('_var_menuState_8c1bc7a8') + 0x38, 1); // slot
         $this->initUint32($this->addressOf('_var_isFading_8c226568'), 1);
 
-        $this->shouldCall('_DrawVmWarning_19852');
+        $this->shouldCall('_drawVmWarning_8c019852');
         $this->shouldWriteSelectedSlot(1);
 
         $this->singleCall($this->entryName())->with(0, 0)->run();
@@ -825,7 +825,7 @@ return new class extends TestCase {
         $this->initUint32($this->addressOf('_var_isFading_8c226568'), 0);
 
         $this->shouldWriteMenuState(7);
-        $this->shouldCall('_DrawVmWarning_19852');
+        $this->shouldCall('_drawVmWarning_8c019852');
         $this->shouldWriteSelectedSlot(1);
 
         $this->singleCall($this->entryName())->with(0, 0)->run();
@@ -844,11 +844,11 @@ return new class extends TestCase {
             ->with($this->addressOf('_init_saveNames_8c044d50'), 3)
             ->andReturn(0);
 
-        $this->shouldCall('_promptHandleBinary_8c016caa')
+        $this->shouldCall('_PromptHandleBinary_8c016caa')
             ->with($this->addressOf('_var_menuState_8c1bc7a8') + 0x3c)
             ->andReturn(0);
 
-        $this->shouldCall('_DrawVmWarning_19852');
+        $this->shouldCall('_drawVmWarning_8c019852');
 
         $this->singleCall($this->entryName())->with($task, 0)->run();
     }
@@ -866,7 +866,7 @@ return new class extends TestCase {
             ->with($this->addressOf('_init_saveNames_8c044d50'), 3)
             ->andReturn(0);
 
-        $this->shouldCall('_promptHandleBinary_8c016caa')
+        $this->shouldCall('_PromptHandleBinary_8c016caa')
             ->with($this->addressOf('_var_menuState_8c1bc7a8') + 0x3c)
             ->andReturn(1);
 
@@ -875,7 +875,7 @@ return new class extends TestCase {
         $this->shouldWrite($task + 0x08, 2); // substate
         $this->shouldCall('_push_fadeout_8c022b60')->with(10);
 
-        $this->shouldCall('_DrawVmWarning_19852');
+        $this->shouldCall('_drawVmWarning_8c019852');
 
         $this->singleCall($this->entryName())->with($task, 0)->run();
     }
@@ -898,11 +898,11 @@ return new class extends TestCase {
             ->with($this->addressOf('_init_saveNames_8c044d50'), 3)
             ->andReturn(0);
 
-        $this->shouldCall('_promptHandleBinary_8c016caa')
+        $this->shouldCall('_PromptHandleBinary_8c016caa')
             ->with($this->addressOf('_var_menuState_8c1bc7a8') + 0x3c)
             ->andReturn(2);
 
-        $this->shouldCall('_initCursorLerp_19788')->with(6);
+        $this->shouldCall('_initCursorLerp_8c019788')->with(6);
         $menuState = $this->addressOf('_var_menuState_8c1bc7a8');
         $mvn = function () use ($menuState) {
             $src = $this->registers[2];
@@ -927,7 +927,7 @@ return new class extends TestCase {
         $this->shouldWrite($task + 0x08, 3); // substate
         $this->shouldCall('_push_fadeout_8c022b60')->with(10);
 
-        $this->shouldCall('_DrawVmWarning_19852');
+        $this->shouldCall('_drawVmWarning_8c019852');
 
         $this->singleCall($this->entryName())->with($task, 0)->run();
     }
@@ -947,7 +947,7 @@ return new class extends TestCase {
         $this->shouldWriteLong($task + 0x08, 1); // substate
         $this->shouldCall('_push_fadeout_8c022b60')->with(10);
 
-        $this->shouldCall('_DrawVmWarning_19852');
+        $this->shouldCall('_drawVmWarning_8c019852');
 
         $this->singleCall($this->entryName())->with($task, 0)->run();
     }
@@ -962,7 +962,7 @@ return new class extends TestCase {
         $this->initUint32($task + 0x08, 1); // substate
         $this->initUint32($this->addressOf('_var_isFading_8c226568'), 1);
 
-        $this->shouldCall('_DrawVmWarning_19852');
+        $this->shouldCall('_drawVmWarning_8c019852');
 
         $this->singleCall($this->entryName())->with($task, 0)->run();
     }
@@ -993,7 +993,7 @@ return new class extends TestCase {
         $this->initUint32($task + 0x08, 2); // substate
         $this->initUint32($this->addressOf('_var_isFading_8c226568'), 1);
 
-        $this->shouldCall('_DrawVmWarning_19852');
+        $this->shouldCall('_drawVmWarning_8c019852');
 
         $this->singleCall($this->entryName())->with($task, 0)->run();
     }
@@ -1023,7 +1023,7 @@ return new class extends TestCase {
         $this->initUint32($task + 0x08, 3); // substate
         $this->initUint32($this->addressOf('_var_isFading_8c226568'), 1);
 
-        $this->shouldCall('_DrawVmWarning_19852');
+        $this->shouldCall('_drawVmWarning_8c019852');
 
         $this->singleCall($this->entryName())->with($task, 0)->run();
     }
@@ -1053,7 +1053,7 @@ return new class extends TestCase {
         $this->initUint32($this->addressOf('_var_menuState_8c1bc7a8') + 0x3c, 0);
         $this->initUint32($this->addressOf('_var_isFading_8c226568'), 1);
 
-        $this->shouldCall('_drawSprite_8c014f54')->with(
+        $this->shouldCall('_TxtDrawSprite_8c014f54')->with(
             $this->addressOf('_var_menuState_8c1bc7a8') + 0x00,
             2,
             228.0,
@@ -1061,7 +1061,7 @@ return new class extends TestCase {
             -5.0
         );
 
-        $this->shouldCall('_drawVmMenu_197c0');
+        $this->shouldCall('_drawVmMenu_8c0197c0');
         $this->shouldWriteLong($this->addressOf('_var_menuState_8c1bc7a8') + 0x38, 3);
 
         $this->singleCall($this->entryName())->with(0, 0)->run();
@@ -1129,7 +1129,7 @@ return new class extends TestCase {
         $this->initUint32($this->addressOf('_var_menuState_8c1bc7a8') + 0x38, 3); // slot
         $this->initUint32($this->addressOf('_var_isFading_8c226568'), 1);
 
-        $this->shouldCall('_drawVmMenu_197c0');
+        $this->shouldCall('_drawVmMenu_8c0197c0');
         $this->shouldWriteLong($this->addressOf('_var_menuState_8c1bc7a8') + 0x38, 3);
 
         $this->singleCall($this->entryName())->with(0, 0)->run();
@@ -1144,7 +1144,7 @@ return new class extends TestCase {
         $this->initUint32($this->addressOf('_var_isFading_8c226568'), 0);
 
         $this->shouldWriteLong($this->addressOf('_var_menuState_8c1bc7a8') + 0x18, 2);
-        $this->shouldCall('_drawVmMenu_197c0');
+        $this->shouldCall('_drawVmMenu_8c0197c0');
         $this->shouldWriteLong($this->addressOf('_var_menuState_8c1bc7a8') + 0x38, 3);
 
         $this->singleCall($this->entryName())->with(0, 0)->run();
@@ -1185,7 +1185,7 @@ return new class extends TestCase {
         $this->setSize('_menuTextboxText_8c02af1c', 4);
         $this->setSize('_swapMessageBoxFor_8c02aefc', 4);
         $this->setSize('_BupGetInfo_8c014bba', 4);
-        $this->setSize('_drawSprite_8c014f54', 4);
+        $this->setSize('_TxtDrawSprite_8c014f54', 4);
         $this->setSize('_push_fadeout_8c022b60', 4);
         $this->setSize('_MainMenuSwitchFromTask_8c01a09a', 4);
     }
@@ -1222,7 +1222,7 @@ return new class extends TestCase {
 
         if ($expectedSlot !== $initialSlot) {
             $this->shouldCall('_sdMidiPlay')->with(0xbeef0000, 1, 3, 0);
-            $this->shouldCall('_initCursorLerp_19788')->with($expectedSlot);
+            $this->shouldCall('_initCursorLerp_8c019788')->with($expectedSlot);
             $this->shouldWriteMenuState(3);
 
             $messages = [
@@ -1238,7 +1238,7 @@ return new class extends TestCase {
             $this->shouldCall('_swapMessageBoxFor_8c02aefc')->with($message);
         }
 
-        $this->shouldCall('_drawVmMenu_197c0');
+        $this->shouldCall('_drawVmMenu_8c0197c0');
         $this->shouldCall('_menuTextboxText_8c02af1c')->with(0x20);
         $this->shouldWriteSelectedSlot($expectedSlot);
 
@@ -1253,7 +1253,7 @@ return new class extends TestCase {
     private function entryName(): string
     {
         return $this->isAsmObject()
-            ? '_VmMenuTask_198a0'
-            : '_VmMenuTask_198a0';
+            ? '_vmMenuTask_8c0198a0'
+            : '_vmMenuTask_8c0198a0';
     }
 };

@@ -24,8 +24,8 @@ return new class extends TestCase {
 
         $this->call('_CourseMenuSwitchFromTask_8c017e18')->with($task);
 
-        $this->shouldCall('_setTaskAction_8c014b3e')->with(
-            $task, $this->addressOf('_CourseMenuFreeRunMenuTask_8c017ada')
+        $this->shouldCall('_TaskSetAction_8c014b3e')->with(
+            $task, $this->addressOf('_courseMenuFreeRunMenuTask_8c017ada')
         );
         $this->shouldCall('_buildFreeRunMenuDialogFlow_8c017a20');
 
@@ -48,13 +48,13 @@ return new class extends TestCase {
             $this->addressOf('_init_mainMenuResourceGroup_8c044264'),
         )->andReturn(1);
 
-        $this->shouldCall('_setPvmReady_8c014330');
+        $this->shouldCall('_RouteLoadSetPvmReady_8c014330');
         $this->shouldCall('_AsqProcessQueues_8c011fe0')->with(
             $this->addressOf('_AsqNop_8c011120'),
             0,
             0,
             0,
-            $this->addressOf('_resetPvmReady_8c014322'),
+            $this->addressOf('_RouteLoadResetPvmReady_8c014322'),
         );
         $this->shouldWriteLong($this->addressOf('_var_menuState_8c1bc7a8') + 0x18, 0);
     }
@@ -69,8 +69,8 @@ return new class extends TestCase {
 
         $this->call('_CourseMenuSwitchFromTask_8c017e18')->with($task);
 
-        $this->shouldCall('_setTaskAction_8c014b3e')->with(
-            $task, $this->addressOf('_CourseMenuFreeRunMenuTask_8c017ada')
+        $this->shouldCall('_TaskSetAction_8c014b3e')->with(
+            $task, $this->addressOf('_courseMenuFreeRunMenuTask_8c017ada')
         );
         $this->shouldCall('_buildFreeRunMenuDialogFlow_8c017a20');
 
@@ -96,7 +96,7 @@ return new class extends TestCase {
         $this->shouldCall('_AsqFreeQueues_8c011f7e');
         $this->shouldWriteLong($this->addressOf('_var_menuState_8c1bc7a8') + 0x18, 1);
         $this->shouldCall('_push_fadein_8c022a9c')->with(10);
-        $this->shouldCall('_snd_8c010cd6')->with(0, 15);
+        $this->shouldCall('_SndProc_8c010cd6')->with(0, 15);
     }
 
     public function test_switches_to_story_mode()
@@ -110,8 +110,8 @@ return new class extends TestCase {
 
         $this->call('_CourseMenuSwitchFromTask_8c017e18')->with($task);
 
-        $this->shouldCall('_setTaskAction_8c014b3e')->with(
-            $task, $this->addressOf('_CourseMenuStoryMenuTask_8c017718')
+        $this->shouldCall('_TaskSetAction_8c014b3e')->with(
+            $task, $this->addressOf('_courseMenuStoryMenuTask_8c017718')
         );
         $this->shouldCall('_buildCourseMenuDialogFlow_8c017420');
 
@@ -134,13 +134,13 @@ return new class extends TestCase {
             $this->addressOf('_init_mainMenuResourceGroup_8c044264'),
         )->andReturn(1);
 
-        $this->shouldCall('_setPvmReady_8c014330');
+        $this->shouldCall('_RouteLoadSetPvmReady_8c014330');
         $this->shouldCall('_AsqProcessQueues_8c011fe0')->with(
             $this->addressOf('_AsqNop_8c011120'),
             0,
             0,
             0,
-            $this->addressOf('_resetPvmReady_8c014322'),
+            $this->addressOf('_RouteLoadResetPvmReady_8c014322'),
         );
         $this->shouldWriteLong($this->addressOf('_var_menuState_8c1bc7a8') + 0x18, 0);
     }
@@ -156,8 +156,8 @@ return new class extends TestCase {
 
         $this->call('_CourseMenuSwitchFromTask_8c017e18')->with($task);
 
-        $this->shouldCall('_setTaskAction_8c014b3e')->with(
-            $task, $this->addressOf('_CourseMenuStoryMenuTask_8c017718')
+        $this->shouldCall('_TaskSetAction_8c014b3e')->with(
+            $task, $this->addressOf('_courseMenuStoryMenuTask_8c017718')
         );
         $this->shouldCall('_buildCourseMenuDialogFlow_8c017420');
 
@@ -183,7 +183,7 @@ return new class extends TestCase {
         $this->shouldCall('_AsqFreeQueues_8c011f7e');
         $this->shouldWriteLong($this->addressOf('_var_menuState_8c1bc7a8') + 0x18, 1);
         $this->shouldCall('_push_fadein_8c022a9c')->with(10);
-        $this->shouldCall('_snd_8c010cd6')->with(0, 15);
+        $this->shouldCall('_SndProc_8c010cd6')->with(0, 15);
     }
 
     public function resolveSymbols()

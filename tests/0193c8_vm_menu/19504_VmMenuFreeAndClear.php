@@ -24,16 +24,16 @@ return new class extends TestCase {
         $bupAddresses = $this->initBackupInfos($bupInfos);
 
         $this->shouldCall('_syFree')->with(0xbabe0001);
-        $this->shouldCall('_ClearInfo_8c014c8a')->with(1);
+        $this->shouldCall('_BupClearInfo_8c014c8a')->with(1);
 
         $this->shouldCall('_syFree')->with(0xbabe0002);
-        $this->shouldCall('_ClearInfo_8c014c8a')->with(2);
+        $this->shouldCall('_BupClearInfo_8c014c8a')->with(2);
 
         $this->shouldCall('_syFree')->with(0xbabe0004);
-        $this->shouldCall('_ClearInfo_8c014c8a')->with(4);
+        $this->shouldCall('_BupClearInfo_8c014c8a')->with(4);
 
         $this->shouldCall('_syFree')->with(0xbabe0006);
-        $this->shouldCall('_ClearInfo_8c014c8a')->with(6);
+        $this->shouldCall('_BupClearInfo_8c014c8a')->with(6);
 
         $this->singleCall('_VmMenuFreeAndClear_8c019504')->run();
     }
@@ -43,7 +43,7 @@ return new class extends TestCase {
         $this->setSize('_var_gBupInfo_8c1bc4ac', 0x5c * 8);
         // Functions
         $this->setSize('_syFree', 0x4);
-        $this->setSize('_ClearInfo_8c014c8a', 0x4);
+        $this->setSize('_BupClearInfo_8c014c8a', 0x4);
     }
 
     private function initUint32Array(int $address, array $values): void

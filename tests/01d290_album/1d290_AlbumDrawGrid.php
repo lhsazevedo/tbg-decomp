@@ -12,7 +12,7 @@ return new class extends TestCase {
         // State 5 hides the grid: no draws at all.
         $this->initUint32($this->addressOf('_var_menuState_8c1bc7a8') + 0x18, 5);
 
-        $this->singleCall('_AlbumDrawGrid_8c01d290')->run();
+        $this->singleCall('_albumDrawGrid_8c01d290')->run();
     }
 
     public function test_draws_received_letters_then_frame()
@@ -25,26 +25,26 @@ return new class extends TestCase {
         $this->initLetters([1, 0, 1, 0, 1, 0]);
 
         // One sprite per received letter; spriteNo is slot + 1.
-        $this->shouldCall('_drawSprite_8c014f54')->with(
+        $this->shouldCall('_TxtDrawSprite_8c014f54')->with(
             $this->addressOf('_var_menuState_8c1bc7a8') + 0x0c, 1,
             0.0, 0.0, -4.0
         );
-        $this->shouldCall('_drawSprite_8c014f54')->with(
+        $this->shouldCall('_TxtDrawSprite_8c014f54')->with(
             $this->addressOf('_var_menuState_8c1bc7a8') + 0x0c, 3,
             0.0, 0.0, -4.0
         );
-        $this->shouldCall('_drawSprite_8c014f54')->with(
+        $this->shouldCall('_TxtDrawSprite_8c014f54')->with(
             $this->addressOf('_var_menuState_8c1bc7a8') + 0x0c, 5,
             0.0, 0.0, -4.0
         );
 
         // Grid frame.
-        $this->shouldCall('_drawSprite_8c014f54')->with(
+        $this->shouldCall('_TxtDrawSprite_8c014f54')->with(
             $this->addressOf('_var_menuState_8c1bc7a8') + 0x0c, 0,
             0.0, 0.0, -5.0
         );
 
-        $this->singleCall('_AlbumDrawGrid_8c01d290')->run();
+        $this->singleCall('_albumDrawGrid_8c01d290')->run();
     }
 
     public function test_draws_all_letters_then_frame()
@@ -55,30 +55,30 @@ return new class extends TestCase {
 
         $this->initLetters([1, 1, 1, 1, 1, 1]);
 
-        $this->shouldCall('_drawSprite_8c014f54')->with(
+        $this->shouldCall('_TxtDrawSprite_8c014f54')->with(
             $this->addressOf('_var_menuState_8c1bc7a8') + 0x0c, 1, 0.0, 0.0, -4.0
         );
-        $this->shouldCall('_drawSprite_8c014f54')->with(
+        $this->shouldCall('_TxtDrawSprite_8c014f54')->with(
             $this->addressOf('_var_menuState_8c1bc7a8') + 0x0c, 2, 0.0, 0.0, -4.0
         );
-        $this->shouldCall('_drawSprite_8c014f54')->with(
+        $this->shouldCall('_TxtDrawSprite_8c014f54')->with(
             $this->addressOf('_var_menuState_8c1bc7a8') + 0x0c, 3, 0.0, 0.0, -4.0
         );
-        $this->shouldCall('_drawSprite_8c014f54')->with(
+        $this->shouldCall('_TxtDrawSprite_8c014f54')->with(
             $this->addressOf('_var_menuState_8c1bc7a8') + 0x0c, 4, 0.0, 0.0, -4.0
         );
-        $this->shouldCall('_drawSprite_8c014f54')->with(
+        $this->shouldCall('_TxtDrawSprite_8c014f54')->with(
             $this->addressOf('_var_menuState_8c1bc7a8') + 0x0c, 5, 0.0, 0.0, -4.0
         );
-        $this->shouldCall('_drawSprite_8c014f54')->with(
+        $this->shouldCall('_TxtDrawSprite_8c014f54')->with(
             $this->addressOf('_var_menuState_8c1bc7a8') + 0x0c, 6, 0.0, 0.0, -4.0
         );
 
-        $this->shouldCall('_drawSprite_8c014f54')->with(
+        $this->shouldCall('_TxtDrawSprite_8c014f54')->with(
             $this->addressOf('_var_menuState_8c1bc7a8') + 0x0c, 0, 0.0, 0.0, -5.0
         );
 
-        $this->singleCall('_AlbumDrawGrid_8c01d290')->run();
+        $this->singleCall('_albumDrawGrid_8c01d290')->run();
     }
 
     public function test_no_letters_draws_only_frame()
@@ -89,11 +89,11 @@ return new class extends TestCase {
 
         $this->initLetters([0, 0, 0, 0, 0, 0]);
 
-        $this->shouldCall('_drawSprite_8c014f54')->with(
+        $this->shouldCall('_TxtDrawSprite_8c014f54')->with(
             $this->addressOf('_var_menuState_8c1bc7a8') + 0x0c, 0, 0.0, 0.0, -5.0
         );
 
-        $this->singleCall('_AlbumDrawGrid_8c01d290')->run();
+        $this->singleCall('_albumDrawGrid_8c01d290')->run();
     }
 
     private function initLetters(array $letters): void
@@ -111,6 +111,6 @@ return new class extends TestCase {
         $this->setSize('_var_progress_8c1ba1cc', 0x94);
 
         // Functions
-        $this->setSize('_drawSprite_8c014f54', 0x4);
+        $this->setSize('_TxtDrawSprite_8c014f54', 0x4);
     }
 };

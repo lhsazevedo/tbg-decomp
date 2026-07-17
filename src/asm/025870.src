@@ -23,7 +23,7 @@
           .IMPORT     _init_8c045b60
           .IMPORT     _init_8c045ee4
           .IMPORT     _var_tasks_8c1ba5e8
-          .IMPORT     _pushTask_8c014ae8
+          .IMPORT     _TaskPush_8c014ae8
           .IMPORT     _FUN_8c02ae3e
           .IMPORT     _FUN_8c024bb8
           .EXPORT     _FUN_8c025870
@@ -415,7 +415,7 @@ LP_GEN_72418:
           .DATA.L _init_8c045ee4 ; H'8C025B80
           .DATA.L LAB_8c0259e8 ; H'8C025B84
           .DATA.L _var_tasks_8c1ba5e8 ; H'8C025B88
-          .DATA.L _pushTask_8c014ae8 ; H'8C025B8C
+          .DATA.L _TaskPush_8c014ae8 ; H'8C025B8C
           .DATA.L _FUN_8c02ae3e ; H'8C025B90
           .DATA.L _var_8c227e10 ; H'8C025B94
           .END

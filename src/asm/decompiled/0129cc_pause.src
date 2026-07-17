@@ -7,11 +7,11 @@
           .IMPORT     _var_activeCtrlType_8c157a70
           .IMPORT     _var_8c22847c
           .IMPORT     _var_onRetire_8c18ad10
-          .IMPORT     _controlAdxtWithOutVol_8c0107d2
+          .IMPORT     _SndControlAdxtWithOutVol_8c0107d2
           .IMPORT     _var_vibport_8c1ba354
           .IMPORT     _pdVibMxStop
           .IMPORT     _FUN_8c022560
-          .IMPORT     _drawSprite_8c014f54
+          .IMPORT     _TxtDrawSprite_8c014f54
           .IMPORT     _var_confirmChoice_8c18ad0c
           .IMPORT     _var_retirePhase_8c18ad08
           .IMPORT     _var_markTexlist_8c1bc418
@@ -32,24 +32,26 @@
           .IMPORT     _var_resetRequested_8c157a78
           .IMPORT     _var_8c157a7c
           .IMPORT     _var_queuesAreInitialized_8c157a60
-          .IMPORT     _pushTitle_8c015fd6
+          .IMPORT     _TitlePushTitle_8c015fd6
           .IMPORT     _FUN_8c02239c
           .IMPORT     _var_tasks_8c1ba5e8
-          .IMPORT     _execTasks_8c014b42
+          .IMPORT     _TaskExecGroup_8c014b42
           .IMPORT     _FUN_8c022910
           .IMPORT     _init_8c03bd80
           .IMPORT     _init_8c03bd84
           .IMPORT     _init_8c03bf4c
-          .IMPORT     _updateAdxVolFade_8c010a40
-          .IMPORT     _startAdxFadeOut_8c010bae
+          .IMPORT     _SndUpdateAdxVolFade_8c010a40
+          .IMPORT     _SndStartAdxFadeOut_8c010bae
           .IMPORT     _var_peripherals_8c1ba35c
           .IMPORT     _var_menuState_8c1bc7a8
-          .EXPORT     _Update_8c0129cc
+          .AIFDEF UNIT_TESTING
+          .EXPORT     _update_8c0129cc
+          .AENDI
           .EXPORT     _PauseTask_8c012cbc
           .EXPORT     _PauseToggleTask_8c012d06
           .EXPORT     _PauseDemoEndTask_8c012d5a
           .SECTION     P, CODE, ALIGN=4
-_Update_8c0129cc:
+_update_8c0129cc:
           MOV.L       R14,@-R15
           MOV.L       R13,@-R15
           MOV.L       R12,@-R15
@@ -331,11 +333,11 @@ LP_GEN_41107:
           .DATA.L _var_activeCtrlType_8c157a70
           .DATA.L _var_8c22847c
           .DATA.L _var_onRetire_8c18ad10
-          .DATA.L _controlAdxtWithOutVol_8c0107d2
+          .DATA.L _SndControlAdxtWithOutVol_8c0107d2
           .DATA.L _var_vibport_8c1ba354
           .DATA.L _pdVibMxStop
           .DATA.L _FUN_8c022560
-          .DATA.L _drawSprite_8c014f54
+          .DATA.L _TxtDrawSprite_8c014f54
           .DATA.L _var_confirmChoice_8c18ad0c
           .DATA.L H'BF8B851F
           .DATA.L _var_retirePhase_8c18ad08
@@ -471,7 +473,7 @@ _PauseTask_8c012cbc:
           JMP         @R2
           LDS.L       @R15+,PR
 LAB_8c012ce4:
-          BSR         _Update_8c0129cc
+          BSR         _update_8c0129cc
           NOP
           TST         R0,R0
           BT          LAB_8c012d00
@@ -619,18 +621,18 @@ LP_GEN_43727:
           .DATA.L _var_resetRequested_8c157a78
           .DATA.L _var_8c157a7c
           .DATA.L _var_queuesAreInitialized_8c157a60
-          .DATA.L _pushTitle_8c015fd6
+          .DATA.L _TitlePushTitle_8c015fd6
           .DATA.L _FUN_8c02239c
           .DATA.L _var_tasks_8c1ba5e8
-          .DATA.L _execTasks_8c014b42
+          .DATA.L _TaskExecGroup_8c014b42
           .DATA.L _FUN_8c022560
           .DATA.L _var_pauseActive_8c1bb8cc
           .DATA.L _var_peripheral_8c1ba358
           .DATA.L _FUN_8c022910
           .DATA.L _init_8c03bd80
           .DATA.L _init_8c03bd84
-          .DATA.L _updateAdxVolFade_8c010a40
-          .DATA.L _startAdxFadeOut_8c010bae
+          .DATA.L _SndUpdateAdxVolFade_8c010a40
+          .DATA.L _SndStartAdxFadeOut_8c010bae
           .DATA.L H'10+_var_peripherals_8c1ba35c
           .DATA.L _var_midiHandles_8c0fcd28
           .DATA.L _sdMidiPlay
@@ -742,13 +744,13 @@ LAB_8c012f10:
 LP_GEN_94405:
           .DATA.W     H'0708 ; LP_GEN_94405+0
           .DATA.L     _push_fadeout_8c022b60
-          .DATA.L     _pushTitle_8c015fd6
+          .DATA.L     _TitlePushTitle_8c015fd6
           .DATA.L     _FUN_8c02239c
           .DATA.L     _var_tasks_8c1ba5e8
-          .DATA.L     _execTasks_8c014b42
+          .DATA.L     _TaskExecGroup_8c014b42
           .DATA.L     _FUN_8c022910
           .DATA.L     H'BF8CCCCD
           .DATA.L     _var_markTexlist_8c1bc418
-          .DATA.L     _drawSprite_8c014f54
+          .DATA.L     _TxtDrawSprite_8c014f54
           .SECTION    D,DATA,ALIGN=4
           .END

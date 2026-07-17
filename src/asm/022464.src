@@ -13,7 +13,7 @@
           .IMPORT     _init_8c045598
           .IMPORT     _njUserClipping
           .IMPORT     _var_8c226560
-          .IMPORT     _drawSprite_8c014f54
+          .IMPORT     _TxtDrawSprite_8c014f54
           .IMPORT     _njDrawTexture
           .IMPORT     _njSetScreen
           .IMPORT     _var_8c22655c
@@ -46,9 +46,9 @@
           .IMPORT     _var_playMode_8c1bb8d0
           .IMPORT     _var_8c226410
           .IMPORT     __divlu
-          .IMPORT     _freeTask_8c014b66
+          .IMPORT     _TaskFree_8c014b66
           .IMPORT     _var_tasks_8c1ba3c8
-          .IMPORT     _pushTask_8c014ae8
+          .IMPORT     _TaskPush_8c014ae8
           .IMPORT     _njSetBackColor
           .EXPORT     _draw_8c022464
           .EXPORT     _FUN_8c022560
@@ -327,7 +327,7 @@ LP_GEN_55916:
           .DATA.L _init_8c045598 ; H'8C022658
           .DATA.L _njUserClipping ; H'8C02265C
           .DATA.L _var_8c226560 ; H'8C022660
-          .DATA.L _drawSprite_8c014f54 ; H'8C022664
+          .DATA.L _TxtDrawSprite_8c014f54 ; H'8C022664
           .DATA.L H'BF95C28F ; H'8C022668
           .DATA.L _njDrawTexture ; H'8C02266C
           .DATA.L _var_8c226558 ; H'8C022670
@@ -979,10 +979,10 @@ LP_GEN_18675:
           .DATA.L H'FF000000 ; H'8C022BB8
           .DATA.L _var_8c227d80 ; H'8C022BBC
           .DATA.L __divlu ; H'8C022BC0
-          .DATA.L _freeTask_8c014b66 ; H'8C022BC4
+          .DATA.L _TaskFree_8c014b66 ; H'8C022BC4
           .DATA.L _task_fadein_8c022a54 ; H'8C022BC8
           .DATA.L _var_tasks_8c1ba3c8 ; H'8C022BCC
-          .DATA.L _pushTask_8c014ae8 ; H'8C022BD0
+          .DATA.L _TaskPush_8c014ae8 ; H'8C022BD0
           .DATA.L _njSetBackColor ; H'8C022BD4
           .DATA.L _task_fadeout_8c022ad0 ; H'8C022BD8
           .END

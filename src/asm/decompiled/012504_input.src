@@ -14,7 +14,7 @@
           .IMPORT     _vmsLcd_8c01c910
           .IMPORT     _init_btnRemapAlt_8c03beb8
           .IMPORT     _init_btnRemapWheelAlt_8c03bf18
-          .IMPORT     _pushTask_8c014ae8
+          .IMPORT     _TaskPush_8c014ae8
           .IMPORT     _var_tasks_8c1ba3c8
           .IMPORT     _var_8c157a74
           .IMPORT     _PspTask_8c012324
@@ -24,12 +24,12 @@
           .IMPORT     _var_inputMapSel_8c1bb8c8
           .IMPORT     _strcmp
           .IMPORT     _strcpy
-          .EXPORT     _inputTaskAlt_8c012718
-          .EXPORT     _pushInputTask_8c0128cc
-          .EXPORT     _setName_8c012984
-          .EXPORT     _dispatchInputTask_8c012970
+          .EXPORT     _InputPushTask_8c0128cc
+          .EXPORT     _InputSetName_8c012984
+          .EXPORT     _InputDispatchTask_8c012970
 
           .AIFDEF UNIT_TESTING
+          .EXPORT     _inputTaskAlt_8c012718
           .EXPORT     _inputTask_8c012504
           .EXPORT     _var_name_8c157aec
           .EXPORT     _const_fortyFive_8c033358
@@ -552,7 +552,7 @@ LAB_8c0128b8:
           MOV.L       @R15+,R13
           JMP         @R3
           MOV.L       @R15+,R14
-_pushInputTask_8c0128cc:
+_InputPushTask_8c0128cc:
           MOV.L       R14,@-R15
           MOV.L       R13,@-R15
           STS.L       PR,@-R15
@@ -593,7 +593,7 @@ LP_GEN_17272:
           .DATA.L __quick_odd_mvn
           .DATA.L _var_activeCtrlType_8c157a70
           .DATA.L _vmsLcd_8c01c910
-          .DATA.L _pushTask_8c014ae8
+          .DATA.L _TaskPush_8c014ae8
           .DATA.L _var_tasks_8c1ba3c8
           .DATA.L _var_8c157a74
           .DATA.L _PspTask_8c012324
@@ -631,7 +631,7 @@ LAB_8c012966:
           MOV.L       @R15+,R13
           RTS
           MOV.L       @R15+,R14
-_dispatchInputTask_8c012970:
+_InputDispatchTask_8c012970:
           MOV.L       LP_GEN_44279+0,R2
           MOV.L       @R2,R3
           TST         R3,R3
@@ -643,7 +643,7 @@ LAB_8c01297e:
           MOV         #H'0,R5
           BRA         _inputTaskAlt_8c012718
           MOV         R5,R4
-_setName_8c012984:
+_InputSetName_8c012984:
           STS.L       PR,@-R15
           MOV.L       LP_GEN_44279+24,R2
           MOV.L       LP_GEN_44279+20,R4

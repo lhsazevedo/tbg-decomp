@@ -1,3 +1,4 @@
+/* @unit VmMenu */
 #include <shinobi.h>
 #include <sg_sd.h>
 #include "0100bc_sound.h"
@@ -138,7 +139,7 @@ char* init_vmuStatusMessages_8c044dc4[7] = {
  */
 
 /* Tested */
-STATIC void TaskWaitForVmsReady_193c8(Task *task)
+STATIC void taskWaitForVmsReady_8c0193c8(Task *task)
 {
     int drive;
 
@@ -148,7 +149,7 @@ STATIC void TaskWaitForVmsReady_193c8(Task *task)
             return;
     }
 
-    freeTask_8c014b66(task);
+    TaskFree_8c014b66(task);
     var_8c22606c = 0;
     return;
 }
@@ -165,12 +166,12 @@ void VmMenuMountVms_8c01940e()
             BupMount_8c014c00(drive);
     }
 
-    pushTask_8c014ae8(var_tasks_8c1ba3c8, &TaskWaitForVmsReady_193c8, &createdTask, &createdState, 0);
+    TaskPush_8c014ae8(var_tasks_8c1ba3c8, &taskWaitForVmsReady_8c0193c8, &createdTask, &createdState, 0);
     var_8c22606c = 1;
 }
 
 /* Tested */
-STATIC void TaskUnmountVms_1946a(Task *task, void *state)
+STATIC void taskUnmountVms_8c01946a(Task *task, void *state)
 {
     int drive;
     Bool isBusy = FALSE;
@@ -189,7 +190,7 @@ STATIC void TaskUnmountVms_1946a(Task *task, void *state)
     }
 
     if (!isBusy) {
-        freeTask_8c014b66(task);
+        TaskFree_8c014b66(task);
         var_8c22606c = 0;
     }
 }
@@ -200,7 +201,7 @@ void VmMenuUnmountVms_8c0194de()
     Task *createdTask;
     void *createdState;
 
-    pushTask_8c014ae8(var_tasks_8c1ba3c8, &TaskUnmountVms_1946a, &createdTask, &createdState, 0);
+    TaskPush_8c014ae8(var_tasks_8c1ba3c8, &taskUnmountVms_8c01946a, &createdTask, &createdState, 0);
     var_8c22606c = 1;
 }
 
@@ -212,7 +213,7 @@ void VmMenuFreeAndClear_8c019504(void)
     for (drive = 0; drive < 8; drive++) {
         if (var_gBupInfo_8c1bc4ac[drive].Work) {
             syFree(var_gBupInfo_8c1bc4ac[drive].Work);
-            ClearInfo_8c014c8a(drive);
+            BupClearInfo_8c014c8a(drive);
         }
     }
 }
@@ -340,7 +341,7 @@ void VmMenuUpdateVmuStatus_8c01967c(Sint32 drive, char* saveName, Uint16 blocks)
 }
 
 /* Tested, unused */
-STATIC int saveFileExists_19730(Sint32 drive, char* saveName)
+STATIC int saveFileExists_8c019730(Sint32 drive, char* saveName)
 {
     const BACKUPINFO *bupInfo = BupGetInfo_8c014bba(drive);
     if (!bupInfo->Connect
@@ -355,7 +356,7 @@ STATIC int saveFileExists_19730(Sint32 drive, char* saveName)
 }
 
 /* Tested */
-STATIC void initCursorLerp_19788(int drive)
+STATIC void initCursorLerp_8c019788(int drive)
 {
     var_menuState_8c1bc7a8.pos.vmSelect.cursorTarget_0x28.x = init_vmIconsPositions_8c044d7c[drive].x;
     var_menuState_8c1bc7a8.pos.vmSelect.cursorTarget_0x28.y = init_vmIconsPositions_8c044d7c[drive].y;
@@ -366,13 +367,13 @@ STATIC void initCursorLerp_19788(int drive)
 }
 
 /* Tested */
-STATIC void drawVmMenu_197c0()
+STATIC void drawVmMenu_8c0197c0()
 {
     int drive;
     int textureId = 8;
 
     // Draw cursor
-    drawSprite_8c014f54(
+    TxtDrawSprite_8c014f54(
         &var_menuState_8c1bc7a8.resourceGroupB_0x0c,
         0x10,
         var_menuState_8c1bc7a8.pos.vmSelect.cursor_0x20.x,
@@ -383,7 +384,7 @@ STATIC void drawVmMenu_197c0()
     // Draw connected VMUs
     for (drive = 0; drive < 8; drive++) {
         if (var_vmuStatus_8c226048[drive]) {
-            drawSprite_8c014f54(
+            TxtDrawSprite_8c014f54(
                 &var_menuState_8c1bc7a8.resourceGroupB_0x0c,
                 textureId, 0.0, 0.0, -5.0
             );
@@ -392,41 +393,41 @@ STATIC void drawVmMenu_197c0()
     }
 
     // Draw default VMU icons
-    drawSprite_8c014f54(
+    TxtDrawSprite_8c014f54(
         &var_menuState_8c1bc7a8.resourceGroupB_0x0c,
         7, 0.0, 0.0, -6.0
     );
 
     // Draw textbox background
-    drawSprite_8c014f54(
+    TxtDrawSprite_8c014f54(
         &var_menuState_8c1bc7a8.resourceGroupA_0x00,
         1, 0.0, 0.0, -4.3
     );
 
     // Draw background
-    drawSprite_8c014f54(
+    TxtDrawSprite_8c014f54(
         &var_menuState_8c1bc7a8.resourceGroupA_0x00,
         0, 0.0, 0.0, -7.0
     );
 }
 
 /* Tested */
-STATIC void DrawVmWarning_19852()
+STATIC void drawVmWarning_8c019852()
 {
-    drawSprite_8c014f54(&var_menuState_8c1bc7a8.resourceGroupB_0x0c, 0x11, 0.0, 0.0, -5.0);
-    drawSprite_8c014f54(
+    TxtDrawSprite_8c014f54(&var_menuState_8c1bc7a8.resourceGroupB_0x0c, 0x11, 0.0, 0.0, -5.0);
+    TxtDrawSprite_8c014f54(
         &var_menuState_8c1bc7a8.resourceGroupA_0x00,
         var_menuState_8c1bc7a8.field_0x3c + 2,
         228.0, 304.0, -5.0
     );
-    drawSprite_8c014f54(
+    TxtDrawSprite_8c014f54(
         &var_menuState_8c1bc7a8.resourceGroupA_0x00, 0,
         0.0, 0.0, -7.0
     );
 }
 
 /* Tested */
-STATIC void VmMenuTask_198a0(Task* task, void *actionState)
+STATIC void vmMenuTask_8c0198a0(Task* task, void *actionState)
 {
     int slot = var_menuState_8c1bc7a8.selected_0x38;
     switch (var_menuState_8c1bc7a8.state_0x18)
@@ -445,12 +446,12 @@ STATIC void VmMenuTask_198a0(Task* task, void *actionState)
 
                 // Skip empty slots
                 for (slot = 0; var_vmuStatus_8c226048[slot] == VMU_STATUS_NOT_CONNECTED; slot++);
-                initCursorLerp_19788(slot);
+                initCursorLerp_8c019788(slot);
 
                 var_menuState_8c1bc7a8.pos.vmSelect.cursor_0x20 = var_menuState_8c1bc7a8.pos.vmSelect.cursorTarget_0x28;
                 swapMessageBoxFor_8c02aefc(init_vmuStatusMessages_8c044dc4[var_vmuStatus_8c226048[slot]]);
                 FUN_8c010d8a();
-                snd_8c010cd6(0,0xe);
+                SndProc_8c010cd6(0,0xe);
             } else {
                 CHANGE_STATE(VM_MENU_STATE_VM_WARNING_FADE_IN);
                 task->field_0x08 = 0;
@@ -467,7 +468,7 @@ STATIC void VmMenuTask_198a0(Task* task, void *actionState)
                 CHANGE_STATE(VM_MENU_STATE_IDLE);
             }
 
-            drawVmMenu_197c0();
+            drawVmMenu_8c0197c0();
             break;
         }
 
@@ -570,12 +571,12 @@ STATIC void VmMenuTask_198a0(Task* task, void *actionState)
             // If selection changed
             if (slot != var_menuState_8c1bc7a8.selected_0x38) {
                 sdMidiPlay(var_midiHandles_8c0fcd28[0], 1, 3, 0);
-                initCursorLerp_19788(slot);
+                initCursorLerp_8c019788(slot);
                 CHANGE_STATE(VM_MENU_STATE_CURSOR_ANIMATING);
                 swapMessageBoxFor_8c02aefc(init_vmuStatusMessages_8c044dc4[var_vmuStatus_8c226048[slot]]);
             }
 
-            drawVmMenu_197c0();
+            drawVmMenu_8c0197c0();
             menuTextboxText_8c02af1c(0x20);
             break;
         }
@@ -587,14 +588,14 @@ STATIC void VmMenuTask_198a0(Task* task, void *actionState)
                 swapMessageBoxFor_8c02aefc(init_vmuStatusMessages_8c044dc4[var_vmuStatus_8c226048[slot]]);
             }
 
-            drawVmMenu_197c0();
+            drawVmMenu_8c0197c0();
             menuTextboxText_8c02af1c(0x20);
             break;
         }
 
         /* Confirm */
         case VM_MENU_STATE_CONFIRM: {
-            int promptResult = promptHandleBinary_8c016caa(&var_menuState_8c1bc7a8.field_0x3c);
+            int promptResult = PromptHandleBinary_8c016caa(&var_menuState_8c1bc7a8.field_0x3c);
             if (promptResult == 1) {
                 var_selectedVm_8c1ba34c = var_menuState_8c1bc7a8.selectedVmuSlot_0x6c;
                 CHANGE_STATE(VM_MENU_STATE_CONFIRM_FADE_OUT_TO_MAIN_MENU);
@@ -604,27 +605,27 @@ STATIC void VmMenuTask_198a0(Task* task, void *actionState)
                 CHANGE_STATE(VM_MENU_STATE_IDLE);
             }
 
-            drawSprite_8c014f54(
+            TxtDrawSprite_8c014f54(
                 &var_menuState_8c1bc7a8.resourceGroupA_0x00,
                 var_menuState_8c1bc7a8.field_0x3c + 2,
                 228.0,
                 304.0,
                 -5.0
             );
-            drawVmMenu_197c0();
+            drawVmMenu_8c0197c0();
             menuTextboxText_8c02af1c(0xff);
             break;
         }
 
         // Proceed without saving?
         case VM_MENU_STATE_PROCEED_WITHOUT_SAVING: {
-            int promptResult = promptHandleBinary_8c016caa(&var_menuState_8c1bc7a8.field_0x3c);
+            int promptResult = PromptHandleBinary_8c016caa(&var_menuState_8c1bc7a8.field_0x3c);
             if (promptResult == 1) {
                 var_selectedVm_8c1ba34c = -1;
                 FUN_8c01895e();
                 CHANGE_STATE(VM_MENU_STATE_FADE_OUT);
-                startAdxFadeOut_8c010bae(0);
-                startAdxFadeOut_8c010bae(1);
+                SndStartAdxFadeOut_8c010bae(0);
+                SndStartAdxFadeOut_8c010bae(1);
                 push_fadeout_8c022b60(10);
             } else if (promptResult == 2) {
                 swapMessageBoxFor_8c02aefc(init_vmuStatusMessages_8c044dc4[var_vmuStatus_8c226048[slot]]);
@@ -632,14 +633,14 @@ STATIC void VmMenuTask_198a0(Task* task, void *actionState)
                 CHANGE_STATE(VM_MENU_STATE_IDLE);
             }
 
-            drawSprite_8c014f54(
+            TxtDrawSprite_8c014f54(
                 &var_menuState_8c1bc7a8.resourceGroupA_0x00,
                 var_menuState_8c1bc7a8.field_0x3c + 2,
                 228.0,
                 304.0,
                 -5.0
             );
-            drawVmMenu_197c0();
+            drawVmMenu_8c0197c0();
             menuTextboxText_8c02af1c(0xff);
             break;
         }
@@ -649,7 +650,7 @@ STATIC void VmMenuTask_198a0(Task* task, void *actionState)
             if (!var_isFading_8c226568) {
                 CHANGE_STATE(VM_MENU_STATE_VM_WARNING);
             }
-            DrawVmWarning_19852();
+            drawVmWarning_8c019852();
             break;
         }
 
@@ -660,7 +661,7 @@ STATIC void VmMenuTask_198a0(Task* task, void *actionState)
                 // Idle
                 case 0: {
                     if (!VmMenuUpdateVmusStatus_8c019550(init_saveNames_8c044d50, 3)) {
-                        int promptResult = promptHandleBinary_8c016caa(&var_menuState_8c1bc7a8.field_0x3c);
+                        int promptResult = PromptHandleBinary_8c016caa(&var_menuState_8c1bc7a8.field_0x3c);
                         if (promptResult == 1) {
                             var_selectedVm_8c1ba34c = -1;
                             FUN_8c01895e();
@@ -668,7 +669,7 @@ STATIC void VmMenuTask_198a0(Task* task, void *actionState)
                             push_fadeout_8c022b60(10);
                         } else if (promptResult == 2) {
                             for (slot = 0; !var_vmuStatus_8c226048[slot]; slot++);
-                            initCursorLerp_19788(slot);
+                            initCursorLerp_8c019788(slot);
                             var_menuState_8c1bc7a8.pos.vmSelect.cursor_0x20 = var_menuState_8c1bc7a8.pos.vmSelect.cursorTarget_0x28;
                             swapMessageBoxFor_8c02aefc(init_vmuStatusMessages_8c044dc4[var_vmuStatus_8c226048[slot]]);
                             task->field_0x08 = 3;
@@ -713,7 +714,7 @@ STATIC void VmMenuTask_198a0(Task* task, void *actionState)
                 }
             }
 
-            DrawVmWarning_19852();
+            drawVmWarning_8c019852();
             return;
         }
 
@@ -724,7 +725,7 @@ STATIC void VmMenuTask_198a0(Task* task, void *actionState)
                 return;
             }
 
-            drawSprite_8c014f54(
+            TxtDrawSprite_8c014f54(
                 &var_menuState_8c1bc7a8.resourceGroupA_0x00,
                 var_menuState_8c1bc7a8.field_0x3c + 2,
                 228.0,
@@ -732,7 +733,7 @@ STATIC void VmMenuTask_198a0(Task* task, void *actionState)
                 -5.0
             );
 
-            drawVmMenu_197c0();
+            drawVmMenu_8c0197c0();
             break;
         }
 
@@ -751,7 +752,7 @@ STATIC void VmMenuTask_198a0(Task* task, void *actionState)
             if (!var_isFading_8c226568) {
                 CHANGE_STATE(VM_MENU_STATE_IDLE);
             }
-            drawVmMenu_197c0();
+            drawVmMenu_8c0197c0();
         }
     }
 
@@ -761,7 +762,7 @@ STATIC void VmMenuTask_198a0(Task* task, void *actionState)
 /* Tested */
 void VmMenuSwitchFromTask_8c019e44(Task *task)
 {
-    setTaskAction_8c014b3e(task, VmMenuTask_198a0);
+    TaskSetAction_8c014b3e(task, vmMenuTask_8c0198a0);
     var_menuState_8c1bc7a8.state_0x18 = VM_MENU_STATE_INIT;
     var_menuState_8c1bc7a8.selected_0x38 = 0;
     var_menuState_8c1bc7a8.logo_timer_0x68 = 0;

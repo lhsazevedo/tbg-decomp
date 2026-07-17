@@ -2,6 +2,6 @@
 #ifndef _DEMO_INPUT_H
 #define _DEMO_INPUT_H
 
-void demoInputTask_8c016bf4();
+void DemoInputTask_8c016bf4();
 
 #endif // _DEMO_INPUT_H

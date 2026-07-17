@@ -1,8 +1,8 @@
 ; 8c010fe8
           .IMPORT     __divls
-          .EXPORT     _heapInit_8c010fe8
-          .EXPORT     _heapAlloc_8c01102a
-          .EXPORT     _heapFree_8c0110c4
+          .EXPORT     _HeapInit_8c010fe8
+          .EXPORT     _HeapAlloc_8c01102a
+          .EXPORT     _HeapFree_8c0110c4
 
           .AIFDEF UNIT_TESTING
           .EXPORT     _var_heapHead_8c157a58
@@ -11,7 +11,7 @@
           .AENDI
 
           .SECTION    P,CODE,ALIGN=4
-_heapInit_8c010fe8:                ; function: heapInit_8c010fe8
+_HeapInit_8c010fe8:                ; function: HeapInit_8c010fe8
                                  ; frame size=0
           MOV         #0,R6
           MOV         R4,R3
@@ -46,7 +46,7 @@ _heapInit_8c010fe8:                ; function: heapInit_8c010fe8
           MOV.L       @R4,R3
           RTS
           MOV.L       R6,@(4,R3)
-_heapAlloc_8c01102a:
+_HeapAlloc_8c01102a:
           MOV.L       R14,@-R15
           MOV.L       R12,@-R15
           MOV.L       R11,@-R15
@@ -136,7 +136,7 @@ L5:
           MOV.L       @R15+,R12
           RTS
           MOV.L       @R15+,R14
-_heapFree_8c0110c4:
+_HeapFree_8c0110c4:
           ADD         #-32,R4
           MOV.L       @(12,R4),R2
           MOV         #-H'2,R3

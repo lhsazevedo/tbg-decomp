@@ -1,3 +1,4 @@
+/* @unit MainMenu */
 #include <shinobi.h>
 // #include <njdef.h>
 #include <sg_sd.h>
@@ -66,11 +67,11 @@ enum MAIN_MENU_STATE {
  */
 
 
-STATIC void MainMenuTask_8c019e98(Task *task) {
+STATIC void mainMenuTask_8c019e98(Task *task) {
     switch (var_menuState_8c1bc7a8.state_0x18)
     {
         case MAIN_MENU_STATE_INIT: {
-            if (isPvmReady_8c01432a()) {
+            if (RouteLoadIsPvmReady_8c01432a()) {
                 return;
             }
 
@@ -175,7 +176,7 @@ STATIC void MainMenuTask_8c019e98(Task *task) {
         }
     }
 
-    drawSprite_8c014f54(
+    TxtDrawSprite_8c014f54(
         &var_menuState_8c1bc7a8.resourceGroupB_0x0c,
         0x65 + var_menuState_8c1bc7a8.field_0x5c,
         0,
@@ -183,7 +184,7 @@ STATIC void MainMenuTask_8c019e98(Task *task) {
         -4.0
     );
 
-    drawSprite_8c014f54(
+    TxtDrawSprite_8c014f54(
         &var_menuState_8c1bc7a8.resourceGroupB_0x0c,
         0x64,
         0,
@@ -191,7 +192,7 @@ STATIC void MainMenuTask_8c019e98(Task *task) {
         -5.0
     );
 
-    drawSprite_8c014f54(
+    TxtDrawSprite_8c014f54(
         &var_menuState_8c1bc7a8.resourceGroupA_0x00,
         0x2d,
         0,
@@ -201,7 +202,7 @@ STATIC void MainMenuTask_8c019e98(Task *task) {
 }
 
 void MainMenuSwitchFromTask_8c01a09a(Task* task) {
-    setTaskAction_8c014b3e(task, MainMenuTask_8c019e98);
+    TaskSetAction_8c014b3e(task, mainMenuTask_8c019e98);
     CHANGE_STATE(MAIN_MENU_STATE_INIT);
     var_menuState_8c1bc7a8.selected_0x38 = 0;
     var_menuState_8c1bc7a8.field_0x5c = 0;
@@ -211,6 +212,6 @@ void MainMenuSwitchFromTask_8c01a09a(Task* task) {
         &var_menuState_8c1bc7a8.resourceGroupB_0x0c,
         &init_mainMenuResourceGroup_8c044264
     );
-    setPvmReady_8c014330();
-    AsqProcessQueues_8c011fe0(AsqNop_8c011120, 0, 0, 0, resetPvmReady_8c014322);
+    RouteLoadSetPvmReady_8c014330();
+    AsqProcessQueues_8c011fe0(AsqNop_8c011120, 0, 0, 0, RouteLoadResetPvmReady_8c014322);
 }

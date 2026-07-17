@@ -46,49 +46,40 @@
           .IMPORT     _FUN_8c028de8
           .IMPORT     _FUN_8c028dd0
           .IMPORT     _FUN_8c02caba
-          .IMPORT     _pickSegmentEvent_8c02b170
+          .IMPORT     _EventPickForSegment_8c02b170
           .IMPORT     _FUN_8c02190a
           .IMPORT     _FUN_8c021810
-          .IMPORT     _freeTask_8c014b66
+          .IMPORT     _TaskFree_8c014b66
           .IMPORT     _var_loadScreenActive_8c157a6c
           .IMPORT     _njReleaseTexture
           .IMPORT     _FUN_8c01306e
-          .IMPORT     _drawSprite_8c014f54
+          .IMPORT     _TxtDrawSprite_8c014f54
           .IMPORT     __modls
           .IMPORT     _njSetBackColor
           .IMPORT     _var_tasks_8c1ba3c8
-          .IMPORT     _pushTask_8c014ae8
+          .IMPORT     _TaskPush_8c014ae8
           .IMPORT     _var_tex_8c157af8
           .IMPORT     _njGarbageTexture
           .IMPORT     _var_progress_8c1ba1cc
           .IMPORT     _var_8c2285c4
-          .IMPORT     _dispatchInputTask_8c012970
-          .EXPORT     _requestVehicleAssets_8c013ae8
-          .EXPORT     _freeVehicleAssets_8c013b5a
-          .EXPORT     _clearModelSlots_8c013bbc
-          .EXPORT     _syncRouteModelAssets_8c013c34
-          .EXPORT     _finishAssetLoad_8c013d42
-          .EXPORT     _startRouteModelLoadPass_8c013d78
-          .EXPORT     _freeAllRouteModels_8c013dae
-          .EXPORT     _syncPedestrianAssets_8c013df6
-          .EXPORT     _freePedestrianAssets_8c013ee4
-          .EXPORT     _freeSegmentModels_8c013f22
-          .EXPORT     _syncSegmentModels_8c013f78
-          .EXPORT     _loadRouteModels_8c014088
-          .EXPORT     _resetPvmReady_8c014322
-          .EXPORT     _isPvmReady_8c01432a
-          .EXPORT     _setPvmReady_8c014330
-          .EXPORT     _routeLoadTask_8c014338
-          .EXPORT     _pushUnknownSegmentReloadTask_8c01468e
-          .EXPORT     _unknownSegmentReloadTask_8c014550
-          .EXPORT     _unknownRouteLoadTask_8c014784
-          .EXPORT     _pushRouteLoadTask_8c0144fc
+          .IMPORT     _InputDispatchTask_8c012970
+          .EXPORT     _RouteLoadFreeVehicleAssets_8c013b5a
+          .EXPORT     _RouteLoadClearModelSlots_8c013bbc
+          .EXPORT     _RouteLoadStartRouteModelLoadPass_8c013d78
+          .EXPORT     _RouteLoadFreeAllRouteModels_8c013dae
+          .EXPORT     _RouteLoadFreePedestrianAssets_8c013ee4
+          .EXPORT     _RouteLoadResetPvmReady_8c014322
+          .EXPORT     _RouteLoadIsPvmReady_8c01432a
+          .EXPORT     _RouteLoadSetPvmReady_8c014330
+          .EXPORT     _RouteLoadPushSegmentReloadTask_8c01468e
+          .EXPORT     _RouteLoadUnusedTask_8c014784
+          .EXPORT     _RouteLoadPushTask_8c0144fc
           .EXPORT     _init_8c04410c ; 01b19c.src
           .EXPORT     _var_currentCourseConfig_8c18ad18 ; 02c884.src
-          .EXPORT     _var_route_8c18ad1c ; 012f44.c, 012f44.src, 01d7fc.src, 020214.src, 023310.src, 025870.src, 026710.src, 028258.src, 02af78_event.src, 02b464.src, 02c884.src, 02d19c.src, 02d968.src
+          .EXPORT     _var_route_8c18ad1c ; 012f44_game.c, 012f44_game.src, 01d7fc.src, 020214.src, 023310.src, 025870.src, 026710.src, 028258.src, 02af78_event.src, 02b464.src, 02c884.src, 02d19c.src, 02d968.src
           .EXPORT     _var_timeOfDay_8c18ad20 ; 01d7fc.src, 022bdc.src, 023310.src, 025b98.src, 026710.src, 027958.src, 02af78_event.src, 02d19c.src
           .EXPORT     _var_sceneParams_8c18ad24 ; 021b9c.src, 0222dc.src, 023310.src, 024b4c.src, 026710.src
-          .EXPORT     _var_fogParams_8c18ad28 ; 012f44.c, 012f44.src
+          .EXPORT     _var_fogParams_8c18ad28 ; 012f44_game.c, 012f44_game.src
           .EXPORT     _var_datDir_8c18ad2c
           .EXPORT     _var_pvrDir_8c18ad4c ; 02171c.src
           .EXPORT     _var_commonDir_8c18ad6c ; 028258.src
@@ -97,6 +88,15 @@
           .EXPORT     _var_routeModelIndexes_8c18adb0
           .EXPORT     _var_datFiles_8c18adb4 ; 02171c.src
           .AIFDEF     UNIT_TESTING
+          .EXPORT     _requestVehicleAssets_8c013ae8
+          .EXPORT     _syncRouteModelAssets_8c013c34
+          .EXPORT     _finishAssetLoad_8c013d42
+          .EXPORT     _syncPedestrianAssets_8c013df6
+          .EXPORT     _freeSegmentModels_8c013f22
+          .EXPORT     _syncSegmentModels_8c013f78
+          .EXPORT     _loadRouteModels_8c014088
+          .EXPORT     _routeLoadTask_8c014338
+          .EXPORT     _unknownSegmentReloadTask_8c014550
           .EXPORT     _init_trafficModelFiles_8c043d64
           .EXPORT     _init_8c043fd4
           .EXPORT     _init_courseWanganEvening0_8c041d80
@@ -172,7 +172,7 @@ _requestVehicleAssets_8c013ae8:
           MOV.L       @R15+,R13
           RTS
           MOV.L       @R15+,R14
-_freeVehicleAssets_8c013b5a:
+_RouteLoadFreeVehicleAssets_8c013b5a:
           MOV.L       R14,@-R15
           MOV.L       LP_GEN_83755+42,R14
           MOV.L       R13,@-R15
@@ -225,7 +225,7 @@ LAB_8c013bb2:
           MOV.L       @R15+,R13
           RTS
           MOV.L       @R15+,R14
-_clearModelSlots_8c013bbc:
+_RouteLoadClearModelSlots_8c013bbc:
           ADD         #-H'1,R5
           SHLL2       R5
           SHLL2       R5
@@ -416,7 +416,7 @@ LAB_8c013d1c:
           MOV.L       @R15+,R14
 _finishAssetLoad_8c013d42:
           STS.L       PR,@-R15
-          BSR         _setPvmReady_8c014330
+          BSR         _RouteLoadSetPvmReady_8c014330
           NOP
           MOV.L       LP_GEN_93614+38,R1
           JMP         @R1
@@ -435,7 +435,7 @@ LP_GEN_93614:
           .DATA.L _syFree
           .DATA.L _AsqFreeQueues_8c011f7e
 
-_startRouteModelLoadPass_8c013d78:
+_RouteLoadStartRouteModelLoadPass_8c013d78:
           STS.L       PR,@-R15
           MOV.L       LP_GEN_38230+6,R3
           MOV         #H'40,R7
@@ -446,7 +446,7 @@ _startRouteModelLoadPass_8c013d78:
           MOV.L       LP_GEN_38230+10,R2
           JSR         @R2
           NOP
-          BSR         _resetPvmReady_8c014322
+          BSR         _RouteLoadResetPvmReady_8c014322
           NOP
           MOV.L       LP_GEN_38230+14,R2
           BSR         _syncRouteModelAssets_8c013c34
@@ -463,7 +463,7 @@ _startRouteModelLoadPass_8c013d78:
           LDS.L       @R15+,PR
           RTS
           NOP
-_freeAllRouteModels_8c013dae:
+_RouteLoadFreeAllRouteModels_8c013dae:
           MOV.L       R14,@-R15
           MOV.L       R13,@-R15
           MOV.L       R12,@-R15
@@ -618,7 +618,7 @@ LAB_8c013ec6:
           MOV.L       @R15+,R13
           RTS
           MOV.L       @R15+,R14
-_freePedestrianAssets_8c013ee4:
+_RouteLoadFreePedestrianAssets_8c013ee4:
           MOV.L       R14,@-R15
           MOV.L       R13,@-R15
           MOV.L       R12,@-R15
@@ -1158,16 +1158,16 @@ LAB_8c0141e4:
           MOV.L       @R15+,R13
           RTS
           MOV.L       @R15+,R14
-_resetPvmReady_8c014322:
+_RouteLoadResetPvmReady_8c014322:
           MOV.L       LP_GEN_90737+46,R1
           MOV         #H'0,R2
           RTS
           MOV.L       R2,@R1
-_isPvmReady_8c01432a:
+_RouteLoadIsPvmReady_8c01432a:
           MOV.L       LP_GEN_90737+46,R3
           RTS
           MOV.L       @R3,R0
-_setPvmReady_8c014330:
+_RouteLoadSetPvmReady_8c014330:
           MOV.L       LP_GEN_90737+46,R1
           MOV         #H'1,R2
           RTS
@@ -1204,7 +1204,7 @@ LAB_8c01435e:
           MOV.L       @R13,R4
           BSR         _loadRouteModels_8c014088
           NOP
-          BSR         _resetPvmReady_8c014322
+          BSR         _RouteLoadResetPvmReady_8c014322
           NOP
           MOV.L       LP_GEN_90737+66,R2
           MOV         #H'0,R7
@@ -1217,7 +1217,7 @@ LAB_8c01435e:
           BRA         LAB_8c0143ee
           ADD         #H'4,R15
 LAB_8c01438c:
-          BSR         _isPvmReady_8c01432a
+          BSR         _RouteLoadIsPvmReady_8c01432a
           NOP
           TST         R0,R0
           BF          LAB_8c014398
@@ -1248,7 +1248,7 @@ LAB_8c014398:
           NOP
           BSR         _syncSegmentModels_8c013f78
           NOP
-          BSR         _resetPvmReady_8c014322
+          BSR         _RouteLoadResetPvmReady_8c014322
           NOP
           MOV.L       LP_GEN_90737+66,R2
           MOV.L       LP_GEN_90737+70,R4
@@ -1264,7 +1264,7 @@ LAB_8c014398:
           BRA         LAB_8c0144b4
           MOV.L       R2,@(H'8,R14)
 LAB_8c0143e6:
-          BSR         _isPvmReady_8c01432a
+          BSR         _RouteLoadIsPvmReady_8c01432a
           NOP
           TST         R0,R0
           BT          LAB_8c0144b4
@@ -1320,7 +1320,7 @@ LP_GEN_90737:
           .DATA.L _AsqResetQueues_8c011f6c
           .DATA.L _njSetTexture
           .DATA.L _njLoadCacheTexture
-          .DATA.L _setPvmReady_8c014330
+          .DATA.L _RouteLoadSetPvmReady_8c014330
           .DATA.L _AsqNop_8c011120
           .DATA.L _AsqProcessQueues_8c011fe0
           .DATA.L _FUN_8c02175a
@@ -1329,15 +1329,15 @@ LP_GEN_90737:
           .DATA.L _FUN_8c028de8
           .DATA.L _FUN_8c028dd0
           .DATA.L _FUN_8c02caba
-          .DATA.L _pickSegmentEvent_8c02b170
+          .DATA.L _EventPickForSegment_8c02b170
           .DATA.L _FUN_8c02190a
           .DATA.L _FUN_8c021810
-          .DATA.L _freeTask_8c014b66
+          .DATA.L _TaskFree_8c014b66
           .DATA.L _AsqFreeQueues_8c011f7e
           .DATA.L _var_loadScreenActive_8c157a6c
           .DATA.L _njReleaseTexture
           .DATA.L _FUN_8c01306e
-          .DATA.L _dispatchInputTask_8c012970
+          .DATA.L _InputDispatchTask_8c012970
 
 LAB_8c0144b4:
           MOVA        LP_GEN_28406+10,R0
@@ -1377,7 +1377,7 @@ LAB_8c0144f2:
           MOV.L       @R15+,R13
           RTS
           MOV.L       @R15+,R14
-_pushRouteLoadTask_8c0144fc:
+_RouteLoadPushTask_8c0144fc:
           MOV.L       R14,@-R15
           STS.L       PR,@-R15
           ADD         #-H'8,R15
@@ -1445,7 +1445,7 @@ LAB_8c01456e:
           NOP
           BSR         _syncSegmentModels_8c013f78
           NOP
-          BSR         _resetPvmReady_8c014322
+          BSR         _RouteLoadResetPvmReady_8c014322
           NOP
           MOV.L       LP_GEN_28406+70,R3
           MOV.L       LP_GEN_28406+82,R4
@@ -1461,7 +1461,7 @@ LAB_8c01456e:
           BRA         LAB_8c01464a
           MOV.L       R3,@(H'8,R14)
 LAB_8c01459c:
-          BSR         _isPvmReady_8c01432a
+          BSR         _RouteLoadIsPvmReady_8c01432a
           NOP
           TST         R0,R0
           BT          LAB_8c01464a
@@ -1482,7 +1482,7 @@ LP_GEN_28406:
           .RES.W      1
           .DATA.L _var_loadingResourceGroup_8c1bc3f8
           .DATA.L H'C0A00000
-          .DATA.L _drawSprite_8c014f54
+          .DATA.L _TxtDrawSprite_8c014f54
           .DATA.L __modls
           .DATA.L H'C0800000
           .DATA.L H'FF418DFF
@@ -1490,13 +1490,13 @@ LP_GEN_28406:
           .DATA.L _var_loadScreenActive_8c157a6c
           .DATA.L _routeLoadTask_8c014338
           .DATA.L _var_tasks_8c1ba3c8
-          .DATA.L _pushTask_8c014ae8
+          .DATA.L _TaskPush_8c014ae8
           .DATA.L _var_tex_8c157af8
           .DATA.L _njGarbageTexture
           .DATA.L _AsqInitQueues_8c011f36
-          .DATA.L _pickSegmentEvent_8c02b170
+          .DATA.L _EventPickForSegment_8c02b170
           .DATA.L _AsqResetQueues_8c011f6c
-          .DATA.L _setPvmReady_8c014330
+          .DATA.L _RouteLoadSetPvmReady_8c014330
           .DATA.L _FUN_8c02190a
           .DATA.L _FUN_8c021810
           .DATA.L _AsqNop_8c011120
@@ -1568,7 +1568,7 @@ LAB_8c014686:
           FMOV.S      @R15+,FR15
           RTS
           MOV.L       @R15+,R14
-_pushUnknownSegmentReloadTask_8c01468e:
+_RouteLoadPushSegmentReloadTask_8c01468e:
           MOV.L       R14,@-R15
           STS.L       PR,@-R15
           ADD         #-H'8,R15
@@ -1646,7 +1646,7 @@ LAB_8c0146ba:
 LP_GEN_17698:
           .DATA.W H'0C00 ; LP_GEN_17698+0
           .DATA.W H'0800
-          .DATA.L _freeTask_8c014b66
+          .DATA.L _TaskFree_8c014b66
           .DATA.L _AsqFreeQueues_8c011f7e
           .DATA.L _var_loadScreenActive_8c157a6c
           .DATA.L _var_loadingResourceGroup_8c1bc3f8
@@ -1655,9 +1655,9 @@ LP_GEN_17698:
           .DATA.L _njSetTexture
           .DATA.L _njLoadCacheTexture
           .DATA.L _FUN_8c01306e
-          .DATA.L _dispatchInputTask_8c012970
+          .DATA.L _InputDispatchTask_8c012970
           .DATA.L H'C0A00000
-          .DATA.L _drawSprite_8c014f54
+          .DATA.L _TxtDrawSprite_8c014f54
           .DATA.L __modls
           .DATA.L H'C0800000
           .DATA.L _var_progress_8c1ba1cc + H'C4
@@ -1665,14 +1665,14 @@ LP_GEN_17698:
           .DATA.L _var_8c2285c4
           .DATA.L _unknownSegmentReloadTask_8c014550
           .DATA.L _var_tasks_8c1ba3c8
-          .DATA.L _pushTask_8c014ae8
+          .DATA.L _TaskPush_8c014ae8
           .DATA.L _var_tex_8c157af8
           .DATA.L _njGarbageTexture
           .DATA.L _AsqInitQueues_8c011f36
           .DATA.L H'FF418DFF
           .DATA.L _njSetBackColor
 
-_unknownRouteLoadTask_8c014784:
+_RouteLoadUnusedTask_8c014784:
           MOV.L       R14,@-R15
           MOV         R4,R14
           MOV.L       R13,@-R15
@@ -1704,7 +1704,7 @@ LAB_8c0147aa:
           MOV.L       @R13,R4
           BSR         _loadRouteModels_8c014088
           NOP
-          BSR         _resetPvmReady_8c014322
+          BSR         _RouteLoadResetPvmReady_8c014322
           NOP
           MOV.L       LP_GEN_48435+18,R2
           MOV         #H'0,R7
@@ -1717,7 +1717,7 @@ LAB_8c0147aa:
           BRA         LAB_8c014824
           NOP
 LAB_8c0147d8:
-          BSR         _isPvmReady_8c01432a
+          BSR         _RouteLoadIsPvmReady_8c01432a
           NOP
           TST         R0,R0
           BT          LAB_8c014882
@@ -1745,7 +1745,7 @@ LAB_8c0147d8:
           NOP
           BSR         _syncSegmentModels_8c013f78
           NOP
-          BSR         _resetPvmReady_8c014322
+          BSR         _RouteLoadResetPvmReady_8c014322
           NOP
           MOV.L       LP_GEN_48435+18,R3
           MOV         #H'0,R7
@@ -1762,7 +1762,7 @@ LAB_8c014824:
           BRA         LAB_8c014882
           MOV.L       R3,@(H'8,R14)
 LAB_8c01482e:
-          BSR         _isPvmReady_8c01432a
+          BSR         _RouteLoadIsPvmReady_8c01432a
           NOP
           TST         R0,R0
           BT          LAB_8c014882
@@ -1851,7 +1851,7 @@ LP_GEN_48435:
           .DATA.L _AsqResetQueues_8c011f6c
           .DATA.L _njSetTexture
           .DATA.L _njLoadCacheTexture
-          .DATA.L _setPvmReady_8c014330
+          .DATA.L _RouteLoadSetPvmReady_8c014330
           .DATA.L _AsqNop_8c011120
           .DATA.L _AsqProcessQueues_8c011fe0
           .DATA.L _FUN_8c02175a
@@ -1860,17 +1860,17 @@ LP_GEN_48435:
           .DATA.L _FUN_8c028de8
           .DATA.L _FUN_8c028dd0
           .DATA.L _FUN_8c02caba
-          .DATA.L _pickSegmentEvent_8c02b170
+          .DATA.L _EventPickForSegment_8c02b170
           .DATA.L _FUN_8c02190a
-          .DATA.L _freeTask_8c014b66
+          .DATA.L _TaskFree_8c014b66
           .DATA.L _AsqFreeQueues_8c011f7e
           .DATA.L _var_loadScreenActive_8c157a6c
           .DATA.L _njReleaseTexture
           .DATA.L _var_interiorTexlist_8c1bc438
           .DATA.L _FUN_8c01306e
-          .DATA.L _dispatchInputTask_8c012970
+          .DATA.L _InputDispatchTask_8c012970
           .DATA.L H'C0A00000
-          .DATA.L _drawSprite_8c014f54
+          .DATA.L _TxtDrawSprite_8c014f54
           .DATA.L __modls
           .DATA.L H'C0800000
 

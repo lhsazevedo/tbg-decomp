@@ -1,8 +1,9 @@
+/* @unit Pause */
 #include <shinobi.h>
 #include "0129cc_pause.h"
 #include "0100bc_sound.h"
 #include "011120_asset_queues.h"
-#include "012f44.h"
+#include "012f44_game.h"
 #include "014f54_text.h"
 #include "014f54_text_pre_data.h"
 #include "01614c.h"
@@ -74,7 +75,7 @@ char *DEBUG_retirePhaseNames[] = {
  *   var_retirePhase_8c18ad08    RETIRE_PHASE_*
  *   var_confirmChoice_8c18ad0c  CONFIRM_YES / CONFIRM_NO (default NO)
  */
-STATIC int Update_8c0129cc(void)
+STATIC int update_8c0129cc(void)
 {
     PDS_PERIPHERAL *p;
     int i;
@@ -86,12 +87,12 @@ STATIC int Update_8c0129cc(void)
             var_pauseActive_8c1bb8cc = TRUE;
             var_pauseSettle_8c18ad04 = 0;
             var_onRetire_8c18ad10 = 0;
-            controlAdxtWithOutVol_8c0107d2(1);
+            SndControlAdxtWithOutVol_8c0107d2(1);
             sdMidiPlay(var_midiHandles_8c0fcd28[0], 1, 0, 0);
             if (var_vibport_8c1ba354 != -1) {
                 pdVibMxStop(var_vibport_8c1ba354);
             }
-            LOG_DEBUG(("[PAUSE] Update_8c0129cc: menu opened\n"));
+            LOG_DEBUG(("[PAUSE] update_8c0129cc: menu opened\n"));
         }
         return 1;
     }
@@ -110,23 +111,23 @@ STATIC int Update_8c0129cc(void)
     if ((p->press & PDD_DGT_ST) != 0) {
         /* Start again: close, no sound. */
         var_pauseActive_8c1bb8cc = 0;
-        controlAdxtWithOutVol_8c0107d2(0);
-        LOG_DEBUG(("[PAUSE] Update_8c0129cc: menu closed (Start)\n"));
+        SndControlAdxtWithOutVol_8c0107d2(0);
+        LOG_DEBUG(("[PAUSE] update_8c0129cc: menu closed (Start)\n"));
     } else if (var_onRetire_8c18ad10 == 0) {
         /* Cursor on CONTINUE: A resumes, Down moves to RETIRE. */
         if ((p->press & PDD_DGT_TA) != 0) {
             var_pauseActive_8c1bb8cc = 0;
-            controlAdxtWithOutVol_8c0107d2(0);
+            SndControlAdxtWithOutVol_8c0107d2(0);
             sdMidiPlay(var_midiHandles_8c0fcd28[0], 1, 0, 0);
-            LOG_DEBUG(("[PAUSE] Update_8c0129cc: resumed (A)\n"));
+            LOG_DEBUG(("[PAUSE] update_8c0129cc: resumed (A)\n"));
         } else if ((p->press & PDD_DGT_KD) != 0 || p->y1 > STICK_THRESHOLD) {
             var_onRetire_8c18ad10 = 1;
             var_retirePhase_8c18ad08 = RETIRE_PHASE_IDLE;
             var_confirmChoice_8c18ad0c = CONFIRM_NO;
             sdMidiPlay(var_midiHandles_8c0fcd28[0], 1, 3, 0);
-            LOG_DEBUG(("[PAUSE] Update_8c0129cc: cursor -> RETIRE\n"));
+            LOG_DEBUG(("[PAUSE] update_8c0129cc: cursor -> RETIRE\n"));
         }
-        drawSprite_8c014f54((ResourceGroup *)&var_markTexlist_8c1bc418, MARK_CONTINUE, 0.0f, 0.0f, MARK_Z_ARROW);
+        TxtDrawSprite_8c014f54((ResourceGroup *)&var_markTexlist_8c1bc418, MARK_CONTINUE, 0.0f, 0.0f, MARK_Z_ARROW);
     } else {
         switch (var_retirePhase_8c18ad08) {
         case RETIRE_PHASE_IDLE:
@@ -137,16 +138,16 @@ STATIC int Update_8c0129cc(void)
             } else if ((p->press & PDD_DGT_KU) != 0 || p->y1 < -STICK_THRESHOLD) {
                 var_onRetire_8c18ad10 = 0;
                 sdMidiPlay(var_midiHandles_8c0fcd28[0], 1, 3, 0);
-                LOG_DEBUG(("[PAUSE] Update_8c0129cc: cursor -> CONTINUE\n"));
+                LOG_DEBUG(("[PAUSE] update_8c0129cc: cursor -> CONTINUE\n"));
             }
-            drawSprite_8c014f54((ResourceGroup *)&var_markTexlist_8c1bc418, MARK_RETIRE, 0.0f, 0.0f, MARK_Z_ARROW);
+            TxtDrawSprite_8c014f54((ResourceGroup *)&var_markTexlist_8c1bc418, MARK_RETIRE, 0.0f, 0.0f, MARK_Z_ARROW);
             break;
 
         case RETIRE_PHASE_CONFIRM:
             /* Confirm: B cancels; Left=YES / Right=NO; A acts on the choice. */
             if ((p->press & PDD_DGT_TB) != 0) {
                 CHANGE_RETIRE_PHASE(RETIRE_PHASE_IDLE);
-                drawSprite_8c014f54((ResourceGroup *)&var_markTexlist_8c1bc418, MARK_RETIRE, 0.0f, 0.0f, MARK_Z_ARROW);
+                TxtDrawSprite_8c014f54((ResourceGroup *)&var_markTexlist_8c1bc418, MARK_RETIRE, 0.0f, 0.0f, MARK_Z_ARROW);
                 sdMidiPlay(var_midiHandles_8c0fcd28[0], 1, 1, 0);
                 break;
             }
@@ -156,15 +157,15 @@ STATIC int Update_8c0129cc(void)
                     CHANGE_RETIRE_PHASE(RETIRE_PHASE_FADING);
                     push_fadeout_8c022b60(10);
                     sdMidiPlay(var_midiHandles_8c0fcd28[0], 1, 0, 0);
-                    LOG_DEBUG(("[PAUSE] Update_8c0129cc: retire committed, fading out\n"));
+                    LOG_DEBUG(("[PAUSE] update_8c0129cc: retire committed, fading out\n"));
                     break;
                 }
                 if ((p->press & PDD_DGT_KR) != 0 || p->x1 > STICK_THRESHOLD) {
                     var_confirmChoice_8c18ad0c = CONFIRM_NO;
                     sdMidiPlay(var_midiHandles_8c0fcd28[0], 1, 3, 0);
-                    LOG_DEBUG(("[PAUSE] Update_8c0129cc: confirm choice -> NO\n"));
+                    LOG_DEBUG(("[PAUSE] update_8c0129cc: confirm choice -> NO\n"));
                 }
-                drawSprite_8c014f54((ResourceGroup *)&var_markTexlist_8c1bc418, MARK_CONFIRM_YES, 0.0f, 0.0f, MARK_Z_ARROW);
+                TxtDrawSprite_8c014f54((ResourceGroup *)&var_markTexlist_8c1bc418, MARK_CONFIRM_YES, 0.0f, 0.0f, MARK_Z_ARROW);
                 break;
             }
             /* A cancels back to RETIRE. */
@@ -174,15 +175,15 @@ STATIC int Update_8c0129cc(void)
             } else if ((p->press & PDD_DGT_KL) != 0 || p->x1 < -STICK_THRESHOLD) {
                 var_confirmChoice_8c18ad0c = CONFIRM_YES;
                 sdMidiPlay(var_midiHandles_8c0fcd28[0], 1, 3, 0);
-                LOG_DEBUG(("[PAUSE] Update_8c0129cc: confirm choice -> YES\n"));
+                LOG_DEBUG(("[PAUSE] update_8c0129cc: confirm choice -> YES\n"));
             }
-            drawSprite_8c014f54((ResourceGroup *)&var_markTexlist_8c1bc418, MARK_CONFIRM_NO, 0.0f, 0.0f, MARK_Z_ARROW);
+            TxtDrawSprite_8c014f54((ResourceGroup *)&var_markTexlist_8c1bc418, MARK_CONFIRM_NO, 0.0f, 0.0f, MARK_Z_ARROW);
             break;
 
         case RETIRE_PHASE_FADING:
             /* Retire committed: hold the YES mark through the fade, then leave the drive. */
             if (var_isFading_8c226568 != 0) {
-                drawSprite_8c014f54((ResourceGroup *)&var_markTexlist_8c1bc418, MARK_CONFIRM_YES, 0.0f, 0.0f, MARK_Z_ARROW);
+                TxtDrawSprite_8c014f54((ResourceGroup *)&var_markTexlist_8c1bc418, MARK_CONFIRM_YES, 0.0f, 0.0f, MARK_Z_ARROW);
                 njDrawPolygon((NJS_POLYGON_VTX *)init_8c03bf4c, 4, 1);
                 return 0;
             }
@@ -193,7 +194,7 @@ STATIC int Update_8c0129cc(void)
             if (var_playMode_8c1bb8d0 == PLAY_MODE_PRACTICE) {
                 var_menuState_8c1bc7a8.selected_0x38 = var_8c22640c;
                 FUN_8c01f21c();
-                LOG_INFO(("[PAUSE] Update_8c0129cc: retire complete, leaving drive (practice)\n"));
+                LOG_INFO(("[PAUSE] update_8c0129cc: retire complete, leaving drive (practice)\n"));
                 return 0;
             }
             for (i = 0; i < 5; i++) {
@@ -201,20 +202,20 @@ STATIC int Update_8c0129cc(void)
                 var_progress_8c1ba1cc.field_0x18[i] = var_8c1ba2cc[i];
             }
             CourseMenuFUN_8c017ef2();
-            LOG_INFO(("[PAUSE] Update_8c0129cc: retire complete, leaving drive (course menu)\n"));
+            LOG_INFO(("[PAUSE] update_8c0129cc: retire complete, leaving drive (course menu)\n"));
             return 0;
         }
     }
 
-    drawSprite_8c014f54((ResourceGroup *)&var_markTexlist_8c1bc418, MARK_BASE, 0.0f, 0.0f, MARK_Z_BASE);
+    TxtDrawSprite_8c014f54((ResourceGroup *)&var_markTexlist_8c1bc418, MARK_BASE, 0.0f, 0.0f, MARK_Z_BASE);
     njDrawPolygon((NJS_POLYGON_VTX *)init_8c03bf4c, 4, 1);
     return 0;
 }
 
 /*
- * pushTask_8c014ae8 action for the pause menu: resets to the title if a
+ * TaskPush_8c014ae8 action for the pause menu: resets to the title if a
  * reset was requested with the asset queues idle, otherwise runs
- * Update_8c0129cc and, the frame it just opened, resets the render-command
+ * update_8c0129cc and, the frame it just opened, resets the render-command
  * list and runs the rest of the task list so the paused frame still draws.
  */
 void PauseTask_8c012cbc()
@@ -224,20 +225,20 @@ void PauseTask_8c012cbc()
     if (var_resetRequested_8c157a78 != 0 && var_8c157a7c == 0
         && var_queuesAreInitialized_8c157a60 == 0) {
         FUN_8c016182();
-        pushTitle_8c015fd6(1);
+        TitlePushTitle_8c015fd6(1);
         LOG_DEBUG(("[PAUSE] PauseTask_8c012cbc: reset requested, returning to title\n"));
         return;
     }
 
-    if (Update_8c0129cc() != 0) {
+    if (update_8c0129cc() != 0) {
         FUN_8c02239c();
-        execTasks_8c014b42(var_tasks_8c1ba5e8);
+        TaskExecGroup_8c014b42(var_tasks_8c1ba5e8);
         FUN_8c022560();
     }
 }
 
 /*
- * pushTask_8c014ae8 action for the PLAY_MODE_DEMO (attract loop) pause task,
+ * TaskPush_8c014ae8 action for the PLAY_MODE_DEMO (attract loop) pause task,
  * used in place of PauseTask_8c012cbc when var_8c1bb8d4 == 0: instead of the full
  * CONTINUE/RETIRE pause menu, Start just toggles var_pauseActive_8c1bb8cc,
  * and the rest of the frame's tasks only run while unpaused.
@@ -249,7 +250,7 @@ void PauseToggleTask_8c012d06()
     if (var_resetRequested_8c157a78 != 0 && var_8c157a7c == 0
         && var_queuesAreInitialized_8c157a60 == 0) {
         FUN_8c016182();
-        pushTitle_8c015fd6(1);
+        TitlePushTitle_8c015fd6(1);
         LOG_DEBUG(("[PAUSE] PauseToggleTask_8c012d06: reset requested, returning to title\n"));
         return;
     }
@@ -260,17 +261,17 @@ void PauseToggleTask_8c012d06()
 
     if (var_pauseActive_8c1bb8cc == 0) {
         FUN_8c02239c();
-        execTasks_8c014b42(var_tasks_8c1ba5e8);
+        TaskExecGroup_8c014b42(var_tasks_8c1ba5e8);
     }
 
     FUN_8c022910();
 }
 
 /*
- * pushTask_8c014ae8 action for the PLAY_MODE_DEMO ending sequence (installed
+ * TaskPush_8c014ae8 action for the PLAY_MODE_DEMO ending sequence (installed
  * when var_8c1bb8d4 != 0): the attract loop plays out, then either Start
  * (phase 1) or a ~0x708-frame timeout (phase 2) fades out and returns to the
- * title -- pushTitle_8c015fd6(1) for the Start skip, (0) for the timeout.
+ * title -- TitlePushTitle_8c015fd6(1) for the Start skip, (0) for the timeout.
  */
 void PauseDemoEndTask_8c012d5a(PauseDemoEndTaskData *task)
 {
@@ -285,7 +286,7 @@ void PauseDemoEndTask_8c012d5a(PauseDemoEndTaskData *task)
         return;
     }
 
-    updateAdxVolFade_8c010a40();
+    SndUpdateAdxVolFade_8c010a40();
 
     switch (task->phase_0x08) {
     case DEMO_END_PLAYING:
@@ -301,8 +302,8 @@ void PauseDemoEndTask_8c012d5a(PauseDemoEndTaskData *task)
             task->phase_0x08 = DEMO_END_TIMED_OUT;
             LOG_DEBUG(("[PAUSE] PauseDemoEndTask_8c012d5a: demo timed out, fading out\n"));
         }
-        startAdxFadeOut_8c010bae(0);
-        startAdxFadeOut_8c010bae(1);
+        SndStartAdxFadeOut_8c010bae(0);
+        SndStartAdxFadeOut_8c010bae(1);
         push_fadeout_8c022b60(0x1e);
         break;
 
@@ -316,16 +317,16 @@ void PauseDemoEndTask_8c012d5a(PauseDemoEndTaskData *task)
             return;
         }
         FUN_8c016182();
-        pushTitle_8c015fd6(task->phase_0x08 == DEMO_END_SKIPPED ? 1 : 0);
+        TitlePushTitle_8c015fd6(task->phase_0x08 == DEMO_END_SKIPPED ? 1 : 0);
         LOG_INFO(("[PAUSE] PauseDemoEndTask_8c012d5a: demo ended, returning to title\n"));
         return;
     }
 
     FUN_8c02239c();
-    execTasks_8c014b42(var_tasks_8c1ba5e8);
+    TaskExecGroup_8c014b42(var_tasks_8c1ba5e8);
     FUN_8c022910();
-    drawSprite_8c014f54((ResourceGroup *)&var_markTexlist_8c1bc418, MARK_DEMO, 0.0f, 0.0f, MARK_Z_BASE);
+    TxtDrawSprite_8c014f54((ResourceGroup *)&var_markTexlist_8c1bc418, MARK_DEMO, 0.0f, 0.0f, MARK_Z_BASE);
     if ((task->counter_0x0c & 0x18) != 0) {
-        drawSprite_8c014f54((ResourceGroup *)&var_markTexlist_8c1bc418, MARK_DEMO_BLINK, 0.0f, 0.0f, MARK_Z_BASE);
+        TxtDrawSprite_8c014f54((ResourceGroup *)&var_markTexlist_8c1bc418, MARK_DEMO_BLINK, 0.0f, 0.0f, MARK_Z_BASE);
     }
 }

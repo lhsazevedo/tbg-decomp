@@ -21,7 +21,7 @@ return new class extends TestCase {
         $this->initUint32($this->addressOf('_var_markTexlist_8c1bc418'), 0x8c200040);
         $this->initUint32($this->addressOf('_var_busStopTexlist_8c1bc424'), 0x8c200050);
 
-        $this->call('_freeVehicleAssets_8c013b5a');
+        $this->call('_RouteLoadFreeVehicleAssets_8c013b5a');
 
         $this->shouldCall('_njSetTexture')->with($texlist);
         $this->shouldCall('_njReleaseCacheTextureNum')->with(0);
@@ -53,7 +53,7 @@ return new class extends TestCase {
         $this->initUint32($this->addressOf('_var_markTexlist_8c1bc418'), 0x8c200040);
         $this->initUint32($this->addressOf('_var_busStopTexlist_8c1bc424'), 0x8c200050);
 
-        $this->call('_freeVehicleAssets_8c013b5a');
+        $this->call('_RouteLoadFreeVehicleAssets_8c013b5a');
 
         $this->shouldCall('_njSetTexture')->with($texlist);
 
@@ -74,7 +74,7 @@ return new class extends TestCase {
         // Sentinel -1: nothing is released.
         $this->initUint32($this->addressOf('_var_interiorTexlist_8c1bc438'), 0xffffffff);
 
-        $this->call('_freeVehicleAssets_8c013b5a');
+        $this->call('_RouteLoadFreeVehicleAssets_8c013b5a');
     }
 
     private function resolveSymbols(): void

@@ -19,7 +19,7 @@ return new class extends TestCase {
         );
         $this->shouldCall('_ADXT_SetOutVol')->with(0xcafe0000, 40);
 
-        $this->singleCall('_updateAdxVolFade_8c010a40')->run();
+        $this->singleCall('_SndUpdateAdxVolFade_8c010a40')->run();
     }
 
     public function test_pathB()
@@ -36,7 +36,7 @@ return new class extends TestCase {
         );
         $this->shouldCall('_ADXT_SetOutVol')->with(0xcafe0001, 40);
 
-        $this->singleCall('_updateAdxVolFade_8c010a40')->run();
+        $this->singleCall('_SndUpdateAdxVolFade_8c010a40')->run();
     }
 
     public function test_pathC()
@@ -64,7 +64,7 @@ return new class extends TestCase {
 
         $this->shouldWrite($this->addressOf('_init_8c03bd80'), 0b11111110);
 
-        $this->singleCall('_updateAdxVolFade_8c010a40')->run();
+        $this->singleCall('_SndUpdateAdxVolFade_8c010a40')->run();
     }
 
     public function test_pathD()
@@ -92,7 +92,7 @@ return new class extends TestCase {
 
         $this->shouldWrite($this->addressOf('_init_8c03bd80'), 0b11101111);
 
-        $this->singleCall('_updateAdxVolFade_8c010a40')->run();
+        $this->singleCall('_SndUpdateAdxVolFade_8c010a40')->run();
     }
 
     public function test_pathE()
@@ -109,7 +109,7 @@ return new class extends TestCase {
         );
         $this->shouldCall('_ADXT_SetOutVol')->with(0xcafe0000, 990);
 
-        $this->singleCall('_updateAdxVolFade_8c010a40')->run();
+        $this->singleCall('_SndUpdateAdxVolFade_8c010a40')->run();
     }
 
     public function test_pathF()
@@ -126,7 +126,7 @@ return new class extends TestCase {
         );
         $this->shouldCall('_ADXT_SetOutVol')->with(0xcafe0001, 990);
 
-        $this->singleCall('_updateAdxVolFade_8c010a40')->run();
+        $this->singleCall('_SndUpdateAdxVolFade_8c010a40')->run();
     }
 
     public function test_pathG()
@@ -151,7 +151,7 @@ return new class extends TestCase {
             0b1100_0000
         );
 
-        $this->singleCall('_updateAdxVolFade_8c010a40')->run();
+        $this->singleCall('_SndUpdateAdxVolFade_8c010a40')->run();
     }
 
     public function test_pathH()
@@ -176,7 +176,7 @@ return new class extends TestCase {
             0b1100_0000
         );
 
-        $this->singleCall('_updateAdxVolFade_8c010a40')->run();
+        $this->singleCall('_SndUpdateAdxVolFade_8c010a40')->run();
     }
 
     private function resolveSymbols(): void

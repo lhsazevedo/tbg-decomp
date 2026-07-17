@@ -35,7 +35,7 @@ SRCS = \
 	src/012324_peripheral_support.c \
 	src/012504_input.c \
 	src/0129cc_pause.c \
-	src/012f44.c \
+	src/012f44_game.c \
 	src/013ae8_route_load.c \
 	src/014934.c \
 	src/0149b0_sbinit.c \

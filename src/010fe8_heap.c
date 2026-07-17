@@ -1,3 +1,4 @@
+/* @unit Heap */
 #include <shinobi.h>
 #include "010fe8_heap.h"
 
@@ -21,7 +22,7 @@ HeapChunk *var_heapTail_8c157a5c;
 void heapAllocOutOfMemoryHook_8c01102a(void) {}
 #endif
 
-void heapInit_8c010fe8(void *start, void *end)
+void HeapInit_8c010fe8(void *start, void *end)
 {
     HeapChunk *head = (HeapChunk *)start;
     HeapChunk *tail = (HeapChunk *)((char *)end - sizeof(HeapChunk));
@@ -39,7 +40,7 @@ void heapInit_8c010fe8(void *start, void *end)
     tail->next_0x04 = NULL;
 }
 
-void *heapAlloc_8c01102a(int size)
+void *HeapAlloc_8c01102a(int size)
 {
     int neededUnits;
     HeapChunk *chunk;
@@ -93,7 +94,7 @@ void *heapAlloc_8c01102a(int size)
     return (void *)((char *)chunk + sizeof(HeapChunk));
 }
 
-int heapFree_8c0110c4(void *ptr)
+int HeapFree_8c0110c4(void *ptr)
 {
     HeapChunk *chunk;
     HeapChunk *next;

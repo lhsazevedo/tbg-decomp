@@ -78,7 +78,7 @@ data.
 
 Not load-related but best leverage-per-byte: 6 decompiled units
 (`016d2c_course_menu`, `019e98_main_menu`, `0193c8_vm_menu`, `015ab8_title`,
-`01d290_album`, `012f44`) extern `push_fadein_8c022a9c` /
+`01d290_album`, `012f44_game`) extern `push_fadein_8c022a9c` /
 `push_fadeout_8c022b60`; 16 units reference it overall. Exports already
 meaningfully named (`task_fadein`, `draw`, ...).
 
@@ -99,7 +99,7 @@ after one or two small ones, or carved into the pedestrian half first.
 ## Honorable mention
 
 - `0222dc` (392 B, 4 functions): referenced by 12 asm units, trivial to knock
-  out, but only `012f44` among decompiled units uses it.
+  out, but only `012f44_game` among decompiled units uses it.
 - `01614c` (3.6 KB): VMU save / demo-recording related (`BupGetInfo/Mount/
   Unmount`, demo buffers); 4 decompiled callers.
 - `01bb48` (3.6 KB): VMU LCD (`vmsLcd_8c01c8fc/8c01c910`); 5 decompiled

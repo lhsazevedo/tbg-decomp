@@ -61,16 +61,17 @@ extern FogParams *var_fogParams_8c18ad28;
  * =========
  */
 
-void pushRouteLoadTask_8c0144fc(void);
-void pushUnknownSegmentReloadTask_8c01468e(void);
-void setPvmReady_8c014330(void);
-void resetPvmReady_8c014322(void);
-void freeVehicleAssets_8c013b5a(void);
-void clearModelSlots_8c013bbc(ModelSlot *slots, int count);
-void startRouteModelLoadPass_8c013d78(void);
-void freeAllRouteModels_8c013dae(void);
-void freePedestrianAssets_8c013ee4(void);
-int isPvmReady_8c01432a(void);
-void unknownRouteLoadTask_8c014784(Task *task, void *state);
+void RouteLoadPushTask_8c0144fc(void);
+void RouteLoadPushTask_8c0144fc(void);
+void RouteLoadPushSegmentReloadTask_8c01468e(void);
+void RouteLoadSetPvmReady_8c014330(void);
+void RouteLoadResetPvmReady_8c014322(void);
+void RouteLoadFreeVehicleAssets_8c013b5a(void);
+void RouteLoadClearModelSlots_8c013bbc(ModelSlot *slots, int count);
+void RouteLoadStartRouteModelLoadPass_8c013d78(void);
+void RouteLoadFreeAllRouteModels_8c013dae(void);
+void RouteLoadFreePedestrianAssets_8c013ee4(void);
+int RouteLoadIsPvmReady_8c01432a(void);
+void RouteLoadUnusedTask_8c014784(Task *task, void *state);
 
 #endif // _013AE8_ROUTE_LOAD_H

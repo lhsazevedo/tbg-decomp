@@ -14,17 +14,19 @@
           .IMPORT     _var_cutsceneActive_8c1bb900
           .IMPORT     _AsqGetRandomInRangeB_8c0121be
           .IMPORT     _var_selectedEventEntry_8c228478
-          .EXPORT     _setProgressFlag_8c02af78
-          .EXPORT     _hasProgressFlag_8c02afbe
-          .EXPORT     _hasProgressFlagAlt_8c02aff0
-          .EXPORT     _setRunEventFlag_8c02b022
-          .EXPORT     _hasRunEventFlag_8c02b030
-          .EXPORT     _scanEventCandidates_8c02b03c
-          .EXPORT     _pickSegmentEvent_8c02b170
-          .EXPORT     _applyEventFlags_8c02b292
+          .EXPORT     _EventHasProgressFlagAlt_8c02aff0
+          .EXPORT     _EventScanCandidates_8c02b03c
+          .EXPORT     _EventPickForSegment_8c02b170
+          .EXPORT     _EventApplyFlags_8c02b292
           .EXPORT     _init_wanganEvents_8c04abb0
           .EXPORT     _init_shinjukuEvents_8c04b1f0
           .EXPORT     _init_omeEvents_8c04b920
+          .AIFDEF UNIT_TESTING
+          .EXPORT     _setProgressFlag_8c02af78
+          .EXPORT     _hasProgressFlag_8c02afbe
+          .EXPORT     _setRunEventFlag_8c02b022
+          .EXPORT     _hasRunEventFlag_8c02b030
+          .AENDI
           .SECTION     P, CODE, ALIGN=4
 ; sets a bit in var_progress_8c1ba1cc+4 and +0x18 (paired unlock bitsets, see hasProgressFlag_8c02afbe/aff0)
 _setProgressFlag_8c02af78:
@@ -69,7 +71,7 @@ LAB_8c02af9a:
           OR          R5,R2
           RTS
           MOV.L       R2,@R3
-; tests a bit in var_progress_8c1ba1cc+4 (see setProgressFlag_8c02af78); called from scanEventCandidates_8c02b03c
+; tests a bit in var_progress_8c1ba1cc+4 (see setProgressFlag_8c02af78); called from EventScanCandidates_8c02b03c
 _hasProgressFlag_8c02afbe:
           MOV         R4,R6
           CMP/PZ      R6
@@ -103,7 +105,7 @@ LAB_8c02afe0:
           RTS
           AND         R5,R0
 ; tests a bit in var_progress_8c1ba1cc+0x18 (see setProgressFlag_8c02af78)
-_hasProgressFlagAlt_8c02aff0:
+_EventHasProgressFlagAlt_8c02aff0:
           MOV         R4,R6
           CMP/PZ      R6
           BT/S        LAB_8c02affa
@@ -152,7 +154,7 @@ _hasRunEventFlag_8c02b030:
           AND         R5,R0
 ; course-unlock-list style scan over a day/course table, using PlayerProgress.days_0x00
 ; and the hasProgressFlag_8c02afbe/aff0 bitsets; also touches var_runEventFlags_8c1ba2b4 (role unclear)
-_scanEventCandidates_8c02b03c:
+_EventScanCandidates_8c02b03c:
           MOV.L       R14,@-R15
           MOV.L       R13,@-R15
           MOV.L       R12,@-R15
@@ -315,7 +317,7 @@ LP_GEN_28749:
           .DATA.L _var_progress_8c1ba1cc ; H'8C02B164
           .DATA.L _var_eventCandidates_8c228520 ; H'8C02B168
           .DATA.L H'0000FFFF ; H'8C02B16C
-_pickSegmentEvent_8c02b170:
+_EventPickForSegment_8c02b170:
           MOV.L       R14,@-R15
           MOV.L       R13,@-R15
           MOV.L       R12,@-R15
@@ -463,7 +465,7 @@ LAB_8c02b27e:
           MOV.L       @R15+,R13
           RTS
           MOV.L       @R15+,R14
-_applyEventFlags_8c02b292:
+_EventApplyFlags_8c02b292:
           MOV.L       LP_GEN_51122+10,R3
           MOV.L       R14,@-R15
           MOV.L       R13,@-R15
