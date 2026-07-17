@@ -17,7 +17,8 @@ dates = [
   datetime(2026, 5, 24),
   datetime(2026, 7, 1),
   datetime(2026, 7, 6),
-  datetime(2026, 7, 13)
+  datetime(2026, 7, 13),
+  datetime(2026, 7, 17),
 ]
 
 decompiled_code = [
@@ -34,27 +35,13 @@ decompiled_code = [
   18.9,
   30.3,
   31.1,
-]
-matched_code = [
-  0.0,
-  0.0,   # same
-  1.0,
-  1.0,
-  1.0,
-  1.0,
-  1.0,
-  1.0,
-  1.0,
-  1.0,
-  1.0,
-  1.0,
+  31.9,
 ]
 
 
 fig, ax = plt.subplots()
 
 ax.plot(dates, decompiled_code, color='#4659eb', marker='.', markersize=8, linewidth=2.5)
-# ax.plot(dates, matched_code, label='Matched Code', color='#5a6ae6', marker='.', markersize=8, linestyle='--', linewidth=1.5)
 
 ax.set_title("Decompiled Code Over Time")
 ax.set_xlabel("Date")
