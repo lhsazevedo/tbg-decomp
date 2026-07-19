@@ -37,7 +37,7 @@
           .IMPORT     _const_8c03bd4c
           .IMPORT     _const_8c03bd50
           .IMPORT     _const_8c03bd54
-          .IMPORT     _init_8c04f6a8
+          .EXPORT     _init_8c04f6a8 ; 02fb50_sh4nlfzn.src
           .EXPORT     __divls
           .EXPORT     __divlu
           .EXPORT     __modls
@@ -7697,4 +7697,8 @@ LAB_8c033264:
           ADD         #-H'8,R7
           RTS
           NOP
+          .SECTION    D, DATA, ALIGN=4
+_init_8c04f6a8:        ; from defines
+          .DATA.B      H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00
+          .DATA.B      H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00
           .END

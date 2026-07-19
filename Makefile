@@ -51,7 +51,6 @@ SRCS = \
 	src/016d2c_course_menu.c \
 	src/asm/018644.src \
 	src/asm/018784.src \
-	src/asm/0193c8_pre_data.src \
 	src/0193c8_vm_menu.c \
 	src/019e98_main_menu.c \
 	src/asm/01a148.src \

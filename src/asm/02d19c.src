@@ -20,7 +20,6 @@
           .IMPORT     _var_8c22891c
           .IMPORT     _AsqGetRandomInRangeA_8c012178
           .IMPORT     _var_8c228718
-          .IMPORT     _init_8c04c3e4
           .IMPORT     _var_8c228960
           .IMPORT     _var_8c228958
           .IMPORT     _var_8c228934
@@ -61,6 +60,7 @@
           .EXPORT     _FUN_8c02d5d8
           .EXPORT     _FUN_8c02d644
           .EXPORT     _FUN_8c02d8f0
+          .EXPORT     _init_8c04c3e4 ; 02d19c.src, 02d968.src
           .SECTION     P, CODE, ALIGN=4
 _FUN_8c02d19c:
           MOV.L       R14,@-R15
@@ -1065,4 +1065,23 @@ LP_GEN_72278:
           .DATA.L _var_8c227d9c ; H'8C02D95C
           .DATA.L _var_8c227da4 ; H'8C02D960
           .DATA.L _FUN_8c024f32 ; H'8C02D964
+          .SECTION    D, DATA, ALIGN=4
+_init_8c04c3e4:        ; from defines
+          .DATA.B      H'3D, H'0A, H'57, H'3F
+          .DATA.B      H'C3, H'F5, H'A8, H'BE, H'F6, H'28, H'5C, H'3F, H'CD, H'CC, H'7C, H'40, H'3D, H'0A, H'57, H'3F
+          .DATA.B      H'C3, H'F5, H'98, H'40, H'F6, H'28, H'5C, H'3F, H'33, H'33, H'B3, H'40, H'00, H'00, H'00, H'3F
+          .DATA.B      H'CD, H'CC, H'CC, H'40, H'3D, H'0A, H'57, H'3F, H'CD, H'CC, H'CC, H'40, H'F6, H'28, H'5C, H'3F
+          .DATA.B      H'00, H'00, H'E8, H'40, H'71, H'3D, H'0A, H'3F, H'00, H'00, H'E8, H'40, H'3D, H'0A, H'57, H'BF
+          .DATA.B      H'C3, H'F5, H'A8, H'BE, H'F6, H'28, H'5C, H'BF, H'CD, H'CC, H'0C, H'3F, H'3D, H'0A, H'57, H'BF
+          .DATA.B      H'00, H'00, H'C0, H'3F, H'F6, H'28, H'5C, H'BF, H'EC, H'51, H'18, H'40, H'3D, H'0A, H'57, H'BF
+          .DATA.B      H'CD, H'CC, H'4C, H'40, H'F6, H'28, H'5C, H'BF, H'CD, H'CC, H'7C, H'40, H'3D, H'0A, H'57, H'BF
+          .DATA.B      H'C3, H'F5, H'98, H'40, H'F6, H'28, H'5C, H'BF, H'33, H'33, H'B3, H'40, H'00, H'00, H'00, H'BF
+          .DATA.B      H'CD, H'CC, H'CC, H'40, H'3D, H'0A, H'57, H'BF, H'CD, H'CC, H'CC, H'40, H'F6, H'28, H'5C, H'BF
+          .DATA.B      H'00, H'00, H'E8, H'40, H'71, H'3D, H'0A, H'BF, H'00, H'00, H'E8, H'40, H'33, H'33, H'B3, H'3E
+          .DATA.B      H'E1, H'7A, H'14, H'3E, H'3D, H'0A, H'57, H'3E, H'0A, H'D7, H'23, H'3F, H'8F, H'C2, H'75, H'3E
+          .DATA.B      H'CD, H'CC, H'CC, H'3F, H'AE, H'47, H'61, H'3E, H'9A, H'99, H'59, H'40, H'29, H'5C, H'8F, H'3E
+          .DATA.B      H'00, H'00, H'88, H'40, H'0A, H'D7, H'A3, H'BC, H'33, H'33, H'93, H'40, H'CD, H'CC, H'4C, H'BE
+          .DATA.B      H'71, H'3D, H'8A, H'3E, H'00, H'00, H'80, H'BE, H'CD, H'CC, H'4C, H'3F, H'E1, H'7A, H'94, H'BE
+          .DATA.B      H'33, H'33, H'F3, H'3F, H'CD, H'CC, H'4C, H'BE, H'8F, H'C2, H'35, H'40, H'6F, H'12, H'83, H'BE
+          .DATA.B      H'00, H'00, H'80, H'40
           .END

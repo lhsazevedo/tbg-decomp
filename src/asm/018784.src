@@ -32,17 +32,13 @@
           .IMPORT     _sdMidiPlay
           .IMPORT     _var_peripherals_8c1ba35c
           .IMPORT     _var_midiHandles_8c0fcd28
-          .IMPORT     _const_8c037e60
           .IMPORT     _menuTextboxText_8c02af1c
           .IMPORT     _vmsLcd_8c01c8fc
           .IMPORT     _push_fadeout_8c022b60
-          .IMPORT     _const_8c037e78
-          .IMPORT     _const_8c037ea8
           .IMPORT     _var_8c1ba350
           .IMPORT     _njMemCopy
           .IMPORT     _FUN_8c01b19c
           .IMPORT     _SndStartAdxFadeOut_8c010bae
-          .IMPORT     _const_8c037ec8
           .IMPORT     _VmMenuUnmountVms_8c0194de
           .IMPORT     _var_8c22606c
           .IMPORT     _init_8c03bd80
@@ -50,7 +46,6 @@
           .IMPORT     _MainMenuSwitchFromTask_8c01a09a
           .IMPORT     _VmMenuSwitchFromTask_8c019e44
           .IMPORT     _TaskSetAction_8c014b3e
-          .IMPORT     _const_8c037ecc
           .IMPORT     _push_fadein_8c022a9c
           .EXPORT     _FUN_8c018784
           .EXPORT     _FUN_8c0187d0
@@ -1651,4 +1646,33 @@ LP_GEN_41958:
           .DATA.L _vmsLcd_8c01c8fc ; H'8C0193BC
           .DATA.L _var_8c157a7c ; H'8C0193C0
           .DATA.L _push_fadein_8c022a9c ; H'8C0193C4
+          .SECTION    C, DATA, ALIGN=4
+_const_8c037e60:        ; from defines
+          ;.SDATA      "ロードに失敗しました"
+          ;.DATA.B     H'00
+          ;.RES.B      3
+          .DATA.B      H'83, H'8D, H'81, H'5B, H'83, H'68, H'82, H'C9, H'8E, H'B8, H'94, H'73, H'82, H'B5, H'82, H'DC
+          .DATA.B      H'82, H'B5, H'82, H'BD, H'00, H'00, H'00, H'00
+_const_8c037e78:        ; from defines
+          ;.SDATA      "新たにファイルを作成します<E>よろしいですか？"
+          ;.DATA.B     H'00
+          ;.RES.B      2
+          .DATA.B      H'90, H'56, H'82, H'BD, H'82, H'C9, H'83, H'74, H'83, H'40, H'83, H'43, H'83, H'8B, H'82, H'F0
+          .DATA.B      H'8D, H'EC, H'90, H'AC, H'82, H'B5, H'82, H'DC, H'82, H'B7, H'3C, H'45, H'3E, H'82, H'E6, H'82
+          .DATA.B      H'EB, H'82, H'B5, H'82, H'A2, H'82, H'C5, H'82, H'B7, H'82, H'A9, H'81, H'48, H'00, H'00, H'00
+_const_8c037ea8:        ; from defines
+          ;.SDATA      "このファイルでよろしいですか？"
+          ;.DATA.B     H'00
+          ;.RES.B      1
+          .DATA.B      H'82, H'B1, H'82, H'CC, H'83, H'74, H'83, H'40, H'83, H'43, H'83, H'8B, H'82, H'C5, H'82, H'E6
+          .DATA.B      H'82, H'EB, H'82, H'B5, H'82, H'A2, H'82, H'C5, H'82, H'B7, H'82, H'A9, H'81, H'48, H'00, H'00
+_const_8c037ec8:        ; from defines
+          .DATA.B      H'00, H'00, H'00, H'00
+_const_8c037ecc:        ; from defines
+          ;.SDATA      "ロード実行中です<E>電源を切らないで下さい"
+          ;.DATA.B     H'00
+          ;.RES.B      2
+          .DATA.B      H'83, H'8D, H'81, H'5B, H'83, H'68, H'8E, H'C0, H'8D, H'73, H'92, H'86, H'82, H'C5, H'82, H'B7
+          .DATA.B      H'3C, H'45, H'3E, H'93, H'64, H'8C, H'B9, H'82, H'F0, H'90, H'D8, H'82, H'E7, H'82, H'C8, H'82
+          .DATA.B      H'A2, H'82, H'C5, H'89, H'BA, H'82, H'B3, H'82, H'A2, H'00, H'00, H'00
           .END

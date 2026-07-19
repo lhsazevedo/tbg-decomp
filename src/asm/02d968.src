@@ -31,7 +31,6 @@
           .IMPORT     _FUN_8c02d21c
           .IMPORT     _var_8c228798
           .IMPORT     __quick_odd_mvn
-          .IMPORT     _init_8c04c4dc
           .IMPORT     _var_currentSegment_8c228708
           .IMPORT     _task_8c02d5ca
           .IMPORT     _init_8c04c3e4
@@ -40,6 +39,7 @@
           .IMPORT     _FUN_8c02d46c
           .IMPORT     _syFree
           .EXPORT     _FUN_8c02d968
+          .EXPORT     _init_8c04c4dc ; 02d968.src
           .SECTION     P, CODE, ALIGN=4
 _FUN_8c02d968:
           MOV.L       R14,@-R15
@@ -759,4 +759,11 @@ LP_GEN_19590:
           .DATA.L _FUN_8c02d46c ; H'8C02DF30
           .DATA.L _init_8c04c4dc ; H'8C02DF34
           .DATA.L _syFree ; H'8C02DF38
+          .SECTION    D, DATA, ALIGN=4
+_init_8c04c4dc:        ; from defines
+          .DATA.B      H'03, H'03, H'02, H'01, H'00, H'00, H'02, H'01, H'02, H'01, H'00, H'03, H'02, H'00, H'00, H'00
+          .DATA.B      H'02, H'03, H'01, H'00, H'01, H'01, H'02, H'00, H'01, H'03, H'03, H'03, H'03, H'02, H'02, H'00
+          .DATA.B      H'00, H'02, H'02, H'03, H'02, H'02, H'01, H'02, H'02, H'03, H'03, H'03, H'01, H'01, H'02, H'01
+          .DATA.B      H'02, H'00, H'00, H'01, H'00, H'00, H'01, H'01, H'01, H'01, H'00, H'01, H'00, H'00, H'01, H'01
+          .DATA.B      H'03, H'00, H'00, H'00
           .END

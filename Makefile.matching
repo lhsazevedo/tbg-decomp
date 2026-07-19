@@ -33,7 +33,6 @@ SRCS = \
 	src/asm/decompiled/016d2c_course_menu.src \
 	src/asm/018644.src \
 	src/asm/018784.src \
-	src/asm/0193c8_pre_data.src \
 	src/asm/decompiled/0193c8_vm_menu.src \
 	src/asm/decompiled/019e98_main_menu.src \
 	src/asm/01a148.src \
@@ -83,10 +82,10 @@ SRCS = \
 	src/asm/02e51c.src \
 	src/asm/02f0c8.src \
 	src/asm/02f320.src \
+	src/asm/03bd80_sectionD.src \
 	src/asm/02fb50_sh4nlfzn.src \
 	src/asm/03327c_strt1_sectionC.src \
 	src/asm/0332a4_sectionC.src \
-	src/asm/03bd80_sectionD.src \
 	src/asm/04f6c0_SDK.src \
 	src/asm/0fcd20_sectionB.src \
 	src/02fb50_sh4nlfzn_post_data.c
