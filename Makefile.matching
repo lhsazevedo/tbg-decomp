@@ -84,9 +84,9 @@ SRCS = \
 	src/asm/02f320.src \
 	src/asm/sectionD.src \
 	src/asm/04ce10_slots.src \
+	src/asm/sectionC.src \
 	src/asm/02fb50_sh4nlfzn.src \
 	src/asm/03327c_strt1_sectionC.src \
-	src/asm/sectionC.src \
 	src/asm/04f6c0_SDK.src \
 	src/asm/sectionB.src \
 	src/02fb50_sh4nlfzn_post_data.c

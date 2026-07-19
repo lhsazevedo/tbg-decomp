@@ -1,25 +1,4 @@
 ; 8c01c980
-          .IMPORT     _const_8c0386a0
-          .IMPORT     _const_8c0386b4
-          .IMPORT     _const_8c0386c0
-          .IMPORT     _const_8c0386cc
-          .IMPORT     _const_8c0386e0
-          .IMPORT     _const_8c0386ec
-          .IMPORT     _const_8c0386f8
-          .IMPORT     _const_8c03870c
-          .IMPORT     _const_8c038718
-          .IMPORT     _const_8c038724
-          .IMPORT     _const_8c038738
-          .IMPORT     _const_8c038744
-          .IMPORT     _const_8c038750
-          .IMPORT     _const_8c038764
-          .IMPORT     _const_8c038770
-          .IMPORT     _const_8c03877c
-          .IMPORT     _const_8c038790
-          .IMPORT     _const_8c03879c
-          .IMPORT     _const_8c0387a8
-          .IMPORT     _const_8c0387bc
-          .IMPORT     _const_8c0387c8
           .IMPORT     _var_8c2263a4
           .IMPORT     _var_8c2263b4
           .IMPORT     _EventHasProgressFlagAlt_8c02aff0
@@ -59,6 +38,27 @@
           .EXPORT     _FUN_8c01cbec
           .EXPORT     _FUN_8c01ccec
           .EXPORT     _FUN_8c01d1c4
+          .EXPORT     _const_8c0386a0 ; 01c980.src
+          .EXPORT     _const_8c0386b4 ; 01c980.src
+          .EXPORT     _const_8c0386c0 ; 01c980.src
+          .EXPORT     _const_8c0386cc ; 01c980.src
+          .EXPORT     _const_8c0386e0 ; 01c980.src
+          .EXPORT     _const_8c0386ec ; 01c980.src
+          .EXPORT     _const_8c0386f8 ; 01c980.src
+          .EXPORT     _const_8c03870c ; 01c980.src
+          .EXPORT     _const_8c038718 ; 01c980.src
+          .EXPORT     _const_8c038724 ; 01c980.src
+          .EXPORT     _const_8c038738 ; 01c980.src
+          .EXPORT     _const_8c038744 ; 01c980.src
+          .EXPORT     _const_8c038750 ; 01c980.src
+          .EXPORT     _const_8c038764 ; 01c980.src
+          .EXPORT     _const_8c038770 ; 01c980.src
+          .EXPORT     _const_8c03877c ; 01c980.src
+          .EXPORT     _const_8c038790 ; 01c980.src
+          .EXPORT     _const_8c03879c ; 01c980.src
+          .EXPORT     _const_8c0387a8 ; 01c980.src
+          .EXPORT     _const_8c0387bc ; 01c980.src
+          .EXPORT     _const_8c0387c8 ; 01c980.src
           .EXPORT     _init_8c044ffc ; 01c980.src
           .EXPORT     _init_8c0450d8 ; 01c980.src
           .EXPORT     _init_8c045148 ; 01c980.src
@@ -1231,6 +1231,119 @@ LP_GEN_13275:
           .DATA.L _RouteLoadResetPvmReady_8c014322 ; H'8C01D284
           .DATA.L _AsqNop_8c011120 ; H'8C01D288
           .DATA.L _AsqProcessQueues_8c011fe0 ; H'8C01D28C
+          .SECTION    C, DATA, ALIGN=4
+_const_8c0386a0:        ; from ghidra
+          ;.SDATA      "prof01_parts.dat"
+          ;.DATA.B     H'00
+          ;.RES.B      3
+          .DATA.B      H'70, H'72, H'6F, H'66, H'30, H'31, H'5F, H'70, H'61, H'72, H'74, H'73, H'2E, H'64, H'61, H'74
+          .DATA.B      H'00, H'00, H'00, H'00
+_const_8c0386b4:        ; from ghidra
+          ;.SDATA      "prof01.dat"
+          ;.DATA.B     H'00
+          ;.RES.B      1
+          .DATA.B      H'70, H'72, H'6F, H'66, H'30, H'31, H'2E, H'64, H'61, H'74, H'00, H'00
+_const_8c0386c0:        ; from ghidra
+          ;.SDATA      "prof01.pvm"
+          ;.DATA.B     H'00
+          ;.RES.B      1
+          .DATA.B      H'70, H'72, H'6F, H'66, H'30, H'31, H'2E, H'70, H'76, H'6D, H'00, H'00
+_const_8c0386cc:        ; from ghidra
+          ;.SDATA      "prof02_parts.dat"
+          ;.DATA.B     H'00
+          ;.RES.B      3
+          .DATA.B      H'70, H'72, H'6F, H'66, H'30, H'32, H'5F, H'70, H'61, H'72, H'74, H'73, H'2E, H'64, H'61, H'74
+          .DATA.B      H'00, H'00, H'00, H'00
+_const_8c0386e0:        ; from ghidra
+          ;.SDATA      "prof02.dat"
+          ;.DATA.B     H'00
+          ;.RES.B      1
+          .DATA.B      H'70, H'72, H'6F, H'66, H'30, H'32, H'2E, H'64, H'61, H'74, H'00, H'00
+_const_8c0386ec:        ; from ghidra
+          ;.SDATA      "prof02.pvm"
+          ;.DATA.B     H'00
+          ;.RES.B      1
+          .DATA.B      H'70, H'72, H'6F, H'66, H'30, H'32, H'2E, H'70, H'76, H'6D, H'00, H'00
+_const_8c0386f8:        ; from ghidra
+          ;.SDATA      "prof03_parts.dat"
+          ;.DATA.B     H'00
+          ;.RES.B      3
+          .DATA.B      H'70, H'72, H'6F, H'66, H'30, H'33, H'5F, H'70, H'61, H'72, H'74, H'73, H'2E, H'64, H'61, H'74
+          .DATA.B      H'00, H'00, H'00, H'00
+_const_8c03870c:        ; from ghidra
+          ;.SDATA      "prof03.dat"
+          ;.DATA.B     H'00
+          ;.RES.B      1
+          .DATA.B      H'70, H'72, H'6F, H'66, H'30, H'33, H'2E, H'64, H'61, H'74, H'00, H'00
+_const_8c038718:        ; from ghidra
+          ;.SDATA      "prof03.pvm"
+          ;.DATA.B     H'00
+          ;.RES.B      1
+          .DATA.B      H'70, H'72, H'6F, H'66, H'30, H'33, H'2E, H'70, H'76, H'6D, H'00, H'00
+_const_8c038724:        ; from ghidra
+          ;.SDATA      "prof04_parts.dat"
+          ;.DATA.B     H'00
+          ;.RES.B      3
+          .DATA.B      H'70, H'72, H'6F, H'66, H'30, H'34, H'5F, H'70, H'61, H'72, H'74, H'73, H'2E, H'64, H'61, H'74
+          .DATA.B      H'00, H'00, H'00, H'00
+_const_8c038738:        ; from ghidra
+          ;.SDATA      "prof04.dat"
+          ;.DATA.B     H'00
+          ;.RES.B      1
+          .DATA.B      H'70, H'72, H'6F, H'66, H'30, H'34, H'2E, H'64, H'61, H'74, H'00, H'00
+_const_8c038744:        ; from ghidra
+          ;.SDATA      "prof04.pvm"
+          ;.DATA.B     H'00
+          ;.RES.B      1
+          .DATA.B      H'70, H'72, H'6F, H'66, H'30, H'34, H'2E, H'70, H'76, H'6D, H'00, H'00
+_const_8c038750:        ; from ghidra
+          ;.SDATA      "prof05_parts.dat"
+          ;.DATA.B     H'00
+          ;.RES.B      3
+          .DATA.B      H'70, H'72, H'6F, H'66, H'30, H'35, H'5F, H'70, H'61, H'72, H'74, H'73, H'2E, H'64, H'61, H'74
+          .DATA.B      H'00, H'00, H'00, H'00
+_const_8c038764:        ; from ghidra
+          ;.SDATA      "prof05.dat"
+          ;.DATA.B     H'00
+          ;.RES.B      1
+          .DATA.B      H'70, H'72, H'6F, H'66, H'30, H'35, H'2E, H'64, H'61, H'74, H'00, H'00
+_const_8c038770:        ; from ghidra
+          ;.SDATA      "prof05.pvm"
+          ;.DATA.B     H'00
+          ;.RES.B      1
+          .DATA.B      H'70, H'72, H'6F, H'66, H'30, H'35, H'2E, H'70, H'76, H'6D, H'00, H'00
+_const_8c03877c:        ; from ghidra
+          ;.SDATA      "prof06_parts.dat"
+          ;.DATA.B     H'00
+          ;.RES.B      3
+          .DATA.B      H'70, H'72, H'6F, H'66, H'30, H'36, H'5F, H'70, H'61, H'72, H'74, H'73, H'2E, H'64, H'61, H'74
+          .DATA.B      H'00, H'00, H'00, H'00
+_const_8c038790:        ; from ghidra
+          ;.SDATA      "prof06.dat"
+          ;.DATA.B     H'00
+          ;.RES.B      1
+          .DATA.B      H'70, H'72, H'6F, H'66, H'30, H'36, H'2E, H'64, H'61, H'74, H'00, H'00
+_const_8c03879c:        ; from ghidra
+          ;.SDATA      "prof06.pvm"
+          ;.DATA.B     H'00
+          ;.RES.B      1
+          .DATA.B      H'70, H'72, H'6F, H'66, H'30, H'36, H'2E, H'70, H'76, H'6D, H'00, H'00
+_const_8c0387a8:        ; from ghidra
+          ;.SDATA      "prof07_parts.dat"
+          ;.DATA.B     H'00
+          ;.RES.B      3
+          .DATA.B      H'70, H'72, H'6F, H'66, H'30, H'37, H'5F, H'70, H'61, H'72, H'74, H'73, H'2E, H'64, H'61, H'74
+          .DATA.B      H'00, H'00, H'00, H'00
+_const_8c0387bc:        ; from ghidra
+          ;.SDATA      "prof07.dat"
+          ;.DATA.B     H'00
+          ;.RES.B      1
+          .DATA.B      H'70, H'72, H'6F, H'66, H'30, H'37, H'2E, H'64, H'61, H'74, H'00, H'00
+_const_8c0387c8:        ; from ghidra
+          ;.SDATA      "prof07.pvm"
+          ;.DATA.B     H'00
+          ;.RES.B      1
+          .DATA.B      H'70, H'72, H'6F, H'66, H'30, H'37, H'2E, H'70, H'76, H'6D, H'00, H'00
           .SECTION    D, DATA, ALIGN=4
 _init_8c044ea0:        ; from ghidra
           .DATA.B      H'32

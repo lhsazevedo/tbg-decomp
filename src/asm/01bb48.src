@@ -1,7 +1,4 @@
 ; 8c01bb48
-          .IMPORT     _const_8c038680
-          .IMPORT     _const_8c038690
-          .IMPORT     _const_8c038698
           .IMPORT     _pdVmsLcdIsReady
           .IMPORT     _var_8c2260d4
           .IMPORT     _memset
@@ -94,6 +91,9 @@
           .EXPORT     _const_8c038660 ; 01bb48.src
           .EXPORT     _const_8c03866c ; 01bb48.src, sectionD.src
           .EXPORT     _const_8c03867c ; 01bb48.src, sectionD.src
+          .EXPORT     _const_8c038680 ; 01bb48.src
+          .EXPORT     _const_8c038690 ; 01bb48.src
+          .EXPORT     _const_8c038698 ; 01bb48.src
           .EXPORT     _init_8c044e38 ; 01bb48.src
           .EXPORT     _init_8c044e48 ; 01bb48.src
           .EXPORT     _init_8c044e50 ; 01bb48.src
@@ -2082,6 +2082,19 @@ _const_8c03866c:        ; from defines
           .DATA.B      H'54, H'4F, H'4B, H'59, H'4F, H'42, H'55, H'53, H'2E, H'5F, H'56, H'4D, H'00, H'00, H'00, H'00
 _const_8c03867c:        ; from defines
           .DATA.B      H'00, H'00, H'00, H'00
+_const_8c038680:        ; from ghidra
+          ;.SDATA      "vms_parts.dat"
+          ;.DATA.B     H'00
+          ;.RES.B      2
+          .DATA.B      H'76, H'6D, H'73, H'5F, H'70, H'61, H'72, H'74, H'73, H'2E, H'64, H'61, H'74, H'00, H'00, H'00
+_const_8c038690:        ; from ghidra
+          ;.SDATA      "vms.dat"
+          ;.DATA.B     H'00
+          .DATA.B      H'76, H'6D, H'73, H'2E, H'64, H'61, H'74, H'00
+_const_8c038698:        ; from ghidra
+          ;.SDATA      "vms.pvm"
+          ;.DATA.B     H'00
+          .DATA.B      H'76, H'6D, H'73, H'2E, H'70, H'76, H'6D, H'00
           .SECTION    D, DATA, ALIGN=4
 _init_8c044e38:        ; from defines
           .DATA.L      _var_8c2260ac ; ukn
