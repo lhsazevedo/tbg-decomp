@@ -25,7 +25,7 @@
           .IMPORT     _var_8c1bb8d4
           .IMPORT     _var_demoIndex_8c1bb8d8
           .IMPORT     _var_menuState_8c1bc7a8
-          .IMPORT     _var_8c1bc824
+          .IMPORT     _var_debugMenuCourseSel_8c1bc824
           .IMPORT     _var_demoBuffer_8c1bc828
           .IMPORT     _var_demoCursor_8c225fa8
           .IMPORT     _var_demoPrevOn_8c225fac

@@ -46,7 +46,7 @@
    1285 src/asm/_045468_8c01b19c.src
    1349 src/asm/_970016_8csectionB.src
    1411 src/asm/_055292_8c01d7fc.src
-   1423 src/asm/_024908_8c01614c.src
+   1423 src/asm/_024908_8c01614c_debug_menu.src
    1509 src/asm/_037832_8c0193c8.src
    1530 src/asm/_012100_8c012f44.src
    1543 src/asm/_088984_8c025b98.src

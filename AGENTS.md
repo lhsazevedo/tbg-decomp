@@ -41,8 +41,10 @@ tests/
 tests.php                    # Test suite registry — add new groups here
 scripts/run_tests.sh         # Compile + run all tests
 Makefile                     # Full build; SRCS list drives compilation order
-.agents/skills/move-data/    # Skill: migrate data ownership between files
-.agents/skills/add-serial-logging/  # Skill: add LOG_* serial debug logging to a unit
+.claude/skills/setup-unit/   # Skill: scaffold a new translation unit
+.claude/skills/decompile-function/  # Skill: port one function to C with tests
+.claude/skills/move-data/    # Skill: migrate data ownership between files
+.claude/skills/add-serial-logging/  # Skill: add LOG_* serial debug logging to a unit
 docs/setup.md                # One-time environment setup
 ```
 
@@ -170,6 +172,8 @@ under `tests/<addr>/`, and register it in the matching group in `tests.php`
 - **Next decompilation targets (relocation-graph analysis)** → `docs/next_units.md`
 - **Lessons learned (non-obvious toolchain/asm quirks)** → `docs/lessons_learned.md`
 - **Writing tests** → `tests/AGENTS.md`
-- **Moving data between files** → `.agents/skills/move-data/SKILL.md`
-- **Adding serial debug logging** → `.agents/skills/add-serial-logging/SKILL.md`
+- **Setting up a new unit** → `.claude/skills/setup-unit/SKILL.md`
+- **Decompiling a function** → `.claude/skills/decompile-function/SKILL.md`
+- **Moving data between files** → `.claude/skills/move-data/SKILL.md`
+- **Adding serial debug logging** → `.claude/skills/add-serial-logging/SKILL.md`
 - **Environment setup** → `docs/setup.md`

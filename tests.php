@@ -292,5 +292,34 @@ return [
                 "build/output_test/0129cc_pause_c.obj",
             ]
         ],
+        [
+            "tests" => [
+                "tests/01614c_debug_menu/8c01614c_FUN.php",
+                "tests/01614c_debug_menu/8c016182_FUN.php",
+                "tests/01614c_debug_menu/8c01628c_saveMenuTask.php",
+                "tests/01614c_debug_menu/8c016636_openSaveMenu.php",
+                "tests/01614c_debug_menu/8c01666a_listMenuTask.php",
+                "tests/01614c_debug_menu/8c01673a_DebugMenuOpen.php",
+                "tests/01614c_debug_menu/8c016770_FUN.php",
+                "tests/01614c_debug_menu/8c01677e_DebugMenuDemoRecordTask.php",
+                "tests/01614c_debug_menu/8c0167c0_FUN.php",
+                "tests/01614c_debug_menu/8c0167ca_replaySaveTask.php",
+                "tests/01614c_debug_menu/8c016924_startReplaySave.php",
+                "tests/01614c_debug_menu/8c0169bc_replayLoadTask.php",
+            ],
+            "objects" => [
+                "build/output_test/01614c_debug_menu_src.obj",
+                "build/output_test/01614c_debug_menu_c.obj",
+            ]
+        ],
+        [
+            "tests" => [
+                "tests/018644/8c018644_VmLoadTask.php",
+            ],
+            "objects" => [
+                "build/output_test/018644_vm_load_src.obj",
+                "build/output_test/018644_vm_load_c.obj",
+            ]
+        ],
     ],
 ];

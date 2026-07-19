@@ -2,6 +2,7 @@
 #ifndef _02171C_H
 #define _02171C_H
 
+void FUN_8c021724(void);
 void FUN_8c02175a(void);
 void FUN_8c021810(void);
 void FUN_8c02190a(void);

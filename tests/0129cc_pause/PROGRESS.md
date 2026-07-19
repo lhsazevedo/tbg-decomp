@@ -136,7 +136,7 @@
 - press&4 deactivate branch writes var_pauseActive_8c1bb8cc=0 (NOT bb8b8; Ghidra puVar1 = bb8cc there)
 - draws always fall through to base 0x74 draw; every branch-N test must also declare the 0x74 draw + njDrawPolygon (single ordered expectation queue: writes AND calls interleaved, strict order)
 - to see the failing instruction: sh4objtest test <php> <obj.obj> -d  (suite/-c hides disasm)
-- Ghidra PTR-name aliases (resolved via LP_GEN_43727 pool @asm:600): FUN_8c012de0=FUN_8c016182 (01614c.h); FUN_8c012e10=FUN_8c01f21c (01e27c.h); DAT_8c012e0c=var_menuState_8c1bc7a8.selected_0x38 (015ab8_title.h)
+- Ghidra PTR-name aliases (resolved via LP_GEN_43727 pool @asm:600): FUN_8c012de0=FUN_8c016182 (01614c_debug_menu.h); FUN_8c012e10=FUN_8c01f21c (01e27c.h); DAT_8c012e0c=var_menuState_8c1bc7a8.selected_0x38 (015ab8_title.h)
 - ad04>=5 progress-commit block in Ghidra is DEAD (ad04 maxes at 2 in that branch); real reachable copy lives in ad08==2 path
 - new externs added: var_8c22640c (int, sectionB.h), FUN_8c01f21c (01e27c.h); FUN_8c016182/CourseMenuFUN_8c017ef2/menuState/isFading/playMode/progress already had headers
 - ad08==2 isFading!=0 draws 0x76 at FR14=-1.09 (same arrow priority), then njDrawPolygon, returns WITHOUT base 0x74 draw

@@ -12,10 +12,16 @@ SHELL := /bin/bash
 # from src/serial_debug.h. Example: make SERIAL_DEBUG=1 LOG_LEVEL=DEBUG clean all
 SERIAL_DEBUG ?= 1
 LOG_LEVEL ?=
+# DEBUG_MENU=1 boots straight into the debug menu instead of the title (and
+# installs the Ninja print font it needs). Dev-only; not byte-matching.
+DEBUG_MENU ?=
 
 SHC_DEFINES := __SHC__
 ifeq ($(SERIAL_DEBUG),1)
 SHC_DEFINES += SERIAL_DEBUG
+endif
+ifeq ($(DEBUG_MENU),1)
+SHC_DEFINES += DEBUG_MENU
 endif
 ifneq ($(LOG_LEVEL),)
 SHC_DEFINES += DEBUG_LEVEL=LOG_LEVEL_$(LOG_LEVEL)
@@ -44,11 +50,11 @@ SRCS = \
 	src/014f54_text.c \
 	src/015ab8_title.c \
 	src/016108.c \
-	src/asm/01614c.src \
+	src/01614c_debug_menu.c \
 	src/016bf4_demo_input.c \
 	src/016c58_prompt.c \
 	src/016d2c_course_menu.c \
-	src/asm/018644.src \
+	src/018644_vm_load.c \
 	src/asm/018784.src \
 	src/0193c8_vm_menu.c \
 	src/019e98_main_menu.c \

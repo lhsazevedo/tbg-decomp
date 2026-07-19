@@ -59,7 +59,7 @@ return new class extends TestCase {
         $this->shouldCall('_TaskPush_8c014ae8')
             ->with(
                 $this->addressOf('_var_tasks_8c1ba5e8'),
-                $this->addressOf('_task_8c01677e'),
+                $this->addressOf('_DebugMenuDemoRecordTask_8c01677e'),
                 0xffffe4, 0xFFFFE8, 0
             );
 

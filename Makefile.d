@@ -30,12 +30,12 @@ $(OUTPUT_DIR)/0129cc_pause.obj: src/0100bc_sound.h src/011120_asset_queues.h
 $(OUTPUT_DIR)/0129cc_pause.obj: src/serial_debug.h src/012f44_game.h src/014f54_text.h
 $(OUTPUT_DIR)/0129cc_pause.obj: src/015ab8_title.h src/014b8c_backup.h
 $(OUTPUT_DIR)/0129cc_pause.obj: src/014f54_text_pre_data.h src/013ae8_route_load.h
-$(OUTPUT_DIR)/0129cc_pause.obj: src/01614c.h src/016d2c_course_menu.h src/01e27c.h
+$(OUTPUT_DIR)/0129cc_pause.obj: src/01614c_debug_menu.h src/016d2c_course_menu.h src/01e27c.h
 $(OUTPUT_DIR)/0129cc_pause.obj: src/022464.h src/0222dc.h src/sectionB.h
 $(OUTPUT_DIR)/0129cc_pause.obj: src/02af78_event.h
 $(OUTPUT_DIR)/012f44_game.obj: src/012f44_game.h src/014a9c_tasks.h src/0100bc_sound.h
 $(OUTPUT_DIR)/012f44_game.obj: src/014f54_text.h src/015ab8_title.h src/014b8c_backup.h
-$(OUTPUT_DIR)/012f44_game.obj: src/016bf4_demo_input.h src/0129cc_pause.h src/01614c.h
+$(OUTPUT_DIR)/012f44_game.obj: src/016bf4_demo_input.h src/0129cc_pause.h src/01614c_debug_menu.h
 $(OUTPUT_DIR)/012f44_game.obj: src/sectionD.h src/014f54_text_pre_data.h
 $(OUTPUT_DIR)/012f44_game.obj: src/011120_asset_queues.h src/serial_debug.h
 $(OUTPUT_DIR)/012f44_game.obj: src/013ae8_route_load.h src/sectionB.h
@@ -70,7 +70,7 @@ $(OUTPUT_DIR)/015ab8_title.obj: src/013ae8_route_load.h src/014f54_text.h
 $(OUTPUT_DIR)/015ab8_title.obj: src/015ab8_title.h src/014b8c_backup.h
 $(OUTPUT_DIR)/015ab8_title.obj: src/serial_debug.h src/0100bc_sound.h
 $(OUTPUT_DIR)/015ab8_title.obj: src/0193c8_vm_menu.h src/011120_asset_queues.h
-$(OUTPUT_DIR)/015ab8_title.obj: src/016d2c_course_menu.h src/01614c.h src/022464.h
+$(OUTPUT_DIR)/015ab8_title.obj: src/016d2c_course_menu.h src/01614c_debug_menu.h src/022464.h
 $(OUTPUT_DIR)/015ab8_title.obj: src/028258.h src/014f54_text_pre_data.h
 $(OUTPUT_DIR)/015ab8_title.obj: src/sectionB.h src/02af78_event.h
 $(OUTPUT_DIR)/016108.obj: src/015ab8_title.h src/014a9c_tasks.h src/014b8c_backup.h
@@ -114,7 +114,7 @@ $(OUTPUT_DIR)/01d290_album.obj: src/012f44_game.h src/014a9c_tasks.h src/013ae8_
 $(OUTPUT_DIR)/01d290_album.obj: src/015ab8_title.h src/014b8c_backup.h
 $(OUTPUT_DIR)/01d290_album.obj: src/014f54_text.h src/016d2c_course_menu.h
 $(OUTPUT_DIR)/01d290_album.obj: src/011120_asset_queues.h src/serial_debug.h
-$(OUTPUT_DIR)/01d290_album.obj: src/0100bc_sound.h src/01614c.h src/022464.h
+$(OUTPUT_DIR)/01d290_album.obj: src/0100bc_sound.h src/01614c_debug_menu.h src/022464.h
 $(OUTPUT_DIR)/01d290_album.obj: src/sectionD.h src/014f54_text_pre_data.h
 $(OUTPUT_DIR)/01d290_album.obj: src/sectionB.h src/02af78_event.h
 $(OUTPUT_DIR)/01d290_album.obj: src/01d290_album.h

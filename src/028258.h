@@ -2,6 +2,10 @@
 #ifndef _028258_H
 #define _028258_H
 
+void FUN_8c0288be(void);
+void FUN_8c0297da(void);
+void FUN_8c029cfe(void);
+void FUN_8c02adee(void);
 void FUN_8c028dd0(void *handle);
 void FUN_8c028de8(void *handle);
 void FUN_8c029ad4(void *arg);

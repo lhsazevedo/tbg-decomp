@@ -3,6 +3,7 @@
 #define _0FCD20_SECTIONB_H
 
 #include <shinobi.h>
+#include "01614c_debug_menu.h"
 #include "013ae8_route_load.h"
 #include "02af78_event.h"
 
@@ -347,6 +348,8 @@ extern int var_runEventFlags_8c1ba2b4;
 extern int var_8c1ba2b8[5]; // Maybe progress backup
 extern int var_8c1ba2cc[5]; // Maybe progress backup
 extern void* var_8c1ba2e0;
+extern BUS_BACKUPFILEHEADER var_8c1ba2e4; // 018644: analyzed backup file header
+extern void* var_8c1ba33c;
 extern void* var_8c1ba344;
 extern void* var_8c1ba348;
 extern void* var_8c1bb86c;
@@ -420,11 +423,15 @@ extern Sint16 *var_8c1bc7a0;
 extern void *var_glyphBuffer_8c1bc7a4;
 
 extern MenuState var_menuState_8c1bc7a8;
-extern void *var_8c1bc824;
+extern DebugMenuCourseSel *var_debugMenuCourseSel_8c1bc824;
 #define REPLAY_BUFFER_CAPACITY 54000
 extern ReplayInput var_demoBuffer_8c1bc828[REPLAY_BUFFER_CAPACITY];
 extern ReplayInput *var_demoCursor_8c225fa8;
 extern Uint32 var_demoPrevOn_8c225fac;
+extern void* var_8c225fe0;      // 018644: BupLoad dest buffer, advances 0x600 per file
+extern int var_8c225fe4[10];    // 018644
+extern int var_8c22600c;        // 018644: index into var_8c225fe4
+extern int var_8c226010;        // 018644: load result (1 = done, 2 = error)
 
 extern int var_8c22606c;
 extern int var_8c2260a8;

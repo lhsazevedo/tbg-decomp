@@ -16,7 +16,7 @@
 #include "0193c8_vm_menu.h"
 #include "011120_asset_queues.h"
 #include "016d2c_course_menu.h"
-#include "01614c.h"
+#include "01614c_debug_menu.h"
 #include "022464.h"
 #include "028258.h"
 #include "sectionB.h"

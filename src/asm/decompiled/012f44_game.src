@@ -39,7 +39,7 @@
           .IMPORT     _TaskPush_8c014ae8
           .IMPORT     _var_tasks_8c1ba3c8
           .IMPORT     _PauseTask_8c012cbc
-          .IMPORT     _task_8c01677e
+          .IMPORT     _DebugMenuDemoRecordTask_8c01677e
           .IMPORT     _var_8c1bb8d4
           .IMPORT     _PauseToggleTask_8c012d06
           .IMPORT     _DemoInputTask_8c016bf4
@@ -59,7 +59,7 @@
           .IMPORT     _FUN_8c020528
           .IMPORT     _FUN_8c0228a2
           .IMPORT     _var_currentCourse_8c1bb868
-          .IMPORT     _var_8c1bc824
+          .IMPORT     _var_debugMenuCourseSel_8c1bc824
           .IMPORT     _var_8c228704
           .IMPORT     _var_inputMapSel_8c1bb8c8
           .IMPORT     _AsqGetRandomA_8c012166
@@ -504,7 +504,7 @@ LP_GEN_31464:
           .DATA.L _var_tasks_8c1ba3c8
           .DATA.L _var_playMode_8c1bb8d0
           .DATA.L _PauseTask_8c012cbc
-          .DATA.L _task_8c01677e
+          .DATA.L _DebugMenuDemoRecordTask_8c01677e
           .DATA.L _var_8c1bb8d4
           .DATA.L _PauseToggleTask_8c012d06
 
@@ -770,7 +770,7 @@ LP_GEN_38000:
           .DATA.L _FUN_8c0228a2
           .DATA.L _var_currentCourse_8c1bb868
           .DATA.L _var_seed_8c157a64
-          .DATA.L _var_8c1bc824
+          .DATA.L _var_debugMenuCourseSel_8c1bc824
           .DATA.L _var_8c228704
           .DATA.L _var_inputMapSel_8c1bb8c8
           .DATA.L _AsqGetRandomA_8c012166

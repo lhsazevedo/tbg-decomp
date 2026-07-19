@@ -99,4 +99,12 @@ compile  src/02af78_event.c
 assemble  src/asm/decompiled/0129cc_pause.src
 compile  src/0129cc_pause.c
 
+# 01614c_debug_menu
+assemble  src/asm/decompiled/01614c_debug_menu.src
+compile  src/01614c_debug_menu.c
+
+# 018644
+assemble  src/asm/decompiled/018644_vm_load.src
+compile  src/018644_vm_load.c
+
 $sh4objtest suite -s tests.php "$@"

@@ -52,7 +52,7 @@
                                     ; 01b19c
                                     ; 01d7fc
           .EXPORT     _var_selectedVm_8c1ba34c ; 012f44_game
-                                               ; 01614c
+                                               ; 01614c_debug_menu
                                                ; 018644
                                                ; 018784
                                                ; 0193c8_vm_menu
@@ -66,7 +66,7 @@
                                             ; 012504_input
                                             ; 0129cc_pause
                                             ; 012f44_game
-                                            ; 01614c
+                                            ; 01614c_debug_menu
                                             ; 020214
                                             ; 024280
                                             ; 02b464
@@ -78,7 +78,7 @@
                                                 ; 012504_input
                                                 ; 0129cc_pause
                                                 ; 015ab8_title
-                                                ; 01614c
+                                                ; 01614c_debug_menu
                                                 ; 016bf4_demo_input
                                                 ; 016c58_prompt
                                                 ; 016d2c_course_menu
@@ -100,14 +100,14 @@
           .EXPORT     _var_8c1ba376 ; 024280
           .EXPORT     _var_demoBuf_8c1ba3c4 ; 012f44_game
                                             ; 014f54_text
-                                            ; 01614c
+                                            ; 01614c_debug_menu
           .EXPORT     _var_tasks_8c1ba3c8 ; 011120_asset_queues
                                           ; 012504_input
                                           ; 012f44_game
                                           ; 013ae8_route_load
                                           ; 014f54_text
                                           ; 015ab8_title
-                                          ; 01614c
+                                          ; 01614c_debug_menu
                                           ; 016d2c_course_menu
                                           ; 018784
                                           ; 0193c8_vm_menu
@@ -119,7 +119,7 @@
                                           ; 02b464
           .EXPORT     _var_tasks_8c1ba5e8 ; 0129cc_pause
                                           ; 012f44_game
-                                          ; 01614c
+                                          ; 01614c_debug_menu
                                           ; 01fa78
                                           ; 0222dc
                                           ; 023310
@@ -129,10 +129,10 @@
                                           ; 02b464
                                           ; 02d968
           .EXPORT     _var_tasks_8c1ba808 ; 012f44_game
-                                          ; 01614c
+                                          ; 01614c_debug_menu
                                           ; 028258
           .EXPORT     _var_tasks_8c1bac28 ; 012f44_game
-                                          ; 01614c
+                                          ; 01614c_debug_menu
                                           ; 024280
                                           ; 026710
                                           ; 02b464
@@ -142,13 +142,13 @@
                                           ; 02e51c
                                           ; 02f0c8
           .EXPORT     _var_tasks_8c1bb448 ; 012f44_game
-                                          ; 01614c
+                                          ; 01614c_debug_menu
                                           ; 028258
                                           ; 02b464
           .EXPORT     _var_currentCourse_8c1bb868 ; 012f44_game
                                                   ; 013ae8_route_load
                                                   ; 014f54_text
-                                                  ; 01614c
+                                                  ; 01614c_debug_menu
                                                   ; 02171c
                                                   ; 022bdc
                                                   ; 023310
@@ -186,7 +186,7 @@
           .EXPORT     _var_inputMapSel_8c1bb8c8 ; 012504_input
                                                 ; 012f44_game
                                                 ; 014f54_text
-                                                ; 01614c
+                                                ; 01614c_debug_menu
                                                 ; 022bdc
                                                 ; 024280
                                                 ; 02b464
@@ -196,7 +196,7 @@
                                              ; 012f44_game
                                              ; 013ae8_route_load
                                              ; 014f54_text
-                                             ; 01614c
+                                             ; 01614c_debug_menu
                                              ; 016d2c_course_menu
                                              ; 01e27c
                                              ; 01fa78
@@ -212,7 +212,7 @@
                                              ; 02d968
           .EXPORT     _var_8c1bb8d4 ; 012f44_game
                                     ; 014f54_text
-                                    ; 01614c
+                                    ; 01614c_debug_menu
           .EXPORT     _var_demoIndex_8c1bb8d8 ; 012f44_game
                                               ; 014f54_text
           .EXPORT     _var_8c1bb8dc ; 0129cc_pause
@@ -299,7 +299,7 @@
           .EXPORT     _var_8c1bbc4c ; 012504_input
                                     ; 020214
                                     ; 02c884
-          .EXPORT     _var_8c1bbc84 ; 01614c
+          .EXPORT     _var_8c1bbc84 ; 01614c_debug_menu
                                     ; 016bf4_demo_input
                                     ; 024b4c
                                     ; 02d19c
@@ -348,15 +348,15 @@
                                     ; 02d19c
           .EXPORT     _var_routeModels_8c1bc3ec ; 012f44_game
                                                 ; 013ae8_route_load
-                                                ; 01614c
+                                                ; 01614c_debug_menu
                                                 ; 028258
           .EXPORT     _var_segmentModels_8c1bc3f0 ; 012f44_game
                                                   ; 013ae8_route_load
-                                                  ; 01614c
+                                                  ; 01614c_debug_menu
                                                   ; 0222dc
           .EXPORT     _var_trafficModels_8c1bc3f4 ; 012f44_game
                                                   ; 013ae8_route_load
-                                                  ; 01614c
+                                                  ; 01614c_debug_menu
                                                   ; 023310
                                                   ; 026710
           .EXPORT     _var_loadingResourceGroup_8c1bc3f8 ; 012f44_game
@@ -404,7 +404,7 @@
           .EXPORT     _var_8c1bc450 ; 012f44_game
                                     ; 02c884
           .EXPORT     _var_8c1bc454 ; 012f44_game
-                                    ; 01614c
+                                    ; 01614c_debug_menu
                                     ; 01bb48
           .EXPORT     _var_8c1bc458 ; 023938
                                     ; 028258
@@ -440,17 +440,17 @@
                                               ; 01e27c
                                               ; 01f3c0
                                               ; 02b464
-          .EXPORT     _var_8c1bc824 ; 012f44_game
+          .EXPORT     _var_debugMenuCourseSel_8c1bc824 ; 012f44_game
                                     ; 014f54_text
-                                    ; 01614c
+                                    ; 01614c_debug_menu
           .EXPORT     _var_demoBuffer_8c1bc828 ; 014f54_text
-                                               ; 01614c
+                                               ; 01614c_debug_menu
                                                ; 016bf4_demo_input
           .EXPORT     _var_demoCursor_8c225fa8 ; 014f54_text
-                                               ; 01614c
+                                               ; 01614c_debug_menu
                                                ; 016bf4_demo_input
           .EXPORT     _var_demoPrevOn_8c225fac ; 014f54_text
-                                               ; 01614c
+                                               ; 01614c_debug_menu
                                                ; 016bf4_demo_input
           .EXPORT     _var_currentSysResGroupInfo_8c225fb0 ; 012f44_game
                                                            ; 015ab8_title
@@ -478,7 +478,7 @@
                                     ; 018784
           .EXPORT     _var_8c226014 ; 018784
           .EXPORT     _var_8c226018 ; 018784
-          .EXPORT     _var_vmuStatus_8c226048 ; 01614c
+          .EXPORT     _var_vmuStatus_8c226048 ; 01614c_debug_menu
                                               ; 018784
                                               ; 0193c8_vm_menu
                                               ; 01b19c
@@ -869,7 +869,7 @@
           .EXPORT     _var_8c228b98 ; 02f0c8
           .EXPORT     _var_8c228b9c ; 02f0c8
           .EXPORT     _var_8c228ba0 ; 02f0c8
-          .EXPORT     _var_8c228ba4 ; 01614c
+          .EXPORT     _var_8c228ba4 ; 01614c_debug_menu
                                     ; 02f320
           .EXPORT     _var_8c228ba8 ; 02f320
           .EXPORT     _var_8c228baa ; 02f320
@@ -1170,7 +1170,7 @@ _var_glyphBuffer_8c1bc7a4:
           .RES.B      4
 _var_menuState_8c1bc7a8:
           .RES.L      31
-_var_8c1bc824:
+_var_debugMenuCourseSel_8c1bc824:
           .RES.B      4
 _var_demoBuffer_8c1bc828:
           .RES.B      432000

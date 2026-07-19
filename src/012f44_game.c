@@ -7,7 +7,7 @@
 #include "014f54_text.h"
 #include "016bf4_demo_input.h"
 #include "0129cc_pause.h"
-#include "01614c.h"
+#include "01614c_debug_menu.h"
 #include "sectionD.h"
 #include "sectionB.h"
 #include "includes.h"
@@ -30,13 +30,6 @@ struct loadedNj {
     int *field_0x04;
 }
 typedef loadedNj;
-
-struct uknStruct2 {
-    int field_0x00;
-    int field_0x04;
-    int field_0x08;
-}
-typedef uknStruct2;
 
 NJS_TEXMEMLIST var_tex_8c157af8[TEX_NUM];
 STATIC NJS_TEXNAME    var_texname_8c18acf8[1];
@@ -173,9 +166,9 @@ void FUN_8c01306e(void)
 
     InputPushTask_8c0128cc(1);
 
-    if (var_playMode_8c1bb8d0 != 2) {
+    if (var_playMode_8c1bb8d0 != PLAY_MODE_DEMO) {
         TaskPush_8c014ae8(var_tasks_8c1ba3c8, &PauseTask_8c012cbc, &created_task, &created_state, 0);
-        TaskPush_8c014ae8(var_tasks_8c1ba5e8, &task_8c01677e, &created_task, &created_state, 0);
+        TaskPush_8c014ae8(var_tasks_8c1ba5e8, &DebugMenuDemoRecordTask_8c01677e, &created_task, &created_state, 0);
     } else {
         if (var_8c1bb8d4 == 0) {
             TaskPush_8c014ae8(var_tasks_8c1ba3c8, &PauseToggleTask_8c012d06, &created_task, &created_state, 0);
@@ -216,12 +209,12 @@ void FUN_8c01328c() {
     Task *created_task;
     void* created_state;
   
-    if (var_playMode_8c1bb8d0 == 0) {
-        var_currentCourse_8c1bb868.courseId_0x00 = ((uknStruct2*)var_8c1bc824)->field_0x00;
-        var_8c228704 = ((uknStruct2*)var_8c1bc824)->field_0x04;
-        var_inputMapSel_8c1bb8c8 = ((uknStruct2*)var_8c1bc824)->field_0x08;
+    if (var_playMode_8c1bb8d0 == PLAY_MODE_NORMAL) {
+        var_currentCourse_8c1bb868.courseId_0x00 = var_debugMenuCourseSel_8c1bc824->courseId_0x00;
+        var_8c228704 = var_debugMenuCourseSel_8c1bc824->field_0x04;
+        var_inputMapSel_8c1bb8c8 = var_debugMenuCourseSel_8c1bc824->inputMapSel_0x08;
         var_seed_8c157a64 = AsqGetRandomA_8c012166();
-    } else if ((var_playMode_8c1bb8d0 == 2) && (var_8c1bb8d4 != 0)) {
+    } else if ((var_playMode_8c1bb8d0 == PLAY_MODE_DEMO) && (var_8c1bb8d4 != 0)) {
         var_8c227dd4 = init_8c0460b0[var_currentCourse_8c1bb868.courseId_0x00 - 0x26];
         FUN_8c01895e();
     } else {
@@ -243,12 +236,12 @@ void GamePushLoadingTask_8c013310(int p1) {
     Task *created_task;
     void* created_state;
   
-    if (var_playMode_8c1bb8d0 != 2) {
+    if (var_playMode_8c1bb8d0 != PLAY_MODE_DEMO) {
         var_currentCourse_8c1bb868.courseId_0x00 = p1;
         var_8c228704 = 0;
         var_inputMapSel_8c1bb8c8 = var_progress_8c1ba1cc.field_0xc5;
         var_seed_8c157a64 = AsqGetRandomA_8c012166();
-    } else if (var_playMode_8c1bb8d0 == 2 && var_8c1bb8d4 != 0) {
+    } else if (var_playMode_8c1bb8d0 == PLAY_MODE_DEMO && var_8c1bb8d4 != 0) {
         var_8c227dd4 = init_8c0460b0[var_currentCourse_8c1bb868.courseId_0x00 - 0x26];
     } else {
         var_8c227dd4 = 0;
@@ -289,7 +282,15 @@ STATIC void task_8c013388(Task *task, void *state) {
                 TaskFree_8c014b66(task);
                 SndInitSoundMidiAdx_8c010e18("\\SOUND");
                 var_8c2260a8 = 1;
+#ifdef DEBUG_MENU
+                /* Boot straight into the debug menu (DebugMenuOpen_8c01673a) --
+                 * the retail entry point that was compiled out. Course entries
+                 * work; *_EVENT / REPLAY / VISUAL_MEMORY need state this path
+                 * doesn't set up and will hang on the loading screen. */
+                DebugMenuOpen_8c01673a();
+#else
                 TitlePushTitle_8c015fd6(0);
+#endif
             }
             break;
         }
@@ -334,6 +335,11 @@ void GameInit_8c0134ec() {
     njInitCacheTextureBuffer(var_cachebuf_8c235ca0, CACHE_BUFSIZE);
     njInitShape(var_shapebuf_8c2f84a0);
     syRtcInit();
+
+#ifdef DEBUG_MENU
+    /* Retail never inits njPrint. */
+    njInitPrint(NULL, 0, 0);
+#endif
 
     var_soundMode_8c226070 = SndGetSoundMode_8c010924();
     if (var_soundMode_8c226070 >= 0) {

@@ -16,9 +16,9 @@
           .IMPORT     _var_8c1ba33c
           .IMPORT     _njMemCopy
           .IMPORT     _syFree
-          .EXPORT     _FUN_8c018644
+          .EXPORT     _VmLoadTask_8c018644
           .SECTION     P, CODE, ALIGN=4
-_FUN_8c018644:
+_VmLoadTask_8c018644:
           MOV.L       R14,@-R15
           MOV         R4,R14
           MOV.L       R13,@-R15

@@ -6,7 +6,7 @@
 #include "012f44_game.h"
 #include "014f54_text.h"
 #include "sectionB.h"
-#include "01614c.h"
+#include "01614c_debug_menu.h"
 #include "015ab8_title.h"
 #include "016d2c_course_menu.h"
 #include "01e27c.h"

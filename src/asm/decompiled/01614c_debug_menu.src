@@ -26,7 +26,7 @@
           .IMPORT     _BupUnmount_8c014c46
           .IMPORT     _TaskFree_8c014b66
           .IMPORT     _TaskPush_8c014ae8
-          .IMPORT     _var_8c1bc824
+          .IMPORT     _var_debugMenuCourseSel_8c1bc824
           .IMPORT     _AsqGetRandomA_8c012166
           .IMPORT     _InputPushTask_8c0128cc
           .IMPORT     _var_demoBuffer_8c1bc828
@@ -67,21 +67,23 @@
           .IMPORT     _VmMenuFreeAndClear_8c019504
           .IMPORT     _VmMenuUpdateVmusStatus_8c019550
           .IMPORT     _CourseMenuFUN_8c017ef2
-          .EXPORT     _task_8c01677e
+          .EXPORT     _DebugMenuDemoRecordTask_8c01677e
           .EXPORT     _FUN_8c016182
-          .EXPORT     _FUN_8c016b4c
-          .EXPORT     _FUN_8c0167c0
-          .EXPORT     _FUN_8c016636
           .EXPORT     _FUN_8c01614c
-          .EXPORT     _FUN_8c01628c
-          .EXPORT     _FUN_8c01666a
-          .EXPORT     _FUN_8c01673a
           .EXPORT     _FUN_8c016770
-          .EXPORT     _FUN_8c0167ca
-          .EXPORT     _FUN_8c016924
-          .EXPORT     _FUN_8c0169bc
-          .EXPORT     _init_8c044294
-          .EXPORT     _init_8c04429c
+          .EXPORT     _DebugMenuOpen_8c01673a
+          .AIFDEF UNIT_TESTING
+          .EXPORT     _FUN_8c0167c0
+          .EXPORT     _startReplayLoad_8c016b4c
+          .EXPORT     _openSaveMenu_8c016636
+          .EXPORT     _saveMenuTask_8c01628c
+          .EXPORT     _listMenuTask_8c01666a
+          .EXPORT     _replaySaveTask_8c0167ca
+          .EXPORT     _startReplaySave_8c016924
+          .EXPORT     _replayLoadTask_8c0169bc
+          .AENDI
+          .EXPORT     _init_replaySaveNames_8c044294
+          .EXPORT     _init_debugMenuEntries_8c04429c
           .EXPORT     _const_8c0360a4
           .EXPORT     _const_8c0360b0
           .EXPORT     _const_8c0360b4
@@ -92,7 +94,7 @@
           .EXPORT     _const_8c036120
           .EXPORT     _const_8c036130
           .EXPORT     _const_8c036148
-          .EXPORT     _const_8c036160
+          .EXPORT     _const_replayFileName_8c036160
           .EXPORT     _const_8c03616c
           .EXPORT     _const_8c036170
           .EXPORT     _const_8c036180
@@ -279,7 +281,7 @@ LAB_8c016274:
           MOV.L       @R15+,R13
           JMP         @R3
           MOV.L       @R15+,R14
-_FUN_8c01628c:
+_saveMenuTask_8c01628c:
           MOV.L       R14,@-R15
           MOV.L       R13,@-R15
           MOV.L       R12,@-R15
@@ -451,7 +453,7 @@ LP_GEN_42967:
           .DATA.L _var_selectedVm_8c1ba34c ; H'8C0163F8
           .DATA.L H'000A000A ; H'8C0163FC
           .DATA.L _njPrintC ; H'8C016400
-          .DATA.L _init_8c044294 ; H'8C016404
+          .DATA.L _init_replaySaveNames_8c044294 ; H'8C016404
           .DATA.L H'10+_var_peripherals_8c1ba35c ; H'8C016408
           .DATA.L _VmMenuUpdateVmusStatus_8c019550 ; H'8C01640C
           .DATA.L _var_vmuStatus_8c226048 ; H'8C016410
@@ -692,7 +694,7 @@ LAB_8c0165b4:
 LP_GEN_88315:
           .DATA.W H'FF05 ; H'8C0165BC
           .RES.W 1 ; H'8C0165BE
-          .DATA.L _const_8c036160 ; H'8C0165C0
+          .DATA.L _const_replayFileName_8c036160 ; H'8C0165C0
           .DATA.L _buIsExistFile ; H'8C0165C4
           .DATA.L _const_8c0360b4 ; H'8C0165C8
           .DATA.L _njPrint ; H'8C0165CC
@@ -732,7 +734,7 @@ LAB_8c016604:
           MOV.L       @R15+,R11
           MOV.L       @R15+,R12
           MOV.L       @R15+,R13
-          BRA         _FUN_8c01673a
+          BRA         _DebugMenuOpen_8c01673a
           MOV.L       @R15+,R14
 LAB_8c016620:
           MOV.L       R14,@(H'4,R13)
@@ -746,7 +748,7 @@ LAB_8c016620:
           MOV.L       @R15+,R13
           RTS
           MOV.L       @R15+,R14
-_FUN_8c016636:
+_openSaveMenu_8c016636:
           STS.L       PR,@-R15
           ADD         #-H'8,R15
           MOV.L       LP_GEN_94139+16,R3
@@ -773,7 +775,7 @@ _FUN_8c016636:
           LDS.L       @R15+,PR
           RTS
           NOP
-_FUN_8c01666a:
+_listMenuTask_8c01666a:
           MOV.L       R14,@-R15
           MOV.L       R13,@-R15
           MOV.L       R12,@-R15
@@ -883,7 +885,7 @@ LAB_8c016716:
           MOV.L       @R15+,R13
           JMP         @R2
           MOV.L       @R15+,R14
-_FUN_8c01673a:
+_DebugMenuOpen_8c01673a:
           STS.L       PR,@-R15
           ADD         #-H'8,R15
           MOV.L       LP_GEN_94139+16,R3
@@ -919,7 +921,7 @@ _FUN_8c016770:
           MOV.L       R3,@R1
           RTS
           MOV.L       R2,@R0
-_task_8c01677e:
+_DebugMenuDemoRecordTask_8c01677e:
           MOV.L       LP_GEN_94139+84,R2
           MOV         #H'1,R3
           MOV.L       @R2,R1
@@ -962,7 +964,7 @@ _FUN_8c0167c0:
           MOV.L       LP_GEN_94139+96,R1
           JMP         @R3
           MOV.L       R2,@R1
-_FUN_8c0167ca:
+_replaySaveTask_8c0167ca:
           MOV.L       R14,@-R15
           MOV         R4,R14
           MOV.L       R13,@-R15
@@ -1017,19 +1019,19 @@ LP_GEN_94139:
           .DATA.L _TaskFree_8c014b66 ; H'8C01682C
           .DATA.L H'0000C060 ; H'8C016830
           .DATA.L _njSetBackColor ; H'8C016834
-          .DATA.L _FUN_8c01628c ; H'8C016838
+          .DATA.L _saveMenuTask_8c01628c ; H'8C016838
           .DATA.L _var_tasks_8c1ba3c8 ; H'8C01683C
           .DATA.L _TaskPush_8c014ae8 ; H'8C016840
-          .DATA.L _init_8c04429c ; H'8C016844
+          .DATA.L _init_debugMenuEntries_8c04429c ; H'8C016844
           .DATA.L H'10+_var_peripherals_8c1ba35c ; H'8C016848
-          .DATA.L _var_8c1bc824 ; H'8C01684C
+          .DATA.L _var_debugMenuCourseSel_8c1bc824 ; H'8C01684C
           .DATA.L _njPrintC ; H'8C016850
           .DATA.L H'000C0000 ; H'8C016854
           .DATA.L _const_8c0360b0 ; H'8C016858
           .DATA.L H'000A0000 ; H'8C01685C
           .DATA.L _AsqGetRandomA_8c012166 ; H'8C016860
           .DATA.L _InputPushTask_8c0128cc ; H'8C016864
-          .DATA.L _FUN_8c01666a ; H'8C016868
+          .DATA.L _listMenuTask_8c01666a ; H'8C016868
           .DATA.L _var_demoBuffer_8c1bc828 ; H'8C01686C
           .DATA.L _var_demoCursor_8c225fa8 ; H'8C016870
           .DATA.L _var_demoPrevOn_8c225fac ; H'8C016874
@@ -1116,7 +1118,7 @@ LAB_8c016918:
           MOV.L       @R15+,R13
           RTS
           MOV.L       @R15+,R14
-_FUN_8c016924:
+_startReplaySave_8c016924:
           MOV.L       R14,@-R15
           MOV.L       R13,@-R15
           MOV.L       R12,@-R15
@@ -1195,7 +1197,7 @@ LAB_8c0169b0:
           MOV.L       @R15+,R13
           RTS
           MOV.L       @R15+,R14
-_FUN_8c0169bc:
+_replayLoadTask_8c0169bc:
           MOV.L       R14,@-R15
           MOV.L       R13,@-R15
           MOV.L       R12,@-R15
@@ -1265,7 +1267,7 @@ LAB_8c016a32:
           MOV.L       R3,@(H'8,R12)
 LP_GEN_65913:
           .DATA.L _var_8c228ba4 ; H'8C016A38
-          .DATA.L _const_8c036160 ; H'8C016A3C
+          .DATA.L _const_replayFileName_8c036160 ; H'8C016A3C
           .DATA.L _BupSave_8c014bcc ; H'8C016A40
           .DATA.L __divlu ; H'8C016A44
           .DATA.L _const_8c036130 ; H'8C016A48
@@ -1276,7 +1278,7 @@ LP_GEN_65913:
           .DATA.L _BupUnmount_8c014c46 ; H'8C016A5C
           .DATA.L _TaskFree_8c014b66 ; H'8C016A60
           .DATA.L _CourseMenuFUN_8c017ef2 ; H'8C016A64
-          .DATA.L _FUN_8c0167ca ; H'8C016A68
+          .DATA.L _replaySaveTask_8c0167ca ; H'8C016A68
           .DATA.L _var_tasks_8c1ba3c8 ; H'8C016A6C
           .DATA.L _TaskPush_8c014ae8 ; H'8C016A70
           .DATA.L _var_selectedVm_8c1ba34c ; H'8C016A74
@@ -1377,7 +1379,7 @@ LAB_8c016b3c:
           MOV.L       @R15+,R13
           RTS
           MOV.L       @R15+,R14
-_FUN_8c016b4c:
+_startReplayLoad_8c016b4c:
           MOV.L       R14,@-R15
           STS.L       PR,@-R15
           ADD         #-H'8,R15
@@ -1417,7 +1419,7 @@ LAB_8c016b88:
 LP_GEN_41084:
           .DATA.W H'4000 ; H'8C016B92
           .DATA.L _syMalloc ; H'8C016B94
-          .DATA.L _const_8c036160 ; H'8C016B98
+          .DATA.L _const_replayFileName_8c036160 ; H'8C016B98
           .DATA.L _BupLoad_8c014bc6 ; H'8C016B9C
           .DATA.L __divlu ; H'8C016BA0
           .DATA.L _const_8c036148 ; H'8C016BA4
@@ -1437,19 +1439,18 @@ LP_GEN_41084:
           .DATA.L _var_playMode_8c1bb8d0 ; H'8C016BDC
           .DATA.L _var_selectedVm_8c1ba34c ; H'8C016BE0
           .DATA.L _var_8c1bb8d4 ; H'8C016BE4
-          .DATA.L _FUN_8c0169bc ; H'8C016BE8
+          .DATA.L _replayLoadTask_8c0169bc ; H'8C016BE8
           .DATA.L _var_tasks_8c1ba3c8 ; H'8C016BEC
           .DATA.L _TaskPush_8c014ae8 ; H'8C016BF0
 
           .SECTION    D, DATA, ALIGN=4
-_init_8c044294:        ; from defines
-          .DATA.L      _const_8c036160 ; ukn
+_init_replaySaveNames_8c044294:        ; from defines
+          .DATA.L      _const_replayFileName_8c036160 ; ukn
           .DATA.L      _const_8c03616c ; ukn
-_init_8c04429c:        ; from defines
+_init_debugMenuEntries_8c04429c:        ; from defines
           .DATA.L      _const_8c036170 ; ukn
           .DATA.L      _FUN_8c02aa36 ; ukn
           .DATA.B      H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00
-_init_8c0442b0:        ; from ghidra
           .DATA.L      _const_8c036180 ; ukn
           .DATA.L      _FUN_8c02aa36 ; ukn
           .DATA.B      H'01, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00
@@ -1499,10 +1500,10 @@ _init_8c0442b0:        ; from ghidra
           .DATA.L      _FUN_8c0167c0 ; ukn
           .DATA.B      H'18, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'01, H'00, H'00, H'00
           .DATA.L      _const_8c036274 ; ukn
-          .DATA.L      _FUN_8c016b4c ; ukn
+          .DATA.L      _startReplayLoad_8c016b4c ; ukn
           .DATA.B      H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00
           .DATA.L      _const_8c03627c ; ukn
-          .DATA.L      _FUN_8c016636 ; ukn
+          .DATA.L      _openSaveMenu_8c016636 ; ukn
           .DATA.B      H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00
           .DATA.L      _const_8c03616c ; ukn
           .DATA.B      H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00
@@ -1545,7 +1546,7 @@ _const_8c036148:        ; from defines
           .SDATA      "NOW LOADING...(%03d%%)"
           .DATA.B     H'00
           .RES.B      1
-_const_8c036160:        ; from defines
+_const_replayFileName_8c036160:        ; from defines
           .SDATA      "BUS_REPLAY"
           .DATA.B     H'00
           .RES.B      1

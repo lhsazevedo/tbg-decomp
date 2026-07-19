@@ -26,11 +26,11 @@ SRCS = \
 	src/asm/decompiled/014f54_text.src \
 	src/asm/decompiled/015ab8_title.src \
 	src/016108.c \
-	src/asm/01614c.src \
+	src/asm/decompiled/01614c_debug_menu.src \
 	src/asm/decompiled/016bf4_demo_input.src \
 	src/asm/decompiled/016c58_prompt.src \
 	src/asm/decompiled/016d2c_course_menu.src \
-	src/asm/018644.src \
+	src/asm/decompiled/018644_vm_load.src \
 	src/asm/018784.src \
 	src/asm/decompiled/0193c8_vm_menu.src \
 	src/asm/decompiled/019e98_main_menu.src \

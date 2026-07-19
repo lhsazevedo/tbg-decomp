@@ -13,7 +13,6 @@ return new class extends TestCase {
     {
         $this->setSize('_var_menuState_8c1bc7a8', 0x7c);
         $this->setSize('_var_progress_8c1ba1cc', 0x94);
-        $this->setSize('_init_8c045170', 0x30);
 
         // First received letter is slot 2 at init_8c045170[2] = (100, 200).
         $this->seedLetters([0, 0, 1, 0, 0, 1]);
@@ -39,7 +38,6 @@ return new class extends TestCase {
     {
         $this->setSize('_var_menuState_8c1bc7a8', 0x7c);
         $this->setSize('_var_progress_8c1ba1cc', 0x94);
-        $this->setSize('_init_8c045170', 0x30);
 
         $this->seedLetters([0, 0, 0, 0, 0, 0]);
 

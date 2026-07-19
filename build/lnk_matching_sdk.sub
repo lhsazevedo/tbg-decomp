@@ -217,8 +217,8 @@ input build\output\014b8c_backup.obj
 input build\output\014f54_text.obj
 input build\output\015ab8_title.obj
 input build\output\016108.obj
-input build\output\01614c.obj
-input build\output\01614c.obj
+input build\output\01614c_debug_menu.obj
+input build\output\01614c_debug_menu.obj
 input build\output\016bf4_demo_input.obj
 input build\output\016c58.obj
 input build\output\016d2c_course_menu.obj
