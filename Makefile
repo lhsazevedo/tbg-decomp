@@ -104,6 +104,7 @@ SRCS = \
 	src/serial_debug.c \
 	src/asm/sectionC.src \
 	src/asm/sectionD.src \
+	src/asm/04ce10_slots.c \
 	src/asm/sectionB.src \
 	src/02fb50_sh4nlfzn_post_data.c \
 

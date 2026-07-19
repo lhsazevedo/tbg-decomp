@@ -83,6 +83,7 @@ SRCS = \
 	src/asm/02f0c8.src \
 	src/asm/02f320.src \
 	src/asm/sectionD.src \
+	src/asm/04ce10_slots.src \
 	src/asm/02fb50_sh4nlfzn.src \
 	src/asm/03327c_strt1_sectionC.src \
 	src/asm/sectionC.src \
