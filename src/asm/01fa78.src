@@ -10,14 +10,10 @@
           .IMPORT     _var_8c22643c
           .IMPORT     _var_playMode_8c1bb8d0
           .IMPORT     _var_markTexlist_8c1bc418
-          .IMPORT     _init_8c045334
-          .IMPORT     _init_8c045374
-          .IMPORT     _init_8c0453b4
           .IMPORT     _var_8c1bc46c
           .IMPORT     _njUnitMatrix
           .IMPORT     _njTranslate
           .IMPORT     _njRotateZ
-          .IMPORT     _init_8c045414
           .IMPORT     _var_8c226478
           .IMPORT     _njCalcPoint
           .IMPORT     _FUN_8c0288b2
@@ -996,4 +992,26 @@ LP_GEN_28448:
           .DATA.L _var_8c22643c ; H'8C020208
           .DATA.L _var_8c226478 ; H'8C02020C
           .DATA.L H'FFFF0000 ; H'8C020210
+          .SECTION    D, DATA, ALIGN=4
+_init_8c045334:        ; from defines
+          .DATA.B      H'00, H'00, H'18, H'42, H'00, H'00, H'D8, H'43, H'FB, H'91, H'53, H'3F, H'00, H'F4, H'00, H'FF
+          .DATA.B      H'00, H'00, H'18, H'42, H'00, H'00, H'DE, H'43, H'FB, H'91, H'53, H'3F, H'00, H'F4, H'00, H'FF
+          .DATA.B      H'00, H'00, H'00, H'00, H'00, H'00, H'D8, H'43, H'FB, H'91, H'53, H'3F, H'00, H'F4, H'00, H'FF
+          .DATA.B      H'00, H'00, H'00, H'00, H'00, H'00, H'DE, H'43, H'FB, H'91, H'53, H'3F, H'00, H'F4, H'00, H'FF
+_init_8c045374:        ; from defines
+          .DATA.B      H'00, H'00, H'18, H'42, H'00, H'00, H'D8, H'43, H'4D, H'21, H'50, H'3F, H'00, H'00, H'B8, H'FF
+          .DATA.B      H'00, H'00, H'18, H'42, H'00, H'00, H'DE, H'43, H'4D, H'21, H'50, H'3F, H'00, H'00, H'B8, H'FF
+          .DATA.B      H'00, H'00, H'70, H'43, H'00, H'00, H'D8, H'43, H'4D, H'21, H'50, H'3F, H'00, H'00, H'B8, H'FF
+          .DATA.B      H'00, H'00, H'60, H'43, H'00, H'00, H'DE, H'43, H'4D, H'21, H'50, H'3F, H'00, H'00, H'B8, H'FF
+_init_8c0453b4:        ; from defines
+          .DATA.B      H'00, H'00, H'00, H'00, H'00, H'80, H'D4, H'43, H'9D, H'73, H'4E, H'3F, H'00, H'00, H'00, H'80
+          .DATA.B      H'00, H'00, H'00, H'00, H'00, H'80, H'EF, H'43, H'9D, H'73, H'4E, H'3F, H'00, H'00, H'00, H'80
+          .DATA.B      H'00, H'00, H'72, H'43, H'00, H'80, H'D4, H'43, H'9D, H'73, H'4E, H'3F, H'00, H'00, H'00, H'80
+          .DATA.B      H'00, H'C0, H'1F, H'44, H'00, H'80, H'EF, H'43, H'9D, H'73, H'4E, H'3F, H'00, H'00, H'00, H'80
+          .DATA.B      H'00, H'80, H'90, H'43, H'00, H'00, H'C1, H'43, H'9D, H'73, H'4E, H'3F, H'00, H'00, H'00, H'80
+          .DATA.B      H'00, H'C0, H'1F, H'44, H'00, H'00, H'C1, H'43, H'9D, H'73, H'4E, H'3F, H'00, H'00, H'00, H'80
+_init_8c045414:        ; from defines
+          .DATA.B      H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'C0, H'08, H'D6, H'51, H'3F
+          .DATA.B      H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'40, H'08, H'D6, H'51, H'3F
+          .DATA.B      H'00, H'00, H'20, H'C2, H'00, H'00, H'00, H'00, H'08, H'D6, H'51, H'3F
           .END

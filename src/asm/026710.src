@@ -1,6 +1,5 @@
 ; 8c026710
           .IMPORT     _var_8c227e1c
-          .IMPORT     _init_8c0460bc
           .IMPORT     _var_timeOfDay_8c18ad20
           .IMPORT     _FUN_8c02e51c
           .IMPORT     _var_sceneParams_8c18ad24
@@ -8,10 +7,8 @@
           .IMPORT     _var_8c1bbdd0
           .IMPORT     _FUN_8c020914
           .IMPORT     _FUN_8c020f7e
-          .IMPORT     _init_8c0460c8
           .IMPORT     _njCos
           .IMPORT     _njSin
-          .IMPORT     _init_8c0461c8
           .IMPORT     _AsqGetRandomA_8c012166
           .IMPORT     _FUN_8c02df3c
           .IMPORT     _njSqrt
@@ -25,7 +22,6 @@
           .IMPORT     _var_busState_8c1bb9d0
           .IMPORT     _var_progress_8c1ba1cc
           .IMPORT     _var_route_8c18ad1c
-          .IMPORT     _init_8c046208
           .IMPORT     _var_tasks_8c1bac28
           .IMPORT     _FUN_8c025b98
           .IMPORT     _TaskPush_8c014ae8
@@ -35,7 +31,6 @@
           .IMPORT     _TaskFree_8c014b66
           .IMPORT     _FUN_8c02f0c8
           .IMPORT     _var_demoEntryValue_8c227e14
-          .IMPORT     _init_8c04622c
           .IMPORT     _var_trafficModels_8c1bc3f4
           .IMPORT     _FUN_8c02786c
           .IMPORT     _var_8c227db8
@@ -2330,4 +2325,42 @@ LP_GEN_74201:
           .DATA.L LAB_8c0275d4 ; H'8C027860
           .DATA.L _var_tasks_8c1ba5e8 ; H'8C027864
           .DATA.L _TaskPush_8c014ae8 ; H'8C027868
+          .SECTION    D, DATA, ALIGN=4
+_init_8c0460bc:        ; from defines
+          .DATA.B      H'01
+          .DATA.B      H'03, H'03, H'03, H'03, H'02, H'03, H'02, H'04, H'01, H'04, H'00
+_init_8c0460c8:        ; from defines
+          .DATA.B      H'48, H'E1, H'1A, H'40
+_init_8c0460cc:        ; from ghidra
+          .DATA.B      H'8F, H'C2, H'D5, H'3F
+_init_8c0460d0:        ; from ghidra
+          .DATA.B      H'66, H'66, H'26, H'3F
+_init_8c0460d4:        ; from ghidra
+          .DATA.B      H'34, H'33, H'43, H'40, H'48, H'E1, H'1A, H'40, H'8F, H'C2, H'D5, H'3F, H'66, H'66, H'26, H'3F
+          .DATA.B      H'34, H'33, H'43, H'40, H'CD, H'CC, H'0C, H'40, H'A4, H'70, H'DD, H'3F, H'5C, H'8F, H'42, H'3F
+          .DATA.B      H'5C, H'8F, H'42, H'40, H'33, H'33, H'33, H'40, H'66, H'66, H'E6, H'3F, H'66, H'66, H'66, H'3F
+          .DATA.B      H'33, H'33, H'73, H'40, H'33, H'33, H'33, H'40, H'66, H'66, H'E6, H'3F, H'66, H'66, H'66, H'3F
+          .DATA.B      H'33, H'33, H'73, H'40, H'33, H'33, H'33, H'40, H'66, H'66, H'E6, H'3F, H'66, H'66, H'66, H'3F
+          .DATA.B      H'33, H'33, H'73, H'40, H'33, H'33, H'33, H'40, H'9A, H'99, H'D9, H'3F, H'33, H'33, H'33, H'3F
+          .DATA.B      H'9A, H'99, H'79, H'40, H'33, H'33, H'C3, H'40, H'85, H'EB, H'01, H'40, H'00, H'00, H'C0, H'3F
+          .DATA.B      H'66, H'66, H'0E, H'41, H'33, H'33, H'C3, H'40, H'85, H'EB, H'01, H'40, H'00, H'00, H'C0, H'3F
+          .DATA.B      H'66, H'66, H'0E, H'41, H'CD, H'CC, H'2C, H'40, H'66, H'66, H'E6, H'3F, H'00, H'00, H'80, H'3F
+          .DATA.B      H'00, H'00, H'80, H'40, H'00, H'00, H'80, H'40, H'E1, H'7A, H'04, H'40, H'00, H'00, H'00, H'40
+          .DATA.B      H'9A, H'99, H'A9, H'40, H'00, H'00, H'80, H'40, H'E1, H'7A, H'04, H'40, H'00, H'00, H'00, H'40
+          .DATA.B      H'9A, H'99, H'A9, H'40, H'66, H'66, H'26, H'40, H'0A, H'D7, H'C3, H'3F, H'66, H'66, H'66, H'3F
+          .DATA.B      H'00, H'00, H'60, H'40, H'CD, H'CC, H'9C, H'40, H'B8, H'1E, H'15, H'40, H'66, H'66, H'26, H'40
+          .DATA.B      H'00, H'00, H'00, H'41, H'33, H'33, H'33, H'40, H'EC, H'51, H'D8, H'3F, H'A4, H'70, H'3D, H'3F
+          .DATA.B      H'A4, H'70, H'7D, H'40, H'66, H'66, H'26, H'40, H'3D, H'0A, H'D7, H'3F, H'00, H'00, H'80, H'3F
+          .DATA.B      H'99, H'99, H'79, H'40
+_init_8c0461c8:        ; from defines
+          .DATA.B      H'0A, H'D7, H'23, H'3C, H'0A, H'D7, H'23, H'3C, H'6F, H'12, H'83, H'3B, H'42, H'60, H'E5, H'3B
+          .DATA.B      H'42, H'60, H'E5, H'3B, H'42, H'60, H'E5, H'3B, H'42, H'60, H'E5, H'3B, H'6F, H'12, H'03, H'3B
+          .DATA.B      H'6F, H'12, H'03, H'3B, H'6F, H'12, H'83, H'3B, H'6F, H'12, H'03, H'3B, H'6F, H'12, H'03, H'3B
+          .DATA.B      H'6F, H'12, H'83, H'3B, H'6F, H'12, H'83, H'3A, H'0A, H'D7, H'23, H'3C, H'0A, H'D7, H'23, H'3C
+_init_8c046208:        ; from defines
+          .DATA.B      H'00, H'00, H'00, H'00, H'00, H'80, H'00, H'00, H'00, H'00, H'00, H'01, H'00, H'40, H'00, H'00
+          .DATA.B      H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'08, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00
+          .DATA.B      H'00, H'02, H'00, H'00
+_init_8c04622c:        ; from defines
+          .DATA.B      H'00, H'00, H'01, H'02, H'02, H'02, H'03, H'04, H'04, H'05, H'06, H'06, H'07, H'08, H'09, H'0A
           .END

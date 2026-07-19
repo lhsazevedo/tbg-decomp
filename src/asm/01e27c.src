@@ -7,11 +7,9 @@
           .IMPORT     _var_isFading_8c226568
           .IMPORT     _RouteLoadIsPvmReady_8c01432a
           .IMPORT     _AsqFreeQueues_8c011f7e
-          .IMPORT     _init_8c0451b4
           .IMPORT     _SndProc_8c010cd6
           .IMPORT     _push_fadein_8c022a9c
           .IMPORT     _var_peripherals_8c1ba35c
-          .IMPORT     _const_8c03896c
           .IMPORT     _swapMessageBoxFor_8c02aefc
           .IMPORT     _var_midiHandles_8c0fcd28
           .IMPORT     _sdMidiPlay
@@ -23,7 +21,6 @@
           .IMPORT     _var_8c1bb8f0
           .IMPORT     _var_8c1bb8ec
           .IMPORT     _var_8c1bb8f4
-          .IMPORT     _init_8c0451c0
           .IMPORT     _var_8c226410
           .IMPORT     _GamePushLoadingTask_8c013310
           .IMPORT     _TaskSetAction_8c014b3e
@@ -35,17 +32,13 @@
           .IMPORT     _RouteLoadResetPvmReady_8c014322
           .IMPORT     _AsqNop_8c011120
           .IMPORT     _AsqProcessQueues_8c011fe0
-          .IMPORT     _init_8c0451ec
           .IMPORT     _var_gameMode_8c1bb8fc
           .IMPORT     _CourseMenuDrawDateAndExp_8c016ee6
-          .IMPORT     _init_8c0451f8
           .IMPORT     _njUserClipping
-          .IMPORT     _const_8c038984
           .IMPORT     _init_8c044274
           .IMPORT     _var_8c1bb8b8
           .IMPORT     _var_8c1bb8bc
           .IMPORT     _var_progress_8c1ba1cc
-          .IMPORT     _init_8c045208
           .IMPORT     _var_8c1bb8dc
           .IMPORT     _var_award_8c1bb8f8
           .IMPORT     _var_8c226414
@@ -54,7 +47,6 @@
           .IMPORT     _FUN_8c010d8a
           .IMPORT     _CourseMenuPushDialogTask_8c0170c6
           .IMPORT     _var_dialogSequenceIsActive_8c225fb4
-          .IMPORT     _const_8c038988
           .IMPORT     _var_menuTextboxCharLimit_8c225fb8
           .IMPORT     _var_8c22642c
           .IMPORT     _CourseMenuFUN_8c017ef2
@@ -2235,4 +2227,38 @@ LP_GEN_37649:
           .DATA.L _RouteLoadResetPvmReady_8c014322 ; H'8C01F3B4
           .DATA.L _AsqNop_8c011120 ; H'8C01F3B8
           .DATA.L _AsqProcessQueues_8c011fe0 ; H'8C01F3BC
+          .SECTION    C, DATA, ALIGN=4
+_const_8c03896c:        ; from defines
+          ;.SDATA      "練習をはじめますか？"
+          ;.DATA.B     H'00
+          ;.RES.B      3
+          .DATA.B      H'97, H'FB, H'8F, H'4B, H'82, H'F0, H'82, H'CD, H'82, H'B6, H'82, H'DF, H'82, H'DC, H'82, H'B7
+          .DATA.B      H'82, H'A9, H'81, H'48, H'00, H'00, H'00, H'00
+_const_8c038984:        ; from defines
+          .DATA.B      H'00, H'00, H'00, H'00
+_const_8c038988:        ; from defines
+          ;.SDATA      "練習モードを終了します<E>よろしいですか？"
+          ;.DATA.B     H'00
+          ;.RES.B      2
+          .DATA.B      H'97, H'FB, H'8F, H'4B, H'83, H'82, H'81, H'5B, H'83, H'68, H'82, H'F0, H'8F, H'49, H'97, H'B9
+          .DATA.B      H'82, H'B5, H'82, H'DC, H'82, H'B7, H'3C, H'45, H'3E, H'82, H'E6, H'82, H'EB, H'82, H'B5, H'82
+          .DATA.B      H'A2, H'82, H'C5, H'82, H'B7, H'82, H'A9, H'81, H'48, H'00, H'00, H'00
+          .SECTION    D, DATA, ALIGN=4
+_init_8c0451b4:        ; from defines
+          .DATA.B      H'00, H'02, H'03, H'04, H'06, H'09, H'0C, H'0F, H'11, H'13, H'18, H'19
+_init_8c0451c0:        ; from defines
+          .DATA.B      H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00
+          .DATA.B      H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'06, H'00, H'00, H'00
+          .DATA.B      H'0F, H'00, H'00, H'00, H'0F, H'00, H'00, H'00, H'0F, H'00, H'00, H'00
+_init_8c0451ec:        ; from defines
+          .DATA.B      H'10, H'0A, H'14, H'11, H'12, H'14, H'15, H'13, H'13, H'1B, H'09, H'00
+_init_8c0451f8:        ; from defines
+          .DATA.B      H'00, H'00, H'00, H'40, H'00, H'00, H'C0, H'40, H'00, H'00, H'30, H'41, H'00, H'00, H'E0, H'40
+_init_8c045208:        ; from defines
+          ;.SDATA      " !#$%&())+,--../2345116789:;;=1'>?"
+          ;.DATA.B     H'00
+          ;.RES.B      1
+          .DATA.B      H'20, H'21, H'23, H'24, H'25, H'26, H'28, H'29, H'29, H'2B, H'2C, H'2D, H'2D, H'2E, H'2E, H'2F
+          .DATA.B      H'32, H'33, H'34, H'35, H'31, H'31, H'36, H'37, H'38, H'39, H'3A, H'3B, H'3B, H'3D, H'31, H'27
+          .DATA.B      H'3E, H'3F, H'00, H'00
           .END

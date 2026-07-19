@@ -2,17 +2,12 @@
           .IMPORT     _var_progress_8c1ba1cc
           .IMPORT     _var_8c226430
           .IMPORT     _var_dialogQueue_8c225fbc
-          .IMPORT     _init_8c04522c
-          .IMPORT     _init_8c045244
-          .IMPORT     _init_8c04525c
-          .IMPORT     _init_8c045278
           .IMPORT     _var_menuState_8c1bc7a8
           .IMPORT     _TxtDrawSprite_8c014f54
           .IMPORT     _var_menuTextboxCharLimit_8c225fb8
           .IMPORT     _menuTextboxText_8c02af1c
           .IMPORT     _njSetBackColor
           .IMPORT     _var_8c1bc404
-          .IMPORT     _init_8c04528c
           .IMPORT     _TxtPrepareTextBoxLayout_8c01543a
           .IMPORT     _TxtDrawTextbox_8c0155e0
           .IMPORT     _init_8c03bd80
@@ -29,7 +24,6 @@
           .IMPORT     _TxtInit_8c01524c
           .IMPORT     _TxtCreateTextBox_8c0152fc
           .IMPORT     _var_8c1bc408
-          .IMPORT     _init_8c045290
           .IMPORT     _FUN_8c016182
           .IMPORT     _var_selectedVm_8c1ba34c
           .IMPORT     _TitlePushTitle_8c015fd6
@@ -41,11 +35,9 @@
           .IMPORT     _var_tex_8c157af8
           .IMPORT     _njGarbageTexture
           .IMPORT     _FUN_8c02ae3e
-          .IMPORT     _const_8c039f48
           .IMPORT     _swapMessageBoxFor_8c02aefc
           .IMPORT     _AsqInitQueues_8c011f36
           .IMPORT     _AsqResetQueues_8c011f6c
-          .IMPORT     _init_8c045324
           .IMPORT     _CourseMenuRequestSysResgrp_8c018568
           .IMPORT     _CourseMenuRequestCommonResources_8c01852c
           .IMPORT     _RouteLoadSetPvmReady_8c014330
@@ -893,4 +885,594 @@ LP_GEN_38893:
           .DATA.L _RouteLoadResetPvmReady_8c014322 ; H'8C01FA6C
           .DATA.L _AsqNop_8c011120 ; H'8C01FA70
           .DATA.L _AsqProcessQueues_8c011fe0 ; H'8C01FA74
+          .SECTION    C, DATA, ALIGN=4
+_const_8c0389b4:        ; from ghidra
+          ;.SDATA      "Å`ÇfÇ`ÇlÇdÅ@ÇcÇdÇrÇhÇfÇmÅ`<E><E><E>ÇjÇdÇmÇiÇhÅ@ÇmÇ`ÇjÇ`ÇmÇn<E><E><E><E><E><E>Å`ÇnÇqÇhÇfÇhÇmÇ`ÇkÅ@ÇoÇkÇ`ÇmÅ`<E><E><E>ÇsÇ`ÇjÇdÇnÅ@ÇxÇ`ÇfÇh"
+          ;.DATA.B     H'00
+          ;.RES.B      3
+          .DATA.B      H'81, H'60, H'82, H'66, H'82, H'60, H'82, H'6C, H'82, H'64, H'81, H'40, H'82, H'63, H'82, H'64
+          .DATA.B      H'82, H'72, H'82, H'68, H'82, H'66, H'82, H'6D, H'81, H'60, H'3C, H'45, H'3E, H'3C, H'45, H'3E
+          .DATA.B      H'3C, H'45, H'3E, H'82, H'6A, H'82, H'64, H'82, H'6D, H'82, H'69, H'82, H'68, H'81, H'40, H'82
+          .DATA.B      H'6D, H'82, H'60, H'82, H'6A, H'82, H'60, H'82, H'6D, H'82, H'6E, H'3C, H'45, H'3E, H'3C, H'45
+          .DATA.B      H'3E, H'3C, H'45, H'3E, H'3C, H'45, H'3E, H'3C, H'45, H'3E, H'3C, H'45, H'3E, H'81, H'60, H'82
+          .DATA.B      H'6E, H'82, H'71, H'82, H'68, H'82, H'66, H'82, H'68, H'82, H'6D, H'82, H'60, H'82, H'6B, H'81
+          .DATA.B      H'40, H'82, H'6F, H'82, H'6B, H'82, H'60, H'82, H'6D, H'81, H'60, H'3C, H'45, H'3E, H'3C, H'45
+          .DATA.B      H'3E, H'3C, H'45, H'3E, H'82, H'73, H'82, H'60, H'82, H'6A, H'82, H'64, H'82, H'6E, H'81, H'40
+          .DATA.B      H'82, H'78, H'82, H'60, H'82, H'66, H'82, H'68, H'00, H'00, H'00, H'00
+_const_8c038a40:        ; from ghidra
+          ;.SDATA      "<E><E><E>Å`ÇlÇ`ÇhÇmÅ@ÇoÇqÇnÇfÇqÇ`ÇlÇlÇdÇqÅ`<E><E><E>ÇjÇ`ÇyÇtÇ`ÇjÇhÅ@ÇsÇnÇhÇcÇ`<E><E><E><E><E><E>Å`ÇrÇtÇaÅ@ÇoÇqÇnÇfÇqÇ`ÇlÇlÇdÇqÅ`"
+          ;.DATA.B     H'00
+          ;.RES.B      3
+          .DATA.B      H'3C, H'45, H'3E, H'3C, H'45, H'3E, H'3C, H'45, H'3E, H'81, H'60, H'82, H'6C, H'82, H'60, H'82
+          .DATA.B      H'68, H'82, H'6D, H'81, H'40, H'82, H'6F, H'82, H'71, H'82, H'6E, H'82, H'66, H'82, H'71, H'82
+          .DATA.B      H'60, H'82, H'6C, H'82, H'6C, H'82, H'64, H'82, H'71, H'81, H'60, H'3C, H'45, H'3E, H'3C, H'45
+          .DATA.B      H'3E, H'3C, H'45, H'3E, H'82, H'6A, H'82, H'60, H'82, H'79, H'82, H'74, H'82, H'60, H'82, H'6A
+          .DATA.B      H'82, H'68, H'81, H'40, H'82, H'73, H'82, H'6E, H'82, H'68, H'82, H'63, H'82, H'60, H'3C, H'45
+          .DATA.B      H'3E, H'3C, H'45, H'3E, H'3C, H'45, H'3E, H'3C, H'45, H'3E, H'3C, H'45, H'3E, H'3C, H'45, H'3E
+          .DATA.B      H'81, H'60, H'82, H'72, H'82, H'74, H'82, H'61, H'81, H'40, H'82, H'6F, H'82, H'71, H'82, H'6E
+          .DATA.B      H'82, H'66, H'82, H'71, H'82, H'60, H'82, H'6C, H'82, H'6C, H'82, H'64, H'82, H'71, H'81, H'60
+          .DATA.B      H'00, H'00, H'00, H'00
+_const_8c038ac4:        ; aggressive search
+          ;.SDATA      "ÇxÇnÇtÇgÇdÇhÅ@ÇrÇ`ÇsÇn<E><E>ÇrÇgÇhÇmÇhÇbÇgÇhÇqÇnÅ@ÇsÇ`ÇjÇ`ÇgÇ`ÇrÇgÇh<E><E><E><E><E><E>Å`Ç`ÇrÇrÇhÇrÇsÇ`ÇmÇsÅ@ÇoÇqÇnÇfÇqÇ`ÇlÇlÇdÇqÅ`<E><E><E>ÇlÇhÇsÇrÇtÇmÇnÇqÇhÅ@ÇlÇ`ÇsÇrÇtÇcÇ`<E><E>ÇlÇhÇmÇnÇqÇtÅ@ÇlÇhÇxÇ`ÇiÇhÇlÇ`"
+          ;.DATA.B     H'00
+          ;.RES.B      2
+          .DATA.B      H'82, H'78, H'82, H'6E, H'82, H'74, H'82, H'67, H'82, H'64, H'82, H'68, H'81, H'40, H'82, H'72
+          .DATA.B      H'82, H'60, H'82, H'73, H'82, H'6E, H'3C, H'45, H'3E, H'3C, H'45, H'3E, H'82, H'72, H'82, H'67
+          .DATA.B      H'82, H'68, H'82, H'6D, H'82, H'68, H'82, H'62, H'82, H'67, H'82, H'68, H'82, H'71, H'82, H'6E
+          .DATA.B      H'81, H'40, H'82, H'73, H'82, H'60, H'82, H'6A, H'82, H'60, H'82, H'67, H'82, H'60, H'82, H'72
+          .DATA.B      H'82, H'67, H'82, H'68, H'3C, H'45, H'3E, H'3C, H'45, H'3E, H'3C, H'45, H'3E, H'3C, H'45, H'3E
+          .DATA.B      H'3C, H'45, H'3E, H'3C, H'45, H'3E, H'81, H'60, H'82, H'60, H'82, H'72, H'82, H'72, H'82, H'68
+          .DATA.B      H'82, H'72, H'82, H'73, H'82, H'60, H'82, H'6D, H'82, H'73, H'81, H'40, H'82, H'6F, H'82, H'71
+          .DATA.B      H'82, H'6E, H'82, H'66, H'82, H'71, H'82, H'60, H'82, H'6C, H'82, H'6C, H'82, H'64, H'82, H'71
+          .DATA.B      H'81, H'60, H'3C, H'45, H'3E, H'3C, H'45, H'3E, H'3C, H'45, H'3E, H'82, H'6C, H'82, H'68, H'82
+          .DATA.B      H'73, H'82, H'72, H'82, H'74, H'82, H'6D, H'82, H'6E, H'82, H'71, H'82, H'68, H'81, H'40, H'82
+          .DATA.B      H'6C, H'82, H'60, H'82, H'73, H'82, H'72, H'82, H'74, H'82, H'63, H'82, H'60, H'3C, H'45, H'3E
+          .DATA.B      H'3C, H'45, H'3E, H'82, H'6C, H'82, H'68, H'82, H'6D, H'82, H'6E, H'82, H'71, H'82, H'74, H'81
+          .DATA.B      H'40, H'82, H'6C, H'82, H'68, H'82, H'78, H'82, H'60, H'82, H'69, H'82, H'68, H'82, H'6C, H'82
+          .DATA.B      H'60, H'00, H'00, H'00
+_const_8c038b98:        ; aggressive search
+          ;.SDATA      "<E><E><E><E>Å`ÇuÇlÅ@ÇoÇqÇnÇfÇqÇ`ÇlÇlÇdÇqÅ`<E><E><E>ÇiÇtÇmÅ@ÇhÇrÇgÇhÇcÇ`<E><E>Ç`ÇjÇhÇnÅ@ÇrÇgÇhÇqÇ`ÇhÇrÇgÇh<E><E>ÅiäîéÆâÔé–É^ÉNÉgÉTÅ[ÉrÉXÅj"
+          ;.DATA.B     H'00
+          ;.RES.B      2
+          .DATA.B      H'3C, H'45, H'3E, H'3C, H'45, H'3E, H'3C, H'45, H'3E, H'3C, H'45, H'3E, H'81, H'60, H'82, H'75
+          .DATA.B      H'82, H'6C, H'81, H'40, H'82, H'6F, H'82, H'71, H'82, H'6E, H'82, H'66, H'82, H'71, H'82, H'60
+          .DATA.B      H'82, H'6C, H'82, H'6C, H'82, H'64, H'82, H'71, H'81, H'60, H'3C, H'45, H'3E, H'3C, H'45, H'3E
+          .DATA.B      H'3C, H'45, H'3E, H'82, H'69, H'82, H'74, H'82, H'6D, H'81, H'40, H'82, H'68, H'82, H'72, H'82
+          .DATA.B      H'67, H'82, H'68, H'82, H'63, H'82, H'60, H'3C, H'45, H'3E, H'3C, H'45, H'3E, H'82, H'60, H'82
+          .DATA.B      H'6A, H'82, H'68, H'82, H'6E, H'81, H'40, H'82, H'72, H'82, H'67, H'82, H'68, H'82, H'71, H'82
+          .DATA.B      H'60, H'82, H'68, H'82, H'72, H'82, H'67, H'82, H'68, H'3C, H'45, H'3E, H'3C, H'45, H'3E, H'81
+          .DATA.B      H'69, H'8A, H'94, H'8E, H'AE, H'89, H'EF, H'8E, H'D0, H'83, H'5E, H'83, H'4E, H'83, H'67, H'83
+          .DATA.B      H'54, H'81, H'5B, H'83, H'72, H'83, H'58, H'81, H'6A, H'00, H'00, H'00
+_const_8c038c24:        ; aggressive search
+          ;.SDATA      "<E><E>Å`ÇrÇtÇoÇoÇnÇqÇsÅ@ÇoÇqÇnÇfÇqÇ`ÇlÇlÇdÇqÅ`<E><E><E>ÇsÇnÇqÇtÅ@ÇmÇ`ÇjÇ`ÇfÇ`ÇvÇ`"
+          ;.DATA.B     H'00
+          ;.RES.B      2
+          .DATA.B      H'3C, H'45, H'3E, H'3C, H'45, H'3E, H'81, H'60, H'82, H'72, H'82, H'74, H'82, H'6F, H'82, H'6F
+          .DATA.B      H'82, H'6E, H'82, H'71, H'82, H'73, H'81, H'40, H'82, H'6F, H'82, H'71, H'82, H'6E, H'82, H'66
+          .DATA.B      H'82, H'71, H'82, H'60, H'82, H'6C, H'82, H'6C, H'82, H'64, H'82, H'71, H'81, H'60, H'3C, H'45
+          .DATA.B      H'3E, H'3C, H'45, H'3E, H'3C, H'45, H'3E, H'82, H'73, H'82, H'6E, H'82, H'71, H'82, H'74, H'81
+          .DATA.B      H'40, H'82, H'6D, H'82, H'60, H'82, H'6A, H'82, H'60, H'82, H'66, H'82, H'60, H'82, H'76, H'82
+          .DATA.B      H'60, H'00, H'00, H'00
+_const_8c038c78:        ; aggressive search
+          ;.SDATA      "<E><E><E><E><E><E>Å`ÇbÇgÇ`ÇqÇ`ÇbÇsÇdÇqÅ@ÇcÇdÇrÇhÇfÇmÅ`<E><E><E>ÇmÇnÇaÇtÇnÅ@ÇjÇtÇrÇtÇmÇnÇjÇh"
+          ;.DATA.B     H'00
+          .DATA.B      H'3C, H'45, H'3E, H'3C, H'45, H'3E, H'3C, H'45, H'3E, H'3C, H'45, H'3E, H'3C, H'45, H'3E, H'3C
+          .DATA.B      H'45, H'3E, H'81, H'60, H'82, H'62, H'82, H'67, H'82, H'60, H'82, H'71, H'82, H'60, H'82, H'62
+          .DATA.B      H'82, H'73, H'82, H'64, H'82, H'71, H'81, H'40, H'82, H'63, H'82, H'64, H'82, H'72, H'82, H'68
+          .DATA.B      H'82, H'66, H'82, H'6D, H'81, H'60, H'3C, H'45, H'3E, H'3C, H'45, H'3E, H'3C, H'45, H'3E, H'82
+          .DATA.B      H'6D, H'82, H'6E, H'82, H'61, H'82, H'74, H'82, H'6E, H'81, H'40, H'82, H'6A, H'82, H'74, H'82
+          .DATA.B      H'72, H'82, H'74, H'82, H'6D, H'82, H'6E, H'82, H'6A, H'82, H'68, H'00
+_const_8c038cd4:        ; aggressive search
+          ;.SDATA      "<E><E><E><E><E><E><E><E><E><E>Å`ÇbÇfÅ@ÇcÇdÇrÇhÇfÇmÇdÇqÅ`<E><E><E>Å`ÇÑÇâÇíÇÖÇÉÇîÇèÇíÅ`"
+          ;.DATA.B     H'00
+          ;.RES.B      2
+          .DATA.B      H'3C, H'45, H'3E, H'3C, H'45, H'3E, H'3C, H'45, H'3E, H'3C, H'45, H'3E, H'3C, H'45, H'3E, H'3C
+          .DATA.B      H'45, H'3E, H'3C, H'45, H'3E, H'3C, H'45, H'3E, H'3C, H'45, H'3E, H'3C, H'45, H'3E, H'81, H'60
+          .DATA.B      H'82, H'62, H'82, H'66, H'81, H'40, H'82, H'63, H'82, H'64, H'82, H'72, H'82, H'68, H'82, H'66
+          .DATA.B      H'82, H'6D, H'82, H'64, H'82, H'71, H'81, H'60, H'3C, H'45, H'3E, H'3C, H'45, H'3E, H'3C, H'45
+          .DATA.B      H'3E, H'81, H'60, H'82, H'84, H'82, H'89, H'82, H'92, H'82, H'85, H'82, H'83, H'82, H'94, H'82
+          .DATA.B      H'8F, H'82, H'92, H'81, H'60, H'00, H'00, H'00
+_const_8c038d2c:        ; aggressive search
+          ;.SDATA      "ÇsÇnÇrÇgÇhÇ`ÇjÇhÅ@ÇlÇ`ÇqÇtÇxÇ`ÇlÇ`<E><E>ÇxÇ`ÇrÇtÇeÇtÇlÇhÅ@ÇrÇnÇdÇiÇhÇlÇ`<E><E>ÅiäîéÆâÔé–ÉEÉYÅj<E><E><E><E>Å`ÇÉÇÅÇíÅ`<E><E>ÇmÇnÇaÇtÇgÇhÇsÇnÅ@ÇxÇ`ÇlÇ`ÇlÇnÇsÇn<E><E>ÇsÇnÇlÇnÇdÅ@ÇeÇtÇiÇhÇrÇ`ÇvÇ`"
+          ;.DATA.B     H'00
+          ;.RES.B      1
+          .DATA.B      H'82, H'73, H'82, H'6E, H'82, H'72, H'82, H'67, H'82, H'68, H'82, H'60, H'82, H'6A, H'82, H'68
+          .DATA.B      H'81, H'40, H'82, H'6C, H'82, H'60, H'82, H'71, H'82, H'74, H'82, H'78, H'82, H'60, H'82, H'6C
+          .DATA.B      H'82, H'60, H'3C, H'45, H'3E, H'3C, H'45, H'3E, H'82, H'78, H'82, H'60, H'82, H'72, H'82, H'74
+          .DATA.B      H'82, H'65, H'82, H'74, H'82, H'6C, H'82, H'68, H'81, H'40, H'82, H'72, H'82, H'6E, H'82, H'64
+          .DATA.B      H'82, H'69, H'82, H'68, H'82, H'6C, H'82, H'60, H'3C, H'45, H'3E, H'3C, H'45, H'3E, H'81, H'69
+          .DATA.B      H'8A, H'94, H'8E, H'AE, H'89, H'EF, H'8E, H'D0, H'83, H'45, H'83, H'59, H'81, H'6A, H'3C, H'45
+          .DATA.B      H'3E, H'3C, H'45, H'3E, H'3C, H'45, H'3E, H'3C, H'45, H'3E, H'81, H'60, H'82, H'83, H'82, H'81
+          .DATA.B      H'82, H'92, H'81, H'60, H'3C, H'45, H'3E, H'3C, H'45, H'3E, H'82, H'6D, H'82, H'6E, H'82, H'61
+          .DATA.B      H'82, H'74, H'82, H'67, H'82, H'68, H'82, H'73, H'82, H'6E, H'81, H'40, H'82, H'78, H'82, H'60
+          .DATA.B      H'82, H'6C, H'82, H'60, H'82, H'6C, H'82, H'6E, H'82, H'73, H'82, H'6E, H'3C, H'45, H'3E, H'3C
+          .DATA.B      H'45, H'3E, H'82, H'73, H'82, H'6E, H'82, H'6C, H'82, H'6E, H'82, H'64, H'81, H'40, H'82, H'65
+          .DATA.B      H'82, H'74, H'82, H'69, H'82, H'68, H'82, H'72, H'82, H'60, H'82, H'76, H'82, H'60, H'00, H'00
+_const_8c038dec:        ; aggressive search
+          ;.SDATA      "<E>Å`ÇìÇàÇâÇéÇäÇïÇãÇïÅïÇóÇÅÇéÇáÇÅÇéÅ`<E><E>ÇsÇ`ÇjÇ`ÇxÇ`Å@ÇxÇnÇrÇgÇhÇcÇ`<E><E>ÇjÇ`ÇyÇtÇmÇnÇqÇhÅ@ÇsÇ`ÇaÇ`ÇsÇ`<E><E>ÇjÇ`ÇsÇrÇtÇxÇtÇjÇhÅ@ÇlÇhÇxÇ`Çn<E><E>ÇlÇhÇsÇrÇtÇnÅ@ÇsÇdÇqÇ`Çn<E><E>ÇlÇ`ÇmÇ`ÇaÇtÅ@ÇjÇnÇiÇhÇlÇ`<E><E>ÇfÇdÇmÇfÇnÅ@ÇhÇsÇn"
+          ;.DATA.B     H'00
+          ;.RES.B      2
+          .DATA.B      H'3C, H'45, H'3E, H'81, H'60, H'82, H'93, H'82, H'88, H'82, H'89, H'82, H'8E, H'82, H'8A, H'82
+          .DATA.B      H'95, H'82, H'8B, H'82, H'95, H'81, H'95, H'82, H'97, H'82, H'81, H'82, H'8E, H'82, H'87, H'82
+          .DATA.B      H'81, H'82, H'8E, H'81, H'60, H'3C, H'45, H'3E, H'3C, H'45, H'3E, H'82, H'73, H'82, H'60, H'82
+          .DATA.B      H'6A, H'82, H'60, H'82, H'78, H'82, H'60, H'81, H'40, H'82, H'78, H'82, H'6E, H'82, H'72, H'82
+          .DATA.B      H'67, H'82, H'68, H'82, H'63, H'82, H'60, H'3C, H'45, H'3E, H'3C, H'45, H'3E, H'82, H'6A, H'82
+          .DATA.B      H'60, H'82, H'79, H'82, H'74, H'82, H'6D, H'82, H'6E, H'82, H'71, H'82, H'68, H'81, H'40, H'82
+          .DATA.B      H'73, H'82, H'60, H'82, H'61, H'82, H'60, H'82, H'73, H'82, H'60, H'3C, H'45, H'3E, H'3C, H'45
+          .DATA.B      H'3E, H'82, H'6A, H'82, H'60, H'82, H'73, H'82, H'72, H'82, H'74, H'82, H'78, H'82, H'74, H'82
+          .DATA.B      H'6A, H'82, H'68, H'81, H'40, H'82, H'6C, H'82, H'68, H'82, H'78, H'82, H'60, H'82, H'6E, H'3C
+          .DATA.B      H'45, H'3E, H'3C, H'45, H'3E, H'82, H'6C, H'82, H'68, H'82, H'73, H'82, H'72, H'82, H'74, H'82
+          .DATA.B      H'6E, H'81, H'40, H'82, H'73, H'82, H'64, H'82, H'71, H'82, H'60, H'82, H'6E, H'3C, H'45, H'3E
+          .DATA.B      H'3C, H'45, H'3E, H'82, H'6C, H'82, H'60, H'82, H'6D, H'82, H'60, H'82, H'61, H'82, H'74, H'81
+          .DATA.B      H'40, H'82, H'6A, H'82, H'6E, H'82, H'69, H'82, H'68, H'82, H'6C, H'82, H'60, H'3C, H'45, H'3E
+          .DATA.B      H'3C, H'45, H'3E, H'82, H'66, H'82, H'64, H'82, H'6D, H'82, H'66, H'82, H'6E, H'81, H'40, H'82
+          .DATA.B      H'68, H'82, H'73, H'82, H'6E, H'00, H'00, H'00
+_const_8c038ed4:        ; aggressive search
+          ;.SDATA      "ÇjÇdÇhÇiÇhÅ@ÇmÇ`ÇjÇ`ÇmÇhÇrÇgÇh<E><E>ÅiäîéÆâÔé–ÉEÉYÅj<E><E><E><E>Å`ÇèÇïÇçÇÖÅ`<E><E>ÇxÇ`ÇrÇtÇgÇhÇqÇnÅ@ÇjÇ`ÇmÇnÇt<E><E>ÇxÇnÇrÇgÇhÇmÇnÇqÇhÅ@ÇgÇhÇqÇ`Çh<E><E>ÇxÇtÇsÇ`ÇjÇ`Å@ÇxÇ`ÇlÇ`ÇyÇ`ÇjÇh<E><E>ÅióLå¿âÔé–É^ÉCÉjÅ[ÉAÅ[ÉgÅj"
+          ;.DATA.B     H'00
+          ;.RES.B      1
+          .DATA.B      H'82, H'6A, H'82, H'64, H'82, H'68, H'82, H'69, H'82, H'68, H'81, H'40, H'82, H'6D, H'82, H'60
+          .DATA.B      H'82, H'6A, H'82, H'60, H'82, H'6D, H'82, H'68, H'82, H'72, H'82, H'67, H'82, H'68, H'3C, H'45
+          .DATA.B      H'3E, H'3C, H'45, H'3E, H'81, H'69, H'8A, H'94, H'8E, H'AE, H'89, H'EF, H'8E, H'D0, H'83, H'45
+          .DATA.B      H'83, H'59, H'81, H'6A, H'3C, H'45, H'3E, H'3C, H'45, H'3E, H'3C, H'45, H'3E, H'3C, H'45, H'3E
+          .DATA.B      H'81, H'60, H'82, H'8F, H'82, H'95, H'82, H'8D, H'82, H'85, H'81, H'60, H'3C, H'45, H'3E, H'3C
+          .DATA.B      H'45, H'3E, H'82, H'78, H'82, H'60, H'82, H'72, H'82, H'74, H'82, H'67, H'82, H'68, H'82, H'71
+          .DATA.B      H'82, H'6E, H'81, H'40, H'82, H'6A, H'82, H'60, H'82, H'6D, H'82, H'6E, H'82, H'74, H'3C, H'45
+          .DATA.B      H'3E, H'3C, H'45, H'3E, H'82, H'78, H'82, H'6E, H'82, H'72, H'82, H'67, H'82, H'68, H'82, H'6D
+          .DATA.B      H'82, H'6E, H'82, H'71, H'82, H'68, H'81, H'40, H'82, H'67, H'82, H'68, H'82, H'71, H'82, H'60
+          .DATA.B      H'82, H'68, H'3C, H'45, H'3E, H'3C, H'45, H'3E, H'82, H'78, H'82, H'74, H'82, H'73, H'82, H'60
+          .DATA.B      H'82, H'6A, H'82, H'60, H'81, H'40, H'82, H'78, H'82, H'60, H'82, H'6C, H'82, H'60, H'82, H'79
+          .DATA.B      H'82, H'60, H'82, H'6A, H'82, H'68, H'3C, H'45, H'3E, H'3C, H'45, H'3E, H'81, H'69, H'97, H'4C
+          .DATA.B      H'8C, H'C0, H'89, H'EF, H'8E, H'D0, H'83, H'5E, H'83, H'43, H'83, H'6A, H'81, H'5B, H'83, H'41
+          .DATA.B      H'81, H'5B, H'83, H'67, H'81, H'6A, H'00, H'00
+_const_8c038fac:        ; aggressive search
+          ;.SDATA      "<E><E>ÇsÇdÇqÇtÇnÅ@ÇhÇbÇgÇhÇlÇtÇqÇ`<E><E>ÇjÇnÇtÇiÇhÅ@ÇnÇfÇ`ÇsÇ`<E><E>ÅiäîéÆâÔé–ÉZÉsÉAÅj<E><E><E><E>Å`ÇÖÇñÇÖÇéÇîÅ`<E><E>ÇrÇxÇnÇiÇhÅ@ÇlÇ`ÇsÇrÇtÇcÇ`<E><E>ÇgÇ`ÇxÇ`ÇsÇnÅ@ÇrÇgÇhÇmÇnÇgÇ`ÇqÇ`"
+          ;.DATA.B     H'00
+          ;.RES.B      1
+          .DATA.B      H'3C, H'45, H'3E, H'3C, H'45, H'3E, H'82, H'73, H'82, H'64, H'82, H'71, H'82, H'74, H'82, H'6E
+          .DATA.B      H'81, H'40, H'82, H'68, H'82, H'62, H'82, H'67, H'82, H'68, H'82, H'6C, H'82, H'74, H'82, H'71
+          .DATA.B      H'82, H'60, H'3C, H'45, H'3E, H'3C, H'45, H'3E, H'82, H'6A, H'82, H'6E, H'82, H'74, H'82, H'69
+          .DATA.B      H'82, H'68, H'81, H'40, H'82, H'6E, H'82, H'66, H'82, H'60, H'82, H'73, H'82, H'60, H'3C, H'45
+          .DATA.B      H'3E, H'3C, H'45, H'3E, H'81, H'69, H'8A, H'94, H'8E, H'AE, H'89, H'EF, H'8E, H'D0, H'83, H'5A
+          .DATA.B      H'83, H'73, H'83, H'41, H'81, H'6A, H'3C, H'45, H'3E, H'3C, H'45, H'3E, H'3C, H'45, H'3E, H'3C
+          .DATA.B      H'45, H'3E, H'81, H'60, H'82, H'85, H'82, H'96, H'82, H'85, H'82, H'8E, H'82, H'94, H'81, H'60
+          .DATA.B      H'3C, H'45, H'3E, H'3C, H'45, H'3E, H'82, H'72, H'82, H'78, H'82, H'6E, H'82, H'69, H'82, H'68
+          .DATA.B      H'81, H'40, H'82, H'6C, H'82, H'60, H'82, H'73, H'82, H'72, H'82, H'74, H'82, H'63, H'82, H'60
+          .DATA.B      H'3C, H'45, H'3E, H'3C, H'45, H'3E, H'82, H'67, H'82, H'60, H'82, H'78, H'82, H'60, H'82, H'73
+          .DATA.B      H'82, H'6E, H'81, H'40, H'82, H'72, H'82, H'67, H'82, H'68, H'82, H'6D, H'82, H'6E, H'82, H'67
+          .DATA.B      H'82, H'60, H'82, H'71, H'82, H'60, H'00, H'00
+_const_8c039064:        ; aggressive search
+          ;.SDATA      "<E>ÇrÇ`ÇbÇgÇhÇjÇnÅ@ÇrÇ`ÇjÇ`ÇtÇd<E><E>"
+          ;.SDATA      "ÇmÇnÇaÇtÇgÇhÇsÇnÅ@ÇjÇhÇqÇhÇsÇnÇtÇrÇgÇh<E><E>"
+          ;.SDATA      "Ç`ÇjÇhÇsÇdÇqÇtÅ@ÇsÇ`ÇjÇ`Çn<E><E>"
+          ;.SDATA      "ÇjÇtÇmÇhÇgÇ`ÇqÇtÅ@Ç`ÇqÇ`Çh<E><E>"
+          ;.SDATA      "ÇbÇgÇhÇgÇhÇqÇnÅ@ÇjÇtÇrÇgÇhÇaÇd<E><E>"
+          ;.SDATA      "ÇxÇtÇtÇhÇbÇgÇhÇqÇnÅ@ÇrÇgÇhÇlÇ`ÇcÇ`<E><E>"
+          ;.SDATA      "ÇgÇhÇcÇdÇlÇhÇsÇrÇtÅ@ÇrÇgÇhÇnÇmÇn"
+          ;.DATA.B     H'00
+          ;.RES.B      2
+          .DATA.B      H'3C, H'45, H'3E, H'82, H'72, H'82, H'60, H'82, H'62, H'82, H'67, H'82, H'68, H'82, H'6A, H'82
+          .DATA.B      H'6E, H'81, H'40, H'82, H'72, H'82, H'60, H'82, H'6A, H'82, H'60, H'82, H'74, H'82, H'64, H'3C
+          .DATA.B      H'45, H'3E, H'3C, H'45, H'3E, H'82, H'6D, H'82, H'6E, H'82, H'61, H'82, H'74, H'82, H'67, H'82
+          .DATA.B      H'68, H'82, H'73, H'82, H'6E, H'81, H'40, H'82, H'6A, H'82, H'68, H'82, H'71, H'82, H'68, H'82
+          .DATA.B      H'73, H'82, H'6E, H'82, H'74, H'82, H'72, H'82, H'67, H'82, H'68, H'3C, H'45, H'3E, H'3C, H'45
+          .DATA.B      H'3E, H'82, H'60, H'82, H'6A, H'82, H'68, H'82, H'73, H'82, H'64, H'82, H'71, H'82, H'74, H'81
+          .DATA.B      H'40, H'82, H'73, H'82, H'60, H'82, H'6A, H'82, H'60, H'82, H'6E, H'3C, H'45, H'3E, H'3C, H'45
+          .DATA.B      H'3E, H'82, H'6A, H'82, H'74, H'82, H'6D, H'82, H'68, H'82, H'67, H'82, H'60, H'82, H'71, H'82
+          .DATA.B      H'74, H'81, H'40, H'82, H'60, H'82, H'71, H'82, H'60, H'82, H'68, H'3C, H'45, H'3E, H'3C, H'45
+          .DATA.B      H'3E, H'82, H'62, H'82, H'67, H'82, H'68, H'82, H'67, H'82, H'68, H'82, H'71, H'82, H'6E, H'81
+          .DATA.B      H'40, H'82, H'6A, H'82, H'74, H'82, H'72, H'82, H'67, H'82, H'68, H'82, H'61, H'82, H'64, H'3C
+          .DATA.B      H'45, H'3E, H'3C, H'45, H'3E, H'82, H'78, H'82, H'74, H'82, H'74, H'82, H'68, H'82, H'62, H'82
+          .DATA.B      H'67, H'82, H'68, H'82, H'71, H'82, H'6E, H'81, H'40, H'82, H'72, H'82, H'67, H'82, H'68, H'82
+          .DATA.B      H'6C, H'82, H'60, H'82, H'63, H'82, H'60, H'3C, H'45, H'3E, H'3C, H'45, H'3E, H'82, H'67, H'82
+          .DATA.B      H'68, H'82, H'63, H'82, H'64, H'82, H'6C, H'82, H'68, H'82, H'73, H'82, H'72, H'82, H'74, H'81
+          .DATA.B      H'40, H'82, H'72, H'82, H'67, H'82, H'68, H'82, H'6E, H'82, H'6D, H'82, H'6E, H'00, H'00, H'00
+_const_8c039164:        ; aggressive search
+          ;.SDATA      "ÇmÇ`ÇnÇxÇ`Å@ÇtÇdÇcÇ`<E><E>ÅiäîéÆâÔé–ÉEÉYÅj<E><E><E><E>Å`ÇñÇçÅ@ÇáÇíÇÅÇêÇàÇâÇÉÅ`<E><E>ÇmÇ`ÇnÇ`ÇjÇhÅ@ÇrÇgÇhÇlÇnÇfÇ`ÇlÇ`<E><E><E><E>Å`ÇfÇqÇ`ÇoÇgÇhÇbÅ@ÇrÇtÇoÇoÇnÇqÇsÅ`<E><E>ÇxÇtÇsÇ`ÇjÇ`Å@ÇlÇtÇqÇ`ÇjÇ`ÇlÇh"
+          ;.DATA.B     H'00
+          ;.RES.B      1
+          .DATA.B      H'82, H'6D, H'82, H'60, H'82, H'6E, H'82, H'78, H'82, H'60, H'81, H'40, H'82, H'74, H'82, H'64
+          .DATA.B      H'82, H'63, H'82, H'60, H'3C, H'45, H'3E, H'3C, H'45, H'3E, H'81, H'69, H'8A, H'94, H'8E, H'AE
+          .DATA.B      H'89, H'EF, H'8E, H'D0, H'83, H'45, H'83, H'59, H'81, H'6A, H'3C, H'45, H'3E, H'3C, H'45, H'3E
+          .DATA.B      H'3C, H'45, H'3E, H'3C, H'45, H'3E, H'81, H'60, H'82, H'96, H'82, H'8D, H'81, H'40, H'82, H'87
+          .DATA.B      H'82, H'92, H'82, H'81, H'82, H'90, H'82, H'88, H'82, H'89, H'82, H'83, H'81, H'60, H'3C, H'45
+          .DATA.B      H'3E, H'3C, H'45, H'3E, H'82, H'6D, H'82, H'60, H'82, H'6E, H'82, H'60, H'82, H'6A, H'82, H'68
+          .DATA.B      H'81, H'40, H'82, H'72, H'82, H'67, H'82, H'68, H'82, H'6C, H'82, H'6E, H'82, H'66, H'82, H'60
+          .DATA.B      H'82, H'6C, H'82, H'60, H'3C, H'45, H'3E, H'3C, H'45, H'3E, H'3C, H'45, H'3E, H'3C, H'45, H'3E
+          .DATA.B      H'81, H'60, H'82, H'66, H'82, H'71, H'82, H'60, H'82, H'6F, H'82, H'67, H'82, H'68, H'82, H'62
+          .DATA.B      H'81, H'40, H'82, H'72, H'82, H'74, H'82, H'6F, H'82, H'6F, H'82, H'6E, H'82, H'71, H'82, H'73
+          .DATA.B      H'81, H'60, H'3C, H'45, H'3E, H'3C, H'45, H'3E, H'82, H'78, H'82, H'74, H'82, H'73, H'82, H'60
+          .DATA.B      H'82, H'6A, H'82, H'60, H'81, H'40, H'82, H'6C, H'82, H'74, H'82, H'71, H'82, H'60, H'82, H'6A
+          .DATA.B      H'82, H'60, H'82, H'6C, H'82, H'68, H'00, H'00
+_const_8c03922c:        ; aggressive search
+          ;.SDATA      "<E>ÅióLå¿âÔé–ÉGÉÄÅEÉNÉäÉGÉCÉgÅj<E><E><E>ÇlÇ`ÇrÇ`ÇjÇ`ÇyÇtÅ@ÇjÇnÇaÇ`ÇxÇ`ÇrÇgÇh<E><E>ÅióLå¿âÔé–ÉrÅ[ÉgÉäÉìÉNÉXÅj<E><E><E><E>Å`ÇêÇàÇèÇîÇèÅ`<E><E>ÇgÇhÇrÇ`ÇrÇgÇhÅ@ÇlÇ`ÇqÇtÇxÇ`ÇlÇ`"
+          ;.DATA.B     H'00
+          ;.RES.B      3
+          .DATA.B      H'3C, H'45, H'3E, H'81, H'69, H'97, H'4C, H'8C, H'C0, H'89, H'EF, H'8E, H'D0, H'83, H'47, H'83
+          .DATA.B      H'80, H'81, H'45, H'83, H'4E, H'83, H'8A, H'83, H'47, H'83, H'43, H'83, H'67, H'81, H'6A, H'3C
+          .DATA.B      H'45, H'3E, H'3C, H'45, H'3E, H'3C, H'45, H'3E, H'82, H'6C, H'82, H'60, H'82, H'72, H'82, H'60
+          .DATA.B      H'82, H'6A, H'82, H'60, H'82, H'79, H'82, H'74, H'81, H'40, H'82, H'6A, H'82, H'6E, H'82, H'61
+          .DATA.B      H'82, H'60, H'82, H'78, H'82, H'60, H'82, H'72, H'82, H'67, H'82, H'68, H'3C, H'45, H'3E, H'3C
+          .DATA.B      H'45, H'3E, H'81, H'69, H'97, H'4C, H'8C, H'C0, H'89, H'EF, H'8E, H'D0, H'83, H'72, H'81, H'5B
+          .DATA.B      H'83, H'67, H'83, H'8A, H'83, H'93, H'83, H'4E, H'83, H'58, H'81, H'6A, H'3C, H'45, H'3E, H'3C
+          .DATA.B      H'45, H'3E, H'3C, H'45, H'3E, H'3C, H'45, H'3E, H'81, H'60, H'82, H'90, H'82, H'88, H'82, H'8F
+          .DATA.B      H'82, H'94, H'82, H'8F, H'81, H'60, H'3C, H'45, H'3E, H'3C, H'45, H'3E, H'82, H'67, H'82, H'68
+          .DATA.B      H'82, H'72, H'82, H'60, H'82, H'72, H'82, H'67, H'82, H'68, H'81, H'40, H'82, H'6C, H'82, H'60
+          .DATA.B      H'82, H'71, H'82, H'74, H'82, H'78, H'82, H'60, H'82, H'6C, H'82, H'60, H'00, H'00, H'00, H'00
+_const_8c0392dc:        ; aggressive search
+          ;.SDATA      "<E>Å`ÇñÇâÇÑÇÖÇèÅ`<E><E>ÇsÇ`ÇjÇ`ÇeÇtÇlÇhÅ@ÇlÇhÇmÇ`ÇlÇh<E><E>ÅiäîéÆâÔé–ÉwÉLÉTÉSÉìÅj<E><E><E><E>Å`ÇÖÇñÇÖÇéÇîÅ`<E><E>ÇrÇgÇhÇfÇdÇjÇnÅ@ÇrÇ`ÇjÇtÇlÇ`<E><E>ÅióLå¿âÔé–ÉSÉäÉâÅj"
+          ;.DATA.B     H'00
+          ;.RES.B      2
+          .DATA.B      H'3C, H'45, H'3E, H'81, H'60, H'82, H'96, H'82, H'89, H'82, H'84, H'82, H'85, H'82, H'8F, H'81
+          .DATA.B      H'60, H'3C, H'45, H'3E, H'3C, H'45, H'3E, H'82, H'73, H'82, H'60, H'82, H'6A, H'82, H'60, H'82
+          .DATA.B      H'65, H'82, H'74, H'82, H'6C, H'82, H'68, H'81, H'40, H'82, H'6C, H'82, H'68, H'82, H'6D, H'82
+          .DATA.B      H'60, H'82, H'6C, H'82, H'68, H'3C, H'45, H'3E, H'3C, H'45, H'3E, H'81, H'69, H'8A, H'94, H'8E
+          .DATA.B      H'AE, H'89, H'EF, H'8E, H'D0, H'83, H'77, H'83, H'4C, H'83, H'54, H'83, H'53, H'83, H'93, H'81
+          .DATA.B      H'6A, H'3C, H'45, H'3E, H'3C, H'45, H'3E, H'3C, H'45, H'3E, H'3C, H'45, H'3E, H'81, H'60, H'82
+          .DATA.B      H'85, H'82, H'96, H'82, H'85, H'82, H'8E, H'82, H'94, H'81, H'60, H'3C, H'45, H'3E, H'3C, H'45
+          .DATA.B      H'3E, H'82, H'72, H'82, H'67, H'82, H'68, H'82, H'66, H'82, H'64, H'82, H'6A, H'82, H'6E, H'81
+          .DATA.B      H'40, H'82, H'72, H'82, H'60, H'82, H'6A, H'82, H'74, H'82, H'6C, H'82, H'60, H'3C, H'45, H'3E
+          .DATA.B      H'3C, H'45, H'3E, H'81, H'69, H'97, H'4C, H'8C, H'C0, H'89, H'EF, H'8E, H'D0, H'83, H'53, H'83
+          .DATA.B      H'8A, H'83, H'89, H'81, H'6A, H'00, H'00, H'00
+_const_8c039384:        ; aggressive search
+          ;.SDATA      "<E>ÇjÇ`ÇyÇtÇrÇtÇjÇdÅ@ÇxÇnÇrÇgÇhÇgÇ`ÇqÇ`<E><E>ÅiÉGÉhÉÇÉìÅj"
+          ;.DATA.B     H'00
+          ;.RES.B      2
+          .DATA.B      H'3C, H'45, H'3E, H'82, H'6A, H'82, H'60, H'82, H'79, H'82, H'74, H'82, H'72, H'82, H'74, H'82
+          .DATA.B      H'6A, H'82, H'64, H'81, H'40, H'82, H'78, H'82, H'6E, H'82, H'72, H'82, H'67, H'82, H'68, H'82
+          .DATA.B      H'67, H'82, H'60, H'82, H'71, H'82, H'60, H'3C, H'45, H'3E, H'3C, H'45, H'3E, H'81, H'69, H'83
+          .DATA.B      H'47, H'83, H'68, H'83, H'82, H'83, H'93, H'81, H'6A, H'00, H'00, H'00
+_const_8c0393c0:        ; aggressive search
+          ;.SDATA      "<E><E><E><E>Å`ÇrÇbÇdÇmÇ`ÇqÇhÇnÅ@ÇvÇqÇhÇsÇdÇqÅ`<E><E><E>Ç`ÇrÇ`ÇsÇnÅ@ÇhÇyÇtÇlÇh"
+          ;.DATA.B     H'00
+          ;.RES.B      2
+          .DATA.B      H'3C, H'45, H'3E, H'3C, H'45, H'3E, H'3C, H'45, H'3E, H'3C, H'45, H'3E, H'81, H'60, H'82, H'72
+          .DATA.B      H'82, H'62, H'82, H'64, H'82, H'6D, H'82, H'60, H'82, H'71, H'82, H'68, H'82, H'6E, H'81, H'40
+          .DATA.B      H'82, H'76, H'82, H'71, H'82, H'68, H'82, H'73, H'82, H'64, H'82, H'71, H'81, H'60, H'3C, H'45
+          .DATA.B      H'3E, H'3C, H'45, H'3E, H'3C, H'45, H'3E, H'82, H'60, H'82, H'72, H'82, H'60, H'82, H'73, H'82
+          .DATA.B      H'6E, H'81, H'40, H'82, H'68, H'82, H'79, H'82, H'74, H'82, H'6C, H'82, H'68, H'00, H'00, H'00
+_const_8c039410:        ; aggressive search
+          ;.SDATA      "<E><E><E><E><E><E><E><E>Å`ÇuÇnÇhÇbÇdÅ@Ç`ÇbÇsÇnÇqÅ`<E><E><E>ÇrÇxÇnÇsÇnÅ@ÇjÇ`ÇrÇgÇhÇh<E><E>ÇrÇ`ÇxÇtÇqÇhÅ@ÇrÇ`ÇcÇ`ÇnÇjÇ`"
+          ;.DATA.B     H'00
+          ;.RES.B      2
+          .DATA.B      H'3C, H'45, H'3E, H'3C, H'45, H'3E, H'3C, H'45, H'3E, H'3C, H'45, H'3E, H'3C, H'45, H'3E, H'3C
+          .DATA.B      H'45, H'3E, H'3C, H'45, H'3E, H'3C, H'45, H'3E, H'81, H'60, H'82, H'75, H'82, H'6E, H'82, H'68
+          .DATA.B      H'82, H'62, H'82, H'64, H'81, H'40, H'82, H'60, H'82, H'62, H'82, H'73, H'82, H'6E, H'82, H'71
+          .DATA.B      H'81, H'60, H'3C, H'45, H'3E, H'3C, H'45, H'3E, H'3C, H'45, H'3E, H'82, H'72, H'82, H'78, H'82
+          .DATA.B      H'6E, H'82, H'73, H'82, H'6E, H'81, H'40, H'82, H'6A, H'82, H'60, H'82, H'72, H'82, H'67, H'82
+          .DATA.B      H'68, H'82, H'68, H'3C, H'45, H'3E, H'3C, H'45, H'3E, H'82, H'72, H'82, H'60, H'82, H'78, H'82
+          .DATA.B      H'74, H'82, H'71, H'82, H'68, H'81, H'40, H'82, H'72, H'82, H'60, H'82, H'63, H'82, H'60, H'82
+          .DATA.B      H'6E, H'82, H'6A, H'82, H'60, H'00, H'00, H'00
+_const_8c039488:        ; aggressive search
+          ;.SDATA      "ÇjÇdÇmÇiÇhÅ@ÇgÇ`ÇlÇ`ÇcÇ`<E><E>"
+          ;.SDATA      "ÇlÇ`ÇrÇ`ÇjÇ`ÇyÇtÅ@ÇrÇtÇyÇtÇjÇh<E><E>"
+          ;.SDATA      "ÇxÇnÇjÇnÅ@ÇrÇnÇtÇlÇh<E><E>"
+          ;.SDATA      "ÇlÇ`ÇjÇnÇsÇnÅ@ÇsÇrÇtÇlÇtÇqÇ`<E><E>"
+          ;.SDATA      "ÇrÇ`ÇbÇgÇhÇjÇnÅ@ÇjÇnÇiÇhÇlÇ`<E><E>"
+          ;.SDATA      "ÇsÇnÇrÇgÇhÇsÇ`ÇjÇ`Å@ÇrÇgÇhÇlÇhÇyÇt<E><E>"
+          ;.SDATA      "ÇlÇhÇsÇrÇtÇ`ÇjÇhÅ@ÇlÇ`ÇcÇnÇmÇn<E><E>"
+          ;.SDATA      "ÇsÇnÇlÇnÇgÇhÇqÇnÅ@ÇsÇrÇtÇaÇnÇh"
+          ;.DATA.B     H'00
+          ;.RES.B      1
+          .DATA.B      H'82, H'6A, H'82, H'64, H'82, H'6D, H'82, H'69, H'82, H'68, H'81, H'40, H'82, H'67, H'82, H'60
+          .DATA.B      H'82, H'6C, H'82, H'60, H'82, H'63, H'82, H'60, H'3C, H'45, H'3E, H'3C, H'45, H'3E, H'82, H'6C
+          .DATA.B      H'82, H'60, H'82, H'72, H'82, H'60, H'82, H'6A, H'82, H'60, H'82, H'79, H'82, H'74, H'81, H'40
+          .DATA.B      H'82, H'72, H'82, H'74, H'82, H'79, H'82, H'74, H'82, H'6A, H'82, H'68, H'3C, H'45, H'3E, H'3C
+          .DATA.B      H'45, H'3E, H'82, H'78, H'82, H'6E, H'82, H'6A, H'82, H'6E, H'81, H'40, H'82, H'72, H'82, H'6E
+          .DATA.B      H'82, H'74, H'82, H'6C, H'82, H'68, H'3C, H'45, H'3E, H'3C, H'45, H'3E, H'82, H'6C, H'82, H'60
+          .DATA.B      H'82, H'6A, H'82, H'6E, H'82, H'73, H'82, H'6E, H'81, H'40, H'82, H'73, H'82, H'72, H'82, H'74
+          .DATA.B      H'82, H'6C, H'82, H'74, H'82, H'71, H'82, H'60, H'3C, H'45, H'3E, H'3C, H'45, H'3E, H'82, H'72
+          .DATA.B      H'82, H'60, H'82, H'62, H'82, H'67, H'82, H'68, H'82, H'6A, H'82, H'6E, H'81, H'40, H'82, H'6A
+          .DATA.B      H'82, H'6E, H'82, H'69, H'82, H'68, H'82, H'6C, H'82, H'60, H'3C, H'45, H'3E, H'3C, H'45, H'3E
+          .DATA.B      H'82, H'73, H'82, H'6E, H'82, H'72, H'82, H'67, H'82, H'68, H'82, H'73, H'82, H'60, H'82, H'6A
+          .DATA.B      H'82, H'60, H'81, H'40, H'82, H'72, H'82, H'67, H'82, H'68, H'82, H'6C, H'82, H'68, H'82, H'79
+          .DATA.B      H'82, H'74, H'3C, H'45, H'3E, H'3C, H'45, H'3E, H'82, H'6C, H'82, H'68, H'82, H'73, H'82, H'72
+          .DATA.B      H'82, H'74, H'82, H'60, H'82, H'6A, H'82, H'68, H'81, H'40, H'82, H'6C, H'82, H'60, H'82, H'63
+          .DATA.B      H'82, H'6E, H'82, H'6D, H'82, H'6E, H'3C, H'45, H'3E, H'3C, H'45, H'3E, H'82, H'73, H'82, H'6E
+          .DATA.B      H'82, H'6C, H'82, H'6E, H'82, H'67, H'82, H'68, H'82, H'71, H'82, H'6E, H'81, H'40, H'82, H'73
+          .DATA.B      H'82, H'72, H'82, H'74, H'82, H'61, H'82, H'6E, H'82, H'68, H'00, H'00
+_const_8c039594:        ; aggressive search
+          ;.SDATA      "<E>ÇmÇ`ÇnÇjÇhÅ@ÇaÇ`ÇmÇcÇn<E><E>ÇrÇdÇhÇiÇhÇqÇnÅ@ÇbÇgÇnÇcÇ`<E><E>ÇcÇ`ÇhÇrÇtÇjÇdÅ@ÇdÇfÇ`ÇvÇ`<E><E>ÇxÇtÇtÇjÇhÅ@ÇgÇ`ÇlÇ`ÇmÇn<E><E>ÇxÇtÇlÇhÇjÇnÅ@ÇhÇvÇ`ÇlÇnÇsÇn<E><E>Ç`ÇjÇhÇjÇnÅ@ÇjÇnÇhÇjÇd<E><E>ÇxÇnÇrÇgÇhÇjÇnÅ@ÇjÇ`ÇlÇdÇh"
+          ;.DATA.B     H'00
+          ;.RES.B      2
+          .DATA.B      H'3C, H'45, H'3E, H'82, H'6D, H'82, H'60, H'82, H'6E, H'82, H'6A, H'82, H'68, H'81, H'40, H'82
+          .DATA.B      H'61, H'82, H'60, H'82, H'6D, H'82, H'63, H'82, H'6E, H'3C, H'45, H'3E, H'3C, H'45, H'3E, H'82
+          .DATA.B      H'72, H'82, H'64, H'82, H'68, H'82, H'69, H'82, H'68, H'82, H'71, H'82, H'6E, H'81, H'40, H'82
+          .DATA.B      H'62, H'82, H'67, H'82, H'6E, H'82, H'63, H'82, H'60, H'3C, H'45, H'3E, H'3C, H'45, H'3E, H'82
+          .DATA.B      H'63, H'82, H'60, H'82, H'68, H'82, H'72, H'82, H'74, H'82, H'6A, H'82, H'64, H'81, H'40, H'82
+          .DATA.B      H'64, H'82, H'66, H'82, H'60, H'82, H'76, H'82, H'60, H'3C, H'45, H'3E, H'3C, H'45, H'3E, H'82
+          .DATA.B      H'78, H'82, H'74, H'82, H'74, H'82, H'6A, H'82, H'68, H'81, H'40, H'82, H'67, H'82, H'60, H'82
+          .DATA.B      H'6C, H'82, H'60, H'82, H'6D, H'82, H'6E, H'3C, H'45, H'3E, H'3C, H'45, H'3E, H'82, H'78, H'82
+          .DATA.B      H'74, H'82, H'6C, H'82, H'68, H'82, H'6A, H'82, H'6E, H'81, H'40, H'82, H'68, H'82, H'76, H'82
+          .DATA.B      H'60, H'82, H'6C, H'82, H'6E, H'82, H'73, H'82, H'6E, H'3C, H'45, H'3E, H'3C, H'45, H'3E, H'82
+          .DATA.B      H'60, H'82, H'6A, H'82, H'68, H'82, H'6A, H'82, H'6E, H'81, H'40, H'82, H'6A, H'82, H'6E, H'82
+          .DATA.B      H'68, H'82, H'6A, H'82, H'64, H'3C, H'45, H'3E, H'3C, H'45, H'3E, H'82, H'78, H'82, H'6E, H'82
+          .DATA.B      H'72, H'82, H'67, H'82, H'68, H'82, H'6A, H'82, H'6E, H'81, H'40, H'82, H'6A, H'82, H'60, H'82
+          .DATA.B      H'6C, H'82, H'64, H'82, H'68, H'00, H'00, H'00
+_const_8c03966c:        ; aggressive search
+          ;.SDATA      "ÇrÇdÇsÇrÇtÅ@ÇnÇgÇ`ÇrÇgÇh<E><E><E><E><E><E>Å`ÇuÇnÇhÇbÇdÅ@ÇbÇnÇnÇqÇcÇhÇmÇ`ÇsÇdÅ`<E><E><E>ÇsÇ`ÇjÇ`ÇjÇnÅ@ÇgÇ`ÇrÇdÇfÇ`ÇvÇ`<E><E>ÅióLå¿âÔé–ç]çËÉvÉçÉ_ÉNÉVÉáÉìÅj"
+          ;.DATA.B     H'00
+          ;.RES.B      2
+          .DATA.B      H'82, H'72, H'82, H'64, H'82, H'73, H'82, H'72, H'82, H'74, H'81, H'40, H'82, H'6E, H'82, H'67
+          .DATA.B      H'82, H'60, H'82, H'72, H'82, H'67, H'82, H'68, H'3C, H'45, H'3E, H'3C, H'45, H'3E, H'3C, H'45
+          .DATA.B      H'3E, H'3C, H'45, H'3E, H'3C, H'45, H'3E, H'3C, H'45, H'3E, H'81, H'60, H'82, H'75, H'82, H'6E
+          .DATA.B      H'82, H'68, H'82, H'62, H'82, H'64, H'81, H'40, H'82, H'62, H'82, H'6E, H'82, H'6E, H'82, H'71
+          .DATA.B      H'82, H'63, H'82, H'68, H'82, H'6D, H'82, H'60, H'82, H'73, H'82, H'64, H'81, H'60, H'3C, H'45
+          .DATA.B      H'3E, H'3C, H'45, H'3E, H'3C, H'45, H'3E, H'82, H'73, H'82, H'60, H'82, H'6A, H'82, H'60, H'82
+          .DATA.B      H'6A, H'82, H'6E, H'81, H'40, H'82, H'67, H'82, H'60, H'82, H'72, H'82, H'64, H'82, H'66, H'82
+          .DATA.B      H'60, H'82, H'76, H'82, H'60, H'3C, H'45, H'3E, H'3C, H'45, H'3E, H'81, H'69, H'97, H'4C, H'8C
+          .DATA.B      H'C0, H'89, H'EF, H'8E, H'D0, H'8D, H'5D, H'8D, H'E8, H'83, H'76, H'83, H'8D, H'83, H'5F, H'83
+          .DATA.B      H'4E, H'83, H'56, H'83, H'87, H'83, H'93, H'81, H'6A, H'00, H'00, H'00
+_const_8c039708:        ; aggressive search
+          ;.SDATA      "<E><E><E>Å`ÇlÇtÇrÇhÇbÅ`<E><E><E>Å`ÇêÇíÇèÇÑÇïÇÉÇÖÇíÅ`<E><E>ÇgÇdÇdÅ|ÇiÇnÇnÇmÅ@ÇjÇhÇl<E><E>ÅiäîéÆâÔé–ÉAÉbÉgÉ}ÉìÅj<E><E><E><E>Å`ÇÑÇâÇíÇÖÇÉÇîÇèÇíÅ`"
+          ;.DATA.B     H'00
+          ;.RES.B      1
+          .DATA.B      H'3C, H'45, H'3E, H'3C, H'45, H'3E, H'3C, H'45, H'3E, H'81, H'60, H'82, H'6C, H'82, H'74, H'82
+          .DATA.B      H'72, H'82, H'68, H'82, H'62, H'81, H'60, H'3C, H'45, H'3E, H'3C, H'45, H'3E, H'3C, H'45, H'3E
+          .DATA.B      H'81, H'60, H'82, H'90, H'82, H'92, H'82, H'8F, H'82, H'84, H'82, H'95, H'82, H'83, H'82, H'85
+          .DATA.B      H'82, H'92, H'81, H'60, H'3C, H'45, H'3E, H'3C, H'45, H'3E, H'82, H'67, H'82, H'64, H'82, H'64
+          .DATA.B      H'81, H'7C, H'82, H'69, H'82, H'6E, H'82, H'6E, H'82, H'6D, H'81, H'40, H'82, H'6A, H'82, H'68
+          .DATA.B      H'82, H'6C, H'3C, H'45, H'3E, H'3C, H'45, H'3E, H'81, H'69, H'8A, H'94, H'8E, H'AE, H'89, H'EF
+          .DATA.B      H'8E, H'D0, H'83, H'41, H'83, H'62, H'83, H'67, H'83, H'7D, H'83, H'93, H'81, H'6A, H'3C, H'45
+          .DATA.B      H'3E, H'3C, H'45, H'3E, H'3C, H'45, H'3E, H'3C, H'45, H'3E, H'81, H'60, H'82, H'84, H'82, H'89
+          .DATA.B      H'82, H'92, H'82, H'85, H'82, H'83, H'82, H'94, H'82, H'8F, H'82, H'92, H'81, H'60, H'00, H'00
+_const_8c039798:        ; aggressive search
+          ;.SDATA      "<E>ÇsÇdÇsÇrÇtÇqÇnÅ@ÇlÇtÇsÇ`<E><E>ÅiäîéÆâÔé–ÉAÉbÉgÉ}ÉìÅj<E><E><E><E><E><E>Å`ÇlÇtÇrÇhÇbÇhÇ`ÇmÅ`<E><E><E>Å`ÇãÇÖÇôÇÇÇèÇÅÇíÇÑÅ`<E><E>ÇxÇnÇrÇgÇhÇ`ÇjÇhÅ@ÇsÇ`ÇmÇmÇn"
+          ;.DATA.B     H'00
+          ;.RES.B      3
+          .DATA.B      H'3C, H'45, H'3E, H'82, H'73, H'82, H'64, H'82, H'73, H'82, H'72, H'82, H'74, H'82, H'71, H'82
+          .DATA.B      H'6E, H'81, H'40, H'82, H'6C, H'82, H'74, H'82, H'73, H'82, H'60, H'3C, H'45, H'3E, H'3C, H'45
+          .DATA.B      H'3E, H'81, H'69, H'8A, H'94, H'8E, H'AE, H'89, H'EF, H'8E, H'D0, H'83, H'41, H'83, H'62, H'83
+          .DATA.B      H'67, H'83, H'7D, H'83, H'93, H'81, H'6A, H'3C, H'45, H'3E, H'3C, H'45, H'3E, H'3C, H'45, H'3E
+          .DATA.B      H'3C, H'45, H'3E, H'3C, H'45, H'3E, H'3C, H'45, H'3E, H'81, H'60, H'82, H'6C, H'82, H'74, H'82
+          .DATA.B      H'72, H'82, H'68, H'82, H'62, H'82, H'68, H'82, H'60, H'82, H'6D, H'81, H'60, H'3C, H'45, H'3E
+          .DATA.B      H'3C, H'45, H'3E, H'3C, H'45, H'3E, H'81, H'60, H'82, H'8B, H'82, H'85, H'82, H'99, H'82, H'82
+          .DATA.B      H'82, H'8F, H'82, H'81, H'82, H'92, H'82, H'84, H'81, H'60, H'3C, H'45, H'3E, H'3C, H'45, H'3E
+          .DATA.B      H'82, H'78, H'82, H'6E, H'82, H'72, H'82, H'67, H'82, H'68, H'82, H'60, H'82, H'6A, H'82, H'68
+          .DATA.B      H'81, H'40, H'82, H'73, H'82, H'60, H'82, H'6D, H'82, H'6D, H'82, H'6E, H'00, H'00, H'00, H'00
+_const_8c039838:        ; aggressive search
+          ;.SDATA      "<E><E><E>Å`ÇÇÇÅÇìÇìÅ`<E><E>ÇlÇ`ÇrÇ`ÇsÇnÇlÇnÅ@ÇnÇnÇlÇnÇsÇn<E><E><E><E>Å`ÇáÇïÇâÇîÇÅÇíÅ`<E><E>ÇgÇhÇcÇdÇ`ÇjÇhÅ@Ç`ÇhÇgÇ`ÇqÇ`"
+          ;.DATA.B     H'00
+          .DATA.B      H'3C, H'45, H'3E, H'3C, H'45, H'3E, H'3C, H'45, H'3E, H'81, H'60, H'82, H'82, H'82, H'81, H'82
+          .DATA.B      H'93, H'82, H'93, H'81, H'60, H'3C, H'45, H'3E, H'3C, H'45, H'3E, H'82, H'6C, H'82, H'60, H'82
+          .DATA.B      H'72, H'82, H'60, H'82, H'73, H'82, H'6E, H'82, H'6C, H'82, H'6E, H'81, H'40, H'82, H'6E, H'82
+          .DATA.B      H'6E, H'82, H'6C, H'82, H'6E, H'82, H'73, H'82, H'6E, H'3C, H'45, H'3E, H'3C, H'45, H'3E, H'3C
+          .DATA.B      H'45, H'3E, H'3C, H'45, H'3E, H'81, H'60, H'82, H'87, H'82, H'95, H'82, H'89, H'82, H'94, H'82
+          .DATA.B      H'81, H'82, H'92, H'81, H'60, H'3C, H'45, H'3E, H'3C, H'45, H'3E, H'82, H'67, H'82, H'68, H'82
+          .DATA.B      H'63, H'82, H'64, H'82, H'60, H'82, H'6A, H'82, H'68, H'81, H'40, H'82, H'60, H'82, H'68, H'82
+          .DATA.B      H'67, H'82, H'60, H'82, H'71, H'82, H'60, H'00
+_const_8c0398b0:        ; aggressive search
+          ;.SDATA      "Å`ÇoÇqÇnÇfÇqÇ`ÇlÅ`<E><E>ÇhÇbÇgÇhÇqÇnÇtÅ@ÇsÇ`ÇjÇtÇvÇ`<E><E><E><E><E><E>Å`ÇrÇnÇtÇmÇcÅ@ÇdÇeÇeÇdÇbÇsÅ`<E><E><E>ÇsÇnÇlÇnÇlÇhÇsÇrÇtÅ@ÇlÇ`ÇsÇrÇtÇrÇgÇhÇsÇ`<E><E>ÇxÇnÇrÇgÇhÇxÇtÇjÇhÅ@ÇjÇ`ÇcÇnÇnÇjÇ`"
+          ;.DATA.B     H'00
+          .DATA.B      H'81, H'60, H'82, H'6F, H'82, H'71, H'82, H'6E, H'82, H'66, H'82, H'71, H'82, H'60, H'82, H'6C
+          .DATA.B      H'81, H'60, H'3C, H'45, H'3E, H'3C, H'45, H'3E, H'82, H'68, H'82, H'62, H'82, H'67, H'82, H'68
+          .DATA.B      H'82, H'71, H'82, H'6E, H'82, H'74, H'81, H'40, H'82, H'73, H'82, H'60, H'82, H'6A, H'82, H'74
+          .DATA.B      H'82, H'76, H'82, H'60, H'3C, H'45, H'3E, H'3C, H'45, H'3E, H'3C, H'45, H'3E, H'3C, H'45, H'3E
+          .DATA.B      H'3C, H'45, H'3E, H'3C, H'45, H'3E, H'81, H'60, H'82, H'72, H'82, H'6E, H'82, H'74, H'82, H'6D
+          .DATA.B      H'82, H'63, H'81, H'40, H'82, H'64, H'82, H'65, H'82, H'65, H'82, H'64, H'82, H'62, H'82, H'73
+          .DATA.B      H'81, H'60, H'3C, H'45, H'3E, H'3C, H'45, H'3E, H'3C, H'45, H'3E, H'82, H'73, H'82, H'6E, H'82
+          .DATA.B      H'6C, H'82, H'6E, H'82, H'6C, H'82, H'68, H'82, H'73, H'82, H'72, H'82, H'74, H'81, H'40, H'82
+          .DATA.B      H'6C, H'82, H'60, H'82, H'73, H'82, H'72, H'82, H'74, H'82, H'72, H'82, H'67, H'82, H'68, H'82
+          .DATA.B      H'73, H'82, H'60, H'3C, H'45, H'3E, H'3C, H'45, H'3E, H'82, H'78, H'82, H'6E, H'82, H'72, H'82
+          .DATA.B      H'67, H'82, H'68, H'82, H'78, H'82, H'74, H'82, H'6A, H'82, H'68, H'81, H'40, H'82, H'6A, H'82
+          .DATA.B      H'60, H'82, H'63, H'82, H'6E, H'82, H'6E, H'82, H'6A, H'82, H'60, H'00
+_const_8c03996c:        ; aggressive search
+          ;.SDATA      "ÅióLå¿âÔé–ÉeÉBÅ[ÉYÉ~ÉÖÅ[ÉWÉbÉNÅj<E><E><E><E><E><E>Å`ÇhÇmÇsÇdÇqÇeÇ`ÇbÇdÅïÇoÇ`ÇbÇjÇ`ÇfÇdÅ`<E><E><E>Å`ÇÑÇâÇíÇÖÇÉÇîÇèÇíÅ`<E><E>ÇgÇhÇcÇdÇmÇnÇqÇhÅ@ÇjÇ`ÇvÇ`ÇjÇ`ÇlÇh"
+          ;.DATA.B     H'00
+          ;.RES.B      2
+          .DATA.B      H'81, H'69, H'97, H'4C, H'8C, H'C0, H'89, H'EF, H'8E, H'D0, H'83, H'65, H'83, H'42, H'81, H'5B
+          .DATA.B      H'83, H'59, H'83, H'7E, H'83, H'85, H'81, H'5B, H'83, H'57, H'83, H'62, H'83, H'4E, H'81, H'6A
+          .DATA.B      H'3C, H'45, H'3E, H'3C, H'45, H'3E, H'3C, H'45, H'3E, H'3C, H'45, H'3E, H'3C, H'45, H'3E, H'3C
+          .DATA.B      H'45, H'3E, H'81, H'60, H'82, H'68, H'82, H'6D, H'82, H'73, H'82, H'64, H'82, H'71, H'82, H'65
+          .DATA.B      H'82, H'60, H'82, H'62, H'82, H'64, H'81, H'95, H'82, H'6F, H'82, H'60, H'82, H'62, H'82, H'6A
+          .DATA.B      H'82, H'60, H'82, H'66, H'82, H'64, H'81, H'60, H'3C, H'45, H'3E, H'3C, H'45, H'3E, H'3C, H'45
+          .DATA.B      H'3E, H'81, H'60, H'82, H'84, H'82, H'89, H'82, H'92, H'82, H'85, H'82, H'83, H'82, H'94, H'82
+          .DATA.B      H'8F, H'82, H'92, H'81, H'60, H'3C, H'45, H'3E, H'3C, H'45, H'3E, H'82, H'67, H'82, H'68, H'82
+          .DATA.B      H'63, H'82, H'64, H'82, H'6D, H'82, H'6E, H'82, H'71, H'82, H'68, H'81, H'40, H'82, H'6A, H'82
+          .DATA.B      H'60, H'82, H'76, H'82, H'60, H'82, H'6A, H'82, H'60, H'82, H'6C, H'82, H'68, H'00, H'00, H'00
+_const_8c039a0c:        ; aggressive search
+          ;.SDATA      "Å`ÇÑÇÖÇìÇâÇáÇéÇÖÇíÅ`<E><E>ÇsÇ`ÇjÇdÇrÇgÇhÅ@Ç`ÇqÇ`Çh<E><E><E><E><E><E>Å`ÇoÇqÇnÇlÇnÇsÇhÇnÇmÅ`<E><E><E>ÇsÇnÇlÇnÇlÇhÅ@ÇjÇhÇxÇnÇmÇn"
+          ;.DATA.B     H'00
+          ;.RES.B      2
+          .DATA.B      H'81, H'60, H'82, H'84, H'82, H'85, H'82, H'93, H'82, H'89, H'82, H'87, H'82, H'8E, H'82, H'85
+          .DATA.B      H'82, H'92, H'81, H'60, H'3C, H'45, H'3E, H'3C, H'45, H'3E, H'82, H'73, H'82, H'60, H'82, H'6A
+          .DATA.B      H'82, H'64, H'82, H'72, H'82, H'67, H'82, H'68, H'81, H'40, H'82, H'60, H'82, H'71, H'82, H'60
+          .DATA.B      H'82, H'68, H'3C, H'45, H'3E, H'3C, H'45, H'3E, H'3C, H'45, H'3E, H'3C, H'45, H'3E, H'3C, H'45
+          .DATA.B      H'3E, H'3C, H'45, H'3E, H'81, H'60, H'82, H'6F, H'82, H'71, H'82, H'6E, H'82, H'6C, H'82, H'6E
+          .DATA.B      H'82, H'73, H'82, H'68, H'82, H'6E, H'82, H'6D, H'81, H'60, H'3C, H'45, H'3E, H'3C, H'45, H'3E
+          .DATA.B      H'3C, H'45, H'3E, H'82, H'73, H'82, H'6E, H'82, H'6C, H'82, H'6E, H'82, H'6C, H'82, H'68, H'81
+          .DATA.B      H'40, H'82, H'6A, H'82, H'68, H'82, H'78, H'82, H'6E, H'82, H'6D, H'82, H'6E, H'00, H'00, H'00
+_const_8c039a8c:        ; aggressive search
+          ;.SDATA      "<E><E>Å`ÇrÇoÇdÇbÇhÇ`ÇkÅ@ÇsÇgÇ`ÇmÇjÇrÅ`<E><E><E>ÇgÇhÇqÇnÇxÇtÇjÇhÅ@ÇlÇhÇxÇ`ÇmÇn<E><E>ÇxÇ`ÇrÇtÇrÇgÇhÅ@ÇxÇ`ÇlÇ`ÇrÇgÇhÇsÇ`<E><E>ÇjÇ`ÇyÇtÇgÇhÇjÇnÅ@ÇlÇnÇqÇhÇh<E><E>ÇiÇtÇmÇhÇbÇgÇhÅ@ÇrÇgÇhÇlÇhÇyÇt<E><E>ÇxÇnÇrÇgÇhÇlÇhÇsÇrÇtÅ@ÇvÇ`ÇjÇ`Çh"
+          ;.DATA.B     H'00
+          ;.RES.B      2
+          .DATA.B      H'3C, H'45, H'3E, H'3C, H'45, H'3E, H'81, H'60, H'82, H'72, H'82, H'6F, H'82, H'64, H'82, H'62
+          .DATA.B      H'82, H'68, H'82, H'60, H'82, H'6B, H'81, H'40, H'82, H'73, H'82, H'67, H'82, H'60, H'82, H'6D
+          .DATA.B      H'82, H'6A, H'82, H'72, H'81, H'60, H'3C, H'45, H'3E, H'3C, H'45, H'3E, H'3C, H'45, H'3E, H'82
+          .DATA.B      H'67, H'82, H'68, H'82, H'71, H'82, H'6E, H'82, H'78, H'82, H'74, H'82, H'6A, H'82, H'68, H'81
+          .DATA.B      H'40, H'82, H'6C, H'82, H'68, H'82, H'78, H'82, H'60, H'82, H'6D, H'82, H'6E, H'3C, H'45, H'3E
+          .DATA.B      H'3C, H'45, H'3E, H'82, H'78, H'82, H'60, H'82, H'72, H'82, H'74, H'82, H'72, H'82, H'67, H'82
+          .DATA.B      H'68, H'81, H'40, H'82, H'78, H'82, H'60, H'82, H'6C, H'82, H'60, H'82, H'72, H'82, H'67, H'82
+          .DATA.B      H'68, H'82, H'73, H'82, H'60, H'3C, H'45, H'3E, H'3C, H'45, H'3E, H'82, H'6A, H'82, H'60, H'82
+          .DATA.B      H'79, H'82, H'74, H'82, H'67, H'82, H'68, H'82, H'6A, H'82, H'6E, H'81, H'40, H'82, H'6C, H'82
+          .DATA.B      H'6E, H'82, H'71, H'82, H'68, H'82, H'68, H'3C, H'45, H'3E, H'3C, H'45, H'3E, H'82, H'69, H'82
+          .DATA.B      H'74, H'82, H'6D, H'82, H'68, H'82, H'62, H'82, H'67, H'82, H'68, H'81, H'40, H'82, H'72, H'82
+          .DATA.B      H'67, H'82, H'68, H'82, H'6C, H'82, H'68, H'82, H'79, H'82, H'74, H'3C, H'45, H'3E, H'3C, H'45
+          .DATA.B      H'3E, H'82, H'78, H'82, H'6E, H'82, H'72, H'82, H'67, H'82, H'68, H'82, H'6C, H'82, H'68, H'82
+          .DATA.B      H'73, H'82, H'72, H'82, H'74, H'81, H'40, H'82, H'76, H'82, H'60, H'82, H'6A, H'82, H'60, H'82
+          .DATA.B      H'68, H'00, H'00, H'00
+_const_8c039b70:        ; aggressive search
+          ;.SDATA      "ÇsÇ`ÇcÇ`ÇrÇgÇhÅ@ÇsÇ`ÇjÇdÇyÇ`ÇjÇh<E><E>ÅiäîéÆâÔé–ÉZÉKÅEÉGÉìÉ^Å[ÉvÉâÉCÉ[ÉXÅj<E><E><E>ÇlÇ`ÇrÇ`ÇmÇnÇaÇtÅ@ÇsÇrÇtÇjÇ`ÇlÇnÇsÇn<E><E>ÅiäîéÆâÔé–ÉâÉìÉhÅEÉzÅ[ÅIÅj<E><E><E>ÇjÇdÇmÅ@Ç`ÇrÇn<E><E>ÅiÉfÉWÉvÉâÉlÉbÉgóLå¿âÔé–Åj"
+          ;.DATA.B     H'00
+          ;.RES.B      1
+          .DATA.B      H'82, H'73, H'82, H'60, H'82, H'63, H'82, H'60, H'82, H'72, H'82, H'67, H'82, H'68, H'81, H'40
+          .DATA.B      H'82, H'73, H'82, H'60, H'82, H'6A, H'82, H'64, H'82, H'79, H'82, H'60, H'82, H'6A, H'82, H'68
+          .DATA.B      H'3C, H'45, H'3E, H'3C, H'45, H'3E, H'81, H'69, H'8A, H'94, H'8E, H'AE, H'89, H'EF, H'8E, H'D0
+          .DATA.B      H'83, H'5A, H'83, H'4B, H'81, H'45, H'83, H'47, H'83, H'93, H'83, H'5E, H'81, H'5B, H'83, H'76
+          .DATA.B      H'83, H'89, H'83, H'43, H'83, H'5B, H'83, H'58, H'81, H'6A, H'3C, H'45, H'3E, H'3C, H'45, H'3E
+          .DATA.B      H'3C, H'45, H'3E, H'82, H'6C, H'82, H'60, H'82, H'72, H'82, H'60, H'82, H'6D, H'82, H'6E, H'82
+          .DATA.B      H'61, H'82, H'74, H'81, H'40, H'82, H'73, H'82, H'72, H'82, H'74, H'82, H'6A, H'82, H'60, H'82
+          .DATA.B      H'6C, H'82, H'6E, H'82, H'73, H'82, H'6E, H'3C, H'45, H'3E, H'3C, H'45, H'3E, H'81, H'69, H'8A
+          .DATA.B      H'94, H'8E, H'AE, H'89, H'EF, H'8E, H'D0, H'83, H'89, H'83, H'93, H'83, H'68, H'81, H'45, H'83
+          .DATA.B      H'7A, H'81, H'5B, H'81, H'49, H'81, H'6A, H'3C, H'45, H'3E, H'3C, H'45, H'3E, H'3C, H'45, H'3E
+          .DATA.B      H'82, H'6A, H'82, H'64, H'82, H'6D, H'81, H'40, H'82, H'60, H'82, H'72, H'82, H'6E, H'3C, H'45
+          .DATA.B      H'3E, H'3C, H'45, H'3E, H'81, H'69, H'83, H'66, H'83, H'57, H'83, H'76, H'83, H'89, H'83, H'6C
+          .DATA.B      H'83, H'62, H'83, H'67, H'97, H'4C, H'8C, H'C0, H'89, H'EF, H'8E, H'D0, H'81, H'6A, H'00, H'00
+_const_8c039c40:        ; aggressive search
+          ;.SDATA      "óLå¿âÔé–É}ÉâÉJÉXìdãCâ»äw<E><E><E>ÇsÇ`ÇjÇdÇrÇgÇhÅ@ÇgÇ`ÇrÇdÇfÇ`ÇvÇ`<E><E>ÇlÇ`ÇmÇ`ÇaÇtÅ@ÇrÇ`ÇhÇsÇnÇt<E><E>ÇiÇtÇmÇxÇ`Å@Ç`ÇaÇd<E><E>ÇgÇhÇcÇdÇxÇtÇjÇhÅ@ÇmÇ`ÇrÇt"
+          ;.DATA.B     H'00
+          ;.RES.B      2
+          .DATA.B      H'97, H'4C, H'8C, H'C0, H'89, H'EF, H'8E, H'D0, H'83, H'7D, H'83, H'89, H'83, H'4A, H'83, H'58
+          .DATA.B      H'93, H'64, H'8B, H'43, H'89, H'C8, H'8A, H'77, H'3C, H'45, H'3E, H'3C, H'45, H'3E, H'3C, H'45
+          .DATA.B      H'3E, H'82, H'73, H'82, H'60, H'82, H'6A, H'82, H'64, H'82, H'72, H'82, H'67, H'82, H'68, H'81
+          .DATA.B      H'40, H'82, H'67, H'82, H'60, H'82, H'72, H'82, H'64, H'82, H'66, H'82, H'60, H'82, H'76, H'82
+          .DATA.B      H'60, H'3C, H'45, H'3E, H'3C, H'45, H'3E, H'82, H'6C, H'82, H'60, H'82, H'6D, H'82, H'60, H'82
+          .DATA.B      H'61, H'82, H'74, H'81, H'40, H'82, H'72, H'82, H'60, H'82, H'68, H'82, H'73, H'82, H'6E, H'82
+          .DATA.B      H'74, H'3C, H'45, H'3E, H'3C, H'45, H'3E, H'82, H'69, H'82, H'74, H'82, H'6D, H'82, H'78, H'82
+          .DATA.B      H'60, H'81, H'40, H'82, H'60, H'82, H'61, H'82, H'64, H'3C, H'45, H'3E, H'3C, H'45, H'3E, H'82
+          .DATA.B      H'67, H'82, H'68, H'82, H'63, H'82, H'64, H'82, H'78, H'82, H'74, H'82, H'6A, H'82, H'68, H'81
+          .DATA.B      H'40, H'82, H'6D, H'82, H'60, H'82, H'72, H'82, H'74, H'00, H'00, H'00
+_const_8c039cdc:        ; aggressive search
+          ;.SDATA      "<E><E><E><E><E>Å`ÇoÇqÇnÇcÇtÇbÇsÅ@ÇoÇkÇ`ÇmÇmÇhÇmÇfÅ`<E><E><E>ÇxÇnÇrÇgÇhÇlÇhÅ@ÇrÇ`ÇsÇn<E><E>ÇsÇ`ÇhÇrÇdÇjÇhÅ@ÇmÇ`ÇfÇ`ÇlÇhÇmÇd<E><E>ÅiîÑÇÍÇÈÉRÉ~ÉÖÉjÉPÅ[ÉVÉáÉìäîéÆâÔé–Åj"
+          ;.DATA.B     H'00
+          ;.RES.B      3
+          .DATA.B      H'3C, H'45, H'3E, H'3C, H'45, H'3E, H'3C, H'45, H'3E, H'3C, H'45, H'3E, H'3C, H'45, H'3E, H'81
+          .DATA.B      H'60, H'82, H'6F, H'82, H'71, H'82, H'6E, H'82, H'63, H'82, H'74, H'82, H'62, H'82, H'73, H'81
+          .DATA.B      H'40, H'82, H'6F, H'82, H'6B, H'82, H'60, H'82, H'6D, H'82, H'6D, H'82, H'68, H'82, H'6D, H'82
+          .DATA.B      H'66, H'81, H'60, H'3C, H'45, H'3E, H'3C, H'45, H'3E, H'3C, H'45, H'3E, H'82, H'78, H'82, H'6E
+          .DATA.B      H'82, H'72, H'82, H'67, H'82, H'68, H'82, H'6C, H'82, H'68, H'81, H'40, H'82, H'72, H'82, H'60
+          .DATA.B      H'82, H'73, H'82, H'6E, H'3C, H'45, H'3E, H'3C, H'45, H'3E, H'82, H'73, H'82, H'60, H'82, H'68
+          .DATA.B      H'82, H'72, H'82, H'64, H'82, H'6A, H'82, H'68, H'81, H'40, H'82, H'6D, H'82, H'60, H'82, H'66
+          .DATA.B      H'82, H'60, H'82, H'6C, H'82, H'68, H'82, H'6D, H'82, H'64, H'3C, H'45, H'3E, H'3C, H'45, H'3E
+          .DATA.B      H'81, H'69, H'94, H'84, H'82, H'EA, H'82, H'E9, H'83, H'52, H'83, H'7E, H'83, H'85, H'83, H'6A
+          .DATA.B      H'83, H'50, H'81, H'5B, H'83, H'56, H'83, H'87, H'83, H'93, H'8A, H'94, H'8E, H'AE, H'89, H'EF
+          .DATA.B      H'8E, H'D0, H'81, H'6A, H'00, H'00, H'00, H'00
+_const_8c039d84:        ; aggressive search
+          ;.SDATA      "ÇxÇ`ÇrÇtÇeÇtÇlÇhÅ@ÇrÇ`ÇjÇ`ÇrÇgÇhÇsÇ`<E><E>ÇjÇdÇmÇiÇhÅ@ÇmÇ`ÇjÇ`ÇmÇn"
+          ;.DATA.B     H'00
+          ;.RES.B      1
+          .DATA.B      H'82, H'78, H'82, H'60, H'82, H'72, H'82, H'74, H'82, H'65, H'82, H'74, H'82, H'6C, H'82, H'68
+          .DATA.B      H'81, H'40, H'82, H'72, H'82, H'60, H'82, H'6A, H'82, H'60, H'82, H'72, H'82, H'67, H'82, H'68
+          .DATA.B      H'82, H'73, H'82, H'60, H'3C, H'45, H'3E, H'3C, H'45, H'3E, H'82, H'6A, H'82, H'64, H'82, H'6D
+          .DATA.B      H'82, H'69, H'82, H'68, H'81, H'40, H'82, H'6D, H'82, H'60, H'82, H'6A, H'82, H'60, H'82, H'6D
+          .DATA.B      H'82, H'6E, H'00, H'00
+_const_8c039dc8:        ; aggressive search
+          ;.SDATA      "Å`ÇcÇhÇqÇdÇbÇsÇnÇqÅ`<E><E><E>ÇjÇdÇmÇiÇhÅ@ÇmÇ`ÇjÇ`ÇmÇn"
+          ;.DATA.B     H'00
+          ;.RES.B      2
+          .DATA.B      H'81, H'60, H'82, H'63, H'82, H'68, H'82, H'71, H'82, H'64, H'82, H'62, H'82, H'73, H'82, H'6E
+          .DATA.B      H'82, H'71, H'81, H'60, H'3C, H'45, H'3E, H'3C, H'45, H'3E, H'3C, H'45, H'3E, H'82, H'6A, H'82
+          .DATA.B      H'64, H'82, H'6D, H'82, H'69, H'82, H'68, H'81, H'40, H'82, H'6D, H'82, H'60, H'82, H'6A, H'82
+          .DATA.B      H'60, H'82, H'6D, H'82, H'6E, H'00, H'00, H'00
+_const_8c039e00:        ; aggressive search
+          ;.SDATA      "<E>Å`ÇoÇqÇnÇcÇtÇbÇdÇqÅ`<E><E><E>ÇxÇ`ÇrÇtÇeÇtÇlÇhÅ@ÇrÇ`ÇjÇ`ÇrÇgÇhÇsÇ`"
+          ;.DATA.B     H'00
+          ;.RES.B      3
+          .DATA.B      H'3C, H'45, H'3E, H'81, H'60, H'82, H'6F, H'82, H'71, H'82, H'6E, H'82, H'63, H'82, H'74, H'82
+          .DATA.B      H'62, H'82, H'64, H'82, H'71, H'81, H'60, H'3C, H'45, H'3E, H'3C, H'45, H'3E, H'3C, H'45, H'3E
+          .DATA.B      H'82, H'78, H'82, H'60, H'82, H'72, H'82, H'74, H'82, H'65, H'82, H'74, H'82, H'6C, H'82, H'68
+          .DATA.B      H'81, H'40, H'82, H'72, H'82, H'60, H'82, H'6A, H'82, H'60, H'82, H'72, H'82, H'67, H'82, H'68
+          .DATA.B      H'82, H'73, H'82, H'60, H'00, H'00, H'00, H'00
+_const_8c039e48:        ; aggressive search
+          ;.SDATA      "<E><E>Å`ÇdÇwÇdÇbÇsÇhÇuÇdÅ@ÇoÇqÇnÇcÇtÇbÇdÇqÅ`<E><E><E>ÇgÇhÇcÇdÇ`ÇjÇhÅ@ÇsÇrÇtÇiÇhÇjÇ`ÇvÇ`"
+          ;.DATA.B     H'00
+          .DATA.B      H'3C, H'45, H'3E, H'3C, H'45, H'3E, H'81, H'60, H'82, H'64, H'82, H'77, H'82, H'64, H'82, H'62
+          .DATA.B      H'82, H'73, H'82, H'68, H'82, H'75, H'82, H'64, H'81, H'40, H'82, H'6F, H'82, H'71, H'82, H'6E
+          .DATA.B      H'82, H'63, H'82, H'74, H'82, H'62, H'82, H'64, H'82, H'71, H'81, H'60, H'3C, H'45, H'3E, H'3C
+          .DATA.B      H'45, H'3E, H'3C, H'45, H'3E, H'82, H'67, H'82, H'68, H'82, H'63, H'82, H'64, H'82, H'60, H'82
+          .DATA.B      H'6A, H'82, H'68, H'81, H'40, H'82, H'73, H'82, H'72, H'82, H'74, H'82, H'69, H'82, H'68, H'82
+          .DATA.B      H'6A, H'82, H'60, H'82, H'76, H'82, H'60, H'00
+_const_8c039ea0:        ; aggressive search
+          ;.SDATA      "<E><E><E>ã¶óÕÅ@ìåãûìsåí ã«"
+          ;.DATA.B     H'00
+          .DATA.B      H'3C, H'45, H'3E, H'3C, H'45, H'3E, H'3C, H'45, H'3E, H'8B, H'A6, H'97, H'CD, H'81, H'40, H'93
+          .DATA.B      H'8C, H'8B, H'9E, H'93, H'73, H'8C, H'F0, H'92, H'CA, H'8B, H'C7, H'00
+_const_8c039ebc:        ; aggressive search
+          ;.SDATA      "<E><E><E><E><E>äÈâÊÅEäJî≠Å@äîéÆâÔé–ÉtÉHÅ[ÉeÉBÉtÉ@ÉCÉu<E><E>êªë¢îÃîÑÅ@äîéÆâÔé–Å@ÉZÉKÅEÉGÉìÉ^Å[ÉvÉâÉCÉ[ÉX<E><E>ÅõÇeÇnÇqÇsÇxÇeÇhÇuÇdÅ@ÇPÇXÇXÇX"
+          ;.DATA.B     H'00
+          .DATA.B      H'3C, H'45, H'3E, H'3C, H'45, H'3E, H'3C, H'45, H'3E, H'3C, H'45, H'3E, H'3C, H'45, H'3E, H'8A
+          .DATA.B      H'E9, H'89, H'E6, H'81, H'45, H'8A, H'4A, H'94, H'AD, H'81, H'40, H'8A, H'94, H'8E, H'AE, H'89
+          .DATA.B      H'EF, H'8E, H'D0, H'83, H'74, H'83, H'48, H'81, H'5B, H'83, H'65, H'83, H'42, H'83, H'74, H'83
+          .DATA.B      H'40, H'83, H'43, H'83, H'75, H'3C, H'45, H'3E, H'3C, H'45, H'3E, H'90, H'BB, H'91, H'A2, H'94
+          .DATA.B      H'CC, H'94, H'84, H'81, H'40, H'8A, H'94, H'8E, H'AE, H'89, H'EF, H'8E, H'D0, H'81, H'40, H'83
+          .DATA.B      H'5A, H'83, H'4B, H'81, H'45, H'83, H'47, H'83, H'93, H'83, H'5E, H'81, H'5B, H'83, H'76, H'83
+          .DATA.B      H'89, H'83, H'43, H'83, H'5B, H'83, H'58, H'3C, H'45, H'3E, H'3C, H'45, H'3E, H'81, H'9B, H'82
+          .DATA.B      H'65, H'82, H'6E, H'82, H'71, H'82, H'73, H'82, H'78, H'82, H'65, H'82, H'68, H'82, H'75, H'82
+          .DATA.B      H'64, H'81, H'40, H'82, H'50, H'82, H'58, H'82, H'58, H'82, H'58, H'00
+_const_8c039f48:        ; from defines
+          .DATA.B      H'00, H'00, H'00, H'00
+_const_8c039f4c:        ; from ghidra
+          ;.SDATA      "ending_parts.dat"
+          ;.DATA.B     H'00
+          ;.RES.B      3
+          .DATA.B      H'65, H'6E, H'64, H'69, H'6E, H'67, H'5F, H'70, H'61, H'72, H'74, H'73, H'2E, H'64, H'61, H'74
+          .DATA.B      H'00, H'00, H'00, H'00
+_const_8c039f60:        ; aggressive search
+          ;.SDATA      "ending.dat"
+          ;.DATA.B     H'00
+          ;.RES.B      1
+          .DATA.B      H'65, H'6E, H'64, H'69, H'6E, H'67, H'2E, H'64, H'61, H'74, H'00, H'00
+_const_8c039f6c:        ; aggressive search
+          ;.SDATA      "ending.pvm"
+          ;.DATA.B     H'00
+          ;.RES.B      1
+          .DATA.B      H'65, H'6E, H'64, H'69, H'6E, H'67, H'2E, H'70, H'76, H'6D, H'00, H'00
+          .SECTION    D, DATA, ALIGN=4
+_init_8c04522c:        ; from defines
+          .DATA.B      H'1A, H'05, H'00, H'00, H'1B, H'05, H'00, H'00, H'1C, H'05, H'00, H'00, H'1D, H'05, H'00, H'00
+          .DATA.B      H'1E, H'05, H'00, H'00, H'00, H'00, H'00, H'00
+_init_8c045244:        ; from defines
+          .DATA.B      H'1F, H'05, H'00, H'00, H'20, H'05, H'00, H'00, H'21, H'05, H'00, H'00, H'22, H'05, H'00, H'00
+          .DATA.B      H'23, H'05, H'00, H'00, H'00, H'00, H'00, H'00
+_init_8c04525c:        ; from defines
+          .DATA.B      H'24, H'05, H'00, H'00, H'25, H'05, H'00, H'00, H'26, H'05, H'00, H'00, H'27, H'05, H'00, H'00
+          .DATA.B      H'28, H'05, H'00, H'00, H'29, H'05, H'00, H'00, H'00, H'00, H'00, H'00
+_init_8c045278:        ; from defines
+          .DATA.B      H'2A, H'05, H'00, H'00, H'2B, H'05, H'00, H'00, H'2C, H'05, H'00, H'00, H'2D, H'05, H'00, H'00
+          .DATA.B      H'00, H'00, H'00, H'00
+_init_8c04528c:        ; from defines
+          .DATA.L      _const_8c0389b4 ; ukn
+_init_8c045290:        ; from defines
+          .DATA.L      _const_8c038a40 ; ukn
+          .DATA.L      _const_8c038ac4 ; ukn
+          .DATA.L      _const_8c038b98 ; ukn
+          .DATA.L      _const_8c038c24 ; ukn
+          .DATA.L      _const_8c038c78 ; ukn
+          .DATA.L      _const_8c038cd4 ; ukn
+          .DATA.L      _const_8c038d2c ; ukn
+          .DATA.L      _const_8c038dec ; ukn
+          .DATA.L      _const_8c038ed4 ; ukn
+          .DATA.L      _const_8c038fac ; ukn
+          .DATA.L      _const_8c039064 ; ukn
+          .DATA.L      _const_8c039164 ; ukn
+          .DATA.L      _const_8c03922c ; ukn
+          .DATA.L      _const_8c0392dc ; ukn
+          .DATA.L      _const_8c039384 ; ukn
+          .DATA.L      _const_8c0393c0 ; ukn
+          .DATA.L      _const_8c039410 ; ukn
+          .DATA.L      _const_8c039488 ; ukn
+          .DATA.L      _const_8c039594 ; ukn
+          .DATA.L      _const_8c03966c ; ukn
+          .DATA.L      _const_8c039708 ; ukn
+          .DATA.L      _const_8c039798 ; ukn
+          .DATA.L      _const_8c039838 ; ukn
+          .DATA.L      _const_8c0398b0 ; ukn
+          .DATA.L      _const_8c03996c ; ukn
+          .DATA.L      _const_8c039a0c ; ukn
+          .DATA.L      _const_8c039a8c ; ukn
+          .DATA.L      _const_8c039b70 ; ukn
+          .DATA.L      _const_8c039c40 ; ukn
+          .DATA.L      _const_8c039cdc ; ukn
+          .DATA.L      _const_8c039d84 ; ukn
+          .DATA.L      _const_8c039dc8 ; ukn
+          .DATA.L      _const_8c039e00 ; ukn
+          .DATA.L      _const_8c039e48 ; ukn
+          .DATA.L      _const_8c039ea0 ; ukn
+          .DATA.L      _const_8c039ebc ; ukn
+          .DATA.L      _const_8c039f48 ; ukn
+_init_8c045324:        ; from defines
+          .DATA.L      _const_8c039f4c ; ukn
+          .DATA.L      _const_8c039f60 ; ukn
+          .DATA.L      _const_8c039f6c ; ukn
+          .DATA.B      H'04, H'00, H'00, H'00
           .END

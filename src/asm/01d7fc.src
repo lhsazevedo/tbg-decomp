@@ -30,23 +30,14 @@
           .IMPORT     _var_progress_8c1ba1cc
           .IMPORT     _push_fadeout_8c022b60
           .IMPORT     _var_vmuStatus_8c226048
-          .IMPORT     _const_8c0387fc
-          .IMPORT     _const_8c038828
-          .IMPORT     _const_8c038858
-          .IMPORT     _const_8c038894
-          .IMPORT     _const_8c0388b8
-          .IMPORT     _const_8c0388f0
           .IMPORT     _PromptHandleBinary_8c016caa
           .IMPORT     _push_fadein_8c022a9c
           .IMPORT     _FUN_8c01890a
           .IMPORT     _FUN_8c01b26c
-          .IMPORT     _const_8c038908
           .IMPORT     _vmsLcd_8c01c8fc
           .IMPORT     _BupGetInfo_8c014bba
           .IMPORT     _buStat
           .IMPORT     _buGetLastError
-          .IMPORT     _const_8c038934
-          .IMPORT     _const_8c038940
           .IMPORT     _var_8c157a7c
           .IMPORT     _var_8c1ba348
           .IMPORT     _syFree
@@ -69,8 +60,6 @@
           .IMPORT     _CourseMenuRequestSysResgrp_8c018568
           .IMPORT     _CourseMenuRequestCommonResources_8c01852c
           .IMPORT     _var_8c1ba344
-          .IMPORT     _const_8c038960
-          .IMPORT     _const_8c038958
           .IMPORT     _AsqRequestDat_8c011182
           .IMPORT     _RouteLoadSetPvmReady_8c014330
           .IMPORT     _RouteLoadResetPvmReady_8c014322
@@ -78,7 +67,6 @@
           .IMPORT     _AsqProcessQueues_8c011fe0
           .IMPORT     _var_timeOfDay_8c18ad20
           .IMPORT     _var_route_8c18ad1c
-          .IMPORT     _init_8c0451a0
           .IMPORT     _var_8c1bb8e0
           .IMPORT     _var_8c2285d0
           .IMPORT     _var_8c1bb8e4
@@ -1407,4 +1395,76 @@ LP_GEN_78959:
           .DATA.L _var_8c226404 ; H'8C01E270
           .DATA.L H'0001869F ; H'8C01E274
           .DATA.L _var_8c226408 ; H'8C01E278
+          .SECTION    C, DATA, ALIGN=4
+_const_8c0387fc:        ; from defines
+          ;.SDATA      "ファイルを作成します。<E>よろしいですか？"
+          ;.DATA.B     H'00
+          ;.RES.B      2
+          .DATA.B      H'83, H'74, H'83, H'40, H'83, H'43, H'83, H'8B, H'82, H'F0, H'8D, H'EC, H'90, H'AC, H'82, H'B5
+          .DATA.B      H'82, H'DC, H'82, H'B7, H'81, H'42, H'3C, H'45, H'3E, H'82, H'E6, H'82, H'EB, H'82, H'B5, H'82
+          .DATA.B      H'A2, H'82, H'C5, H'82, H'B7, H'82, H'A9, H'81, H'48, H'00, H'00, H'00
+_const_8c038828:        ; from defines
+          ;.SDATA      "ファイルが上書きされます。<E>よろしいですか？"
+          ;.DATA.B     H'00
+          ;.RES.B      2
+          .DATA.B      H'83, H'74, H'83, H'40, H'83, H'43, H'83, H'8B, H'82, H'AA, H'8F, H'E3, H'8F, H'91, H'82, H'AB
+          .DATA.B      H'82, H'B3, H'82, H'EA, H'82, H'DC, H'82, H'B7, H'81, H'42, H'3C, H'45, H'3E, H'82, H'E6, H'82
+          .DATA.B      H'EB, H'82, H'B5, H'82, H'A2, H'82, H'C5, H'82, H'B7, H'82, H'A9, H'81, H'48, H'00, H'00, H'00
+_const_8c038858:        ; from defines
+          ;.SDATA      "空きブロックが不足しています<E>セーブには３ブロック必要です"
+          ;.DATA.B     H'00
+          .DATA.B      H'8B, H'F3, H'82, H'AB, H'83, H'75, H'83, H'8D, H'83, H'62, H'83, H'4E, H'82, H'AA, H'95, H'73
+          .DATA.B      H'91, H'AB, H'82, H'B5, H'82, H'C4, H'82, H'A2, H'82, H'DC, H'82, H'B7, H'3C, H'45, H'3E, H'83
+          .DATA.B      H'5A, H'81, H'5B, H'83, H'75, H'82, H'C9, H'82, H'CD, H'82, H'52, H'83, H'75, H'83, H'8D, H'83
+          .DATA.B      H'62, H'83, H'4E, H'95, H'4B, H'97, H'76, H'82, H'C5, H'82, H'B7, H'00
+_const_8c038894:        ; from defines
+          ;.SDATA      "このＶＭはセーブできない状態です"
+          ;.DATA.B     H'00
+          ;.RES.B      3
+          .DATA.B      H'82, H'B1, H'82, H'CC, H'82, H'75, H'82, H'6C, H'82, H'CD, H'83, H'5A, H'81, H'5B, H'83, H'75
+          .DATA.B      H'82, H'C5, H'82, H'AB, H'82, H'C8, H'82, H'A2, H'8F, H'F3, H'91, H'D4, H'82, H'C5, H'82, H'B7
+          .DATA.B      H'00, H'00, H'00, H'00
+_const_8c0388b8:        ; from defines
+          ;.SDATA      "ＶＭが接続されていません<E>セーブには３ブロック必要です"
+          ;.DATA.B     H'00
+          .DATA.B      H'82, H'75, H'82, H'6C, H'82, H'AA, H'90, H'DA, H'91, H'B1, H'82, H'B3, H'82, H'EA, H'82, H'C4
+          .DATA.B      H'82, H'A2, H'82, H'DC, H'82, H'B9, H'82, H'F1, H'3C, H'45, H'3E, H'83, H'5A, H'81, H'5B, H'83
+          .DATA.B      H'75, H'82, H'C9, H'82, H'CD, H'82, H'52, H'83, H'75, H'83, H'8D, H'83, H'62, H'83, H'4E, H'95
+          .DATA.B      H'4B, H'97, H'76, H'82, H'C5, H'82, H'B7, H'00
+_const_8c0388f0:        ; from defines
+          ;.SDATA      "セーブを中止しますか？"
+          ;.DATA.B     H'00
+          ;.RES.B      1
+          .DATA.B      H'83, H'5A, H'81, H'5B, H'83, H'75, H'82, H'F0, H'92, H'86, H'8E, H'7E, H'82, H'B5, H'82, H'DC
+          .DATA.B      H'82, H'B7, H'82, H'A9, H'81, H'48, H'00, H'00
+_const_8c038908:        ; from defines
+          ;.SDATA      "セーブ実行中です<E>電源を切らないで下さい"
+          ;.DATA.B     H'00
+          ;.RES.B      2
+          .DATA.B      H'83, H'5A, H'81, H'5B, H'83, H'75, H'8E, H'C0, H'8D, H'73, H'92, H'86, H'82, H'C5, H'82, H'B7
+          .DATA.B      H'3C, H'45, H'3E, H'93, H'64, H'8C, H'B9, H'82, H'F0, H'90, H'D8, H'82, H'E7, H'82, H'C8, H'82
+          .DATA.B      H'A2, H'82, H'C5, H'89, H'BA, H'82, H'B3, H'82, H'A2, H'00, H'00, H'00
+_const_8c038934:        ; from defines
+          ;.SDATA      "セーブ終了"
+          ;.DATA.B     H'00
+          ;.RES.B      1
+          .DATA.B      H'83, H'5A, H'81, H'5B, H'83, H'75, H'8F, H'49, H'97, H'B9, H'00, H'00
+_const_8c038940:        ; from defines
+          ;.SDATA      "セーブが失敗しました"
+          ;.DATA.B     H'00
+          ;.RES.B      3
+          .DATA.B      H'83, H'5A, H'81, H'5B, H'83, H'75, H'82, H'AA, H'8E, H'B8, H'94, H'73, H'82, H'B5, H'82, H'DC
+          .DATA.B      H'82, H'B5, H'82, H'BD, H'00, H'00, H'00, H'00
+_const_8c038958:        ; from defines
+          ;.SDATA      "\SYSTEM"
+          ;.DATA.B     H'00
+          .DATA.B      H'5C, H'53, H'59, H'53, H'54, H'45, H'4D, H'00
+_const_8c038960:        ; from defines
+          ;.SDATA      "bus_mem.VMI"
+          ;.DATA.B     H'00
+          .DATA.B      H'62, H'75, H'73, H'5F, H'6D, H'65, H'6D, H'2E, H'56, H'4D, H'49, H'00
+          .SECTION    D, DATA, ALIGN=4
+_init_8c0451a0:        ; from defines
+          .DATA.B      H'F0, H'00, H'40, H'01, H'54, H'01, H'C8, H'00, H'18, H'01, H'2C, H'01, H'C8, H'00, H'DC, H'00
+          .DATA.B      H'04, H'01, H'00, H'00
           .END

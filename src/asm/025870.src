@@ -19,9 +19,6 @@
           .IMPORT     _menuTextboxText_8c02af1c
           .IMPORT     _FUN_8c0223ea
           .IMPORT     _var_route_8c18ad1c
-          .IMPORT     _init_8c045674
-          .IMPORT     _init_8c045b60
-          .IMPORT     _init_8c045ee4
           .IMPORT     _var_tasks_8c1ba5e8
           .IMPORT     _TaskPush_8c014ae8
           .IMPORT     _FUN_8c02ae3e
@@ -30,6 +27,7 @@
           .EXPORT     _FUN_8c0258ba
           .EXPORT     _demoUpdateCamera_8c025906
           .EXPORT     _FUN_8c025af4
+          .EXPORT     _init_8c0460b0 ; 012f44_game.c, 012f44_game.src
           .SECTION     P, CODE, ALIGN=4
 _FUN_8c025870:
           FMOV.S      FR15,@-R15
@@ -418,4 +416,417 @@ LP_GEN_72418:
           .DATA.L _TaskPush_8c014ae8 ; H'8C025B8C
           .DATA.L _FUN_8c02ae3e ; H'8C025B90
           .DATA.L _var_8c227e10 ; H'8C025B94
+          .SECTION    C, DATA, ALIGN=4
+_const_8c039f78:        ; aggressive search
+          ;.SDATA      "íÜÉmã¥"
+          ;.DATA.B     H'00
+          ;.RES.B      1
+          .DATA.B      H'92, H'86, H'83, H'6D, H'8B, H'B4, H'00, H'00
+_const_8c039f80:        ; aggressive search
+          .DATA.B      H'00, H'00, H'00, H'00
+_const_8c039f84:        ; aggressive search
+          .SDATA      "àÍÉmã¥"
+          .DATA.B     H'00
+          .RES.B      1
+_const_8c039f8c:
+          .SDATA      "î—ëqï–í¨"
+          .DATA.B     H'00
+          .RES.B      3
+          ; .DATA.B      H'88, H'EA, H'83, H'6D, H'8B, H'B4, H'00, H'00, H'94, H'D1, H'91, H'71, H'95, H'D0, H'92, H'AC
+          ; .DATA.B      H'00, H'00, H'00, H'00
+_const_8c039f98:        ; aggressive search
+          ;.SDATA      "òZñ{ñÿåç∑ì_"
+          ;.DATA.B     H'00
+          ;.RES.B      3
+          .DATA.B      H'98, H'5A, H'96, H'7B, H'96, H'D8, H'8C, H'F0, H'8D, H'B7, H'93, H'5F, H'00, H'00, H'00, H'00
+_const_8c039fa8:        ; aggressive search
+          ;.SDATA      "òZñ{ñÿ"
+          ;.DATA.B     H'00
+          ;.RES.B      1
+          .DATA.B      H'98, H'5A, H'96, H'7B, H'96, H'D8, H'00, H'00
+_const_8c039fb0:        ; aggressive search
+          ;.SDATA      "ñhâqí°ëO"
+          ;.DATA.B     H'00
+          ;.RES.B      3
+          .DATA.B      H'96, H'68, H'89, H'71, H'92, H'A1, H'91, H'4F, H'00, H'00, H'00, H'00
+_const_8c039fbc:        ; aggressive search
+          ;.SDATA      "ê‘ç‚î™íöñ⁄"
+          ;.DATA.B     H'00
+          ;.RES.B      1
+          .DATA.B      H'90, H'D4, H'8D, H'E2, H'94, H'AA, H'92, H'9A, H'96, H'DA, H'00, H'00
+_const_8c039fc8:        ; aggressive search
+          ;.SDATA      "ìÏê¬éRàÍíöñ⁄"
+          ;.DATA.B     H'00
+          ;.RES.B      3
+          .DATA.B      H'93, H'EC, H'90, H'C2, H'8E, H'52, H'88, H'EA, H'92, H'9A, H'96, H'DA, H'00, H'00, H'00, H'00
+_const_8c039fd8:        ; aggressive search
+          ;.SDATA      "ê¬éRàÍíöñ⁄"
+          ;.DATA.B     H'00
+          ;.RES.B      1
+          .DATA.B      H'90, H'C2, H'8E, H'52, H'88, H'EA, H'92, H'9A, H'96, H'DA, H'00, H'00
+_const_8c039fe4:        ; aggressive search
+          ;.SDATA      "ê¬éRàÍíöñ⁄åç∑ì_"
+          ;.DATA.B     H'00
+          ;.RES.B      3
+          .DATA.B      H'90, H'C2, H'8E, H'52, H'88, H'EA, H'92, H'9A, H'96, H'DA, H'8C, H'F0, H'8D, H'B7, H'93, H'5F
+          .DATA.B      H'00, H'00, H'00, H'00
+_const_8c039ff8:        ; aggressive search
+          ;.SDATA      "ê‘ç‚å‰ópín"
+          ;.DATA.B     H'00
+          ;.RES.B      1
+          .DATA.B      H'90, H'D4, H'8D, H'E2, H'8C, H'E4, H'97, H'70, H'92, H'6E, H'00, H'00
+_const_8c03a004:        ; aggressive search
+          ;.SDATA      "ê¬éRìsâcÉAÉpÅ[ÉgëO"
+          ;.DATA.B     H'00
+          ;.RES.B      1
+          .DATA.B      H'90, H'C2, H'8E, H'52, H'93, H'73, H'89, H'63, H'83, H'41, H'83, H'70, H'81, H'5B, H'83, H'67
+          .DATA.B      H'91, H'4F, H'00, H'00
+_const_8c03a018:        ; aggressive search
+          ;.SDATA      "ñæé°ãLîOäŸ"
+          ;.DATA.B     H'00
+          ;.RES.B      1
+          .DATA.B      H'96, H'BE, H'8E, H'A1, H'8B, H'4C, H'94, H'4F, H'8A, H'D9, H'00, H'00
+_const_8c03a024:        ; aggressive search
+          ;.SDATA      "ê_ã{äOâë"
+          ;.DATA.B     H'00
+          ;.RES.B      3
+          .DATA.B      H'90, H'5F, H'8B, H'7B, H'8A, H'4F, H'89, H'91, H'00, H'00, H'00, H'00
+_const_8c03a030:        ; aggressive search
+          ;.SDATA      "êMîZí¨âw"
+          ;.DATA.B     H'00
+          ;.RES.B      3
+          .DATA.B      H'90, H'4D, H'94, H'5A, H'92, H'AC, H'89, H'77, H'00, H'00, H'00, H'00
+_const_8c03a03c:        ; aggressive search
+          ;.SDATA      "êMîZí¨âwëO"
+          ;.DATA.B     H'00
+          ;.RES.B      1
+          .DATA.B      H'90, H'4D, H'94, H'5A, H'92, H'AC, H'89, H'77, H'91, H'4F, H'00, H'00
+_const_8c03a048:        ; aggressive search
+          ;.SDATA      "élíJéOíöñ⁄"
+          ;.DATA.B     H'00
+          ;.RES.B      1
+          .DATA.B      H'8E, H'6C, H'92, H'4A, H'8E, H'4F, H'92, H'9A, H'96, H'DA, H'00, H'00
+_const_8c03a054:        ; aggressive search
+          ;.SDATA      "élíJélíöñ⁄"
+          ;.DATA.B     H'00
+          ;.RES.B      1
+          .DATA.B      H'8E, H'6C, H'92, H'4A, H'8E, H'6C, H'92, H'9A, H'96, H'DA, H'00, H'00
+_const_8c03a060:        ; aggressive search
+          ;.SDATA      "êVèhàÍíöñ⁄"
+          ;.DATA.B     H'00
+          ;.RES.B      1
+          .DATA.B      H'90, H'56, H'8F, H'68, H'88, H'EA, H'92, H'9A, H'96, H'DA, H'00, H'00
+_const_8c03a06c:        ; aggressive search
+          ;.SDATA      "êVèhìÒíöñ⁄"
+          ;.DATA.B     H'00
+          ;.RES.B      1
+          .DATA.B      H'90, H'56, H'8F, H'68, H'93, H'F1, H'92, H'9A, H'96, H'DA, H'00, H'00
+_const_8c03a078:        ; aggressive search
+          ;.SDATA      "êVèhí ÇË"
+          ;.DATA.B     H'00
+          ;.RES.B      3
+          .DATA.B      H'90, H'56, H'8F, H'68, H'92, H'CA, H'82, H'E8, H'00, H'00, H'00, H'00
+_const_8c03a084:        ; aggressive search
+          ;.SDATA      "í™ïóåˆâÄì¸å˚"
+          ;.DATA.B     H'00
+          ;.RES.B      3
+          .DATA.B      H'92, H'AA, H'95, H'97, H'8C, H'F6, H'89, H'80, H'93, H'FC, H'8C, H'FB, H'00, H'00, H'00, H'00
+_const_8c03a094:        ; aggressive search
+          ;.SDATA      "ë‰èÍâwëO"
+          ;.DATA.B     H'00
+          ;.RES.B      3
+          .DATA.B      H'91, H'E4, H'8F, H'EA, H'89, H'77, H'91, H'4F, H'00, H'00, H'00, H'00
+_const_8c03a0a0:        ; aggressive search
+          ;.SDATA      "ÉtÉWÉeÉåÉrëO"
+          ;.DATA.B     H'00
+          ;.RES.B      3
+          .DATA.B      H'83, H'74, H'83, H'57, H'83, H'65, H'83, H'8C, H'83, H'72, H'91, H'4F, H'00, H'00, H'00, H'00
+_const_8c03a0b0:        ; aggressive search
+          ;.SDATA      "Ç®ë‰èÍäCïlåˆâÄâwëO"
+          ;.DATA.B     H'00
+          ;.RES.B      1
+          .DATA.B      H'82, H'A8, H'91, H'E4, H'8F, H'EA, H'8A, H'43, H'95, H'6C, H'8C, H'F6, H'89, H'80, H'89, H'77
+          .DATA.B      H'91, H'4F, H'00, H'00
+_const_8c03a0c4:        ; aggressive search
+          ;.SDATA      "ìåê¬î~âwëO"
+          ;.DATA.B     H'00
+          ;.RES.B      1
+          .DATA.B      H'93, H'8C, H'90, H'C2, H'94, H'7E, H'89, H'77, H'91, H'4F, H'00, H'00
+_const_8c03a0d0:        ; aggressive search
+          ;.SDATA      "ê¬î~ésñèäëO"
+          ;.DATA.B     H'00
+          ;.RES.B      3
+          .DATA.B      H'90, H'C2, H'94, H'7E, H'8E, H'73, H'96, H'F0, H'8F, H'8A, H'91, H'4F, H'00, H'00, H'00, H'00
+          .SECTION    D, DATA, ALIGN=4
+_init_8c045674:        ; from defines
+          .DATA.B      H'01, H'00, H'00, H'00, H'00, H'00, H'80, H'40, H'00, H'00, H'00, H'3F, H'00, H'00, H'80, H'C0
+          .DATA.L      _const_8c039f78 ; ukn
+          .DATA.B      H'00, H'00, H'00, H'00, H'00, H'50, H'81, H'45, H'00, H'00, H'50, H'41, H'00, H'20, H'8B, H'45
+          .DATA.L      _const_8c039f80 ; ukn
+          .DATA.B      H'00, H'00, H'00, H'00, H'00, H'70, H'76, H'45, H'00, H'00, H'98, H'41, H'00, H'E8, H'89, H'45
+          .DATA.L      _const_8c039f84 ; ukn
+          .DATA.B      H'00, H'00, H'00, H'00, H'00, H'40, H'75, H'45, H'00, H'00, H'80, H'40, H'00, H'50, H'86, H'45
+          .DATA.L      _const_8c039f80 ; ukn
+          .DATA.B      H'00, H'00, H'00, H'00, H'00, H'C0, H'76, H'45, H'9A, H'99, H'99, H'3E, H'00, H'60, H'68, H'45
+          .DATA.L      _const_8c039f8c ; ukn
+          .DATA.B      H'02, H'00, H'00, H'00, H'00, H'00, H'00, H'C0, H'00, H'00, H'80, H'3F, H'00, H'00, H'20, H'C1
+          .DATA.L      _const_8c039f80 ; ukn
+          .DATA.B      H'01, H'00, H'00, H'00, H'00, H'00, H'00, H'C0, H'00, H'00, H'80, H'3F, H'00, H'00, H'C0, H'40
+          .DATA.L      _const_8c039f80 ; ukn
+          .DATA.B      H'02, H'00, H'00, H'00, H'00, H'00, H'40, H'40, H'CD, H'CC, H'4C, H'3F, H'00, H'00, H'20, H'41
+          .DATA.L      _const_8c039f80 ; ukn
+          .DATA.B      H'02, H'00, H'00, H'00, H'00, H'00, H'80, H'C0, H'00, H'00, H'20, H'40, H'00, H'00, H'20, H'C1
+          .DATA.L      _const_8c039f80 ; ukn
+          .DATA.B      H'02, H'00, H'00, H'00, H'00, H'00, H'40, H'40, H'00, H'00, H'20, H'40, H'00, H'00, H'C8, H'C1
+          .DATA.L      _const_8c039f80 ; ukn
+          .DATA.B      H'01, H'00, H'00, H'00, H'00, H'00, H'40, H'40, H'00, H'00, H'20, H'40, H'00, H'00, H'C8, H'C1
+          .DATA.L      _const_8c039f80 ; ukn
+          .DATA.B      H'02, H'00, H'00, H'00, H'00, H'00, H'F0, H'40, H'66, H'66, H'E6, H'3F, H'00, H'00, H'00, H'00
+          .DATA.L      _const_8c039f80 ; ukn
+          .DATA.B      H'02, H'00, H'00, H'00, H'00, H'00, H'30, H'41, H'66, H'66, H'E6, H'3F, H'00, H'00, H'00, H'00
+          .DATA.L      _const_8c039f80 ; ukn
+          .DATA.B      H'00, H'00, H'00, H'00, H'00, H'20, H'59, H'45, H'00, H'00, H'80, H'3F, H'00, H'70, H'5B, H'45
+          .DATA.L      _const_8c039f98 ; ukn
+          .DATA.B      H'00, H'00, H'00, H'00, H'00, H'E0, H'56, H'45, H'00, H'00, H'20, H'42, H'00, H'90, H'55, H'45
+          .DATA.L      _const_8c039fa8 ; ukn
+          .DATA.B      H'02, H'00, H'00, H'00, H'00, H'00, H'40, H'C0, H'00, H'00, H'00, H'40, H'00, H'00, H'C0, H'C0
+          .DATA.L      _const_8c039f80 ; ukn
+          .DATA.B      H'01, H'00, H'00, H'00, H'9A, H'99, H'C9, H'C0, H'00, H'00, H'00, H'40, H'00, H'00, H'C0, H'C0
+          .DATA.L      _const_8c039f80 ; ukn
+          .DATA.B      H'00, H'00, H'00, H'00, H'00, H'20, H'45, H'45, H'9A, H'99, H'99, H'40, H'00, H'10, H'47, H'45
+          .DATA.L      _const_8c039fb0 ; ukn
+          .DATA.B      H'02, H'00, H'00, H'00, H'00, H'00, H'A0, H'C0, H'00, H'00, H'40, H'40, H'00, H'00, H'10, H'41
+          .DATA.L      _const_8c039f80 ; ukn
+          .DATA.B      H'01, H'00, H'00, H'00, H'00, H'00, H'20, H'C0, H'00, H'00, H'40, H'40, H'00, H'00, H'40, H'C0
+          .DATA.L      _const_8c039fbc ; ukn
+          .DATA.B      H'02, H'00, H'00, H'00, H'00, H'00, H'80, H'C0, H'00, H'00, H'78, H'41, H'00, H'00, H'A0, H'41
+          .DATA.L      _const_8c039f80 ; ukn
+          .DATA.B      H'00, H'00, H'00, H'00, H'33, H'CB, H'36, H'45, H'00, H'00, H'A0, H'40, H'00, H'70, H'21, H'45
+          .DATA.L      _const_8c039fc8 ; ukn
+          .DATA.B      H'02, H'00, H'00, H'00, H'00, H'00, H'00, H'C0, H'33, H'33, H'33, H'3F, H'00, H'00, H'00, H'41
+          .DATA.L      _const_8c039fd8 ; ukn
+          .DATA.B      H'00, H'00, H'00, H'00, H'00, H'C0, H'2C, H'45, H'00, H'00, H'E0, H'40, H'00, H'10, H'1B, H'45
+          .DATA.L      _const_8c039fe4 ; ukn
+          .DATA.B      H'02, H'00, H'00, H'00, H'00, H'00, H'F0, H'41, H'00, H'00, H'00, H'3F, H'00, H'00, H'00, H'00
+          .DATA.L      _const_8c039f80 ; ukn
+          .DATA.B      H'02, H'00, H'00, H'00, H'00, H'00, H'F0, H'41, H'00, H'00, H'00, H'3F, H'00, H'00, H'00, H'00
+          .DATA.L      _const_8c039f80 ; ukn
+          .DATA.B      H'00, H'00, H'00, H'00, H'00, H'F0, H'22, H'45, H'00, H'00, H'80, H'3F, H'00, H'40, H'0C, H'45
+          .DATA.L      _const_8c039ff8 ; ukn
+          .DATA.B      H'00, H'00, H'00, H'00, H'00, H'50, H'20, H'45, H'00, H'00, H'00, H'3F, H'00, H'50, H'07, H'45
+          .DATA.L      _const_8c03a004 ; ukn
+          .DATA.B      H'02, H'00, H'00, H'00, H'00, H'00, H'A0, H'C0, H'00, H'00, H'00, H'3F, H'00, H'00, H'40, H'C0
+          .DATA.L      _const_8c039f80 ; ukn
+          .DATA.B      H'01, H'00, H'00, H'00, H'00, H'00, H'A0, H'C0, H'00, H'00, H'00, H'3F, H'00, H'00, H'40, H'C0
+          .DATA.L      _const_8c03a018 ; ukn
+          .DATA.B      H'00, H'00, H'00, H'00, H'00, H'00, H'16, H'45, H'00, H'00, H'C0, H'40, H'00, H'60, H'D5, H'44
+          .DATA.L      _const_8c03a024 ; ukn
+          .DATA.B      H'02, H'00, H'00, H'00, H'00, H'00, H'70, H'C1, H'00, H'00, H'B0, H'40, H'00, H'00, H'E0, H'C0
+          .DATA.L      _const_8c03a030 ; ukn
+          .DATA.B      H'01, H'00, H'00, H'00, H'00, H'00, H'70, H'C1, H'00, H'00, H'B0, H'40, H'00, H'00, H'E0, H'C0
+          .DATA.L      _const_8c039f80 ; ukn
+          .DATA.B      H'02, H'00, H'00, H'00, H'00, H'00, H'C0, H'C0, H'00, H'00, H'80, H'3F, H'00, H'00, H'00, H'00
+          .DATA.L      _const_8c03a03c ; ukn
+          .DATA.B      H'02, H'00, H'00, H'00, H'00, H'00, H'C0, H'C0, H'00, H'00, H'80, H'3F, H'00, H'00, H'A0, H'C0
+          .DATA.L      _const_8c039f80 ; ukn
+          .DATA.B      H'01, H'00, H'00, H'00, H'00, H'00, H'A0, H'C0, H'00, H'00, H'80, H'3F, H'00, H'00, H'A0, H'C0
+          .DATA.L      _const_8c039f80 ; ukn
+          .DATA.B      H'02, H'00, H'00, H'00, H'00, H'00, H'A0, H'C0, H'00, H'00, H'80, H'3F, H'00, H'00, H'A0, H'40
+          .DATA.L      _const_8c039f80 ; ukn
+          .DATA.B      H'00, H'00, H'00, H'00, H'00, H'00, H'17, H'45, H'00, H'00, H'0C, H'42, H'00, H'80, H'40, H'44
+          .DATA.L      _const_8c03a048 ; ukn
+          .DATA.B      H'02, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'E0, H'40, H'00, H'00, H'C8, H'41
+          .DATA.L      _const_8c039f80 ; ukn
+          .DATA.B      H'02, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'E0, H'40, H'00, H'00, H'C8, H'41
+          .DATA.L      _const_8c039f80 ; ukn
+          .DATA.B      H'00, H'00, H'00, H'00, H'00, H'E0, H'FF, H'44, H'00, H'00, H'00, H'3F, H'00, H'40, H'50, H'44
+          .DATA.L      _const_8c03a054 ; ukn
+          .DATA.B      H'02, H'00, H'00, H'00, H'00, H'00, H'40, H'40, H'00, H'00, H'00, H'3F, H'00, H'00, H'E0, H'40
+          .DATA.L      _const_8c039f80 ; ukn
+          .DATA.B      H'02, H'00, H'00, H'00, H'00, H'00, H'40, H'C0, H'00, H'00, H'00, H'3F, H'00, H'00, H'E0, H'40
+          .DATA.L      _const_8c03a060 ; ukn
+          .DATA.B      H'00, H'00, H'00, H'00, H'00, H'60, H'CA, H'44, H'00, H'00, H'C0, H'40, H'00, H'80, H'37, H'44
+          .DATA.L      _const_8c03a06c ; ukn
+          .DATA.B      H'00, H'00, H'00, H'00, H'00, H'00, H'B5, H'44, H'00, H'00, H'E0, H'40, H'00, H'80, H'2D, H'44
+          .DATA.L      _const_8c039f80 ; ukn
+          .DATA.B      H'02, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'20, H'40, H'00, H'00, H'A0, H'C1
+          .DATA.L      _const_8c039f80 ; ukn
+          .DATA.B      H'00, H'00, H'00, H'00, H'00, H'60, H'92, H'44, H'00, H'00, H'80, H'3F, H'00, H'00, H'03, H'44
+          .DATA.L      _const_8c03a078 ; ukn
+          .DATA.B      H'00, H'00, H'00, H'00, H'00, H'60, H'92, H'44, H'00, H'00, H'80, H'3F, H'00, H'00, H'03, H'44
+          .DATA.L      _const_8c039f80 ; ukn
+          .DATA.B      H'00, H'00, H'00, H'00, H'00, H'60, H'92, H'44, H'00, H'00, H'80, H'3F, H'00, H'00, H'03, H'44
+          .DATA.L      _const_8c039f80 ; ukn
+          .DATA.B      H'00, H'00, H'00, H'00, H'00, H'00, H'80, H'44, H'00, H'00, H'80, H'3F, H'00, H'80, H'E8, H'43
+          .DATA.L      _const_8c039f80 ; ukn
+          .DATA.B      H'00, H'00, H'00, H'00, H'00, H'E0, H'82, H'44, H'00, H'00, H'80, H'3F, H'00, H'80, H'EF, H'43
+          .DATA.L      _const_8c039f80 ; ukn
+          .DATA.B      H'01, H'00, H'00, H'00, H'00, H'00, H'40, H'C0, H'CD, H'CC, H'4C, H'3F, H'00, H'00, H'40, H'C0
+          .DATA.L      _const_8c039f80 ; ukn
+          .DATA.B      H'00, H'00, H'00, H'00, H'00, H'C0, H'6C, H'44, H'00, H'00, H'A0, H'40, H'00, H'00, H'C7, H'43
+          .DATA.L      _const_8c039f80 ; ukn
+          .DATA.B      H'02, H'00, H'00, H'00, H'00, H'00, H'80, H'C0, H'00, H'00, H'A0, H'40, H'00, H'00, H'70, H'C1
+          .DATA.L      _const_8c039f80 ; ukn
+          .DATA.B      H'01, H'00, H'00, H'00, H'00, H'00, H'80, H'C0, H'00, H'00, H'A0, H'40, H'00, H'00, H'70, H'C1
+          .DATA.L      _const_8c039f80 ; ukn
+          .DATA.B      H'00, H'00, H'00, H'00, H'00, H'80, H'24, H'44, H'00, H'00, H'A0, H'40, H'00, H'00, H'96, H'43
+          .DATA.L      _const_8c039f80 ; ukn
+          .DATA.B      H'00, H'00, H'00, H'00, H'00, H'80, H'24, H'44, H'00, H'00, H'A0, H'40, H'00, H'00, H'96, H'43
+          .DATA.L      _const_8c039f80 ; ukn
+          .DATA.B      H'00, H'00, H'00, H'00, H'00, H'00, H'23, H'44, H'00, H'00, H'C0, H'3F, H'00, H'00, H'52, H'43
+          .DATA.L      _const_8c039f80 ; ukn
+          .DATA.B      H'00, H'00, H'00, H'00, H'00, H'00, H'12, H'44, H'00, H'00, H'00, H'00, H'00, H'00, H'2B, H'43
+          .DATA.L      _const_8c039f80 ; ukn
+          .DATA.B      H'02, H'00, H'00, H'00, H'00, H'00, H'80, H'C0, H'00, H'00, H'00, H'3F, H'00, H'00, H'A0, H'40
+          .DATA.L      _const_8c039f80 ; ukn
+          .DATA.B      H'02, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'20, H'40, H'00, H'00, H'20, H'41
+          .DATA.L      _const_8c039f80 ; ukn
+          .DATA.B      H'00, H'00, H'00, H'00, H'00, H'80, H'0B, H'44, H'00, H'00, H'20, H'41, H'00, H'00, H'9F, H'43
+          .DATA.L      _const_8c039f80 ; ukn
+          .DATA.B      H'00, H'00, H'00, H'00, H'00, H'80, H'DF, H'43, H'00, H'00, H'00, H'00, H'00, H'00, H'B0, H'43
+          .DATA.L      _const_8c039f80 ; ukn
+_init_8c045b60:        ; from defines
+          .DATA.B      H'00, H'00, H'00, H'00, H'00, H'00, H'6D, H'45, H'9A, H'99, H'99, H'3F, H'00, H'D0, H'34, H'45
+          .DATA.L      _const_8c039f80 ; ukn
+          .DATA.B      H'00, H'00, H'00, H'00, H'00, H'B0, H'76, H'45, H'00, H'00, H'50, H'41, H'00, H'20, H'32, H'45
+          .DATA.L      _const_8c039f80 ; ukn
+          .DATA.B      H'02, H'00, H'00, H'00, H'00, H'00, H'40, H'C0, H'00, H'00, H'40, H'40, H'00, H'00, H'00, H'C1
+          .DATA.L      _const_8c039f80 ; ukn
+          .DATA.B      H'02, H'00, H'00, H'00, H'00, H'00, H'40, H'40, H'00, H'00, H'40, H'40, H'00, H'00, H'00, H'C1
+          .DATA.L      _const_8c039f80 ; ukn
+          .DATA.B      H'00, H'00, H'00, H'00, H'00, H'90, H'9B, H'45, H'00, H'00, H'00, H'41, H'00, H'C0, H'46, H'45
+          .DATA.L      _const_8c039f80 ; ukn
+          .DATA.B      H'00, H'00, H'00, H'00, H'00, H'90, H'9B, H'45, H'00, H'00, H'C0, H'40, H'00, H'C0, H'46, H'45
+          .DATA.L      _const_8c039f80 ; ukn
+          .DATA.B      H'02, H'00, H'00, H'00, H'00, H'00, H'40, H'40, H'00, H'00, H'00, H'3F, H'00, H'00, H'E0, H'C0
+          .DATA.L      _const_8c039f80 ; ukn
+          .DATA.B      H'00, H'00, H'00, H'00, H'00, H'50, H'81, H'45, H'00, H'00, H'50, H'41, H'00, H'20, H'8B, H'45
+          .DATA.L      _const_8c039f80 ; ukn
+          .DATA.B      H'02, H'00, H'00, H'00, H'00, H'00, H'40, H'40, H'00, H'00, H'50, H'41, H'00, H'00, H'A0, H'C0
+          .DATA.L      _const_8c039f80 ; ukn
+          .DATA.B      H'02, H'00, H'00, H'00, H'00, H'00, H'40, H'C0, H'00, H'00, H'50, H'41, H'00, H'00, H'A0, H'C0
+          .DATA.L      _const_8c039f80 ; ukn
+          .DATA.B      H'00, H'00, H'00, H'00, H'00, H'E0, H'60, H'45, H'00, H'00, H'00, H'40, H'00, H'A0, H'56, H'45
+          .DATA.L      _const_8c039f80 ; ukn
+          .DATA.B      H'02, H'00, H'00, H'00, H'00, H'00, H'A0, H'40, H'00, H'00, H'80, H'40, H'00, H'00, H'A0, H'C1
+          .DATA.L      _const_8c039f80 ; ukn
+          .DATA.B      H'02, H'00, H'00, H'00, H'00, H'00, H'40, H'C0, H'9A, H'99, H'99, H'3E, H'00, H'00, H'00, H'40
+          .DATA.L      _const_8c039f80 ; ukn
+          .DATA.B      H'00, H'00, H'00, H'00, H'00, H'20, H'48, H'45, H'00, H'00, H'C0, H'3F, H'00, H'60, H'65, H'45
+          .DATA.L      _const_8c039f80 ; ukn
+          .DATA.B      H'02, H'00, H'00, H'00, H'00, H'00, H'40, H'C0, H'00, H'00, H'20, H'40, H'00, H'00, H'00, H'00
+          .DATA.L      _const_8c039f80 ; ukn
+          .DATA.B      H'00, H'00, H'00, H'00, H'00, H'40, H'26, H'45, H'00, H'00, H'80, H'3F, H'00, H'70, H'7E, H'45
+          .DATA.L      _const_8c039f80 ; ukn
+          .DATA.B      H'02, H'00, H'00, H'00, H'00, H'00, H'20, H'41, H'00, H'00, H'C0, H'3F, H'00, H'00, H'00, H'00
+          .DATA.L      _const_8c039f80 ; ukn
+          .DATA.B      H'02, H'00, H'00, H'00, H'00, H'00, H'40, H'C0, H'00, H'00, H'00, H'3F, H'00, H'00, H'20, H'41
+          .DATA.L      _const_8c039f80 ; ukn
+          .DATA.B      H'01, H'00, H'00, H'00, H'00, H'00, H'40, H'C0, H'00, H'00, H'00, H'3F, H'00, H'00, H'20, H'41
+          .DATA.L      _const_8c039f80 ; ukn
+          .DATA.B      H'00, H'00, H'00, H'00, H'00, H'60, H'2B, H'45, H'00, H'00, H'FC, H'41, H'00, H'10, H'93, H'45
+          .DATA.L      _const_8c039f80 ; ukn
+          .DATA.B      H'02, H'00, H'00, H'00, H'00, H'00, H'68, H'41, H'00, H'00, H'C0, H'3F, H'00, H'00, H'50, H'41
+          .DATA.L      _const_8c03a084 ; ukn
+          .DATA.B      H'01, H'00, H'00, H'00, H'00, H'00, H'68, H'41, H'00, H'00, H'C0, H'3F, H'00, H'00, H'50, H'41
+          .DATA.L      _const_8c039f80 ; ukn
+          .DATA.B      H'00, H'00, H'00, H'00, H'00, H'40, H'ED, H'44, H'00, H'00, H'00, H'40, H'00, H'D0, H'6C, H'45
+          .DATA.L      _const_8c039f80 ; ukn
+          .DATA.B      H'00, H'00, H'00, H'00, H'00, H'40, H'03, H'45, H'00, H'00, H'C8, H'41, H'00, H'A0, H'6B, H'45
+          .DATA.L      _const_8c03a094 ; ukn
+          .DATA.B      H'00, H'00, H'00, H'00, H'00, H'40, H'04, H'45, H'00, H'00, H'00, H'3F, H'00, H'40, H'6C, H'45
+          .DATA.L      _const_8c039f80 ; ukn
+          .DATA.B      H'00, H'00, H'00, H'00, H'00, H'10, H'03, H'45, H'CD, H'CC, H'4C, H'3F, H'00, H'60, H'64, H'45
+          .DATA.L      _const_8c039f80 ; ukn
+          .DATA.B      H'00, H'00, H'00, H'00, H'00, H'C0, H'12, H'45, H'00, H'00, H'40, H'41, H'00, H'70, H'5D, H'45
+          .DATA.L      _const_8c03a0a0 ; ukn
+          .DATA.B      H'02, H'00, H'00, H'00, H'00, H'00, H'80, H'3F, H'00, H'00, H'80, H'3F, H'00, H'00, H'00, H'C1
+          .DATA.L      _const_8c039f80 ; ukn
+          .DATA.B      H'02, H'00, H'00, H'00, H'00, H'00, H'80, H'3F, H'00, H'00, H'80, H'3F, H'00, H'00, H'00, H'C1
+          .DATA.L      _const_8c039f80 ; ukn
+          .DATA.B      H'02, H'00, H'00, H'00, H'00, H'00, H'00, H'41, H'00, H'00, H'C0, H'3F, H'00, H'00, H'30, H'C1
+          .DATA.L      _const_8c03a0b0 ; ukn
+          .DATA.B      H'01, H'00, H'00, H'00, H'00, H'00, H'00, H'41, H'00, H'00, H'C0, H'3F, H'00, H'00, H'30, H'C1
+          .DATA.L      _const_8c039f80 ; ukn
+          .DATA.B      H'02, H'00, H'00, H'00, H'00, H'00, H'00, H'41, H'00, H'00, H'C0, H'3F, H'00, H'00, H'00, H'00
+          .DATA.L      _const_8c039f80 ; ukn
+          .DATA.B      H'01, H'00, H'00, H'00, H'00, H'00, H'00, H'41, H'00, H'00, H'C0, H'3F, H'00, H'00, H'00, H'00
+          .DATA.L      _const_8c039f80 ; ukn
+          .DATA.B      H'00, H'00, H'00, H'00, H'00, H'B0, H'2D, H'45, H'00, H'00, H'50, H'41, H'00, H'C0, H'47, H'45
+          .DATA.L      _const_8c039f80 ; ukn
+          .DATA.B      H'00, H'00, H'00, H'00, H'00, H'B0, H'2D, H'45, H'CD, H'CC, H'1C, H'41, H'00, H'C0, H'47, H'45
+          .DATA.L      _const_8c039f80 ; ukn
+          .DATA.B      H'02, H'00, H'00, H'00, H'66, H'66, H'06, H'C0, H'00, H'00, H'00, H'3F, H'00, H'00, H'E0, H'40
+          .DATA.L      _const_8c039f80 ; ukn
+          .DATA.B      H'00, H'00, H'00, H'00, H'66, H'1E, H'24, H'45, H'33, H'33, H'1B, H'41, H'9A, H'A9, H'32, H'45
+          .DATA.L      _const_8c039f80 ; ukn
+          .DATA.B      H'00, H'00, H'00, H'00, H'00, H'40, H'8E, H'44, H'00, H'00, H'00, H'3F, H'00, H'40, H'09, H'44
+          .DATA.L      _const_8c039f80 ; ukn
+          .DATA.B      H'02, H'00, H'00, H'00, H'00, H'00, H'40, H'C0, H'00, H'00, H'00, H'3F, H'00, H'00, H'C0, H'40
+          .DATA.L      _const_8c039f80 ; ukn
+          .DATA.B      H'00, H'00, H'00, H'00, H'00, H'20, H'8B, H'44, H'00, H'00, H'00, H'3F, H'00, H'00, H'E7, H'43
+          .DATA.L      _const_8c039f80 ; ukn
+          .DATA.B      H'02, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'84, H'41, H'00, H'00, H'20, H'42
+          .DATA.L      _const_8c039f80 ; ukn
+          .DATA.B      H'00, H'00, H'00, H'00, H'00, H'80, H'72, H'44, H'00, H'00, H'00, H'3F, H'00, H'80, H'AC, H'43
+          .DATA.L      _const_8c039f80 ; ukn
+          .DATA.B      H'02, H'00, H'00, H'00, H'00, H'00, H'40, H'40, H'00, H'00, H'C0, H'3F, H'00, H'00, H'A0, H'C1
+          .DATA.L      _const_8c039f80 ; ukn
+          .DATA.B      H'01, H'00, H'00, H'00, H'00, H'00, H'40, H'40, H'00, H'00, H'C0, H'3F, H'00, H'00, H'A0, H'C1
+          .DATA.L      _const_8c039f80 ; ukn
+          .DATA.B      H'00, H'00, H'00, H'00, H'00, H'00, H'2D, H'44, H'00, H'00, H'C0, H'3F, H'00, H'80, H'92, H'43
+          .DATA.L      _const_8c039f80 ; ukn
+_init_8c045ee4:        ; from defines
+          .DATA.B      H'00, H'00, H'00, H'00, H'00, H'80, H'DA, H'45, H'33, H'33, H'33, H'3F, H'9A, H'11, H'C2, H'45
+          .DATA.L      _const_8c03a0c4 ; ukn
+          .DATA.B      H'00, H'00, H'00, H'00, H'00, H'F8, H'DA, H'45, H'00, H'00, H'00, H'3F, H'00, H'88, H'C2, H'45
+          .DATA.L      _const_8c039f80 ; ukn
+          .DATA.B      H'02, H'00, H'00, H'00, H'00, H'00, H'40, H'C0, H'33, H'33, H'33, H'3F, H'00, H'00, H'00, H'41
+          .DATA.L      _const_8c039f80 ; ukn
+          .DATA.B      H'00, H'00, H'00, H'00, H'00, H'B0, H'E0, H'45, H'CD, H'CC, H'CC, H'40, H'00, H'04, H'C8, H'45
+          .DATA.L      _const_8c039f80 ; ukn
+          .DATA.B      H'00, H'00, H'00, H'00, H'00, H'B0, H'E0, H'45, H'CD, H'CC, H'CC, H'40, H'00, H'04, H'C8, H'45
+          .DATA.L      _const_8c03a0d0 ; ukn
+          .DATA.B      H'02, H'00, H'00, H'00, H'00, H'00, H'40, H'C0, H'33, H'33, H'33, H'3F, H'00, H'00, H'20, H'C1
+          .DATA.L      _const_8c039f80 ; ukn
+          .DATA.B      H'01, H'00, H'00, H'00, H'00, H'00, H'40, H'C0, H'33, H'33, H'33, H'3F, H'00, H'00, H'20, H'C1
+          .DATA.L      _const_8c039f80 ; ukn
+          .DATA.B      H'00, H'00, H'00, H'00, H'00, H'F0, H'E2, H'45, H'00, H'00, H'00, H'3F, H'00, H'C8, H'C0, H'45
+          .DATA.L      _const_8c039f80 ; ukn
+          .DATA.B      H'02, H'00, H'00, H'00, H'00, H'00, H'40, H'C0, H'00, H'00, H'C0, H'3F, H'00, H'00, H'40, H'40
+          .DATA.L      _const_8c039f80 ; ukn
+          .DATA.B      H'02, H'00, H'00, H'00, H'00, H'00, H'A0, H'40, H'00, H'00, H'C0, H'3F, H'00, H'00, H'20, H'C1
+          .DATA.L      _const_8c039f80 ; ukn
+          .DATA.B      H'01, H'00, H'00, H'00, H'00, H'00, H'A0, H'40, H'00, H'00, H'C0, H'3F, H'00, H'00, H'20, H'C1
+          .DATA.L      _const_8c039f80 ; ukn
+          .DATA.B      H'02, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'40, H'40, H'00, H'00, H'20, H'41
+          .DATA.L      _const_8c039f80 ; ukn
+          .DATA.B      H'00, H'00, H'00, H'00, H'00, H'30, H'D6, H'45, H'00, H'00, H'00, H'40, H'00, H'00, H'B6, H'45
+          .DATA.L      _const_8c039f80 ; ukn
+          .DATA.B      H'00, H'00, H'00, H'00, H'00, H'48, H'D7, H'45, H'00, H'00, H'90, H'41, H'00, H'40, H'B3, H'45
+          .DATA.L      _const_8c039f80 ; ukn
+          .DATA.B      H'00, H'00, H'00, H'00
+_init_8c046000:        ; aggressive search
+          .DATA.B      H'00, H'30, H'29, H'45, H'00, H'00, H'80, H'BF, H'00, H'80, H'B6, H'44
+          .DATA.L      _const_8c039f80 ; ukn
+          .DATA.B      H'02, H'00, H'00, H'00, H'00, H'00, H'80, H'C0, H'00, H'00, H'80, H'3F, H'00, H'00, H'90, H'C1
+          .DATA.L      _const_8c039f80 ; ukn
+          .DATA.B      H'01, H'00, H'00, H'00, H'00, H'00, H'80, H'C0, H'00, H'00, H'80, H'3F, H'00, H'00, H'90, H'C1
+          .DATA.L      _const_8c039f80 ; ukn
+          .DATA.B      H'02, H'00, H'00, H'00, H'00, H'00, H'40, H'40, H'00, H'00, H'00, H'3F, H'00, H'00, H'40, H'C0
+          .DATA.L      _const_8c039f80 ; ukn
+          .DATA.B      H'00, H'00, H'00, H'00, H'00, H'B0, H'0E, H'45, H'00, H'00, H'80, H'40, H'00, H'C0, H'A0, H'44
+          .DATA.L      _const_8c039f80 ; ukn
+          .DATA.B      H'00, H'00, H'00, H'00, H'00, H'10, H'0B, H'45, H'00, H'00, H'0C, H'42, H'00, H'20, H'92, H'44
+          .DATA.L      _const_8c039f80 ; ukn
+          .DATA.B      H'00, H'00, H'00, H'00, H'00, H'70, H'05, H'45, H'00, H'00, H'00, H'41, H'00, H'60, H'8A, H'44
+          .DATA.L      _const_8c039f80 ; ukn
+          .DATA.B      H'02, H'00
+_init_8c04608a:        ; from ghidra
+          .DATA.B      H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'80, H'40, H'00, H'00, H'20, H'41
+          .DATA.L      _const_8c039f80 ; ukn
+          .DATA.B      H'00, H'00, H'00, H'00, H'00, H'00, H'F9, H'44, H'00, H'00, H'40, H'41, H'00, H'40, H'47, H'44
+          .DATA.L      _const_8c039f80 ; ukn
+_init_8c0460b0:        ; from defines
+          .DATA.B      H'06, H'13, H'33, H'00, H'0A, H'14, H'1D, H'25, H'00, H'0E, H'00, H'00
           .END

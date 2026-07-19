@@ -10,7 +10,6 @@
           .IMPORT     _njCnkDrawObject
           .IMPORT     _njCnkEasyDrawObject
           .IMPORT     _njCnkSimpleDrawObject
-          .IMPORT     _init_8c045598
           .IMPORT     _njUserClipping
           .IMPORT     _var_8c226560
           .IMPORT     _TxtDrawSprite_8c014f54
@@ -18,29 +17,17 @@
           .IMPORT     _njSetScreen
           .IMPORT     _var_8c22655c
           .IMPORT     _njControl3D
-          .IMPORT     _init_8c045578
           .IMPORT     _var_8c1bbc38
-          .IMPORT     _init_8c0455fc
           .IMPORT     _var_8c1bb944
           .IMPORT     _init_texlist_8c03bf44
           .IMPORT     _njRenderTextureNumG
-          .IMPORT     _init_8c045558
-          .IMPORT     _init_8c045438
           .IMPORT     _var_busStopTexlist_8c1bc424
-          .IMPORT     _init_8c045568
-          .IMPORT     _init_8c045498
-          .IMPORT     _init_8c0455e8
-          .IMPORT     _init_8c045588
-          .IMPORT     _init_8c045610
-          .IMPORT     _init_8c045624
           .IMPORT     _var_8c1bb984
-          .IMPORT     _init_8c0454f8
           .IMPORT     _var_8c1bb904
           .IMPORT     _var_isFading_8c226568
           .IMPORT     _var_8c227d7c
           .IMPORT     _var_8c227d80
           .IMPORT     _var_8c226564
-          .IMPORT     _init_8c0455a8
           .IMPORT     _njDrawPolygon
           .IMPORT     _var_8c22656c
           .IMPORT     _var_playMode_8c1bb8d0
@@ -985,4 +972,58 @@ LP_GEN_18675:
           .DATA.L _TaskPush_8c014ae8 ; H'8C022BD0
           .DATA.L _njSetBackColor ; H'8C022BD4
           .DATA.L _task_fadeout_8c022ad0 ; H'8C022BD8
+          .SECTION    D, DATA, ALIGN=4
+_init_8c045438:        ; from defines
+          .DATA.B      H'00, H'00, H'00, H'42, H'00, H'00, H'00, H'42, H'44, H'20, H'57, H'3F, H'00, H'00, H'20, H'3F
+          .DATA.B      H'00, H'00, H'00, H'00, H'FF, H'FF, H'FF, H'FF, H'00, H'00, H'00, H'42, H'00, H'00, H'90, H'43
+          .DATA.B      H'44, H'20, H'57, H'3F, H'00, H'00, H'20, H'3F, H'00, H'00, H'FF, H'3E, H'FF, H'FF, H'FF, H'FF
+          .DATA.B      H'00, H'00, H'40, H'43, H'00, H'00, H'00, H'42, H'44, H'20, H'57, H'3F, H'00, H'00, H'80, H'3B
+          .DATA.B      H'00, H'00, H'00, H'00, H'FF, H'FF, H'FF, H'FF, H'00, H'00, H'40, H'43, H'00, H'00, H'90, H'43
+          .DATA.B      H'44, H'20, H'57, H'3F, H'00, H'00, H'80, H'3B, H'00, H'00, H'FF, H'3E, H'FF, H'FF, H'FF, H'FF
+_init_8c045498:        ; from defines
+          .DATA.B      H'00, H'00, H'E0, H'43, H'00, H'00, H'00, H'42, H'44, H'20, H'57, H'3F, H'00, H'00, H'20, H'3F
+          .DATA.B      H'00, H'00, H'00, H'00, H'FF, H'FF, H'FF, H'FF, H'00, H'00, H'E0, H'43, H'00, H'00, H'90, H'43
+          .DATA.B      H'44, H'20, H'57, H'3F, H'00, H'00, H'20, H'3F, H'00, H'00, H'FF, H'3E, H'FF, H'FF, H'FF, H'FF
+          .DATA.B      H'00, H'00, H'18, H'44, H'00, H'00, H'00, H'42, H'44, H'20, H'57, H'3F, H'00, H'00, H'80, H'3B
+          .DATA.B      H'00, H'00, H'00, H'00, H'FF, H'FF, H'FF, H'FF, H'00, H'00, H'18, H'44, H'00, H'00, H'90, H'43
+          .DATA.B      H'44, H'20, H'57, H'3F, H'00, H'00, H'80, H'3B, H'00, H'00, H'FF, H'3E, H'FF, H'FF, H'FF, H'FF
+_init_8c0454f8:        ; from defines
+          .DATA.B      H'00, H'00, H'00, H'42, H'00, H'00, H'00, H'42, H'44, H'20, H'57, H'3F, H'00, H'00, H'20, H'3F
+          .DATA.B      H'00, H'00, H'00, H'00, H'FF, H'FF, H'FF, H'FF, H'00, H'00, H'00, H'42, H'00, H'00, H'C0, H'43
+          .DATA.B      H'44, H'20, H'57, H'3F, H'00, H'00, H'20, H'3F, H'00, H'80, H'2F, H'3F, H'FF, H'FF, H'FF, H'FF
+          .DATA.B      H'00, H'00, H'40, H'43, H'00, H'00, H'00, H'42, H'44, H'20, H'57, H'3F, H'00, H'00, H'80, H'3B
+          .DATA.B      H'00, H'00, H'00, H'00, H'FF, H'FF, H'FF, H'FF, H'00, H'00, H'40, H'43, H'00, H'00, H'C0, H'43
+          .DATA.B      H'44, H'20, H'57, H'3F, H'00, H'00, H'80, H'3B, H'00, H'80, H'2F, H'3F, H'FF, H'FF, H'FF, H'FF
+_init_8c045558:        ; from defines
+          .DATA.B      H'00, H'00, H'80, H'3F, H'00, H'00, H'80, H'3F, H'00, H'00, H'A0, H'40, H'00, H'00, H'00, H'41
+_init_8c045568:        ; from defines
+          .DATA.B      H'00, H'00, H'60, H'41, H'00, H'00, H'80, H'3F, H'00, H'00, H'90, H'41, H'00, H'00, H'00, H'41
+_init_8c045578:        ; from defines
+          .DATA.B      H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'80, H'40, H'00, H'00, H'E0, H'40
+_init_8c045588:        ; from defines
+          .DATA.B      H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'80, H'40, H'00, H'00, H'20, H'41
+_init_8c045598:        ; from defines
+          .DATA.B      H'00, H'00, H'C0, H'40, H'00, H'00, H'00, H'40, H'00, H'00, H'90, H'41, H'00, H'00, H'10, H'41
+_init_8c0455a8:        ; from defines
+          .DATA.B      H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'80, H'3F
+_init_8c0455b4:        ; from ghidra
+          .DATA.B      H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'F0, H'43, H'00, H'00, H'80, H'3F
+_init_8c0455c4:        ; from ghidra
+          .DATA.B      H'00, H'00, H'00, H'00, H'00, H'00, H'20, H'44, H'00, H'00, H'00, H'00, H'00, H'00, H'80, H'3F
+_init_8c0455d4:        ; from ghidra
+          .DATA.B      H'00, H'00, H'00, H'00, H'00, H'00, H'20, H'44, H'00, H'00, H'F0, H'43, H'00, H'00, H'80, H'3F
+_init_8c0455e4:        ; from ghidra
+          .DATA.B      H'00, H'00, H'00, H'00
+_init_8c0455e8:        ; from defines
+          .DATA.B      H'00, H'00, H'FA, H'43, H'00, H'00, H'20, H'44, H'00, H'00, H'F0, H'43, H'00, H'00, H'A0, H'43
+          .DATA.B      H'00, H'00, H'70, H'43
+_init_8c0455fc:        ; from defines
+          .DATA.B      H'00, H'00, H'FA, H'43, H'00, H'00, H'20, H'43, H'00, H'00, H'80, H'43, H'00, H'00, H'A0, H'42
+          .DATA.B      H'00, H'00, H'00, H'43
+_init_8c045610:        ; from defines
+          .DATA.B      H'00, H'00, H'FA, H'43, H'00, H'00, H'20, H'43, H'00, H'00, H'B0, H'43, H'00, H'00, H'A0, H'42
+          .DATA.B      H'00, H'00, H'30, H'43
+_init_8c045624:        ; from defines
+          .DATA.B      H'00, H'00, H'FA, H'43, H'00, H'00, H'20, H'44, H'00, H'00, H'F0, H'43, H'00, H'00, H'C8, H'43
+          .DATA.B      H'00, H'00, H'40, H'43
           .END

@@ -68,7 +68,6 @@ SRCS = \
 	src/asm/02786c.src \
 	src/asm/027958.src \
 	src/asm/028258.src \
-	src/asm/02af78_pre_data.src \
 	src/asm/decompiled/02af78_event.src \
 	src/asm/02b2f0.src \
 	src/asm/02b464.src \
@@ -84,7 +83,6 @@ SRCS = \
 	src/asm/02f320.src \
 	src/asm/sectionD.src \
 	src/asm/04ce10_slots.src \
-	src/asm/sectionC.src \
 	src/asm/02fb50_sh4nlfzn.src \
 	src/asm/03327c_strt1_sectionC.src \
 	src/asm/04f6c0_SDK.src \

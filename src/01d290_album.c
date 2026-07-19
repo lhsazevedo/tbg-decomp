@@ -53,6 +53,27 @@ enum ALBUM_STATE {
     ALBUM_STATE_FADE_OUT = 6
 };
 
+/* ===================
+ * Initialized Globals
+ * ===================
+ */
+
+STATIC ResourceGroupInfo init_albumResourceGroup_8c045160 = {
+    "album_parts.dat",
+    "album.dat",
+    "album.pvm",
+    6
+};
+
+STATIC NJS_POINT2 init_8c045170[6] = {
+    { 147.0, 166.0 },
+    { 303.0, 166.0 },
+    { 455.0, 166.0 },
+    { 147.0, 328.0 },
+    { 303.0, 328.0 },
+    { 455.0, 328.0 }
+};
+
 
 /* ====================
  * Forward Declarations

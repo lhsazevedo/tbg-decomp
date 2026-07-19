@@ -12,7 +12,6 @@
           .IMPORT     _sdMidiPlay
           .IMPORT     _SndStartAdxFadeOut_8c010bae
           .IMPORT     _push_fadeout_8c022b60
-          .IMPORT     _init_8c045170
           .IMPORT     _CourseMenuInterpolateCursor_8c016d2c
           .IMPORT     _init_8c03bd80
           .IMPORT     _FUN_8c016182
@@ -23,7 +22,6 @@
           .IMPORT     _njGarbageTexture
           .IMPORT     _AsqInitQueues_8c011f36
           .IMPORT     _AsqResetQueues_8c011f6c
-          .IMPORT     _init_albumResourceGroup_8c045160
           .IMPORT     _CourseMenuRequestSysResgrp_8c018568
           .IMPORT     _RouteLoadSetPvmReady_8c014330
           .IMPORT     _RouteLoadResetPvmReady_8c014322
@@ -33,6 +31,8 @@
           .AIFDEF UNIT_TESTING
           .EXPORT     _albumDrawGrid_8c01d290
           .EXPORT     _albumMenuTask_8c01d300
+          .EXPORT     _init_albumResourceGroup_8c045160
+          .EXPORT     _init_8c045170
           .AENDI
           .SECTION     P, CODE, ALIGN=4
 _albumDrawGrid_8c01d290:
@@ -746,4 +746,38 @@ LP_GEN_20271:
           .DATA.L _RouteLoadResetPvmReady_8c014322 ; H'8C01D7F0
           .DATA.L _AsqNop_8c011120 ; H'8C01D7F4
           .DATA.L _AsqProcessQueues_8c011fe0 ; H'8C01D7F8
+          .SECTION    C, DATA, ALIGN=4
+_const_8c0387d4:        ; from ghidra
+          ;.SDATA      "album_parts.dat"
+          ;.DATA.B     H'00
+          .DATA.B      H'61, H'6C, H'62, H'75, H'6D, H'5F, H'70, H'61, H'72, H'74, H'73, H'2E, H'64, H'61, H'74, H'00
+_const_8c0387e4:        ; from ghidra
+          ;.SDATA      "album.dat"
+          ;.DATA.B     H'00
+          ;.RES.B      2
+          .DATA.B      H'61, H'6C, H'62, H'75, H'6D, H'2E, H'64, H'61, H'74, H'00, H'00, H'00
+_const_8c0387f0:        ; from ghidra
+          ;.SDATA      "album.pvm"
+          ;.DATA.B     H'00
+          ;.RES.B      2
+          .DATA.B      H'61, H'6C, H'62, H'75, H'6D, H'2E, H'70, H'76, H'6D, H'00
+          .SECTION    D, DATA, ALIGN=4
+_init_albumResourceGroup_8c045160:        ; from defines
+          .DATA.L      _const_8c0387d4
+          .DATA.L      _const_8c0387e4
+          .DATA.L      _const_8c0387f0
+          .DATA.L      H'06
+_init_8c045170:        ; from defines
+          .DATA.L      H'43130000
+          .DATA.L      H'43260000
+          .DATA.L      H'43978000
+          .DATA.L      H'43260000
+          .DATA.L      H'43E38000
+          .DATA.L      H'43260000
+          .DATA.L      H'43130000
+          .DATA.L      H'43A40000
+          .DATA.L      H'43978000
+          .DATA.L      H'43A40000
+          .DATA.L      H'43E38000
+          .DATA.L      H'43A40000
           .END

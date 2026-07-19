@@ -7,7 +7,6 @@
           .IMPORT     _var_8c1ba29c
           .IMPORT     _var_midiHandles_8c0fcd28
           .IMPORT     _sdMidiPlay
-          .IMPORT     _init_8c045638
           .IMPORT     _var_8c1bbcb4
           .IMPORT     _njSin
           .IMPORT     _var_8c227d9c
@@ -1197,4 +1196,12 @@ LP_GEN_84107:
           .DATA.L H'47800000 ; H'8C024B40
           .DATA.L H'43B40000 ; H'8C024B44
           .DATA.L H'42A1C71C ; H'8C024B48
+          .SECTION    D, DATA, ALIGN=4
+_init_8c045638:        ; from defines
+          .DATA.B      H'22, H'02, H'00, H'00
+          .DATA.B      H'40, H'3C, H'B5, H'37
+          .DATA.B      H'2F, H'A1, H'BD, H'3D, H'88, H'00, H'00, H'00, H'40, H'3C, H'35, H'38, H'2F, H'A1, H'3D, H'3E
+          .DATA.B      H'44, H'00, H'00, H'00, H'30, H'ED, H'87, H'38, H'09, H'ED, H'A5, H'3E, H'2D, H'00, H'00, H'00
+          .DATA.B      H'40, H'3C, H'B5, H'38, H'7B, H'09, H'ED, H'3E, H'22, H'00, H'00, H'00, H'50, H'8B, H'E2, H'38
+          .DATA.B      H'09, H'ED, H'25, H'3F
           .END
