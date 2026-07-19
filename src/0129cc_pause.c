@@ -5,14 +5,13 @@
 #include "011120_asset_queues.h"
 #include "012f44_game.h"
 #include "014f54_text.h"
-#include "014f54_text_pre_data.h"
+#include "sectionB.h"
 #include "01614c.h"
 #include "015ab8_title.h"
 #include "016d2c_course_menu.h"
 #include "01e27c.h"
 #include "022464.h"
 #include "0222dc.h"
-#include "sectionB.h"
 #include "serial_debug.h"
 
 /* ====================

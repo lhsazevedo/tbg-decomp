@@ -1727,6 +1727,4 @@ _init_demos_8c044154:        ; from defines
           .DATA.L      _const_8c035fac
           .DATA.L      H'0B
           .DATA.L      H'04
-          .SECTION    B,DATA,ALIGN=4
-          .END
 

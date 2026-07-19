@@ -9,7 +9,6 @@
 #include "0129cc_pause.h"
 #include "01614c.h"
 #include "sectionD.h"
-#include "014f54_text_pre_data.h"
 #include "sectionB.h"
 #include "includes.h"
 #include "serial_debug.h"

@@ -3,7 +3,7 @@
 #include <shinobi.h>
 #include <sg_sd.h>
 #include "0100bc_sound.h"
-#include "014f54_text_pre_data.h"
+#include "sectionB.h"
 #include "016c58_prompt.h"
 
 int PromptHandleMultiple_8c016c58(int *option, int count)

@@ -41,7 +41,6 @@ SRCS = \
 	src/0149b0_sbinit.c \
 	src/014a9c_tasks.c \
 	src/014b8c_backup.c \
-	src/asm/014f54_text_pre_data.src \
 	src/014f54_text.c \
 	src/015ab8_title.c \
 	src/016108.c \

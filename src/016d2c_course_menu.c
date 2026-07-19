@@ -18,7 +18,6 @@
 #include "01c980.h"
 #include "01e27c.h"
 #include "028258.h"
-#include "014f54_text_pre_data.h"
 #include "sectionB.h"
 #include "serial_debug.h"
 #include "serial_debug.h"

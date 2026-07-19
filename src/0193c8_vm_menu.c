@@ -8,7 +8,6 @@
 #include "014a9c_tasks.h"
 #include "015ab8_title.h"
 #include "014b8c_backup.h"
-#include "014f54_text_pre_data.h"
 #include "sectionB.h"
 #include "serial_debug.h"
 

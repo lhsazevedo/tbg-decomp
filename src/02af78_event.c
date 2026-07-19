@@ -2,7 +2,6 @@
 #include <shinobi.h>
 
 #include "02af78_event.h"
-#include "014f54_text_pre_data.h"
 #include "sectionB.h"
 #include "serial_debug.h"
 

@@ -12,7 +12,6 @@
 #include "02af78_event.h"
 #include "02c884.h"
 #include "sectionD.h"
-#include "014f54_text_pre_data.h"
 #include "sectionB.h"
 #include "serial_debug.h"
 

@@ -3,7 +3,6 @@
 #include <sg_sd.h>
 #include <cri_adxt.h>
 #include "0100bc_sound.h"
-#include "014f54_text_pre_data.h"
 #include "sectionB.h"
 #include <cri_adxf.h>
 #include <string.h>
