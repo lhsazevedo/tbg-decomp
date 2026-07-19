@@ -24,6 +24,16 @@
           .IMPORT     _var_playMode_8c1bb8d0
           .IMPORT     _var_8c1bb8d4
           .IMPORT     _var_demoIndex_8c1bb8d8
+          .IMPORT     _var_menuState_8c1bc7a8
+          .IMPORT     _var_8c1bc824
+          .IMPORT     _var_demoBuffer_8c1bc828
+          .IMPORT     _var_demoCursor_8c225fa8
+          .IMPORT     _var_demoPrevOn_8c225fac
+          .IMPORT     _var_glyphTexnames_8c1bc78c
+          .IMPORT     _var_glyphTexlists_8c1bc790
+          .IMPORT     _var_fontResourceGroup_8c1bc794
+          .IMPORT     _var_8c1bc7a0
+          .IMPORT     _var_glyphBuffer_8c1bc7a4
           .IMPORT     _AsqInitQueues_8c011f36
           .IMPORT     _AsqResetQueues_8c011f6c
           .IMPORT     _AsqRequestDat_8c011182
@@ -34,11 +44,7 @@
           .IMPORT     _AsqNop_8c011120
           .IMPORT     _AsqProcessQueues_8c011fe0
           .IMPORT     _njDrawSprite2D
-          .EXPORT     _var_menuState_8c1bc7a8
-          .EXPORT     _var_8c1bc824
-          .EXPORT     _var_demoBuffer_8c1bc828
-          .EXPORT     _var_demoCursor_8c225fa8
-          .EXPORT     _var_demoPrevOn_8c225fac
+
           .EXPORT     _TxtDrawSprite_8c014f54
           .EXPORT     _TxtInit_8c01524c
           .EXPORT     _TxtDestroy_8c01529c
@@ -64,12 +70,6 @@
           .EXPORT     _init_tanim_8c044128 ; 014f54
           .EXPORT     _init_contents_8c04413c ; 014f54
           .EXPORT     _init_demos_8c044154 ; 014f54
-
-          .EXPORT     _var_glyphTexnames_8c1bc78c
-          .EXPORT     _var_glyphTexlists_8c1bc790
-          .EXPORT     _var_fontResourceGroup_8c1bc794
-          .EXPORT     _var_8c1bc7a0
-          .EXPORT     _var_glyphBuffer_8c1bc7a4
           .AENDI
           .SECTION    P,CODE,ALIGN=4
 _TxtDrawSprite_8c014f54:
@@ -1728,25 +1728,5 @@ _init_demos_8c044154:        ; from defines
           .DATA.L      H'0B
           .DATA.L      H'04
           .SECTION    B,DATA,ALIGN=4
-_var_glyphTexnames_8c1bc78c:
-          .RES.L      1
-_var_glyphTexlists_8c1bc790:
-          .RES.L      1
-_var_fontResourceGroup_8c1bc794:
-          .RES.L      3
-_var_8c1bc7a0:
-          .RES.B      4
-_var_glyphBuffer_8c1bc7a4:
-          .RES.B      4
-_var_menuState_8c1bc7a8:
-          .RES.L      31
-_var_8c1bc824:
-          .RES.B      4
-_var_demoBuffer_8c1bc828:
-          .RES.B      432000
-_var_demoCursor_8c225fa8:
-          .RES.B      4
-_var_demoPrevOn_8c225fac:
-          .RES.B      4
           .END
 

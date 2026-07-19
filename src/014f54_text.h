@@ -11,15 +11,6 @@ enum PLAY_MODE {
     PLAY_MODE_DEMO     = 2,  /* attract loop */
 };
 
-typedef struct {
-    Uint32 on;   /* 0x00 */
-    Sint8  x1;   /* 0x04 */
-    Uint8  r;    /* 0x05 */
-    Uint8  l;    /* 0x06 */
-    Uint8  pad;  /* 0x07 */
-} ReplayInput;
-
-#define REPLAY_BUFFER_CAPACITY 54000
 #define GLYPH_PALETTE_SIZE  4
 
 typedef struct {
@@ -40,11 +31,6 @@ typedef struct {
     Float *line_offsets_0x34;
     char *text_0x38;
 } TextBox;
-
-extern ReplayInput var_demoBuffer_8c1bc828[REPLAY_BUFFER_CAPACITY];
-extern ReplayInput *var_demoCursor_8c225fa8;
-extern Uint32 var_demoPrevOn_8c225fac;
-extern void* var_8c1bc824;
 
 void TxtDrawSprite_8c014f54(
     ResourceGroup *resource_group,

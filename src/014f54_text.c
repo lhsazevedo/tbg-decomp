@@ -43,24 +43,6 @@ typedef struct {
     int field_0x08;
 } DemoEntry;
 
-/* =======================
- * Non-initialized Globals
- * =======================
- */
-
-STATIC NJS_TEXNAME *var_glyphTexnames_8c1bc78c;
-STATIC NJS_TEXLIST *var_glyphTexlists_8c1bc790;
-STATIC ResourceGroup var_fontResourceGroup_8c1bc794;
-STATIC Sint16 *var_8c1bc7a0;
-STATIC void *var_glyphBuffer_8c1bc7a4;
-
-MenuState var_menuState_8c1bc7a8;
-void *var_8c1bc824;
-ReplayInput var_demoBuffer_8c1bc828[REPLAY_BUFFER_CAPACITY];
-ReplayInput *var_demoCursor_8c225fa8;
-Uint32 var_demoPrevOn_8c225fac;
-
-
 /* ===================
  * Initialized Globals
  * ===================

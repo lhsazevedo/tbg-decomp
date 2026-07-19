@@ -1,9 +1,9 @@
 /* @unit Demo */
 /* 8c016bf4 */
 #include <shinobi.h>
-#include "014f54_text.h"
 #include "014f54_text_pre_data.h"
 #include "016bf4_demo_input.h"
+#include "sectionB.h"
 
 void DemoInputTask_8c016bf4()
 {

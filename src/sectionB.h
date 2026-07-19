@@ -21,6 +21,27 @@ typedef struct {
     int field_0x18;
 } Struct8c2264b8;
 
+typedef struct {
+    Uint32 on;   /* 0x00 */
+    Sint8  x1;   /* 0x04 */
+    Uint8  r;    /* 0x05 */
+    Uint8  l;    /* 0x06 */
+    Uint8  pad;  /* 0x07 */
+} ReplayInput;
+
+extern NJS_TEXNAME *var_glyphTexnames_8c1bc78c;
+extern NJS_TEXLIST *var_glyphTexlists_8c1bc790;
+extern ResourceGroup var_fontResourceGroup_8c1bc794;
+extern Sint16 *var_8c1bc7a0;
+extern void *var_glyphBuffer_8c1bc7a4;
+
+extern MenuState var_menuState_8c1bc7a8;
+extern void *var_8c1bc824;
+#define REPLAY_BUFFER_CAPACITY 54000
+extern ReplayInput var_demoBuffer_8c1bc828[REPLAY_BUFFER_CAPACITY];
+extern ReplayInput *var_demoCursor_8c225fa8;
+extern Uint32 var_demoPrevOn_8c225fac;
+
 extern int var_8c22606c;
 extern int var_8c2260a8;
 extern void* var_8c2260ac;

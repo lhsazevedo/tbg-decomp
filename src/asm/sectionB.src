@@ -1,4 +1,15 @@
 ; 8c0fcd20
+          .EXPORT     _var_menuState_8c1bc7a8
+          .EXPORT     _var_8c1bc824
+          .EXPORT     _var_demoBuffer_8c1bc828
+          .EXPORT     _var_demoCursor_8c225fa8
+          .EXPORT     _var_demoPrevOn_8c225fac
+          .EXPORT     _var_glyphTexnames_8c1bc78c
+          .EXPORT     _var_glyphTexlists_8c1bc790
+          .EXPORT     _var_fontResourceGroup_8c1bc794
+          .EXPORT     _var_8c1bc7a0
+          .EXPORT     _var_glyphBuffer_8c1bc7a4
+
           ; 015ab8_title
           .EXPORT     _var_currentSysResGroupInfo_8c225fb0 ; 012f44_game.c, 012f44_game.src, 015ab8_title.c, 015ab8_title.src, 016108.c, 016d2c_course_menu.c, 016d2c_course_menu.src, 018784.src, 01c980.src, 01e27c.src
 
@@ -295,6 +306,26 @@
           .EXPORT     _var_8c235c80 ; 02fb50_sh4nlfzn.src
           .EXPORT     _var_8c235c84 ; 02fb50_sh4nlfzn.src
           .SECTION    B,DATA,ALIGN=4
+_var_glyphTexnames_8c1bc78c:
+          .RES.L      1
+_var_glyphTexlists_8c1bc790:
+          .RES.L      1
+_var_fontResourceGroup_8c1bc794:
+          .RES.L      3
+_var_8c1bc7a0:
+          .RES.B      4
+_var_glyphBuffer_8c1bc7a4:
+          .RES.B      4
+_var_menuState_8c1bc7a8:
+          .RES.L      31
+_var_8c1bc824:
+          .RES.B      4
+_var_demoBuffer_8c1bc828:
+          .RES.B      432000
+_var_demoCursor_8c225fa8:
+          .RES.B      4
+_var_demoPrevOn_8c225fac:
+          .RES.B      4
 _var_currentSysResGroupInfo_8c225fb0:
           .RES.B      4
 _var_dialogSequenceIsActive_8c225fb4:
