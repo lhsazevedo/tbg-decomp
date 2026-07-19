@@ -12,7 +12,7 @@
 #include "01e27c.h"
 #include "022464.h"
 #include "0222dc.h"
-#include "0fcd20_sectionB.h"
+#include "sectionB.h"
 #include "serial_debug.h"
 
 /* ====================

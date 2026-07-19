@@ -274,8 +274,8 @@ input build\output\02f0c8.obj
 input build\output\02f320.obj
 input build\output\02fb50_sh4nlfzn.obj
 input build\output\03327c_strt1_sectionC.obj
-input build\output\0332a4_sectionC.obj
-input build\output\03bd80_sectionD.obj
+input build\output\sectionC.obj
+input build\output\sectionD.obj
 
 input sdk_obj\adx_inis.obj
 input sdk_obj\adx_tlk.obj
@@ -1353,7 +1353,7 @@ input sdk_obj\adx_qtbl.obj
 input sdk_obj\_0sbver_.obj
 
 ; input build\output\04f6c0_SDK.obj
-input build\output\0fcd20_sectionB.obj
+input build\output\sectionB.obj
 
 library E:\dc_sdk\155j\shc\lib\sh4nlfzn.lib
 

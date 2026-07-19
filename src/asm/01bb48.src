@@ -92,8 +92,8 @@
           .EXPORT     _const_8c038638 ; 01bb48.src
           .EXPORT     _const_8c038658 ; 01bb48.src
           .EXPORT     _const_8c038660 ; 01bb48.src
-          .EXPORT     _const_8c03866c ; 01bb48.src, 03bd80_sectionD.src
-          .EXPORT     _const_8c03867c ; 01bb48.src, 03bd80_sectionD.src
+          .EXPORT     _const_8c03866c ; 01bb48.src, sectionD.src
+          .EXPORT     _const_8c03867c ; 01bb48.src, sectionD.src
           .EXPORT     _init_8c044e38 ; 01bb48.src
           .EXPORT     _init_8c044e48 ; 01bb48.src
           .EXPORT     _init_8c044e50 ; 01bb48.src

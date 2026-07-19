@@ -112,7 +112,7 @@ move (`STATIC` gating, headers, `tests/*` fixups), which the script does not tou
 
 ## Moving Section C Consts to a Unit
 
-When a unit's `init_*` data array in section D references `_const_8cXXXXXX` symbols from `0332a4_sectionC.src`, those consts can be moved into the unit's `.src` file verbatim so ownership is consolidated. Procedure:
+When a unit's `init_*` data array in section D references `_const_8cXXXXXX` symbols from `sectionC.src`, those consts can be moved into the unit's `.src` file verbatim so ownership is consolidated. Procedure:
 
 1. **Extract the const block** from `sectionC.src` â€? copy the `.SECTION C, DATA, ALIGN=4` line plus the data labels/bytes verbatim.
 2. **Keep the section header in `sectionC.src`** â€? after removing the const data lines, ensure a `.SECTION C, DATA, ALIGN=4` directive remains before the first surviving data label. Failure to do this causes the assembler to silently drop all remaining section C data, shifting every subsequent const address and breaking the matching build.

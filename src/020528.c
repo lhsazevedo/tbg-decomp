@@ -2,7 +2,7 @@
 #include "014a9c_tasks.h"
 #include "020214.h"
 #include "014f54_text_pre_data.h"
-#include "0fcd20_sectionB.h"
+#include "sectionB.h"
 #include "020528.h"
 
 void FUN_8c020528()

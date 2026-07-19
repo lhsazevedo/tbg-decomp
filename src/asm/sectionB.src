@@ -34,9 +34,9 @@
 
           ; 01bb48
           .EXPORT     _var_8c2260a8 ; 012f44_game.c, 012f44_game.src, 01bb48.src
-          .EXPORT     _var_8c2260ac ; 012f44_game.c, 012f44_game.src, 01bb48.src, 03bd80_sectionD.src
-          .EXPORT     _var_8c2260b8 ; 012f44_game.c, 012f44_game.src, 01bb48.src, 03bd80_sectionD.src
-          .EXPORT     _var_8c2260c4 ; 012f44_game.c, 012f44_game.src, 01bb48.src, 03bd80_sectionD.src
+          .EXPORT     _var_8c2260ac ; 012f44_game.c, 012f44_game.src, 01bb48.src, sectionD.src
+          .EXPORT     _var_8c2260b8 ; 012f44_game.c, 012f44_game.src, 01bb48.src, sectionD.src
+          .EXPORT     _var_8c2260c4 ; 012f44_game.c, 012f44_game.src, 01bb48.src, sectionD.src
           .EXPORT     _var_8c2260d0 ; 01bb48.src
           .EXPORT     _var_8c2260d4 ; 01bb48.src
           .EXPORT     _var_8c226198 ; 01bb48.src

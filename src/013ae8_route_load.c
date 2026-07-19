@@ -11,9 +11,9 @@
 #include "028258.h"
 #include "02af78_event.h"
 #include "02c884.h"
-#include "03bd80_sectionD.h"
+#include "sectionD.h"
 #include "014f54_text_pre_data.h"
-#include "0fcd20_sectionB.h"
+#include "sectionB.h"
 #include "serial_debug.h"
 
 /* ====================

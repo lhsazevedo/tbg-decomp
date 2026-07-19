@@ -102,9 +102,9 @@ SRCS = \
 	src/asm/02f320.src \
 	src/scif.c \
 	src/serial_debug.c \
-	src/asm/0332a4_sectionC.src \
-	src/asm/03bd80_sectionD.src \
-	src/asm/0fcd20_sectionB.src \
+	src/asm/sectionC.src \
+	src/asm/sectionD.src \
+	src/asm/sectionB.src \
 	src/02fb50_sh4nlfzn_post_data.c \
 
 C_SRCS = $(filter %.c,$(SRCS))

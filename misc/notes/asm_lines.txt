@@ -44,7 +44,7 @@
    1209 src/asm/_096600_8c027958.src
    1212 src/asm/_051584_8c01c980.src
    1285 src/asm/_045468_8c01b19c.src
-   1349 src/asm/_970016_8c0fcd20_sectionB.src
+   1349 src/asm/_970016_8csectionB.src
    1411 src/asm/_055292_8c01d7fc.src
    1423 src/asm/_024908_8c01614c.src
    1509 src/asm/_037832_8c0193c8.src
@@ -65,9 +65,9 @@
    2684 src/asm/_111716_8c02b464.src
    3305 src/asm/_027948_8c016d2c.src
    6054 src/asm/_098904_8c028258.src
-   6180 src/asm/_144036_8c0332a4_sectionC.src
+   6180 src/asm/_144036_8csectionC.src
    7698 src/asm/_129872_8c02fb50_sh4nlfzn.src
-   8809 src/asm/_179584_8c03bd80_sectionD.src
+   8809 src/asm/_179584_8csectionD.src
   10314 src/asm/_008160_data.src
   44392 src/asm/_259776_8c04f6c0_SDK.src
  146071 total

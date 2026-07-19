@@ -12,9 +12,9 @@
 #include "serial_debug.h"
 #include "01614c.h"
 #include "022464.h"
-#include "03bd80_sectionD.h"
+#include "sectionD.h"
 #include "014f54_text_pre_data.h"
-#include "0fcd20_sectionB.h"
+#include "sectionB.h"
 #include "01d290_album.h"
 
 /* ====================

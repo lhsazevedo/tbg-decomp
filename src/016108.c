@@ -4,7 +4,7 @@
 #include "015ab8_title.h"
 #include "016d2c_course_menu.h"
 #include "016108.h"
-#include "0fcd20_sectionB.h"
+#include "sectionB.h"
 
 /* Matched */
 void RgFreeResourceGroups_8c016108()

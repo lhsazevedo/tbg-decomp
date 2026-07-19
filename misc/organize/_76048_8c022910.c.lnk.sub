@@ -52,7 +52,7 @@ input build\_19340_8c014b8c.obj
 input build\_76048_8c022910.obj
 input build\_76764_8c022bdc.obj
 input build\_143996_8c03327c_strt1_sectionC.obj
-input build\_144036_8c0332a4_sectionC.obj
+input build\_144036_8csectionC.obj
 
 print build\tbg.map 
 form a 
