@@ -5,7 +5,7 @@ from datetime import datetime
 import os
 
 dates = [
-  datetime(2022, 3, 27),
+  #datetime(2022, 3, 27),
   datetime(2024, 1, 1),
   datetime(2024, 7, 19),
   datetime(2024, 11, 1),
@@ -19,10 +19,11 @@ dates = [
   datetime(2026, 7, 6),
   datetime(2026, 7, 13),
   datetime(2026, 7, 17),
+  datetime(2026, 7, 26),
 ]
 
 decompiled_code = [
-  0.0,
+  #0.0,
   0.0,   # no asm structure at this commit (was manually estimated 2.0)
   8.6,
   8.6,
@@ -36,6 +37,7 @@ decompiled_code = [
   30.3,
   31.1,
   31.9,
+  31.5,
 ]
 
 
