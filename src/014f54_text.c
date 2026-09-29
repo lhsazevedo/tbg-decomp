@@ -365,7 +365,10 @@ void TxtDestroy_8c01529c()
     LOG_INFO(("[TXT] Destroying text module\n"));
 
     for (i = 0; i < GLYPH_COUNT; i++) {
-        if (var_8c1bc7a0[i] < -19) {
+        /* In use = glyph index (0..0x1ff), free = 0xffff: release every loaded glyph.
+         * The original compares unsigned (EXTU.W, CMP/GE #0xffed); as Sint16 `< -19`
+         * never held, so glyph textures leaked and the next text showed stale glyphs. */
+        if ((Uint16) var_8c1bc7a0[i] < 0xffed) {
             njReleaseTexture(&var_glyphTexlists_8c1bc790[i]);
         }
     };
