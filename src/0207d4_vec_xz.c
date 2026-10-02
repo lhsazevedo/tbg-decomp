@@ -6,7 +6,6 @@
  * ====================
  */
 
-/* See 0207d4_vec_xz.h. */
 float VecXZDot_8c0207d4(NJS_POINT3 *origin, NJS_POINT3 *a, PointXZ *b)
 {
     float ax = a->x - origin->x;
@@ -17,7 +16,6 @@ float VecXZDot_8c0207d4(NJS_POINT3 *origin, NJS_POINT3 *a, PointXZ *b)
     return az * bz + bx * ax;
 }
 
-/* See 0207d4_vec_xz.h. */
 float VecXZCross_8c0207fa(NJS_POINT3 *origin, PointXZ *a, PointXZ *b)
 {
     float ax = a->x - origin->x;
