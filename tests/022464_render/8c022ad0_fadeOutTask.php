@@ -10,7 +10,7 @@ return new class extends TestCase {
         $this->setSize('__divlu', 4);
         $this->setSize('_njSetBackColor', 4);
         $this->setSize('_njDrawPolygon', 4);
-        $this->setSize('_TaskKill_8c014b66', 4);
+        $this->setSize('_TaskUninstall_8c014b66', 4);
     }
 
     // Each vertex's .col field is written via displacement addressing from
@@ -115,7 +115,7 @@ return new class extends TestCase {
 
         $this->shouldWriteLong($task + 0x08, 3);
         $this->shouldWriteLong($this->addressOf('_var_isFading_8c226568'), 0);
-        $this->shouldCall('_TaskKill_8c014b66')->with($task);
+        $this->shouldCall('_TaskUninstall_8c014b66')->with($task);
         $this->shouldCall('_njSetBackColor')->with(0, 0, 0);
         $this->shouldWriteLong($this->addressOf('_var_fadeProgress_8c227d80'), 0xff0000);
         $uVar1 = (0xff0000 & 0xff0000) << 8;

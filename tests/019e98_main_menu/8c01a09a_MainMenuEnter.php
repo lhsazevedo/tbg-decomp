@@ -13,7 +13,7 @@ return new class extends TestCase {
         $task = 0xbebacafe;
         $selected = 3;
 
-        $this->shouldCall('_TaskSwitch_8c014b3e')->with($task, $this->addressOf('_mainMenuTask_8c019e98'));
+        $this->shouldCall('_TaskReinstall_8c014b3e')->with($task, $this->addressOf('_mainMenuTask_8c019e98'));
         $this->shouldWriteLong($this->addressOf('_var_menuState_8c1bc7a8') + 0x18, 0);
         $this->shouldWriteLong($this->addressOf('_var_menuState_8c1bc7a8') + 0x38, $selected);
         $this->shouldWriteLong($this->addressOf('_var_menuState_8c1bc7a8') + 0x5c, $selected * 2);
@@ -40,6 +40,6 @@ return new class extends TestCase {
         $this->setSize('_var_menuState_8c1bc7a8', 0x6c);
 
         // Functions
-        //$this->setSize('_TaskSwitch_8c014b3e', 0x4);
+        //$this->setSize('_TaskReinstall_8c014b3e', 0x4);
     }
 };

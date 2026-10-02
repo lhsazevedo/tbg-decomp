@@ -17,7 +17,7 @@ return new class extends TestCase {
     }
 
     /**
-     * SignalInit_8c02845a's stack slots for TaskSpawn's created_task / create_state
+     * SignalInit_8c02845a's stack slots for TaskInstall's installed_task / installed_state
      * out-params. The two objects lay the frame out differently.
      */
     private function outParams(): array
@@ -25,8 +25,8 @@ return new class extends TestCase {
         return $this->isAsmObject() ? [0xffffcc, 0xffffc8] : [0xffffd0, 0xffffcc];
     }
 
-    /** Fills in TaskSpawn's two out-params. */
-    private function fillTaskSpawn(int $task, int $state): Closure
+    /** Fills in TaskInstall's two out-params. */
+    private function fillTaskInstall(int $task, int $state): Closure
     {
         return function ($params) use ($task, $state) {
             $this->memory->writeUInt32($params[2], U32::of($task));
@@ -102,10 +102,10 @@ return new class extends TestCase {
         $this->shouldCall('_TrafficMarkSignalIdsInUse_8c026dcc')->with(2);
     }
 
-    public function test_flagged_id_allocates_group_but_spawns_nothing()
+    public function test_flagged_id_allocates_group_but_installs_nothing()
     {
         // Type 2 entry flags its *linked* id (0), not its own id (1), so both
-        // spawn loops skip it while the count still reaches 1.
+        // install loops skip it while the count still reaches 1.
         $table = $this->alloc(2 * 0xe * 4);
         $this->initUint32($table + 0x00, 2); // type
         $this->initUint32($table + 0x04, 1); // id
@@ -137,7 +137,7 @@ return new class extends TestCase {
         $this->shouldWriteLong($this->addressOf('_var_trafficSignalTasks_8c227e20'), $group);
         [$taskLocal, $stateLocal] = $this->outParams();
         $this->shouldCall('_TaskInitGroup_8c014a9c')->with($group, 1);
-        $this->shouldCall('_TaskSpawn_8c014ae8')->with(
+        $this->shouldCall('_TaskInstall_8c014ae8')->with(
             $this->addressOf('_var_tasks_8c1ba5e8'),
             $this->addressOf('_execGroupTask_8c0283e8'),
             $taskLocal,
@@ -146,10 +146,10 @@ return new class extends TestCase {
         );
     }
 
-    public function test_spawns_traffic_signal_without_matrices()
+    public function test_installs_traffic_signal_without_matrices()
     {
         // entry0 (type 2) exists only to flag entry1's id; entry1 is the type 1
-        // traffic signal that actually spawns. Both positions are 0, so neither
+        // traffic signal that actually installs. Both positions are 0, so neither
         // matrix block runs.
         $table = $this->alloc(3 * 0xe * 4);
         $e0 = $table;
@@ -209,7 +209,7 @@ return new class extends TestCase {
         // The out-params are stack locals whose addresses differ per object, so
         // read them out of R6/R7 ($this is the simulator inside do()).
         [$taskLocal, $stateLocal] = $this->outParams();
-        $this->shouldCall('_TaskSpawn_8c014ae8')
+        $this->shouldCall('_TaskInstall_8c014ae8')
             ->with(
                 $group,
                 $this->addressOf('_headTask_8c028258'),
@@ -217,7 +217,7 @@ return new class extends TestCase {
                 $stateLocal,
                 0xd4,
             )
-            ->do($this->fillTaskSpawn($task, $state));
+            ->do($this->fillTaskInstall($task, $state));
 
         $this->shouldWriteLong($state + 0x00 * 4, 1);          // id
         $this->shouldWriteLong($state + 0x01 * 4, 5);          // linked id
@@ -241,7 +241,7 @@ return new class extends TestCase {
         $this->shouldWriteLong($flags + 1 * 4, 0);
         $this->shouldWriteLong($slots + 1 * 4, $state);
 
-        $this->shouldCall('_TaskSpawn_8c014ae8')
+        $this->shouldCall('_TaskInstall_8c014ae8')
             ->with(
                 $this->addressOf('_var_tasks_8c1ba5e8'),
                 $this->addressOf('_execGroupTask_8c0283e8'),
@@ -249,10 +249,10 @@ return new class extends TestCase {
                 $stateLocal,
                 0,
             )
-            ->do($this->fillTaskSpawn($task, $state));
+            ->do($this->fillTaskInstall($task, $state));
     }
 
-    public function test_spawns_traffic_signal_with_matrix_a()
+    public function test_installs_traffic_signal_with_matrix_a()
     {
         $table = $this->alloc(3 * 0xe * 4);
         $e0 = $table;
@@ -315,7 +315,7 @@ return new class extends TestCase {
         $this->shouldCall('_TaskInitGroup_8c014a9c')->with($group, 1);
 
         [$taskLocal, $stateLocal] = $this->outParams();
-        $this->shouldCall('_TaskSpawn_8c014ae8')
+        $this->shouldCall('_TaskInstall_8c014ae8')
             ->with(
                 $group,
                 $this->addressOf('_headTask_8c028258'),
@@ -323,7 +323,7 @@ return new class extends TestCase {
                 $stateLocal,
                 0xd4,
             )
-            ->do($this->fillTaskSpawn($task, $state));
+            ->do($this->fillTaskInstall($task, $state));
 
         $this->shouldWriteLong($state + 0x00 * 4, 1);
         $this->shouldWriteLong($state + 0x01 * 4, 5);
@@ -354,7 +354,7 @@ return new class extends TestCase {
         $this->shouldWriteLong($flags + 1 * 4, 0);
         $this->shouldWriteLong($slots + 1 * 4, $state);
 
-        $this->shouldCall('_TaskSpawn_8c014ae8')
+        $this->shouldCall('_TaskInstall_8c014ae8')
             ->with(
                 $this->addressOf('_var_tasks_8c1ba5e8'),
                 $this->addressOf('_execGroupTask_8c0283e8'),
@@ -362,10 +362,10 @@ return new class extends TestCase {
                 $stateLocal,
                 0,
             )
-            ->do($this->fillTaskSpawn($task, $state));
+            ->do($this->fillTaskInstall($task, $state));
     }
 
-    public function test_spawns_traffic_signal_with_matrix_b_and_advances_frame()
+    public function test_installs_traffic_signal_with_matrix_b_and_advances_frame()
     {
         $table = $this->alloc(3 * 0xe * 4);
         $e0 = $table;
@@ -427,7 +427,7 @@ return new class extends TestCase {
         $this->shouldCall('_TaskInitGroup_8c014a9c')->with($group, 1);
 
         [$taskLocal, $stateLocal] = $this->outParams();
-        $this->shouldCall('_TaskSpawn_8c014ae8')
+        $this->shouldCall('_TaskInstall_8c014ae8')
             ->with(
                 $group,
                 $this->addressOf('_headTask_8c028258'),
@@ -435,7 +435,7 @@ return new class extends TestCase {
                 $stateLocal,
                 0xd4,
             )
-            ->do($this->fillTaskSpawn($task, $state));
+            ->do($this->fillTaskInstall($task, $state));
 
         $this->shouldWriteLong($state + 0x00 * 4, 1);
         $this->shouldWriteLong($state + 0x01 * 4, 25);
@@ -468,7 +468,7 @@ return new class extends TestCase {
         $this->shouldWriteLong($flags + 1 * 4, 1);
         $this->shouldWriteLong($slots + 1 * 4, $state);
 
-        $this->shouldCall('_TaskSpawn_8c014ae8')
+        $this->shouldCall('_TaskInstall_8c014ae8')
             ->with(
                 $this->addressOf('_var_tasks_8c1ba5e8'),
                 $this->addressOf('_execGroupTask_8c0283e8'),
@@ -476,20 +476,20 @@ return new class extends TestCase {
                 $stateLocal,
                 0,
             )
-            ->do($this->fillTaskSpawn($task, $state));
+            ->do($this->fillTaskInstall($task, $state));
     }
 
-    public function test_spawns_linked_object_of_type_2()
+    public function test_installs_linked_object_of_type_2()
     {
         $this->runLinkedObjectCase(2);
     }
 
-    public function test_spawns_linked_object_of_type_3()
+    public function test_installs_linked_object_of_type_3()
     {
         $this->runLinkedObjectCase(3);
     }
 
-    public function test_spawns_linked_object_of_type_4()
+    public function test_installs_linked_object_of_type_4()
     {
         $this->runLinkedObjectCase(4);
     }
@@ -503,7 +503,7 @@ return new class extends TestCase {
     {
         [$flags, $slots, $objC, $c1c] = $this->seedLinkedObjectFixture();
 
-        // Slot 0 is free (-1) and slot 1 is the task just spawned; the search has
+        // Slot 0 is free (-1) and slot 1 is the task just installed; the search has
         // to walk past both to reach the match in slot 2.
         $group = $this->alloc(4 * 0x20);
         $task = $group + 0x20;
@@ -523,7 +523,7 @@ return new class extends TestCase {
 
         $this->expectLinkedPrologue($flags, $slots, $group);
         [$taskLocal, $stateLocal] = $this->outParams();
-        $this->shouldCall('_TaskSpawn_8c014ae8')
+        $this->shouldCall('_TaskInstall_8c014ae8')
             ->with(
                 $group,
                 $this->addressOf('_attachmentTask_8c02833c'),
@@ -531,11 +531,11 @@ return new class extends TestCase {
                 $stateLocal,
                 0xd4,
             )
-            ->do($this->fillTaskSpawn($task, $state));
+            ->do($this->fillTaskInstall($task, $state));
 
         $this->shouldWriteLong($state + 0x34 * 4, $linked); // search hit, past both skips
         $this->expectLinkedBody($state, $linked, $objC, $c1c, $flags, 0);
-        $this->expectGroupTaskSpawn($task, $state);
+        $this->expectGroupTaskInstall($task, $state);
     }
 
     public function test_link_search_without_a_match_keeps_the_last_slot_it_examined()
@@ -560,7 +560,7 @@ return new class extends TestCase {
 
         $this->expectLinkedPrologue($flags, $slots, $group);
         [$taskLocal, $stateLocal] = $this->outParams();
-        $this->shouldCall('_TaskSpawn_8c014ae8')
+        $this->shouldCall('_TaskInstall_8c014ae8')
             ->with(
                 $group,
                 $this->addressOf('_attachmentTask_8c02833c'),
@@ -568,11 +568,11 @@ return new class extends TestCase {
                 $stateLocal,
                 0xd4,
             )
-            ->do($this->fillTaskSpawn($task, $state));
+            ->do($this->fillTaskInstall($task, $state));
 
         // No attachedTo write: that only happens on the matching break.
         $this->expectLinkedBody($state, $other, $objC, $c1c, $flags, 0);
-        $this->expectGroupTaskSpawn($task, $state);
+        $this->expectGroupTaskInstall($task, $state);
     }
 
     public function test_link_search_that_skips_every_slot_writes_through_the_carried_pointer()
@@ -595,7 +595,7 @@ return new class extends TestCase {
 
         $this->expectLinkedPrologue($flags, $slots, $group);
         [$taskLocal, $stateLocal] = $this->outParams();
-        $this->shouldCall('_TaskSpawn_8c014ae8')
+        $this->shouldCall('_TaskInstall_8c014ae8')
             ->with(
                 $group,
                 $this->addressOf('_attachmentTask_8c02833c'),
@@ -603,10 +603,10 @@ return new class extends TestCase {
                 $stateLocal,
                 0xd4,
             )
-            ->do($this->fillTaskSpawn($task, $state));
+            ->do($this->fillTaskInstall($task, $state));
 
         $this->expectLinkedBody($state, $carried, $objC, $c1c, $flags, 0);
-        $this->expectGroupTaskSpawn($task, $state);
+        $this->expectGroupTaskInstall($task, $state);
     }
 
     /**
@@ -649,7 +649,7 @@ return new class extends TestCase {
         return [$flags, $slots, $objC, $c1c, $carried];
     }
 
-    /** Allocation and marking effects up to the linked-object TaskSpawn. */
+    /** Allocation and marking effects up to the linked-object TaskInstall. */
     private function expectLinkedPrologue(int $flags, int $slots, int $group): void
     {
         $this->shouldCall('_syMalloc')->with(0xc)->andReturn($flags);
@@ -682,11 +682,11 @@ return new class extends TestCase {
         $this->shouldWriteLong($flags + 1 * 4, $frame);
     }
 
-    /** The group task installed once both spawn loops finish. */
-    private function expectGroupTaskSpawn(int $task, int $state): void
+    /** The group task installed once both install loops finish. */
+    private function expectGroupTaskInstall(int $task, int $state): void
     {
         [$taskLocal, $stateLocal] = $this->outParams();
-        $this->shouldCall('_TaskSpawn_8c014ae8')
+        $this->shouldCall('_TaskInstall_8c014ae8')
             ->with(
                 $this->addressOf('_var_tasks_8c1ba5e8'),
                 $this->addressOf('_execGroupTask_8c0283e8'),
@@ -694,7 +694,7 @@ return new class extends TestCase {
                 $stateLocal,
                 0,
             )
-            ->do($this->fillTaskSpawn($task, $state));
+            ->do($this->fillTaskInstall($task, $state));
     }
 
     /**
@@ -706,7 +706,7 @@ return new class extends TestCase {
         $modelIndex = 2 * ($type - 1);
         $backlinkIndex = 0x2f + ($type - 2);
 
-        // entryA flags its own id, so it is picked up by the second spawn
+        // entryA flags its own id, so it is picked up by the second install
         // loop; entryB is never flagged and is skipped by both loops.
         $table = $this->alloc(3 * 0xe * 4);
         $eA = $table;
@@ -766,7 +766,7 @@ return new class extends TestCase {
         $this->shouldCall('_TaskInitGroup_8c014a9c')->with($group, 1);
 
         [$taskLocal, $stateLocal] = $this->outParams();
-        $this->shouldCall('_TaskSpawn_8c014ae8')
+        $this->shouldCall('_TaskInstall_8c014ae8')
             ->with(
                 $group,
                 $this->addressOf('_attachmentTask_8c02833c'),
@@ -774,7 +774,7 @@ return new class extends TestCase {
                 $stateLocal,
                 0xd4,
             )
-            ->do($this->fillTaskSpawn($task, $state));
+            ->do($this->fillTaskInstall($task, $state));
 
         $this->shouldWriteLong($state + 0x34 * 4, $linked); // search hit
         $this->shouldWriteLong($state + 0x00 * 4, 1);
@@ -788,7 +788,7 @@ return new class extends TestCase {
         $this->shouldWriteLong($state + 0x03 * 4, $frame);
         $this->shouldWriteLong($flags + 1 * 4, $frame);
 
-        $this->shouldCall('_TaskSpawn_8c014ae8')
+        $this->shouldCall('_TaskInstall_8c014ae8')
             ->with(
                 $this->addressOf('_var_tasks_8c1ba5e8'),
                 $this->addressOf('_execGroupTask_8c0283e8'),
@@ -796,6 +796,6 @@ return new class extends TestCase {
                 $stateLocal,
                 0,
             )
-            ->do($this->fillTaskSpawn($task, $state));
+            ->do($this->fillTaskInstall($task, $state));
     }
 };

@@ -412,7 +412,7 @@ Two consequences when writing the C and its test:
 
 `DefaultCallingConvention` overflows past R4-R7 into stack slots and
 `ArgumentVerifier` handles `StackOffset`, so a 5-argument call like
-`TaskSpawn_8c014ae8(tasks, action, &task, &state, alloc_size)` can have *every*
+`TaskInstall_8c014ae8(tasks, action, &task, &state, alloc_size)` can have *every*
 argument declared in `->with()`, `alloc_size` included -- a wrong one reports
 `Unexpected argument ... in stack offset 0`. Don't hand-roll a check that reads
 `@R15` in `do()`; the DSL already does it, with better messages.
@@ -461,7 +461,7 @@ address-taken-only callee as a function in its own right. `028258` hit the same
 thing from the other direction: decompiling turned up three functions
 (`FUN_8c02833c`, `FUN_8c0283d4`, `FUN_8c0283e8`) missing from the stub list.
 `02b464_grading` (2026-08-28/29) had six, all reachable only via
-TaskSpawn pointers, including the master per-frame `runPhaseTask_8c02c072`.
+TaskInstall pointers, including the master per-frame `runPhaseTask_8c02c072`.
 
 **The inverse also happens:** an `.EXPORT`ed symbol that *isn't* a function at
 all, just a label mid-body. `01fa78`'s `FUN_8c01fe84` (found 2026-08-29) is a

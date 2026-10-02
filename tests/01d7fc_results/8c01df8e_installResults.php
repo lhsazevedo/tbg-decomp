@@ -7,21 +7,21 @@ return new class extends TestCase {
     {
         $this->setSize('_var_menuState_8c1bc7a8', 0x6c);
 
-        $this->call('_spawnResultsTask_8c01df8e');
+        $this->call('_installResults_8c01df8e');
 
-        $this->shouldCall('_InputSpawnTask_8c0128cc')->with(0);
+        $this->shouldCall('_InputInstall_8c0128cc')->with(0);
 
-        // &created_task and &created_state are spawnResultsTask_8c01df8e's
-        // own stack locals; both TaskSpawn calls share the same slots, and
+        // &installed_task and &installed_state are installResults_8c01df8e's
+        // own stack locals; both TaskInstall calls share the same slots, and
         // both objects place them the same.
-        $this->shouldCall('_TaskSpawn_8c014ae8')->with(
+        $this->shouldCall('_TaskInstall_8c014ae8')->with(
             $this->addressOf('_var_tasks_8c1ba3c8'),
             $this->addressOf('_GameSoftResetTask_8c012f44'),
             0xfffff0,
             0xfffff4,
             0,
         );
-        $this->shouldCall('_TaskSpawn_8c014ae8')->with(
+        $this->shouldCall('_TaskInstall_8c014ae8')->with(
             $this->addressOf('_var_tasks_8c1ba3c8'),
             $this->addressOf('_resultsTask_8c01d8e0'),
             0xfffff0,

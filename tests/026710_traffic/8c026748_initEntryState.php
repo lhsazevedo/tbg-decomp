@@ -21,7 +21,7 @@ if (!function_exists('fdec')) {
 // (entry+0x2e8), resolves world position/heading from the current record,
 // looks up ground height, fills in the vehicle's dimension/animation state
 // from its variant table (entry+0x2e0 indexes init_variantDims_8c0460c8/cc/d0/d4, a
-// 16-row x4-float table), and spawns its driving task via TrafficLookaheadInit_8c02df3c.
+// 16-row x4-float table), and installs its driving task via TrafficLookaheadInit_8c02df3c.
 
 return new class extends TestCase {
     private int $entry;
@@ -163,7 +163,7 @@ return new class extends TestCase {
             $this->shouldWriteLong($this->entry + $off, 0);
         }
 
-        // Vehicle tail: speed variance, random offset, task spawn.
+        // Vehicle tail: speed variance, random offset, task install.
         $this->shouldWriteFloat($this->entry + 0x414, 0.5);
         $this->shouldWriteFloat($this->entry + 0x27c, 0.25);
         $this->shouldWriteLong($this->entry + 0x284, 0);
@@ -345,7 +345,7 @@ return new class extends TestCase {
 
     // A parked entry (script header word == 10): the path-walk and
     // vehicle tail are skipped entirely, heading comes from njCos/njSin of
-    // entry+0x250, and the tail speed-variance/task-spawn block never runs.
+    // entry+0x250, and the tail speed-variance/task-install block never runs.
     public function test_parkedDefaultColors(): void {
         $this->resolveSymbols();
         $this->setSize('_njCos', 4);

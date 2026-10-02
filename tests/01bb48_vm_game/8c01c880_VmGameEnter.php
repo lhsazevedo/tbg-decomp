@@ -14,7 +14,7 @@ return new class extends TestCase {
 
         $this->call('_VmGameEnter_8c01c880')->with($task);
 
-        $this->shouldCall('_TaskSwitch_8c014b3e')
+        $this->shouldCall('_TaskReinstall_8c014b3e')
             ->with($task, $this->addressOf('_vmGameTask_8c01bfec'));
         $this->shouldWriteLong($ms + 0x18, 0); // state_0x18
         $this->shouldWriteLong($ms + 0x38, 0); // selected_0x38
@@ -39,7 +39,7 @@ return new class extends TestCase {
     private function resolveSymbols(): void
     {
         $this->setSize('_var_menuState_8c1bc7a8', 0x7c);
-        $this->setSize('_TaskSwitch_8c014b3e', 4);
+        $this->setSize('_TaskReinstall_8c014b3e', 4);
         $this->setSize('_AsqInitQueues_8c011f36', 4);
         $this->setSize('_AsqResetQueues_8c011f6c', 4);
         $this->setSize('_CourseMenuRequestSysResgrp_8c018568', 4);

@@ -27,14 +27,14 @@ return new class extends TestCase {
 
         $this->shouldCall('_GradeRunComplete_8c02c586')->andReturn(0);
 
-        $this->shouldCall('_ObjectsKillPedestrianGroups_8c0297da');
+        $this->shouldCall('_ObjectsUninstallPedestrianGroups_8c0297da');
         $this->shouldCall('_SignalFree_8c0288be');
-        $this->shouldCall('_TaskKillGroup_8c014ab4')->with($this->addressOf('_var_tasks_8c1bb448'));
-        $this->shouldCall('_TaskKillGroup_8c014ab4')->with($this->addressOf('_var_tasks_8c1bac28'));
-        $this->shouldCall('_TaskKillGroup_8c014ab4')->with($this->addressOf('_var_tasks_8c1ba5e8'));
-        $this->shouldCall('_TaskKillGroup_8c014ab4')->with($this->addressOf('_var_tasks_8c1ba3c8'));
+        $this->shouldCall('_TaskUninstallGroup_8c014ab4')->with($this->addressOf('_var_tasks_8c1bb448'));
+        $this->shouldCall('_TaskUninstallGroup_8c014ab4')->with($this->addressOf('_var_tasks_8c1bac28'));
+        $this->shouldCall('_TaskUninstallGroup_8c014ab4')->with($this->addressOf('_var_tasks_8c1ba5e8'));
+        $this->shouldCall('_TaskUninstallGroup_8c014ab4')->with($this->addressOf('_var_tasks_8c1ba3c8'));
         $this->shouldCall('_StopAdvance_8c02ccc6');
-        $this->shouldCall('_RouteSpawnSegmentReloadTask_8c01468e');
+        $this->shouldCall('_RouteInstallSegmentReload_8c01468e');
     }
 
     public function test_no_points_at_all_skips_teardown_and_waits_for_fade(): void

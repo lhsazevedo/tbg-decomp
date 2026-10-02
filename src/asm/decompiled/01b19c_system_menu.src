@@ -55,7 +55,7 @@
           .IMPORT     _var_vmMountBusy_8c22606c
           .IMPORT     _FileSelectFreeBuffers_8c0187d0
           .IMPORT     _CourseMenuEnter_8c017e18
-          .IMPORT     _TaskSwitch_8c014b3e
+          .IMPORT     _TaskReinstall_8c014b3e
           .IMPORT     _RenderStartFadeIn_8c022a9c
           .IMPORT     _AsqInitQueues_8c011f36
           .IMPORT     _AsqResetQueues_8c011f6c
@@ -1262,7 +1262,7 @@ LP_GEN_62205:
           .DATA.L _MessageBoxDrawText_8c02af1c ; H'8C01BAE8
           .DATA.L H'C0E00000 ; H'8C01BAEC
           .DATA.L _menuTask_8c01b3ac ; H'8C01BAF0
-          .DATA.L _TaskSwitch_8c014b3e ; H'8C01BAF4
+          .DATA.L _TaskReinstall_8c014b3e ; H'8C01BAF4
           .DATA.L _var_menuState_8c1bc7a8 ; H'8C01BAF8
           .DATA.L _syMalloc ; H'8C01BAFC
           .DATA.L _var_saveBuf_8c1ba2e0 ; H'8C01BB00

@@ -17,8 +17,8 @@
           .IMPORT     _SignalGetFrame_8c028900
           .IMPORT     _RenderQueueDraw_8c0223ea
           .IMPORT     _var_tasks_8c1ba5e8
-          .IMPORT     _TaskSpawn_8c014ae8
-          .EXPORT     _HudSpawnTask_8c02018c
+          .IMPORT     _TaskInstall_8c014ae8
+          .EXPORT     _HudInstall_8c02018c
           .AIFDEF UNIT_TESTING
           .EXPORT     _showMark_8c01fa78
           .EXPORT     _drawTimeDigits_8c01fa80
@@ -941,7 +941,7 @@ LAB_8c020174:
           MOV.L       @R15+,R13
           JMP         @R3
           MOV.L       @R15+,R14
-_HudSpawnTask_8c02018c:
+_HudInstall_8c02018c:
           STS.L       PR,@-R15
           ADD         #-H'8,R15
           MOV         #H'0,R3
@@ -997,7 +997,7 @@ LP_GEN_28448:
           .DATA.L _RenderQueueDraw_8c0223ea ; H'8C0201F8
           .DATA.L _updateTask_8c01ff48 ; H'8C0201FC
           .DATA.L _var_tasks_8c1ba5e8 ; H'8C020200
-          .DATA.L _TaskSpawn_8c014ae8 ; H'8C020204
+          .DATA.L _TaskInstall_8c014ae8 ; H'8C020204
           .DATA.L _var_hudState_8c22643c ; H'8C020208
           .DATA.L _var_tachoNeedleVerts_8c226478 ; H'8C02020C
           .DATA.L H'FFFF0000 ; H'8C020210

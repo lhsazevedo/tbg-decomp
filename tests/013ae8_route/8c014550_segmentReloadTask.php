@@ -77,7 +77,7 @@ return new class extends TestCase {
 
         $this->call('_segmentReloadTask_8c014550')->with($task, 0);
 
-        $this->shouldCall('_TaskKill_8c014b66')->with($task);
+        $this->shouldCall('_TaskUninstall_8c014b66')->with($task);
         $this->shouldCall('_AsqFreeQueues_8c011f7e');
         $this->shouldWriteLong($this->addressOf('_var_loadScreenActive_8c157a6c'), 0);
         $this->shouldCall('_njReleaseTexture')->with(self::TLIST);
@@ -143,7 +143,7 @@ return new class extends TestCase {
             '_njReleaseTexture' => 4,
             '_SpriteDraw_8c014f54' => 4,
             '_InputPollDrive_8c012970' => 4,
-            '_TaskKill_8c014b66' => 4,
+            '_TaskUninstall_8c014b66' => 4,
             '_GameEnterDrive_8c01306e' => 4,
             '_EventPickForSegment_8c02b170' => 4,
             '_TileStreamLoad_8c021810' => 4,

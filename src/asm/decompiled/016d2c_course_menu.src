@@ -14,12 +14,12 @@
           .IMPORT     _var_progress_8c1ba1cc
           .IMPORT     __modlu
           .IMPORT     _var_peripherals_8c1ba35c
-          .IMPORT     _TaskKill_8c014b66
+          .IMPORT     _TaskUninstall_8c014b66
           .IMPORT     _SndPlayAdx_8c010cd6
           .IMPORT     _SndStopAdx_8c010ca6
           .IMPORT     _njCos
           .IMPORT     _var_tasks_8c1ba3c8
-          .IMPORT     _TaskSpawn_8c014ae8
+          .IMPORT     _TaskInstall_8c014ae8
           .IMPORT     _SndStartAdxFadeOut_8c010bae
           .IMPORT     _var_runReportPending_8c1bb8b8
           .IMPORT     _var_runWasPractice_8c1bb8bc
@@ -39,7 +39,7 @@
           .IMPORT     _MessageBoxDrawText_8c02af1c
           .IMPORT     _AsqGetRandomA_8c012166
           .IMPORT     _var_shouldShowFreeRunIntro_8c1bb8c0
-          .IMPORT     _TaskSwitch_8c014b3e
+          .IMPORT     _TaskReinstall_8c014b3e
           .IMPORT     _var_playMode_8c1bb8d0
           .IMPORT     _var_tex_8c157af8
           .IMPORT     _njGarbageTexture
@@ -50,7 +50,7 @@
           .IMPORT     _RouteClearLatch_8c014322
           .IMPORT     _AsqNop_8c011120
           .IMPORT     _AsqProcessQueues_8c011fe0
-          .IMPORT     _InputSpawnTask_8c0128cc
+          .IMPORT     _InputInstall_8c0128cc
           .IMPORT     _GameSoftResetTask_8c012f44
           .IMPORT     _MessageBoxOpenTextbox_8c02ae3e
           .IMPORT     _PromptHandleBinary_8c016caa
@@ -70,7 +70,7 @@
           .IMPORT     _syFree
           .EXPORT     _CourseMenuInterpolateCursor_8c016d2c
           .EXPORT     _CourseMenuDrawDateAndExp_8c016ee6
-          .EXPORT     _CourseMenuSpawnDialogTask_8c0170c6
+          .EXPORT     _CourseMenuInstallDialog_8c0170c6
           .EXPORT     _CourseMenuBuildCourseUnlockList_8c0172dc
           .EXPORT     _CourseMenuApplyUnlocks_8c0173e6
           .EXPORT     _CourseMenuEnter_8c017e18
@@ -600,7 +600,7 @@ LAB_8c01705a:
 LP_GEN_49323:
           .DATA.L _var_peripherals_8c1ba35c ; H'8C017060
           .DATA.L _var_instructorDialogActive_8c225fb4 ; H'8C017064
-          .DATA.L _TaskKill_8c014b66 ; H'8C017068
+          .DATA.L _TaskUninstall_8c014b66 ; H'8C017068
           .DATA.L _SndPlayAdx_8c010cd6 ; H'8C01706C
           .DATA.L _MessageBoxSetText_8c02aefc ; H'8C017070
           .DATA.L _var_menuState_8c1bc7a8 + H'60 ; H'8C017074
@@ -645,7 +645,7 @@ LAB_8c0170b4:
           MOV.L       @R15+,R13
           RTS
           MOV.L       @R15+,R14
-_CourseMenuSpawnDialogTask_8c0170c6:
+_CourseMenuInstallDialog_8c0170c6:
           STS.L       PR,@-R15
           ADD         #-H'10,R15
           MOV         #H'18,R3
@@ -756,7 +756,7 @@ LP_GEN_21301:
           .DATA.L _var_menuTextboxCharLimit_8c225fb8 ; H'8C0171A4
           .DATA.L _instructorDialogTask_8c016f98 ; H'8C0171A8
           .DATA.L _var_tasks_8c1ba3c8 ; H'8C0171AC
-          .DATA.L _TaskSpawn_8c014ae8 ; H'8C0171B0
+          .DATA.L _TaskInstall_8c014ae8 ; H'8C0171B0
           .DATA.L _init_instructorDialogs_8c044c08 ; H'8C0171B4
           .DATA.L _var_instructorDialogActive_8c225fb4 ; H'8C0171B8
           .DATA.L _MessageBoxSetText_8c02aefc ; H'8C0171BC
@@ -1577,7 +1577,7 @@ LAB_8c0177ba:
 LAB_8c0177c4:
           MOV.L       @R15,R3
           MOV         #H'0,R5
-          BSR         _CourseMenuSpawnDialogTask_8c0170c6
+          BSR         _CourseMenuInstallDialog_8c0170c6
           MOV.L       @R3,R4
           MOV         #H'2,R1
           BRA         LAB_8c01798a
@@ -1656,7 +1656,7 @@ LAB_8c017852:
           MOV.L       @(H'8,R12),R0
           MOV         #H'0,R5
           SHLL2       R0
-          BSR         _CourseMenuSpawnDialogTask_8c0170c6
+          BSR         _CourseMenuInstallDialog_8c0170c6
           MOV.L       @(R0,R8),R4
           MOV.L       @(H'8,R12),R0
           SHLL2       R0
@@ -2040,7 +2040,7 @@ LAB_8c017b54:
           NOP
 LAB_8c017b5e:
           MOV         #H'0,R5
-          BSR         _CourseMenuSpawnDialogTask_8c0170c6
+          BSR         _CourseMenuInstallDialog_8c0170c6
           MOV.L       @R12,R4
           MOV         #H'2,R2
           BRA         LAB_8c017cb8
@@ -2064,7 +2064,7 @@ LAB_8c017b76:
           MOV.L       @(H'8,R13),R0
           MOV         #H'0,R5
           SHLL2       R0
-          BSR         _CourseMenuSpawnDialogTask_8c0170c6
+          BSR         _CourseMenuInstallDialog_8c0170c6
           MOV.L       @(R0,R12),R4
           BRA         LAB_8c017cb8
           NOP
@@ -2417,7 +2417,7 @@ LP_GEN_59651:
           .DATA.L _var_progress_8c1ba1cc ; H'8C017E48
           .DATA.L _var_gameMode_8c1bb8fc ; H'8C017E4C
           .DATA.L _storyMenuTask_8c017718 ; H'8C017E50
-          .DATA.L _TaskSwitch_8c014b3e ; H'8C017E54
+          .DATA.L _TaskReinstall_8c014b3e ; H'8C017E54
 LAB_8c017e58:
           MOV.L       LP_GEN_67544+8,R1
           MOV.L       LP_GEN_67544+4,R5
@@ -2539,7 +2539,7 @@ LP_GEN_67544:
           .DATA.W H'0C00 ; H'8C017F38
           .RES.W 1 ; H'8C017F3A
           .DATA.L _freeRunMenuTask_8c017ada ; H'8C017F3C
-          .DATA.L _TaskSwitch_8c014b3e ; H'8C017F40
+          .DATA.L _TaskReinstall_8c014b3e ; H'8C017F40
           .DATA.L _var_menuState_8c1bc7a8 ; H'8C017F44
           .DATA.L _var_dialogQueue_8c225fbc ; H'8C017F48
           .DATA.L _init_instructorDialogs_8c044c08 ; H'8C017F4C
@@ -2557,8 +2557,8 @@ LP_GEN_67544:
           .DATA.L _AsqFreeQueues_8c011f7e ; H'8C017F7C
           .DATA.L _RenderStartFadeIn_8c022a9c ; H'8C017F80
           .DATA.L _SndPlayAdx_8c010cd6 ; H'8C017F84
-          .DATA.L _InputSpawnTask_8c0128cc ; H'8C017F88
-          .DATA.L _TaskSpawn_8c014ae8 ; H'8C017F8C
+          .DATA.L _InputInstall_8c0128cc ; H'8C017F88
+          .DATA.L _TaskInstall_8c014ae8 ; H'8C017F8C
           .DATA.L _GameSoftResetTask_8c012f44 ; H'8C017F90
           .DATA.L _var_tasks_8c1ba3c8 ; H'8C017F94
           .DATA.L _var_gameMode_8c1bb8fc ; H'8C017F98
@@ -3352,7 +3352,7 @@ LP_GEN_93008:
           .DATA.L _var_tex_8c157af8 ; H'8C0185F0
           .DATA.L _njGarbageTexture ; H'8C0185F4
           .DATA.L _courseConfirmMenuTask_8c0181b6 ; H'8C0185F8
-          .DATA.L _TaskSwitch_8c014b3e ; H'8C0185FC
+          .DATA.L _TaskReinstall_8c014b3e ; H'8C0185FC
           .DATA.L _var_menuState_8c1bc7a8 ; H'8C018600
           .DATA.L _AsqInitQueues_8c011f36 ; H'8C018604
           .DATA.L _AsqResetQueues_8c011f6c ; H'8C018608

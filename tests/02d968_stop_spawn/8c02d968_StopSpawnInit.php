@@ -14,7 +14,7 @@ use Lhsazevedo\Sh4ObjTest\Simulator\Types\U32;
 
 return new class extends TestCase {
     private function resolveSymbols(): void {
-        $this->setSize('_TaskSpawn_8c014ae8', 4);
+        $this->setSize('_TaskInstall_8c014ae8', 4);
         $this->setSize('_PassengerSkipStopTask_8c02d8f0', 4);
         $this->setSize('_var_tasks_8c1ba5e8', 4);
         $this->setSize('_var_playMode_8c1bb8d0', 4);
@@ -39,7 +39,7 @@ return new class extends TestCase {
 
         $this->call('_StopSpawnInit_8c02d968');
 
-        $this->shouldCall('_TaskSpawn_8c014ae8')
+        $this->shouldCall('_TaskInstall_8c014ae8')
             ->with(
                 $this->addressOf('_var_tasks_8c1ba5e8'),
                 $this->addressOf('_PassengerSkipStopTask_8c02d8f0'),
@@ -72,7 +72,7 @@ return new class extends TestCase {
     // var_boardSpot1_8c228928/910/91c/934/940/94c order. A null $pts (for a route
     // value with no dispatch arm) skips the whole anchor-point block.
     private function runEmptyScheduleRoute(int $route, ?array $pts): void {
-        $this->setSize('_TaskSpawn_8c014ae8', 4);
+        $this->setSize('_TaskInstall_8c014ae8', 4);
         $this->setSize('_PassengerStopSceneTask_8c02d644', 4);
         $this->setSize('_var_tasks_8c1ba5e8', 4);
         $this->setSize('_var_playMode_8c1bb8d0', 4);
@@ -128,7 +128,7 @@ return new class extends TestCase {
         $this->call('_StopSpawnInit_8c02d968');
 
         $mainTask = $this->alloc(0x20);
-        $this->shouldCall('_TaskSpawn_8c014ae8')
+        $this->shouldCall('_TaskInstall_8c014ae8')
             ->with($this->addressOf('_var_tasks_8c1ba5e8'), $this->addressOf('_PassengerStopSceneTask_8c02d644'))
             ->do(function () use ($mainTask, $mainState) {
                 $this->memory->writeUInt32($this->getRegister(6)->value, U32::of($mainTask));
@@ -229,7 +229,7 @@ return new class extends TestCase {
     // schedule slots: exercises the PassengerBoardTask_8c02d21c spawn loop's per-iteration
     // field writes and rand()-derived random offsets.
     public function test_oneWaitingPassenger(): void {
-        $this->setSize('_TaskSpawn_8c014ae8', 4);
+        $this->setSize('_TaskInstall_8c014ae8', 4);
         $this->setSize('_PassengerStopSceneTask_8c02d644', 4);
         $this->setSize('_PassengerBoardTask_8c02d21c', 4);
         $this->setSize('_var_tasks_8c1ba5e8', 4);
@@ -293,7 +293,7 @@ return new class extends TestCase {
 
         $this->call('_StopSpawnInit_8c02d968');
 
-        $this->shouldCall('_TaskSpawn_8c014ae8')
+        $this->shouldCall('_TaskInstall_8c014ae8')
             ->with($this->addressOf('_var_tasks_8c1ba5e8'), $this->addressOf('_PassengerStopSceneTask_8c02d644'))
             ->do(function () use ($mainTask, $mainState) {
                 $this->memory->writeUInt32($this->getRegister(6)->value, U32::of($mainTask));
@@ -324,7 +324,7 @@ return new class extends TestCase {
         $expectRandX = $this->f32(((float)$rand1 / 32768.0) * 0.2);
         $expectRandZ = $this->f32(((float)$rand2 / 32768.0) * 0.2);
 
-        $this->shouldCall('_TaskSpawn_8c014ae8')
+        $this->shouldCall('_TaskInstall_8c014ae8')
             ->with($group, $this->addressOf('_PassengerBoardTask_8c02d21c'))
             ->do(function () use ($task, $state) {
                 $this->memory->writeUInt32($this->getRegister(6)->value, U32::of($task));
@@ -360,7 +360,7 @@ return new class extends TestCase {
     }
 
     private function commonSpawnLoopSymbols(): void {
-        $this->setSize('_TaskSpawn_8c014ae8', 4);
+        $this->setSize('_TaskInstall_8c014ae8', 4);
         $this->setSize('_PassengerStopSceneTask_8c02d644', 4);
         $this->setSize('_PassengerSeatedTask_8c02d5ca', 4);
         $this->setSize('_PassengerBoardTask_8c02d21c', 4);
@@ -445,7 +445,7 @@ return new class extends TestCase {
 
         $this->call('_StopSpawnInit_8c02d968');
 
-        $this->shouldCall('_TaskSpawn_8c014ae8')
+        $this->shouldCall('_TaskInstall_8c014ae8')
             ->with($this->addressOf('_var_tasks_8c1ba5e8'), $this->addressOf('_PassengerStopSceneTask_8c02d644'))
             ->do(function () use ($mainTask, $mainState) {
                 $this->memory->writeUInt32($this->getRegister(6)->value, U32::of($mainTask));
@@ -473,7 +473,7 @@ return new class extends TestCase {
 
         $this->shouldCall('_syMalloc')->with(0xf8)->andReturn($matchedBuf);
 
-        $this->shouldCall('_TaskSpawn_8c014ae8')
+        $this->shouldCall('_TaskInstall_8c014ae8')
             ->with($group, $this->addressOf('_PassengerSeatedTask_8c02d5ca'))
             ->do(function () use ($task, $state) {
                 $this->memory->writeUInt32($this->getRegister(6)->value, U32::of($task));
@@ -575,7 +575,7 @@ return new class extends TestCase {
 
         $this->call('_StopSpawnInit_8c02d968');
 
-        $this->shouldCall('_TaskSpawn_8c014ae8')
+        $this->shouldCall('_TaskInstall_8c014ae8')
             ->with($this->addressOf('_var_tasks_8c1ba5e8'), $this->addressOf('_PassengerStopSceneTask_8c02d644'))
             ->do(function () use ($mainTask, $mainState) {
                 $this->memory->writeUInt32($this->getRegister(6)->value, U32::of($mainTask));
@@ -628,7 +628,7 @@ return new class extends TestCase {
         // happened, not just that the field writes look plausible.
         $rand0x = 100;
         $rand0z = 200;
-        $this->shouldCall('_TaskSpawn_8c014ae8')
+        $this->shouldCall('_TaskInstall_8c014ae8')
             ->with($group, $this->addressOf('_PassengerExitTask_8c02d46c'))
             ->do(function () use ($task0, $state0) {
                 $this->memory->writeUInt32($this->getRegister(6)->value, U32::of($task0));
@@ -655,7 +655,7 @@ return new class extends TestCase {
 
         $rand1x = 300;
         $rand1z = 400;
-        $this->shouldCall('_TaskSpawn_8c014ae8')
+        $this->shouldCall('_TaskInstall_8c014ae8')
             ->with($group, $this->addressOf('_PassengerExitTask_8c02d46c'))
             ->do(function () use ($task1, $state1) {
                 $this->memory->writeUInt32($this->getRegister(6)->value, U32::of($task1));

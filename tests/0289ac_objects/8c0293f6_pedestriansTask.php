@@ -268,7 +268,7 @@ return new class extends TestCase {
         $this->shouldCall('_syMalloc')->with(0x220)->andReturn($subtasks);
         $this->shouldWriteLong($groups + self::OFF_GRP_LIST, $subtasks);
         $this->shouldCall('_TaskInitGroup_8c014a9c')->with($subtasks, 0x10);
-        $this->shouldCall('_TaskSpawn_8c014ae8')
+        $this->shouldCall('_TaskInstall_8c014ae8')
             ->do(function () use ($subTask, $state) {
                 $this->memory->writeUInt32($this->registers[6]->value, U32::of($subTask));
                 $this->memory->writeUInt32($this->registers[7]->value, U32::of($state));
@@ -337,7 +337,7 @@ return new class extends TestCase {
             ->with(0, $this->addressOf('_drawPedestrians_8c028b74'), 0);
     }
 
-    public function test_task_spawn_failure_frees_and_breaks_scan()
+    public function test_task_install_failure_frees_and_breaks_scan()
     {
         $this->setupCommon(1);
         $task = $this->makeTask(-1, 1);
@@ -356,7 +356,7 @@ return new class extends TestCase {
         $this->shouldCall('_syMalloc')->with(0x220)->andReturn($subtasks);
         $this->shouldWriteLong($groups + self::OFF_GRP_LIST, $subtasks);
         $this->shouldCall('_TaskInitGroup_8c014a9c')->with($subtasks, 0x10);
-        $this->shouldCall('_TaskSpawn_8c014ae8')->andReturn(0);
+        $this->shouldCall('_TaskInstall_8c014ae8')->andReturn(0);
         $this->shouldCall('_syFree')->with($subtasks);
 
         $this->expectGroundScratch();
@@ -501,7 +501,7 @@ return new class extends TestCase {
         $this->shouldCall('_syMalloc')->with(0x220)->andReturn($subtasks0);
         $this->shouldWriteLong($group0 + self::OFF_GRP_LIST, $subtasks0);
         $this->shouldCall('_TaskInitGroup_8c014a9c')->with($subtasks0, 0x10);
-        $this->shouldCall('_TaskSpawn_8c014ae8')
+        $this->shouldCall('_TaskInstall_8c014ae8')
             ->do(function () use ($subTask0, $state0) {
                 $this->memory->writeUInt32($this->registers[6]->value, U32::of($subTask0));
                 $this->memory->writeUInt32($this->registers[7]->value, U32::of($state0));
@@ -519,7 +519,7 @@ return new class extends TestCase {
         $this->shouldCall('_syMalloc')->with(0x220)->andReturn($subtasks1);
         $this->shouldWriteLong($group1 + self::OFF_GRP_LIST, $subtasks1);
         $this->shouldCall('_TaskInitGroup_8c014a9c')->with($subtasks1, 0x10);
-        $this->shouldCall('_TaskSpawn_8c014ae8')
+        $this->shouldCall('_TaskInstall_8c014ae8')
             ->do(function () use ($subTask1, $state1) {
                 $this->memory->writeUInt32($this->registers[6]->value, U32::of($subTask1));
                 $this->memory->writeUInt32($this->registers[7]->value, U32::of($state1));

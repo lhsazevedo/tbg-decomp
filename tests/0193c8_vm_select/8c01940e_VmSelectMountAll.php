@@ -21,8 +21,8 @@ return new class extends TestCase {
             ['connect' => 0,          'work' => 0],
         ];
         $bupAddresses = $this->initBackupInfos($bupInfos);
-        $createdTask = 0xffffe0;
-        $createdState = 0xffffe4;
+        $installedTask = 0xffffe0;
+        $installedState = 0xffffe4;
 
         $this->shouldCall('_BupGetInfo_8c014bba')->with(0)->andReturn($bupAddresses[0]);
         $this->shouldCall('_BupGetInfo_8c014bba')->with(1)->andReturn($bupAddresses[1]);
@@ -35,12 +35,12 @@ return new class extends TestCase {
         $this->shouldCall('_BupMount_8c014c00')->with(6);
         $this->shouldCall('_BupGetInfo_8c014bba')->with(7)->andReturn($bupAddresses[7]);
 
-        $this->shouldCall('_TaskSpawn_8c014ae8')
+        $this->shouldCall('_TaskInstall_8c014ae8')
         ->with(
             $this->addressOf('_var_tasks_8c1ba3c8'),
             $this->addressOf('_mountWaitTask_8c0193c8'),
-            $createdTask,
-            $createdState,
+            $installedTask,
+            $installedState,
             0
         );
         $this->shouldWriteLongTo('_var_vmMountBusy_8c22606c', 1);
@@ -63,8 +63,8 @@ return new class extends TestCase {
             ['connect' => 0xcafe0007, 'work' => 0xbabe0007],
         ];
         $bupAddresses = $this->initBackupInfos($bupInfos);
-        $createdTask = 0xffffe0;
-        $createdState = 0xffffe4;
+        $installedTask = 0xffffe0;
+        $installedState = 0xffffe4;
 
         $this->shouldCall('_BupGetInfo_8c014bba')->with(0)->andReturn($bupAddresses[0]);
         $this->shouldCall('_BupGetInfo_8c014bba')->with(1)->andReturn($bupAddresses[1]);
@@ -75,12 +75,12 @@ return new class extends TestCase {
         $this->shouldCall('_BupGetInfo_8c014bba')->with(6)->andReturn($bupAddresses[6]);
         $this->shouldCall('_BupGetInfo_8c014bba')->with(7)->andReturn($bupAddresses[7]);
 
-        $this->shouldCall('_TaskSpawn_8c014ae8')
+        $this->shouldCall('_TaskInstall_8c014ae8')
         ->with(
             $this->addressOf('_var_tasks_8c1ba3c8'),
             $this->addressOf('_mountWaitTask_8c0193c8'),
-            $createdTask,
-            $createdState,
+            $installedTask,
+            $installedState,
             0
         );
         $this->shouldWriteLongTo('_var_vmMountBusy_8c22606c', 1);

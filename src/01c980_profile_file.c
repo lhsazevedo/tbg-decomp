@@ -755,7 +755,7 @@ STATIC void menuTask_8c01ccec(Task *task, void *state)
 
 void ProfileFileEnter_8c01d1c4(Task *task)
 {
-    TaskSwitch_8c014b3e(task, menuTask_8c01ccec);
+    TaskReinstall_8c014b3e(task, menuTask_8c01ccec);
 
     var_menuState_8c1bc7a8.state_0x18 = STATE_INIT;
     var_menuState_8c1bc7a8.cursorCol_0x3c = 0;

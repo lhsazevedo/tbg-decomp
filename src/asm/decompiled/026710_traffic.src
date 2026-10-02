@@ -23,11 +23,11 @@
           .IMPORT     _var_route_8c18ad1c
           .IMPORT     _var_tasks_8c1bac28
           .IMPORT     _TrafficDriveVehicleTask_8c025b98
-          .IMPORT     _TaskSpawn_8c014ae8
+          .IMPORT     _TaskInstall_8c014ae8
           .IMPORT     _AttrQueryFindConvexPolygonAtHeight_8c02eab4
           .IMPORT     _GroundProbeTrackPolygon_8c020b6c
           .IMPORT     _var_routeModelSlots_8c1bbddc
-          .IMPORT     _TaskKill_8c014b66
+          .IMPORT     _TaskUninstall_8c014b66
           .IMPORT     _TrafficPathScanFirst_8c02f0c8
           .IMPORT     _var_trafficModels_8c1bc3f4
           .IMPORT     _VehiclePartsBind_8c02786c
@@ -1744,7 +1744,7 @@ LP_GEN_87611:
           .DATA.L _init_dayMasks_8c046208 ; H'8C0273A0
           .DATA.L _var_tasks_8c1bac28 ; H'8C0273A4
           .DATA.L _TrafficDriveVehicleTask_8c025b98 ; H'8C0273A8
-          .DATA.L _TaskSpawn_8c014ae8 ; H'8C0273AC
+          .DATA.L _TaskInstall_8c014ae8 ; H'8C0273AC
           .DATA.L _TrafficDriveParkedTask_8c02656a ; H'8C0273B0
           .DATA.L H'00008000 ; H'8C0273B4
           .DATA.L _GroundProbeTrackPolygonAtHeight_8c021290 ; H'8C0273B8
@@ -1839,7 +1839,7 @@ LP_GEN_50256:
           .DATA.L _GroundProbeTrackPolygon_8c020b6c ; H'8C027460
           .DATA.L _AttrQueryFindConvexPolygon_8c02e51c ; H'8C027464
           .DATA.L _var_routeModelSlots_8c1bbddc ; H'8C027468
-          .DATA.L _TaskKill_8c014b66 ; H'8C02746C
+          .DATA.L _TaskUninstall_8c014b66 ; H'8C02746C
           .DATA.L _AsqGetRandomA_8c012166 ; H'8C027470
           .DATA.L H'41000000 ; H'8C027474
           .DATA.L _TrafficPathScanFirst_8c02f0c8 ; H'8C027478
@@ -2329,7 +2329,7 @@ LP_GEN_74201:
           .DATA.L _var_nightLightColorStep_8c1bbdb8 ; H'8C02785C
           .DATA.L _updateTask_8c0275d4 ; H'8C027860
           .DATA.L _var_tasks_8c1ba5e8 ; H'8C027864
-          .DATA.L _TaskSpawn_8c014ae8 ; H'8C027868
+          .DATA.L _TaskInstall_8c014ae8 ; H'8C027868
           .SECTION    D, DATA, ALIGN=4
 _init_scriptOpWords_8c0460bc:        ; from defines
           .DATA.B      H'01

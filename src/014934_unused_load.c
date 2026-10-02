@@ -13,7 +13,7 @@
  * ====================
  */
 
-void UnusedLoadSpawnTask_8c014934()
+void UnusedLoadInstall_8c014934()
 {
     RouteLoadTask *task;
     void *state;
@@ -21,7 +21,7 @@ void UnusedLoadSpawnTask_8c014934()
     njSetBackColor(0xff418dff, 0xff418dff, 0xff418dff);
     var_loadScreenActive_8c157a6c = 1;
 
-    TaskSpawn_8c014ae8(
+    TaskInstall_8c014ae8(
         var_tasks_8c1ba3c8,
         (void *) &RouteUnusedTask_8c014784,
         (Task **) &task,
@@ -33,6 +33,6 @@ void UnusedLoadSpawnTask_8c014934()
 
     njGarbageTexture(var_tex_8c157af8, 0xc00);
 
-    /* Half RouteSpawnLoadTask_8c0144fc's dat/nj queue sizes. */
+    /* Half RouteInstallLoad_8c0144fc's dat/nj queue sizes. */
     AsqInitQueues_8c011f36(0x20, 0x400, 0x400, 0x40);
 }

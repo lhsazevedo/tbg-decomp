@@ -11,7 +11,7 @@ use Lhsazevedo\Sh4ObjTest\TestCase;
 return new class extends TestCase {
     private function resolveSymbols(): void
     {
-        $this->setSize('_TaskKill_8c014b66', 4);
+        $this->setSize('_TaskUninstall_8c014b66', 4);
         $this->setSize('_sdMidiPlay', 4);
         $this->setSize('_AsqGetRandomInRangeB_8c0121be', 4);
         $this->setSize('_AsqGetRandomB_8c0121a8', 4);
@@ -88,7 +88,7 @@ return new class extends TestCase {
 
         $this->call('_driveCueTask_8c020214')->with($task, 0);
 
-        $this->shouldCall('_TaskKill_8c014b66')->with($task);
+        $this->shouldCall('_TaskUninstall_8c014b66')->with($task);
     }
 
     // ------------------------------------------------------------------

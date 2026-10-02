@@ -231,7 +231,7 @@ return new class extends TestCase {
 
         $this->shouldCall('_texlistQueueIsIdle_8c011a42')->andReturn(1);
 
-        $this->shouldCall('_TaskKill_8c014b66')->with($task);
+        $this->shouldCall('_TaskUninstall_8c014b66')->with($task);
 
         $this->singleCall('_taskProcessQueues_8c011e80')
             ->with($task, $state)
@@ -250,7 +250,7 @@ return new class extends TestCase {
 
         $this->shouldCall('_texlistQueueIsIdle_8c011a42')->andReturn(1);
 
-        $this->shouldCall('_TaskKill_8c014b66')->with($task);
+        $this->shouldCall('_TaskUninstall_8c014b66')->with($task);
         $this->shouldCall(0xcafe0002);
 
         $this->singleCall('_taskProcessQueues_8c011e80')

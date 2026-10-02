@@ -451,7 +451,7 @@ STATIC void menuTask_8c01b3ac(Task *task, void *state)
 
 void SystemMenuEnter_8c01ba64(Task *task)
 {
-    TaskSwitch_8c014b3e(task, menuTask_8c01b3ac);
+    TaskReinstall_8c014b3e(task, menuTask_8c01b3ac);
     var_menuState_8c1bc7a8.state_0x18 = SAVE_STATE_LOAD_ICON;
     var_menuState_8c1bc7a8.selected_0x38 = SAVE_MENU_LOAD;
     var_saveBuf_8c1ba2e0 = syMalloc(0x600);

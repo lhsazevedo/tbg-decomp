@@ -10,13 +10,13 @@ return new class extends TestCase {
     {
         $this->setSize('_var_tasks_8c1ba3c8', 4);
 
-        $createdTask = $this->alloc(0x14);
-        $createdState = $this->alloc(0x14);
+        $installedTask = $this->alloc(0x14);
+        $installedState = $this->alloc(0x14);
 
         $this->call('_openSaveMenu_8c016636');
 
         $this->shouldCall('_njSetBackColor')->with(0, 0, 0xc060);
-        $this->shouldCall('_TaskSpawn_8c014ae8')
+        $this->shouldCall('_TaskInstall_8c014ae8')
             ->with(
                 $this->addressOf('_var_tasks_8c1ba3c8'),
                 $this->addressOf('_saveMenuTask_8c01628c'),
@@ -24,11 +24,11 @@ return new class extends TestCase {
                 0xfffff0,
                 0x14,
             )
-            ->do(function ($params) use ($createdTask, $createdState) {
-                $this->memory->writeUInt32($params[2], U32::of($createdTask));
-                $this->memory->writeUInt32($params[3], U32::of($createdState));
+            ->do(function ($params) use ($installedTask, $installedState) {
+                $this->memory->writeUInt32($params[2], U32::of($installedTask));
+                $this->memory->writeUInt32($params[3], U32::of($installedState));
             });
-        $this->shouldWriteLong($createdState + 0x00, 0);
-        $this->shouldWriteLong($createdState + 0x0c, 0);
+        $this->shouldWriteLong($installedState + 0x00, 0);
+        $this->shouldWriteLong($installedState + 0x0c, 0);
     }
 };

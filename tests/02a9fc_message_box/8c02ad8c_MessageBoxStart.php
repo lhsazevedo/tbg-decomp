@@ -6,7 +6,7 @@ use Lhsazevedo\Sh4ObjTest\TestCase;
 use Lhsazevedo\Sh4ObjTest\Simulator\Types\U32;
 
 return new class extends TestCase {
-    // Spawned task state offsets (word index * 4).
+    // Installed task state offsets (word index * 4).
     const ST_00 = 0x00;
     const ST_04 = 0x04;
 
@@ -31,7 +31,7 @@ return new class extends TestCase {
 
         $this->shouldCall('_relocateMessageText_8c02a9fc')->with($handle);
 
-        $this->shouldCall('_TaskSpawn_8c014ae8')
+        $this->shouldCall('_TaskInstall_8c014ae8')
             ->with(
                 $this->addressOf('_var_tasks_8c1ba3c8'),
                 $this->addressOf('_slideshowTask_8c02ab7a'),
@@ -42,7 +42,7 @@ return new class extends TestCase {
                 $sizeArg = $this->memory->readUInt32($this->registers[15]->value);
                 if (!$sizeArg->equals(0x1c)) {
                     throw new \Exception(
-                        "Unexpected TaskSpawn alloc_size $sizeArg, expecting 0x1c"
+                        "Unexpected TaskInstall alloc_size $sizeArg, expecting 0x1c"
                     );
                 }
                 $this->memory->writeUInt32($this->registers[6]->value, U32::of($task));

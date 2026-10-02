@@ -361,7 +361,7 @@ return new class extends TestCase {
         $sizeLocal = $this->isAsmObject() ? 0xffffd4 : 0xffffd4;
 
         $this->shouldWriteTo('_var_pvmQueueIsIdle_8c157ac8', 1);
-        $this->shouldCall('_TaskKill_8c014b66')->with($taskPtr);
+        $this->shouldCall('_TaskUninstall_8c014b66')->with($taskPtr);
 
         $this->singleCall('_taskLoadQueuedPvms_8c011b00')
             ->with($taskPtr, 0)
@@ -697,7 +697,7 @@ return new class extends TestCase {
 
         // Functions
         $this->setSize('_gdFsClose', 4);
-        $this->setSize('_TaskKill_8c014b66', 4);
+        $this->setSize('_TaskUninstall_8c014b66', 4);
         $this->setSize('_syMalloc', 4);
         $this->setSize('_gsFsGetFileSctSize', 4);
     }

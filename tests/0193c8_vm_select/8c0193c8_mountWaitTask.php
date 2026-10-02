@@ -27,7 +27,7 @@ return new class extends TestCase {
             $this->shouldCall('_BupGetInfo_8c014bba')->with($i)->andReturn($bupInfo);
         }
 
-        $this->shouldCall('_TaskKill_8c014b66')->with($task);
+        $this->shouldCall('_TaskUninstall_8c014b66')->with($task);
         $this->shouldWriteLongTo('_var_vmMountBusy_8c22606c', 0);
 
         $this->singleCall('_mountWaitTask_8c0193c8')->with($task, 0)->run();
@@ -54,7 +54,7 @@ return new class extends TestCase {
             $this->shouldCall('_BupGetInfo_8c014bba')->with($i)->andReturn($bupInfo);
         }
 
-        $this->shouldCall('_TaskKill_8c014b66')->with($task);
+        $this->shouldCall('_TaskUninstall_8c014b66')->with($task);
         $this->shouldWriteLongTo('_var_vmMountBusy_8c22606c', 0);
 
         $this->singleCall('_mountWaitTask_8c0193c8')->with($task, 0)->run();

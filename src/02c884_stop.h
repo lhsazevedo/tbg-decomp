@@ -15,7 +15,7 @@ typedef struct {
     float dz_0x10;
 } StopAreaRecord;
 
-void StopKillTaskGroup_8c02ca96(void);
+void StopUninstallGroup_8c02ca96(void);
 
 /* Per-run: decides which segments get a stop, primes the first one and
  * resets driver points and the run clock. */

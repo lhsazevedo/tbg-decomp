@@ -9,7 +9,7 @@
           .IMPORT     _var_route_8c18ad1c
           .IMPORT     _rand
           .IMPORT     _syFree
-          .IMPORT     _TaskKillGroup_8c014ab4
+          .IMPORT     _TaskUninstallGroup_8c014ab4
           .IMPORT     _var_currentCourseConfig_8c18ad18
           .IMPORT     _EventScanCandidates_8c02b03c
           .IMPORT     _var_eventCandidates_8c228520
@@ -44,7 +44,7 @@
           .IMPORT     _GradeRunComplete_8c02c586
           .IMPORT     _SndStartAdxFadeOut_8c010bae
           .IMPORT     _GradeOnFadePracticeEnd_8c02c784
-          .EXPORT     _StopKillTaskGroup_8c02ca96
+          .EXPORT     _StopUninstallGroup_8c02ca96
           .EXPORT     _StopSetup_8c02caba
           .EXPORT     _StopAdvance_8c02ccc6
           .EXPORT     _StopGetSegment_8c02cd6a
@@ -350,7 +350,7 @@ LAB_8c02ca74:
           MOV.L       @R15+,R13
           RTS
           MOV.L       @R15+,R14
-_StopKillTaskGroup_8c02ca96:
+_StopUninstallGroup_8c02ca96:
           MOV.L       R14,@-R15
           MOV.L       LP_GEN_58192+90,R14
           STS.L       PR,@-R15
@@ -446,7 +446,7 @@ LP_GEN_58192:
           .DATA.L _rand ; H'8C02CB68
           .DATA.L _syFree ; H'8C02CB6C
           .DATA.L _var_stopTaskGroup_8c2288f8 ; H'8C02CB70
-          .DATA.L _TaskKillGroup_8c014ab4 ; H'8C02CB74
+          .DATA.L _TaskUninstallGroup_8c014ab4 ; H'8C02CB74
           .DATA.L _var_currentCourseConfig_8c18ad18 ; H'8C02CB78
           .DATA.L _EventScanCandidates_8c02b03c ; H'8C02CB7C
           .DATA.L _var_eventCandidates_8c228520 ; H'8C02CB80

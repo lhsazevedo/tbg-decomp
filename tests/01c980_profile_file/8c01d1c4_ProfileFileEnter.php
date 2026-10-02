@@ -13,7 +13,7 @@ return new class extends TestCase {
     private function resolveSymbols(): void
     {
         $this->setSize('_var_menuState_8c1bc7a8', 0x7c);
-        $this->setSize('_TaskSwitch_8c014b3e', 4);
+        $this->setSize('_TaskReinstall_8c014b3e', 4);
         $this->setSize('_CourseMenuFreeResourceGroup_8c0185c4', 4);
         $this->setSize('_njGarbageTexture', 4);
         $this->setSize('_var_tex_8c157af8', 4);
@@ -40,7 +40,7 @@ return new class extends TestCase {
         $task = $this->alloc(0x20);
 
         $this->call('_ProfileFileEnter_8c01d1c4')->with($task);
-        $this->shouldCall('_TaskSwitch_8c014b3e')->with(
+        $this->shouldCall('_TaskReinstall_8c014b3e')->with(
             $task, $this->addressOf('_menuTask_8c01ccec')
         );
         $this->shouldWriteLong($this->menu(0x18), 0);

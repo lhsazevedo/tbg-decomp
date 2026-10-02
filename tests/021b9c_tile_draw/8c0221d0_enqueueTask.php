@@ -6,7 +6,7 @@ use Lhsazevedo\Sh4ObjTest\TestCase;
 
 /*
  * enqueueTask_8c0221d0(Task *task, void *state): the TaskAction
- * TileDrawSpawnTask_8c0222dc installs. Computes the three fade light directions by
+ * TileDrawInstall_8c0222dc installs. Computes the three fade light directions by
  * broadcasting one scalar CourseSceneParams component into a 3-vector and
  * transforming it with njCalcVector under whichever camera is current (as
  * coded -- reads dir1_0x48[0]/dir2_0x68[0] three times each rather than

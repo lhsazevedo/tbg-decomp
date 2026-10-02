@@ -117,7 +117,7 @@ STATIC int var_texlistQueueDoneCount_8c157a68;
 int var_loadScreenActive_8c157a6c;
 
 int var_activeCtrlType_8c157a70;
-/* Write-only TaskSpawn_8c014ae8 out-param. */
+/* Write-only TaskInstall_8c014ae8 out-param. */
 Task *var_pushedTask_8c157a74;
 int var_resetRequested_8c157a78;
 int var_vmBusy_8c157a7c;
@@ -305,7 +305,7 @@ STATIC void taskLoadQueuedDats_8c0111b4(TaskLoadQueuedDats* task, void* state) {
                 /* return */;
             } else {
                 var_datQueueIsIdle_8c157a98 = 1;
-                TaskKill_8c014b66((Task*) task);
+                TaskUninstall_8c014b66((Task*) task);
                 /* return; */
             }
             break;
@@ -341,8 +341,8 @@ STATIC void taskLoadQueuedDats_8c0111b4(TaskLoadQueuedDats* task, void* state) {
 }
 
 STATIC int sortAndLoadDatQueue_8c011310() {
-    Task *created_task;
-    void *created_state;
+    Task *installed_task;
+    void *installed_state;
     QueuedDat *temp;
 
     if ((int) var_datQueue_8c157a8c == (int) var_datQueueRear_8c157a90) {
@@ -376,12 +376,12 @@ STATIC int sortAndLoadDatQueue_8c011310() {
 
     syFree(temp);
 
-    if (!TaskSpawn_8c014ae8(var_tasks_8c1ba3c8, &taskLoadQueuedDats_8c0111b4, &created_task, &created_state, 0)) {
+    if (!TaskInstall_8c014ae8(var_tasks_8c1ba3c8, &taskLoadQueuedDats_8c0111b4, &installed_task, &installed_state, 0)) {
         return 0;
     }
 
-    created_task->queuedItem_0x18 = var_datQueue_8c157a8c;
-    created_task->field_0x08 = 0;
+    installed_task->queuedItem_0x18 = var_datQueue_8c157a8c;
+    installed_task->field_0x08 = 0;
     var_loadRetryNeeded_8c157a88 = 0;
     var_queueBaseDir_8c157a80 = init_dataEmpty_8c03be7c;
 
@@ -529,7 +529,7 @@ STATIC void taskLoadQueuedNjs_8c0114cc(TaskLoadQueuedNjs* task, void* state) {
                 var_queueBaseDir_8c157a80 = init_dataEmpty_8c03be7c;
             } else {
                 var_njQueueIsIdle_8c157aa8 = 1;
-                TaskKill_8c014b66((Task*) task);
+                TaskUninstall_8c014b66((Task*) task);
             }
 
             break;
@@ -588,8 +588,8 @@ STATIC void taskLoadQueuedNjs_8c0114cc(TaskLoadQueuedNjs* task, void* state) {
 }
 
 STATIC int sortAndLoadNjQueue_8c0116b6() {
-    Task *created_task;
-    void* created_state;
+    Task *installed_task;
+    void* installed_state;
     QueuedNj *temp;
 
     if ((int) var_njQueue_8c157a9c == (int) var_njQueueRear_8c157aa0) {
@@ -623,12 +623,12 @@ STATIC int sortAndLoadNjQueue_8c0116b6() {
 
     syFree(temp);
 
-    if (!TaskSpawn_8c014ae8(var_tasks_8c1ba3c8, &taskLoadQueuedNjs_8c0114cc, &created_task, &created_state, 0)) {
+    if (!TaskInstall_8c014ae8(var_tasks_8c1ba3c8, &taskLoadQueuedNjs_8c0114cc, &installed_task, &installed_state, 0)) {
         return 0;
     }
 
-    created_task->queuedItem_0x18 = var_njQueue_8c157a9c;
-    created_task->field_0x08 = 0;
+    installed_task->queuedItem_0x18 = var_njQueue_8c157a9c;
+    installed_task->field_0x08 = 0;
     var_loadRetryNeeded_8c157a88 = 0;
     var_queueBaseDir_8c157a80 = init_dataEmpty_8c03be7c;
 
@@ -751,7 +751,7 @@ STATIC void taskLoadQueuedTexlists_8c01183e(Task *task, void *state) {
         var_texlistQueueDoneCount_8c157a68++;
         if (item >= var_texlistQueueRear_8c157ab0) {
             var_texlistQueueIsIdle_8c157ab8 = 1;
-            TaskKill_8c014b66(task);
+            TaskUninstall_8c014b66(task);
             return;
         }
 
@@ -763,19 +763,19 @@ STATIC void taskLoadQueuedTexlists_8c01183e(Task *task, void *state) {
 }
 
 STATIC int loadTexlistQueue_8c0119f8() {
-    Task *created_task;
-    void *created_state;
+    Task *installed_task;
+    void *installed_state;
 
     if (var_texlistQueue_8c157aac == var_texlistQueueRear_8c157ab0) {
         return 0;
     }
 
     var_texlistQueueIsIdle_8c157ab8 = 0;
-    if (!TaskSpawn_8c014ae8(var_tasks_8c1ba3c8, taskLoadQueuedTexlists_8c01183e, &created_task, &created_state, 0)) {
+    if (!TaskInstall_8c014ae8(var_tasks_8c1ba3c8, taskLoadQueuedTexlists_8c01183e, &installed_task, &installed_state, 0)) {
         return 0;
     }
 
-    created_task->queuedItem_0x18 = var_texlistQueue_8c157aac;
+    installed_task->queuedItem_0x18 = var_texlistQueue_8c157aac;
     return 1;
 }
 
@@ -903,7 +903,7 @@ STATIC void taskLoadQueuedPvms_8c011b00(TaskLoadQueuedPvms* task, void* state) {
                 var_queueBaseDir_8c157a80 = init_dataEmpty_8c03be7c;
             } else {
                 var_pvmQueueIsIdle_8c157ac8 = 1;
-                TaskKill_8c014b66((Task*) task);
+                TaskUninstall_8c014b66((Task*) task);
             }
 
             break;
@@ -967,8 +967,8 @@ STATIC void taskLoadQueuedPvms_8c011b00(TaskLoadQueuedPvms* task, void* state) {
 }
 
 STATIC int sortAndLoadPvmQueue_8c011d24() {
-    Task *created_task;
-    void* created_state;
+    Task *installed_task;
+    void* installed_state;
     QueuedPvm *temp;
 
     if ((int) var_pvmQueue_8c157abc == (int) var_pvmQueueRear_8c157ac0) {
@@ -1005,12 +1005,12 @@ STATIC int sortAndLoadPvmQueue_8c011d24() {
 
     syFree(temp);
 
-    if (!TaskSpawn_8c014ae8(var_tasks_8c1ba3c8, &taskLoadQueuedPvms_8c011b00, &created_task, &created_state, 0)) {
+    if (!TaskInstall_8c014ae8(var_tasks_8c1ba3c8, &taskLoadQueuedPvms_8c011b00, &installed_task, &installed_state, 0)) {
         return 0;
     }
 
-    created_task->queuedItem_0x18 = var_pvmQueue_8c157abc;
-    created_task->field_0x08 = 0;
+    installed_task->queuedItem_0x18 = var_pvmQueue_8c157abc;
+    installed_task->field_0x08 = 0;
     var_loadRetryNeeded_8c157a88 = 0;
     var_queueBaseDir_8c157a80 = init_dataEmpty_8c03be7c;
 
@@ -1081,7 +1081,7 @@ STATIC void taskProcessQueues_8c011e80(Task *task, TaskProcessQueuesState *state
 
         case QUEUE_TEXLIST: {
             if (texlistQueueIsIdle_8c011a42()) {
-                TaskKill_8c014b66(task);
+                TaskUninstall_8c014b66(task);
                 if (state->afterTexlistCallback_0x14) {
                     state->afterTexlistCallback_0x14();
                 }
@@ -1134,16 +1134,16 @@ void AsqFreeQueues_8c011f7e() {
 }
 
 void AsqProcessQueues_8c011fe0(void *tickCallback, void *afterDatCallback, void *afterNjCallback, void *afterPvmCallback, void *afterTexlistCallback) {
-    Task* created_task;
-    TaskProcessQueuesState* created_state;
+    Task* installed_task;
+    TaskProcessQueuesState* installed_state;
 
-    TaskSpawn_8c014ae8(var_tasks_8c1ba3c8, &taskProcessQueues_8c011e80, &created_task, (void**) &created_state, 0x18);
-    created_state->queue_0x00 = QUEUE_DAT;
-    created_state->afterDatCallback_0x08 = afterDatCallback;
-    created_state->afterNjCallback_0x0c = afterNjCallback;
-    created_state->afterPvmCallback_0x10 = afterPvmCallback;
-    created_state->afterTexlistCallback_0x14 = afterTexlistCallback;
-    created_state->tickCallback_0x04 = tickCallback;
+    TaskInstall_8c014ae8(var_tasks_8c1ba3c8, &taskProcessQueues_8c011e80, &installed_task, (void**) &installed_state, 0x18);
+    installed_state->queue_0x00 = QUEUE_DAT;
+    installed_state->afterDatCallback_0x08 = afterDatCallback;
+    installed_state->afterNjCallback_0x0c = afterNjCallback;
+    installed_state->afterPvmCallback_0x10 = afterPvmCallback;
+    installed_state->afterTexlistCallback_0x14 = afterTexlistCallback;
+    installed_state->tickCallback_0x04 = tickCallback;
 
     sortAndLoadDatQueue_8c011310();
 }

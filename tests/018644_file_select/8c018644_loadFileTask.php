@@ -88,7 +88,7 @@ return new class extends TestCase {
         $this->call('_loadFileTask_8c018644')->with($task);
 
         $this->shouldCall('_buIsExistFile')->with(0, $name0)->andReturn(5);
-        $this->shouldCall('_TaskKill_8c014b66')->with($task);
+        $this->shouldCall('_TaskUninstall_8c014b66')->with($task);
         $this->shouldWriteLongTo('_var_saveLoadResult_8c226010', 2);
     }
 
@@ -106,7 +106,7 @@ return new class extends TestCase {
 
         $this->call('_loadFileTask_8c018644')->with($task);
 
-        $this->shouldCall('_TaskKill_8c014b66')->with($task);
+        $this->shouldCall('_TaskUninstall_8c014b66')->with($task);
         $this->shouldWriteLongTo('_var_saveLoadResult_8c226010', 1);
     }
 
@@ -146,7 +146,7 @@ return new class extends TestCase {
 
         $this->shouldCall('_buStat')->with(0)->andReturn(0);
         $this->shouldCall('_buGetLastError')->with(0)->andReturn(5);
-        $this->shouldCall('_TaskKill_8c014b66')->with($task);
+        $this->shouldCall('_TaskUninstall_8c014b66')->with($task);
         $this->shouldWriteLongTo('_var_saveLoadResult_8c226010', 2);
     }
 
@@ -192,7 +192,7 @@ return new class extends TestCase {
         $this->setSize('_buGetLastError', 4);
         $this->setSize('_buAnalyzeBackupFileImage', 4);
         $this->setSize('_BupLoad_8c014bc6', 4);
-        $this->setSize('_TaskKill_8c014b66', 4);
+        $this->setSize('_TaskUninstall_8c014b66', 4);
         $this->setSize('_syMalloc', 4);
         $this->setSize('_syFree', 4);
         $this->setSize('_njMemCopy', 4);

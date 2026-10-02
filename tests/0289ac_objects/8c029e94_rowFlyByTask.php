@@ -9,7 +9,7 @@ return new class extends TestCase {
     // Task offsets.
     const TASK_FIELD_08 = 0x08;
 
-    // State offsets (word index * 4), matching ObjectsSpawnTasks_8c02a6ac's test.
+    // State offsets (word index * 4), matching ObjectsInstall_8c02a6ac's test.
     const ST_10 = 0x40;
     const ST_11 = 0x44;
     const ST_12 = 0x48;
@@ -23,8 +23,8 @@ return new class extends TestCase {
     const SLOTS = 0x20;
 
     /**
-     * rowFlyByTask_8c029e94's stack slots for TaskSpawn's created_task /
-     * create_state out-params. Unlike most functions in this unit, the two
+     * rowFlyByTask_8c029e94's stack slots for TaskInstall's installed_task /
+     * installed_state out-params. Unlike most functions in this unit, the two
      * objects happen to lay these out identically.
      */
     private function outParams(): array
@@ -43,7 +43,7 @@ return new class extends TestCase {
         $this->shouldWriteLong($task + self::TASK_FIELD_08, 0);
     }
 
-    public function test_countdown_lapsed_spawns_flyby_and_rearms(): void
+    public function test_countdown_lapsed_installs_flyby_and_rearms(): void
     {
         $this->setSize('_var_routeModelSlots_8c1bbddc', self::SLOTS * self::SLOT_SIZE);
         $slots = $this->addressOf('_var_routeModelSlots_8c1bbddc');
@@ -72,7 +72,7 @@ return new class extends TestCase {
         [$taskLocal, $stateLocal] = $this->outParams();
 
         $this->shouldWriteLong($task + self::TASK_FIELD_08, 0xffffffff);
-        $this->shouldCall('_TaskSpawn_8c014ae8')
+        $this->shouldCall('_TaskInstall_8c014ae8')
             ->with(
                 $this->addressOf('_var_tasks_8c1bb448'),
                 $this->addressOf('_flyByModelTask_8c029e68'),
@@ -124,7 +124,7 @@ return new class extends TestCase {
         [$taskLocal, $stateLocal] = $this->outParams();
 
         $this->shouldWriteLong($task + self::TASK_FIELD_08, 0xffffffff);
-        $this->shouldCall('_TaskSpawn_8c014ae8')
+        $this->shouldCall('_TaskInstall_8c014ae8')
             ->with(
                 $this->addressOf('_var_tasks_8c1bb448'),
                 $this->addressOf('_flyByModelTask_8c029e68'),
@@ -148,7 +148,7 @@ return new class extends TestCase {
         $this->shouldWriteLong($task + self::TASK_FIELD_08, 0x10);
     }
 
-    public function test_lapsed_taskspawn_failure_still_rearms(): void
+    public function test_lapsed_taskinstall_failure_still_rearms(): void
     {
         $task = $this->alloc(0x20);
         $this->initUint32($task + self::TASK_FIELD_08, 0);
@@ -159,7 +159,7 @@ return new class extends TestCase {
         [$taskLocal, $stateLocal] = $this->outParams();
 
         $this->shouldWriteLong($task + self::TASK_FIELD_08, 0xffffffff);
-        $this->shouldCall('_TaskSpawn_8c014ae8')
+        $this->shouldCall('_TaskInstall_8c014ae8')
             ->with(
                 $this->addressOf('_var_tasks_8c1bb448'),
                 $this->addressOf('_flyByModelTask_8c029e68'),

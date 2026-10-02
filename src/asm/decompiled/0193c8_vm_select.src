@@ -1,9 +1,9 @@
 ; 8c0193c8
           .IMPORT     _BupGetInfo_8c014bba
-          .IMPORT     _TaskKill_8c014b66
+          .IMPORT     _TaskUninstall_8c014b66
           .IMPORT     _BupMount_8c014c00
           .IMPORT     _var_tasks_8c1ba3c8
-          .IMPORT     _TaskSpawn_8c014ae8
+          .IMPORT     _TaskInstall_8c014ae8
           .IMPORT     _BupUnmount_8c014c46
           .IMPORT     _buStat
           .IMPORT     _syFree
@@ -31,7 +31,7 @@
           .IMPORT     _FileSelectEnter_8c019334
           .IMPORT     _init_adxPlaying_8c03bd80
           .IMPORT     _MainMenuEnter_8c01a09a
-          .IMPORT     _TaskSwitch_8c014b3e
+          .IMPORT     _TaskReinstall_8c014b3e
           .EXPORT     _const_8c037f60
           .EXPORT     _const_8c037f70
           .EXPORT     _const_8c037f80
@@ -334,12 +334,12 @@ LAB_8c019592:
           MOV.L       @(H'4,R15),R11
 LP_GEN_33095:
           .DATA.L _BupGetInfo_8c014bba ; H'8C01959C
-          .DATA.L _TaskKill_8c014b66 ; H'8C0195A0
+          .DATA.L _TaskUninstall_8c014b66 ; H'8C0195A0
           .DATA.L _var_vmMountBusy_8c22606c ; H'8C0195A4
           .DATA.L _BupMount_8c014c00 ; H'8C0195A8
           .DATA.L _mountWaitTask_8c0193c8 ; H'8C0195AC
           .DATA.L _var_tasks_8c1ba3c8 ; H'8C0195B0
-          .DATA.L _TaskSpawn_8c014ae8 ; H'8C0195B4
+          .DATA.L _TaskInstall_8c014ae8 ; H'8C0195B4
           .DATA.L _BupUnmount_8c014c46 ; H'8C0195B8
           .DATA.L _buStat ; H'8C0195BC
           .DATA.L _unmountTask_8c01946a ; H'8C0195C0
@@ -1528,7 +1528,7 @@ LP_GEN_77899:
           .DATA.L _init_adxPlaying_8c03bd80 ; H'8C019E84
           .DATA.L _MainMenuEnter_8c01a09a ; H'8C019E88
           .DATA.L _vmMenuTask_8c0198a0 ; H'8C019E8C
-          .DATA.L _TaskSwitch_8c014b3e ; H'8C019E90
+          .DATA.L _TaskReinstall_8c014b3e ; H'8C019E90
           .DATA.L _var_menuState_8c1bc7a8 ; H'8C019E94
           .SECTION     C, DATA, ALIGN=4
 _const_8c037ef8:

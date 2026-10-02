@@ -28,7 +28,7 @@
           .IMPORT     _BusDrawFadeLights_8c028022
           .IMPORT     _var_busState_8c1bb9d0
           .IMPORT     _njSqrt
-          .IMPORT     _TaskKill_8c014b66
+          .IMPORT     _TaskUninstall_8c014b66
           .IMPORT     _BusDrawPlaceEntity_8c027c3c
           .EXPORT     _TrafficDriveVehicleTask_8c025b98
           .EXPORT     _TrafficDriveParkedTask_8c02656a
@@ -1421,7 +1421,7 @@ LP_GEN_51630:
           .DATA.L _njSqrt ; H'8C02660C
           .DATA.L H'43480000 ; H'8C026610
           .DATA.L _var_activeTrafficPreset_8c227e14 ; H'8C026614
-          .DATA.L _TaskKill_8c014b66 ; H'8C026618
+          .DATA.L _TaskUninstall_8c014b66 ; H'8C026618
           .DATA.L _BusDrawPlaceEntity_8c027c3c ; H'8C02661C
           .DATA.L H'3DCCCCCD ; H'8C026620
           .DATA.L _CollisionFindTaskHit_8c02e400 ; H'8C026624
@@ -1537,6 +1537,6 @@ LP_GEN_53982:
           .DATA.L _njSqrt ; H'8C0266FC
           .DATA.L H'43480000 ; H'8C026700
           .DATA.L _var_activeTrafficPreset_8c227e14 ; H'8C026704
-          .DATA.L _TaskKill_8c014b66 ; H'8C026708
+          .DATA.L _TaskUninstall_8c014b66 ; H'8C026708
           .DATA.L _BusDrawPlaceEntity_8c027c3c ; H'8C02670C
           .END

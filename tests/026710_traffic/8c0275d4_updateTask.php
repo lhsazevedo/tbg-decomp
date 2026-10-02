@@ -6,7 +6,7 @@ use Lhsazevedo\Sh4ObjTest\TestCase;
 
 // updateTask_8c0275d4 is a hidden (never directly called) TaskAction
 // -- its address is only taken via a .DATA.L pool entry and passed to
-// TaskSpawn_8c014ae8, spawned with no extra state, so its own Task struct
+// TaskInstall_8c014ae8, installed with no extra state, so its own Task struct
 // doubles as the state. See the function's header comment in
 // 026710_traffic.c for the full field/branch breakdown.
 

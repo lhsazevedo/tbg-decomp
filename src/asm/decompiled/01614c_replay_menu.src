@@ -1,5 +1,5 @@
 ; 8c01614c
-          .IMPORT     _TaskKillGroup_8c014ab4
+          .IMPORT     _TaskUninstallGroup_8c014ab4
           .IMPORT     _var_tasks_8c1bb448
           .IMPORT     _var_tasks_8c1bac28
           .IMPORT     _var_tasks_8c1ba808
@@ -24,10 +24,10 @@
           .IMPORT     _BupGetInfo_8c014bba
           .IMPORT     _BupMount_8c014c00
           .IMPORT     _BupUnmount_8c014c46
-          .IMPORT     _TaskKill_8c014b66
-          .IMPORT     _TaskSpawn_8c014ae8
+          .IMPORT     _TaskUninstall_8c014b66
+          .IMPORT     _TaskInstall_8c014ae8
           .IMPORT     _AsqGetRandomA_8c012166
-          .IMPORT     _InputSpawnTask_8c0128cc
+          .IMPORT     _InputInstall_8c0128cc
           .IMPORT     _var_busState_8c1bb9d0
           .IMPORT     _var_peripherals_8c1ba35c
           .IMPORT     _var_playMode_8c1bb8d0
@@ -53,9 +53,9 @@
           .IMPORT     _buStat
           .IMPORT     _syMalloc
           .IMPORT     _ReplayCodecInit_8c02f320
-          .IMPORT     _ObjectsKillPedestrianGroups_8c0297da
+          .IMPORT     _ObjectsUninstallPedestrianGroups_8c0297da
           .IMPORT     _SignalFree_8c0288be
-          .IMPORT     _StopKillTaskGroup_8c02ca96
+          .IMPORT     _StopUninstallGroup_8c02ca96
           .IMPORT     _MessageBoxFreeAssets_8c02adee
           .IMPORT     _ObjectsFreeAssetRequests_8c029cfe
           .IMPORT     _TileStreamTeardown_8c021724
@@ -65,7 +65,7 @@
           .IMPORT     _CourseMenuReturn_8c017ef2
           .EXPORT     _ReplayMenuDemoRecordTask_8c01677e
           .EXPORT     _ReplayMenuFreeSessionAssets_8c016182
-          .EXPORT     _ReplayMenuKillDriveTasks_8c01614c
+          .EXPORT     _ReplayMenuUninstallDrive_8c01614c
           .EXPORT     _ReplayMenuResetDemoCursor_8c016770
           .EXPORT     _ReplayMenuOpen_8c01673a
           .EXPORT     _ReplayMenuDemoPlayTask_8c016bf4
@@ -116,7 +116,7 @@
           .EXPORT     _var_replayMenuCourseSel_8c1bc824 ; 0129cc_game
           .EXPORT     _var_demoBuffer_8c1bc828 ; 014f54_text
           .SECTION    P, CODE, ALIGN=4
-_ReplayMenuKillDriveTasks_8c01614c:
+_ReplayMenuUninstallDrive_8c01614c:
           MOV.L       R14,@-R15
           STS.L       PR,@-R15
           MOV.L       LP_GEN_42967+2,R3
@@ -167,7 +167,7 @@ LAB_8c0161a6:
           MOV.L       LP_GEN_42967+50,R3
           JSR         @R3
           NOP
-          BSR         _ReplayMenuKillDriveTasks_8c01614c
+          BSR         _ReplayMenuUninstallDrive_8c01614c
           NOP
           MOV.L       LP_GEN_42967+14,R3
           MOV.L       LP_GEN_42967+54,R4
@@ -420,10 +420,10 @@ LAB_8c01636c:
           NOP
 LP_GEN_42967:
           .RES.W 1 ; H'8C01637A
-          .DATA.L _ObjectsKillPedestrianGroups_8c0297da ; H'8C01637C
+          .DATA.L _ObjectsUninstallPedestrianGroups_8c0297da ; H'8C01637C
           .DATA.L _SignalFree_8c0288be ; H'8C016380
-          .DATA.L _StopKillTaskGroup_8c02ca96 ; H'8C016384
-          .DATA.L _TaskKillGroup_8c014ab4 ; H'8C016388
+          .DATA.L _StopUninstallGroup_8c02ca96 ; H'8C016384
+          .DATA.L _TaskUninstallGroup_8c014ab4 ; H'8C016388
           .DATA.L _var_tasks_8c1bb448 ; H'8C01638C
           .DATA.L _var_tasks_8c1bac28 ; H'8C016390
           .DATA.L _var_tasks_8c1ba808 ; H'8C016394
@@ -1017,12 +1017,12 @@ LAB_8c01681e:
 LP_GEN_94139:
           .DATA.L _VmSelectUpdateAllStatus_8c019550 ; H'8C016824
           .DATA.L _const_8c036120 ; H'8C016828
-          .DATA.L _TaskKill_8c014b66 ; H'8C01682C
+          .DATA.L _TaskUninstall_8c014b66 ; H'8C01682C
           .DATA.L H'0000C060 ; H'8C016830
           .DATA.L _njSetBackColor ; H'8C016834
           .DATA.L _saveMenuTask_8c01628c ; H'8C016838
           .DATA.L _var_tasks_8c1ba3c8 ; H'8C01683C
-          .DATA.L _TaskSpawn_8c014ae8 ; H'8C016840
+          .DATA.L _TaskInstall_8c014ae8 ; H'8C016840
           .DATA.L _init_replayMenuEntries_8c04429c ; H'8C016844
           .DATA.L H'10+_var_peripherals_8c1ba35c ; H'8C016848
           .DATA.L _var_replayMenuCourseSel_8c1bc824 ; H'8C01684C
@@ -1031,7 +1031,7 @@ LP_GEN_94139:
           .DATA.L _const_8c0360b0 ; H'8C016858
           .DATA.L H'000A0000 ; H'8C01685C
           .DATA.L _AsqGetRandomA_8c012166 ; H'8C016860
-          .DATA.L _InputSpawnTask_8c0128cc ; H'8C016864
+          .DATA.L _InputInstall_8c0128cc ; H'8C016864
           .DATA.L _listMenuTask_8c01666a ; H'8C016868
           .DATA.L _var_demoBuffer_8c1bc828 ; H'8C01686C
           .DATA.L _var_demoCursor_8c225fa8 ; H'8C016870
@@ -1277,11 +1277,11 @@ LP_GEN_65913:
           .DATA.L _buStat ; H'8C016A54
           .DATA.L _syFree ; H'8C016A58
           .DATA.L _BupUnmount_8c014c46 ; H'8C016A5C
-          .DATA.L _TaskKill_8c014b66 ; H'8C016A60
+          .DATA.L _TaskUninstall_8c014b66 ; H'8C016A60
           .DATA.L _CourseMenuReturn_8c017ef2 ; H'8C016A64
           .DATA.L _replaySaveTask_8c0167ca ; H'8C016A68
           .DATA.L _var_tasks_8c1ba3c8 ; H'8C016A6C
-          .DATA.L _TaskSpawn_8c014ae8 ; H'8C016A70
+          .DATA.L _TaskInstall_8c014ae8 ; H'8C016A70
           .DATA.L _var_selectedVm_8c1ba34c ; H'8C016A74
           .DATA.L _var_demoCursor_8c225fa8 ; H'8C016A78
           .DATA.L _var_demoCursor_8c225fa8 ; H'8C016A7C
@@ -1435,14 +1435,14 @@ LP_GEN_41084:
           .DATA.L _ReplayCodecUnpack_8c02fa14 ; H'8C016BC8
           .DATA.L _syFree ; H'8C016BCC
           .DATA.L _BupUnmount_8c014c46 ; H'8C016BD0
-          .DATA.L _TaskKill_8c014b66 ; H'8C016BD4
+          .DATA.L _TaskUninstall_8c014b66 ; H'8C016BD4
           .DATA.L _GameStartSelectedCourse_8c01328c ; H'8C016BD8
           .DATA.L _var_playMode_8c1bb8d0 ; H'8C016BDC
           .DATA.L _var_selectedVm_8c1ba34c ; H'8C016BE0
           .DATA.L _var_isAttractDemo_8c1bb8d4 ; H'8C016BE4
           .DATA.L _replayLoadTask_8c0169bc ; H'8C016BE8
           .DATA.L _var_tasks_8c1ba3c8 ; H'8C016BEC
-          .DATA.L _TaskSpawn_8c014ae8 ; H'8C016BF0
+          .DATA.L _TaskInstall_8c014ae8 ; H'8C016BF0
 ; TU boundary removed: the delinker split 016bf4_demo_input off here,
 ; but it is the playback half of ReplayMenuDemoRecordTask_8c01677e and
 ; its data sits inside this unit's B.

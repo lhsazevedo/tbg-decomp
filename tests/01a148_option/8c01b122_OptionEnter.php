@@ -22,13 +22,13 @@ return new class extends TestCase {
     {
         $this->setSize('_var_menuState_8c1bc7a8', 0x7c);
         $this->setSize('_var_progress_8c1ba1cc', 0xe8);
-        $this->setSize('_TaskSwitch_8c014b3e', 4);
+        $this->setSize('_TaskReinstall_8c014b3e', 4);
         $this->setSize('_RenderStartFadeIn_8c022a9c', 4);
 
         $task = $this->alloc(0x20);
         $this->call('_OptionEnter_8c01b122')->with($task, $row);
 
-        $this->shouldCall('_TaskSwitch_8c014b3e')->with($task, $this->addressOf('_topMenuTask_8c01b00a'));
+        $this->shouldCall('_TaskReinstall_8c014b3e')->with($task, $this->addressOf('_topMenuTask_8c01b00a'));
         $this->shouldWriteLong($this->menu(self::STATE), 0);
         $this->shouldWriteLong($this->menu(self::SELECTED), $row);
         $this->shouldWriteLong($this->addressOf('_var_settingValues_8c226074'),

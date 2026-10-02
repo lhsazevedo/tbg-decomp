@@ -15,14 +15,14 @@
           .IMPORT     _TrafficMarkSignalIdsInUse_8c026dcc
           .IMPORT     _TaskInitGroup_8c014a9c
           .IMPORT     _var_routeModels_8c1bc3ec
-          .IMPORT     _TaskSpawn_8c014ae8
+          .IMPORT     _TaskInstall_8c014ae8
           .IMPORT     __quick_odd_mvn
           .IMPORT     _njUnitMatrix
           .IMPORT     _njTranslate
           .IMPORT     _njRotateY
           .IMPORT     _var_tasks_8c1ba5e8
           .IMPORT     _syFree
-          .IMPORT     _TaskKillGroup_8c014ab4
+          .IMPORT     _TaskUninstallGroup_8c014ab4
           .IMPORT     _var_currentCourse_8c1bb868
           .IMPORT     _BusDrawSignal_8c0281ac
           .IMPORT     _BusDrawSignalAttachment_8c028206
@@ -637,7 +637,7 @@ LP_GEN_92174:
           .DATA.W H'00B8 ; H'8C0286CC
           .RES.W 1 ; H'8C0286CE
           .DATA.L _headTask_8c028258 ; H'8C0286D0
-          .DATA.L _TaskSpawn_8c014ae8 ; H'8C0286D4
+          .DATA.L _TaskInstall_8c014ae8 ; H'8C0286D4
           .DATA.L __quick_odd_mvn ; H'8C0286D8
           .DATA.L _njUnitMatrix ; H'8C0286DC
           .DATA.L _njTranslate ; H'8C0286E0
@@ -799,7 +799,7 @@ LP_GEN_58642:
           .DATA.L _var_trafficSignalStates_8c227e28 ; H'8C028800
           .DATA.L _var_currentCourse_8c1bb868+H'38 ; H'8C028804 (macSignal_0x38)
           .DATA.L _attachmentTask_8c02833c ; H'8C028808
-          .DATA.L _TaskSpawn_8c014ae8 ; H'8C02880C
+          .DATA.L _TaskInstall_8c014ae8 ; H'8C02880C
 LAB_8c028810:
           MOV.W       LP_GEN_38963,R0
           MOV.L       @(H'10,R4),R3
@@ -967,11 +967,11 @@ LP_GEN_38963:
           .DATA.W H'0200 ; H'8C028932
           .DATA.L _execGroupTask_8c0283e8 ; H'8C028934
           .DATA.L _var_tasks_8c1ba5e8 ; H'8C028938
-          .DATA.L _TaskSpawn_8c014ae8 ; H'8C02893C
+          .DATA.L _TaskInstall_8c014ae8 ; H'8C02893C
           .DATA.L _var_trafficSignalStates_8c227e28 ; H'8C028940
           .DATA.L _syFree ; H'8C028944
           .DATA.L _var_trafficSignalTasks_8c227e20 ; H'8C028948
-          .DATA.L _TaskKillGroup_8c014ab4 ; H'8C02894C
+          .DATA.L _TaskUninstallGroup_8c014ab4 ; H'8C02894C
           .DATA.L _var_trafficSignalFrames_8c227e24 ; H'8C028950
           .DATA.L _var_pedCrossingFlags_8c227e2c ; H'8C028954
 _SignalClearCrossingOccupied_8c028958:

@@ -187,8 +187,8 @@ extern void *var_datFiles_8c18adb4[4]; /* one per texel layer, freed after TileS
  * =========
  */
 
-void RouteSpawnLoadTask_8c0144fc(void);
-void RouteSpawnSegmentReloadTask_8c01468e(void);
+void RouteInstallLoad_8c0144fc(void);
+void RouteInstallSegmentReload_8c01468e(void);
 void RouteSetLatch_8c014330(void);
 void RouteClearLatch_8c014322(void);
 void RouteFreeVehicleAssets_8c013b5a(void);

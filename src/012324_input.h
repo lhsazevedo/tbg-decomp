@@ -15,7 +15,7 @@
                          PDD_DEV_SUPPORT_KR | PDD_DEV_SUPPORT_AX1 | PDD_DEV_SUPPORT_AL | \
                          PDD_DEV_SUPPORT_AR)
 
-void InputSpawnTask_8c0128cc(int mode);
+void InputInstall_8c0128cc(int mode);
 void InputPollDrive_8c012970(void);
 int InputCheckColdBoot_8c012984(void);
 

@@ -19,7 +19,7 @@ if (!function_exists('fdec')) {
 
 /*
  * _BusTask_8c022bdc(Task *task, void *state): the player's bus per-frame
- * dispatcher, spawned as the run's task action by BusInitStart_8c023610.
+ * dispatcher, installed as the run's task action by BusInitStart_8c023610.
  * This test covers the simplest reachable path: driveState_0x2b4==0
  * (boarding), doorState_0x3c0==0 with no doors-open trigger (no state
  * change, no sdMidiPlay), speed_0x27c==0 (skips the BusDriveSampleGround_8c023938/023cba/

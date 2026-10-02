@@ -39,10 +39,10 @@
           .IMPORT     _CourseMenuApplyUnlocks_8c0173e6
           .IMPORT     _TitleStart_8c015fd6
           .IMPORT     _njSetBackColor
-          .IMPORT     _InputSpawnTask_8c0128cc
+          .IMPORT     _InputInstall_8c0128cc
           .IMPORT     _GameSoftResetTask_8c012f44
           .IMPORT     _var_tasks_8c1ba3c8
-          .IMPORT     _TaskSpawn_8c014ae8
+          .IMPORT     _TaskInstall_8c014ae8
           .IMPORT     _var_tex_8c157af8
           .IMPORT     _njGarbageTexture
           .IMPORT     _MessageBoxOpenTextbox_8c02ae3e
@@ -74,7 +74,7 @@
           .EXPORT     _resultsTask_8c01d8e0
           .AENDI
           .AIFDEF UNIT_TESTING
-          .EXPORT     _spawnResultsTask_8c01df8e
+          .EXPORT     _installResults_8c01df8e
           .AENDI
           .EXPORT     _ResultsShowFailedRun_8c01e24e
           .EXPORT     _ResultsShowPassedRun_8c01e0b4
@@ -1062,7 +1062,7 @@ LAB_8c01df74:
           MOV.L       @R15+,R13
           RTS
           MOV.L       @R15+,R14
-_spawnResultsTask_8c01df8e:
+_installResults_8c01df8e:
           STS.L       PR,@-R15
           ADD         #-H'8,R15
           MOV.L       LP_GEN_43538+30,R3
@@ -1158,10 +1158,10 @@ LP_GEN_43538:
           .DATA.L _SpriteDraw_8c014f54 ; H'8C01E048
           .DATA.L H'FF418DFF ; H'8C01E04C
           .DATA.L _njSetBackColor ; H'8C01E050
-          .DATA.L _InputSpawnTask_8c0128cc ; H'8C01E054
+          .DATA.L _InputInstall_8c0128cc ; H'8C01E054
           .DATA.L _GameSoftResetTask_8c012f44 ; H'8C01E058
           .DATA.L _var_tasks_8c1ba3c8 ; H'8C01E05C
-          .DATA.L _TaskSpawn_8c014ae8 ; H'8C01E060
+          .DATA.L _TaskInstall_8c014ae8 ; H'8C01E060
           .DATA.L _resultsTask_8c01d8e0 ; H'8C01E064
           .DATA.L _var_menuState_8c1bc7a8 + H'18 ; H'8C01E068
           .DATA.L _var_tex_8c157af8 ; H'8C01E06C
@@ -1396,12 +1396,12 @@ LAB_8c01e240:
           MOV.L       @R15+,R11
           MOV.L       @R15+,R12
           MOV.L       @R15+,R13
-          BRA         _spawnResultsTask_8c01df8e
+          BRA         _installResults_8c01df8e
           MOV.L       @R15+,R14
 _ResultsShowFailedRun_8c01e24e:
           MOV.L       LP_GEN_78959+34,R1
           MOV         #H'1,R2
-          BRA         _spawnResultsTask_8c01df8e
+          BRA         _installResults_8c01df8e
           MOV.L       R2,@R1
 LP_GEN_78959:
           .DATA.W H'00C8 ; H'8C01E256

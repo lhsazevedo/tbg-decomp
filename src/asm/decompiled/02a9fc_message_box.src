@@ -1,7 +1,7 @@
 ; 8c02a9fc
-          .IMPORT     _TaskSpawn_8c014ae8
+          .IMPORT     _TaskInstall_8c014ae8
           .IMPORT     _syFree
-          .IMPORT     _TaskKill_8c014b66
+          .IMPORT     _TaskUninstall_8c014b66
           .IMPORT     _var_route_8c18ad1c
           .IMPORT     _AsqRequestPvm_8c011ac0
           .IMPORT     _AsqRequestDat_8c011182
@@ -510,7 +510,7 @@ LP_GEN_90033:
           .DATA.L _SndStopAdx_8c010ca6 ; H'8C02AD4C
           .DATA.L _var_fadeRequest_8c226564 ; H'8C02AD50
           .DATA.L _var_isFading_8c226568 ; H'8C02AD54
-          .DATA.L _TaskKill_8c014b66 ; H'8C02AD58
+          .DATA.L _TaskUninstall_8c014b66 ; H'8C02AD58
           .DATA.L _EventApplyFlags_8c02b292 ; H'8C02AD5C
           .DATA.L _RouteStartModelLoadPass_8c013d78 ; H'8C02AD60
           .DATA.L _var_sceneVisible_8c226560 ; H'8C02AD64
@@ -682,7 +682,7 @@ LP_GEN_16602:
           .DATA.L _var_messageTextDat_8c228518 ; H'8C02AEB4
           .DATA.L _slideshowTask_8c02ab7a ; H'8C02AEB8
           .DATA.L _var_tasks_8c1ba3c8 ; H'8C02AEBC
-          .DATA.L _TaskSpawn_8c014ae8 ; H'8C02AEC0
+          .DATA.L _TaskInstall_8c014ae8 ; H'8C02AEC0
           .DATA.L _var_selectedEventEntry_8c228478 ; H'8C02AEC4
           .DATA.L _var_eventSlides_8c228480 ; H'8C02AEC8
           .DATA.L H'C0000000 ; H'8C02AECC

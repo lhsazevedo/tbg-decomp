@@ -930,7 +930,7 @@ STATIC void vmGameTask_8c01bfec(VmGameTask *task)
 
 void VmGameEnter_8c01c880(Task *task)
 {
-    TaskSwitch_8c014b3e(task, vmGameTask_8c01bfec);
+    TaskReinstall_8c014b3e(task, vmGameTask_8c01bfec);
     var_menuState_8c1bc7a8.state_0x18 = 0;
     var_menuState_8c1bc7a8.selected_0x38 = 0;
 

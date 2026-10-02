@@ -27,7 +27,7 @@ return new class extends TestCase {
 
         $this->call('_DriveCueInit_8c020528');
 
-        $this->shouldCall('_TaskSpawn_8c014ae8')->with(
+        $this->shouldCall('_TaskInstall_8c014ae8')->with(
             $this->addressOf('_var_tasks_8c1ba5e8'),
             $this->addressOf('_driveCueTask_8c020214'),
             0xffffe8,

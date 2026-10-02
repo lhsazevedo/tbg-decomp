@@ -19,13 +19,13 @@ return new class extends TestCase {
     public function test_switch_to_setting()
     {
         $this->setSize('_var_menuState_8c1bc7a8', 0x7c);
-        $this->setSize('_TaskSwitch_8c014b3e', 4);
+        $this->setSize('_TaskReinstall_8c014b3e', 4);
         $this->setSize('_RenderStartFadeIn_8c022a9c', 4);
 
         $task = $this->alloc(0x20);
         $this->call('_enterSetting_8c01a3c0')->with($task);
 
-        $this->shouldCall('_TaskSwitch_8c014b3e')
+        $this->shouldCall('_TaskReinstall_8c014b3e')
             ->with($task, $this->addressOf('_settingTask_8c01a148'));
         $this->shouldWriteLong($this->menu(self::STATE), 0);
         $this->shouldWriteLong($this->menu(self::SELECTED), 0);

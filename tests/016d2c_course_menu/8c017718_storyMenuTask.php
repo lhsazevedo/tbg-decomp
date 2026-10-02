@@ -60,7 +60,7 @@ return new Class extends TestCase {
 
         $this->call('_storyMenuTask_8c017718');
 
-        $this->shouldCall('_CourseMenuSpawnDialogTask_8c0170c6')->with(32);
+        $this->shouldCall('_CourseMenuInstallDialog_8c0170c6')->with(32);
         $this->shouldWriteLong($this->addressOf('_var_menuState_8c1bc7a8') + 0x18, 2);
 
         $this->shouldRenderFrame(
@@ -160,16 +160,16 @@ return new Class extends TestCase {
         // next also != INSTR_COURSE_UNLOCKED so no midiReset call.
         $seqBase = $this->addressOf('_var_dialogQueue_8c225fbc');
         $this->initUint32($seqBase + 0, 0x05); // current
-        $this->initUint32($seqBase + 4, 0x22); // next (spawned)
+        $this->initUint32($seqBase + 4, 0x22); // next (installed)
 
         $task = $this->alloc(0x10);
         $this->initUint32($task + 0x08, 0);
 
         $this->call('_storyMenuTask_8c017718')->with($task, 0);
 
-        // Effects (no course-unlock branch, just advance + spawn next)
+        // Effects (no course-unlock branch, just advance + install next)
         $this->shouldWriteLong($task + 0x08, 1);                // ++field_0x08
-        $this->shouldCall('_CourseMenuSpawnDialogTask_8c0170c6')->with(0x22, 0); // start next sequence
+        $this->shouldCall('_CourseMenuInstallDialog_8c0170c6')->with(0x22, 0); // start next sequence
 
         $this->shouldRenderFrame(
             spriteNo: 42,
@@ -203,9 +203,9 @@ return new Class extends TestCase {
 
         // Effects:
         // No course-unlock processing for the "current" (we deliberately avoided it)
-        // Increment index, then spawn next dialog, then reset+play midi because next == unlock
+        // Increment index, then install next dialog, then reset+play midi because next == unlock
         $this->shouldWriteLong($task + 0x08, 1);
-        $this->shouldCall('_CourseMenuSpawnDialogTask_8c0170c6')->with(0x0d, 0);
+        $this->shouldCall('_CourseMenuInstallDialog_8c0170c6')->with(0x0d, 0);
         $this->shouldCall('_SndMidiResetFxAndPlay_8c010846')->with(0, 0);
 
         $this->shouldRenderFrame(
@@ -254,8 +254,8 @@ return new Class extends TestCase {
         // Advance dialog index
         $this->shouldWriteLong($task + 0x08, 1);
 
-        // Next is not -1: spawn next dialog (not unlock, so no midiReset)
-        $this->shouldCall('_CourseMenuSpawnDialogTask_8c0170c6')->with(0x22, 0);
+        // Next is not -1: install next dialog (not unlock, so no midiReset)
+        $this->shouldCall('_CourseMenuInstallDialog_8c0170c6')->with(0x22, 0);
 
         $this->shouldRenderFrame(
             spriteNo: 42,
@@ -300,8 +300,8 @@ return new Class extends TestCase {
         // Advance dialog index
         $this->shouldWriteLong($task + 0x08, 1);
 
-        // Next == unlock: spawn dialog, then midiResetFxAndPlay
-        $this->shouldCall('_CourseMenuSpawnDialogTask_8c0170c6')->with(0x0d, 0);
+        // Next == unlock: install dialog, then midiResetFxAndPlay
+        $this->shouldCall('_CourseMenuInstallDialog_8c0170c6')->with(0x0d, 0);
         $this->shouldCall('_SndMidiResetFxAndPlay_8c010846')->with(0, 0);
 
         $this->shouldRenderFrame(

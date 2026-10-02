@@ -410,18 +410,18 @@ STATIC void titleTask_8c015ab8(Task* task, void *state) {
 }
 
 void TitleStart_8c015fd6 (Bool direct) {
-    Task* created_task;
-    void* created_state;
-    InputSpawnTask_8c0128cc(0);
-    TaskSpawn_8c014ae8(var_tasks_8c1ba3c8, &GameSoftResetTask_8c012f44, &created_task, &created_state, 0);
+    Task* installed_task;
+    void* installed_state;
+    InputInstall_8c0128cc(0);
+    TaskInstall_8c014ae8(var_tasks_8c1ba3c8, &GameSoftResetTask_8c012f44, &installed_task, &installed_state, 0);
 
     njSetBackColor(0,0,0);
-    TaskSpawn_8c014ae8(var_tasks_8c1ba3c8, &titleTask_8c015ab8, &created_task, &created_state, 0);
+    TaskInstall_8c014ae8(var_tasks_8c1ba3c8, &titleTask_8c015ab8, &installed_task, &installed_state, 0);
     var_menuState_8c1bc7a8.state_0x18 = TITLE_STATE_0X00_INIT;
     LOG_DEBUG(("[TITLE] State changed: 0X00_INIT\n"));
     var_menuState_8c1bc7a8.counter_0x64 = 0;
-    created_task->field_0x08 = direct;
-    /* GameSoftResetTask_8c012f44 re-spawns the title only while this is clear. */
+    installed_task->field_0x08 = direct;
+    /* GameSoftResetTask_8c012f44 installs the title again only while this is clear. */
     var_titleActive_8c1bb8c4 = 1;
 
     njGarbageTexture(var_tex_8c157af8, 3072);

@@ -399,11 +399,11 @@ STATIC void updateTask_8c01ff48() {
     RenderQueueDraw_8c0223ea(RENDER_LAYER_MAIN, drawHud_8c01fbac, signalMarkId);
 }
 
-void HudSpawnTask_8c02018c(void) {
-    Task *createdTask;
-    void *createdState;
+void HudInstall_8c02018c(void) {
+    Task *installedTask;
+    void *installedState;
 
-    TaskSpawn_8c014ae8(var_tasks_8c1ba5e8, updateTask_8c01ff48, &createdTask, &createdState, 0);
+    TaskInstall_8c014ae8(var_tasks_8c1ba5e8, updateTask_8c01ff48, &installedTask, &installedState, 0);
 
     var_hudState_8c22643c.field_0x00 = 0;
     var_hudState_8c22643c.field_0x04 = 0;

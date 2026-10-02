@@ -18,7 +18,7 @@ extern LineBusNode *var_lineNodes_8c227d88;
  * =========
  */
 
-/* Places the player's bus at the segment's stop and spawns its task. */
+/* Places the player's bus at the segment's stop and installs its task. */
 void BusInitStart_8c023610(void);
 
 #endif // _023310_BUS_INIT_H

@@ -13,9 +13,9 @@
           .IMPORT     _SndSetAdxVol_8c010972
           .IMPORT     _SndSetMidiVol_8c0109f4
           .IMPORT     _SndStartAdxFadeOut_8c010bae
-          .IMPORT     _TaskSpawn_8c014ae8
-          .IMPORT     _TaskSwitch_8c014b3e
-          .IMPORT     _TaskKill_8c014b66
+          .IMPORT     _TaskInstall_8c014ae8
+          .IMPORT     _TaskReinstall_8c014b3e
+          .IMPORT     _TaskUninstall_8c014b66
           .IMPORT     _BupLoad_8c014bc6
           .IMPORT     _SpriteDraw_8c014f54
           .IMPORT     _VmSelectUnmountAll_8c0194de
@@ -215,7 +215,7 @@ LP_GEN_13769:
           .DATA.L _buIsExistFile ; H'8C01874C
           .DATA.L _BupLoad_8c014bc6 ; H'8C018750
           .DATA.L _var_loadedSaveSlots_8c225fe4 ; H'8C018754
-          .DATA.L _TaskKill_8c014b66 ; H'8C018758
+          .DATA.L _TaskUninstall_8c014b66 ; H'8C018758
           .DATA.L _var_saveLoadResult_8c226010 ; H'8C01875C
           .DATA.L _buStat ; H'8C018760
           .DATA.L _buGetLastError ; H'8C018764
@@ -369,7 +369,7 @@ LP_GEN_28586:
           .RES.W 1 ; H'8C018886
           .DATA.L _loadFileTask_8c018644 ; H'8C018888
           .DATA.L _var_tasks_8c1ba3c8 ; H'8C01888C
-          .DATA.L _TaskSpawn_8c014ae8 ; H'8C018890
+          .DATA.L _TaskInstall_8c014ae8 ; H'8C018890
           .DATA.L _var_vmBusy_8c157a7c ; H'8C018894
           .DATA.L _init_saveNames_8c044d50 ; H'8C018898
           .DATA.L _syMalloc ; H'8C01889C
@@ -1798,7 +1798,7 @@ LP_GEN_41958:
           .DATA.L _var_vmMountBusy_8c22606c ; H'8C019394
           .DATA.L _VmSelectEnter_8c019e44 ; H'8C019398
           .DATA.L _fileSelectTask_8c018e7e ; H'8C01939C
-          .DATA.L _TaskSwitch_8c014b3e ; H'8C0193A0
+          .DATA.L _TaskReinstall_8c014b3e ; H'8C0193A0
           .DATA.L _var_loadedSaveCount_8c22600c ; H'8C0193A4
           .DATA.L _var_menuState_8c1bc7a8 ; H'8C0193A8
           .DATA.L _var_selectedVm_8c1ba34c ; H'8C0193AC

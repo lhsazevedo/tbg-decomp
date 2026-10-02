@@ -22,8 +22,8 @@ return new class extends TestCase {
     }
 
     /**
-     * ObjectsSpawnBlinkers_8c029920's stack slots for TaskSpawn's
-     * created_task / create_state out-params. The two objects lay the
+     * ObjectsInstallBlinkers_8c029920's stack slots for TaskInstall's
+     * installed_task / installed_state out-params. The two objects lay the
      * frame out differently.
      */
     private function outParams(): array
@@ -43,10 +43,10 @@ return new class extends TestCase {
      * Sets up route/model boilerplate, overwrites the point table the given
      * route is expected to read from with a single, immediately-terminated
      * entry, and asserts the function still resolves
-     * var_routeBlinkerNodes_8c228278 and skips TaskSpawn. If the route's
+     * var_routeBlinkerNodes_8c228278 and skips TaskInstall. If the route's
      * switch case pointed at the wrong table symbol, the table left
      * unmodified (the real, non-terminated one) would still trigger a
-     * TaskSpawn call, exposing the mismatch.
+     * TaskInstall call, exposing the mismatch.
      */
     private function assertNoPointsSkipsTaskInstall(int $route, string $tableSymbol): void
     {
@@ -60,7 +60,7 @@ return new class extends TestCase {
         $table = $this->addressOf($tableSymbol);
         $this->setPoint($table, 0, 0.0, 0.0, 0);
 
-        $this->call('_ObjectsSpawnBlinkers_8c029920');
+        $this->call('_ObjectsInstallBlinkers_8c029920');
 
         $this->shouldWriteLongTo('_var_routeBlinkerNodes_8c228278', $node0);
         $this->shouldCall('_resolveObjectChildren_8c029868')->with($this->addressOf('_var_routeBlinkerNodes_8c228278'));
@@ -120,12 +120,12 @@ return new class extends TestCase {
         $matrices = 0x30007000;
         $count = count(self::SHINJUKU_POINTS);
 
-        $this->call('_ObjectsSpawnBlinkers_8c029920');
+        $this->call('_ObjectsInstallBlinkers_8c029920');
 
         $this->shouldWriteLongTo('_var_routeBlinkerNodes_8c228278', $node0);
         $this->shouldCall('_resolveObjectChildren_8c029868')->with($this->addressOf('_var_routeBlinkerNodes_8c228278'));
 
-        $this->shouldCall('_TaskSpawn_8c014ae8')->with(
+        $this->shouldCall('_TaskInstall_8c014ae8')->with(
             $this->addressOf('_var_tasks_8c1ba5e8'),
             $this->addressOf('_routeBlinkerTask_8c029904'),
             $taskLocal,

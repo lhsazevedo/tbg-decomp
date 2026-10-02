@@ -74,9 +74,9 @@ return new class extends TestCase {
         $this->shouldCall('_syFree')
             ->with($tempQueuedNj);
 
-        $createdTask = $this->alloc(0x1c);
-        $this->initUint32(0xffffd4, $createdTask);
-        $this->shouldCall('_TaskSpawn_8c014ae8')
+        $installedTask = $this->alloc(0x1c);
+        $this->initUint32(0xffffd4, $installedTask);
+        $this->shouldCall('_TaskInstall_8c014ae8')
             ->with(
                 $this->addressOf('_var_tasks_8c1ba3c8'),
                 $this->addressOf('_taskLoadQueuedPvms_8c011b00'),
@@ -86,8 +86,8 @@ return new class extends TestCase {
             )
             ->andReturn(1);
 
-        $this->shouldWrite($createdTask + 0x18, $pvmQueue);
-        $this->shouldWrite($createdTask + 0x08, 0);
+        $this->shouldWrite($installedTask + 0x18, $pvmQueue);
+        $this->shouldWrite($installedTask + 0x08, 0);
         $this->shouldWriteTo('_var_loadRetryNeeded_8c157a88', 0);
         $this->shouldWriteStringTo('_var_queueBaseDir_8c157a80', 'DATA EMPTY');
 
@@ -120,9 +120,9 @@ return new class extends TestCase {
         $this->shouldCall('_syFree')
             ->with($tempQueuedNj);
 
-        $createdTask = $this->alloc(0x1c);
-        $this->initUint32(0xffffd4, $createdTask);
-        $this->shouldCall('_TaskSpawn_8c014ae8')
+        $installedTask = $this->alloc(0x1c);
+        $this->initUint32(0xffffd4, $installedTask);
+        $this->shouldCall('_TaskInstall_8c014ae8')
             ->with(
                 $this->addressOf('_var_tasks_8c1ba3c8'),
                 $this->addressOf('_taskLoadQueuedPvms_8c011b00'),
@@ -132,8 +132,8 @@ return new class extends TestCase {
             )
             ->andReturn(1);
 
-        $this->shouldWrite($createdTask + 0x18, $pvmQueue);
-        $this->shouldWrite($createdTask + 0x08, 0);
+        $this->shouldWrite($installedTask + 0x18, $pvmQueue);
+        $this->shouldWrite($installedTask + 0x08, 0);
         $this->shouldWriteTo('_var_loadRetryNeeded_8c157a88', 0);
         $this->shouldWriteStringTo('_var_queueBaseDir_8c157a80', 'DATA EMPTY');
 
@@ -159,7 +159,7 @@ return new class extends TestCase {
             ->run();
     }
 
-    public function test_returnsZeroOnSpawnFailure()
+    public function test_returnsZeroOnInstallFailure()
     {
         $sizeOfQueuedPvm = 0x18;
         $queueSize = 16;
@@ -189,9 +189,9 @@ return new class extends TestCase {
         $this->shouldCall('_syFree')
             ->with($tempQueuedNj);
 
-        $createdTask = $this->alloc(0x1c);
-        $this->initUint32(0xffffd4, $createdTask);
-        $this->shouldCall('_TaskSpawn_8c014ae8')
+        $installedTask = $this->alloc(0x1c);
+        $this->initUint32(0xffffd4, $installedTask);
+        $this->shouldCall('_TaskInstall_8c014ae8')
             ->with(
                 $this->addressOf('_var_tasks_8c1ba3c8'),
                 $this->addressOf('_taskLoadQueuedPvms_8c011b00'),

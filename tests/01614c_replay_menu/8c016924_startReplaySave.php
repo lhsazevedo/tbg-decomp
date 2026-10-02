@@ -22,12 +22,12 @@ return new class extends TestCase {
 
         $this->call('_startReplaySave_8c016924');
 
-        $this->shouldCall('_TaskSpawn_8c014ae8')
+        $this->shouldCall('_TaskInstall_8c014ae8')
             ->with(
                 $this->addressOf('_var_tasks_8c1ba3c8'),
                 $this->addressOf('_replaySaveTask_8c0167ca'),
-                $this->createdTaskOffset(),
-                $this->createStateOffset(),
+                $this->installedTaskOffset(),
+                $this->installedStateOffset(),
                 0,
             )
             ->do(function ($params) use ($task) {
@@ -47,12 +47,12 @@ return new class extends TestCase {
 
         $this->call('_startReplaySave_8c016924');
 
-        $this->shouldCall('_TaskSpawn_8c014ae8')
+        $this->shouldCall('_TaskInstall_8c014ae8')
             ->with(
                 $this->addressOf('_var_tasks_8c1ba3c8'),
                 $this->addressOf('_replaySaveTask_8c0167ca'),
-                $this->createdTaskOffset(),
-                $this->createStateOffset(),
+                $this->installedTaskOffset(),
+                $this->installedStateOffset(),
                 0,
             )
             ->do(function ($params) use ($task) {
@@ -81,12 +81,12 @@ return new class extends TestCase {
 
         $this->call('_startReplaySave_8c016924');
 
-        $this->shouldCall('_TaskSpawn_8c014ae8')
+        $this->shouldCall('_TaskInstall_8c014ae8')
             ->with(
                 $this->addressOf('_var_tasks_8c1ba3c8'),
                 $this->addressOf('_replaySaveTask_8c0167ca'),
-                $this->createdTaskOffset(),
-                $this->createStateOffset(),
+                $this->installedTaskOffset(),
+                $this->installedStateOffset(),
                 0,
             )
             ->do(function ($params) use ($task) {
@@ -105,12 +105,12 @@ return new class extends TestCase {
         $this->shouldWriteLong($task + 0x0c, 0);
     }
 
-    private function createdTaskOffset(): int
+    private function installedTaskOffset(): int
     {
         return str_contains($this->objectFile, '/asm/') ? 0xffffe0 : 0xffffe4;
     }
 
-    private function createStateOffset(): int
+    private function installedStateOffset(): int
     {
         return str_contains($this->objectFile, '/asm/') ? 0xffffe8 : 0xffffec;
     }

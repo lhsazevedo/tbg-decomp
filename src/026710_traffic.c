@@ -632,13 +632,13 @@ STATIC Sint32 spawnEntry_8c0272b8(Uint32 typeCode, float progress, Uint16 *scrip
     }
 
     if (*script == 10) {
-        if (!TaskSpawn_8c014ae8(var_tasks_8c1bac28, TrafficDriveParkedTask_8c02656a, &task, &entryVoid, 0x514)) {
+        if (!TaskInstall_8c014ae8(var_tasks_8c1bac28, TrafficDriveParkedTask_8c02656a, &task, &entryVoid, 0x514)) {
             return 0;
         }
         e = (TrafficEntry *)entryVoid;
         e->isParked_0x2e4 = 1;
     } else {
-        if (!TaskSpawn_8c014ae8(var_tasks_8c1bac28, TrafficDriveVehicleTask_8c025b98, &task, &entryVoid, 0x514)) {
+        if (!TaskInstall_8c014ae8(var_tasks_8c1bac28, TrafficDriveVehicleTask_8c025b98, &task, &entryVoid, 0x514)) {
             return 0;
         }
         e = (TrafficEntry *)entryVoid;
@@ -661,7 +661,7 @@ STATIC Sint32 spawnEntry_8c0272b8(Uint32 typeCode, float progress, Uint16 *scrip
 
     if (var_routeModelSlots_8c1bbddc[typeCode].texlist_0x08 == (NJS_TEXLIST *)-1) {
         /* Reported as spawned, as in the original. */
-        TaskKill_8c014b66(task);
+        TaskUninstall_8c014b66(task);
     } else {
         e->extraLightFlags_0x510 = 0;
         if ((typeCode == 0x14 || typeCode == 0x16) && (AsqGetRandomA_8c012166() & 1) != 0) {
@@ -672,7 +672,7 @@ STATIC Sint32 spawnEntry_8c0272b8(Uint32 typeCode, float progress, Uint16 *scrip
             TrafficResolvePathBlocks_8c026710(e, script);
 
             if (TrafficPathScanFirst_8c02f0c8(task, e, e->pathBlocks_0x304[0], 0, progress, 8.0f) != 0) {
-                TaskKill_8c014b66(task);
+                TaskUninstall_8c014b66(task);
                 return 0;
             }
 
@@ -811,7 +811,7 @@ void TrafficInit_8c02769e(void)
         var_nightLightColorStep_8c1bbdb8[2] = (var_nightLightColorOn_8c1bbdd0[2] - var_nightLightColorOff_8c1bbdc4[2]) / 20.0f;
     }
 
-    TaskSpawn_8c014ae8(var_tasks_8c1ba5e8, updateTask_8c0275d4, (Task **)&task, &state, 0);
+    TaskInstall_8c014ae8(var_tasks_8c1ba5e8, updateTask_8c0275d4, (Task **)&task, &state, 0);
     task->queuedItem_0x18 = (TrafficPlacement *)var_trafficPresetTable_8c227e18[var_activeTrafficPreset_8c227e14];
     task->counter_0x08 = 0;
     task->presetState_0x0c = 1;

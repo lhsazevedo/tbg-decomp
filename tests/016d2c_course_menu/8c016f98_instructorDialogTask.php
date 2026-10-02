@@ -31,7 +31,7 @@ return new class extends TestCase {
         $this->call('_instructorDialogTask_8c016f98')->with($task, $state);
 
         $this->shouldWriteLongTo("_var_instructorDialogActive_8c225fb4", 0);
-        $this->shouldCall("_TaskKill_8c014b66")->with($task);
+        $this->shouldCall("_TaskUninstall_8c014b66")->with($task);
     }
 
     public function test_state_0_plays_sound()
@@ -330,7 +330,7 @@ return new class extends TestCase {
         $this->setSize('_var_menuState_8c1bc7a8', 0x6c);
         // Functions
         $this->setSize('_SndPlayAdx_8c010cd6', 0x4);
-        $this->setSize('_TaskKill_8c014b66', 0x4);
+        $this->setSize('_TaskUninstall_8c014b66', 0x4);
     }
 };
 

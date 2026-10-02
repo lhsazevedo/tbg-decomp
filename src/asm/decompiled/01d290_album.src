@@ -16,7 +16,7 @@
           .IMPORT     _init_adxPlaying_8c03bd80
           .IMPORT     _ReplayMenuFreeSessionAssets_8c016182
           .IMPORT     _CourseMenuReturn_8c017ef2
-          .IMPORT     _TaskSwitch_8c014b3e
+          .IMPORT     _TaskReinstall_8c014b3e
           .IMPORT     _CourseMenuFreeResourceGroup_8c0185c4
           .IMPORT     _var_tex_8c157af8
           .IMPORT     _njGarbageTexture
@@ -686,7 +686,7 @@ LP_GEN_43132:
           .DATA.L _ReplayMenuFreeSessionAssets_8c016182 ; H'8C01D760
           .DATA.L _CourseMenuReturn_8c017ef2 ; H'8C01D764
           .DATA.L _albumMenuTask_8c01d300 ; H'8C01D768
-          .DATA.L _TaskSwitch_8c014b3e ; H'8C01D76C
+          .DATA.L _TaskReinstall_8c014b3e ; H'8C01D76C
           .DATA.L _var_menuState_8c1bc7a8 ; H'8C01D770
           .DATA.L _init_slotCursorPos_8c045170 ; H'8C01D774
           .DATA.L _var_progress_8c1ba1cc ; H'8C01D778

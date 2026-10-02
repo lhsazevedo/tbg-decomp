@@ -495,7 +495,7 @@ STATIC void fadeInTask_8c022a54(FadeInTask *task, void *state)
     return;
   }
   var_isFading_8c226568 = 0;
-  TaskKill_8c014b66((Task *)task);
+  TaskUninstall_8c014b66((Task *)task);
 }
 
 void RenderStartFadeIn_8c022a9c(int frames)
@@ -503,7 +503,7 @@ void RenderStartFadeIn_8c022a9c(int frames)
   FadeInTask *task;
   void *state;
 
-  TaskSpawn_8c014ae8(var_tasks_8c1ba3c8, fadeInTask_8c022a54, (Task **)&task, &state, 0);
+  TaskInstall_8c014ae8(var_tasks_8c1ba3c8, fadeInTask_8c022a54, (Task **)&task, &state, 0);
   task->frames_0x08 = frames;
   var_fadeProgress_8c227d80 = 0xff000000;
   var_isFading_8c226568 = 1;
@@ -531,7 +531,7 @@ STATIC void fadeOutTask_8c022ad0(FadeOutTask *task, void *state)
       task->frames_0x08 = holdCount + 1;
       if (holdCount > 1) {
         var_isFading_8c226568 = 0;
-        TaskKill_8c014b66((Task *)task);
+        TaskUninstall_8c014b66((Task *)task);
         njSetBackColor(0, 0, 0);
       }
       var_fadeProgress_8c227d80 = 0xff0000;
@@ -551,7 +551,7 @@ void RenderStartFadeOut_8c022b60(int frames)
   FadeOutTask *task;
   void *state;
 
-  TaskSpawn_8c014ae8(var_tasks_8c1ba3c8, fadeOutTask_8c022ad0, (Task **)&task, &state, 0);
+  TaskInstall_8c014ae8(var_tasks_8c1ba3c8, fadeOutTask_8c022ad0, (Task **)&task, &state, 0);
   task->frames_0x08 = frames;
   task->phase_0x0c = FADE_OUT_PHASE_RAMP;
   var_fadeProgress_8c227d80 = 0;

@@ -341,15 +341,15 @@ STATIC void inputAutoTask_8c012718(void)
 }
 
 /* mode: 0 menus, 1 drive; anything else installs nothing. */
-void InputSpawnTask_8c0128cc(int mode)
+void InputInstall_8c0128cc(int mode)
 {
     void (*action)(void);
-    void *created_state;
+    void *installed_state;
 
     if (mode == 0) {
-        LOG_DEBUG(("[INPUT] InputSpawnTask_8c0128cc: queueing inputMenuTask_8c012324\n"));
-        TaskSpawn_8c014ae8(var_tasks_8c1ba3c8, inputMenuTask_8c012324,
-                          &var_pushedTask_8c157a74, &created_state, 0);
+        LOG_DEBUG(("[INPUT] InputInstall_8c0128cc: queueing inputMenuTask_8c012324\n"));
+        TaskInstall_8c014ae8(var_tasks_8c1ba3c8, inputMenuTask_8c012324,
+                          &var_pushedTask_8c157a74, &installed_state, 0);
         var_stickLatchX_8c157ae4 = 0;
         var_stickLatchY_8c157ae8 = 0;
         var_keyRepeat_8c157ad4.active_0x00 = 0;
@@ -359,10 +359,10 @@ void InputSpawnTask_8c0128cc(int mode)
         } else {
             action = inputAutoTask_8c012718;
         }
-        LOG_DEBUG(("[INPUT] InputSpawnTask_8c0128cc: queueing input handler (%s)\n",
+        LOG_DEBUG(("[INPUT] InputInstall_8c0128cc: queueing input handler (%s)\n",
                    var_driveMode_8c1bb8c8 == 0 ? "inputManualTask_8c012504" : "inputAutoTask_8c012718"));
-        TaskSpawn_8c014ae8(var_tasks_8c1ba3c8, action,
-                          &var_pushedTask_8c157a74, &created_state, 0);
+        TaskInstall_8c014ae8(var_tasks_8c1ba3c8, action,
+                          &var_pushedTask_8c157a74, &installed_state, 0);
     }
 }
 

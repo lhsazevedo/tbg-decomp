@@ -26,11 +26,11 @@ struct Task {
 }
 typedef Task;
 
-int TaskSpawn_8c014ae8(Task *tasks, void *action, Task **created_task, void **create_state, size_t alloc_size);
-void TaskKill_8c014b66(Task *task);
+int TaskInstall_8c014ae8(Task *tasks, void *action, Task **installed_task, void **installed_state, size_t alloc_size);
+void TaskUninstall_8c014b66(Task *task);
 void TaskInitGroup_8c014a9c(Task *tasks, Sint32 count);
-void TaskKillGroup_8c014ab4(Task *tasks);
-void TaskSwitch_8c014b3e(Task *task, TaskAction action);
+void TaskUninstallGroup_8c014ab4(Task *tasks);
+void TaskReinstall_8c014b3e(Task *task, TaskAction action);
 void TaskRunGroup_8c014b42(Task task[]);
 
 #endif // _014A9C_TASKS_H

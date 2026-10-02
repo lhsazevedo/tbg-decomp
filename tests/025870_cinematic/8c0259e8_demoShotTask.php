@@ -70,7 +70,7 @@ return new class extends TestCase {
         $this->setSize('_MessageBoxOpenTextbox_8c02ae3e', 4);
         $this->setSize('_BusCameraDrawBusModel_8c024bb8', 4);
         $this->setSize('_RenderQueueDraw_8c0223ea', 4);
-        $this->setSize('_TaskSpawn_8c014ae8', 4);
+        $this->setSize('_TaskInstall_8c014ae8', 4);
     }
 
     /** @param array<array{0:int,1:float,2:float,3:float,4:string}> $records */

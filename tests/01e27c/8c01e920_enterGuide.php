@@ -12,7 +12,7 @@ return new class extends TestCase {
         $task = $this->alloc(0x20);
         $this->call('_enterGuide_8c01e920')->with($task);
 
-        $this->shouldCall('_TaskSwitch_8c014b3e')->with(
+        $this->shouldCall('_TaskReinstall_8c014b3e')->with(
             $task,
             $this->addressOf('_lessonGuideTask_8c01e63c')
         );
@@ -47,7 +47,7 @@ return new class extends TestCase {
         $task = $this->alloc(0x20);
         $this->call('_enterGuide_8c01e920')->with($task);
 
-        $this->shouldCall('_TaskSwitch_8c014b3e')->with(
+        $this->shouldCall('_TaskReinstall_8c014b3e')->with(
             $task,
             $this->addressOf('_lessonGuideTask_8c01e63c')
         );
@@ -71,7 +71,7 @@ return new class extends TestCase {
     private function resolveSymbols(): void
     {
         $this->setSize('_var_menuState_8c1bc7a8', 0x84);
-        $this->setSize('_TaskSwitch_8c014b3e', 4);
+        $this->setSize('_TaskReinstall_8c014b3e', 4);
         $this->setSize('_MessageBoxSetText_8c02aefc', 4);
         $this->setSize('_AsqInitQueues_8c011f36', 4);
         $this->setSize('_AsqResetQueues_8c011f6c', 4);

@@ -353,7 +353,7 @@ return new class extends TestCase {
         $this->call('_slideshowTask_8c02ab7a')->with($task, $state);
 
         $this->shouldCall('_MessageBoxFreeAssets_8c02adee');
-        $this->shouldCall('_TaskKill_8c014b66')->with($task);
+        $this->shouldCall('_TaskUninstall_8c014b66')->with($task);
         $this->shouldCall('_EventApplyFlags_8c02b292');
         $this->shouldCall('_RouteStartModelLoadPass_8c013d78');
         $this->shouldWriteLongTo('_var_fadeRequest_8c226564', 1 /* FADE_REQUEST_IN */);

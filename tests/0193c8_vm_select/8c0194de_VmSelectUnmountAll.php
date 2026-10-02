@@ -10,16 +10,16 @@ return new class extends TestCase {
     {
         $this->resolveSymbols();
 
-        $createdTask = 0xfffff0;
-        $createdState = 0xfffff4;
+        $installedTask = 0xfffff0;
+        $installedState = 0xfffff4;
 
         $task = 0xbebacafe;
 
-        $this->shouldCall('_TaskSpawn_8c014ae8')->with(
+        $this->shouldCall('_TaskInstall_8c014ae8')->with(
             $this->addressOf('_var_tasks_8c1ba3c8'),
             $this->addressOf('_unmountTask_8c01946a'),
-            $createdTask,
-            $createdState,
+            $installedTask,
+            $installedState,
             0,
         );
         $this->shouldWriteLongTo('_var_vmMountBusy_8c22606c', 1);

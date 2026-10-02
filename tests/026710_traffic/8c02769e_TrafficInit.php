@@ -8,7 +8,7 @@ use Lhsazevedo\Sh4ObjTest\Simulator\Types\U32;
 // TrafficInit_8c02769e is the traffic subsystem's setup/init entry point:
 // caches two per-course table pointers, picks a per-route table, optionally
 // caches a pair of CourseSceneParams rows (+ their per-20-frame deltas) for
-// the night route, then spawns updateTask_8c0275d4. See the
+// the night route, then installs updateTask_8c0275d4. See the
 // function's header comment in 026710_traffic.c for the full breakdown.
 
 return new class extends TestCase {
@@ -19,7 +19,7 @@ return new class extends TestCase {
         $this->setSize('_var_sceneParams_8c18ad24', 4);
         $this->setSize('_var_tasks_8c1ba5e8', 4);
         $this->setSize('_var_signalGroups_8c228b40', 4);
-        $this->setSize('_TaskSpawn_8c014ae8', 4);
+        $this->setSize('_TaskInstall_8c014ae8', 4);
         $this->setSize('_SignalClearCrossingOccupied_8c028958', 4);
         $this->setSize('_init_signalGroupsWangan_8c04c980', 4);
         $this->setSize('_init_signalGroupsShinjuku_8c04caec', 4);
@@ -52,8 +52,8 @@ return new class extends TestCase {
 
     // &task and &state are TrafficInit_8c02769e's own stack locals; both
     // objects place them at the same slots.
-    private function mockTaskSpawn(int $task, int $state): void {
-        $this->shouldCall('_TaskSpawn_8c014ae8')
+    private function mockTaskInstall(int $task, int $state): void {
+        $this->shouldCall('_TaskInstall_8c014ae8')
             ->with(
                 $this->addressOf('_var_tasks_8c1ba5e8'),
                 $this->addressOf('_updateTask_8c0275d4'),
@@ -98,7 +98,7 @@ return new class extends TestCase {
 
         $this->shouldWriteLong($this->addressOf('_var_signalGroups_8c228b40'), $this->addressOf('_init_signalGroupsWangan_8c04c980'));
 
-        $this->mockTaskSpawn($task, $state);
+        $this->mockTaskInstall($task, $state);
         $this->shouldWriteLong($task + 0x18, 0x99990000);
         $this->shouldWriteLong($task + 0x08, 0);
         $this->shouldWriteLong($task + 0x0c, 1);
@@ -132,7 +132,7 @@ return new class extends TestCase {
 
         $this->shouldWriteLong($this->addressOf('_var_signalGroups_8c228b40'), $this->addressOf('_init_signalGroupsShinjuku_8c04caec'));
 
-        $this->mockTaskSpawn($task, $state);
+        $this->mockTaskInstall($task, $state);
         $this->shouldWriteLong($task + 0x18, 0);
         $this->shouldWriteLong($task + 0x08, 0);
         $this->shouldWriteLong($task + 0x0c, 1);
@@ -197,7 +197,7 @@ return new class extends TestCase {
         $this->shouldWriteFloatAt($b8 + 4, (500.0 - 200.0) / 20.0);
         $this->shouldWriteFloatAt($b8 + 8, (600.0 - 300.0) / 20.0);
 
-        $this->mockTaskSpawn($task, $state);
+        $this->mockTaskInstall($task, $state);
         $this->shouldWriteLong($task + 0x18, 0);
         $this->shouldWriteLong($task + 0x08, 0);
         $this->shouldWriteLong($task + 0x0c, 1);

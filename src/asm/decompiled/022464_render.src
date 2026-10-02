@@ -23,9 +23,9 @@
           .IMPORT     _var_playMode_8c1bb8d0
           .IMPORT     _var_practiceRules_8c226410
           .IMPORT     __divlu
-          .IMPORT     _TaskKill_8c014b66
+          .IMPORT     _TaskUninstall_8c014b66
           .IMPORT     _var_tasks_8c1ba3c8
-          .IMPORT     _TaskSpawn_8c014ae8
+          .IMPORT     _TaskInstall_8c014ae8
           .IMPORT     _njSetBackColor
           .EXPORT     _RenderResetQueues_8c02239c
           .EXPORT     _RenderQueueDraw_8c0223ea
@@ -1122,10 +1122,10 @@ LP_GEN_18675:
           .DATA.L H'FF000000 ; H'8C022BB8
           .DATA.L _var_fadeProgress_8c227d80 ; H'8C022BBC
           .DATA.L __divlu ; H'8C022BC0
-          .DATA.L _TaskKill_8c014b66 ; H'8C022BC4
+          .DATA.L _TaskUninstall_8c014b66 ; H'8C022BC4
           .DATA.L _fadeInTask_8c022a54 ; H'8C022BC8
           .DATA.L _var_tasks_8c1ba3c8 ; H'8C022BCC
-          .DATA.L _TaskSpawn_8c014ae8 ; H'8C022BD0
+          .DATA.L _TaskInstall_8c014ae8 ; H'8C022BD0
           .DATA.L _njSetBackColor ; H'8C022BD4
           .DATA.L _fadeOutTask_8c022ad0 ; H'8C022BD8
           .SECTION    D, DATA, ALIGN=4

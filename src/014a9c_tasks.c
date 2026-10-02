@@ -16,7 +16,7 @@ void TaskInitGroup_8c014a9c(Task *tasks, Sint32 count)
   return;
 }
 
-void TaskKillGroup_8c014ab4(Task *tasks)
+void TaskUninstallGroup_8c014ab4(Task *tasks)
 {
   for (; tasks->action != NULL; tasks++) {
     if (tasks->action != (TaskAction) -1) {
@@ -28,7 +28,7 @@ void TaskKillGroup_8c014ab4(Task *tasks)
   }
 }
 
-int TaskSpawn_8c014ae8(Task *tasks, void *action, Task **created_task, void **create_state, size_t alloc_size)
+int TaskInstall_8c014ae8(Task *tasks, void *action, Task **installed_task, void **installed_state, size_t alloc_size)
 {
   void *state;
 
@@ -47,13 +47,13 @@ int TaskSpawn_8c014ae8(Task *tasks, void *action, Task **created_task, void **cr
   }
 
   tasks->action = action;
-  *created_task = tasks;
-  *create_state = tasks->state;
+  *installed_task = tasks;
+  *installed_state = tasks->state;
 
   return 1;
 }
 
-void TaskSwitch_8c014b3e(Task *task, TaskAction action)
+void TaskReinstall_8c014b3e(Task *task, TaskAction action)
 {
   task->action = action;
 }
@@ -66,7 +66,7 @@ void TaskRunGroup_8c014b42(Task task[]) {
     }
 }
 
-void TaskKill_8c014b66(Task *task)
+void TaskUninstall_8c014b66(Task *task)
 {
   if (task->state != NULL) {
     syFree(task->state);

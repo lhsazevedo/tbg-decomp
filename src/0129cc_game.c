@@ -5,10 +5,10 @@
 #include "0100bc_sound.h"
 #include "014f54_sprite.h"
 #include "015034_text.h"
-#include "01fa78_hud.h" /* HudSpawnTask_8c02018c, var_8c226434, var_8c226438 */
+#include "01fa78_hud.h" /* HudInstall_8c02018c, var_8c226434, var_8c226438 */
 #include "01614c_replay_menu.h"
 #include "028258_signal.h"
-#include "0289ac_objects.h" /* ObjectsSpawnPedestrianGroups_8c0296d6 */
+#include "0289ac_objects.h" /* ObjectsInstallPedestrianGroups_8c0296d6 */
 #include "02a9fc_message_box.h"
 #include "024b4c_bus_camera.h"
 #include "1ba1c8_globals.h"
@@ -19,7 +19,7 @@
 #include "scif.h"
 #include "011120_asset_queues.h"
 #include "013ae8_route.h"
-#include "02b464_grading.h" /* GradeSpawnTask_8c02c46a */
+#include "02b464_grading.h" /* GradeInstall_8c02c46a */
 #include "020214_drive_cue.h" /* DriveCueInit_8c020528 */
 #include "014b8c_backup.h"
 #include "018644_file_select.h"
@@ -31,7 +31,7 @@
 #include "023310_bus_init.h"
 #include "025870_cinematic.h"
 #include "02d968_stop_spawn.h"
-#include "021b9c_tile_draw.h" /* TileDrawSpawnTask_8c0222dc */
+#include "021b9c_tile_draw.h" /* TileDrawInstall_8c0222dc */
 #include "02c884_stop.h"
 #include "016d2c_course_menu.h"
 #include "01e27c_practice_menu.h"
@@ -443,7 +443,7 @@ STATIC void runStartViewTask_8c012f9c(Task *task, void* state) {
                 } else {
                     if (var_busState_8c1bb9d0.mirror_0x268 != MIRROR_DOOR) {
                         var_viewLayout_8c22655c = 0;
-                        TaskKill_8c014b66(task);
+                        TaskUninstall_8c014b66(task);
                     }
                 }
                 break;
@@ -460,7 +460,7 @@ STATIC void runStartViewTask_8c012f9c(Task *task, void* state) {
 
         var_busState_8c1bb9d0.mirror_0x268 = MIRROR_NONE;
 
-        TaskKill_8c014b66(task);
+        TaskUninstall_8c014b66(task);
     }
 
     njControl3D(0);
@@ -468,8 +468,8 @@ STATIC void runStartViewTask_8c012f9c(Task *task, void* state) {
 
 void GameEnterDrive_8c01306e(void)
 {
-    Task *created_task;
-    void* created_state;
+    Task *installed_task;
+    void* installed_state;
 
     njInitMatrix(var_matrix_8c2f8ca0, 16, 0);
     njSetBackColor(0,0,0);
@@ -494,20 +494,20 @@ void GameEnterDrive_8c01306e(void)
     AsqSetSeedA_8c012160(var_seed_8c157a64);
     AsqSetSeedB_8c0121a2(var_seed_8c157a64);
 
-    InputSpawnTask_8c0128cc(1);
+    InputInstall_8c0128cc(1);
 
     if (var_playMode_8c1bb8d0 != PLAY_MODE_DEMO) {
-        TaskSpawn_8c014ae8(var_tasks_8c1ba3c8, &pauseTask_8c012cbc, &created_task, &created_state, 0);
-        TaskSpawn_8c014ae8(var_tasks_8c1ba5e8, &ReplayMenuDemoRecordTask_8c01677e, &created_task, &created_state, 0);
+        TaskInstall_8c014ae8(var_tasks_8c1ba3c8, &pauseTask_8c012cbc, &installed_task, &installed_state, 0);
+        TaskInstall_8c014ae8(var_tasks_8c1ba5e8, &ReplayMenuDemoRecordTask_8c01677e, &installed_task, &installed_state, 0);
     } else {
         if (var_isAttractDemo_8c1bb8d4 == 0) {
-            TaskSpawn_8c014ae8(var_tasks_8c1ba3c8, &pauseToggleTask_8c012d06, &created_task, &created_state, 0);
+            TaskInstall_8c014ae8(var_tasks_8c1ba3c8, &pauseToggleTask_8c012d06, &installed_task, &installed_state, 0);
         } else {
-            TaskSpawn_8c014ae8(var_tasks_8c1ba3c8, &attractDemoTask_8c012d5a, &created_task, &created_state, 0);
-            created_task->field_0x08 = 0;
-            created_task->field_0x0c = (void*) 0;
+            TaskInstall_8c014ae8(var_tasks_8c1ba3c8, &attractDemoTask_8c012d5a, &installed_task, &installed_state, 0);
+            installed_task->field_0x08 = 0;
+            installed_task->field_0x0c = (void*) 0;
         }
-        TaskSpawn_8c014ae8(var_tasks_8c1ba5e8, &ReplayMenuDemoPlayTask_8c016bf4, &created_task, &created_state, 0);
+        TaskInstall_8c014ae8(var_tasks_8c1ba5e8, &ReplayMenuDemoPlayTask_8c016bf4, &installed_task, &installed_state, 0);
         CinematicStartTour_8c025af4();
     }
 
@@ -518,25 +518,25 @@ void GameEnterDrive_8c01306e(void)
     SignalInit_8c02845a();
 
     if (var_playMode_8c1bb8d0 != PLAY_MODE_DEMO) {
-        ObjectsSpawnBlinkers_8c029920();
+        ObjectsInstallBlinkers_8c029920();
     }
 
-    ObjectsSpawnPedestrianGroups_8c0296d6();
+    ObjectsInstallPedestrianGroups_8c0296d6();
     TrafficInit_8c02769e();
-    TileDrawSpawnTask_8c0222dc();
-    ObjectsSpawnTasks_8c02a6ac();
-    GradeSpawnTask_8c02c46a();
-    HudSpawnTask_8c02018c();
+    TileDrawInstall_8c0222dc();
+    ObjectsInstall_8c02a6ac();
+    GradeInstall_8c02c46a();
+    HudInstall_8c02018c();
     StopSpawnInit_8c02d968();
     DriveCueInit_8c020528();
-    TaskSpawn_8c014ae8(var_tasks_8c1ba5e8, &runStartViewTask_8c012f9c, &created_task, &created_state, 0);
-    created_task->field_0x08 = 0;
+    TaskInstall_8c014ae8(var_tasks_8c1ba5e8, &runStartViewTask_8c012f9c, &installed_task, &installed_state, 0);
+    installed_task->field_0x08 = 0;
     RenderStartRunFade_8c0228a2();
 }
 
 void GameStartSelectedCourse_8c01328c() {
-    Task *created_task;
-    void* created_state;
+    Task *installed_task;
+    void* installed_state;
   
     if (var_playMode_8c1bb8d0 == PLAY_MODE_NORMAL) {
         var_currentCourse_8c1bb868.courseId_0x00 = var_replayMenuCourseSel_8c1bc824->courseId_0x00;
@@ -557,12 +557,12 @@ void GameStartSelectedCourse_8c01328c() {
     var_savedCameraMode_8c227da0 = var_progress_8c1ba1cc.defaultView_0xc6;
     var_savedCameraCueState_8c227da8 = 0;
 
-    RouteSpawnLoadTask_8c0144fc();
+    RouteInstallLoad_8c0144fc();
 }
 
 void GameStartCourse_8c013310(int courseId) {
-    Task *created_task;
-    void* created_state;
+    Task *installed_task;
+    void* installed_state;
   
     if (var_playMode_8c1bb8d0 != PLAY_MODE_DEMO) {
         var_currentCourse_8c1bb868.courseId_0x00 = courseId;
@@ -582,7 +582,7 @@ void GameStartCourse_8c013310(int courseId) {
     var_savedCameraMode_8c227da0 = var_progress_8c1ba1cc.defaultView_0xc6;
     var_savedCameraCueState_8c227da8 = 0;
 
-    RouteSpawnLoadTask_8c0144fc();
+    RouteInstallLoad_8c0144fc();
 }
 
 /* Waits for GameInit_8c0134ec's asset load, loads the sound driver, then
@@ -606,7 +606,7 @@ STATIC void bootTask_8c013388(Task *task, void *state) {
         case 1: {
             if (RouteGetLatch_8c01432a() != 0) {
                 AsqFreeQueues_8c011f7e();
-                TaskKill_8c014b66(task);
+                TaskUninstall_8c014b66(task);
                 SndInit_8c010e18("\\SOUND");
                 var_lcdAnimActive_8c2260a8 = 1;
 #ifdef DEBUG_MENU
@@ -633,8 +633,8 @@ STATIC void usrGdErrFunc_8c0134d6(void *obj, Sint32 errcode) {
 
 void GameInit_8c0134ec() {
     NJS_TEXINFO info;
-    Task *created_task;
-    void *created_state;
+    Task *installed_task;
+    void *installed_state;
 
 #ifdef SERIAL_DEBUG
     scif_init(57600);
@@ -730,8 +730,8 @@ void GameInit_8c0134ec() {
     VmGameSetLcdAnim_8c01c8fc(3);
     VmGameUpdateLcd_8c01c910();
 
-    TaskSpawn_8c014ae8(var_tasks_8c1ba3c8, &bootTask_8c013388, &created_task, &created_state, 0);
-    created_task->field_0x08 = 0;
+    TaskInstall_8c014ae8(var_tasks_8c1ba3c8, &bootTask_8c013388, &installed_task, &installed_state, 0);
+    installed_task->field_0x08 = 0;
 
     AsqInitQueues_8c011f36(16, 8, 0, 8);
     AsqResetQueues_8c011f6c();

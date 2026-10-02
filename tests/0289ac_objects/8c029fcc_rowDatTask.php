@@ -5,7 +5,7 @@ declare(strict_types=1);
 use Lhsazevedo\Sh4ObjTest\TestCase;
 
 return new class extends TestCase {
-    // State offsets, matching ObjectsSpawnTasks_8c02a6ac's test.
+    // State offsets, matching ObjectsInstall_8c02a6ac's test.
     const ST_12 = 0x48;
 
     public function test_advances_dat_and_pushes_draw_calls(): void

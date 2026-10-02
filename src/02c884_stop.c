@@ -13,7 +13,7 @@
 #include "0289ac_objects.h"
 #include "013ae8_route.h" /* enum ROUTE */
 #include "011120_asset_queues.h" /* AsqGetRandomInRangeA_8c012178 */
-#include "014a9c_tasks.h" /* TaskKillGroup_8c014ab4 */
+#include "014a9c_tasks.h" /* TaskUninstallGroup_8c014ab4 */
 #include "020914_ground_query.h" /* GroundQueryFindPolygon_8c020914, GroundQueryResult */
 #include "020b6c_ground_probe.h"
 #include "02af78_event.h" /* EventScanCandidates_8c02b03c */
@@ -126,10 +126,10 @@ void StopAdvance_8c02ccc6(void)
     }
 }
 
-void StopKillTaskGroup_8c02ca96(void)
+void StopUninstallGroup_8c02ca96(void)
 {
     if (var_stopTaskGroup_8c2288f8 != (void *)-1) {
-        TaskKillGroup_8c014ab4((Task *)var_stopTaskGroup_8c2288f8);
+        TaskUninstallGroup_8c014ab4((Task *)var_stopTaskGroup_8c2288f8);
         syFree(var_stopTaskGroup_8c2288f8);
         var_stopTaskGroup_8c2288f8 = (void *)-1;
     }

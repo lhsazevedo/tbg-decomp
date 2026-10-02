@@ -204,7 +204,7 @@ STATIC void mainMenuTask_8c019e98(Task *task) {
 }
 
 void MainMenuEnter_8c01a09a(Task* task, int selected) {
-    TaskSwitch_8c014b3e(task, mainMenuTask_8c019e98);
+    TaskReinstall_8c014b3e(task, mainMenuTask_8c019e98);
     CHANGE_STATE(MAIN_MENU_STATE_INIT);
     var_menuState_8c1bc7a8.selected_0x38 = selected;
     var_menuState_8c1bc7a8.field_0x5c = selected * 2;

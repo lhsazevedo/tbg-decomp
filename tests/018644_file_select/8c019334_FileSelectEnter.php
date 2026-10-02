@@ -18,7 +18,7 @@ return new class extends TestCase {
 
         $this->call('_FileSelectEnter_8c019334')->with($task);
 
-        $this->shouldCall('_TaskSwitch_8c014b3e')
+        $this->shouldCall('_TaskReinstall_8c014b3e')
             ->with($task, $this->addressOf('_fileSelectTask_8c018e7e'));
         $this->shouldWriteLong($this->addressOf('_var_loadedSaveCount_8c22600c'), 0);
         $this->shouldWriteLong($this->ms + 0x18, 0);
@@ -37,7 +37,7 @@ return new class extends TestCase {
 
         $this->call('_FileSelectEnter_8c019334')->with($task);
 
-        $this->shouldCall('_TaskSwitch_8c014b3e')
+        $this->shouldCall('_TaskReinstall_8c014b3e')
             ->with($task, $this->addressOf('_fileSelectTask_8c018e7e'));
         $this->shouldWriteLong($this->addressOf('_var_loadedSaveCount_8c22600c'), 0);
         $this->shouldWriteLong($this->ms + 0x18, 0);
@@ -56,7 +56,7 @@ return new class extends TestCase {
 
         $this->call('_FileSelectEnter_8c019334')->with($task);
 
-        $this->shouldCall('_TaskSwitch_8c014b3e')
+        $this->shouldCall('_TaskReinstall_8c014b3e')
             ->with($task, $this->addressOf('_fileSelectTask_8c018e7e'));
         $this->shouldWriteLong($this->addressOf('_var_loadedSaveCount_8c22600c'), 0);
         $this->shouldCall('_buildFileList_8c018a22');
@@ -75,7 +75,7 @@ return new class extends TestCase {
     private function setup(int $vmuStatus): void
     {
         foreach ([
-            '_TaskSwitch_8c014b3e', '_MessageBoxSetText_8c02aefc',
+            '_TaskReinstall_8c014b3e', '_MessageBoxSetText_8c02aefc',
             '_VmGameSetLcdAnim_8c01c8fc', '_RenderStartFadeIn_8c022a9c',
         ] as $fn) {
             $this->setSize($fn, 4);

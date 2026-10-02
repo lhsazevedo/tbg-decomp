@@ -22,7 +22,7 @@ if (!function_exists('fdec')) {
 return new class extends TestCase {
     private function resolveSymbols(): void {
         $this->setSize('_njSqrt', 4);
-        $this->setSize('_TaskKill_8c014b66', 4);
+        $this->setSize('_TaskUninstall_8c014b66', 4);
         $this->setSize('_TrafficUpdateHeading_8c026bc4', 4);
         $this->setSize('_CollisionFindTaskHit_8c02e400', 4);
         $this->setSize('_BusDrawPlaceEntity_8c027c3c', 4);
@@ -68,7 +68,7 @@ return new class extends TestCase {
 
         $this->shouldCall('_njSqrt')->with(f32(1000.0 * 1000.0))->andReturn(1000.0);
         $this->shouldWriteFloat($entry + 0x490, 1000.0);
-        $this->shouldCall('_TaskKill_8c014b66')->with($task);
+        $this->shouldCall('_TaskUninstall_8c014b66')->with($task);
     }
 
     // knockbackActive == 0, far but matching preset -> still draws.

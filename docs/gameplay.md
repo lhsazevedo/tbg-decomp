@@ -259,7 +259,7 @@ data, so it does not fit the request role. Its purpose is still unconfirmed.
   `0x1e`, but only while `var_hudState_8c22643c.driveMarkIcon_0x14 != -1`;
   phase 0/4 (cruising) draws that field itself, which is not a stop icon:
   `updateTask_8c01ff48` is its only write site outside
-  `HudSpawnTask_8c02018c`, latching `markDriveFlags_0x3b0`'s low 3 bits as a
+  `HudInstall_8c02018c`, latching `markDriveFlags_0x3b0`'s low 3 bits as a
   sprite id (`marker + 0x1f`). Those bits come from the attribute grid under
   the bus, so this is the map's own drive instruction -- not the driver's
   turn signal, as an earlier revision of this file claimed -- and the -1

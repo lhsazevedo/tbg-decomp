@@ -7,7 +7,7 @@ use Lhsazevedo\Sh4ObjTest\TestCase;
 return new class extends TestCase {
     public function test_does_nothing_when_both_groups_already_freed()
     {
-        $this->setSize('_TaskKillGroup_8c014ab4', 4);
+        $this->setSize('_TaskUninstallGroup_8c014ab4', 4);
         $this->setSize('_syFree', 4);
 
         $this->initUint32($this->addressOf('_var_trafficSignalTasks_8c227e20'), 0xffffffff);
@@ -18,7 +18,7 @@ return new class extends TestCase {
 
     public function test_frees_task_group_when_allocated()
     {
-        $this->setSize('_TaskKillGroup_8c014ab4', 4);
+        $this->setSize('_TaskUninstallGroup_8c014ab4', 4);
         $this->setSize('_syFree', 4);
 
         $tasks = $this->alloc(4);
@@ -27,14 +27,14 @@ return new class extends TestCase {
 
         $this->call('_SignalFree_8c0288be');
 
-        $this->shouldCall('_TaskKillGroup_8c014ab4')->with($tasks);
+        $this->shouldCall('_TaskUninstallGroup_8c014ab4')->with($tasks);
         $this->shouldCall('_syFree')->with($tasks);
         $this->shouldWriteLong($this->addressOf('_var_trafficSignalTasks_8c227e20'), 0xffffffff);
     }
 
     public function test_frees_object_tables_when_allocated()
     {
-        $this->setSize('_TaskKillGroup_8c014ab4', 4);
+        $this->setSize('_TaskUninstallGroup_8c014ab4', 4);
         $this->setSize('_syFree', 4);
 
         $slots = $this->alloc(4);

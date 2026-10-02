@@ -21,9 +21,9 @@
           .IMPORT     _RenderQueueDraw_8c0223ea
           .IMPORT     _TileStreamDrawTile_8c021b34
           .IMPORT     _var_tasks_8c1ba5e8
-          .IMPORT     _TaskSpawn_8c014ae8
+          .IMPORT     _TaskInstall_8c014ae8
           .IMPORT     _var_segmentModels_8c1bc3f0
-          .EXPORT     _TileDrawSpawnTask_8c0222dc
+          .EXPORT     _TileDrawInstall_8c0222dc
           .EXPORT     _var_simpleLightDir_8c2264d8 ; 0289ac_objects
                                                    ; 02d06c_stop_draw
           .EXPORT     _var_mirrorSimpleLightDir_8c2264e4 ; 0289ac_objects
@@ -952,7 +952,7 @@ LP_GEN_78610:
           .DATA.L _RenderQueueDraw_8c0223ea ; H'8C0222D8
 ; TU boundary moved: the delinker split 0222dc_fadecmd off here; the real
 ; boundary is 02239c. This is the only pusher of enqueueTask_8c0221d0.
-_TileDrawSpawnTask_8c0222dc:
+_TileDrawInstall_8c0222dc:
           STS.L       PR,@-R15
           ADD         #-H'8,R15
           MOV         #H'8,R3
@@ -1034,7 +1034,7 @@ LP_GEN_22999:
           .RES.W 1 ; H'8C022376
           .DATA.L _enqueueTask_8c0221d0 ; H'8C022378
           .DATA.L _var_tasks_8c1ba5e8 ; H'8C02237C
-          .DATA.L _TaskSpawn_8c014ae8 ; H'8C022380
+          .DATA.L _TaskInstall_8c014ae8 ; H'8C022380
           .DATA.L _var_segmentModels_8c1bc3f0 ; H'8C022384
           .DATA.L _var_easyLightIntensity_8c226544 ; H'8C022388
           .DATA.L _var_sceneParams_8c18ad24 ; H'8C02238C

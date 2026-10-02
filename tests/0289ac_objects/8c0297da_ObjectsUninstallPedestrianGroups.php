@@ -15,7 +15,7 @@ return new class extends TestCase {
     {
         $this->initUint32($this->addressOf('_var_pedGroupCount_8c228234'), -1);
 
-        $this->call('_ObjectsKillPedestrianGroups_8c0297da');
+        $this->call('_ObjectsUninstallPedestrianGroups_8c0297da');
     }
 
     public function test_frees_active_groups_then_the_array(): void
@@ -35,9 +35,9 @@ return new class extends TestCase {
         $this->initUint32($this->addressOf('_var_pedGroups_8c228230'), $groups);
         $this->initUint32($this->addressOf('_var_pedGroupCount_8c228234'), 2);
 
-        $this->call('_ObjectsKillPedestrianGroups_8c0297da');
+        $this->call('_ObjectsUninstallPedestrianGroups_8c0297da');
 
-        $this->shouldCall('_TaskKillGroup_8c014ab4')->with($subTasksA);
+        $this->shouldCall('_TaskUninstallGroup_8c014ab4')->with($subTasksA);
         $this->shouldCall('_syFree')->with($subTasksA);
         $this->shouldCall('_syFree')->with($groups);
         $this->shouldWriteLong($this->addressOf('_var_pedGroups_8c228230'), -1);

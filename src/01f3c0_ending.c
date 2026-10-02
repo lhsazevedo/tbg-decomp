@@ -247,7 +247,7 @@ STATIC void creditsTask_8c01f658(void)
 
     case ENDING_TASK_STATE_FADE_IN:
         if (var_isFading_8c226568 == 0) {
-            CourseMenuSpawnDialogTask_8c0170c6(var_dialogQueue_8c225fbc[0], var_endingVoiceList_8c226430);
+            CourseMenuInstallDialog_8c0170c6(var_dialogQueue_8c225fbc[0], var_endingVoiceList_8c226430);
             var_menuState_8c1bc7a8.state_0x18 = ENDING_TASK_STATE_INSTRUCTOR_DIALOG;
         }
         updateDialogScene_8c01f42c();
@@ -353,10 +353,10 @@ void EndingStart_8c01f954(void)
     var_menuState_8c1bc7a8.instructorSprite_0x60 =
         init_instructorDialogs_8c044c08[var_dialogQueue_8c225fbc[0]]->spriteNo_0x04;
 
-    InputSpawnTask_8c0128cc(0);
+    InputInstall_8c0128cc(0);
 
-    TaskSpawn_8c014ae8(var_tasks_8c1ba3c8, GameSoftResetTask_8c012f44, &gameTask, &gameTaskState, 0);
-    TaskSpawn_8c014ae8(var_tasks_8c1ba3c8, (void *) creditsTask_8c01f658, &creditsTaskHandle, &creditsTaskState, 0);
+    TaskInstall_8c014ae8(var_tasks_8c1ba3c8, GameSoftResetTask_8c012f44, &gameTask, &gameTaskState, 0);
+    TaskInstall_8c014ae8(var_tasks_8c1ba3c8, (void *) creditsTask_8c01f658, &creditsTaskHandle, &creditsTaskState, 0);
 
     var_menuState_8c1bc7a8.state_0x18 = 0;
     njGarbageTexture(var_tex_8c157af8, 3072);

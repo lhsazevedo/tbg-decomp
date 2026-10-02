@@ -43,6 +43,6 @@ extern void* var_8c226438;
 extern HudState var_hudState_8c22643c;
 
 /* Also resets the HUD state for a new run. */
-void HudSpawnTask_8c02018c(void);
+void HudInstall_8c02018c(void);
 
 #endif // _01FA78_HUD_H

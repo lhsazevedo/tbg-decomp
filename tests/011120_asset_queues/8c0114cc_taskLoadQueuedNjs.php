@@ -317,7 +317,7 @@ return new class extends TestCase {
         $this->initUint32($this->addressOf('_var_loadRetryNeeded_8c157a88'), 0);
         
         $this->shouldWriteLongTo('_var_njQueueIsIdle_8c157aa8', 1);
-        $this->shouldCall('_TaskKill_8c014b66')->with($taskPtr);
+        $this->shouldCall('_TaskUninstall_8c014b66')->with($taskPtr);
         
         $this->singleCall('_taskLoadQueuedNjs_8c0114cc')
             ->with($taskPtr, 0)

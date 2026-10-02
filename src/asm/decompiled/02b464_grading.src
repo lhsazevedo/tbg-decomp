@@ -36,18 +36,18 @@
           .IMPORT     _DriveMsgDraw_8c02b388
           .IMPORT     _RenderQueueDraw_8c0223ea
           .IMPORT     _var_tasks_8c1ba5e8
-          .IMPORT     _TaskSpawn_8c014ae8
+          .IMPORT     _TaskInstall_8c014ae8
           .IMPORT     _var_route_8c18ad1c
           .IMPORT     _var_practiceLesson_8c22640c
           .IMPORT     _var_nextStopSegment_8c228710
-          .IMPORT     _ObjectsKillPedestrianGroups_8c0297da
+          .IMPORT     _ObjectsUninstallPedestrianGroups_8c0297da
           .IMPORT     _SignalFree_8c0288be
-          .IMPORT     _TaskKillGroup_8c014ab4
+          .IMPORT     _TaskUninstallGroup_8c014ab4
           .IMPORT     _var_tasks_8c1bb448
           .IMPORT     _var_tasks_8c1bac28
           .IMPORT     _var_tasks_8c1ba3c8
           .IMPORT     _StopAdvance_8c02ccc6
-          .IMPORT     _RouteSpawnSegmentReloadTask_8c01468e
+          .IMPORT     _RouteInstallSegmentReload_8c01468e
           .IMPORT     _var_runReportPending_8c1bb8b8
           .IMPORT     _var_runWasPractice_8c1bb8bc
           .IMPORT     _ReplayMenuFreeSessionAssets_8c016182
@@ -61,11 +61,11 @@
           .IMPORT     _PracticeMenuReturn_8c01f21c
           .IMPORT     _var_markTexlist_8c1bc418
           .IMPORT     _SpriteDraw_8c014f54
-          .IMPORT     _ReplayMenuKillDriveTasks_8c01614c
+          .IMPORT     _ReplayMenuUninstallDrive_8c01614c
           .IMPORT     _RenderStartFadeIn_8c022a9c
           .IMPORT     _ResultsShowPassedRun_8c01e0b4
           .IMPORT     _var_menuState_8c1bc7a8
-          .EXPORT     _GradeSpawnTask_8c02c46a
+          .EXPORT     _GradeInstall_8c02c46a
           .EXPORT     _GradeRunComplete_8c02c586
           .EXPORT     _GradeOnFadePracticeEnd_8c02c784
           .EXPORT     _var_runState_8c2285c4 ; 013ae8_route
@@ -2168,7 +2168,7 @@ LAB_8c02c44e:
           MOV.L       @R15+,R13
           JMP         @R3
           MOV.L       @R15+,R14
-_GradeSpawnTask_8c02c46a:
+_GradeInstall_8c02c46a:
           STS.L       PR,@-R15
           ADD         #-H'8,R15
           MOV         #H'0,R3
@@ -2212,7 +2212,7 @@ LP_GEN_93947:
           .DATA.L _RenderQueueDraw_8c0223ea ; H'8C02C4C8
           .DATA.L _runPhaseTask_8c02c072 ; H'8C02C4CC
           .DATA.L _var_tasks_8c1ba5e8 ; H'8C02C4D0
-          .DATA.L _TaskSpawn_8c014ae8 ; H'8C02C4D4
+          .DATA.L _TaskInstall_8c014ae8 ; H'8C02C4D4
           .DATA.L _var_runState_8c2285c4 ; H'8C02C4D8
           .DATA.L _var_playMode_8c1bb8d0 ; H'8C02C4DC
           .DATA.L _var_practiceRules_8c226410 ; H'8C02C4E0
@@ -2631,15 +2631,15 @@ LAB_8c02c7f2:
           MOV.L       @R15+,R14
 LP_GEN_25024:
           .DATA.L _var_nextStopSegment_8c228710 ; H'8C02C800
-          .DATA.L _ObjectsKillPedestrianGroups_8c0297da ; H'8C02C804
+          .DATA.L _ObjectsUninstallPedestrianGroups_8c0297da ; H'8C02C804
           .DATA.L _SignalFree_8c0288be ; H'8C02C808
-          .DATA.L _TaskKillGroup_8c014ab4 ; H'8C02C80C
+          .DATA.L _TaskUninstallGroup_8c014ab4 ; H'8C02C80C
           .DATA.L _var_tasks_8c1bb448 ; H'8C02C810
           .DATA.L _var_tasks_8c1bac28 ; H'8C02C814
           .DATA.L _var_tasks_8c1ba5e8 ; H'8C02C818
           .DATA.L _var_tasks_8c1ba3c8 ; H'8C02C81C
           .DATA.L _StopAdvance_8c02ccc6 ; H'8C02C820
-          .DATA.L _RouteSpawnSegmentReloadTask_8c01468e ; H'8C02C824
+          .DATA.L _RouteInstallSegmentReload_8c01468e ; H'8C02C824
           .DATA.L _var_runReportPending_8c1bb8b8 ; H'8C02C828
           .DATA.L _var_runWasPractice_8c1bb8bc ; H'8C02C82C
           .DATA.L _ReplayMenuFreeSessionAssets_8c016182 ; H'8C02C830
@@ -2656,9 +2656,9 @@ LP_GEN_25024:
           .DATA.L _var_markTexlist_8c1bc418 ; H'8C02C85C
           .DATA.L H'C0400000 ; H'8C02C860
           .DATA.L _SpriteDraw_8c014f54 ; H'8C02C864
-          .DATA.L _ReplayMenuKillDriveTasks_8c01614c ; H'8C02C868
+          .DATA.L _ReplayMenuUninstallDrive_8c01614c ; H'8C02C868
           .DATA.L _driveEndFadeTask_8c02c69a ; H'8C02C86C
-          .DATA.L _TaskSpawn_8c014ae8 ; H'8C02C870
+          .DATA.L _TaskInstall_8c014ae8 ; H'8C02C870
           .DATA.L _RenderStartFadeIn_8c022a9c ; H'8C02C874
           .DATA.L _var_runState_8c2285c4 + H'C ; H'8C02C878
           .DATA.L _var_practiceLesson_8c22640c ; H'8C02C87C

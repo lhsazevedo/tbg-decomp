@@ -200,7 +200,7 @@ STATIC void settingTask_8c01a148(Task *task)
 
 STATIC void enterSetting_8c01a3c0(Task *task)
 {
-    TaskSwitch_8c014b3e(task, settingTask_8c01a148);
+    TaskReinstall_8c014b3e(task, settingTask_8c01a148);
     var_menuState_8c1bc7a8.state_0x18 = OPTION_STATE_FADE_IN;
     var_menuState_8c1bc7a8.selected_0x38 = 0;
     RenderStartFadeIn_8c022a9c(10);
@@ -409,7 +409,7 @@ STATIC void keyConfigTask_8c01a50c(Task *task)
 
 STATIC void enterKeyConfig_8c01a89c(Task *task)
 {
-    TaskSwitch_8c014b3e(task, keyConfigTask_8c01a50c);
+    TaskReinstall_8c014b3e(task, keyConfigTask_8c01a50c);
     var_menuState_8c1bc7a8.state_0x18 = OPTION_STATE_FADE_IN;
     var_menuState_8c1bc7a8.selected_0x38 = 0;
     RenderStartFadeIn_8c022a9c(10);
@@ -674,7 +674,7 @@ STATIC void audioTask_8c01ab08(Task *task)
 
 STATIC void enterAudio_8c01afd8(Task *task)
 {
-    TaskSwitch_8c014b3e(task, audioTask_8c01ab08);
+    TaskReinstall_8c014b3e(task, audioTask_8c01ab08);
     var_menuState_8c1bc7a8.state_0x18 = OPTION_STATE_FADE_IN;
     var_menuState_8c1bc7a8.selected_0x38 = 0;
     var_musicTestDigits_8c226078[1] = 0;
@@ -747,7 +747,7 @@ STATIC void topMenuTask_8c01b00a(Task *task)
 
 void OptionEnter_8c01b122(Task *task, int row)
 {
-    TaskSwitch_8c014b3e(task, topMenuTask_8c01b00a);
+    TaskReinstall_8c014b3e(task, topMenuTask_8c01b00a);
     var_menuState_8c1bc7a8.state_0x18 = OPTION_STATE_FADE_IN;
     var_menuState_8c1bc7a8.selected_0x38 = row;
     var_settingValues_8c226074 = &var_progress_8c1ba1cc.difficulty_0xc4;

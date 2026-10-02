@@ -17,10 +17,10 @@
           .IMPORT     _var_seed_8c157a64
           .IMPORT     _ReplayCodecInit_8c02f320
           .IMPORT     _ReplayCodecUnpack_8c02fa14
-          .IMPORT     _TaskKill_8c014b66
+          .IMPORT     _TaskUninstall_8c014b66
           .IMPORT     _GameStartSelectedCourse_8c01328c
           .IMPORT     _var_tasks_8c1ba3c8
-          .IMPORT     _TaskSpawn_8c014ae8
+          .IMPORT     _TaskInstall_8c014ae8
           .IMPORT     _var_playMode_8c1bb8d0
           .IMPORT     _var_isAttractDemo_8c1bb8d4
           .IMPORT     _var_demoIndex_8c1bb8d8
@@ -1427,11 +1427,11 @@ LP_GEN_51554:
           .DATA.L _ReplayCodecInit_8c02f320
           .DATA.L _ReplayCodecUnpack_8c02fa14
           .DATA.L _syFree
-          .DATA.L _TaskKill_8c014b66
+          .DATA.L _TaskUninstall_8c014b66
           .DATA.L _GameStartSelectedCourse_8c01328c
           .DATA.L _demoLoadTask_8c01594c
           .DATA.L _var_tasks_8c1ba3c8
-          .DATA.L _TaskSpawn_8c014ae8
+          .DATA.L _TaskInstall_8c014ae8
           .DATA.L _var_playMode_8c1bb8d0
           .DATA.L _var_isAttractDemo_8c1bb8d4
           .DATA.L _var_demoIndex_8c1bb8d8

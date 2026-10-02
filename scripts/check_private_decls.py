@@ -61,13 +61,13 @@ def strip_comments(text):
 # Symbols we deliberately keep public even though nothing currently references
 # them across units (so the object-level check would call them private):
 #   - heap* :
-#   - UnusedLoadSpawnTask_8c014934 : unused
+#   - UnusedLoadInstall_8c014934 : unused
 #   - ReplayMenuOpen_8c01673a : unused debug-menu entry point
 KEEP_PUBLIC = {
     # unused general-purpose heap API
     "HeapInit_8c010fe8", "HeapAlloc_8c01102a", "HeapFree_8c0110c4",
     # unused
-    "UnusedLoadSpawnTask_8c014934",
+    "UnusedLoadInstall_8c014934",
     # unused debug-menu entry point
     "ReplayMenuOpen_8c01673a",
     # unreferenced global the original placed by declaring it in its header: SHC

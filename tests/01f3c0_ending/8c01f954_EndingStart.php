@@ -7,7 +7,7 @@ use Lhsazevedo\Sh4ObjTest\TestCase;
 /*
  * EndingStart_8c01f954(void): entry point, reached once the career's month
  * of days runs out. Picks the ending dialog tier, seeds the instructor sprite
- * from it, spawns the usual per-screen tasks (peripheral support,
+ * from it, installs the usual per-screen tasks (peripheral support,
  * GameSoftResetTask_8c012f44) plus creditsTask_8c01f658, then sets up the ending's
  * resources.
  */
@@ -25,9 +25,9 @@ return new class extends TestCase {
         $this->setSize('_var_tasks_8c1ba3c8', 4);
         $this->setSize('_var_tex_8c157af8', 4);
         $this->setSize('_var_menuTextboxCharLimit_8c225fb8', 4);
-        $this->setSize('_InputSpawnTask_8c0128cc', 4);
+        $this->setSize('_InputInstall_8c0128cc', 4);
         $this->setSize('_GameSoftResetTask_8c012f44', 4);
-        $this->setSize('_TaskSpawn_8c014ae8', 4);
+        $this->setSize('_TaskInstall_8c014ae8', 4);
         $this->setSize('_njGarbageTexture', 4);
         $this->setSize('_MessageBoxOpenTextbox_8c02ae3e', 4);
         $this->setSize('_MessageBoxSetText_8c02aefc', 4);
@@ -61,10 +61,10 @@ return new class extends TestCase {
         };
     }
 
-    // TaskSpawn's out-params (created_task/create_state) are the callee's own
+    // TaskInstall's out-params (installed_task/installed_state) are the callee's own
     // stack-local addresses, unknowable ahead of time and not read back by
     // EndingStart_8c01f954 afterward -- only assert the args that matter.
-    private function taskSpawnCheck(int $tasksAddr, int $actionAddr): callable
+    private function taskInstallCheck(int $tasksAddr, int $actionAddr): callable
     {
         return function () use ($tasksAddr, $actionAddr) {
             $r4 = $this->registers[4]->value;
@@ -72,7 +72,7 @@ return new class extends TestCase {
             $allocSize = $this->memory->readUInt32($this->registers[15]->value)->value;
             if ($r4 !== $tasksAddr || $r5 !== $actionAddr || $allocSize !== 0) {
                 throw new \Exception(sprintf(
-                    "Unexpected TaskSpawn args: tasks=0x%x action=0x%x allocSize=%d",
+                    "Unexpected TaskInstall args: tasks=0x%x action=0x%x allocSize=%d",
                     $r4, $r5, $allocSize
                 ));
             }
@@ -103,10 +103,10 @@ return new class extends TestCase {
 
         $this->shouldWriteLong($menuState + self::INSTRUCTOR_SPRITE_0X60, 0x2a);
 
-        $this->shouldCall('_InputSpawnTask_8c0128cc')->with(0);
+        $this->shouldCall('_InputInstall_8c0128cc')->with(0);
 
-        $this->shouldCall('_TaskSpawn_8c014ae8')->do($this->taskSpawnCheck($tasksAddr, $gameTaskAddr));
-        $this->shouldCall('_TaskSpawn_8c014ae8')->do($this->taskSpawnCheck($tasksAddr, $creditsTaskAddr));
+        $this->shouldCall('_TaskInstall_8c014ae8')->do($this->taskInstallCheck($tasksAddr, $gameTaskAddr));
+        $this->shouldCall('_TaskInstall_8c014ae8')->do($this->taskInstallCheck($tasksAddr, $creditsTaskAddr));
 
         $this->shouldWriteLong($menuState + self::STATE_0X18, 0);
         $this->shouldCall('_njGarbageTexture')->with($this->addressOf('_var_tex_8c157af8'), 3072);

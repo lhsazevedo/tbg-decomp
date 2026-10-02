@@ -2,7 +2,7 @@
           .IMPORT     _njSetBackColor
           .IMPORT     _njGarbageTexture
           .IMPORT     _sdMidiPlay
-          .IMPORT     _TaskSpawn_8c014ae8
+          .IMPORT     _TaskInstall_8c014ae8
           .IMPORT     _RouteGetLatch_8c01432a
           .IMPORT     _AsqFreeQueues_8c011f7e
           .IMPORT     _VmSelectMountAll_8c01940e
@@ -35,7 +35,7 @@
           .IMPORT     _SndPlayAdx_8c010cd6
           .IMPORT     _InputCheckColdBoot_8c012984
           .IMPORT     _SndStartAdxFadeOut_8c010bae
-          .IMPORT     _InputSpawnTask_8c0128cc
+          .IMPORT     _InputInstall_8c0128cc
           .AIFDEF UNIT_TESTING
           .EXPORT     _titleTask_8c015ab8
           .AENDI
@@ -739,7 +739,7 @@ _TitleStart_8c015fd6:                   ; function: TitleStart_8c015fd6
           MOV.L       R14,@-R15
           STS.L       PR,@-R15
           ADD         #-12,R15
-          MOV.L       L53+24,R3; InputSpawnTask_8c0128cc
+          MOV.L       L53+24,R3; InputInstall_8c0128cc
           MOV.L       R4,@(8,R15)
           JSR         @R3
           MOV         #0,R4
@@ -748,7 +748,7 @@ _TitleStart_8c015fd6:                   ; function: TitleStart_8c015fd6
           MOV.L       R2,@-R15
           MOV.L       L53+28,R5; _GameSoftResetTask_8c012f44
           MOV         R15,R7
-          MOV.L       L53+36,R3; _TaskSpawn_8c014ae8
+          MOV.L       L53+36,R3; _TaskInstall_8c014ae8
           ADD         #8,R7
           MOV         R15,R6
           JSR         @R3
@@ -763,7 +763,7 @@ _TitleStart_8c015fd6:                   ; function: TitleStart_8c015fd6
           MOV.L       R3,@-R15
           MOV.L       L53+44,R5; _titleTask_8c015ab8
           MOV         R15,R7
-          MOV.L       L53+36,R2; _TaskSpawn_8c014ae8
+          MOV.L       L53+36,R2; _TaskInstall_8c014ae8
           ADD         #12,R7
           MOV         R15,R6
           JSR         @R2
@@ -843,10 +843,10 @@ L53:
           .DATA.L     H'43970000 ; 302.0
           .DATA.L     H'43340000 ; 180.0
           .DATA.L     H'C0E00000 ; -7.0
-          .DATA.L     _InputSpawnTask_8c0128cc ; H'8c0160b0
+          .DATA.L     _InputInstall_8c0128cc ; H'8c0160b0
           .DATA.L     _GameSoftResetTask_8c012f44
           .DATA.L     _var_tasks_8c1ba3c8
-          .DATA.L     _TaskSpawn_8c014ae8
+          .DATA.L     _TaskInstall_8c014ae8
           .DATA.L     _njSetBackColor ; H'8c0160c0
           .DATA.L     _titleTask_8c015ab8
           .DATA.L     _var_menuState_8c1bc7a8

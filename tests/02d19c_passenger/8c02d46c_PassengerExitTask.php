@@ -10,7 +10,7 @@ return new class extends TestCase {
         $this->setSize('_RenderQueueDraw_8c0223ea', 4);
         $this->setSize('_sdMidiPlay', 4);
         $this->setSize('_AsqGetRandomInRangeB_8c0121be', 4);
-        $this->setSize('_TaskKill_8c014b66', 4);
+        $this->setSize('_TaskUninstall_8c014b66', 4);
         $this->setSize('_var_route_8c18ad1c', 4);
         $this->setSize('_var_midiHandles_8c0fcd28', 8 * 4);
         $this->setSize('_var_seats_8c228718', 31 * 4);
@@ -129,7 +129,7 @@ return new class extends TestCase {
 
         $this->call('_PassengerExitTask_8c02d46c')->with($task, $state);
 
-        $this->shouldCall('_TaskKill_8c014b66')->with($task);
+        $this->shouldCall('_TaskUninstall_8c014b66')->with($task);
     }
 
     public function test_case9_flag_clear_registers_layer1(): void

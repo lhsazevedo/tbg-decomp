@@ -357,14 +357,14 @@ tail:
     njSetBackColor(0xff418dff, 0xff418dff, 0xff418dff);
 }
 
-STATIC void spawnResultsTask_8c01df8e(void)
+STATIC void installResults_8c01df8e(void)
 {
-    Task *created_task;
-    void *created_state;
+    Task *installed_task;
+    void *installed_state;
 
-    InputSpawnTask_8c0128cc(0);
-    TaskSpawn_8c014ae8(var_tasks_8c1ba3c8, GameSoftResetTask_8c012f44, &created_task, &created_state, 0);
-    TaskSpawn_8c014ae8(var_tasks_8c1ba3c8, resultsTask_8c01d8e0, &created_task, &created_state, 0);
+    InputInstall_8c0128cc(0);
+    TaskInstall_8c014ae8(var_tasks_8c1ba3c8, GameSoftResetTask_8c012f44, &installed_task, &installed_state, 0);
+    TaskInstall_8c014ae8(var_tasks_8c1ba3c8, resultsTask_8c01d8e0, &installed_task, &installed_state, 0);
     var_menuState_8c1bc7a8.state_0x18 = 0;
     njGarbageTexture(var_tex_8c157af8, 0xc00);
     MessageBoxOpenTextbox_8c02ae3e(0x20, 0x180, -2.0f, 0x240, 0x40, 0, 0, -1);
@@ -443,11 +443,11 @@ void ResultsShowPassedRun_8c01e0b4(void)
         var_progress_8c1ba1cc.exp_0x90 = 99999;
     }
     var_runFailed_8c226408 = 0;
-    spawnResultsTask_8c01df8e();
+    installResults_8c01df8e();
 }
 
 void ResultsShowFailedRun_8c01e24e(void)
 {
     var_runFailed_8c226408 = 1;
-    spawnResultsTask_8c01df8e();
+    installResults_8c01df8e();
 }

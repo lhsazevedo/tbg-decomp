@@ -13,7 +13,7 @@ return new class extends TestCase {
 
         $this->call('_replaySaveTask_8c0167ca')->with($task, 0);
 
-        $this->shouldCall('_TaskKill_8c014b66')->with($task);
+        $this->shouldCall('_TaskUninstall_8c014b66')->with($task);
         $this->shouldCall('_CourseMenuReturn_8c017ef2');
     }
 
@@ -166,7 +166,7 @@ return new class extends TestCase {
         $this->shouldCall('_syFree')->with($demoBuf);
         $this->shouldWriteLongTo('_var_demoBuf_8c1ba3c4', 0xffffffff);
         $this->shouldCall('_BupUnmount_8c014c46')->with(0);
-        $this->shouldCall('_TaskKill_8c014b66')->with($task);
+        $this->shouldCall('_TaskUninstall_8c014b66')->with($task);
         $this->shouldCall('_CourseMenuReturn_8c017ef2');
     }
 
@@ -176,7 +176,7 @@ return new class extends TestCase {
         $this->initUint32($this->addressOf('_var_selectedVm_8c1ba34c'), 0);
         $this->setSize('_BupGetInfo_8c014bba', 4);
         $this->setSize('_BupMount_8c014c00', 4);
-        $this->setSize('_TaskKill_8c014b66', 4);
+        $this->setSize('_TaskUninstall_8c014b66', 4);
         $this->setSize('_CourseMenuReturn_8c017ef2', 4);
         $this->setSize('_var_demoBuf_8c1ba3c4', 4);
         $this->setSize('_buStat', 4);

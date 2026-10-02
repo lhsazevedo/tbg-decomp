@@ -14,7 +14,7 @@ return new class extends TestCase {
 
         $this->call('_replayLoadTask_8c0169bc')->with($task, 0);
 
-        $this->shouldCall('_TaskKill_8c014b66')->with($task);
+        $this->shouldCall('_TaskUninstall_8c014b66')->with($task);
         $this->shouldCall('_GameStartSelectedCourse_8c01328c');
     }
 
@@ -170,7 +170,7 @@ return new class extends TestCase {
         $this->shouldCall('_syFree')->with($demoBuf);
         $this->shouldWriteLongTo('_var_demoBuf_8c1ba3c4', 0xffffffff);
         $this->shouldCall('_BupUnmount_8c014c46')->with(0);
-        $this->shouldCall('_TaskKill_8c014b66')->with($task);
+        $this->shouldCall('_TaskUninstall_8c014b66')->with($task);
         $this->shouldCall('_GameStartSelectedCourse_8c01328c');
     }
 
@@ -193,7 +193,7 @@ return new class extends TestCase {
 
         $this->shouldWriteLongTo('_var_playMode_8c1bb8d0', 2);
         $this->shouldWriteLongTo('_var_isAttractDemo_8c1bb8d4', 0);
-        $this->shouldCall('_TaskSpawn_8c014ae8')
+        $this->shouldCall('_TaskInstall_8c014ae8')
             ->with(
                 $this->addressOf('_var_tasks_8c1ba3c8'),
                 $this->addressOf('_replayLoadTask_8c0169bc'),
@@ -229,11 +229,11 @@ return new class extends TestCase {
         $this->setSize('_var_playMode_8c1bb8d0', 4);
         $this->setSize('_var_isAttractDemo_8c1bb8d4', 4);
         $this->setSize('_var_tasks_8c1ba3c8', 4);
-        $this->setSize('_TaskSpawn_8c014ae8', 4);
+        $this->setSize('_TaskInstall_8c014ae8', 4);
         $this->setSize('_BupGetInfo_8c014bba', 4);
         $this->setSize('_BupMount_8c014c00', 4);
         $this->setSize('_BupLoad_8c014bc6', 4);
-        $this->setSize('_TaskKill_8c014b66', 4);
+        $this->setSize('_TaskUninstall_8c014b66', 4);
         $this->setSize('_GameStartSelectedCourse_8c01328c', 4);
         $this->setSize('_var_demoBuf_8c1ba3c4', 4);
         $this->setSize('_var_currentCourse_8c1bb868', 0x50);

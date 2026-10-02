@@ -23,7 +23,7 @@ Two shapes:
 
 - **Everything else**: `[TAG] funcName_8caddr: what happened`. Name the function
   so the line is direct proof it ran. Include relevant values by name/string
-  (`%s`, `%d`, `%p`), e.g. `InputSpawnTask_8c0128cc: queueing input handler (%s)`.
+  (`%s`, `%d`, `%p`), e.g. `InputInstall_8c0128cc: queueing input handler (%s)`.
 
 ## Levels (by frequency)
 

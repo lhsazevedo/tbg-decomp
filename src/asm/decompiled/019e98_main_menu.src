@@ -14,7 +14,7 @@
           .IMPORT     _OptionEnter_8c01b122
           .IMPORT     _VmGameEnter_8c01c880
           .IMPORT     _SpriteDraw_8c014f54
-          .IMPORT     _TaskSwitch_8c014b3e
+          .IMPORT     _TaskReinstall_8c014b3e
           .IMPORT     _AsqInitQueues_8c011f36
           .IMPORT     _AsqResetQueues_8c011f6c
           .IMPORT     _init_mainMenuResourceGroup_8c044264
@@ -358,7 +358,7 @@ LP_GEN_13822:
           .DATA.L H'C0A00000 ; H'8C01A114
           .DATA.L H'C0E00000 ; H'8C01A118
           .DATA.L _mainMenuTask_8c019e98 ; H'8C01A11C
-          .DATA.L _TaskSwitch_8c014b3e ; H'8C01A120
+          .DATA.L _TaskReinstall_8c014b3e ; H'8C01A120
           .DATA.L _var_menuState_8c1bc7a8 ; H'8C01A124
           .DATA.L _AsqInitQueues_8c011f36 ; H'8C01A128
           .DATA.L _AsqResetQueues_8c011f6c ; H'8C01A12C

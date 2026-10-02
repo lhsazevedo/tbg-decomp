@@ -63,7 +63,7 @@ return new class extends TestCase {
         $task = $this->alloc(0x20);
         $this->call('_lessonMenuTask_8c01ebf2')->with($task, 0);
 
-        $this->shouldCall('_CourseMenuSpawnDialogTask_8c0170c6')->with(0x16, 0);
+        $this->shouldCall('_CourseMenuInstallDialog_8c0170c6')->with(0x16, 0);
 
         $menuStateBase = $this->addressOf('_var_menuState_8c1bc7a8');
         $this->shouldWriteLong($menuStateBase + 0x18, 2);
@@ -100,7 +100,7 @@ return new class extends TestCase {
         $this->call('_lessonMenuTask_8c01ebf2')->with($task, 0);
 
         $this->shouldWriteLong($task + 0x08, 1);
-        $this->shouldCall('_CourseMenuSpawnDialogTask_8c0170c6')->with(0x17, 0);
+        $this->shouldCall('_CourseMenuInstallDialog_8c0170c6')->with(0x17, 0);
 
         $this->expectDrawingTail(2);
     }
@@ -648,7 +648,7 @@ return new class extends TestCase {
         $this->setSize('_var_menuState_8c1bc7a8', 0x84);
         $this->setSize('_MessageBoxSetText_8c02aefc', 4);
         $this->setSize('_var_isFading_8c226568', 4);
-        $this->setSize('_CourseMenuSpawnDialogTask_8c0170c6', 4);
+        $this->setSize('_CourseMenuInstallDialog_8c0170c6', 4);
         $this->setSize('_var_instructorDialogActive_8c225fb4', 4);
         $this->setSize('_var_peripherals_8c1ba35c', 0x68); // 2 x PDS_PERIPHERAL
         $this->setSize('_sdMidiPlay', 4);

@@ -7,7 +7,7 @@
           .IMPORT     _FileSelectResetSettingDefaults_8c018862
           .IMPORT     _RenderStartFadeOut_8c022b60
           .IMPORT     _SpriteDraw_8c014f54
-          .IMPORT     _TaskSwitch_8c014b3e
+          .IMPORT     _TaskReinstall_8c014b3e
           .IMPORT     _RenderStartFadeIn_8c022a9c
           .IMPORT     _njDrawPolygon
           .IMPORT     _var_activeCtrlType_8c157a70
@@ -484,7 +484,7 @@ LP_GEN_85851:
           .DATA.W H'0080 ; H'8C01A47E
           .DATA.L H'C0E00000 ; H'8C01A480
           .DATA.L _settingTask_8c01a148 ; H'8C01A484
-          .DATA.L _TaskSwitch_8c014b3e ; H'8C01A488
+          .DATA.L _TaskReinstall_8c014b3e ; H'8C01A488
           .DATA.L _var_menuState_8c1bc7a8 ; H'8C01A48C
           .DATA.L _RenderStartFadeIn_8c022a9c ; H'8C01A490
           .DATA.L H'10+_var_peripherals_8c1ba35c ; H'8C01A494
@@ -1264,7 +1264,7 @@ LAB_8c01aa36:
 LP_GEN_75770:
           .DATA.L H'C0E00000 ; H'8C01AA40
           .DATA.L _keyConfigTask_8c01a50c ; H'8C01AA44
-          .DATA.L _TaskSwitch_8c014b3e ; H'8C01AA48
+          .DATA.L _TaskReinstall_8c014b3e ; H'8C01AA48
           .DATA.L _var_menuState_8c1bc7a8 ; H'8C01AA4C
           .DATA.L _RenderStartFadeIn_8c022a9c ; H'8C01AA50
           .DATA.L H'10+_var_peripherals_8c1ba35c ; H'8C01AA54
@@ -2187,7 +2187,7 @@ _OptionEnter_8c01b122:
 LP_GEN_51773:
           .DATA.L H'C0E00000 ; H'8C01B148
           .DATA.L _audioTask_8c01ab08 ; H'8C01B14C
-          .DATA.L _TaskSwitch_8c014b3e ; H'8C01B150
+          .DATA.L _TaskReinstall_8c014b3e ; H'8C01B150
           .DATA.L _var_menuState_8c1bc7a8 ; H'8C01B154
           .DATA.L _var_musicTestDigits_8c226078 ; H'8C01B158
           .DATA.L _var_sfxTestDigits_8c226080 ; H'8C01B15C

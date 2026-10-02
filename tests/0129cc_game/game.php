@@ -26,8 +26,8 @@ return new class extends TestCase {
         $this->initUint32($this->addressOf('_var_seed_8c157a64'), 0xcafe0001);
         $this->initUint32($this->addressOf('_var_playMode_8c1bb8d0'), 1);
 
-        $createdTask = $this->alloc(0x0c);
-        $this->initUint32(0xffffe4, $createdTask);
+        $installedTask = $this->alloc(0x0c);
+        $this->initUint32(0xffffe4, $installedTask);
 
         $this->shouldCall('_njInitMatrix')->with($this->addressOf('_var_matrix_8c2f8ca0'), 16, 0);
         $this->shouldCall('_njSetBackColor')->with(0, 0, 0);
@@ -47,15 +47,15 @@ return new class extends TestCase {
         $this->shouldCall('_AsqSetSeedA_8c012160')->with(0xcafe0001);
         $this->shouldCall('_AsqSetSeedB_8c0121a2')->with(0xcafe0001);
         
-        $this->shouldCall('_InputSpawnTask_8c0128cc')->with(1);
+        $this->shouldCall('_InputInstall_8c0128cc')->with(1);
 
-        $this->shouldCall('_TaskSpawn_8c014ae8')
+        $this->shouldCall('_TaskInstall_8c014ae8')
             ->with(
                 $this->addressOf('_var_tasks_8c1ba3c8'),
                 $this->addressOf('_pauseTask_8c012cbc'),
                 0xffffe4, 0xFFFFE8, 0
             );
-        $this->shouldCall('_TaskSpawn_8c014ae8')
+        $this->shouldCall('_TaskInstall_8c014ae8')
             ->with(
                 $this->addressOf('_var_tasks_8c1ba5e8'),
                 $this->addressOf('_ReplayMenuDemoRecordTask_8c01677e'),
@@ -68,18 +68,18 @@ return new class extends TestCase {
         $this->shouldCall('_BusInitStart_8c023610');
         $this->shouldCall('_SignalInit_8c02845a');
         
-        $this->shouldCall('_ObjectsSpawnBlinkers_8c029920');
+        $this->shouldCall('_ObjectsInstallBlinkers_8c029920');
         
-        $this->shouldCall('_ObjectsSpawnPedestrianGroups_8c0296d6');
+        $this->shouldCall('_ObjectsInstallPedestrianGroups_8c0296d6');
         $this->shouldCall('_TrafficInit_8c02769e');
-        $this->shouldCall('_TileDrawSpawnTask_8c0222dc');
-        $this->shouldCall('_ObjectsSpawnTasks_8c02a6ac');
-        $this->shouldCall('_GradeSpawnTask_8c02c46a');
-        $this->shouldCall('_HudSpawnTask_8c02018c');
+        $this->shouldCall('_TileDrawInstall_8c0222dc');
+        $this->shouldCall('_ObjectsInstall_8c02a6ac');
+        $this->shouldCall('_GradeInstall_8c02c46a');
+        $this->shouldCall('_HudInstall_8c02018c');
         $this->shouldCall('_StopSpawnInit_8c02d968');
         $this->shouldCall('_DriveCueInit_8c020528');
 
-        $this->shouldCall('_TaskSpawn_8c014ae8')->with(
+        $this->shouldCall('_TaskInstall_8c014ae8')->with(
             $this->addressOf('_var_tasks_8c1ba5e8'),
             $this->addressOf('_runStartViewTask_8c012f9c'),
             0xffffe4,
@@ -87,8 +87,8 @@ return new class extends TestCase {
             0
         );
 
-        $this->shouldRead(0xffffe4, $createdTask);
-        $this->shouldWrite($createdTask + 0x08, 0);
+        $this->shouldRead(0xffffe4, $installedTask);
+        $this->shouldWrite($installedTask + 0x08, 0);
 
         $this->shouldCall('_RenderStartRunFade_8c0228a2');
 
@@ -112,8 +112,8 @@ return new class extends TestCase {
         $var_isAttractDemo_8c1bb8d4Ptr = $this->allocRellocate('_var_isAttractDemo_8c1bb8d4', 4);
         $this->initUint32($var_isAttractDemo_8c1bb8d4Ptr, 0);
 
-        $createdTask = $this->alloc(0x0c);
-        $this->initUint32(0xffffe4, $createdTask);
+        $installedTask = $this->alloc(0x0c);
+        $this->initUint32(0xffffe4, $installedTask);
 
         $this->shouldCall('_njInitMatrix')->with($this->addressOf('_var_matrix_8c2f8ca0'), 16, 0);
         $this->shouldCall('_njSetBackColor')->with(0, 0, 0);
@@ -133,10 +133,10 @@ return new class extends TestCase {
         $this->shouldCall('_AsqSetSeedA_8c012160')->with(0xcafe0001);
         $this->shouldCall('_AsqSetSeedB_8c0121a2')->with(0xcafe0001);
         
-        $this->shouldCall('_InputSpawnTask_8c0128cc')->with(1);
+        $this->shouldCall('_InputInstall_8c0128cc')->with(1);
 
-        $this->shouldCall('_TaskSpawn_8c014ae8')->with($this->addressOf('_var_tasks_8c1ba3c8'), $this->addressOf('_pauseToggleTask_8c012d06'), 0xffffe4, 0xFFFFE8, 0);
-        $this->shouldCall('_TaskSpawn_8c014ae8')->with($this->addressOf('_var_tasks_8c1ba5e8'), $this->addressOf('_ReplayMenuDemoPlayTask_8c016bf4'), 0xffffe4, 0xFFFFE8, 0);
+        $this->shouldCall('_TaskInstall_8c014ae8')->with($this->addressOf('_var_tasks_8c1ba3c8'), $this->addressOf('_pauseToggleTask_8c012d06'), 0xffffe4, 0xFFFFE8, 0);
+        $this->shouldCall('_TaskInstall_8c014ae8')->with($this->addressOf('_var_tasks_8c1ba5e8'), $this->addressOf('_ReplayMenuDemoPlayTask_8c016bf4'), 0xffffe4, 0xFFFFE8, 0);
         $this->shouldCall('_CinematicStartTour_8c025af4');
 
         $this->shouldWriteTo('_var_pauseActive_8c1bb8cc', 0);
@@ -145,24 +145,24 @@ return new class extends TestCase {
         $this->shouldCall('_BusInitStart_8c023610');
         $this->shouldCall('_SignalInit_8c02845a');
         
-        $this->shouldCall('_ObjectsSpawnPedestrianGroups_8c0296d6');
+        $this->shouldCall('_ObjectsInstallPedestrianGroups_8c0296d6');
         $this->shouldCall('_TrafficInit_8c02769e');
-        $this->shouldCall('_TileDrawSpawnTask_8c0222dc');
-        $this->shouldCall('_ObjectsSpawnTasks_8c02a6ac');
-        $this->shouldCall('_GradeSpawnTask_8c02c46a');
-        $this->shouldCall('_HudSpawnTask_8c02018c');
+        $this->shouldCall('_TileDrawInstall_8c0222dc');
+        $this->shouldCall('_ObjectsInstall_8c02a6ac');
+        $this->shouldCall('_GradeInstall_8c02c46a');
+        $this->shouldCall('_HudInstall_8c02018c');
         $this->shouldCall('_StopSpawnInit_8c02d968');
         $this->shouldCall('_DriveCueInit_8c020528');
 
-        $this->shouldCall('_TaskSpawn_8c014ae8')->with(
+        $this->shouldCall('_TaskInstall_8c014ae8')->with(
             $this->addressOf('_var_tasks_8c1ba5e8'),
             $this->addressOf('_runStartViewTask_8c012f9c'),
             0xffffe4,
             0xFFFFE8,
             0
         );
-        $this->shouldRead(0xffffe4, $createdTask);
-        $this->shouldWrite($createdTask + 0x08, 0);
+        $this->shouldRead(0xffffe4, $installedTask);
+        $this->shouldWrite($installedTask + 0x08, 0);
 
         $this->shouldCall('_RenderStartRunFade_8c0228a2');
 
@@ -184,8 +184,8 @@ return new class extends TestCase {
         $this->initUint32($this->addressOf('_var_playMode_8c1bb8d0'), 2);
         $this->initUint32($this->addressOf('_var_isAttractDemo_8c1bb8d4'), 1);
 
-        $createdTask = $this->alloc(0x0c);
-        $createdTask2 = $this->alloc(0x0c);
+        $installedTask = $this->alloc(0x0c);
+        $installedTask2 = $this->alloc(0x0c);
 
         $this->shouldCall('_njInitMatrix')->with($this->addressOf('_var_matrix_8c2f8ca0'), 16, 0);
         $this->shouldCall('_njSetBackColor')->with(0, 0, 0);
@@ -205,9 +205,9 @@ return new class extends TestCase {
         $this->shouldCall('_AsqSetSeedA_8c012160')->with(0xcafe0001);
         $this->shouldCall('_AsqSetSeedB_8c0121a2')->with(0xcafe0001);
         
-        $this->shouldCall('_InputSpawnTask_8c0128cc')->with(1);
+        $this->shouldCall('_InputInstall_8c0128cc')->with(1);
 
-        $this->shouldCall('_TaskSpawn_8c014ae8')
+        $this->shouldCall('_TaskInstall_8c014ae8')
             ->with(
                 $this->addressOf('_var_tasks_8c1ba3c8'),
                 $this->addressOf('_attractDemoTask_8c012d5a'),
@@ -215,15 +215,15 @@ return new class extends TestCase {
                 0xFFFFE8,
                 0
             )
-            ->do(function ($params) use ($createdTask) {
-                $this->memory->writeUInt32($params[2], U32::of($createdTask));
+            ->do(function ($params) use ($installedTask) {
+                $this->memory->writeUInt32($params[2], U32::of($installedTask));
             });
 
-        $this->shouldRead(0xffffe4, $createdTask);
-        $this->shouldWrite($createdTask + 0x08, 0);
-        $this->shouldWrite($createdTask + 0x0c, 0);
+        $this->shouldRead(0xffffe4, $installedTask);
+        $this->shouldWrite($installedTask + 0x08, 0);
+        $this->shouldWrite($installedTask + 0x0c, 0);
 
-        $this->shouldCall('_TaskSpawn_8c014ae8')
+        $this->shouldCall('_TaskInstall_8c014ae8')
             ->with(
                 $this->addressOf('_var_tasks_8c1ba5e8'),
                 $this->addressOf('_ReplayMenuDemoPlayTask_8c016bf4'),
@@ -240,16 +240,16 @@ return new class extends TestCase {
         $this->shouldCall('_BusInitStart_8c023610');
         $this->shouldCall('_SignalInit_8c02845a');
         
-        $this->shouldCall('_ObjectsSpawnPedestrianGroups_8c0296d6');
+        $this->shouldCall('_ObjectsInstallPedestrianGroups_8c0296d6');
         $this->shouldCall('_TrafficInit_8c02769e');
-        $this->shouldCall('_TileDrawSpawnTask_8c0222dc');
-        $this->shouldCall('_ObjectsSpawnTasks_8c02a6ac');
-        $this->shouldCall('_GradeSpawnTask_8c02c46a');
-        $this->shouldCall('_HudSpawnTask_8c02018c');
+        $this->shouldCall('_TileDrawInstall_8c0222dc');
+        $this->shouldCall('_ObjectsInstall_8c02a6ac');
+        $this->shouldCall('_GradeInstall_8c02c46a');
+        $this->shouldCall('_HudInstall_8c02018c');
         $this->shouldCall('_StopSpawnInit_8c02d968');
         $this->shouldCall('_DriveCueInit_8c020528');
 
-        $this->shouldCall('_TaskSpawn_8c014ae8')
+        $this->shouldCall('_TaskInstall_8c014ae8')
             ->with(
                 $this->addressOf('_var_tasks_8c1ba5e8'),
                 $this->addressOf('_runStartViewTask_8c012f9c'),
@@ -257,12 +257,12 @@ return new class extends TestCase {
                 0xFFFFE8,
                 0
             )
-            ->do(function ($params) use ($createdTask2) {
-                $this->memory->writeUInt32($params[2], U32::of($createdTask2));
+            ->do(function ($params) use ($installedTask2) {
+                $this->memory->writeUInt32($params[2], U32::of($installedTask2));
             });
 
-        $this->shouldRead(0xffffe4, $createdTask2);
-        $this->shouldWrite($createdTask2 + 0x08, 0);
+        $this->shouldRead(0xffffe4, $installedTask2);
+        $this->shouldWrite($installedTask2 + 0x08, 0);
 
         $this->shouldCall('_RenderStartRunFade_8c0228a2');
 
@@ -335,7 +335,7 @@ return new class extends TestCase {
         $this->shouldCall('_RouteGetLatch_8c01432a')->andReturn(1);
 
         $this->shouldCall('_AsqFreeQueues_8c011f7e');
-        $this->shouldCall('_TaskKill_8c014b66')->with($taskPtr);
+        $this->shouldCall('_TaskUninstall_8c014b66')->with($taskPtr);
         $this->shouldCall('_SndInit_8c010e18');
         $this->shouldWriteTo('_var_lcdAnimActive_8c2260a8', 1);
         $this->shouldCall('_TitleStart_8c015fd6');
@@ -355,8 +355,8 @@ return new class extends TestCase {
 
         /* Stack locals */
         $infoLocal = 0xffffbc;
-        $createdTaskLocal = 0xffffb4;
-        $createdStateLocal = 0xffffb8;
+        $installedTaskLocal = 0xffffb4;
+        $installedStateLocal = 0xffffb8;
 
         /* Expectations */
         $this->shouldCall('_njSetTextureMemorySize')->with(0x100000);
@@ -455,17 +455,17 @@ return new class extends TestCase {
         $this->shouldCall('_VmGameSetLcdAnim_8c01c8fc')->with(3);
         $this->shouldCall('_VmGameUpdateLcd_8c01c910');
 
-        $createdTaskPtr = $this->alloc(0x0c);
-        $this->initUint32($createdTaskLocal, $createdTaskPtr);
+        $installedTaskPtr = $this->alloc(0x0c);
+        $this->initUint32($installedTaskLocal, $installedTaskPtr);
 
-        $this->shouldCall('_TaskSpawn_8c014ae8')->with(
+        $this->shouldCall('_TaskInstall_8c014ae8')->with(
             $this->addressOf('_var_tasks_8c1ba3c8'),
             $this->addressOf('_bootTask_8c013388'),
-            $createdTaskLocal,
-            $createdStateLocal,
+            $installedTaskLocal,
+            $installedStateLocal,
             0
         );
-        $this->shouldWrite($createdTaskPtr + 0x08, 0);
+        $this->shouldWrite($installedTaskPtr + 0x08, 0);
 
         $this->shouldCall('_AsqInitQueues_8c011f36')->with(0x10, 8, 0, 8);
         $this->shouldCall('_AsqResetQueues_8c011f6c');
@@ -508,8 +508,8 @@ return new class extends TestCase {
 
         /* Stack locals */
         $infoLocal = 0xffffbc;
-        $createdTaskLocal = 0xffffb4;
-        $createdStateLocal = 0xffffb8;
+        $installedTaskLocal = 0xffffb4;
+        $installedStateLocal = 0xffffb8;
 
         /* Expectations */
         $this->shouldCall('_njSetTextureMemorySize')->with(0x100000);
@@ -609,17 +609,17 @@ return new class extends TestCase {
         $this->shouldCall('_VmGameSetLcdAnim_8c01c8fc')->with(3);
         $this->shouldCall('_VmGameUpdateLcd_8c01c910');
 
-        $createdTaskPtr = $this->alloc(0x0c);
-        $this->initUint32($createdTaskLocal, $createdTaskPtr);
+        $installedTaskPtr = $this->alloc(0x0c);
+        $this->initUint32($installedTaskLocal, $installedTaskPtr);
 
-        $this->shouldCall('_TaskSpawn_8c014ae8')->with(
+        $this->shouldCall('_TaskInstall_8c014ae8')->with(
             $this->addressOf('_var_tasks_8c1ba3c8'),
             $this->addressOf('_bootTask_8c013388'),
-            $createdTaskLocal,
-            $createdStateLocal,
+            $installedTaskLocal,
+            $installedStateLocal,
             0
         );
-        $this->shouldWrite($createdTaskPtr + 0x08, 0);
+        $this->shouldWrite($installedTaskPtr + 0x08, 0);
 
         $this->shouldCall('_AsqInitQueues_8c011f36')->with(0x10, 8, 0, 8);
         $this->shouldCall('_AsqResetQueues_8c011f6c');
@@ -662,8 +662,8 @@ return new class extends TestCase {
 
         /* Stack locals */
         $infoLocal = 0xffffbc;
-        $createdTaskLocal = 0xffffb4;
-        $createdStateLocal = 0xffffb8;
+        $installedTaskLocal = 0xffffb4;
+        $installedStateLocal = 0xffffb8;
 
         /* Expectations */
         $this->shouldCall('_njSetTextureMemorySize')->with(0x100000);
@@ -763,17 +763,17 @@ return new class extends TestCase {
         $this->shouldCall('_VmGameSetLcdAnim_8c01c8fc')->with(3);
         $this->shouldCall('_VmGameUpdateLcd_8c01c910');
 
-        $createdTaskPtr = $this->alloc(0x0c);
-        $this->initUint32($createdTaskLocal, $createdTaskPtr);
+        $installedTaskPtr = $this->alloc(0x0c);
+        $this->initUint32($installedTaskLocal, $installedTaskPtr);
 
-        $this->shouldCall('_TaskSpawn_8c014ae8')->with(
+        $this->shouldCall('_TaskInstall_8c014ae8')->with(
             $this->addressOf('_var_tasks_8c1ba3c8'),
             $this->addressOf('_bootTask_8c013388'),
-            $createdTaskLocal,
-            $createdStateLocal,
+            $installedTaskLocal,
+            $installedStateLocal,
             0
         );
-        $this->shouldWrite($createdTaskPtr + 0x08, 0);
+        $this->shouldWrite($installedTaskPtr + 0x08, 0);
 
         $this->shouldCall('_AsqInitQueues_8c011f36')->with(0x10, 8, 0, 8);
         $this->shouldCall('_AsqResetQueues_8c011f6c');
@@ -816,8 +816,8 @@ return new class extends TestCase {
 
         /* Stack locals */
         $infoLocal = 0xffffbc;
-        $createdTaskLocal = 0xffffb4;
-        $createdStateLocal = 0xffffb8;
+        $installedTaskLocal = 0xffffb4;
+        $installedStateLocal = 0xffffb8;
 
         /* Expectations */
         $this->shouldCall('_njSetTextureMemorySize')->with(0x100000);
@@ -916,17 +916,17 @@ return new class extends TestCase {
         $this->shouldCall('_VmGameSetLcdAnim_8c01c8fc')->with(3);
         $this->shouldCall('_VmGameUpdateLcd_8c01c910');
 
-        $createdTaskPtr = $this->alloc(0x0c);
-        $this->initUint32($createdTaskLocal, $createdTaskPtr);
+        $installedTaskPtr = $this->alloc(0x0c);
+        $this->initUint32($installedTaskLocal, $installedTaskPtr);
 
-        $this->shouldCall('_TaskSpawn_8c014ae8')->with(
+        $this->shouldCall('_TaskInstall_8c014ae8')->with(
             $this->addressOf('_var_tasks_8c1ba3c8'),
             $this->addressOf('_bootTask_8c013388'),
-            $createdTaskLocal,
-            $createdStateLocal,
+            $installedTaskLocal,
+            $installedStateLocal,
             0
         );
-        $this->shouldWrite($createdTaskPtr + 0x08, 0);
+        $this->shouldWrite($installedTaskPtr + 0x08, 0);
 
         $this->shouldCall('_AsqInitQueues_8c011f36')->with(0x10, 8, 0, 8);
         $this->shouldCall('_AsqResetQueues_8c011f6c');

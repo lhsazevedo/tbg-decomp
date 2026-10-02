@@ -38,7 +38,7 @@ return new class extends TestCase {
 
         $this->setupCourse($paths, $groupDefs, $lists);
 
-        $this->call('_ObjectsSpawnPedestrianGroups_8c0296d6');
+        $this->call('_ObjectsInstallPedestrianGroups_8c0296d6');
 
         $this->shouldWriteLongTo('_var_pedPaths_8c228238', $paths);
         $this->shouldWriteLongTo('_var_pedGroupLists_8c228240', $lists);
@@ -68,7 +68,7 @@ return new class extends TestCase {
 
         $groups = 0x30003000;
 
-        $this->call('_ObjectsSpawnPedestrianGroups_8c0296d6');
+        $this->call('_ObjectsInstallPedestrianGroups_8c0296d6');
 
         $this->shouldWriteLongTo('_var_pedPaths_8c228238', $paths);
         $this->shouldWriteLongTo('_var_pedGroupLists_8c228240', $lists);
@@ -85,7 +85,7 @@ return new class extends TestCase {
 
         $taskLocal = 0xffffe4;
         $stateLocal = 0xffffe8;
-        $this->shouldCall('_TaskSpawn_8c014ae8')->with(
+        $this->shouldCall('_TaskInstall_8c014ae8')->with(
             $this->addressOf('_var_tasks_8c1ba5e8'),
             $this->addressOf('_pedestriansTask_8c0293f6'),
             $taskLocal,
@@ -126,7 +126,7 @@ return new class extends TestCase {
 
         $groups = 0x30003000;
 
-        $this->call('_ObjectsSpawnPedestrianGroups_8c0296d6');
+        $this->call('_ObjectsInstallPedestrianGroups_8c0296d6');
 
         $this->shouldWriteLongTo('_var_pedPaths_8c228238', $paths);
         $this->shouldWriteLongTo('_var_pedGroupLists_8c228240', $lists);
@@ -145,7 +145,7 @@ return new class extends TestCase {
 
         $taskLocal = 0xffffe4;
         $stateLocal = 0xffffe8;
-        $this->shouldCall('_TaskSpawn_8c014ae8')->with(
+        $this->shouldCall('_TaskInstall_8c014ae8')->with(
             $this->addressOf('_var_tasks_8c1ba5e8'),
             $this->addressOf('_pedestriansTask_8c0293f6'),
             $taskLocal,

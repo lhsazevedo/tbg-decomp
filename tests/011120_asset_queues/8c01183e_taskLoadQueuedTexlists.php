@@ -67,7 +67,7 @@ return new class extends TestCase {
         $this->shouldWriteTo('_var_texlistQueueDoneCount_8c157a68', 1);
         $this->shouldWriteTo('_var_texlistQueueIsIdle_8c157ab8', 1);
 
-        $this->shouldCall('_TaskKill_8c014b66')
+        $this->shouldCall('_TaskUninstall_8c014b66')
             ->with($task);
 
         $this->singleCall('_taskLoadQueuedTexlists_8c01183e')
@@ -140,7 +140,7 @@ return new class extends TestCase {
 
         // $this->shouldWriteTo('_var_texlistQueueIsIdle_8c157ab8', 1);
 
-        // $this->shouldCall('_TaskKill_8c014b66')
+        // $this->shouldCall('_TaskUninstall_8c014b66')
         //     ->with($task);
 
         $this->singleCall('_taskLoadQueuedTexlists_8c01183e')
@@ -213,7 +213,7 @@ return new class extends TestCase {
         $this->shouldWriteTo('_var_texlistQueueDoneCount_8c157a68', 1);
         $this->shouldWriteTo('_var_texlistQueueIsIdle_8c157ab8', 1);
 
-        $this->shouldCall('_TaskKill_8c014b66')
+        $this->shouldCall('_TaskUninstall_8c014b66')
             ->with($task);
 
         $this->singleCall('_taskLoadQueuedTexlists_8c01183e')
@@ -361,7 +361,7 @@ return new class extends TestCase {
 
         $this->shouldWriteTo('_var_texlistQueueIsIdle_8c157ab8', 1);
 
-        $this->shouldCall('_TaskKill_8c014b66')
+        $this->shouldCall('_TaskUninstall_8c014b66')
             ->with($task);
 
         $this->singleCall('_taskLoadQueuedTexlists_8c01183e')
@@ -495,7 +495,7 @@ return new class extends TestCase {
 
         $this->shouldWriteTo('_var_texlistQueueDoneCount_8c157a68', 2);
         $this->shouldWriteTo('_var_texlistQueueIsIdle_8c157ab8', 1);
-        $this->shouldCall('_TaskKill_8c014b66')
+        $this->shouldCall('_TaskUninstall_8c014b66')
             ->with($task);
 
         $this->singleCall('_taskLoadQueuedTexlists_8c01183e')
@@ -724,7 +724,7 @@ return new class extends TestCase {
         $this->shouldWriteTo('_var_texlistQueueDoneCount_8c157a68', 3);
         $this->shouldWriteTo('_var_texlistQueueIsIdle_8c157ab8', 1);
 
-        $this->shouldCall('_TaskKill_8c014b66')
+        $this->shouldCall('_TaskUninstall_8c014b66')
             ->with($task);
 
         $this->singleCall('_taskLoadQueuedTexlists_8c01183e')
@@ -788,7 +788,7 @@ return new class extends TestCase {
 
         $this->shouldWriteTo('_var_texlistQueueDoneCount_8c157a68', 2);
         $this->shouldWriteTo('_var_texlistQueueIsIdle_8c157ab8', 1);
-        $this->shouldCall('_TaskKill_8c014b66')
+        $this->shouldCall('_TaskUninstall_8c014b66')
             ->with($task);
 
         $this->singleCall('_taskLoadQueuedTexlists_8c01183e')

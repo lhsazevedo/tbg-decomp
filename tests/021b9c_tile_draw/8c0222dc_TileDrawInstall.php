@@ -8,7 +8,7 @@ use Lhsazevedo\Sh4ObjTest\Simulator\Types\U32;
 return new class extends TestCase {
     private function resolveSymbols(): void {
         $this->setSize('_var_tasks_8c1ba5e8', 4);
-        $this->setSize('_TaskSpawn_8c014ae8', 4);
+        $this->setSize('_TaskInstall_8c014ae8', 4);
         $this->setSize('_var_segmentModels_8c1bc3f0', 4);
         $this->setSize('_var_sceneParams_8c18ad24', 4);
     }
@@ -38,9 +38,9 @@ return new class extends TestCase {
         }
         $this->initUint32($this->addressOf('_var_sceneParams_8c18ad24'), $sceneParams);
 
-        $this->call('_TileDrawSpawnTask_8c0222dc');
+        $this->call('_TileDrawInstall_8c0222dc');
 
-        $this->shouldCall('_TaskSpawn_8c014ae8')
+        $this->shouldCall('_TaskInstall_8c014ae8')
             ->with(
                 $this->addressOf('_var_tasks_8c1ba5e8'),
                 $this->addressOf('_enqueueTask_8c0221d0'),

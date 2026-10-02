@@ -106,7 +106,7 @@ int CourseMenuRequestSysResgrp_8c018568(ResourceGroup *res_group, ResourceGroupI
 void CourseMenuFreeResourceGroup_8c0185c4(ResourceGroup *res_group);
 void CourseMenuEnter_8c017e18(Task *task);
 void CourseMenuDrawDateAndExp_8c016ee6(void);
-void CourseMenuSpawnDialogTask_8c0170c6(int dialog_index, int *voice_cues);
+void CourseMenuInstallDialog_8c0170c6(int dialog_index, int *voice_cues);
 int CourseMenuBuildCourseUnlockList_8c0172dc(void);
 void CourseMenuApplyUnlocks_8c0173e6(void);
 void CourseMenuReturn_8c017ef2(void);

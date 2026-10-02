@@ -3938,7 +3938,7 @@ STATIC void slideshowTask_8c02ab7a(Task *task, SlideshowState *state)
     case 5:
         if (!var_isFading_8c226568) {
             MessageBoxFreeAssets_8c02adee();
-            TaskKill_8c014b66(task);
+            TaskUninstall_8c014b66(task);
             EventApplyFlags_8c02b292();
             RouteStartModelLoadPass_8c013d78();
             var_fadeRequest_8c226564 = FADE_REQUEST_IN;
@@ -3998,7 +3998,7 @@ void MessageBoxStart_8c02ad8c(void)
     SlideshowState *state;
 
     relocateMessageText_8c02a9fc(var_messageTextDat_8c228518);
-    TaskSpawn_8c014ae8(var_tasks_8c1ba3c8, &slideshowTask_8c02ab7a, &task, (void **)&state, 0x1c);
+    TaskInstall_8c014ae8(var_tasks_8c1ba3c8, &slideshowTask_8c02ab7a, &task, (void **)&state, 0x1c);
     state->slide_0x10 = var_eventSlides_8c228480[var_selectedEventEntry_8c228478];
     MessageBoxOpenTextbox_8c02ae3e(0x20, 0x180, -2.0, 0x240, 0x40, 0, 0, -1);
     state->phase_0x00 = 0;

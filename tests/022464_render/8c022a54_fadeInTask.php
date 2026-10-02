@@ -9,7 +9,7 @@ return new class extends TestCase {
     private function resolveSymbols(): void {
         $this->setSize('__divlu', 4);
         $this->setSize('_njDrawPolygon', 4);
-        $this->setSize('_TaskKill_8c014b66', 4);
+        $this->setSize('_TaskUninstall_8c014b66', 4);
     }
 
     // Each vertex's .col field is written via displacement addressing from
@@ -57,6 +57,6 @@ return new class extends TestCase {
         $this->shouldCall('__divlu')->with(0xff000000, 60)->using(new RiroCallingConvention())->andReturn(0x4400000);
         $this->shouldWriteLong($this->addressOf('_var_fadeProgress_8c227d80'), 0x1000000);
         $this->shouldWriteLong($this->addressOf('_var_isFading_8c226568'), 0);
-        $this->shouldCall('_TaskKill_8c014b66')->with($task);
+        $this->shouldCall('_TaskUninstall_8c014b66')->with($task);
     }
 };

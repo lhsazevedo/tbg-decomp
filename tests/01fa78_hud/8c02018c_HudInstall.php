@@ -3,7 +3,7 @@
 use Lhsazevedo\Sh4ObjTest\TestCase;
 
 return new class extends TestCase {
-    private function taskSpawnCheck(int $tasksAddr, int $actionAddr): callable
+    private function taskInstallCheck(int $tasksAddr, int $actionAddr): callable
     {
         return function () use ($tasksAddr, $actionAddr) {
             $r4 = $this->registers[4]->value;
@@ -11,7 +11,7 @@ return new class extends TestCase {
             $allocSize = $this->memory->readUInt32($this->registers[15]->value)->value;
             if ($r4 !== $tasksAddr || $r5 !== $actionAddr || $allocSize !== 0) {
                 throw new \Exception(sprintf(
-                    "Unexpected TaskSpawn args: tasks=0x%x action=0x%x allocSize=%d",
+                    "Unexpected TaskInstall args: tasks=0x%x action=0x%x allocSize=%d",
                     $r4, $r5, $allocSize
                 ));
             }
@@ -28,9 +28,9 @@ return new class extends TestCase {
         $this->setSize('_var_runState_8c2285c4', 0x9c);
         $this->initUint32($this->addressOf('_var_runState_8c2285c4') + 0x0c, 42);
 
-        $this->call('_HudSpawnTask_8c02018c');
+        $this->call('_HudInstall_8c02018c');
 
-        $this->shouldCall('_TaskSpawn_8c014ae8')->do($this->taskSpawnCheck(
+        $this->shouldCall('_TaskInstall_8c014ae8')->do($this->taskInstallCheck(
             $this->addressOf('_var_tasks_8c1ba5e8'),
             $this->addressOf('_updateTask_8c01ff48'),
         ));

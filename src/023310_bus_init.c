@@ -137,8 +137,8 @@ STATIC void placeBus_8c023310(void)
 
 void BusInitStart_8c023610(void)
 {
-    Task *created_task;
-    void *created_state;
+    Task *installed_task;
+    void *installed_state;
     int i;
     NJS_OBJECT **selected;
     CourseSegment *segment;
@@ -151,7 +151,7 @@ void BusInitStart_8c023610(void)
 
     var_busDoorLastFrame_8c227db4 = (float)var_busDoorMotion_8c1bc410->nbFrame - 1.0f;
 
-    TaskSpawn_8c014ae8(var_tasks_8c1ba5e8, &BusTask_8c022bdc, &created_task, &created_state, 0);
+    TaskInstall_8c014ae8(var_tasks_8c1ba5e8, &BusTask_8c022bdc, &installed_task, &installed_state, 0);
 
     var_playerBus_8c1bbd9c = &var_busState_8c1bb9d0;
     var_busState_8c1bb9d0.texlistLarge_0x004 = (int)var_routeModelSlots_8c1bbddc[26].texlist_0x08;

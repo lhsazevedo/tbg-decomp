@@ -536,7 +536,7 @@ STATIC void routeLoadTask_8c014338(RouteLoadTask *task, void *state)
         }
 
         case ROUTE_LOAD_STATE_DONE: {
-            TaskKill_8c014b66((Task *) task);
+            TaskUninstall_8c014b66((Task *) task);
             AsqFreeQueues_8c011f7e();
             var_loadScreenActive_8c157a6c = 0;
             njReleaseTexture(var_loadingResourceGroup_8c1bc3f8.tlist_0x00);
@@ -552,17 +552,17 @@ STATIC void routeLoadTask_8c014338(RouteLoadTask *task, void *state)
     SpriteDraw_8c014f54(&var_loadingResourceGroup_8c1bc3f8, (frame >> 2) % 6 + 1, 0.0f, 0.0f, -4.0f);
 }
 
-void RouteSpawnLoadTask_8c0144fc(void)
+void RouteInstallLoad_8c0144fc(void)
 {
     RouteLoadTask *task;
     void *state;
 
-    LOG_DEBUG(("[ROUTE] spawning routeLoadTask_8c014338\n"));
+    LOG_DEBUG(("[ROUTE] installing routeLoadTask_8c014338\n"));
 
     njSetBackColor(0xff418dff, 0xff418dff, 0xff418dff);
     var_loadScreenActive_8c157a6c = 1;
 
-    TaskSpawn_8c014ae8(var_tasks_8c1ba3c8, (void *) routeLoadTask_8c014338, (Task **) &task, &state, 0);
+    TaskInstall_8c014ae8(var_tasks_8c1ba3c8, (void *) routeLoadTask_8c014338, (Task **) &task, &state, 0);
     CHANGE_LOAD_STATE(task, ROUTE_LOAD_STATE_INIT);
     task->frame_0x0c = 0;
 
@@ -601,7 +601,7 @@ STATIC void segmentReloadTask_8c014550(SegmentReloadTask *task, void *state)
         }
 
         case SEGMENT_RELOAD_STATE_DONE: {
-            TaskKill_8c014b66((Task *) task);
+            TaskUninstall_8c014b66((Task *) task);
             AsqFreeQueues_8c011f7e();
             var_loadScreenActive_8c157a6c = 0;
             njReleaseTexture(var_loadingResourceGroup_8c1bc3f8.tlist_0x00);
@@ -619,7 +619,7 @@ STATIC void segmentReloadTask_8c014550(SegmentReloadTask *task, void *state)
     SpriteDraw_8c014f54(&var_loadingResourceGroup_8c1bc3f8, (frame >> 2) % 6 + 1, 0.0f, 0.0f, -4.0f);
 }
 
-void RouteSpawnSegmentReloadTask_8c01468e(void)
+void RouteInstallSegmentReload_8c01468e(void)
 {
     SegmentReloadTask *task;
     void *state;
@@ -633,10 +633,10 @@ void RouteSpawnSegmentReloadTask_8c01468e(void)
         }
     }
 
-    LOG_DEBUG(("[ROUTE] spawning segmentReloadTask_8c014550\n"));
+    LOG_DEBUG(("[ROUTE] installing segmentReloadTask_8c014550\n"));
 
     var_loadScreenActive_8c157a6c = 1;
-    TaskSpawn_8c014ae8(var_tasks_8c1ba3c8, (void *) segmentReloadTask_8c014550, (Task **) &task, &state, 0);
+    TaskInstall_8c014ae8(var_tasks_8c1ba3c8, (void *) segmentReloadTask_8c014550, (Task **) &task, &state, 0);
     CHANGE_SEGMENT_RELOAD_STATE(task, SEGMENT_RELOAD_STATE_POST_LOAD);
     task->frame_0x0c = 0;
     freeSegmentAssets_8c013f22();
@@ -649,7 +649,7 @@ void RouteSpawnSegmentReloadTask_8c01468e(void)
 }
 
 /* routeLoadTask_8c014338 without TileStreamLoad_8c021810, rebinding the
- * interior texture at the end. Only UnusedLoadSpawnTask_8c014934 spawns it, and
+ * interior texture at the end. Only UnusedLoadInstall_8c014934 installs it, and
  * nothing calls that. */
 void RouteUnusedTask_8c014784(RouteLoadTask *task, void *state)
 {
@@ -699,7 +699,7 @@ void RouteUnusedTask_8c014784(RouteLoadTask *task, void *state)
         }
 
         case ROUTE_LOAD_STATE_DONE: {
-            TaskKill_8c014b66((Task *) task);
+            TaskUninstall_8c014b66((Task *) task);
             AsqFreeQueues_8c011f7e();
             var_loadScreenActive_8c157a6c = 0;
             njReleaseTexture(var_loadingResourceGroup_8c1bc3f8.tlist_0x00);

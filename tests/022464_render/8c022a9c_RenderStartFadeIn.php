@@ -8,7 +8,7 @@ use Lhsazevedo\Sh4ObjTest\Simulator\Types\U32;
 return new class extends TestCase {
     private function resolveSymbols(): void {
         $this->setSize('_var_tasks_8c1ba3c8', 4);
-        $this->setSize('_TaskSpawn_8c014ae8', 4);
+        $this->setSize('_TaskInstall_8c014ae8', 4);
     }
 
     public function test_starts_fade_in_task(): void {
@@ -18,7 +18,7 @@ return new class extends TestCase {
 
         $this->call('_RenderStartFadeIn_8c022a9c')->with(30);
 
-        $this->shouldCall('_TaskSpawn_8c014ae8')
+        $this->shouldCall('_TaskInstall_8c014ae8')
             ->with(
                 $this->addressOf('_var_tasks_8c1ba3c8'),
                 $this->addressOf('_fadeInTask_8c022a54'),

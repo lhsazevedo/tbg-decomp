@@ -520,7 +520,7 @@ return new class extends TestCase {
 
         $this->call('_saveMenuTask_8c01628c')->with(0x1234, $p);   // r4 = task
 
-        $this->shouldCall('_TaskKill_8c014b66')->with(0x1234);
+        $this->shouldCall('_TaskUninstall_8c014b66')->with(0x1234);
         $this->shouldCall('_ReplayMenuOpen_8c01673a');
     }
 
@@ -548,7 +548,7 @@ return new class extends TestCase {
         $this->setSize('_BupMount_8c014c00', 4);
         $this->setSize('_BupUnmount_8c014c46', 4);
         $this->setSize('_BupGetInfo_8c014bba', 4);
-        $this->setSize('_TaskKill_8c014b66', 4);
+        $this->setSize('_TaskUninstall_8c014b66', 4);
         $this->setSize('_buIsExistFile', 4);
         /* ReplayMenuOpen_8c01673a is defined in both objects now -- addressOf resolves it
          * directly, do NOT setSize a defined symbol. */

@@ -9,10 +9,10 @@ return new class extends TestCase {
     {
         $this->setSize('_RenderQueueDraw_8c0223ea', 4);
         $this->setSize('_TaskRunGroup_8c014b42', 4);
-        $this->setSize('_TaskKill_8c014b66', 4);
+        $this->setSize('_TaskUninstall_8c014b66', 4);
         $this->setSize('_MessageBoxStart_8c02ad8c', 4);
         $this->setSize('_RouteGetLatch_8c01432a', 4);
-        $this->setSize('_StopKillTaskGroup_8c02ca96', 4);
+        $this->setSize('_StopUninstallGroup_8c02ca96', 4);
         $this->setSize('_njReleaseTexture', 4);
         $this->setSize('_BusCameraRestoreState_8c024b86', 4);
         $this->setSize('_BusCameraApplyMode_8c024f32', 4);
@@ -294,7 +294,7 @@ return new class extends TestCase {
         $this->call('_PassengerStopSceneTask_8c02d644')->with($task, $state);
 
         $this->expectFrameCallbacks();
-        $this->shouldCall('_StopKillTaskGroup_8c02ca96');
+        $this->shouldCall('_StopUninstallGroup_8c02ca96');
         $this->shouldCall('_njReleaseTexture')->with($tlist);
         $this->shouldWriteLongTo('_var_cameraMode_8c227d9c', 2);
         $this->shouldWriteLongTo('_var_cameraCueState_8c227da4', 0);
@@ -303,7 +303,7 @@ return new class extends TestCase {
         $this->shouldWriteLong($busState + 0x2b4, 1);
         $this->shouldWriteLong($busState + 0x25c, 2); // playMode==PRACTICE -> always 2
         $this->shouldWriteLongTo('_var_viewLayout_8c22655c', 2);
-        $this->shouldCall('_TaskKill_8c014b66')->with($task);
+        $this->shouldCall('_TaskUninstall_8c014b66')->with($task);
     }
 
     public function test_case5_done_tears_down_normal_mode_ome_segment0(): void
@@ -328,7 +328,7 @@ return new class extends TestCase {
         $this->call('_PassengerStopSceneTask_8c02d644')->with($task, $state);
 
         $this->expectFrameCallbacks();
-        $this->shouldCall('_StopKillTaskGroup_8c02ca96');
+        $this->shouldCall('_StopUninstallGroup_8c02ca96');
         $this->shouldCall('_njReleaseTexture')->with($tlist);
         $this->shouldCall('_BusCameraRestoreState_8c024b86'); // not DEMO, not PRACTICE
         $busState = $this->addressOf('_var_busState_8c1bb9d0');
@@ -336,7 +336,7 @@ return new class extends TestCase {
         $this->shouldWriteLong($busState + 0x25c, 1); // !PRACTICE && OME && segment==0
         $this->shouldWriteLongTo('_var_viewLayout_8c22655c', 2);
         $this->shouldCall('_SndPlayAdx_8c010cd6')->with(0, 1 + 5); // OME offset = 5
-        $this->shouldCall('_TaskKill_8c014b66')->with($task);
+        $this->shouldCall('_TaskUninstall_8c014b66')->with($task);
     }
 
     public function test_default_phase_registers_overlay_only(): void

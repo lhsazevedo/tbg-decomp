@@ -35,7 +35,7 @@ return new class extends TestCase {
     private function setupExterns()
     {
         $this->setSize('_var_peripherals_8c1ba35c', 0x34);
-        $this->setSize('_TaskKill_8c014b66', 4);
+        $this->setSize('_TaskUninstall_8c014b66', 4);
         $this->setSize('_njPrintC', 4);
         $this->setSize('_AsqGetRandomA_8c012166', 4);
         // the only foreign entry in init_replayMenuEntries_8c04429c; the rest are
@@ -61,7 +61,7 @@ return new class extends TestCase {
 
         $this->call('_listMenuTask_8c01666a')->with($task);
 
-        $this->shouldCall('_TaskKill_8c014b66')->with($task);
+        $this->shouldCall('_TaskUninstall_8c014b66')->with($task);
         $this->shouldWriteLong(
             $this->addressOf('_var_replayMenuCourseSel_8c1bc824'),
             $this->addressOf('_init_replayMenuEntries_8c04429c') + 1 * 0x14 + 0x08

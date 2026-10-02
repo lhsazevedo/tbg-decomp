@@ -35,7 +35,7 @@ return new class extends TestCase {
 
         // 3.0f + 1.0f == 4.0f exactly: the boundary is inclusive (lapsed).
         $this->shouldWriteLong($state + self::ST_CURRENT_FRAME, 0x40800000);
-        $this->shouldCall('_TaskKill_8c014b66')->with($task);
+        $this->shouldCall('_TaskUninstall_8c014b66')->with($task);
     }
 
     public function test_frame_lapsed_frees_task(): void
@@ -49,6 +49,6 @@ return new class extends TestCase {
 
         // 4.0f + 1.0f = 5.0f
         $this->shouldWriteLong($state + self::ST_CURRENT_FRAME, 0x40a00000);
-        $this->shouldCall('_TaskKill_8c014b66')->with($task);
+        $this->shouldCall('_TaskUninstall_8c014b66')->with($task);
     }
 };

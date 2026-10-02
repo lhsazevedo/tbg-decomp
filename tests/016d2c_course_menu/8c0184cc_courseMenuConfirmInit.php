@@ -22,7 +22,7 @@ return new class extends TestCase {
         );
 
         // Step 2: Set task action to course confirm menu task
-        $this->shouldCall('_TaskSwitch_8c014b3e')->with(
+        $this->shouldCall('_TaskReinstall_8c014b3e')->with(
             $task,
             $this->addressOf('_courseConfirmMenuTask_8c0181b6')
         );

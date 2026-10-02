@@ -307,7 +307,7 @@ return new class extends TestCase {
 
         $this->shouldReadFrom('_var_loadRetryNeeded_8c157a88', 0);
         $this->shouldWriteTo('_var_datQueueIsIdle_8c157a98', 1);
-        $this->shouldCall('_TaskKill_8c014b66')
+        $this->shouldCall('_TaskUninstall_8c014b66')
             ->with($taskPtr);
 
         $this->singleCall('_taskLoadQueuedDats_8c0111b4')
@@ -742,7 +742,7 @@ return new class extends TestCase {
     {
         // Functions
         $this->setSize('_gdFsClose', 4);
-        $this->setSize('_TaskKill_8c014b66', 4);
+        $this->setSize('_TaskUninstall_8c014b66', 4);
     }
 
     protected function isAsmObject(): bool

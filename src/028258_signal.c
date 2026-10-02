@@ -121,7 +121,7 @@ STATIC void snapPointToGround_8c02840c(void)
 }
 
 /* Heads are spawned first so each attachment can find its head among the
- * spawned tasks. */
+ * installed tasks. */
 void SignalInit_8c02845a(void)
 {
     TrafficSignalDef *def;
@@ -175,7 +175,7 @@ void SignalInit_8c02845a(void)
             continue;
         }
 
-        TaskSpawn_8c014ae8(var_trafficSignalTasks_8c227e20, &headTask_8c028258,
+        TaskInstall_8c014ae8(var_trafficSignalTasks_8c227e20, &headTask_8c028258,
                           &task, (void **)&state, 0xd4);
         state->id_0x00 = def->id_0x04;
         state->counter_0x04 = def->linkedId_0x08;
@@ -223,7 +223,7 @@ void SignalInit_8c02845a(void)
             continue;
         }
 
-        TaskSpawn_8c014ae8(var_trafficSignalTasks_8c227e20, &attachmentTask_8c02833c,
+        TaskInstall_8c014ae8(var_trafficSignalTasks_8c227e20, &attachmentTask_8c02833c,
                           &task, (void **)&state, 0xd4);
         for (slot = var_trafficSignalTasks_8c227e20; slot->action != NULL; slot++) {
             if (slot->action == (TaskAction)-1 || slot == task) {
@@ -259,7 +259,7 @@ void SignalInit_8c02845a(void)
         }
         var_trafficSignalFrames_8c227e24[state->id_0x00] = state->frame_0x0c;
     }
-    TaskSpawn_8c014ae8(var_tasks_8c1ba5e8, &execGroupTask_8c0283e8, &task, (void **)&state, 0);
+    TaskInstall_8c014ae8(var_tasks_8c1ba5e8, &execGroupTask_8c0283e8, &task, (void **)&state, 0);
 }
 
 TrafficSignal *SignalGet_8c0288b2(int index)
@@ -270,7 +270,7 @@ TrafficSignal *SignalGet_8c0288b2(int index)
 void SignalFree_8c0288be(void)
 {
     if (var_trafficSignalTasks_8c227e20 != (void *)-1) {
-        TaskKillGroup_8c014ab4(var_trafficSignalTasks_8c227e20);
+        TaskUninstallGroup_8c014ab4(var_trafficSignalTasks_8c227e20);
         syFree(var_trafficSignalTasks_8c227e20);
         var_trafficSignalTasks_8c227e20 = (void *)-1;
     }

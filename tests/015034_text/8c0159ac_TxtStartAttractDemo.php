@@ -17,19 +17,19 @@ return new class extends TestCase {
         $nextDemoEntry =
             $this->addressOf('_init_demos_8c044154') + $nextDemo * 0xc;
 
-        $createdTask = 0xffffec;
-        $this->shouldCall('_TaskSpawn_8c014ae8')
+        $installedTask = 0xffffec;
+        $this->shouldCall('_TaskInstall_8c014ae8')
             ->with(
                 $this->addressOf('_var_tasks_8c1ba3c8'),
                 $this->addressOf('_demoLoadTask_8c01594c'),
-                $createdTask,
+                $installedTask,
                 0xfffff0,
                 0
-            )->do(function ($params) use ($createdTask) {
-                $this->memory->writeUInt32($params[2], U32::of($createdTask));
+            )->do(function ($params) use ($installedTask) {
+                $this->memory->writeUInt32($params[2], U32::of($installedTask));
             });
 
-        $this->shouldWriteLong($createdTask + 0x08, 0);
+        $this->shouldWriteLong($installedTask + 0x08, 0);
         $this->shouldWriteLongTo('_var_playMode_8c1bb8d0', 2);
         $this->shouldWriteLongTo('_var_isAttractDemo_8c1bb8d4', 1);
         $this->shouldWriteLongTo('_var_demoIndex_8c1bb8d8', $nextDemo);
@@ -69,19 +69,19 @@ return new class extends TestCase {
         $nextDemoEntry =
             $this->addressOf('_init_demos_8c044154') + $nextDemo * 0xc;
 
-        $createdTask = 0xffffec;
-        $this->shouldCall('_TaskSpawn_8c014ae8')
+        $installedTask = 0xffffec;
+        $this->shouldCall('_TaskInstall_8c014ae8')
             ->with(
                 $this->addressOf('_var_tasks_8c1ba3c8'),
                 $this->addressOf('_demoLoadTask_8c01594c'),
-                $createdTask,
+                $installedTask,
                 0xfffff0,
                 0
-            )->do(function ($params) use ($createdTask) {
-                $this->memory->writeUInt32($params[2], U32::of($createdTask));
+            )->do(function ($params) use ($installedTask) {
+                $this->memory->writeUInt32($params[2], U32::of($installedTask));
             });
 
-        $this->shouldWriteLong($createdTask + 0x08, 0);
+        $this->shouldWriteLong($installedTask + 0x08, 0);
         $this->shouldWriteLongTo('_var_playMode_8c1bb8d0', 2);
         $this->shouldWriteLongTo('_var_isAttractDemo_8c1bb8d4', 1);
         $this->shouldWriteLongTo('_var_demoIndex_8c1bb8d8', $currentDemo + 1);

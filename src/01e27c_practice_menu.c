@@ -303,7 +303,7 @@ STATIC void lessonDescriptionTask_8c01e27c(Task *task)
 
 STATIC void enterDescription_8c01e576(Task *task)
 {
-    TaskSwitch_8c014b3e(task, lessonDescriptionTask_8c01e27c);
+    TaskReinstall_8c014b3e(task, lessonDescriptionTask_8c01e27c);
     var_menuState_8c1bc7a8.state_0x18 = STATE_INIT;
 
     AsqInitQueues_8c011f36(8, 0, 0, 8);
@@ -455,7 +455,7 @@ STATIC void lessonGuideTask_8c01e63c(Task *task)
  * resident. */
 STATIC void enterGuide_8c01e920(Task *task)
 {
-    TaskSwitch_8c014b3e(task, lessonGuideTask_8c01e63c);
+    TaskReinstall_8c014b3e(task, lessonGuideTask_8c01e63c);
     var_menuState_8c1bc7a8.cursorRow_0x40 = 0;
     MessageBoxSetText_8c02aefc(const_emptyMsg_8c038984);
 
@@ -566,7 +566,7 @@ STATIC void lessonMenuTask_8c01ebf2(Task *task, void *state)
 
         case LESSON_STATE_DIALOG_FADE_IN:
             if (var_isFading_8c226568 == 0) {
-                CourseMenuSpawnDialogTask_8c0170c6(var_lessonDialogQueue_8c226414[0], 0);
+                CourseMenuInstallDialog_8c0170c6(var_lessonDialogQueue_8c226414[0], 0);
                 var_menuState_8c1bc7a8.state_0x18 = LESSON_STATE_DIALOG_QUEUE;
             }
             break;
@@ -578,7 +578,7 @@ STATIC void lessonMenuTask_8c01ebf2(Task *task, void *state)
                     var_menuState_8c1bc7a8.state_0x18 = LESSON_STATE_MENU;
                     MessageBoxSetText_8c02aefc(const_emptyMsg_8c038984);
                 } else {
-                    CourseMenuSpawnDialogTask_8c0170c6(var_lessonDialogQueue_8c226414[task->field_0x08], 0);
+                    CourseMenuInstallDialog_8c0170c6(var_lessonDialogQueue_8c226414[task->field_0x08], 0);
                 }
             }
             break;
@@ -754,7 +754,7 @@ STATIC void lessonMenuTask_8c01ebf2(Task *task, void *state)
 void PracticeMenuEnter_8c01f114(Task *task)
 {
     var_playMode_8c1bb8d0 = PLAY_MODE_PRACTICE;
-    TaskSwitch_8c014b3e(task, lessonMenuTask_8c01ebf2);
+    TaskReinstall_8c014b3e(task, lessonMenuTask_8c01ebf2);
     var_menuState_8c1bc7a8.scrollTopRow_0x44 = 0;
     scrollTowardSelection_8c01ebc8();
     var_lessonAttempts_8c22642c = 0;
@@ -781,12 +781,12 @@ void PracticeMenuEnter_8c01f114(Task *task)
     RenderStartFadeIn_8c022a9c(10);
 }
 
-/* Re-entry after a practice drive: records a new best score and spawns the
+/* Re-entry after a practice drive: records a new best score and installs the
  * lesson list's tasks from scratch. */
 void PracticeMenuReturn_8c01f21c(void)
 {
-    Task *created_task;
-    void *created_state;
+    Task *installed_task;
+    void *installed_state;
 
     var_menuState_8c1bc7a8.scrollTopRow_0x44 = 0;
     scrollTowardSelection_8c01ebc8();
@@ -806,14 +806,14 @@ void PracticeMenuReturn_8c01f21c(void)
     }
 
     var_playMode_8c1bb8d0 = PLAY_MODE_PRACTICE;
-    InputSpawnTask_8c0128cc(0);
-    TaskSpawn_8c014ae8(var_tasks_8c1ba3c8, GameSoftResetTask_8c012f44, &created_task, &created_state, 0);
-    TaskSpawn_8c014ae8(var_tasks_8c1ba3c8, lessonMenuTask_8c01ebf2, &created_task, &created_state, 0);
+    InputInstall_8c0128cc(0);
+    TaskInstall_8c014ae8(var_tasks_8c1ba3c8, GameSoftResetTask_8c012f44, &installed_task, &installed_state, 0);
+    TaskInstall_8c014ae8(var_tasks_8c1ba3c8, lessonMenuTask_8c01ebf2, &installed_task, &installed_state, 0);
 
     var_menuState_8c1bc7a8.state_0x18 = LESSON_STATE_INIT;
     var_menuState_8c1bc7a8.instructorSprite_0x60 =
         init_instructorDialogs_8c044c08[var_lessonDialogQueue_8c226414[0]]->spriteNo_0x04;
-    created_task->field_0x08 = 0;
+    installed_task->field_0x08 = 0;
 
     njGarbageTexture(var_tex_8c157af8, 0xc00);
     MessageBoxOpenTextbox_8c02ae3e(0x20, 0x180, -2.0f, 0x240, 0x40, 0, 0, -1);

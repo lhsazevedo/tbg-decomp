@@ -841,12 +841,12 @@ STATIC void driveEndFadeTask_8c02c69a(Task *task, void *state) {
 }
 
 STATIC void enterDriveEnd_8c02c738(void) {
-    Task *created_task;
-    void *created_state;
+    Task *installed_task;
+    void *installed_state;
 
-    ReplayMenuKillDriveTasks_8c01614c();
-    TaskSpawn_8c014ae8(var_tasks_8c1ba3c8, (void *)driveEndFadeTask_8c02c69a, &created_task, &created_state, 0);
-    created_task->field_0x08 = 0;
+    ReplayMenuUninstallDrive_8c01614c();
+    TaskInstall_8c014ae8(var_tasks_8c1ba3c8, (void *)driveEndFadeTask_8c02c69a, &installed_task, &installed_state, 0);
+    installed_task->field_0x08 = 0;
     RenderStartFadeIn_8c022a9c(10);
 }
 
@@ -863,14 +863,14 @@ STATIC void onFadeRunFailed_8c02c76a(void) {
  * loads the next segment while a stop is owed, otherwise the run passed. */
 STATIC void onFadeStopEnded_8c02c624(void) {
     if (GradeRunComplete_8c02c586() == 0) {
-        ObjectsKillPedestrianGroups_8c0297da();
+        ObjectsUninstallPedestrianGroups_8c0297da();
         SignalFree_8c0288be();
-        TaskKillGroup_8c014ab4(var_tasks_8c1bb448);
-        TaskKillGroup_8c014ab4(var_tasks_8c1bac28);
-        TaskKillGroup_8c014ab4(var_tasks_8c1ba5e8);
-        TaskKillGroup_8c014ab4(var_tasks_8c1ba3c8);
+        TaskUninstallGroup_8c014ab4(var_tasks_8c1bb448);
+        TaskUninstallGroup_8c014ab4(var_tasks_8c1bac28);
+        TaskUninstallGroup_8c014ab4(var_tasks_8c1ba5e8);
+        TaskUninstallGroup_8c014ab4(var_tasks_8c1ba3c8);
         StopAdvance_8c02ccc6();
-        RouteSpawnSegmentReloadTask_8c01468e();
+        RouteInstallSegmentReload_8c01468e();
         return;
     }
 
@@ -890,14 +890,14 @@ STATIC void onFadeStopEnded_8c02c624(void) {
 
 void GradeOnFadePracticeEnd_8c02c784(void) {
     if (GradeRunComplete_8c02c586() == 0 && var_runState_8c2285c4.driverPoints_0x0c > 0) {
-        ObjectsKillPedestrianGroups_8c0297da();
+        ObjectsUninstallPedestrianGroups_8c0297da();
         SignalFree_8c0288be();
-        TaskKillGroup_8c014ab4(var_tasks_8c1bb448);
-        TaskKillGroup_8c014ab4(var_tasks_8c1bac28);
-        TaskKillGroup_8c014ab4(var_tasks_8c1ba5e8);
-        TaskKillGroup_8c014ab4(var_tasks_8c1ba3c8);
+        TaskUninstallGroup_8c014ab4(var_tasks_8c1bb448);
+        TaskUninstallGroup_8c014ab4(var_tasks_8c1bac28);
+        TaskUninstallGroup_8c014ab4(var_tasks_8c1ba5e8);
+        TaskUninstallGroup_8c014ab4(var_tasks_8c1ba3c8);
         StopAdvance_8c02ccc6();
-        RouteSpawnSegmentReloadTask_8c01468e();
+        RouteInstallSegmentReload_8c01468e();
         return;
     }
 
@@ -1081,12 +1081,12 @@ STATIC void runPhaseTask_8c02c072() {
     RenderQueueDraw_8c0223ea(RENDER_LAYER_MAIN, DriveMsgDraw_8c02b388, 0);
 }
 
-void GradeSpawnTask_8c02c46a(void) {
-    Task *created_task;
-    void *created_state;
+void GradeInstall_8c02c46a(void) {
+    Task *installed_task;
+    void *installed_state;
     int i;
 
-    TaskSpawn_8c014ae8(var_tasks_8c1ba5e8, (void *)runPhaseTask_8c02c072, &created_task, &created_state, 0);
+    TaskInstall_8c014ae8(var_tasks_8c1ba5e8, (void *)runPhaseTask_8c02c072, &installed_task, &installed_state, 0);
 
     var_runState_8c2285c4.runPhase_0x00 = 0;
     var_runState_8c2285c4.runPassed_0x04 = 0;

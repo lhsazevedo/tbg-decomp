@@ -10,13 +10,13 @@ return new class extends TestCase {
     {
         $this->setSize('_var_tasks_8c1ba3c8', 4);
 
-        $createdTask = $this->alloc(0x10);
+        $installedTask = $this->alloc(0x10);
 
         $this->call('_ReplayMenuOpen_8c01673a');
 
         $this->shouldCall('_njSetBackColor')->with(0, 0, 0);
-        $this->shouldCall('_InputSpawnTask_8c0128cc')->with(0);
-        $this->shouldCall('_TaskSpawn_8c014ae8')
+        $this->shouldCall('_InputInstall_8c0128cc')->with(0);
+        $this->shouldCall('_TaskInstall_8c014ae8')
             ->with(
                 $this->addressOf('_var_tasks_8c1ba3c8'),
                 $this->addressOf('_listMenuTask_8c01666a'),
@@ -24,9 +24,9 @@ return new class extends TestCase {
                 0xfffff4,
                 0,
             )
-            ->do(function ($params) use ($createdTask) {
-                $this->memory->writeUInt32($params[2], U32::of($createdTask));
+            ->do(function ($params) use ($installedTask) {
+                $this->memory->writeUInt32($params[2], U32::of($installedTask));
             });
-        $this->shouldWriteLong($createdTask + 0x08, 0);
+        $this->shouldWriteLong($installedTask + 0x08, 0);
     }
 };

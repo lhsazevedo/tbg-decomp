@@ -72,7 +72,7 @@ void TrafficDriveParkedTask_8c02656a(Task *task, TrafficEntry *e)
     e->busDistance_0x490 = njSqrt(dx * dx + dz * dz);
 
     if (e->busDistance_0x490 > 200.0f && e->spawnPresetId_0x2f4 != var_activeTrafficPreset_8c227e14) {
-        TaskKill_8c014b66(task);
+        TaskUninstall_8c014b66(task);
         return;
     }
 
@@ -410,7 +410,7 @@ void TrafficDriveVehicleTask_8c025b98(Task *task, TrafficEntry *e)
                         return;
                     }
                     /* Despawns at once, whatever the distance to the bus. */
-                    TaskKill_8c014b66(task);
+                    TaskUninstall_8c014b66(task);
                     return;
                 }
                 TrafficAdvanceOnPath_8c026ca2(0.0f, e);
@@ -494,6 +494,6 @@ void TrafficDriveVehicleTask_8c025b98(Task *task, TrafficEntry *e)
             BusDrawPlaceEntity_8c027c3c(e, accel);
             return;
         }
-        TaskKill_8c014b66(task);
+        TaskUninstall_8c014b66(task);
     }
 }

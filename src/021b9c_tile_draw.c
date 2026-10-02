@@ -226,12 +226,12 @@ STATIC void enqueueTask_8c0221d0(Task *task, void *state)
     RenderQueueDraw_8c0223ea(RENDER_LAYER_MIRROR, (DrawFn)TileStreamDrawTile_8c021b34, (int)state);
 }
 
-void TileDrawSpawnTask_8c0222dc(void)
+void TileDrawInstall_8c0222dc(void)
 {
     Task *task;
     LoadedModel *state;
 
-    TaskSpawn_8c014ae8(var_tasks_8c1ba5e8, enqueueTask_8c0221d0, &task, (void **)&state, 8);
+    TaskInstall_8c014ae8(var_tasks_8c1ba5e8, enqueueTask_8c0221d0, &task, (void **)&state, 8);
     state->texlist = var_segmentModels_8c1bc3f0->texlist;
     state->njDest = var_segmentModels_8c1bc3f0->njDest;
 

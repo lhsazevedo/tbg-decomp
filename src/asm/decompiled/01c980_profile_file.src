@@ -28,7 +28,7 @@
           .IMPORT     _ReplayMenuFreeSessionAssets_8c016182
           .IMPORT     _CourseMenuReturn_8c017ef2
           .IMPORT     _njSetBackColor
-          .IMPORT     _TaskSwitch_8c014b3e
+          .IMPORT     _TaskReinstall_8c014b3e
           .EXPORT     _ProfileFileUpdateUnlocks_8c01c980
           .EXPORT     _ProfileFileEnter_8c01d1c4
           .AIFDEF UNIT_TESTING
@@ -1220,7 +1220,7 @@ LP_GEN_13275:
           .DATA.W H'0080 ; H'8C01D254
           .DATA.W H'0C00 ; H'8C01D256
           .DATA.L _menuTask_8c01ccec ; H'8C01D258
-          .DATA.L _TaskSwitch_8c014b3e ; H'8C01D25C
+          .DATA.L _TaskReinstall_8c014b3e ; H'8C01D25C
           .DATA.L _var_menuState_8c1bc7a8 ; H'8C01D260
           .DATA.L _CourseMenuFreeResourceGroup_8c0185c4 ; H'8C01D264
           .DATA.L _var_tex_8c157af8 ; H'8C01D268

@@ -62,7 +62,7 @@ return new Class extends TestCase {
 
         $this->call('_freeRunMenuTask_8c017ada');
 
-        $this->shouldCall('_CourseMenuSpawnDialogTask_8c0170c6')->with(32);
+        $this->shouldCall('_CourseMenuInstallDialog_8c0170c6')->with(32);
         $this->shouldWriteLong($this->addressOf('_var_menuState_8c1bc7a8') + 0x18, 2);
 
         $this->shouldRenderFrame(
@@ -110,16 +110,16 @@ return new Class extends TestCase {
         // next also != INSTR_COURSE_UNLOCKED so no midiReset call.
         $seqBase = $this->addressOf('_var_dialogQueue_8c225fbc');
         $this->initUint32($seqBase + 0, 0x05); // current
-        $this->initUint32($seqBase + 4, 0x22); // next (spawned)
+        $this->initUint32($seqBase + 4, 0x22); // next (installed)
 
         $task = $this->alloc(0x10);
         $this->initUint32($task + 0x08, 0);
 
         $this->call('_freeRunMenuTask_8c017ada')->with($task, 0);
 
-        // Effects (no course-unlock branch, just advance + spawn next)
+        // Effects (no course-unlock branch, just advance + install next)
         $this->shouldWriteLong($task + 0x08, 1);                // ++field_0x08
-        $this->shouldCall('_CourseMenuSpawnDialogTask_8c0170c6')->with(0x22, 0); // start next sequence
+        $this->shouldCall('_CourseMenuInstallDialog_8c0170c6')->with(0x22, 0); // start next sequence
 
         $this->shouldRenderFrame(
             spriteNo: 42,

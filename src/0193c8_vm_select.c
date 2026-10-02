@@ -148,7 +148,7 @@ STATIC void mountWaitTask_8c0193c8(Task *task)
             return;
     }
 
-    TaskKill_8c014b66(task);
+    TaskUninstall_8c014b66(task);
     var_vmMountBusy_8c22606c = 0;
     return;
 }
@@ -156,15 +156,15 @@ STATIC void mountWaitTask_8c0193c8(Task *task)
 void VmSelectMountAll_8c01940e()
 {
     int drive;
-    Task *createdTask;
-    void *createdState;
+    Task *installedTask;
+    void *installedState;
     for (drive = 0; drive < 8; drive++) {
         const BACKUPINFO *bupInfo = BupGetInfo_8c014bba(drive);
         if (bupInfo->Connect && !bupInfo->Work)
             BupMount_8c014c00(drive);
     }
 
-    TaskSpawn_8c014ae8(var_tasks_8c1ba3c8, &mountWaitTask_8c0193c8, &createdTask, &createdState, 0);
+    TaskInstall_8c014ae8(var_tasks_8c1ba3c8, &mountWaitTask_8c0193c8, &installedTask, &installedState, 0);
     var_vmMountBusy_8c22606c = 1;
 }
 
@@ -187,17 +187,17 @@ STATIC void unmountTask_8c01946a(Task *task, void *state)
     }
 
     if (!isBusy) {
-        TaskKill_8c014b66(task);
+        TaskUninstall_8c014b66(task);
         var_vmMountBusy_8c22606c = 0;
     }
 }
 
 void VmSelectUnmountAll_8c0194de()
 {
-    Task *createdTask;
-    void *createdState;
+    Task *installedTask;
+    void *installedState;
 
-    TaskSpawn_8c014ae8(var_tasks_8c1ba3c8, &unmountTask_8c01946a, &createdTask, &createdState, 0);
+    TaskInstall_8c014ae8(var_tasks_8c1ba3c8, &unmountTask_8c01946a, &installedTask, &installedState, 0);
     var_vmMountBusy_8c22606c = 1;
 }
 
@@ -724,7 +724,7 @@ STATIC void vmMenuTask_8c0198a0(Task* task, void *actionState)
 
 void VmSelectEnter_8c019e44(Task *task)
 {
-    TaskSwitch_8c014b3e(task, vmMenuTask_8c0198a0);
+    TaskReinstall_8c014b3e(task, vmMenuTask_8c0198a0);
     var_menuState_8c1bc7a8.state_0x18 = VM_SELECT_STATE_INIT;
     var_menuState_8c1bc7a8.selected_0x38 = 0;
     var_menuState_8c1bc7a8.timer_0x68 = 0;

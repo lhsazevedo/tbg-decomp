@@ -79,34 +79,34 @@ return new class extends TestCase {
         $menuStateBase = $this->addressOf('_var_menuState_8c1bc7a8');
 
         $this->shouldWriteLongTo('_var_playMode_8c1bb8d0', 1);
-        $this->shouldCall('_InputSpawnTask_8c0128cc')->with(0);
+        $this->shouldCall('_InputInstall_8c0128cc')->with(0);
 
-        $createdTask = 0x2000;
-        // Both calls seed their created_task out-param with a sentinel so the
+        $installedTask = 0x2000;
+        // Both calls seed their installed_task out-param with a sentinel so the
         // later task->field_0x08 write has a known address to assert against.
-        $writeCreatedTask = function ($params) use ($createdTask) {
-            $this->memory->writeUInt32($params[2], U32::of($createdTask));
+        $writeCreatedTask = function ($params) use ($installedTask) {
+            $this->memory->writeUInt32($params[2], U32::of($installedTask));
         };
 
-        $this->shouldCall('_TaskSpawn_8c014ae8')->with(
+        $this->shouldCall('_TaskInstall_8c014ae8')->with(
             $this->addressOf('_var_tasks_8c1ba3c8'),
             $this->addressOf('_GameSoftResetTask_8c012f44'),
-            0xffffe4, // created_task
-            0xffffe8, // created_state
+            0xffffe4, // installed_task
+            0xffffe8, // installed_state
             0
         )->do($writeCreatedTask);
 
-        $this->shouldCall('_TaskSpawn_8c014ae8')->with(
+        $this->shouldCall('_TaskInstall_8c014ae8')->with(
             $this->addressOf('_var_tasks_8c1ba3c8'),
             $this->addressOf('_lessonMenuTask_8c01ebf2'),
-            0xffffe4, // created_task
-            0xffffe8, // created_state
+            0xffffe4, // installed_task
+            0xffffe8, // installed_state
             0
         )->do($writeCreatedTask);
 
         $this->shouldWriteLong($menuStateBase + 0x18, 0);
         $this->shouldWriteLong($menuStateBase + 0x60, 0x2a);
-        $this->shouldWriteLong($createdTask + 0x08, 0);
+        $this->shouldWriteLong($installedTask + 0x08, 0);
 
         $this->shouldCall('_njGarbageTexture')->with($this->addressOf('_var_tex_8c157af8'), 0xc00);
         $this->shouldCall('_MessageBoxOpenTextbox_8c02ae3e')->with(0x20, 0x180, -2.0, 0x240, 0x40, 0, 0, -1);
@@ -132,8 +132,8 @@ return new class extends TestCase {
 
     private function resolveSymbols(): void
     {
-        $this->setSize('_InputSpawnTask_8c0128cc', 4);
-        $this->setSize('_TaskSpawn_8c014ae8', 4);
+        $this->setSize('_InputInstall_8c0128cc', 4);
+        $this->setSize('_TaskInstall_8c014ae8', 4);
         $this->setSize('_var_menuState_8c1bc7a8', 0x84);
         $this->setSize('_var_progress_8c1ba1cc', 0xe8);
         $this->setSize('_var_runState_8c2285c4', 0x9c);

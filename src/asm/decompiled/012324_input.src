@@ -14,13 +14,13 @@
           .IMPORT     _VmGameUpdateLcd_8c01c910
           .IMPORT     _init_btnRemapAuto_8c03beb8
           .IMPORT     _init_btnRemapWheelAuto_8c03bf18
-          .IMPORT     _TaskSpawn_8c014ae8
+          .IMPORT     _TaskInstall_8c014ae8
           .IMPORT     _var_tasks_8c1ba3c8
           .IMPORT     _var_pushedTask_8c157a74
           .IMPORT     _var_driveMode_8c1bb8c8
           .IMPORT     _strcmp
           .IMPORT     _strcpy
-          .EXPORT     _InputSpawnTask_8c0128cc
+          .EXPORT     _InputInstall_8c0128cc
           .EXPORT     _InputCheckColdBoot_8c012984
           .EXPORT     _InputPollDrive_8c012970
 
@@ -803,7 +803,7 @@ LAB_8c0128b8:
           MOV.L       @R15+,R13
           JMP         @R3
           MOV.L       @R15+,R14
-_InputSpawnTask_8c0128cc:
+_InputInstall_8c0128cc:
           MOV.L       R14,@-R15
           MOV.L       R13,@-R15
           STS.L       PR,@-R15
@@ -844,7 +844,7 @@ LP_GEN_17272:
           .DATA.L __quick_odd_mvn
           .DATA.L _var_activeCtrlType_8c157a70
           .DATA.L _VmGameUpdateLcd_8c01c910
-          .DATA.L _TaskSpawn_8c014ae8
+          .DATA.L _TaskInstall_8c014ae8
           .DATA.L _var_tasks_8c1ba3c8
           .DATA.L _var_pushedTask_8c157a74
           .DATA.L _inputMenuTask_8c012324

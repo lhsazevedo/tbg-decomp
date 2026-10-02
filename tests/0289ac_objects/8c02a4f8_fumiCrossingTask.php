@@ -5,7 +5,7 @@ declare(strict_types=1);
 use Lhsazevedo\Sh4ObjTest\TestCase;
 
 return new class extends TestCase {
-    // State offsets, matching ObjectsSpawnTasks_8c02a6ac's test.
+    // State offsets, matching ObjectsInstall_8c02a6ac's test.
     const ST_15 = 0x54; // phase
     const ST_16 = 0x58; // counter (phases 1 and 3)
     const ST_17 = 0x5c; // threshold (phases 1 and 3)

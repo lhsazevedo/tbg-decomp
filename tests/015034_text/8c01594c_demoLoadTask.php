@@ -33,7 +33,7 @@ return new class extends TestCase {
             );
         $this->shouldCall('_syFree')->with($var_demoBuf_8c1ba3c4);
         $this->shouldWriteLongTo('_var_demoBuf_8c1ba3c4', -1);
-        $this->shouldCall('_TaskKill_8c014b66')->with(0xbeba1337);
+        $this->shouldCall('_TaskUninstall_8c014b66')->with(0xbeba1337);
         $this->shouldCall('_GameStartSelectedCourse_8c01328c');
 
         $this->singleCall('_demoLoadTask_8c01594c')

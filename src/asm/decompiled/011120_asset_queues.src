@@ -9,8 +9,8 @@
           .IMPORT     _gdFsGetTransStat
           .IMPORT     _syMalloc
           .IMPORT     _syFree
-          .IMPORT     _TaskSpawn_8c014ae8
-          .IMPORT     _TaskKill_8c014b66
+          .IMPORT     _TaskInstall_8c014ae8
+          .IMPORT     _TaskUninstall_8c014b66
           .IMPORT     _var_tasks_8c1ba3c8
           .IMPORT     _strcmp
           .IMPORT     __quick_evn_mvn
@@ -333,7 +333,7 @@ L14:
           .DATA.L     _gdFsOpen
           .DATA.L     _gdFsGetFileSctSize
           .DATA.L     _gdFsRead ; H'8c0112c0
-          .DATA.L     _TaskKill_8c014b66
+          .DATA.L     _TaskUninstall_8c014b66
           .DATA.L     _gdFsGetStat
           .DATA.L     _gdFsClose
 
@@ -448,7 +448,7 @@ L23:
           MOV.L       R2,@-R15
           MOV.L       L28+44,R5; _taskLoadQueuedDats_8c0111b4
           MOV         R15,R7
-          MOV.L       L28+52,R3; _TaskSpawn_8c014ae8
+          MOV.L       L28+52,R3; _TaskInstall_8c014ae8
           ADD         #8,R7
           MOV         R15,R6
           JSR         @R3
@@ -516,7 +516,7 @@ L28:
           .DATA.L     __quick_evn_mvn
           .DATA.L     _taskLoadQueuedDats_8c0111b4
           .DATA.L     _var_tasks_8c1ba3c8
-          .DATA.L     _TaskSpawn_8c014ae8
+          .DATA.L     _TaskInstall_8c014ae8
           .DATA.L     _var_loadRetryNeeded_8c157a88
           .DATA.L     _init_dataEmpty_8c03be7c
           .DATA.L     _var_queueBaseDir_8c157a80
@@ -767,7 +767,7 @@ L46:
           .DATA.L     _var_njQueue_8c157a9c ; L46+32
           .DATA.L     _init_dataEmpty_8c03be7c
           .DATA.L     _var_njQueueIsIdle_8c157aa8
-          .DATA.L     _TaskKill_8c014b66
+          .DATA.L     _TaskUninstall_8c014b66
           .DATA.L     _gdFsGetStat ; L46+48
 
 L47:
@@ -1230,7 +1230,7 @@ L84:
           .DATA.L     _syFree
           .DATA.L     _taskLoadQueuedNjs_8c0114cc
           .DATA.L     _var_tasks_8c1ba3c8 ; L84+16
-          .DATA.L     _TaskSpawn_8c014ae8
+          .DATA.L     _TaskInstall_8c014ae8
           .DATA.L     _var_loadRetryNeeded_8c157a88
           .DATA.L     _init_dataEmpty_8c03be7c
           .DATA.L     _var_queueBaseDir_8c157a80 ; L84+32
@@ -1484,11 +1484,11 @@ L101:
           .DATA.L     _var_texlistQueueDoneCount_8c157a68 ; L101
           .DATA.L     _var_texlistQueueRear_8c157ab0
           .DATA.L     _var_texlistQueueIsIdle_8c157ab8
-          .DATA.L     _TaskKill_8c014b66 ; L101+12
+          .DATA.L     _TaskUninstall_8c014b66 ; L101+12
           .DATA.L     _var_texlistQueue_8c157aac
           .DATA.L     _taskLoadQueuedTexlists_8c01183e
           .DATA.L     _var_tasks_8c1ba3c8
-          .DATA.L     _TaskSpawn_8c014ae8 ; L101+28
+          .DATA.L     _TaskInstall_8c014ae8 ; L101+28
           .DATA.L     _syFree
           .DATA.L     _var_pvmQueue_8c157abc
           .DATA.L     _syMalloc
@@ -1630,7 +1630,7 @@ L113:
           .DATA.L     _var_pvmQueue_8c157abc
           .DATA.L     _init_dataEmpty_8c03be7c ; L113+32
           .DATA.L     _var_pvmQueueIsIdle_8c157ac8
-          .DATA.L     _TaskKill_8c014b66
+          .DATA.L     _TaskUninstall_8c014b66
           .DATA.L     _gdFsGetStat
           .DATA.L     _gdFsClose ; L113+48
 
@@ -2056,14 +2056,14 @@ L139:
           .DATA.L     _syFree
           .DATA.L     _taskLoadQueuedPvms_8c011b00
           .DATA.L     _var_tasks_8c1ba3c8 ; L139+16
-          .DATA.L     _TaskSpawn_8c014ae8
+          .DATA.L     _TaskInstall_8c014ae8
           .DATA.L     _var_loadRetryNeeded_8c157a88
           .DATA.L     _init_dataEmpty_8c03be7c
           .DATA.L     _var_queueBaseDir_8c157a80 ; L139+32
           .DATA.L     _var_pvmQueueIsIdle_8c157ac8
           .DATA.L     _var_pvmQueue_8c157abc
           .DATA.L     _njReleaseTexture
-          .DATA.L     _TaskKill_8c014b66 ; L139+48
+          .DATA.L     _TaskUninstall_8c014b66 ; L139+48
           .DATA.L     _VmGameSetLcdAnim_8c01c8fc
           .DATA.L     _VmGameUpdateLcd_8c01c910
           .DATA.L     _var_queuesAreInitialized_8c157a60
@@ -2370,7 +2370,7 @@ LP_GEN_90004:
           .RES.W      1 ; H'8c012206
           .DATA.L     _taskProcessQueues_8c011e80
           .DATA.L     _var_tasks_8c1ba3c8
-          .DATA.L     _TaskSpawn_8c014ae8
+          .DATA.L     _TaskInstall_8c014ae8
           .DATA.L     _syMalloc
           .DATA.L     _syFree
           .DATA.L     _var_seed_8c157acc

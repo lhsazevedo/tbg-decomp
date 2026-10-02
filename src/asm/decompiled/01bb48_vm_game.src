@@ -41,7 +41,7 @@
           .IMPORT     _syFree
           .IMPORT     _MainMenuEnter_8c01a09a
           .IMPORT     _MessageBoxDrawText_8c02af1c
-          .IMPORT     _TaskSwitch_8c014b3e
+          .IMPORT     _TaskReinstall_8c014b3e
           .IMPORT     _AsqInitQueues_8c011f36
           .IMPORT     _AsqResetQueues_8c011f6c
           .IMPORT     _CourseMenuRequestSysResgrp_8c018568
@@ -1956,7 +1956,7 @@ _VmGameUpdateLcd_8c01c910:
 LP_GEN_73212:
           .RES.W 1 ; H'8C01C91E
           .DATA.L _vmGameTask_8c01bfec ; H'8C01C920
-          .DATA.L _TaskSwitch_8c014b3e ; H'8C01C924
+          .DATA.L _TaskReinstall_8c014b3e ; H'8C01C924
           .DATA.L _var_menuState_8c1bc7a8 ; H'8C01C928
           .DATA.L _AsqInitQueues_8c011f36 ; H'8C01C92C
           .DATA.L _AsqResetQueues_8c011f6c ; H'8C01C930

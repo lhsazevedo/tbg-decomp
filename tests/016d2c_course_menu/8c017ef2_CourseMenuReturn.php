@@ -15,26 +15,26 @@ return new class extends TestCase {
 
         $this->call('_CourseMenuReturn_8c017ef2');
 
-        $createdTaskLocal = 0xffffe8;
-        $createdStateLocal = 0xffffec;
-        $this->shouldCall('_InputSpawnTask_8c0128cc');
-        $this->shouldCall('_TaskSpawn_8c014ae8')->with(
+        $installedTaskLocal = 0xffffe8;
+        $installedStateLocal = 0xffffec;
+        $this->shouldCall('_InputInstall_8c0128cc');
+        $this->shouldCall('_TaskInstall_8c014ae8')->with(
             $this->addressOf('_var_tasks_8c1ba3c8'),
             $this->addressOf('_GameSoftResetTask_8c012f44'),
-            $createdTaskLocal,
-            $createdStateLocal,
+            $installedTaskLocal,
+            $installedStateLocal,
             0,
         );
 
-        $createdTask = $this->alloc(0xc);
-        $this->shouldCall('_TaskSpawn_8c014ae8')->with(
+        $installedTask = $this->alloc(0xc);
+        $this->shouldCall('_TaskInstall_8c014ae8')->with(
             $this->addressOf('_var_tasks_8c1ba3c8'),
             $this->addressOf('_storyMenuTask_8c017718'),
-            $createdTaskLocal,
-            $createdStateLocal,
+            $installedTaskLocal,
+            $installedStateLocal,
             0,
-        )->do(function ($params) use ($createdTask) {
-            $this->memory->writeUInt32($params[2], U32::of($createdTask));
+        )->do(function ($params) use ($installedTask) {
+            $this->memory->writeUInt32($params[2], U32::of($installedTask));
         });
 
         $this->shouldCall('_buildStoryDialogQueue_8c017420');
@@ -44,7 +44,7 @@ return new class extends TestCase {
             0,
         );
 
-        $this->shouldWriteLong($createdTask + 0x08, 0);
+        $this->shouldWriteLong($installedTask + 0x08, 0);
 
         $this->shouldWriteLongTo('_var_menuTextboxCharLimit_8c225fb8', 0);
 
@@ -90,29 +90,29 @@ return new class extends TestCase {
         $this->initUint32($this->addressOf('_var_dialogQueue_8c225fbc'), 1);
 
         // Enter with a non-zero arg register so the missing `MOV #0,R4`
-        // (InputSpawnTask_8c0128cc(0)) is observable.
+        // (InputInstall_8c0128cc(0)) is observable.
         $this->call('_CourseMenuReturn_8c017ef2')->with(0xdeadbeef);
 
-        $createdTaskLocal = 0xffffe8;
-        $createdStateLocal = 0xffffec;
-        $this->shouldCall('_InputSpawnTask_8c0128cc')->with(0);
-        $this->shouldCall('_TaskSpawn_8c014ae8')->with(
+        $installedTaskLocal = 0xffffe8;
+        $installedStateLocal = 0xffffec;
+        $this->shouldCall('_InputInstall_8c0128cc')->with(0);
+        $this->shouldCall('_TaskInstall_8c014ae8')->with(
             $this->addressOf('_var_tasks_8c1ba3c8'),
             $this->addressOf('_GameSoftResetTask_8c012f44'),
-            $createdTaskLocal,
-            $createdStateLocal,
+            $installedTaskLocal,
+            $installedStateLocal,
             0,
         );
 
-        $createdTask = $this->alloc(0xc);
-        $this->shouldCall('_TaskSpawn_8c014ae8')->with(
+        $installedTask = $this->alloc(0xc);
+        $this->shouldCall('_TaskInstall_8c014ae8')->with(
             $this->addressOf('_var_tasks_8c1ba3c8'),
             $this->addressOf('_freeRunMenuTask_8c017ada'),
-            $createdTaskLocal,
-            $createdStateLocal,
+            $installedTaskLocal,
+            $installedStateLocal,
             0,
-        )->do(function ($params) use ($createdTask) {
-            $this->memory->writeUInt32($params[2], U32::of($createdTask));
+        )->do(function ($params) use ($installedTask) {
+            $this->memory->writeUInt32($params[2], U32::of($installedTask));
         });
 
         $this->shouldCall('_buildFreeRunDialogQueue_8c017a20');
@@ -122,7 +122,7 @@ return new class extends TestCase {
             0,
         );
 
-        $this->shouldWriteLong($createdTask + 0x08, 0);
+        $this->shouldWriteLong($installedTask + 0x08, 0);
 
         $this->shouldWriteLongTo('_var_menuTextboxCharLimit_8c225fb8', 0);
 

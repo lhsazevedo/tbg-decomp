@@ -13,7 +13,7 @@ return new class extends TestCase {
         $this->call('_PracticeMenuEnter_8c01f114')->with($task);
 
         $this->shouldWriteLongTo('_var_playMode_8c1bb8d0', 1);
-        $this->shouldCall('_TaskSwitch_8c014b3e')->with($task, $this->addressOf('_lessonMenuTask_8c01ebf2'));
+        $this->shouldCall('_TaskReinstall_8c014b3e')->with($task, $this->addressOf('_lessonMenuTask_8c01ebf2'));
 
         $menuStateBase = $this->addressOf('_var_menuState_8c1bc7a8');
         $this->shouldWriteLong($menuStateBase + 0x44, 0);
@@ -55,7 +55,7 @@ return new class extends TestCase {
         $this->call('_PracticeMenuEnter_8c01f114')->with($task);
 
         $this->shouldWriteLongTo('_var_playMode_8c1bb8d0', 1);
-        $this->shouldCall('_TaskSwitch_8c014b3e')->with($task, $this->addressOf('_lessonMenuTask_8c01ebf2'));
+        $this->shouldCall('_TaskReinstall_8c014b3e')->with($task, $this->addressOf('_lessonMenuTask_8c01ebf2'));
 
         $menuStateBase = $this->addressOf('_var_menuState_8c1bc7a8');
         $this->shouldWriteLong($menuStateBase + 0x44, 0);
@@ -89,7 +89,7 @@ return new class extends TestCase {
 
     private function resolveSymbols(): void
     {
-        $this->setSize('_TaskSwitch_8c014b3e', 4);
+        $this->setSize('_TaskReinstall_8c014b3e', 4);
         $this->setSize('_var_menuState_8c1bc7a8', 0x84);
         $this->setSize('_var_tex_8c157af8', 4);
         $this->setSize('_njSetBackColor', 4);

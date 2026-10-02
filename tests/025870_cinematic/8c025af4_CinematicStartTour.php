@@ -7,7 +7,7 @@ use Lhsazevedo\Sh4ObjTest\Simulator\Types\U32;
 
 /*
  * _CinematicStartTour_8c025af4(void): opens the caption textbox and arms
- * demoShotTask_8c0259e8 via TaskSpawn_8c014ae8, after selecting this route's
+ * demoShotTask_8c0259e8 via TaskInstall_8c014ae8, after selecting this route's
  * shot table into var_demoShots_8c227e0c from
  * init_demoShotsShinjuku_8c045674/init_demoShotsWangan_8c045b60/
  * init_demoShotsOme_8c045ee4.
@@ -34,7 +34,7 @@ return new class extends TestCase {
         $this->setSize('_MessageBoxOpenTextbox_8c02ae3e', 4);
         $this->setSize('_BusCameraDrawBusModel_8c024bb8', 4);
         $this->setSize('_RenderQueueDraw_8c0223ea', 4);
-        $this->setSize('_TaskSpawn_8c014ae8', 4);
+        $this->setSize('_TaskInstall_8c014ae8', 4);
     }
 
     private function runForRoute(int $route, string $expectedTable): void
@@ -50,7 +50,7 @@ return new class extends TestCase {
 
         $this->shouldWriteLongTo('_var_demoShots_8c227e0c', $this->addressOf($expectedTable));
 
-        $this->shouldCall('_TaskSpawn_8c014ae8')
+        $this->shouldCall('_TaskInstall_8c014ae8')
             ->with(
                 $this->addressOf('_var_tasks_8c1ba5e8'),
                 $this->addressOf('_demoShotTask_8c0259e8'),
@@ -61,7 +61,7 @@ return new class extends TestCase {
                 $sizeArg = $this->memory->readUInt32($this->registers[15]->value);
                 if (!$sizeArg->equals(0xc)) {
                     throw new \Exception(
-                        "Unexpected TaskSpawn alloc_size $sizeArg, expecting 0xc"
+                        "Unexpected TaskInstall alloc_size $sizeArg, expecting 0xc"
                     );
                 }
                 $this->memory->writeUInt32($this->registers[6]->value, U32::of($task));

@@ -88,18 +88,18 @@ would precede game's.
 
 `016bf4_demo_input` + `01614c_debug_menu` (merged as `01614c_replay_menu`) were
 found by pairing: demo_input's one function is the playback half of replay_menu's
-`ReplayMenuDemoRecordTask`, game spawns both, and replay_menu's reset zeroes
+`ReplayMenuDemoRecordTask`, game installs both, and replay_menu's reset zeroes
 `demoPrevOn`, which only playback reads. Its sole consumer being game is what
 test 2 had flagged. Layout can't separate them: split, demo_input would own
 `demoCursor`/`demoPrevOn` at the same addresses.
 
 `020528_drive_cue_init` + `020214_drive_cue_task` (merged as `020214_drive_cue`)
-are a task and its sole installer: init spawns the task and seeds its state.
+are a task and its sole installer: init installs the task and seeds its state.
 The pusher sits right after the task and neither has data, so layout can't
 separate them.
 
 `0222dc_fadecmd` was re-split at `02239c`: its first function went to
-`021b9c_tile_draw`, the rest to `022464_render`. `TileDrawSpawnTask_8c0222dc` is
+`021b9c_tile_draw`, the rest to `022464_render`. `TileDrawInstall_8c0222dc` is
 the only pusher of tile_draw's task and the only writer of its light vars. SHC
 calls same-file functions with BSR when in range, yet the task reaches
 `RenderQueueDraw`/`RenderQueueDraw2` via JSR from ~540 bytes away, so the queue
@@ -139,7 +139,7 @@ crosses it.
   gap to `init_passengerVoiceVariant` is 248.
 - Address order is what the merged source would produce: static task callbacks
   first (`0x02d19c`-`0x02d8f0`), the public init last at `0x02d968` -- the order
-  required if the callbacks are file-static and spawned by address.
+  required if the callbacks are file-static and installed by address.
 
 Under a merge everything resolves at once: the five exports become statics, the
 nine bss vars at `0x228910`-`0x228974` become file-statics, and the

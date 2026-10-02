@@ -12,7 +12,7 @@ return new class extends TestCase {
     const BS_POS_Z_304 = 0x304;
 
     // ObjectAssetType5Extra {posX, posZ}, at state[0x13] per
-    // ObjectsSpawnTasks_8c02a6ac's test.
+    // ObjectsInstall_8c02a6ac's test.
     const ST_POS_X = 0x4c;
     const ST_POS_Z = 0x50;
 

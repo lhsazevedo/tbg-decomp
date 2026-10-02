@@ -4,7 +4,7 @@
           .IMPORT     _sdMidiPlay
           .IMPORT     _var_prevStopSegment_8c22870c
           .IMPORT     _var_runState_8c2285c4
-          .IMPORT     _TaskKill_8c014b66
+          .IMPORT     _TaskUninstall_8c014b66
           .IMPORT     _var_busState_8c1bb9d0
           .IMPORT     _AsqGetRandomB_8c0121a8
           .IMPORT     _VibStart_8c010f7a
@@ -18,7 +18,7 @@
           .IMPORT     _var_vibport_8c1ba354
           .IMPORT     _var_progress_8c1ba1cc
           .IMPORT     _VibUpdate_8c010fae
-          .IMPORT     _TaskSpawn_8c014ae8
+          .IMPORT     _TaskInstall_8c014ae8
           .IMPORT     _var_tasks_8c1ba5e8
           .EXPORT     _DriveCueInit_8c020528
           .AIFDEF UNIT_TESTING
@@ -175,7 +175,7 @@ LP_GEN_12106:
           .DATA.L _var_prevStopSegment_8c22870c ; H'8C020320
           .DATA.L _var_driveCueState_8c2264b8 ; H'8C020324
           .DATA.L _var_runState_8c2285c4 ; H'8C020328
-          .DATA.L _TaskKill_8c014b66 ; H'8C02032C
+          .DATA.L _TaskUninstall_8c014b66 ; H'8C02032C
           .DATA.L H'3DBDA12F ; H'8C020330
           .DATA.L _var_busState_8c1bb9d0+H'27C ; H'8C020334 (speed_0x27c)
           .DATA.L _var_driveCueState_8c2264b8+H'4 ; H'8C020338 (ambientChimeTimer_0x04)
@@ -462,7 +462,7 @@ _DriveCueInit_8c020528:                   ; function: DriveCueInit_8c020528
           MOV.L       R1,@-R15
           MOV.L       L1+10,R5; _driveCueTask_8c020214
           MOV         R15,R7
-          MOV.L       L1+18,R2; _TaskSpawn_8c014ae8
+          MOV.L       L1+18,R2; _TaskInstall_8c014ae8
           ADD         #8,R7
           MOV         R15,R6
           JSR         @R2
@@ -496,7 +496,7 @@ L1:
           .DATA.L     _var_playMode_8c1bb8d0 ; H'8C02057C
           .DATA.L     _driveCueTask_8c020214 ; H'8C020580
           .DATA.L     _var_tasks_8c1ba5e8 ; H'8C020584
-          .DATA.L     _TaskSpawn_8c014ae8 ; H'8C020588
+          .DATA.L     _TaskInstall_8c014ae8 ; H'8C020588
           .DATA.L     _var_driveCueState_8c2264b8 ; H'8C02058C
           .DATA.L     _AsqGetRandomInRangeB_8c0121be ; H'8C020590
           .SECTION    B,DATA,ALIGN=4

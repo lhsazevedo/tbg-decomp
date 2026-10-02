@@ -116,7 +116,7 @@ extern int var_wallHitBits_8c228660;
 
 /* Also resets the run's grading state. The task idles in run phase 0 until
  * another unit sets phase 2. */
-void GradeSpawnTask_8c02c46a(void);
+void GradeInstall_8c02c46a(void);
 
 /* Whether var_nextStopSegment_8c228710 has reached the last stop the
  * route, or the practice lesson, requires. */

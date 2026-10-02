@@ -5,7 +5,7 @@ declare(strict_types=1);
 use Lhsazevedo\Sh4ObjTest\TestCase;
 
 /*
- * creditsTask_8c01f658(void): per-frame ending state machine (TaskSpawn
+ * creditsTask_8c01f658(void): per-frame ending state machine (TaskInstall
  * callback). See ENDING_TASK_STATE in the unit for the 8 states.
  */
 return new class extends TestCase {
@@ -36,7 +36,7 @@ return new class extends TestCase {
         $this->setSize('_AsqFreeQueues_8c011f7e', 4);
         $this->setSize('_SndPlayAdx_8c010cd6', 4);
         $this->setSize('_RenderStartFadeIn_8c022a9c', 4);
-        $this->setSize('_CourseMenuSpawnDialogTask_8c0170c6', 4);
+        $this->setSize('_CourseMenuInstallDialog_8c0170c6', 4);
         $this->setSize('_SndStartAdxFadeOut_8c010bae', 4);
         $this->setSize('_RenderStartFadeOut_8c022b60', 4);
         $this->setSize('_MessageBoxFreeTextboxes_8c02af32', 4);
@@ -132,7 +132,7 @@ return new class extends TestCase {
 
         $this->call('_creditsTask_8c01f658');
 
-        $this->shouldCall('_CourseMenuSpawnDialogTask_8c0170c6')->with(2, $dialogList);
+        $this->shouldCall('_CourseMenuInstallDialog_8c0170c6')->with(2, $dialogList);
         $this->shouldWriteLong($base + self::STATE_0X18, 2);
         $this->shouldCall('_updateDialogScene_8c01f42c');
     }

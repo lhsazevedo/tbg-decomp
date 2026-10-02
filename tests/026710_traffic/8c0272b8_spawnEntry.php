@@ -12,8 +12,8 @@ use Lhsazevedo\Sh4ObjTest\Simulator\Types\U32;
 
 return new class extends TestCase {
     private function resolveSymbols(): void {
-        $this->setSize('_TaskSpawn_8c014ae8', 4);
-        $this->setSize('_TaskKill_8c014b66', 4);
+        $this->setSize('_TaskInstall_8c014ae8', 4);
+        $this->setSize('_TaskUninstall_8c014b66', 4);
         $this->setSize('_AsqGetRandomA_8c012166', 4);
         $this->setSize('_VehiclePartsBind_8c02786c', 4);
         $this->setSize('_TrafficPathScanFirst_8c02f0c8', 4);
@@ -52,8 +52,8 @@ return new class extends TestCase {
 
     // &task and &entryVoid are spawnEntry_8c0272b8's own stack locals; both
     // objects happen to place &task at the same slot, but &entryVoid differs.
-    private function mockTaskSpawn(int $action, int $task, int $entry): void {
-        $this->shouldCall('_TaskSpawn_8c014ae8')
+    private function mockTaskInstall(int $action, int $task, int $entry): void {
+        $this->shouldCall('_TaskInstall_8c014ae8')
             ->with(
                 $this->addressOf('_var_tasks_8c1bac28'),
                 $action,
@@ -70,7 +70,7 @@ return new class extends TestCase {
 
     // typeCode 0x1c's day mask (per-route/time-of-day bit in init_dayMasks_8c046208)
     // is clear for (route=SHINJUKU, timeOfDay=DAY) regardless of the day
-    // count -- the entry is skipped entirely: no TaskSpawn, still returns 1.
+    // count -- the entry is skipped entirely: no TaskInstall, still returns 1.
     public function test_dayGateBlocksSpawn(): void {
         $this->resolveSymbols();
 
@@ -112,7 +112,7 @@ return new class extends TestCase {
 
         $this->call('_spawnEntry_8c0272b8')->with(0x1c, 1.5, $script);
 
-        $this->mockTaskSpawn($this->addressOf('_TrafficDriveParkedTask_8c02656a'), $task, $entry);
+        $this->mockTaskInstall($this->addressOf('_TrafficDriveParkedTask_8c02656a'), $task, $entry);
         $this->shouldWriteLong($entry + 0x2e4, 1);
         $this->shouldWriteLong($entry + 0x48c, 3); // 0x8000 clear
         $this->shouldWriteLong($entry + 0x2c8, $this->addressOf('_GroundProbeTrackPolygon_8c020b6c'));
@@ -140,7 +140,7 @@ return new class extends TestCase {
     }
 
     // A typeCode outside the 0x1c/0x1e day-gated range spawns a moving
-    // vehicle (*script != 10): TaskSpawn uses TrafficDriveVehicleTask_8c025b98 (entry+0x2e4=0),
+    // vehicle (*script != 10): TaskInstall uses TrafficDriveVehicleTask_8c025b98 (entry+0x2e4=0),
     // and the full moving-vehicle setup runs, including the taxi/tour-bus
     // random flag (typeCode 0x14, odd random -> entry+0x510 |= 0x40).
     public function test_movingVehicleFullPath(): void {
@@ -159,7 +159,7 @@ return new class extends TestCase {
 
         $this->call('_spawnEntry_8c0272b8')->with(0x14, 2.5, $script);
 
-        $this->mockTaskSpawn($this->addressOf('_TrafficDriveVehicleTask_8c025b98'), $task, $entry);
+        $this->mockTaskInstall($this->addressOf('_TrafficDriveVehicleTask_8c025b98'), $task, $entry);
         $this->shouldWriteLong($entry + 0x2e4, 0);
         $this->shouldWriteLong($entry + 0x48c, 3);
         $this->shouldWriteLong($entry + 0x2c8, $this->addressOf('_GroundProbeTrackPolygon_8c020b6c'));
@@ -198,9 +198,9 @@ return new class extends TestCase {
         $this->shouldReturn(1);
     }
 
-    // TaskSpawn failing (no task allocated) aborts immediately: no further
+    // TaskInstall failing (no task allocated) aborts immediately: no further
     // field writes or calls, and nothing to free.
-    public function test_taskSpawnFailureReturnsZero(): void {
+    public function test_taskInstallFailureReturnsZero(): void {
         $this->resolveSymbols();
 
         $script = $this->alloc(2);
@@ -208,7 +208,7 @@ return new class extends TestCase {
 
         $this->call('_spawnEntry_8c0272b8')->with(0x02, 1.0, $script);
 
-        $this->shouldCall('_TaskSpawn_8c014ae8')
+        $this->shouldCall('_TaskInstall_8c014ae8')
             ->with(
                 $this->addressOf('_var_tasks_8c1bac28'),
                 $this->addressOf('_TrafficDriveVehicleTask_8c025b98'),
@@ -236,14 +236,14 @@ return new class extends TestCase {
 
         $this->call('_spawnEntry_8c0272b8')->with(0x02, 1.0, $script);
 
-        $this->mockTaskSpawn($this->addressOf('_TrafficDriveVehicleTask_8c025b98'), $task, $entry);
+        $this->mockTaskInstall($this->addressOf('_TrafficDriveVehicleTask_8c025b98'), $task, $entry);
         $this->shouldWriteLong($entry + 0x2e4, 0);
         $this->shouldWriteLong($entry + 0x48c, 3);
         $this->shouldWriteLong($entry + 0x2c8, $this->addressOf('_GroundProbeTrackPolygon_8c020b6c'));
         $this->shouldWriteLong($entry + 0x2cc, $this->addressOf('_AttrQueryFindConvexPolygon_8c02e51c'));
         $this->shouldWriteLong($entry + 0x2e0, 0x01);
 
-        $this->shouldCall('_TaskKill_8c014b66')->with($task);
+        $this->shouldCall('_TaskUninstall_8c014b66')->with($task);
 
         $this->shouldReturn(1);
     }
@@ -265,7 +265,7 @@ return new class extends TestCase {
 
         $this->call('_spawnEntry_8c0272b8')->with(0x02, 1.0, $script);
 
-        $this->mockTaskSpawn($this->addressOf('_TrafficDriveVehicleTask_8c025b98'), $task, $entry);
+        $this->mockTaskInstall($this->addressOf('_TrafficDriveVehicleTask_8c025b98'), $task, $entry);
         $this->shouldWriteLong($entry + 0x2e4, 0);
         $this->shouldWriteLong($entry + 0x48c, 3);
         $this->shouldWriteLong($entry + 0x2c8, $this->addressOf('_GroundProbeTrackPolygon_8c020b6c'));
@@ -275,7 +275,7 @@ return new class extends TestCase {
 
         $this->shouldCall('_TrafficResolvePathBlocks_8c026710')->with($entry, $script);
         $this->shouldCall('_TrafficPathScanFirst_8c02f0c8')->with($task, $entry, 0xdeadbeef, 0, 1.0, 8.0)->andReturn(1);
-        $this->shouldCall('_TaskKill_8c014b66')->with($task);
+        $this->shouldCall('_TaskUninstall_8c014b66')->with($task);
 
         $this->shouldReturn(0);
     }

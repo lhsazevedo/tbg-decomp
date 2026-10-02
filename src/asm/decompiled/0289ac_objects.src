@@ -14,13 +14,13 @@
           .IMPORT     _syMalloc
           .IMPORT     _TaskInitGroup_8c014a9c
           .IMPORT     _var_routeModels_8c1bc3ec
-          .IMPORT     _TaskSpawn_8c014ae8
+          .IMPORT     _TaskInstall_8c014ae8
           .IMPORT     _njUnitMatrix
           .IMPORT     _njTranslate
           .IMPORT     _njRotateY
           .IMPORT     _var_tasks_8c1ba5e8
           .IMPORT     _syFree
-          .IMPORT     _TaskKillGroup_8c014ab4
+          .IMPORT     _TaskUninstallGroup_8c014ab4
           .IMPORT     _njDrawSprite3D
           .IMPORT     _atan2f
           .IMPORT     _IntersectSegments_8c0206f0
@@ -30,7 +30,7 @@
           .IMPORT     _rand
           .IMPORT     _AsqGetRandomA_8c012166
           .IMPORT     _var_pedestrianAssets_8c1bbfdc
-          .IMPORT     _TaskKill_8c014b66
+          .IMPORT     _TaskUninstall_8c014b66
           .IMPORT     _var_tasks_8c1ba808
           .IMPORT     _CollisionQueueReset_8c02e486
           .IMPORT     _njCalcPoint
@@ -93,8 +93,8 @@
           .AIFDEF UNIT_TESTING
           .EXPORT     _pedestriansTask_8c0293f6
           .AENDI
-          .EXPORT     _ObjectsSpawnPedestrianGroups_8c0296d6
-          .EXPORT     _ObjectsKillPedestrianGroups_8c0297da
+          .EXPORT     _ObjectsInstallPedestrianGroups_8c0296d6
+          .EXPORT     _ObjectsUninstallPedestrianGroups_8c0297da
           .AIFDEF UNIT_TESTING
           .EXPORT     _resolveObjectChildren_8c029868
           .AENDI
@@ -102,7 +102,7 @@
           .EXPORT     _drawBlinkers_8c029878
           .EXPORT     _routeBlinkerTask_8c029904
           .AENDI
-          .EXPORT     _ObjectsSpawnBlinkers_8c029920
+          .EXPORT     _ObjectsInstallBlinkers_8c029920
           .EXPORT     _ObjectsClearAssetRequestTable_8c029acc
           .EXPORT     _ObjectsStartAssetRequests_8c029ad4
           .EXPORT     _ObjectsFreeAssetRequests_8c029cfe
@@ -163,7 +163,7 @@
           .AIFDEF UNIT_TESTING
           .EXPORT     _execRowTaskGroupTask_8c02a60e
           .AENDI
-          .EXPORT     _ObjectsSpawnTasks_8c02a6ac
+          .EXPORT     _ObjectsInstall_8c02a6ac
           .EXPORT     _init_pedestrianTexAnims_8c04623c ; 028258.src, 02c884.src
           .AIFDEF UNIT_TESTING
           .EXPORT     _init_busAxisLocalA_8c04650c
@@ -1366,7 +1366,7 @@ LP_GEN_98778:
           .DATA.L H'0000FFFF ; H'8C029220
           .DATA.L _var_pedPaths_8c228238 ; H'8C029224
           .DATA.L _pedestrianTask_8c028e00 ; H'8C029228
-          .DATA.L _TaskSpawn_8c014ae8 ; H'8C02922C
+          .DATA.L _TaskInstall_8c014ae8 ; H'8C02922C
           .DATA.L H'47000000 ; H'8C029230
           .DATA.L _rand ; H'8C029234
           .DATA.L _AsqGetRandomA_8c012166 ; H'8C029238
@@ -1677,15 +1677,15 @@ LAB_8c029464:
           MOV.L       R3,@(H'4,R15)
 LP_GEN_26341:
           .DATA.L _pedStaticObjectTask_8c02903e ; H'8C02947C
-          .DATA.L _TaskSpawn_8c014ae8 ; H'8C029480
+          .DATA.L _TaskInstall_8c014ae8 ; H'8C029480
           .DATA.L _GroundQueryFindPolygon_8c020914 ; H'8C029484
           .DATA.L _GroundProbeInterpolateHeight_8c020f7e ; H'8C029488
           .DATA.L H'3C75C28F ; H'8C02948C
           .DATA.L _var_pedestrianAssets_8c1bbfdc ; H'8C029490
-          .DATA.L _TaskKill_8c014b66 ; H'8C029494
+          .DATA.L _TaskUninstall_8c014b66 ; H'8C029494
           .DATA.L _init_pedestrianTexAnims_8c04623c ; H'8C029498
           .DATA.L _TaskRunGroup_8c014b42 ; H'8C02949C
-          .DATA.L _TaskKillGroup_8c014ab4 ; H'8C0294A0
+          .DATA.L _TaskUninstallGroup_8c014ab4 ; H'8C0294A0
           .DATA.L _syFree ; H'8C0294A4
           .DATA.L _var_runState_8c2285c4 ; H'8C0294A8
           .DATA.L _var_currentCourse_8c1bb868+H'28 ; H'8C0294AC (atariHum_0x28)
@@ -1852,7 +1852,7 @@ LP_GEN_46486:
           .DATA.L _TaskInitGroup_8c014a9c ; H'8C0295F0
           .DATA.L _pedGroupTask_8c029078 ; H'8C0295F4
           .DATA.L _var_tasks_8c1ba808 ; H'8C0295F8
-          .DATA.L _TaskSpawn_8c014ae8 ; H'8C0295FC
+          .DATA.L _TaskInstall_8c014ae8 ; H'8C0295FC
           .DATA.L _syFree ; H'8C029600
           .DATA.L _CollisionQueueReset_8c02e486 ; H'8C029604
           .DATA.L _SignalClearPedCrossing_8c02890c ; H'8C029608
@@ -1955,7 +1955,7 @@ LAB_8c0296c2:
           MOV.L       @R15+,R13
           RTS
           MOV.L       @R15+,R14
-_ObjectsSpawnPedestrianGroups_8c0296d6:
+_ObjectsInstallPedestrianGroups_8c0296d6:
           MOV.L       R14,@-R15
           MOV.L       R13,@-R15
           MOV.L       R12,@-R15
@@ -2079,7 +2079,7 @@ LAB_8c0297ce:
           MOV.L       @R15+,R13
           RTS
           MOV.L       @R15+,R14
-_ObjectsKillPedestrianGroups_8c0297da:
+_ObjectsUninstallPedestrianGroups_8c0297da:
           MOV.L       R14,@-R15
           MOV.L       R13,@-R15
           MOV.L       R12,@-R15
@@ -2143,9 +2143,9 @@ LP_GEN_63109:
           .DATA.L _syMalloc ; H'8C02984C
           .DATA.L _pedestriansTask_8c0293f6 ; H'8C029850
           .DATA.L _var_tasks_8c1ba5e8 ; H'8C029854
-          .DATA.L _TaskSpawn_8c014ae8 ; H'8C029858
+          .DATA.L _TaskInstall_8c014ae8 ; H'8C029858
           .DATA.L _var_pedGroupCount_8c228234 ; H'8C02985C
-          .DATA.L _TaskKillGroup_8c014ab4 ; H'8C029860
+          .DATA.L _TaskUninstallGroup_8c014ab4 ; H'8C029860
           .DATA.L _syFree ; H'8C029864
 _resolveObjectChildren_8c029868:
           MOV.L       @R4,R5
@@ -2249,7 +2249,7 @@ _routeBlinkerTask_8c029904:
           MOV.L       @(H'4,R15),R7
           JMP         @R3
           ADD         #H'8,R15
-_ObjectsSpawnBlinkers_8c029920:
+_ObjectsInstallBlinkers_8c029920:
           MOV.L       R14,@-R15
           MOV.L       R13,@-R15
           MOV.L       R12,@-R15
@@ -2437,7 +2437,7 @@ LP_GEN_39842:
           .DATA.L _init_omeBlinkerPoints_8c0466a4 ; H'8C029A90
           .DATA.L _routeBlinkerTask_8c029904 ; H'8C029A94
           .DATA.L _var_tasks_8c1ba5e8 ; H'8C029A98
-          .DATA.L _TaskSpawn_8c014ae8 ; H'8C029A9C
+          .DATA.L _TaskInstall_8c014ae8 ; H'8C029A9C
           .DATA.L _GroundProbeInterpolateHeight_8c020f7e ; H'8C029AA0
           .DATA.L _njRotateY ; H'8C029AA4
           .DATA.L H'47800000 ; H'8C029AA8
@@ -3144,11 +3144,11 @@ LP_GEN_15421:
           .DATA.L _njCnkSimpleDrawMotion ; H'8C02A01C
           .DATA.L _drawFlyByModel_8c029e46 ; H'8C02A020
           .DATA.L _RenderQueueDraw_8c0223ea ; H'8C02A024
-          .DATA.L _TaskKill_8c014b66 ; H'8C02A028
+          .DATA.L _TaskUninstall_8c014b66 ; H'8C02A028
           .DATA.L _AsqGetRandomInRangeA_8c012178 ; H'8C02A02C
           .DATA.L _flyByModelTask_8c029e68 ; H'8C02A030
           .DATA.L _var_tasks_8c1bb448 ; H'8C02A034
-          .DATA.L _TaskSpawn_8c014ae8 ; H'8C02A038
+          .DATA.L _TaskInstall_8c014ae8 ; H'8C02A038
           .DATA.L _var_routeModelSlots_8c1bbddc ; H'8C02A03C
           .DATA.L _njCnkSimpleDrawObject ; H'8C02A040
           .DATA.L _drawDatModel_8c029f2a ; H'8C02A044
@@ -3422,7 +3422,7 @@ LP_GEN_26723:
           .DATA.L _var_busState_8c1bb9d0+H'3BC ; H'8C02A248 (scenePresetIds_0x3bc)
           .DATA.L _drawRowMotionModel_8c02a0d6 ; H'8C02A24C
           .DATA.L _RenderQueueDraw_8c0223ea ; H'8C02A250
-          .DATA.L _TaskKill_8c014b66 ; H'8C02A254
+          .DATA.L _TaskUninstall_8c014b66 ; H'8C02A254
           .DATA.L _njControl3D ; H'8C02A258
           .DATA.L _njFogDisable ; H'8C02A25C
           .DATA.L _njSetTexture ; H'8C02A260
@@ -3963,7 +3963,7 @@ LP_GEN_23851:
           .DATA.L _setSimpleLightCallback_8c02a5d0 ; H'8C02A6A0
           .DATA.L _var_tasks_8c1bb448 ; H'8C02A6A4
           .DATA.L _TaskRunGroup_8c014b42 ; H'8C02A6A8
-_ObjectsSpawnTasks_8c02a6ac:
+_ObjectsInstall_8c02a6ac:
           MOV.L       R14,@-R15
           MOV.L       R13,@-R15
           MOV.L       R12,@-R15
@@ -4306,7 +4306,7 @@ LP_GEN_67201:
           .RES.W 1 ; H'8C02A932
           .DATA.L _var_assetRequestTable_8c228408 ; H'8C02A934
           .DATA.L _var_assetRequestSlots_8c228288 ; H'8C02A938
-          .DATA.L _TaskSpawn_8c014ae8 ; H'8C02A93C
+          .DATA.L _TaskInstall_8c014ae8 ; H'8C02A93C
           .DATA.L _var_tasks_8c1bb448 ; H'8C02A940
           .DATA.L _rowFlyByTask_8c029e94 ; H'8C02A944
           .DATA.L H'4F800000 ; H'8C02A948

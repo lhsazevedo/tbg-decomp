@@ -22,7 +22,7 @@ if (!function_exists('fdec')) {
 return new class extends TestCase {
     private function resolveSymbols(): void {
         $this->setSize('_njSqrt', 4);
-        $this->setSize('_TaskKill_8c014b66', 4);
+        $this->setSize('_TaskUninstall_8c014b66', 4);
         $this->setSize('_TrafficUpdateHeading_8c026bc4', 4);
         $this->setSize('_CollisionFindTaskHit_8c02e400', 4);
         $this->setSize('_BusDrawPlaceEntity_8c027c3c', 4);
@@ -243,7 +243,7 @@ return new class extends TestCase {
 
         $this->shouldCall('_TrafficAdvanceOnPath_8c026ca2')->andReturn(0);
         $this->shouldCall('_TrafficRunEntryScript_8c027012')->with($entry)->andReturn(0);
-        $this->shouldCall('_TaskKill_8c014b66')->with($task);
+        $this->shouldCall('_TaskUninstall_8c014b66')->with($task);
         // returns immediately: no ring-buffer/blinker/render tail at all.
     }
 

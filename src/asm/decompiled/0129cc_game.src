@@ -15,7 +15,7 @@
           .IMPORT     _var_currentSegment_8c228708
           .IMPORT     _var_viewLayout_8c22655c
           .IMPORT     _var_busState_8c1bb9d0
-          .IMPORT     _TaskKill_8c014b66
+          .IMPORT     _TaskUninstall_8c014b66
           .IMPORT     _njControl3D
           .IMPORT     _var_matrix_8c2f8ca0
           .IMPORT     _njInitMatrix
@@ -35,8 +35,8 @@
           .IMPORT     _srand
           .IMPORT     _AsqSetSeedA_8c012160
           .IMPORT     _AsqSetSeedB_8c0121a2
-          .IMPORT     _InputSpawnTask_8c0128cc
-          .IMPORT     _TaskSpawn_8c014ae8
+          .IMPORT     _InputInstall_8c0128cc
+          .IMPORT     _TaskInstall_8c014ae8
           .IMPORT     _var_tasks_8c1ba3c8
           .IMPORT     _ReplayMenuDemoRecordTask_8c01677e
           .IMPORT     _var_isAttractDemo_8c1bb8d4
@@ -46,13 +46,13 @@
           .IMPORT     _var_messageBoxActive_8c22847c
           .IMPORT     _BusInitStart_8c023610
           .IMPORT     _SignalInit_8c02845a
-          .IMPORT     _ObjectsSpawnBlinkers_8c029920
-          .IMPORT     _ObjectsSpawnPedestrianGroups_8c0296d6
+          .IMPORT     _ObjectsInstallBlinkers_8c029920
+          .IMPORT     _ObjectsInstallPedestrianGroups_8c0296d6
           .IMPORT     _TrafficInit_8c02769e
-          .IMPORT     _TileDrawSpawnTask_8c0222dc
-          .IMPORT     _ObjectsSpawnTasks_8c02a6ac
-          .IMPORT     _GradeSpawnTask_8c02c46a
-          .IMPORT     _HudSpawnTask_8c02018c
+          .IMPORT     _TileDrawInstall_8c0222dc
+          .IMPORT     _ObjectsInstall_8c02a6ac
+          .IMPORT     _GradeInstall_8c02c46a
+          .IMPORT     _HudInstall_8c02018c
           .IMPORT     _StopSpawnInit_8c02d968
           .IMPORT     _DriveCueInit_8c020528
           .IMPORT     _RenderStartRunFade_8c0228a2
@@ -165,7 +165,7 @@
           .IMPORT     _njExitTexture
           .IMPORT     _SbExitSystem_8c014a24
           .IMPORT     _syBtExit
-          .IMPORT     _RouteSpawnLoadTask_8c0144fc
+          .IMPORT     _RouteInstallLoad_8c0144fc
           .IMPORT     _var_midiHandles_8c0fcd28
           .IMPORT     _sdMidiPlay
           .IMPORT     _var_peripheral_8c1ba358
@@ -1207,7 +1207,7 @@ LP_GEN_31464:
           .DATA.W H'0268
           .DATA.W H'0080
           .RES.W 1
-          .DATA.L _TaskKill_8c014b66
+          .DATA.L _TaskUninstall_8c014b66
           .DATA.L _njControl3D
           .DATA.L _var_matrix_8c2f8ca0
           .DATA.L _njInitMatrix
@@ -1228,8 +1228,8 @@ LP_GEN_31464:
           .DATA.L _srand
           .DATA.L _AsqSetSeedA_8c012160
           .DATA.L _AsqSetSeedB_8c0121a2
-          .DATA.L _InputSpawnTask_8c0128cc
-          .DATA.L _TaskSpawn_8c014ae8
+          .DATA.L _InputInstall_8c0128cc
+          .DATA.L _TaskInstall_8c014ae8
           .DATA.L _var_tasks_8c1ba3c8
           .DATA.L _var_playMode_8c1bb8d0
           .DATA.L _pauseTask_8c012cbc
@@ -1486,13 +1486,13 @@ LP_GEN_38000:
           .DATA.L _BusInitStart_8c023610
           .DATA.L _SignalInit_8c02845a
           .DATA.L _var_playMode_8c1bb8d0
-          .DATA.L _ObjectsSpawnBlinkers_8c029920
-          .DATA.L _ObjectsSpawnPedestrianGroups_8c0296d6
+          .DATA.L _ObjectsInstallBlinkers_8c029920
+          .DATA.L _ObjectsInstallPedestrianGroups_8c0296d6
           .DATA.L _TrafficInit_8c02769e
-          .DATA.L _TileDrawSpawnTask_8c0222dc
-          .DATA.L _ObjectsSpawnTasks_8c02a6ac
-          .DATA.L _GradeSpawnTask_8c02c46a
-          .DATA.L _HudSpawnTask_8c02018c
+          .DATA.L _TileDrawInstall_8c0222dc
+          .DATA.L _ObjectsInstall_8c02a6ac
+          .DATA.L _GradeInstall_8c02c46a
+          .DATA.L _HudInstall_8c02018c
           .DATA.L _StopSpawnInit_8c02d968
           .DATA.L _DriveCueInit_8c020528
           .DATA.L _runStartViewTask_8c012f9c
@@ -1514,7 +1514,7 @@ LP_GEN_38000:
           .DATA.L _var_progress_8c1ba1cc + H'C6
           .DATA.L _var_savedCameraMode_8c227da0
           .DATA.L _var_savedCameraCueState_8c227da8
-          .DATA.L _RouteSpawnLoadTask_8c0144fc
+          .DATA.L _RouteInstallLoad_8c0144fc
           .DATA.L _var_progress_8c1ba1cc + H'C5
           .DATA.L _const_8c033364
 
@@ -1651,7 +1651,7 @@ LP_GEN_65923:
           .DATA.L _AsqNop_8c011120
           .DATA.L _AsqProcessQueues_8c011fe0
           .DATA.L _AsqFreeQueues_8c011f7e
-          .DATA.L _TaskKill_8c014b66
+          .DATA.L _TaskUninstall_8c014b66
           .DATA.L _SndInit_8c010e18
           .DATA.L _var_lcdAnimActive_8c2260a8
           .DATA.L _TitleStart_8c015fd6
@@ -2184,7 +2184,7 @@ LP_GEN_19861:
           .DATA.L     _VmGameUpdateLcd_8c01c910
           .DATA.L     _bootTask_8c013388
           .DATA.L     _var_tasks_8c1ba3c8
-          .DATA.L     _TaskSpawn_8c014ae8
+          .DATA.L     _TaskInstall_8c014ae8
           .DATA.L     _AsqInitQueues_8c011f36
           .DATA.L     _AsqResetQueues_8c011f6c
           .DATA.L     _AsqRequestDat_8c011182

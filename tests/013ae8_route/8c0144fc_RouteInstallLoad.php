@@ -15,14 +15,14 @@ return new class extends TestCase {
         $this->setSize('_njSetBackColor', 4);
         $this->setSize('_njGarbageTexture', 4);
 
-        $createdTask = $this->alloc(0x20);
-        $createdState = $this->alloc(0x1c);
+        $installedTask = $this->alloc(0x20);
+        $installedState = $this->alloc(0x1c);
 
-        $this->call('_RouteSpawnLoadTask_8c0144fc');
+        $this->call('_RouteInstallLoad_8c0144fc');
 
         $this->shouldCall('_njSetBackColor')->with(0xff418dff, 0xff418dff, 0xff418dff);
         $this->shouldWriteLong($this->addressOf('_var_loadScreenActive_8c157a6c'), 1);
-        $this->shouldCall('_TaskSpawn_8c014ae8')
+        $this->shouldCall('_TaskInstall_8c014ae8')
             ->with(
                 $this->addressOf('_var_tasks_8c1ba3c8'),
                 $this->addressOf('_routeLoadTask_8c014338'),
@@ -30,12 +30,12 @@ return new class extends TestCase {
                 0xfffff0,
                 0,
             )
-            ->do(function ($params) use ($createdTask, $createdState) {
-                $this->memory->writeUInt32($params[2], U32::of($createdTask));
-                $this->memory->writeUInt32($params[3], U32::of($createdState));
+            ->do(function ($params) use ($installedTask, $installedState) {
+                $this->memory->writeUInt32($params[2], U32::of($installedTask));
+                $this->memory->writeUInt32($params[3], U32::of($installedState));
             });
-        $this->shouldWriteLong($createdTask + 0x08, 0);
-        $this->shouldWriteLong($createdTask + 0x0c, 0);
+        $this->shouldWriteLong($installedTask + 0x08, 0);
+        $this->shouldWriteLong($installedTask + 0x0c, 0);
         $this->shouldCall('_njGarbageTexture')->with($this->addressOf('_var_tex_8c157af8'), 0xc00);
         $this->shouldCall('_AsqInitQueues_8c011f36')->with(0x20, 0x800, 0x800, 0x40);
     }

@@ -7,7 +7,7 @@ use Lhsazevedo\Sh4ObjTest\TestCase;
 return new class extends TestCase {
     private function resolveSymbols(): void
     {
-        $this->setSize('_TaskKill_8c014b66', 4);
+        $this->setSize('_TaskUninstall_8c014b66', 4);
         $this->setSize('_BusCameraApplyMode_8c024f32', 4);
         $this->setSize('_var_isFading_8c226568', 4);
         $this->setSize('_var_busState_8c1bb9d0', 0x3cc);
@@ -32,7 +32,7 @@ return new class extends TestCase {
         $this->shouldWriteLongTo('_var_cameraMode_8c227d9c', 2);
         $this->shouldWriteLongTo('_var_cameraCueState_8c227da4', 0);
         $this->shouldCall('_BusCameraApplyMode_8c024f32');
-        $this->shouldCall('_TaskKill_8c014b66')->with($task);
+        $this->shouldCall('_TaskUninstall_8c014b66')->with($task);
     }
 
     public function test_fading_does_nothing(): void

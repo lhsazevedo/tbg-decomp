@@ -491,7 +491,7 @@ return new class extends TestCase {
         $menuStateBase = $this->addressOf('_var_menuState_8c1bc7a8');
         $this->shouldWriteLong($menuStateBase + 0x50, 12 + 2); // write sum (14)
 
-        // Step 6: Initialize game and spawn loading task
+        // Step 6: Initialize game and install loading task
         $this->shouldCall('_GameStartCourse_8c013310')->with(14);
     }
 
@@ -561,7 +561,7 @@ return new class extends TestCase {
         $menuStateBase = $this->addressOf('_var_menuState_8c1bc7a8');
         $this->shouldWriteLong($menuStateBase + 0x50, 12 + 2); // write sum (14)
 
-        // Step 6: Initialize game and spawn loading task
+        // Step 6: Initialize game and install loading task
         $this->shouldCall('_GameStartCourse_8c013310')->with(14);
     }
 
