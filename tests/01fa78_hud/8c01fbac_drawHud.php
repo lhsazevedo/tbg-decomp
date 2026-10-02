@@ -5,9 +5,9 @@ use Lhsazevedo\Sh4ObjTest\Simulator\CallingConventions\RiroCallingConvention;
 
 /*
  * _drawHud_8c01fbac(int arg0): the in-drive HUD render. arg0 is the driver-
- * comment message code hudUpdateTask_8c01ff48 stages through the fade-command queue.
+ * comment message code updateTask_8c01ff48 stages through the fade-command queue.
  * var_tachoNeedleVerts_8c226478 follows the var_hudState_8c22643c block in
- * section B -- see hudUpdateTask_8c01ff48's test for the same adjacency.
+ * section B -- see updateTask_8c01ff48's test for the same adjacency.
  * init_pointsMeterFill_8c045334/374/3b4/414 were local (unexported) labels in the .src
  * object; gated .EXPORTs under .AIFDEF UNIT_TESTING were added so tests can
  * see them, matching init_fadeQuad_8c0455a8's convention in 022464_render.

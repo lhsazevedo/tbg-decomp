@@ -5,7 +5,7 @@
 #include "0100bc_sound.h"
 #include "014f54_sprite.h"
 #include "015034_text.h"
-#include "01fa78_hud.h" /* HudReset_8c02018c, var_8c226434, var_8c226438 */
+#include "01fa78_hud.h" /* HudSpawnTask_8c02018c, var_8c226434, var_8c226438 */
 #include "01614c_replay_menu.h"
 #include "028258_signal.h"
 #include "0289ac_objects.h" /* ObjectsInitPedestrianGroups_8c0296d6 */
@@ -526,7 +526,7 @@ void GameEnterDrive_8c01306e(void)
     TileDrawSpawnTask_8c0222dc();
     ObjectsSpawnTasks_8c02a6ac();
     GradeReset_8c02c46a();
-    HudReset_8c02018c();
+    HudSpawnTask_8c02018c();
     StopSpawnInit_8c02d968();
     DriveCueInit_8c020528();
     TaskSpawn_8c014ae8(var_tasks_8c1ba5e8, &runStartViewTask_8c012f9c, &created_task, &created_state, 0);

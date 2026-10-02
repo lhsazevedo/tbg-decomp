@@ -19,7 +19,7 @@
 
 /* The driver-comment popup currently on screen. showMark_8c01fa78
  * sets markSpriteId_0x00 and displayTimer_0x08 (frames left); blinkIconId_0x04
- * is a second sprite hudUpdateTask_8c01ff48 blinks on top of it, from the map
+ * is a second sprite updateTask_8c01ff48 blinks on top of it, from the map
  * cell's scenePresetIds_0x3bc, and only while the mark id is in [0x1e, 0x50].
  * Both are drawn from var_markTexlist_8c1bc418. */
 typedef struct {
@@ -121,9 +121,9 @@ STATIC void drawSpeedAndTimers_8c01fe84(Sint32 speed);
  * ====================
  */
 
-STATIC void showMark_8c01fa78(int a, int b) {
-    var_hudMark_8c2264a8.markSpriteId_0x00 = a;
-    var_hudMark_8c2264a8.displayTimer_0x08 = b;
+STATIC void showMark_8c01fa78(int spriteId, int frames) {
+    var_hudMark_8c2264a8.markSpriteId_0x00 = spriteId;
+    var_hudMark_8c2264a8.displayTimer_0x08 = frames;
 }
 
 /* Draws a 6-digit HH:MM:SS readout from a 30fps frame count (108000 = 1h,
@@ -143,13 +143,13 @@ STATIC void drawTimeDigits_8c01fa80(int frames, float y, int spriteBase) {
 
 /* Per-frame in-drive HUD renderer: the driver-comment popup
  * (var_hudMark_8c2264a8, plus arg0 -- the traffic-signal code
- * hudUpdateTask_8c01ff48 stages through the fade-command queue), the shared
+ * updateTask_8c01ff48 stages through the fade-command queue), the shared
  * instruction/next-stop slot, the driver-points meter, the two blinker
  * indicators, the tachometer needle, and the speed readout plus the two
  * clocks drawn by the drawSpeedAndTimers_8c01fe84 tail. Installed both as a
  * DrawFn and as a TaskSpawn_8c014ae8 action, so it must keep this
  * exact signature. */
-STATIC void drawHud_8c01fbac(int arg0) {
+STATIC void drawHud_8c01fbac(int signalMarkId) {
     float barWidth, barWidthInner;
     Angle angle;
     Sint32 speed;
@@ -164,8 +164,8 @@ STATIC void drawHud_8c01fbac(int arg0) {
     if (var_hudMark_8c2264a8.blinkIconId_0x04 != 0) {
         SpriteDraw_8c014f54(&var_markTexlist_8c1bc418, var_hudMark_8c2264a8.blinkIconId_0x04, 0.0f, 0.0f, -1.2f);
     }
-    if (arg0 != 0) {
-        SpriteDraw_8c014f54(&var_markTexlist_8c1bc418, arg0, 0.0f, 0.0f, -1.21f);
+    if (signalMarkId != 0) {
+        SpriteDraw_8c014f54(&var_markTexlist_8c1bc418, signalMarkId, 0.0f, 0.0f, -1.21f);
     }
 
     /* One screen slot, three meanings, picked by var_runState_8c2285c4.stopPhase_0x20:
@@ -312,12 +312,12 @@ STATIC void drawSpeedAndTimers_8c01fe84(Sint32 speed) {
  * gear, headlights -- plus markAudioCue_0x3b8's lane change) into popups
  * staged via showMark_8c01fa78, ramps the driver-points meter display, and
  * queues drawHud_8c01fbac for this frame. */
-STATIC void hudUpdateTask_8c01ff48() {
+STATIC void updateTask_8c01ff48() {
     unsigned int driveMark = var_busState_8c1bb9d0.markDriveFlags_0x3b0 & 7;
     unsigned int wiper;
     unsigned int gear;
     unsigned int lane;
-    int messageArg = 0;
+    int signalMarkId = 0;
 
     if (var_hudState_8c22643c.driveMarkLatched_0x10 == 0) {
         if (driveMark != 0) {
@@ -386,24 +386,24 @@ STATIC void hudUpdateTask_8c01ff48() {
         int index = (Sint8)((unsigned int)var_busState_8c1bb9d0.markCueByte_0x3b4 >> 0x18);
         TrafficSignal *sig = SignalGet_8c0288b2(index);
         int frame = SignalGetFrame_8c028900(index);
-        messageArg = frame + 1;
+        signalMarkId = frame + 1;
 
         if (sig->attached_0xbc[0] == 0) {
             if (sig->attached_0xbc[2] != 0) {
-                messageArg = frame + 4;
+                signalMarkId = frame + 4;
                 if (frame == 0) {
                     frame = sig->attached_0xbc[2]->frame_0x0c;
                     if (frame == 1) {
-                        messageArg = 4 + 3;
+                        signalMarkId = 4 + 3;
                     }
                 }
             }
         } else {
-            messageArg = frame + 8;
+            signalMarkId = frame + 8;
             if (frame == 0) {
                 frame = sig->attached_0xbc[0]->frame_0x0c;
                 if (frame == 1) {
-                    messageArg = 8 + 3;
+                    signalMarkId = 8 + 3;
                 }
             }
         }
@@ -433,16 +433,16 @@ STATIC void hudUpdateTask_8c01ff48() {
         }
     }
 
-    RenderQueueDraw_8c0223ea(RENDER_LAYER_MAIN, drawHud_8c01fbac, messageArg);
+    RenderQueueDraw_8c0223ea(RENDER_LAYER_MAIN, drawHud_8c01fbac, signalMarkId);
 }
 
-/* Installs hudUpdateTask_8c01ff48 as a per-frame task and clears the popup,
+/* Installs updateTask_8c01ff48 as a per-frame task and clears the popup,
  * instruction-slot and meter state for a fresh run. */
-void HudReset_8c02018c(void) {
+void HudSpawnTask_8c02018c(void) {
     Task *createdTask;
     void *createdState;
 
-    TaskSpawn_8c014ae8(var_tasks_8c1ba5e8, hudUpdateTask_8c01ff48, &createdTask, &createdState, 0);
+    TaskSpawn_8c014ae8(var_tasks_8c1ba5e8, updateTask_8c01ff48, &createdTask, &createdState, 0);
 
     var_hudState_8c22643c.field_0x00 = 0;
     var_hudState_8c22643c.field_0x04 = 0;

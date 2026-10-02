@@ -52,7 +52,7 @@
           .IMPORT     _TileDrawSpawnTask_8c0222dc
           .IMPORT     _ObjectsSpawnTasks_8c02a6ac
           .IMPORT     _GradeReset_8c02c46a
-          .IMPORT     _HudReset_8c02018c
+          .IMPORT     _HudSpawnTask_8c02018c
           .IMPORT     _StopSpawnInit_8c02d968
           .IMPORT     _DriveCueInit_8c020528
           .IMPORT     _RenderStartRunFade_8c0228a2
@@ -1492,7 +1492,7 @@ LP_GEN_38000:
           .DATA.L _TileDrawSpawnTask_8c0222dc
           .DATA.L _ObjectsSpawnTasks_8c02a6ac
           .DATA.L _GradeReset_8c02c46a
-          .DATA.L _HudReset_8c02018c
+          .DATA.L _HudSpawnTask_8c02018c
           .DATA.L _StopSpawnInit_8c02d968
           .DATA.L _DriveCueInit_8c020528
           .DATA.L _runStartViewTask_8c012f9c

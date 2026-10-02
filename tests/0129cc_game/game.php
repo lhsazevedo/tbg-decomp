@@ -75,7 +75,7 @@ return new class extends TestCase {
         $this->shouldCall('_TileDrawSpawnTask_8c0222dc');
         $this->shouldCall('_ObjectsSpawnTasks_8c02a6ac');
         $this->shouldCall('_GradeReset_8c02c46a');
-        $this->shouldCall('_HudReset_8c02018c');
+        $this->shouldCall('_HudSpawnTask_8c02018c');
         $this->shouldCall('_StopSpawnInit_8c02d968');
         $this->shouldCall('_DriveCueInit_8c020528');
 
@@ -150,7 +150,7 @@ return new class extends TestCase {
         $this->shouldCall('_TileDrawSpawnTask_8c0222dc');
         $this->shouldCall('_ObjectsSpawnTasks_8c02a6ac');
         $this->shouldCall('_GradeReset_8c02c46a');
-        $this->shouldCall('_HudReset_8c02018c');
+        $this->shouldCall('_HudSpawnTask_8c02018c');
         $this->shouldCall('_StopSpawnInit_8c02d968');
         $this->shouldCall('_DriveCueInit_8c020528');
 
@@ -245,7 +245,7 @@ return new class extends TestCase {
         $this->shouldCall('_TileDrawSpawnTask_8c0222dc');
         $this->shouldCall('_ObjectsSpawnTasks_8c02a6ac');
         $this->shouldCall('_GradeReset_8c02c46a');
-        $this->shouldCall('_HudReset_8c02018c');
+        $this->shouldCall('_HudSpawnTask_8c02018c');
         $this->shouldCall('_StopSpawnInit_8c02d968');
         $this->shouldCall('_DriveCueInit_8c020528');
 

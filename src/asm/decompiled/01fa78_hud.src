@@ -18,13 +18,13 @@
           .IMPORT     _RenderQueueDraw_8c0223ea
           .IMPORT     _var_tasks_8c1ba5e8
           .IMPORT     _TaskSpawn_8c014ae8
-          .EXPORT     _HudReset_8c02018c
+          .EXPORT     _HudSpawnTask_8c02018c
           .AIFDEF UNIT_TESTING
           .EXPORT     _showMark_8c01fa78
           .EXPORT     _drawTimeDigits_8c01fa80
           .EXPORT     _drawHud_8c01fbac
           .EXPORT     _drawSpeedAndTimers_8c01fe84
-          .EXPORT     _hudUpdateTask_8c01ff48
+          .EXPORT     _updateTask_8c01ff48
           .EXPORT     _init_pointsMeterFill_8c045334
           .EXPORT     _init_pointsMeterTrack_8c045374
           .EXPORT     _init_hudPanel_8c0453b4
@@ -636,7 +636,7 @@ LP_GEN_41663:
           .DATA.L H'43C90000 ; H'8C01FF3C
           .DATA.L H'43D38000 ; H'8C01FF40
           .DATA.L H'BF9D70A4 ; H'8C01FF40
-_hudUpdateTask_8c01ff48:
+_updateTask_8c01ff48:
           MOV.L       R14,@-R15
           MOV.L       R13,@-R15
           MOV.L       R12,@-R15
@@ -941,7 +941,7 @@ LAB_8c020174:
           MOV.L       @R15+,R13
           JMP         @R3
           MOV.L       @R15+,R14
-_HudReset_8c02018c:
+_HudSpawnTask_8c02018c:
           STS.L       PR,@-R15
           ADD         #-H'8,R15
           MOV         #H'0,R3
@@ -995,7 +995,7 @@ LP_GEN_28448:
           .DATA.L H'41A00000 ; H'8C0201F0
           .DATA.L _drawHud_8c01fbac ; H'8C0201F4
           .DATA.L _RenderQueueDraw_8c0223ea ; H'8C0201F8
-          .DATA.L _hudUpdateTask_8c01ff48 ; H'8C0201FC
+          .DATA.L _updateTask_8c01ff48 ; H'8C0201FC
           .DATA.L _var_tasks_8c1ba5e8 ; H'8C020200
           .DATA.L _TaskSpawn_8c014ae8 ; H'8C020204
           .DATA.L _var_hudState_8c22643c ; H'8C020208

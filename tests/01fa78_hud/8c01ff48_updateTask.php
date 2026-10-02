@@ -32,7 +32,7 @@ return new class extends TestCase {
     {
         $this->setup();
 
-        $this->call('_hudUpdateTask_8c01ff48');
+        $this->call('_updateTask_8c01ff48');
 
         $this->shouldWriteSymbolOffset('_var_hudMark_8c2264a8', 0x04, 0); // out-of-window: no comment digit
         $this->shouldWriteSymbolOffset('_var_hudState_8c22643c', 0x18, 1); // var_hudState_8c22643c.blinkTimer_0x18 += 1
@@ -44,7 +44,7 @@ return new class extends TestCase {
         $base = $this->setup();
         $this->initUint32($this->addressOf('_var_busState_8c1bb9d0') + 0x3b0, 3); // blinker bits 0-2 = 3
 
-        $this->call('_hudUpdateTask_8c01ff48');
+        $this->call('_updateTask_8c01ff48');
 
         $this->shouldWriteSymbolOffset('_var_hudState_8c22643c', 0x14, 3 + 0x1f); // var_hudState_8c22643c.driveMarkIcon_0x14
         $this->shouldWriteSymbolOffset('_var_hudState_8c22643c', 0x10, 1); // flag
