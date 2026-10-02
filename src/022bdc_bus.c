@@ -26,10 +26,7 @@
  * =====================
  */
 
-/* Shape shared by BusState.junctionQueryFnCpu_0x2cc/junctionQueryFnRoute_0x2d0's ground/junction query
- * callees (AttrQueryFindConvexPolygon_8c02e51c/AttrQueryFindPolygon_8c02e69c/AttrQueryFindPolygonAtHeight_8c02ec50/AttrQueryFindConvexPolygonAtHeight_8c02eab4/
- * GroundQueryFindPolygon_8c020914/GroundProbeFindPolygonAtHeight_8c020fe4,
- * picked once by BusInitStart_8c023610). */
+/* Signature shared by the ground and attribute polygon queries. */
 typedef void *(*GroundQueryFn)(float x, float y, float z, void *out);
 
 /* =====================
@@ -37,10 +34,6 @@ typedef void *(*GroundQueryFn)(float x, float y, float z, void *out);
  * =====================
  */
 
-/* Per-frame player-bus dispatcher: advances the boarding/departure door
- * timer, the driving/knockback/braking state machine, steering, ground/
- * junction queries used by other systems, blinkers, and the camera. Spawned
- * as the run's task action by BusInitStart_8c023610 (023310_bus_init). */
 void BusTask_8c022bdc(Task *task, void *state)
 {
     float prevSpeed;
@@ -56,9 +49,8 @@ void BusTask_8c022bdc(Task *task, void *state)
     var_wallHitBits_8c228660 = 0;
     var_busState_8c1bb9d0.blinker_0x080 = 0;
 
-    /* Current heading angle from the bus's own forward direction
-     * (headingDirX_0x274/headingDirZ_0x278), signed by whether the bus is moving toward
-     * increasing or decreasing X. */
+    /* acos only gives the magnitude; the sign comes from which way X is
+     * moving. */
     ang = (int)((acosf(var_busState_8c1bb9d0.headingDirZ_0x278) * 65536.0f) / TWO_PI);
     if (var_busState_8c1bb9d0.posX_0x0f4 > var_busState_8c1bb9d0.posHistory_0x100[0].x) {
         ang = -ang;
@@ -66,9 +58,8 @@ void BusTask_8c022bdc(Task *task, void *state)
     var_busState_8c1bb9d0.ang_0x250 = ang;
 
     if (var_busState_8c1bb9d0.driveState_0x2b4 == 0) {
-        /* At a stop: shut waits for doorRequest_0x3c4, opening ramps
-         * var_busDoorFrame_8c227db0 up to var_busDoorLastFrame_8c227db4 and
-         * leaves the doors open (02c884_stop drives the rest from there). */
+        /* At a stop: open the doors on request; 02c884_stop takes over once
+         * they are open. */
         if (var_busState_8c1bb9d0.doorState_0x3c0 == 0) {
             if (var_busState_8c1bb9d0.doorRequest_0x3c4 != 0) {
                 sdMidiPlay(var_midiHandles_8c0fcd28[0], 1, 0x1d, 0);
@@ -84,8 +75,7 @@ void BusTask_8c022bdc(Task *task, void *state)
             }
         }
     } else if (var_busState_8c1bb9d0.driveState_0x2b4 == 1) {
-        /* Driving away: open waits for the A button or a scripted request,
-         * closing ramps var_busDoorFrame_8c227db0 back down to 0 and shuts. */
+        /* A, or a scripted request, closes the doors. */
         if (var_busState_8c1bb9d0.doorState_0x3c0 == 2) {
             if ((var_peripherals_8c1ba35c[0].press & PDD_DGT_TA) != 0) {
                 var_busState_8c1bb9d0.doorRequest_0x3c4 = 1;
@@ -104,16 +94,13 @@ void BusTask_8c022bdc(Task *task, void *state)
 
         BusInputUpdate_8c0246b2();
 
-        /* Requests the stop announcement driveCueTask_8c020214 plays; only
-         * the first A press of a drive counts. */
+        /* The first A press of a drive requests the stop announcement. */
         if (var_driveCueState_8c2264b8.announceRequested_0x0c == 0 &&
             (var_peripherals_8c1ba35c[0].press & PDD_DGT_TA) != 0) {
             var_driveCueState_8c2264b8.announceRequested_0x0c = 1;
         }
 
         if (var_driveMode_8c1bb8c8 == 0) {
-            /* Direct (non-mapped) steering: move straight along the current
-             * heading angle. */
             int steerAng = var_busState_8c1bb9d0.ang_0x258 + ang;
             float sinA = njSin(steerAng);
             float cosA = njCos(steerAng);
@@ -121,8 +108,7 @@ void BusTask_8c022bdc(Task *task, void *state)
             var_busState_8c1bb9d0.posX_0x0f4 -= var_busState_8c1bb9d0.speed_0x27c * sinA;
             var_busState_8c1bb9d0.posZ_0x0fc -= var_busState_8c1bb9d0.speed_0x27c * cosA;
         } else {
-            /* Mapped-route steering: ramp laneOffset_0x2c4 toward 2.0 (its
-             * neutral/centered value) at prevSpeed per frame. */
+            /* Line following; a laneOffset_0x2c4 of 2.0 is centred. */
             if (var_busState_8c1bb9d0.laneOffset_0x2c4 != 2.0f &&
                 var_busState_8c1bb9d0.speed_0x27c != 0.0f) {
                 if (var_busState_8c1bb9d0.laneOffset_0x2c4 <= 2.0f) {
@@ -152,9 +138,7 @@ void BusTask_8c022bdc(Task *task, void *state)
             BusInputCapMirrorTraffic_8c024280();
         }
     } else if (var_busState_8c1bb9d0.driveState_0x2b4 == 2) {
-        /* Knockback/reverse: slide along the collision-knockback direction
-         * (dir_x/dir_z), decelerating to a stop, then resume driving (or
-         * braking, if the run is over). */
+        /* Knockback from a collision. */
         var_busState_8c1bb9d0.posX_0x0f4 += prevSpeed * var_busState_8c1bb9d0.dir_x_0x29c;
         var_busState_8c1bb9d0.posZ_0x0fc += prevSpeed * var_busState_8c1bb9d0.dir_z_0x2a0;
         var_busState_8c1bb9d0.posHistory_0x100[0].x += prevSpeed * var_busState_8c1bb9d0.dir_x2_0x2ac;
@@ -165,15 +149,12 @@ void BusTask_8c022bdc(Task *task, void *state)
                 var_busState_8c1bb9d0.laneOffset_0x2c4 =
                     GeomDistanceXZ_8c02081c(&var_busState_8c1bb9d0.posX_0x0f4, &var_busState_8c1bb9d0.laneTargetX_0x0ec);
             }
-            /* Below run phase 3 the run is still going, so resume driving;
-             * from 3 on it is over and the bus stays put. */
+            /* From run phase 3 on, the run is over. */
             var_busState_8c1bb9d0.driveState_0x2b4 = (var_runState_8c2285c4.runPhase_0x00 < 3) ? 1 : 3;
             var_busState_8c1bb9d0.speed_0x27c = 0.0f;
         }
     } else if (var_busState_8c1bb9d0.driveState_0x2b4 == 4) {
-        /* Braking to a stop (run over): ramp speed_0x27c toward 0 at
-         * 0.02/frame, snapping to exactly 0 and moving to state 3 once it
-         * crosses, then keep moving along headingDirX_0x274/headingDirZ_0x278. */
+        /* Braking to a stop once the run is over. */
         if (var_busState_8c1bb9d0.speed_0x27c <= 0.0f) {
             var_busState_8c1bb9d0.speed_0x27c += 0.02f;
             if (var_busState_8c1bb9d0.speed_0x27c > 0.0f) {
@@ -190,8 +171,6 @@ void BusTask_8c022bdc(Task *task, void *state)
         var_busState_8c1bb9d0.posX_0x0f4 -= var_busState_8c1bb9d0.speed_0x27c * var_busState_8c1bb9d0.headingDirX_0x274;
         var_busState_8c1bb9d0.posZ_0x0fc -= var_busState_8c1bb9d0.speed_0x27c * var_busState_8c1bb9d0.headingDirZ_0x278;
     }
-    /* driveState_0x2b4 == 3 (fully stopped): nothing else to do here, falls
-     * straight into the shared tail below. */
 
     SndUpdateEngine_8c010c6e();
 
@@ -262,8 +241,7 @@ void BusTask_8c022bdc(Task *task, void *state)
     }
 
     if (var_driveMode_8c1bb8c8 != 0) {
-        /* Smooth ang_0x258 toward a target derived from targetHeadingAngle_0x254, at most
-         * 0xb6 per frame, clamped to +-0x2aaa. */
+        /* At most 1 degree (0xb6) per frame, within +-60 degrees (0x2aaa). */
         int target = var_busState_8c1bb9d0.targetHeadingAngle_0x254 - var_busState_8c1bb9d0.ang_0x250;
 
         if (var_busState_8c1bb9d0.ang_0x258 < target) {
@@ -318,8 +296,7 @@ void BusTask_8c022bdc(Task *task, void *state)
     }
 
     if (var_busState_8c1bb9d0.gear_0x2f4 == 5) {
-        /* Reverse gear: hazard-style double blinker, toggled every 16 frames
-         * via hazardBlinkCounter_0x2f8's bit 4. */
+        /* Reverse gear: hazard lights. */
         int wasSet = var_busState_8c1bb9d0.hazardBlinkCounter_0x2f8 & 0x10;
 
         var_busState_8c1bb9d0.hazardBlinkCounter_0x2f8 += 1;
@@ -330,8 +307,6 @@ void BusTask_8c022bdc(Task *task, void *state)
         var_busState_8c1bb9d0.turnSignalBlinkCounter_0x260 = 0;
         sdMidiStop(var_midiHandles_8c0fcd28[1]);
     } else {
-        /* Left/right turn signal: play the tick SFX on the first frame, then
-         * toggle the blinker bit every 16 frames via turnSignalBlinkCounter_0x260's bit 4. */
         int wasSet;
 
         if (var_busState_8c1bb9d0.turnSignalBlinkCounter_0x260 == 0) {
