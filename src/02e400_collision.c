@@ -18,7 +18,7 @@ NJS_BOX var_collisionSelfBox_8c228978;
 
 NJS_BOX var_collisionCandidateBox_8c2289d8;
 
-/* pending collision candidates, written and scanned once per frame. */
+/* Pedestrians on crossings. */
 void *var_collisionQueue_8c228a38[64];
 
 Sint32 var_collisionQueueCount_8c228b38;
@@ -28,11 +28,8 @@ Sint32 var_collisionQueueCount_8c228b38;
  * ====================
  */
 
-/* Original bug, preserved: self's box comes from
- * `&init_variantBoxes_8c04c940[idx]` -- the address of the table slot --
- * while a candidate's comes from `init_variantBoxes_8c04c940[idx]`, the box
- * it points at. Self is therefore built from the pointer table's own bytes
- * reinterpreted as floats. */
+/* Original bug, preserved: self's box is built from the table slot's
+ * address, i.e. the pointer table's own bytes read as floats. */
 TrafficEntry *CollisionFindTaskHit_8c02e400(Task *self, TrafficEntry *entry)
 {
     TrafficEntry *candidateEntry;

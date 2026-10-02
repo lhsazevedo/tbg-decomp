@@ -18,28 +18,20 @@ extern NJS_BOX var_collisionCandidateBox_8c2289d8;
  * ====================
  */
 
-/* Reports which other traffic entry `entry` is currently overlapping, or
- * NULL. Leaves entry's own world-space box in var_collisionSelfBox_8c228978,
- * which CollisionQueueTest_8c02e4ac below then tests against. */
+/* Leaves entry's world-space box in var_collisionSelfBox_8c228978. */
 TrafficEntry *CollisionFindTaskHit_8c02e400(
     /* The caller's own task, excluded from the scan */
     Task *self,
-    /* The entry to test, and the source of the box */
     TrafficEntry *entry
 );
 
-/* Empties the queue. */
 void CollisionQueueReset_8c02e486(void);
 
-/* Appends obj to the queue; silently dropped once the 64 slots are full. */
 void CollisionQueueAdd_8c02e48e(void *obj);
 
-/* Reports which queued object's bounding sphere overlaps
- * var_collisionSelfBox_8c228978, or NULL.
- *
- * Does not fill that box -- it tests against whatever
- * CollisionFindTaskHit_8c02e400 or BusCollisionFindHit_8c02e2dc left there,
- * so what this answers depends on who ran last. */
+/* Tests queued bounding spheres against whatever box the last
+ * CollisionFindTaskHit_8c02e400 or BusCollisionFindHit_8c02e2dc left in
+ * var_collisionSelfBox_8c228978. */
 void *CollisionQueueTest_8c02e4ac(void);
 
 #endif // _02E400_COLLISION_H
