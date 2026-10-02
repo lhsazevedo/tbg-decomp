@@ -20,12 +20,12 @@ return new class extends TestCase {
         return unpack('L', pack('f', $v))[1];
     }
 
-    /** Allocates a StopScheduleState. Returns [state, ref_0x00]. */
+    /** Allocates a PassengerState. Returns [state, ref_0x00]. */
     private function makeState(int $mode): int
     {
         $state = $this->alloc(0x38);
         $ref = $this->alloc(4);
-        $this->initUint8($ref, 5); // stop index, unused by this fn directly
+        $this->initUint8($ref, 5); // pedestrian type, unused by this fn directly
         $this->initUint32($state + 0x00, $ref);
         $this->initUint32($state + 0x04, $mode);
         $this->lastRef = $ref;

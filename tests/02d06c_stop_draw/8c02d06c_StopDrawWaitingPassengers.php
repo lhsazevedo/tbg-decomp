@@ -45,21 +45,21 @@ return new class extends TestCase {
     }
 
     /** Sets up one WaitingPassengerSlot at var_waitingPassengers_8c228798[i]. */
-    private function initSlot(int $base, int $i, int $stopIndex, float $x, float $y, float $z): void
+    private function initSlot(int $base, int $i, int $pedType, float $x, float $y, float $z): void
     {
         $slot = $base + $i * 0x14;
-        $stopByte = $this->alloc(1);
-        $this->initUint8($stopByte, $stopIndex);
-        $this->initUint32($slot + 0x00, $stopByte); // spot_0x00
+        $typeByte = $this->alloc(1);
+        $this->initUint8($typeByte, $pedType);
+        $this->initUint32($slot + 0x00, $typeByte); // spot_0x00
         $this->initUint32($slot + 0x04, $this->f($x));
         $this->initUint32($slot + 0x08, $this->f($y));
         $this->initUint32($slot + 0x0c, $this->f($z));
     }
 
     /** Sets one ModelSlot's texlist_0x08 field. */
-    private function initTexlist(int $base, int $stopIndex, int $tlist): void
+    private function initTexlist(int $base, int $pedType, int $tlist): void
     {
-        $this->initUint32($base + $stopIndex * 0x10 + 0x08, $tlist);
+        $this->initUint32($base + $pedType * 0x10 + 0x08, $tlist);
     }
 
     public function test_single_valid_passenger_draws_sprite_facing0(): void
@@ -108,7 +108,7 @@ return new class extends TestCase {
         $this->shouldCall('_njDrawSprite3D')->with($sprite, 0x22, 0x30);
     }
 
-    public function test_stop_index_at_bound_is_skipped(): void
+    public function test_ped_type_at_bound_is_skipped(): void
     {
         $this->resolveSymbols();
 

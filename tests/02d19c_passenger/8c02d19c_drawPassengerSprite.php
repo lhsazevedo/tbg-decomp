@@ -33,12 +33,12 @@ return new class extends TestCase {
         });
     }
 
-    /** Allocates a StopScheduleState pointing ref_0x00 at a fresh stop-index byte. */
-    private function makeState(int $stopIndex, int $field14, int $field28): int
+    /** Allocates a PassengerState pointing ref_0x00 at a fresh pedestrian-type byte. */
+    private function makeState(int $pedType, int $field14, int $field28): int
     {
         $state = $this->alloc(0x38);
         $entry = $this->alloc(4);
-        $this->initUint8($entry, $stopIndex);
+        $this->initUint8($entry, $pedType);
         $this->initUint32($state + 0x00, $entry); // ref_0x00
         $this->initUint32($state + 0x14, $field14);
         $this->initUint32($state + 0x28, $field28);
@@ -92,7 +92,7 @@ return new class extends TestCase {
         $this->shouldCall('_njDrawSprite3D')->with($sprite, 0x23, 0x30);
     }
 
-    public function test_stop_index_out_of_range_is_skipped(): void
+    public function test_ped_type_out_of_range_is_skipped(): void
     {
         $this->resolveSymbols();
 

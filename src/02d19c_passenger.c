@@ -96,22 +96,22 @@ SeatPos init_seatPositions_8c04c3e4[31] = {
 /* Installed as a DrawFn (via literal-pool pointer, both by
  * PassengerSeatedTask_8c02d5ca and by the per-passenger task actions below);
  * draws one passenger's sprite, waiting or scripted. arg0 is a
- * StopScheduleState* threaded through the int parameter (the same idiom as
+ * PassengerState* threaded through the int parameter (the same idiom as
  * StopDrawLightBegin_8c02d0fc/d146 in 02d06c). A stop index (the byte at *entry_0x00) out of
  * range, or whose asset slot has no texlist loaded yet, is skipped. */
 STATIC void drawPassengerSprite_8c02d19c(int arg0)
 {
-    StopScheduleState *state = (StopScheduleState *)arg0;
-    Sint8 stopIndex = *(Sint8 *)state->entry_0x00;
+    PassengerState *state = (PassengerState *)arg0;
+    Sint8 pedType = *(Sint8 *)state->spot_0x00;
 
-    if (stopIndex >= 0x41) {
+    if (pedType >= 0x41) {
         return;
     }
-    if (var_pedestrianAssets_8c1bbfdc[stopIndex].texlist_0x08 == (NJS_TEXLIST *)-1) {
+    if (var_pedestrianAssets_8c1bbfdc[pedType].texlist_0x08 == (NJS_TEXLIST *)-1) {
         return;
     }
 
-    var_passengerSprite_8c2288d8.tlist = var_pedestrianAssets_8c1bbfdc[stopIndex].texlist_0x08;
+    var_passengerSprite_8c2288d8.tlist = var_pedestrianAssets_8c1bbfdc[pedType].texlist_0x08;
     var_passengerSprite_8c2288d8.p = state->pos_0x08;
     njDrawSprite3D(&var_passengerSprite_8c2288d8, state->spriteNo_0x14, state->isSeated_0x28 == 0 ? 0x32 : 0x30);
 }
@@ -157,7 +157,7 @@ STATIC void setCountUpStep_8c02d5d8(void)
  * callback in its terminal state (0). Each phase only advances on a frame
  * where var_passengersFadedOut_8c22895c is set, so the passenger never visibly
  * jumps between waypoints. */
-void PassengerBoardTask_8c02d21c(Task *task, StopScheduleState *state)
+void PassengerBoardTask_8c02d21c(Task *task, PassengerState *state)
 {
     int mode = state->state_0x04;
     int layer = 0;
@@ -215,7 +215,7 @@ void PassengerBoardTask_8c02d21c(Task *task, StopScheduleState *state)
                     slot = 0;
                 }
             }
-            var_seats_8c228718[slot] = (int)state->entry_0x00;
+            var_seats_8c228718[slot] = (int)state->spot_0x00;
             state->pos_0x08.x = init_seatPositions_8c04c3e4[slot].x;
             state->pos_0x08.z = init_seatPositions_8c04c3e4[slot].z;
             if (slot < 0x14) {
@@ -259,7 +259,7 @@ void PassengerBoardTask_8c02d21c(Task *task, StopScheduleState *state)
  * anchor points), but the anchor points, sound-gating route and terminal
  * behavior all differ -- this one frees itself once var_passengersFadedOut_8c22895c fires in
  * its terminal state, instead of looping forever. */
-void PassengerExitTask_8c02d46c(Task *task, StopScheduleState *state)
+void PassengerExitTask_8c02d46c(Task *task, PassengerState *state)
 {
     int mode = state->state_0x04;
     int layer = 0;
@@ -281,7 +281,7 @@ void PassengerExitTask_8c02d46c(Task *task, StopScheduleState *state)
             state->isSeated_0x28 = 0;
         }
         if (var_passengersFadedOut_8c22895c != 0) {
-            var_seats_8c228718[state->slotIndex_0x24] = -1;
+            var_seats_8c228718[state->seat_0x24] = -1;
             state->pos_0x08.x = var_exitSpot1_8c228934.x + state->jitterX_0x18;
             state->pos_0x08.z = var_exitSpot1_8c228934.z + state->jitterZ_0x1c;
             state->spriteNo_0x14 = (var_route_8c18ad1c == ROUTE_OME) ? 0x20 : 0x10;
@@ -342,7 +342,7 @@ void PassengerExitTask_8c02d46c(Task *task, StopScheduleState *state)
  * 02d06c) in and out around the fade-arrival overlay, and tears the
  * subsystem down and frees itself when done. Spawned once by StopSpawnInit_8c02d968
  * with a private 2-int state (field_0x00 the phase, field_0x04 a sub-phase
- * used only by phase 1); NOT the 0x38-byte StopScheduleState the other
+ * used only by phase 1); NOT the 0x38-byte PassengerState the other
  * task actions in this unit use. Every call re-registers this frame's
  * interior-draw (drawInterior_8c02d1f4) and light (StopDrawLightBegin_8c02d0fc) DrawFns
  * regardless of phase. */
