@@ -25,8 +25,7 @@
 /* Bytes per name in njSetPvmTextureList's filename block. */
 #define PVM_NAME_LEN 28
 
-/* Above this many sectors the file gets its own buffer instead of
-   var_texbuf_8c277ca0. */
+/* Larger files get their own buffer instead of var_texbuf_8c277ca0. */
 #define BIG_FILE_SECTORS 0x100
 
 
@@ -50,10 +49,7 @@ typedef struct {
     int loaded_0x10;
 } QueuedNj;
 
-/* This and the TaskLoadQueued* structs below are Task (014a9c_tasks.h) with
-   its generic fields named for one loader: field_0x08 is the phase,
-   field_0x0c the open GDFS handle, queuedItem_0x18 the queue cursor.
-   TaskSpawn_8c014ae8 only ever hands out a plain Task. */
+/* The TaskLoadQueued* structs are Task with fields named for one loader. */
 typedef struct {
     TaskAction action;
     void *state;
@@ -120,11 +116,8 @@ int var_seed_8c157a64;
 STATIC int var_texlistQueueDoneCount_8c157a68;
 int var_loadScreenActive_8c157a6c;
 
-/* PDS_PERIPHERAL.support of port 0 masked with BT_CONTROLLER: either
-   BT_CONTROLLER or BT_RACING (012324_input.h), or -1 for no usable pad. */
 int var_activeCtrlType_8c157a70;
-/* TaskSpawn_8c014ae8 needs somewhere to report the task it made;
-   InputSpawnTask_8c0128cc gives it this, and nothing ever reads it back. */
+/* Write-only TaskSpawn_8c014ae8 out-param. */
 Task *var_pushedTask_8c157a74;
 int var_resetRequested_8c157a78;
 int var_vmBusy_8c157a7c;
@@ -208,7 +201,6 @@ ButtonRemap init_btnRemapWheelAuto_8c03bf18[5] = {
  */
 
 void AsqNop_8c011120() {
-    /* Empty body */
 }
 
 STATIC int initDatQueue_8c011124(int n) {
@@ -694,7 +686,6 @@ STATIC void taskLoadQueuedTexlists_8c01183e(Task *task, void *state) {
 
     while (TRUE) {
         int i;
-        /* Assumes the current texlist is already loaded. */
         Bool alreadyLoaded = TRUE;
 
         texlist = item->texlist_0x04;
@@ -718,8 +709,6 @@ STATIC void taskLoadQueuedTexlists_8c01183e(Task *task, void *state) {
                 comparedTextureCount = comparedItem->texlist_0x04->nbTexture;
                 comparedTextures = comparedItem->texlist_0x04->textures;
 
-                /* comparedIndex is 0 when there's nothing to compare against;
-                 * the "not found" check below still works either way. */
                 for (comparedIndex = 0; comparedIndex < comparedTextureCount; comparedIndex++)
                 {
                     if (!strcmp(currentTexture->filename, comparedTextures[comparedIndex].filename)) {
@@ -728,15 +717,10 @@ STATIC void taskLoadQueuedTexlists_8c01183e(Task *task, void *state) {
                     }
                 }
 
-                /* If the current texture is already loaded, advance to the
-                 * next one in the current texlist; breaking skips the loop
-                 * counter increment. */
                 if (comparedIndex != comparedTextureCount) break;
 
             }
 
-            /* If the current texture wasn't found in any compared texlist,
-             * it needs to be loaded. */
             if (queueIdx == var_texlistQueueDoneCount_8c157a68) {
                 alreadyLoaded = FALSE;
             }
@@ -898,8 +882,6 @@ STATIC void taskLoadQueuedPvms_8c011b00(TaskLoadQueuedPvms* task, void* state) {
                         texname[i].attr = pvm->attr_0x10;
                     }
 
-                    /* njSetPvmTextureList wants a flat block of 28-byte
-                       filename slots, one per texture. */
                     filename = syMalloc(pvm->count_0x0c * PVM_NAME_LEN);
 
                     njSetPvmTextureList(texlist, texname, filename, pvm->count_0x0c);
@@ -945,8 +927,6 @@ STATIC void taskLoadQueuedPvms_8c011b00(TaskLoadQueuedPvms* task, void* state) {
                         texname[i].attr = pvm->attr_0x10;
                     }
 
-                    /* njSetPvmTextureList wants a flat block of 28-byte
-                       filename slots, one per texture. */
                     filename = syMalloc(pvm->count_0x0c * PVM_NAME_LEN);
 
                     njSetPvmTextureList(texlist, texname, filename, pvm->count_0x0c);
@@ -1054,8 +1034,7 @@ void AsqReleaseAndFreeTexlist_8c011e3c(NJS_TEXLIST *texlist) {
     syFree(texlist);
 }
 
-/* Nothing in the image calls this: AsqReleaseAndFreeTexlist_8c011e3c, which
- * releases the textures first, is what everything uses. */
+/* Unused. */
 STATIC void asqFreeTexlist_8c011e60(NJS_TEXLIST *texlist) {
     syFree(texlist->textures[0].filename);
     syFree(texlist->textures);
@@ -1284,9 +1263,7 @@ void AsqApplyButtonConfig_8c0121e8() {
         }
     }
 
-    /* The == 0 arm is subsumed by != 1. The original's branch structure (asm
-     * at 8c01229e) has its else arm fall into the case-0 block, which is what
-     * this reproduces; the neighbouring 0xcf test keeps a distinct case 2. */
+    /* The == 0 arm is redundant; it mirrors the original's branches. */
     if (var_progress_8c1ba1cc.btnConfigWheelManual_0xce == 0 || var_progress_8c1ba1cc.btnConfigWheelManual_0xce != 1) {
         init_btnRemapWheelManual_8c03bef0[0].physical_0x00 = PDD_DGT_KD;
         init_btnRemapWheelManual_8c03bef0[1].physical_0x00 = PDD_DGT_KU;

@@ -39,8 +39,8 @@ extern int var_queuesAreInitialized_8c157a60;
 extern int var_seed_8c157a64;
 extern int var_loadScreenActive_8c157a6c;
 
-/* PDS_PERIPHERAL.support of the pad on port 0, masked to BT_CONTROLLER, or -1
- * when nothing usable is plugged in (see 012324_input.h). */
+/* Port 0's PDS_PERIPHERAL.support & BT_CONTROLLER (BT_CONTROLLER or
+ * BT_RACING), or -1 when no usable pad is plugged in. */
 extern int var_activeCtrlType_8c157a70;
 extern Task *var_pushedTask_8c157a74;
 extern int var_resetRequested_8c157a78;
