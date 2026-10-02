@@ -418,7 +418,7 @@ return [
                 "tests/01b19c_system_menu/8c01b1c0_writeDecimalDigits.php",
                 "tests/01b19c_system_menu/8c01b206_updateVmsComment.php",
                 "tests/01b19c_system_menu/8c01b26c_SystemMenuWriteToVmu.php",
-                "tests/01b19c_system_menu/8c01b3ac_saveTask.php",
+                "tests/01b19c_system_menu/8c01b3ac_menuTask.php",
                 "tests/01b19c_system_menu/8c01ba64_SystemMenuEnter.php",
             ],
             "objects" => [

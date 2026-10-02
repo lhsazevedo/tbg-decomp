@@ -29,7 +29,7 @@
 
 /* Outer state machine, held in menuState.state_0x18. */
 typedef enum SaveState {
-    SAVE_STATE_WAIT_PVM       = 0, /* wait for route PVM, then free asset queues */
+    SAVE_STATE_LOAD_ICON      = 0, /* wait for route PVM, then free asset queues */
     SAVE_STATE_FADE_IN        = 1,
     SAVE_STATE_TOP_MENU       = 2, /* load / save / back / quit selection */
     SAVE_STATE_LOAD           = 3, /* load: confirm, then read the VMU */
@@ -155,7 +155,7 @@ void SystemMenuWriteToVmu_8c01b26c(void)
 }
 
 /* Per-frame update for the save/load menu task. */
-STATIC void saveTask_8c01b3ac(Task *task, void *state)
+STATIC void menuTask_8c01b3ac(Task *task, void *state)
 {
     int vmStatus;
     int result;
@@ -172,7 +172,7 @@ STATIC void saveTask_8c01b3ac(Task *task, void *state)
     }
 
     switch (var_menuState_8c1bc7a8.state_0x18) {
-    case SAVE_STATE_WAIT_PVM:
+    case SAVE_STATE_LOAD_ICON:
         if (RouteGetLatch_8c01432a() != 0) {
             return;
         }
@@ -466,8 +466,8 @@ STATIC void saveTask_8c01b3ac(Task *task, void *state)
  * icon data at +0x20. */
 void SystemMenuEnter_8c01ba64(Task *task)
 {
-    TaskSwitch_8c014b3e(task, saveTask_8c01b3ac);
-    var_menuState_8c1bc7a8.state_0x18 = SAVE_STATE_WAIT_PVM;
+    TaskSwitch_8c014b3e(task, menuTask_8c01b3ac);
+    var_menuState_8c1bc7a8.state_0x18 = SAVE_STATE_LOAD_ICON;
     var_menuState_8c1bc7a8.selected_0x38 = SAVE_MENU_LOAD;
     var_saveBuf_8c1ba2e0 = syMalloc(0x600);
     VmSelectUpdateStatus_8c01967c(var_selectedVm_8c1ba34c,

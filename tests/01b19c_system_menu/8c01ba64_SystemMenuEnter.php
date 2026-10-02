@@ -20,7 +20,7 @@ return new class extends TestCase {
         $this->call('_SystemMenuEnter_8c01ba64')->with($task);
 
         $this->shouldCall('_TaskSwitch_8c014b3e')
-            ->with($task, $this->addressOf('_saveTask_8c01b3ac'));
+            ->with($task, $this->addressOf('_menuTask_8c01b3ac'));
         $this->shouldWriteLong($menuState + 0x18, 0);
         $this->shouldWriteLong($menuState + 0x38, 0);
         $this->shouldCall('_syMalloc')->with(0x600)->andReturn(0x8c500000);

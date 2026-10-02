@@ -110,7 +110,7 @@ return new class extends TestCase {
         $this->initUint32($this->addressOf('_var_selectedVm_8c1ba34c'), -1);
         $this->initUint32($this->addressOf('_var_isFading_8c226568'), 0);
 
-        $this->call('_saveTask_8c01b3ac')->with(0x8ce00000, 0);
+        $this->call('_menuTask_8c01b3ac')->with(0x8ce00000, 0);
         $this->shouldCall('_RouteGetLatch_8c01432a')->andReturn(1);
     }
 
@@ -122,7 +122,7 @@ return new class extends TestCase {
         $this->initUint32($this->addressOf('_var_selectedVm_8c1ba34c'), -1);
         $this->initUint32($this->addressOf('_var_isFading_8c226568'), 0);
 
-        $this->call('_saveTask_8c01b3ac')->with(0x8ce00000, 0);
+        $this->call('_menuTask_8c01b3ac')->with(0x8ce00000, 0);
         $this->shouldCall('_RouteGetLatch_8c01432a')->andReturn(0);
         $this->shouldCall('_AsqFreeQueues_8c011f7e');
         $this->shouldWriteLong($menuState + 0x18, 1);
@@ -137,7 +137,7 @@ return new class extends TestCase {
         $this->initUint32($this->addressOf('_var_selectedVm_8c1ba34c'), -1);
         $this->initUint32($this->addressOf('_var_isFading_8c226568'), 0);
 
-        $this->call('_saveTask_8c01b3ac')->with(0x8ce00000, 0);
+        $this->call('_menuTask_8c01b3ac')->with(0x8ce00000, 0);
         $this->shouldWriteLong($menuState + 0x18, 2);
         $this->expectDrawTail($menuState, 2, 0);
     }
@@ -151,7 +151,7 @@ return new class extends TestCase {
         $this->initUint32($this->addressOf('_var_selectedVm_8c1ba34c'), -1);
         $this->initUint32($this->addressOf('_var_isFading_8c226568'), 1);
 
-        $this->call('_saveTask_8c01b3ac')->with(0x8ce00000, 0);
+        $this->call('_menuTask_8c01b3ac')->with(0x8ce00000, 0);
         $this->expectDrawTail($menuState, 0, 1);
     }
 
@@ -160,7 +160,7 @@ return new class extends TestCase {
         $menuState = $this->menuStateBase();
         $this->state2Enter($menuState, 0, 0x4);        // selected=load, A pressed
 
-        $this->call('_saveTask_8c01b3ac')->with(0x8ce00000, 0);
+        $this->call('_menuTask_8c01b3ac')->with(0x8ce00000, 0);
         $this->expectVmStatusTop(0);
         $this->shouldCall('_PromptHandleMultiple_8c016c58')->with($menuState + 0x38, 4);
         $this->shouldWriteLong($menuState + 0x3c, 0);
@@ -175,7 +175,7 @@ return new class extends TestCase {
         $menuState = $this->menuStateBase();
         $this->state2Enter($menuState, 0, 0x4);
 
-        $this->call('_saveTask_8c01b3ac')->with(0x8ce00000, 0);
+        $this->call('_menuTask_8c01b3ac')->with(0x8ce00000, 0);
         $this->expectVmStatusTop(5);
         $this->shouldCall('_PromptHandleMultiple_8c016c58')->with($menuState + 0x38, 4);
         $this->shouldWriteLong($menuState + 0x3c, 0);
@@ -191,7 +191,7 @@ return new class extends TestCase {
         $menuState = $this->menuStateBase();
         $this->state2Enter($menuState, 1, 0x4);        // selected=save
 
-        $this->call('_saveTask_8c01b3ac')->with(0x8ce00000, 0);
+        $this->call('_menuTask_8c01b3ac')->with(0x8ce00000, 0);
         $this->expectVmStatusTop(4);
         $this->shouldCall('_PromptHandleMultiple_8c016c58')->with($menuState + 0x38, 4);
         $this->shouldWriteLong($menuState + 0x3c, 0);
@@ -207,7 +207,7 @@ return new class extends TestCase {
         $menuState = $this->menuStateBase();
         $this->state2Enter($menuState, 1, 0x4);
 
-        $this->call('_saveTask_8c01b3ac')->with(0x8ce00000, 0);
+        $this->call('_menuTask_8c01b3ac')->with(0x8ce00000, 0);
         $this->expectVmStatusTop(0);
         $this->shouldCall('_PromptHandleMultiple_8c016c58')->with($menuState + 0x38, 4);
         $this->shouldWriteLong($menuState + 0x3c, 0);
@@ -223,7 +223,7 @@ return new class extends TestCase {
         $menuState = $this->menuStateBase();
         $this->state2Enter($menuState, 2, 0x4);        // selected=back
 
-        $this->call('_saveTask_8c01b3ac')->with(0x8ce00000, 0);
+        $this->call('_menuTask_8c01b3ac')->with(0x8ce00000, 0);
         $this->expectVmStatusTop(0);
         $this->shouldCall('_PromptHandleMultiple_8c016c58')->with($menuState + 0x38, 4);
         $this->shouldWriteLong($menuState + 0x3c, 0);
@@ -241,7 +241,7 @@ return new class extends TestCase {
         $this->state2Enter($menuState, 3, 0x4);        // selected=quit
         $this->initUint32($this->addressOf('_var_gameMode_8c1bb8fc'), 0);
 
-        $this->call('_saveTask_8c01b3ac')->with(0x8ce00000, 0);
+        $this->call('_menuTask_8c01b3ac')->with(0x8ce00000, 0);
         $this->expectVmStatusTop(0);
         $this->shouldCall('_PromptHandleMultiple_8c016c58')->with($menuState + 0x38, 4);
         $this->shouldWriteLong($menuState + 0x3c, 0);
@@ -258,7 +258,7 @@ return new class extends TestCase {
         $this->state2Enter($menuState, 3, 0x4);
         $this->initUint32($this->addressOf('_var_gameMode_8c1bb8fc'), 1);
 
-        $this->call('_saveTask_8c01b3ac')->with(0x8ce00000, 0);
+        $this->call('_menuTask_8c01b3ac')->with(0x8ce00000, 0);
         $this->expectVmStatusTop(0);
         $this->shouldCall('_PromptHandleMultiple_8c016c58')->with($menuState + 0x38, 4);
         $this->shouldWriteLong($menuState + 0x3c, 0);
@@ -275,7 +275,7 @@ return new class extends TestCase {
         $menuState = $this->menuStateBase();
         $this->state2Enter($menuState, 0, 0x2);        // B pressed
 
-        $this->call('_saveTask_8c01b3ac')->with(0x8ce00000, 0);
+        $this->call('_menuTask_8c01b3ac')->with(0x8ce00000, 0);
         $this->expectVmStatusTop(0);
         $this->shouldCall('_PromptHandleMultiple_8c016c58')->with($menuState + 0x38, 4);
         $this->shouldWriteLong($menuState + 0x18, 7);
@@ -291,7 +291,7 @@ return new class extends TestCase {
         $menuState = $this->menuStateBase();
         $this->state2Enter($menuState, 0, 0x40);       // KL only: cursor moved
 
-        $this->call('_saveTask_8c01b3ac')->with(0x8ce00000, 0);
+        $this->call('_menuTask_8c01b3ac')->with(0x8ce00000, 0);
         $this->expectVmStatusTop(0);
         $this->shouldCall('_PromptHandleMultiple_8c016c58')->with($menuState + 0x38, 4);
         $this->shouldCall('_MessageBoxSwapFor_8c02aefc')->with("");
@@ -304,7 +304,7 @@ return new class extends TestCase {
         $menuState = $this->menuStateBase();
         $this->state2Enter($menuState, 0, 0);
 
-        $this->call('_saveTask_8c01b3ac')->with(0x8ce00000, 0);
+        $this->call('_menuTask_8c01b3ac')->with(0x8ce00000, 0);
         $this->expectVmStatusTop(0);
         $this->shouldCall('_PromptHandleMultiple_8c016c58')->with($menuState + 0x38, 4);
         $this->expectDrawTail($menuState, 0, 0);
@@ -318,7 +318,7 @@ return new class extends TestCase {
         $menuState = $this->menuStateBase();
         $this->stateEnter($menuState, 6, 0, 0, 3);
 
-        $this->call('_saveTask_8c01b3ac')->with(0x8ce00000, 0);
+        $this->call('_menuTask_8c01b3ac')->with(0x8ce00000, 0);
         $this->expectVmStatusTop(0);
         $this->shouldCall('_PromptHandleBinary_8c016caa')->with($menuState + 0x3c)->andReturn(1);
         // state=8 is written in the JSR delay slot, before VmSelectUnmountVms runs.
@@ -334,7 +334,7 @@ return new class extends TestCase {
         $menuState = $this->menuStateBase();
         $this->stateEnter($menuState, 6, 0, 1, 3);
 
-        $this->call('_saveTask_8c01b3ac')->with(0x8ce00000, 0);
+        $this->call('_menuTask_8c01b3ac')->with(0x8ce00000, 0);
         $this->expectVmStatusTop(0);
         $this->shouldCall('_PromptHandleBinary_8c016caa')->with($menuState + 0x3c)->andReturn(2);
         // state=2 is written in the JSR delay slot, before swapMessageBoxFor runs.
@@ -349,7 +349,7 @@ return new class extends TestCase {
         $menuState = $this->menuStateBase();
         $this->stateEnter($menuState, 6, 0, 2, 3);
 
-        $this->call('_saveTask_8c01b3ac')->with(0x8ce00000, 0);
+        $this->call('_menuTask_8c01b3ac')->with(0x8ce00000, 0);
         $this->expectVmStatusTop(0);
         $this->shouldCall('_PromptHandleBinary_8c016caa')->with($menuState + 0x3c)->andReturn(0);
         $this->expectPromptTail($menuState, 2, 3, 0);
@@ -363,7 +363,7 @@ return new class extends TestCase {
         $menuState = $this->menuStateBase();
         $this->exitStateEnter($menuState, 7, 1, 1, 0);   // isFading=1
 
-        $this->call('_saveTask_8c01b3ac')->with(0x8ce00000, 0);
+        $this->call('_menuTask_8c01b3ac')->with(0x8ce00000, 0);
         $this->expectDrawTail($menuState, 1, 0);
     }
 
@@ -373,7 +373,7 @@ return new class extends TestCase {
         $menuState = $this->menuStateBase();
         $this->exitStateEnter($menuState, 7, 1, 0, 1);   // gate var_vmMountBusy_8c22606c=1
 
-        $this->call('_saveTask_8c01b3ac')->with(0x8ce00000, 0);
+        $this->call('_menuTask_8c01b3ac')->with(0x8ce00000, 0);
         $this->expectDrawTail($menuState, 1, 0);
     }
 
@@ -383,7 +383,7 @@ return new class extends TestCase {
         $menuState = $this->menuStateBase();
         $this->exitStateEnter($menuState, 7, 1, 0, 0);
 
-        $this->call('_saveTask_8c01b3ac')->with(0x8ce00000, 0);
+        $this->call('_menuTask_8c01b3ac')->with(0x8ce00000, 0);
         $this->shouldWriteLong($menuState + 0x3c, 1);
         $this->shouldWriteLong($menuState + 0x40, 0);
         $this->shouldCall('_FileSelectFreeBuffers_8c0187d0');
@@ -398,7 +398,7 @@ return new class extends TestCase {
         $menuState = $this->menuStateBase();
         $this->exitStateEnter($menuState, 8, 1, 1, 0);
 
-        $this->call('_saveTask_8c01b3ac')->with(0x8ce00000, 0);
+        $this->call('_menuTask_8c01b3ac')->with(0x8ce00000, 0);
         $this->expectDrawTail($menuState, 1, 0);
     }
 
@@ -408,7 +408,7 @@ return new class extends TestCase {
         $menuState = $this->menuStateBase();
         $this->exitStateEnter($menuState, 8, 1, 0, 0);
 
-        $this->call('_saveTask_8c01b3ac')->with(0x8ce00000, 0);
+        $this->call('_menuTask_8c01b3ac')->with(0x8ce00000, 0);
         $this->shouldCall('_ReplayMenuFreeSessionAssets_8c016182');
         $this->shouldCall('_TitleStart_8c015fd6')->with(1);
     }
@@ -422,7 +422,7 @@ return new class extends TestCase {
         $this->stateEnter($menuState, 3, 0, 0, 0);
         $this->initUint32($this->addressOf('_var_saveBuf_8c1ba2e0'), 0x8c500000);
 
-        $this->call('_saveTask_8c01b3ac')->with(0x8ce00000, 0);
+        $this->call('_menuTask_8c01b3ac')->with(0x8ce00000, 0);
         $this->expectVmStatusTop(0);
         $this->shouldCall('_PromptHandleBinary_8c016caa')->with($menuState + 0x3c)->andReturn(1);
         $this->shouldCall('_BupLoad_8c014bc6')->with(0, 0x8c440000, 0x8c500000);
@@ -439,7 +439,7 @@ return new class extends TestCase {
         $menuState = $this->menuStateBase();
         $this->stateEnter($menuState, 3, 0, 1, 0);
 
-        $this->call('_saveTask_8c01b3ac')->with(0x8ce00000, 0);
+        $this->call('_menuTask_8c01b3ac')->with(0x8ce00000, 0);
         $this->expectVmStatusTop(0);
         $this->shouldCall('_PromptHandleBinary_8c016caa')->with($menuState + 0x3c)->andReturn(2);
         // state=2 is written in the JSR delay slot, before swapMessageBoxFor runs.
@@ -455,7 +455,7 @@ return new class extends TestCase {
         $menuState = $this->menuStateBase();
         $this->stateEnter($menuState, 3, 0, 2, 0);
 
-        $this->call('_saveTask_8c01b3ac')->with(0x8ce00000, 0);
+        $this->call('_menuTask_8c01b3ac')->with(0x8ce00000, 0);
         $this->expectVmStatusTop(3);   // PROCEED_WITHOUT_SAVING: nothing to read
         $this->shouldCall('_PromptHandleBinary_8c016caa')->with($menuState + 0x3c)->andReturn(0);
         $this->shouldCall('_MessageBoxSwapFor_8c02aefc');
@@ -470,7 +470,7 @@ return new class extends TestCase {
         $menuState = $this->menuStateBase();
         $this->stateEnter($menuState, 3, 0, 2, 0);
 
-        $this->call('_saveTask_8c01b3ac')->with(0x8ce00000, 0);
+        $this->call('_menuTask_8c01b3ac')->with(0x8ce00000, 0);
         $this->expectVmStatusTop(5);
         $this->shouldCall('_PromptHandleBinary_8c016caa')->with($menuState + 0x3c)->andReturn(0);
         $this->expectPromptTail($menuState, 2, 0, 0);
@@ -484,7 +484,7 @@ return new class extends TestCase {
         $menuState = $this->menuStateBase();
         $this->stateEnter($menuState, 3, 1, 0, 0);
 
-        $this->call('_saveTask_8c01b3ac')->with(0x8ce00000, 0);
+        $this->call('_menuTask_8c01b3ac')->with(0x8ce00000, 0);
         $this->expectVmStatusTop(0);
         $this->shouldCall('_buStat')->with(0)->andReturn(1);   // still busy
         $this->expectPromptTail($menuState, 0, 0, 0);
@@ -496,7 +496,7 @@ return new class extends TestCase {
         $menuState = $this->menuStateBase();
         $this->stateEnter($menuState, 3, 1, 0, 0);
 
-        $this->call('_saveTask_8c01b3ac')->with(0x8ce00000, 0);
+        $this->call('_menuTask_8c01b3ac')->with(0x8ce00000, 0);
         $this->expectVmStatusTop(0);
         $this->shouldCall('_buStat')->with(0)->andReturn(0);
         $this->shouldCall('_buGetLastError')->with(0)->andReturn(1);   // error
@@ -517,7 +517,7 @@ return new class extends TestCase {
         $this->initUint32($this->addressOf('_var_saveBuf_8c1ba2e0'), 0x8c500000);
         $this->initUint32($this->addressOf('_var_backupFileHeader_8c1ba2e4') + 0x58, 0x8c510000);
 
-        $this->call('_saveTask_8c01b3ac')->with(0x8ce00000, 0);
+        $this->call('_menuTask_8c01b3ac')->with(0x8ce00000, 0);
         $this->expectVmStatusTop(0);
         $this->shouldCall('_buStat')->with(0)->andReturn(0);
         $this->shouldCall('_buGetLastError')->with(0)->andReturn(0);
@@ -543,7 +543,7 @@ return new class extends TestCase {
         $this->initUint32($this->addressOf('_var_saveBuf_8c1ba2e0'), 0x8c500000);
         $this->initUint32($this->addressOf('_var_backupFileHeader_8c1ba2e4') + 0x58, 0x8c510000);
 
-        $this->call('_saveTask_8c01b3ac')->with(0x8ce00000, 0);
+        $this->call('_menuTask_8c01b3ac')->with(0x8ce00000, 0);
         $this->expectVmStatusTop(0);
         $this->shouldCall('_buStat')->with(0)->andReturn(0);
         $this->shouldCall('_buGetLastError')->with(0)->andReturn(0);
@@ -564,7 +564,7 @@ return new class extends TestCase {
         $menuState = $this->menuStateBase();
         $this->stateEnter($menuState, 5, 0, 1, 1);
 
-        $this->call('_saveTask_8c01b3ac')->with(0x8ce00000, 0);
+        $this->call('_menuTask_8c01b3ac')->with(0x8ce00000, 0);
         $this->expectVmStatusTop(0);
         $this->shouldCall('_PromptHandleBinary_8c016caa')->with($menuState + 0x3c)->andReturn(2);
         // state=2 is written in the JSR delay slot, before swapMessageBoxFor runs.
@@ -582,7 +582,7 @@ return new class extends TestCase {
         $menuState = $this->menuStateBase();
         $this->stateEnter($menuState, 5, 0, 2, 1);
 
-        $this->call('_saveTask_8c01b3ac')->with(0x8ce00000, 0);
+        $this->call('_menuTask_8c01b3ac')->with(0x8ce00000, 0);
         $this->expectVmStatusTop(3);
         $this->shouldCall('_PromptHandleBinary_8c016caa')->with($menuState + 0x3c)->andReturn(0);
         $this->shouldCall('_MessageBoxSwapFor_8c02aefc');
@@ -597,7 +597,7 @@ return new class extends TestCase {
         $menuState = $this->menuStateBase();
         $this->stateEnter($menuState, 5, 0, 2, 1);
 
-        $this->call('_saveTask_8c01b3ac')->with(0x8ce00000, 0);
+        $this->call('_menuTask_8c01b3ac')->with(0x8ce00000, 0);
         $this->expectVmStatusTop(4);
         $this->shouldCall('_PromptHandleBinary_8c016caa')->with($menuState + 0x3c)->andReturn(0);
         $this->expectPromptTail($menuState, 2, 1, 0);
@@ -610,7 +610,7 @@ return new class extends TestCase {
         $menuState = $this->menuStateBase();
         $this->stateEnter($menuState, 5, 0, 0, 1);
 
-        $this->call('_saveTask_8c01b3ac')->with(0x8ce00000, 0);
+        $this->call('_menuTask_8c01b3ac')->with(0x8ce00000, 0);
         $this->expectVmStatusTop(0);
         $this->shouldCall('_PromptHandleBinary_8c016caa')->with($menuState + 0x3c)->andReturn(1);
         $this->shouldCall('_SystemMenuWriteToVmu_8c01b26c');
@@ -631,7 +631,7 @@ return new class extends TestCase {
         $menuState = $this->menuStateBase();
         $this->stateEnter($menuState, 5, 1, 0, 1);
 
-        $this->call('_saveTask_8c01b3ac')->with(0x8ce00000, 0);
+        $this->call('_menuTask_8c01b3ac')->with(0x8ce00000, 0);
         $this->expectVmStatusTop(0);
         $this->shouldCall('_BupGetInfo_8c014bba')->with(0);
         $this->shouldCall('_buStat')->with(0)->andReturn(1);   // still busy
@@ -645,7 +645,7 @@ return new class extends TestCase {
         $this->stateEnter($menuState, 5, 1, 0, 1);
         $this->initUint32($this->addressOf('_var_backupFileImageBuf_8c1ba348'), 0x8c520000);
 
-        $this->call('_saveTask_8c01b3ac')->with(0x8ce00000, 0);
+        $this->call('_menuTask_8c01b3ac')->with(0x8ce00000, 0);
         $this->expectVmStatusTop(0);
         $this->shouldCall('_BupGetInfo_8c014bba')->with(0);
         $this->shouldCall('_buStat')->with(0)->andReturn(0);

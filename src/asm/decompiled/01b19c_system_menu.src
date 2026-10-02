@@ -68,7 +68,7 @@
           .AIFDEF UNIT_TESTING
           .EXPORT     _writeDecimalDigits_8c01b1c0
           .EXPORT     _updateVmsComment_8c01b206
-          .EXPORT     _saveTask_8c01b3ac
+          .EXPORT     _menuTask_8c01b3ac
           .EXPORT     _var_vmsComment_8c226098
           .AENDI
           .EXPORT     _SystemMenuWriteToVmu_8c01b26c
@@ -340,7 +340,7 @@ LP_GEN_27906:
           .DATA.L _var_selectedVm_8c1ba34c ; H'8C01B3A0
           .DATA.L _BupSave_8c014bcc ; H'8C01B3A4
           .DATA.L _var_vmBusy_8c157a7c ; H'8C01B3A8
-_saveTask_8c01b3ac:
+_menuTask_8c01b3ac:
           MOV.L       R14,@-R15
           MOV.L       R13,@-R15
           MOV.L       R12,@-R15
@@ -1261,7 +1261,7 @@ LP_GEN_62205:
           .RES.W 1 ; H'8C01BAE6
           .DATA.L _MessageBoxMenuTextboxText_8c02af1c ; H'8C01BAE8
           .DATA.L H'C0E00000 ; H'8C01BAEC
-          .DATA.L _saveTask_8c01b3ac ; H'8C01BAF0
+          .DATA.L _menuTask_8c01b3ac ; H'8C01BAF0
           .DATA.L _TaskSwitch_8c014b3e ; H'8C01BAF4
           .DATA.L _var_menuState_8c1bc7a8 ; H'8C01BAF8
           .DATA.L _syMalloc ; H'8C01BAFC
