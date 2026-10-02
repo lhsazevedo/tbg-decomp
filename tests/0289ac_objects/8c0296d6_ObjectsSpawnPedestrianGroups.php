@@ -38,7 +38,7 @@ return new class extends TestCase {
 
         $this->setupCourse($paths, $groupDefs, $lists);
 
-        $this->call('_ObjectsInitPedestrianGroups_8c0296d6');
+        $this->call('_ObjectsSpawnPedestrianGroups_8c0296d6');
 
         $this->shouldWriteLongTo('_var_pedPaths_8c228238', $paths);
         $this->shouldWriteLongTo('_var_pedGroupLists_8c228240', $lists);
@@ -68,7 +68,7 @@ return new class extends TestCase {
 
         $groups = 0x30003000;
 
-        $this->call('_ObjectsInitPedestrianGroups_8c0296d6');
+        $this->call('_ObjectsSpawnPedestrianGroups_8c0296d6');
 
         $this->shouldWriteLongTo('_var_pedPaths_8c228238', $paths);
         $this->shouldWriteLongTo('_var_pedGroupLists_8c228240', $lists);
@@ -126,7 +126,7 @@ return new class extends TestCase {
 
         $groups = 0x30003000;
 
-        $this->call('_ObjectsInitPedestrianGroups_8c0296d6');
+        $this->call('_ObjectsSpawnPedestrianGroups_8c0296d6');
 
         $this->shouldWriteLongTo('_var_pedPaths_8c228238', $paths);
         $this->shouldWriteLongTo('_var_pedGroupLists_8c228240', $lists);

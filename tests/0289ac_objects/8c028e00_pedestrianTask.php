@@ -56,8 +56,8 @@ return new class extends TestCase {
      */
     private function assertCrossingArgs(int $expectedB1): Closure
     {
-        $wantA0 = $this->addressOf('_var_stopLinePointA_8c228268');
-        $wantA1 = $this->addressOf('_var_stopLinePointB_8c228270');
+        $wantA0 = $this->addressOf('_var_busAxisA_8c228268');
+        $wantA1 = $this->addressOf('_var_busAxisB_8c228270');
         $wantOut = $this->addressOf('_var_crossingIntersectPoint_8c1bc458');
 
         return function () use ($expectedB1, $wantA0, $wantA1, $wantOut) {
@@ -249,10 +249,10 @@ return new class extends TestCase {
         $this->initUint32($ped + self::OFF_SPRITE_X, fdec(1.0));
         $this->initUint32($ped + self::OFF_SPRITE_Z, fdec(2.0));
 
-        $table = $this->addressOf('_var_crosswalkTable_8c228248');
+        $table = $this->addressOf('_var_blockedCrosswalks_8c228248');
         $this->initUint32($table + 0x00, $node);
         $this->initUint32($table + 0x04, $other);
-        $this->initUint32($this->addressOf('_var_crosswalkTableEnd_8c228244'), $table + 2 * 4);
+        $this->initUint32($this->addressOf('_var_blockedCrosswalksEnd_8c228244'), $table + 2 * 4);
 
         $this->call('_pedestrianTask_8c028e00')->with(0, $ped);
 
@@ -289,10 +289,10 @@ return new class extends TestCase {
         $this->initUint32($ped + self::OFF_SPRITE_X, fdec(1.0));
         $this->initUint32($ped + self::OFF_SPRITE_Z, fdec(2.0));
 
-        $table = $this->addressOf('_var_crosswalkTable_8c228248');
+        $table = $this->addressOf('_var_blockedCrosswalks_8c228248');
         $this->initUint32($table + 0x00, $node);
         $this->initUint32($table + 0x04, $other);
-        $this->initUint32($this->addressOf('_var_crosswalkTableEnd_8c228244'), $table + 2 * 4);
+        $this->initUint32($this->addressOf('_var_blockedCrosswalksEnd_8c228244'), $table + 2 * 4);
 
         $this->call('_pedestrianTask_8c028e00')->with(0, $ped);
 
@@ -353,8 +353,8 @@ return new class extends TestCase {
         $this->initUint32($ped + self::OFF_SPEED, fdec(2.0));
 
         // Empty crossing table: entry range is empty (end <= start).
-        $tableStart = $this->addressOf('_var_crosswalkTable_8c228248');
-        $this->initUint32($this->addressOf('_var_crosswalkTableEnd_8c228244'), $tableStart);
+        $tableStart = $this->addressOf('_var_blockedCrosswalks_8c228248');
+        $this->initUint32($this->addressOf('_var_blockedCrosswalksEnd_8c228244'), $tableStart);
 
         $this->call('_pedestrianTask_8c028e00')->with(0, $ped);
 
@@ -379,8 +379,8 @@ return new class extends TestCase {
         $this->initUint32($ped + self::OFF_PATH_POS, fdec(10.0));
         $this->initUint32($ped + self::OFF_SPEED, fdec(2.0));
 
-        $tableStart = $this->addressOf('_var_crosswalkTable_8c228248');
-        $this->initUint32($this->addressOf('_var_crosswalkTableEnd_8c228244'), $tableStart);
+        $tableStart = $this->addressOf('_var_blockedCrosswalks_8c228248');
+        $this->initUint32($this->addressOf('_var_blockedCrosswalksEnd_8c228244'), $tableStart);
 
         $this->call('_pedestrianTask_8c028e00')->with(0, $ped);
 

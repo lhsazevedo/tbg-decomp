@@ -10,9 +10,9 @@ extern int var_activePedPreset_8c22822c;
 extern void* var_pedGroups_8c228230;
 extern int var_pedGroupCount_8c228234; /* -1 sentinel means not yet loaded */
 
-void ObjectsInitPedestrianGroups_8c0296d6(void);
+void ObjectsSpawnPedestrianGroups_8c0296d6(void);
 void ObjectsKillPedestrianGroups_8c0297da(void);
-void ObjectsInitBlinkers_8c029920(void);
+void ObjectsSpawnBlinkers_8c029920(void);
 void ObjectsClearAssetRequestTable_8c029acc(void);
 void ObjectsFreeAssetRequests_8c029cfe(void);
 void ObjectsRelocatePedGroupLists_8c028dd0(void *handle);

@@ -8,7 +8,7 @@
 #include "01fa78_hud.h" /* HudSpawnTask_8c02018c, var_8c226434, var_8c226438 */
 #include "01614c_replay_menu.h"
 #include "028258_signal.h"
-#include "0289ac_objects.h" /* ObjectsInitPedestrianGroups_8c0296d6 */
+#include "0289ac_objects.h" /* ObjectsSpawnPedestrianGroups_8c0296d6 */
 #include "02a9fc_message_box.h"
 #include "024b4c_bus_camera.h"
 #include "1ba1c8_globals.h"
@@ -518,10 +518,10 @@ void GameEnterDrive_8c01306e(void)
     SignalInit_8c02845a();
 
     if (var_playMode_8c1bb8d0 != PLAY_MODE_DEMO) {
-        ObjectsInitBlinkers_8c029920();
+        ObjectsSpawnBlinkers_8c029920();
     }
 
-    ObjectsInitPedestrianGroups_8c0296d6();
+    ObjectsSpawnPedestrianGroups_8c0296d6();
     TrafficInit_8c02769e();
     TileDrawSpawnTask_8c0222dc();
     ObjectsSpawnTasks_8c02a6ac();

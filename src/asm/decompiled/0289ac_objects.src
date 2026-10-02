@@ -93,7 +93,7 @@
           .AIFDEF UNIT_TESTING
           .EXPORT     _pedestriansTask_8c0293f6
           .AENDI
-          .EXPORT     _ObjectsInitPedestrianGroups_8c0296d6
+          .EXPORT     _ObjectsSpawnPedestrianGroups_8c0296d6
           .EXPORT     _ObjectsKillPedestrianGroups_8c0297da
           .AIFDEF UNIT_TESTING
           .EXPORT     _resolveObjectChildren_8c029868
@@ -102,7 +102,7 @@
           .EXPORT     _drawBlinkers_8c029878
           .EXPORT     _routeBlinkerTask_8c029904
           .AENDI
-          .EXPORT     _ObjectsInitBlinkers_8c029920
+          .EXPORT     _ObjectsSpawnBlinkers_8c029920
           .EXPORT     _ObjectsClearAssetRequestTable_8c029acc
           .EXPORT     _ObjectsStartAssetRequests_8c029ad4
           .EXPORT     _ObjectsFreeAssetRequests_8c029cfe
@@ -166,18 +166,18 @@
           .EXPORT     _ObjectsSpawnTasks_8c02a6ac
           .EXPORT     _init_pedestrianTexAnims_8c04623c ; 028258.src, 02c884.src
           .AIFDEF UNIT_TESTING
-          .EXPORT     _init_stopLineLocalA_8c04650c
-          .EXPORT     _init_stopLineLocalB_8c046518
+          .EXPORT     _init_busAxisLocalA_8c04650c
+          .EXPORT     _init_busAxisLocalB_8c046518
           .EXPORT     _init_wanganBlinkerPoints_8c0465d8
           .EXPORT     _init_shinjukuBlinkerPoints_8c046524
           .EXPORT     _init_omeBlinkerPoints_8c0466a4
           .EXPORT     _var_pedPaths_8c228238
           .EXPORT     _var_pedGroupDefs_8c22823c
           .EXPORT     _var_pedGroupLists_8c228240
-          .EXPORT     _var_crosswalkTableEnd_8c228244
-          .EXPORT     _var_crosswalkTable_8c228248
-          .EXPORT     _var_stopLinePointA_8c228268
-          .EXPORT     _var_stopLinePointB_8c228270
+          .EXPORT     _var_blockedCrosswalksEnd_8c228244
+          .EXPORT     _var_blockedCrosswalks_8c228248
+          .EXPORT     _var_busAxisA_8c228268
+          .EXPORT     _var_busAxisB_8c228270
           .EXPORT     _var_routeBlinkerNodes_8c228278
           .EXPORT     _var_assetRequestSlots_8c228288
           .EXPORT     _var_assetRequestTable_8c228408
@@ -1129,12 +1129,12 @@ LP_GEN_25196:
           .RES.W 1 ; H'8C029042
           .DATA.L H'0FFF0000 ; H'8C029044
           .DATA.L _SignalIsCrossingOccupied_8c02898e ; H'8C029048
-          .DATA.L _var_crosswalkTable_8c228248 ; H'8C02904C
+          .DATA.L _var_blockedCrosswalks_8c228248 ; H'8C02904C
           .DATA.L _IntersectSegments_8c0206f0 ; H'8C029050
           .DATA.L _var_crossingIntersectPoint_8c1bc458 ; H'8C029054
-          .DATA.L _var_stopLinePointB_8c228270 ; H'8C029058
-          .DATA.L _var_stopLinePointA_8c228268 ; H'8C02905C
-          .DATA.L _var_crosswalkTableEnd_8c228244 ; H'8C029060
+          .DATA.L _var_busAxisB_8c228270 ; H'8C029058
+          .DATA.L _var_busAxisA_8c228268 ; H'8C02905C
+          .DATA.L _var_blockedCrosswalksEnd_8c228244 ; H'8C029060
           .DATA.L _SignalMarkPedCrossing_8c02897a ; H'8C029064
           .DATA.L _CollisionQueueAdd_8c02e48e ; H'8C029068
           .DATA.L H'40400000 ; H'8C02906C
@@ -1857,14 +1857,14 @@ LP_GEN_46486:
           .DATA.L _CollisionQueueReset_8c02e486 ; H'8C029604
           .DATA.L _SignalClearPedCrossing_8c02890c ; H'8C029608
           .DATA.L _var_groundQueryPoint_8c1bc460 ; H'8C02960C
-          .DATA.L _init_stopLineLocalA_8c04650c ; H'8C029610
+          .DATA.L _init_busAxisLocalA_8c04650c ; H'8C029610
           .DATA.L _var_busState_8c1bb9d0+H'084 ; H'8C029614 (worldMatrix_0x084)
           .DATA.L _njCalcPoint ; H'8C029618
-          .DATA.L _var_stopLinePointA_8c228268 ; H'8C02961C
-          .DATA.L _init_stopLineLocalB_8c046518 ; H'8C029620
-          .DATA.L _var_stopLinePointB_8c228270 ; H'8C029624
-          .DATA.L _var_crosswalkTableEnd_8c228244 ; H'8C029628
-          .DATA.L _var_crosswalkTable_8c228248 ; H'8C02962C
+          .DATA.L _var_busAxisA_8c228268 ; H'8C02961C
+          .DATA.L _init_busAxisLocalB_8c046518 ; H'8C029620
+          .DATA.L _var_busAxisB_8c228270 ; H'8C029624
+          .DATA.L _var_blockedCrosswalksEnd_8c228244 ; H'8C029628
+          .DATA.L _var_blockedCrosswalks_8c228248 ; H'8C02962C
           .DATA.L _var_pedPaths_8c228238 ; H'8C029630
 LAB_8c029634:
           MOV.L       @(H'14,R14),R2
@@ -1955,7 +1955,7 @@ LAB_8c0296c2:
           MOV.L       @R15+,R13
           RTS
           MOV.L       @R15+,R14
-_ObjectsInitPedestrianGroups_8c0296d6:
+_ObjectsSpawnPedestrianGroups_8c0296d6:
           MOV.L       R14,@-R15
           MOV.L       R13,@-R15
           MOV.L       R12,@-R15
@@ -1984,8 +1984,8 @@ LP_GEN_59898:
           .DATA.W H'0FFF ; H'8C029704
           .RES.W 1 ; H'8C029706
           .DATA.L _var_crossingIntersectPoint_8c1bc458 ; H'8C029708
-          .DATA.L _var_stopLinePointB_8c228270 ; H'8C02970C
-          .DATA.L _var_stopLinePointA_8c228268 ; H'8C029710
+          .DATA.L _var_busAxisB_8c228270 ; H'8C02970C
+          .DATA.L _var_busAxisA_8c228268 ; H'8C029710
           .DATA.L _IntersectSegments_8c0206f0 ; H'8C029714
           .DATA.L _var_pedGroupCount_8c228234 ; H'8C029718
           .DATA.L _var_tasks_8c1ba808 ; H'8C02971C
@@ -2249,7 +2249,7 @@ _routeBlinkerTask_8c029904:
           MOV.L       @(H'4,R15),R7
           JMP         @R3
           ADD         #H'8,R15
-_ObjectsInitBlinkers_8c029920:
+_ObjectsSpawnBlinkers_8c029920:
           MOV.L       R14,@-R15
           MOV.L       R13,@-R15
           MOV.L       R12,@-R15
@@ -4487,9 +4487,9 @@ _init_pedestrianTexAnims_8c04623c:        ; from defines
           .DATA.B      H'FF, H'00, H'7F, H'00, H'01, H'00, H'00, H'00, H'40, H'00, H'80, H'00, H'20, H'00, H'80, H'00
           .DATA.B      H'00, H'00, H'80, H'00, H'7F, H'00, H'FF, H'00, H'01, H'00, H'00, H'00, H'40, H'00, H'80, H'00
           .DATA.B      H'20, H'00, H'80, H'00, H'7F, H'00, H'80, H'00, H'00, H'00, H'FF, H'00, H'01, H'00, H'00, H'00
-_init_stopLineLocalA_8c04650c:        ; from defines
+_init_busAxisLocalA_8c04650c:        ; from defines
           .DATA.B      H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'33, H'33, H'83, H'C0
-_init_stopLineLocalB_8c046518:        ; from defines
+_init_busAxisLocalB_8c046518:        ; from defines
           .DATA.B      H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'18, H'41
 _init_shinjukuBlinkerPoints_8c046524:        ; from defines
           .DATA.B      H'00, H'68, H'86, H'45, H'00, H'68, H'8C, H'45, H'44, H'00, H'00, H'00, H'00, H'A0, H'73, H'45
@@ -4544,13 +4544,13 @@ _var_pedGroupDefs_8c22823c:
           .RES.B      4
 _var_pedGroupLists_8c228240:
           .RES.B      4
-_var_crosswalkTableEnd_8c228244:
+_var_blockedCrosswalksEnd_8c228244:
           .RES.B      4
-_var_crosswalkTable_8c228248:
+_var_blockedCrosswalks_8c228248:
           .RES.B      32
-_var_stopLinePointA_8c228268:
+_var_busAxisA_8c228268:
           .RES.B      8
-_var_stopLinePointB_8c228270:
+_var_busAxisB_8c228270:
           .RES.B      8
 _var_routeBlinkerNodes_8c228278:
           .RES.B      16

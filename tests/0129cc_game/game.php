@@ -68,9 +68,9 @@ return new class extends TestCase {
         $this->shouldCall('_BusInitStart_8c023610');
         $this->shouldCall('_SignalInit_8c02845a');
         
-        $this->shouldCall('_ObjectsInitBlinkers_8c029920');
+        $this->shouldCall('_ObjectsSpawnBlinkers_8c029920');
         
-        $this->shouldCall('_ObjectsInitPedestrianGroups_8c0296d6');
+        $this->shouldCall('_ObjectsSpawnPedestrianGroups_8c0296d6');
         $this->shouldCall('_TrafficInit_8c02769e');
         $this->shouldCall('_TileDrawSpawnTask_8c0222dc');
         $this->shouldCall('_ObjectsSpawnTasks_8c02a6ac');
@@ -145,7 +145,7 @@ return new class extends TestCase {
         $this->shouldCall('_BusInitStart_8c023610');
         $this->shouldCall('_SignalInit_8c02845a');
         
-        $this->shouldCall('_ObjectsInitPedestrianGroups_8c0296d6');
+        $this->shouldCall('_ObjectsSpawnPedestrianGroups_8c0296d6');
         $this->shouldCall('_TrafficInit_8c02769e');
         $this->shouldCall('_TileDrawSpawnTask_8c0222dc');
         $this->shouldCall('_ObjectsSpawnTasks_8c02a6ac');
@@ -240,7 +240,7 @@ return new class extends TestCase {
         $this->shouldCall('_BusInitStart_8c023610');
         $this->shouldCall('_SignalInit_8c02845a');
         
-        $this->shouldCall('_ObjectsInitPedestrianGroups_8c0296d6');
+        $this->shouldCall('_ObjectsSpawnPedestrianGroups_8c0296d6');
         $this->shouldCall('_TrafficInit_8c02769e');
         $this->shouldCall('_TileDrawSpawnTask_8c0222dc');
         $this->shouldCall('_ObjectsSpawnTasks_8c02a6ac');

@@ -133,26 +133,26 @@ return new class extends TestCase {
         $this->shouldCall('_SignalClearPedCrossing_8c02890c');
 
         $this->shouldCall('_njCalcPoint')
-            ->with(($this->addressOf('_var_busState_8c1bb9d0') + 0x084), $this->addressOf('_init_stopLineLocalA_8c04650c'),
+            ->with(($this->addressOf('_var_busState_8c1bb9d0') + 0x084), $this->addressOf('_init_busAxisLocalA_8c04650c'),
                 $this->addressOf('_var_groundQueryPoint_8c1bc460'))
             ->do(function () {
                 $this->memory->writeUInt32($this->registers[6]->value + 0x0, U32::of(fdec(1.5)));
                 $this->memory->writeUInt32($this->registers[6]->value + 0x8, U32::of(fdec(2.5)));
             });
-        $this->shouldWriteFloat($this->addressOf('_var_stopLinePointA_8c228268'), 1.5);
-        $this->shouldWriteFloat($this->addressOf('_var_stopLinePointA_8c228268') + 4, 2.5);
+        $this->shouldWriteFloat($this->addressOf('_var_busAxisA_8c228268'), 1.5);
+        $this->shouldWriteFloat($this->addressOf('_var_busAxisA_8c228268') + 4, 2.5);
 
         $this->shouldCall('_njCalcPoint')
-            ->with(($this->addressOf('_var_busState_8c1bb9d0') + 0x084), $this->addressOf('_init_stopLineLocalB_8c046518'),
+            ->with(($this->addressOf('_var_busState_8c1bb9d0') + 0x084), $this->addressOf('_init_busAxisLocalB_8c046518'),
                 $this->addressOf('_var_groundQueryPoint_8c1bc460'))
             ->do(function () {
                 $this->memory->writeUInt32($this->registers[6]->value + 0x0, U32::of(fdec(3.5)));
                 $this->memory->writeUInt32($this->registers[6]->value + 0x8, U32::of(fdec(4.5)));
             });
-        $this->shouldWriteFloat($this->addressOf('_var_stopLinePointB_8c228270'), 3.5);
-        $this->shouldWriteFloat($this->addressOf('_var_stopLinePointB_8c228270') + 4, 4.5);
+        $this->shouldWriteFloat($this->addressOf('_var_busAxisB_8c228270'), 3.5);
+        $this->shouldWriteFloat($this->addressOf('_var_busAxisB_8c228270') + 4, 4.5);
 
-        $this->shouldWriteLongTo('_var_crosswalkTableEnd_8c228244', $this->addressOf('_var_crosswalkTable_8c228248'));
+        $this->shouldWriteLongTo('_var_blockedCrosswalksEnd_8c228244', $this->addressOf('_var_blockedCrosswalks_8c228248'));
     }
 
     public function test_skips_everything_before_the_run_starts()
@@ -396,7 +396,7 @@ return new class extends TestCase {
         $this->expectGroundScratch();
 
         $this->shouldCall('_IntersectSegments_8c0206f0')
-            ->with($this->addressOf('_var_stopLinePointA_8c228268'), $this->addressOf('_var_stopLinePointB_8c228270'),
+            ->with($this->addressOf('_var_busAxisA_8c228268'), $this->addressOf('_var_busAxisB_8c228270'),
                 $node + 0x18 + 0x04, $node + 0x18 + 0x1c, $this->addressOf('_var_crossingIntersectPoint_8c1bc458'))
             ->andReturn(1);
 
@@ -439,7 +439,7 @@ return new class extends TestCase {
 
         // node0 is skipped entirely: the only IntersectSegments_8c0206f0 call is for node1.
         $this->shouldCall('_IntersectSegments_8c0206f0')
-            ->with($this->addressOf('_var_stopLinePointA_8c228268'), $this->addressOf('_var_stopLinePointB_8c228270'),
+            ->with($this->addressOf('_var_busAxisA_8c228268'), $this->addressOf('_var_busAxisB_8c228270'),
                 $node + 0x18 + 0x04, $node + 0x18 + 0x1c, $this->addressOf('_var_crossingIntersectPoint_8c1bc458'))
             ->andReturn(0);
 

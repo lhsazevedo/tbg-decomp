@@ -32,7 +32,7 @@ typedef struct {
     float x_0x00;
     float z_0x04;
     int angleDeg_0x08;
-} RouteMarkerPoint;
+} BlinkerPoint;
 
 
 /* One node of a pedestrian path, terminated by a node whose flLength_0x00 is 0.
@@ -135,7 +135,7 @@ typedef struct {
     TaskAction action;
     void *state;
     int lastPreset_0x08;   /* currently-synced var_activePedPreset_8c22822c snapshot */
-    int debounce_0x0c;      /* pending-preset-change flag, held across the frame it reads 0 */
+    int armed_0x0c;      /* pending-preset-change flag, held across the frame it reads 0 */
     int field_0x10;
     int field_0x14;
     void *queuedItem_0x18;
@@ -205,7 +205,7 @@ typedef struct RowTaskState {
     float frame_0x58;
     float frameLimit_0x5c;
     float trainFrame_0x60;             /* type-6 only */
-    float trainActive_0x64;            /* type-6 only: frame threshold, zeroed once the train has passed */
+    float trainFrameLimit_0x64;            /* type-6 only: frame threshold, zeroed once the train has passed */
     NJS_ARGB material_0x68;            /* type-5 only */
     Uint8 fogEnable_0x78;              /* types 2/3 */
     Uint8 control3DEnable_0x79;        /* types 2/3 */
@@ -230,11 +230,11 @@ STATIC void* var_pedGroupDefs_8c22823c;
  * group ids, consumed by pedestriansTask_8c0293f6. */
 STATIC void* var_pedGroupLists_8c228240;
 /* Crosswalk table walked by pedestrianTask_8c028e00: entries are pairs of
- * path-node pointers, terminated by the end pointer var_crosswalkTableEnd_8c228244. */
-STATIC int* var_crosswalkTableEnd_8c228244;
-STATIC int var_crosswalkTable_8c228248[8];
-STATIC float var_stopLinePointA_8c228268[2]; /* segment-intersection scratch, param1 for IntersectSegments_8c0206f0 */
-STATIC float var_stopLinePointB_8c228270[2]; /* segment-intersection scratch, param2 for IntersectSegments_8c0206f0 */
+ * path-node pointers, terminated by the end pointer var_blockedCrosswalksEnd_8c228244. */
+STATIC int* var_blockedCrosswalksEnd_8c228244;
+STATIC int var_blockedCrosswalks_8c228248[8];
+STATIC float var_busAxisA_8c228268[2]; /* segment-intersection scratch, param1 for IntersectSegments_8c0206f0 */
+STATIC float var_busAxisB_8c228270[2]; /* segment-intersection scratch, param2 for IntersectSegments_8c0206f0 */
 /* nodes[0] = the route's blinker model (var_routeModels_8c1bc3ec[9]); [1..3]
  * are its child/sibling tree, filled by resolveObjectChildren_8c029868. */
 STATIC NJS_OBJECT *var_routeBlinkerNodes_8c228278[4];
@@ -565,13 +565,13 @@ NJS_TEXANIM init_pedestrianTexAnims_8c04623c[] = {
 };
 
 /* Endpoints of the bus's stop line in bus-local space; njCalcPoint'd into
- * var_stopLinePointA/B_8c228268 each time the route state is rebuilt. */
-STATIC NJS_POINT3 init_stopLineLocalA_8c04650c = { 0.0f, 0.0f, -4.1f };
+ * var_busAxisA/B_8c228268 each time the route state is rebuilt. */
+STATIC NJS_POINT3 init_busAxisLocalA_8c04650c = { 0.0f, 0.0f, -4.1f };
 
-STATIC NJS_POINT3 init_stopLineLocalB_8c046518 = { 0.0f, 0.0f, 9.5f };
+STATIC NJS_POINT3 init_busAxisLocalB_8c046518 = { 0.0f, 0.0f, 9.5f };
 
 /* Route-specific blinker spawn point tables, keyed by var_route_8c18ad1c. */
-STATIC RouteMarkerPoint init_shinjukuBlinkerPoints_8c046524[] = {
+STATIC BlinkerPoint init_shinjukuBlinkerPoints_8c046524[] = {
     {   /* [0] */
         /* x_0x00, z_0x04 */ 4301.0f, 4493.0f,
         /* angleDeg_0x08  */ 68,
@@ -634,7 +634,7 @@ STATIC RouteMarkerPoint init_shinjukuBlinkerPoints_8c046524[] = {
     },
 };
 
-STATIC RouteMarkerPoint init_wanganBlinkerPoints_8c0465d8[] = {
+STATIC BlinkerPoint init_wanganBlinkerPoints_8c0465d8[] = {
     {   /* [0] */
         /* x_0x00, z_0x04 */ 3948.0f, 2871.0f,
         /* angleDeg_0x08  */ -90,
@@ -705,7 +705,7 @@ STATIC RouteMarkerPoint init_wanganBlinkerPoints_8c0465d8[] = {
     },
 };
 
-STATIC RouteMarkerPoint init_omeBlinkerPoints_8c0466a4[] = {
+STATIC BlinkerPoint init_omeBlinkerPoints_8c0466a4[] = {
     {   /* [0] */
         /* x_0x00, z_0x04 */ 6992.0f, 6229.0f,
         /* angleDeg_0x08  */ -123,
@@ -1045,17 +1045,17 @@ STATIC void pedestrianTask_8c028e00(Task *task, PedestrianState *ped)
         if ((ped->nNodeFlags_0x60 & 0xfff) == 0) {
             ped->nState_0x64 = 0;
         } else {
-            for (entry = var_crosswalkTable_8c228248; entry < var_crosswalkTableEnd_8c228244; entry += 2) {
+            for (entry = var_blockedCrosswalks_8c228248; entry < var_blockedCrosswalksEnd_8c228244; entry += 2) {
                 if (ped->pPathNode_0x4c == (PedPathNode *)*entry) {
                     pos[0] = ped->sprite_0x00.p.x;
                     pos[1] = ped->sprite_0x00.p.z;
                     if (ped->nReverse_0x40 == 0) {
-                        if (IntersectSegments_8c0206f0(var_stopLinePointA_8c228268, var_stopLinePointB_8c228270, pos,
+                        if (IntersectSegments_8c0206f0(var_busAxisA_8c228268, var_busAxisB_8c228270, pos,
                                 (float *)(entry[1] + 4), &var_crossingIntersectPoint_8c1bc458) != 0) {
                             shouldMove = FALSE;
                         }
                     } else {
-                        if (IntersectSegments_8c0206f0(var_stopLinePointA_8c228268, var_stopLinePointB_8c228270, pos,
+                        if (IntersectSegments_8c0206f0(var_busAxisA_8c228268, var_busAxisB_8c228270, pos,
                                 (float *)(*entry + 4), &var_crossingIntersectPoint_8c1bc458) != 0) {
                             shouldMove = FALSE;
                         }
@@ -1255,7 +1255,7 @@ STATIC void pedGroupTask_8c029078(PedGroupTask *task)
 }
 
 /* Per-frame driver for every pedestrian group: syncs var_pedGroups_8c228230's
- * wanted/active state with the current preset (task->debounce_0x0c debounces a
+ * wanted/active state with the current preset (task->armed_0x0c debounces a
  * single pending-change flag across frames where var_busState_8c1bb9d0.scenePresetIds_0x3bc
  * reads 0), rebuilds this frame's crosswalk intersection scratch, runs every
  * group's Task, then registers the draw callback(s) -- drawPedestriansMirror_8c028a38
@@ -1286,13 +1286,13 @@ STATIC void pedestriansTask_8c0293f6(PedestriansTask *task)
     var_activeGroundGrid_8c2264d4 = var_currentCourse_8c1bb868.atariHum_0x28;
 
     presetField = var_busState_8c1bb9d0.scenePresetIds_0x3bc & 0xff0000;
-    if (task->debounce_0x0c == 0) {
+    if (task->armed_0x0c == 0) {
         if (presetField == 0) {
-            task->debounce_0x0c = 1;
+            task->armed_0x0c = 1;
         }
     } else if (presetField != 0) {
         var_activePedPreset_8c22822c = (int)(short)(presetField >> 16);
-        task->debounce_0x0c = 0;
+        task->armed_0x0c = 0;
     }
 
     groups = (PedGroupEntry *)var_pedGroups_8c228230;
@@ -1343,30 +1343,30 @@ STATIC void pedestriansTask_8c0293f6(PedestriansTask *task)
     CollisionQueueReset_8c02e486();
     SignalClearPedCrossing_8c02890c();
 
-    njCalcPoint(&var_busState_8c1bb9d0.worldMatrix_0x084, &init_stopLineLocalA_8c04650c, &var_groundQueryPoint_8c1bc460);
-    var_stopLinePointA_8c228268[0] = var_groundQueryPoint_8c1bc460.x;
-    var_stopLinePointA_8c228268[1] = var_groundQueryPoint_8c1bc460.z;
+    njCalcPoint(&var_busState_8c1bb9d0.worldMatrix_0x084, &init_busAxisLocalA_8c04650c, &var_groundQueryPoint_8c1bc460);
+    var_busAxisA_8c228268[0] = var_groundQueryPoint_8c1bc460.x;
+    var_busAxisA_8c228268[1] = var_groundQueryPoint_8c1bc460.z;
 
-    njCalcPoint(&var_busState_8c1bb9d0.worldMatrix_0x084, &init_stopLineLocalB_8c046518, &var_groundQueryPoint_8c1bc460);
-    var_stopLinePointB_8c228270[0] = var_groundQueryPoint_8c1bc460.x;
-    var_stopLinePointB_8c228270[1] = var_groundQueryPoint_8c1bc460.z;
+    njCalcPoint(&var_busState_8c1bb9d0.worldMatrix_0x084, &init_busAxisLocalB_8c046518, &var_groundQueryPoint_8c1bc460);
+    var_busAxisB_8c228270[0] = var_groundQueryPoint_8c1bc460.x;
+    var_busAxisB_8c228270[1] = var_groundQueryPoint_8c1bc460.z;
 
-    var_crosswalkTableEnd_8c228244 = var_crosswalkTable_8c228248;
+    var_blockedCrosswalksEnd_8c228244 = var_blockedCrosswalks_8c228248;
     paths = (PedPathInfo *)var_pedPaths_8c228238;
 
     for (pageListIndex = 0; pageListIndex < var_pedGroupCount_8c228234; pageListIndex++) {
         if (groups[pageListIndex].active_0x00 != 0) {
             for (node = paths[pageListIndex].pFirst_0x00; node->flLength_0x00 != 0.0f; node++) {
                 if ((node->nFlags_0x14 & 0xfff) != 0 &&
-                        IntersectSegments_8c0206f0(var_stopLinePointA_8c228268, var_stopLinePointB_8c228270,
+                        IntersectSegments_8c0206f0(var_busAxisA_8c228268, var_busAxisB_8c228270,
                                 &node->flBaseX_0x04, &node[1].flBaseX_0x04,
                                 &var_crossingIntersectPoint_8c1bc458)) {
-                    cursor = var_crosswalkTableEnd_8c228244;
-                    var_crosswalkTableEnd_8c228244 = cursor + 1;
+                    cursor = var_blockedCrosswalksEnd_8c228244;
+                    var_blockedCrosswalksEnd_8c228244 = cursor + 1;
                     *cursor = (int)node;
 
-                    cursor = var_crosswalkTableEnd_8c228244;
-                    var_crosswalkTableEnd_8c228244 = cursor + 1;
+                    cursor = var_blockedCrosswalksEnd_8c228244;
+                    var_blockedCrosswalksEnd_8c228244 = cursor + 1;
                     *cursor = (int)(node + 1);
                 }
             }
@@ -1397,7 +1397,7 @@ STATIC void pedestriansTask_8c0293f6(PedestriansTask *task)
  * var_pedPaths_8c228238/var_pedGroupDefs_8c22823c/var_pedGroupLists_8c228240
  * and installs pedestriansTask_8c0293f6 to drive them every frame. No-op if
  * the route defines no pedestrian groups. */
-void ObjectsInitPedestrianGroups_8c0296d6(void)
+void ObjectsSpawnPedestrianGroups_8c0296d6(void)
 {
     PedGroupEntry *groups;
     int **lists;
@@ -1433,10 +1433,10 @@ void ObjectsInitPedestrianGroups_8c0296d6(void)
 
     TaskSpawn_8c014ae8(var_tasks_8c1ba5e8, pedestriansTask_8c0293f6, (Task **)&task, &state, 0);
     task->lastPreset_0x08 = -1;
-    task->debounce_0x0c = 1;
+    task->armed_0x0c = 1;
 }
 
-/* Teardown counterpart to ObjectsInitPedestrianGroups_8c0296d6: frees every
+/* Teardown counterpart to ObjectsSpawnPedestrianGroups_8c0296d6: frees every
  * still-active group's subtask block (see pedestriansTask_8c0293f6, which
  * stashes it in PedGroupEntry.list_0x08) and the group array itself, then
  * resets to the not-yet-loaded
@@ -1464,7 +1464,7 @@ void ObjectsKillPedestrianGroups_8c0297da(void)
 }
 
 /* Task private state for routeBlinkerTask_8c029904, set up by
- * ObjectsInitBlinkers_8c029920. */
+ * ObjectsSpawnBlinkers_8c029920. */
 typedef struct {
     TaskAction action;
     void *state;            /* NJS_MATRIX* on the callback */
@@ -1485,7 +1485,7 @@ STATIC void resolveObjectChildren_8c029868(NJS_OBJECT **nodes)
     nodes[3] = child->sibling;
 }
 
-/* Draws all `count` blinker matrices built by ObjectsInitBlinkers_8c029920,
+/* Draws all `count` blinker matrices built by ObjectsSpawnBlinkers_8c029920,
  * cycling var_routeBlinkerNodes_8c228278's child nodes' eval flags through a 3-phase blink. */
 STATIC void drawBlinkers_8c029878(int taskArg, int matricesArg)
 {
@@ -1533,15 +1533,15 @@ STATIC void routeBlinkerTask_8c029904(RouteBlinkerTask *task, NJS_MATRIX *state)
 
 /* One-shot setup for the current run's route blinkers, called from
  * GameEnterDrive_8c01306e. Resolves var_routeBlinkerNodes_8c228278 from the route model
- * table (mirroring ObjectsInitPedestrianGroups_8c0296d6's sibling setup calls)
+ * table (mirroring ObjectsSpawnPedestrianGroups_8c0296d6's sibling setup calls)
  * and installs routeBlinkerTask_8c029904 to draw them every frame. No-op if
  * the route's table is empty.
  *
  * Each point's height uses its own ground-query fallback, which differs
  * from snapPointToGround_8c02840c's at the tail. */
-void ObjectsInitBlinkers_8c029920(void)
+void ObjectsSpawnBlinkers_8c029920(void)
 {
-    const RouteMarkerPoint *p, *points;
+    const BlinkerPoint *p, *points;
     int count;
     RouteBlinkerTask *task;
     NJS_MATRIX *matrices;
@@ -2078,7 +2078,7 @@ STATIC void setGrandchildEvalFlags_8c02a370(NJS_OBJECT **nodes, char selector)
 }
 /* DrawFn draw callback for a type-6 (FUMI railway crossing) row task,
  * called by fumiCrossingTask_8c02a4f8. Draws the gate, the lamp housing, and --
- * while a passing train is still due (state->trainActive_0x64 > 0) -- the train
+ * while a passing train is still due (state->trainFrameLimit_0x64 > 0) -- the train
  * model stashed at state->model_0x44/state->dat_0x48 (same slots as
  * drawRowMotionModel_8c02a0d6's). */
 STATIC void drawFumiCrossing_8c02a47c(int state)
@@ -2098,7 +2098,7 @@ STATIC void drawFumiCrossing_8c02a47c(int state)
     njSetTexture((NJS_TEXLIST *)var_fumiLampTexlist_8c228420);
     njCnkSimpleDrawObject((NJS_CNK_OBJECT *)var_fumiLampModel_8c22841c);
 
-    if (st->trainActive_0x64 > 0.0f) {
+    if (st->trainFrameLimit_0x64 > 0.0f) {
         njSetTexture((NJS_TEXLIST *)var_fumiTrainTexlist_8c228428);
         njCnkSimpleDrawMotion(st->model_0x44, (NJS_MOTION *)st->dat_0x48, st->trainFrame_0x60);
     }
@@ -2123,9 +2123,9 @@ STATIC void fumiCrossingTask_8c02a4f8(void *task, RowTaskState *state)
             }
         } else if (phase == 2) {
             state->trainFrame_0x60 = state->trainFrame_0x60 + 1.0f;
-            if (state->trainActive_0x64 <= state->trainFrame_0x60) {
+            if (state->trainFrameLimit_0x64 <= state->trainFrame_0x60) {
                 state->phase_0x54 = state->phase_0x54 + 1;
-                state->trainActive_0x64 = 0.0f;
+                state->trainFrameLimit_0x64 = 0.0f;
             }
         } else if (phase == 3) {
             state->frame_0x58 = state->frame_0x58 + 1.0f;
@@ -2251,7 +2251,7 @@ void ObjectsSpawnTasks_8c02a6ac(void)
             state->trainFrame_0x60 = 0.0f;
             chosen = (AsqGetRandomInRangeA_8c012178(2) == 0) ? var_fumiTrainMotionB_8c228430 : var_fumiTrainMotionA_8c22842c;
             state->dat_0x48 = chosen;
-            state->trainActive_0x64 = (float)*(Uint32 *)((Uint8 *)chosen + 4) - 1.0f;
+            state->trainFrameLimit_0x64 = (float)*(Uint32 *)((Uint8 *)chosen + 4) - 1.0f;
             var_fumiLampNodes_8c228434[0] = (NJS_OBJECT *)var_fumiLampModel_8c22841c;
             resolveObjectGrandchildren_8c02a322(var_fumiLampNodes_8c228434);
         }

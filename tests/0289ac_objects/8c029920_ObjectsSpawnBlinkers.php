@@ -22,7 +22,7 @@ return new class extends TestCase {
     }
 
     /**
-     * ObjectsInitBlinkers_8c029920's stack slots for TaskSpawn's
+     * ObjectsSpawnBlinkers_8c029920's stack slots for TaskSpawn's
      * created_task / create_state out-params. The two objects lay the
      * frame out differently.
      */
@@ -60,7 +60,7 @@ return new class extends TestCase {
         $table = $this->addressOf($tableSymbol);
         $this->setPoint($table, 0, 0.0, 0.0, 0);
 
-        $this->call('_ObjectsInitBlinkers_8c029920');
+        $this->call('_ObjectsSpawnBlinkers_8c029920');
 
         $this->shouldWriteLongTo('_var_routeBlinkerNodes_8c228278', $node0);
         $this->shouldCall('_resolveObjectChildren_8c029868')->with($this->addressOf('_var_routeBlinkerNodes_8c228278'));
@@ -120,7 +120,7 @@ return new class extends TestCase {
         $matrices = 0x30007000;
         $count = count(self::SHINJUKU_POINTS);
 
-        $this->call('_ObjectsInitBlinkers_8c029920');
+        $this->call('_ObjectsSpawnBlinkers_8c029920');
 
         $this->shouldWriteLongTo('_var_routeBlinkerNodes_8c228278', $node0);
         $this->shouldCall('_resolveObjectChildren_8c029868')->with($this->addressOf('_var_routeBlinkerNodes_8c228278'));
