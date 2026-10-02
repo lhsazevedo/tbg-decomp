@@ -29,12 +29,12 @@ return new class extends TestCase {
         $this->initUint32($this->addressOf('_var_midiHandles_8c0fcd28'), 0x1234);
         $this->initUint32($this->addressOf('_var_wallHitBits_8c228660'), 8); // pre-existing bits
 
-        $this->call('_busDriveDecelerate_8c023bea');
+        $this->call('_hitWall_8c023bea');
 
         $this->shouldCall('_sdMidiPlay')->with(0x1234, 1, 0x13, 0);
         $this->shouldWriteFloat($busState + 0x27c, 0.3);
         $this->shouldWriteLongTo('_var_wallHitBits_8c228660', 8 | 2);
-        $this->shouldCall('_BusDriveStop_8c023bce');
+        $this->shouldCall('_BusDriveEnterKnockback_8c023bce');
     }
 
     public function test_mid_speed_plays_mid_cue_and_halves_toward_0_3(): void
@@ -47,12 +47,12 @@ return new class extends TestCase {
         $this->initUint32($this->addressOf('_var_midiHandles_8c0fcd28'), 0x1234);
         $this->initUint32($this->addressOf('_var_wallHitBits_8c228660'), 0);
 
-        $this->call('_busDriveDecelerate_8c023bea');
+        $this->call('_hitWall_8c023bea');
 
         $this->shouldCall('_sdMidiPlay')->with(0x1234, 1, 0x14, 0);
         $this->shouldWriteFloat($busState + 0x27c, $this->f32($this->f32(0.2) / 2.0 + 0.3));
         $this->shouldWriteLongTo('_var_wallHitBits_8c228660', 4);
-        $this->shouldCall('_BusDriveStop_8c023bce');
+        $this->shouldCall('_BusDriveEnterKnockback_8c023bce');
     }
 
     public function test_high_speed_plays_highest_cue_and_halves_toward_0_3(): void
@@ -65,11 +65,11 @@ return new class extends TestCase {
         $this->initUint32($this->addressOf('_var_midiHandles_8c0fcd28'), 0x1234);
         $this->initUint32($this->addressOf('_var_wallHitBits_8c228660'), 0);
 
-        $this->call('_busDriveDecelerate_8c023bea');
+        $this->call('_hitWall_8c023bea');
 
         $this->shouldCall('_sdMidiPlay')->with(0x1234, 1, 0x15, 0);
         $this->shouldWriteFloat($busState + 0x27c, $this->f32($this->f32(0.5) / 2.0 + 0.3));
         $this->shouldWriteLongTo('_var_wallHitBits_8c228660', 6);
-        $this->shouldCall('_BusDriveStop_8c023bce');
+        $this->shouldCall('_BusDriveEnterKnockback_8c023bce');
     }
 };

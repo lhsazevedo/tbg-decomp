@@ -740,7 +740,7 @@ avoided it. Prefer a byte-typed view for tight array-copy loops over a
 
 ## Ghidra reorders writes; statement order in its output is not evidence
 
-In `busDriveDecelerate_8c023bea` (023938_bus_drive) Ghidra emitted the
+In `hitWall_8c023bea` (023938_bus_drive) Ghidra emitted the
 `var_wallHitBits_8c228660 |=` before the `speed_0x27c` write in each branch; the asm does
 `sdMidiPlay` -> speed write -> `var_wallHitBits_8c228660` write. Nothing about the output
 looks suspicious, so this only surfaced as an unexpected-write-order failure

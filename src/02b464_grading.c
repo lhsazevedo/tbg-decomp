@@ -389,7 +389,7 @@ STATIC void handleBump_8c02b6d4(void) {
     dz = other->posZ_0xfc - var_playerBus_8c1bbd9c->posZ_0x0fc;
     dist = njSqrt(dx * dx + dz * dz);
 
-    /* Speed floor of var_frameSpeed_8c22866c + 0.3 -- see BusDriveStop_8c023bce. */
+    /* Speed floor of var_frameSpeed_8c22866c + 0.3 -- see BusDriveEnterKnockback_8c023bce. */
     if (other->isDecoration_0x2e4 == 0) {
         other->driveState_0x2b4 = 1;
         other->speed_0x27c = var_frameSpeed_8c22866c + 0.3f;
@@ -405,7 +405,7 @@ STATIC void handleBump_8c02b6d4(void) {
         other->dirZ_0x2a0 = dz / dist;
     }
 
-    BusDriveStop_8c023bce();
+    BusDriveEnterKnockback_8c023bce();
 
     var_playerBus_8c1bbd9c->speed_0x27c = var_bumpSpeed_8c228670 + 0.3f;
     var_playerBus_8c1bbd9c->dir_x_0x29c = -other->dirX_0x29c;
@@ -439,7 +439,7 @@ STATIC void handleBump_8c02b6d4(void) {
 }
 
 STATIC void gradeWallHit_8c02b7ea(void) {
-    /* Bits 0x2/0x4 are set by busDriveDecelerate_8c023bea (023938_bus_drive). */
+    /* Bits 0x2/0x4 are set by hitWall_8c023bea (023938_bus_drive). */
     unsigned int flags = var_wallHitBits_8c228660 & 6;
 
     if (flags == 0) {

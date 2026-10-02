@@ -98,7 +98,7 @@ return new class extends TestCase {
 
         $this->call('_BusDriveApplyGround_8c023cba')->with();
 
-        $this->shouldCall('_busDriveDecelerate_8c023bea');
+        $this->shouldCall('_hitWall_8c023bea');
         $this->shouldWriteFloat($base + 0x2ac, 0.6); // dir_x2_0x2ac
         $this->shouldWriteFloat($base + 0x29c, 0.6); // dir_x_0x29c
         $this->shouldWriteFloat($base + 0x2b0, 0.8); // dir_z2_0x2b0
@@ -120,7 +120,7 @@ return new class extends TestCase {
 
         $this->call('_BusDriveApplyGround_8c023cba')->with();
 
-        $this->shouldCall('_busDriveDecelerate_8c023bea');
+        $this->shouldCall('_hitWall_8c023bea');
         $this->shouldWriteFloat($point + 0x0, 1.0); // sign (default +1.0)
         $this->shouldWriteFloat($point + 0x8, 0.0);
         $this->shouldCall('_njUnitMatrix')->with($matrix);
@@ -154,7 +154,7 @@ return new class extends TestCase {
 
         $this->call('_BusDriveApplyGround_8c023cba')->with();
 
-        $this->shouldCall('_busDriveDecelerate_8c023bea');
+        $this->shouldCall('_hitWall_8c023bea');
         $this->shouldWriteFloat($point + 0x0, -1.0); // sign (negated)
         $this->shouldWriteFloat($point + 0x8, 0.0);
         $this->shouldCall('_njUnitMatrix')->with($matrix);
@@ -186,7 +186,7 @@ return new class extends TestCase {
 
         $this->call('_BusDriveApplyGround_8c023cba')->with();
 
-        $this->shouldCall('_busDriveDecelerate_8c023bea');
+        $this->shouldCall('_hitWall_8c023bea');
         $this->shouldWriteFloat($point + 0x0, 1.0); // sign stays default (+1.0)
         $this->shouldWriteFloat($point + 0x8, 0.0);
         $this->shouldCall('_njUnitMatrix')->with($matrix);

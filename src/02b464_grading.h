@@ -152,7 +152,7 @@ typedef struct {
 } RunState;
 extern RunState var_runState_8c2285c4;
 
-/* Bitflags set by busDriveDecelerate_8c023bea (023938_bus_drive); bits
+/* Bitflags set by hitWall_8c023bea (023938_bus_drive); bits
  * 0x2/0x4 are read by gradeWallHit_8c02b7ea (02b464) to grade a
  * driver-points penalty -- both set is worse than either alone. Other bits
  * unclear. */

@@ -34,7 +34,7 @@ typedef void (*GroundQueryFn)(float x, float y, float z, GroundQueryResult *out)
  * reverse (5), and puts driveState_0x2b4 into the knockback state (2). Called
  * by handleBump_8c02b6d4 (02b464) after a collision and internally after a
  * braking-sound update. */
-void BusDriveStop_8c023bce(void)
+void BusDriveEnterKnockback_8c023bce(void)
 {
     var_busState_8c1bb9d0.rpmRampAngle_0x2e4 = 0;
     if (var_busState_8c1bb9d0.gear_0x2f4 != 5) {
@@ -45,9 +45,9 @@ void BusDriveStop_8c023bce(void)
 
 /* Plays a braking-pitch sound cue keyed by speed_0x27c, damps speed_0x27c
  * toward it, and marks var_wallHitBits_8c228660's corresponding bit, then stops the
- * drivetrain (BusDriveStop_8c023bce). Called by BusDriveApplyGround_8c023cba whenever the
+ * drivetrain (BusDriveEnterKnockback_8c023bce). Called by BusDriveApplyGround_8c023cba whenever the
  * lane-offset path data isn't ready. */
-STATIC void busDriveDecelerate_8c023bea(void)
+STATIC void hitWall_8c023bea(void)
 {
     if (var_busState_8c1bb9d0.speed_0x27c < 0.1388889f) {
         sdMidiPlay(var_midiHandles_8c0fcd28[0], 1, 0x13, 0);
@@ -63,7 +63,7 @@ STATIC void busDriveDecelerate_8c023bea(void)
         var_wallHitBits_8c228660 |= 6;
     }
 
-    BusDriveStop_8c023bce();
+    BusDriveEnterKnockback_8c023bce();
 }
 
 /* Rebuilds the bus's steering-correction direction (dir_x_0x29c/dir_z_0x2a0
@@ -85,7 +85,7 @@ void BusDriveApplyGround_8c023cba(void)
         /* Neither of this frame's forward-lookahead probes hit a polygon --
          * bail out to the braking path and just mirror the last-known
          * heading vector (headingX_0x230/0x238) into the steering fields. */
-        busDriveDecelerate_8c023bea();
+        hitWall_8c023bea();
         var_busState_8c1bb9d0.dir_x2_0x2ac = var_busState_8c1bb9d0.headingX_0x230;
         var_busState_8c1bb9d0.dir_x_0x29c = var_busState_8c1bb9d0.headingX_0x230;
         var_busState_8c1bb9d0.dir_z2_0x2b0 = var_busState_8c1bb9d0.headingZ_0x238;
@@ -108,7 +108,7 @@ void BusDriveApplyGround_8c023cba(void)
         }
 
         if (!skipUpdate) {
-            busDriveDecelerate_8c023bea();
+            hitWall_8c023bea();
             p->x = sign;
             p->z = 0.0f;
             njUnitMatrix(&var_scratchMatrix_8c1bc46c);
@@ -235,7 +235,7 @@ void BusDriveSampleGround_8c023938(void)
 /* Walks the current route line segment forward by the bus's per-frame move
  * distance to find the next lane-crossing point, then confirms it against
  * the crossing segment via IntersectSegments_8c0206f0. Advances through
- * var_lineNodes_8c227d88's linked segment records (fwdNext_0x00/backNext_0x02,
+ * var_lineNodes_8c227d88's linked segment records (leftLane_0x00/rightLane_0x02,
  * falling back to fallbackNext_0x0a when a segment runs out of points) and
  * indexes var_lineSegments_8c227d84 for each segment's point list. Called once per frame
  * by BusTask_8c022bdc (022bdc). */
@@ -266,12 +266,12 @@ void BusDriveFindLaneTarget_8c023e7e(void)
     }
 
     if (var_busState_8c1bb9d0.laneTargetSearchSide_0x338 == 0) {
-        idx = nodes[var_busState_8c1bb9d0.currentLineNodeIdx_0x33c].fwdNext_0x00;
+        idx = nodes[var_busState_8c1bb9d0.currentLineNodeIdx_0x33c].leftLane_0x00;
     } else {
         /* laneTargetSearchSide_0x338 only ever holds 0, 1 or 2 (024280_bus_input.c) and 2 already
          * returned above, so this covers 1 -- the original leaves the
          * register unset for any other value. */
-        idx = nodes[var_busState_8c1bb9d0.currentLineNodeIdx_0x33c].backNext_0x02;
+        idx = nodes[var_busState_8c1bb9d0.currentLineNodeIdx_0x33c].rightLane_0x02;
     }
 
     if (idx != LINE_NODE_NONE) {

@@ -843,8 +843,8 @@ return [
         ],
         [
             "tests" => [
-                "tests/023938_bus_drive/8c023bce_BusDriveStop.php",
-                "tests/023938_bus_drive/8c023bea_busDriveDecelerate.php",
+                "tests/023938_bus_drive/8c023bce_BusDriveEnterKnockback.php",
+                "tests/023938_bus_drive/8c023bea_hitWall.php",
                 "tests/023938_bus_drive/8c023938_BusDriveSampleGround.php",
                 "tests/023938_bus_drive/8c023cba_BusDriveApplyGround.php",
                 "tests/023938_bus_drive/8c023e7e_BusDriveFindLaneTarget.php",

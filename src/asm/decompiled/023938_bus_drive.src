@@ -18,12 +18,12 @@
           .IMPORT     _IntersectSegments_8c0206f0
           .IMPORT     _GeomDistanceXZ_8c02081c
           .EXPORT     _BusDriveSampleGround_8c023938
-          .EXPORT     _BusDriveStop_8c023bce
+          .EXPORT     _BusDriveEnterKnockback_8c023bce
           .EXPORT     _BusDriveApplyGround_8c023cba
           .EXPORT     _BusDriveFindLaneTarget_8c023e7e
 
           .AIFDEF UNIT_TESTING
-          .EXPORT     _busDriveDecelerate_8c023bea
+          .EXPORT     _hitWall_8c023bea
           .AENDI
           .SECTION     P, CODE, ALIGN=4
 _BusDriveSampleGround_8c023938:
@@ -355,7 +355,7 @@ LAB_8c023b0c:
           FMOV.S      @R15+,FR15
           JMP         @R3
           MOV.L       @R15+,R14
-_BusDriveStop_8c023bce:
+_BusDriveEnterKnockback_8c023bce:
           MOV.W       LP_GEN_66497+28,R0
           MOV         #H'0,R5
           MOV.L       LP_GEN_66497+40,R4
@@ -371,7 +371,7 @@ LAB_8c023be2:
           MOV         #H'2,R3
           RTS
           MOV.L       R3,@(R0,R4)
-_busDriveDecelerate_8c023bea:
+_hitWall_8c023bea:
           MOV.L       R14,@-R15
           MOVA        LP_GEN_66497+44,R0
           MOV.L       R13,@-R15
@@ -471,7 +471,7 @@ LAB_8c023caa:
           MOV.L       @R15+,R11
           MOV.L       @R15+,R12
           MOV.L       @R15+,R13
-          BRA         _BusDriveStop_8c023bce
+          BRA         _BusDriveEnterKnockback_8c023bce
           MOV.L       @R15+,R14
 _BusDriveApplyGround_8c023cba:
           MOV.L       R14,@-R15
@@ -492,7 +492,7 @@ _BusDriveApplyGround_8c023cba:
           TST         R3,R3
           BF          LAB_8c023cf8
 LAB_8c023cdc:
-          BSR         _busDriveDecelerate_8c023bea
+          BSR         _hitWall_8c023bea
           NOP
           MOV.W       LP_GEN_13112+6,R0
           FMOV.S      @(R0,R14),FR3
@@ -537,7 +537,7 @@ LAB_8c023cf8:
           TST         R3,R3
           BF          LAB_8c023dac
 LAB_8c023d32:
-          BSR         _busDriveDecelerate_8c023bea
+          BSR         _hitWall_8c023bea
           NOP
           MOV.L       LP_GEN_13112+34,R4
           MOV         #H'8,R0
@@ -604,7 +604,7 @@ LAB_8c023dac:
           TST         R3,R3
           BF          LAB_8c023e02
 LAB_8c023dbc:
-          BSR         _busDriveDecelerate_8c023bea
+          BSR         _hitWall_8c023bea
           NOP
           MOV.L       LP_GEN_21361+36,R4
           MOV         #H'8,R0

@@ -19,8 +19,8 @@ typedef struct {
 
 /* var_lineNodes_8c227d88 entry, 0xc bytes/6 ushorts. */
 typedef struct {
-    Uint16 fwdNext_0x00;    /* read by BusDriveFindLaneTarget_8c023e7e */
-    Uint16 backNext_0x02;   /* read by BusDriveFindLaneTarget_8c023e7e */
+    Uint16 leftLane_0x00;    /* read by BusDriveFindLaneTarget_8c023e7e */
+    Uint16 rightLane_0x02;   /* read by BusDriveFindLaneTarget_8c023e7e */
     /* [0] is the default (used by 02412c), [1] is the next segment when
      * signalSide_0x25c == 1, [2] the one when it is 2 (02412c reads the same
      * field through var_busState_8c1bb9d0.signalSide_0x25c) */
@@ -33,7 +33,7 @@ typedef struct {
 
 /* Resets the bus's drivetrain to idle after a collision or a braking-sound
  * update; puts driveState_0x2b4 into the knockback state (2). */
-void BusDriveStop_8c023bce(void);
+void BusDriveEnterKnockback_8c023bce(void);
 
 /* Computes 10 corner/lookahead ground-sample points around the bus and
  * queries each through the ground-query callback in groundProbeFn_0x2c8, filling

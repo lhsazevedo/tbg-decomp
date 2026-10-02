@@ -12,7 +12,7 @@ return new class extends TestCase {
         $this->initUint32($busState + 0x2f4, 3); // gear != 5
         $this->initUint32($busState + 0x2b4, 0);
 
-        $this->call('_BusDriveStop_8c023bce');
+        $this->call('_BusDriveEnterKnockback_8c023bce');
 
         $this->shouldWriteLong($busState + 0x2e4, 0);
         $this->shouldWriteLong($busState + 0x2f4, 0);
@@ -26,7 +26,7 @@ return new class extends TestCase {
         $this->initUint32($busState + 0x2f4, 5); // gear == 5 (reverse)
         $this->initUint32($busState + 0x2b4, 0);
 
-        $this->call('_BusDriveStop_8c023bce');
+        $this->call('_BusDriveEnterKnockback_8c023bce');
 
         $this->shouldWriteLong($busState + 0x2e4, 0);
         $this->shouldWriteLong($busState + 0x2b4, 2);
