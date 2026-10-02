@@ -281,7 +281,7 @@
 #define MSG_ENDING_CREDITS_36 "<E><E><E>協力　東京都交通局" /* const_8c039ea0 */
 #define MSG_ENDING_CREDITS_37 "<E><E><E><E><E>企画・開発　株式会社フォーティファイブ<E><E>製造販売　株式会社　セガ・エンタープライゼス<E><E>○ＦＯＲＴＹＦＩＶＥ　１９９９" /* const_8c039ebc */
 
-/* Captions for the attract-mode camera tour (025870_demo.c), one per shot
+/* Captions for the attract-mode camera tour (025870_cinematic.c), one per shot
  * of each route's table and numbered by the cue id the mark grid paints.
  * Most shots are camera framings with nothing to say; those are empty, and
  * the compiler pools every empty one into a single string. */

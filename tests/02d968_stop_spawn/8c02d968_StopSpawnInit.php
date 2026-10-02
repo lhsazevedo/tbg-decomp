@@ -79,7 +79,7 @@ return new class extends TestCase {
         $this->setSize('_var_practiceRules_8c226410', 4);
         $this->setSize('_njSetTexture', 4);
         $this->setSize('_njLoadCacheTexture', 4);
-        $this->setSize('_DemoBoardingCamera_8c025870', 4);
+        $this->setSize('_CinematicBoardingCamera_8c025870', 4);
         $this->setSize('_var_interiorTexlist_8c1bc438', 4);
         $this->setSize('_var_route_8c18ad1c', 4);
         $this->setSize('_var_busState_8c1bb9d0', 0x3cc);
@@ -140,7 +140,7 @@ return new class extends TestCase {
 
         $this->shouldCall('_njSetTexture')->with($interiorTexlist);
         $this->shouldCall('_njLoadCacheTexture')->with($interiorTexlist);
-        $this->shouldCall('_DemoBoardingCamera_8c025870');
+        $this->shouldCall('_CinematicBoardingCamera_8c025870');
 
         // Six bus-interior anchor points, each written x, then y, then z
         // (verified against the real instruction order for ROUTE_SHINJUKU,
@@ -237,7 +237,7 @@ return new class extends TestCase {
         $this->setSize('_var_practiceRules_8c226410', 4);
         $this->setSize('_njSetTexture', 4);
         $this->setSize('_njLoadCacheTexture', 4);
-        $this->setSize('_DemoBoardingCamera_8c025870', 4);
+        $this->setSize('_CinematicBoardingCamera_8c025870', 4);
         $this->setSize('_var_interiorTexlist_8c1bc438', 4);
         $this->setSize('_var_route_8c18ad1c', 4);
         $this->setSize('_var_busState_8c1bb9d0', 0x3cc);
@@ -305,7 +305,7 @@ return new class extends TestCase {
 
         $this->shouldCall('_njSetTexture')->with($interiorTexlist);
         $this->shouldCall('_njLoadCacheTexture')->with($interiorTexlist);
-        $this->shouldCall('_DemoBoardingCamera_8c025870');
+        $this->shouldCall('_CinematicBoardingCamera_8c025870');
 
         $p960 = $this->addressOf('_var_passengerFadeColor_8c228960');
         $this->shouldWriteLongTo('_var_passengersFadedOut_8c22895c', 0);
@@ -370,7 +370,7 @@ return new class extends TestCase {
         $this->setSize('_var_practiceRules_8c226410', 4);
         $this->setSize('_njSetTexture', 4);
         $this->setSize('_njLoadCacheTexture', 4);
-        $this->setSize('_DemoBoardingCamera_8c025870', 4);
+        $this->setSize('_CinematicBoardingCamera_8c025870', 4);
         $this->setSize('_var_interiorTexlist_8c1bc438', 4);
         $this->setSize('_var_route_8c18ad1c', 4);
         $this->setSize('_var_busState_8c1bb9d0', 0x3cc);
@@ -457,7 +457,7 @@ return new class extends TestCase {
 
         $this->shouldCall('_njSetTexture')->with($interiorTexlist);
         $this->shouldCall('_njLoadCacheTexture')->with($interiorTexlist);
-        $this->shouldCall('_DemoBoardingCamera_8c025870');
+        $this->shouldCall('_CinematicBoardingCamera_8c025870');
 
         $p960 = $this->addressOf('_var_passengerFadeColor_8c228960');
         $this->shouldWriteLongTo('_var_passengersFadedOut_8c22895c', 0);
@@ -587,7 +587,7 @@ return new class extends TestCase {
 
         $this->shouldCall('_njSetTexture')->with($interiorTexlist);
         $this->shouldCall('_njLoadCacheTexture')->with($interiorTexlist);
-        $this->shouldCall('_DemoBoardingCamera_8c025870');
+        $this->shouldCall('_CinematicBoardingCamera_8c025870');
 
         $p960 = $this->addressOf('_var_passengerFadeColor_8c228960');
         $this->shouldWriteLongTo('_var_passengersFadedOut_8c22895c', 0);

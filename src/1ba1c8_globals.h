@@ -423,9 +423,9 @@ extern int var_gameMode_8c1bb8fc;
 extern int var_cutsceneActive_8c1bb900;
 extern NJS_CAMERA var_camera_8c1bb904; // 021b9c_tile_draw
 extern NJS_CAMERA var_mirrorCamera_8c1bb944; // 021b9c_tile_draw
-/* Aimed from the driver's eye down the aisle by DemoBoardingCamera_8c025870
- * (025870); RenderDrawFrame_8c022560's arrival variant 1 renders it into the inset
- * over the mirror view. */
+/* Aimed from the driver's eye down the aisle by
+ * CinematicBoardingCamera_8c025870 (025870); RenderDrawFrame_8c022560's arrival
+ * variant 1 renders it into the inset over the mirror view. */
 extern NJS_CAMERA var_cabinCamera_8c1bb984;
 extern char var_8c1bb9c4[12]; /* unreferenced; declared here to hold its place in B */
 extern BusState var_busState_8c1bb9d0;

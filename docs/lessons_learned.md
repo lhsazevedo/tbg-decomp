@@ -660,7 +660,7 @@ section B var) already has a real owner elsewhere in the tree, but that owner
 doesn't yet make the symbol visible to this file:
 
 - For an owner whose archived `.src` still holds the data (`01f3c0.src`,
-  `01fa78.src`, `024280_bus_input.src`, `025870_demo.src`,
+  `01fa78.src`, `024280_bus_input.src`, `025870_cinematic.src`,
   `0289ac_objects.src`), the label exists but is never `.EXPORT`ed -- nothing
   outside that file has needed it yet.
 - For the C-based `Makefile`, an owner that *is* decompiled (e.g.
@@ -808,7 +808,7 @@ confirmed it independently, all three being exact multiples of `sizeof(LineBusNo
 
 ## A hand-written string constant is usually a literal pool; inline it
 
-`025870_demo`'s 28 place names started life as hand-written `Uint8` byte
+`025870_cinematic`'s 28 place names started life as hand-written `Uint8` byte
 arrays, but they are really the compiler's own literal pool: address order is
 first-use order, identical strings are deduplicated to one copy (104 of its
 131 shots share the empty caption), and each is padded to a 4-byte boundary.
@@ -860,14 +860,14 @@ up to 4 -- so `strings.h`'s hand-written `TEXT_SJIS_SIZE(n)` looks derivable:
 
 It isn't. Naming the literal in `sizeof` makes SHC materialise it into the
 string pool *as well as* into the array, so section C comes out holding both:
-`025870_demo` went 360 -> 717 bytes and `01e27c_practice_menu` 72 -> 142, both
+`025870_cinematic` went 360 -> 717 bytes and `01e27c_practice_menu` 72 -> 142, both
 losing a data match they had. One mention (the initializer alone) pools
 nothing; two mentions pool one copy.
 
 There is no way to derive the length without naming the literal twice, so
 where a sized array is genuinely needed the count stays written down. The
 better escape is usually not to need one: inline the literals and let the
-compiler lay the pool out, as `025870_demo` now does.
+compiler lay the pool out, as `025870_cinematic` now does.
 
 ## `const` on the array, not just the pointee, moves a pointer table out of D
 

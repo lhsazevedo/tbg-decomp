@@ -76,7 +76,7 @@
           .EXPORT     _RouteSpawnLoadTask_8c0144fc
           .EXPORT     _init_bupGameName_8c04410c ; 01b19c.src
           .EXPORT     _var_currentCourseConfig_8c18ad18 ; 02c884.src
-          .EXPORT     _var_route_8c18ad1c ; 0129cc_game.c, 0129cc_game.src, 01d7fc.src, 020214.src, 023310.src, 025870_demo.src, 026710.src, 028258.src, 02af78_event.src, 02b464.src, 02c884.src, 02d19c.src, 02d968.src
+          .EXPORT     _var_route_8c18ad1c ; 0129cc_game.c, 0129cc_game.src, 01d7fc.src, 020214.src, 023310.src, 025870_cinematic.src, 026710.src, 028258.src, 02af78_event.src, 02b464.src, 02c884.src, 02d19c.src, 02d968.src
           .EXPORT     _var_timeOfDay_8c18ad20 ; 01d7fc.src, 022bdc.src, 023310.src, 025b98.src, 026710.src, 027958_bus_draw.src, 02af78_event.src, 02d19c.src
           .EXPORT     _var_sceneParams_8c18ad24 ; 021b9c_tile_draw.src, 023310.src, 024b4c.src, 026710.src
           .EXPORT     _var_viewParams_8c18ad28 ; 0129cc_game.c, 0129cc_game.src

@@ -102,7 +102,7 @@
                                           ; 01fa78
                                           ; 021b9c_tile_draw
                                           ; 023310
-                                          ; 025870_demo
+                                          ; 025870_cinematic
                                           ; 026710
                                           ; 028258
                                           ; 02b464
@@ -223,12 +223,12 @@
           .EXPORT     _var_camera_8c1bb904 ; 021b9c_tile_draw
                                     ; 022464
                                     ; 024b4c
-                                    ; 025870_demo
+                                    ; 025870_cinematic
           .EXPORT     _var_mirrorCamera_8c1bb944 ; 021b9c_tile_draw
                                     ; 022464
                                     ; 024b4c
           .EXPORT     _var_cabinCamera_8c1bb984 ; 022464
-                                    ; 025870_demo
+                                    ; 025870_cinematic
           .EXPORT     _var_8c1bb9c4
           .EXPORT     _var_busState_8c1bb9d0 ; 0129cc_game
                                              ; 01fa78
@@ -240,7 +240,7 @@
                                              ; 02412c
                                              ; 024280
                                              ; 024b4c
-                                             ; 025870_demo
+                                             ; 025870_cinematic
                                              ; 026710
                                              ; 027958_bus_draw
                                              ; 028258

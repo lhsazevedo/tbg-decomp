@@ -13,7 +13,7 @@ if (!function_exists('fdec')) {
 
 /*
  * _demoShotTask_8c0259e8(Task *task, void *state): the attract-mode camera
- * tour armed by DemoStartTour_8c025af4. Its trigger is the camera cue in the
+ * tour armed by CinematicStartTour_8c025af4. Its trigger is the camera cue in the
  * top byte of var_busState_8c1bb9d0.markDriveFlags_0x3b0. Phase 0 watches for that id to
  * change (or var_demoShotRearm_8c227e10 to force a re-trigger of the last
  * one): looks up the matching shot in var_demoShots_8c227e0c, switches the demo

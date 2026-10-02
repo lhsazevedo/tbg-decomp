@@ -30,7 +30,7 @@
           .IMPORT     _VehicleModelPlace_8c020594
           .IMPORT     _var_playMode_8c1bb8d0
           .IMPORT     _BusCameraUpdate_8c025078
-          .IMPORT     _DemoUpdateCamera_8c025906
+          .IMPORT     _CinematicUpdateCamera_8c025906
           .IMPORT     _BusCameraUpdateMirror_8c025604
           .EXPORT     _BusTask_8c022bdc
           .SECTION     P, CODE, ALIGN=4
@@ -979,6 +979,6 @@ LP_GEN_51967:
           .DATA.L _VehicleModelPlace_8c020594 ; H'8C0232FC
           .DATA.L _var_playMode_8c1bb8d0 ; H'8C023300
           .DATA.L _BusCameraUpdate_8c025078 ; H'8C023304
-          .DATA.L _DemoUpdateCamera_8c025906 ; H'8C023308
+          .DATA.L _CinematicUpdateCamera_8c025906 ; H'8C023308
           .DATA.L _BusCameraUpdateMirror_8c025604 ; H'8C02330C
           .END

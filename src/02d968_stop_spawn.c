@@ -10,7 +10,7 @@
 #include "01e27c_practice_menu.h"
 #include "014a9c_tasks.h"
 #include "02d19c_passenger.h"
-#include "025870_demo.h"
+#include "025870_cinematic.h"
 #include "02c884_stop.h"
 #include "02b464_grading.h"
 
@@ -83,7 +83,7 @@ void StopSpawnInit_8c02d968(void)
 
     njSetTexture(var_interiorTexlist_8c1bc438);
     njLoadCacheTexture(var_interiorTexlist_8c1bc438);
-    DemoBoardingCamera_8c025870();
+    CinematicBoardingCamera_8c025870();
 
     /* The passenger walk waypoints, in bus-local space; the two outside the bus
      * are transformed to world space in place. Ome gets the same six

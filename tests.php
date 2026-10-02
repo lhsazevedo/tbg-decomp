@@ -856,15 +856,15 @@ return [
         ],
         [
             "tests" => [
-                "tests/025870_demo/8c025870_DemoBoardingCamera.php",
-                "tests/025870_demo/8c0258ba_applyShotPosition.php",
-                "tests/025870_demo/8c025906_DemoUpdateCamera.php",
-                "tests/025870_demo/8c0259e8_demoShotTask.php",
-                "tests/025870_demo/8c025af4_DemoStartTour.php",
+                "tests/025870_cinematic/8c025870_CinematicBoardingCamera.php",
+                "tests/025870_cinematic/8c0258ba_applyShotPosition.php",
+                "tests/025870_cinematic/8c025906_CinematicUpdateCamera.php",
+                "tests/025870_cinematic/8c0259e8_demoShotTask.php",
+                "tests/025870_cinematic/8c025af4_CinematicStartTour.php",
             ],
             "objects" => [
-                "build/output_test/src/asm/decompiled/025870_demo.obj",
-                "build/output_test/src/025870_demo.obj",
+                "build/output_test/src/asm/decompiled/025870_cinematic.obj",
+                "build/output_test/src/025870_cinematic.obj",
             ]
         ],
         [

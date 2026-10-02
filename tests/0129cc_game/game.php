@@ -137,7 +137,7 @@ return new class extends TestCase {
 
         $this->shouldCall('_TaskSpawn_8c014ae8')->with($this->addressOf('_var_tasks_8c1ba3c8'), $this->addressOf('_pauseToggleTask_8c012d06'), 0xffffe4, 0xFFFFE8, 0);
         $this->shouldCall('_TaskSpawn_8c014ae8')->with($this->addressOf('_var_tasks_8c1ba5e8'), $this->addressOf('_ReplayMenuDemoPlayTask_8c016bf4'), 0xffffe4, 0xFFFFE8, 0);
-        $this->shouldCall('_DemoStartTour_8c025af4');
+        $this->shouldCall('_CinematicStartTour_8c025af4');
 
         $this->shouldWriteTo('_var_pauseActive_8c1bb8cc', 0);
         $this->shouldWriteTo('_var_messageBoxActive_8c22847c', 0);
@@ -232,7 +232,7 @@ return new class extends TestCase {
                 0
             );
 
-        $this->shouldCall('_DemoStartTour_8c025af4');
+        $this->shouldCall('_CinematicStartTour_8c025af4');
 
         $this->shouldWriteTo('_var_pauseActive_8c1bb8cc', 0);
         $this->shouldWriteTo('_var_messageBoxActive_8c22847c', 0);

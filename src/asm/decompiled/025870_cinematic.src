@@ -19,9 +19,9 @@
           .IMPORT     _TaskSpawn_8c014ae8
           .IMPORT     _MessageBoxOpenTextbox_8c02ae3e
           .IMPORT     _BusCameraDrawBusModel_8c024bb8
-          .EXPORT     _DemoBoardingCamera_8c025870
-          .EXPORT     _DemoUpdateCamera_8c025906
-          .EXPORT     _DemoStartTour_8c025af4
+          .EXPORT     _CinematicBoardingCamera_8c025870
+          .EXPORT     _CinematicUpdateCamera_8c025906
+          .EXPORT     _CinematicStartTour_8c025af4
           .EXPORT     _init_demoFirstShot_8c0460b0 ; 0129cc_game.c, 0129cc_game.src
 
           .AIFDEF UNIT_TESTING
@@ -35,7 +35,7 @@
           .EXPORT     _var_demoShotRearm_8c227e10
           .AENDI
           .SECTION     P, CODE, ALIGN=4
-_DemoBoardingCamera_8c025870:
+_CinematicBoardingCamera_8c025870:
           FMOV.S      FR15,@-R15
           STS.L       PR,@-R15
           MOV.L       LP_GEN_52398+20,R3
@@ -115,7 +115,7 @@ LAB_8c0258f2:
 LAB_8c025902:
           RTS
           MOV.L       @R15+,R14
-_DemoUpdateCamera_8c025906:
+_CinematicUpdateCamera_8c025906:
           MOV.L       R14,@-R15
           STS.L       PR,@-R15
           MOV.L       LP_GEN_52398+20,R3
@@ -347,7 +347,7 @@ LAB_8c025ae2:
           MOV.L       @R15+,R13
           JMP         @R3
           MOV.L       @R15+,R14
-_DemoStartTour_8c025af4:
+_CinematicStartTour_8c025af4:
           MOV.L       R14,@-R15
           STS.L       PR,@-R15
           ADD         #-H'8,R15

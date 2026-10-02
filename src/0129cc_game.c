@@ -29,7 +29,7 @@
 #include "235ca0_nj_buffers.h"
 #include "02171c_tile_stream.h"
 #include "023310_bus_init.h"
-#include "025870_demo.h"
+#include "025870_cinematic.h"
 #include "02d968_stop_spawn.h"
 #include "021b9c_tile_draw.h" /* TileDrawSpawnTask_8c0222dc */
 #include "02c884_stop.h"
@@ -508,7 +508,7 @@ void GameEnterDrive_8c01306e(void)
             created_task->field_0x0c = (void*) 0;
         }
         TaskSpawn_8c014ae8(var_tasks_8c1ba5e8, &ReplayMenuDemoPlayTask_8c016bf4, &created_task, &created_state, 0);
-        DemoStartTour_8c025af4();
+        CinematicStartTour_8c025af4();
     }
 
     var_pauseActive_8c1bb8cc = 0;

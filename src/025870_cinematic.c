@@ -1,4 +1,4 @@
-/* @unit Demo */
+/* @unit Cinematic */
 
 #include <shinobi.h>
 
@@ -10,7 +10,7 @@
 #include "022464_render.h"
 #include "024b4c_bus_camera.h"
 #include "02a9fc_message_box.h"
-#include "025870_demo.h"
+#include "025870_cinematic.h"
 
 /* ====================
  * Compiler Definitions
@@ -210,7 +210,7 @@ char init_demoFirstShot_8c0460b0[] = {
  * ====================
  */
 
-void DemoBoardingCamera_8c025870(void)
+void CinematicBoardingCamera_8c025870(void)
 {
     njInitCamera(&var_cabinCamera_8c1bb984);
     njSetCameraAngle(&var_cabinCamera_8c1bb984, 12743);
@@ -220,7 +220,7 @@ void DemoBoardingCamera_8c025870(void)
 }
 
 /* A world point's y is relative to the bus. Chase shots are resolved every
- * frame in DemoUpdateCamera_8c025906 instead. */
+ * frame in CinematicUpdateCamera_8c025906 instead. */
 STATIC void applyShotPosition_8c0258ba(void)
 {
     switch (var_cameraMode_8c227d9c) {
@@ -240,7 +240,7 @@ STATIC void applyShotPosition_8c0258ba(void)
     }
 }
 
-void DemoUpdateCamera_8c025906(void)
+void CinematicUpdateCamera_8c025906(void)
 {
     njInitCamera(&var_camera_8c1bb904);
     njSetCameraAngle(&var_camera_8c1bb904, 10194);
@@ -325,7 +325,7 @@ STATIC void demoShotTask_8c0259e8(Task *task, DemoShotState *state)
     RenderQueueDraw_8c0223ea(RENDER_LAYER_MAIN, (DrawFn)BusCameraDrawBusModel_8c024bb8, 0);
 }
 
-void DemoStartTour_8c025af4(void)
+void CinematicStartTour_8c025af4(void)
 {
     Task *task;
     DemoShotState *state;

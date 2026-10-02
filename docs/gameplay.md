@@ -62,7 +62,7 @@ bus along a predefined route with predefined passenger stop requests.
     `var_cameraMode_8c227d9c` -- dead in the shipped game as far as traced,
     not merely hard to reach.
   - Modes 5-7 (`BUS_CAMERA_DEMO_*`) are attract-mode only
-    (`DemoUpdateCamera_8c025906`, `025870_demo.c`): the tour cuts between
+    (`CinematicUpdateCamera_8c025906`, `025870_cinematic.c`): the tour cuts between
     scripted shots as the bus passes stop markers, captioning each with its
     place name. The player never sees them.
 - This confirms the four player-facing views the mode reads as, in cycle

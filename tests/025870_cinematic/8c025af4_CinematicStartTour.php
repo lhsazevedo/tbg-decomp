@@ -6,7 +6,7 @@ use Lhsazevedo\Sh4ObjTest\TestCase;
 use Lhsazevedo\Sh4ObjTest\Simulator\Types\U32;
 
 /*
- * _DemoStartTour_8c025af4(void): opens the caption textbox and arms
+ * _CinematicStartTour_8c025af4(void): opens the caption textbox and arms
  * demoShotTask_8c0259e8 via TaskSpawn_8c014ae8, after selecting this route's
  * shot table into var_demoShots_8c227e0c from
  * init_demoShotsShinjuku_8c045674/init_demoShotsWangan_8c045b60/
@@ -46,7 +46,7 @@ return new class extends TestCase {
         $task = $this->alloc(0x20);
         $state = $this->alloc(0xc);
 
-        $this->call('_DemoStartTour_8c025af4');
+        $this->call('_CinematicStartTour_8c025af4');
 
         $this->shouldWriteLongTo('_var_demoShots_8c227e0c', $this->addressOf($expectedTable));
 

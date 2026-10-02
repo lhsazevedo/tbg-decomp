@@ -49,7 +49,7 @@
           .EXPORT     _var_cameraMode_8c227d9c ; 020214_drive_cue
                                                ; 023310_bus_init
                                                ; 024280_bus_input
-                                               ; 025870_demo
+                                               ; 025870_cinematic
                                                ; 0289ac_objects
                                                ; 02d19c_passenger
           .EXPORT     _var_savedCameraMode_8c227da0 ; 0129cc_game
@@ -65,7 +65,7 @@
           .EXPORT     _var_mirrorLightDir_8c227dc4 ; 026710_traffic
           .EXPORT     _var_farClipDepth_8c227dd0 ; 013ae8_route
           .EXPORT     _var_demoShotId_8c227dd4 ; 0129cc_game
-                                               ; 025870_demo
+                                               ; 025870_cinematic
 
           .AIFDEF UNIT_TESTING
           .EXPORT     _drawFrontBusModel_8c024cc8

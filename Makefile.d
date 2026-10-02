@@ -39,7 +39,7 @@ $(OUTPUT_DIR)/src/0129cc_game.obj: src/020214_drive_cue.h src/018644_file_select
 $(OUTPUT_DIR)/src/0129cc_game.obj: src/01a148_option.h src/01bb48_vm_game.h
 $(OUTPUT_DIR)/src/0129cc_game.obj: src/01c980_profile_file.h src/235ca0_nj_buffers.h
 $(OUTPUT_DIR)/src/0129cc_game.obj: src/023310_bus_init.h src/023938_bus_drive.h
-$(OUTPUT_DIR)/src/0129cc_game.obj: src/025870_demo.h src/02d968_stop_spawn.h
+$(OUTPUT_DIR)/src/0129cc_game.obj: src/025870_cinematic.h src/02d968_stop_spawn.h
 $(OUTPUT_DIR)/src/0129cc_game.obj: src/021b9c_tile_draw.h src/02c884_stop.h
 $(OUTPUT_DIR)/src/0129cc_game.obj: src/016d2c_course_menu.h src/01e27c_practice_menu.h
 $(OUTPUT_DIR)/src/013ae8_route.obj: src/011120_asset_queues.h src/serial_debug.h
@@ -312,7 +312,7 @@ $(OUTPUT_DIR)/src/022bdc_bus.obj: src/022464_render.h src/0100bc_sound.h
 $(OUTPUT_DIR)/src/022bdc_bus.obj: src/020594_vehicle_model.h src/023938_bus_drive.h
 $(OUTPUT_DIR)/src/022bdc_bus.obj: src/024280_bus_input.h src/02412c_bus_line.h
 $(OUTPUT_DIR)/src/022bdc_bus.obj: src/02081c_geom.h src/024b4c_bus_camera.h
-$(OUTPUT_DIR)/src/022bdc_bus.obj: src/025870_demo.h src/027958_bus_draw.h
+$(OUTPUT_DIR)/src/022bdc_bus.obj: src/025870_cinematic.h src/027958_bus_draw.h
 $(OUTPUT_DIR)/src/022bdc_bus.obj: src/026710_traffic.h src/022bdc_bus.h
 $(OUTPUT_DIR)/src/022bdc_bus.obj: src/02e51c_attr_query.h src/02b464_grading.h
 $(OUTPUT_DIR)/src/022bdc_bus.obj: src/020214_drive_cue.h
@@ -363,14 +363,14 @@ $(OUTPUT_DIR)/src/024b4c_bus_camera.obj: src/015ab8_title.h src/014b8c_backup.h
 $(OUTPUT_DIR)/src/024b4c_bus_camera.obj: src/020914_ground_query.h src/022464_render.h
 $(OUTPUT_DIR)/src/024b4c_bus_camera.obj: src/027958_bus_draw.h src/026710_traffic.h
 $(OUTPUT_DIR)/src/024b4c_bus_camera.obj: src/024b4c_bus_camera.h
-$(OUTPUT_DIR)/src/025870_demo.obj: src/includes.h src/strings.h src/strings_ja_jp.sjis.h
-$(OUTPUT_DIR)/src/025870_demo.obj: src/1ba1c8_globals.h src/011120_asset_queues.h
-$(OUTPUT_DIR)/src/025870_demo.obj: src/serial_debug.h src/014a9c_tasks.h src/013ae8_route.h
-$(OUTPUT_DIR)/src/025870_demo.obj: src/02171c_tile_stream.h src/015034_text.h
-$(OUTPUT_DIR)/src/025870_demo.obj: src/015ab8_title.h src/014b8c_backup.h
-$(OUTPUT_DIR)/src/025870_demo.obj: src/020914_ground_query.h src/022464_render.h
-$(OUTPUT_DIR)/src/025870_demo.obj: src/024b4c_bus_camera.h src/02a9fc_message_box.h
-$(OUTPUT_DIR)/src/025870_demo.obj: src/025870_demo.h
+$(OUTPUT_DIR)/src/025870_cinematic.obj: src/includes.h src/strings.h src/strings_ja_jp.sjis.h
+$(OUTPUT_DIR)/src/025870_cinematic.obj: src/1ba1c8_globals.h src/011120_asset_queues.h
+$(OUTPUT_DIR)/src/025870_cinematic.obj: src/serial_debug.h src/014a9c_tasks.h src/013ae8_route.h
+$(OUTPUT_DIR)/src/025870_cinematic.obj: src/02171c_tile_stream.h src/015034_text.h
+$(OUTPUT_DIR)/src/025870_cinematic.obj: src/015ab8_title.h src/014b8c_backup.h
+$(OUTPUT_DIR)/src/025870_cinematic.obj: src/020914_ground_query.h src/022464_render.h
+$(OUTPUT_DIR)/src/025870_cinematic.obj: src/024b4c_bus_camera.h src/02a9fc_message_box.h
+$(OUTPUT_DIR)/src/025870_cinematic.obj: src/025870_cinematic.h
 $(OUTPUT_DIR)/src/025b98_traffic_drive.obj: src/025b98_traffic_drive.h src/014a9c_tasks.h
 $(OUTPUT_DIR)/src/025b98_traffic_drive.obj: src/026710_traffic.h src/020914_ground_query.h
 $(OUTPUT_DIR)/src/025b98_traffic_drive.obj: src/027958_bus_draw.h src/1ba1c8_globals.h
@@ -501,7 +501,7 @@ $(OUTPUT_DIR)/src/02d968_stop_spawn.obj: src/015034_text.h src/1ba1c8_globals.h
 $(OUTPUT_DIR)/src/02d968_stop_spawn.obj: src/015ab8_title.h src/014b8c_backup.h
 $(OUTPUT_DIR)/src/02d968_stop_spawn.obj: src/020914_ground_query.h src/022464_render.h
 $(OUTPUT_DIR)/src/02d968_stop_spawn.obj: src/01e27c_practice_menu.h src/02d19c_passenger.h
-$(OUTPUT_DIR)/src/02d968_stop_spawn.obj: src/025870_demo.h src/02c884_stop.h
+$(OUTPUT_DIR)/src/02d968_stop_spawn.obj: src/025870_cinematic.h src/02c884_stop.h
 $(OUTPUT_DIR)/src/02d968_stop_spawn.obj: src/02b464_grading.h
 $(OUTPUT_DIR)/src/02df3c_traffic_lookahead.obj: src/014a9c_tasks.h src/026710_traffic.h
 $(OUTPUT_DIR)/src/02df3c_traffic_lookahead.obj: src/020914_ground_query.h

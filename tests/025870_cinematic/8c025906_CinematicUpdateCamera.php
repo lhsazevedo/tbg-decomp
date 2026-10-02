@@ -12,7 +12,7 @@ if (!function_exists('fdec')) {
 }
 
 /*
- * _DemoUpdateCamera_8c025906(void): sets up the live camera (var_camera_8c1bb904)
+ * _CinematicUpdateCamera_8c025906(void): sets up the live camera (var_camera_8c1bb904)
  * each frame during demo playback. var_cameraMode_8c227d9c==7 first re-derives the
  * bus's draw position (posX_0x2fc/posY_0x300/posZ_0x304) from var_demoShotPos_8c227e00
  * transformed by the bus's world matrix; then, for 5/6/7, points the camera
@@ -75,7 +75,7 @@ return new class extends TestCase {
         $this->initUint32($busState + 0x300, fdec(20.0)); // posY_0x300
         $this->initUint32($busState + 0x304, fdec(30.0)); // posZ_0x304
 
-        $this->call('_DemoUpdateCamera_8c025906')->with();
+        $this->call('_CinematicUpdateCamera_8c025906')->with();
 
         $this->shouldCall('_njInitCamera')->with($camera);
         $this->shouldCall('_njSetCameraAngle')->with($camera, 10194);
@@ -100,7 +100,7 @@ return new class extends TestCase {
         $this->initUint32($busState + 0x300, fdec(5.0));  // posY_0x300
         $this->initUint32($busState + 0x304, fdec(-6.0)); // posZ_0x304
 
-        $this->call('_DemoUpdateCamera_8c025906')->with();
+        $this->call('_CinematicUpdateCamera_8c025906')->with();
 
         $this->shouldCall('_njInitCamera')->with($camera);
         $this->shouldCall('_njSetCameraAngle')->with($camera, 10194);
@@ -126,7 +126,7 @@ return new class extends TestCase {
         $this->initUint32($busState + 0x308, fdec(1.0));
         $this->initUint32($busState + 0x310, fdec(1.0));
 
-        $this->call('_DemoUpdateCamera_8c025906')->with();
+        $this->call('_CinematicUpdateCamera_8c025906')->with();
 
         $this->shouldCall('_njInitCamera')->with($camera);
         $this->shouldCall('_njSetCameraAngle')->with($camera, 10194);

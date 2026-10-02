@@ -214,7 +214,7 @@
 #define MSG_ENDING_CREDITS_36 "MSG_ENDING_CREDITS_36"
 #define MSG_ENDING_CREDITS_37 "MSG_ENDING_CREDITS_37"
 
-/* Captions for the attract-mode camera tour (025870_demo.c), one per shot
+/* Captions for the attract-mode camera tour (025870_cinematic.c), one per shot
  * of each route's table and numbered by the cue id the mark grid paints.
  * Most shots are camera framings with nothing to say; those are empty, and
  * the compiler pools every empty one into a single string. */

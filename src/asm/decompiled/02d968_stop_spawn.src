@@ -10,7 +10,7 @@
           .IMPORT     _var_interiorTexlist_8c1bc438
           .IMPORT     _njSetTexture
           .IMPORT     _njLoadCacheTexture
-          .IMPORT     _DemoBoardingCamera_8c025870
+          .IMPORT     _CinematicBoardingCamera_8c025870
           .IMPORT     _njCalcPoint
           .IMPORT     _var_exitSpot3_8c22894c
           .IMPORT     _var_boardSpot1_8c228928
@@ -313,7 +313,7 @@ LP_GEN_52173:
           .DATA.L _var_interiorTexlist_8c1bc438 ; H'8C02DB78
           .DATA.L _njSetTexture ; H'8C02DB7C
           .DATA.L _njLoadCacheTexture ; H'8C02DB80
-          .DATA.L _DemoBoardingCamera_8c025870 ; H'8C02DB84
+          .DATA.L _CinematicBoardingCamera_8c025870 ; H'8C02DB84
           .DATA.L H'3E03126F ; H'8C02DB88
           .DATA.L _njCalcPoint ; H'8C02DB8C
           .DATA.L H'3EB33333 ; H'8C02DB90
