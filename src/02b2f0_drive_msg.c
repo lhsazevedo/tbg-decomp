@@ -42,7 +42,6 @@ DriveMsgSlot var_driveMsgQueue_8c228564[4];
  * ====================
  */
 
-/* One banner: `count` glyph quads left to right from (x, y). */
 STATIC void drawMsgGlyphRow_8c02b2f0(Uint32 *ids, int count, float x, float y)
 {
     NJS_QUAD_TEXTURE q;
@@ -72,7 +71,6 @@ STATIC void drawMsgGlyphRow_8c02b2f0(Uint32 *ids, int count, float x, float y)
     }
 }
 
-/* DrawFn for the drive-message HUD banner -- see 02b2f0_drive_msg.h. */
 void DriveMsgDraw_8c02b388(int unused)
 {
     int i;
