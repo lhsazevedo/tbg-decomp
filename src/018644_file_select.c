@@ -72,7 +72,7 @@ typedef struct {
     TaskAction action;
     void *state;
     int phase_0x08;
-    int counter_0x0c;
+    int fileIndex_0x0c;
     int field_0x10;
     int field_0x14;
     char **names_0x18;
@@ -110,7 +110,7 @@ STATIC void loadFileTask_8c018644(LoadFileTask *task)
 
                 if (err != BUD_ERR_OK) {
                     if (err == BUD_ERR_FILE_NOT_FOUND) {
-                        task->counter_0x0c++;
+                        task->fileIndex_0x0c++;
                         continue;
                     }
 
@@ -122,11 +122,11 @@ STATIC void loadFileTask_8c018644(LoadFileTask *task)
 
                 LOG_DEBUG(("[FILE_SELECT] requesting load for \"%s\"\n", *name));
                 BupLoad_8c014bc6(var_selectedVm_8c1ba34c, *name, var_saveBufCursor_8c225fe0);
-                var_loadedSaveSlots_8c225fe4[var_loadedSaveCount_8c22600c] = task->counter_0x0c;
+                var_loadedSaveSlots_8c225fe4[var_loadedSaveCount_8c22600c] = task->fileIndex_0x0c;
                 var_loadedSaveCount_8c22600c++;
                 task->names_0x18 = ++name;
                 task->phase_0x08 = 1;
-                task->counter_0x0c++;
+                task->fileIndex_0x0c++;
                 return;
             }
 
@@ -176,7 +176,7 @@ STATIC void startVmLoad_8c018784(void)
     TaskSpawn_8c014ae8(var_tasks_8c1ba3c8, (void *)loadFileTask_8c018644, (Task **)&task, &state, 0);
     var_vmBusy_8c157a7c = 1;
     task->phase_0x08 = 0;
-    task->counter_0x0c = 0;
+    task->fileIndex_0x0c = 0;
     task->names_0x18 = init_saveNames_8c044d50;
     var_saveBuf_8c1ba2e0 = syMalloc(0x3c00);
     var_saveBufCursor_8c225fe0 = var_saveBuf_8c1ba2e0;
