@@ -209,7 +209,7 @@ STATIC const GlyphMetric init_glyphMetricsEn[TEXT_ASCII_COUNT] = {
 };
 #endif
 
-STATIC NJS_TEXANIM init_tanim_8c044128 = {
+STATIC NJS_TEXANIM init_glyphTanim_8c044128 = {
     GLYPH_WIDTH,  /* width */
     GLYPH_HEIGHT, /* height */
     0, 0,         /* center coordinates                 */
@@ -219,7 +219,7 @@ STATIC NJS_TEXANIM init_tanim_8c044128 = {
     0             /* attribute                          */
 };
 
-STATIC ResourceGroupSpriteEntry init_contents_8c04413c[2] = {
+STATIC ResourceGroupSpriteEntry init_glyphSprite_8c04413c[2] = {
     { 0, 0, 0 },
     { -1, 0, 0 }
 };
@@ -405,8 +405,8 @@ void TxtInit_8c01524c()
     var_glyphBuffer_8c1bc7a4 = syMalloc(GLYPH_TEXTURE_SIZE * sizeof(Uint16));
     var_glyphTexnames_8c1bc78c = syMalloc(GLYPH_COUNT * sizeof(NJS_TEXNAME));
     var_glyphTexlists_8c1bc790 = syMalloc(GLYPH_COUNT * sizeof(NJS_TEXLIST));
-    var_fontResourceGroup_8c1bc794.tanim_0x04 = &init_tanim_8c044128;
-    var_fontResourceGroup_8c1bc794.contents_0x08 = &init_contents_8c04413c;
+    var_fontResourceGroup_8c1bc794.tanim_0x04 = &init_glyphTanim_8c044128;
+    var_fontResourceGroup_8c1bc794.contents_0x08 = &init_glyphSprite_8c04413c;
 }
 
 void TxtDestroy_8c01529c()
@@ -602,7 +602,7 @@ int TxtPrepareTextBoxLayout_8c01543a(TextBox *box, char *text)
     return character_count;
 }
 
-int TxtDrawTextbox_8c0155e0(TextBox *box, int limit)
+int TxtDrawTextBox_8c0155e0(TextBox *box, int limit)
 {
     int token_idx = 0;
     int token_limit = 0;

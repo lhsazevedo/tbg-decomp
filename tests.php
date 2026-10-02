@@ -48,7 +48,7 @@ return [
                 "tests/015034_text/8c01529c_TxtDestroy.php",
                 "tests/015034_text/8c0152fc_TxtCreateTextBox.php",
                 "tests/015034_text/8c01543a_TxtPrepareTextBoxLayout.php",
-                "tests/015034_text/8c0155e0_TxtDrawTextbox.php",
+                "tests/015034_text/8c0155e0_TxtDrawTextBox.php",
                 "tests/015034_text/8c01594c_demoLoadTask.php",
                 "tests/015034_text/8c0159ac_TxtStartAttractDemo.php",
             ],

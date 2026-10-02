@@ -237,8 +237,8 @@ STATIC int scrollCreditsText_8c01f50e(void)
         var_menuState_8c1bc7a8.field_0x58 = 0xFF;
     }
 
-    TxtDrawTextbox_8c0155e0((TextBox *) var_messageTextBoxA_8c1bc404, var_menuState_8c1bc7a8.field_0x54);
-    return TxtDrawTextbox_8c0155e0((TextBox *) var_messageTextBoxB_8c1bc408, var_menuState_8c1bc7a8.field_0x58);
+    TxtDrawTextBox_8c0155e0((TextBox *) var_messageTextBoxA_8c1bc404, var_menuState_8c1bc7a8.field_0x54);
+    return TxtDrawTextBox_8c0155e0((TextBox *) var_messageTextBoxB_8c1bc408, var_menuState_8c1bc7a8.field_0x58);
 }
 
 STATIC void creditsTask_8c01f658(void)

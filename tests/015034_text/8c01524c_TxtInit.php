@@ -26,8 +26,8 @@ return new class extends TestCase {
         $this->shouldCall('_syMalloc')->with(0x200 * 8)->andReturn(0xcafe0003);
         $this->shouldWriteLongTo('_var_glyphTexlists_8c1bc790', 0xcafe0003);
 
-        $this->shouldWriteLong($this->addressOf('_var_fontResourceGroup_8c1bc794') + 4, $this->addressOf('_init_tanim_8c044128'));
-        $this->shouldWriteLong($this->addressOf('_var_fontResourceGroup_8c1bc794') + 8, $this->addressOf('_init_contents_8c04413c'));
+        $this->shouldWriteLong($this->addressOf('_var_fontResourceGroup_8c1bc794') + 4, $this->addressOf('_init_glyphTanim_8c044128'));
+        $this->shouldWriteLong($this->addressOf('_var_fontResourceGroup_8c1bc794') + 8, $this->addressOf('_init_glyphSprite_8c04413c'));
 
         $this->singleCall('_TxtInit_8c01524c')->run();
     }

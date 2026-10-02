@@ -4103,11 +4103,11 @@ int MessageBoxSwapFor_8c02aefc(char *string)
 }
 /* Draws the currently-revealed portion of the active message box's text,
  * called every frame from messageBoxTask_8c02ab7a's draw tail with the
- * running char-reveal counter as limit. Returns TxtDrawTextbox_8c0155e0's
+ * running char-reveal counter as limit. Returns TxtDrawTextBox_8c0155e0's
  * result (some callers check it in an if()). */
 int MessageBoxMenuTextboxText_8c02af1c(int limit)
 {
-    return TxtDrawTextbox_8c0155e0((TextBox *)(&var_messageTextBoxA_8c1bc404)[var_messageTextBoxIndex_8c1bc40c], limit);
+    return TxtDrawTextBox_8c0155e0((TextBox *)(&var_messageTextBoxA_8c1bc404)[var_messageTextBoxIndex_8c1bc40c], limit);
 }
 /* Destroys the double-buffered textbox pair and re-inits the text module.
  * Guarded by the var_messageTextBoxA_8c1bc404 sentinel so a second call (e.g. teardown

@@ -11,7 +11,7 @@ return new class extends TestCase {
     // declared symbols next to each other by default.
     private function resolveSymbols(): void
     {
-        $this->setSize('_TxtDrawTextbox_8c0155e0', 4);
+        $this->setSize('_TxtDrawTextBox_8c0155e0', 4);
 
         $base = $this->addressOf('_var_messageTextBoxA_8c1bc404');
         $this->rellocate('_var_messageTextBoxB_8c1bc408', $base + 4);
@@ -31,7 +31,7 @@ return new class extends TestCase {
         $this->call('_MessageBoxMenuTextboxText_8c02af1c')
             ->with(7);
 
-        $this->shouldCall('_TxtDrawTextbox_8c0155e0')
+        $this->shouldCall('_TxtDrawTextBox_8c0155e0')
             ->with($box0, 7)
             ->andReturn(42);
 
@@ -51,7 +51,7 @@ return new class extends TestCase {
         $this->call('_MessageBoxMenuTextboxText_8c02af1c')
             ->with(12);
 
-        $this->shouldCall('_TxtDrawTextbox_8c0155e0')
+        $this->shouldCall('_TxtDrawTextBox_8c0155e0')
             ->with($box1, 12)
             ->andReturn(0);
 

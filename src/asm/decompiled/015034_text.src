@@ -41,7 +41,7 @@
           .EXPORT     _TxtCreateTextBox_8c0152fc
           .EXPORT     _TxtDestroyTextBox_8c015410
           .EXPORT     _TxtPrepareTextBoxLayout_8c01543a
-          .EXPORT     _TxtDrawTextbox_8c0155e0
+          .EXPORT     _TxtDrawTextBox_8c0155e0
           .EXPORT     _TxtStartAttractDemo_8c0159ac
 
 
@@ -57,8 +57,8 @@
           .EXPORT     _const_8c035fa0
           .EXPORT     _const_8c035fac
 
-          .EXPORT     _init_tanim_8c044128
-          .EXPORT     _init_contents_8c04413c
+          .EXPORT     _init_glyphTanim_8c044128
+          .EXPORT     _init_glyphSprite_8c04413c
           .EXPORT     _init_demos_8c044154
           .EXPORT     _var_glyphTexnames_8c1bc78c
           .EXPORT     _var_glyphTexlists_8c1bc790
@@ -544,8 +544,8 @@ LP_GEN_39385:
           .DATA.L _var_glyphTexnames_8c1bc78c
           .DATA.L _var_glyphTexlists_8c1bc790
           .DATA.L _var_fontResourceGroup_8c1bc794
-          .DATA.L _init_tanim_8c044128
-          .DATA.L _init_contents_8c04413c
+          .DATA.L _init_glyphTanim_8c044128
+          .DATA.L _init_glyphSprite_8c04413c
           .DATA.L _njReleaseTexture
           .DATA.L H'0000FFED
           .DATA.L _syFree
@@ -841,7 +841,7 @@ LAB_8c0155cc:
           MOV.L       @R15+,R13
           RTS
           MOV.L       @R15+,R14
-_TxtDrawTextbox_8c0155e0:
+_TxtDrawTextBox_8c0155e0:
           MOV.L       R14,@-R15
           MOV.L       R13,@-R15
           MOV.L       R12,@-R15
@@ -1518,7 +1518,7 @@ _const_8c035fac:        ; from ghidra
           ;.RES.B      2
           .DATA.B      H'64, H'65, H'6D, H'6F, H'35, H'2E, H'62, H'69, H'6E, H'00
           .SECTION     D,DATA,ALIGN=4
-_init_tanim_8c044128:        ; from defines
+_init_glyphTanim_8c044128:        ; from defines
           .DATA.B      H'18, H'00
           .DATA.B      H'20, H'00
           .DATA.B      H'00, H'00
@@ -1529,7 +1529,7 @@ _init_tanim_8c044128:        ; from defines
           .DATA.B      H'F8, H'00
           .DATA.B      H'00, H'00
           .DATA.B      H'00, H'00
-_init_contents_8c04413c:        ; from defines
+_init_glyphSprite_8c04413c:        ; from defines
           .DATA.B      H'00, H'00
           .DATA.B      H'00, H'00
           .DATA.B      H'00, H'00

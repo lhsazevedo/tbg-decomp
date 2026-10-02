@@ -26,7 +26,7 @@ return new class extends TestCase {
     {
         $this->setSize('_var_menuState_8c1bc7a8', self::MENU_STATE_SIZE);
         $this->setSize('_TxtPrepareTextBoxLayout_8c01543a', 4);
-        $this->setSize('_TxtDrawTextbox_8c0155e0', 4);
+        $this->setSize('_TxtDrawTextBox_8c0155e0', 4);
 
         // var_messageTextBoxA/B are consecutive words in the real binary and
         // are external to this unit (defined in 0129cc_game.c) -- force the
@@ -99,8 +99,8 @@ return new class extends TestCase {
 
         $this->shouldWriteLong($base + self::FIELD_0X54, 11);
         $this->shouldWriteLong($base + self::FIELD_0X58, 21);
-        $this->shouldCall('_TxtDrawTextbox_8c0155e0')->with($box0, 11)->andReturn(0);
-        $this->shouldCall('_TxtDrawTextbox_8c0155e0')->with($box1, 21)->andReturn(5);
+        $this->shouldCall('_TxtDrawTextBox_8c0155e0')->with($box0, 11)->andReturn(0);
+        $this->shouldCall('_TxtDrawTextBox_8c0155e0')->with($box1, 21)->andReturn(5);
         $this->shouldReturn(5);
     }
 
@@ -118,8 +118,8 @@ return new class extends TestCase {
         $this->shouldWriteLong($box1 + self::TEXTBOX_Y_0X04, 198);
         $this->shouldWriteLong($base + self::FIELD_0X54, 1);
         $this->shouldWriteLong($base + self::FIELD_0X58, 1);
-        $this->shouldCall('_TxtDrawTextbox_8c0155e0')->with($box0, 1)->andReturn(0);
-        $this->shouldCall('_TxtDrawTextbox_8c0155e0')->with($box1, 1)->andReturn(0);
+        $this->shouldCall('_TxtDrawTextBox_8c0155e0')->with($box0, 1)->andReturn(0);
+        $this->shouldCall('_TxtDrawTextBox_8c0155e0')->with($box1, 1)->andReturn(0);
     }
 
     public function test_current_box_wraps_and_loads_next_credit_idx0(): void
@@ -144,8 +144,8 @@ return new class extends TestCase {
         $this->shouldWriteLong($base + self::STARTTIMER_0X64, 3);
         $this->shouldWriteLong($base + self::FIELD_0X54, 1);
         $this->shouldWriteLong($base + self::FIELD_0X58, 10);
-        $this->shouldCall('_TxtDrawTextbox_8c0155e0')->with($box0, 1)->andReturn(0);
-        $this->shouldCall('_TxtDrawTextbox_8c0155e0')->with($box1, 10)->andReturn(0);
+        $this->shouldCall('_TxtDrawTextBox_8c0155e0')->with($box0, 1)->andReturn(0);
+        $this->shouldCall('_TxtDrawTextBox_8c0155e0')->with($box1, 10)->andReturn(0);
     }
 
     public function test_current_box_wraps_and_loads_next_credit_idx1(): void
@@ -170,8 +170,8 @@ return new class extends TestCase {
         $this->shouldWriteLong($base + self::STARTTIMER_0X64, 2);
         $this->shouldWriteLong($base + self::FIELD_0X54, 6);
         $this->shouldWriteLong($base + self::FIELD_0X58, 1);
-        $this->shouldCall('_TxtDrawTextbox_8c0155e0')->with($box0, 6)->andReturn(0);
-        $this->shouldCall('_TxtDrawTextbox_8c0155e0')->with($box1, 1)->andReturn(0);
+        $this->shouldCall('_TxtDrawTextBox_8c0155e0')->with($box0, 6)->andReturn(0);
+        $this->shouldCall('_TxtDrawTextBox_8c0155e0')->with($box1, 1)->andReturn(0);
     }
 
     public function test_wrap_with_no_more_credits_latches_subState_0x1c(): void
@@ -193,8 +193,8 @@ return new class extends TestCase {
         $this->shouldWriteLong($base + self::FIELD_0X1C, 1);
         $this->shouldWriteLong($base + self::FIELD_0X54, 1);
         $this->shouldWriteLong($base + self::FIELD_0X58, 1);
-        $this->shouldCall('_TxtDrawTextbox_8c0155e0')->with($box0, 1)->andReturn(0);
-        $this->shouldCall('_TxtDrawTextbox_8c0155e0')->with($box1, 1)->andReturn(0);
+        $this->shouldCall('_TxtDrawTextBox_8c0155e0')->with($box0, 1)->andReturn(0);
+        $this->shouldCall('_TxtDrawTextBox_8c0155e0')->with($box1, 1)->andReturn(0);
     }
 
     public function test_timer_clamps_at_0xff(): void
@@ -213,7 +213,7 @@ return new class extends TestCase {
         $this->shouldWriteLong($base + self::FIELD_0X54, 0xff);
         $this->shouldWriteLong($base + self::FIELD_0X58, 0x100);
         $this->shouldWriteLong($base + self::FIELD_0X58, 0xff);
-        $this->shouldCall('_TxtDrawTextbox_8c0155e0')->with($box0, 0xff)->andReturn(0);
-        $this->shouldCall('_TxtDrawTextbox_8c0155e0')->with($box1, 0xff)->andReturn(0);
+        $this->shouldCall('_TxtDrawTextBox_8c0155e0')->with($box0, 0xff)->andReturn(0);
+        $this->shouldCall('_TxtDrawTextBox_8c0155e0')->with($box1, 0xff)->andReturn(0);
     }
 };

@@ -8,7 +8,7 @@
           .IMPORT     _njSetBackColor
           .IMPORT     _var_messageTextBoxA_8c1bc404
           .IMPORT     _TxtPrepareTextBoxLayout_8c01543a
-          .IMPORT     _TxtDrawTextbox_8c0155e0
+          .IMPORT     _TxtDrawTextBox_8c0155e0
           .IMPORT     _init_adxPlaying_8c03bd80
           .IMPORT     _SndStartAdxFadeOut_8c010bae
           .IMPORT     _var_isFading_8c226568
@@ -504,7 +504,7 @@ LAB_8c01f706:
 LP_GEN_79838:
           .DATA.W H'00FF ; H'8C01F718
           .RES.W 1 ; H'8C01F71A
-          .DATA.L _TxtDrawTextbox_8c0155e0 ; H'8C01F71C
+          .DATA.L _TxtDrawTextBox_8c0155e0 ; H'8C01F71C
           .DATA.L _init_adxPlaying_8c03bd80 ; H'8C01F720
           .DATA.L _SndStartAdxFadeOut_8c010bae ; H'8C01F724
           .DATA.L _var_isFading_8c226568 ; H'8C01F728

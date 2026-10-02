@@ -25,7 +25,7 @@
           .IMPORT     _var_messageTextBoxIndex_8c1bc40c
           .IMPORT     _var_menuTextboxCharLimit_8c225fb8
           .IMPORT     _TxtPrepareTextBoxLayout_8c01543a
-          .IMPORT     _TxtDrawTextbox_8c0155e0
+          .IMPORT     _TxtDrawTextBox_8c0155e0
           .IMPORT     _TxtDestroyTextBox_8c015410
           .IMPORT     _var_messageTextBoxB_8c1bc408
           .IMPORT     _TxtDestroy_8c01529c
@@ -753,7 +753,7 @@ LP_GEN_47883:
           .DATA.L _var_messageTextBoxIndex_8c1bc40c ; H'8C02AF5C
           .DATA.L _var_messageTextBoxA_8c1bc404 ; H'8C02AF60
           .DATA.L _TxtPrepareTextBoxLayout_8c01543a ; H'8C02AF64
-          .DATA.L _TxtDrawTextbox_8c0155e0 ; H'8C02AF68
+          .DATA.L _TxtDrawTextBox_8c0155e0 ; H'8C02AF68
           .DATA.L _TxtDestroyTextBox_8c015410 ; H'8C02AF6C
           .DATA.L _var_messageTextBoxB_8c1bc408 ; H'8C02AF70
           .DATA.L _TxtDestroy_8c01529c ; H'8C02AF74
