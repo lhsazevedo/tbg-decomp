@@ -17,11 +17,8 @@
  * ====================
  */
 
-/* The driver-comment popup currently on screen. showMark_8c01fa78
- * sets markSpriteId_0x00 and displayTimer_0x08 (frames left); blinkIconId_0x04
- * is a second sprite updateTask_8c01ff48 blinks on top of it, from the map
- * cell's scenePresetIds_0x3bc, and only while the mark id is in [0x1e, 0x50].
- * Both are drawn from var_markTexlist_8c1bc418. */
+/* The driver-comment popup on screen. blinkIconId_0x04 blinks on top of
+ * marks 0x1e-0x50, the lane changes. */
 typedef struct {
     int markSpriteId_0x00;
     int blinkIconId_0x04;
@@ -29,8 +26,7 @@ typedef struct {
     int blinkCounter_0x0c;
 } HudMarkState;
 
-/* A screen-space vertex for njDrawPolygon: position plus an ARGB word. The
- * HUD's static quads are raw byte arrays of these. */
+/* njDrawPolygon vertex. */
 typedef struct {
     float x, y, z;
     Uint32 color;
@@ -52,13 +48,10 @@ STATIC HudMarkState var_hudMark_8c2264a8;
  * ====================
  */
 
-/* The HUD's static geometry, as raw HudVertex bytes (x,y,z,ARGB) to stay
- * byte-identical with the asm.
+/* HudVertex arrays as raw bytes.
  *
- * Green fill of the driver-points meter: left edge pinned at x=38, right edge
- * (vertices 2/3, offsets 0x20/0x30) rewritten every frame by
- * drawHud_8c01fbac. The two right vertices are 16px apart, matching the
- * track's slanted end. */
+ * Green fill of the driver-points meter; drawHud_8c01fbac moves its right
+ * edge. */
 STATIC Uint8 init_pointsMeterFill_8c045334[] = {
     0x00, 0x00, 0x18, 0x42, 0x00, 0x00, 0xD8, 0x43,
     0xFB, 0x91, 0x53, 0x3F, 0x00, 0xF4, 0x00, 0xFF,
@@ -82,8 +75,7 @@ STATIC Uint8 init_pointsMeterTrack_8c045374[] = {
     0x4D, 0x21, 0x50, 0x3F, 0x00, 0x00, 0xB8, 0xFF,
 };
 
-/* Half-transparent black backdrop under the whole bottom HUD strip; drawn
- * with njDrawPolygon's trans flag set. */
+/* Half-transparent backdrop under the bottom HUD strip. */
 STATIC Uint8 init_hudPanel_8c0453b4[] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x80, 0xD4, 0x43,
     0x9D, 0x73, 0x4E, 0x3F, 0x00, 0x00, 0x00, 0x80,
@@ -99,8 +91,7 @@ STATIC Uint8 init_hudPanel_8c0453b4[] = {
     0x9D, 0x73, 0x4E, 0x3F, 0x00, 0x00, 0x00, 0x80,
 };
 
-/* 3 NJS_POINT3 local-space corners of the rotating tachometer needle triangle
- * (drawHud_8c01fbac), njCalcPoint'd through var_scratchMatrix_8c1bc46c into var_tachoNeedleVerts_8c226478. */
+/* Tachometer needle triangle, 3 local-space NJS_POINT3s. */
 STATIC Uint8 init_tachoNeedle_8c045414[] = {
     0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0xC0,
     0x08, 0xD6, 0x51, 0x3F, 0x00, 0x00, 0x00, 0x00,
@@ -126,8 +117,7 @@ STATIC void showMark_8c01fa78(int spriteId, int frames) {
     var_hudMark_8c2264a8.displayTimer_0x08 = frames;
 }
 
-/* Draws a 6-digit HH:MM:SS readout from a 30fps frame count (108000 = 1h,
- * 1800 = 1min, 30 = 1sec), tens-then-units per field. */
+/* HH:MM:SS from a 30fps frame count. */
 STATIC void drawTimeDigits_8c01fa80(int frames, float y, int spriteBase) {
     int hours = frames / 108000;
     int minutes = (frames % 108000) / 1800;
@@ -141,14 +131,6 @@ STATIC void drawTimeDigits_8c01fa80(int frames, float y, int spriteBase) {
     SpriteDraw_8c014f54(&var_busStopTexlist_8c1bc424, spriteBase + seconds / 10, 494.0f, y, -1.21f);
 }
 
-/* Per-frame in-drive HUD renderer: the driver-comment popup
- * (var_hudMark_8c2264a8, plus arg0 -- the traffic-signal code
- * updateTask_8c01ff48 stages through the fade-command queue), the shared
- * instruction/next-stop slot, the driver-points meter, the two blinker
- * indicators, the tachometer needle, and the speed readout plus the two
- * clocks drawn by the drawSpeedAndTimers_8c01fe84 tail. Installed both as a
- * DrawFn and as a TaskSpawn_8c014ae8 action, so it must keep this
- * exact signature. */
 STATIC void drawHud_8c01fbac(int signalMarkId) {
     float barWidth, barWidthInner;
     Angle angle;
@@ -168,11 +150,9 @@ STATIC void drawHud_8c01fbac(int signalMarkId) {
         SpriteDraw_8c014f54(&var_markTexlist_8c1bc418, signalMarkId, 0.0f, 0.0f, -1.21f);
     }
 
-    /* One screen slot, three meanings, picked by var_runState_8c2285c4.stopPhase_0x20:
-     * cruising shows the map's drive instruction, phase 1 a fixed
-     * signal-reminder icon, phase 2 the next-stop icon. All blink on
-     * var_hudState_8c22643c.blinkTimer_0x18 -- hidden 2 frames in every 8 for
-     * the first 60, solid after. */
+    /* One slot, by stopPhase_0x20: the drive instruction, a fixed
+     * signal-reminder icon, or the next-stop icon. Hidden 2 frames in every 8
+     * for its first 60 frames. */
     if (var_runState_8c2285c4.stopPhase_0x20 == 0 || var_runState_8c2285c4.stopPhase_0x20 == 4) {
         if (var_hudState_8c22643c.driveMarkIcon_0x14 != -1
             && (60 < (Sint32)var_hudState_8c22643c.blinkTimer_0x18
@@ -193,10 +173,8 @@ STATIC void drawHud_8c01fbac(int signalMarkId) {
         }
     }
 
-    /* Moving right edge (vertices 2/3) of the driver-points meter's fill
-     * quad -- init_pointsMeterFill_8c045334's own vertex 0/1 (x=38.0) is the fixed left
-     * edge; a second, narrower quad trails 16px behind, clamped to the
-     * same left edge. */
+    /* The bottom corner sits 16px left of the top, for the track's slanted
+     * end. */
     barWidth = (var_hudState_8c22643c.pointsMeter_0x1c.displayedValue_0x00 * 202.0f)
         / (float)var_runState_8c2285c4.driverPointsMax_0x10 + 38.0f;
     barWidthInner = barWidth - 16.0f;
@@ -216,9 +194,8 @@ STATIC void drawHud_8c01fbac(int signalMarkId) {
         SpriteDraw_8c014f54(&var_busStopTexlist_8c1bc424, 0x26, 0.0f, 0.0f, -1.21f);
     }
 
-    /* engineState_0x2e0 picks what the needle eases toward: off = 0,
-     * cranking = 500, running = targetRpm_0x2e8 (floored at 500). 200 rpm per
-     * frame, clamped on overshoot. */
+    /* The needle eases 200 rpm/frame toward 0 when off, 500 when cranking,
+     * and targetRpm_0x2e8 (floored at 500) when running. */
     switch (var_busState_8c1bb9d0.engineState_0x2e0) {
     case 0:
         if (var_hudState_8c22643c.engineRpm_0x2c > 0.0f) {
@@ -275,19 +252,9 @@ STATIC void drawHud_8c01fbac(int signalMarkId) {
     drawSpeedAndTimers_8c01fe84(speed);
 }
 
-/* Tail of drawHud_8c01fbac's HUD render, split out because the original asm
- * falls through into this label from drawHud_8c01fbac with no other reference
- * to it anywhere in the tree (see drawHud_8c01fbac). Draws the 2-digit speed
- * value (its sign discarded) and the two elapsed-time readouts.
- *
- * No standalone test file: the asm label has no prologue of its own
- * (it inherits drawHud_8c01fbac's), so a direct call in the .src object reads
- * its argument from a stale R9 instead of R4 and its epilogue restores an
- * unestablished stack frame -- there is no way to invoke it in isolation
- * against that object. drawHud_8c01fbac's own tests exercise this function's
- * behavior in both objects: as a genuine call in the C object, and
- * (since the .src object can't have it mocked away either) via inline
- * assertions in that same file's assertSpeedTail() for the .src object. */
+/* In the original, a label drawHud_8c01fbac falls through into, with no
+ * prologue of its own. It has no standalone test; drawHud_8c01fbac's tests
+ * cover it. */
 STATIC void drawSpeedAndTimers_8c01fe84(Sint32 speed) {
     Sint32 units, tens;
 
@@ -300,18 +267,14 @@ STATIC void drawSpeedAndTimers_8c01fe84(Sint32 speed) {
     tens = speed / 10;
     SpriteDraw_8c014f54(&var_busStopTexlist_8c1bc424, tens, 308.0f, 420.0f, -1.21f);
 
-    /* Timetable slot above, run clock below, each in its own digit set. */
     drawTimeDigits_8c01fa80(var_runState_8c2285c4.scheduleTime_0x14, 402.0f, 10);
     drawTimeDigits_8c01fa80(var_runState_8c2285c4.runClock_0x18, 423.0f, 20);
 
     SpriteDraw_8c014f54(&var_busStopTexlist_8c1bc424, 0x24, 0.0f, 0.0f, -1.23f);
 }
 
-/* Per-frame driver-comment popup logic: turns the instruction markers the
- * attribute grid hands BusTask_8c022bdc (markDriveFlags_0x3b0 -- wipers,
- * gear, headlights -- plus markAudioCue_0x3b8's lane change) into popups
- * staged via showMark_8c01fa78, ramps the driver-points meter display, and
- * queues drawHud_8c01fbac for this frame. */
+/* Turns the map's marks (wipers, gear, headlights, lane change) into
+ * driver-comment popups, ramps the points meter and queues drawHud_8c01fbac. */
 STATIC void updateTask_8c01ff48() {
     unsigned int driveMark = var_busState_8c1bb9d0.markDriveFlags_0x3b0 & 7;
     unsigned int wiper;
@@ -342,8 +305,8 @@ STATIC void updateTask_8c01ff48() {
 
     gear = var_busState_8c1bb9d0.markDriveFlags_0x3b0 & 0xc0000;
     if (var_hudState_8c22643c.gearLatch_0x34 == 0 && gear != 0) {
-        /* A fresh gear change hides the headlight and lane-change marks
-         * for this frame; they only show once the latch clears again. */
+        /* A fresh gear change skips the headlight and lane-change checks
+         * for this frame. */
         if (gear == 0x40000) {
             showMark_8c01fa78(0x1c, 0xb4);
         } else if (gear == 0x80000) {
@@ -436,8 +399,6 @@ STATIC void updateTask_8c01ff48() {
     RenderQueueDraw_8c0223ea(RENDER_LAYER_MAIN, drawHud_8c01fbac, signalMarkId);
 }
 
-/* Installs updateTask_8c01ff48 as a per-frame task and clears the popup,
- * instruction-slot and meter state for a fresh run. */
 void HudSpawnTask_8c02018c(void) {
     Task *createdTask;
     void *createdState;
