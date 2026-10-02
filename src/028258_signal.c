@@ -22,7 +22,7 @@
 Task *var_trafficSignalTasks_8c227e20;
 int *var_trafficSignalFrames_8c227e24;
 STATIC TrafficSignal **var_trafficSignalStates_8c227e28; /* per-id TrafficSignal* */
-STATIC int var_pedCrossingFlags_8c227e2c[128]; /* 64 8-byte entries, zeroed by SignalClearPedCrossingFlags_8c02890c */
+STATIC int var_pedCrossingFlags_8c227e2c[128]; /* 64 8-byte entries, zeroed by SignalClearPedCrossing_8c02890c */
 STATIC int var_crossingOccupiedFlags_8c22802c[128]; /* 64 8-byte entries, zeroed by SignalClearCrossingOccupied_8c028958 */
 
 /* ====================
@@ -30,7 +30,7 @@ STATIC int var_crossingOccupiedFlags_8c22802c[128]; /* 64 8-byte entries, zeroed
  * ====================
  */
 
-STATIC void trafficSignalTask_8c028258(Task *task, TrafficSignal *obj)
+STATIC void headTask_8c028258(Task *task, TrafficSignal *obj)
 {
     float dx, dz;
     float dist;
@@ -69,8 +69,8 @@ STATIC void trafficSignalTask_8c028258(Task *task, TrafficSignal *obj)
 
 /* Frame picker for a type 2/3/4 object: mirrors the linked traffic signal's
  * open/closed state into its own slot, then re-draws whichever of the linked
- * task's two matrices trafficSignalTask_8c028258 marked this frame. */
-STATIC void linkedTrafficSignalTask_8c02833c(Task *task, TrafficSignal *obj)
+ * task's two matrices headTask_8c028258 marked this frame. */
+STATIC void attachmentTask_8c02833c(Task *task, TrafficSignal *obj)
 {
     TrafficSignal *linked = obj->attachedTo_0xd0;
 
@@ -96,16 +96,16 @@ STATIC void linkedTrafficSignalTask_8c02833c(Task *task, TrafficSignal *obj)
 }
 
 /* Installed as a DrawFn; the callback arg is unused. */
-STATIC void setTrafficSignalLightCallback_8c0283d4(int arg0)
+STATIC void setLightCallback_8c0283d4(int arg0)
 {
     njCnkSetSimpleLight(var_busSimpleLightDir_8c227db8[0], var_busSimpleLightDir_8c227db8[1], var_busSimpleLightDir_8c227db8[2]);
 }
 
 /* Installed as a TaskAction; the task/state args are unused. */
-STATIC void execTrafficSignalGroupTask_8c0283e8(Task *task, void *state)
+STATIC void execGroupTask_8c0283e8(Task *task, void *state)
 {
     if (var_runState_8c2285c4.runPhase_0x00 != 0) {
-        RenderQueueDraw_8c0223ea(RENDER_LAYER_MAIN, setTrafficSignalLightCallback_8c0283d4, 0);
+        RenderQueueDraw_8c0223ea(RENDER_LAYER_MAIN, setLightCallback_8c0283d4, 0);
         TaskRunGroup_8c014b42(var_trafficSignalTasks_8c227e20);
     }
 }
@@ -182,7 +182,7 @@ void SignalInit_8c02845a(void)
             continue;
         }
 
-        TaskSpawn_8c014ae8(var_trafficSignalTasks_8c227e20, &trafficSignalTask_8c028258,
+        TaskSpawn_8c014ae8(var_trafficSignalTasks_8c227e20, &headTask_8c028258,
                           &task, (void **)&state, 0xd4);
         state->id_0x00 = def->id_0x04;
         state->counter_0x04 = def->linkedId_0x08;
@@ -194,9 +194,9 @@ void SignalInit_8c02845a(void)
         /* The model's first three children are the frames BusDrawSignal_8c0281ac
          * shows and hides. */
         frame = state->model_0xb8->child;
-        state->frames_0x10[0] = frame;
-        state->frames_0x10[1] = frame->sibling;
-        state->frames_0x10[2] = frame->sibling->sibling;
+        state->lamps_0x10[0] = frame;
+        state->lamps_0x10[1] = frame->sibling;
+        state->lamps_0x10[2] = frame->sibling->sibling;
         if (def->posA_0x10.x != 0.0f) {
             var_groundQueryPoint_8c1bc460 = def->posA_0x10;
             snapPointToGround_8c02840c();
@@ -232,7 +232,7 @@ void SignalInit_8c02845a(void)
             continue;
         }
 
-        TaskSpawn_8c014ae8(var_trafficSignalTasks_8c227e20, &linkedTrafficSignalTask_8c02833c,
+        TaskSpawn_8c014ae8(var_trafficSignalTasks_8c227e20, &attachmentTask_8c02833c,
                           &task, (void **)&state, 0xd4);
         for (slot = var_trafficSignalTasks_8c227e20; slot->action != NULL; slot++) {
             if (slot->action == (TaskAction)-1 || slot == task) {
@@ -261,7 +261,7 @@ void SignalInit_8c02845a(void)
             state->model_0xb8 = (NJS_OBJECT *)((int *)var_routeModels_8c1bc3ec)[7];
             linked->attached_0xbc[2] = state;
         }
-        state->frames_0x10[0] = state->model_0xb8->child;
+        state->lamps_0x10[0] = state->model_0xb8->child;
         if (linked->frame_0x0c == 0 && state->counter_0x04 < linked->counter_0x04) {
             state->frame_0x0c = 0;
         } else {
@@ -269,7 +269,7 @@ void SignalInit_8c02845a(void)
         }
         var_trafficSignalFrames_8c227e24[state->id_0x00] = state->frame_0x0c;
     }
-    TaskSpawn_8c014ae8(var_tasks_8c1ba5e8, &execTrafficSignalGroupTask_8c0283e8, &task, (void **)&state, 0);
+    TaskSpawn_8c014ae8(var_tasks_8c1ba5e8, &execGroupTask_8c0283e8, &task, (void **)&state, 0);
 }
 
 TrafficSignal *SignalGet_8c0288b2(int index)
@@ -298,7 +298,7 @@ int SignalGetFrame_8c028900(int index)
  * Called by pedestriansTask_8c0293f6 before any pedestrianTask_8c028e00 re-marks
  * one; the 026710 traffic vehicle spawner reads them back through
  * SignalIsPedCrossing_8c028998. */
-void SignalClearPedCrossingFlags_8c02890c(void)
+void SignalClearPedCrossing_8c02890c(void)
 {
     int i;
 

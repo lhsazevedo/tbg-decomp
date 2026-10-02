@@ -12,9 +12,9 @@
  * var_trafficSignalFrames_8c227e24 under id_0x00, where pedestrians and CPU
  * vehicles read it to decide whether they may go. A type 2/3/4 object hangs off
  * one of those through `attachedTo_0xd0`, mirrors its open/closed state, and
- * only ever uses frames_0x10[0].
+ * only ever uses lamps_0x10[0].
  *
- * The 027958_bus_draw draw callbacks light exactly one entry of `frames_0x10` per frame --
+ * The 027958_bus_draw draw callbacks light exactly one entry of `lamps_0x10` per frame --
  * NJD_EVAL_HIDE cleared on it, set on the other two -- then draw `model_0xb8`
  * with `tlist_0xb4`. For a type 2/3/4 object BusDrawSignalAttachment_8c028206 reads drawA_0xc8 as
  * plain visibility rather than as a per-placement draw flag. */
@@ -23,7 +23,7 @@ typedef struct TrafficSignal {
     int counter_0x04;
     int *durations_0x08;
     int frame_0x0c;
-    NJS_OBJECT *frames_0x10[3];
+    NJS_OBJECT *lamps_0x10[3];
     NJS_POINT3 posA_0x1c;
     NJS_POINT3 posB_0x28;
     NJS_MATRIX mtxA_0x34;
@@ -48,17 +48,17 @@ typedef struct {
     NJS_POINT3 posA_0x10;
     int rotBDeg_0x1c;
     NJS_POINT3 posB_0x20;
-    int durations_0x2c[3];       /* per-frame hold times, walked by trafficSignalTask_8c028258 */
+    int durations_0x2c[3];       /* per-frame hold times, walked by headTask_8c028258 */
 } TrafficSignalDef;
 
-extern Task *var_trafficSignalTasks_8c227e20; /* Task array for trafficSignalTask_8c028258/linkedTrafficSignalTask_8c02833c, sized (count+1) by SignalInit_8c02845a */
+extern Task *var_trafficSignalTasks_8c227e20; /* Task array for headTask_8c028258/attachmentTask_8c02833c, sized (count+1) by SignalInit_8c02845a */
 extern int *var_trafficSignalFrames_8c227e24; /* per-id current frame index, read by SignalGetFrame_8c028900 */
 
 void SignalInit_8c02845a(void);
 TrafficSignal *SignalGet_8c0288b2(int index);
 void SignalFree_8c0288be(void);
 int SignalGetFrame_8c028900(int index);
-void SignalClearPedCrossingFlags_8c02890c(void);
+void SignalClearPedCrossing_8c02890c(void);
 void SignalClearCrossingOccupied_8c028958(void);
 void SignalMarkPedCrossing_8c02897a(int index);
 void SignalMarkCrossingOccupied_8c028984(int index);

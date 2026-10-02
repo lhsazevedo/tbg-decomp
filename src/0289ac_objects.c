@@ -13,7 +13,7 @@
 #include "020b6c_ground_probe.h"
 #include "021b9c_tile_draw.h"
 #include "022464_render.h" /* RenderQueueDraw_8c0223ea, RenderQueueDraw2_8c022420 */
-#include "028258_signal.h" /* SignalGetFrame_8c028900, SignalClearPedCrossingFlags_8c02890c */
+#include "028258_signal.h" /* SignalGetFrame_8c028900, SignalClearPedCrossing_8c02890c */
 #include "02d06c_stop_draw.h" /* StopDrawWaitingPassengers_8c02d06c */
 #include "02e400_collision.h" /* CollisionQueueReset_8c02e486, CollisionQueueAdd_8c02e48e */
 #include "02b464_grading.h"
@@ -1341,7 +1341,7 @@ STATIC void pedestriansTask_8c0293f6(PedestriansTask *task)
     }
 
     CollisionQueueReset_8c02e486();
-    SignalClearPedCrossingFlags_8c02890c();
+    SignalClearPedCrossing_8c02890c();
 
     njCalcPoint(&var_busState_8c1bb9d0.worldMatrix_0x084, &init_stopLineLocalA_8c04650c, &var_groundQueryPoint_8c1bc460);
     var_stopLinePointA_8c228268[0] = var_groundQueryPoint_8c1bc460.x;

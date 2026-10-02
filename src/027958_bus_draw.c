@@ -313,19 +313,19 @@ void BusDrawSignal_8c0281ac(int objArg, int matrixArg)
 
     switch (obj->frame_0x0c) {
     case 1:
-        obj->frames_0x10[0]->evalflags = EVAL_SHOWN;
-        obj->frames_0x10[1]->evalflags = EVAL_HIDDEN;
-        obj->frames_0x10[2]->evalflags = EVAL_HIDDEN;
+        obj->lamps_0x10[0]->evalflags = EVAL_SHOWN;
+        obj->lamps_0x10[1]->evalflags = EVAL_HIDDEN;
+        obj->lamps_0x10[2]->evalflags = EVAL_HIDDEN;
         break;
     case 2:
-        obj->frames_0x10[0]->evalflags = EVAL_HIDDEN;
-        obj->frames_0x10[1]->evalflags = EVAL_SHOWN;
-        obj->frames_0x10[2]->evalflags = EVAL_HIDDEN;
+        obj->lamps_0x10[0]->evalflags = EVAL_HIDDEN;
+        obj->lamps_0x10[1]->evalflags = EVAL_SHOWN;
+        obj->lamps_0x10[2]->evalflags = EVAL_HIDDEN;
         break;
     case 0:
-        obj->frames_0x10[0]->evalflags = EVAL_HIDDEN;
-        obj->frames_0x10[1]->evalflags = EVAL_HIDDEN;
-        obj->frames_0x10[2]->evalflags = EVAL_SHOWN;
+        obj->lamps_0x10[0]->evalflags = EVAL_HIDDEN;
+        obj->lamps_0x10[1]->evalflags = EVAL_HIDDEN;
+        obj->lamps_0x10[2]->evalflags = EVAL_SHOWN;
         break;
     default:
         break;
@@ -395,9 +395,9 @@ void BusDrawSignalAttachment_8c028206(int objArg, int matrixArg)
     NJS_MATRIX *matrix = (NJS_MATRIX *)matrixArg;
 
     if (obj->drawA_0xc8 == 0) {
-        obj->frames_0x10[0]->evalflags |= NJD_EVAL_HIDE;
+        obj->lamps_0x10[0]->evalflags |= NJD_EVAL_HIDE;
     } else {
-        obj->frames_0x10[0]->evalflags &= ~NJD_EVAL_HIDE;
+        obj->lamps_0x10[0]->evalflags &= ~NJD_EVAL_HIDE;
     }
 
     njMultiMatrix(0, matrix);

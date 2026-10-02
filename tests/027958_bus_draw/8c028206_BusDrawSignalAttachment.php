@@ -6,7 +6,7 @@ use Lhsazevedo\Sh4ObjTest\TestCase;
 
 return new class extends TestCase {
     /** Allocates a TrafficSignal-sized buffer with drawA_0xc8 wired to
-     * $drawA and frames_0x10[0] (pre-seeded to $initialFlags)/tlist_0xb4/
+     * $drawA and lamps_0x10[0] (pre-seeded to $initialFlags)/tlist_0xb4/
      * model_0xb8 wired to fresh scratch targets. */
     private function makeObj(int $drawA, int $initialFlags): array
     {

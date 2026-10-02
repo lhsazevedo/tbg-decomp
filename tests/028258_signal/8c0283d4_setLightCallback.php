@@ -19,7 +19,7 @@ return new class extends TestCase {
         $this->initUint32($this->addressOf('_var_busSimpleLightDir_8c227db8') + 4, fdec(-2.25));
         $this->initUint32($this->addressOf('_var_busSimpleLightDir_8c227db8') + 8, fdec(3.0));
 
-        $this->call('_setTrafficSignalLightCallback_8c0283d4')->with(0);
+        $this->call('_setLightCallback_8c0283d4')->with(0);
 
         $this->shouldCall('_njCnkSetSimpleLight')->with(1.5, -2.25, 3.0);
     }

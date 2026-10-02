@@ -6,7 +6,7 @@ use Lhsazevedo\Sh4ObjTest\TestCase;
 
 return new class extends TestCase {
     /** Allocates a TrafficSignal-sized buffer with frame_0x0c wired to
-     * $frame and frames_0x10[0..2]/tlist_0xb4/model_0xb8 wired to fresh
+     * $frame and lamps_0x10[0..2]/tlist_0xb4/model_0xb8 wired to fresh
      * scratch targets. */
     private function makeObj(int $frame): array
     {

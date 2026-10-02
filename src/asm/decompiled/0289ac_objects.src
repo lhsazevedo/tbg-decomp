@@ -67,7 +67,7 @@
           .IMPORT     _var_simpleLightColor_8c2264f8
           .IMPORT     _njCnkSetSimpleLightColor
           .IMPORT     _SignalGetFrame_8c028900
-          .IMPORT     _SignalClearPedCrossingFlags_8c02890c
+          .IMPORT     _SignalClearPedCrossing_8c02890c
           .IMPORT     _SignalMarkPedCrossing_8c02897a
           .IMPORT     _SignalIsCrossingOccupied_8c02898e
           .AIFDEF UNIT_TESTING
@@ -1855,7 +1855,7 @@ LP_GEN_46486:
           .DATA.L _TaskSpawn_8c014ae8 ; H'8C0295FC
           .DATA.L _syFree ; H'8C029600
           .DATA.L _CollisionQueueReset_8c02e486 ; H'8C029604
-          .DATA.L _SignalClearPedCrossingFlags_8c02890c ; H'8C029608
+          .DATA.L _SignalClearPedCrossing_8c02890c ; H'8C029608
           .DATA.L _var_groundQueryPoint_8c1bc460 ; H'8C02960C
           .DATA.L _init_stopLineLocalA_8c04650c ; H'8C029610
           .DATA.L _var_busState_8c1bb9d0+H'084 ; H'8C029614 (worldMatrix_0x084)

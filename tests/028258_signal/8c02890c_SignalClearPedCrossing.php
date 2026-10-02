@@ -13,7 +13,7 @@ return new class extends TestCase {
             $this->initUint32($base + $i * 8 + 4, 0x22222222);
         }
 
-        $this->call('_SignalClearPedCrossingFlags_8c02890c');
+        $this->call('_SignalClearPedCrossing_8c02890c');
 
         for ($i = 0; $i < 64; $i++) {
             $this->shouldWriteLong($base + $i * 8, 0);

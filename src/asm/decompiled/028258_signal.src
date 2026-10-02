@@ -27,16 +27,16 @@
           .IMPORT     _BusDrawSignal_8c0281ac
           .IMPORT     _BusDrawSignalAttachment_8c028206
           .AIFDEF UNIT_TESTING
-          .EXPORT     _trafficSignalTask_8c028258
+          .EXPORT     _headTask_8c028258
           .AENDI
           .AIFDEF UNIT_TESTING
-          .EXPORT     _linkedTrafficSignalTask_8c02833c
+          .EXPORT     _attachmentTask_8c02833c
           .AENDI
           .AIFDEF UNIT_TESTING
-          .EXPORT     _setTrafficSignalLightCallback_8c0283d4
+          .EXPORT     _setLightCallback_8c0283d4
           .AENDI
           .AIFDEF UNIT_TESTING
-          .EXPORT     _execTrafficSignalGroupTask_8c0283e8
+          .EXPORT     _execGroupTask_8c0283e8
           .AENDI
           .AIFDEF UNIT_TESTING
           .EXPORT     _snapPointToGround_8c02840c
@@ -45,7 +45,7 @@
           .EXPORT     _SignalGet_8c0288b2
           .EXPORT     _SignalFree_8c0288be
           .EXPORT     _SignalGetFrame_8c028900
-          .EXPORT     _SignalClearPedCrossingFlags_8c02890c
+          .EXPORT     _SignalClearPedCrossing_8c02890c
           .EXPORT     _SignalClearCrossingOccupied_8c028958
           .EXPORT     _SignalMarkPedCrossing_8c02897a
           .EXPORT     _SignalMarkCrossingOccupied_8c028984
@@ -61,7 +61,7 @@
           .EXPORT     _var_crossingOccupiedFlags_8c22802c
           .AENDI
           .SECTION     P, CODE, ALIGN=4
-_trafficSignalTask_8c028258:
+_headTask_8c028258:
           MOV.L       R14,@-R15
           MOV         R5,R14
           FMOV.S      FR15,@-R15
@@ -180,7 +180,7 @@ LAB_8c02832e:
           FMOV.S      @R15+,FR15
           RTS
           MOV.L       @R15+,R14
-_linkedTrafficSignalTask_8c02833c:
+_attachmentTask_8c02833c:
           MOV.W       LP_GEN_42300+6,R0
           MOV.L       R14,@-R15
           MOV         R5,R14
@@ -258,7 +258,7 @@ LAB_8c0283cc:
           MOV.L       @R15+,R13
           RTS
           MOV.L       @R15+,R14
-_setTrafficSignalLightCallback_8c0283d4:
+_setLightCallback_8c0283d4:
           MOV.L       R14,@-R15
           MOV         #H'8,R0
           MOV.L       LP_GEN_65253+18,R14
@@ -269,7 +269,7 @@ _setTrafficSignalLightCallback_8c0283d4:
           FMOV.S      @(R0,R14),FR5
           JMP         @R3
           MOV.L       @R15+,R14
-_execTrafficSignalGroupTask_8c0283e8:
+_execGroupTask_8c0283e8:
           MOV.L       LP_GEN_65253+26,R2
           STS.L       PR,@-R15
           MOV.L       @R2,R3
@@ -357,7 +357,7 @@ LP_GEN_65253:
           .DATA.L _var_busSimpleLightDir_8c227db8 ; H'8C02848C
           .DATA.L _njCnkSetSimpleLight ; H'8C028490
           .DATA.L _var_runState_8c2285c4 ; H'8C028494
-          .DATA.L _setTrafficSignalLightCallback_8c0283d4 ; H'8C028498
+          .DATA.L _setLightCallback_8c0283d4 ; H'8C028498
           .DATA.L _RenderQueueDraw_8c0223ea ; H'8C02849C
           .DATA.L _var_trafficSignalTasks_8c227e20 ; H'8C0284A0
           .DATA.L _TaskRunGroup_8c014b42 ; H'8C0284A4
@@ -636,7 +636,7 @@ LP_GEN_92174:
           .DATA.W H'00B4 ; H'8C0286CA
           .DATA.W H'00B8 ; H'8C0286CC
           .RES.W 1 ; H'8C0286CE
-          .DATA.L _trafficSignalTask_8c028258 ; H'8C0286D0
+          .DATA.L _headTask_8c028258 ; H'8C0286D0
           .DATA.L _TaskSpawn_8c014ae8 ; H'8C0286D4
           .DATA.L __quick_odd_mvn ; H'8C0286D8
           .DATA.L _njUnitMatrix ; H'8C0286DC
@@ -798,7 +798,7 @@ LP_GEN_58642:
           .RES.W 1 ; H'8C0287FE
           .DATA.L _var_trafficSignalStates_8c227e28 ; H'8C028800
           .DATA.L _var_currentCourse_8c1bb868+H'38 ; H'8C028804 (macSignal_0x38)
-          .DATA.L _linkedTrafficSignalTask_8c02833c ; H'8C028808
+          .DATA.L _attachmentTask_8c02833c ; H'8C028808
           .DATA.L _TaskSpawn_8c014ae8 ; H'8C02880C
 LAB_8c028810:
           MOV.W       LP_GEN_38963,R0
@@ -941,7 +941,7 @@ _SignalGetFrame_8c028900:
           MOV.L       @R2,R3
           RTS
           MOV.L       @(R0,R3),R0
-_SignalClearPedCrossingFlags_8c02890c:
+_SignalClearPedCrossing_8c02890c:
           MOV.W       LP_GEN_38963+8,R6
           MOV.L       LP_GEN_38963+42,R5
           ADD         R5,R6
@@ -965,7 +965,7 @@ LP_GEN_38963:
           .DATA.W H'00C0 ; H'8C02892E
           .DATA.W H'00C4 ; H'8C028930
           .DATA.W H'0200 ; H'8C028932
-          .DATA.L _execTrafficSignalGroupTask_8c0283e8 ; H'8C028934
+          .DATA.L _execGroupTask_8c0283e8 ; H'8C028934
           .DATA.L _var_tasks_8c1ba5e8 ; H'8C028938
           .DATA.L _TaskSpawn_8c014ae8 ; H'8C02893C
           .DATA.L _var_trafficSignalStates_8c227e28 ; H'8C028940

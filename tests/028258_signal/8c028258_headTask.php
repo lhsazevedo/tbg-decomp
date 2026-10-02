@@ -20,7 +20,7 @@ return new class extends TestCase {
         $this->initUint32($obj + 0x1c, fdec(0.0)); // placement A posX
         $this->initUint32($obj + 0x28, fdec(0.0)); // placement B posX
 
-        $this->call('_trafficSignalTask_8c028258')->with(0, $obj);
+        $this->call('_headTask_8c028258')->with(0, $obj);
 
         $this->shouldWriteLong($obj + 0x04, 4);
         $this->shouldWriteLong($obj + 0xcc, 0);
@@ -41,7 +41,7 @@ return new class extends TestCase {
         $slots = $this->alloc(0x0c);
         $this->initUint32($this->addressOf('_var_trafficSignalFrames_8c227e24'), $slots);
 
-        $this->call('_trafficSignalTask_8c028258')->with(0, $obj);
+        $this->call('_headTask_8c028258')->with(0, $obj);
 
         $this->shouldWriteLong($obj + 0x04, 100);
         $this->shouldWriteLong($obj + 0x04, 0);
@@ -66,7 +66,7 @@ return new class extends TestCase {
         $slots = $this->alloc(0x0c);
         $this->initUint32($this->addressOf('_var_trafficSignalFrames_8c227e24'), $slots);
 
-        $this->call('_trafficSignalTask_8c028258')->with(0, $obj);
+        $this->call('_headTask_8c028258')->with(0, $obj);
 
         $this->shouldWriteLong($obj + 0x04, 100);
         $this->shouldWriteLong($obj + 0x04, 0);
@@ -89,7 +89,7 @@ return new class extends TestCase {
         $this->initUint32($this->addressOf('_var_busState_8c1bb9d0') + 0x2fc, fdec(1.0)); // posX
         $this->initUint32($this->addressOf('_var_busState_8c1bb9d0') + 0x304, fdec(0.0)); // posZ
 
-        $this->call('_trafficSignalTask_8c028258')->with(0, $obj);
+        $this->call('_headTask_8c028258')->with(0, $obj);
 
         $this->shouldWriteLong($obj + 0x04, 1);
         $this->shouldWriteLong($obj + 0xcc, 0);
@@ -112,7 +112,7 @@ return new class extends TestCase {
         $this->initUint32($this->addressOf('_var_busState_8c1bb9d0') + 0x2fc, fdec(1.0)); // posX
         $this->initUint32($this->addressOf('_var_busState_8c1bb9d0') + 0x304, fdec(0.0)); // posZ
 
-        $this->call('_trafficSignalTask_8c028258')->with(0, $obj);
+        $this->call('_headTask_8c028258')->with(0, $obj);
 
         $this->shouldWriteLong($obj + 0x04, 1);
         $this->shouldWriteLong($obj + 0xcc, 0);
@@ -133,7 +133,7 @@ return new class extends TestCase {
         $this->initUint32($this->addressOf('_var_busState_8c1bb9d0') + 0x2fc, fdec(1.0)); // posX
         $this->initUint32($this->addressOf('_var_busState_8c1bb9d0') + 0x304, fdec(0.0)); // posZ
 
-        $this->call('_trafficSignalTask_8c028258')->with(0, $obj);
+        $this->call('_headTask_8c028258')->with(0, $obj);
 
         $this->shouldWriteLong($obj + 0x04, 1);
         $this->shouldWriteLong($obj + 0xcc, 0);
@@ -158,7 +158,7 @@ return new class extends TestCase {
         $this->initUint32($this->addressOf('_var_busState_8c1bb9d0') + 0x2fc, fdec(1.0)); // posX
         $this->initUint32($this->addressOf('_var_busState_8c1bb9d0') + 0x304, fdec(0.0)); // posZ
 
-        $this->call('_trafficSignalTask_8c028258')->with(0, $obj);
+        $this->call('_headTask_8c028258')->with(0, $obj);
 
         $this->shouldWriteLong($obj + 0x04, 1);
         $this->shouldWriteLong($obj + 0xcc, 0);
@@ -181,7 +181,7 @@ return new class extends TestCase {
         $this->initUint32($this->addressOf('_var_busState_8c1bb9d0') + 0x2fc, fdec(1.0)); // posX
         $this->initUint32($this->addressOf('_var_busState_8c1bb9d0') + 0x304, fdec(0.0)); // posZ
 
-        $this->call('_trafficSignalTask_8c028258')->with(0, $obj);
+        $this->call('_headTask_8c028258')->with(0, $obj);
 
         $this->shouldWriteLong($obj + 0x04, 1);
         $this->shouldWriteLong($obj + 0xcc, 0);

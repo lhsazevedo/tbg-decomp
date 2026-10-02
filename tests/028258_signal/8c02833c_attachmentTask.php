@@ -39,7 +39,7 @@ return new class extends TestCase {
         $state = $this->makeState($linked, id: 1, counter: 5);
         $slots = $this->slots();
 
-        $this->call('_linkedTrafficSignalTask_8c02833c')->with(0, $state);
+        $this->call('_attachmentTask_8c02833c')->with(0, $state);
 
         $this->shouldWriteLong($state + 0x0c, 1); // state[3]
         $this->shouldWriteLong($state + 0xc8, 1); // state[0x32]
@@ -52,7 +52,7 @@ return new class extends TestCase {
         $state = $this->makeState($linked, id: 2, counter: 4);
         $slots = $this->slots();
 
-        $this->call('_linkedTrafficSignalTask_8c02833c')->with(0, $state);
+        $this->call('_attachmentTask_8c02833c')->with(0, $state);
 
         $this->shouldWriteLong($state + 0x0c, 0); // state[3]
         $this->shouldWriteLong($state + 0xc8, 0); // state[0x32]
@@ -66,7 +66,7 @@ return new class extends TestCase {
         $state = $this->makeState($linked, id: 0, counter: 0);
         $slots = $this->slots();
 
-        $this->call('_linkedTrafficSignalTask_8c02833c')->with(0, $state);
+        $this->call('_attachmentTask_8c02833c')->with(0, $state);
 
         $this->shouldWriteLong($state + 0x0c, 1); // state[3]
         $this->shouldWriteLong($state + 0xc8, 0); // state[0x32]
@@ -79,7 +79,7 @@ return new class extends TestCase {
         $state = $this->makeState($linked, id: 0, counter: 0);
         $slots = $this->slots();
 
-        $this->call('_linkedTrafficSignalTask_8c02833c')->with(0, $state);
+        $this->call('_attachmentTask_8c02833c')->with(0, $state);
 
         $this->shouldWriteLong($state + 0x0c, 1);
         $this->shouldWriteLong($state + 0xc8, 0);
@@ -96,7 +96,7 @@ return new class extends TestCase {
         $state = $this->makeState($linked, id: 0, counter: 0);
         $slots = $this->slots();
 
-        $this->call('_linkedTrafficSignalTask_8c02833c')->with(0, $state);
+        $this->call('_attachmentTask_8c02833c')->with(0, $state);
 
         $this->shouldWriteLong($state + 0x0c, 1);
         $this->shouldWriteLong($state + 0xc8, 0);

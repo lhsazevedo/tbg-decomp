@@ -130,7 +130,7 @@ return new class extends TestCase {
     private function expectGroundScratch(): void
     {
         $this->shouldCall('_CollisionQueueReset_8c02e486');
-        $this->shouldCall('_SignalClearPedCrossingFlags_8c02890c');
+        $this->shouldCall('_SignalClearPedCrossing_8c02890c');
 
         $this->shouldCall('_njCalcPoint')
             ->with(($this->addressOf('_var_busState_8c1bb9d0') + 0x084), $this->addressOf('_init_stopLineLocalA_8c04650c'),

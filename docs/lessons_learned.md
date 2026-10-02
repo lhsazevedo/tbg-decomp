@@ -360,7 +360,7 @@ only if it isn't.
 
 ## Ghidra drops a called SDK function's float argument entirely if it has no prototype
 
-`trafficSignalTask_8c028258` (`028258`) calls `njSqrt`, but Ghidra decompiled it
+`headTask_8c028258` (`028258`) calls `njSqrt`, but Ghidra decompiled it
 as `njSqrt()` with zero arguments -- the real SH4 float argument register (FR4)
 was left untracked because the imported `njSqrt` symbol had no prototype
 (`param_count: 0` via `get_function_signature`). Worse, once the function's own

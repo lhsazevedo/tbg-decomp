@@ -139,7 +139,7 @@ return new class extends TestCase {
         $this->shouldCall('_TaskInitGroup_8c014a9c')->with($group, 1);
         $this->shouldCall('_TaskSpawn_8c014ae8')->with(
             $this->addressOf('_var_tasks_8c1ba5e8'),
-            $this->addressOf('_execTrafficSignalGroupTask_8c0283e8'),
+            $this->addressOf('_execGroupTask_8c0283e8'),
             $taskLocal,
             $stateLocal,
             0,
@@ -212,7 +212,7 @@ return new class extends TestCase {
         $this->shouldCall('_TaskSpawn_8c014ae8')
             ->with(
                 $group,
-                $this->addressOf('_trafficSignalTask_8c028258'),
+                $this->addressOf('_headTask_8c028258'),
                 $taskLocal,
                 $stateLocal,
                 0xd4,
@@ -244,7 +244,7 @@ return new class extends TestCase {
         $this->shouldCall('_TaskSpawn_8c014ae8')
             ->with(
                 $this->addressOf('_var_tasks_8c1ba5e8'),
-                $this->addressOf('_execTrafficSignalGroupTask_8c0283e8'),
+                $this->addressOf('_execGroupTask_8c0283e8'),
                 $taskLocal,
                 $stateLocal,
                 0,
@@ -318,7 +318,7 @@ return new class extends TestCase {
         $this->shouldCall('_TaskSpawn_8c014ae8')
             ->with(
                 $group,
-                $this->addressOf('_trafficSignalTask_8c028258'),
+                $this->addressOf('_headTask_8c028258'),
                 $taskLocal,
                 $stateLocal,
                 0xd4,
@@ -357,7 +357,7 @@ return new class extends TestCase {
         $this->shouldCall('_TaskSpawn_8c014ae8')
             ->with(
                 $this->addressOf('_var_tasks_8c1ba5e8'),
-                $this->addressOf('_execTrafficSignalGroupTask_8c0283e8'),
+                $this->addressOf('_execGroupTask_8c0283e8'),
                 $taskLocal,
                 $stateLocal,
                 0,
@@ -430,7 +430,7 @@ return new class extends TestCase {
         $this->shouldCall('_TaskSpawn_8c014ae8')
             ->with(
                 $group,
-                $this->addressOf('_trafficSignalTask_8c028258'),
+                $this->addressOf('_headTask_8c028258'),
                 $taskLocal,
                 $stateLocal,
                 0xd4,
@@ -471,7 +471,7 @@ return new class extends TestCase {
         $this->shouldCall('_TaskSpawn_8c014ae8')
             ->with(
                 $this->addressOf('_var_tasks_8c1ba5e8'),
-                $this->addressOf('_execTrafficSignalGroupTask_8c0283e8'),
+                $this->addressOf('_execGroupTask_8c0283e8'),
                 $taskLocal,
                 $stateLocal,
                 0,
@@ -526,7 +526,7 @@ return new class extends TestCase {
         $this->shouldCall('_TaskSpawn_8c014ae8')
             ->with(
                 $group,
-                $this->addressOf('_linkedTrafficSignalTask_8c02833c'),
+                $this->addressOf('_attachmentTask_8c02833c'),
                 $taskLocal,
                 $stateLocal,
                 0xd4,
@@ -563,7 +563,7 @@ return new class extends TestCase {
         $this->shouldCall('_TaskSpawn_8c014ae8')
             ->with(
                 $group,
-                $this->addressOf('_linkedTrafficSignalTask_8c02833c'),
+                $this->addressOf('_attachmentTask_8c02833c'),
                 $taskLocal,
                 $stateLocal,
                 0xd4,
@@ -598,7 +598,7 @@ return new class extends TestCase {
         $this->shouldCall('_TaskSpawn_8c014ae8')
             ->with(
                 $group,
-                $this->addressOf('_linkedTrafficSignalTask_8c02833c'),
+                $this->addressOf('_attachmentTask_8c02833c'),
                 $taskLocal,
                 $stateLocal,
                 0xd4,
@@ -689,7 +689,7 @@ return new class extends TestCase {
         $this->shouldCall('_TaskSpawn_8c014ae8')
             ->with(
                 $this->addressOf('_var_tasks_8c1ba5e8'),
-                $this->addressOf('_execTrafficSignalGroupTask_8c0283e8'),
+                $this->addressOf('_execGroupTask_8c0283e8'),
                 $taskLocal,
                 $stateLocal,
                 0,
@@ -769,7 +769,7 @@ return new class extends TestCase {
         $this->shouldCall('_TaskSpawn_8c014ae8')
             ->with(
                 $group,
-                $this->addressOf('_linkedTrafficSignalTask_8c02833c'),
+                $this->addressOf('_attachmentTask_8c02833c'),
                 $taskLocal,
                 $stateLocal,
                 0xd4,
@@ -791,7 +791,7 @@ return new class extends TestCase {
         $this->shouldCall('_TaskSpawn_8c014ae8')
             ->with(
                 $this->addressOf('_var_tasks_8c1ba5e8'),
-                $this->addressOf('_execTrafficSignalGroupTask_8c0283e8'),
+                $this->addressOf('_execGroupTask_8c0283e8'),
                 $taskLocal,
                 $stateLocal,
                 0,
