@@ -5,7 +5,7 @@ declare(strict_types=1);
 use Lhsazevedo\Sh4ObjTest\TestCase;
 
 /*
- * drawEpisodeChecklist_8c01cac8: for the currently selected grid slot,
+ * drawPage_8c01cac8: for the currently selected grid slot,
  * walks its progress-flag list and draws a checkmark (sprite 9) per flag
  * currently set, then the slot's bio art and the nav-option sprites.
  */
@@ -43,7 +43,7 @@ return new class extends TestCase {
 
         $this->expectNavOptionsAndFrame(0);
 
-        $this->singleCall('_drawEpisodeChecklist_8c01cac8')->run();
+        $this->singleCall('_drawPage_8c01cac8')->run();
     }
 
     public function test_draws_checkmark_per_set_flag_in_order(): void
@@ -78,7 +78,7 @@ return new class extends TestCase {
 
         $this->expectNavOptionsAndFrame(0);
 
-        $this->singleCall('_drawEpisodeChecklist_8c01cac8')->run();
+        $this->singleCall('_drawPage_8c01cac8')->run();
     }
 
     public function test_checkmark_row_wraps_after_twelve_columns(): void
@@ -116,7 +116,7 @@ return new class extends TestCase {
 
         $this->expectNavOptionsAndFrame(0);
 
-        $this->singleCall('_drawEpisodeChecklist_8c01cac8')->run();
+        $this->singleCall('_drawPage_8c01cac8')->run();
     }
 
     public function test_exit_option_draws_sprite_eleven(): void
@@ -132,7 +132,7 @@ return new class extends TestCase {
 
         $this->expectNavOptionsAndFrame(4);
 
-        $this->singleCall('_drawEpisodeChecklist_8c01cac8')->run();
+        $this->singleCall('_drawPage_8c01cac8')->run();
     }
 
     private function expectNavOptionsAndFrame(int $selectedOption): void

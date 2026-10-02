@@ -5,7 +5,7 @@ declare(strict_types=1);
 use Lhsazevedo\Sh4ObjTest\TestCase;
 
 /*
- * updatePageLoad_8c01cbec: if the selected row's resgrp is already the
+ * enterPage_8c01cbec: if the selected row's resgrp is already the
  * active sys resgrp there is nothing to load -- jingle and fade the page
  * in (STATE_PAGE_FADE_IN, 6). Otherwise request the resgrp and park in
  * STATE_PAGE_LOAD (5).
@@ -65,7 +65,7 @@ return new class extends TestCase {
         $this->shouldWriteLong($this->addressOf('_var_menuState_8c1bc7a8') + 0x18, 6);
         $this->shouldCall('_RenderStartFadeIn_8c022a9c')->with(10);
 
-        $this->singleCall('_updatePageLoad_8c01cbec')->run();
+        $this->singleCall('_enterPage_8c01cbec')->run();
     }
 
     public function test_page_already_loaded_step_option_plays_track_7(): void
@@ -84,7 +84,7 @@ return new class extends TestCase {
         $this->shouldWriteLong($this->addressOf('_var_menuState_8c1bc7a8') + 0x18, 6);
         $this->shouldCall('_RenderStartFadeIn_8c022a9c')->with(10);
 
-        $this->singleCall('_updatePageLoad_8c01cbec')->run();
+        $this->singleCall('_enterPage_8c01cbec')->run();
     }
 
     public function test_page_not_loaded_requests_resgrp(): void
@@ -115,6 +115,6 @@ return new class extends TestCase {
         );
         $this->shouldWriteLong($this->addressOf('_var_menuState_8c1bc7a8') + 0x18, 5);
 
-        $this->singleCall('_updatePageLoad_8c01cbec')->run();
+        $this->singleCall('_enterPage_8c01cbec')->run();
     }
 };

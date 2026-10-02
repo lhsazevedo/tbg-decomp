@@ -63,7 +63,7 @@ return new class extends TestCase {
 
     private function expectDrawChecklistTail(): void
     {
-        $this->shouldCall('_drawEpisodeChecklist_8c01cac8');
+        $this->shouldCall('_drawPage_8c01cac8');
         $this->expectDrawTail();
     }
 
@@ -404,7 +404,7 @@ return new class extends TestCase {
         $this->initUint32($this->addressOf('_var_isFading_8c226568'), 0);
 
         $this->call('_menuTask_8c01ccec')->with(0, 0);
-        $this->shouldCall('_updatePageLoad_8c01cbec');
+        $this->shouldCall('_enterPage_8c01cbec');
     }
 
     public function test_page_load_waits_for_pvm_ready(): void
@@ -613,7 +613,7 @@ return new class extends TestCase {
 
         $this->call('_menuTask_8c01ccec')->with(0, 0);
         $this->shouldWriteLong($this->menu(0x68), 4);
-        $this->shouldCall('_updatePageLoad_8c01cbec');
+        $this->shouldCall('_enterPage_8c01cbec');
     }
 
     public function test_page_advance_delay_jump_prev_finds_immediately_unlocked_slot(): void
@@ -635,7 +635,7 @@ return new class extends TestCase {
         $this->shouldWriteLong($this->menu(0x3c), 4);
         $this->shouldCall('__divls');
         $this->shouldWriteLong($this->menu(0x40), 2);
-        $this->shouldCall('_updatePageLoad_8c01cbec');
+        $this->shouldCall('_enterPage_8c01cbec');
     }
 
     public function test_page_advance_delay_jump_prev_wraps_around_to_last_slot(): void
@@ -657,7 +657,7 @@ return new class extends TestCase {
         $this->shouldWriteLong($this->menu(0x3c), 4);
         $this->shouldCall('__divls');
         $this->shouldWriteLong($this->menu(0x40), 5);
-        $this->shouldCall('_updatePageLoad_8c01cbec');
+        $this->shouldCall('_enterPage_8c01cbec');
     }
 
     public function test_page_advance_delay_prev_moves_col_back(): void
@@ -671,7 +671,7 @@ return new class extends TestCase {
         $this->call('_menuTask_8c01ccec')->with(0, 0);
         $this->shouldWriteLong($this->menu(0x68), 4);
         $this->shouldWriteLong($this->menu(0x3c), 4);
-        $this->shouldCall('_updatePageLoad_8c01cbec');
+        $this->shouldCall('_enterPage_8c01cbec');
     }
 
     public function test_page_advance_delay_prev_wraps_col_and_row(): void
@@ -687,7 +687,7 @@ return new class extends TestCase {
         $this->shouldWriteLong($this->menu(0x3c), -1);
         $this->shouldWriteLong($this->menu(0x3c), 9);
         $this->shouldWriteLong($this->menu(0x40), 1);
-        $this->shouldCall('_updatePageLoad_8c01cbec');
+        $this->shouldCall('_enterPage_8c01cbec');
     }
 
     public function test_page_advance_delay_prev_wraps_past_first_row(): void
@@ -705,7 +705,7 @@ return new class extends TestCase {
         $this->shouldWriteLong($this->menu(0x40), -1);
         $this->shouldWriteLong($this->menu(0x3c), 4);
         $this->shouldWriteLong($this->menu(0x40), 5);
-        $this->shouldCall('_updatePageLoad_8c01cbec');
+        $this->shouldCall('_enterPage_8c01cbec');
     }
 
     public function test_page_advance_delay_next_moves_col_forward(): void
@@ -719,7 +719,7 @@ return new class extends TestCase {
         $this->call('_menuTask_8c01ccec')->with(0, 0);
         $this->shouldWriteLong($this->menu(0x68), 4);
         $this->shouldWriteLong($this->menu(0x3c), 6);
-        $this->shouldCall('_updatePageLoad_8c01cbec');
+        $this->shouldCall('_enterPage_8c01cbec');
     }
 
     public function test_page_advance_delay_next_wraps_row_under_five(): void
@@ -735,7 +735,7 @@ return new class extends TestCase {
         $this->shouldWriteLong($this->menu(0x3c), 10);
         $this->shouldWriteLong($this->menu(0x3c), 0);
         $this->shouldWriteLong($this->menu(0x40), 3);
-        $this->shouldCall('_updatePageLoad_8c01cbec');
+        $this->shouldCall('_enterPage_8c01cbec');
     }
 
     public function test_page_advance_delay_next_wraps_row_five_or_more(): void
@@ -751,7 +751,7 @@ return new class extends TestCase {
         $this->shouldWriteLong($this->menu(0x3c), 5);
         $this->shouldWriteLong($this->menu(0x3c), 0);
         $this->shouldWriteLong($this->menu(0x40), 0);
-        $this->shouldCall('_updatePageLoad_8c01cbec');
+        $this->shouldCall('_enterPage_8c01cbec');
     }
 
     public function test_page_advance_delay_jump_next_no_unlocked_just_updates_page(): void
@@ -764,7 +764,7 @@ return new class extends TestCase {
 
         $this->call('_menuTask_8c01ccec')->with(0, 0);
         $this->shouldWriteLong($this->menu(0x68), 4);
-        $this->shouldCall('_updatePageLoad_8c01cbec');
+        $this->shouldCall('_enterPage_8c01cbec');
     }
 
     public function test_page_advance_delay_jump_next_finds_immediately_unlocked_slot(): void
@@ -786,7 +786,7 @@ return new class extends TestCase {
         $this->shouldWriteLong($this->menu(0x3c), 6);
         $this->shouldCall('__divls');
         $this->shouldWriteLong($this->menu(0x40), 2);
-        $this->shouldCall('_updatePageLoad_8c01cbec');
+        $this->shouldCall('_enterPage_8c01cbec');
     }
 
     public function test_page_advance_delay_jump_next_wraps_around_to_first_slot(): void
@@ -808,7 +808,7 @@ return new class extends TestCase {
         $this->shouldWriteLong($this->menu(0x3c), 0);
         $this->shouldCall('__divls');
         $this->shouldWriteLong($this->menu(0x40), 0);
-        $this->shouldCall('_updatePageLoad_8c01cbec');
+        $this->shouldCall('_enterPage_8c01cbec');
     }
 
     public function test_exit_to_course_menu_still_fading_draws_frame_only(): void

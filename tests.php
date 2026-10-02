@@ -451,8 +451,8 @@ return [
             "tests" => [
                 "tests/01c980_profile_file/8c01c980_ProfileFileUpdateUnlocks.php",
                 "tests/01c980_profile_file/8c01c9f2_drawUnlockGrid.php",
-                "tests/01c980_profile_file/8c01cac8_drawEpisodeChecklist.php",
-                "tests/01c980_profile_file/8c01cbec_updatePageLoad.php",
+                "tests/01c980_profile_file/8c01cac8_drawPage.php",
+                "tests/01c980_profile_file/8c01cbec_enterPage.php",
                 "tests/01c980_profile_file/8c01ccec_menuTask.php",
                 "tests/01c980_profile_file/8c01d1c4_ProfileFileEnter.php",
             ],

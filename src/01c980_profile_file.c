@@ -419,7 +419,7 @@ STATIC void drawUnlockGrid_8c01c9f2(void)
  * putting a checkmark (sprite 9) per flag currently set and wrapping every
  * 12 columns. The slot's bio art -- sprite = grid column, out of the row's
  * page resgrp -- is drawn only if at least one episode has been seen. */
-STATIC void drawEpisodeChecklist_8c01cac8(void)
+STATIC void drawPage_8c01cac8(void)
 {
     Uint8 *flags;
     float x = GRID_X;
@@ -487,7 +487,7 @@ STATIC void drawEpisodeChecklist_8c01cac8(void)
  * already the active sys resgrp there is nothing to load: jingle (only for a
  * nav option, not EXIT) and fade the page in. Otherwise kick off a fresh
  * async load and park in STATE_PAGE_LOAD, polled again next frame. */
-STATIC void updatePageLoad_8c01cbec(void)
+STATIC void enterPage_8c01cbec(void)
 {
     ResourceGroupInfo *pageResgrpInfo = init_rowResgrps_8c045148[var_menuState_8c1bc7a8.cursorRow_0x40];
 
@@ -618,7 +618,7 @@ STATIC void menuTask_8c01ccec(Task *task, void *state)
                 drawUnlockGrid_8c01c9f2();
                 break;
             }
-            updatePageLoad_8c01cbec();
+            enterPage_8c01cbec();
             return;
 
         case STATE_PAGE_LOAD:
@@ -643,7 +643,7 @@ STATIC void menuTask_8c01ccec(Task *task, void *state)
         case STATE_PAGE_FADE_IN:
             if (!var_isFading_8c226568)
                 var_menuState_8c1bc7a8.state_0x18 = STATE_PAGE_VIEW;
-            drawEpisodeChecklist_8c01cac8();
+            drawPage_8c01cac8();
             break;
 
         case STATE_PAGE_VIEW:
@@ -664,12 +664,12 @@ STATIC void menuTask_8c01ccec(Task *task, void *state)
                 RenderStartFadeOut_8c022b60(10);
                 sdMidiPlay(var_midiHandles_8c0fcd28[0], 1, 1, 0);
             }
-            drawEpisodeChecklist_8c01cac8();
+            drawPage_8c01cac8();
             break;
 
         case STATE_PAGE_EXIT_FADE_OUT:
             if (var_isFading_8c226568) {
-                drawEpisodeChecklist_8c01cac8();
+                drawPage_8c01cac8();
                 break;
             }
             var_menuState_8c1bc7a8.state_0x18 =
@@ -737,12 +737,12 @@ STATIC void menuTask_8c01ccec(Task *task, void *state)
                 }
             }
 
-            updatePageLoad_8c01cbec();
+            enterPage_8c01cbec();
             return;
 
         case STATE_GRID_FADE_OUT:
             if (var_isFading_8c226568) {
-                drawEpisodeChecklist_8c01cac8();
+                drawPage_8c01cac8();
                 break;
             }
             var_menuState_8c1bc7a8.state_0x18 = STATE_GRID_FADE_IN;
