@@ -12,7 +12,7 @@ return new class extends TestCase {
         $queue = $this->alloc($queueLength * $itemSize);
         $queueTail = $queue + $queueLength * $itemSize;
 
-        $this->initUint32($this->addressOf('_var_texlistQueueCount_8c157a68'), 0);
+        $this->initUint32($this->addressOf('_var_texlistQueueDoneCount_8c157a68'), 0);
         $this->initUint32($this->addressOf('_var_texlistQueue_8c157aac'), $queue);
         $this->initUint32($this->addressOf('_var_texlistQueueRear_8c157ab0'), $queue + 1 * $itemSize);
         $baseDirStrAddress = $this->allocString('\\DIR');
@@ -64,7 +64,7 @@ return new class extends TestCase {
         $this->shouldCall('_njLoadTextureNum')->with(1);
         $this->shouldCall('_njLoadTextureNum')->with(2);
 
-        $this->shouldWriteTo('_var_texlistQueueCount_8c157a68', 1);
+        $this->shouldWriteTo('_var_texlistQueueDoneCount_8c157a68', 1);
         $this->shouldWriteTo('_var_texlistQueueIsIdle_8c157ab8', 1);
 
         $this->shouldCall('_TaskKill_8c014b66')
@@ -82,7 +82,7 @@ return new class extends TestCase {
         $queue = $this->alloc($queueLength * $itemSize);
         $queueTail = $queue + $queueLength * $itemSize;
 
-        $this->initUint32($this->addressOf('_var_texlistQueueCount_8c157a68'), 0);
+        $this->initUint32($this->addressOf('_var_texlistQueueDoneCount_8c157a68'), 0);
         $this->initUint32($this->addressOf('_var_texlistQueue_8c157aac'), $queue);
         $this->initUint32($this->addressOf('_var_texlistQueueRear_8c157ab0'), $queue + 2 * $itemSize);
         $baseDirStrAddress = $this->allocString('\\DIR');
@@ -134,7 +134,7 @@ return new class extends TestCase {
         $this->shouldCall('_njLoadTextureNum')->with(1);
         $this->shouldCall('_njLoadTextureNum')->with(2);
 
-        $this->shouldWriteTo('_var_texlistQueueCount_8c157a68', 1);
+        $this->shouldWriteTo('_var_texlistQueueDoneCount_8c157a68', 1);
 
         $this->shouldWrite($task + 0x18, $queue + 1 * $itemSize);
 
@@ -155,7 +155,7 @@ return new class extends TestCase {
         $queue = $this->alloc($queueLength * $itemSize);
         $queueTail = $queue + $queueLength * $itemSize;
 
-        $this->initUint32($this->addressOf('_var_texlistQueueCount_8c157a68'), 0);
+        $this->initUint32($this->addressOf('_var_texlistQueueDoneCount_8c157a68'), 0);
         $this->initUint32($this->addressOf('_var_texlistQueue_8c157aac'), $queue);
         $this->initUint32($this->addressOf('_var_texlistQueueRear_8c157ab0'), $queue + 1 * $itemSize);
         $dataEmptyStrAddress = $this->allocString('DATA EMPTY');
@@ -210,7 +210,7 @@ return new class extends TestCase {
         $this->shouldCall('_njLoadTextureNum')->with(1);
         $this->shouldCall('_njLoadTextureNum')->with(2);
 
-        $this->shouldWriteTo('_var_texlistQueueCount_8c157a68', 1);
+        $this->shouldWriteTo('_var_texlistQueueDoneCount_8c157a68', 1);
         $this->shouldWriteTo('_var_texlistQueueIsIdle_8c157ab8', 1);
 
         $this->shouldCall('_TaskKill_8c014b66')
@@ -230,7 +230,7 @@ return new class extends TestCase {
 
         $dirStrAddress = $this->allocString('\\DIR');
         $this->initUint32($this->addressOf('_var_queueBaseDir_8c157a80'), $dirStrAddress);
-        $this->initUint32($this->addressOf('_var_texlistQueueCount_8c157a68'), 1);
+        $this->initUint32($this->addressOf('_var_texlistQueueDoneCount_8c157a68'), 1);
         $this->initUint32($this->addressOf('_var_texlistQueue_8c157aac'), $queue);
         $this->initUint32($this->addressOf('_var_texlistQueueRear_8c157ab0'), $queue + 2 * $itemSize);
 
@@ -357,7 +357,7 @@ return new class extends TestCase {
         $this->shouldCall('_njLoadTextureNum')->with(2);
 
         // Increment texlist count (why?)
-        $this->shouldWriteTo('_var_texlistQueueCount_8c157a68', 2);
+        $this->shouldWriteTo('_var_texlistQueueDoneCount_8c157a68', 2);
 
         $this->shouldWriteTo('_var_texlistQueueIsIdle_8c157ab8', 1);
 
@@ -378,7 +378,7 @@ return new class extends TestCase {
 
         $dirStrAddress = $this->allocString('\\DIR');
         $this->initUint32($this->addressOf('_var_queueBaseDir_8c157a80'), $dirStrAddress);
-        $this->initUint32($this->addressOf('_var_texlistQueueCount_8c157a68'), 1);
+        $this->initUint32($this->addressOf('_var_texlistQueueDoneCount_8c157a68'), 1);
         $this->initUint32($this->addressOf('_var_texlistQueue_8c157aac'), $queue);
         $this->initUint32($this->addressOf('_var_texlistQueueRear_8c157ab0'), $queue + 2 * $itemSize);
 
@@ -493,7 +493,7 @@ return new class extends TestCase {
 
         $this->shouldWrite($queue + 1 * $itemSize + 4, 0);
 
-        $this->shouldWriteTo('_var_texlistQueueCount_8c157a68', 2);
+        $this->shouldWriteTo('_var_texlistQueueDoneCount_8c157a68', 2);
         $this->shouldWriteTo('_var_texlistQueueIsIdle_8c157ab8', 1);
         $this->shouldCall('_TaskKill_8c014b66')
             ->with($task);
@@ -512,7 +512,7 @@ return new class extends TestCase {
 
         $dirStrAddress = $this->allocString('\\DIR');
         $this->initUint32($this->addressOf('_var_queueBaseDir_8c157a80'), $dirStrAddress);
-        $this->initUint32($this->addressOf('_var_texlistQueueCount_8c157a68'), 1);
+        $this->initUint32($this->addressOf('_var_texlistQueueDoneCount_8c157a68'), 1);
         $this->initUint32($this->addressOf('_var_texlistQueue_8c157aac'), $queue);
         $this->initUint32($this->addressOf('_var_texlistQueueRear_8c157ab0'), $queue + 3 * $itemSize);
 
@@ -659,7 +659,7 @@ return new class extends TestCase {
 
         $this->shouldWrite($queue + 1 * $itemSize + 4, 0);
 
-        $this->shouldWriteTo('_var_texlistQueueCount_8c157a68', 2);
+        $this->shouldWriteTo('_var_texlistQueueDoneCount_8c157a68', 2);
 
 
         // Advancing to next item
@@ -721,7 +721,7 @@ return new class extends TestCase {
         $this->shouldCall('_njLoadTextureNum')->with(1);
         $this->shouldCall('_njLoadTextureNum')->with(2);
 
-        $this->shouldWriteTo('_var_texlistQueueCount_8c157a68', 3);
+        $this->shouldWriteTo('_var_texlistQueueDoneCount_8c157a68', 3);
         $this->shouldWriteTo('_var_texlistQueueIsIdle_8c157ab8', 1);
 
         $this->shouldCall('_TaskKill_8c014b66')
@@ -751,7 +751,7 @@ return new class extends TestCase {
 
         $dirStrAddress = $this->allocString('\\DIR');
         $this->initUint32($this->addressOf('_var_queueBaseDir_8c157a80'), $dirStrAddress);
-        $this->initUint32($this->addressOf('_var_texlistQueueCount_8c157a68'), 1);
+        $this->initUint32($this->addressOf('_var_texlistQueueDoneCount_8c157a68'), 1);
         $this->initUint32($this->addressOf('_var_texlistQueue_8c157aac'), $queue);
         $this->initUint32($this->addressOf('_var_texlistQueueRear_8c157ab0'), $queue + 2 * $itemSize);
 
@@ -786,7 +786,7 @@ return new class extends TestCase {
         $this->shouldCall('_njSetTexture')->with($texlistB);
         $this->shouldCall('_njLoadTextureNum')->with(0);
 
-        $this->shouldWriteTo('_var_texlistQueueCount_8c157a68', 2);
+        $this->shouldWriteTo('_var_texlistQueueDoneCount_8c157a68', 2);
         $this->shouldWriteTo('_var_texlistQueueIsIdle_8c157ab8', 1);
         $this->shouldCall('_TaskKill_8c014b66')
             ->with($task);

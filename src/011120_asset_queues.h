@@ -75,7 +75,7 @@ void AsqResetQueues_8c011f6c();
 
 void AsqFreeQueues_8c011f7e();
 
-void AsqProcessQueues_8c011fe0(void *func, void *afterDatCallback, void *afterNjCallback, void *afterPvmCallback, void *afterTexlistCallback);
+void AsqProcessQueues_8c011fe0(void *tickCallback, void *afterDatCallback, void *afterNjCallback, void *afterPvmCallback, void *afterTexlistCallback);
 
 LoadedModel* AsqRequestModels_8c012030(char *basedir, ModelFiles *pairs, int texlistCount);
 

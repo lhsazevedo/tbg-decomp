@@ -92,7 +92,7 @@ typedef struct {
 
 typedef struct {
     int queue_0x00;
-    void (*func_0x04)();
+    void (*tickCallback_0x04)();
     void (*afterDatCallback_0x08)();
     void (*afterNjCallback_0x0c)();
     void (*afterPvmCallback_0x10)();
@@ -117,7 +117,7 @@ typedef struct {
 
 int var_queuesAreInitialized_8c157a60;
 int var_seed_8c157a64;
-STATIC int var_texlistQueueCount_8c157a68;
+STATIC int var_texlistQueueDoneCount_8c157a68;
 int var_loadScreenActive_8c157a6c;
 
 /* PDS_PERIPHERAL.support of port 0 masked with BT_CONTROLLER: either
@@ -670,7 +670,7 @@ STATIC int initTexlistQueue_8c0117b8(int n) {
 STATIC void resetTexlistQueue_8c0117fe() {
     var_texlistQueueRear_8c157ab0 = var_texlistQueue_8c157aac;
     var_queueBaseDir_8c157a80 = init_dataEmpty_8c03be7c;
-    var_texlistQueueCount_8c157a68 = 0;
+    var_texlistQueueDoneCount_8c157a68 = 0;
     var_texlistQueueIsIdle_8c157ab8 = 1;
     return;
 }
@@ -704,7 +704,7 @@ STATIC void taskLoadQueuedTexlists_8c01183e(Task *task, void *state) {
             int queueIdx;
             NJS_TEXNAME *currentTexture = &texlist->textures[i];
 
-            for (queueIdx = 0; queueIdx < var_texlistQueueCount_8c157a68; queueIdx++)
+            for (queueIdx = 0; queueIdx < var_texlistQueueDoneCount_8c157a68; queueIdx++)
             {
                 QueuedTexlist *comparedItem = &var_texlistQueue_8c157aac[queueIdx];
                 int comparedIndex;
@@ -737,7 +737,7 @@ STATIC void taskLoadQueuedTexlists_8c01183e(Task *task, void *state) {
 
             /* If the current texture wasn't found in any compared texlist,
              * it needs to be loaded. */
-            if (queueIdx == var_texlistQueueCount_8c157a68) {
+            if (queueIdx == var_texlistQueueDoneCount_8c157a68) {
                 alreadyLoaded = FALSE;
             }
 
@@ -764,7 +764,7 @@ STATIC void taskLoadQueuedTexlists_8c01183e(Task *task, void *state) {
         }
 
         item++;
-        var_texlistQueueCount_8c157a68++;
+        var_texlistQueueDoneCount_8c157a68++;
         if (item >= var_texlistQueueRear_8c157ab0) {
             var_texlistQueueIsIdle_8c157ab8 = 1;
             TaskKill_8c014b66(task);
@@ -1114,8 +1114,8 @@ STATIC void taskProcessQueues_8c011e80(Task *task, TaskProcessQueuesState *state
         }
     }
 
-    if (state->func_0x04) {
-        state->func_0x04();
+    if (state->tickCallback_0x04) {
+        state->tickCallback_0x04();
     }
 }
 
@@ -1154,7 +1154,7 @@ void AsqFreeQueues_8c011f7e() {
     var_queuesAreInitialized_8c157a60 = 0;
 }
 
-void AsqProcessQueues_8c011fe0(void *func, void *afterDatCallback, void *afterNjCallback, void *afterPvmCallback, void *afterTexlistCallback) {
+void AsqProcessQueues_8c011fe0(void *tickCallback, void *afterDatCallback, void *afterNjCallback, void *afterPvmCallback, void *afterTexlistCallback) {
     Task* created_task;
     TaskProcessQueuesState* created_state;
 
@@ -1164,7 +1164,7 @@ void AsqProcessQueues_8c011fe0(void *func, void *afterDatCallback, void *afterNj
     created_state->afterNjCallback_0x0c = afterNjCallback;
     created_state->afterPvmCallback_0x10 = afterPvmCallback;
     created_state->afterTexlistCallback_0x14 = afterTexlistCallback;
-    created_state->func_0x04 = func;
+    created_state->tickCallback_0x04 = tickCallback;
 
     sortAndLoadDatQueue_8c011310();
 }

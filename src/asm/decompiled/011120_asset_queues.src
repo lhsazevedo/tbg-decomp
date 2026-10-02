@@ -85,7 +85,7 @@
           .EXPORT     _pvmQueueIsIdle_8c011e22
           .EXPORT     _freePvmQueue_8c011e28
 
-          .EXPORT     _var_texlistQueueCount_8c157a68
+          .EXPORT     _var_texlistQueueDoneCount_8c157a68
           .EXPORT     _taskLoadQueuedPvms_8c011b00
           .EXPORT     _var_queueBaseDir_8c157a80
           .EXPORT     _var_queueBuffer_8c157a84
@@ -1240,7 +1240,7 @@ L84:
           .DATA.L     _syMalloc ; L84+48
           .DATA.L     _var_texlistQueueTail_8c157ab4
           .DATA.L     _var_texlistQueueRear_8c157ab0
-          .DATA.L     _var_texlistQueueCount_8c157a68
+          .DATA.L     _var_texlistQueueDoneCount_8c157a68
           .DATA.L     _var_texlistQueueIsIdle_8c157ab8 ; L84+64
           .DATA.L     _gdFsChangeDir
           .DATA.L     _njSetTexture
@@ -1481,7 +1481,7 @@ L100:
           ADD         #H'18,R14
 
 L101:
-          .DATA.L     _var_texlistQueueCount_8c157a68 ; L101
+          .DATA.L     _var_texlistQueueDoneCount_8c157a68 ; L101
           .DATA.L     _var_texlistQueueRear_8c157ab0
           .DATA.L     _var_texlistQueueIsIdle_8c157ab8
           .DATA.L     _TaskKill_8c014b66 ; L101+12
@@ -2582,7 +2582,7 @@ _var_queuesAreInitialized_8c157a60:
           .RES.B      4
 _var_seed_8c157a64:
           .RES.B      4
-_var_texlistQueueCount_8c157a68:
+_var_texlistQueueDoneCount_8c157a68:
           .RES.B      4
 _var_loadScreenActive_8c157a6c:
           .RES.B      4
