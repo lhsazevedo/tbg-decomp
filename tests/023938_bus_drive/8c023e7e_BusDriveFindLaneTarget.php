@@ -44,7 +44,7 @@ return new class extends TestCase {
         $this->initUint32($segs + $idx * 8 + 4, $this->fdec($length));
     }
 
-    // nodes[idx]: {u16 fwdNext; u16 backNext; u16 pad[3]; u16 fallbackNext;}
+    // nodes[idx]: {u16 leftLane; u16 rightLane; u16 pad[3]; u16 fallbackNext;}
     private function allocNodes(int $count): int
     {
         return $this->alloc($count * 0xc);
