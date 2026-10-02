@@ -48,7 +48,7 @@ typedef struct {
     int nfile_0x04;
 } AdxfPartitionInfo;
 
-/* Per-channel volume */
+/* Per-handle level, 0-990. */
 typedef struct {
     int vol0_0x00;
     int vol1_0x04;
@@ -75,8 +75,7 @@ typedef struct {
 /* [0] carries music, [1] the spoken announcements and dialogue. */
 ADXT var_adxtHandles_8c0fcd20[2];
 SDMIDI var_midiHandles_8c0fcd28[8];
-/* Loaded from \SOUND by GameMain_8c01392e: manatee.drv and bus.mlt. Both are
- * freed once downloaded to the AICA. */
+/* manatee.drv and bus.mlt; freed once downloaded to the AICA. */
 void* var_sndDrvData_8c0fcd48;
 void* var_sndBankData_8c0fcd4c;
 EngineSoundState var_engineSound_8c0fcd50;
@@ -91,13 +90,10 @@ AdxFadeState var_adxFade_8c157a34;
  * ===================
  */
 
-/* SND_ADX_* bitset of the streams currently playing. Menus poll it as a plain
- * "sound still running" flag before tearing their screen down; the
- * reset path in GameTask_8c012f44 and pauseDemoEndTask_8c012d5a instead stores
- * 1 here with init_soundOk_8c03bd84 at 0, the pair GameMain_8c01392e reads as
- * "quit". */
+/* SND_ADX_* bitset of the streams playing. Stored as 1 with
+ * init_soundOk_8c03bd84 at 0, it tells GameMain_8c01392e to quit. */
 int init_adxPlaying_8c03bd80 = 0;
-/* Cleared by adxErrFunc_8c010532 when the ADX layer gives up on the disc. */
+/* Cleared when the ADX layer gives up on the disc. */
 int init_soundOk_8c03bd84 = 1;
 AdxVolumes init_adxVolumes_8c03bd88 = {
     990,
@@ -127,7 +123,6 @@ int SndPlayAdx_8c010cd6(int source, int fileNo);
  * =========
  */
 
-/* Re-derives the engine curves from the current MIDI volume setting. */
 STATIC void initEngineVol_8c0100bc() {
     var_engineSound_8c0fcd50.midRpmSlope_0x18 = (float) init_midiVol_8c03bd90 / 2600;
     var_engineSound_8c0fcd50.highRpmSlope_0x1c = var_engineSound_8c0fcd50.midRpmSlope_0x18 * 2600 / 3000;
@@ -149,7 +144,6 @@ STATIC void updateEngineVol_8c010128() {
                 0
             );
         } else if (rpm >= 3000.f) {
-            /* Past 3000 rpm the running layer fades back down. */
             sdMidiSetVol(
                 var_midiHandles_8c0fcd28[7],
                 var_engineSound_8c0fcd50.highRpmVolBase_0x0c - (rpm - 3000) * var_engineSound_8c0fcd50.highRpmSlope_0x1c - 127,
@@ -207,7 +201,6 @@ STATIC void updateEnginePitch_8c01023c()
     }
 }
 
-/* Starts and stops the three engine MIDI layers off the engine state and rpm. */
 STATIC void updateEngineVoices_8c0102d8()
 {
     int engineState = var_busState_8c1bb9d0.engineState_0x2e0;
@@ -269,14 +262,12 @@ STATIC void createAdxAndMidiHandles_8c01048e()
     createMidiHandles_8c010468();
 }
 
-/* Unused. */
 STATIC Sint32 unusedSectorAlign_8c0104bc(Sint32 fsize)
 {
     fsize += 2047;
     return (fsize / 2048) * 2048;
 }
 
-/* Unused. */
 STATIC void* unusedReadFile_8c0104d6(char* fname)
 {
     void* dat;
@@ -294,8 +285,7 @@ STATIC void* unusedReadFile_8c0104d6(char* fname)
     return dat;
 }
 
-/* ADXT error handler. E8101214 is the one code the game reacts to: it silences
- * both streams and marks the sound system dead. */
+/* E8101214 is the only ADXT error handled. */
 STATIC void adxErrFunc_8c010532(void *obj, char *msg)
 {
     char lmsg[9] = "E8101214";
@@ -328,7 +318,7 @@ STATIC void loadAdxPartitions_8c01057a()
     }
 }
 
-/* Downloads bus.mlt, the tone bank the MIDI ports play from. */
+/* bus.mlt: the tone bank the MIDI ports play from. */
 STATIC void downloadSoundBank_8c010614()
 {
     SDMEMBLK memblk;
@@ -359,7 +349,7 @@ STATIC void initSoundDriver_8c01065e()
     sdMemBlkSetTransferMode(SDE_MEMBLK_TRANSFER_MODE_DMA);
 }
 
-/* Nothing signals the end of an ADX stream, so the message box polls for it. */
+/* Nothing signals the end of an ADX stream, so it has to be polled. */
 void SndPollVoiceEnd_8c0106ac()
 {
     int s = ADXT_GetStat(var_adxtHandles_8c0fcd20[1]);
@@ -368,9 +358,8 @@ void SndPollVoiceEnd_8c0106ac()
     }
 }
 
-/* The option screen's SFX test, over MIDI port 0. Ids 0-6 and 9-70 (the +2
- * makes 7 and 8 unreachable) map to bank 0 sequences 0-9 and bank 1 sequences
- * 0-60. */
+/* The option screen's SFX test, over MIDI port 0. Ids 0-7 are bank 0
+ * sequences 0-6 and 9 (7 and 8 are skipped), ids 8-68 bank 1 sequences 0-60. */
 Bool SndPlaySfx_8c0106d2(Sint32 id)
 {
     if (id >= 7) {
@@ -417,9 +406,8 @@ int SndPlayBgm_8c0107ac(Sint32 id)
     return 0;
 }
 
-/* Silences everything without stopping it, for the pause menu. The MIDI ports
- * are really paused; the streams just drop to the bottom of the output range
- * and keep running. */
+/* The MIDI ports really pause; the streams only drop to minimum volume and
+ * keep running. */
 void SndSetPaused_8c0107d2(Bool paused)
 {
     Uint32 i;
@@ -439,7 +427,7 @@ void SndSetPaused_8c0107d2(Bool paused)
     }
 }
 
-/* Plays a bank 0 sequence dry -- the reverb send is zeroed on ports 0-5 first. */
+/* Bank 0, dry: the effect send is zeroed on ports 0-5 first. */
 void SndMidiResetFxAndPlay_8c010846(int hld_idx, int data_num)
 {
     Sint8 i;
@@ -452,8 +440,7 @@ void SndMidiResetFxAndPlay_8c010846(int hld_idx, int data_num)
     sdMidiPlay(var_midiHandles_8c0fcd28[hld_idx], 0, data_num, 0);
 }
 
-/* Applies the SOUND setting to the AICA and writes it back to the console's
- * own config. */
+/* Also saves the mode to the console's system config. */
 Bool SndSetSoundMode_8c0108c0(Sint32 mode)
 {
     void *dat;
@@ -508,8 +495,7 @@ int SndGetSoundMode_8c010924() {
     return mode;
 }
 
-/* volNo is the 0-9 MUSIC (handle 0) or VOICE (handle 1) setting; ADXT_SetOutVol
- * wants an attenuation, so the stored level is offset by the -990 floor. */
+/* ADXT_SetOutVol takes an attenuation: level - 990. */
 void SndSetAdxVol_8c010972(int volNo, int handle) {
     const int adxVols[10] = {
         0,
@@ -539,7 +525,6 @@ void SndSetAdxVol_8c010972(int volNo, int handle) {
     }
 }
 
-/* The 0-9 SFX setting, spread over the Sint8 range sdMidiSetVol takes. */
 void SndSetMidiVol_8c0109f4(int volNo) {
     int i;
     int midiVols[10] = {
@@ -563,8 +548,8 @@ void SndSetMidiVol_8c0109f4(int volNo) {
     initEngineVol_8c0100bc();
 }
 
-/* Drives a fade over 90 frames. The fade-in half is dead: only
- * unusedStartAdxCh1FadeIn_8c010c2c raises a 0xf0 bit, and nothing calls it. */
+/* Per frame. The fade-in half is dead: only unusedStartAdxCh1FadeIn_8c010c2c
+ * raises a 0xf0 bit. */
 void SndUpdateAdxVolFade_8c010a40() {
     if ((var_adxFade_8c157a34.fadeFlags_0x00 & 0xf) != 0)
     {
@@ -635,10 +620,10 @@ void SndUpdateAdxVolFade_8c010a40() {
     }
 }
 
-/* Arms a 90-frame fade-out of stream handle, ignored while a fade-in is up.
- * The guards compare the whole low nibble rather than testing the one bit, so
- * a stream already fading gets restarted from the top if the other one is
- * fading too. */
+/* Ignored while a fade-in is up. The step would take the level to 300 in 90
+ * frames, but the fade ends once the attenuation passes -300: ~43 frames at
+ * full volume, one frame at setting 6 or below. The guards compare the whole
+ * low nibble, so a stream already fading restarts if the other one is too. */
 void SndStartAdxFadeOut_8c010bae(int handle) {
     if ((var_adxFade_8c157a34.fadeFlags_0x00 & 0xf0) == 0) {
         if (handle == 0 && (var_adxFade_8c157a34.fadeFlags_0x00 & 0xf) != 1) {
@@ -654,7 +639,6 @@ void SndStartAdxFadeOut_8c010bae(int handle) {
     }
 }
 
-/* Unused -- the only writer of a fade-in bit. */
 STATIC void unusedStartAdxCh1FadeIn_8c010c2c(Bool handle) {
     if ((var_adxFade_8c157a34.fadeFlags_0x00 & 0xf) == 0
         && handle == 1
@@ -667,7 +651,6 @@ STATIC void unusedStartAdxCh1FadeIn_8c010c2c(Bool handle) {
     }
 }
 
-/* Per-frame engine sound, from BusTask_8c022bdc. */
 void SndUpdateEngine_8c010c6e() {
     updateEngineVol_8c010128();
     updateEnginePitch_8c01023c();
@@ -695,9 +678,6 @@ void SndStopAdx_8c010ca6(Bool handle) {
     return;
 }
 
-/* Starts an AFS stream. source picks the handle/partition pair: 0 is music on
- * handle 0, 1 the bgm.afs announcements and 2 the voice.afs dialogue, both on
- * handle 1. */
 int SndPlayAdx_8c010cd6(int source, int fileNo) {
     switch (source) {
         case 0: {
@@ -738,7 +718,6 @@ void SndStopBgm_8c010d8a() {
     init_adxPlaying_8c03bd80 &= ~SND_ADX_BGM;
 }
 
-/* Unused. */
 STATIC void unusedStopMidiAdx_8c010de6() {
     sdMidiStopAll();
     ADXT_Stop(var_adxtHandles_8c0fcd20[0]);
@@ -749,9 +728,8 @@ STATIC void unusedStopMidiAdx_8c010de6() {
     initEngineVol_8c0100bc();
 }
 
-/* dirname is the GD-ROM directory the .afs partitions and the driver/bank
- * blobs live in. The busy bits set partway through are cleared again at the
- * end -- the loads here are synchronous. */
+/* dirname holds the .afs partitions. The busy bits set partway through are
+ * cleared again at the end; the loads are synchronous. */
 void SndInit_8c010e18(char *dirname) {
     init_adxPlaying_8c03bd80 = 0;
     init_soundOk_8c03bd84 = 1;
