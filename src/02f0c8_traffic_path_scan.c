@@ -17,10 +17,10 @@ Sint32 *var_signalGroups_8c228b40;
 /** The group whose intersection a vehicle occupies */
 Sint32 *var_occupiedGroup_8c228b44;
 
-/* Sample-point scratch buffer for up to 10 (x, z) pairs. */
+/* Up to 10 (x, z) pairs. */
 float var_samples_8c228b48[20];
 
-/* Task-slot pointer to exclude from scan. Setter still unclear. */
+/* Never written. */
 void *var_excludedTask_8c228b98;
 
 float *var_sampleCursor_8c228b9c;
@@ -220,10 +220,11 @@ void *TrafficPathScanNext_8c02f212(void)
             return NULL;
         }
 
+        /* Original quirk: p advances per task tested, by 1 or 2 floats,
+         * not per sample pair. */
         for (t = var_tasks_8c1bac28; t->action != NULL; t++) {
             advance = 0;
 
-            // Note: var_excludedTask_8c228b98 is never written
             if (t->action != (TaskAction) -1 && (void *) t != var_excludedTask_8c228b98) {
                 candidateEntry = t->state;
                 advance = 1;

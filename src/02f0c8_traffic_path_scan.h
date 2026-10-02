@@ -20,7 +20,7 @@ extern Sint32 *var_occupiedGroup_8c228b44;
  * ===================
  */
 
-/** Per-route signal groups, selected into var_signalGroups_8c228b40 by TrafficInit_8c02769e */
+/** Per-route signal groups, each -1-terminated */
 extern Sint32 init_signalGroupsWangan_8c04c980[91];
 extern Sint32 init_signalGroupsShinjuku_8c04caec[147];
 extern Sint32 init_signalGroupsOme_8c04cd38[54];
@@ -30,23 +30,20 @@ extern Sint32 init_signalGroupsOme_8c04cd38[54];
  * =========
  */
 
-/**
- * Walks the remaining samples and returns the state of the
- * first task whose entry sits within 2.5 units of a sample.
- */
+/** Continues TrafficPathScanFirst_8c02f0c8's scan, ignoring the bus. */
 void *TrafficPathScanNext_8c02f212(void);
 
 /**
- * Reports what occupies the stretch of path an entry is about to drive.
+ * Reports what occupies the stretch of path an entry is about to drive:
+ * var_playerBus_8c1bbd9c, another entry's state, or NULL.
  */
 void *TrafficPathScanFirst_8c02f0c8(
-    /* The spawning task, excluded from the scan */
+    /* Excluded from the scan */
     Task *self,
     /* Supplies the successor records once firstRecord's run ends */
     TrafficEntry *entry,
-    /* Path record the walk starts from */
     PathRecord *firstRecord,
-    /* FirstRecord's index in entry->pathBlocks_0x304 */
+    /* firstRecord's index in entry->pathBlocks_0x304 */
     Sint32 blockIndex,
     /* Distance along the path to skip before sampling */
     float startProgress,

@@ -4,17 +4,16 @@ declare(strict_types=1);
 
 use Lhsazevedo\Sh4ObjTest\TestCase;
 
-// TrafficPathScanFirst_8c02f0c8(self, entry, firstScriptArg, flag, startProgress, window):
+// TrafficPathScanFirst_8c02f0c8(self, entry, firstRecord, blockIndex, startProgress, window):
 // walks startProgress units along the path records starting at
-// firstScriptArg (no bounds check on this first walk -- a real asm quirk),
+// firstRecord (no bounds check on this first walk -- a real asm quirk),
 // then samples (x, z) positions every 5.0 units across the next `window`
 // units into var_samples_8c228b48 (cursor/bound var_sampleCursor_8c228b9c/var_sampleEnd_8c228ba0). Returns
 // the first sample's occupant: the player's bus sentinel (var_playerBus_8c1bbd9c) if
 // within 2.5 of either of its two tracked points, else the first live,
 // non-self task within 2.5 -- or NULL.
 //
-// Both real call sites pass startProgress = window = 8.0, so every test
-// here samples at path-progress 8.0 and 13.0 (two points, 5.0 apart).
+// Most tests here pass startProgress = window = 8.0, so they sample at path-progress 8.0 and 13.0 (two points, 5.0 apart).
 
 return new class extends TestCase {
     private function resolveSymbols(): void {
