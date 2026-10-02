@@ -302,14 +302,14 @@ data, so it does not fit the request role. Its purpose is still unconfirmed.
 
 Which cutscene fires at a stop is resolved by `02af78_event`. Each route
 (Shinjuku/Wangan/Ome) has an `EventEntry` table
-(`init_8c04b1f0`/`init_8c04abb0`/`init_8c04b920`); an entry is eligible for a
+(`init_shinjukuEvents_8c04b1f0`/`init_wanganEvents_8c04abb0`/`init_omeEvents_8c04b920`); an entry is eligible for a
 segment if its time-of-day matches the current course, its packed
 day-of-week mask contains the in-run day (`var_progress.days_0x00` -- so day-
 of-month IS an input, confirming the prior guess), and its packed
-prerequisite codes against progress flags pass. `scanEventCandidates_8c02b03c`
+prerequisite codes against progress flags pass. `EventScanCandidates_8c02b03c`
 computes eligible entries once per course load;
-`pickSegmentEvent_8c02b170` narrows to the current segment and randomly
-picks one, arming `var_cutsceneActive_8c1bb900`; `applyEventFlags_8c02b292`
+`EventPickForSegment_8c02b170` narrows to the current segment and randomly
+picks one, arming `var_cutsceneActive_8c1bb900`; `EventApplyFlags_8c02b292`
 then applies the chosen entry's actions once the cutscene plays: persistent
 progress flags, and/or a per-day "run flag" (`var_runEventFlags`) that lets an
 event fired on an earlier segment gate a later segment's pick. Run flags are
