@@ -89,8 +89,7 @@ typedef struct {
     int revealedCharCount_0x0c;
     int charRevealTimer_0x10;
     int bobAngle_0x14;
-    /* Never read or written -- the live voice cue is the same-offset
-     * InstructorDialogTask.voiceCuePtr_0x18, on the task, not here. */
+    /* Unused; the voice cues live in InstructorDialogTask.voiceCuePtr_0x18. */
     int *field_0x18;
 } InstructorDialogState;
 
@@ -143,9 +142,8 @@ STATIC Sint8 var_coursesToUnlock_8c225fd4[12];
  * ====================
  */
 
-/* These two are defined after the functions, so that the shared "" literal is
-   first seen in code (MessageBoxSwapFor_8c02aefc("")) and lands at the
-   head of the constant pool. */
+/* Defined after the functions so the shared "" literal is first seen in code
+   and lands at the head of the constant pool. */
 STATIC CourseMenuButton init_courseMenuButtons_8c04442c[COURSE_BUTTON_COUNT];
 STATIC ResourceGroupInfo init_courseResourceGroup_8c044d40;
 
@@ -163,9 +161,7 @@ Uint8 init_routeInfoTime_8c044d2e[3 * 3 * 2];
  * ====================
  */
 
-/**
- * Returns 1 if the cursor has reached its target position, 0 otherwise.
- */
+/* Returns 1 once the cursor reaches its target. */
 int CourseMenuInterpolateCursor_8c016d2c()
 {
     var_menuState_8c1bc7a8.pos.cursor.cursor_0x20.x += var_menuState_8c1bc7a8.cursorVelocity_0x30.x;
@@ -565,14 +561,12 @@ STATIC void buildStoryDialogQueue_8c017420(void)
 {
     int cur = 0;
 
-    // Nothing to report
     if (var_runReportPending_8c1bb8b8 == 0) {
         var_dialogQueue_8c225fbc[cur++] = INSTR_STORY_CHOOSE_COURSE;
         var_dialogQueue_8c225fbc[cur]   = -1;
         return;
     }
 
-    // On the first day, show the intro briefing
     if (var_progress_8c1ba1cc.days_0x00 == 1) {
         var_dialogQueue_8c225fbc[cur++] = INSTR_STORY_INTRO;
         var_dialogQueue_8c225fbc[cur++] = INSTR_STORY_CHOOSE_COURSE;
@@ -580,7 +574,6 @@ STATIC void buildStoryDialogQueue_8c017420(void)
         return;
     }
 
-    // Yesterday was a practice run, not a course
     if (var_runWasPractice_8c1bb8bc != 0) {
         var_dialogQueue_8c225fbc[cur++] = INSTR_GOOD_PRACTICE;
         var_dialogQueue_8c225fbc[cur++] = INSTR_STORY_CHOOSE_COURSE;
@@ -598,7 +591,6 @@ STATIC void buildStoryDialogQueue_8c017420(void)
         var_dialogQueue_8c225fbc[cur++] = award_seq;
     }
 
-    // Course unlocked
     if (CourseMenuBuildCourseUnlockList_8c0172dc() != 0) {
         var_dialogQueue_8c225fbc[cur++] = INSTR_COURSE_UNLOCKED;
     }
@@ -697,7 +689,6 @@ STATIC void storyMenuTask_8c017718(Task * task, void *state)
                 for (row = 0; row < 3; row++) {
                     int col;
                     for (col = 0; col < 3; col++) {
-                        // Skip 2: the first two entries of each row are not course buttons.
                         init_courseMenuButtons_8c04442c[2 + row * 5 + col].unlocked_0x04 =
                             var_progress_8c1ba1cc.courses_0x44[row * 3 + col].unlocked_0x00;
                     }
@@ -851,7 +842,6 @@ STATIC void freeRunMenuTask_8c017ada(Task * task, void *state)
                 for (row = 0; row < 3; row++) {
                     int col;
                     for (col = 0; col < 3; col++) {
-                        // Skip 2: the first two entries of each row are not course buttons.
                         init_courseMenuButtons_8c04442c[2 + row * 5 + col].unlocked_0x04 =
                             var_progress_8c1ba1cc.courses_0x44[row * 3 + col].unlocked_0x00;
                     }
@@ -972,8 +962,7 @@ STATIC void buildFreeRunDialogQueue_8c017a20(void)
     var_shouldShowFreeRunIntro_8c1bb8c0 = 0;
 }
 
-/* Park the cursor on the current button and rebuild the grid's flags from
-   PlayerProgress. Run on every entry to the screen, never per frame. */
+/* Also snaps the cursor onto the current button. */
 STATIC void refreshCourseGrid_8c017d54(void)
 {
     int enabled;
@@ -984,7 +973,6 @@ STATIC void refreshCourseGrid_8c017d54(void)
 
     startCursorMove_8c016dc6();
 
-    // Snap current cursor position to its target
     var_menuState_8c1bc7a8.pos.cursor.cursor_0x20 = var_menuState_8c1bc7a8.pos.cursor.cursorTarget_0x28;
 
     // PROFILE FILE and ALBUM are story-mode only
@@ -997,7 +985,7 @@ STATIC void refreshCourseGrid_8c017d54(void)
         int col;
         for (col = 0; col < 3; col++) {
             int courseIdx = row * 3 + col;
-            int buttonIdx = 2 + row * 5 + col; // offset by 2 each row
+            int buttonIdx = 2 + row * 5 + col;
             init_courseMenuButtons_8c04442c[buttonIdx].unlocked_0x04 =
                 game_mode == 0
                     ? var_progress_8c1ba1cc.courses_0x44[courseIdx].unlocked_0x00
@@ -1046,10 +1034,8 @@ void CourseMenuEnter_8c017e18(Task *task)
     CHANGE_STATE(COURSE_MENU_STATE_INIT);
 }
 
-/* Rebuilds the course menu's task stack (GameTask plus the story or
- * free-run menu task, depending on var_gameMode_8c1bb8fc) and resets its
- * state to INIT. Called by other screens (Profile File, Pause, Album,
- * the debug menu) when leaving back to the course menu. */
+/* Spawns the menu's tasks from scratch, where CourseMenuEnter_8c017e18
+ * switches an existing task. */
 void CourseMenuReturn_8c017ef2(void)
 {
     Task *createdTask;
@@ -1138,10 +1124,8 @@ STATIC void drawRouteInfo_8c018118(void)
 {
     int index = var_menuState_8c1bc7a8.cursorRow_0x40 * 6 + (var_menuState_8c1bc7a8.cursorCol_0x3c - 2) * 2;
 
-    // Draw day
     drawFixedInteger_8c01803e(219.0, 108.0, var_progress_8c1ba1cc.days_0x00, 0);
 
-    // Draw weekday sprite
     SpriteDraw_8c014f54(
         &var_menuState_8c1bc7a8.resourceGroupB_0x0c,
         getWeekDayIndex_8c016ed2() + 0x16,
@@ -1150,11 +1134,9 @@ STATIC void drawRouteInfo_8c018118(void)
         -4.0
     );
 
-    // Draw hour and minute
     drawFixedInteger_8c01803e(421.0, 108.0, init_routeInfoTime_8c044d2e[index], 2);
     drawFixedInteger_8c01803e(471.0, 108.0, init_routeInfoTime_8c044d2e[index + 1], 2);
 
-    // Draw route info
     SpriteDraw_8c014f54(
         &var_menuState_8c1bc7a8.resourceGroupB_0x0c,
         var_menuState_8c1bc7a8.cursorRow_0x40 + 9,
@@ -1284,7 +1266,6 @@ STATIC void courseConfirmMenuTask_8c0181b6(Task * task, void *state)
         }
     }
 
-    /* Reached only by the states that break; the ROUTE INFO ones return above. */
     SpriteDraw_8c014f54(
         &var_menuState_8c1bc7a8.resourceGroupB_0x0c,
         var_menuState_8c1bc7a8.courseId_0x50 / 3,
@@ -1293,7 +1274,7 @@ STATIC void courseConfirmMenuTask_8c0181b6(Task * task, void *state)
         -4.0
     );
 
-    // Confirm/cancel prompt (sprite id = selected_0x38 + 2)
+    // Confirm/cancel prompt
     SpriteDraw_8c014f54(
         &var_menuState_8c1bc7a8.resourceGroupA_0x00,
         var_menuState_8c1bc7a8.selected_0x38 + 2,
@@ -1395,7 +1376,7 @@ void CourseMenuFreeResourceGroup_8c0185c4(ResourceGroup *res_group)
  */
 
  /*
-  * Cursor index is cursorCol_0x3c + cursorRow_0x40 * 5 (other screens park it here too).
+  * Cursor index is cursorCol_0x3c + cursorRow_0x40 * 5.
   * Columns 2-4 are the course grid, one row per route, one column per departure;
   * courseId is 3 * the courses_0x44 index.
   *

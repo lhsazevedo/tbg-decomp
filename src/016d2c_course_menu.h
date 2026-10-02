@@ -1,4 +1,4 @@
-/* 8c016d2c: COURSE SELECT screen, its confirm/ROUTE INFO sub-screen, and the
+/* COURSE SELECT screen, its confirm/ROUTE INFO sub-screen, and the
  * instructor dialog machinery every menu shares. */
 #ifndef _COURSE_MENU_H
 #define _COURSE_MENU_H
@@ -36,7 +36,7 @@ enum {
     INSTR_FORCE_PRACTICE        = 16,
     INSTR_FINAL_DAY             = 17,
 
-    // --- Lesson Mode (01e27c_practice_menu builds the queue) ---
+    // --- Lesson Mode ---
     INSTR_LESSON_INTRO          = 18,
     INSTR_LESSON_COMPLETE       = 19,
     INSTR_LESSON_NEXT           = 20,
@@ -53,21 +53,12 @@ enum {
     INSTR_LESSON_FAIL_MAJOR     = 31,
 
     // --- Driving Mistakes / Penalties ---
-    // Raised only in practice mode: 02b464_grading.c grades penalties
-    // through adjust_8c02b464(msgSet, delta), where msgSet is a LOCAL id
-    // (see PENALTY_MSG_* in 02b464_grading.c), not one of these. The
-    // practice lesson list (01e27c_practice_menu.c) converts the run's
-    // single worst msgSet to one of these INSTR_* ids via
-    // init_penaltyMsgSetInstr_8c045208[] and shows it as the lesson's
-    // closing comment. Story/free-run results (01d7fc_results.c) never
-    // consult that table -- only practice mode surfaces a per-offense
-    // instructor line; story/free-run show just the pass/fail badge.
-    // COLLISION_CAR_SEVERE, OFF_COURSE_MAJOR, NO_SIGNAL_TURN and
-    // BAD_STOP_POSITION_2 never appear as a value in that table, so as far
-    // as traced they are defined but never actually shown.
+    // Practice mode only: a lesson closes on the run's worst penalty, mapped
+    // from its PENALTY_MSG_* id through init_penaltyMsgSetInstr_8c045208.
+    // The ones marked "never raised" are not in that table.
     INSTR_COLLISION_CAR_MINOR   = 32,
     INSTR_COLLISION_CAR_MEDIUM  = 33,
-    INSTR_COLLISION_CAR_SEVERE  = 34, // never raised (see above)
+    INSTR_COLLISION_CAR_SEVERE  = 34, // never raised
     INSTR_COLLISION_CAR_FATAL   = 35,
     INSTR_COLLISION_WALL_MINOR  = 36,
     INSTR_COLLISION_WALL_MEDIUM = 37,
@@ -75,13 +66,13 @@ enum {
     INSTR_NEAR_MISS_PEDESTRIAN  = 39,
     INSTR_OFF_COURSE_MINOR      = 40,
     INSTR_OFF_COURSE_MEDIUM     = 41,
-    INSTR_OFF_COURSE_MAJOR      = 42, // never raised (see above)
+    INSTR_OFF_COURSE_MAJOR      = 42, // never raised
     INSTR_SPEEDING_MINOR        = 43,
     INSTR_SPEEDING_MAJOR        = 44,
     INSTR_WRONG_LANE            = 45,
     INSTR_LANE_STRADDLE         = 46,
     INSTR_NO_SIGNAL             = 47,
-    INSTR_NO_SIGNAL_TURN        = 48, // never raised (see above)
+    INSTR_NO_SIGNAL_TURN        = 48, // never raised
     INSTR_BLANK                 = 49, // empty dialog sequence
     INSTR_SIGNAL_VIOLATION      = 50,
     INSTR_BAD_STOP_LINE         = 51,
@@ -93,7 +84,7 @@ enum {
     INSTR_SWERVING              = 57,
     INSTR_MISSED_STOP           = 58,
     INSTR_BAD_STOP_POSITION_1   = 59,
-    INSTR_BAD_STOP_POSITION_2   = 60, // never raised (see above)
+    INSTR_BAD_STOP_POSITION_2   = 60, // never raised
     INSTR_TIME_MANAGEMENT       = 61,
     INSTR_ANNOUNCEMENT          = 62,
     INSTR_DOOR_OPERATION        = 63,
