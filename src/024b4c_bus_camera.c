@@ -28,21 +28,16 @@ float var_mirrorLightDir_8c227dc4[3];
 float var_farClipDepth_8c227dd0;
 int var_demoShotId_8c227dd4;
 
-/* Five prev/current float pairs, each shifted (dd8->ddc, de0->de4, de8->dec,
- * df0->df4, df8->dfc) every frame by BusCameraSaveState_8c024b4c. */
 STATIC float var_cameraHeightFrom_8c227dd8;
 STATIC float var_savedCameraHeightFrom_8c227ddc;
 STATIC float var_cameraHeightTo_8c227de0;
 STATIC float var_savedCameraHeightTo_8c227de4;
 STATIC float var_cameraHeightDelta_8c227de8;
 STATIC float var_savedCameraHeightDelta_8c227dec;
-/* The chase camera's height above the bus, passed to
- * positionCamera_8c024d6c as its dyOffset. 5.0 near / 18.0 far by
- * default; scripted cues ramp it to another value and back. */
+/* Chase camera height above the bus: 5.0 near / 18.0 far by default. */
 STATIC float var_cameraHeight_8c227df0;
 STATIC float var_savedCameraHeight_8c227df4;
-/* BusCameraUpdate_8c025078's quarter-sine ease-angle accumulator
- * (BAMS units, 0 to 0x4000) -- a real int (MOV.L/ADD/CMP/GE), not float. */
+/* Quarter-sine ease angle, BAM 0..0x4000. */
 STATIC Sint32 var_cameraHeightPhase_8c227df8;
 STATIC Sint32 var_savedCameraHeightPhase_8c227dfc;
 
@@ -69,7 +64,6 @@ void BusCameraSaveState_8c024b4c(void)
     var_savedCameraHeightPhase_8c227dfc = var_cameraHeightPhase_8c227df8;
 }
 
-/* See the header. */
 void BusCameraRestoreState_8c024b86(void)
 {
     var_cameraMode_8c227d9c = var_savedCameraMode_8c227da0;
@@ -82,7 +76,6 @@ void BusCameraRestoreState_8c024b86(void)
     BusCameraApplyMode_8c024f32();
 }
 
-/* See the header. */
 void BusCameraApplyMode_8c024f32(void)
 {
     float dx = 0.0f;
@@ -111,12 +104,6 @@ void BusCameraApplyMode_8c024f32(void)
     var_busState_8c1bb9d0.posZ_0x304 = var_busState_8c1bb9d0.posZ_0x0fc + dz;
 }
 
-/* Lights, textures and draws the third-person bus model with its door/etc
- * shape motion. altLight selects the alternate light direction
- * (var_mirrorLightDir_8c227dc4) when non-NULL, else the default (var_busSimpleLightDir) --
- * it is otherwise unused. The drawn object is always busState.modelLarge_0x00c;
- * only the animation frame depends on the special bus substate
- * (doorState_0x3c0 != 0 -> var_busDoorFrame_8c227db0, else frame 0). */
 void BusCameraDrawBusModel_8c024bb8(void *altLight)
 {
     float *dir = altLight ? var_mirrorLightDir_8c227dc4 : var_busSimpleLightDir_8c227db8;
@@ -139,10 +126,6 @@ void BusCameraDrawBusModel_8c024bb8(void *altLight)
     njControl3D(NJD_CONTROL_3D_MODEL_CLIP);
 }
 
-/* Lights, textures and draws the front (dashboard-view) bus model --
- * unconditionally with the default light direction and frame-less
- * (njCnkSimpleDrawObject, no shape motion). Reachable only via a function
- * pointer in BusCameraUpdate_8c025078's literal pool, not by any BSR/JSR in this unit. */
 STATIC void drawFrontBusModel_8c024cc8(void)
 {
     njCnkSetSimpleLight(var_busSimpleLightDir_8c227db8[0],
@@ -158,23 +141,10 @@ STATIC void drawFrontBusModel_8c024cc8(void)
     njCnkSimpleDrawObject((NJS_CNK_OBJECT *)var_frontNj_8c1bc434);
 }
 
-/* Drives the gameplay camera, outside demo playback.
- *
- * First eases var_cameraHeight_8c227df0, the chase camera's height above the
- * bus, from var_cameraHeightFrom_8c227dd8 toward a target via a quarter-sine
- * ramp over var_cameraHeightPhase_8c227df8, driven by a state machine on
- * var_cameraCueState_8c227da4 (0..3) gated by a scripted cue nibble in
- * busState.markAudioCue_0x3b8's bits 24-27: nonzero-and-not-9 ramps toward the
- * height encoded in that nibble, an exact 9 ramps back toward the mode's own
- * default (5.0 near, 18.0 far). Y button cycles var_cameraMode_8c227d9c
- * (0..3) when allowed.
- *
- * Then positions/aims the camera per var_cameraMode_8c227d9c, activates it,
- * recomputes the simple light direction from the course's primary light,
- * and queues the appropriate bus draw (front dashboard model for mode 0,
- * third-person model for modes 2/3, none otherwise). */
 void BusCameraUpdate_8c025078(void)
 {
+    /* Scripted height cue: 9 eases back to the mode's default height, any
+     * other nonzero value eases to that height. */
     Sint32 cue = var_busState_8c1bb9d0.markAudioCue_0x3b8 & 0x0F000000;
     float pitchOffset;
     Sint32 ang;
@@ -351,7 +321,7 @@ void BusCameraUpdate_8c025078(void)
         break;
     }
 
-    /* Modes 0/1 additionally roll the camera by the road's pitch. */
+    /* Roll by the road's pitch. */
     if (var_cameraMode_8c227d9c == BUS_CAMERA_COCKPIT || var_cameraMode_8c227d9c == BUS_CAMERA_FIRST_PERSON) {
         float roll = atan2f(var_busState_8c1bb9d0.posHistory_0x100[2].y
                              - var_busState_8c1bb9d0.posHistory_0x100[3].y,
@@ -374,13 +344,8 @@ void BusCameraUpdate_8c025078(void)
     }
 }
 
-/* Moves busState's draw position (posX_0x2fc/posY_0x300/posZ_0x304) dist
- * along the unit vector from the current position (posX_0x0f4/posZ_0x0fc)
- * toward it, dyOffset in Y; when the resulting bearing change from the
- * bus's stored heading (headingX_0x230/headingZ_0x238) exceeds ~5 degrees, clamps
- * the turn rate and rotates the move by the clamped amount instead. Then
- * points the camera at the new position, with its interest aimed at the
- * unmoved position offset by interestDyOffset in Y. */
+/* Trails the camera dist behind the bus, dyOffset above it. Past ~5 degrees
+ * off the bus heading it swings round at a limited rate. */
 STATIC void positionCamera_8c024d6c(float dist, float dyOffset, float interestDyOffset)
 {
     NJS_POINT3 *groundPt = &var_groundQueryPoint_8c1bc460;
@@ -455,14 +420,6 @@ STATIC void positionCamera_8c024d6c(float dist, float dyOffset, float interestDy
                            posZ0);
 }
 
-/* No-op unless busState.mirror_0x268 is nonzero. Otherwise picks a
- * local mirror-camera offset/interest by mirror_0x268 (1/2/3, else stale),
- * rotates the offset into world space by the bus's world matrix
- * (worldMatrix_0x084), positions the separate mirror camera (var_mirrorCamera_8c1bb944)
- * there, points its interest at the same-rotated per-mode interest
- * vector, rolls it by recent Y waypoint history, activates it, and queues
- * BusCameraDrawBusModel_8c024bb8 on draw layer 1 with the alt light direction
- * (var_mirrorLightDir_8c227dc4, recomputed here from the course's primary light). */
 void BusCameraUpdateMirror_8c025604(void)
 {
     float offsetX, offsetY, offsetZ;
@@ -477,11 +434,8 @@ void BusCameraUpdateMirror_8c025604(void)
     njInitCamera(&var_mirrorCamera_8c1bb944);
     njSetCameraAngle(&var_mirrorCamera_8c1bb944, 9102);
 
-    /* offsetY/interestY and offsetZ default to these for every mode below;
-     * the mirror_0x268 default case (neither 1, 2 nor 3) leaves
-     * offsetX/interestX/interestZ genuinely uninitialized here, matching
-     * the original asm exactly (that path is otherwise unreachable, since
-     * the only writer of mirror_0x268 is documented elsewhere as 0..3). */
+    /* An out-of-range mirror_0x268 leaves offsetX and interest uninitialized,
+     * as in the original. */
     offsetY = 4.2f;
     offsetZ = -14.2f;
 
@@ -514,8 +468,6 @@ void BusCameraUpdateMirror_8c025604(void)
 
     njSetCameraDepth(&var_mirrorCamera_8c1bb944, -1.0f, -50.0f);
 
-    /* Both the offset and the interest point are rotated into world space
-     * by the bus's world matrix. */
     njCalcPoint(&var_busState_8c1bb9d0.worldMatrix_0x084,
                 (NJS_POINT3 *)&var_busState_8c1bb9d0.mirrorWorldOffsetX_0x318,
                 (NJS_POINT3 *)&var_busState_8c1bb9d0.mirrorWorldOffsetX_0x318);
