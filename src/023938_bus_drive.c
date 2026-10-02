@@ -19,9 +19,7 @@
  * ====================
  */
 
-/* var_busState_8c1bb9d0.groundProbeFn_0x2c8's real signature: set by 023310_bus_init
- * to GroundQueryFindPolygon_8c020914 or one of the GroundProbe* variants
- * (020b6c_ground_probe.h), all sharing this shape. */
+/* groundProbeFn_0x2c8's real signature. */
 typedef void (*GroundQueryFn)(float x, float y, float z, GroundQueryResult *out);
 
 /* ====================
@@ -29,11 +27,6 @@ typedef void (*GroundQueryFn)(float x, float y, float z, GroundQueryResult *out)
  * ====================
  */
 
-/* Resets the bus's drivetrain to idle: winds the engine ramp
- * (rpmRampAngle_0x2e4) back to zero, drops out of gear unless already in
- * reverse (5), and puts driveState_0x2b4 into the knockback state (2). Called
- * by handleBump_8c02b6d4 (02b464) after a collision and internally after a
- * braking-sound update. */
 void BusDriveEnterKnockback_8c023bce(void)
 {
     var_busState_8c1bb9d0.rpmRampAngle_0x2e4 = 0;
@@ -43,10 +36,6 @@ void BusDriveEnterKnockback_8c023bce(void)
     var_busState_8c1bb9d0.driveState_0x2b4 = 2;
 }
 
-/* Plays a braking-pitch sound cue keyed by speed_0x27c, damps speed_0x27c
- * toward it, and marks var_wallHitBits_8c228660's corresponding bit, then stops the
- * drivetrain (BusDriveEnterKnockback_8c023bce). Called by BusDriveApplyGround_8c023cba whenever the
- * lane-offset path data isn't ready. */
 STATIC void hitWall_8c023bea(void)
 {
     if (var_busState_8c1bb9d0.speed_0x27c < 0.1388889f) {
@@ -66,14 +55,6 @@ STATIC void hitWall_8c023bea(void)
     BusDriveEnterKnockback_8c023bce();
 }
 
-/* Rebuilds the bus's steering-correction direction (dir_x_0x29c/dir_z_0x2a0
- * and their scaled mirrors dir_x2_0x2ac/dir_z2_0x2b0) from the corner
- * ground-probe results BusDriveSampleGround_8c023938 filled into groundSamples_0x190, then
- * averages two pairs of those probes' interpolated heights into
- * posY_0x0f8/posHistory_0x100[0].y and fans those out to the lane-offset
- * posHistory entries used for steering lookahead. Called by BusInitStart_8c023610
- * (023310_bus_init) and BusTask_8c022bdc (022bdc) once per frame while
- * driving. */
 void BusDriveApplyGround_8c023cba(void)
 {
     GroundQueryResult *gs = var_busState_8c1bb9d0.groundSamples_0x190;
@@ -82,9 +63,6 @@ void BusDriveApplyGround_8c023cba(void)
     int skipUpdate = 0;
 
     if (gs[6].attr_0x00 == 0 || gs[7].attr_0x00 == 0) {
-        /* Neither of this frame's forward-lookahead probes hit a polygon --
-         * bail out to the braking path and just mirror the last-known
-         * heading vector (headingX_0x230/0x238) into the steering fields. */
         hitWall_8c023bea();
         var_busState_8c1bb9d0.dir_x2_0x2ac = var_busState_8c1bb9d0.headingX_0x230;
         var_busState_8c1bb9d0.dir_x_0x29c = var_busState_8c1bb9d0.headingX_0x230;
@@ -142,14 +120,6 @@ void BusDriveApplyGround_8c023cba(void)
     hist[10].y = hist[0].y;
 }
 
-/* Computes 10 corner/lookahead ground-sample points around the bus from its
- * heading (posHistory_0x100[0] vs posX_0x0f4/posZ_0x0fc) and queries each
- * through the ground-query callback in groundProbeFn_0x2c8 (GroundQueryFindPolygon_
- * 8c020914 or a GroundProbe* variant, all sharing the same (x,y,z,out)
- * signature), filling groundSamples_0x190. Also seeds posHistory_0x100[0]/[1]
- * (no probe for those two) and the heading unit vector headingDirX_0x274/0x278.
- * Called by placeBus_8c023310/BusInitStart_8c023610 (023310_bus_init) and
- * BusTask_8c022bdc (022bdc). */
 void BusDriveSampleGround_8c023938(void)
 {
     GroundQueryFn query = (GroundQueryFn)var_busState_8c1bb9d0.groundProbeFn_0x2c8;
@@ -165,8 +135,6 @@ void BusDriveSampleGround_8c023938(void)
     float lat, lon;
     float baseX, baseZ;
 
-    /* Write order matters here (Ghidra reorders these): headingDirX_0x274/0x278
-     * land before headingX_0x230/0x238 in the real asm. */
     var_busState_8c1bb9d0.headingDirX_0x274 = ndx;
     var_busState_8c1bb9d0.headingDirZ_0x278 = ndz;
     var_busState_8c1bb9d0.headingX_0x230 = ndx * 4.9f;
@@ -196,11 +164,9 @@ void BusDriveSampleGround_8c023938(void)
     hist[5].z = origZ - lon;
     query(hist[5].x, hist[5].y, hist[5].z, &gs[3]);
 
-    /* Same x/z formula as hist[4] -- a separate probe slot (gs[8]) for the
-     * same point. hist[11] below is the partner hist[5] should have been:
-     * hist[5] is built from origX/origZ, so it lands on hist[3]'s point
-     * instead of the lookahead pair's, and gs[3] ends up a second copy of
-     * gs[1]. Both quirks are the original's; the dual-object test pins them. */
+    /* Original quirks: hist[10] repeats hist[4]'s point, and hist[5], built
+     * from origX/origZ instead of hist[1], lands on hist[3]'s, so gs[3]
+     * duplicates gs[1]. hist[11] is what hist[5] should have been. */
     hist[10].x = hist[1].x - lat;
     hist[10].z = hist[1].z + lon;
     query(hist[10].x, hist[10].y, hist[10].z, &gs[8]);
@@ -232,13 +198,6 @@ void BusDriveSampleGround_8c023938(void)
     query(hist[9].x, hist[0].y, hist[9].z, &gs[7]);
 }
 
-/* Walks the current route line segment forward by the bus's per-frame move
- * distance to find the next lane-crossing point, then confirms it against
- * the crossing segment via IntersectSegments_8c0206f0. Advances through
- * var_lineNodes_8c227d88's linked segment records (leftLane_0x00/rightLane_0x02,
- * falling back to fallbackNext_0x0a when a segment runs out of points) and
- * indexes var_lineSegments_8c227d84 for each segment's point list. Called once per frame
- * by BusTask_8c022bdc (022bdc). */
 void BusDriveFindLaneTarget_8c023e7e(void)
 {
     LineBusSegment *segs = var_lineSegments_8c227d84;
@@ -268,9 +227,7 @@ void BusDriveFindLaneTarget_8c023e7e(void)
     if (var_busState_8c1bb9d0.laneTargetSearchSide_0x338 == 0) {
         idx = nodes[var_busState_8c1bb9d0.currentLineNodeIdx_0x33c].leftLane_0x00;
     } else {
-        /* laneTargetSearchSide_0x338 only ever holds 0, 1 or 2 (024280_bus_input.c) and 2 already
-         * returned above, so this covers 1 -- the original leaves the
-         * register unset for any other value. */
+        /* 1; the original leaves idx unset for any other value. */
         idx = nodes[var_busState_8c1bb9d0.currentLineNodeIdx_0x33c].rightLane_0x02;
     }
 
@@ -345,9 +302,7 @@ void BusDriveFindLaneTarget_8c023e7e(void)
             }
         }
 
-        /* Preserves the original bug documented on var_midiHandles_8c0fcd28:
-         * this call passes the array's address, not a live SDMIDI handle
-         * value (unlike every other sdMidiPlay call site in this codebase). */
+        /* Original bug: passes the handle array's address, not a handle. */
         sdMidiPlay((SDMIDI)(int)&var_midiHandles_8c0fcd28[0], 1, 2, 0);
     }
 
