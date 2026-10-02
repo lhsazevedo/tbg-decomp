@@ -19,7 +19,7 @@
 #include "scif.h"
 #include "011120_asset_queues.h"
 #include "013ae8_route.h"
-#include "02b464_grading.h" /* GradeReset_8c02c46a */
+#include "02b464_grading.h" /* GradeSpawnTask_8c02c46a */
 #include "020214_drive_cue.h" /* DriveCueInit_8c020528 */
 #include "014b8c_backup.h"
 #include "018644_file_select.h"
@@ -525,7 +525,7 @@ void GameEnterDrive_8c01306e(void)
     TrafficInit_8c02769e();
     TileDrawSpawnTask_8c0222dc();
     ObjectsSpawnTasks_8c02a6ac();
-    GradeReset_8c02c46a();
+    GradeSpawnTask_8c02c46a();
     HudSpawnTask_8c02018c();
     StopSpawnInit_8c02d968();
     DriveCueInit_8c020528();

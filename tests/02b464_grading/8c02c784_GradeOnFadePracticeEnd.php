@@ -23,7 +23,7 @@ return new class extends TestCase {
         $this->resolveSymbols();
         $this->initUint32($this->addressOf('_var_runState_8c2285c4') + 0x0c, 1);
 
-        $this->call('_GradeOnFadeDriveEnd_8c02c784');
+        $this->call('_GradeOnFadePracticeEnd_8c02c784');
 
         $this->shouldCall('_GradeRunComplete_8c02c586')->andReturn(0);
 
@@ -43,7 +43,7 @@ return new class extends TestCase {
         $this->initUint32($this->addressOf('_var_runState_8c2285c4') + 0x0c, 0);
         $this->initUint32($this->addressOf('_var_practiceLesson_8c22640c'), 7);
 
-        $this->call('_GradeOnFadeDriveEnd_8c02c784');
+        $this->call('_GradeOnFadePracticeEnd_8c02c784');
 
         // GradeRunComplete_8c02c586 is the left operand of the && so it's still called
         // even though driverPoints <= 0 makes the overall condition false.
@@ -54,7 +54,7 @@ return new class extends TestCase {
         $this->shouldWriteLong($this->addressOf('_var_runWasPractice_8c1bb8bc'), 1);
         $this->shouldWriteLong($this->addressOf('_var_runSucceeded_8c1bb8dc'), 0);
 
-        $this->shouldCall('_beginDriveEnd_8c02c738')->andReturn(0);
+        $this->shouldCall('_enterDriveEnd_8c02c738')->andReturn(0);
     }
 
     public function test_points_earned_goes_straight_to_practice_retry(): void
@@ -63,7 +63,7 @@ return new class extends TestCase {
         $this->initUint32($this->addressOf('_var_runState_8c2285c4') + 0x0c, 5);
         $this->initUint32($this->addressOf('_var_practiceLesson_8c22640c'), 3);
 
-        $this->call('_GradeOnFadeDriveEnd_8c02c784');
+        $this->call('_GradeOnFadePracticeEnd_8c02c784');
 
         $this->shouldCall('_GradeRunComplete_8c02c586')->andReturn(1);
 

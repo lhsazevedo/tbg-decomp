@@ -12,7 +12,7 @@ return new class extends TestCase {
 
         $this->call('_gradeOffCourse_8c02b886');
 
-        $this->shouldCall('_adjust_8c02b464')->with(7, 0xffffffd8); // -40
+        $this->shouldCall('_adjustPoints_8c02b464')->with(7, 0xffffffd8); // -40
         $this->shouldCall('_armCooldowns_8c02b578')->with(2);
     }
 
@@ -23,7 +23,7 @@ return new class extends TestCase {
 
         $this->call('_gradeOffCourse_8c02b886');
 
-        $this->shouldCall('_adjust_8c02b464')->with(6, 0xfffffff1); // -15
+        $this->shouldCall('_adjustPoints_8c02b464')->with(6, 0xfffffff1); // -15
         $this->shouldCall('_armCooldowns_8c02b578')->with(2);
     }
 

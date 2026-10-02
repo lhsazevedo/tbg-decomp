@@ -47,7 +47,7 @@ return new class extends TestCase {
         $this->call('_gradeIntersection_8c02bb1c');
 
         $this->shouldCall('_SignalGetFrame_8c028900')->with(7)->andReturn(0);
-        $this->shouldCall('_adjust_8c02b464')->with(0x13, 0xffffffb0); // -80
+        $this->shouldCall('_adjustPoints_8c02b464')->with(0x13, 0xffffffb0); // -80
         $this->shouldCall('_armCooldowns_8c02b578')->with(5);
 
         $this->shouldWriteLong($base + 0x30, 0); // var_runState_8c2285c4.speedingCountdown_0x30 reset
@@ -105,7 +105,7 @@ return new class extends TestCase {
 
         $this->shouldWriteLong($base + 0x30, -1);
         $this->shouldWriteLong($base + 0x30, 0x78);
-        $this->shouldCall('_adjust_8c02b464')->with(10, 0xffffffe2); // -30
+        $this->shouldCall('_adjustPoints_8c02b464')->with(10, 0xffffffe2); // -30
     }
 
     public function test_speeding_counter_expires_at_low_speed(): void
@@ -119,7 +119,7 @@ return new class extends TestCase {
 
         $this->shouldWriteLong($base + 0x30, -1);
         $this->shouldWriteLong($base + 0x30, 0x78);
-        $this->shouldCall('_adjust_8c02b464')->with(9, 0xfffffff6); // -10
+        $this->shouldCall('_adjustPoints_8c02b464')->with(9, 0xfffffff6); // -10
     }
 
     public function test_lane_change_without_signal_applies_penalty(): void
@@ -141,7 +141,7 @@ return new class extends TestCase {
 
         $this->shouldWriteLong($base + 0x30, 0); // var_runState_8c2285c4.speedingCountdown_0x30 reset
 
-        $this->shouldCall('_adjust_8c02b464')->with(0xf, 0xfffffff8); // -8
+        $this->shouldCall('_adjustPoints_8c02b464')->with(0xf, 0xfffffff8); // -8
     }
 
     public function test_lane_change_with_correct_signal_is_a_no_op(): void
@@ -224,7 +224,7 @@ return new class extends TestCase {
 
         $this->shouldWriteLong($base + 0x30, 0); // var_runState_8c2285c4.speedingCountdown_0x30 reset
 
-        $this->shouldCall('_adjust_8c02b464')->with(0xf, 0xfffffff8); // -8
+        $this->shouldCall('_adjustPoints_8c02b464')->with(0xf, 0xfffffff8); // -8
         $this->shouldWriteLong($base + 0x50, 0);
     }
 };

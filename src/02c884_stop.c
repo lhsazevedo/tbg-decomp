@@ -21,7 +21,7 @@
 #include "02c884_stop.h" /* StopGetSegment_8c02cd6a */
 #include "022464_render.h" /* RenderQueueDraw_8c0223ea */
 #include "0100bc_sound.h" /* SndStartAdxFadeOut_8c010bae */
-#include "02b464_grading.h" /* GradeRunComplete_8c02c586, GradeOnFadeDriveEnd_8c02c784 */
+#include "02b464_grading.h" /* GradeRunComplete_8c02c586, GradeOnFadePracticeEnd_8c02c784 */
 
 /* ====================
  * Compiler Definitions
@@ -427,7 +427,7 @@ void StopUpdateArrival_8c02ce48(void)
             var_runState_8c2285c4.stopArrivalGrade_0x24 = 0;
             var_runState_8c2285c4.runPhase_0x00 = 4;
             var_runState_8c2285c4.driveEndHold_0x08 = 0x1e;
-            var_fadeCompleteCallback_8c22656c = GradeOnFadeDriveEnd_8c02c784;
+            var_fadeCompleteCallback_8c22656c = GradeOnFadePracticeEnd_8c02c784;
             if (0 < var_runState_8c2285c4.driverPoints_0x0c && GradeRunComplete_8c02c586() != 0) {
                 var_runState_8c2285c4.runPassed_0x04 = 1;
             }

@@ -5,22 +5,22 @@
 
 /* Per-run drive state. */
 typedef struct {
-    /* The run phase, stepped by taskCallback_8c02c072 (02b464): 0 = not
+    /* The run phase, stepped by runPhaseTask_8c02c072 (02b464): 0 = not
      * driving, 2 = driving and being graded, 3 = at the stop, 4 = wrapping up,
      * 5 = done. Several units gate their per-frame work on it. */
     int runPhase_0x00;
 
     /* Set when a drive ends with points left and every owed stop served -- by
      * StopUpdateArrival_8c02ce48 (02c884) on a finished stop, and by
-     * taskCallback_8c02c072 (02b464) on the phase-3 wrap-up. Cleared for the
-     * next drive by GradeReset_8c02c46a. DriveMsgDraw_8c02b388 (02b2f0)
+     * runPhaseTask_8c02c072 (02b464) on the phase-3 wrap-up. Cleared for the
+     * next drive by GradeSpawnTask_8c02c46a. DriveMsgDraw_8c02b388 (02b2f0)
      * is its only reader. */
     int runPassed_0x04;
 
     /* Frames left in run phase 4, the hold between the last grade and the
      * fade-in: loaded with 0x1e (1s) by whichever of
-     * StopUpdateArrival_8c02ce48 (02c884) or taskCallback_8c02c072 (02b464)
-     * steps the phase to 4, counted down by taskCallback_8c02c072, which moves
+     * StopUpdateArrival_8c02ce48 (02c884) or runPhaseTask_8c02c072 (02b464)
+     * steps the phase to 4, counted down by runPhaseTask_8c02c072, which moves
      * to phase 5 once it goes negative and the music has finished fading. */
     int driveEndHold_0x08;
 
@@ -60,7 +60,7 @@ typedef struct {
     int stopPhase_0x20;
 
     /* How the approach ended, written by StopUpdateArrival_8c02ce48 (02c884)
-     * and graded once by taskCallback_8c02c072's phase 3 (02b464): 0 = pulled up
+     * and graded once by runPhaseTask_8c02c072's phase 3 (02b464): 0 = pulled up
      * at the marker (graded on heading and turn signal), 2 = drove past the stop
      * segment (INSTR_MISSED_STOP, -20). Phase 3 also handles a 1
      * (INSTR_BAD_STOP_POSITION_1, -10) that nothing in the image ever writes. */
@@ -71,7 +71,7 @@ typedef struct {
     float stopMinDistance_0x28;
 
     /* Three per-offense counters of gradeSignals_8c02b8b8 / gradeLaneUse_8c02b986 /
-     * gradeIntersection_8c02bb1c (02b464), all cleared by GradeReset_8c02c46a.
+     * gradeIntersection_8c02bb1c (02b464), all cleared by GradeSpawnTask_8c02c46a.
      * wrongLaneCount counts frames off-course, and escalates INSTR_WRONG_LANE from
      * -10 to -50 after the first. speedingCountdown is reloaded to 120 on each
      * speeding dock and zeroed the moment the bus is back under the limit, so a
@@ -92,9 +92,9 @@ typedef struct {
      * Other slots unclear. */
     int field_0x38[8];
 
-    int field_0x58;
-    int field_0x5c;
-    int field_0x60;
+    int signalHeldFrames_0x58;
+    int hasMoved_0x5c;
+    int startIdleFrames_0x60;
 
     /* Level-crossing state machine and its stationary-on-the-tracks timer --
      * see gradeFrame_8c02bcd8 (02b464). */
@@ -102,13 +102,13 @@ typedef struct {
     int crossingStopTimer_0x68;
 
     /* The bus's lane, junctionARoadFlags2_0x358 masked with 0xf0000001,
-     * refreshed by taskCallback_8c02c072 (02b464) only on frames where the A and
+     * refreshed by runPhaseTask_8c02c072 (02b464) only on frames where the A and
      * B road probes agree. var_prevLane_8c228684 is the previous frame's copy,
      * and the difference is what the lane-change graders read. */
     int lane_0x6c;
 
     /* [0] is junctionARoadFlags2_0x358 masked with 0xf000000, refreshed by
-     * taskCallback_8c02c072 (02b464) in step with lane_0x6c;
+     * runPhaseTask_8c02c072 (02b464) in step with lane_0x6c;
      * var_prevLaneFlags_8c228688 is the previous frame's copy. [1]/[2] are the raw
      * junctionARoadFlags_0x34c / junctionBRoadFlags_0x368, stored after the graders
      * have run, so gradeLaneUse_8c02b986 sees last frame's 0x40000 turn-signal bit
@@ -159,9 +159,9 @@ extern RunState var_runState_8c2285c4;
 extern int var_wallHitBits_8c228660;
 
 /* Starts a drive: installs the master per-frame drive task
- * (taskCallback_8c02c072) and resets this unit's whole scratch scoring/
+ * (runPhaseTask_8c02c072) and resets this unit's whole scratch scoring/
  * state region for a fresh run. */
-void GradeReset_8c02c46a(void);
+void GradeSpawnTask_8c02c46a(void);
 
 /* Reports whether the run has reached the last stop it owes: a required
  * var_nextStopSegment_8c228710, picked by practice-lesson id when
@@ -172,6 +172,6 @@ int GradeRunComplete_8c02c586(void);
  * segment if the run still owes a stop, otherwise heads for the results or
  * lesson-retry screen. Installed by StopUpdateArrival_8c02ce48 (02c884)
  * and by this unit's own drive-end paths. */
-void GradeOnFadeDriveEnd_8c02c784(void);
+void GradeOnFadePracticeEnd_8c02c784(void);
 
 #endif // _02B464_GRADING_H

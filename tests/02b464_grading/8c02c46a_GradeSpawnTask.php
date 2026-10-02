@@ -21,9 +21,9 @@ return new class extends TestCase {
         $this->initUint32($this->addressOf('_var_busState_8c1bb9d0') + 0x34c, 0);
         $this->initUint32($this->addressOf('_var_busState_8c1bb9d0') + 0x368, 0);
 
-        $this->call('_GradeReset_8c02c46a');
+        $this->call('_GradeSpawnTask_8c02c46a');
 
-        // GradeReset_8c02c46a has an empty stack frame of its own
+        // GradeSpawnTask_8c02c46a has an empty stack frame of its own
         // beyond the two TaskSpawn out-params (created_task, created_state),
         // pushed right after the STS.L PR/ADD #-8,R15 prologue -- so their
         // addresses are the initial test stack pointer (16MiB-4, see
@@ -33,7 +33,7 @@ return new class extends TestCase {
         $this->shouldCall('_TaskSpawn_8c014ae8')
             ->with(
                 $this->addressOf('_var_tasks_8c1ba5e8'),
-                $this->addressOf('_taskCallback_8c02c072'),
+                $this->addressOf('_runPhaseTask_8c02c072'),
                 $sp0 - 12, // &created_task
                 $sp0 - 8, // &created_state
                 0
@@ -56,8 +56,8 @@ return new class extends TestCase {
         $this->shouldWriteLong($base + 0x50, 0); // var_runState_8c2285c4.field_0x38[6]
         $this->shouldWriteLong($base + 0x54, -1); // var_runState_8c2285c4.field_0x38[7]
 
-        $this->shouldWriteLong($base + 0x5c, 0); // var_runState_8c2285c4.field_0x5c
-        $this->shouldWriteLong($base + 0x60, 0); // var_runState_8c2285c4.field_0x60
+        $this->shouldWriteLong($base + 0x5c, 0); // var_runState_8c2285c4.hasMoved_0x5c
+        $this->shouldWriteLong($base + 0x60, 0); // var_runState_8c2285c4.startIdleFrames_0x60
         $this->shouldWriteLong($base + 0x64, 1); // var_runState_8c2285c4.crossingState_0x64
         $this->shouldWriteLong($base + 0x68, 0); // var_runState_8c2285c4.crossingStopTimer_0x68
         $this->shouldWriteLong($base + 0x6c, 0); // var_runState_8c2285c4.lane_0x6c

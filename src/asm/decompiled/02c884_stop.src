@@ -43,7 +43,7 @@
           .IMPORT     _var_fadeCompleteCallback_8c22656c
           .IMPORT     _GradeRunComplete_8c02c586
           .IMPORT     _SndStartAdxFadeOut_8c010bae
-          .IMPORT     _GradeOnFadeDriveEnd_8c02c784
+          .IMPORT     _GradeOnFadePracticeEnd_8c02c784
           .EXPORT     _StopKillTaskGroup_8c02ca96
           .EXPORT     _StopSetup_8c02caba
           .EXPORT     _StopUpdateHeadings_8c02ccc6
@@ -1056,7 +1056,7 @@ LP_GEN_27124:
           .DATA.L _var_busState_8c1bb9d0+H'27C ; H'8C02D050 (speed_0x27c)
           .DATA.L _var_nextStopSegment_8c228710 ; H'8C02D054
           .DATA.L H'FF000000 ; H'8C02D058
-          .DATA.L _GradeOnFadeDriveEnd_8c02c784 ; H'8C02D05C
+          .DATA.L _GradeOnFadePracticeEnd_8c02c784 ; H'8C02D05C
           .DATA.L _var_fadeCompleteCallback_8c22656c ; H'8C02D060
           .DATA.L _GradeRunComplete_8c02c586 ; H'8C02D064
           .DATA.L _SndStartAdxFadeOut_8c010bae ; H'8C02D068

@@ -41,7 +41,7 @@ return new class extends TestCase {
         $this->call('_handleBump_8c02b6d4');
 
         $this->shouldCall('_CollisionQueueTest_8c02e4ac')->andReturn(0x1234);
-        $this->shouldCall('_adjust_8c02b464')->with(0x1f, 0xffffff38); // -200
+        $this->shouldCall('_adjustPoints_8c02b464')->with(0x1f, 0xffffff38); // -200
         $this->shouldWriteLongTo('_var_cooldownCollision_8c228690', 0x7fff);
     }
 
@@ -116,7 +116,7 @@ return new class extends TestCase {
         $this->shouldWriteFloat($me + 0x2ac, -$this->f32(3.0 / 5.0));
         $this->shouldWriteFloat($me + 0x2b0, -$this->f32(4.0 / 5.0));
         $this->shouldCall('_VibStart_8c010f7a')->with(4);
-        $this->shouldCall('_adjust_8c02b464')->with(1, 0xffffffe2); // -30
+        $this->shouldCall('_adjustPoints_8c02b464')->with(1, 0xffffffe2); // -30
         $this->shouldCall('_armCooldowns_8c02b578')->with(1);
     }
 
@@ -207,7 +207,7 @@ return new class extends TestCase {
         $this->shouldWriteFloat($me + 0x2ac, -$this->f32(3.0 / 5.0));
         $this->shouldWriteFloat($me + 0x2b0, -$this->f32(4.0 / 5.0));
         $this->shouldCall('_VibStart_8c010f7a')->with(5);
-        $this->shouldCall('_adjust_8c02b464')->with(2, 0xffffffc4); // -60
+        $this->shouldCall('_adjustPoints_8c02b464')->with(2, 0xffffffc4); // -60
         $this->shouldCall('_armCooldowns_8c02b578')->with(1);
     }
 };

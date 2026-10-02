@@ -38,7 +38,7 @@ return new class extends TestCase {
 
         // Cross-unit, not yet decompiled (02b464) -- mock with shouldCall().
         //   _GradeRunComplete_8c02c586
-        //   _GradeOnFadeDriveEnd_8c02c784 (address only, not called directly)
+        //   _GradeOnFadePracticeEnd_8c02c784 (address only, not called directly)
     }
 
     private function initBusState(int $field0x3b0, int $field0x3b4, float $speed): int
@@ -336,7 +336,7 @@ return new class extends TestCase {
         $this->shouldWriteLong($this->addressOf('_var_runState_8c2285c4') + 0x24, 0);
         $this->shouldWriteLong($this->addressOf('_var_runState_8c2285c4'), 4);
         $this->shouldWriteLong($this->addressOf('_var_runState_8c2285c4') + 0x08, 0x1e);
-        $this->shouldWriteLongTo('_var_fadeCompleteCallback_8c22656c', $this->addressOf('_GradeOnFadeDriveEnd_8c02c784'));
+        $this->shouldWriteLongTo('_var_fadeCompleteCallback_8c22656c', $this->addressOf('_GradeOnFadePracticeEnd_8c02c784'));
         $this->shouldCall('_SndStartAdxFadeOut_8c010bae')->with(0);
         $this->shouldCall('_SndStartAdxFadeOut_8c010bae')->with(1);
     }
@@ -358,7 +358,7 @@ return new class extends TestCase {
         $this->shouldWriteLong($this->addressOf('_var_runState_8c2285c4') + 0x24, 0);
         $this->shouldWriteLong($this->addressOf('_var_runState_8c2285c4'), 4);
         $this->shouldWriteLong($this->addressOf('_var_runState_8c2285c4') + 0x08, 0x1e);
-        $this->shouldWriteLongTo('_var_fadeCompleteCallback_8c22656c', $this->addressOf('_GradeOnFadeDriveEnd_8c02c784'));
+        $this->shouldWriteLongTo('_var_fadeCompleteCallback_8c22656c', $this->addressOf('_GradeOnFadePracticeEnd_8c02c784'));
         $this->shouldCall('_GradeRunComplete_8c02c586')->with()->andReturn(1);
         $this->shouldWriteLong($this->addressOf('_var_runState_8c2285c4') + 0x04, 1);
         $this->shouldCall('_SndStartAdxFadeOut_8c010bae')->with(0);

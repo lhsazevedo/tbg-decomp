@@ -58,7 +58,7 @@ return new class extends TestCase {
 
         $this->call('_gradeLaneUse_8c02b986');
 
-        $this->shouldCall('_adjust_8c02b464')->with(0xb, 0xfffffff6); // -10
+        $this->shouldCall('_adjustPoints_8c02b464')->with(0xb, 0xfffffff6); // -10
         $this->shouldWriteLong($base + 0x2c, 1);
         $this->shouldCall('_armCooldowns_8c02b578')->with(4);
     }
@@ -75,7 +75,7 @@ return new class extends TestCase {
 
         $this->call('_gradeLaneUse_8c02b986');
 
-        $this->shouldCall('_adjust_8c02b464')->with(0xc, 0xffffffce); // -50
+        $this->shouldCall('_adjustPoints_8c02b464')->with(0xc, 0xffffffce); // -50
         $this->shouldWriteLong($base + 0x2c, 3);
         $this->shouldCall('_armCooldowns_8c02b578')->with(4);
     }
@@ -100,7 +100,7 @@ return new class extends TestCase {
         $this->call('_gradeLaneUse_8c02b986');
 
         $this->shouldWriteLong($base + 0x2c, 0);
-        $this->shouldCall('_adjust_8c02b464')->with(0x12, 0xfffffff6); // -10
+        $this->shouldCall('_adjustPoints_8c02b464')->with(0x12, 0xfffffff6); // -10
         $this->shouldCall('_armCooldowns_8c02b578')->with(4);
     }
 
@@ -147,7 +147,7 @@ return new class extends TestCase {
         $this->shouldWriteLong($base + 0x2c, 0);
 
         $this->shouldWriteLong($base + 0x44, 0);
-        $this->shouldCall('_adjust_8c02b464')->with(0xd, 0xfffffff6); // -10
+        $this->shouldCall('_adjustPoints_8c02b464')->with(0xd, 0xfffffff6); // -10
         $this->shouldWriteLong($base + 0x48, 1);
     }
 

@@ -44,9 +44,9 @@ return new class extends TestCase {
         $this->initUint32($busState + 0x3c0, 0); // bus_substate
         $this->initUint32($busState + 0x3c4, 0);
 
-        $this->initUint32($base + 0x58, 0); // var_runState_8c2285c4.field_0x58
-        $this->initUint32($base + 0x5c, 1); // var_runState_8c2285c4.field_0x5c armed -- skip idle timer branch
-        $this->initUint32($base + 0x60, 0); // var_runState_8c2285c4.field_0x60
+        $this->initUint32($base + 0x58, 0); // var_runState_8c2285c4.signalHeldFrames_0x58
+        $this->initUint32($base + 0x5c, 1); // var_runState_8c2285c4.hasMoved_0x5c armed -- skip idle timer branch
+        $this->initUint32($base + 0x60, 0); // var_runState_8c2285c4.startIdleFrames_0x60
         $this->initUint32($base + 0x64, 0); // var_runState_8c2285c4.crossingState_0x64
         $this->initUint32($base + 0x68, 0); // var_runState_8c2285c4.crossingStopTimer_0x68
         $this->initUint32($base + 0x6c, 0); // var_runState_8c2285c4.lane_0x6c
@@ -99,11 +99,11 @@ return new class extends TestCase {
         $this->shouldWriteLong($busPtr + 0x25c, 0);
         $this->shouldWriteLong($busPtr + 0x268, 0);
         $this->shouldWriteLong($base + 0x68, 0); // var_runState_8c2285c4.crossingStopTimer_0x68, reset
-        $this->shouldWriteLong($base + 0x58, 1); // var_runState_8c2285c4.field_0x58, signalSide_0x25c-unchanged counter
+        $this->shouldWriteLong($base + 0x58, 1); // var_runState_8c2285c4.signalHeldFrames_0x58, signalSide_0x25c-unchanged counter
 
         $this->shouldCall('_StopUpdateArrival_8c02ce48');
 
-        $this->shouldCall('_adjust_8c02b464')->with(0x20, 0xfffffffb); // -5
+        $this->shouldCall('_adjustPoints_8c02b464')->with(0x20, 0xfffffffb); // -5
         $this->shouldWriteLong(($this->addressOf('_var_driveCueState_8c2264b8') + 0x0c), 1);
         $this->shouldWriteLong($base + 0x18, 1); // var_runState_8c2285c4.runClock_0x18 incremented
     }
@@ -120,11 +120,11 @@ return new class extends TestCase {
         $this->call('_gradeFrame_8c02bcd8');
 
         $this->shouldWriteLong($base + 0x68, 0); // var_runState_8c2285c4.crossingStopTimer_0x68, reset
-        $this->shouldWriteLong($base + 0x58, 1); // var_runState_8c2285c4.field_0x58, signalSide_0x25c-unchanged counter
+        $this->shouldWriteLong($base + 0x58, 1); // var_runState_8c2285c4.signalHeldFrames_0x58, signalSide_0x25c-unchanged counter
 
         $this->shouldCall('_StopUpdateArrival_8c02ce48');
 
-        $this->shouldCall('_adjust_8c02b464')->with(0x20, 0xfffffffb); // -5
+        $this->shouldCall('_adjustPoints_8c02b464')->with(0x20, 0xfffffffb); // -5
         $this->shouldWriteLong(($this->addressOf('_var_driveCueState_8c2264b8') + 0x0c), 1);
         $this->shouldWriteLong($base + 0x18, 1); // var_runState_8c2285c4.runClock_0x18 incremented
     }
@@ -146,7 +146,7 @@ return new class extends TestCase {
 
         $this->shouldWriteLong($base + 0x58, 1);
         $this->shouldCall('_StopUpdateArrival_8c02ce48');
-        $this->shouldCall('_adjust_8c02b464')->with(0x20, 0xfffffffb); // -5
+        $this->shouldCall('_adjustPoints_8c02b464')->with(0x20, 0xfffffffb); // -5
         $this->shouldWriteLong(($this->addressOf('_var_driveCueState_8c2264b8') + 0x0c), 1);
         $this->shouldWriteLong($base + 0x18, 1);
     }
@@ -161,13 +161,13 @@ return new class extends TestCase {
 
         $this->call('_gradeFrame_8c02bcd8');
 
-        $this->shouldCall('_adjust_8c02b464')->with(0x14, 0xffffffe2); // -30
+        $this->shouldCall('_adjustPoints_8c02b464')->with(0x14, 0xffffffe2); // -30
         $this->shouldWriteLong($base + 0x64, 1); // idle
         $this->shouldWriteLong($base + 0x68, 0); // var_runState_8c2285c4.crossingStopTimer_0x68 reset
 
         $this->shouldWriteLong($base + 0x58, 1);
         $this->shouldCall('_StopUpdateArrival_8c02ce48');
-        $this->shouldCall('_adjust_8c02b464')->with(0x20, 0xfffffffb); // -5
+        $this->shouldCall('_adjustPoints_8c02b464')->with(0x20, 0xfffffffb); // -5
         $this->shouldWriteLong(($this->addressOf('_var_driveCueState_8c2264b8') + 0x0c), 1);
         $this->shouldWriteLong($base + 0x18, 1);
     }
@@ -189,7 +189,7 @@ return new class extends TestCase {
 
         $this->shouldWriteLong($base + 0x58, 1);
         $this->shouldCall('_StopUpdateArrival_8c02ce48');
-        $this->shouldCall('_adjust_8c02b464')->with(0x20, 0xfffffffb); // -5
+        $this->shouldCall('_adjustPoints_8c02b464')->with(0x20, 0xfffffffb); // -5
         $this->shouldWriteLong(($this->addressOf('_var_driveCueState_8c2264b8') + 0x0c), 1);
         $this->shouldWriteLong($base + 0x18, 1);
     }
@@ -209,7 +209,7 @@ return new class extends TestCase {
 
         $this->shouldWriteLong($base + 0x58, 1);
         $this->shouldCall('_StopUpdateArrival_8c02ce48');
-        $this->shouldCall('_adjust_8c02b464')->with(0x20, 0xfffffffb); // -5
+        $this->shouldCall('_adjustPoints_8c02b464')->with(0x20, 0xfffffffb); // -5
         $this->shouldWriteLong(($this->addressOf('_var_driveCueState_8c2264b8') + 0x0c), 1);
         $this->shouldWriteLong($base + 0x18, 1);
     }
@@ -228,11 +228,11 @@ return new class extends TestCase {
 
         $this->shouldWriteLong($base + 0x68, -1);
         $this->shouldWriteLong($base + 0x68, 0x78);
-        $this->shouldCall('_adjust_8c02b464')->with(0x15, 0xffffffce); // -50
+        $this->shouldCall('_adjustPoints_8c02b464')->with(0x15, 0xffffffce); // -50
 
         $this->shouldWriteLong($base + 0x58, 1);
         $this->shouldCall('_StopUpdateArrival_8c02ce48');
-        $this->shouldCall('_adjust_8c02b464')->with(0x20, 0xfffffffb); // -5
+        $this->shouldCall('_adjustPoints_8c02b464')->with(0x20, 0xfffffffb); // -5
         $this->shouldWriteLong(($this->addressOf('_var_driveCueState_8c2264b8') + 0x0c), 1);
         $this->shouldWriteLong($base + 0x18, 1);
     }
@@ -254,11 +254,11 @@ return new class extends TestCase {
 
         $this->shouldWriteLong($base + 0x8c, 0xf);
         $this->shouldWriteLong($base + 0x84, 0);
-        $this->shouldCall('_adjust_8c02b464')->with(0x17, 0xfffffffb); // -5
+        $this->shouldCall('_adjustPoints_8c02b464')->with(0x17, 0xfffffffb); // -5
 
         $this->shouldWriteLong($base + 0x58, 1);
         $this->shouldCall('_StopUpdateArrival_8c02ce48');
-        $this->shouldCall('_adjust_8c02b464')->with(0x20, 0xfffffffb); // -5
+        $this->shouldCall('_adjustPoints_8c02b464')->with(0x20, 0xfffffffb); // -5
         $this->shouldWriteLong(($this->addressOf('_var_driveCueState_8c2264b8') + 0x0c), 1);
         $this->shouldWriteLong($base + 0x18, 1);
     }
@@ -283,7 +283,7 @@ return new class extends TestCase {
 
         $this->shouldWriteLong($base + 0x58, 1);
         $this->shouldCall('_StopUpdateArrival_8c02ce48');
-        $this->shouldCall('_adjust_8c02b464')->with(0x20, 0xfffffffb); // -5
+        $this->shouldCall('_adjustPoints_8c02b464')->with(0x20, 0xfffffffb); // -5
         $this->shouldWriteLong(($this->addressOf('_var_driveCueState_8c2264b8') + 0x0c), 1);
         $this->shouldWriteLong($base + 0x18, 1);
     }
@@ -302,14 +302,14 @@ return new class extends TestCase {
 
         $this->shouldWriteLong($base + 0x68, 0);
 
-        $this->shouldCall('_adjust_8c02b464')->with(0x18, 0xfffffffb); // -5
+        $this->shouldCall('_adjustPoints_8c02b464')->with(0x18, 0xfffffffb); // -5
         $this->shouldWriteFloat($base + 0x90, 0.0);
         $this->shouldWriteLong($base + 0x94, 0x3c);
         $this->shouldCall('_VibStart_8c010f7a')->with(3);
 
         $this->shouldWriteLong($base + 0x58, 1);
         $this->shouldCall('_StopUpdateArrival_8c02ce48');
-        $this->shouldCall('_adjust_8c02b464')->with(0x20, 0xfffffffb); // -5
+        $this->shouldCall('_adjustPoints_8c02b464')->with(0x20, 0xfffffffb); // -5
         $this->shouldWriteLong(($this->addressOf('_var_driveCueState_8c2264b8') + 0x0c), 1);
         $this->shouldWriteLong($base + 0x18, 1);
     }
@@ -332,12 +332,12 @@ return new class extends TestCase {
         $this->shouldWriteLong($base + 0x68, 0);
 
         $this->shouldWriteLong($base + 0x98, -1);
-        $this->shouldCall('_adjust_8c02b464')->with(0x19, 0xfffffffb); // -5
+        $this->shouldCall('_adjustPoints_8c02b464')->with(0x19, 0xfffffffb); // -5
         $this->shouldWriteLong($base + 0x98, 0x3c);
 
         $this->shouldWriteLong($base + 0x58, 1);
         $this->shouldCall('_StopUpdateArrival_8c02ce48');
-        $this->shouldCall('_adjust_8c02b464')->with(0x20, 0xfffffffb); // -5
+        $this->shouldCall('_adjustPoints_8c02b464')->with(0x20, 0xfffffffb); // -5
         $this->shouldWriteLong(($this->addressOf('_var_driveCueState_8c2264b8') + 0x0c), 1);
         $this->shouldWriteLong($base + 0x18, 1);
     }
@@ -348,31 +348,31 @@ return new class extends TestCase {
         $base = $this->resolveSymbols();
         $busPtr = $this->baseline($base);
 
-        $this->initUint32($base + 0x5c, 0); // var_runState_8c2285c4.field_0x5c not yet armed
-        $this->initUint32($base + 0x60, 0x709); // var_runState_8c2285c4.field_0x60 one away from tripping
+        $this->initUint32($base + 0x5c, 0); // var_runState_8c2285c4.hasMoved_0x5c not yet armed
+        $this->initUint32($base + 0x60, 0x709); // var_runState_8c2285c4.startIdleFrames_0x60 one away from tripping
 
         $this->call('_gradeFrame_8c02bcd8');
 
         $this->shouldWriteLong($base + 0x68, 0);
         $this->shouldWriteLong($base + 0x58, 1);
 
-        $this->shouldWriteLong($base + 0x60, 0x70a); // var_runState_8c2285c4.field_0x60 incremented past threshold
-        $this->shouldCall('_adjust_8c02b464')->with(0x13, 0xffffffb0); // -80
+        $this->shouldWriteLong($base + 0x60, 0x70a); // var_runState_8c2285c4.startIdleFrames_0x60 incremented past threshold
+        $this->shouldCall('_adjustPoints_8c02b464')->with(0x13, 0xffffffb0); // -80
         $this->shouldWriteLong($base + 0x60, 0);
 
         $this->shouldCall('_StopUpdateArrival_8c02ce48');
-        $this->shouldCall('_adjust_8c02b464')->with(0x20, 0xfffffffb); // -5
+        $this->shouldCall('_adjustPoints_8c02b464')->with(0x20, 0xfffffffb); // -5
         $this->shouldWriteLong(($this->addressOf('_var_driveCueState_8c2264b8') + 0x0c), 1);
         $this->shouldWriteLong($base + 0x18, 1);
     }
 
-    // Idle timeout armed once the bus first moves (var_runState_8c2285c4.field_0x5c latches).
+    // Idle timeout armed once the bus first moves (var_runState_8c2285c4.hasMoved_0x5c latches).
     public function test_idle_timeout_arms_on_first_movement(): void
     {
         $base = $this->resolveSymbols();
         $busPtr = $this->baseline($base);
 
-        $this->initUint32($base + 0x5c, 0); // var_runState_8c2285c4.field_0x5c not yet armed
+        $this->initUint32($base + 0x5c, 0); // var_runState_8c2285c4.hasMoved_0x5c not yet armed
         $this->initFloat($this->addressOf('_var_frameSpeed_8c22866c'), 1.0); // moving
 
         $this->call('_gradeFrame_8c02bcd8');
@@ -382,7 +382,7 @@ return new class extends TestCase {
         $this->shouldWriteLong($base + 0x5c, 1);
 
         $this->shouldCall('_StopUpdateArrival_8c02ce48');
-        $this->shouldCall('_adjust_8c02b464')->with(0x20, 0xfffffffb); // -5
+        $this->shouldCall('_adjustPoints_8c02b464')->with(0x20, 0xfffffffb); // -5
         $this->shouldWriteLong(($this->addressOf('_var_driveCueState_8c2264b8') + 0x0c), 1);
         $this->shouldWriteLong($base + 0x18, 1);
     }
@@ -402,7 +402,7 @@ return new class extends TestCase {
         $this->shouldWriteLong($base + 0x58, 1);
         $this->shouldCall('_StopUpdateArrival_8c02ce48');
 
-        $this->shouldCall('_adjust_8c02b464')->with(0x1e, 0x14); // +20
+        $this->shouldCall('_adjustPoints_8c02b464')->with(0x1e, 0x14); // +20
         $this->shouldWriteLong($base + 0x7c, 0);
 
         $this->shouldWriteLong($base + 0x18, 1);
@@ -424,7 +424,7 @@ return new class extends TestCase {
         $this->shouldWriteLong($base + 0x58, 1);
         $this->shouldCall('_StopUpdateArrival_8c02ce48');
 
-        $this->shouldCall('_adjust_8c02b464')->with(0x21, 0xfffffff1); // -15
+        $this->shouldCall('_adjustPoints_8c02b464')->with(0x21, 0xfffffff1); // -15
         $this->shouldWriteLong($this->addressOf('_var_busState_8c1bb9d0') + 0x3c4, 1);
 
         $this->shouldWriteLong($base + 0x18, 1);
@@ -450,7 +450,7 @@ return new class extends TestCase {
 
         $this->shouldWriteLong($base + 0x18, -1);
         $this->shouldWriteLong($base + 0x18, 0);
-        $this->shouldCall('_adjust_8c02b464')->with(0x1d, 0xffffff38); // -200
+        $this->shouldCall('_adjustPoints_8c02b464')->with(0x1d, 0xffffff38); // -200
     }
 
     // playMode 1 with the "ready" bit set: the countdown is skipped (falls
@@ -470,7 +470,7 @@ return new class extends TestCase {
         $this->shouldWriteLong($base + 0x58, 1);
         $this->shouldCall('_StopUpdateArrival_8c02ce48');
 
-        $this->shouldCall('_adjust_8c02b464')->with(0x20, 0xfffffffb); // -5
+        $this->shouldCall('_adjustPoints_8c02b464')->with(0x20, 0xfffffffb); // -5
         $this->shouldWriteLong(($this->addressOf('_var_driveCueState_8c2264b8') + 0x0c), 1);
 
         $this->shouldWriteLong($base + 0x18, 1); // var_runState_8c2285c4.runClock_0x18 incremented (bit 1 set -> else branch)
@@ -493,7 +493,7 @@ return new class extends TestCase {
         $this->shouldWriteLong($base + 0x68, 0);
         $this->shouldWriteLong($base + 0x58, 1);
         $this->shouldCall('_StopUpdateArrival_8c02ce48');
-        $this->shouldCall('_adjust_8c02b464')->with(0x20, 0xfffffffb); // -5
+        $this->shouldCall('_adjustPoints_8c02b464')->with(0x20, 0xfffffffb); // -5
         $this->shouldWriteLong(($this->addressOf('_var_driveCueState_8c2264b8') + 0x0c), 1);
 
         $this->shouldWriteLong($base + 0x18, 30);
@@ -503,6 +503,6 @@ return new class extends TestCase {
             ->using(new \Lhsazevedo\Sh4ObjTest\Simulator\CallingConventions\RiroCallingConvention())
             ->andReturn(0);
 
-        $this->shouldCall('_adjust_8c02b464')->with(-1, -1);
+        $this->shouldCall('_adjustPoints_8c02b464')->with(-1, -1);
     }
 };

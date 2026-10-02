@@ -65,13 +65,13 @@
           .IMPORT     _RenderStartFadeIn_8c022a9c
           .IMPORT     _ResultsShowPassedRun_8c01e0b4
           .IMPORT     _var_menuState_8c1bc7a8
-          .EXPORT     _GradeReset_8c02c46a
+          .EXPORT     _GradeSpawnTask_8c02c46a
           .EXPORT     _GradeRunComplete_8c02c586
-          .EXPORT     _GradeOnFadeDriveEnd_8c02c784
+          .EXPORT     _GradeOnFadePracticeEnd_8c02c784
           .EXPORT     _var_runState_8c2285c4 ; 013ae8_route
           .EXPORT     _var_wallHitBits_8c228660 ; 022bdc
           .AIFDEF UNIT_TESTING
-          .EXPORT     _adjust_8c02b464
+          .EXPORT     _adjustPoints_8c02b464
           .EXPORT     _armCooldowns_8c02b578
           .EXPORT     _handleBump_8c02b6d4
           .EXPORT     _gradeWallHit_8c02b7ea
@@ -83,14 +83,14 @@
           .EXPORT     _gradeFrame_8c02bcd8
           .EXPORT     _init_8c04bef0
           .EXPORT     _init_penaltyMsgGlyphs_8c04c35c
-          .EXPORT     _taskCallback_8c02c072
+          .EXPORT     _runPhaseTask_8c02c072
           .EXPORT     _onFadeRunFailed_8c02c76a
           .EXPORT     _onFadeStopEnded_8c02c624
           .EXPORT     _driveEndFadeTask_8c02c69a
-          .EXPORT     _beginDriveEnd_8c02c738
+          .EXPORT     _enterDriveEnd_8c02c738
           .AENDI
           .SECTION     P, CODE, ALIGN=4
-_adjust_8c02b464:
+_adjustPoints_8c02b464:
           MOV.L       R14,@-R15
           MOV.L       R13,@-R15
           MOV.L       LP_GEN_45010+4,R3
@@ -385,13 +385,13 @@ LAB_8c02b6a8:
           MOV         #H'2,R4
           MOV         #-H'3c,R5
 LAB_8c02b6b0:
-          BSR         _adjust_8c02b464
+          BSR         _adjustPoints_8c02b464
           NOP
           BRA         LAB_8c02b6be
           NOP
 LAB_8c02b6b8:
           MOV.W       LP_GEN_12602,R5
-          BSR         _adjust_8c02b464
+          BSR         _adjustPoints_8c02b464
           MOV         #H'0,R4
 LAB_8c02b6be:
           LDS.L       @R15+,PR
@@ -419,7 +419,7 @@ _handleBump_8c02b6d4:
           TST         R0,R0
           BT          LAB_8c02b708
           MOV.W       LP_GEN_12602,R5
-          BSR         _adjust_8c02b464
+          BSR         _adjustPoints_8c02b464
           MOV         #H'1f,R4
           MOV.L       LP_GEN_12602+4,R3
           MOV.W       LP_GEN_12602+2,R2
@@ -567,7 +567,7 @@ _gradeWallHit_8c02b7ea:
           NOP
 LAB_8c02b80a:
           MOV         #-H'1e,R5
-          BSR         _adjust_8c02b464
+          BSR         _adjustPoints_8c02b464
           MOV         #H'3,R4
           BRA         LAB_8c02b858
           NOP
@@ -596,7 +596,7 @@ LAB_8c02b850:
           MOV.W       LP_GEN_71333,R5
           MOV         #H'5,R4
 LAB_8c02b854:
-          BSR         _adjust_8c02b464
+          BSR         _adjustPoints_8c02b464
           NOP
 LAB_8c02b858:
           MOV         #H'1,R4
@@ -614,7 +614,7 @@ _gradeOffCourseSevere_8c02b864:
           CMP/EQ      R3,R2
           BF          LAB_8c02b880
           MOV.W       LP_GEN_71333,R5
-          BSR         _adjust_8c02b464
+          BSR         _adjustPoints_8c02b464
           MOV         #H'8,R4
           BSR         _armCooldowns_8c02b578
           MOV         #H'2,R4
@@ -645,7 +645,7 @@ LAB_8c02b8a4:
           MOV         #H'6,R4
           MOV         #-H'f,R5
 LAB_8c02b8a8:
-          BSR         _adjust_8c02b464
+          BSR         _adjustPoints_8c02b464
           NOP
           MOV         #H'2,R4
           BRA         _armCooldowns_8c02b578
@@ -671,7 +671,7 @@ _gradeSignals_8c02b8b8:
           CMP/EQ      #H'2,R0
           BF          LAB_8c02b8e0
           MOV         #-H'32,R5
-          BSR         _adjust_8c02b464
+          BSR         _adjustPoints_8c02b464
           MOV         #H'16,R4
           BSR         _armCooldowns_8c02b578
           MOV         #H'3,R4
@@ -702,7 +702,7 @@ LAB_8c02b8e0:
           TST         R0,R0
           BF          LAB_8c02b97e
           MOV         #-H'5,R5
-          BSR         _adjust_8c02b464
+          BSR         _adjustPoints_8c02b464
           MOV         #H'11,R4
           MOV         #H'1,R3
           BRA         LAB_8c02b97e
@@ -739,7 +739,7 @@ LAB_8c02b954:
           TST         R0,R0
           BF          LAB_8c02b974
           MOV         #-H'46,R5
-          BSR         _adjust_8c02b464
+          BSR         _adjustPoints_8c02b464
           MOV         #H'10,R4
 LAB_8c02b974:
           BSR         _armCooldowns_8c02b578
@@ -778,7 +778,7 @@ LAB_8c02b9ae:
           MOV         #H'c,R4
           MOV         #-H'32,R5
 LAB_8c02b9b2:
-          BSR         _adjust_8c02b464
+          BSR         _adjustPoints_8c02b464
           NOP
           MOV.L       @(H'2c,R14),R2
           ADD         #H'1,R2
@@ -816,7 +816,7 @@ LAB_8c02b9c6:
           TST         R3,R2
           BT          LAB_8c02ba2c
           MOV         #-H'a,R5
-          BSR         _adjust_8c02b464
+          BSR         _adjustPoints_8c02b464
           MOV         #H'12,R4
           BSR         _armCooldowns_8c02b578
           MOV         #H'4,R4
@@ -919,7 +919,7 @@ LAB_8c02bac0:
           MOV         #H'e,R4
           MOV         #-H'14,R5
 LAB_8c02bac4:
-          BSR         _adjust_8c02b464
+          BSR         _adjustPoints_8c02b464
           NOP
           MOV         #H'48,R0
           MOV.L       @(R0,R14),R2
@@ -988,7 +988,7 @@ _gradeIntersection_8c02bb1c:
           FCMP/EQ     FR3,FR2
           BF          LAB_8c02bb5e
           MOV         #-H'50,R5
-          BSR         _adjust_8c02b464
+          BSR         _adjustPoints_8c02b464
           MOV         #H'13,R4
           BSR         _armCooldowns_8c02b578
           MOV         #H'5,R4
@@ -1033,13 +1033,13 @@ LAB_8c02bb5e:
           FCMP/GT     FR1,FR4
           BF          LAB_8c02bbb6
           MOV         #-H'a,R5
-          BSR         _adjust_8c02b464
+          BSR         _adjustPoints_8c02b464
           MOV         #H'9,R4
           BRA         LAB_8c02bbc4
           NOP
 LAB_8c02bbb6:
           MOV         #-H'1e,R5
-          BSR         _adjust_8c02b464
+          BSR         _adjustPoints_8c02b464
           MOV         #H'a,R4
           BRA         LAB_8c02bbc4
           NOP
@@ -1116,7 +1116,7 @@ LAB_8c02bc4c:
           BT          LAB_8c02bc6c
 LAB_8c02bc66:
           MOV         #-H'8,R5
-          BSR         _adjust_8c02b464
+          BSR         _adjustPoints_8c02b464
           MOV         #H'f,R4
 LAB_8c02bc6c:
           MOV         #H'50,R0
@@ -1167,7 +1167,7 @@ LAB_8c02bcba:
           BT          LAB_8c02bcc6
 LAB_8c02bcc0:
           MOV         #-H'8,R5
-          BSR         _adjust_8c02b464
+          BSR         _adjustPoints_8c02b464
           MOV         #H'f,R4
 LAB_8c02bcc6:
           MOV         #H'50,R0
@@ -1294,7 +1294,7 @@ LAB_8c02bda6:
           MOV.L       R2,@(R0,R14)
 LAB_8c02bdba:
           MOV         #-H'1e,R5
-          BSR         _adjust_8c02b464
+          BSR         _adjustPoints_8c02b464
           MOV         #H'14,R4
           BRA         LAB_8c02bdc8
           NOP
@@ -1331,7 +1331,7 @@ LAB_8c02bdec:
           MOV         #H'78,R2
           MOV         #-H'32,R5
           MOV.L       R2,@(R0,R14)
-          BSR         _adjust_8c02b464
+          BSR         _adjustPoints_8c02b464
           MOV         #H'15,R4
           BRA         LAB_8c02be28
           NOP
@@ -1390,7 +1390,7 @@ LAB_8c02be5c:
           MOV.W       LP_GEN_20612+4,R0
           MOV         #-H'5,R5
           MOV.L       R13,@(R0,R14)
-          BSR         _adjust_8c02b464
+          BSR         _adjustPoints_8c02b464
           MOV         #H'17,R4
           BRA         LAB_8c02be80
           NOP
@@ -1417,7 +1417,7 @@ LAB_8c02be8e:
           TST         R2,R2
           BF          LAB_8c02beba
           MOV         #-H'5,R5
-          BSR         _adjust_8c02b464
+          BSR         _adjustPoints_8c02b464
           MOV         #H'18,R4
           MOV.W       LP_GEN_20612+10,R0
           MOV         #H'3c,R3
@@ -1460,7 +1460,7 @@ LAB_8c02bee8:
           BT/S        LAB_8c02bf34
           MOV.L       R3,@(R0,R14)
           MOV         #-H'5,R5
-          BSR         _adjust_8c02b464
+          BSR         _adjustPoints_8c02b464
           MOV         #H'19,R4
           MOV         #H'3c,R2
           MOV         R2,R0
@@ -1523,7 +1523,7 @@ LAB_8c02bf64:
           MOV.L       R2,@(R0,R14)
           BF          LAB_8c02bf7c
           MOV         #-H'50,R5
-          BSR         _adjust_8c02b464
+          BSR         _adjustPoints_8c02b464
           MOV         #H'13,R4
           MOV         #H'60,R0
           MOV.L       R13,@(R0,R14)
@@ -1550,7 +1550,7 @@ LAB_8c02bf94:
           TST         R2,R2
           BF          LAB_8c02bfcc
           MOV         #-H'5,R5
-          BSR         _adjust_8c02b464
+          BSR         _adjustPoints_8c02b464
           MOV         #H'20,R4
           MOV.L       LP_GEN_59291+24,R2
           BRA         LAB_8c02bfde
@@ -1571,7 +1571,7 @@ LAB_8c02bfcc:
           TST         R1,R1
           BT          LAB_8c02bfde
           MOV         #H'14,R5
-          BSR         _adjust_8c02b464
+          BSR         _adjustPoints_8c02b464
           MOV         #H'1e,R4
           MOV         #H'7c,R0
           MOV.L       R13,@(R0,R14)
@@ -1586,7 +1586,7 @@ LAB_8c02bfde:
           FCMP/EQ     FR3,FR2
           BT          LAB_8c02bffa
           MOV         #-H'f,R5
-          BSR         _adjust_8c02b464
+          BSR         _adjustPoints_8c02b464
           MOV         #H'21,R4
           MOV.W       LP_GEN_85160+4,R0
           MOV.L       R11,@(R0,R12)
@@ -1627,7 +1627,7 @@ LAB_8c02c00c:
           MOV.L       @R15+,R11
           MOV.L       @R15+,R12
           MOV.L       @R15+,R13
-          BRA         _adjust_8c02b464
+          BRA         _adjustPoints_8c02b464
           MOV.L       @R15+,R14
 LAB_8c02c044:
           MOV.L       @(H'18,R14),R3
@@ -1644,7 +1644,7 @@ LAB_8c02c044:
           MOV.L       @R15+,R11
           MOV.L       @R15+,R12
           MOV.L       @R15+,R13
-          BRA         _adjust_8c02b464
+          BRA         _adjustPoints_8c02b464
           MOV.L       @R15+,R14
 LAB_8c02c064:
           LDS.L       @R15+,PR
@@ -1654,7 +1654,7 @@ LAB_8c02c064:
           MOV.L       @R15+,R13
           RTS
           MOV.L       @R15+,R14
-_taskCallback_8c02c072:
+_runPhaseTask_8c02c072:
           MOV.L       R14,@-R15
           MOV.L       R13,@-R15
           MOV.L       R12,@-R15
@@ -1966,7 +1966,7 @@ LP_GEN_39176:
           .DATA.L _var_messageBoxActive_8c22847c ; H'8C02C2E0
           .DATA.L _var_playMode_8c1bb8d0 ; H'8C02C2E4
           .DATA.L _onFadeRunFailed_8c02c76a ; H'8C02C2E8
-          .DATA.L _GradeOnFadeDriveEnd_8c02c784 ; H'8C02C2EC
+          .DATA.L _GradeOnFadePracticeEnd_8c02c784 ; H'8C02C2EC
 LAB_8c02c2f0:
           MOV.L       LP_GEN_30870+10,R2
           MOV.L       @R2,R3
@@ -1992,7 +1992,7 @@ LAB_8c02c30e:
           BT          LAB_8c02c320
 LAB_8c02c31a:
           MOV         #-H'3,R5
-          BSR         _adjust_8c02b464
+          BSR         _adjustPoints_8c02b464
           MOV         #H'1b,R4
 LAB_8c02c320:
           MOV.W       LP_GEN_30870+6,R0
@@ -2006,7 +2006,7 @@ LAB_8c02c320:
           BT          LAB_8c02c34a
 LAB_8c02c332:
           MOV         #-H'8,R5
-          BSR         _adjust_8c02b464
+          BSR         _adjustPoints_8c02b464
           MOV         #H'f,R4
           BRA         LAB_8c02c34a
           NOP
@@ -2018,7 +2018,7 @@ LAB_8c02c342:
           MOV         #H'1a,R4
           MOV         #-H'14,R5
 LAB_8c02c346:
-          BSR         _adjust_8c02b464
+          BSR         _adjustPoints_8c02b464
           NOP
 LAB_8c02c34a:
           MOV         #H'1e,R2
@@ -2077,7 +2077,7 @@ LP_GEN_30870:
           .DATA.L _var_playMode_8c1bb8d0 ; H'8C02C3B4
           .DATA.L _onFadeRunFailed_8c02c76a ; H'8C02C3B8
           .DATA.L _onFadeStopEnded_8c02c624 ; H'8C02C3BC
-          .DATA.L _GradeOnFadeDriveEnd_8c02c784 ; H'8C02C3C0
+          .DATA.L _GradeOnFadePracticeEnd_8c02c784 ; H'8C02C3C0
           .DATA.L _SndStartAdxFadeOut_8c010bae ; H'8C02C3C4
 LAB_8c02c3c8:
           MOV.L       @(H'8,R14),R2
@@ -2168,7 +2168,7 @@ LAB_8c02c44e:
           MOV.L       @R15+,R13
           JMP         @R3
           MOV.L       @R15+,R14
-_GradeReset_8c02c46a:
+_GradeSpawnTask_8c02c46a:
           STS.L       PR,@-R15
           ADD         #-H'8,R15
           MOV         #H'0,R3
@@ -2210,7 +2210,7 @@ LP_GEN_93947:
           .DATA.L _var_driveMsgQueue_8c228564 ; H'8C02C4C0
           .DATA.L _DriveMsgDraw_8c02b388 ; H'8C02C4C4
           .DATA.L _RenderQueueDraw_8c0223ea ; H'8C02C4C8
-          .DATA.L _taskCallback_8c02c072 ; H'8C02C4CC
+          .DATA.L _runPhaseTask_8c02c072 ; H'8C02C4CC
           .DATA.L _var_tasks_8c1ba5e8 ; H'8C02C4D0
           .DATA.L _TaskSpawn_8c014ae8 ; H'8C02C4D4
           .DATA.L _var_runState_8c2285c4 ; H'8C02C4D8
@@ -2524,7 +2524,7 @@ LAB_8c02c720:
           FMOV.S      @R0,FR6
           JMP         @R3
           MOV.L       @R15+,R14
-_beginDriveEnd_8c02c738:
+_enterDriveEnd_8c02c738:
           STS.L       PR,@-R15
           ADD         #-H'8,R15
           MOV.L       LP_GEN_25024+104,R3
@@ -2562,9 +2562,9 @@ _onFadeRunFailed_8c02c76a:
           MOV.L       LP_GEN_25024+60,R3
           MOV.L       R4,@R3
           MOV.L       R2,@R1
-          BRA         _beginDriveEnd_8c02c738
+          BRA         _enterDriveEnd_8c02c738
           MOV.L       R4,@R0
-_GradeOnFadeDriveEnd_8c02c784:
+_GradeOnFadePracticeEnd_8c02c784:
           MOV.L       R14,@-R15
           STS.L       PR,@-R15
           BSR         _GradeRunComplete_8c02c586
@@ -2619,7 +2619,7 @@ LAB_8c02c7cc:
           MOV         #H'0,R2
           MOV.L       R2,@R5
           LDS.L       @R15+,PR
-          BRA         _beginDriveEnd_8c02c738
+          BRA         _enterDriveEnd_8c02c738
           MOV.L       @R15+,R14
 LAB_8c02c7f2:
           MOV.L       LP_GEN_25024+48,R2

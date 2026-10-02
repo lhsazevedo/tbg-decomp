@@ -461,7 +461,7 @@ address-taken-only callee as a function in its own right. `028258` hit the same
 thing from the other direction: decompiling turned up three functions
 (`FUN_8c02833c`, `FUN_8c0283d4`, `FUN_8c0283e8`) missing from the stub list.
 `02b464_grading` (2026-08-28/29) had six, all reachable only via
-TaskSpawn pointers, including the master per-frame `taskCallback_8c02c072`.
+TaskSpawn pointers, including the master per-frame `runPhaseTask_8c02c072`.
 
 **The inverse also happens:** an `.EXPORT`ed symbol that *isn't* a function at
 all, just a label mid-body. `01fa78`'s `FUN_8c01fe84` (found 2026-08-29) is a

@@ -18,7 +18,7 @@ return new class extends TestCase {
 
         $this->call('_gradeWallHit_8c02b7ea');
 
-        $this->shouldCall('_adjust_8c02b464')->with(3, 0xffffffe2); // -30
+        $this->shouldCall('_adjustPoints_8c02b464')->with(3, 0xffffffe2); // -30
         $this->shouldCall('_armCooldowns_8c02b578')->with(1);
     }
 
@@ -28,7 +28,7 @@ return new class extends TestCase {
 
         $this->call('_gradeWallHit_8c02b7ea');
 
-        $this->shouldCall('_adjust_8c02b464')->with(4, 0xffffffc4); // -60
+        $this->shouldCall('_adjustPoints_8c02b464')->with(4, 0xffffffc4); // -60
         $this->shouldCall('_armCooldowns_8c02b578')->with(1);
     }
 
@@ -38,7 +38,7 @@ return new class extends TestCase {
 
         $this->call('_gradeWallHit_8c02b7ea');
 
-        $this->shouldCall('_adjust_8c02b464')->with(5, 0xffffff38); // -200
+        $this->shouldCall('_adjustPoints_8c02b464')->with(5, 0xffffff38); // -200
         $this->shouldCall('_armCooldowns_8c02b578')->with(1);
     }
 

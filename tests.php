@@ -739,7 +739,7 @@ return [
         ],
         [
             "tests" => [
-                "tests/02b464_grading/8c02b464_adjust.php",
+                "tests/02b464_grading/8c02b464_adjustPoints.php",
                 "tests/02b464_grading/8c02b578_armCooldowns.php",
                 "tests/02b464_grading/8c02b6d4_handleBump.php",
                 "tests/02b464_grading/8c02b7ea_gradeWallHit.php",
@@ -749,14 +749,14 @@ return [
                 "tests/02b464_grading/8c02b986_gradeLaneUse.php",
                 "tests/02b464_grading/8c02bb1c_gradeIntersection.php",
                 "tests/02b464_grading/8c02bcd8_gradeFrame.php",
-                "tests/02b464_grading/8c02c072_taskCallback.php",
-                "tests/02b464_grading/8c02c46a_GradeReset.php",
+                "tests/02b464_grading/8c02c072_runPhaseTask.php",
+                "tests/02b464_grading/8c02c46a_GradeSpawnTask.php",
                 "tests/02b464_grading/8c02c624_onFadeStopEnded.php",
                 "tests/02b464_grading/8c02c76a_onFadeRunFailed.php",
                 "tests/02b464_grading/8c02c586_GradeRunComplete.php",
                 "tests/02b464_grading/8c02c69a_driveEndFadeTask.php",
-                "tests/02b464_grading/8c02c738_beginDriveEnd.php",
-                "tests/02b464_grading/8c02c784_GradeOnFadeDriveEnd.php",
+                "tests/02b464_grading/8c02c738_enterDriveEnd.php",
+                "tests/02b464_grading/8c02c784_GradeOnFadePracticeEnd.php",
             ],
             "objects" => [
                 "build/output_test/src/asm/decompiled/02b464_grading.obj",
