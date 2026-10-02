@@ -28,8 +28,9 @@ char *DEBUG_mainMenuStateNames[] = {
     "INIT",
     "FADE_IN",
     "IDLE",
-    "ANIMATING",
-    "FADE_OUT",
+    "ANIMATING_RIGHT",
+    "ANIMATING_LEFT",
+    "SELECTED",
 };
 #endif
 
