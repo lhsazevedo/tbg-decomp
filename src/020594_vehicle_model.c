@@ -11,7 +11,7 @@
  * ====================
  */
 
-STATIC Float unused_8c020676(Float step, NJS_POINT3 *from, NJS_POINT3 *to,
+STATIC Float unusedStepToward_8c020676(Float step, NJS_POINT3 *from, NJS_POINT3 *to,
                               NJS_POINT3 *out);
 
 /* ====================
@@ -60,7 +60,7 @@ void VehicleModelPlace_8c020594(NJS_MATRIX *matrix, BusState *bus)
 /* Never called -- dead code kept for object parity with the original
  * binary. Scales (to - from) so its length equals `step`, via
  * njDistanceP2P for the true distance between the two points. */
-STATIC Float unused_8c020676(Float step, NJS_POINT3 *from, NJS_POINT3 *to,
+STATIC Float unusedStepToward_8c020676(Float step, NJS_POINT3 *from, NJS_POINT3 *to,
                               NJS_POINT3 *out)
 {
     Float dist = njDistanceP2P(from, to);

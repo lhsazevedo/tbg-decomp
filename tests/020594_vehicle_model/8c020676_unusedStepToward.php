@@ -40,7 +40,7 @@ return new class extends TestCase {
         $this->initFloat($to + 4, 2.0);
         $this->initFloat($to + 8, 9.0);
 
-        $this->call('_unused_8c020676')->with(2.0, $from, $to, $out);
+        $this->call('_unusedStepToward_8c020676')->with(2.0, $from, $to, $out);
 
         $this->shouldCall('_njDistanceP2P')->with($from, $to)->andReturn(10.0);
 

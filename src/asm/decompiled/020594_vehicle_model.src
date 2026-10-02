@@ -5,7 +5,7 @@
           .IMPORT     _njDistanceP2P
           .EXPORT     _VehicleModelPlace_8c020594
           .AIFDEF UNIT_TESTING
-          .EXPORT     _unused_8c020676
+          .EXPORT     _unusedStepToward_8c020676
           .AENDI
           .SECTION     P, CODE, ALIGN=4
 _VehicleModelPlace_8c020594:
@@ -122,7 +122,7 @@ _VehicleModelPlace_8c020594:
           MOV.L       @R15+,R13
           RTS
           MOV.L       @R15+,R14
-_unused_8c020676:                ; function: unused_8c020676
+_unusedStepToward_8c020676:                ; function: unusedStepToward_8c020676
           MOV.L       R14,@-R15
           MOV.L       R13,@-R15
           MOV.L       R12,@-R15

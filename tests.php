@@ -114,7 +114,7 @@ return [
         [
             'tests' => [
                 "tests/020594_vehicle_model/8c020594_VehicleModelPlace.php",
-                "tests/020594_vehicle_model/8c020676_unused.php",
+                "tests/020594_vehicle_model/8c020676_unusedStepToward.php",
             ],
             'objects' => [
                 "build/output_test/src/asm/decompiled/020594_vehicle_model.obj",
