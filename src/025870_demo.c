@@ -17,8 +17,7 @@
  * ====================
  */
 
-/* The camera cue authored onto the road, sharing its word with the HUD's
- * driving instructions -- see var_busState_8c1bb9d0.markDriveFlags_0x3b0 (1ba1c8_globals.h). */
+/* The camera cue painted on the road, in the top byte of markDriveFlags_0x3b0. */
 #define DEMO_CUE_MASK  0xff000000
 #define DEMO_CUE_SHIFT 24
 
@@ -30,19 +29,14 @@
  * ====================
  */
 
-/* One shot of a route's attract-mode camera tour. cameraKind_0x00 picks the
- * var_cameraMode_8c227d9c the shot runs in (024b4c_bus_camera.h) and with it
- * how pos_0x04 reads: kind 0 is a world point, kinds 1 and 2 are offsets in
- * bus space. Captions are sparse -- 27 of the 131 shots name a place, the
- * rest share the empty one. */
+/* cameraKind_0x00 counts from BUS_CAMERA_DEMO_WORLD_POINT: kind 0's pos_0x04
+ * is a world point, kinds 1 and 2 are bus-space offsets. */
 typedef struct {
     int cameraKind_0x00;
     NJS_POINT3 pos_0x04;
     char *name_0x10;
 } DemoShot;
 
-/* demoShotTask_8c0259e8's TaskSpawn_8c014ae8 state, exactly the 0xc it
- * asks for. */
 typedef struct {
     int phase_0x00;
     int revealCount_0x04;
@@ -54,18 +48,10 @@ typedef struct {
  * ====================
  */
 
-/* The current demo shot's pos_0x04, copied here by demoShotTask_8c0259e8.
- * Read as a world point for camera mode 5 and as a bus-space offset for 6
- * and 7; the first two are resolved once by applyShotPosition_8c0258ba, mode
- * 7 every frame by DemoUpdateCamera_8c025906. */
 STATIC NJS_POINT3 var_demoShotPos_8c227e00;
-/* This route's attract-mode camera tour: a DemoShot[], one of
- * init_demoShotsShinjuku_8c045674/...Wangan_8c045b60/...Ome_8c045ee4, selected
- * by DemoStartTour_8c025af4 from var_route_8c18ad1c and indexed by the stop
- * marker in var_busState_8c1bb9d0.markDriveFlags_0x3b0. */
+/* DemoShot[] of the current route. */
 STATIC int *var_demoShots_8c227e0c;
-/* Makes demoShotTask_8c0259e8 cut to var_demoShotId_8c227dd4's shot on its
- * first frame instead of waiting for the marker to change. */
+/* Cut to var_demoShotId_8c227dd4's shot without waiting for a cue. */
 STATIC int var_demoShotRearm_8c227e10;
 
 /* ====================
@@ -73,12 +59,7 @@ STATIC int var_demoShotRearm_8c227e10;
  * ====================
  */
 
-/* The three routes' shot tables, picked by var_route_8c18ad1c
- * (DemoStartTour_8c025af4): init_demoShotsShinjuku_8c045674 = ROUTE_SHINJUKU,
- * init_demoShotsWangan_8c045b60 = ROUTE_WANGAN, init_demoShotsOme_8c045ee4 =
- * ROUTE_OME. A row's position is the cue id the mark grid paints and
- * init_demoFirstShot_8c0460b0 points at, which is what its
- * caption macro is numbered by. */
+/* Indexed by camera cue. */
 STATIC DemoShot init_demoShotsShinjuku_8c045674[] = {
     {1, {4.0f, 0.5f, -4.0f}, MSG_DEMO_SHOT_SHINJUKU_0},
     {0, {4138.0f, 13.0f, 4452.0f}, MSG_DEMO_SHOT_SHINJUKU_1},
@@ -219,7 +200,6 @@ STATIC DemoShot init_demoShotsOme_8c045ee4[] = {
     {0, {1992.0f, 12.0f, 797.0f}, MSG_DEMO_SHOT_OME_22},
 };
 
-/* Public: referenced by 0129cc_game.c/0129cc_game.src. */
 char init_demoFirstShot_8c0460b0[] = {
     0x06, 0x13, 0x33, 0x00, 0x0A, 0x14, 0x1D, 0x25,
     0x00, 0x0E, 0x00, 0x00,
@@ -230,7 +210,6 @@ char init_demoFirstShot_8c0460b0[] = {
  * ====================
  */
 
-/* See 025870_demo.h. */
 void DemoBoardingCamera_8c025870(void)
 {
     njInitCamera(&var_cabinCamera_8c1bb984);
@@ -240,11 +219,8 @@ void DemoBoardingCamera_8c025870(void)
     njPointCameraInterest(&var_cabinCamera_8c1bb984, 0.0f, 1.8f, 3.0f);
 }
 
-/* Resolves the current shot's position into the bus's draw point
- * (posX_0x2fc..posZ_0x304), which DemoUpdateCamera_8c025906 then puts the
- * camera at. Mode 5 takes var_demoShotPos_8c227e00 as a world point with y
- * relative to the ground under the bus; mode 6 reads it in bus space. Mode 7
- * is absent because it re-resolves per frame instead. */
+/* A world point's y is relative to the bus. Chase shots are resolved every
+ * frame in DemoUpdateCamera_8c025906 instead. */
 STATIC void applyShotPosition_8c0258ba(void)
 {
     switch (var_cameraMode_8c227d9c) {
@@ -264,7 +240,6 @@ STATIC void applyShotPosition_8c0258ba(void)
     }
 }
 
-/* See 025870_demo.h. */
 void DemoUpdateCamera_8c025906(void)
 {
     njInitCamera(&var_camera_8c1bb904);
@@ -295,17 +270,8 @@ void DemoUpdateCamera_8c025906(void)
     }
 }
 
-/* The tour itself, armed by DemoStartTour_8c025af4. Which shot is due is the
- * camera cue in var_busState_8c1bb9d0.markDriveFlags_0x3b0's top byte, refilled every frame
- * by BusTask_8c022bdc from the mark-attribute polygon under the bus.
- *
- * Phase 0 waits for that cue to change, cuts to the shot and types its place
- * name into the textbox, then phase 1 waits for the cue to clear. The first
- * frame is the exception: var_demoShotRearm_8c227e10 makes it cut to the shot
- * 0129cc_game.c pre-seeded in var_demoShotId_8c227dd4 instead of waiting.
- *
- * Every call then advances the caption's reveal counter -- one glyph per two
- * frames -- and re-queues the bus draw for the next frame. */
+/* Cuts to the shot of the camera cue under the bus and types its caption,
+ * then waits for the cue to clear. */
 STATIC void demoShotTask_8c0259e8(Task *task, DemoShotState *state)
 {
     Uint32 cue;
@@ -359,7 +325,6 @@ STATIC void demoShotTask_8c0259e8(Task *task, DemoShotState *state)
     RenderQueueDraw_8c0223ea(RENDER_LAYER_MAIN, (DrawFn)BusCameraDrawBusModel_8c024bb8, 0);
 }
 
-/* See 025870_demo.h. */
 void DemoStartTour_8c025af4(void)
 {
     Task *task;
