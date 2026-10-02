@@ -3,57 +3,48 @@
 #include <shinobi.h>
 
 #include "02a9fc_message_box.h"
-#include "011120_asset_queues.h" /* AsqRequestPvm_8c011ac0, AsqRequestDat_8c011182 */
-#include "013ae8_route.h" /* var_commonDir_8c18ad6c, enum ROUTE */
-#include "014a9c_tasks.h" /* Task */
-#include "015034_text.h" /* TextBox */
-#include "016d2c_course_menu.h" /* var_menuTextboxCharLimit_8c225fb8 */
-#include "0100bc_sound.h" /* SndStopAdx_8c010ca6, SndPlayAdx_8c010cd6, SndPollVoiceEnd_8c0106ac */
-#include "022464_render.h" /* FadeRequest, var_fadeRequest_8c226564, var_sceneVisible_8c226560 */
-#include "02af78_event.h" /* EventApplyFlags_8c02b292 */
+#include "011120_asset_queues.h"
+#include "013ae8_route.h"
+#include "014a9c_tasks.h"
+#include "015034_text.h"
+#include "016d2c_course_menu.h"
+#include "0100bc_sound.h"
+#include "022464_render.h"
+#include "02af78_event.h"
 #include "1ba1c8_globals.h"
-#include "includes.h" /* STATIC */
+#include "includes.h"
 
 /* ====================
  * Type Declarations
  * ====================
  */
 
-/* One entry of var_eventSlides_8c228480[event]/state->slide_0x10, terminated
- * by an entry whose layers_0x00 is (unsigned short *)-1. layers_0x00 is a base
- * image id plus 0-2 overlay ids, all drawn in the same frame in `pr` order.
- * lineListIndex_0x04 selects the line list out of var_messageTextDat_8c228518
- * (an array of EventLine*). */
+/* A list ends with layers_0x00 == -1. layers_0x00 is a 0xffff-terminated
+ * list of image ids, drawn back to front. */
 typedef struct {
     unsigned short *layers_0x00;
     int lineListIndex_0x04;
 } EventSlide;
 
-/* One var_messageAssets_8c228484 entry. */
 typedef struct {
     int id_0x00;
     void *pvm_0x04;
     void *dat_0x08;
 } MessageAssetEntry;
 
-/* One line of dialogue within a slide, walked by state->line_0x18; terminated
- * by an entry whose text_0x00 points at an empty string. */
+/* A list ends with an empty text_0x00. */
 typedef struct {
     char *text_0x00;
     int voiceId_0x04;
 } EventLine;
 
-/* Where slideshowTask_8c02ab7a picks up on the current frame. The stages run in
- * this order and fall through to the next one; the phase in state->phase_0x00 only decides
- * where to enter. */
+/* The stages fall through in order; phase_0x00 only picks where to enter. */
 typedef enum {
     SLIDESHOW_STAGE_SWAP,
     SLIDESHOW_STAGE_WAIT,
     SLIDESHOW_STAGE_DRAW
 } SlideshowStage;
 
-/* slideshowTask_8c02ab7a's TaskSpawn_8c014ae8 state, exactly the 0x1c it asks
- * for (see tests/02a9fc_message_box/8c02ab7a_slideshowTask.php's ST_* offsets). */
 typedef struct {
     int phase_0x00;
     int charCount_0x04;
@@ -64,8 +55,6 @@ typedef struct {
     EventLine *line_0x18;
 } SlideshowState;
 
-/* One entry of init_slideAssetFiles_8c046758, the .map/.pvm filename pair
- * for a message-box asset id. */
 typedef struct {
     char *map_0x00;
     char *pvm_0x04;
@@ -78,26 +67,16 @@ typedef struct {
 
 int var_selectedEventEntry_8c228478;
 int var_messageBoxActive_8c22847c;
-/* Per-event slide table for the route selected by
- * MessageBoxRequestAssets_8c02aa36: init_shinjukuEvents_8c049a6c / init_wanganEvents_8c04843c /
- * init_omeEvents_8c04a9c8, indexed by var_selectedEventEntry_8c228478. */
 STATIC EventSlide **var_eventSlides_8c228480;
-/* Dedup table of message pvm/dat assets requested by
- * MessageBoxRequestAssets_8c02aa36, one entry per distinct id seen
- * across the selected event's slides; count in var_messageAssetCount_8c228514. */
+/* One per distinct image id in the selected event's slides. */
 STATIC MessageAssetEntry var_messageAssets_8c228484[12];
 STATIC int var_messageAssetCount_8c228514;
-STATIC EventLine **var_messageTextDat_8c228518;
+STATIC EventLine **var_messageTextDat_8c228518; /* -1 when not loaded */
 
 /* ====================
  * Initialized Globals
  * ====================
  */
-
-/* Mechanically dumped from src/asm/decompiled/02a9fc_message_box.src sections C/D
- * via scripts/dump_src_data.py, in original file (== address) order; a few
- * symbols below are hand-typed where a semantic type earns its keep, verified
- * byte-identical against the archived asm via scripts/dcdiff.py. */
 
 STATIC MessageAssetFiles init_slideAssetFiles_8c046758[] = {
     {"", ""},
@@ -3789,9 +3768,7 @@ STATIC EventSlide *init_omeEvents_8c04a9c8[] = {
     NULL,
 };
 
-/* Full-screen (640x480) tilemap of 32x32 cells (20x15 grid); reused for
- * every message-box layer, with texlist/map patched in per layer before
- * each njDrawScroll. */
+/* Full-screen 20x15 grid of 32x32 cells, shared by every slide layer. */
 STATIC NJS_SCROLL init_slideScroll_8c04ab3c = {
     /* celps      */ 32,
     /* mapw, maph */ 20, 15,
@@ -3818,15 +3795,12 @@ STATIC NJS_SCROLL init_slideScroll_8c04ab3c = {
  * ====================
  */
 
-/* Called by MessageBoxStart_8c02ad8c before its own definition. */
 void MessageBoxOpenTextbox_8c02ae3e(int x, int y, float priority, int width, int height, int x2, int y2, int enable_offset);
 
-/* Called by slideshowTask_8c02ab7a before their own definitions. */
 void MessageBoxFreeAssets_8c02adee(void);
 int MessageBoxSetText_8c02aefc(char *string);
 int MessageBoxDrawText_8c02af1c(int limit);
 
-/* Called by MessageBoxFreeAssets_8c02adee before its own definition. */
 void MessageBoxFreeTextboxes_8c02af32(void);
 
 /* ====================
@@ -3834,12 +3808,9 @@ void MessageBoxFreeTextboxes_8c02af32(void);
  * ====================
  */
 
-/* Relocation fixup for a freshly-loaded message text dat (s_text.dat /
- * w_text.dat / o_text.dat, see MessageBoxRequestAssets_8c02aa36): a
- * 0-terminated array of group
- * offsets, each group an array of (string offset, value) pairs terminated
- * by an entry whose string is empty. Converts every offset to an absolute
- * pointer, in place. */
+/* The text dat is a 0-terminated array of line-list offsets, each list
+ * {text offset, voice id} pairs ending at an empty string. Offsets are
+ * relative to the file start. */
 STATIC void relocateMessageText_8c02a9fc(void *handle)
 {
     int *group;
@@ -3860,22 +3831,13 @@ STATIC void relocateMessageText_8c02a9fc(void *handle)
     }
 }
 
-/* Drops the message-asset dedup list; the pvm/map handles themselves are owned
- * by the asset queues. */
 void MessageBoxClearAssets_8c02aa28(void)
 {
     var_messageAssetCount_8c228514 = 0;
     var_messageTextDat_8c228518 = (EventLine **) -1;
 }
-/* Picks the current route's message-text dat (s_text.dat / w_text.dat /
- * o_text.dat) and its per-event slide table, requests the dat, then walks
- * the selected event's slides (var_eventSlides_8c228480[var_selectedEventEntry_8c228478],
- * a 0-terminated {ushort *layers, unused} pair list, each layers array itself
- * 0xffff-terminated) requesting the pvm/map pair for every distinct id seen,
- * deduped into var_messageAssets_8c228484 (count in var_messageAssetCount_8c228514). Bug-for-bug: an
- * unrecognized route leaves var_eventSlides_8c228480 untouched (stale) and skips the
- * dat request entirely, but the dedup walk below still runs against
- * whatever var_eventSlides_8c228480 already held. */
+/* An unknown route skips the dat request but still walks the stale
+ * var_eventSlides_8c228480, as the original does. */
 void MessageBoxRequestAssets_8c02aa36(void)
 {
     EventSlide *slide;
@@ -3916,10 +3878,8 @@ void MessageBoxRequestAssets_8c02aa36(void)
         }
     }
 }
-/* TaskAction spawned by MessageBoxStart_8c02ad8c to drive the event
- * message box: swaps in each line, waits (or fast-forwards on held A),
- * advances through the current slide's lines then to the next slide, and
- * finally requests the fade-out/cleanup once the last slide ends. */
+/* Reveals each line one char per 3 frames (2 per frame while A is held),
+ * then waits for A to advance. */
 STATIC void slideshowTask_8c02ab7a(Task *task, SlideshowState *state)
 {
     SlideshowStage stage;
@@ -3946,7 +3906,6 @@ STATIC void slideshowTask_8c02ab7a(Task *task, SlideshowState *state)
         break;
 
     case 3:
-        /* Fast-forward while A stays held; releasing it drops back to the wait. */
         if ((var_peripheral_8c1ba358->on & PDD_DGT_TA) == 0) {
             state->phase_0x00 = 2;
         } else {
@@ -4033,11 +3992,6 @@ STATIC void slideshowTask_8c02ab7a(Task *task, SlideshowState *state)
     MessageBoxDrawText_8c02af1c(state->revealedChars_0x08);
     SndPollVoiceEnd_8c0106ac();
 }
-/* Starts the event message-box display: applies the message-text relocation
- * fixup, spawns the message task with the selected event's slide table,
- * opens the on-screen textbox (MessageBoxOpenTextbox_8c02ae3e), and marks the event-message
- * flag so the pause menu stays suppressed (see pauseUpdate_8c0129cc) while it
- * runs. Also counts the shown event toward the run's completion bonus. */
 void MessageBoxStart_8c02ad8c(void)
 {
     Task *task;
@@ -4051,12 +4005,6 @@ void MessageBoxStart_8c02ad8c(void)
     var_messageBoxActive_8c22847c = 1;
     var_eventCount_8c1bb8e8++;
 }
-/* Releases everything MessageBoxRequestAssets_8c02aa36 requested: the
- * per-id pvm/dat pairs deduped into var_messageAssets_8c228484 (count var_messageAssetCount_8c228514), the
- * shared message-text dat in var_messageTextDat_8c228518, and the message-box textbox
- * resources (MessageBoxFreeTextboxes_8c02af32). Called at the end of the message-box
- * slideshow (slideshowTask_8c02ab7a) and again during full session teardown
- * (ReplayMenuFreeSessionAssets_8c016182). */
 void MessageBoxFreeAssets_8c02adee(void)
 {
     int i;
@@ -4074,13 +4022,8 @@ void MessageBoxFreeAssets_8c02adee(void)
 
     MessageBoxFreeTextboxes_8c02af32();
 }
-/* (Re)opens the message textbox: tears down any existing pair via
- * MessageBoxFreeTextboxes_8c02af32, re-inits the text module, and creates a fresh
- * double-buffered pair -- (&var_messageTextBoxA_8c1bc404)[0] and [1] -- with identical
- * geometry, toggled between by MessageBoxSetText_8c02aefc. Geometry
- * args mirror TxtCreateTextBox_8c0152fc. The original returns
- * &var_menuTextboxCharLimit_8c225fb8 (just reset to 0 here), but no caller
- * uses the return value. */
+/* Creates a double-buffered pair of identical boxes. The original returns
+ * &var_menuTextboxCharLimit_8c225fb8, which no caller uses. */
 void MessageBoxOpenTextbox_8c02ae3e(int x, int y, float priority, int width, int height, int x2, int y2, int enable_offset)
 {
     if (var_messageTextBoxA_8c1bc404 != (void *) -1) {
@@ -4093,27 +4036,18 @@ void MessageBoxOpenTextbox_8c02ae3e(int x, int y, float priority, int width, int
     var_messageTextBoxIndex_8c1bc40c = 1;
     var_menuTextboxCharLimit_8c225fb8 = 0;
 }
-/* Flips the active buffer index and lays the given text out into the
- * newly-active box, returning TxtPrepareTextBoxLayout_8c01543a's result
- * (the caller uses it as a wait-frame count). */
+/* Lays the text out in the back buffer and flips to it. Returns the char
+ * count. */
 int MessageBoxSetText_8c02aefc(char *string)
 {
     var_messageTextBoxIndex_8c1bc40c ^= 1;
     return TxtPrepareTextBoxLayout_8c01543a((TextBox *)(&var_messageTextBoxA_8c1bc404)[var_messageTextBoxIndex_8c1bc40c], string);
 }
-/* Draws the currently-revealed portion of the active message box's text,
- * called every frame from slideshowTask_8c02ab7a's draw tail with the
- * running char-reveal counter as limit. Returns TxtDrawTextBox_8c0155e0's
- * result (some callers check it in an if()). */
+/* Draws the first `limit` chars. */
 int MessageBoxDrawText_8c02af1c(int limit)
 {
     return TxtDrawTextBox_8c0155e0((TextBox *)(&var_messageTextBoxA_8c1bc404)[var_messageTextBoxIndex_8c1bc40c], limit);
 }
-/* Destroys the double-buffered textbox pair and re-inits the text module.
- * Guarded by the var_messageTextBoxA_8c1bc404 sentinel so a second call (e.g. teardown
- * after an already-closed textbox) is a no-op. Note var_messageTextBoxB_8c1bc408 and
- * var_messageTextBoxIndex_8c1bc40c are left stale -- only var_messageTextBoxA_8c1bc404 is reset -- matching
- * the original. */
 void MessageBoxFreeTextboxes_8c02af32(void)
 {
     if (var_messageTextBoxA_8c1bc404 != (void *) -1) {

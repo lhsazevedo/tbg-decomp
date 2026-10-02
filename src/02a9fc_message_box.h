@@ -4,9 +4,7 @@
 
 #include <shinobi.h>
 
-/* table index (into the EventEntry array pointed to by var_routeEvents_8c22851c)
- * chosen by EventPickForSegment_8c02b170, consumed by
- * EventApplyFlags_8c02b292 */
+/* Index into var_routeEvents_8c22851c. */
 extern int var_selectedEventEntry_8c228478;
 extern int var_messageBoxActive_8c22847c;
 
