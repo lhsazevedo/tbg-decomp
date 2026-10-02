@@ -5,16 +5,12 @@
 #include <shinobi.h>
 #include "026710_traffic.h" /* TrafficEntry */
 
-/* Table of 16 pointers, each to a 0x60-byte block of 8 NJS_POINT3 -- a
- * per-variant oriented bounding box in local space, indexed by a traffic
- * entry's variant index (entry+0x2e0). */
+/* Local-space bounding boxes, indexed by variantIndex_0x2e0. */
 extern NJS_POINT3 *init_variantBoxes_8c04c940[16];
 
-/* Reports which vehicle or pedestrian the player's bus is currently bumping
- * into, or NULL. Only candidates within 12 world units (busDistance_0x490) are
- * box-tested; that field is past BusState's 0x3cc end, so a hit is never the
- * bus itself. Leaves the bus's own world-space box in
- * var_collisionSelfBox_8c228978. */
+/* Leaves the bus's world-space box in var_collisionSelfBox_8c228978.
+ * busDistance_0x490 lies past BusState's 0x3cc end, so the bus never hits
+ * itself. */
 TrafficEntry *BusCollisionFindHit_8c02e2dc(void);
 
 #endif // _02E2DC_BUS_COLLISION_H

@@ -15,13 +15,9 @@
  * ====================
  */
 
-/* Local-space oriented bounding boxes, 8 corners each (top face, then
- * bottom face, each going around), reached through
- * init_variantBoxes_8c04c940 below. Literals carry full float32 precision
- * (not clean decimals like -0.835/3.05) because the original constants
- * themselves aren't exact -- the first box's z bakes 3.0500001907348633,
- * one ULP off "3.05" -- so a rounder-looking literal would compile to a
- * different bit pattern. */
+/* Local-space bounding boxes, 8 corners each: top face, then bottom face,
+ * each going around. Literals keep full float32 precision because the
+ * originals aren't exact (3.0500001907348633 is one ULP off 3.05). */
 STATIC NJS_POINT3 init_variantBox_8c04c520[8] = {
     {-0.8349999785423279f, 1.5f, 3.0500001907348633f},
     {-0.8349999785423279f, 1.5f, -0.6499999761581421f},
@@ -110,8 +106,6 @@ STATIC NJS_POINT3 init_variantBox_8c04c7c0[8] = {
     {0.7649999856948853f, 0.0f, 3.5f},
 };
 
-/* Also reached by name, not just through the table: it is the box
- * BusCollisionFindHit_8c02e2dc transforms by the bus's own world matrix. */
 STATIC NJS_POINT3 init_busBox_8c04c820[8] = {
     {-1.1649999618530273f, 1.5f, 8.0f},
     {-1.1649999618530273f, 1.5f, -2.5999999046325684f},
@@ -145,8 +139,7 @@ STATIC NJS_POINT3 init_variantBox_8c04c8e0[8] = {
     {0.8399999737739563f, 0.0f, 3.8999998569488525f},
 };
 
-/* Indexed by a traffic entry's variant index (entry+0x2e0); slot 13 is the
- * player bus. Also used by 02e400_collision. */
+/* Slot 13 is the player bus. */
 NJS_POINT3 *init_variantBoxes_8c04c940[16] = {
     init_variantBox_8c04c520, init_variantBox_8c04c520,
     init_variantBox_8c04c580, init_variantBox_8c04c5e0,
@@ -163,12 +156,6 @@ NJS_POINT3 *init_variantBoxes_8c04c940[16] = {
  * ====================
  */
 
-/* busDistance_0x490 is the distance to the bus, refreshed per-frame by
- * TrafficDriveVehicleTask_8c025b98/TrafficDriveParkedTask_8c02656a.
- *
- * The overlap test here is GeomQuadOverlap_8c020842, where the otherwise
- * identical traffic-vs-traffic scan in CollisionFindTaskHit_8c02e400 uses
- * njCollisionCheckBB. */
 TrafficEntry *BusCollisionFindHit_8c02e2dc(void)
 {
     Task *cursor;
@@ -203,13 +190,8 @@ TrafficEntry *BusCollisionFindHit_8c02e2dc(void)
     return NULL;
 }
 
-/* Unused -- real, separately compiled code with zero references anywhere in
- * src/, kept for object parity with the original binary.
- *
- * Resumes BusCollisionFindHit_8c02e2dc's scan from wherever
- * var_collisionScanCursor_8c228974 is already sitting, advancing past the
- * entry there first, and reuses the box that call left behind -- so it
- * yields the bump after the one just reported. */
+/* Unused. Resumes BusCollisionFindHit_8c02e2dc's scan past its last hit,
+ * reusing the bus box it left behind. */
 STATIC BusState *findNextHit_8c02e35a(void)
 {
     Task *cursor;
