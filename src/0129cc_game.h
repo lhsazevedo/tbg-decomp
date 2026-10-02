@@ -12,13 +12,12 @@ extern NJS_TEXMEMLIST var_tex_8c157af8[TEX_NUM];
 extern NJS_TEXLIST init_renderTexlist_8c03bf44;
 
 void GameSoftResetTask_8c012f44();
-/* Set up the driving scene; run at course entry and at every segment
- * boundary, from 013ae8's load tasks. */
+/* Runs at course entry and at every segment boundary. */
 void GameEnterDrive_8c01306e(void);
-/* Start a run on the course already staged in var_replayMenuCourseSel_8c1bc824
- * (debug menu, demos, replays). GameStartCourse_8c013310 is the retail
- * path, taking the course id and the drive mode from saved progress instead. */
+/* Starts a run on the course staged in var_replayMenuCourseSel_8c1bc824
+ * (debug menu, demos, replays). */
 void GameStartSelectedCourse_8c01328c();
+/* Drive mode comes from saved progress. */
 void GameStartCourse_8c013310(int courseId);
 void GameInit_8c0134ec();
 int GameMain_8c01392e(void);

@@ -77,7 +77,7 @@ char *DEBUG_retirePhaseNames[] = {
     var_retirePhase_8c18ad08 = x;                                              \
     LOG_DEBUG(("[PAUSE] Retire phase changed: %s\n", DEBUG_retirePhaseNames[x]))
 
-/* attractDemoTask_8c012d5a: demo ending marks and phases (see phase_0x08) */
+/* Attract demo marks and phases */
 #define MARK_DEMO          0x7b
 #define MARK_DEMO_BLINK    0x7c
 
@@ -97,7 +97,7 @@ typedef struct {
     TaskAction action;
     void *state;
     int phase_0x08;      /* DEMO_END_* */
-    int counter_0x0c;    /* frame counter */
+    int counter_0x0c;    /* frames */
     int field_0x10;
     int field_0x14;
     void *queuedItem_0x18;
@@ -125,12 +125,10 @@ STATIC int var_gdErr_8c18ad14;
  * ======================
  */
 
-/* The offscreen render target: one RGB565 texture over var_texbuf_8c277ca0 at
- * global index 999. 022464 renders the mirror view into it and blits it back
- * with njDrawTexture. */
+/* Offscreen render target for the mirror view. */
 NJS_TEXLIST init_renderTexlist_8c03bf44 = {var_renderTexname_8c18acf8, 1};
 
-/* Half-black full-screen quad njDrawPolygon'd behind the pause marks. */
+/* Half-black full-screen quad behind the pause marks. */
 STATIC NJS_POLYGON_VTX init_pauseDimQuad_8c03bf4c[4] = {
     {   0.0f,   0.0f, 0.8695652484893799f, ARGB(0x7f, 0x00, 0x00, 0x00) },
     {   0.0f, 480.0f, 0.8695652484893799f, ARGB(0x7f, 0x00, 0x00, 0x00) },
@@ -151,7 +149,7 @@ STATIC int init_8c03bf8c[] = {
     0,
 };
 
-/* GameMain_8c01392e's gdFsReqDrvStat request is in flight. */
+/* A gdFsReqDrvStat request is in flight. */
 STATIC int init_drvStatPending_8c03bfa8 = 0;
 
 /* ==========
@@ -159,16 +157,8 @@ STATIC int init_drvStatPending_8c03bfa8 = 0;
  * ==========
  */
 
-/*
- * Pause menu (Start during a drive): CONTINUE / RETIRE, RETIRE guarded by a
- * YES/NO confirm. Returns nonzero while closed -- the caller takes that as
- * leave for the rest of the frame's tasks to run.
- *
- * njDrawPolygon draws the dimmed backdrop quad behind the marks.
- *
- * var_onRetire_8c18ad10 is the cursor: 0 CONTINUE, 1 RETIRE. The confirm
- * always opens on NO.
- */
+/* CONTINUE / RETIRE, RETIRE guarded by a YES/NO confirm. Returns nonzero
+ * while closed. */
 STATIC int pauseUpdate_8c0129cc(void)
 {
     PDS_PERIPHERAL *p;
@@ -192,8 +182,7 @@ STATIC int pauseUpdate_8c0129cc(void)
         return 1;
     }
 
-    /* Dead: nothing in the image ever stores a nonzero here, and opening the
-       menu clears it. Kept because it is in the original. */
+    /* Dead: nothing in the image ever stores a nonzero here. */
     if (var_pauseSettle_8c18ad04 != 0) {
         if (var_pauseSettle_8c18ad04 == 1) {
             var_pauseSettle_8c18ad04 = 2;
@@ -205,12 +194,10 @@ STATIC int pauseUpdate_8c0129cc(void)
     p = var_peripheral_8c1ba358;
 
     if ((p->press & PDD_DGT_ST) != 0) {
-        /* Start again: close, no sound. */
         var_pauseActive_8c1bb8cc = 0;
         SndSetPaused_8c0107d2(0);
         LOG_DEBUG(("[PAUSE] pauseUpdate_8c0129cc: menu closed (Start)\n"));
     } else if (var_onRetire_8c18ad10 == 0) {
-        /* Cursor on CONTINUE: A resumes, Down moves to RETIRE. */
         if ((p->press & PDD_DGT_TA) != 0) {
             var_pauseActive_8c1bb8cc = 0;
             SndSetPaused_8c0107d2(0);
@@ -227,7 +214,6 @@ STATIC int pauseUpdate_8c0129cc(void)
     } else {
         switch (var_retirePhase_8c18ad08) {
         case RETIRE_PHASE_IDLE:
-            /* Cursor on RETIRE: A opens the confirm, Up back to CONTINUE. */
             if ((p->press & PDD_DGT_TA) != 0) {
                 CHANGE_RETIRE_PHASE(RETIRE_PHASE_CONFIRM);
                 sdMidiPlay(var_midiHandles_8c0fcd28[0], 1, 0, 0);
@@ -240,7 +226,6 @@ STATIC int pauseUpdate_8c0129cc(void)
             break;
 
         case RETIRE_PHASE_CONFIRM:
-            /* Confirm: B cancels; Left=YES / Right=NO; A acts on the choice. */
             if ((p->press & PDD_DGT_TB) != 0) {
                 CHANGE_RETIRE_PHASE(RETIRE_PHASE_IDLE);
                 SpriteDraw_8c014f54((ResourceGroup *)&var_markTexlist_8c1bc418, MARK_RETIRE, 0.0f, 0.0f, MARK_Z_ARROW);
@@ -248,7 +233,7 @@ STATIC int pauseUpdate_8c0129cc(void)
                 break;
             }
             if (var_confirmChoice_8c18ad0c == CONFIRM_YES) {
-                /* A commits -- start the fade, no mark this frame. */
+                /* No mark this frame. */
                 if ((p->press & PDD_DGT_TA) != 0) {
                     CHANGE_RETIRE_PHASE(RETIRE_PHASE_FADING);
                     RenderStartFadeOut_8c022b60(10);
@@ -264,7 +249,6 @@ STATIC int pauseUpdate_8c0129cc(void)
                 SpriteDraw_8c014f54((ResourceGroup *)&var_markTexlist_8c1bc418, MARK_CONFIRM_YES, 0.0f, 0.0f, MARK_Z_ARROW);
                 break;
             }
-            /* A cancels back to RETIRE. */
             if ((p->press & PDD_DGT_TA) != 0) {
                 CHANGE_RETIRE_PHASE(RETIRE_PHASE_IDLE);
                 sdMidiPlay(var_midiHandles_8c0fcd28[0], 1, 0, 0);
@@ -277,7 +261,6 @@ STATIC int pauseUpdate_8c0129cc(void)
             break;
 
         case RETIRE_PHASE_FADING:
-            /* Retire committed: hold the YES mark through the fade, then leave the drive. */
             if (var_isFading_8c226568 != 0) {
                 SpriteDraw_8c014f54((ResourceGroup *)&var_markTexlist_8c1bc418, MARK_CONFIRM_YES, 0.0f, 0.0f, MARK_Z_ARROW);
                 njDrawPolygon(init_pauseDimQuad_8c03bf4c, 4, 1);
@@ -308,10 +291,7 @@ STATIC int pauseUpdate_8c0129cc(void)
     return 0;
 }
 
-/*
- * TaskSpawn_8c014ae8 action for a normal drive: soft-reset check first, then
- * the pause menu, and the rest of the frame's tasks only while it is closed.
- */
+/* Root task of a normal drive. */
 STATIC void pauseTask_8c012cbc()
 {
     LOG_TRACE(("[PAUSE] pauseTask_8c012cbc\n"));
@@ -331,11 +311,7 @@ STATIC void pauseTask_8c012cbc()
     }
 }
 
-/*
- * TaskSpawn_8c014ae8 action for VMU replay playback (PLAY_MODE_DEMO with
- * var_isAttractDemo_8c1bb8d4 == 0). No CONTINUE/RETIRE menu -- Start only
- * freezes the replay.
- */
+/* Root task of VMU replay playback: no menu, Start only freezes the replay. */
 STATIC void pauseToggleTask_8c012d06()
 {
     LOG_TRACE(("[PAUSE] pauseToggleTask_8c012d06\n"));
@@ -360,12 +336,8 @@ STATIC void pauseToggleTask_8c012d06()
     RenderDrawFrameMainOnly_8c022910();
 }
 
-/*
- * TaskSpawn_8c014ae8 action for the attract loop (PLAY_MODE_DEMO with
- * var_isAttractDemo_8c1bb8d4 != 0): plays out until Start or the timeout, then
- * fades back to the title -- skipping the FortyFive logo when Start ended it,
- * replaying it on a timeout.
- */
+/* Root task of the attract demo. Back on the title, Start skips the FortyFive
+ * logo; a timeout replays it. */
 STATIC void attractDemoTask_8c012d5a(AttractDemoTaskData *task)
 {
     LOG_TRACE(("[PAUSE] attractDemoTask_8c012d5a\n"));
@@ -445,9 +417,8 @@ void GameSoftResetTask_8c012f44()
     }
 }
 
-/* Tears down the view a run starts in: busInitPlaceBus_8c023310 opens on
- * MIRROR_DOOR with RenderStartRunFade_8c0228a2's arrival overlay up,
- * and this drops both once the doors shut or the bus pulls away. */
+/* Drops the view a run starts in (MIRROR_DOOR, arrival overlay up) once the
+ * doors shut or the bus pulls away. */
 STATIC void runStartViewTask_8c012f9c(Task *task, void* state) {
     Bool omeStart;
 
@@ -614,8 +585,8 @@ void GameStartCourse_8c013310(int courseId) {
     RouteSpawnTask_8c0144fc();
 }
 
-/* Boot: wait for GameInit_8c0134ec's asset load, pull in the sound driver,
- * then hand over to the title. */
+/* Waits for GameInit_8c0134ec's asset load, loads the sound driver, then
+ * hands over to the title. */
 STATIC void bootTask_8c013388(Task *task, void *state) {
     switch (task->field_0x08) {
         case 0: {
@@ -639,10 +610,9 @@ STATIC void bootTask_8c013388(Task *task, void *state) {
                 SndInit_8c010e18("\\SOUND");
                 var_lcdAnimActive_8c2260a8 = 1;
 #ifdef DEBUG_MENU
-                /* Boot straight into the debug menu (ReplayMenuOpen_8c01673a) --
-                 * the retail entry point that was compiled out. Course entries
-                 * work; *_EVENT / REPLAY / VISUAL_MEMORY need state this path
-                 * doesn't set up and will hang on the loading screen. */
+                /* The debug menu, compiled out of retail. Course entries
+                 * work; *_EVENT / REPLAY / VISUAL_MEMORY hang on the loading
+                 * screen. */
                 ReplayMenuOpen_8c01673a();
 #else
                 TitleStart_8c015fd6(0);
@@ -798,7 +768,6 @@ int GameMain_8c01392e(void) {
     Sint32 stat;
 
     if (init_adxPlaying_8c03bd80 != 0) {
-        /* Hit on title screen, after fadein */
         if (init_soundOk_8c03bd84 == 0) {
             if (var_vibport_8c1ba354 != -1) {
                 pdVibMxStop(var_vibport_8c1ba354);
@@ -811,7 +780,6 @@ int GameMain_8c01392e(void) {
         return 0;
     }
 
-    /* Hit just before logo/menu */
     if (var_queuesAreInitialized_8c157a60 == 0) {
         if (init_drvStatPending_8c03bfa8 == 0) {
             if (!gdFsReqDrvStat()) {
