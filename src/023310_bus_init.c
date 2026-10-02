@@ -33,8 +33,6 @@ LineBusNode *var_lineNodes_8c227d88;
  * =====================
  */
 
-/* Positions the player's bus at the current segment's stop and resets its
- * driving-physics state. Called once by BusInitStart_8c023610 at the start of a run. */
 STATIC void placeBus_8c023310(void)
 {
     StopAreaRecord *stopArea = StopGetArea_8c02cd7a(var_currentSegment_8c228708);
@@ -63,9 +61,8 @@ STATIC void placeBus_8c023310(void)
                                      var_busState_8c1bb9d0.posZ_0x0fc, &groundResult);
     GroundProbeInterpolateHeight_8c020f7e(&groundResult, &var_busState_8c1bb9d0.posX_0x0f4);
 
-    /* The bus's own body dimensions, in the same four fields TrafficEntry
-     * fills from its dims[] table. BusDriveSampleGround_8c023938 hardcodes
-     * the same 4.9/1.25/2.6 rather than reading them back. */
+    /* BusDriveSampleGround_8c023938 hardcodes these rather than reading them
+     * back. */
     var_busState_8c1bb9d0.width_0x23c = 4.9f;
     var_busState_8c1bb9d0.height_0x244 = 2.5f;
     var_busState_8c1bb9d0.halfHeight_0x248 = 1.25f;
@@ -102,9 +99,7 @@ STATIC void placeBus_8c023310(void)
         var_busState_8c1bb9d0.posHistory_0x100[i].y = var_busState_8c1bb9d0.posY_0x0f8;
     }
 
-    /* Seed all 10 corner ground-samples (023938_bus_drive.h) as misses,
-     * matching GroundQueryFindPolygon_8c020914's own miss path -- attr_0x00/
-     * polyIdSlot_0x04 are left stale/uninitialized. */
+    /* Seeded as misses; attr_0x00/polyIdSlot_0x04 are left stale. */
     for (i = 0; i < 10; i++) {
         var_busState_8c1bb9d0.groundSamples_0x190[i].vertexIds_0x08 = 0;
         var_busState_8c1bb9d0.groundSamples_0x190[i].count_0x0c = 0;
@@ -140,10 +135,6 @@ STATIC void placeBus_8c023310(void)
     }
 }
 
-/* Places the player's bus for the start of a run and arms its per-frame
- * task. BusTask_8c022bdc's ground-query family is picked per route/segment:
- * the Wangan route's segment 10 (an elevated-road overlap) gets the
- * *AtHeight variants, every other case gets the plain ones. */
 void BusInitStart_8c023610(void)
 {
     Task *created_task;
@@ -168,8 +159,8 @@ void BusInitStart_8c023610(void)
     var_busState_8c1bb9d0.shadowModel_0x014 = *(int *)((char *)var_trafficModels_8c1bc3f4 + 0x44);
     VehiclePartsBind_8c02786c(&var_busState_8c1bb9d0, 0x1a);
 
-    /* bodyModels_0x04c[0..5] default to 0x3f, then the one for this run's
-     * time-of-day/route is overridden to 0x37. */
+    /* Hide (NJD_EVAL_HIDE) every body variant but this route and time of
+     * day's. */
     for (i = 0; i < 6; i++) {
         var_busState_8c1bb9d0.bodyModels_0x04c[i]->evalflags = 0x3f;
     }
@@ -177,13 +168,13 @@ void BusInitStart_8c023610(void)
     if (var_timeOfDay_8c18ad20 == TIME_OF_DAY_DAY || var_timeOfDay_8c18ad20 == TIME_OF_DAY_EVENING) {
         selected = &var_busState_8c1bb9d0.bodyModels_0x04c[0];
     } else {
-        /* var_timeOfDay_8c18ad20 only ever holds the three TIME_OF_DAY_*
-         * values, so this covers TIME_OF_DAY_NIGHT -- the original leaves
-         * the register unset for any other value. */
+        /* TIME_OF_DAY_NIGHT; the original leaves selected unset for any
+         * other value. */
         selected = &var_busState_8c1bb9d0.bodyModels_0x04c[3];
     }
     selected[var_route_8c18ad1c]->evalflags = 0x37;
 
+    /* Wangan segment 10 overlaps an elevated road. */
     if (var_route_8c18ad1c == ROUTE_WANGAN && var_currentSegment_8c228708 == 10) {
         var_busState_8c1bb9d0.groundProbeFn_0x2c8 = (int)GroundProbeFindPolygonAtHeight_8c020fe4;
         var_busState_8c1bb9d0.junctionQueryFnCpu_0x2cc = (int)AttrQueryFindConvexPolygonAtHeight_8c02eab4;
@@ -252,7 +243,7 @@ void BusInitStart_8c023610(void)
         var_busState_8c1bb9d0.junctionBRoadFlags2_0x374 = 0;
     }
 
-    /* Same posHistory[3] point as above, second out-buffer. */
+    /* posHistory_0x100[3] again, where BusTask_8c022bdc queries [0]. */
     result = AttrQueryFindPolygon_8c02e69c(var_busState_8c1bb9d0.posHistory_0x100[3].x,
                            var_busState_8c1bb9d0.posHistory_0x100[3].y,
                            var_busState_8c1bb9d0.posHistory_0x100[3].z,
