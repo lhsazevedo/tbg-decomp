@@ -4,12 +4,10 @@
 
 #include <shinobi.h>
 
-/* TaskSpawn_8c014ae8 action for a moving traffic entry (installed by
- * spawnEntry_8c0272b8, 026710_traffic.h). */
 void TrafficDriveVehicleTask_8c025b98();
 
-/* TaskSpawn_8c014ae8 action for a fixed-position traffic entry (script
- * type 10; installed by spawnEntry_8c0272b8, 026710_traffic.h). */
+/* For a script of type 10: a vehicle placed at a fixed position that only
+ * moves when knocked back. */
 void TrafficDriveParkedTask_8c02656a();
 
 #endif // _025B98_TRAFFIC_DRIVE_H
