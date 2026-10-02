@@ -8,7 +8,6 @@
  * ====================
  */
 
-/* See 02081c_geom.h. */
 float GeomDistanceXZ_8c02081c(void *a, void *b)
 {
     Float *pa = (Float *)a;
@@ -19,13 +18,10 @@ float GeomDistanceXZ_8c02081c(void *a, void *b)
     return njSqrt(dz * dz + dx * dx);
 }
 
-/* See 02081c_geom.h. */
 Bool GeomQuadOverlap_8c020842(NJS_POINT3 *a, NJS_POINT3 *b)
 {
     Sint32 i, j;
 
-    /* Height cull, one-sided and sampled at vertex 1 only: a high above b
-     * misses, b high above a does not. */
     if (a[1].y - b[1].y > 5.0f) {
         return FALSE;
     }
