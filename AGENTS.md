@@ -175,6 +175,7 @@ under `tests/<addr>/`, and register it in the matching group in `tests.php`
 - **Reading/maintaining Ghidra via MCP** → `docs/ghidra-mcp.md`
 - **Gameplay reference (what the code implements)** → `docs/gameplay.md`
 - **Lessons learned (non-obvious toolchain/asm quirks)** → `docs/lessons_learned.md`
+- **Rev A differences** → `docs/rev_a.md`
 - **Writing tests** → `tests/AGENTS.md`
 - **Setting up a new unit** → `.claude/skills/setup-unit/SKILL.md`
 - **Decompiling a function** → `.claude/skills/decompile-function/SKILL.md`
