@@ -68,28 +68,22 @@ struct MenuState {
     } pos;
     NJS_POINT2 cursorVelocity_0x30;
     int selected_0x38;
-    /* Shared menu cursor: 0x3c steps on left/right, 0x40 on up/down. What the
-     * axes index is each screen's own business -- COURSE SELECT's 5x3 button
-     * grid (row * 5 + col), PROFILE FILE's 10x6 unlock grid, the PRACTICE
-     * guide's scroll row, a Yes/No prompt in 0x3c alone. A screen on its way
-     * out parks the pair on the course-menu button it wants selected next. */
+    /* Shared menu cursor: 0x3c steps on left/right, 0x40 on up/down; each
+     * screen picks what the axes index. A screen on its way out parks the
+     * pair on the course-menu button it wants selected next. */
     int cursorCol_0x3c;
     int cursorRow_0x40;
     int scrollTopRow_0x44;
     int cursorVisible_0x48;
     int field_0x4c;  /* nothing in the tree reads or writes it */
     int courseId_0x50;
-    /* Per-screen scratch with no shared meaning: the ending uses 0x54/0x58 as
-     * the two credit boxes' character-reveal caps and 0x5c as which box is
-     * current; PRACTICE uses them as a lesson's first/last/current guide page;
-     * the main menu uses 0x5c alone as a sprite index. */
+    /* Per-screen scratch with no shared meaning. */
     int field_0x54;
     int field_0x58;
     int field_0x5c;
     int instructorSprite_0x60;
-    /* Two more per-screen counters. 0x68 is the frame tick everywhere (blink
-     * parity, dwell timers); 0x64 is a step or page index, and the title's
-     * PRESS START timeout. */
+    /* 0x68 is the frame tick everywhere; 0x64 is a per-screen step or page
+     * index, and the title's PRESS START timeout. */
     int counter_0x64;
     int timer_0x68;
     int selectedVmuSlot_0x6c;  /* except in 01d7fc, which caches a VMU status here */

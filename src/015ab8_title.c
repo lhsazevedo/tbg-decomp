@@ -174,9 +174,7 @@ STATIC void titleTask_8c015ab8(Task* task, void *state) {
 
         case TITLE_STATE_0X06_ADX_FADE_OUT: {
             if (var_isFading_8c226568 == FALSE) {
-                /* InputCheckColdBoot_8c012984 only returns 1 the first time it
-                 * runs after a cold boot, so the no-save warning shows once
-                 * per power-on. */
+                /* The no-save warning shows once per power-on. */
                 if (InputCheckColdBoot_8c012984() != FALSE && VmSelectUpdateAllStatus_8c019550(init_saveNames_8c044d50, 3) == FALSE) {
                     var_menuState_8c1bc7a8.state_0x18 = TITLE_STATE_0X07_VMU_WARNING_FADE_IN;
                     LOG_DEBUG(("[TITLE] State changed: 0X07_VMU_WARNING_FADE_IN\n"));
@@ -411,7 +409,6 @@ STATIC void titleTask_8c015ab8(Task* task, void *state) {
     }
 }
 
-/* Matched */
 void TitleStart_8c015fd6 (Bool direct) {
     Task* created_task;
     void* created_state;
@@ -424,8 +421,7 @@ void TitleStart_8c015fd6 (Bool direct) {
     LOG_DEBUG(("[TITLE] State changed: 0X00_INIT\n"));
     var_menuState_8c1bc7a8.counter_0x64 = 0;
     created_task->field_0x08 = direct;
-    /* Marks the title as the screen on top: GameSoftResetTask_8c012f44's soft reset
-     * re-spawns the title only when it is not already here. */
+    /* GameSoftResetTask_8c012f44 re-spawns the title only while this is clear. */
     var_titleActive_8c1bb8c4 = 1;
 
     njGarbageTexture(var_tex_8c157af8, 3072);
