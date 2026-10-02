@@ -9,14 +9,7 @@
 #include "includes.h" /* STATIC */
 #include "serial_debug.h"
 
-/*
- * Mamimum volume to use.
- */
 #define MAX_CAPS BUD_CAPACITY_1MB
-
-/*
- * Number of memory card to use.
- */
 #define MAX_DRIVES 8
 #define USE_DRIVES BUD_USE_DRIVE_ALL
 
@@ -24,9 +17,6 @@
 BACKUPINFO var_gBupInfo_8c1bc4ac[MAX_DRIVES];
 
 
-/*
- * Prototypes of static functions.
- */
 static Sint32 bupComplete_8c014e70(Sint32 drive, Sint32 op, Sint32 stat, Uint32 param);
 static Sint32 bupProgress_8c014f04(Sint32 drive, Sint32 op, Sint32 count, Sint32 max);
 static void bupInitCallback_8c014e5e(void);
@@ -162,10 +152,6 @@ NM_STATIC const char* BupGetOperationString_8c014e0c(Sint32 op)
     }
 }
 
-
-/*
- * Callback functions.
- */
 
 static void bupInitCallback_8c014e5e(void)
 {
