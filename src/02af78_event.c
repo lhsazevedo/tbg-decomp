@@ -23,11 +23,12 @@
 #define EVENT_CODE_FLAG  0x0ff
 #define EVENT_CODE_MODE  0x300
 
-#define EVENT_MODE_FORBID_PROGRESS  0x000 /* fail if progress flag set */
-#define EVENT_MODE_REQUIRE_PROGRESS 0x100 /* fail if progress flag clear */
-#define EVENT_MODE_FORBID_RUN       0x200 /* fail if var_runEventFlags_8c1ba2b4 bit set */
-#define EVENT_MODE_REQUIRE_RUN      0x300 /* fail if var_runEventFlags_8c1ba2b4 bit clear */
+#define EVENT_MODE_FORBID_PROGRESS  0x000
+#define EVENT_MODE_REQUIRE_PROGRESS 0x100
+#define EVENT_MODE_FORBID_RUN       0x200
+#define EVENT_MODE_REQUIRE_RUN      0x300
 
+/* Actions test only this bit: set selects a run flag, clear a progress flag. */
 #define EVENT_ACTION_MODE 0x200
 
 #define EVENT_DAY_BITS 5
@@ -2244,7 +2245,6 @@ STATIC EventEntry init_omeEvents_8c04b920[] = {
  * ====================
  */
 
-/* Sets the bit in both bitsets; the two testers below read them apart. */
 STATIC void setProgressFlag_8c02af78(int index)
 {
     int word = index >> 5;
@@ -2280,8 +2280,7 @@ STATIC int hasRunEventFlag_8c02b030(int index)
     return var_runEventFlags_8c1ba2b4 & (1 << (index & 0x1f));
 }
 
-/* Scans EventEntry table for matching entries, and collects their
- * indices as event candidates. Skipped during practice mode. */
+/* Checks only the progress conditions; run conditions wait for the pick. */
 void EventScanCandidates_8c02b03c(void)
 {
     EventEntry *entry;
@@ -2296,9 +2295,7 @@ void EventScanCandidates_8c02b03c(void)
         return;
     }
 
-    /* Run flags are per-day scratch state (one scan == one course attempt,
-     * pass or fail): set as events fire, read by later segment picks, not
-     * saved. Cleared here at the start of each day's scan. */
+    /* Run flags last one run (one day) and are never saved. */
     var_runEventFlags_8c1ba2b4 = 0;
 
     switch (var_route_8c18ad1c) {
@@ -2362,9 +2359,8 @@ void EventScanCandidates_8c02b03c(void)
                var_eventCandidateCount_8c228560, var_timeOfDay_8c18ad20));
 }
 
-/* Narrows event candidates to the ones matching the current segment and whose
- * conditions also pass, then randomly picks one and arms the cutscene.
- * Skipped in some conditions (todo: figure out what they are). */
+/* Checks the run conditions. Events only fire in normal play while on schedule;
+ * var_gameMode_8c1bb8fc's role is unknown. */
 void EventPickForSegment_8c02b170(void)
 {
     EventEntry *entry;
@@ -2430,7 +2426,6 @@ void EventPickForSegment_8c02b170(void)
                var_selectedEventEntry_8c228478, count));
 }
 
-/* Applies the selected event's actions */
 void EventApplyFlags_8c02b292(void)
 {
     EventEntry *entry;

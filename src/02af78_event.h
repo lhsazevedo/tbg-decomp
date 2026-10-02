@@ -27,15 +27,14 @@ typedef struct {
      * Bits 30-31 are unused.
      *
      * Each slot contains an 8-bit flag and a 2-bit mode.
-     * A value of 0x3ff represents UNLOCK_NONE.
+     * 0x3ff is an empty slot.
      */
     Uint32 conditions_0x08;
     Uint32 actions_0x0c;
 } EventEntry;
 
-/* unlock-candidate scratch list built by EventScanCandidates_8c02b03c;
- * var_routeEvents_8c22851c points at the active route's EventEntry table */
 extern EventEntry* var_routeEvents_8c22851c;
+/* Indices into var_routeEvents_8c22851c. */
 extern int var_eventCandidates_8c228520[16];
 extern int var_eventCandidateCount_8c228560;
 
