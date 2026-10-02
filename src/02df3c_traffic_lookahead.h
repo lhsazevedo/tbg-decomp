@@ -20,8 +20,6 @@ void *TrafficLookaheadScan_8c02dfca(
     /* The entry's own task, excluded from the scan */
     Task *self,
     TrafficEntry *entry,
-    /* Distance ahead to consider; callers widen it once already braking, so
-     * a candidate doesn't flap in and out of range every frame */
     float lookahead
 );
 

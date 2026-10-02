@@ -15,8 +15,8 @@
 
 #define SAMPLE_STEP 5.0f
 #define CACHE_END 9999.0f       /* terminates lookaheadPoints_0x49c */
-#define SEED_RANGE 25.0f        /* TrafficLookaheadInit_8c02df3c fills to here */
-#define REFILL_RANGE 20.0f      /* TrafficLookaheadScan_8c02dfca tops back up to here */
+#define SEED_RANGE 25.0f
+#define REFILL_RANGE 20.0f
 
 #define NEAR_XZ(bx, bz, px, pz, r) \
     (fabsf((bx) - (px)) < (r) && fabsf((bz) - (pz)) < (r))
@@ -41,8 +41,7 @@
  * ====================
  */
 
-/* A -1 path cursor (entry->pathBlocks_0x304 ran out) ends the walk early,
- * same as the refill loop in TrafficLookaheadScan_8c02dfca below. */
+/* A -1 path cursor means the path blocks ran out. */
 void TrafficLookaheadInit_8c02df3c(TrafficEntry *entry)
 {
     float *out = (float *)entry->lookaheadPoints_0x49c;
@@ -84,12 +83,6 @@ void TrafficLookaheadInit_8c02df3c(TrafficEntry *entry)
     }
 }
 
-/* The refill first shifts the still-valid tail of the old cache down to slot
- * 0, then walks the path exactly as TrafficLookaheadInit_8c02df3c does.
- *
- * Traffic entries are tested at two points, their front reference
- * (rearPointX_0x10c despite the name) and their position; the bus gets the
- * six-point treatment of BUS_BLOCKS above. */
 void *TrafficLookaheadScan_8c02dfca(Task *self, TrafficEntry *entry, float lookahead)
 {
     float cacheDist = entry->lookaheadCacheLen_0x4ec;
