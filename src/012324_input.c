@@ -360,19 +360,19 @@ STATIC void inputAutoTask_8c012718(void)
 /* Installs the task that fills var_peripherals_8c1ba35c each frame: 0 for the
  * menus (inputMenuTask_8c012324, with its stick and repeat state reset), 1 for a
  * drive. Any other value installs nothing. */
-void InputSpawnTask_8c0128cc(int param)
+void InputSpawnTask_8c0128cc(int mode)
 {
     void (*action)(void);
     void *created_state;
 
-    if (param == 0) {
+    if (mode == 0) {
         LOG_DEBUG(("[INPUT] InputSpawnTask_8c0128cc: queueing inputMenuTask_8c012324\n"));
         TaskSpawn_8c014ae8(var_tasks_8c1ba3c8, inputMenuTask_8c012324,
                           &var_pushedTask_8c157a74, &created_state, 0);
         var_stickLatchX_8c157ae4 = 0;
         var_stickLatchY_8c157ae8 = 0;
         var_keyRepeat_8c157ad4.active_0x00 = 0;
-    } else if (param == 1) {
+    } else if (mode == 1) {
         if (var_driveMode_8c1bb8c8 == 0) {
             action = inputManualTask_8c012504;
         } else {
@@ -387,13 +387,13 @@ void InputSpawnTask_8c0128cc(int param)
 
 /* One frame of input, run straight after GameEnterDrive_8c01306e (013ae8) so
  * the drive's first frame already sees mapped buttons. */
-void InputDispatchTask_8c012970(void)
+void InputPollDrive_8c012970(void)
 {
     if (var_driveMode_8c1bb8c8 == 0) {
-        LOG_TRACE(("[INPUT] InputDispatchTask_8c012970: dispatch inputManualTask_8c012504\n"));
+        LOG_TRACE(("[INPUT] InputPollDrive_8c012970: dispatch inputManualTask_8c012504\n"));
         inputManualTask_8c012504();
     } else {
-        LOG_TRACE(("[INPUT] InputDispatchTask_8c012970: dispatch inputAutoTask_8c012718\n"));
+        LOG_TRACE(("[INPUT] InputPollDrive_8c012970: dispatch inputAutoTask_8c012718\n"));
         inputAutoTask_8c012718();
     }
 }

@@ -62,7 +62,7 @@
           .IMPORT     _njGarbageTexture
           .IMPORT     _var_progress_8c1ba1cc
           .IMPORT     _var_runState_8c2285c4
-          .IMPORT     _InputDispatchTask_8c012970
+          .IMPORT     _InputPollDrive_8c012970
           .EXPORT     _RouteFreeVehicleAssets_8c013b5a
           .EXPORT     _RouteClearModelSlots_8c013bbc
           .EXPORT     _RouteStartModelLoadPass_8c013d78
@@ -1337,7 +1337,7 @@ LP_GEN_90737:
           .DATA.L _var_loadScreenActive_8c157a6c
           .DATA.L _njReleaseTexture
           .DATA.L _GameEnterDrive_8c01306e
-          .DATA.L _InputDispatchTask_8c012970
+          .DATA.L _InputPollDrive_8c012970
 
 LAB_8c0144b4:
           MOVA        LP_GEN_28406+10,R0
@@ -1655,7 +1655,7 @@ LP_GEN_17698:
           .DATA.L _njSetTexture
           .DATA.L _njLoadCacheTexture
           .DATA.L _GameEnterDrive_8c01306e
-          .DATA.L _InputDispatchTask_8c012970
+          .DATA.L _InputPollDrive_8c012970
           .DATA.L H'C0A00000
           .DATA.L _SpriteDraw_8c014f54
           .DATA.L __modls
@@ -1868,7 +1868,7 @@ LP_GEN_48435:
           .DATA.L _njReleaseTexture
           .DATA.L _var_interiorTexlist_8c1bc438
           .DATA.L _GameEnterDrive_8c01306e
-          .DATA.L _InputDispatchTask_8c012970
+          .DATA.L _InputPollDrive_8c012970
           .DATA.L H'C0A00000
           .DATA.L _SpriteDraw_8c014f54
           .DATA.L __modls

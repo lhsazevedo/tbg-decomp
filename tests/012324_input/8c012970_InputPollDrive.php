@@ -10,7 +10,7 @@ return new class extends TestCase {
         $this->setSize('_var_driveMode_8c1bb8c8', 4);
         $this->initUint32($this->addressOf('_var_driveMode_8c1bb8c8'), 0);
 
-        $this->call('_InputDispatchTask_8c012970');
+        $this->call('_InputPollDrive_8c012970');
 
         // Args (R4/R5) not asserted; void call leaves them undefined.
         $this->shouldCall('_inputManualTask_8c012504');
@@ -21,7 +21,7 @@ return new class extends TestCase {
         $this->setSize('_var_driveMode_8c1bb8c8', 4);
         $this->initUint32($this->addressOf('_var_driveMode_8c1bb8c8'), 1);
 
-        $this->call('_InputDispatchTask_8c012970');
+        $this->call('_InputPollDrive_8c012970');
 
         $this->shouldCall('_inputAutoTask_8c012718');
     }

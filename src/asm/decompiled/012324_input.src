@@ -22,7 +22,7 @@
           .IMPORT     _strcpy
           .EXPORT     _InputSpawnTask_8c0128cc
           .EXPORT     _InputCheckColdBoot_8c012984
-          .EXPORT     _InputDispatchTask_8c012970
+          .EXPORT     _InputPollDrive_8c012970
 
           .AIFDEF UNIT_TESTING
           .EXPORT     _inputMenuTask_8c012324
@@ -882,7 +882,7 @@ LAB_8c012966:
           MOV.L       @R15+,R13
           RTS
           MOV.L       @R15+,R14
-_InputDispatchTask_8c012970:
+_InputPollDrive_8c012970:
           MOV.L       LP_GEN_44279+0,R2
           MOV.L       @R2,R3
           TST         R3,R3

@@ -126,7 +126,7 @@ return new class extends TestCase {
         $this->shouldWriteLong($this->addressOf('_var_loadScreenActive_8c157a6c'), 0);
         $this->shouldCall('_njReleaseTexture')->with(self::TLIST);
         $this->shouldCall('_GameEnterDrive_8c01306e');
-        $this->shouldCall('_InputDispatchTask_8c012970');
+        $this->shouldCall('_InputPollDrive_8c012970');
     }
 
     /** Unexpected state: falls through the switch to just the animation. */
@@ -185,7 +185,7 @@ return new class extends TestCase {
             '_njLoadCacheTexture' => 4,
             '_njReleaseTexture' => 4,
             '_SpriteDraw_8c014f54' => 4,
-            '_InputDispatchTask_8c012970' => 4,
+            '_InputPollDrive_8c012970' => 4,
             '_TaskKill_8c014b66' => 4,
             '_GameEnterDrive_8c01306e' => 4,
             '_TileStreamInit_8c02175a' => 4,

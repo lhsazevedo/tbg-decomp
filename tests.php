@@ -248,7 +248,7 @@ return [
                 "tests/012324_input/8c012504_inputManualTask.php",
                 "tests/012324_input/8c012718_inputAutoTask.php",
                 "tests/012324_input/8c0128cc_InputSpawnTask.php",
-                "tests/012324_input/8c012970_InputDispatchTask.php",
+                "tests/012324_input/8c012970_InputPollDrive.php",
                 "tests/012324_input/8c012984_InputCheckColdBoot.php",
             ],
             "objects" => [
