@@ -25,11 +25,9 @@ int var_tileDrawRadius_8c226508;
 TileIndex *var_tileLayerIndexes_8c22650c[5];
 LoadedModel *var_tileLayerSlots_8c226520[5];
 TileRect *var_currentTileRegionList_8c226534;
-STATIC float var_easyLightDir_8c226538[3]; // njCnkSetEasyLight direction, main camera
-/* Same split as var_simpleLightIntensity_8c2264f0/var_simpleLightColor_8c2264f8,
- * for var_sceneParams_8c18ad24->rec1_0x54[0..4]. */
-STATIC float var_easyLightIntensity_8c226544[2]; // [0..1]
-STATIC float var_easyLightColor_8c22654c[3]; // [2..4]
+STATIC float var_easyLightDir_8c226538[3];
+STATIC float var_easyLightIntensity_8c226544[2];
+STATIC float var_easyLightColor_8c22654c[3];
 
 /* ====================
  * Forward Declarations
@@ -43,13 +41,7 @@ STATIC void drawTileGridMirror_8c021ec4(int width, int height);
  * ====================
  */
 
-/* Draws the visible window of the tile grid (var_tileLayerSlots_8c226520,
- * width x height tiles) around the bus's position for fade-command layer 0
- * (the primary render). Layers 0, 2 and 3 of the tile grid draw with the
- * Chunk "Easy" light model, layer 1 with "Simple" -- as coded, not a
- * mistake to normalize away. Never called by name from another unit --
- * reachable only via the function-pointer literal enqueueTask_8c0221d0
- * pushes to RenderQueueDraw2_8c022420 -- so it stays private here. */
+/* Layers 0, 2 and 3 use the Easy light model, layer 1 Simple. */
 STATIC void drawTileGrid_8c021b9c(int width, int height)
 {
     int colStart, colEnd, rowStart, rowEnd;
@@ -127,12 +119,7 @@ STATIC void drawTileGrid_8c021b9c(int width, int height)
     njControl3D(NJD_CONTROL_3D_MODEL_CLIP);
 }
 
-/* Same as drawTileGrid_8c021b9c, but for fade-command layer 1 (the mirror render):
- * light direction/setup differs (var_mirrorSimpleLightDir_8c2264e4 and camera
- * var_mirrorCamera_8c1bb944, set up by enqueueTask_8c0221d0), everything else -- including the
- * per-layer Easy/Simple split -- is identical. Reachable only via the
- * function-pointer literal enqueueTask_8c0221d0 pushes to RenderQueueDraw2_8c022420,
- * never called directly, so it stays private. */
+/* Differs from drawTileGrid_8c021b9c only in layer 1's light direction. */
 STATIC void drawTileGridMirror_8c021ec4(int width, int height)
 {
     int colStart, colEnd, rowStart, rowEnd;
@@ -210,13 +197,8 @@ STATIC void drawTileGridMirror_8c021ec4(int width, int height)
     njControl3D(NJD_CONTROL_3D_MODEL_CLIP);
 }
 
-/* The TaskAction TileDrawSpawnTask_8c0222dc installs: computes the
- * three light directions (broadcasting one scalar CourseSceneParams
- * component into a vector, then transforming it by whichever camera is
- * current -- as coded, not obviously intentional but preserved), then
- * queues drawTileGrid_8c021b9c/drawTileGridMirror_8c021ec4 as this frame's tile-grid draw calls for
- * draw layers 0/1, and TileStreamDrawTile_8c021b34 (the current tile,
- * `state`) for both layers. */
+/* Each light direction broadcasts one scene-param component to all three
+ * axes before the camera transform. Original behaviour. */
 STATIC void enqueueTask_8c0221d0(Task *task, void *state)
 {
     njSetCamera(&var_camera_8c1bb904);
@@ -244,9 +226,6 @@ STATIC void enqueueTask_8c0221d0(Task *task, void *state)
     RenderQueueDraw_8c0223ea(RENDER_LAYER_MIRROR, (DrawFn)TileStreamDrawTile_8c021b34, (int)state);
 }
 
-/* Run-start setup for the tile draw pass. The two latched lighting records
- * split by lighting mode: rec1_0x54 into njCnkSetEasyLight*,
- * rec2_0x74 into njCnkSetSimpleLight*. */
 void TileDrawSpawnTask_8c0222dc(void)
 {
     Task *task;
