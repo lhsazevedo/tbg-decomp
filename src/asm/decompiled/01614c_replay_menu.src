@@ -1642,7 +1642,6 @@ _const_8c036274:        ; from ghidra
 _const_8c03627c:        ; from ghidra
           .SDATA      "VISUAL_MEMORY"
           .DATA.B     H'00
-          .RES.B      2
           .SECTION    B,DATA,ALIGN=4
 _var_replayMenuCourseSel_8c1bc824:
           .RES.B      4

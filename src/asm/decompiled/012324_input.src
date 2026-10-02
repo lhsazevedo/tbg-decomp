@@ -932,7 +932,6 @@ _init_fortyFive_8c03bf40:        ; from defines
 _const_fortyFive_8c033358:
           .SDATA      "FortyFive"
           .DATA.B     H'00
-          .RES.W      1
           .SECTION    B,DATA,ALIGN=4
 _var_keyRepeat_8c157ad4:
           .RES.L      4
