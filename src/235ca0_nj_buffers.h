@@ -2,11 +2,8 @@
 #define _235CA0_NJ_BUFFERS_H
 
 #define TEX_BUFSIZE     0x80800
-// #define TEX_NUM         3072
 #define CACHE_BUFSIZE   0x20000
 #define SHAPE_BUFSIZE   0x200
-// #define RENDER_X        256
-// #define RENDER_Y        512
 #define VERTEX_BUFSIZE  0x880
 
 extern Sint8          var_cachebuf_8c235ca0[CACHE_BUFSIZE];
