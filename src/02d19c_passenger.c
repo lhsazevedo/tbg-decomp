@@ -43,10 +43,6 @@ int var_passengersFadedOut_8c22895c;
 
 float var_passengerFadeColor_8c228960[5];
 
-/* Set by any passenger task that advanced this frame; cleared by the
- * scene task before it pumps the group, then read back to decide whether
- * the stop is still in progress. Int, not float, despite sitting in the
- * middle of the anchor-point float run. */
 STATIC int var_passengerActed_8c228958;
 
 /* ====================
@@ -93,12 +89,6 @@ SeatPos init_seatPositions_8c04c3e4[31] = {
  * ====================
  */
 
-/* Installed as a DrawFn (via literal-pool pointer, both by
- * PassengerSeatedTask_8c02d5ca and by the per-passenger task actions below);
- * draws one passenger's sprite, waiting or scripted. arg0 is a
- * PassengerState* threaded through the int parameter (the same idiom as
- * StopDrawLightBegin_8c02d0fc/d146 in 02d06c). A stop index (the byte at *entry_0x00) out of
- * range, or whose asset slot has no texlist loaded yet, is skipped. */
 STATIC void drawPassengerSprite_8c02d19c(int arg0)
 {
     PassengerState *state = (PassengerState *)arg0;
@@ -116,10 +106,6 @@ STATIC void drawPassengerSprite_8c02d19c(int arg0)
     njDrawSprite3D(&var_passengerSprite_8c2288d8, state->spriteNo_0x14, state->isSeated_0x28 == 0 ? 0x32 : 0x30);
 }
 
-/* Installed as a DrawFn (via literal-pool pointer in PassengerStopSceneTask_8c02d644);
- * ignores its arg. Draws the bus interior model under the layer-0 (bus)
- * simple light, sibling of StopDrawLightBegin_8c02d0fc (02d06c) which does the same for
- * the bus-stop anchor points. */
 STATIC void drawInterior_8c02d1f4(int arg0)
 {
     njCnkSetSimpleLight(var_busSimpleLightDir_8c227db8[0], var_busSimpleLightDir_8c227db8[1], var_busSimpleLightDir_8c227db8[2]);
@@ -127,17 +113,11 @@ STATIC void drawInterior_8c02d1f4(int arg0)
     njCnkSimpleDrawObject(var_interiorNj_8c1bc43c);
 }
 
-/* Task action for a scripted-stop slot whose segment differs from the bus's
- * current one -- spawned immediately by StopSpawnInit_8c02d968 (no shuffle, no
- * countdown). Registers the draw callback every frame; ignores task. */
 void PassengerSeatedTask_8c02d5ca(Task *task, void *state)
 {
     RenderQueueDraw_8c0223ea(RENDER_LAYER_CABIN, drawPassengerSprite_8c02d19c, (int)state);
 }
 
-/* Sizes the step PassengerStopSceneTask_8c02d644's case 5 adds to the run
- * clock each frame: a fifth of what is left to the schedule time while that is
- * at least 50 frames, then a flat 10 to close the last stretch. */
 STATIC void setCountUpStep_8c02d5d8(void)
 {
     int remaining = var_runState_8c2285c4.scheduleTime_0x14 - var_runState_8c2285c4.runClock_0x18;
@@ -149,14 +129,6 @@ STATIC void setCountUpStep_8c02d5d8(void)
     }
 }
 
-/* Task action for an already-picked waiting passenger (state->state_0x04 ==
- * 1 always, from 02d968); walks it through the boarding animation via the
- * three waypoints var_boardSpot1_8c228928, var_boardSpot2_8c228910 and
- * var_boardSpot3_8c22891c in turn, claiming an empty scripted-stop slot once
- * done so it continues as an ordinary scripted passenger, then re-registers the draw
- * callback in its terminal state (0). Each phase only advances on a frame
- * where var_passengersFadedOut_8c22895c is set, so the passenger never visibly
- * jumps between waypoints. */
 void PassengerBoardTask_8c02d21c(Task *task, PassengerState *state)
 {
     int mode = state->state_0x04;
@@ -253,12 +225,6 @@ void PassengerBoardTask_8c02d21c(Task *task, PassengerState *state)
     var_passengerActed_8c228958 = 1;
 }
 
-/* Task action for a scripted-stop slot that matched the bus's current
- * segment (spawned after the Fisher-Yates shuffle by StopSpawnInit_8c02d968).
- * Sibling of PassengerBoardTask_8c02d21c: same shape (countdown, then walk three door
- * anchor points), but the anchor points, sound-gating route and terminal
- * behavior all differ -- this one frees itself once var_passengersFadedOut_8c22895c fires in
- * its terminal state, instead of looping forever. */
 void PassengerExitTask_8c02d46c(Task *task, PassengerState *state)
 {
     int mode = state->state_0x04;
@@ -336,16 +302,6 @@ void PassengerExitTask_8c02d46c(Task *task, PassengerState *state)
     var_passengerActed_8c228958 = 1;
 }
 
-/* Per-frame driver for the bus-stop passenger subsystem: pumps
- * var_stopTaskGroup_8c2288f8's tasks, fades var_passengerFadeColor_8c228960[0] (the bus
- * interior's own light level, separate from the anchor-point one in
- * 02d06c) in and out around the fade-arrival overlay, and tears the
- * subsystem down and frees itself when done. Spawned once by StopSpawnInit_8c02d968
- * with a private 2-int state (field_0x00 the phase, field_0x04 a sub-phase
- * used only by phase 1); NOT the 0x38-byte PassengerState the other
- * task actions in this unit use. Every call re-registers this frame's
- * interior-draw (drawInterior_8c02d1f4) and light (StopDrawLightBegin_8c02d0fc) DrawFns
- * regardless of phase. */
 void PassengerStopSceneTask_8c02d644(Task *task, PassengerStopSceneState *state)
 {
     int phase = state->phase_0x00;
@@ -365,11 +321,7 @@ void PassengerStopSceneTask_8c02d644(Task *task, PassengerStopSceneState *state)
         break;
 
     case 1: {
-        /* The original re-enters this sub-state-machine in place (a plain
-         * branch back, not a fresh call) when var_playMode_8c1bb8d0 ==
-         * PLAY_MODE_DEMO and the task group did something this frame --
-         * it does not re-run the three RenderQueueDraw registrations
-         * above or re-read phase. */
+        /* The demo plays the whole passenger exchange within one frame. */
         for (;;) {
             switch (state->subPhase_0x04) {
             case 0: {
@@ -482,9 +434,7 @@ void PassengerStopSceneTask_8c02d644(Task *task, PassengerStopSceneState *state)
                     soundOffset = 5;
                     break;
                 default:
-                    /* unreachable: var_route_8c18ad1c only ever holds the three
-                     * ROUTE_* values above -- the original leaves the register
-                     * that becomes this arg uninitialized in this case. */
+                    /* Unreachable; the original leaves this uninitialized. */
                     soundOffset = 0;
                     break;
                 }
@@ -516,14 +466,10 @@ void PassengerStopSceneTask_8c02d644(Task *task, PassengerStopSceneState *state)
     RenderQueueDraw_8c0223ea(RENDER_LAYER_CABIN, StopDrawLightEnd_8c02d146, 0);
 }
 
-/* Task action spawned instead of the normal per-passenger tasks when
- * var_playMode_8c1bb8d0 == PLAY_MODE_PRACTICE and the course-restart flag
- * var_practiceRules_8c226410 bit 3 is clear -- resets the fade-arrival bookkeeping once
- * (guarded by var_isFading_8c226568) and frees itself. */
 void PassengerSkipStopTask_8c02d8f0(Task *task, void *state)
 {
     if (var_isFading_8c226568 == 0) {
-        var_busState_8c1bb9d0.driveState_0x2b4 = 1; /* BusState.driveState_0x2b4: back to driving */
+        var_busState_8c1bb9d0.driveState_0x2b4 = 1; /* driving */
         var_viewLayout_8c22655c = 0;
         var_cameraMode_8c227d9c = 2;
         var_cameraCueState_8c227da4 = 0;
