@@ -5,7 +5,7 @@ declare(strict_types=1);
 use Lhsazevedo\Sh4ObjTest\TestCase;
 
 /*
- * updateEndingOverlay_8c01f42c(void): per-frame update and draw of the ending
+ * updateDialogScene_8c01f42c(void): per-frame update and draw of the ending
  * dialog scene, before the credits. Sprite 4 of the ending resource group
  * bounces from MenuState.pos.title (busX_0x20/flagY_0x24) with
  * cursorVelocity_0x30 as its velocity: subState_0x1c 0 falls under gravity
@@ -63,7 +63,7 @@ return new class extends TestCase {
         $flagY = $this->f32(100.0 + $velY);
         $busX = $this->f32(45.0 + 1.0);
 
-        $this->call('_updateEndingOverlay_8c01f42c');
+        $this->call('_updateDialogScene_8c01f42c');
 
         $this->shouldWriteFloat($base + self::VELOCITY_Y_0X34, $velY);
         $this->shouldWriteFloat($base + self::FLAG_Y_0X24, $flagY);
@@ -85,7 +85,7 @@ return new class extends TestCase {
         $flagY = $this->f32($this->f32(299.95) + $velY);
         $busX = $this->f32(45.0 + 1.0);
 
-        $this->call('_updateEndingOverlay_8c01f42c');
+        $this->call('_updateDialogScene_8c01f42c');
 
         $this->shouldWriteFloat($base + self::VELOCITY_Y_0X34, $velY);
         $this->shouldWriteFloat($base + self::FLAG_Y_0X24, $flagY);
@@ -108,7 +108,7 @@ return new class extends TestCase {
         $velY = $this->f32(5.0 - 0.1);
         $busX = $this->f32(45.0 + 1.0);
 
-        $this->call('_updateEndingOverlay_8c01f42c');
+        $this->call('_updateDialogScene_8c01f42c');
 
         $this->shouldWriteFloat($base + self::FLAG_Y_0X24, $flagY);
         $this->shouldWriteFloat($base + self::VELOCITY_Y_0X34, $velY);
@@ -131,7 +131,7 @@ return new class extends TestCase {
         $velY = $this->f32($vel0 - 0.1);
         $busX = $this->f32(45.0 + 1.0);
 
-        $this->call('_updateEndingOverlay_8c01f42c');
+        $this->call('_updateDialogScene_8c01f42c');
 
         $this->shouldWriteFloat($base + self::FLAG_Y_0X24, $flagY);
         $this->shouldWriteFloat($base + self::VELOCITY_Y_0X34, $velY);
@@ -151,7 +151,7 @@ return new class extends TestCase {
         // No phase-0/1 vertical work: subState_0x1c holds a value outside 0/1.
         $base = $this->seed(2, 89.5, 150.0, 1.0, 0.0, 0);
 
-        $this->call('_updateEndingOverlay_8c01f42c');
+        $this->call('_updateDialogScene_8c01f42c');
 
         $this->shouldWriteFloat($base + self::BUS_X_0X20, 90.5);
         $this->shouldWriteFloat($base + self::VELOCITY_X_0X30, -1.0);
@@ -168,7 +168,7 @@ return new class extends TestCase {
         $this->resolveSymbols();
         $base = $this->seed(2, 0.5, 150.0, -1.0, 0.0, 0);
 
-        $this->call('_updateEndingOverlay_8c01f42c');
+        $this->call('_updateDialogScene_8c01f42c');
 
         $this->shouldWriteFloat($base + self::BUS_X_0X20, -0.5);
         $this->shouldWriteFloat($base + self::VELOCITY_X_0X30, 1.0);
@@ -185,7 +185,7 @@ return new class extends TestCase {
         $this->resolveSymbols();
         $base = $this->seed(2, 45.0, 150.0, 0.0, 0.0, 0);
 
-        $this->call('_updateEndingOverlay_8c01f42c');
+        $this->call('_updateDialogScene_8c01f42c');
 
         $this->shouldWriteFloat($base + self::BUS_X_0X20, 45.0);
         $this->shouldCall('_SpriteDraw_8c014f54')

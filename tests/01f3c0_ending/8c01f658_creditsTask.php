@@ -118,7 +118,7 @@ return new class extends TestCase {
 
         $this->call('_creditsTask_8c01f658');
 
-        $this->shouldCall('_updateEndingOverlay_8c01f42c');
+        $this->shouldCall('_updateDialogScene_8c01f42c');
     }
 
     public function test_state1_fade_done_pushes_dialog_and_advances(): void
@@ -134,7 +134,7 @@ return new class extends TestCase {
 
         $this->shouldCall('_CourseMenuSpawnDialogTask_8c0170c6')->with(2, $dialogList);
         $this->shouldWriteLong($base + self::STATE_0X18, 2);
-        $this->shouldCall('_updateEndingOverlay_8c01f42c');
+        $this->shouldCall('_updateDialogScene_8c01f42c');
     }
 
     // --- state 2: INSTRUCTOR_DIALOG ---
@@ -147,7 +147,7 @@ return new class extends TestCase {
 
         $this->call('_creditsTask_8c01f658');
 
-        $this->shouldCall('_updateEndingOverlay_8c01f42c');
+        $this->shouldCall('_updateDialogScene_8c01f42c');
     }
 
     public function test_state2_dialog_done_fades_out(): void
@@ -162,7 +162,7 @@ return new class extends TestCase {
         $this->shouldCall('_SndStartAdxFadeOut_8c010bae')->with(0);
         $this->shouldCall('_SndStartAdxFadeOut_8c010bae')->with(1);
         $this->shouldCall('_RenderStartFadeOut_8c022b60')->with(30);
-        $this->shouldCall('_updateEndingOverlay_8c01f42c');
+        $this->shouldCall('_updateDialogScene_8c01f42c');
     }
 
     // --- state 3: FADE_OUT_TO_CREDITS ---
@@ -175,7 +175,7 @@ return new class extends TestCase {
 
         $this->call('_creditsTask_8c01f658');
 
-        $this->shouldCall('_updateEndingOverlay_8c01f42c');
+        $this->shouldCall('_updateDialogScene_8c01f42c');
     }
 
     public function test_state3_sound_module_busy_does_nothing(): void

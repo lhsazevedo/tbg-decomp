@@ -108,7 +108,7 @@ STATIC ResourceGroupInfo init_endingResourceGroup_8c045324 = {
  */
 
 STATIC void selectEndingDialog_8c01f3c0(void);
-STATIC void updateEndingOverlay_8c01f42c(void);
+STATIC void updateDialogScene_8c01f42c(void);
 STATIC int scrollCreditsText_8c01f50e(void);
 STATIC void creditsTask_8c01f658(void);
 
@@ -157,7 +157,7 @@ STATIC void selectEndingDialog_8c01f3c0(void)
  * cursorVelocity_0x30 as its velocity: subState_0x1c 0 falls under a constant
  * 0.1/frame gravity until y passes 300, 1 rises until the velocity flips, and
  * x turns around at 0 and 90. */
-STATIC void updateEndingOverlay_8c01f42c(void)
+STATIC void updateDialogScene_8c01f42c(void)
 {
     const float step = 0.1f;
 
@@ -264,7 +264,7 @@ STATIC void creditsTask_8c01f658(void)
             CourseMenuSpawnDialogTask_8c0170c6(var_dialogQueue_8c225fbc[0], var_endingVoiceList_8c226430);
             var_menuState_8c1bc7a8.state_0x18 = ENDING_TASK_STATE_INSTRUCTOR_DIALOG;
         }
-        updateEndingOverlay_8c01f42c();
+        updateDialogScene_8c01f42c();
         return;
 
     case ENDING_TASK_STATE_INSTRUCTOR_DIALOG:
@@ -274,12 +274,12 @@ STATIC void creditsTask_8c01f658(void)
             SndStartAdxFadeOut_8c010bae(1);
             RenderStartFadeOut_8c022b60(30);
         }
-        updateEndingOverlay_8c01f42c();
+        updateDialogScene_8c01f42c();
         return;
 
     case ENDING_TASK_STATE_FADE_OUT_TO_CREDITS:
         if (var_isFading_8c226568 != 0) {
-            updateEndingOverlay_8c01f42c();
+            updateDialogScene_8c01f42c();
             return;
         }
         if (init_adxPlaying_8c03bd80 != 0) {

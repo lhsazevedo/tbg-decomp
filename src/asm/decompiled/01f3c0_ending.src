@@ -46,7 +46,7 @@
           .IMPORT     _ResultsShowFailedRun_8c01e24e
           .AIFDEF UNIT_TESTING
           .EXPORT     _selectEndingDialog_8c01f3c0
-          .EXPORT     _updateEndingOverlay_8c01f42c
+          .EXPORT     _updateDialogScene_8c01f42c
           .EXPORT     _scrollCreditsText_8c01f50e
           .EXPORT     _creditsTask_8c01f658
           .EXPORT     _init_endingCreditsHead_8c04528c
@@ -125,7 +125,7 @@ LAB_8c01f426:
 LAB_8c01f428:
           RTS
           MOV.L       @R15+,R14
-_updateEndingOverlay_8c01f42c:
+_updateDialogScene_8c01f42c:
           MOV.L       R14,@-R15
           MOVA        LP_GEN_39506+30,R0
           MOV.L       LP_GEN_39506+34,R14
@@ -633,7 +633,7 @@ LAB_8c01f824:
           MOV.L       @R15+,R11
           MOV.L       @R15+,R12
           MOV.L       @R15+,R13
-          BRA         _updateEndingOverlay_8c01f42c
+          BRA         _updateDialogScene_8c01f42c
           MOV.L       @R15+,R14
 LAB_8c01f836:
           MOV.L       @R4,R2
