@@ -13,8 +13,6 @@ void TileStreamClearSlots_8c02171c(void)
     var_tileLayerSlots_8c226520[0] = (void *)-1;
 }
 
-/* Releases every loaded tile slot (see TileStreamReleaseAll_8c021a24), then
- * frees the 5 grid buffers and marks the buffer set as unallocated. */
 void TileStreamTeardown_8c021724(void)
 {
     int i;
@@ -61,9 +59,6 @@ STATIC Bool lookupTile_8c0217de(int col, int row, void **out, TileIndex *index)
     return TRUE;
 }
 
-/* One texture+model layer per var_datFiles_8c18adb4 entry (layers 0-3 only);
- * frees each datFile once its layer is done. Only fills grid slots that are
- * still unloaded. */
 void TileStreamLoad_8c021810(void)
 {
     int layer;
@@ -83,8 +78,7 @@ void TileStreamLoad_8c021810(void)
         for (rect = var_currentTileRegionList_8c226534; rect->endCol != 0 || rect->endRow != 0; rect++) {
             for (row = rect->startRow; row <= rect->endRow; row++) {
                 for (col = rect->startCol; col <= rect->endCol; col++) {
-                    /* Always layer 0's width, like TileStreamRequestUpload_8c02190a --
-                     * not var_tileLayerIndexes_8c22650c[layer]. */
+                    /* Always layer 0's width. */
                     idx = row * var_tileLayerIndexes_8c22650c[0]->width + col;
                     fpos = 0;
                     if (lookupTile_8c0217de(col, row, &tileData, var_datFiles_8c18adb4[layer])) {
@@ -101,9 +95,7 @@ void TileStreamLoad_8c021810(void)
     }
 }
 
-/* Marks each already-loaded grid slot in the region as pending upload via
- * AsqRequestTexlist. `requested` is a scratch width*height flag grid so a tile
- * shared by overlapping rects is only requested once. */
+/* `requested` dedups tiles shared by overlapping rects. */
 void TileStreamRequestUpload_8c02190a(void)
 {
     char *requested;
@@ -146,9 +138,7 @@ void TileStreamRequestUpload_8c02190a(void)
     syFree(requested);
 }
 
-/* Releases every loaded slot across the full grid: njReleaseTexture+syFree
- * each of the 4 texlist layers, plus syFree the model on the 5th (model-only)
- * layer. Walks the full width*height area (course dims), not a region list. */
+/* Layer 4 is model-only. */
 void TileStreamReleaseAll_8c021a24(void)
 {
     int width, height;
@@ -184,8 +174,6 @@ void TileStreamReleaseAll_8c021a24(void)
     }
 }
 
-/* Draws one tile slot {texlist, model} at the bus's current position, fog
- * disabled for the duration. */
 void TileStreamDrawTile_8c021b34(LoadedModel *slot)
 {
     njControl3D(0);

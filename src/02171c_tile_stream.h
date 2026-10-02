@@ -10,17 +10,15 @@
  * =================
  */
 
-/* Tile layer index file: grid dims followed by a width*height table of byte
- * offsets from the file base (0 = the tile has no data). The copies held in
- * CurrentCourse.tileLayers_0x3c are only read for their dims. */
+/* Tile layer index file: tileOffsets are from the file base, 0 = no data.
+ * The copies in CurrentCourse.tileLayers_0x3c are only read for their dims. */
 typedef struct {
     int width;
     int height;
     int tileOffsets[1]; /* width * height */
 } TileIndex;
 
-/* Region of the tile grid, in tile coordinates. A list is terminated by a rect
- * whose endCol and endRow are both 0. */
+/* Inclusive, in tiles. A list ends at a rect with endCol and endRow both 0. */
 typedef struct {
     Sint8 startCol;
     Sint8 startRow;
