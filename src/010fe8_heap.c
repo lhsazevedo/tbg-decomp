@@ -9,8 +9,7 @@ typedef struct HeapChunk {
     struct HeapChunk* next_0x04;
     int units_0x08;
     int flags_0x0c;
-    /* Untouched by HeapInit_8c010fe8/HeapAlloc_8c01102a/HeapFree_8c0110c4 --
-     * the chunk header is 0x20 but only the first four words are live. */
+    /* Padding to the 0x20 allocation unit; never touched. */
     int reserved_0x10;
     int reserved_0x14;
     int reserved_0x18;
