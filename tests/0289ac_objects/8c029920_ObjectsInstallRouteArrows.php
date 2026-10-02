@@ -22,7 +22,7 @@ return new class extends TestCase {
     }
 
     /**
-     * ObjectsInstallBlinkers_8c029920's stack slots for TaskInstall's
+     * ObjectsInstallRouteArrows_8c029920's stack slots for TaskInstall's
      * installed_task / installed_state out-params. The two objects lay the
      * frame out differently.
      */
@@ -43,7 +43,7 @@ return new class extends TestCase {
      * Sets up route/model boilerplate, overwrites the point table the given
      * route is expected to read from with a single, immediately-terminated
      * entry, and asserts the function still resolves
-     * var_routeBlinkerNodes_8c228278 and skips TaskInstall. If the route's
+     * var_routeArrowNodes_8c228278 and skips TaskInstall. If the route's
      * switch case pointed at the wrong table symbol, the table left
      * unmodified (the real, non-terminated one) would still trigger a
      * TaskInstall call, exposing the mismatch.
@@ -60,28 +60,28 @@ return new class extends TestCase {
         $table = $this->addressOf($tableSymbol);
         $this->setPoint($table, 0, 0.0, 0.0, 0);
 
-        $this->call('_ObjectsInstallBlinkers_8c029920');
+        $this->call('_ObjectsInstallRouteArrows_8c029920');
 
-        $this->shouldWriteLongTo('_var_routeBlinkerNodes_8c228278', $node0);
-        $this->shouldCall('_resolveObjectChildren_8c029868')->with($this->addressOf('_var_routeBlinkerNodes_8c228278'));
+        $this->shouldWriteLongTo('_var_routeArrowNodes_8c228278', $node0);
+        $this->shouldCall('_resolveObjectChildren_8c029868')->with($this->addressOf('_var_routeArrowNodes_8c228278'));
     }
 
     public function test_no_points_skips_task_install(): void
     {
-        $this->assertNoPointsSkipsTaskInstall(self::ROUTE_SHINJUKU, '_init_shinjukuBlinkerPoints_8c046524');
+        $this->assertNoPointsSkipsTaskInstall(self::ROUTE_SHINJUKU, '_init_shinjukuArrowPoints_8c046524');
     }
 
     public function test_wangan_no_points_skips_task_install(): void
     {
-        $this->assertNoPointsSkipsTaskInstall(self::ROUTE_WANGAN, '_init_wanganBlinkerPoints_8c0465d8');
+        $this->assertNoPointsSkipsTaskInstall(self::ROUTE_WANGAN, '_init_wanganArrowPoints_8c0465d8');
     }
 
     public function test_ome_no_points_skips_task_install(): void
     {
-        $this->assertNoPointsSkipsTaskInstall(self::ROUTE_OME, '_init_omeBlinkerPoints_8c0466a4');
+        $this->assertNoPointsSkipsTaskInstall(self::ROUTE_OME, '_init_omeArrowPoints_8c0466a4');
     }
 
-    // The real, unmodified init_shinjukuBlinkerPoints_8c046524 (Shinjuku) table: {x, z, angleDeg}.
+    // The real, unmodified init_shinjukuArrowPoints_8c046524 (Shinjuku) table: {x, z, angleDeg}.
     const SHINJUKU_POINTS = [
         [4301.0, 4493.0, 68],
         [3898.0, 4387.0, 6],
@@ -110,7 +110,7 @@ return new class extends TestCase {
 
         // Registers the real table's address so the simulator can read its
         // unmodified data; this test asserts against that real data below.
-        $this->addressOf('_init_shinjukuBlinkerPoints_8c046524');
+        $this->addressOf('_init_shinjukuArrowPoints_8c046524');
 
         $this->setSize('_var_busState_8c1bb9d0', 0x3cc);
         $point = $this->setSize('_var_groundQueryPoint_8c1bc460', 0xc);
@@ -120,14 +120,14 @@ return new class extends TestCase {
         $matrices = 0x30007000;
         $count = count(self::SHINJUKU_POINTS);
 
-        $this->call('_ObjectsInstallBlinkers_8c029920');
+        $this->call('_ObjectsInstallRouteArrows_8c029920');
 
-        $this->shouldWriteLongTo('_var_routeBlinkerNodes_8c228278', $node0);
-        $this->shouldCall('_resolveObjectChildren_8c029868')->with($this->addressOf('_var_routeBlinkerNodes_8c228278'));
+        $this->shouldWriteLongTo('_var_routeArrowNodes_8c228278', $node0);
+        $this->shouldCall('_resolveObjectChildren_8c029868')->with($this->addressOf('_var_routeArrowNodes_8c228278'));
 
         $this->shouldCall('_TaskInstall_8c014ae8')->with(
             $this->addressOf('_var_tasks_8c1ba5e8'),
-            $this->addressOf('_routeBlinkerTask_8c029904'),
+            $this->addressOf('_routeArrowTask_8c029904'),
             $taskLocal,
             $stateLocal,
             $count * 0x40,

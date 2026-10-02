@@ -10,7 +10,7 @@ extern int var_pedGroupCount_8c228234; /* -1 when not loaded */
 
 void ObjectsInstallPedestrianGroups_8c0296d6(void);
 void ObjectsUninstallPedestrianGroups_8c0297da(void);
-void ObjectsInstallBlinkers_8c029920(void);
+void ObjectsInstallRouteArrows_8c029920(void);
 void ObjectsClearAssetRequestTable_8c029acc(void);
 void ObjectsFreeAssetRequests_8c029cfe(void);
 void ObjectsRelocatePedGroupLists_8c028dd0(void *handle);

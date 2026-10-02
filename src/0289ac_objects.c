@@ -32,7 +32,7 @@ typedef struct {
     float x_0x00;
     float z_0x04;
     int angleDeg_0x08;
-} BlinkerPoint;
+} RouteArrowPoint;
 
 /* A path ends with a node whose flLength_0x00 is 0. A pedestrian flPathPos_0x54
  * along a node sits at flBase + flPathPos * flStep. */
@@ -193,8 +193,8 @@ STATIC int* var_blockedCrosswalksEnd_8c228244;
 STATIC int var_blockedCrosswalks_8c228248[8];
 STATIC float var_busAxisA_8c228268[2]; /* world X/Z */
 STATIC float var_busAxisB_8c228270[2]; /* world X/Z */
-/* The blinker model and its three lamp children. */
-STATIC NJS_OBJECT *var_routeBlinkerNodes_8c228278[4];
+/* The arrow model (yaji.njd) and its three chevron children. */
+STATIC NJS_OBJECT *var_routeArrowNodes_8c228278[4];
 STATIC Uint8 var_assetRequestSlots_8c228288[16 * 0x18]; /* AssetRequestSlot[16] */
 /* {type, data} pairs terminated by type -1; -1 when no table is loaded. */
 STATIC int *var_assetRequestTable_8c228408;
@@ -515,7 +515,7 @@ STATIC NJS_POINT3 init_busAxisLocalA_8c04650c = { 0.0f, 0.0f, -4.1f };
 
 STATIC NJS_POINT3 init_busAxisLocalB_8c046518 = { 0.0f, 0.0f, 9.5f };
 
-STATIC BlinkerPoint init_shinjukuBlinkerPoints_8c046524[] = {
+STATIC RouteArrowPoint init_shinjukuArrowPoints_8c046524[] = {
     {   /* [0] */
         /* x_0x00, z_0x04 */ 4301.0f, 4493.0f,
         /* angleDeg_0x08  */ 68,
@@ -578,7 +578,7 @@ STATIC BlinkerPoint init_shinjukuBlinkerPoints_8c046524[] = {
     },
 };
 
-STATIC BlinkerPoint init_wanganBlinkerPoints_8c0465d8[] = {
+STATIC RouteArrowPoint init_wanganArrowPoints_8c0465d8[] = {
     {   /* [0] */
         /* x_0x00, z_0x04 */ 3948.0f, 2871.0f,
         /* angleDeg_0x08  */ -90,
@@ -649,7 +649,7 @@ STATIC BlinkerPoint init_wanganBlinkerPoints_8c0465d8[] = {
     },
 };
 
-STATIC BlinkerPoint init_omeBlinkerPoints_8c0466a4[] = {
+STATIC RouteArrowPoint init_omeArrowPoints_8c0466a4[] = {
     {   /* [0] */
         /* x_0x00, z_0x04 */ 6992.0f, 6229.0f,
         /* angleDeg_0x08  */ -123,
@@ -1368,12 +1368,12 @@ typedef struct {
     TaskAction action;
     void *state;            /* NJS_MATRIX[count_0x08] */
     int count_0x08;
-    int blinkCounter_0x0c;
+    int frameCounter_0x0c;
     int field_0x10;
     int field_0x14;
     void *queuedItem_0x18;
     int field_0x1c;
-} RouteBlinkerTask;
+} RouteArrowTask;
 
 STATIC void resolveObjectChildren_8c029868(NJS_OBJECT **nodes)
 {
@@ -1384,30 +1384,30 @@ STATIC void resolveObjectChildren_8c029868(NJS_OBJECT **nodes)
     nodes[3] = child->sibling;
 }
 
-/* The three lamps light in turn, 4 frames each. */
-STATIC void drawBlinkers_8c029878(int taskArg, int matricesArg)
+/* The three chevrons light in turn, 4 frames each. */
+STATIC void drawRouteArrows_8c029878(int taskArg, int matricesArg)
 {
-    RouteBlinkerTask *task = (RouteBlinkerTask *)taskArg;
+    RouteArrowTask *task = (RouteArrowTask *)taskArg;
     NJS_MATRIX *matrix = (NJS_MATRIX *)matricesArg;
     int count = task->count_0x08;
-    int phase = (task->blinkCounter_0x0c >> 2) % 3;
+    int phase = (task->frameCounter_0x0c >> 2) % 3;
     int i;
 
     switch (phase) {
     case 0:
-        var_routeBlinkerNodes_8c228278[1]->evalflags = 0x3f;
-        var_routeBlinkerNodes_8c228278[2]->evalflags = 0x3f;
-        var_routeBlinkerNodes_8c228278[3]->evalflags = 0x37;
+        var_routeArrowNodes_8c228278[1]->evalflags = 0x3f;
+        var_routeArrowNodes_8c228278[2]->evalflags = 0x3f;
+        var_routeArrowNodes_8c228278[3]->evalflags = 0x37;
         break;
     case 1:
-        var_routeBlinkerNodes_8c228278[1]->evalflags = 0x3f;
-        var_routeBlinkerNodes_8c228278[2]->evalflags = 0x37;
-        var_routeBlinkerNodes_8c228278[3]->evalflags = 0x3f;
+        var_routeArrowNodes_8c228278[1]->evalflags = 0x3f;
+        var_routeArrowNodes_8c228278[2]->evalflags = 0x37;
+        var_routeArrowNodes_8c228278[3]->evalflags = 0x3f;
         break;
     case 2:
-        var_routeBlinkerNodes_8c228278[1]->evalflags = 0x37;
-        var_routeBlinkerNodes_8c228278[2]->evalflags = 0x3f;
-        var_routeBlinkerNodes_8c228278[3]->evalflags = 0x3f;
+        var_routeArrowNodes_8c228278[1]->evalflags = 0x37;
+        var_routeArrowNodes_8c228278[2]->evalflags = 0x3f;
+        var_routeArrowNodes_8c228278[3]->evalflags = 0x3f;
         break;
     default:
         break;
@@ -1416,39 +1416,39 @@ STATIC void drawBlinkers_8c029878(int taskArg, int matricesArg)
     for (i = 0; i < count; i++) {
         njSetCamera(var_drawCamera_8c226558);
         njMultiMatrix(0, matrix);
-        njCnkSimpleDrawObject((NJS_CNK_OBJECT *)var_routeBlinkerNodes_8c228278[0]);
+        njCnkSimpleDrawObject((NJS_CNK_OBJECT *)var_routeArrowNodes_8c228278[0]);
         matrix++;
     }
 }
 
-STATIC void routeBlinkerTask_8c029904(RouteBlinkerTask *task, NJS_MATRIX *state)
+STATIC void routeArrowTask_8c029904(RouteArrowTask *task, NJS_MATRIX *state)
 {
-    task->blinkCounter_0x0c++;
-    RenderQueueDraw2_8c022420(RENDER_LAYER_MAIN, drawBlinkers_8c029878, (int)task, (int)state);
+    task->frameCounter_0x0c++;
+    RenderQueueDraw2_8c022420(RENDER_LAYER_MAIN, drawRouteArrows_8c029878, (int)task, (int)state);
 }
 
 /* Original quirk: a hit on the pedestrian ground grid leaves the point's height
  * unset (stale from the previous point); only the bus-grid fallback
  * interpolates one. */
-void ObjectsInstallBlinkers_8c029920(void)
+void ObjectsInstallRouteArrows_8c029920(void)
 {
-    const BlinkerPoint *p, *points;
+    const RouteArrowPoint *p, *points;
     int count;
-    RouteBlinkerTask *task;
+    RouteArrowTask *task;
     NJS_MATRIX *matrices;
 
-    var_routeBlinkerNodes_8c228278[0] = (NJS_OBJECT *)((int *)var_routeModels_8c1bc3ec)[9];
-    resolveObjectChildren_8c029868(var_routeBlinkerNodes_8c228278);
+    var_routeArrowNodes_8c228278[0] = (NJS_OBJECT *)((int *)var_routeModels_8c1bc3ec)[9];
+    resolveObjectChildren_8c029868(var_routeArrowNodes_8c228278);
 
     switch (var_route_8c18ad1c) {
     case ROUTE_WANGAN:
-        points = init_wanganBlinkerPoints_8c0465d8;
+        points = init_wanganArrowPoints_8c0465d8;
         break;
     case ROUTE_SHINJUKU:
-        points = init_shinjukuBlinkerPoints_8c046524;
+        points = init_shinjukuArrowPoints_8c046524;
         break;
     case ROUTE_OME:
-        points = init_omeBlinkerPoints_8c0466a4;
+        points = init_omeArrowPoints_8c0466a4;
         break;
     }
 
@@ -1461,10 +1461,10 @@ void ObjectsInstallBlinkers_8c029920(void)
         return;
     }
 
-    TaskInstall_8c014ae8(var_tasks_8c1ba5e8, &routeBlinkerTask_8c029904, (Task **)&task,
+    TaskInstall_8c014ae8(var_tasks_8c1ba5e8, &routeArrowTask_8c029904, (Task **)&task,
                        (void **)&matrices, count * sizeof(NJS_MATRIX));
     task->count_0x08 = count;
-    task->blinkCounter_0x0c = 0;
+    task->frameCounter_0x0c = 0;
 
     for (p = points; p->x_0x00 != 0.0f; p++) {
         GroundQueryResult result;

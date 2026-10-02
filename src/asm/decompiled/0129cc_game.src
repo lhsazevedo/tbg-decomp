@@ -46,7 +46,7 @@
           .IMPORT     _var_messageBoxActive_8c22847c
           .IMPORT     _BusInitStart_8c023610
           .IMPORT     _SignalInit_8c02845a
-          .IMPORT     _ObjectsInstallBlinkers_8c029920
+          .IMPORT     _ObjectsInstallRouteArrows_8c029920
           .IMPORT     _ObjectsInstallPedestrianGroups_8c0296d6
           .IMPORT     _TrafficInit_8c02769e
           .IMPORT     _TileDrawInstall_8c0222dc
@@ -1486,7 +1486,7 @@ LP_GEN_38000:
           .DATA.L _BusInitStart_8c023610
           .DATA.L _SignalInit_8c02845a
           .DATA.L _var_playMode_8c1bb8d0
-          .DATA.L _ObjectsInstallBlinkers_8c029920
+          .DATA.L _ObjectsInstallRouteArrows_8c029920
           .DATA.L _ObjectsInstallPedestrianGroups_8c0296d6
           .DATA.L _TrafficInit_8c02769e
           .DATA.L _TileDrawInstall_8c0222dc

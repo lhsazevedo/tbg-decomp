@@ -68,7 +68,7 @@ return new class extends TestCase {
         $this->shouldCall('_BusInitStart_8c023610');
         $this->shouldCall('_SignalInit_8c02845a');
         
-        $this->shouldCall('_ObjectsInstallBlinkers_8c029920');
+        $this->shouldCall('_ObjectsInstallRouteArrows_8c029920');
         
         $this->shouldCall('_ObjectsInstallPedestrianGroups_8c0296d6');
         $this->shouldCall('_TrafficInit_8c02769e');

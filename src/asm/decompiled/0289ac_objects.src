@@ -99,10 +99,10 @@
           .EXPORT     _resolveObjectChildren_8c029868
           .AENDI
           .AIFDEF UNIT_TESTING
-          .EXPORT     _drawBlinkers_8c029878
-          .EXPORT     _routeBlinkerTask_8c029904
+          .EXPORT     _drawRouteArrows_8c029878
+          .EXPORT     _routeArrowTask_8c029904
           .AENDI
-          .EXPORT     _ObjectsInstallBlinkers_8c029920
+          .EXPORT     _ObjectsInstallRouteArrows_8c029920
           .EXPORT     _ObjectsClearAssetRequestTable_8c029acc
           .EXPORT     _ObjectsStartAssetRequests_8c029ad4
           .EXPORT     _ObjectsFreeAssetRequests_8c029cfe
@@ -168,9 +168,9 @@
           .AIFDEF UNIT_TESTING
           .EXPORT     _init_busAxisLocalA_8c04650c
           .EXPORT     _init_busAxisLocalB_8c046518
-          .EXPORT     _init_wanganBlinkerPoints_8c0465d8
-          .EXPORT     _init_shinjukuBlinkerPoints_8c046524
-          .EXPORT     _init_omeBlinkerPoints_8c0466a4
+          .EXPORT     _init_wanganArrowPoints_8c0465d8
+          .EXPORT     _init_shinjukuArrowPoints_8c046524
+          .EXPORT     _init_omeArrowPoints_8c0466a4
           .EXPORT     _var_pedPaths_8c228238
           .EXPORT     _var_pedGroupDefs_8c22823c
           .EXPORT     _var_pedGroupLists_8c228240
@@ -178,7 +178,7 @@
           .EXPORT     _var_blockedCrosswalks_8c228248
           .EXPORT     _var_busAxisA_8c228268
           .EXPORT     _var_busAxisB_8c228270
-          .EXPORT     _var_routeBlinkerNodes_8c228278
+          .EXPORT     _var_routeArrowNodes_8c228278
           .EXPORT     _var_assetRequestSlots_8c228288
           .EXPORT     _var_assetRequestTable_8c228408
           .EXPORT     _var_fumiGateModel_8c22840c
@@ -2156,7 +2156,7 @@ _resolveObjectChildren_8c029868:
           MOV.L       @(H'30,R5),R5
           RTS
           MOV.L       R5,@(H'c,R4)
-_drawBlinkers_8c029878:
+_drawRouteArrows_8c029878:
           MOV.L       R14,@-R15
           MOV         #H'37,R7
           MOV.L       R13,@-R15
@@ -2234,7 +2234,7 @@ LAB_8c0298f2:
           MOV.L       @R15+,R13
           RTS
           MOV.L       @R15+,R14
-_routeBlinkerTask_8c029904:
+_routeArrowTask_8c029904:
           ADD         #-H'8,R15
           MOV.L       R4,@R15
           MOV         #H'0,R4
@@ -2249,7 +2249,7 @@ _routeBlinkerTask_8c029904:
           MOV.L       @(H'4,R15),R7
           JMP         @R3
           ADD         #H'8,R15
-_ObjectsInstallBlinkers_8c029920:
+_ObjectsInstallRouteArrows_8c029920:
           MOV.L       R14,@-R15
           MOV.L       R13,@-R15
           MOV.L       R12,@-R15
@@ -2422,20 +2422,20 @@ LAB_8c029a46:
           MOV.L       @R15+,R14
 LP_GEN_39842:
           .RES.W 1 ; H'8C029A5E
-          .DATA.L _var_routeBlinkerNodes_8c228278 ; H'8C029A60
+          .DATA.L _var_routeArrowNodes_8c228278 ; H'8C029A60
           .DATA.L __modls ; H'8C029A64
           .DATA.L _njMultiMatrix ; H'8C029A68
           .DATA.L _var_drawCamera_8c226558 ; H'8C029A6C
           .DATA.L _njSetCamera ; H'8C029A70
           .DATA.L _njCnkSimpleDrawObject ; H'8C029A74
-          .DATA.L _drawBlinkers_8c029878 ; H'8C029A78
+          .DATA.L _drawRouteArrows_8c029878 ; H'8C029A78
           .DATA.L _RenderQueueDraw2_8c022420 ; H'8C029A7C
           .DATA.L _var_routeModels_8c1bc3ec ; H'8C029A80
           .DATA.L _var_route_8c18ad1c ; H'8C029A84
-          .DATA.L _init_wanganBlinkerPoints_8c0465d8 ; H'8C029A88
-          .DATA.L _init_shinjukuBlinkerPoints_8c046524 ; H'8C029A8C
-          .DATA.L _init_omeBlinkerPoints_8c0466a4 ; H'8C029A90
-          .DATA.L _routeBlinkerTask_8c029904 ; H'8C029A94
+          .DATA.L _init_wanganArrowPoints_8c0465d8 ; H'8C029A88
+          .DATA.L _init_shinjukuArrowPoints_8c046524 ; H'8C029A8C
+          .DATA.L _init_omeArrowPoints_8c0466a4 ; H'8C029A90
+          .DATA.L _routeArrowTask_8c029904 ; H'8C029A94
           .DATA.L _var_tasks_8c1ba5e8 ; H'8C029A98
           .DATA.L _TaskInstall_8c014ae8 ; H'8C029A9C
           .DATA.L _GroundProbeInterpolateHeight_8c020f7e ; H'8C029AA0
@@ -4491,7 +4491,7 @@ _init_busAxisLocalA_8c04650c:        ; from defines
           .DATA.B      H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'33, H'33, H'83, H'C0
 _init_busAxisLocalB_8c046518:        ; from defines
           .DATA.B      H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'18, H'41
-_init_shinjukuBlinkerPoints_8c046524:        ; from defines
+_init_shinjukuArrowPoints_8c046524:        ; from defines
           .DATA.B      H'00, H'68, H'86, H'45, H'00, H'68, H'8C, H'45, H'44, H'00, H'00, H'00, H'00, H'A0, H'73, H'45
           .DATA.B      H'00, H'18, H'89, H'45, H'06, H'00, H'00, H'00, H'00, H'B0, H'71, H'45, H'00, H'50, H'72, H'45
           .DATA.B      H'EE, H'FF, H'FF, H'FF, H'00, H'B0, H'78, H'45, H'00, H'D0, H'67, H'45, H'46, H'00, H'00, H'00
@@ -4504,7 +4504,7 @@ _init_shinjukuBlinkerPoints_8c046524:        ; from defines
           .DATA.B      H'00, H'00, H'FA, H'43, H'00, H'00, H'1A, H'43, H'B4, H'00, H'00, H'00, H'00, H'40, H'06, H'44
           .DATA.B      H'00, H'80, H'AE, H'43, H'5A, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00
           .DATA.B      H'00, H'00, H'00, H'00
-_init_wanganBlinkerPoints_8c0465d8:        ; from defines
+_init_wanganArrowPoints_8c0465d8:        ; from defines
           .DATA.B      H'00, H'C0, H'76, H'45, H'00, H'70, H'33, H'45, H'A6, H'FF, H'FF, H'FF, H'00, H'80, H'7B, H'45
           .DATA.B      H'00, H'90, H'30, H'45, H'A6, H'FF, H'FF, H'FF, H'00, H'58, H'82, H'45, H'00, H'F0, H'3E, H'45
           .DATA.B      H'7A, H'00, H'00, H'00, H'00, H'A0, H'37, H'45, H'00, H'40, H'71, H'45, H'87, H'00, H'00, H'00
@@ -4518,7 +4518,7 @@ _init_wanganBlinkerPoints_8c0465d8:        ; from defines
           .DATA.B      H'00, H'C0, H'A2, H'44, H'90, H'FF, H'FF, H'FF, H'00, H'00, H'47, H'44, H'00, H'E0, H'A6, H'44
           .DATA.B      H'EC, H'FF, H'FF, H'FF, H'00, H'C0, H'92, H'44, H'00, H'00, H'F3, H'43, H'46, H'00, H'00, H'00
           .DATA.B      H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00
-_init_omeBlinkerPoints_8c0466a4:        ; from defines
+_init_omeArrowPoints_8c0466a4:        ; from defines
           .DATA.B      H'00, H'80, H'DA, H'45, H'00, H'A8, H'C2, H'45, H'85, H'FF, H'FF, H'FF, H'00, H'58, H'E0, H'45
           .DATA.B      H'00, H'D0, H'C7, H'45, H'D0, H'FF, H'FF, H'FF, H'00, H'58, H'E4, H'45, H'00, H'C8, H'C2, H'45
           .DATA.B      H'07, H'00, H'00, H'00, H'00, H'90, H'E3, H'45, H'00, H'78, H'C0, H'45, H'68, H'00, H'00, H'00
@@ -4552,7 +4552,7 @@ _var_busAxisA_8c228268:
           .RES.B      8
 _var_busAxisB_8c228270:
           .RES.B      8
-_var_routeBlinkerNodes_8c228278:
+_var_routeArrowNodes_8c228278:
           .RES.B      16
 _var_assetRequestSlots_8c228288:
           .RES.B      384

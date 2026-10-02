@@ -38,6 +38,9 @@ bus along a predefined route with predefined passenger stop requests.
 - Reaching the final stop ends the run: score screen, then back to course
   select.
 - The VMU LCD shows art during gameplay (see `01bb48` `vmsLcd_*`).
+- **Route arrows** (yaji.njd): three green chevrons block off-course roads
+  and point back to the route, lit one after another
+  (`ObjectsInstallRouteArrows_8c029920`).
 
 ## Results bonuses
 

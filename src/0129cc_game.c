@@ -518,7 +518,7 @@ void GameEnterDrive_8c01306e(void)
     SignalInit_8c02845a();
 
     if (var_playMode_8c1bb8d0 != PLAY_MODE_DEMO) {
-        ObjectsInstallBlinkers_8c029920();
+        ObjectsInstallRouteArrows_8c029920();
     }
 
     ObjectsInstallPedestrianGroups_8c0296d6();

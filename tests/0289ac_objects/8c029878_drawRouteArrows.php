@@ -19,7 +19,7 @@ return new class extends TestCase {
 
         $task = $this->alloc(0x20);
         $this->initUint32($task + 0x08, 2); // count
-        $this->initUint32($task + 0x0c, 0); // blink counter (>>2 == 0, phase 0)
+        $this->initUint32($task + 0x0c, 0); // frame counter (>>2 == 0, phase 0)
 
         $camera = $this->addressOf('_var_drawCamera_8c226558');
         $this->initUint32($camera, 0x11111111);
@@ -32,7 +32,7 @@ return new class extends TestCase {
         $this->initUint32($node2, 0);
         $this->initUint32($node3, 0);
 
-        $nodes = $this->addressOf('_var_routeBlinkerNodes_8c228278');
+        $nodes = $this->addressOf('_var_routeArrowNodes_8c228278');
         $this->initUint32($nodes + 0, $root);
         $this->initUint32($nodes + 4, $node1);
         $this->initUint32($nodes + 8, $node2);
@@ -41,7 +41,7 @@ return new class extends TestCase {
         $matrix0 = $this->alloc(0x40);
         $matrix1 = $matrix0 + 0x40;
 
-        $this->call('_drawBlinkers_8c029878')->with($task, $matrix0);
+        $this->call('_drawRouteArrows_8c029878')->with($task, $matrix0);
 
         $this->shouldCall('__modls')->with(0, 3)->using(new RiroCallingConvention())->andReturn(0);
         $this->shouldWriteLong($node1, 0x3f);
@@ -60,7 +60,7 @@ return new class extends TestCase {
 
         $task = $this->alloc(0x20);
         $this->initUint32($task + 0x08, 0); // count
-        $this->initUint32($task + 0x0c, 4); // blink counter (>>2 == 1, phase 1)
+        $this->initUint32($task + 0x0c, 4); // frame counter (>>2 == 1, phase 1)
 
         $root = $this->alloc(0x34);
         $node1 = $this->alloc(0x34);
@@ -70,7 +70,7 @@ return new class extends TestCase {
         $this->initUint32($node2, 0);
         $this->initUint32($node3, 0);
 
-        $nodes = $this->addressOf('_var_routeBlinkerNodes_8c228278');
+        $nodes = $this->addressOf('_var_routeArrowNodes_8c228278');
         $this->initUint32($nodes + 0, $root);
         $this->initUint32($nodes + 4, $node1);
         $this->initUint32($nodes + 8, $node2);
@@ -78,7 +78,7 @@ return new class extends TestCase {
 
         $matrices = $this->alloc(0x40);
 
-        $this->call('_drawBlinkers_8c029878')->with($task, $matrices);
+        $this->call('_drawRouteArrows_8c029878')->with($task, $matrices);
 
         $this->shouldCall('__modls')->with(1, 3)->using(new RiroCallingConvention())->andReturn(1);
         $this->shouldWriteLong($node1, 0x3f);
@@ -91,7 +91,7 @@ return new class extends TestCase {
 
         $task = $this->alloc(0x20);
         $this->initUint32($task + 0x08, 0); // count
-        $this->initUint32($task + 0x0c, 8); // blink counter (>>2 == 2, phase 2)
+        $this->initUint32($task + 0x0c, 8); // frame counter (>>2 == 2, phase 2)
 
         $root = $this->alloc(0x34);
         $node1 = $this->alloc(0x34);
@@ -101,7 +101,7 @@ return new class extends TestCase {
         $this->initUint32($node2, 0);
         $this->initUint32($node3, 0);
 
-        $nodes = $this->addressOf('_var_routeBlinkerNodes_8c228278');
+        $nodes = $this->addressOf('_var_routeArrowNodes_8c228278');
         $this->initUint32($nodes + 0, $root);
         $this->initUint32($nodes + 4, $node1);
         $this->initUint32($nodes + 8, $node2);
@@ -109,7 +109,7 @@ return new class extends TestCase {
 
         $matrices = $this->alloc(0x40);
 
-        $this->call('_drawBlinkers_8c029878')->with($task, $matrices);
+        $this->call('_drawRouteArrows_8c029878')->with($task, $matrices);
 
         $this->shouldCall('__modls')->with(2, 3)->using(new RiroCallingConvention())->andReturn(2);
         $this->shouldWriteLong($node1, 0x37);
