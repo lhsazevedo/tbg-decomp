@@ -13,8 +13,8 @@ return new class extends TestCase {
     }
 
     // Each vertex's .col field is written via displacement addressing from
-    // init_fadeQuad_8c0455a8 (offsets 0xc/0x1c/0x2c/0x3c -- see 022464_render.c's comment
-    // on init_fadeQuad_8c0455a8); no separate symbol exists for them in either object.
+    // init_fadeQuad_8c0455a8 (offsets 0xc/0x1c/0x2c/0x3c);
+    // no separate symbol exists for them in either object.
     private function colAddresses(int $init8c0455a8): array {
         return [$init8c0455a8 + 12, $init8c0455a8 + 28, $init8c0455a8 + 44, $init8c0455a8 + 60];
     }

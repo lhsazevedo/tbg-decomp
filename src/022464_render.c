@@ -15,7 +15,6 @@
  * ====================
  */
 
-/* var_fadeCompleteCallback_8c22656c's unset sentinel. */
 #define FADE_NO_CALLBACK ((void (*)(void))-1)
 
 /* ====================
@@ -29,10 +28,10 @@ int var_sceneVisible_8c226560;
 FadeRequest var_fadeRequest_8c226564;
 Bool var_isFading_8c226568;
 void (*var_fadeCompleteCallback_8c22656c)(void);
-STATIC int var_drawCommandCount_8c226570[RENDER_LAYER_COUNT]; // per-layer draw-command count for var_drawCommands_8c22657c
-STATIC DrawCommand var_drawCommands_8c22657c[RENDER_LAYER_COUNT][128]; // per-layer draw-command queue
-STATIC FadePhase var_fadePhase_8c227d7c; // fade state machine phase
-STATIC Uint32 var_fadeProgress_8c227d80; // fade alpha accumulator for init_fadeQuad_8c0455a8's black overlay, driven by RenderDrawFrame_8c022560. Two incompatible fixed-point scales are used: FADE_PHASE_IN/fadeInTask_8c022a54 keep the alpha byte already at bits 24-31 (0xff000000 = opaque, read via a plain & mask); FADE_PHASE_OUT/fadeOutTask_8c022ad0 keep it at bits 16-23 (0xff0000 = opaque, read via a <<8 shift)
+STATIC int var_drawCommandCount_8c226570[RENDER_LAYER_COUNT];
+STATIC DrawCommand var_drawCommands_8c22657c[RENDER_LAYER_COUNT][128];
+STATIC FadePhase var_fadePhase_8c227d7c;
+STATIC Uint32 var_fadeProgress_8c227d80; // overlay alpha: bits 24-31 for fade-ins, bits 16-23 for fade-outs
 
 /* ====================
  * Initialized Globals
@@ -125,9 +124,6 @@ STATIC NJS_POINT2 init_clipCabin_8c045598[2] = {
     /* [0] */ { 6.0f, 2.0f },
     /* [1] */ { 18.0f, 9.0f },
 };
-/* Fullscreen fade quad: 4 corners {0,0,1.0}-{0,480,1.0}-{640,0,1.0}-{640,480,1.0}.
- * The col field of each vertex is poked every frame via displacement addressing
- * (@(0xc/0x1c/0x2c/0x3c,Rn) in the original asm). */
 STATIC NJS_POLYGON_VTX init_fadeQuad_8c0455a8[4] = {
     /* [0] */ { 0.0f, 0.0f, 1.0f, ARGB(0, 0, 0, 0) },
     /* [1] */ { 0.0f, 480.0f, 1.0f, ARGB(0, 0, 0, 0) },
@@ -160,8 +156,6 @@ STATIC NJS_SCREEN init_screenCabin_8c045624 = {
  * ====================
  */
 
-/* Runs at the top of each frame's draw pass, before the var_tasks_8c1ba5e8
- * tasks refill the queues. */
 void RenderResetQueues_8c02239c(void)
 {
     int i;
@@ -171,8 +165,6 @@ void RenderResetQueues_8c02239c(void)
     }
 }
 
-/* Queues a DRAW_CMD_CALL entry for layer, dropped once that layer's
- * queue (var_drawCommandCount_8c226570/var_drawCommands_8c22657c) is full. */
 void RenderQueueDraw_8c0223ea(RenderLayer layer, DrawFn fn, int arg0)
 {
     DrawCommand *cmd;
@@ -187,7 +179,6 @@ void RenderQueueDraw_8c0223ea(RenderLayer layer, DrawFn fn, int arg0)
     }
 }
 
-/* Same as RenderQueueDraw_8c0223ea, but for a DRAW_CMD_CALL2 entry. */
 void RenderQueueDraw2_8c022420(RenderLayer layer, DrawFn2 fn, int arg0, int arg1)
 {
     DrawCommand *cmd;
@@ -257,16 +248,6 @@ STATIC void drawLayer_8c022464(RenderLayer layer)
   }
 }
 
-/* Per-frame bus-stop-arrival overlay (var_sceneVisible_8c226560 gate) plus the generic
- * screen fade state machine (var_fadePhase_8c227d7c: 0 idle, 1 fading out, 2 fading in,
- * 3 held-fade-in-complete).
- *
- * The three arrival variants each label themselves with a sprite off
- * var_busStopTexlist_8c1bc424: 0x27 left mirror, 0x29 right mirror, 0x28 for
- * variant 1's cabin inset, 0x2a for variant 2.
- *
- * Every SpriteDraw priority arg below is a fixed -1.17 literal, not a
- * parameter -- raw disassembly shows FR4 is never read. */
 void RenderDrawFrame_8c022560(void)
 {
   if (var_sceneVisible_8c226560 != 0) {
@@ -398,7 +379,7 @@ void RenderDrawFrame_8c022560(void)
       return;
   }
 
-  /* Fade-out ran to full color, or the held phase was entered: finish. */
+  /* Fade-in done, or the held frame at black: finish. */
   var_fadePhase_8c227d7c = FADE_PHASE_IDLE;
   var_fadeRequest_8c226564 = FADE_REQUEST_NONE;
   var_isFading_8c226568 = 0;
@@ -423,11 +404,8 @@ void RenderStartRunFade_8c0228a2(void)
   var_isFading_8c226568 = 1;
 }
 
-/* Same idle/fading-out/fading-in/held state machine as RenderDrawFrame_8c022560, minus
- * the bus-stop-arrival overlay: var_sceneVisible_8c226560 just triggers the plain
- * fade-out draw. Both fade-out completion checks are also guarded by
- * var_isFading_8c226568, so an external reset of that flag can short-cut
- * the transition. */
+/* Unlike RenderDrawFrame_8c022560, clearing var_isFading_8c226568 cuts a fade
+ * short. */
 void RenderDrawFrameMainOnly_8c022910(void)
 {
   if (var_sceneVisible_8c226560 != 0) {
@@ -490,8 +468,7 @@ void RenderDrawFrameMainOnly_8c022910(void)
       return;
   }
 
-  /* Fade-out ran to full color (or was cut short), or the held phase was
-   * entered: finish. */
+  /* Fade-in done or cut short, or the held frame at black: finish. */
   var_fadePhase_8c227d7c = FADE_PHASE_IDLE;
   var_fadeRequest_8c226564 = FADE_REQUEST_NONE;
   var_isFading_8c226568 = 0;
@@ -501,8 +478,6 @@ void RenderDrawFrameMainOnly_8c022910(void)
   }
 }
 
-/* Task spawned by RenderStartFadeIn_8c022a9c(frames): task->frames_0x08 holds that
- * frame count. Sibling of fadeOutTask_8c022ad0, which counts the opposite way. */
 STATIC void fadeInTask_8c022a54(FadeInTask *task, void *state)
 {
   Uint32 level;
