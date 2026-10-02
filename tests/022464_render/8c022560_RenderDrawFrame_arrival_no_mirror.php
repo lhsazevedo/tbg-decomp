@@ -25,8 +25,8 @@ return new class extends TestCase {
     public function test_draws_the_no_mirror_arrival_overlay(): void {
         $this->resolveSymbols();
 
-        $this->initUint32($this->addressOf('_var_arrivalOverlayGate_8c226560'), 1);
-        $this->initUint32($this->addressOf('_var_arrivalOverlayVariant_8c22655c'), 0);
+        $this->initUint32($this->addressOf('_var_sceneVisible_8c226560'), 1);
+        $this->initUint32($this->addressOf('_var_viewLayout_8c22655c'), 0);
         $this->initUint32(($this->addressOf('_var_busState_8c1bb9d0') + 0x268), 0);
         $this->initUint32($this->addressOf('_var_fadePhase_8c227d7c'), 0);
         $this->initUint32($this->addressOf('_var_fadeRequest_8c226564'), 0);
@@ -40,6 +40,6 @@ return new class extends TestCase {
         $this->shouldCall('_njSetScreen')->with($this->addressOf('_init_screenFull_8c0455e8'));
         $this->shouldWriteLong($this->addressOf('_var_drawCamera_8c226558'), $init8c1bb904);
         $this->shouldCall('_drawLayer_8c022464')->with(0);
-        $this->shouldCall('_njUserClipping')->with(0, $this->addressOf('_init_clipLayer2_8c045598'));
+        $this->shouldCall('_njUserClipping')->with(0, $this->addressOf('_init_clipCabin_8c045598'));
     }
 };

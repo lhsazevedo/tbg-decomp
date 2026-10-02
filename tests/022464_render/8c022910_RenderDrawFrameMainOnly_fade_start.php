@@ -20,10 +20,10 @@ return new class extends TestCase {
         return [$init8c0455a8 + 12, $init8c0455a8 + 28, $init8c0455a8 + 44, $init8c0455a8 + 60];
     }
 
-    public function test_starts_fading_out(): void {
+    public function test_starts_fading_in(): void {
         $this->resolveSymbols();
 
-        $this->initUint32($this->addressOf('_var_arrivalOverlayGate_8c226560'), 0);
+        $this->initUint32($this->addressOf('_var_sceneVisible_8c226560'), 0);
         $this->initUint32($this->addressOf('_var_fadePhase_8c227d7c'), 0);
         $this->initUint32($this->addressOf('_var_fadeRequest_8c226564'), 1);
         $this->initUint32($this->addressOf('_var_fadeProgress_8c227d80'), 0);

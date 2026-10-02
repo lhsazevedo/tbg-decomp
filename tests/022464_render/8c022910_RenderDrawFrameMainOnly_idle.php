@@ -16,7 +16,7 @@ return new class extends TestCase {
     public function test_does_nothing_when_gate_closed_and_fade_idle(): void {
         $this->resolveSymbols();
 
-        $this->initUint32($this->addressOf('_var_arrivalOverlayGate_8c226560'), 0);
+        $this->initUint32($this->addressOf('_var_sceneVisible_8c226560'), 0);
         $this->initUint32($this->addressOf('_var_fadePhase_8c227d7c'), 0);
         $this->initUint32($this->addressOf('_var_fadeRequest_8c226564'), 0);
 

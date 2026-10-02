@@ -16,7 +16,7 @@ return new class extends TestCase {
     public function test_draws_plain_fade_overlay_when_gate_open(): void {
         $this->resolveSymbols();
 
-        $this->initUint32($this->addressOf('_var_arrivalOverlayGate_8c226560'), 1);
+        $this->initUint32($this->addressOf('_var_sceneVisible_8c226560'), 1);
         $this->initUint32($this->addressOf('_var_fadePhase_8c227d7c'), 0);
         $this->initUint32($this->addressOf('_var_fadeRequest_8c226564'), 0);
 

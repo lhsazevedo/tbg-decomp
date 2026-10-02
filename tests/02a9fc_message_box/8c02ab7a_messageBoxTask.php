@@ -328,7 +328,7 @@ return new class extends TestCase {
         $this->shouldCall('_SndStopAdx_8c010ca6')->with(1);
         $this->shouldWriteLong($state + self::ST_MSG, $msgData + 0x08);
         $this->shouldWriteLong($state + self::ST_ROW, $row + 0x08);
-        $this->shouldWriteLongTo('_var_fadeRequest_8c226564', 2 /* FADE_REQUEST_IN */);
+        $this->shouldWriteLongTo('_var_fadeRequest_8c226564', 2 /* FADE_REQUEST_OUT */);
         $this->shouldWriteLong($state + self::ST_PHASE, 5);
         $this->expectDrawEmpty($state, 1);
     }
@@ -356,8 +356,8 @@ return new class extends TestCase {
         $this->shouldCall('_TaskKill_8c014b66')->with($task);
         $this->shouldCall('_EventApplyFlags_8c02b292');
         $this->shouldCall('_RouteStartModelLoadPass_8c013d78');
-        $this->shouldWriteLongTo('_var_fadeRequest_8c226564', 1 /* FADE_REQUEST_OUT */);
-        $this->shouldWriteLongTo('_var_arrivalOverlayGate_8c226560', 1);
+        $this->shouldWriteLongTo('_var_fadeRequest_8c226564', 1 /* FADE_REQUEST_IN */);
+        $this->shouldWriteLongTo('_var_sceneVisible_8c226560', 1);
         $this->shouldWriteLongTo('_var_messageBoxActive_8c22847c', 0);
     }
 

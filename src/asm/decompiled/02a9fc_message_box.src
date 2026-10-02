@@ -14,7 +14,7 @@
           .IMPORT     _var_isFading_8c226568
           .IMPORT     _EventApplyFlags_8c02b292
           .IMPORT     _RouteStartModelLoadPass_8c013d78
-          .IMPORT     _var_arrivalOverlayGate_8c226560
+          .IMPORT     _var_sceneVisible_8c226560
           .IMPORT     _njDrawScroll
           .IMPORT     _SndPollVoiceEnd_8c0106ac
           .IMPORT     _var_tasks_8c1ba3c8
@@ -513,7 +513,7 @@ LP_GEN_90033:
           .DATA.L _TaskKill_8c014b66 ; H'8C02AD58
           .DATA.L _EventApplyFlags_8c02b292 ; H'8C02AD5C
           .DATA.L _RouteStartModelLoadPass_8c013d78 ; H'8C02AD60
-          .DATA.L _var_arrivalOverlayGate_8c226560 ; H'8C02AD64
+          .DATA.L _var_sceneVisible_8c226560 ; H'8C02AD64
           .DATA.L _var_messageBoxActive_8c22847c ; H'8C02AD68
           .DATA.L _init_msgScroll_8c04ab3c ; H'8C02AD6C
           .DATA.L H'C0400000 ; H'8C02AD70

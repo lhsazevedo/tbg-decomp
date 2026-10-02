@@ -432,7 +432,7 @@ STATIC void runStartViewTask_8c012f9c(Task *task, void* state) {
         switch (task->field_0x08) {
             case 0:
                 if (var_busState_8c1bb9d0.doorState_0x3c0 == 0) {
-                    var_arrivalOverlayVariant_8c22655c = 0;
+                    var_viewLayout_8c22655c = 0;
                     if (omeStart == FALSE) {
                         var_busState_8c1bb9d0.mirror_0x268 = MIRROR_RIGHT;
                     } else {
@@ -442,7 +442,7 @@ STATIC void runStartViewTask_8c012f9c(Task *task, void* state) {
                     task->field_0x08 = 1;
                 } else {
                     if (var_busState_8c1bb9d0.mirror_0x268 != MIRROR_DOOR) {
-                        var_arrivalOverlayVariant_8c22655c = 0;
+                        var_viewLayout_8c22655c = 0;
                         TaskKill_8c014b66(task);
                     }
                 }
@@ -453,7 +453,7 @@ STATIC void runStartViewTask_8c012f9c(Task *task, void* state) {
                 break;
         }
     } else {
-        var_arrivalOverlayVariant_8c22655c = 0;
+        var_viewLayout_8c22655c = 0;
         if (omeStart == FALSE) {
             var_busState_8c1bb9d0.signalSide_0x25c = 0;
         }

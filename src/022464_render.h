@@ -13,8 +13,8 @@
 /* var_fadePhase_8c227d7c: the fade state machine's current phase. */
 typedef enum {
     FADE_PHASE_IDLE = 0,
-    FADE_PHASE_OUT  = 1,
-    FADE_PHASE_IN   = 2,
+    FADE_PHASE_IN   = 1,
+    FADE_PHASE_OUT  = 2,
     FADE_PHASE_HELD = 3
 } FadePhase;
 
@@ -22,8 +22,8 @@ typedef enum {
  * RenderDrawFrameMainOnly_8c022910, consumed once phase is FADE_PHASE_IDLE. */
 typedef enum {
     FADE_REQUEST_NONE = 0,
-    FADE_REQUEST_OUT  = 1,
-    FADE_REQUEST_IN   = 2
+    FADE_REQUEST_IN   = 1,
+    FADE_REQUEST_OUT  = 2
 } FadeRequest;
 
 /* BusState.mirror_0x268: which mirror view is up. */
@@ -129,8 +129,8 @@ typedef struct {
  */
 
 extern NJS_CAMERA* var_drawCamera_8c226558; // camera for the layer being drawn; RenderDrawFrame_8c022560 picks main/mirror/cabin
-extern int var_arrivalOverlayVariant_8c22655c; // bus-stop-arrival overlay layout (0-2) drawn by RenderDrawFrame_8c022560; despite the SDK Bool this held before, values above 1 are reachable (switch in RenderDrawFrame_8c022560 handles 0-2)
-extern int var_arrivalOverlayGate_8c226560; // gates RenderDrawFrame_8c022560's bus-stop-arrival draw; cleared once its fade-out finishes
+extern int var_viewLayout_8c22655c; // bus-stop-arrival overlay layout (0-2) drawn by RenderDrawFrame_8c022560; despite the SDK Bool this held before, values above 1 are reachable (switch in RenderDrawFrame_8c022560 handles 0-2)
+extern int var_sceneVisible_8c226560; // gates RenderDrawFrame_8c022560's bus-stop-arrival draw; cleared once its fade-out finishes
 extern FadeRequest var_fadeRequest_8c226564; // requested fade transition, consumed by RenderDrawFrame_8c022560
 extern Bool var_isFading_8c226568;
 extern void (*var_fadeCompleteCallback_8c22656c)(void); // fade-complete callback; sentinel -1 (0xffffffff) means unset

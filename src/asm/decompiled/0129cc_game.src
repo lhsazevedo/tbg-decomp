@@ -13,7 +13,7 @@
           .IMPORT     _var_playMode_8c1bb8d0
           .IMPORT     _var_route_8c18ad1c
           .IMPORT     _var_currentSegment_8c228708
-          .IMPORT     _var_arrivalOverlayVariant_8c22655c
+          .IMPORT     _var_viewLayout_8c22655c
           .IMPORT     _var_busState_8c1bb9d0
           .IMPORT     _TaskKill_8c014b66
           .IMPORT     _njControl3D
@@ -1052,7 +1052,7 @@ LP_GEN_99840:
           .DATA.L _var_playMode_8c1bb8d0
           .DATA.L _var_route_8c18ad1c
           .DATA.L _var_currentSegment_8c228708
-          .DATA.L _var_arrivalOverlayVariant_8c22655c
+          .DATA.L _var_viewLayout_8c22655c
           .DATA.L _var_busState_8c1bb9d0
 
 LAB_8c013050:

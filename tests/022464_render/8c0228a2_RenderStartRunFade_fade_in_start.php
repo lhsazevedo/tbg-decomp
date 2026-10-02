@@ -18,9 +18,9 @@ return new class extends TestCase {
 
         $this->call('_RenderStartRunFade_8c0228a2');
 
-        $this->shouldWriteLongTo('_var_arrivalOverlayVariant_8c22655c', 1);
+        $this->shouldWriteLongTo('_var_viewLayout_8c22655c', 1);
         $this->shouldWriteLongTo('_var_fadePhase_8c227d7c', 0);
-        $this->shouldWriteLongTo('_var_arrivalOverlayGate_8c226560', 1);
+        $this->shouldWriteLongTo('_var_sceneVisible_8c226560', 1);
         $this->shouldWriteLongTo('_var_fadeRequest_8c226564', 1);
         $this->shouldWriteLongTo('_var_fadeCompleteCallback_8c22656c', 0xffffffff);
         $this->shouldWriteLongTo('_var_isFading_8c226568', 1);
@@ -34,9 +34,9 @@ return new class extends TestCase {
 
         $this->call('_RenderStartRunFade_8c0228a2');
 
-        $this->shouldWriteLongTo('_var_arrivalOverlayVariant_8c22655c', 1);
+        $this->shouldWriteLongTo('_var_viewLayout_8c22655c', 1);
         $this->shouldWriteLongTo('_var_fadePhase_8c227d7c', 0);
-        $this->shouldWriteLongTo('_var_arrivalOverlayGate_8c226560', 1);
+        $this->shouldWriteLongTo('_var_sceneVisible_8c226560', 1);
         $this->shouldWriteLongTo('_var_fadeRequest_8c226564', 1);
         $this->shouldWriteLongTo('_var_fadeCompleteCallback_8c22656c', 0xffffffff);
         $this->shouldWriteLongTo('_var_isFading_8c226568', 1);
@@ -50,9 +50,9 @@ return new class extends TestCase {
 
         $this->call('_RenderStartRunFade_8c0228a2');
 
-        $this->shouldWriteLongTo('_var_arrivalOverlayVariant_8c22655c', 0);
+        $this->shouldWriteLongTo('_var_viewLayout_8c22655c', 0);
         $this->shouldWriteLongTo('_var_fadePhase_8c227d7c', 0);
-        $this->shouldWriteLongTo('_var_arrivalOverlayGate_8c226560', 1);
+        $this->shouldWriteLongTo('_var_sceneVisible_8c226560', 1);
         $this->shouldWriteLongTo('_var_fadeRequest_8c226564', 1);
         $this->shouldWriteLongTo('_var_fadeCompleteCallback_8c22656c', 0xffffffff);
         $this->shouldWriteLongTo('_var_isFading_8c226568', 1);

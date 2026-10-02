@@ -23,7 +23,7 @@ return new class extends TestCase {
     public function test_idle_ignores_unknown_request(): void {
         $this->resolveSymbols();
 
-        $this->initUint32($this->addressOf('_var_arrivalOverlayGate_8c226560'), 0);
+        $this->initUint32($this->addressOf('_var_sceneVisible_8c226560'), 0);
         $this->initUint32($this->addressOf('_var_fadePhase_8c227d7c'), 0);
         $this->initUint32($this->addressOf('_var_fadeRequest_8c226564'), 3);
 
@@ -33,17 +33,17 @@ return new class extends TestCase {
     public function test_unknown_phase_does_nothing(): void {
         $this->resolveSymbols();
 
-        $this->initUint32($this->addressOf('_var_arrivalOverlayGate_8c226560'), 0);
+        $this->initUint32($this->addressOf('_var_sceneVisible_8c226560'), 0);
         $this->initUint32($this->addressOf('_var_fadePhase_8c227d7c'), 4);
         $this->initUint32($this->addressOf('_var_fadeRequest_8c226564'), 1);
 
         $this->call('_RenderDrawFrameMainOnly_8c022910');
     }
 
-    public function test_fade_in_reaches_threshold_and_holds(): void {
+    public function test_fade_out_reaches_threshold_and_holds(): void {
         $this->resolveSymbols();
 
-        $this->initUint32($this->addressOf('_var_arrivalOverlayGate_8c226560'), 0);
+        $this->initUint32($this->addressOf('_var_sceneVisible_8c226560'), 0);
         $this->initUint32($this->addressOf('_var_fadePhase_8c227d7c'), 2);
         $this->initUint32($this->addressOf('_var_fadeRequest_8c226564'), 2);
         $this->initUint32($this->addressOf('_var_fadeProgress_8c227d80'), 0xfc0000);
@@ -56,7 +56,7 @@ return new class extends TestCase {
 
         $this->shouldWriteLong($this->addressOf('_var_fadeProgress_8c227d80'), 0x1004000);
         $this->shouldWriteLong($this->addressOf('_var_fadePhase_8c227d7c'), 3);
-        $this->shouldWriteLong($this->addressOf('_var_arrivalOverlayGate_8c226560'), 0);
+        $this->shouldWriteLong($this->addressOf('_var_sceneVisible_8c226560'), 0);
         $this->shouldWriteLong($this->addressOf('_var_fadeProgress_8c227d80'), 0xff0000);
         $this->shouldWriteLong($init8c0455b4, 0xff000000);
         $this->shouldWriteLong($init8c0455c4, 0xff000000);
@@ -69,7 +69,7 @@ return new class extends TestCase {
     public function test_held_phase_does_not_draw(): void {
         $this->resolveSymbols();
 
-        $this->initUint32($this->addressOf('_var_arrivalOverlayGate_8c226560'), 0);
+        $this->initUint32($this->addressOf('_var_sceneVisible_8c226560'), 0);
         $this->initUint32($this->addressOf('_var_fadePhase_8c227d7c'), 3);
         $this->initUint32($this->addressOf('_var_fadeRequest_8c226564'), 2);
         $this->initUint32($this->addressOf('_var_fadeProgress_8c227d80'), 0xff0000);

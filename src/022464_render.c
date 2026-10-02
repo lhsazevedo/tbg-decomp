@@ -24,15 +24,15 @@
  */
 
 NJS_CAMERA* var_drawCamera_8c226558;
-int var_arrivalOverlayVariant_8c22655c;
-int var_arrivalOverlayGate_8c226560;
+int var_viewLayout_8c22655c;
+int var_sceneVisible_8c226560;
 FadeRequest var_fadeRequest_8c226564;
 Bool var_isFading_8c226568;
 void (*var_fadeCompleteCallback_8c22656c)(void);
 STATIC int var_drawCommandCount_8c226570[RENDER_LAYER_COUNT]; // per-layer draw-command count for var_drawCommands_8c22657c
 STATIC DrawCommand var_drawCommands_8c22657c[RENDER_LAYER_COUNT][128]; // per-layer draw-command queue
 STATIC FadePhase var_fadePhase_8c227d7c; // fade state machine phase
-STATIC Uint32 var_fadeProgress_8c227d80; // fade alpha accumulator for init_fadeQuad_8c0455a8's black overlay, driven by RenderDrawFrame_8c022560. Two incompatible fixed-point scales are used: FADE_PHASE_OUT/fadeInTask_8c022a54 keep the alpha byte already at bits 24-31 (0xff000000 = opaque, read via a plain & mask); FADE_PHASE_IN/fadeOutTask_8c022ad0 keep it at bits 16-23 (0xff0000 = opaque, read via a <<8 shift)
+STATIC Uint32 var_fadeProgress_8c227d80; // fade alpha accumulator for init_fadeQuad_8c0455a8's black overlay, driven by RenderDrawFrame_8c022560. Two incompatible fixed-point scales are used: FADE_PHASE_IN/fadeInTask_8c022a54 keep the alpha byte already at bits 24-31 (0xff000000 = opaque, read via a plain & mask); FADE_PHASE_OUT/fadeOutTask_8c022ad0 keep it at bits 16-23 (0xff0000 = opaque, read via a <<8 shift)
 
 /* ====================
  * Initialized Globals
@@ -121,7 +121,7 @@ STATIC NJS_POINT2 init_clipMirrorViewTall_8c045588[2] = {
     /* [0] */ { 0.0f, 0.0f },
     /* [1] */ { 4.0f, 10.0f },
 };
-STATIC NJS_POINT2 init_clipLayer2_8c045598[2] = {
+STATIC NJS_POINT2 init_clipCabin_8c045598[2] = {
     /* [0] */ { 6.0f, 2.0f },
     /* [1] */ { 18.0f, 9.0f },
 };
@@ -149,7 +149,7 @@ STATIC NJS_SCREEN init_screenMirrorTall_8c045610 = {
     /* w, h */ 160.0f, 352.0f,
     /* cx, cy */ 80.0f, 176.0f,
 };
-STATIC NJS_SCREEN init_screenLayer2_8c045624 = {
+STATIC NJS_SCREEN init_screenCabin_8c045624 = {
     /* dist */ 500.0f,
     /* w, h */ 640.0f, 480.0f,
     /* cx, cy */ 400.0f, 192.0f,
@@ -257,7 +257,7 @@ STATIC void drawLayer_8c022464(RenderLayer layer)
   }
 }
 
-/* Per-frame bus-stop-arrival overlay (var_arrivalOverlayGate_8c226560 gate) plus the generic
+/* Per-frame bus-stop-arrival overlay (var_sceneVisible_8c226560 gate) plus the generic
  * screen fade state machine (var_fadePhase_8c227d7c: 0 idle, 1 fading out, 2 fading in,
  * 3 held-fade-in-complete).
  *
@@ -269,8 +269,8 @@ STATIC void drawLayer_8c022464(RenderLayer layer)
  * parameter -- raw disassembly shows FR4 is never read. */
 void RenderDrawFrame_8c022560(void)
 {
-  if (var_arrivalOverlayGate_8c226560 != 0) {
-    switch (var_arrivalOverlayVariant_8c22655c) {
+  if (var_sceneVisible_8c226560 != 0) {
+    switch (var_viewLayout_8c22655c) {
     case 0:
       njControl3D(NJD_CONTROL_3D_MODEL_CLIP);
       switch (var_busState_8c1bb9d0.mirror_0x268) {
@@ -314,16 +314,16 @@ void RenderDrawFrame_8c022560(void)
       drawLayer_8c022464(RENDER_LAYER_MIRROR);
       njSetTexture(&init_renderTexlist_8c03bf44);
       njRenderTextureNumG(999);
-      njUserClipping(NJD_CLIP_INSIDE, init_clipLayer2_8c045598);
-      njSetScreen(&init_screenLayer2_8c045624);
+      njUserClipping(NJD_CLIP_INSIDE, init_clipCabin_8c045598);
+      njSetScreen(&init_screenCabin_8c045624);
       var_drawCamera_8c226558 = &var_cabinCamera_8c1bb984;
       drawLayer_8c022464(RENDER_LAYER_CABIN);
-      njUserClipping(NJD_CLIP_OUTSIDE, init_clipLayer2_8c045598);
+      njUserClipping(NJD_CLIP_OUTSIDE, init_clipCabin_8c045598);
       njSetScreen(&init_screenFull_8c0455e8);
       njDrawTexture(init_mirrorQuadTall_8c0454f8, 4, 999, 0);
       var_drawCamera_8c226558 = &var_camera_8c1bb904;
       drawLayer_8c022464(RENDER_LAYER_MAIN);
-      njUserClipping(NJD_CLIP_DISABLE, init_clipLayer2_8c045598);
+      njUserClipping(NJD_CLIP_DISABLE, init_clipCabin_8c045598);
       SpriteDraw_8c014f54((ResourceGroup *)&var_busStopTexlist_8c1bc424, 0x28, 0.0f, 0.0f, -1.17f);
       break;
     case 2:
@@ -343,16 +343,16 @@ void RenderDrawFrame_8c022560(void)
       break;
     }
   }
-  njUserClipping(NJD_CLIP_DISABLE, init_clipLayer2_8c045598);
+  njUserClipping(NJD_CLIP_DISABLE, init_clipCabin_8c045598);
 
   if (var_fadePhase_8c227d7c == FADE_PHASE_IDLE) {
-    if (var_fadeRequest_8c226564 == FADE_REQUEST_OUT) {
-      var_fadePhase_8c227d7c = FADE_PHASE_OUT;
+    if (var_fadeRequest_8c226564 == FADE_REQUEST_IN) {
+      var_fadePhase_8c227d7c = FADE_PHASE_IN;
       var_fadeProgress_8c227d80 = 0xff000000;
       var_isFading_8c226568 = 1;
     }
-    else if (var_fadeRequest_8c226564 == FADE_REQUEST_IN) {
-      var_fadePhase_8c227d7c = FADE_PHASE_IN;
+    else if (var_fadeRequest_8c226564 == FADE_REQUEST_OUT) {
+      var_fadePhase_8c227d7c = FADE_PHASE_OUT;
       var_fadeProgress_8c227d80 = 0;
       var_isFading_8c226568 = 1;
     }
@@ -362,7 +362,7 @@ void RenderDrawFrame_8c022560(void)
   }
 
   switch (var_fadePhase_8c227d7c) {
-    case FADE_PHASE_OUT: {
+    case FADE_PHASE_IN: {
       Uint32 progress = var_fadeProgress_8c227d80 - 0x4400000;
       var_fadeProgress_8c227d80 = progress;
       if (progress > 0x1000000) {
@@ -376,12 +376,12 @@ void RenderDrawFrame_8c022560(void)
       }
       break;
     }
-    case FADE_PHASE_IN: {
+    case FADE_PHASE_OUT: {
       Uint32 color;
       var_fadeProgress_8c227d80 = var_fadeProgress_8c227d80 + 0x44000;
       if (var_fadeProgress_8c227d80 > 0xffffff) {
         var_fadePhase_8c227d7c = FADE_PHASE_HELD;
-        var_arrivalOverlayGate_8c226560 = 0;
+        var_sceneVisible_8c226560 = 0;
         var_fadeProgress_8c227d80 = 0xff0000;
       }
       color = (var_fadeProgress_8c227d80 << 8) & 0xff000000;
@@ -411,26 +411,26 @@ void RenderDrawFrame_8c022560(void)
 void RenderStartRunFade_8c0228a2(void)
 {
   if ((var_playMode_8c1bb8d0 == PLAY_MODE_NORMAL) || ((var_practiceRules_8c226410 & 8) == 8)) {
-    var_arrivalOverlayVariant_8c22655c = 1;
+    var_viewLayout_8c22655c = 1;
   }
   else {
-    var_arrivalOverlayVariant_8c22655c = 0;
+    var_viewLayout_8c22655c = 0;
   }
   var_fadePhase_8c227d7c = FADE_PHASE_IDLE;
-  var_arrivalOverlayGate_8c226560 = 1;
-  var_fadeRequest_8c226564 = FADE_REQUEST_OUT;
+  var_sceneVisible_8c226560 = 1;
+  var_fadeRequest_8c226564 = FADE_REQUEST_IN;
   var_fadeCompleteCallback_8c22656c = FADE_NO_CALLBACK;
   var_isFading_8c226568 = 1;
 }
 
 /* Same idle/fading-out/fading-in/held state machine as RenderDrawFrame_8c022560, minus
- * the bus-stop-arrival overlay: var_arrivalOverlayGate_8c226560 just triggers the plain
+ * the bus-stop-arrival overlay: var_sceneVisible_8c226560 just triggers the plain
  * fade-out draw. Both fade-out completion checks are also guarded by
  * var_isFading_8c226568, so an external reset of that flag can short-cut
  * the transition. */
 void RenderDrawFrameMainOnly_8c022910(void)
 {
-  if (var_arrivalOverlayGate_8c226560 != 0) {
+  if (var_sceneVisible_8c226560 != 0) {
     njControl3D(NJD_CONTROL_3D_MODEL_CLIP);
     njUserClipping(NJD_CLIP_DISABLE, init_clipMirrorView_8c045578);
     njSetScreen(&init_screenFull_8c0455e8);
@@ -438,13 +438,13 @@ void RenderDrawFrameMainOnly_8c022910(void)
     drawLayer_8c022464(RENDER_LAYER_MAIN);
   }
   if (var_fadePhase_8c227d7c == FADE_PHASE_IDLE) {
-    if (var_fadeRequest_8c226564 == FADE_REQUEST_OUT) {
-      var_fadePhase_8c227d7c = FADE_PHASE_OUT;
+    if (var_fadeRequest_8c226564 == FADE_REQUEST_IN) {
+      var_fadePhase_8c227d7c = FADE_PHASE_IN;
       var_fadeProgress_8c227d80 = 0xff000000;
       var_isFading_8c226568 = 1;
     }
-    else if (var_fadeRequest_8c226564 == FADE_REQUEST_IN) {
-      var_fadePhase_8c227d7c = FADE_PHASE_IN;
+    else if (var_fadeRequest_8c226564 == FADE_REQUEST_OUT) {
+      var_fadePhase_8c227d7c = FADE_PHASE_OUT;
       var_fadeProgress_8c227d80 = 0;
       var_isFading_8c226568 = 1;
     }
@@ -454,7 +454,7 @@ void RenderDrawFrameMainOnly_8c022910(void)
   }
 
   switch (var_fadePhase_8c227d7c) {
-    case FADE_PHASE_OUT: {
+    case FADE_PHASE_IN: {
       Uint32 progress = var_fadeProgress_8c227d80 - 0x4400000;
       var_fadeProgress_8c227d80 = progress;
       if (progress > 0x1000000 && var_isFading_8c226568 != 0) {
@@ -468,12 +468,12 @@ void RenderDrawFrameMainOnly_8c022910(void)
       }
       break;
     }
-    case FADE_PHASE_IN: {
+    case FADE_PHASE_OUT: {
       Uint32 color;
       var_fadeProgress_8c227d80 = var_fadeProgress_8c227d80 + 0x44000;
       if (var_fadeProgress_8c227d80 > 0xffffff || var_isFading_8c226568 == 0) {
         var_fadePhase_8c227d7c = FADE_PHASE_HELD;
-        var_arrivalOverlayGate_8c226560 = 0;
+        var_sceneVisible_8c226560 = 0;
         var_fadeProgress_8c227d80 = 0xff0000;
       }
       color = (var_fadeProgress_8c227d80 << 8) & 0xff000000;

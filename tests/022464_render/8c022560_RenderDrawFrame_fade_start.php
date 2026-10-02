@@ -29,10 +29,10 @@ return new class extends TestCase {
         return [$init8c0455a8 + 12, $init8c0455a8 + 28, $init8c0455a8 + 44, $init8c0455a8 + 60];
     }
 
-    public function test_starts_fading_out_and_draws_the_overlay(): void {
+    public function test_starts_fading_in_and_draws_the_overlay(): void {
         $this->resolveSymbols();
 
-        $this->initUint32($this->addressOf('_var_arrivalOverlayGate_8c226560'), 0);
+        $this->initUint32($this->addressOf('_var_sceneVisible_8c226560'), 0);
         $this->initUint32($this->addressOf('_var_fadePhase_8c227d7c'), 0);
         $this->initUint32($this->addressOf('_var_fadeRequest_8c226564'), 1);
         $this->initUint32($this->addressOf('_var_fadeProgress_8c227d80'), 0);
@@ -43,7 +43,7 @@ return new class extends TestCase {
 
         $this->call('_RenderDrawFrame_8c022560');
 
-        $this->shouldCall('_njUserClipping')->with(0, $this->addressOf('_init_clipLayer2_8c045598'));
+        $this->shouldCall('_njUserClipping')->with(0, $this->addressOf('_init_clipCabin_8c045598'));
         $this->shouldWriteLong($this->addressOf('_var_fadePhase_8c227d7c'), 1);
         $this->shouldWriteLong($this->addressOf('_var_fadeProgress_8c227d80'), 0xff000000);
         $this->shouldWriteLong($this->addressOf('_var_isFading_8c226568'), 1);

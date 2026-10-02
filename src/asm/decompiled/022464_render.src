@@ -46,9 +46,9 @@
           .EXPORT     _RenderStartFadeOut_8c022b60
           .EXPORT     _var_drawCamera_8c226558 ; 021b9c_tile_draw
                                                ; 0289ac_objects
-          .EXPORT     _var_arrivalOverlayVariant_8c22655c ; 0129cc_game
+          .EXPORT     _var_viewLayout_8c22655c ; 0129cc_game
                                                           ; 02d19c_passenger
-          .EXPORT     _var_arrivalOverlayGate_8c226560 ; 0289ac_objects
+          .EXPORT     _var_sceneVisible_8c226560 ; 0289ac_objects
                                                        ; 02d19c_passenger
           .EXPORT     _var_fadeRequest_8c226564 ; 0289ac_objects
                                                 ; 02b464_grading
@@ -81,12 +81,12 @@
           .EXPORT     _init_clipMirrorRight_8c045568
           .EXPORT     _init_clipMirrorView_8c045578
           .EXPORT     _init_clipMirrorViewTall_8c045588
-          .EXPORT     _init_clipLayer2_8c045598
+          .EXPORT     _init_clipCabin_8c045598
           .EXPORT     _init_fadeQuad_8c0455a8
           .EXPORT     _init_screenFull_8c0455e8
           .EXPORT     _init_screenMirror_8c0455fc
           .EXPORT     _init_screenMirrorTall_8c045610
-          .EXPORT     _init_screenLayer2_8c045624
+          .EXPORT     _init_screenCabin_8c045624
           .EXPORT     _var_drawCommandCount_8c226570
           .EXPORT     _var_drawCommands_8c22657c
           .EXPORT     _var_fadePhase_8c227d7c
@@ -467,15 +467,15 @@ LAB_8c02264a:
 LP_GEN_55916:
           .DATA.W H'03E7 ; H'8C022654
           .DATA.W H'0100 ; H'8C022656
-          .DATA.L _init_clipLayer2_8c045598 ; H'8C022658
+          .DATA.L _init_clipCabin_8c045598 ; H'8C022658
           .DATA.L _njUserClipping ; H'8C02265C
-          .DATA.L _var_arrivalOverlayGate_8c226560 ; H'8C022660
+          .DATA.L _var_sceneVisible_8c226560 ; H'8C022660
           .DATA.L _SpriteDraw_8c014f54 ; H'8C022664
           .DATA.L H'BF95C28F ; H'8C022668
           .DATA.L _njDrawTexture ; H'8C02266C
           .DATA.L _var_drawCamera_8c226558 ; H'8C022670
           .DATA.L _njSetScreen ; H'8C022674
-          .DATA.L _var_arrivalOverlayVariant_8c22655c ; H'8C022678
+          .DATA.L _var_viewLayout_8c22655c ; H'8C022678
           .DATA.L _njControl3D ; H'8C02267C
           .DATA.L _init_clipMirrorView_8c045578 ; H'8C022680
           .DATA.L _var_busState_8c1bb9d0+H'268 ; H'8C022684 (mirror_0x268)
@@ -622,7 +622,7 @@ LP_GEN_42584:
           .DATA.L _init_renderTexlist_8c03bf44 ; H'8C0227B4
           .DATA.L _njSetTexture ; H'8C0227B8
           .DATA.L _njRenderTextureNumG ; H'8C0227BC
-          .DATA.L _init_screenLayer2_8c045624 ; H'8C0227C0
+          .DATA.L _init_screenCabin_8c045624 ; H'8C0227C0
           .DATA.L _var_cabinCamera_8c1bb984 ; H'8C0227C4
           .DATA.L _init_screenFull_8c0455e8 ; H'8C0227C8
           .DATA.L _init_mirrorQuadTall_8c0454f8 ; H'8C0227CC
@@ -770,12 +770,12 @@ LP_GEN_82363:
           .DATA.L H'04400000 ; H'8C0228DC
           .DATA.L H'01000000 ; H'8C0228E0
           .DATA.L H'00044000 ; H'8C0228E4
-          .DATA.L _var_arrivalOverlayGate_8c226560 ; H'8C0228E8
+          .DATA.L _var_sceneVisible_8c226560 ; H'8C0228E8
           .DATA.L H'00FF0000 ; H'8C0228EC
           .DATA.L _init_fadeQuad_8c0455a8 ; H'8C0228F0
           .DATA.L _njDrawPolygon ; H'8C0228F4
           .DATA.L _var_fadeCompleteCallback_8c22656c ; H'8C0228F8
-          .DATA.L _var_arrivalOverlayVariant_8c22655c ; H'8C0228FC
+          .DATA.L _var_viewLayout_8c22655c ; H'8C0228FC
           .DATA.L _var_playMode_8c1bb8d0 ; H'8C022900
           .DATA.L _var_practiceRules_8c226410 ; H'8C022904
           .DATA.L _var_fadePhase_8c227d7c ; H'8C022908
@@ -866,7 +866,7 @@ LP_GEN_60768:
           .DATA.W H'0100 ; H'8C0229A8
           .RES.W 1 ; H'8C0229AA
           .DATA.L _var_fadeCompleteCallback_8c22656c ; H'8C0229AC
-          .DATA.L _var_arrivalOverlayGate_8c226560 ; H'8C0229B0
+          .DATA.L _var_sceneVisible_8c226560 ; H'8C0229B0
           .DATA.L _njControl3D ; H'8C0229B4
           .DATA.L _init_clipMirrorView_8c045578 ; H'8C0229B8
           .DATA.L _njUserClipping ; H'8C0229BC
@@ -1114,7 +1114,7 @@ LP_GEN_18675:
           .DATA.L H'00044000 ; H'8C022B98
           .DATA.L H'01000000 ; H'8C022B9C
           .DATA.L _var_isFading_8c226568 ; H'8C022BA0
-          .DATA.L _var_arrivalOverlayGate_8c226560 ; H'8C022BA4
+          .DATA.L _var_sceneVisible_8c226560 ; H'8C022BA4
           .DATA.L H'00FF0000 ; H'8C022BA8
           .DATA.L _init_fadeQuad_8c0455a8 ; H'8C022BAC
           .DATA.L _njDrawPolygon ; H'8C022BB0
@@ -1158,7 +1158,7 @@ _init_clipMirrorView_8c045578:        ; from defines
           .DATA.B      H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'80, H'40, H'00, H'00, H'E0, H'40
 _init_clipMirrorViewTall_8c045588:        ; from defines
           .DATA.B      H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'80, H'40, H'00, H'00, H'20, H'41
-_init_clipLayer2_8c045598:        ; from defines
+_init_clipCabin_8c045598:        ; from defines
           .DATA.B      H'00, H'00, H'C0, H'40, H'00, H'00, H'00, H'40, H'00, H'00, H'90, H'41, H'00, H'00, H'10, H'41
 _init_fadeQuad_8c0455a8:        ; from defines
           .DATA.B      H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'00, H'80, H'3F
@@ -1175,15 +1175,15 @@ _init_screenMirror_8c0455fc:        ; from defines
 _init_screenMirrorTall_8c045610:        ; from defines
           .DATA.B      H'00, H'00, H'FA, H'43, H'00, H'00, H'20, H'43, H'00, H'00, H'B0, H'43, H'00, H'00, H'A0, H'42
           .DATA.B      H'00, H'00, H'30, H'43
-_init_screenLayer2_8c045624:        ; from defines
+_init_screenCabin_8c045624:        ; from defines
           .DATA.B      H'00, H'00, H'FA, H'43, H'00, H'00, H'20, H'44, H'00, H'00, H'F0, H'43, H'00, H'00, H'C8, H'43
           .DATA.B      H'00, H'00, H'40, H'43
           .SECTION    B,DATA,ALIGN=4
 _var_drawCamera_8c226558:
           .RES.B      4
-_var_arrivalOverlayVariant_8c22655c:
+_var_viewLayout_8c22655c:
           .RES.B      4
-_var_arrivalOverlayGate_8c226560:
+_var_sceneVisible_8c226560:
           .RES.B      4
 _var_fadeRequest_8c226564:
           .RES.B      4

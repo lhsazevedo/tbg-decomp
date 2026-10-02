@@ -414,7 +414,7 @@ void PassengerStopSceneTask_8c02d644(Task *task, PassengerStopSceneState *state)
                 setCountUpStep_8c02d5d8();
             } else {
                 state->phase_0x00 = 2;
-                var_fadeRequest_8c226564 = FADE_REQUEST_IN;
+                var_fadeRequest_8c226564 = FADE_REQUEST_OUT;
             }
             var_runState_8c2285c4.runClock_0x18++;
             break;
@@ -425,8 +425,8 @@ void PassengerStopSceneTask_8c02d644(Task *task, PassengerStopSceneState *state)
     case 2:
         if (var_isFading_8c226568 == 0) {
             state->phase_0x00 = 3;
-            var_fadeRequest_8c226564 = FADE_REQUEST_OUT;
-            var_arrivalOverlayGate_8c226560 = 0;
+            var_fadeRequest_8c226564 = FADE_REQUEST_IN;
+            var_sceneVisible_8c226560 = 0;
             MessageBoxStart_8c02ad8c();
         }
         execGroup = TRUE;
@@ -466,7 +466,7 @@ void PassengerStopSceneTask_8c02d644(Task *task, PassengerStopSceneState *state)
                 (var_playMode_8c1bb8d0 != PLAY_MODE_PRACTICE && var_route_8c18ad1c == ROUTE_OME &&
                  var_currentSegment_8c228708 == 0) ? 1 : 2;
 
-            var_arrivalOverlayVariant_8c22655c = 2;
+            var_viewLayout_8c22655c = 2;
 
             if (var_playMode_8c1bb8d0 != PLAY_MODE_PRACTICE) {
                 int soundOffset;
@@ -524,7 +524,7 @@ void PassengerSkipStopTask_8c02d8f0(Task *task, void *state)
 {
     if (var_isFading_8c226568 == 0) {
         var_busState_8c1bb9d0.driveState_0x2b4 = 1; /* BusState.driveState_0x2b4: back to driving */
-        var_arrivalOverlayVariant_8c22655c = 0;
+        var_viewLayout_8c22655c = 0;
         var_cameraMode_8c227d9c = 2;
         var_cameraCueState_8c227da4 = 0;
         BusCameraApplyMode_8c024f32();

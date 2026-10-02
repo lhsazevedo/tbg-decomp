@@ -20,11 +20,11 @@ return new class extends TestCase {
         return [$init8c0455a8 + 12, $init8c0455a8 + 28, $init8c0455a8 + 44, $init8c0455a8 + 60];
     }
 
-    public function test_fade_out_completes_and_fires_callback(): void {
+    public function test_fade_in_completes_and_fires_callback(): void {
         $this->resolveSymbols();
         $this->setSize('_callback', 4);
 
-        $this->initUint32($this->addressOf('_var_arrivalOverlayGate_8c226560'), 0);
+        $this->initUint32($this->addressOf('_var_sceneVisible_8c226560'), 0);
         $this->initUint32($this->addressOf('_var_fadePhase_8c227d7c'), 1);
         $this->initUint32($this->addressOf('_var_fadeRequest_8c226564'), 1);
         $this->initUint32($this->addressOf('_var_fadeProgress_8c227d80'), 0x5400000);
@@ -44,7 +44,7 @@ return new class extends TestCase {
     public function test_held_fade_completes_immediately(): void {
         $this->resolveSymbols();
 
-        $this->initUint32($this->addressOf('_var_arrivalOverlayGate_8c226560'), 0);
+        $this->initUint32($this->addressOf('_var_sceneVisible_8c226560'), 0);
         $this->initUint32($this->addressOf('_var_fadePhase_8c227d7c'), 3);
         $this->initUint32($this->addressOf('_var_fadeRequest_8c226564'), 2);
         $this->initUint32($this->addressOf('_var_fadeProgress_8c227d80'), 0xff0000);
@@ -58,10 +58,10 @@ return new class extends TestCase {
         $this->shouldWriteLong($this->addressOf('_var_isFading_8c226568'), 0);
     }
 
-    public function test_fade_out_short_circuits_when_isFading_cleared_externally(): void {
+    public function test_fade_in_short_circuits_when_isFading_cleared_externally(): void {
         $this->resolveSymbols();
 
-        $this->initUint32($this->addressOf('_var_arrivalOverlayGate_8c226560'), 0);
+        $this->initUint32($this->addressOf('_var_sceneVisible_8c226560'), 0);
         $this->initUint32($this->addressOf('_var_fadePhase_8c227d7c'), 1);
         $this->initUint32($this->addressOf('_var_fadeRequest_8c226564'), 1);
         $this->initUint32($this->addressOf('_var_fadeProgress_8c227d80'), 0xff000000);
@@ -76,10 +76,10 @@ return new class extends TestCase {
         $this->shouldWriteLong($this->addressOf('_var_isFading_8c226568'), 0);
     }
 
-    public function test_fade_in_short_circuits_when_isFading_cleared_externally(): void {
+    public function test_fade_out_short_circuits_when_isFading_cleared_externally(): void {
         $this->resolveSymbols();
 
-        $this->initUint32($this->addressOf('_var_arrivalOverlayGate_8c226560'), 0);
+        $this->initUint32($this->addressOf('_var_sceneVisible_8c226560'), 0);
         $this->initUint32($this->addressOf('_var_fadePhase_8c227d7c'), 2);
         $this->initUint32($this->addressOf('_var_fadeRequest_8c226564'), 2);
         $this->initUint32($this->addressOf('_var_fadeProgress_8c227d80'), 0);
@@ -93,7 +93,7 @@ return new class extends TestCase {
 
         $this->shouldWriteLong($this->addressOf('_var_fadeProgress_8c227d80'), 0x44000);
         $this->shouldWriteLong($this->addressOf('_var_fadePhase_8c227d7c'), 3);
-        $this->shouldWriteLong($this->addressOf('_var_arrivalOverlayGate_8c226560'), 0);
+        $this->shouldWriteLong($this->addressOf('_var_sceneVisible_8c226560'), 0);
         $this->shouldWriteLong($this->addressOf('_var_fadeProgress_8c227d80'), 0xff0000);
         $this->shouldWriteLong($init8c0455b4, 0xff000000);
         $this->shouldWriteLong($init8c0455c4, 0xff000000);

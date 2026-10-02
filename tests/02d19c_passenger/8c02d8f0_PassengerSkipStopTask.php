@@ -13,7 +13,7 @@ return new class extends TestCase {
         $this->setSize('_var_busState_8c1bb9d0', 0x3cc);
         $this->setSize('_var_cameraMode_8c227d9c', 4);
         $this->setSize('_var_cameraCueState_8c227da4', 4);
-        $this->setSize('_var_arrivalOverlayVariant_8c22655c', 4);
+        $this->setSize('_var_viewLayout_8c22655c', 4);
     }
 
     public function test_not_fading_resets_state_and_frees_task(): void
@@ -28,7 +28,7 @@ return new class extends TestCase {
         $this->call('_PassengerSkipStopTask_8c02d8f0')->with($task, $state);
 
         $this->shouldWriteLong($this->addressOf('_var_busState_8c1bb9d0') + 0x2b4, 1);
-        $this->shouldWriteLongTo('_var_arrivalOverlayVariant_8c22655c', 0);
+        $this->shouldWriteLongTo('_var_viewLayout_8c22655c', 0);
         $this->shouldWriteLongTo('_var_cameraMode_8c227d9c', 2);
         $this->shouldWriteLongTo('_var_cameraCueState_8c227da4', 0);
         $this->shouldCall('_BusCameraApplyMode_8c024f32');

@@ -9,7 +9,7 @@
 #include "015034_text.h" /* TextBox */
 #include "016d2c_course_menu.h" /* var_menuTextboxCharLimit_8c225fb8 */
 #include "0100bc_sound.h" /* SndStopAdx_8c010ca6, SndPlayAdx_8c010cd6, SndPollVoiceEnd_8c0106ac */
-#include "022464_render.h" /* FadeRequest, var_fadeRequest_8c226564, var_arrivalOverlayGate_8c226560 */
+#include "022464_render.h" /* FadeRequest, var_fadeRequest_8c226564, var_sceneVisible_8c226560 */
 #include "02af78_event.h" /* EventApplyFlags_8c02b292 */
 #include "1ba1c8_globals.h"
 #include "includes.h" /* STATIC */
@@ -3965,7 +3965,7 @@ STATIC void messageBoxTask_8c02ab7a(Task *task, MessageBoxState *state)
             if (*nextString == '\0') {
                 state->slide_0x10++;
                 if ((int)state->slide_0x10->layers_0x00 == -1) {
-                    var_fadeRequest_8c226564 = FADE_REQUEST_IN;
+                    var_fadeRequest_8c226564 = FADE_REQUEST_OUT;
                     state->phase_0x00 = 5;
                 } else {
                     state->phase_0x00 = 0;
@@ -3982,8 +3982,8 @@ STATIC void messageBoxTask_8c02ab7a(Task *task, MessageBoxState *state)
             TaskKill_8c014b66(task);
             EventApplyFlags_8c02b292();
             RouteStartModelLoadPass_8c013d78();
-            var_fadeRequest_8c226564 = FADE_REQUEST_OUT;
-            var_arrivalOverlayGate_8c226560 = 1;
+            var_fadeRequest_8c226564 = FADE_REQUEST_IN;
+            var_sceneVisible_8c226560 = 1;
             var_messageBoxActive_8c22847c = 0;
             return;
         }
