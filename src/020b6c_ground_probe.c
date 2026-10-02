@@ -20,14 +20,7 @@
  * ====================
  */
 
-/* Per-frame form of GroundQueryFindPolygon_8c020914: *out already holds the polygon
- * match from a previous call. Re-tests that polygon first and only falls back to a
- * full cell search (skipping the just-failed polygon, so it isn't re-tested there)
- * when the point has left it.
- *
- * y is never read -- only ever clobbered as scratch space for the concave test's
- * running cos/angle value (a stack slot the compiler happened to alias to the
- * incoming parameter). Original behaviour. */
+/* y is unused. */
 void GroundProbeTrackPolygon_8c020b6c(float x, float y, float z, GroundQueryResult *out)
 {
     GroundGrid *grid = var_activeGroundGrid_8c2264d4;
@@ -111,8 +104,7 @@ void GroundProbeTrackPolygon_8c020b6c(float x, float y, float z, GroundQueryResu
         }
     }
 
-    /* Full cell search, same algorithm as GroundQueryFindPolygon_8c020914, but
-     * skipping the polygon just re-tested above (by comparing vertex-id pointers). */
+    /* Skips the polygon just re-tested. */
     {
         GroundCell *cell;
         int cx, cz;
@@ -217,15 +209,6 @@ void GroundProbeTrackPolygon_8c020b6c(float x, float y, float z, GroundQueryResu
     }
 }
 
-/* Every caller of GroundQueryFindPolygon_8c020914/GroundProbeTrackPolygon_8c020b6c
- * follows the lookup with this: snapping a decoration, pedestrian, or spawning
- * vehicle onto the matched polygon's surface. No-match (count_0x0c == 0) leaves
- * point untouched, so callers must check that first.
- *
- * The hit case solves the polygon's plane equation nx*(x-x0) + ny*(y-y0) +
- * nz*(z-z0) = 0 for y, using the polygon's first vertex as the plane point.
- * A vertical plane (ny == 0, e.g. a wall) can't be solved that way, so it just
- * takes the first vertex's height outright. */
 void GroundProbeInterpolateHeight_8c020f7e(GroundQueryResult *result, float *point)
 {
     GroundGrid *grid = var_activeGroundGrid_8c2264d4;
@@ -248,11 +231,7 @@ void GroundProbeInterpolateHeight_8c020f7e(GroundQueryResult *result, float *poi
     }
 }
 
-/* Same full cell search as GroundQueryFindPolygon_8c020914, except the cell size
- * comes from the grid itself (cellSizeX_0x08/cellSizeZ_0x0c) instead of the fixed
- * CELL_SIZE, and each candidate is additionally rejected when its first vertex's
- * height is too far from y -- this is how an elevated road is told apart from the
- * surface street beneath it. */
+/* Unlike GroundQueryFindPolygon_8c020914, takes the cell size from the grid. */
 void GroundProbeFindPolygonAtHeight_8c020fe4(float x, float y, float z, GroundQueryResult *out)
 {
     GroundGrid *grid = var_activeGroundGrid_8c2264d4;
@@ -270,8 +249,7 @@ void GroundProbeFindPolygonAtHeight_8c020fe4(float x, float y, float z, GroundQu
         cz = grid->cellsZ_0x04 - 1;
     }
 
-    /* Only the upper bound is clamped; a negative coordinate indexes before
-     * the cell array. Original behaviour. */
+    /* Original: only the upper bound is clamped. */
     cell = &grid->cells_0x10[cz * grid->cellsX_0x00 + cx];
 
     for (i = 0; i < cell->count_0x00; i++) {
@@ -357,14 +335,6 @@ void GroundProbeFindPolygonAtHeight_8c020fe4(float x, float y, float z, GroundQu
     out->count_0x0c = 0;
 }
 
-/* Height-filtered form of GroundProbeTrackPolygon_8c020b6c: re-tests *out's
- * previous match first, then falls back to
- * GroundProbeFindPolygonAtHeight_8c020fe4's search, skipping the polygon just
- * re-tested.
- *
- * spawnEntry_8c0272b8 (026710_traffic) installs this instead of
- * GroundProbeTrackPolygon_8c020b6c as a traffic entry's ground-query callback
- * when the entry's type code has bit 0x4000 set -- the elevated-road case. */
 void GroundProbeTrackPolygonAtHeight_8c021290(float x, float y, float z, GroundQueryResult *out)
 {
     GroundGrid *grid = var_activeGroundGrid_8c2264d4;
@@ -448,9 +418,7 @@ void GroundProbeTrackPolygonAtHeight_8c021290(float x, float y, float z, GroundQ
         }
     }
 
-    /* Full cell search, shaped like GroundProbeFindPolygonAtHeight_8c020fe4's --
-     * grid-defined cell size and the height filter -- but also skipping the
-     * polygon just re-tested above (by vertex-id pointer). */
+    /* Skips the polygon just re-tested. */
     {
         GroundCell *cell;
         int cx, cz;
