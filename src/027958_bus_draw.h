@@ -17,7 +17,7 @@
 void BusDrawUpdateModels_8c027958(BusState *bus);
 
 /* Called by BusTask_8c022bdc (022bdc) with the player's BusState and by
- * TrafficDriveVehicle_8c025b98 (025b98) with a CPU vehicle, each frame at
+ * TrafficDriveVehicleTask_8c025b98 (025b98) with a CPU vehicle, each frame at
  * night. Forces blinker_0x080's two running-light bits on, then crossfades
  * lightCoeffRow_0x0c4 between the two CourseSceneParams rows 026710 cached
  * (var_nightLightIntensityOff_8c1bbda8 and ...On_8c1bbdb0, 1ba1c8_globals.h) over 20
@@ -37,8 +37,8 @@ void BusDrawSignal_8c0281ac(int objArg, int matrixArg);
 void BusDrawSignalAttachment_8c028206(int objArg, int matrixArg);
 
 /* Called once per frame per traffic entity by 025b98: by
- * TrafficDriveVehicle_8c025b98 for a moving CPU vehicle, passing its 4-frame
- * speed-delta sum as `accel`, and by TrafficDriveDecoration_8c02656a for a
+ * TrafficDriveVehicleTask_8c025b98 for a moving CPU vehicle, passing its 4-frame
+ * speed-delta sum as `accel`, and by TrafficDriveParkedTask_8c02656a for a
  * fixed one, passing 0. Two jobs:
  *
  * 1. Queues the entity's draw for this frame through

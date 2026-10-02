@@ -164,7 +164,7 @@ NJS_POINT3 *init_variantBoxes_8c04c940[16] = {
  */
 
 /* busDistance_0x490 is the distance to the bus, refreshed per-frame by
- * TrafficDriveVehicle_8c025b98/TrafficDriveDecoration_8c02656a.
+ * TrafficDriveVehicleTask_8c025b98/TrafficDriveParkedTask_8c02656a.
  *
  * The overlap test here is GeomQuadOverlap_8c020842, where the otherwise
  * identical traffic-vs-traffic scan in CollisionFindTaskHit_8c02e400 uses

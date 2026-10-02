@@ -897,8 +897,8 @@ return [
         ],
         [
             "tests" => [
-                "tests/025b98_traffic_drive/8c02656a_TrafficDriveDecoration.php",
-                "tests/025b98_traffic_drive/8c025b98_TrafficDriveVehicle.php",
+                "tests/025b98_traffic_drive/8c02656a_TrafficDriveParkedTask.php",
+                "tests/025b98_traffic_drive/8c025b98_TrafficDriveVehicleTask.php",
             ],
             "objects" => [
                 "build/output_test/src/asm/decompiled/025b98_traffic_drive.obj",

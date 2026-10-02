@@ -45,7 +45,7 @@
  * entity's preset no longer matches var_activeTrafficPreset_8c227e14, frees
  * the task, else tail-calls BusDrawPlaceEntity_8c027c3c to register/draw it for
  * this frame. */
-void TrafficDriveDecoration_8c02656a(Task *task, TrafficEntry *e)
+void TrafficDriveParkedTask_8c02656a(Task *task, TrafficEntry *e)
 {
     float dx, dz;
 
@@ -109,7 +109,7 @@ void TrafficDriveDecoration_8c02656a(Task *task, TrafficEntry *e)
  *         (VecXZDot_8c0207d4 < 0.0), reverting to driveState 0 once it
  *         gets there.
  *   1   - being pushed by a collision (speed_0x27c/dirX_0x29c/dirZ_0x2a0),
- *         same shape as TrafficDriveDecoration_8c02656a's push, gated on
+ *         same shape as TrafficDriveParkedTask_8c02656a's push, gated on
  *         the same 3 ground probes plus CollisionFindTaskHit_8c02e400. Ends
  *         by refreshing projectDistance_0x2c4 and reverting to driveState 0.
  *   3   - waiting for the entity's own spawn box (resolvedArgs_0x304[0], a
@@ -157,7 +157,7 @@ void TrafficDriveDecoration_8c02656a(Task *task, TrafficEntry *e)
  * BusDrawPlaceEntity_8c027c3c to register/draw the entity this frame (within
  * 200 units of the player, or its preset still matches
  * var_activeTrafficPreset_8c227e14) or frees the task. */
-void TrafficDriveVehicle_8c025b98(Task *task, TrafficEntry *e)
+void TrafficDriveVehicleTask_8c025b98(Task *task, TrafficEntry *e)
 {
     float speed = e->speed_0x27c;
     Sint32 signalId;
@@ -391,25 +391,25 @@ void TrafficDriveVehicle_8c025b98(Task *task, TrafficEntry *e)
 
             /* ---- pick the frame's speed limit ---- */
             {
-                float signalLimit = 9999.0f;
-                float laneLimit;
+                float stopDist = 9999.0f;
+                float limit;
                 float obstacleLimit = 9999.0f;
-                float curveLimit = 9999.0f;
+                float stopLimit = 9999.0f;
                 Sint32 coastDown = 0;
 
                 if (stopFlag == 0) {
                     e->curveLimitActive_0x428 = 0;
                 } else {
-                    signalLimit = TrafficRemainingPathDistance_8c026fb0(e);
+                    stopDist = TrafficRemainingPathDistance_8c026fb0(e);
                     if (e->curveLimitActive_0x428 == 0) {
-                        float slack = speed * 18.0f - signalLimit + 2.409f;
+                        float slack = speed * 18.0f - stopDist + 2.409f;
                         if (slack > 0.5f || slack < 0.0f) {
-                            signalLimit = 9999.0f;
+                            stopDist = 9999.0f;
                         }
                     }
                 }
 
-                laneLimit = e->followSpeedCap_0x418 <= e->laneOffsetRatio_0x414 ? e->followSpeedCap_0x418 : e->laneOffsetRatio_0x414;
+                limit = e->followSpeedCap_0x418 <= e->laneOffsetRatio_0x414 ? e->followSpeedCap_0x418 : e->laneOffsetRatio_0x414;
 
                 if (brakeDist != 9999.0f) {
                     obstacleLimit = brakeDist * 3000.0f / 108000.0f;
@@ -418,51 +418,51 @@ void TrafficDriveVehicle_8c025b98(Task *task, TrafficEntry *e)
                     }
                 }
 
-                if (signalLimit != 9999.0f) {
+                if (stopDist != 9999.0f) {
                     if (speed <= 0.09259259f) {
-                        curveLimit = speed - 0.003f;
-                        if (curveLimit < 0.0f) {
-                            curveLimit = 0.0f;
+                        stopLimit = speed - 0.003f;
+                        if (stopLimit < 0.0f) {
+                            stopLimit = 0.0f;
                         }
                     } else {
-                        curveLimit = (speed / 18.0f) * 17.0f;
+                        stopLimit = (speed / 18.0f) * 17.0f;
                     }
                 }
 
-                if (obstacleLimit == 9999.0f && curveLimit == 9999.0f) {
+                if (obstacleLimit == 9999.0f && stopLimit == 9999.0f) {
                     coastDown = 1;
-                } else if (curveLimit <= obstacleLimit) {
-                    if (curveLimit < laneLimit) {
-                        laneLimit = curveLimit;
+                } else if (stopLimit <= obstacleLimit) {
+                    if (stopLimit < limit) {
+                        limit = stopLimit;
                         e->curveLimitActive_0x428 = 1;
                     } else {
                         coastDown = 1;
                     }
-                } else if (laneLimit <= obstacleLimit) {
+                } else if (limit <= obstacleLimit) {
                     /* fall through to the shared clamp below */
                     coastDown = 1;
                 } else {
-                    laneLimit = obstacleLimit;
+                    limit = obstacleLimit;
                     e->obstacleLimitActive_0x424 = 1;
                 }
-                if (coastDown != 0 && laneLimit < speed) {
-                    laneLimit = speed - 0.003f;
-                    if (laneLimit < 0.0f) {
-                        laneLimit = 0.0f;
+                if (coastDown != 0 && limit < speed) {
+                    limit = speed - 0.003f;
+                    if (limit < 0.0f) {
+                        limit = 0.0f;
                     }
                 }
 
-                /* ---- integrate speed towards laneLimit ---- */
-                if (e->obstacleLimitActive_0x424 != 0 || e->curveLimitActive_0x428 != 0 || laneLimit < speed) {
-                    if (speed - laneLimit <= 0.02f) {
-                        speed = laneLimit;
+                /* ---- integrate speed towards limit ---- */
+                if (e->obstacleLimitActive_0x424 != 0 || e->curveLimitActive_0x428 != 0 || limit < speed) {
+                    if (speed - limit <= 0.02f) {
+                        speed = limit;
                     } else {
                         speed -= 0.02f;
                     }
-                } else if (speed < laneLimit) {
+                } else if (speed < limit) {
                     speed += e->accelRate_0x290;
-                    if (speed > laneLimit) {
-                        speed = laneLimit;
+                    if (speed > limit) {
+                        speed = limit;
                     }
                 }
             }

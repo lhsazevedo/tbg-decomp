@@ -15,7 +15,7 @@ if (!function_exists('fdec')) {
     }
 }
 
-// TrafficDriveVehicle_8c025b98: TaskAction for a moving CPU vehicle.
+// TrafficDriveVehicleTask_8c025b98: TaskAction for a moving CPU vehicle.
 // See the function's header comment in 025b98_traffic_drive.c for the full
 // driveState breakdown.
 
@@ -60,7 +60,7 @@ return new class extends TestCase {
     // Clear probes, no collision: applies the push and keeps knockback
     // running (speed stays > 0), so the driveState==2 finalize block does
     // not run. heading = dx (dirX * old speed), matching
-    // TrafficDriveDecoration_8c02656a's leftover convention.
+    // TrafficDriveParkedTask_8c02656a's leftover convention.
     public function test_knockbackClearPathKeepsPushing(): void {
         $this->resolveSymbols();
         $task = $this->alloc(4);
@@ -77,7 +77,7 @@ return new class extends TestCase {
         $this->initUint32($entry + 0x100, fdec(12.0)); // frontPointX_0x100
         $this->initUint32($entry + 0x108, fdec(0.0));  // frontPointZ_0x108
 
-        $this->call('_TrafficDriveVehicle_8c025b98')->with($task, $entry);
+        $this->call('_TrafficDriveVehicleTask_8c025b98')->with($task, $entry);
 
         $this->shouldWriteLong($entry + 0x080, 0); // cleared unconditionally at top
 
@@ -119,7 +119,7 @@ return new class extends TestCase {
         $this->initUint32($entry + 0x1a0, 0); // closed
         $this->initUint32($entry + 0x1b0, 1);
 
-        $this->call('_TrafficDriveVehicle_8c025b98')->with($task, $entry);
+        $this->call('_TrafficDriveVehicleTask_8c025b98')->with($task, $entry);
 
         $this->shouldWriteLong($entry + 0x080, 0); // cleared unconditionally at top
 
@@ -157,7 +157,7 @@ return new class extends TestCase {
         $this->initUint32($entry + 0x2b4, 3);
         $this->initUint32($entry + 0x304, 0x1234); // resolvedArgs_0x304[0]
 
-        $this->call('_TrafficDriveVehicle_8c025b98')->with($task, $entry);
+        $this->call('_TrafficDriveVehicleTask_8c025b98')->with($task, $entry);
 
         $this->shouldWriteLong($entry + 0x080, 0); // cleared unconditionally at top
 
@@ -174,7 +174,7 @@ return new class extends TestCase {
         $this->initUint32($entry + 0x2b4, 3);
         $this->initUint32($entry + 0x304, 0x1234);
 
-        $this->call('_TrafficDriveVehicle_8c025b98')->with($task, $entry);
+        $this->call('_TrafficDriveVehicleTask_8c025b98')->with($task, $entry);
 
         $this->shouldWriteLong($entry + 0x080, 0); // cleared unconditionally at top
 
@@ -220,7 +220,7 @@ return new class extends TestCase {
         $this->initUint32($entry + 0x2f4, 9); // preset != active (not the demo-reload case)
         $this->initUint32($entry + 0x48c, 0); // != 3 (not the demo-reload case)
 
-        $this->call('_TrafficDriveVehicle_8c025b98')->with($task, $entry);
+        $this->call('_TrafficDriveVehicleTask_8c025b98')->with($task, $entry);
 
         $this->shouldWriteLong($entry + 0x080, 0); // cleared unconditionally at top
 
@@ -261,7 +261,7 @@ return new class extends TestCase {
         $this->initUint32($entry + 0x2b4, 9); // not 0/1/2/3
         $this->initUint32($entry + 0x27c, fdec(0.0));
 
-        $this->call('_TrafficDriveVehicle_8c025b98')->with($task, $entry);
+        $this->call('_TrafficDriveVehicleTask_8c025b98')->with($task, $entry);
 
         $this->shouldWriteLong($entry + 0x080, 0); // cleared unconditionally at top
 

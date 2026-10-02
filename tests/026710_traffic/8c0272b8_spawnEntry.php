@@ -21,8 +21,8 @@ return new class extends TestCase {
         $this->setSize('_AttrQueryFindConvexPolygon_8c02e51c', 4);
         $this->setSize('_GroundProbeTrackPolygonAtHeight_8c021290', 4);
         $this->setSize('_AttrQueryFindConvexPolygonAtHeight_8c02eab4', 4);
-        $this->setSize('_TrafficDriveVehicle_8c025b98', 4);
-        $this->setSize('_TrafficDriveDecoration_8c02656a', 4);
+        $this->setSize('_TrafficDriveVehicleTask_8c025b98', 4);
+        $this->setSize('_TrafficDriveParkedTask_8c02656a', 4);
         $this->setSize('_var_tasks_8c1bac28', 4);
         $this->setSize('_var_routeModelSlots_8c1bbddc', 0x20 * 0x10);
         $this->setSize('_var_trafficModels_8c1bc3f4', 4);
@@ -88,12 +88,12 @@ return new class extends TestCase {
 
     // Same typeCode, but (route=SHINJUKU, timeOfDay=EVENING) has bit 15 set
     // in init_dayMasks_8c046208, and days_0x00=16 sets that same bit in the day mask
-    // -- the day gate passes and the entry is spawned as a fixed decoration
-    // (script header word == 10): TrafficDriveDecoration_8c02656a's task action, entry+0x2e4=1,
+    // -- the day gate passes and the entry is spawned as a parked vehicle
+    // (script header word == 10): TrafficDriveParkedTask_8c02656a's task action, entry+0x2e4=1,
     // and the moving-vehicle-only block (TrafficReadScriptArgs_8c026710,
     // TrafficPathScanBuild_8c02f0c8, entry+0x2e8/0x2ec/0x2f0, TrafficAdvanceOnPath_8c026ca2)
     // is skipped entirely.
-    public function test_dayGateAllowsSpawn_fixedDecoration(): void {
+    public function test_dayGateAllowsSpawn_parked(): void {
         $this->resolveSymbols();
 
         $this->initUint32($this->addressOf('_var_progress_8c1ba1cc'), 16); // days_0x00
@@ -112,7 +112,7 @@ return new class extends TestCase {
 
         $this->call('_spawnEntry_8c0272b8')->with(0x1c, 1.5, $script);
 
-        $this->mockTaskSpawn($this->addressOf('_TrafficDriveDecoration_8c02656a'), $task, $entry);
+        $this->mockTaskSpawn($this->addressOf('_TrafficDriveParkedTask_8c02656a'), $task, $entry);
         $this->shouldWriteLong($entry + 0x2e4, 1);
         $this->shouldWriteLong($entry + 0x48c, 3); // 0x8000 clear
         $this->shouldWriteLong($entry + 0x2c8, $this->addressOf('_GroundProbeTrackPolygon_8c020b6c'));
@@ -140,7 +140,7 @@ return new class extends TestCase {
     }
 
     // A typeCode outside the 0x1c/0x1e day-gated range spawns a moving
-    // vehicle (*script != 10): TaskSpawn uses TrafficDriveVehicle_8c025b98 (entry+0x2e4=0),
+    // vehicle (*script != 10): TaskSpawn uses TrafficDriveVehicleTask_8c025b98 (entry+0x2e4=0),
     // and the full moving-vehicle setup runs, including the taxi/tour-bus
     // random flag (typeCode 0x14, odd random -> entry+0x510 |= 0x40).
     public function test_movingVehicleFullPath(): void {
@@ -159,7 +159,7 @@ return new class extends TestCase {
 
         $this->call('_spawnEntry_8c0272b8')->with(0x14, 2.5, $script);
 
-        $this->mockTaskSpawn($this->addressOf('_TrafficDriveVehicle_8c025b98'), $task, $entry);
+        $this->mockTaskSpawn($this->addressOf('_TrafficDriveVehicleTask_8c025b98'), $task, $entry);
         $this->shouldWriteLong($entry + 0x2e4, 0);
         $this->shouldWriteLong($entry + 0x48c, 3);
         $this->shouldWriteLong($entry + 0x2c8, $this->addressOf('_GroundProbeTrackPolygon_8c020b6c'));
@@ -211,7 +211,7 @@ return new class extends TestCase {
         $this->shouldCall('_TaskSpawn_8c014ae8')
             ->with(
                 $this->addressOf('_var_tasks_8c1bac28'),
-                $this->addressOf('_TrafficDriveVehicle_8c025b98'),
+                $this->addressOf('_TrafficDriveVehicleTask_8c025b98'),
                 0xffffcc,
                 $this->isAsmObject() ? 0xffffc8 : 0xffffd0,
                 0x514,
@@ -236,7 +236,7 @@ return new class extends TestCase {
 
         $this->call('_spawnEntry_8c0272b8')->with(0x02, 1.0, $script);
 
-        $this->mockTaskSpawn($this->addressOf('_TrafficDriveVehicle_8c025b98'), $task, $entry);
+        $this->mockTaskSpawn($this->addressOf('_TrafficDriveVehicleTask_8c025b98'), $task, $entry);
         $this->shouldWriteLong($entry + 0x2e4, 0);
         $this->shouldWriteLong($entry + 0x48c, 3);
         $this->shouldWriteLong($entry + 0x2c8, $this->addressOf('_GroundProbeTrackPolygon_8c020b6c'));
@@ -265,7 +265,7 @@ return new class extends TestCase {
 
         $this->call('_spawnEntry_8c0272b8')->with(0x02, 1.0, $script);
 
-        $this->mockTaskSpawn($this->addressOf('_TrafficDriveVehicle_8c025b98'), $task, $entry);
+        $this->mockTaskSpawn($this->addressOf('_TrafficDriveVehicleTask_8c025b98'), $task, $entry);
         $this->shouldWriteLong($entry + 0x2e4, 0);
         $this->shouldWriteLong($entry + 0x48c, 3);
         $this->shouldWriteLong($entry + 0x2c8, $this->addressOf('_GroundProbeTrackPolygon_8c020b6c'));

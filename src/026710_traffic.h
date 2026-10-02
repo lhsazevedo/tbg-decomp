@@ -43,8 +43,8 @@ typedef struct {
 /* The 0x514-byte task state spawnEntry_8c0272b8 allocates for every CPU
  * vehicle and fixed decoration. Fields are named only where this unit,
  * 02786c_vehicle_parts and 02e400_collision establish a meaning; the rest stay
- * field_/padding_ -- the per-frame drivers TrafficDriveVehicle_8c025b98
- * (moving vehicle) and TrafficDriveDecoration_8c02656a (decoration) own
+ * field_/padding_ -- the per-frame drivers TrafficDriveVehicleTask_8c025b98
+ * (moving vehicle) and TrafficDriveParkedTask_8c02656a (decoration) own
  * most of it. */
 typedef struct {
     Uint32 typeCode_0x000;
@@ -124,7 +124,7 @@ typedef struct {
      * have confirmed consumers: per 027958_bus_draw.h/BusDrawPlaceEntity_8c027c3c, which fills them
      * through probeFn_0x2c8's probe callback and interpolates posY_0xf8/
      * probeSideAY_0x11c/probeSideBY_0x128 from them; their .attr_0x00 words are read as
-     * a "probe already valid" gate by TrafficDriveDecoration_8c02656a,
+     * a "probe already valid" gate by TrafficDriveParkedTask_8c02656a,
      * which clears their .count_0x0c to force a re-probe. The 4th
      * (0x1c0)'s reader is not yet identified. */
     GroundQueryResult groundProbe_0x190[4];
@@ -148,12 +148,12 @@ typedef struct {
     float field_0x274;
     float field_0x278;
     /* Same offset/role as BusState.speed_0x27c: a ramp value
-     * TrafficDriveDecoration_8c02656a nudges by +-0.1 per frame and
+     * TrafficDriveParkedTask_8c02656a nudges by +-0.1 per frame and
      * projects along dirX_0x29c/dirZ_0x2a0 to slide the entity. */
     float speed_0x27c;
     /* 4-slot ring buffer, shifted down by one slot (0x284->0x280,
      * 0x288->0x284, 0x28c->0x288, 0x28c unchanged) every frame by
-     * TrafficDriveVehicle_8c025b98's shared tail, which sums the 3 shifted-
+     * TrafficDriveVehicleTask_8c025b98's shared tail, which sums the 3 shifted-
      * out slots plus this frame's speed delta into the heading value passed
      * to BusDrawPlaceEntity_8c027c3c. All 4 slots are float; previously typed
      * as 2 Uint32 fields plus 8 bytes of padding -- see that function. */
@@ -162,17 +162,17 @@ typedef struct {
     Uint8 padding_0x294[0x8];
     /* Same offset/role as BusState.dir_x_0x29c/dir_z_0x2a0 (its collision
      * knockback direction): applied to posX_0xf4/frontPointX_0x100 (front) and
-     * posZ_0xfc/frontPointZ_0x108 (rear) by TrafficDriveDecoration_8c02656a. */
+     * posZ_0xfc/frontPointZ_0x108 (rear) by TrafficDriveParkedTask_8c02656a. */
     float dirX_0x29c;
     float dirZ_0x2a0;
     Uint8 padding_0x2a4[0x10];
     /* Same offset as BusState.driveState_0x2b4. The top-level state driving
-     * both per-frame drivers: 0/2 = normal driving (TrafficDriveVehicle_8c025b98's
+     * both per-frame drivers: 0/2 = normal driving (TrafficDriveVehicleTask_8c025b98's
      * main body; 2 additionally blends the ground-snapped height back down
      * to normal, then reverts to 0), 1 = being pushed by
      * speed_0x27c/dirX_0x29c/dirZ_0x2a0 (collision knockback for a moving
      * vehicle, or the whole story for a fixed decoration -- see
-     * TrafficDriveDecoration_8c02656a), 3 = waiting for the entity's own
+     * TrafficDriveParkedTask_8c02656a), 3 = waiting for the entity's own
      * spawn box to clear after a script reload before resuming. Unrelated
      * to junctionWaitState_0x474's own 1-4 sequencing for the junction-wait script
      * opcodes (5/6/7/8). */
@@ -190,7 +190,7 @@ typedef struct {
     Uint32 lightFadeState_0x2d8;
     Uint32 lightFadeTrigger_0x2dc;
     Sint32 variantIndex_0x2e0;
-    Sint32 isDecoration_0x2e4;
+    Sint32 isParked_0x2e4;
     float spawnProgress_0x2e8;
     float originJitterX_0x2ec;
     float originJitterZ_0x2f0;
@@ -253,7 +253,7 @@ typedef struct {
      * 0x4f8's path-walk cursor. Terminated by a 9999.0 sentinel in the
      * next unwritten slot's x; up to 10 pairs fit. */
     float lookaheadPoints_0x49c[10][2];
-    /* float, not Sint32 -- TrafficDriveVehicle_8c025b98 decrements it by
+    /* float, not Sint32 -- TrafficDriveVehicleTask_8c025b98 decrements it by
      * the frame's speed like an odometer. */
     float lookaheadCacheLen_0x4ec;
     Uint32 field_0x4f0;  /* unreferenced; likely alignment */

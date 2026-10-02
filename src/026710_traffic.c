@@ -92,7 +92,7 @@ STATIC float init_variantDims_8c0460c8[16][4] = {
 };
 
 /* Per-variant speed-up rate, the per-frame increment
- * TrafficDriveVehicle_8c025b98 adds while a vehicle closes on its lane limit. */
+ * TrafficDriveVehicleTask_8c025b98 adds while a vehicle closes on its lane limit. */
 STATIC float init_variantAccel_8c0461c8[] = {
     0.01f, 0.01f, 0.004f, 0.007f,
     0.007f, 0.007f, 0.007f, 0.002f,
@@ -712,8 +712,8 @@ Sint32 TrafficRunEntryScript_8c027012(TrafficEntry *entry)
  * today" and the entry is skipped entirely (still returns 1, as if spawned).
  *
  * The script's header word (*script) selects the driving task: 10 marks a
- * fixed decoration (TrafficDriveDecoration_8c02656a, entry+0x2e4=1), anything else a
- * path-following vehicle (TrafficDriveVehicle_8c025b98, entry+0x2e4=0). typeCode's 0x8000/
+ * fixed decoration (TrafficDriveParkedTask_8c02656a, entry+0x2e4=1), anything else a
+ * path-following vehicle (TrafficDriveVehicleTask_8c025b98, entry+0x2e4=0). typeCode's 0x8000/
  * 0x4000 bits pick the animation kind (entry+0x48c) and the ground/junction
  * query callback pair stored at entry+0x2c8/0x2cc (elevated-road vs. normal).
  *
@@ -762,17 +762,17 @@ STATIC Sint32 spawnEntry_8c0272b8(Uint32 typeCode, float progress, Uint16 *scrip
     }
 
     if (*script == 10) {
-        if (!TaskSpawn_8c014ae8(var_tasks_8c1bac28, TrafficDriveDecoration_8c02656a, &task, &entryVoid, 0x514)) {
+        if (!TaskSpawn_8c014ae8(var_tasks_8c1bac28, TrafficDriveParkedTask_8c02656a, &task, &entryVoid, 0x514)) {
             return 0;
         }
         e = (TrafficEntry *)entryVoid;
-        e->isDecoration_0x2e4 = 1;
+        e->isParked_0x2e4 = 1;
     } else {
-        if (!TaskSpawn_8c014ae8(var_tasks_8c1bac28, TrafficDriveVehicle_8c025b98, &task, &entryVoid, 0x514)) {
+        if (!TaskSpawn_8c014ae8(var_tasks_8c1bac28, TrafficDriveVehicleTask_8c025b98, &task, &entryVoid, 0x514)) {
             return 0;
         }
         e = (TrafficEntry *)entryVoid;
-        e->isDecoration_0x2e4 = 0;
+        e->isParked_0x2e4 = 0;
     }
 
     e->animKind_0x48c = (typeCode & 0x8000) ? 4 : 3;

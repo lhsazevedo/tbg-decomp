@@ -22,7 +22,7 @@
           .IMPORT     _var_progress_8c1ba1cc
           .IMPORT     _var_route_8c18ad1c
           .IMPORT     _var_tasks_8c1bac28
-          .IMPORT     _TrafficDriveVehicle_8c025b98
+          .IMPORT     _TrafficDriveVehicleTask_8c025b98
           .IMPORT     _TaskSpawn_8c014ae8
           .IMPORT     _AttrQueryFindConvexPolygonAtHeight_8c02eab4
           .IMPORT     _GroundProbeTrackPolygon_8c020b6c
@@ -51,7 +51,7 @@
           .IMPORT     _var_nightLightIntensityStep_8c1bbda0
           .IMPORT     _var_nightLightColorStep_8c1bbdb8
           .IMPORT     _var_tasks_8c1ba5e8
-          .IMPORT     _TrafficDriveDecoration_8c02656a
+          .IMPORT     _TrafficDriveParkedTask_8c02656a
           .IMPORT     _GroundProbeTrackPolygonAtHeight_8c021290
           .EXPORT     _TrafficReadScriptArgs_8c026710
           .EXPORT     _TrafficUpdateHeading_8c026bc4
@@ -1743,9 +1743,9 @@ LP_GEN_87611:
           .DATA.L _var_timeOfDay_8c18ad20 ; H'8C02739C
           .DATA.L _init_dayMasks_8c046208 ; H'8C0273A0
           .DATA.L _var_tasks_8c1bac28 ; H'8C0273A4
-          .DATA.L _TrafficDriveVehicle_8c025b98 ; H'8C0273A8
+          .DATA.L _TrafficDriveVehicleTask_8c025b98 ; H'8C0273A8
           .DATA.L _TaskSpawn_8c014ae8 ; H'8C0273AC
-          .DATA.L _TrafficDriveDecoration_8c02656a ; H'8C0273B0
+          .DATA.L _TrafficDriveParkedTask_8c02656a ; H'8C0273B0
           .DATA.L H'00008000 ; H'8C0273B4
           .DATA.L _GroundProbeTrackPolygonAtHeight_8c021290 ; H'8C0273B8
           .DATA.L _AttrQueryFindConvexPolygonAtHeight_8c02eab4 ; H'8C0273BC

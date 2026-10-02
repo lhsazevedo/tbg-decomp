@@ -253,15 +253,15 @@ return new class extends TestCase {
         $this->shouldReturn(0);
     }
 
-    // Opcode 10 places a fixed-position/fixed-heading decoration and
+    // Opcode 10 places a fixed-position/fixed-heading parked vehicle and
     // delegates the rest of spawning to initEntryState_8c026748 (whose
     // own test proves it never touches the cursor when the entry's script
-    // header word is 10, i.e. a decoration -- the mock here reflects that by
+    // header word is 10, i.e. a parked vehicle -- the mock here reflects that by
     // not writing back through R5 at all). The instruction is only 3 words
     // long by its argument count, but per the real asm the cursor still ends
     // up parked at the *last* argument word (the angle) rather than past it
     // -- a genuine original-game quirk, preserved as-is.
-    public function test_opcode10PlacesDecoration(): void {
+    public function test_opcode10PlacesParked(): void {
         $this->allocEntry();
 
         $script = $this->makeScript([10, 100, 200, 0x4000]);

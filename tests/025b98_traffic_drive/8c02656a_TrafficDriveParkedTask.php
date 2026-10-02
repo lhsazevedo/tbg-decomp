@@ -15,7 +15,7 @@ if (!function_exists('fdec')) {
     }
 }
 
-// TrafficDriveDecoration_8c02656a: TaskAction for a fixed decoration entity.
+// TrafficDriveParkedTask_8c02656a: TaskAction for a parked vehicle.
 // See the function's header comment in 025b98_traffic_drive.c for the full
 // branch breakdown.
 
@@ -64,7 +64,7 @@ return new class extends TestCase {
         $this->initUint32($entry + 0xf4, fdec(1000.0));
         $this->initUint32($entry + 0x2f4, 9); // != activeTrafficPreset (5)
 
-        $this->call('_TrafficDriveDecoration_8c02656a')->with($task, $entry);
+        $this->call('_TrafficDriveParkedTask_8c02656a')->with($task, $entry);
 
         $this->shouldCall('_njSqrt')->with(f32(1000.0 * 1000.0))->andReturn(1000.0);
         $this->shouldWriteFloat($entry + 0x490, 1000.0);
@@ -78,7 +78,7 @@ return new class extends TestCase {
         $entry = $this->allocEntry();
         $this->initUint32($entry + 0xf4, fdec(1000.0));
 
-        $this->call('_TrafficDriveDecoration_8c02656a')->with($task, $entry);
+        $this->call('_TrafficDriveParkedTask_8c02656a')->with($task, $entry);
 
         $this->shouldCall('_njSqrt')->with(f32(1000.0 * 1000.0))->andReturn(1000.0);
         $this->shouldWriteFloat($entry + 0x490, 1000.0);
@@ -93,7 +93,7 @@ return new class extends TestCase {
         $entry = $this->allocEntry();
         $this->initUint32($entry + 0x2f4, 9); // != activeTrafficPreset (5)
 
-        $this->call('_TrafficDriveDecoration_8c02656a')->with($task, $entry);
+        $this->call('_TrafficDriveParkedTask_8c02656a')->with($task, $entry);
 
         $this->shouldCall('_njSqrt')->with(f32(10.0 * 10.0))->andReturn(10.0);
         $this->shouldWriteFloat($entry + 0x490, 10.0);
@@ -110,7 +110,7 @@ return new class extends TestCase {
         $this->initUint32($entry + 0x2b4, 1);
         $this->initUint32($entry + 0x27c, fdec(2.0)); // speed
 
-        $this->call('_TrafficDriveDecoration_8c02656a')->with($task, $entry);
+        $this->call('_TrafficDriveParkedTask_8c02656a')->with($task, $entry);
 
         $this->shouldCall('_CollisionFindTaskHit_8c02e400')->with($task, $entry)->andReturn(0);
 
@@ -142,7 +142,7 @@ return new class extends TestCase {
         $this->initUint32($entry + 0x27c, fdec(2.0)); // speed
         $this->initUint32($entry + 0x1a0, 0); // groundProbe[1].attr_0x00 closed
 
-        $this->call('_TrafficDriveDecoration_8c02656a')->with($task, $entry);
+        $this->call('_TrafficDriveParkedTask_8c02656a')->with($task, $entry);
 
         // speed += 0.1 => 2.1; dx = 1.0*2.1 = 2.1, dz = 0.5*2.1 = 1.05
         $dx = f32(1.0 * f32(2.1));
@@ -178,7 +178,7 @@ return new class extends TestCase {
         $this->initUint32($entry + 0x2b4, 1);
         $this->initUint32($entry + 0x27c, fdec(2.0)); // speed
 
-        $this->call('_TrafficDriveDecoration_8c02656a')->with($task, $entry);
+        $this->call('_TrafficDriveParkedTask_8c02656a')->with($task, $entry);
 
         $this->shouldCall('_CollisionFindTaskHit_8c02e400')->with($task, $entry)->andReturn(0x12345);
 
@@ -213,7 +213,7 @@ return new class extends TestCase {
         $this->initUint32($entry + 0x2b4, 1);
         $this->initUint32($entry + 0x27c, fdec(0.1)); // speed, decrements to exactly 0
 
-        $this->call('_TrafficDriveDecoration_8c02656a')->with($task, $entry);
+        $this->call('_TrafficDriveParkedTask_8c02656a')->with($task, $entry);
 
         $this->shouldCall('_CollisionFindTaskHit_8c02e400')->with($task, $entry)->andReturn(0);
 

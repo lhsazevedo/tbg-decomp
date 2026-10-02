@@ -11,9 +11,9 @@ if (!function_exists('fdec')) {
 }
 
 // initEntryState_8c026748 runs one "spawn" (opcode 0) or "place
-// decoration" (opcode 10) script instruction for a traffic entry: entry+0x2f8
+// parked vehicle" (opcode 10) script instruction for a traffic entry: entry+0x2f8
 // is the script's own base pointer, so *entry->0x2f8 is the script's header
-// word -- 10 marks a fixed-angle static decoration (traffic light, sign) and
+// word -- 10 marks a fixed-angle parked vehicle and
 // anything else a path-following vehicle. For a vehicle it walks the path
 // (entry+0x304 onward, an inline array of per-block path pointers indexed by
 // the segment index at entry+0x300; each block is a run of {len,x,y,dx,dy}
@@ -48,7 +48,7 @@ return new class extends TestCase {
         $this->entry = $this->alloc(0x510);
 
         // Type discriminant: entry+0x2f8 holds a pointer to the script's
-        // header word (never 10 in this test -- a vehicle, not a decoration).
+        // header word (never 10 in this test -- a vehicle, not a parked one).
         $this->typeVal = $this->alloc(2);
         $this->initUint16($this->typeVal, 5);
         $this->initUint32($this->entry + 0x2f8, $this->typeVal);
@@ -343,10 +343,10 @@ return new class extends TestCase {
         $this->shouldCall('_TrafficLookaheadInit_8c02df3c')->with($this->entry);
     }
 
-    // A decoration entry (script header word == 10): the path-walk and
+    // A parked entry (script header word == 10): the path-walk and
     // vehicle tail are skipped entirely, heading comes from njCos/njSin of
     // entry+0x250, and the tail speed-variance/task-spawn block never runs.
-    public function test_decorationDefaultColors(): void {
+    public function test_parkedDefaultColors(): void {
         $this->resolveSymbols();
         $this->setSize('_njCos', 4);
         $this->setSize('_njSin', 4);
@@ -357,7 +357,7 @@ return new class extends TestCase {
         $this->initUint32($this->entry + 0x2f8, $this->typeVal);
 
         $this->scriptIp = $this->alloc(4);
-        $this->initUint32($this->scriptIp, 0x1234); // never read for a decoration
+        $this->initUint32($this->scriptIp, 0x1234); // never read for a parked entry
 
         $this->initUint32($this->entry + 0x2e0, 0); // variant index
         $this->initUint32($this->entry + 0x250, 0x2000); // raw angle
@@ -426,19 +426,19 @@ return new class extends TestCase {
             $this->shouldWriteLong($this->entry + $off, 0);
         }
 
-        // entry+0x2b8 (the segment pointer) is never set on a decoration's
+        // entry+0x2b8 (the segment pointer) is never set on a parked entry's
         // path -- the real asm stores whatever R11 held at function entry
         // (a genuinely uninitialized general-purpose register), and
         // sh4objtest randomizes unset registers, so this write's value is
         // not reproducible. Stop here; the remaining writes (seg/dist
         // leftovers plus the harmless entry+0x27c = 0) carry no further
-        // observable behavior for a decoration.
+        // observable behavior for a parked entry.
         $this->forceStop();
     }
 
-    // Night + a decoration + a hit junction lookup: colors come from the
+    // Night + a parked entry + a hit junction lookup: colors come from the
     // shared night-color globals instead of CourseSceneParams.
-    public function test_decorationNightJunctionColors(): void {
+    public function test_parkedNightJunctionColors(): void {
         $this->resolveSymbols();
         $this->setSize('_njCos', 4);
         $this->setSize('_njSin', 4);
@@ -516,16 +516,16 @@ return new class extends TestCase {
             $this->shouldWriteLong($this->entry + $off, 0);
         }
 
-        // See test_decorationDefaultColors: entry+0x2b8 onward reads a
-        // genuinely uninitialized register on a decoration's path, which
+        // See test_parkedDefaultColors: entry+0x2b8 onward reads a
+        // genuinely uninitialized register on a parked entry's path, which
         // sh4objtest randomizes -- stop before it.
         $this->forceStop();
     }
 
-    // Night + decoration but the junction lookup misses (field_0x04 == 0):
+    // Night + parked entry but the junction lookup misses (field_0x04 == 0):
     // must reject the night-color branch and fall back to CourseSceneParams,
     // proving the AND-chain is not short-circuited away entirely.
-    public function test_decorationNightJunctionMissFallsBackToSceneParams(): void {
+    public function test_parkedNightJunctionMissFallsBackToSceneParams(): void {
         $this->resolveSymbols();
         $this->setSize('_njCos', 4);
         $this->setSize('_njSin', 4);
@@ -606,8 +606,8 @@ return new class extends TestCase {
             $this->shouldWriteLong($this->entry + $off, 0);
         }
 
-        // See test_decorationDefaultColors: entry+0x2b8 onward reads a
-        // genuinely uninitialized register on a decoration's path, which
+        // See test_parkedDefaultColors: entry+0x2b8 onward reads a
+        // genuinely uninitialized register on a parked entry's path, which
         // sh4objtest randomizes -- stop before it.
         $this->forceStop();
     }

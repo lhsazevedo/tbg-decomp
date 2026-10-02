@@ -8,7 +8,7 @@ use Lhsazevedo\Sh4ObjTest\TestCase;
 // signal ids 0..maxId) for the current segment. With no scene-object-type
 // list at all (CourseSegment.sceneObjectTypeIds_0x14 == NULL), every id is
 // conservatively marked in-use. Otherwise every id starts free, then every
-// already-placed decoration script's opcode-5 (fixed id) instruction, across
+// already-placed script's opcode-5 (fixed id) instruction, across
 // every scene-object type listed for the segment, marks its id in-use.
 return new class extends TestCase {
     private function resolveSymbols(): void {

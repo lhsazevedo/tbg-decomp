@@ -96,7 +96,7 @@ return new class extends TestCase {
     // ------------------------------------------------------------------
 
     /**
-     * trafficChimeArmed_0x18 != 0 -- armed by TrafficDriveVehicle_8c025b98 when
+     * trafficChimeArmed_0x18 != 0 -- armed by TrafficDriveVehicleTask_8c025b98 when
      * a CPU vehicle sits stopped at a junction, and cleared again below
      * every call.
      */

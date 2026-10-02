@@ -390,7 +390,7 @@ STATIC void handleBump_8c02b6d4(void) {
     dist = njSqrt(dx * dx + dz * dz);
 
     /* Speed floor of var_frameSpeed_8c22866c + 0.3 -- see BusDriveEnterKnockback_8c023bce. */
-    if (other->isDecoration_0x2e4 == 0) {
+    if (other->isParked_0x2e4 == 0) {
         other->driveState_0x2b4 = 1;
         other->speed_0x27c = var_frameSpeed_8c22866c + 0.3f;
         other->dirX_0x29c = dx / dist;

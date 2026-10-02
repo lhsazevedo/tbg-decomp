@@ -30,10 +30,10 @@
           .IMPORT     _njSqrt
           .IMPORT     _TaskKill_8c014b66
           .IMPORT     _BusDrawPlaceEntity_8c027c3c
-          .EXPORT     _TrafficDriveVehicle_8c025b98
-          .EXPORT     _TrafficDriveDecoration_8c02656a
+          .EXPORT     _TrafficDriveVehicleTask_8c025b98
+          .EXPORT     _TrafficDriveParkedTask_8c02656a
           .SECTION     P, CODE, ALIGN=4
-_TrafficDriveVehicle_8c025b98:
+_TrafficDriveVehicleTask_8c025b98:
           MOV.L       R14,@-R15
           MOV.L       R13,@-R15
           MOV.L       R12,@-R15
@@ -1337,7 +1337,7 @@ LAB_8c02654e:
           MOV.L       @R15+,R13
           RTS
           MOV.L       @R15+,R14
-_TrafficDriveDecoration_8c02656a:
+_TrafficDriveParkedTask_8c02656a:
           MOV.L       R14,@-R15
           MOV.L       R13,@-R15
           FMOV.S      FR15,@-R15

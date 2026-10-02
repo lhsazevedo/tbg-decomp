@@ -522,7 +522,7 @@ different forced prototype.
 
 **Found in:** `026710_traffic` (2026-08-28)
 
-`TrafficInitEntryState_8c026748`'s decoration path (`entry`'s script-header
+`TrafficInitEntryState_8c026748`'s parked-vehicle path (`entry`'s script-header
 word `== 10`) skips the vehicle path-walk entirely, leaving a path-segment
 pointer local (`unaff_r11` / `seg`) and a distance local (`in_dr14` / `dist`)
 unset -- yet the function unconditionally stores both to `entry+0x2b8` and
@@ -752,7 +752,7 @@ in the test.
 
 The operand order reads backwards from the mnemonic. Getting it inverted flips
 a comparison's sense while still compiling and still looking right -- in
-`TrafficDriveDecoration_8c02656a` (025b98_traffic_drive) it turned a "free the
+`TrafficDriveParkedTask_8c02656a` (025b98_traffic_drive) it turned a "free the
 task when the entity is FAR from the reference point" into "when it is near".
 Only the dual-object test caught it. Check the operand order against the SH4
 manual whenever a float comparison's branch sense matters.

@@ -13,7 +13,7 @@ if (!function_exists('fdec')) {
 
 /*
  * BusDrawPlaceEntity_8c027c3c(TrafficEntry *entity, float accel): called once
- * per frame per traffic entity by TrafficDriveVehicle_8c025b98 (025b98). See
+ * per frame per traffic entity by TrafficDriveVehicleTask_8c025b98 (025b98). See
  * 027958_bus_draw.h for the full description; this test covers the forward and
  * mirror cone tests, the ground-probe-pointer realign trigger, the suspension
  * lean easing, and the ground re-probe/grid-swap block.
