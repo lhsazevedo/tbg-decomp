@@ -76,7 +76,7 @@ return new class extends TestCase {
 
         $this->shouldWriteLong($this->ms + 0x18, 0xc); // state_0x18 = 0xc
 
-        $this->shouldCall('_drawTextboxSprite_8c01d864');
+        $this->shouldCall('_drawPrompt_8c01d864');
 
         $this->shouldCall('_njSetBackColor')->with(0xff418dff, 0xff418dff, 0xff418dff);
     }
@@ -92,7 +92,7 @@ return new class extends TestCase {
 
         $this->shouldCall('_RenderStartFadeOut_8c022b60')->with(10);
 
-        $this->shouldCall('_drawTextboxSprite_8c01d864');
+        $this->shouldCall('_drawPrompt_8c01d864');
 
         $this->shouldCall('_njSetBackColor')->with(0xff418dff, 0xff418dff, 0xff418dff);
     }
@@ -103,7 +103,7 @@ return new class extends TestCase {
 
         $this->call('_resultsTask_8c01d8e0');
 
-        $this->shouldCall('_drawTextboxSprite_8c01d864');
+        $this->shouldCall('_drawPrompt_8c01d864');
 
         $this->shouldCall('_njSetBackColor')->with(0xff418dff, 0xff418dff, 0xff418dff);
     }
@@ -126,7 +126,7 @@ return new class extends TestCase {
 
         $this->call('_resultsTask_8c01d8e0');
 
-        $this->shouldCall('_drawTextboxSprite_8c01d864');
+        $this->shouldCall('_drawPrompt_8c01d864');
 
         $this->shouldCall('_njSetBackColor')->with(0xff418dff, 0xff418dff, 0xff418dff);
     }
@@ -143,7 +143,7 @@ return new class extends TestCase {
         $this->shouldWriteLong($this->ms + 0x1c, 0);   // subState_0x1c = 0
         $this->shouldWriteLong($this->ms + 0x38, 0);   // selected_0x38 = 0
 
-        $this->shouldCall('_drawTextboxSprite_8c01d864');
+        $this->shouldCall('_drawPrompt_8c01d864');
 
         $this->shouldCall('_njSetBackColor')->with(0xff418dff, 0xff418dff, 0xff418dff);
     }
@@ -155,7 +155,7 @@ return new class extends TestCase {
 
         $this->call('_resultsTask_8c01d8e0');
 
-        $this->shouldCall('_drawTextboxSprite_8c01d864');
+        $this->shouldCall('_drawPrompt_8c01d864');
 
         $this->shouldCall('_njSetBackColor')->with(0xff418dff, 0xff418dff, 0xff418dff);
     }
@@ -172,7 +172,7 @@ return new class extends TestCase {
         $this->shouldWriteLong($this->ms + 0x18, 6);  // state_0x18 = 6
         $this->shouldWriteLong($this->ms + 0x38, 1);  // selected_0x38 = 1
 
-        $this->shouldCall('_drawTextboxSprite_8c01d864');
+        $this->shouldCall('_drawPrompt_8c01d864');
 
         $this->shouldCall('_njSetBackColor')->with(0xff418dff, 0xff418dff, 0xff418dff);
     }
@@ -183,7 +183,7 @@ return new class extends TestCase {
 
         $this->call('_resultsTask_8c01d8e0');
 
-        $this->shouldCall('_drawTextboxSprite_8c01d864');
+        $this->shouldCall('_drawPrompt_8c01d864');
 
         $this->shouldCall('_njSetBackColor')->with(0xff418dff, 0xff418dff, 0xff418dff);
     }
@@ -216,7 +216,7 @@ return new class extends TestCase {
 
         $this->shouldCall('_VmGameSetLcdAnim_8c01c8fc')->with(1);
 
-        $this->shouldCall('_drawTextboxSprite_8c01d864');
+        $this->shouldCall('_drawPrompt_8c01d864');
 
         $this->shouldCall('_njSetBackColor')->with(0xff418dff, 0xff418dff, 0xff418dff);
     }
@@ -241,7 +241,7 @@ return new class extends TestCase {
 
         $this->shouldCall('_RenderStartFadeOut_8c022b60')->with(10);
 
-        $this->shouldCall('_drawTextboxSprite_8c01d864');
+        $this->shouldCall('_drawPrompt_8c01d864');
 
         $this->shouldCall('_njSetBackColor')->with(0xff418dff, 0xff418dff, 0xff418dff);
     }
@@ -271,7 +271,7 @@ return new class extends TestCase {
 
         $this->shouldCall('_sdMidiPlay')->with(0x11223344, 1, 2, 0);
 
-        $this->shouldCall('_drawTextboxSprite_8c01d864');
+        $this->shouldCall('_drawPrompt_8c01d864');
 
         $this->shouldCall('_njSetBackColor')->with(0xff418dff, 0xff418dff, 0xff418dff);
     }
@@ -293,7 +293,7 @@ return new class extends TestCase {
             ->with($this->ms + 0x38)
             ->andReturn(0);
 
-        $this->shouldCall('_drawTextboxSprite_8c01d864');
+        $this->shouldCall('_drawPrompt_8c01d864');
 
         $this->shouldCall('_njSetBackColor')->with(0xff418dff, 0xff418dff, 0xff418dff);
     }
@@ -324,7 +324,7 @@ return new class extends TestCase {
 
         $this->shouldCall('_VmGameSetLcdAnim_8c01c8fc')->with(0);
 
-        $this->shouldCall('_drawTextboxSprite_8c01d864');
+        $this->shouldCall('_drawPrompt_8c01d864');
 
         $this->shouldCall('_njSetBackColor')->with(0xff418dff, 0xff418dff, 0xff418dff);
     }
@@ -355,7 +355,7 @@ return new class extends TestCase {
 
         $this->shouldCall('_VmGameSetLcdAnim_8c01c8fc')->with(0);
 
-        $this->shouldCall('_drawTextboxSprite_8c01d864');
+        $this->shouldCall('_drawPrompt_8c01d864');
 
         $this->shouldCall('_njSetBackColor')->with(0xff418dff, 0xff418dff, 0xff418dff);
     }
@@ -371,7 +371,7 @@ return new class extends TestCase {
         $this->shouldCall('_BupGetInfo_8c014bba')->with(0);
         $this->shouldCall('_buStat')->with(0)->andReturn(1);
 
-        $this->shouldCall('_drawTextboxSprite_8c01d864');
+        $this->shouldCall('_drawPrompt_8c01d864');
 
         $this->shouldCall('_njSetBackColor')->with(0xff418dff, 0xff418dff, 0xff418dff);
     }
@@ -1155,7 +1155,7 @@ return new class extends TestCase {
 
         $this->shouldCall('_RenderStartFadeOut_8c022b60')->with(10);
 
-        $this->shouldCall('_drawTextboxSprite_8c01d864');
+        $this->shouldCall('_drawPrompt_8c01d864');
 
         $this->shouldCall('_njSetBackColor')->with(0xff418dff, 0xff418dff, 0xff418dff);
     }
@@ -1177,7 +1177,7 @@ return new class extends TestCase {
 
         $this->shouldWriteLong($this->ms + 0x18, 7); // state_0x18 = 7
 
-        $this->shouldCall('_drawTextboxSprite_8c01d864');
+        $this->shouldCall('_drawPrompt_8c01d864');
 
         $this->shouldCall('_njSetBackColor')->with(0xff418dff, 0xff418dff, 0xff418dff);
     }
@@ -1197,7 +1197,7 @@ return new class extends TestCase {
             ->with($this->ms + 0x38)
             ->andReturn(0);
 
-        $this->shouldCall('_drawTextboxSprite_8c01d864');
+        $this->shouldCall('_drawPrompt_8c01d864');
 
         $this->shouldCall('_njSetBackColor')->with(0xff418dff, 0xff418dff, 0xff418dff);
     }

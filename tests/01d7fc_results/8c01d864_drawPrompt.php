@@ -8,7 +8,7 @@ return new class extends TestCase {
         $this->setSize('_var_menuState_8c1bc7a8', 0x6c);
         $this->initUint32($this->addressOf('_var_menuState_8c1bc7a8') + 0x38, 3);
 
-        $this->call('_drawTextboxSprite_8c01d864');
+        $this->call('_drawPrompt_8c01d864');
 
         $this->shouldCall('_SpriteDraw_8c014f54')->with(
             $this->addressOf('_var_menuState_8c1bc7a8'),
@@ -26,7 +26,7 @@ return new class extends TestCase {
         $this->setSize('_var_menuState_8c1bc7a8', 0x6c);
         $this->initUint32($this->addressOf('_var_menuState_8c1bc7a8') + 0x38, 3);
 
-        $this->call('_drawTextboxSprite_8c01d864');
+        $this->call('_drawPrompt_8c01d864');
 
         $this->shouldCall('_SpriteDraw_8c014f54')->with(
             $this->addressOf('_var_menuState_8c1bc7a8'),

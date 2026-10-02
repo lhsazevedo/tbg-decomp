@@ -8,6 +8,6 @@ return new class extends TestCase {
         $this->call('_ResultsShowFailedRun_8c01e24e');
 
         $this->shouldWriteLong($this->addressOf('_var_runFailed_8c226408'), 1);
-        $this->shouldCall('_startResultsTask_8c01df8e');
+        $this->shouldCall('_spawnResultsTask_8c01df8e');
     }
 };

@@ -73,7 +73,7 @@ STATIC void drawScoreDigits_8c01d7fc(int value, float y)
     } while (value != 0);
 }
 
-STATIC void drawTextboxSprite_8c01d864(void)
+STATIC void drawPrompt_8c01d864(void)
 {
     SpriteDraw_8c014f54(&var_menuState_8c1bc7a8, var_menuState_8c1bc7a8.selected_0x38 + 2, 224.0f, 300.0f, -5.0f);
 
@@ -359,12 +359,12 @@ STATIC void resultsTask_8c01d8e0(void)
         goto tail;
     }
 
-    drawTextboxSprite_8c01d864();
+    drawPrompt_8c01d864();
 tail:
     njSetBackColor(0xff418dff, 0xff418dff, 0xff418dff);
 }
 
-STATIC void startResultsTask_8c01df8e(void)
+STATIC void spawnResultsTask_8c01df8e(void)
 {
     Task *created_task;
     void *created_state;
@@ -451,11 +451,11 @@ void ResultsShowPassedRun_8c01e0b4(void)
         var_progress_8c1ba1cc.exp_0x90 = 99999;
     }
     var_runFailed_8c226408 = 0;
-    startResultsTask_8c01df8e();
+    spawnResultsTask_8c01df8e();
 }
 
 void ResultsShowFailedRun_8c01e24e(void)
 {
     var_runFailed_8c226408 = 1;
-    startResultsTask_8c01df8e();
+    spawnResultsTask_8c01df8e();
 }

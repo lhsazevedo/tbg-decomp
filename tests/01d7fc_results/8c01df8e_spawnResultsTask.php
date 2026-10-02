@@ -7,11 +7,11 @@ return new class extends TestCase {
     {
         $this->setSize('_var_menuState_8c1bc7a8', 0x6c);
 
-        $this->call('_startResultsTask_8c01df8e');
+        $this->call('_spawnResultsTask_8c01df8e');
 
         $this->shouldCall('_InputSpawnTask_8c0128cc')->with(0);
 
-        // &created_task and &created_state are startResultsTask_8c01df8e's
+        // &created_task and &created_state are spawnResultsTask_8c01df8e's
         // own stack locals; both TaskSpawn calls share the same slots, and
         // both objects place them the same.
         $this->shouldCall('_TaskSpawn_8c014ae8')->with(

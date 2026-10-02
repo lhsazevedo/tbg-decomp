@@ -46,7 +46,7 @@ return new class extends TestCase {
         $this->shouldWriteLong($this->addressOf('_var_scoreTotal_8c226404'), 0);
         $this->shouldWriteLong($progress + 0x90, 100);
         $this->shouldWriteLong($this->addressOf('_var_runFailed_8c226408'), 0);
-        $this->shouldCall('_startResultsTask_8c01df8e');
+        $this->shouldCall('_spawnResultsTask_8c01df8e');
     }
 
     public function test_full_bonuses_top_tier_award_upgrade(): void
@@ -87,7 +87,7 @@ return new class extends TestCase {
         $this->shouldWriteLong($this->addressOf('_var_scoreTotal_8c226404'), 1640);
         $this->shouldWriteLong($progress + 0x90, 2640);
         $this->shouldWriteLong($this->addressOf('_var_runFailed_8c226408'), 0);
-        $this->shouldCall('_startResultsTask_8c01df8e');
+        $this->shouldCall('_spawnResultsTask_8c01df8e');
     }
 
     public function test_ome_route_low_tier_award_upgrade(): void
@@ -127,7 +127,7 @@ return new class extends TestCase {
         $this->shouldWriteLong($this->addressOf('_var_scoreTotal_8c226404'), 750);
         $this->shouldWriteLong($progress + 0x90, 750);
         $this->shouldWriteLong($this->addressOf('_var_runFailed_8c226408'), 0);
-        $this->shouldCall('_startResultsTask_8c01df8e');
+        $this->shouldCall('_spawnResultsTask_8c01df8e');
     }
 
     public function test_mid_tier_award_and_exp_cap(): void
@@ -165,6 +165,6 @@ return new class extends TestCase {
         $this->shouldWriteLong($progress + 0x90, 100400);
         $this->shouldWriteLong($progress + 0x90, 99999); // capped
         $this->shouldWriteLong($this->addressOf('_var_runFailed_8c226408'), 0);
-        $this->shouldCall('_startResultsTask_8c01df8e');
+        $this->shouldCall('_spawnResultsTask_8c01df8e');
     }
 };

@@ -68,13 +68,13 @@
           .EXPORT     _drawScoreDigits_8c01d7fc
           .AENDI
           .AIFDEF UNIT_TESTING
-          .EXPORT     _drawTextboxSprite_8c01d864
+          .EXPORT     _drawPrompt_8c01d864
           .AENDI
           .AIFDEF UNIT_TESTING
           .EXPORT     _resultsTask_8c01d8e0
           .AENDI
           .AIFDEF UNIT_TESTING
-          .EXPORT     _startResultsTask_8c01df8e
+          .EXPORT     _spawnResultsTask_8c01df8e
           .AENDI
           .EXPORT     _ResultsShowFailedRun_8c01e24e
           .EXPORT     _ResultsShowPassedRun_8c01e0b4
@@ -153,7 +153,7 @@ LAB_8c01d826:
           MOV.L       @R15+,R13
           RTS
           MOV.L       @R15+,R14
-_drawTextboxSprite_8c01d864:
+_drawPrompt_8c01d864:
           MOV.L       R14,@-R15
           MOVA        LP_GEN_57051+30,R0
           MOV.L       LP_GEN_57051+6,R14
@@ -913,7 +913,7 @@ caseD_c_1:
           JSR         @R3
           MOV         #H'a,R4
 LAB_8c01de3c:
-          BSR         _drawTextboxSprite_8c01d864
+          BSR         _drawPrompt_8c01d864
           NOP
           BRA         LAB_8c01df50
           NOP
@@ -1062,7 +1062,7 @@ LAB_8c01df74:
           MOV.L       @R15+,R13
           RTS
           MOV.L       @R15+,R14
-_startResultsTask_8c01df8e:
+_spawnResultsTask_8c01df8e:
           STS.L       PR,@-R15
           ADD         #-H'8,R15
           MOV.L       LP_GEN_43538+30,R3
@@ -1396,12 +1396,12 @@ LAB_8c01e240:
           MOV.L       @R15+,R11
           MOV.L       @R15+,R12
           MOV.L       @R15+,R13
-          BRA         _startResultsTask_8c01df8e
+          BRA         _spawnResultsTask_8c01df8e
           MOV.L       @R15+,R14
 _ResultsShowFailedRun_8c01e24e:
           MOV.L       LP_GEN_78959+34,R1
           MOV         #H'1,R2
-          BRA         _startResultsTask_8c01df8e
+          BRA         _spawnResultsTask_8c01df8e
           MOV.L       R2,@R1
 LP_GEN_78959:
           .DATA.W H'00C8 ; H'8C01E256
