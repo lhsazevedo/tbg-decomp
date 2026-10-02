@@ -6,7 +6,7 @@ return new class extends TestCase {
     /**
      * Story mode:
      *  - sets cursorVisible_0x48
-     *  - calls cursorOffTarget to recompute the target, then snaps the cursor onto it
+     *  - calls startCursorMove to recompute the target, then snaps the cursor onto it
      *  - enables the PROFILE FILE and ALBUM buttons [5] and [6]
      *  - propagates courses_0x44[i].unlocked_0x00 into CourseMenuButton[row*5 + 2..4].unlocked_0x04
      */
@@ -43,7 +43,7 @@ return new class extends TestCase {
         $this->shouldWriteLong($menu + 0x48, 1);
 
         // 2) helper called to ensure cursor target is up-to-date
-        $this->shouldCall('_cursorOffTarget_8c016dc6');
+        $this->shouldCall('_startCursorMove_8c016dc6');
 
         $mvn = function () use ($menu) {
             $src = $this->registers[2];
@@ -111,7 +111,7 @@ return new class extends TestCase {
 
         // --- Effects (ordered) ---
         $this->shouldWriteLong($menu + 0x48, 1);
-        $this->shouldCall('_cursorOffTarget_8c016dc6');
+        $this->shouldCall('_startCursorMove_8c016dc6');
 
         $mvn = function () use ($menu) {
             $src = $this->registers[2];

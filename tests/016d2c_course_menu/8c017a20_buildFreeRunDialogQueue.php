@@ -10,7 +10,7 @@ return new class extends TestCase {
 
         $this->initUint32($flag, 0);
 
-        $this->call('_buildFreeRunMenuDialogFlow_8c017a20');
+        $this->call('_buildFreeRunDialogQueue_8c017a20');
 
         $this->shouldWriteLong($queue + 0 * 4, 0x41);
         $this->shouldWriteLong($queue + 1 * 4, -1);
@@ -24,7 +24,7 @@ return new class extends TestCase {
 
         $this->initUint32($flag, 1);
 
-        $this->call('_buildFreeRunMenuDialogFlow_8c017a20');
+        $this->call('_buildFreeRunDialogQueue_8c017a20');
 
         $this->shouldWriteLong($queue + 0 * 4, 0x40);
         $this->shouldWriteLong($queue + 1 * 4, 0x41);

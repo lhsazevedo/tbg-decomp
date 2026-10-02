@@ -2,8 +2,6 @@
 
 use Lhsazevedo\Sh4ObjTest\TestCase;
 
-// This testcase was copied from the 8c017718_StoryMenuTask.php,
-// so there could be some leftover comments from it.
 return new Class extends TestCase {
     public function test_init_state_waits_for_pvm_load()
     {
@@ -11,7 +9,7 @@ return new Class extends TestCase {
 
         $this->initMenuStateUint32(0x18, 0);
 
-        $this->call('_courseMenuFreeRunMenuTask_8c017ada');
+        $this->call('_storyMenuTask_8c017718');
 
         $this->shouldCall('_RouteGetLatch_8c01432a')->andReturn(1);
     }
@@ -22,7 +20,7 @@ return new Class extends TestCase {
 
         $this->initMenuStateUint32(0x18, 0);
 
-        $this->call('_courseMenuFreeRunMenuTask_8c017ada');
+        $this->call('_storyMenuTask_8c017718');
 
         $this->shouldCall('_RouteGetLatch_8c01432a')->andReturn(0);
         $this->shouldCall('_AsqFreeQueues_8c011f7e');
@@ -41,7 +39,7 @@ return new Class extends TestCase {
         $this->initUint32($this->addressOf('_var_isFading_8c226568'), 1);
         $this->initUint32($this->addressOf('_var_menuTextboxCharLimit_8c225fb8'), 21);
 
-        $this->call('_courseMenuFreeRunMenuTask_8c017ada');
+        $this->call('_storyMenuTask_8c017718');
 
         $this->shouldRenderFrame(
             spriteNo: 42,
@@ -60,7 +58,7 @@ return new Class extends TestCase {
         $this->initUint32($this->addressOf('_var_menuTextboxCharLimit_8c225fb8'), 21);
         $this->initUint32($this->addressOf('_var_dialogQueue_8c225fbc') + 4 * 0, 32);
 
-        $this->call('_courseMenuFreeRunMenuTask_8c017ada');
+        $this->call('_storyMenuTask_8c017718');
 
         $this->shouldCall('_CourseMenuSpawnDialogTask_8c0170c6')->with(32);
         $this->shouldWriteLong($this->addressOf('_var_menuState_8c1bc7a8') + 0x18, 2);
@@ -84,9 +82,61 @@ return new Class extends TestCase {
 
         $this->initUint32($this->addressOf('_var_menuTextboxCharLimit_8c225fb8'), 21);
 
-        $this->call('_courseMenuFreeRunMenuTask_8c017ada');
+        $this->call('_storyMenuTask_8c017718');
 
         // End-of-frame rendering should always run
+        $this->shouldRenderFrame(
+            spriteNo: 42,
+            textboxIndex: 21,
+            menuTextboxReturns: 1,
+        );
+    }
+
+    public function test_dialog_state_writes_buttons_when_current_is_unlock()
+    {
+        $this->resolveSymbols();
+
+        $this->initMenuStateUint32(0x18, 2);
+        $this->initMenuStateUint32(0x60, 42);
+
+        $this->initUint32($this->addressOf('_var_instructorDialogActive_8c225fb4'), 0);
+
+        $this->initUint32($this->addressOf('_var_menuTextboxCharLimit_8c225fb8'), 21);
+
+        // Dialog queue
+        $seqBase = $this->addressOf('_var_dialogQueue_8c225fbc');
+        $this->initUint32($seqBase + 0, 0x0d); // INSTR_COURSE_UNLOCKED
+        $this->initUint32($seqBase + 4, -1);
+
+        // Seed midi handle used for course unlock jingle
+        $midiBase = $this->addressOf('_var_midiHandles_8c0fcd28');
+        $this->initUint32($midiBase + 5 * 4, 0x12345678);
+
+        // Source bytes for course button values:
+        $this->seedCourseButtonValues(0xA1);
+
+        $task = $this->alloc(0x10);
+        $this->initUint32($task + 0x08, 0);
+
+        $this->call('_storyMenuTask_8c017718')->with($task, 0);
+
+        $this->shouldCall('_CourseMenuApplyUnlocks_8c0173e6');
+
+        $btnBase = $this->addressOf('_init_courseMenuButtons_8c04442c');
+
+        $this->shouldWriteCourseButtonValues(0xA1);
+
+        // Jingle after loop completes
+        $this->shouldCall('_sdMidiPlay')->with(0x12345678, 1, 0x16, 0);
+
+        // Advance the dialog-queue cursor
+        $this->shouldWriteLong($task + 0x08, 1);
+
+        // Last sequence: advance state and swap message box
+        $this->shouldWriteLong($this->addressOf('_var_menuState_8c1bc7a8') + 0x18, 3);
+        $this->shouldCall('_MessageBoxSwapFor_8c02aefc')->with("");
+
+        // Epilogue rendering
         $this->shouldRenderFrame(
             spriteNo: 42,
             textboxIndex: 21,
@@ -115,7 +165,7 @@ return new Class extends TestCase {
         $task = $this->alloc(0x10);
         $this->initUint32($task + 0x08, 0);
 
-        $this->call('_courseMenuFreeRunMenuTask_8c017ada')->with($task, 0);
+        $this->call('_storyMenuTask_8c017718')->with($task, 0);
 
         // Effects (no course-unlock branch, just advance + spawn next)
         $this->shouldWriteLong($task + 0x08, 1);                // ++field_0x08
@@ -128,7 +178,7 @@ return new Class extends TestCase {
         );
     }
 
-    public function test_dialog_state_advances_after_last_dialog()
+    public function test_dialog_state_triggers_midi_reset_when_next_is_unlock()
     {
         $this->resolveSymbols();
 
@@ -136,25 +186,123 @@ return new Class extends TestCase {
         $this->initMenuStateUint32(0x60, 42);
 
         $this->initUint32($this->addressOf('_var_instructorDialogActive_8c225fb4'), 0);
+
         $this->initUint32($this->addressOf('_var_menuTextboxCharLimit_8c225fb8'), 21);
 
         // Dialog queue:
-        // current == 0x22,
-        // next == -1 to indicate there's more dialogs,
+        // current != INSTR_COURSE_UNLOCKED (skip unlock branch),
+        // next == INSTR_COURSE_UNLOCKED (so midiResetFxAndPlay should trigger).
         $seqBase = $this->addressOf('_var_dialogQueue_8c225fbc');
-        $this->initUint32($seqBase + 0, 0x22); // current
-        $this->initUint32($seqBase + 4, -1); // next
+        $this->initUint32($seqBase + 0, 0x05); // current (non-unlock)
+        $this->initUint32($seqBase + 4, 0x0d); // next is INSTR_COURSE_UNLOCKED
 
+        $task = $this->alloc(0x10);
+        $this->initUint32($task + 0x08, 0); // dialog-queue cursor
+
+        $this->call('_storyMenuTask_8c017718')->with($task, 0);
+
+        // Effects:
+        // No course-unlock processing for the "current" (we deliberately avoided it)
+        // Increment index, then spawn next dialog, then reset+play midi because next == unlock
+        $this->shouldWriteLong($task + 0x08, 1);
+        $this->shouldCall('_CourseMenuSpawnDialogTask_8c0170c6')->with(0x0d, 0);
+        $this->shouldCall('_SndMidiResetFxAndPlay_8c010846')->with(0, 0);
+
+        $this->shouldRenderFrame(
+            spriteNo: 42,
+            textboxIndex: 21,
+            menuTextboxReturns: 1
+        );
+    }
+
+    public function test_dialog_state_when_current_is_unlock_next_is_normal_dialog()
+    {
+        $this->resolveSymbols();
+
+        $this->initMenuStateUint32(0x18, 2);
+        $this->initMenuStateUint32(0x60, 42);
+
+        // Dialog finished (so we advance this frame)
+        $this->initUint32($this->addressOf('_var_instructorDialogActive_8c225fb4'), 0);
+
+        $this->initUint32($this->addressOf('_var_menuTextboxCharLimit_8c225fb8'), 21);
+
+        // Dialog queue: current == unlock, next == non-unlock
+        $seqBase = $this->addressOf('_var_dialogQueue_8c225fbc');
+        $this->initUint32($seqBase + 0, 0x0d); // INSTR_COURSE_UNLOCKED
+        $this->initUint32($seqBase + 4, 0x22); // next sequence (not unlock)
+
+        // Seed midi handle used for unlock jingle
+        $midiBase = $this->addressOf('_var_midiHandles_8c0fcd28');
+        $this->initUint32($midiBase + 5 * 4, 0x12345678);
+
+        $this->seedCourseButtonValues(0xB0);
+
+        // Allocate Task with the dialog-queue cursor at 0
         $task = $this->alloc(0x10);
         $this->initUint32($task + 0x08, 0);
 
-        $this->call('_courseMenuFreeRunMenuTask_8c017ada')->with($task, 0);
+        $this->call('_storyMenuTask_8c017718')->with($task, 0);
 
-        // Effects
-        $this->shouldWriteLong($task + 0x08, 1); // ++field_0x08
-        $this->shouldWriteLong($this->addressOf('_var_menuState_8c1bc7a8') + 0x18, 3);
-        $this->shouldCall('_MessageBoxSwapFor_8c02aefc')
-            ->with("");
+        // Current == unlock: do the loop + jingle
+        $this->shouldCall('_CourseMenuApplyUnlocks_8c0173e6');
+
+        $this->shouldWriteCourseButtonValues(0xB0);
+
+        $this->shouldCall('_sdMidiPlay')->with(0x12345678, 1, 0x16, 0);
+
+        // Advance dialog index
+        $this->shouldWriteLong($task + 0x08, 1);
+
+        // Next is not -1: spawn next dialog (not unlock, so no midiReset)
+        $this->shouldCall('_CourseMenuSpawnDialogTask_8c0170c6')->with(0x22, 0);
+
+        $this->shouldRenderFrame(
+            spriteNo: 42,
+            textboxIndex: 21,
+            menuTextboxReturns: 1
+        );
+    }
+
+    public function test_dialog_state_when_current_is_unlock_next_is_also_unlock()
+    {
+        $this->resolveSymbols();
+
+        $this->initMenuStateUint32(0x18, 2);
+        $this->initMenuStateUint32(0x60, 42);
+        $this->initUint32($this->addressOf('_var_instructorDialogActive_8c225fb4'), 0);
+        $this->initUint32($this->addressOf('_var_menuTextboxCharLimit_8c225fb8'), 21);
+
+        // Dialog queue: current == unlock, next == unlock
+        $seqBase = $this->addressOf('_var_dialogQueue_8c225fbc');
+        $this->initUint32($seqBase + 0, 0x0d); // INSTR_COURSE_UNLOCKED
+        $this->initUint32($seqBase + 4, 0x0d); // next also unlock
+
+        // Seed midi handle used for unlock jingle
+        $midiBase = $this->addressOf('_var_midiHandles_8c0fcd28');
+        $this->initUint32($midiBase + 5 * 4, 0x12345678);
+
+        $this->seedCourseButtonValues(0xC0);
+
+        // Allocate Task with the dialog-queue cursor at 0
+        $task = $this->alloc(0x10);
+        $this->initUint32($task + 0x08, 0);
+
+        $this->call('_storyMenuTask_8c017718')->with($task, 0);
+
+        // Current == unlock: run loop + jingle
+        $this->shouldCall('_CourseMenuApplyUnlocks_8c0173e6');
+
+        $this->shouldWriteCourseButtonValues(0xC0);
+
+        $this->shouldCall('_sdMidiPlay')->with(0x12345678, 1, 0x16, 0);
+
+        // Advance dialog index
+        $this->shouldWriteLong($task + 0x08, 1);
+
+        // Next == unlock: spawn dialog, then midiResetFxAndPlay
+        $this->shouldCall('_CourseMenuSpawnDialogTask_8c0170c6')->with(0x0d, 0);
+        $this->shouldCall('_SndMidiResetFxAndPlay_8c010846')->with(0, 0);
 
         $this->shouldRenderFrame(
             spriteNo: 42,
@@ -173,7 +321,7 @@ return new Class extends TestCase {
         $task = $this->alloc(0x10);
         $this->initUint32($task + 0x08, 0);
 
-        $this->call('_courseMenuFreeRunMenuTask_8c017ada')->with($task, 0);
+        $this->call('_storyMenuTask_8c017718')->with($task, 0);
 
         $this->shouldCall('_handleCourseMenuInput_8c017126');
         $this->shouldRenderFrame(spriteNo: 42, textboxIndex: 21, menuTextboxReturns: 1);
@@ -193,7 +341,7 @@ return new Class extends TestCase {
         $task = $this->alloc(0x10);
 
         // Invoke
-        $this->call('_courseMenuFreeRunMenuTask_8c017ada')->with($task, 0);
+        $this->call('_storyMenuTask_8c017718')->with($task, 0);
 
         // ANIMATING branch: interpolate returns false -> remain in state 4
         $this->shouldCall('_CourseMenuInterpolateCursor_8c016d2c')->andReturn(0);
@@ -220,7 +368,7 @@ return new Class extends TestCase {
         $task = $this->alloc(0x10);
 
         // Invoke
-        $this->call('_courseMenuFreeRunMenuTask_8c017ada')->with($task, 0);
+        $this->call('_storyMenuTask_8c017718')->with($task, 0);
 
         // ANIMATING branch: interpolate returns true -> write state = IDLE (3)
         $this->shouldCall('_CourseMenuInterpolateCursor_8c016d2c')->andReturn(1);
@@ -249,7 +397,7 @@ return new Class extends TestCase {
 
         $task = $this->alloc(0x10);
 
-        $this->call('_courseMenuFreeRunMenuTask_8c017ada')->with($task, 0);
+        $this->call('_storyMenuTask_8c017718')->with($task, 0);
 
         $base = $this->addressOf('_var_menuState_8c1bc7a8');
 
@@ -276,7 +424,7 @@ return new Class extends TestCase {
 
         $task = $this->alloc(0x10);
 
-        $this->call('_courseMenuFreeRunMenuTask_8c017ada')->with($task, 0);
+        $this->call('_storyMenuTask_8c017718')->with($task, 0);
 
         $base = $this->addressOf('_var_menuState_8c1bc7a8');
 
@@ -300,7 +448,7 @@ return new Class extends TestCase {
         $this->initMenuStateUint32(0x60, 42);
         $this->initUint32($this->addressOf('_var_menuTextboxCharLimit_8c225fb8'), 21);
 
-        $this->call('_courseMenuFreeRunMenuTask_8c017ada');
+        $this->call('_storyMenuTask_8c017718');
 
         $this->shouldWriteLong($this->addressOf('_var_menuState_8c1bc7a8') + 0x68, 8);
         $this->shouldWriteLong($this->addressOf('_var_menuState_8c1bc7a8') + 0x48, 0);
@@ -322,7 +470,7 @@ return new Class extends TestCase {
         $this->initUint32($this->addressOf('_var_menuTextboxCharLimit_8c225fb8'), 21);
         $this->initUint32($this->addressOf('_init_adxPlaying_8c03bd80'), 1);
 
-        $this->call('_courseMenuFreeRunMenuTask_8c017ada');
+        $this->call('_storyMenuTask_8c017718');
     }
 
     public function test_fade_out_state_happy_path_without_free()
@@ -343,7 +491,7 @@ return new Class extends TestCase {
         $task = $this->alloc(0x10);
 
         // Invoke frame
-        $this->call('_courseMenuFreeRunMenuTask_8c017ada')->with($task, 0);
+        $this->call('_storyMenuTask_8c017718')->with($task, 0);
 
         $base = $this->addressOf('_var_menuState_8c1bc7a8');
 
@@ -354,6 +502,11 @@ return new Class extends TestCase {
 
         // field_0x50 <- btn[idx].field_0x18
         $this->shouldWriteLong($base + 0x50, 0);
+
+        // Flip globals
+        $this->shouldWriteLong($this->addressOf('_var_runSucceeded_8c1bb8dc'), 1);
+        $this->shouldWriteLong($this->addressOf('_var_runReportPending_8c1bb8b8'), 0);
+        $this->shouldWriteLong($this->addressOf('_var_runWasPractice_8c1bb8bc'), 1);
 
         $this->shouldCall('_SystemMenuEnter_8c01ba64')->with($task);
     }
@@ -375,7 +528,7 @@ return new Class extends TestCase {
         $task = $this->alloc(0x10);
 
         // Invoke
-        $this->call('_courseMenuFreeRunMenuTask_8c017ada')->with($task, 0);
+        $this->call('_storyMenuTask_8c017718')->with($task, 0);
 
         $base = $this->addressOf('_var_menuState_8c1bc7a8');
 
@@ -388,6 +541,11 @@ return new Class extends TestCase {
 
         // field_0x50 <- btn[idx].field_0x18
         $this->shouldWriteLong($base + 0x50, 0);
+
+        // Flip globals
+        $this->shouldWriteLong($this->addressOf('_var_runSucceeded_8c1bb8dc'), 1);
+        $this->shouldWriteLong($this->addressOf('_var_runReportPending_8c1bb8b8'), 0);
+        $this->shouldWriteLong($this->addressOf('_var_runWasPractice_8c1bb8bc'), 1);
 
         // Indirect callback invoked with task
         $this->shouldCall('_courseMenuConfirmInit_8c0184cc')->with($task);
@@ -407,7 +565,7 @@ return new Class extends TestCase {
 
         $task = $this->alloc(0x10);
 
-        $this->call('_courseMenuFreeRunMenuTask_8c017ada')->with($task, 0);
+        $this->call('_storyMenuTask_8c017718')->with($task, 0);
 
         // No state writes or menu switch while fading; epilogue rendering runs
         $this->shouldRenderFrame(
@@ -432,7 +590,7 @@ return new Class extends TestCase {
 
         $task = $this->alloc(0x10);
 
-        $this->call('_courseMenuFreeRunMenuTask_8c017ada')->with($task, 0);
+        $this->call('_storyMenuTask_8c017718')->with($task, 0);
     }
 
     public function test_fade_out_to_main_menu()
@@ -444,12 +602,14 @@ return new Class extends TestCase {
         $this->initUint32($this->addressOf('_var_isFading_8c226568'), 0); // fade finished
         $this->initUint32($this->addressOf('_init_adxPlaying_8c03bd80'), 0);
 
+        // (Epilogue inputs would be irrelevant?this path returns early)
+
         $task = $this->alloc(0x10);
 
-        $this->call('_courseMenuFreeRunMenuTask_8c017ada')->with($task, 0);
+        $this->call('_storyMenuTask_8c017718')->with($task, 0);
 
-        // Returns before the epilogue rendering. Unlike the story task, this
-        // one leaves var_runReportPending_8c1bb8b8 alone.
+        // Writes and call in order, then return (no epilogue rendering)
+        $this->shouldWriteLong($this->addressOf('_var_runReportPending_8c1bb8b8'), 0);
         $this->shouldCall('_MainMenuEnter_8c01a09a')->with($task);
     }
 
@@ -495,10 +655,10 @@ return new Class extends TestCase {
 
     private function shouldRenderFrame(int $spriteNo, int $textboxIndex, int $menuTextboxReturns = 1): void
     {
-        // $this->shouldCall('_CourseMenuDrawDateAndExp_8c016ee6');
+        $this->shouldCall('_CourseMenuDrawDateAndExp_8c016ee6');
         $this->shouldCall('_drawCourseButtons_8c017590');
-        $this->shouldDrawSprite(0x0c, 0x09, 0.0, 0.0, -5.0);
-        // $this->shouldDrawSprite(0x00, 0x2b, 0.0, 0.0, -4.0);
+        $this->shouldDrawSprite(0x0c, 0x0a, 0.0, 0.0, -5.0);
+        $this->shouldDrawSprite(0x00, 0x2b, 0.0, 0.0, -4.0);
         $this->shouldCall('_MessageBoxMenuTextboxText_8c02af1c')->with($textboxIndex)->andReturn($menuTextboxReturns);
         if ($menuTextboxReturns) {
             $this->shouldDrawSprite(0x00, 1, 0.0, 0.0, -5.0);

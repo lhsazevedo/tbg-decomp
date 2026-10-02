@@ -152,7 +152,7 @@ return new class extends TestCase {
         $this->shouldWriteLong(
             $this->addressOf('_var_menuState_8c1bc7a8') + 0x40, 0
         );
-        $this->shouldCall('_cursorOffTarget_8c016dc6')->andReturn(1);
+        $this->shouldCall('_startCursorMove_8c016dc6')->andReturn(1);
         $this->shouldWriteLong(
             $this->addressOf('_var_menuState_8c1bc7a8') + 0x18, 4
         );
@@ -189,7 +189,7 @@ return new class extends TestCase {
         $this->shouldWriteLong(
             $this->addressOf('_var_menuState_8c1bc7a8') + 0x40, 1
         );
-        $this->shouldCall('_cursorOffTarget_8c016dc6')->andReturn(1);
+        $this->shouldCall('_startCursorMove_8c016dc6')->andReturn(1);
         $this->shouldWriteLong(
             $this->addressOf('_var_menuState_8c1bc7a8') + 0x18, 4
         );
@@ -220,7 +220,7 @@ return new class extends TestCase {
         $this->shouldWriteLong(
             $this->addressOf('_var_menuState_8c1bc7a8') + 0x40, 1
         );
-        $this->shouldCall('_cursorOffTarget_8c016dc6')->andReturn(1);
+        $this->shouldCall('_startCursorMove_8c016dc6')->andReturn(1);
         $this->shouldWriteLong(
             $this->addressOf('_var_menuState_8c1bc7a8') + 0x18, 4
         );
@@ -257,7 +257,7 @@ return new class extends TestCase {
         $this->shouldWriteLong(
             $this->addressOf('_var_menuState_8c1bc7a8') + 0x40, 0
         );
-        $this->shouldCall('_cursorOffTarget_8c016dc6')->andReturn(1);
+        $this->shouldCall('_startCursorMove_8c016dc6')->andReturn(1);
         $this->shouldWriteLong(
             $this->addressOf('_var_menuState_8c1bc7a8') + 0x18, 4
         );
@@ -288,7 +288,7 @@ return new class extends TestCase {
         $this->shouldWriteLong(
             $this->addressOf('_var_menuState_8c1bc7a8') + 0x3c, 0
         );
-        $this->shouldCall('_cursorOffTarget_8c016dc6')->andReturn(1);
+        $this->shouldCall('_startCursorMove_8c016dc6')->andReturn(1);
         $this->shouldWriteLong(
             $this->addressOf('_var_menuState_8c1bc7a8') + 0x18, 4
         );
@@ -328,7 +328,7 @@ return new class extends TestCase {
         $this->shouldWriteLong(
             $this->addressOf('_var_menuState_8c1bc7a8') + 0x3c, 4
         );
-        $this->shouldCall('_cursorOffTarget_8c016dc6')->andReturn(1);
+        $this->shouldCall('_startCursorMove_8c016dc6')->andReturn(1);
         $this->shouldWriteLong(
             $this->addressOf('_var_menuState_8c1bc7a8') + 0x18, 4
         );
@@ -359,7 +359,7 @@ return new class extends TestCase {
         $this->shouldWriteLong(
             $this->addressOf('_var_menuState_8c1bc7a8') + 0x3c, 1
         );
-        $this->shouldCall('_cursorOffTarget_8c016dc6')->andReturn(1);
+        $this->shouldCall('_startCursorMove_8c016dc6')->andReturn(1);
         $this->shouldWriteLong(
             $this->addressOf('_var_menuState_8c1bc7a8') + 0x18, 4
         );
@@ -399,7 +399,7 @@ return new class extends TestCase {
         $this->shouldWriteLong(
             $this->addressOf('_var_menuState_8c1bc7a8') + 0x3c, 2
         );
-        $this->shouldCall('_cursorOffTarget_8c016dc6')->andReturn(1);
+        $this->shouldCall('_startCursorMove_8c016dc6')->andReturn(1);
         $this->shouldWriteLong(
             $this->addressOf('_var_menuState_8c1bc7a8') + 0x18, 4
         );
@@ -430,7 +430,7 @@ return new class extends TestCase {
         $this->shouldWriteLong(
             $this->addressOf('_var_menuState_8c1bc7a8') + 0x40, 0
         );
-        $this->shouldCall('_cursorOffTarget_8c016dc6')->andReturn(0);
+        $this->shouldCall('_startCursorMove_8c016dc6')->andReturn(0);
     }
 
     public function resolveSymbols()

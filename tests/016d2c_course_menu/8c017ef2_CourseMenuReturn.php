@@ -4,7 +4,7 @@ use Lhsazevedo\Sh4ObjTest\TestCase;
 use Lhsazevedo\Sh4ObjTest\Simulator\Types\U32;
 
 return new class extends TestCase {
-    /* Story mode rebuilds the task stack with courseMenuStoryMenuTask. */
+    /* Story mode rebuilds the task stack with storyMenuTask. */
     public function test_story_mode(): void
     {
         $this->initUint32($this->addressOf('_var_gameMode_8c1bb8fc'), 0);
@@ -29,7 +29,7 @@ return new class extends TestCase {
         $createdTask = $this->alloc(0xc);
         $this->shouldCall('_TaskSpawn_8c014ae8')->with(
             $this->addressOf('_var_tasks_8c1ba3c8'),
-            $this->addressOf('_courseMenuStoryMenuTask_8c017718'),
+            $this->addressOf('_storyMenuTask_8c017718'),
             $createdTaskLocal,
             $createdStateLocal,
             0,
@@ -37,7 +37,7 @@ return new class extends TestCase {
             $this->memory->writeUInt32($params[2], U32::of($createdTask));
         });
 
-        $this->shouldCall('_buildCourseMenuDialogFlow_8c017420');
+        $this->shouldCall('_buildStoryDialogQueue_8c017420');
 
         $this->shouldWriteLong(
             $this->addressOf('_var_menuState_8c1bc7a8') + 0x60,
@@ -107,7 +107,7 @@ return new class extends TestCase {
         $createdTask = $this->alloc(0xc);
         $this->shouldCall('_TaskSpawn_8c014ae8')->with(
             $this->addressOf('_var_tasks_8c1ba3c8'),
-            $this->addressOf('_courseMenuFreeRunMenuTask_8c017ada'),
+            $this->addressOf('_freeRunMenuTask_8c017ada'),
             $createdTaskLocal,
             $createdStateLocal,
             0,
@@ -115,7 +115,7 @@ return new class extends TestCase {
             $this->memory->writeUInt32($params[2], U32::of($createdTask));
         });
 
-        $this->shouldCall('_buildFreeRunMenuDialogFlow_8c017a20');
+        $this->shouldCall('_buildFreeRunDialogQueue_8c017a20');
 
         $this->shouldWriteLong(
             $this->addressOf('_var_menuState_8c1bc7a8') + 0x60,

@@ -24,9 +24,9 @@ return new class extends TestCase {
         $this->call('_CourseMenuEnter_8c017e18')->with($task);
 
         $this->shouldCall('_TaskSwitch_8c014b3e')->with(
-            $task, $this->addressOf('_courseMenuFreeRunMenuTask_8c017ada')
+            $task, $this->addressOf('_freeRunMenuTask_8c017ada')
         );
-        $this->shouldCall('_buildFreeRunMenuDialogFlow_8c017a20');
+        $this->shouldCall('_buildFreeRunDialogQueue_8c017a20');
 
         $this->shouldWriteLong(
             $this->addressOf('_var_menuState_8c1bc7a8') + 0x60, 0
@@ -69,9 +69,9 @@ return new class extends TestCase {
         $this->call('_CourseMenuEnter_8c017e18')->with($task);
 
         $this->shouldCall('_TaskSwitch_8c014b3e')->with(
-            $task, $this->addressOf('_courseMenuFreeRunMenuTask_8c017ada')
+            $task, $this->addressOf('_freeRunMenuTask_8c017ada')
         );
-        $this->shouldCall('_buildFreeRunMenuDialogFlow_8c017a20');
+        $this->shouldCall('_buildFreeRunDialogQueue_8c017a20');
 
         $this->shouldWriteLong(
             $this->addressOf('_var_menuState_8c1bc7a8') + 0x60, 0
@@ -110,9 +110,9 @@ return new class extends TestCase {
         $this->call('_CourseMenuEnter_8c017e18')->with($task);
 
         $this->shouldCall('_TaskSwitch_8c014b3e')->with(
-            $task, $this->addressOf('_courseMenuStoryMenuTask_8c017718')
+            $task, $this->addressOf('_storyMenuTask_8c017718')
         );
-        $this->shouldCall('_buildCourseMenuDialogFlow_8c017420');
+        $this->shouldCall('_buildStoryDialogQueue_8c017420');
 
         $this->shouldWriteLong(
             $this->addressOf('_var_menuState_8c1bc7a8') + 0x60, 0
@@ -156,9 +156,9 @@ return new class extends TestCase {
         $this->call('_CourseMenuEnter_8c017e18')->with($task);
 
         $this->shouldCall('_TaskSwitch_8c014b3e')->with(
-            $task, $this->addressOf('_courseMenuStoryMenuTask_8c017718')
+            $task, $this->addressOf('_storyMenuTask_8c017718')
         );
-        $this->shouldCall('_buildCourseMenuDialogFlow_8c017420');
+        $this->shouldCall('_buildStoryDialogQueue_8c017420');
 
         $this->shouldWriteLong(
             $this->addressOf('_var_menuState_8c1bc7a8') + 0x60, 0

@@ -152,7 +152,7 @@ STATIC ResourceGroupInfo init_courseResourceGroup_8c044d40;
 int CourseMenuRequestSysResgrp_8c018568(ResourceGroup* dds, ResourceGroupInfo* rg);
 STATIC void courseMenuConfirmInit_8c0184cc(Task *task);
 void CourseMenuFreeResourceGroup_8c0185c4(ResourceGroup *res_group);
-STATIC void courseMenuFreeRunMenuTask_8c017ada(Task * task, void *state);
+STATIC void freeRunMenuTask_8c017ada(Task * task, void *state);
 void CourseMenuRequestCommonResources_8c01852c(void);
 InstructorLine *init_instructorDialogs_8c044c08[66];
 Uint8 init_courseVariants_8c044d10[30];
@@ -206,7 +206,7 @@ int CourseMenuInterpolateCursor_8c016d2c()
     return 1;
 }
 
-STATIC int cursorOffTarget_8c016dc6()
+STATIC int startCursorMove_8c016dc6()
 {
     int selected;
     float y;
@@ -365,7 +365,7 @@ STATIC void instructorDialogTask_8c016f98(InstructorDialogTask *task, Instructor
     var_menuTextboxCharLimit_8c225fb8 = state->revealedCharCount_0x0c;
 }
 
-void CourseMenuSpawnDialogTask_8c0170c6(int dialog_index, int *p2)
+void CourseMenuSpawnDialogTask_8c0170c6(int dialog_index, int *voice_cues)
 {
     InstructorDialogTask *task;
     InstructorDialogState *state;
@@ -378,7 +378,7 @@ void CourseMenuSpawnDialogTask_8c0170c6(int dialog_index, int *p2)
         0x18
     );
 
-    task->voiceCuePtr_0x18 = p2;
+    task->voiceCuePtr_0x18 = voice_cues;
     state->state_0x00 = 0;
     state->dialog_0x04 = init_instructorDialogs_8c044c08[dialog_index];
     var_instructorDialogActive_8c225fb4 = 1;
@@ -423,7 +423,7 @@ STATIC void handleCourseMenuInput_8c017126()
             ].enabled_0x00 == 0
         );
 
-        if (cursorOffTarget_8c016dc6()) {
+        if (startCursorMove_8c016dc6()) {
             CHANGE_STATE(COURSE_MENU_STATE_ANIMATING);
         }
     } else if (var_peripherals_8c1ba35c[0].press & PDD_DGT_KD) {
@@ -437,7 +437,7 @@ STATIC void handleCourseMenuInput_8c017126()
             ].enabled_0x00 == 0
         );
 
-        if (cursorOffTarget_8c016dc6()) {
+        if (startCursorMove_8c016dc6()) {
             CHANGE_STATE(COURSE_MENU_STATE_ANIMATING);
         }
     } else if (var_peripherals_8c1ba35c[0].press & PDD_DGT_KL) {
@@ -451,7 +451,7 @@ STATIC void handleCourseMenuInput_8c017126()
             ].enabled_0x00 == 0
         );
 
-        if (cursorOffTarget_8c016dc6()) {
+        if (startCursorMove_8c016dc6()) {
             CHANGE_STATE(COURSE_MENU_STATE_ANIMATING);
         }
     } else if (var_peripherals_8c1ba35c[0].press & PDD_DGT_KR) {
@@ -465,7 +465,7 @@ STATIC void handleCourseMenuInput_8c017126()
             ].enabled_0x00 == 0
         );
 
-        if (cursorOffTarget_8c016dc6()) {
+        if (startCursorMove_8c016dc6()) {
             CHANGE_STATE(COURSE_MENU_STATE_ANIMATING);
         }
     }
@@ -561,7 +561,7 @@ void CourseMenuApplyUnlocks_8c0173e6(void)
     }
 }
 
-STATIC void buildCourseMenuDialogFlow_8c017420(void)
+STATIC void buildStoryDialogQueue_8c017420(void)
 {
     int cur = 0;
 
@@ -665,7 +665,7 @@ STATIC void drawCourseButtons_8c017590()
     }
 }
 
-STATIC void courseMenuStoryMenuTask_8c017718(Task * task, void *state)
+STATIC void storyMenuTask_8c017718(Task * task, void *state)
 {
     switch (var_menuState_8c1bc7a8.state_0x18) {
         case COURSE_MENU_STATE_INIT: {
@@ -814,12 +814,12 @@ STATIC void courseMenuStoryMenuTask_8c017718(Task * task, void *state)
 }
 
 /*
- * Free-run twin of courseMenuStoryMenuTask_8c017718. Differences: no run/dialog
+ * Free-run twin of storyMenuTask_8c017718. Differences: no run/dialog
  * flags are set on selection, the main-menu row is fixed at 1 rather than taken
  * from subState_0x1c, and the header (date/EXP and sprite 0x2b) is not drawn --
  * the panel sprite is 9 instead of 10.
  */
-STATIC void courseMenuFreeRunMenuTask_8c017ada(Task * task, void *state)
+STATIC void freeRunMenuTask_8c017ada(Task * task, void *state)
 {
     switch (var_menuState_8c1bc7a8.state_0x18) {
         case COURSE_MENU_STATE_INIT: {
@@ -958,7 +958,7 @@ STATIC void courseMenuFreeRunMenuTask_8c017ada(Task * task, void *state)
     AsqGetRandomA_8c012166();
 }
 
-STATIC void buildFreeRunMenuDialogFlow_8c017a20(void)
+STATIC void buildFreeRunDialogQueue_8c017a20(void)
 {
     int idx = 0;
 
@@ -982,7 +982,7 @@ STATIC void refreshCourseGrid_8c017d54(void)
 
     var_menuState_8c1bc7a8.cursorVisible_0x48 = 1;
 
-    cursorOffTarget_8c016dc6();
+    startCursorMove_8c016dc6();
 
     // Snap current cursor position to its target
     var_menuState_8c1bc7a8.pos.cursor.cursor_0x20 = var_menuState_8c1bc7a8.pos.cursor.cursorTarget_0x28;
@@ -1011,11 +1011,11 @@ void CourseMenuEnter_8c017e18(Task *task)
     LOG_INFO(("[COURSE_MENU] Initializing course menu (mode=%d)\n", var_gameMode_8c1bb8fc));
 
     if (var_gameMode_8c1bb8fc == 0) {
-        TaskSwitch_8c014b3e(task, courseMenuStoryMenuTask_8c017718);
-        buildCourseMenuDialogFlow_8c017420();
+        TaskSwitch_8c014b3e(task, storyMenuTask_8c017718);
+        buildStoryDialogQueue_8c017420();
     } else {
-        TaskSwitch_8c014b3e(task, courseMenuFreeRunMenuTask_8c017ada);
-        buildFreeRunMenuDialogFlow_8c017a20();
+        TaskSwitch_8c014b3e(task, freeRunMenuTask_8c017ada);
+        buildFreeRunDialogQueue_8c017a20();
     }
 
     var_menuState_8c1bc7a8.instructorSprite_0x60 =
@@ -1070,21 +1070,21 @@ void CourseMenuReturn_8c017ef2(void)
     if (var_gameMode_8c1bb8fc == 0) {
         TaskSpawn_8c014ae8(
             var_tasks_8c1ba3c8,
-            &courseMenuStoryMenuTask_8c017718,
+            &storyMenuTask_8c017718,
             &createdTask,
             &createdState,
             0
         );
-        buildCourseMenuDialogFlow_8c017420();
+        buildStoryDialogQueue_8c017420();
     } else {
         TaskSpawn_8c014ae8(
             var_tasks_8c1ba3c8,
-            &courseMenuFreeRunMenuTask_8c017ada,
+            &freeRunMenuTask_8c017ada,
             &createdTask,
             &createdState,
             0
         );
-        buildFreeRunMenuDialogFlow_8c017a20();
+        buildFreeRunDialogQueue_8c017a20();
     }
 
     var_menuState_8c1bc7a8.instructorSprite_0x60 =
@@ -1829,7 +1829,7 @@ STATIC InstructorLine init_seqNoSignalTurn_8c044aa0[] = {
     { "", 0 },
 };
 
-STATIC InstructorLine init_seqUkn49_8c044ab0[] = {
+STATIC InstructorLine init_seqBlank_8c044ab0[] = {
     { "", 0 },
 };
 
@@ -1973,7 +1973,7 @@ InstructorLine *init_instructorDialogs_8c044c08[] = {
     init_seqLaneStraddle_8c044a70,
     init_seqNoSignal_8c044a80,
     init_seqNoSignalTurn_8c044aa0,
-    init_seqUkn49_8c044ab0,
+    init_seqBlank_8c044ab0,
     init_seqSignalViolation_8c044ab8,
     init_seqBadStopLine_8c044ad0,
     init_seqIllegalLaneChange_8c044ae8,

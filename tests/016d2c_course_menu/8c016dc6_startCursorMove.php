@@ -28,7 +28,7 @@ return new class extends TestCase {
         $this->initUint32($this->addressOf('_init_courseMenuButtons_8c04442c') + 0x1c * 7 + 0x08, fdec(42.0));
         $this->initUint32($this->addressOf('_init_courseMenuButtons_8c04442c') + 0x1c * 7 + 0x0c, fdec(69.0));
 
-        $this->call('_cursorOffTarget_8c016dc6');
+        $this->call('_startCursorMove_8c016dc6');
         $this->shouldReturn(0);
     }
 
@@ -48,7 +48,7 @@ return new class extends TestCase {
         $this->initUint32($this->addressOf('_init_courseMenuButtons_8c04442c') + 0x1c * 7 + 0x08, fdec(42.0));
         $this->initUint32($this->addressOf('_init_courseMenuButtons_8c04442c') + 0x1c * 7 + 0x0c, fdec(69.0));
 
-        $this->call('_cursorOffTarget_8c016dc6');
+        $this->call('_startCursorMove_8c016dc6');
 
         $this->shouldWriteFloat($this->addressOf('_var_menuState_8c1bc7a8') + 0x28, 42.0);
         $this->shouldWriteFloat($this->addressOf('_var_menuState_8c1bc7a8') + 0x2c, 69.0);
