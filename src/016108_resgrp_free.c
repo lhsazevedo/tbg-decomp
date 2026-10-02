@@ -12,7 +12,6 @@
  * ====================
  */
 
-/* Matched */
 void ResGroupFreeAll_8c016108()
 {
     CourseMenuFreeResourceGroup_8c0185c4(&var_menuState_8c1bc7a8.resourceGroupA_0x00);
@@ -20,7 +19,6 @@ void ResGroupFreeAll_8c016108()
     CourseMenuFreeResourceGroup_8c0185c4(&var_resourceGroup_8c2263a8);
 
     MessageBoxFreeTextboxes_8c02af32();
-    /* Forget which \SYSTEM group is resident, so the next
-     * CourseMenuRequestSysResgrp_8c018568 reloads instead of no-opping. */
+    /* No \SYSTEM group resident: the next request reloads it. */
     var_currentSysResGroupInfo_8c225fb0 = (void *) -1;
 }
