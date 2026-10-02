@@ -23,14 +23,13 @@
 
 #define SPEED_PER_KMH (3.6f * PHYSICS_FPS)
 
-/** Converts kilometers per hour to internal speed units. */
 #define KMH_TO_SPEED(kmh) \
     ((kmh) / SPEED_PER_KMH)
 
 #define TOP_SPEED_TO_RATIO(topSpeed) \
     (KMH_TO_SPEED(topSpeed) / MAX_RPM)
 
-/* Converts gear ramp time in seconds to BAM units/frame. */
+/* Ramp time in seconds -> BAM units/frame. */
 #define ACCEL_RATE_FROM_SECONDS(seconds) \
     (0x4000 / (PHYSICS_FPS * (seconds)))
 
@@ -40,13 +39,8 @@
  */
 
 typedef struct {
-    /** How quickly the RPM ramps up, in BAM units/frame */
-    int accelRate_0x00;
-
-    /** How much speed the gear produces for a given engine RPM, in units/frame/RPM */
-    float speedRatio_0x04;
-
-    /** The speed at which the gear should be upshifted. */
+    int accelRate_0x00;    /* BAM units/frame */
+    float speedRatio_0x04; /* speed per RPM */
     float upshiftSpeed_0x08;
 } Gear;
 
@@ -95,10 +89,6 @@ STATIC Gear init_gears_8c045638[5] = {
  * =====================
  */
 
-/* Called by BusTask_8c022bdc while the mirror view is up: holds every traffic
- * entry drawn in the mirror (mirrorVisible_0x268) that is heading roughly the
- * same way as the bus (within ~90 degrees) to 20 km/h below the bus's own
- * speed, so nothing closes on the mirror while the player is looking at it. */
 void BusInputCapMirrorTraffic_8c024280(void)
 {
     Task *task;
@@ -132,9 +122,8 @@ void BusInputCapMirrorTraffic_8c024280(void)
     }
 }
 
-/* Forward/reverse selector, manual transmission only: D-pad up puts the bus in
- * gear 0, down in reverse (5). The racing controller reaches it through
- * inputManualTask_8c012504's Y-button remap. */
+/* Manual drive mode only. Gear 5 is reverse. The racing controller reaches
+ * this through inputManualTask_8c012504's Y-button remap. */
 STATIC void updateGearSelector_8c0242ce(void)
 {
     if (var_driveMode_8c1bb8c8 != 0) {
@@ -148,7 +137,6 @@ STATIC void updateGearSelector_8c0242ce(void)
     }
 }
 
-/* Applies braking (the .l trigger) each frame. */
 STATIC void applyBraking_8c024530(void)
 {
     Uint8 prevDeadzone;
@@ -181,17 +169,11 @@ STATIC void applyBraking_8c024530(void)
     angle = (int)((asinf(rpm / MAX_RPM) * 65536.0f) / TWO_PI);
     var_busState_8c1bb9d0.rpmRampAngle_0x2e4 = angle;
 
-    /* Running average of brakeAmount; gradeFrame_8c02bcd8 (02b464) docks
-     * INSTR_HARD_BRAKE once it passes 0.01. */
+    /* Graded as INSTR_HARD_BRAKE past 0.01. */
     var_runState_8c2285c4.brakeAverage_0x90 += brakeAmount;
     var_runState_8c2285c4.brakeAverage_0x90 /= 2.0f;
 }
 
-/* Throttle handler: while the .r trigger is pushed past its deadzone and at
- * least as far as the engine has already wound up (var_busState_8c1bb9d0.rpmRampAngle_0x2e4
- * is this same rpmRampAngle_0x2e4, reached through its own section B symbol),
- * winds the ramp on at the current gear's accelRate_0x00 and upshifts through
- * the gear table; otherwise coasts and downshifts. */
 STATIC void applyThrottle_8c024320(void)
 {
     Uint16 trigger;
@@ -219,7 +201,6 @@ STATIC void applyThrottle_8c024320(void)
             var_busState_8c1bb9d0.targetRpm_0x2e8 * init_gears_8c045638[gear].speedRatio_0x04;
 
         if (gear >= 4) {
-            /* Top gear: no upshift left, just clamp. */
             if (var_busState_8c1bb9d0.speed_0x27c > KMH_TO_SPEED(70.0f)) {
                 var_busState_8c1bb9d0.speed_0x27c = KMH_TO_SPEED(70.0f);
             }
@@ -230,11 +211,11 @@ STATIC void applyThrottle_8c024320(void)
             return;
         }
 
-        /* Shift-cue note: the mirror camera modes (>= 2) use a different note than the rest. */
+        /* Outside views play a different shift sound. */
         sdMidiPlay(var_midiHandles_8c0fcd28[0], 1, (var_cameraMode_8c227d9c >= BUS_CAMERA_THIRD_PERSON_NEAR) ? 0x25 : 0x26, 0);
 
         if (gear == 0) {
-            /* Arms gradeFrame_8c02bcd8's rapid-acceleration check (02b464). */
+            /* Arms the rapid-acceleration grading check. */
             var_runState_8c2285c4.firstUpshift_0x88 = 1;
         }
         var_busState_8c1bb9d0.gear_0x2f4 = gear + 1;
@@ -246,7 +227,6 @@ STATIC void applyThrottle_8c024320(void)
 
         gear = var_busState_8c1bb9d0.gear_0x2f4;
         if (gear != 0 && init_gears_8c045638[gear - 1].upshiftSpeed_0x08 > var_busState_8c1bb9d0.speed_0x27c) {
-            /* Same shift cue as the upshift above. */
             sdMidiPlay(var_midiHandles_8c0fcd28[0], 1, (var_cameraMode_8c227d9c >= BUS_CAMERA_THIRD_PERSON_NEAR) ? 0x25 : 0x26, 0);
             gear -= 1;
             var_busState_8c1bb9d0.gear_0x2f4 = gear;
@@ -260,10 +240,7 @@ STATIC void applyThrottle_8c024320(void)
         (int)((asinf(var_busState_8c1bb9d0.targetRpm_0x2e8 / MAX_RPM) * 65536.0f) / TWO_PI);
 }
 
-/* Plays the brake pedal's SFX and tracks its press intensity in
- * var_brakePressPeak_8c227d8c, ratcheting it up to (never down from) the scaled travel
- * distance while the .l trigger keeps moving further past the saved
- * brakeSensitivity_0xd1 deadzone. */
+/* The brake sound plays on release, picked by how hard the press peaked. */
 STATIC void applyBrakingSfx_8c024606(void)
 {
     Uint16 trigger;
@@ -280,20 +257,12 @@ STATIC void applyBrakingSfx_8c024606(void)
             var_brakePressPeak_8c227d8c = target;
         }
     } else if (var_brakePressPeak_8c227d8c != 0) {
-        /* Released: play the low note (0x27) if the peak press was past
-         * the halfway point (0x80), else the high note (0x28). */
         int note = (var_brakePressPeak_8c227d8c >= 0x80) ? 0x27 : 0x28;
         sdMidiPlay(var_midiHandles_8c0fcd28[0], 1, note, 0);
         var_brakePressPeak_8c227d8c = 0;
     }
 }
 
-/* Per-frame driving dispatcher, called by BusTask_8c022bdc while driving.
- * Plays the brake SFX, drives BusState.engineState_0x2e0 through its
- * off/starting/running states, handles the two turn-signal buttons (which
- * double as the mirror-view selector, and in mapped-route steering mode
- * also arm the lane-target search), and, in direct steering mode, runs the
- * steering-wheel force-feedback ramp. */
 void BusInputUpdate_8c0246b2(void)
 {
     const PDS_PERIPHERAL *pad = &var_peripherals_8c1ba35c[0];
@@ -322,7 +291,7 @@ void BusInputUpdate_8c0246b2(void)
         updateGearSelector_8c0242ce();
         break;
 
-    case 1: { /* starting -- the 30-frame crank before the engine runs */
+    case 1: { /* starting: a 30-frame crank */
         int counter;
 
         if (brakeTrigger > brakeDeadzone) {
@@ -333,10 +302,7 @@ void BusInputUpdate_8c0246b2(void)
         var_busState_8c1bb9d0.idleFrameCounter_0x2ec = counter + 1;
 
         if (counter > 30) {
-            /* Advance to running only if the throttle is STILL held (the
-             * press that got here in the first place) and the brake isn't;
-             * anything else -- throttle let go, or the brake now pressed --
-             * aborts back to off. */
+            /* Stalls unless the throttle is still held without the brake. */
             if (throttleTrigger > throttleDeadzone && !(brakeTrigger > brakeDeadzone)) {
                 var_busState_8c1bb9d0.engineState_0x2e0 = 2;
                 var_busState_8c1bb9d0.idleFrameCounter_0x2ec = 0;
@@ -355,8 +321,8 @@ void BusInputUpdate_8c0246b2(void)
 
     case 2: /* running */
         if (var_busState_8c1bb9d0.gear_0x2f4 == 5) {
-            /* Reverse: drive speed_0x27c directly instead of going through
-             * applyThrottle_8c024320/applyBraking_8c024530's forward-gear tables. */
+            /* Reverse: speed runs negative; the brake pushes it back up
+             * toward 0. */
             if (brakeTrigger > brakeDeadzone) {
                 float ratio = (float)(brakeTrigger - brakeDeadzone) /
                     (255.0f - brakeDeadzone);
@@ -391,8 +357,6 @@ void BusInputUpdate_8c0246b2(void)
             var_busState_8c1bb9d0.targetRpm_0x2e8 =
                 -(var_busState_8c1bb9d0.speed_0x27c * 16384.0f);
         } else {
-            /* var_runState_8c2285c4.field_0x80 counts frames under way and nothing reads it
-             * back -- a dead store. */
             if (var_busState_8c1bb9d0.speed_0x27c == 0.0f) {
                 var_runState_8c2285c4.field_0x80 = 0;
             } else {
@@ -404,8 +368,7 @@ void BusInputUpdate_8c0246b2(void)
                 var_busState_8c1bb9d0.blinker_0x080 |= 1;
             } else {
                 applyThrottle_8c024320();
-                /* Not braking: applyBraking_8c024530's running average
-                 * decays straight to 0 rather than halving. */
+                /* Resets rather than halving. */
                 var_runState_8c2285c4.brakeAverage_0x90 = 0.0f;
             }
         }
@@ -430,11 +393,9 @@ void BusInputUpdate_8c0246b2(void)
 
     press = pad->press;
 
-    /* press bits 0x400/0x2 = left/right turn-signal buttons; signalSide_0x25c
-     * is the driver's latched signal intent (0 off, 1 left, 2 right) and
-     * doubles as the mirror-view selector -- toggling it sets mirror_0x268
-     * between its 0/1/2 modes, gated by a var_runState_8c2285c4.lane_0x6c check against a
-     * sentinel (0x10000000) or against var_runState_8c2285c4.field_0x70[0]. */
+    /* X/B signal left/right (signalSide_0x25c 1/2) and show that side's
+     * mirror, unless already in the outermost lane on that side. In auto
+     * drive mode, pressing the latched side again starts a lane change. */
     if (var_driveMode_8c1bb8c8 != 0) {
         var_busState_8c1bb9d0.laneTargetSearchSide_0x338 = 2;
         if (var_busState_8c1bb9d0.laneTargetSearchDone_0x334 != 0) {
@@ -481,9 +442,6 @@ void BusInputUpdate_8c0246b2(void)
         return;
     }
 
-    /* Direct steering mode: same two mirror buttons, but case 1 (held) just
-     * clears back to 0 on either button, and laneTargetSearchSide_0x338 is never touched
-     * here -- then the steering force-feedback ramp always runs below. */
     if ((press & PDD_DGT_TX) != 0) {
         switch (var_busState_8c1bb9d0.signalSide_0x25c) {
         case 0:
@@ -518,12 +476,9 @@ void BusInputUpdate_8c0246b2(void)
         }
     }
 
-    /* Steering-wheel force-feedback ramp: eases ang_0x258 toward targetAngle
-     * (BAM units, from the dead-zoned analog axis x1). Moving further from
-     * center steps by a per-frame float ~80.89 or a plain int 80 -- an
-     * asymmetry in the original code; moving back toward or past center
-     * steps by a flat 182 (target keeps the current angle's sign) or 364
-     * (target is zero or the opposite sign, for a faster return to center). */
+    /* Eases the steering angle toward the stick (BAM). Steering out steps by
+     * ~80.89 one way but 80 the other -- an original-code asymmetry. Steering
+     * back steps by 182, or 364 when crossing or returning to center. */
     {
         Sint16 x1 = pad->x1;
         int dev;

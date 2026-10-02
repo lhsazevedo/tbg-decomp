@@ -6,9 +6,7 @@
  * =======================
  */
 
-/* Peak brake-pedal travel of the current press, scaled to 0..255 and never
- * walked back down; applyBrakingSfx_8c024606 picks the release note from
- * it. */
+/* Of the current press, 0..255. */
 extern int var_brakePressPeak_8c227d8c;
 
 /* =========
@@ -16,14 +14,12 @@ extern int var_brakePressPeak_8c227d8c;
  * =========
  */
 
-/* Drives the engine's off/starting/running state machine
- * (applyThrottle_8c024320, applyBraking_8c024530, applyBrakingSfx_8c024606),
- * the rear/side-mirror buttons, and -- in direct steering mode -- the
- * steering-wheel force-feedback ramp. */
+/* Pedals, engine state, turn signals and mirrors, and in manual drive mode
+ * the steering. */
 void BusInputUpdate_8c0246b2(void);
 
-/* Holds traffic drawn in the mirror to 20 km/h below the bus's own speed.
- * Only called while the mirror view is up. */
+/* Holds same-direction traffic in the mirror view to 20 km/h below the
+ * bus. */
 void BusInputCapMirrorTraffic_8c024280(void);
 
 #endif // _024280_BUS_INPUT_H
