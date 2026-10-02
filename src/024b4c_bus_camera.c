@@ -184,7 +184,7 @@ void BusCameraUpdate_8c025078(void)
             var_cameraHeightTo_8c227de0 = (float)(Sint8)(cue >> 24);
             if (var_cameraMode_8c227d9c == BUS_CAMERA_COCKPIT || var_cameraMode_8c227d9c == BUS_CAMERA_FIRST_PERSON) {
                 var_cameraCueState_8c227da4 = 2;
-            } else if (var_cameraMode_8c227d9c != 2 || var_cameraHeightTo_8c227de0 < 5.0f) {
+            } else if (var_cameraMode_8c227d9c != BUS_CAMERA_THIRD_PERSON_NEAR || var_cameraHeightTo_8c227de0 < 5.0f) {
                 var_cameraHeightFrom_8c227dd8 = var_cameraHeight_8c227df0;
                 var_cameraHeightDelta_8c227de8 = var_cameraHeight_8c227df0 - var_cameraHeightTo_8c227de0;
                 var_cameraHeightPhase_8c227df8 = 0;
@@ -231,7 +231,7 @@ void BusCameraUpdate_8c025078(void)
 
     if ((var_peripherals_8c1ba35c[0].press & PDD_DGT_TY)
         && var_busState_8c1bb9d0.driveState_0x2b4 == 1
-        && (var_cameraCueBusy_8c227dac == 0 || var_cameraMode_8c227d9c < 2)) {
+        && (var_cameraCueBusy_8c227dac == 0 || var_cameraMode_8c227d9c < BUS_CAMERA_THIRD_PERSON_NEAR)) {
         var_cameraMode_8c227d9c++;
         if (var_cameraMode_8c227d9c > BUS_CAMERA_THIRD_PERSON_FAR) {
             var_cameraMode_8c227d9c = BUS_CAMERA_COCKPIT;
@@ -470,7 +470,7 @@ void BusCameraUpdateMirror_8c025604(void)
     float dx, dz;
     float roll;
 
-    if (var_busState_8c1bb9d0.mirror_0x268 == 0) {
+    if (var_busState_8c1bb9d0.mirror_0x268 == MIRROR_NONE) {
         return;
     }
 
@@ -486,19 +486,19 @@ void BusCameraUpdateMirror_8c025604(void)
     offsetZ = -14.2f;
 
     switch (var_busState_8c1bb9d0.mirror_0x268) {
-    case 1:
+    case MIRROR_LEFT:
         offsetX = -1.5f;
         interest.x = -2.55f;
         interest.y = 0.2f;
         interest.z = 4.0f;
         break;
-    case 2:
+    case MIRROR_RIGHT:
         offsetX = 1.5f;
         interest.x = 2.55f;
         interest.y = 0.2f;
         interest.z = 4.0f;
         break;
-    case 3:
+    case MIRROR_DOOR:
         offsetX = -2.0f;
         offsetY = 2.2f;
         offsetZ = -5.2f;
