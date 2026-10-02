@@ -10,9 +10,7 @@
  * =================
  */
 
-/* One step of a rumble pattern: hold this setting for frames_0x00 frames.
- * flag/power/freq go straight into PDS_VIBPARAM, where power is Sint8 -- so
- * 0xff/0xfe/0xf9 below are -1/-2/-7. */
+/* power is a Sint8 in PDS_VIBPARAM: 0xff/0xfe/0xf9 are -1/-2/-7. */
 typedef struct {
     int frames_0x00;
     Uint8 flag_0x04;
@@ -39,8 +37,6 @@ VibState var_vibState_8c157a48;
  * ===================
  */
 
-/* An all-zero peripheral. The input units copy it over
- * var_peripherals_8c1ba35c[0] once the pad is gone. */
 const PDS_PERIPHERAL const_peripheralZero_8c033318 = {0};
 
 /* A zero frames_0x00 terminates a pattern. */
@@ -90,9 +86,7 @@ VibStep init_vibIdle_8c03be4c[] = {
     {0x00, 0x00, 0x00, 0x00}
 };
 
-/* VibStart_8c010f7a's argument indexes this; the order is also the priority
- * order, since only a higher index displaces a pattern already playing.
- * Index 7 is the parked state and never reaches stepPattern_8c010e90. */
+/* Index is also priority. 7 is idle. */
 VibStep* init_vibPatterns_8c03be5c[] = {
     init_vibEngineStart_8c03bdac,
     init_vibChimeLong_8c03bdc4,
@@ -161,6 +155,8 @@ NM_STATIC void stepPattern_8c010e90(int port) {
     }
 }
 
+/* A higher-priority pattern takes over without resetting step/frame, so it
+ * starts partway through. Possibly an original-game quirk. */
 void VibStart_8c010f7a(int pattern) {
     if (pattern < 8) {
         if (var_vibState_8c157a48.playing_0x0c == 1) {
