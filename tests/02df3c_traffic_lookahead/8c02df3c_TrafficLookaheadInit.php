@@ -5,8 +5,8 @@ declare(strict_types=1);
 use Lhsazevedo\Sh4ObjTest\TestCase;
 
 // TrafficLookaheadInit_8c02df3c(entry): seeds entry->lookaheadPoints_0x49c
-// (0x304 is resolvedArgs, 0x49c the cache, 0x4ec the odometer, 0x4f4/0x4fc
-// the path cursor/distance, 0x4f8 the resolvedArgs index) from a standing
+// (0x304 is pathBlocks, 0x49c the cache, 0x4ec the odometer, 0x4f4/0x4fc
+// the path cursor/distance, 0x4f8 the pathBlocks index) from a standing
 // start, walking the path 5.0 units at a time out to 25.0 units.
 
 return new class extends TestCase {
@@ -95,8 +95,8 @@ return new class extends TestCase {
 
     // The current segment (length 5.0) is exhausted by a starting distance
     // of 6.0: the walk subtracts the segment's length, advances past its
-    // terminator, bumps lookaheadCursorBlock_0x4f8 (the resolvedArgs index) from 0 to 1,
-    // and re-resolves the cursor from resolvedArgs_0x304[1] before writing
+    // terminator, bumps lookaheadCursorBlock_0x4f8 (the pathBlocks index) from 0 to 1,
+    // and re-resolves the cursor from pathBlocks_0x304[1] before writing
     // its first point.
     public function test_segmentExhausted_advancesViaResolvedArgs(): void {
 
@@ -108,7 +108,7 @@ return new class extends TestCase {
         $this->initFloat($entry + 0x4fc, 6.0);
         $this->initFloat($entry + 0x4ec, 20.0); // one point left to fill (< 25.0)
         $this->initUint32($entry + 0x4f8, 0);
-        $this->initUint32($entry + 0x304 + 4, $seg1); // resolvedArgs_0x304[1]
+        $this->initUint32($entry + 0x304 + 4, $seg1); // pathBlocks_0x304[1]
 
         $out = $entry + 0x49c;
 

@@ -8,7 +8,7 @@ use Lhsazevedo\Sh4ObjTest\Simulator\Types\U32;
 // TrafficInit_8c02769e is the traffic subsystem's setup/init entry point:
 // caches two per-course table pointers, picks a per-route table, optionally
 // caches a pair of CourseSceneParams rows (+ their per-20-frame deltas) for
-// the night route, then spawns trafficUpdateTask_8c0275d4. See the
+// the night route, then spawns updateTask_8c0275d4. See the
 // function's header comment in 026710_traffic.c for the full breakdown.
 
 return new class extends TestCase {
@@ -56,7 +56,7 @@ return new class extends TestCase {
         $this->shouldCall('_TaskSpawn_8c014ae8')
             ->with(
                 $this->addressOf('_var_tasks_8c1ba5e8'),
-                $this->addressOf('_trafficUpdateTask_8c0275d4'),
+                $this->addressOf('_updateTask_8c0275d4'),
                 0xffffd0,
                 0xffffd4,
                 0,

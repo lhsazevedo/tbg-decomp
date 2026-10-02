@@ -41,7 +41,7 @@
  * ====================
  */
 
-/* A -1 path cursor (entry->resolvedArgs_0x304 ran out) ends the walk early,
+/* A -1 path cursor (entry->pathBlocks_0x304 ran out) ends the walk early,
  * same as the refill loop in TrafficLookaheadScan_8c02dfca below. */
 void TrafficLookaheadInit_8c02df3c(TrafficEntry *entry)
 {
@@ -72,7 +72,7 @@ void TrafficLookaheadInit_8c02df3c(TrafficEntry *entry)
             cursor++;
             if (cursor->length_0x00 == 0.0f) {
                 entry->lookaheadCursorBlock_0x4f8++;
-                cursor = entry->resolvedArgs_0x304[entry->lookaheadCursorBlock_0x4f8];
+                cursor = entry->pathBlocks_0x304[entry->lookaheadCursorBlock_0x4f8];
             }
         }
 
@@ -118,7 +118,7 @@ void *TrafficLookaheadScan_8c02dfca(Task *self, TrafficEntry *entry, float looka
                 cursor++;
                 if (cursor->length_0x00 == 0.0f) {
                     entry->lookaheadCursorBlock_0x4f8++;
-                    cursor = entry->resolvedArgs_0x304[entry->lookaheadCursorBlock_0x4f8];
+                    cursor = entry->pathBlocks_0x304[entry->lookaheadCursorBlock_0x4f8];
                 }
             }
             if (cursor == (PathRecord *)-1) {

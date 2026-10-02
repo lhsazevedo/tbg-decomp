@@ -153,7 +153,7 @@ void *TrafficPathScanBuild_8c02f0c8(
         seg++;
         if (seg->length_0x00 == 0.0f) {
             argIndex++;
-            seg = entry->resolvedArgs_0x304[argIndex];
+            seg = entry->pathBlocks_0x304[argIndex];
         }
     }
 
@@ -164,7 +164,7 @@ void *TrafficPathScanBuild_8c02f0c8(
             seg++;
             if (seg->length_0x00 == 0.0f) {
                 argIndex++;
-                seg = entry->resolvedArgs_0x304[argIndex];
+                seg = entry->pathBlocks_0x304[argIndex];
             }
         }
         if (seg == (PathRecord *)-1) {
@@ -261,7 +261,7 @@ Sint32 TrafficPathScanJunctionOccupied_8c02f28a(Sint32 signalId)
 
         scan = var_signalGroups_8c228b40;
         group = var_signalGroups_8c228b40;
-        while (((TrafficEntry *)t->state)->signalWaitFrameId_0x450 != (Uint32)*scan) {
+        while (((TrafficEntry *)t->state)->signalWaitId_0x450 != (Uint32)*scan) {
             if (*scan == -1) {
                 scan++;
                 group = scan;

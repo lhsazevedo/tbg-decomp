@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 use Lhsazevedo\Sh4ObjTest\TestCase;
 
-// trafficUpdateTask_8c0275d4 is a hidden (never directly called) TaskAction
+// updateTask_8c0275d4 is a hidden (never directly called) TaskAction
 // -- its address is only taken via a .DATA.L pool entry and passed to
 // TaskSpawn_8c014ae8, spawned with no extra state, so its own Task struct
 // doubles as the state. See the function's header comment in
@@ -57,7 +57,7 @@ return new class extends TestCase {
 
         $task = $this->makeTask(0, 0, 0);
 
-        $this->call('_trafficUpdateTask_8c0275d4')->with($task, 0);
+        $this->call('_updateTask_8c0275d4')->with($task, 0);
 
         // No writes, no calls -- reaching the epilogue directly.
     }
@@ -79,7 +79,7 @@ return new class extends TestCase {
         $rec = $this->makeRecord(0, 0, 0, 0.0); // script == 0 -> record block skipped
         $task = $this->makeTask(0, 0, $rec);
 
-        $this->call('_trafficUpdateTask_8c0275d4')->with($task, 0);
+        $this->call('_updateTask_8c0275d4')->with($task, 0);
 
         $this->shouldWriteLong($this->addressOf('_var_activeGroundGrid_8c2264d4'), 0x11110000);
         $this->shouldWriteLong($this->addressOf('_var_activeAttrGrid_8c228b3c'), 0x22220000);
@@ -88,8 +88,8 @@ return new class extends TestCase {
 
         $this->shouldWriteLong($task + 0x0c, 2);
 
-        $this->shouldCall('_RenderQueueDraw_8c0223ea')->with(0, $this->addressOf('_applyTrafficLighting_8c02756a'), 0);
-        $this->shouldCall('_RenderQueueDraw_8c0223ea')->with(1, $this->addressOf('_applyTrafficLighting_8c02756a'), 1);
+        $this->shouldCall('_RenderQueueDraw_8c0223ea')->with(0, $this->addressOf('_applyLighting_8c02756a'), 0);
+        $this->shouldCall('_RenderQueueDraw_8c0223ea')->with(1, $this->addressOf('_applyLighting_8c02756a'), 1);
         $this->shouldCall('_TaskRunGroup_8c014b42')->with($this->addressOf('_var_tasks_8c1bac28'));
     }
 
@@ -118,7 +118,7 @@ return new class extends TestCase {
         $oldRec = $this->makeRecord(0, 0, 0, 0.0);
         $task = $this->makeTask(0, 1, $oldRec); // field_0x0c == 1 (nonzero)
 
-        $this->call('_trafficUpdateTask_8c0275d4')->with($task, 0);
+        $this->call('_updateTask_8c0275d4')->with($task, 0);
 
         $this->shouldWriteLong($this->addressOf('_var_activeGroundGrid_8c2264d4'), 0);
         $this->shouldWriteLong($this->addressOf('_var_activeAttrGrid_8c228b3c'), 0);
@@ -129,8 +129,8 @@ return new class extends TestCase {
         $this->shouldWriteLong($task + 0x18, $newRec);
         $this->shouldWriteLong($task + 0x0c, 0);
 
-        $this->shouldCall('_RenderQueueDraw_8c0223ea')->with(0, $this->addressOf('_applyTrafficLighting_8c02756a'), 0);
-        $this->shouldCall('_RenderQueueDraw_8c0223ea')->with(1, $this->addressOf('_applyTrafficLighting_8c02756a'), 1);
+        $this->shouldCall('_RenderQueueDraw_8c0223ea')->with(0, $this->addressOf('_applyLighting_8c02756a'), 0);
+        $this->shouldCall('_RenderQueueDraw_8c0223ea')->with(1, $this->addressOf('_applyLighting_8c02756a'), 1);
         $this->shouldCall('_TaskRunGroup_8c014b42')->with($this->addressOf('_var_tasks_8c1bac28'));
     }
 
@@ -149,7 +149,7 @@ return new class extends TestCase {
         $rec = $this->makeRecord(0x14, 5, 0xdeadbeef, 1.5);
         $task = $this->makeTask(3, 5, $rec); // old counter 3 < threshold 5; field_0x0c == 5 (avoid the arm/demo-switch branches)
 
-        $this->call('_trafficUpdateTask_8c0275d4')->with($task, 0);
+        $this->call('_updateTask_8c0275d4')->with($task, 0);
 
         $this->shouldWriteLong($this->addressOf('_var_activeGroundGrid_8c2264d4'), 0);
         $this->shouldWriteLong($this->addressOf('_var_activeAttrGrid_8c228b3c'), 0);
@@ -158,8 +158,8 @@ return new class extends TestCase {
 
         $this->shouldWriteLong($task + 0x08, 4);
 
-        $this->shouldCall('_RenderQueueDraw_8c0223ea')->with(0, $this->addressOf('_applyTrafficLighting_8c02756a'), 0);
-        $this->shouldCall('_RenderQueueDraw_8c0223ea')->with(1, $this->addressOf('_applyTrafficLighting_8c02756a'), 1);
+        $this->shouldCall('_RenderQueueDraw_8c0223ea')->with(0, $this->addressOf('_applyLighting_8c02756a'), 0);
+        $this->shouldCall('_RenderQueueDraw_8c0223ea')->with(1, $this->addressOf('_applyLighting_8c02756a'), 1);
         $this->shouldCall('_TaskRunGroup_8c014b42')->with($this->addressOf('_var_tasks_8c1bac28'));
     }
 
@@ -179,7 +179,7 @@ return new class extends TestCase {
         $rec = $this->makeRecord(0x14, 2, 0xdeadbeef, 0.0);
         $task = $this->makeTask(3, 1, $rec); // old counter 3 > threshold 2; field_0x0c == 1
 
-        $this->call('_trafficUpdateTask_8c0275d4')->with($task, 0);
+        $this->call('_updateTask_8c0275d4')->with($task, 0);
 
         $this->shouldWriteLong($this->addressOf('_var_activeGroundGrid_8c2264d4'), 0);
         $this->shouldWriteLong($this->addressOf('_var_activeAttrGrid_8c228b3c'), 0);
@@ -193,8 +193,8 @@ return new class extends TestCase {
         $this->shouldWriteLong($task + 0x18, $rec + 0xc);
         $this->shouldWriteLong($task + 0x08, 0);
 
-        $this->shouldCall('_RenderQueueDraw_8c0223ea')->with(0, $this->addressOf('_applyTrafficLighting_8c02756a'), 0);
-        $this->shouldCall('_RenderQueueDraw_8c0223ea')->with(1, $this->addressOf('_applyTrafficLighting_8c02756a'), 1);
+        $this->shouldCall('_RenderQueueDraw_8c0223ea')->with(0, $this->addressOf('_applyLighting_8c02756a'), 0);
+        $this->shouldCall('_RenderQueueDraw_8c0223ea')->with(1, $this->addressOf('_applyLighting_8c02756a'), 1);
         $this->shouldCall('_TaskRunGroup_8c014b42')->with($this->addressOf('_var_tasks_8c1bac28'));
     }
 
@@ -214,7 +214,7 @@ return new class extends TestCase {
         $rec = $this->makeRecord(0x14, 2, 0xdeadbeef, 1.5); // progress != 0
         $task = $this->makeTask(3, 5, $rec); // old counter 3 > threshold 2; field_0x0c == 5 (!= 1, and != 0 to avoid the arm branch)
 
-        $this->call('_trafficUpdateTask_8c0275d4')->with($task, 0);
+        $this->call('_updateTask_8c0275d4')->with($task, 0);
 
         $this->shouldWriteLong($this->addressOf('_var_activeGroundGrid_8c2264d4'), 0);
         $this->shouldWriteLong($this->addressOf('_var_activeAttrGrid_8c228b3c'), 0);
@@ -228,8 +228,8 @@ return new class extends TestCase {
         $this->shouldWriteLong($task + 0x18, $rec + 0xc);
         $this->shouldWriteLong($task + 0x08, 0);
 
-        $this->shouldCall('_RenderQueueDraw_8c0223ea')->with(0, $this->addressOf('_applyTrafficLighting_8c02756a'), 0);
-        $this->shouldCall('_RenderQueueDraw_8c0223ea')->with(1, $this->addressOf('_applyTrafficLighting_8c02756a'), 1);
+        $this->shouldCall('_RenderQueueDraw_8c0223ea')->with(0, $this->addressOf('_applyLighting_8c02756a'), 0);
+        $this->shouldCall('_RenderQueueDraw_8c0223ea')->with(1, $this->addressOf('_applyLighting_8c02756a'), 1);
         $this->shouldCall('_TaskRunGroup_8c014b42')->with($this->addressOf('_var_tasks_8c1bac28'));
     }
 };

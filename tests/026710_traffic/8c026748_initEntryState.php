@@ -230,7 +230,7 @@ return new class extends TestCase {
         $this->initUint32($block1 + 16, fdec(0.2));  // dy
 
         // entry+0x304 onward is itself an inline array of per-block
-        // pointers (the same region TrafficReadScriptArgs_8c026710 fills in
+        // pointers (the same region TrafficResolvePathBlocks_8c026710 fills in
         // from the entry's script), indexed directly by the segment index.
         $this->initUint32($this->entry + 0x304, $block0);
         $this->initUint32($this->entry + 0x308, $block1);

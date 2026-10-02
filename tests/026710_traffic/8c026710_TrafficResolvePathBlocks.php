@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 use Lhsazevedo\Sh4ObjTest\TestCase;
 
-// TrafficReadScriptArgs_8c026710 walks a stage script (an array of ushort
+// TrafficResolvePathBlocks_8c026710 walks a stage script (an array of ushort
 // words) starting 2 bytes in, decoding one instruction at a time. Each
 // instruction's word count comes from init_scriptOpWords_8c0460bc, indexed by the
 // instruction's own opcode word. Opcode 1 additionally resolves its operand
@@ -21,7 +21,7 @@ return new class extends TestCase {
         $this->initUint16($script + 0, 0);
         $this->initUint16($script + 2, 9);
 
-        $this->call('_TrafficReadScriptArgs_8c026710')->with($entry, $script);
+        $this->call('_TrafficResolvePathBlocks_8c026710')->with($entry, $script);
 
         $this->shouldWriteLong($entry + 0x304, 0xffffffff);
     }
@@ -49,7 +49,7 @@ return new class extends TestCase {
         // Terminator.
         $this->initUint16($script + 10, 9);
 
-        $this->call('_TrafficReadScriptArgs_8c026710')->with($entry, $script);
+        $this->call('_TrafficResolvePathBlocks_8c026710')->with($entry, $script);
 
         $this->shouldWriteLong($entry + 0x304, 0x33333333);
         $this->shouldWriteLong($entry + 0x308, 0xffffffff);

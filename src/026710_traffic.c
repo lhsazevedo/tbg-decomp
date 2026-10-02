@@ -27,7 +27,7 @@
  * ====================
  */
 
-/* Task private state for trafficUpdateTask_8c0275d4, set up by TrafficInit_8c02769e. */
+/* Task private state for updateTask_8c0275d4, set up by TrafficInit_8c02769e. */
 typedef struct {
     TaskAction action;
     void *state;
@@ -50,7 +50,7 @@ typedef struct {
 int var_activeTrafficPreset_8c227e14;
 /* Traffic preset table: indexed by var_busState_8c1bb9d0.scenePresetIds_0x3bc's byte at
  * bits 8-15, yielding that preset's record run in the course's *_MAC_CPU1.DAT;
- * read by trafficUpdateTask_8c0275d4. */
+ * read by updateTask_8c0275d4. */
 STATIC Sint32 *var_trafficPresetTable_8c227e18;
 /* Course CPU path-block table (== CurrentCourse.lineCpu_0x1c), indexed by a
  * script argument to resolve a traffic entry's path. */
@@ -117,12 +117,12 @@ STATIC Uint8 init_variantBodyType_8c04622c[] = {
  * ====================
  */
 
-void TrafficReadScriptArgs_8c026710(TrafficEntry *entry, Uint16 *script)
+void TrafficResolvePathBlocks_8c026710(TrafficEntry *entry, Uint16 *script)
 {
     PathRecord **out;
     Uint16 *ip;
 
-    out = entry->resolvedArgs_0x304;
+    out = entry->pathBlocks_0x304;
     for (ip = (Uint16 *)((Uint8 *)script + 2); *ip != 9; ip += init_scriptOpWords_8c0460bc[*ip]) {
         if (*ip == 1) {
             *out = var_cpuPathBlocks_8c227e1c[ip[1]];
@@ -141,7 +141,7 @@ void TrafficReadScriptArgs_8c026710(TrafficEntry *entry, Uint16 *script)
  * *entry->0x2f8 is the script's header word: 10 marks a fixed-angle static
  * decoration (traffic light, sign, ...) rather than a path-following
  * vehicle. entry+0x304 onward is itself an inline array of per-block path
- * pointers (the same region TrafficReadScriptArgs_8c026710 resolves into
+ * pointers (the same region TrafficResolvePathBlocks_8c026710 resolves into
  * from the entry's script), indexed by the segment index at entry+0x300;
  * each block is a run of {len,x,y,dx,dy} records terminated by a len==0
  * sentinel record.
@@ -164,7 +164,7 @@ STATIC void initEntryState_8c026748(TrafficEntry *entry, int *scriptIp)
     Uint16 speedRandom;
 
     if (type != 10) {
-        seg = e->resolvedArgs_0x304[0];
+        seg = e->pathBlocks_0x304[0];
         scriptCursor = *scriptIp + 2;
         e->blockIndex_0x300 = 0;
         dist = e->spawnProgress_0x2e8 + 2.0f;
@@ -174,7 +174,7 @@ STATIC void initEntryState_8c026748(TrafficEntry *entry, int *scriptIp)
             if (seg->length_0x00 == 0.0f) {
                 segIdx = e->blockIndex_0x300 + 1;
                 e->blockIndex_0x300 = segIdx;
-                seg = e->resolvedArgs_0x304[segIdx];
+                seg = e->pathBlocks_0x304[segIdx];
                 scriptCursor += 6;
             }
         }
@@ -238,15 +238,15 @@ STATIC void initEntryState_8c026748(TrafficEntry *entry, int *scriptIp)
     e->headingSin_0x26c = 0;
 
     if (type == 10) {
-        e->field_0x278 = njCos(e->heading_0x250);
-        e->field_0x274 = njSin(e->heading_0x250);
+        e->headingDirZ_0x278 = njCos(e->heading_0x250);
+        e->headingDirX_0x274 = njSin(e->heading_0x250);
     } else {
-        e->field_0x278 = seg->dirZ_0x10;
-        e->field_0x274 = seg->dirX_0x0c;
+        e->headingDirZ_0x278 = seg->dirZ_0x10;
+        e->headingDirX_0x274 = seg->dirX_0x0c;
     }
 
-    e->frontPointX_0x100 = e->posX_0xf4 - e->width_0x23c * e->field_0x274;
-    e->frontPointZ_0x108 = e->posZ_0xfc - e->width_0x23c * e->field_0x278;
+    e->frontPointX_0x100 = e->posX_0xf4 - e->width_0x23c * e->headingDirX_0x274;
+    e->frontPointZ_0x108 = e->posZ_0xfc - e->width_0x23c * e->headingDirZ_0x278;
     e->frontPointY_0x104 = e->posY_0xf8;
     e->probeSideAY_0x11c = e->posY_0xf8;
     e->probeSideBY_0x128 = e->posY_0xf8;
@@ -270,24 +270,24 @@ STATIC void initEntryState_8c026748(TrafficEntry *entry, int *scriptIp)
     if (type == 10) {
         e->speed_0x27c = 0;
     } else {
-        e->laneOffsetRatio_0x414 = (float)*(Uint16 *)(scriptCursor + 4) / 65536.0f;
-        e->speed_0x27c = e->laneOffsetRatio_0x414 / 2.0f;
+        e->cruiseSpeed_0x414 = (float)*(Uint16 *)(scriptCursor + 4) / 65536.0f;
+        e->speed_0x27c = e->cruiseSpeed_0x414 / 2.0f;
         for (i = 1; i < 4; i++) {
-            e->field_0x280[i] = 0;
+            e->accelHistory_0x280[i] = 0;
         }
         e->accelRate_0x290 = init_variantAccel_8c0461c8[variantIdx];
         e->followSpeedCap_0x418 = 9999.0f;
         e->obstacleLimitActive_0x424 = 0;
-        e->curveLimitActive_0x428 = 0;
+        e->stopLimitActive_0x428 = 0;
         speedRandom = AsqGetRandomA_8c012166();
         e->lookaheadMargin_0x41c = (float)speedRandom / 65536.0f + 1.0f;
-        e->yieldState_0x42c = 0;
+        e->turnState_0x42c = 0;
         e->signalWaitState_0x448 = 0;
-        e->signalWaitFrameId_0x450 = 0xffffffff;
-        e->attachmentWaitState_0x458 = 0;
-        e->pendingAttachmentRelease_0x498 = 0;
+        e->signalWaitId_0x450 = 0xffffffff;
+        e->crossingWaitState_0x458 = 0;
+        e->heldCrossingId_0x498 = 0;
         e->mergeWaitState_0x468 = 0;
-        e->junctionWaitState_0x474 = 0;
+        e->laneChangeState_0x474 = 0;
         *scriptIp = scriptCursor + 6;
         e->busDistance_0x490 = 9999.0f;
         e->lookaheadCacheLen_0x4ec = 0.0f;
@@ -322,8 +322,8 @@ void TrafficUpdateHeading_8c026bc4(float unused, TrafficEntry *entry)
 
     dx = dx / dist;
     dy = dy / dist;
-    e->field_0x274 = dx;
-    e->field_0x278 = dy;
+    e->headingDirX_0x274 = dx;
+    e->headingDirZ_0x278 = dy;
 
     e->frontPointX_0x100 = dx * e->width_0x23c + e->posX_0xf4;
     e->frontPointZ_0x108 = dy * e->width_0x23c + e->posZ_0xfc;
@@ -492,7 +492,7 @@ float TrafficComputeBlockedSpeed_8c026eaa(TrafficEntry *entry, TrafficEntry *oth
  * (sceneObjectTypeIds_0x14 == NULL), every id up to maxId is conservatively
  * marked in-use. Otherwise every id starts free, then every already-placed
  * decoration script (opcode 5 = fixed id, same opcode table as
- * TrafficReadScriptArgs_8c026710) across every scene-object type listed for
+ * TrafficResolvePathBlocks_8c026710) across every scene-object type listed for
  * this segment marks its id in-use -- one type's placed-object list is a run
  * of TrafficRelocatePlacementTable_8c026da4-fixed-up 0xc-byte records, each holding its own script
  * pointer at +4, terminated by a 0 there. The per-type table base is
@@ -532,14 +532,14 @@ void TrafficMarkSignalIdsInUse_8c026dcc(int maxId)
     }
 }
 
-void TrafficUpdateFrameFlags_8c026f7e(TrafficEntry *entry)
+void TrafficBlinkTurnSignal_8c026f7e(TrafficEntry *entry)
 {
     TrafficEntry *e = entry;
     Uint32 counter = e->blinkCounter_0x260;
 
     e->blinkCounter_0x260 = counter + 1;
     if ((counter & 0x10) == 0) {
-        if (e->junctionWaitTurnDir_0x47c == 0) {
+        if (e->laneChangeDir_0x47c == 0) {
             e->blinker_0x080 = e->blinker_0x080 | 2;
         } else {
             e->blinker_0x080 = e->blinker_0x080 | 4;
@@ -579,11 +579,11 @@ void TrafficSeekPathRecord_8c026fcc(TrafficEntry *entry, PathRecord *seg)
         if (seg->length_0x00 == 0.0f) {
             segIdx = e->blockIndex_0x300 + 1;
             e->blockIndex_0x300 = segIdx;
-            seg = e->resolvedArgs_0x304[segIdx];
+            seg = e->pathBlocks_0x304[segIdx];
         }
     }
 
-    e->resolvedArgs_0x304[e->blockIndex_0x300] = seg;
+    e->pathBlocks_0x304[e->blockIndex_0x300] = seg;
     e->pathRecord_0x2b8 = seg;
     e->pathDistance_0x2bc = dist;
 }
@@ -631,17 +631,17 @@ Sint32 TrafficRunEntryScript_8c027012(TrafficEntry *entry)
             spawned = 1;
             blockIdx = e->blockIndex_0x300 + 1;
             e->blockIndex_0x300 = blockIdx;
-            e->pathRecord_0x2b8 = e->resolvedArgs_0x304[blockIdx];
+            e->pathRecord_0x2b8 = e->pathBlocks_0x304[blockIdx];
             ip = cur + 3;
-            e->laneOffsetRatio_0x414 = (float)cur[2] / 65536.0f;
+            e->cruiseSpeed_0x414 = (float)cur[2] / 65536.0f;
             continue;
         }
 
         if (op == 2 || op == 3) {
-            e->yieldState_0x42c = 1;
-            e->yieldPriority_0x430 = (op == 3) ? 1 : 0;
-            e->yieldEnterSignalId_0x434 = cur[1];
-            e->yieldExitSignalId_0x438 = cur[2];
+            e->turnState_0x42c = 1;
+            e->turnDir_0x430 = (op == 3) ? 1 : 0;
+            e->turnStartSignalId_0x434 = cur[1];
+            e->turnEndSignalId_0x438 = cur[2];
             ip = cur + 3;
             continue;
         } else if (op == 4) {
@@ -649,15 +649,15 @@ Sint32 TrafficRunEntryScript_8c027012(TrafficEntry *entry)
             continue;
         } else if (op == 5) {
             e->signalWaitState_0x448 = 2;
-            e->signalWaitFrameId_0x450 = cur[1];
+            e->signalWaitId_0x450 = cur[1];
             e->signalWaitArmedBlock_0x454 = e->blockIndex_0x300;
             ip = cur + 2;
             continue;
         } else if (op == 6) {
-            e->attachmentWaitState_0x458 = 2;
-            e->attachmentId_0x45c = cur[1];
-            e->attachmentExitSignalId_0x460 = cur[2];
-            e->attachmentArmedBlock_0x464 = e->blockIndex_0x300;
+            e->crossingWaitState_0x458 = 2;
+            e->crossingId_0x45c = cur[1];
+            e->crossingExitSignalId_0x460 = cur[2];
+            e->crossingArmedBlock_0x464 = e->blockIndex_0x300;
             ip = cur + 3;
             continue;
         } else if (op == 7) {
@@ -667,13 +667,13 @@ Sint32 TrafficRunEntryScript_8c027012(TrafficEntry *entry)
             ip = cur + 2;
             continue;
         } else if (op == 8) {
-            e->junctionWaitState_0x474 = 1;
-            e->junctionWaitSignalId_0x478 = cur[1];
-            e->junctionWaitTurnDir_0x47c = cur[2];
+            e->laneChangeState_0x474 = 1;
+            e->laneChangeSignalId_0x478 = cur[1];
+            e->laneChangeDir_0x47c = cur[2];
             /* resolves its id argument through var_cpuPathBlocks_8c227e1c the
-             * same way TrafficReadScriptArgs_8c026710 does */
-            e->junctionPath_0x484 = var_cpuPathBlocks_8c227e1c[cur[3]];
-            e->junctionWaitArmedBlock_0x480 = e->blockIndex_0x300;
+             * same way TrafficResolvePathBlocks_8c026710 does */
+            e->laneChangePath_0x484 = var_cpuPathBlocks_8c227e1c[cur[3]];
+            e->laneChangeArmedBlock_0x480 = e->blockIndex_0x300;
             ip = cur + 4;
             continue;
         } else if (op == 9) {
@@ -726,7 +726,7 @@ Sint32 TrafficRunEntryScript_8c027012(TrafficEntry *entry)
  * -- real asm behavior: it still returns 1, same as a completed spawn.
  *
  * For a moving vehicle (*script != 10), the script's block-relative args are
- * resolved (TrafficReadScriptArgs_8c026710), then TrafficPathScanBuild_8c02f0c8 gets a chance
+ * resolved (TrafficResolvePathBlocks_8c026710), then TrafficPathScanBuild_8c02f0c8 gets a chance
  * to reject the entry outright (TaskKill, return 0 -- this is the only path
  * that actually reports failure after allocation); on acceptance, the
  * entry's start progress and a small random per-entry path-origin jitter
@@ -801,9 +801,9 @@ STATIC Sint32 spawnEntry_8c0272b8(Uint32 typeCode, float progress, Uint16 *scrip
         }
 
         if (*script != 10) {
-            TrafficReadScriptArgs_8c026710(e, script);
+            TrafficResolvePathBlocks_8c026710(e, script);
 
-            if (TrafficPathScanBuild_8c02f0c8(task, e, e->resolvedArgs_0x304[0], 0, progress, 8.0f) != 0) {
+            if (TrafficPathScanBuild_8c02f0c8(task, e, e->pathBlocks_0x304[0], 0, progress, 8.0f) != 0) {
                 TaskKill_8c014b66(task);
                 return 0;
             }
@@ -842,7 +842,7 @@ STATIC Sint32 spawnEntry_8c0272b8(Uint32 typeCode, float progress, Uint16 *scrip
 /* Sets Chunk simple/easy light direction from one of two fixed light-dir
  * vectors, selected by flag. Installed as a DrawFn (arg passed
  * through as flag) by spawnEntry_8c0272b8's caller. */
-STATIC void applyTrafficLighting_8c02756a(int flag)
+STATIC void applyLighting_8c02756a(int flag)
 {
     float *dir;
 
@@ -890,11 +890,11 @@ STATIC void applyTrafficLighting_8c02756a(int flag)
  * still advanced as if it had succeeded. Either way "succeeding" advances
  * the cursor to the next record (+0xc) and resets the counter.
  *
- * Finally re-applies the two fixed light directions (applyTrafficLighting_8c02756a,
+ * Finally re-applies the two fixed light directions (applyLighting_8c02756a,
  * one RenderQueueDraw per draw layer) and runs every vehicle task spawned
  * above to completion (TaskRunGroup_8c014b42 on var_tasks_8c1bac28).
  */
-STATIC void trafficUpdateTask_8c0275d4(TrafficUpdateTask *task, void *state)
+STATIC void updateTask_8c0275d4(TrafficUpdateTask *task, void *state)
 {
     TrafficPlacement *rec;
     Uint32 presetMask;
@@ -940,8 +940,8 @@ STATIC void trafficUpdateTask_8c0275d4(TrafficUpdateTask *task, void *state)
         }
     }
 
-    RenderQueueDraw_8c0223ea(RENDER_LAYER_MAIN, applyTrafficLighting_8c02756a, 0);
-    RenderQueueDraw_8c0223ea(RENDER_LAYER_MIRROR, applyTrafficLighting_8c02756a, 1);
+    RenderQueueDraw_8c0223ea(RENDER_LAYER_MAIN, applyLighting_8c02756a, 0);
+    RenderQueueDraw_8c0223ea(RENDER_LAYER_MIRROR, applyLighting_8c02756a, 1);
     TaskRunGroup_8c014b42(var_tasks_8c1bac28);
 }
 
@@ -950,7 +950,7 @@ STATIC void trafficUpdateTask_8c0275d4(TrafficUpdateTask *task, void *state)
  * invented PTR_PTR_8c1bb88c global -- its address is
  * var_currentCourse_8c1bb868 + 0x24 -- and var_signalGroups_8c228b40 as Sint32*.
  *
- * Spawns trafficUpdateTask_8c0275d4 into var_tasks_8c1ba5e8,
+ * Spawns updateTask_8c0275d4 into var_tasks_8c1ba5e8,
  * caching two per-course table pointers (route path array, per-preset script
  * table) and, when time of day is night, a copy of two adjacent
  * CourseSceneParams.rec0_0x0c rows plus their per-20-frame deltas -- consumed
@@ -992,7 +992,7 @@ void TrafficInit_8c02769e(void)
         var_nightLightColorStep_8c1bbdb8[2] = (var_nightLightColorOn_8c1bbdd0[2] - var_nightLightColorOff_8c1bbdc4[2]) / 20.0f;
     }
 
-    TaskSpawn_8c014ae8(var_tasks_8c1ba5e8, trafficUpdateTask_8c0275d4, (Task **)&task, &state, 0);
+    TaskSpawn_8c014ae8(var_tasks_8c1ba5e8, updateTask_8c0275d4, (Task **)&task, &state, 0);
     task->queuedItem_0x18 = (TrafficPlacement *)var_trafficPresetTable_8c227e18[var_activeTrafficPreset_8c227e14];
     task->counter_0x08 = 0;
     task->presetState_0x0c = 1;

@@ -46,7 +46,7 @@ void *TrafficPathScanBuild_8c02f0c8(
     TrafficEntry *entry,
     /* Path record the walk starts from */
     PathRecord *firstRecord,
-    /* FirstRecord's index in entry->resolvedArgs_0x304 */
+    /* FirstRecord's index in entry->pathBlocks_0x304 */
     Sint32 argIndex,
     /* Distance along the path to skip before sampling */
     float startProgress,
@@ -59,7 +59,7 @@ void *TrafficPathScanBuild_8c02f0c8(
  * at the intersection where a vehicle currently stands.
  */
 Sint32 TrafficPathScanJunctionOccupied_8c02f28a(
-    /* Signal id, as in TrafficEntry.signalWaitFrameId_0x450 */
+    /* Signal id, as in TrafficEntry.signalWaitId_0x450 */
     Sint32 signalId
 );
 

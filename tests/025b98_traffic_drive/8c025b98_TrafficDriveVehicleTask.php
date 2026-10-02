@@ -32,7 +32,7 @@ return new class extends TestCase {
         $this->setSize('_BusDrawFadeLights_8c028022', 4);
         $this->setSize('_TrafficAdvanceOnPath_8c026ca2', 4);
         $this->setSize('_TrafficRunEntryScript_8c027012', 4);
-        $this->setSize('_TrafficReadScriptArgs_8c026710', 4);
+        $this->setSize('_TrafficResolvePathBlocks_8c026710', 4);
         $this->setSize('_var_busState_8c1bb9d0', 0x3cc);
         $this->setSize('_var_activeTrafficPreset_8c227e14', 4);
         $this->setSize('_var_timeOfDay_8c18ad20', 4);
@@ -155,7 +155,7 @@ return new class extends TestCase {
         $task = $this->alloc(4);
         $entry = $this->allocEntry();
         $this->initUint32($entry + 0x2b4, 3);
-        $this->initUint32($entry + 0x304, 0x1234); // resolvedArgs_0x304[0]
+        $this->initUint32($entry + 0x304, 0x1234); // pathBlocks_0x304[0]
 
         $this->call('_TrafficDriveVehicleTask_8c025b98')->with($task, $entry);
 

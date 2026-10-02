@@ -53,13 +53,13 @@
           .IMPORT     _var_tasks_8c1ba5e8
           .IMPORT     _TrafficDriveParkedTask_8c02656a
           .IMPORT     _GroundProbeTrackPolygonAtHeight_8c021290
-          .EXPORT     _TrafficReadScriptArgs_8c026710
+          .EXPORT     _TrafficResolvePathBlocks_8c026710
           .EXPORT     _TrafficUpdateHeading_8c026bc4
           .EXPORT     _TrafficAdvanceOnPath_8c026ca2
           .EXPORT     _TrafficRelocatePlacementTable_8c026da4
           .EXPORT     _TrafficMarkSignalIdsInUse_8c026dcc
           .EXPORT     _TrafficComputeBlockedSpeed_8c026eaa
-          .EXPORT     _TrafficUpdateFrameFlags_8c026f7e
+          .EXPORT     _TrafficBlinkTurnSignal_8c026f7e
           .EXPORT     _TrafficRemainingPathDistance_8c026fb0
           .EXPORT     _TrafficSeekPathRecord_8c026fcc
           .EXPORT     _TrafficRunEntryScript_8c027012
@@ -70,13 +70,13 @@
           .AIFDEF     UNIT_TESTING
           .EXPORT     _initEntryState_8c026748
           .EXPORT     _spawnEntry_8c0272b8
-          .EXPORT     _applyTrafficLighting_8c02756a
-          .EXPORT     _trafficUpdateTask_8c0275d4
+          .EXPORT     _applyLighting_8c02756a
+          .EXPORT     _updateTask_8c0275d4
           .EXPORT     _var_trafficPresetTable_8c227e18
           .EXPORT     _var_cpuPathBlocks_8c227e1c
           .AENDI
           .SECTION     P, CODE, ALIGN=4
-_TrafficReadScriptArgs_8c026710:
+_TrafficResolvePathBlocks_8c026710:
           MOV.W       LP_GEN_49807,R6
           MOV.L       LP_GEN_49807+8,R7
           ADD         R4,R6
@@ -1174,7 +1174,7 @@ LAB_8c026f6a:
           MOV.L       @R15+,R13
           RTS
           MOV.L       @R15+,R14
-_TrafficUpdateFrameFlags_8c026f7e:
+_TrafficBlinkTurnSignal_8c026f7e:
           MOV.W       LP_GEN_56012,R0
           MOV         #H'10,R2
           MOV.L       @(R0,R4),R3
@@ -1808,7 +1808,7 @@ LAB_8c027422:
           CMP/EQ      #H'a,R0
           BT          LAB_8c0274da
           MOV         R13,R5
-          BSR         _TrafficReadScriptArgs_8c026710
+          BSR         _TrafficResolvePathBlocks_8c026710
           MOV.L       @R15,R4
           MOVA        LP_GEN_50256+32,R0
           MOV.L       @R15,R6
@@ -1969,7 +1969,7 @@ LAB_8c027550:
           MOV.L       @R15+,R13
           RTS
           MOV.L       @R15+,R14
-_applyTrafficLighting_8c02756a:
+_applyLighting_8c02756a:
           MOV.L       R14,@-R15
           TST         R4,R4
           STS.L       PR,@-R15
@@ -2015,7 +2015,7 @@ LP_GEN_41074:
           .DATA.L _var_mirrorLightDir_8c227dc4 ; H'8C0275C8
           .DATA.L _njCnkSetSimpleLight ; H'8C0275CC
           .DATA.L _njCnkSetEasyLight ; H'8C0275D0
-_trafficUpdateTask_8c0275d4:
+_updateTask_8c0275d4:
           MOV.L       LP_GEN_74201,R2
           MOV.L       R14,@-R15
           MOV.L       R13,@-R15
@@ -2308,7 +2308,7 @@ LP_GEN_74201:
           .DATA.L _var_busState_8c1bb9d0+H'3BC ; H'8C027808 (scenePresetIds_0x3bc)
           .DATA.L _var_activeTrafficPreset_8c227e14 ; H'8C02780C
           .DATA.L _var_trafficPresetTable_8c227e18 ; H'8C027810
-          .DATA.L _applyTrafficLighting_8c02756a ; H'8C027814
+          .DATA.L _applyLighting_8c02756a ; H'8C027814
           .DATA.L _RenderQueueDraw_8c0223ea ; H'8C027818
           .DATA.L _var_tasks_8c1bac28 ; H'8C02781C
           .DATA.L _TaskRunGroup_8c014b42 ; H'8C027820
@@ -2327,7 +2327,7 @@ LP_GEN_74201:
           .DATA.L _var_nightLightIntensityStep_8c1bbda0 ; H'8C027854
           .DATA.L H'41A00000 ; H'8C027858
           .DATA.L _var_nightLightColorStep_8c1bbdb8 ; H'8C02785C
-          .DATA.L _trafficUpdateTask_8c0275d4 ; H'8C027860
+          .DATA.L _updateTask_8c0275d4 ; H'8C027860
           .DATA.L _var_tasks_8c1ba5e8 ; H'8C027864
           .DATA.L _TaskSpawn_8c014ae8 ; H'8C027868
           .SECTION    D, DATA, ALIGN=4

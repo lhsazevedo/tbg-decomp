@@ -90,7 +90,7 @@ return new class extends TestCase {
     // in init_dayMasks_8c046208, and days_0x00=16 sets that same bit in the day mask
     // -- the day gate passes and the entry is spawned as a parked vehicle
     // (script header word == 10): TrafficDriveParkedTask_8c02656a's task action, entry+0x2e4=1,
-    // and the moving-vehicle-only block (TrafficReadScriptArgs_8c026710,
+    // and the moving-vehicle-only block (TrafficResolvePathBlocks_8c026710,
     // TrafficPathScanBuild_8c02f0c8, entry+0x2e8/0x2ec/0x2f0, TrafficAdvanceOnPath_8c026ca2)
     // is skipped entirely.
     public function test_dayGateAllowsSpawn_parked(): void {
@@ -170,7 +170,7 @@ return new class extends TestCase {
         $this->shouldCall('_AsqGetRandomA_8c012166')->andReturn(1); // odd -> flag set
         $this->shouldWriteLong($entry + 0x510, 0x40);
 
-        $this->shouldCall('_TrafficReadScriptArgs_8c026710')->with($entry, $script);
+        $this->shouldCall('_TrafficResolvePathBlocks_8c026710')->with($entry, $script);
         $this->shouldCall('_TrafficPathScanBuild_8c02f0c8')->with($task, $entry, 0x12345678, 0, 2.5, 8.0)->andReturn(0);
 
         $this->shouldWriteFloat($entry + 0x2e8, 2.5);
@@ -273,7 +273,7 @@ return new class extends TestCase {
         $this->shouldWriteLong($entry + 0x2e0, 0x01);
         $this->shouldWriteLong($entry + 0x510, 0);
 
-        $this->shouldCall('_TrafficReadScriptArgs_8c026710')->with($entry, $script);
+        $this->shouldCall('_TrafficResolvePathBlocks_8c026710')->with($entry, $script);
         $this->shouldCall('_TrafficPathScanBuild_8c02f0c8')->with($task, $entry, 0xdeadbeef, 0, 1.0, 8.0)->andReturn(1);
         $this->shouldCall('_TaskKill_8c014b66')->with($task);
 

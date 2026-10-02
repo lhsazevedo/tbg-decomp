@@ -42,7 +42,7 @@ return new class extends TestCase {
         return $seg;
     }
 
-    // entry with resolvedArgs_0x304[0] = seg
+    // entry with pathBlocks_0x304[0] = seg
     private function makeEntry(int $seg): int {
         $entry = $this->alloc(0x308);
         $this->initUint32($entry + 0x304, $seg);
@@ -200,7 +200,7 @@ return new class extends TestCase {
         $this->shouldReturn(0);
     }
 
-    // The path runs out (resolvedArgs_0x304[1] == -1) partway through the
+    // The path runs out (pathBlocks_0x304[1] == -1) partway through the
     // sampling loop, after the first sample was already collected: the
     // second sample is never written, and the scan proceeds over just that
     // one collected pair.
@@ -210,13 +210,13 @@ return new class extends TestCase {
     // fires, so it never risks dereferencing the -1 sentinel, matching the
     // real asm's unchecked first walk), while the *second* (sampling) walk
     // exhausts it on its second pass (remaining reaches 13.0 > 10.0),
-    // hitting the terminator and then resolvedArgs_0x304[1] == -1.
+    // hitting the terminator and then pathBlocks_0x304[1] == -1.
     public function test_pathExhaustedMidLoop_scansOnlyCollectedSample(): void {
         $this->resolveSymbols();
 
         $seg0 = $this->makeSeg(length: 10.0, x: 0.0, z: 0.0, dirX: 1.0, dirZ: 0.0);
         $entry = $this->makeEntry($seg0);
-        $this->initUint32($entry + 0x304 + 4, -1); // resolvedArgs_0x304[1]
+        $this->initUint32($entry + 0x304 + 4, -1); // pathBlocks_0x304[1]
 
         $self = $this->alloc(4);
         $this->farBusState();

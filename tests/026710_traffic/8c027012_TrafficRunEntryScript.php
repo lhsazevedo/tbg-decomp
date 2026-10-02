@@ -229,7 +229,7 @@ return new class extends TestCase {
     }
 
     // Opcode 8 additionally resolves its 3rd argument word through
-    // var_cpuPathBlocks_8c227e1c -- the same array TrafficReadScriptArgs_8c026710 indexes
+    // var_cpuPathBlocks_8c227e1c -- the same array TrafficResolvePathBlocks_8c026710 indexes
     // for opcode 1.
     public function test_opcode8ConfiguresFieldsAndResolvesArg(): void {
         $this->allocEntry();

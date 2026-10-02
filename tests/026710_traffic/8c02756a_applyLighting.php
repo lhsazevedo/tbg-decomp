@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 use Lhsazevedo\Sh4ObjTest\TestCase;
 
-// applyTrafficLighting_8c02756a is a hidden (never directly called) fade-
+// applyLighting_8c02756a is a hidden (never directly called) fade-
 // command callback -- its address is only taken via a .DATA.L pool entry
 // and passed to RenderQueueDraw_8c0223ea. It selects one of two fixed
 // float[3] light-direction vectors by flag and applies it as both the
@@ -35,7 +35,7 @@ return new class extends TestCase {
         $this->seedDir('_var_busSimpleLightDir_8c227db8', 1.0, 2.0, 3.0);
         $this->seedDir('_var_mirrorLightDir_8c227dc4', 4.0, 5.0, 6.0);
 
-        $this->call('_applyTrafficLighting_8c02756a')->with(0);
+        $this->call('_applyLighting_8c02756a')->with(0);
 
         $this->shouldCall('_njCnkSetSimpleLight')->with(1.0, 2.0, 3.0);
         $this->shouldCall('_njCnkSetEasyLight')->with(1.0, 2.0, 3.0);
@@ -47,7 +47,7 @@ return new class extends TestCase {
         $this->seedDir('_var_busSimpleLightDir_8c227db8', 1.0, 2.0, 3.0);
         $this->seedDir('_var_mirrorLightDir_8c227dc4', 4.0, 5.0, 6.0);
 
-        $this->call('_applyTrafficLighting_8c02756a')->with(1);
+        $this->call('_applyLighting_8c02756a')->with(1);
 
         $this->shouldCall('_njCnkSetSimpleLight')->with(4.0, 5.0, 6.0);
         $this->shouldCall('_njCnkSetEasyLight')->with(4.0, 5.0, 6.0);

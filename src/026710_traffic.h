@@ -30,7 +30,7 @@ typedef struct {
 } PathRecord;
 
 /* One CPU-vehicle placement record from the course's *_MAC_CPU1.DAT, walked by
- * trafficUpdateTask_8c0275d4. A run of these is terminated by script == NULL;
+ * updateTask_8c0275d4. A run of these is terminated by script == NULL;
  * TrafficRelocatePlacementTable_8c026da4 relocates `script` from a self-relative offset to a pointer at
  * load time. `progress` is the entry's start distance along its path. */
 typedef struct {
@@ -145,8 +145,8 @@ typedef struct {
     Uint32 mirrorVisible_0x268;
     Sint32 headingSin_0x26c;
     float headingCos_0x270;
-    float field_0x274;
-    float field_0x278;
+    float headingDirX_0x274;
+    float headingDirZ_0x278;
     /* Same offset/role as BusState.speed_0x27c: a ramp value
      * TrafficDriveParkedTask_8c02656a nudges by +-0.1 per frame and
      * projects along dirX_0x29c/dirZ_0x2a0 to slide the entity. */
@@ -157,7 +157,7 @@ typedef struct {
      * out slots plus this frame's speed delta into the heading value passed
      * to BusDrawPlaceEntity_8c027c3c. All 4 slots are float; previously typed
      * as 2 Uint32 fields plus 8 bytes of padding -- see that function. */
-    float field_0x280[4];
+    float accelHistory_0x280[4];
     float accelRate_0x290;
     Uint8 padding_0x294[0x8];
     /* Same offset/role as BusState.dir_x_0x29c/dir_z_0x2a0 (its collision
@@ -174,7 +174,7 @@ typedef struct {
      * vehicle, or the whole story for a fixed decoration -- see
      * TrafficDriveParkedTask_8c02656a), 3 = waiting for the entity's own
      * spawn box to clear after a script reload before resuming. Unrelated
-     * to junctionWaitState_0x474's own 1-4 sequencing for the junction-wait script
+     * to laneChangeState_0x474's own 1-4 sequencing for the junction-wait script
      * opcodes (5/6/7/8). */
     Uint32 driveState_0x2b4;
     PathRecord *pathRecord_0x2b8;
@@ -199,14 +199,14 @@ typedef struct {
     Uint16 *scriptCursor_0x2fc;
     Sint32 blockIndex_0x300;
     /* inline array of per-path-block record pointers, indexed by
-     * blockIndex_0x300; TrafficReadScriptArgs_8c026710 fills it from the
+     * blockIndex_0x300; TrafficResolvePathBlocks_8c026710 fills it from the
      * script's opcode-1 path ids and terminates it with -1 */
-    PathRecord *resolvedArgs_0x304[64];
+    PathRecord *pathBlocks_0x304[64];
     Uint32 junctionSlot_0x404;
     Uint32 junctionVertexIds_0x408;
     Uint32 junctionHitCount_0x40c;
     Uint32 signalId_0x410;
-    float laneOffsetRatio_0x414;
+    float cruiseSpeed_0x414;
     /* Speed this entry must not exceed because of whatever is in front of
      * it: the vehicle ahead's speed plus a margin, clamped at 0. Written by
      * TrafficComputeBlockedSpeed_8c026eaa (into the *other* entry's copy) and
@@ -217,37 +217,37 @@ typedef struct {
     float lookaheadMargin_0x41c;
     Uint32 field_0x420;  /* no use site anywhere in src/ */
     Uint32 obstacleLimitActive_0x424;
-    Uint32 curveLimitActive_0x428;
-    Uint32 yieldState_0x42c;
-    Sint32 yieldPriority_0x430;
-    Uint32 yieldEnterSignalId_0x434;
-    Uint32 yieldExitSignalId_0x438;
+    Uint32 stopLimitActive_0x428;
+    Uint32 turnState_0x42c;
+    Sint32 turnDir_0x430;
+    Uint32 turnStartSignalId_0x434;
+    Uint32 turnEndSignalId_0x438;
     Uint8 padding_0x43c[0xc];
     Uint32 signalWaitState_0x448;
     /* Unreferenced. init_scriptOpWords_8c0460bc gives the 0x448 family one arg word where
      * the 0x458/0x468 families get two, so this is probably just matching
      * their width. */
     Uint32 field_0x44c;
-    Uint32 signalWaitFrameId_0x450;
+    Uint32 signalWaitId_0x450;
     Uint32 signalWaitArmedBlock_0x454;
-    Uint32 attachmentWaitState_0x458;
-    Uint32 attachmentId_0x45c;
-    Uint32 attachmentExitSignalId_0x460;
-    Uint32 attachmentArmedBlock_0x464;
+    Uint32 crossingWaitState_0x458;
+    Uint32 crossingId_0x45c;
+    Uint32 crossingExitSignalId_0x460;
+    Uint32 crossingArmedBlock_0x464;
     Uint32 mergeWaitState_0x468;
     Uint32 mergeWaitSignalId_0x46c;
     Uint32 mergeWaitArmedBlock_0x470;
-    Uint32 junctionWaitState_0x474;
-    Uint32 junctionWaitSignalId_0x478;
-    Sint32 junctionWaitTurnDir_0x47c;
-    Uint32 junctionWaitArmedBlock_0x480;
-    PathRecord *junctionPath_0x484;
-    Uint32 junctionWaitTimer_0x488;
+    Uint32 laneChangeState_0x474;
+    Uint32 laneChangeSignalId_0x478;
+    Sint32 laneChangeDir_0x47c;
+    Uint32 laneChangeArmedBlock_0x480;
+    PathRecord *laneChangePath_0x484;
+    Uint32 laneChangeTimer_0x488;
     Sint32 animKind_0x48c;
     /* Distance to the player bus, refreshed per frame by 025b98. */
     float busDistance_0x490;
     Uint32 groundAligned_0x494;
-    Uint32 pendingAttachmentRelease_0x498;
+    Uint32 heldCrossingId_0x498;
     /* Cache of upcoming path positions (x,z pairs) at 5-unit intervals,
      * built by TrafficLookaheadInit_8c02df3c/TrafficLookaheadScan_8c02dfca (02df3c) from lookaheadCursor_0x4f4/0x4fc/
      * 0x4f8's path-walk cursor. Terminated by a 9999.0 sentinel in the
@@ -269,13 +269,13 @@ typedef struct {
 
 extern int var_activeTrafficPreset_8c227e14;
 
-void TrafficReadScriptArgs_8c026710(TrafficEntry *entry, Uint16 *script);
+void TrafficResolvePathBlocks_8c026710(TrafficEntry *entry, Uint16 *script);
 void TrafficUpdateHeading_8c026bc4(float unused, TrafficEntry *entry);
 Sint32 TrafficAdvanceOnPath_8c026ca2(float unused, TrafficEntry *entry);
 void TrafficRelocatePlacementTable_8c026da4(void *handle);
 void TrafficMarkSignalIdsInUse_8c026dcc(int maxId);
 float TrafficComputeBlockedSpeed_8c026eaa(TrafficEntry *entry, TrafficEntry *other);
-void TrafficUpdateFrameFlags_8c026f7e(TrafficEntry *entry);
+void TrafficBlinkTurnSignal_8c026f7e(TrafficEntry *entry);
 float TrafficRemainingPathDistance_8c026fb0(TrafficEntry *entry);
 void TrafficSeekPathRecord_8c026fcc(TrafficEntry *entry, PathRecord *seg);
 Sint32 TrafficRunEntryScript_8c027012(TrafficEntry *entry);

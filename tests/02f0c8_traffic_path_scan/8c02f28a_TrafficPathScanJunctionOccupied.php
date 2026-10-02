@@ -7,7 +7,7 @@ use Lhsazevedo\Sh4ObjTest\TestCase;
 // TrafficPathScanJunctionOccupied_8c02f28a(signalId): if var_occupiedGroup_8c228b44 isn't cached (-1), scans
 // var_tasks_8c1bac28 for the first live task whose entry has atGroundJunction_0x50c
 // != 0, then walks the -1-separated id groups of var_signalGroups_8c228b40 to find the
-// group containing that entry's signalWaitFrameId_0x450 marker, caching its start in
+// group containing that entry's signalWaitId_0x450 marker, caching its start in
 // var_occupiedGroup_8c228b44. Either way, returns 1 if signalId appears (before a -1
 // terminator) in that cached group, else 0.
 
@@ -25,7 +25,7 @@ return new class extends TestCase {
         return $task;
     }
 
-    // entry with signalWaitFrameId_0x450 (marker) and atGroundJunction_0x50c (active flag)
+    // entry with signalWaitId_0x450 (marker) and atGroundJunction_0x50c (active flag)
     private function makeEntry(int $marker, int $active): int {
         $entry = $this->alloc(0x514);
         $this->initUint32($entry + 0x450, $marker);
