@@ -29,8 +29,7 @@
  * =================
  */
 
-/* Auto-repeat for the dpad, applied to var_peripherals_8c1ba35c[0].press.
- * period_0x08 starts long and shortens the longer a direction is held. */
+/* Menu dpad auto-repeat. */
 typedef struct {
     int active_0x00;
     int counter_0x04;
@@ -45,8 +44,7 @@ typedef struct {
 
 STATIC KeyRepeat var_keyRepeat_8c157ad4;
 
-/* Last dpad direction the analog stick stood for, so a held stick presses once.
- * Only inputMenuTask_8c012324 synthesises these; the drive's tasks do not. */
+/* Last dpad direction the analog stick stood for, so a held stick presses once. */
 STATIC int var_stickLatchX_8c157ae4;
 STATIC int var_stickLatchY_8c157ae8;
 
@@ -64,13 +62,7 @@ STATIC const char *init_fortyFive_8c03bf40 = "FortyFive";
  * =========
  */
 
-/*
- * Menu-side input: publishes port 0 verbatim as var_peripherals_8c1ba35c[0],
- * then adds the two things menus need that the pad does not report -- dpad
- * presses synthesised from the analog stick, and key repeat on all four
- * directions. InputSpawnTask_8c0128cc(1) swaps this out for the drive's own
- * remapping task.
- */
+/* Port 0 as is, plus dpad presses from the analog stick and dpad key repeat. */
 STATIC void inputMenuTask_8c012324()
 {
     int support;
@@ -132,8 +124,7 @@ STATIC void inputMenuTask_8c012324()
             }
         } else if (support == BT_RACING) {
             var_activeCtrlType_8c157a70 = BT_RACING;
-            /* Same combo, even though the wheel has no X/Y to hold -- so it is
-               unreachable here, unlike inputManualTask_8c012504's wheel path. */
+            /* The standard combo, unreachable on a wheel: it has no X/Y. */
             if (
                 (var_peripheral_8c1ba358->press & PDD_DGT_ST) &&
                 ((var_peripheral_8c1ba358->on & DGT_ABXY) == DGT_ABXY)
@@ -175,11 +166,7 @@ STATIC void inputMenuTask_8c012324()
     SndUpdateAdxVolFade_8c010a40();
 }
 
-/*
- * Per-frame input for a manual-transmission drive (var_driveMode_8c1bb8c8 ==
- * 0): folds port 0 into the logical var_peripherals_8c1ba35c[0] through the
- * configurable remap tables, and watches for the reset combo.
- */
+/* Drive input for manual transmission, through the configurable remap tables. */
 STATIC void inputManualTask_8c012504(void)
 {
     int support;
@@ -240,9 +227,8 @@ STATIC void inputManualTask_8c012504(void)
             }
         }
         /* Forward/reverse selector: at a standstill with the brake past
-           half, Y becomes the D-pad press updateGearSelector_8c0242ce reads --
-           Up to leave reverse, Down to enter it. Swallows Y, so the reset
-           combo is unreachable this frame. */
+           half, Y becomes the dpad press updateGearSelector_8c0242ce reads --
+           Up to leave reverse, Down to enter it. */
         if ((var_peripherals_8c1ba35c[0].press & PDD_DGT_TY) &&
             var_busState_8c1bb9d0.speed_0x27c == 0.0f &&
             var_peripherals_8c1ba35c[0].l >= 0x81) {
@@ -274,10 +260,7 @@ STATIC void inputManualTask_8c012504(void)
     VmGameUpdateLcd_8c01c910();
 }
 
-/*
- * The same for an automatic drive (var_driveMode_8c1bb8c8 != 0): its own pair
- * of remap tables, and no forward/reverse selector.
- */
+/* The same for automatic transmission, without the forward/reverse selector. */
 STATIC void inputAutoTask_8c012718(void)
 {
     int support;
@@ -357,9 +340,7 @@ STATIC void inputAutoTask_8c012718(void)
     VmGameUpdateLcd_8c01c910();
 }
 
-/* Installs the task that fills var_peripherals_8c1ba35c each frame: 0 for the
- * menus (inputMenuTask_8c012324, with its stick and repeat state reset), 1 for a
- * drive. Any other value installs nothing. */
+/* mode: 0 menus, 1 drive; anything else installs nothing. */
 void InputSpawnTask_8c0128cc(int mode)
 {
     void (*action)(void);
@@ -385,8 +366,8 @@ void InputSpawnTask_8c0128cc(int mode)
     }
 }
 
-/* One frame of input, run straight after GameEnterDrive_8c01306e (013ae8) so
- * the drive's first frame already sees mapped buttons. */
+/* One frame of drive input, so the drive's first frame already sees mapped
+ * buttons. */
 void InputPollDrive_8c012970(void)
 {
     if (var_driveMode_8c1bb8c8 == 0) {
@@ -398,8 +379,8 @@ void InputPollDrive_8c012970(void)
     }
 }
 
-/* True only on the first call since the program started: the sentinel lives
- * in BSS, so a return to the title leaves it standing but a reboot clears it. */
+/* True only on the first call since power-on: the sentinel lives in BSS, which
+ * a return to the title leaves standing. */
 int InputCheckColdBoot_8c012984(void)
 {
     if (strcmp(var_bootSentinel_8c157aec, init_fortyFive_8c03bf40) == 0) {

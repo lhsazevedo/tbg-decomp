@@ -2,11 +2,8 @@
 #ifndef _INPUT_H
 #define _INPUT_H
 
-/*
- * The two values of PDS_PERIPHERAL.support the game accepts, masked with
- * BT_CONTROLLER and mirrored into var_activeCtrlType_8c157a70: 0xf06fe is the
- * standard pad, 0x700fe the racing controller (no X/Y, no second stick axis).
- */
+/* The two PDS_PERIPHERAL.support values the game accepts, masked with
+ * BT_CONTROLLER: the standard pad and the racing controller. */
 #define BT_CONTROLLER   (PDD_DEV_SUPPORT_TA | PDD_DEV_SUPPORT_TB | PDD_DEV_SUPPORT_TX | \
                          PDD_DEV_SUPPORT_TY | PDD_DEV_SUPPORT_ST | PDD_DEV_SUPPORT_KU | \
                          PDD_DEV_SUPPORT_KD | PDD_DEV_SUPPORT_KL | PDD_DEV_SUPPORT_KR | \
