@@ -17,7 +17,7 @@ return new class extends TestCase {
 
         $this->shouldCall('_TaskSpawn_8c014ae8')->with(
             $this->addressOf('_var_tasks_8c1ba3c8'),
-            $this->addressOf('_taskUnmountVms_8c01946a'),
+            $this->addressOf('_unmountTask_8c01946a'),
             $createdTask,
             $createdState,
             0,

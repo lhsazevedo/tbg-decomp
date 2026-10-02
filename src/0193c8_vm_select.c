@@ -32,8 +32,8 @@ char *DEBUG_vmSelectStateNames[] = {
     "PROCEED_WITHOUT_SAVING",
     "VM_WARNING_FADE_IN",
     "VM_WARNING",
-    "CONFIRM_FADE_OUT_TO_MAIN_MENU",
-    "FADE_OUT",
+    "FADE_OUT_TO_FILE_SELECT",
+    "FADE_OUT_TO_MAIN_MENU",
     "FADE_IN_FROM_VM_WARNING"
 };
 
@@ -74,8 +74,8 @@ enum VM_SELECT_STATE {
     VM_SELECT_STATE_PROCEED_WITHOUT_SAVING = 5,
     VM_SELECT_STATE_VM_WARNING_FADE_IN = 6,
     VM_SELECT_STATE_VM_WARNING = 7,
-    VM_SELECT_STATE_CONFIRM_FADE_OUT_TO_MAIN_MENU = 8,
-    VM_SELECT_STATE_FADE_OUT = 9,
+    VM_SELECT_STATE_FADE_OUT_TO_FILE_SELECT = 8,
+    VM_SELECT_STATE_FADE_OUT_TO_MAIN_MENU = 9,
     VM_SELECT_STATE_FADE_IN_FROM_VM_WARNING = 10
 };
 
@@ -110,7 +110,7 @@ char* init_saveNames_8c044d50[11] = {
 
 /* Cursor rest positions: drives 0-3 on the top row, 4-7 on the bottom
  * alongside slot 8, the PROCEED WITHOUT SAVING option. */
-NJS_POINT2 init_vmIconsPositions_8c044d7c[9] = {
+NJS_POINT2 init_cursorPositions_8c044d7c[9] = {
     {185.0f, 98.0f},
     {255.0f, 98.0f},
     {325.0f, 98.0f},
@@ -139,7 +139,7 @@ char* init_vmuStatusMessages_8c044dc4[7] = {
  */
 
 /* Tested */
-STATIC void taskWaitForVmsReady_8c0193c8(Task *task)
+STATIC void mountWaitTask_8c0193c8(Task *task)
 {
     int drive;
 
@@ -166,12 +166,12 @@ void VmSelectMountAll_8c01940e()
             BupMount_8c014c00(drive);
     }
 
-    TaskSpawn_8c014ae8(var_tasks_8c1ba3c8, &taskWaitForVmsReady_8c0193c8, &createdTask, &createdState, 0);
+    TaskSpawn_8c014ae8(var_tasks_8c1ba3c8, &mountWaitTask_8c0193c8, &createdTask, &createdState, 0);
     var_vmMountBusy_8c22606c = 1;
 }
 
 /* Tested */
-STATIC void taskUnmountVms_8c01946a(Task *task, void *state)
+STATIC void unmountTask_8c01946a(Task *task, void *state)
 {
     int drive;
     Bool isBusy = FALSE;
@@ -201,7 +201,7 @@ void VmSelectUnmountAll_8c0194de()
     Task *createdTask;
     void *createdState;
 
-    TaskSpawn_8c014ae8(var_tasks_8c1ba3c8, &taskUnmountVms_8c01946a, &createdTask, &createdState, 0);
+    TaskSpawn_8c014ae8(var_tasks_8c1ba3c8, &unmountTask_8c01946a, &createdTask, &createdState, 0);
     var_vmMountBusy_8c22606c = 1;
 }
 
@@ -359,12 +359,12 @@ STATIC int saveFileExists_8c019730(Sint32 drive, char* saveName)
 /* Tested */
 STATIC void initCursorLerp_8c019788(int drive)
 {
-    var_menuState_8c1bc7a8.pos.vmSelect.cursorTarget_0x28.x = init_vmIconsPositions_8c044d7c[drive].x;
-    var_menuState_8c1bc7a8.pos.vmSelect.cursorTarget_0x28.y = init_vmIconsPositions_8c044d7c[drive].y;
+    var_menuState_8c1bc7a8.pos.vmSelect.cursorTarget_0x28.x = init_cursorPositions_8c044d7c[drive].x;
+    var_menuState_8c1bc7a8.pos.vmSelect.cursorTarget_0x28.y = init_cursorPositions_8c044d7c[drive].y;
     var_menuState_8c1bc7a8.cursorVelocity_0x30.x =
-        (init_vmIconsPositions_8c044d7c[drive].x - var_menuState_8c1bc7a8.pos.vmSelect.cursor_0x20.x) / 6;
+        (init_cursorPositions_8c044d7c[drive].x - var_menuState_8c1bc7a8.pos.vmSelect.cursor_0x20.x) / 6;
     var_menuState_8c1bc7a8.cursorVelocity_0x30.y =
-        (init_vmIconsPositions_8c044d7c[drive].y - var_menuState_8c1bc7a8.pos.vmSelect.cursor_0x20.y) / 6;
+        (init_cursorPositions_8c044d7c[drive].y - var_menuState_8c1bc7a8.pos.vmSelect.cursor_0x20.y) / 6;
 }
 
 /* Tested */
@@ -597,7 +597,7 @@ STATIC void vmMenuTask_8c0198a0(Task* task, void *actionState)
             int promptResult = PromptHandleBinary_8c016caa(&var_menuState_8c1bc7a8.cursorCol_0x3c);
             if (promptResult == 1) {
                 var_selectedVm_8c1ba34c = var_menuState_8c1bc7a8.selectedVmuSlot_0x6c;
-                CHANGE_STATE(VM_SELECT_STATE_CONFIRM_FADE_OUT_TO_MAIN_MENU);
+                CHANGE_STATE(VM_SELECT_STATE_FADE_OUT_TO_FILE_SELECT);
                 RenderStartFadeOut_8c022b60(10);
             } else if (promptResult == 2) {
                 MessageBoxSwapFor_8c02aefc(init_vmuStatusMessages_8c044dc4[var_vmuStatus_8c226048[slot]]);
@@ -622,7 +622,7 @@ STATIC void vmMenuTask_8c0198a0(Task* task, void *actionState)
             if (promptResult == 1) {
                 var_selectedVm_8c1ba34c = -1;
                 FileSelectResetNewGame_8c01895e();
-                CHANGE_STATE(VM_SELECT_STATE_FADE_OUT);
+                CHANGE_STATE(VM_SELECT_STATE_FADE_OUT_TO_MAIN_MENU);
                 SndStartAdxFadeOut_8c010bae(0);
                 SndStartAdxFadeOut_8c010bae(1);
                 RenderStartFadeOut_8c022b60(10);
@@ -718,7 +718,7 @@ STATIC void vmMenuTask_8c0198a0(Task* task, void *actionState)
         }
 
         // Confirm Fade Out to Main Menu
-        case VM_SELECT_STATE_CONFIRM_FADE_OUT_TO_MAIN_MENU: {
+        case VM_SELECT_STATE_FADE_OUT_TO_FILE_SELECT: {
             if (!var_isFading_8c226568) {
                 FileSelectEnter_8c019334(task);
                 return;
@@ -737,7 +737,7 @@ STATIC void vmMenuTask_8c0198a0(Task* task, void *actionState)
         }
 
         // Fade out
-        case VM_SELECT_STATE_FADE_OUT: {
+        case VM_SELECT_STATE_FADE_OUT_TO_MAIN_MENU: {
             if (var_isFading_8c226568) {
                 break;
             }

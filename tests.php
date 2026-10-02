@@ -84,9 +84,9 @@ return [
             'tests' => [
                 "tests/0193c8_vm_select/8c0198a0_vmMenuTask.php",
                 "tests/0193c8_vm_select/8c019852_drawVmWarning.php",
-                "tests/0193c8_vm_select/8c0193c8_taskWaitForVmsReady.php",
+                "tests/0193c8_vm_select/8c0193c8_mountWaitTask.php",
                 "tests/0193c8_vm_select/8c01940e_VmSelectMountAll.php",
-                "tests/0193c8_vm_select/8c01946a_taskUnmountVms.php",
+                "tests/0193c8_vm_select/8c01946a_unmountTask.php",
                 "tests/0193c8_vm_select/8c0194de_VmSelectUnmountAll.php",
                 "tests/0193c8_vm_select/8c019504_VmSelectFreeAndClear.php",
                 "tests/0193c8_vm_select/8c019550_VmSelectUpdateAllStatus.php",

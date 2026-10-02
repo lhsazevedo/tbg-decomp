@@ -49,7 +49,7 @@
           .EXPORT     _const_8c03807c
           .EXPORT     _const_8c03808c
           .EXPORT     _init_saveNames_8c044d50
-          .EXPORT     _init_vmIconsPositions_8c044d7c
+          .EXPORT     _init_cursorPositions_8c044d7c
           .EXPORT     _init_vmuStatusMessages_8c044dc4
           .EXPORT     _VmSelectMountAll_8c01940e
           .EXPORT     _VmSelectUnmountAll_8c0194de
@@ -67,8 +67,8 @@
                                                 ; 01bb48_vm_game
 
           .AIFDEF UNIT_TESTING
-          .EXPORT     _taskWaitForVmsReady_8c0193c8
-          .EXPORT     _taskUnmountVms_8c01946a
+          .EXPORT     _mountWaitTask_8c0193c8
+          .EXPORT     _unmountTask_8c01946a
           .EXPORT     _saveFileExists_8c019730
           .EXPORT     _initCursorLerp_8c019788
           .EXPORT     _drawVmMenu_8c0197c0
@@ -76,7 +76,7 @@
           .EXPORT     _vmMenuTask_8c0198a0
           .AENDI
           .SECTION     P, CODE, ALIGN=4
-_taskWaitForVmsReady_8c0193c8:
+_mountWaitTask_8c0193c8:
           MOV.L       R14,@-R15
           MOV.L       R13,@-R15
           MOV.L       R12,@-R15
@@ -165,7 +165,7 @@ LAB_8c01943c:
           MOV.L       @R15+,R13
           RTS
           MOV.L       @R15+,R14
-_taskUnmountVms_8c01946a:
+_unmountTask_8c01946a:
           MOV.L       R14,@-R15
           MOV.L       R13,@-R15
           MOV.L       R12,@-R15
@@ -337,12 +337,12 @@ LP_GEN_33095:
           .DATA.L _TaskKill_8c014b66 ; H'8C0195A0
           .DATA.L _var_vmMountBusy_8c22606c ; H'8C0195A4
           .DATA.L _BupMount_8c014c00 ; H'8C0195A8
-          .DATA.L _taskWaitForVmsReady_8c0193c8 ; H'8C0195AC
+          .DATA.L _mountWaitTask_8c0193c8 ; H'8C0195AC
           .DATA.L _var_tasks_8c1ba3c8 ; H'8C0195B0
           .DATA.L _TaskSpawn_8c014ae8 ; H'8C0195B4
           .DATA.L _BupUnmount_8c014c46 ; H'8C0195B8
           .DATA.L _buStat ; H'8C0195BC
-          .DATA.L _taskUnmountVms_8c01946a ; H'8C0195C0
+          .DATA.L _unmountTask_8c01946a ; H'8C0195C0
           .DATA.L _syFree ; H'8C0195C4
           .DATA.L _BupClearInfo_8c014c8a ; H'8C0195C8
           .DATA.L _var_gBupInfo_8c1bc4ac ; H'8C0195CC
@@ -914,7 +914,7 @@ LAB_8c0199ca:
           MOV         R9,R14
 LP_GEN_31723:
           .RES.W 1 ; H'8C0199DE
-          .DATA.L _init_vmIconsPositions_8c044d7c ; H'8C0199E0
+          .DATA.L _init_cursorPositions_8c044d7c ; H'8C0199E0
           .DATA.L _var_menuState_8c1bc7a8 ; H'8C0199E4
           .DATA.L H'40C00000 ; H'8C0199E8
           .DATA.L _SpriteDraw_8c014f54 ; H'8C0199EC
@@ -1551,7 +1551,7 @@ _init_saveNames_8c044d50:
           .DATA.L      _const_8c037fe0
           .DATA.L      _const_8c037ff0
           .DATA.L      _const_8c038000
-_init_vmIconsPositions_8c044d7c:
+_init_cursorPositions_8c044d7c:
           .DATA.B      H'00, H'00, H'39, H'43
           .DATA.B      H'00, H'00, H'C4, H'42, H'00, H'00, H'7F, H'43, H'00, H'00, H'C4, H'42, H'00, H'80, H'A2, H'43
           .DATA.B      H'00, H'00, H'C4, H'42, H'00, H'80, H'C5, H'43, H'00, H'00, H'C4, H'42, H'00, H'00, H'16, H'43
