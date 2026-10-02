@@ -32,22 +32,6 @@
           .IMPORT     _init_adxPlaying_8c03bd80
           .IMPORT     _MainMenuEnter_8c01a09a
           .IMPORT     _TaskReinstall_8c014b3e
-          .EXPORT     _const_8c037f60
-          .EXPORT     _const_8c037f70
-          .EXPORT     _const_8c037f80
-          .EXPORT     _const_8c037f90
-          .EXPORT     _const_8c037fa0
-          .EXPORT     _const_8c037fb0
-          .EXPORT     _const_8c037fc0
-          .EXPORT     _const_8c037fd0
-          .EXPORT     _const_8c037fe0
-          .EXPORT     _const_8c037ff0
-          .EXPORT     _const_8c038000
-          .EXPORT     _const_8c038004
-          .EXPORT     _const_8c038014
-          .EXPORT     _const_8c038050
-          .EXPORT     _const_8c03807c
-          .EXPORT     _const_8c03808c
           .EXPORT     _init_saveNames_8c044d50
           .EXPORT     _init_cursorPositions_8c044d7c
           .EXPORT     _init_vmuStatusMessages_8c044dc4

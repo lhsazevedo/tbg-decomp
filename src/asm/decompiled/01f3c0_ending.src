@@ -53,12 +53,12 @@
           .EXPORT     _init_endingCreditsTail_8c045290
           .EXPORT     _init_endingResourceGroup_8c045324
           .EXPORT     _var_endingVoiceList_8c226430
-          .AENDI
-          .EXPORT     _EndingStart_8c01f954
           .EXPORT     _init_endingVoicesPerfect_8c04522c
           .EXPORT     _init_endingVoicesHigh_8c045244
           .EXPORT     _init_endingVoicesNormal_8c04525c
           .EXPORT     _init_endingVoicesFailure_8c045278
+          .AENDI
+          .EXPORT     _EndingStart_8c01f954
           .SECTION     P, CODE, ALIGN=4
 _selectEndingDialog_8c01f3c0:
           MOV.L       R14,@-R15

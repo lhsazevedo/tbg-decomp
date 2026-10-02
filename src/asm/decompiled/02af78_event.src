@@ -14,14 +14,12 @@
           .EXPORT     _EventScanCandidates_8c02b03c
           .EXPORT     _EventPickForSegment_8c02b170
           .EXPORT     _EventApplyFlags_8c02b292
-          .EXPORT     _init_wanganEvents_8c04abb0
-          .EXPORT     _init_shinjukuEvents_8c04b1f0
-          .EXPORT     _init_omeEvents_8c04b920
           .AIFDEF UNIT_TESTING
           .EXPORT     _setProgressFlag_8c02af78
           .EXPORT     _hasEventProgressFlag_8c02afbe
           .EXPORT     _setRunEventFlag_8c02b022
           .EXPORT     _hasRunEventFlag_8c02b030
+          .EXPORT     _init_shinjukuEvents_8c04b1f0
           .AENDI
           .EXPORT     _var_routeEvents_8c22851c ; 02c884_stop
           .EXPORT     _var_eventCandidates_8c228520 ; 02c884_stop

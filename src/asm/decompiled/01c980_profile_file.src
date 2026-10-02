@@ -38,27 +38,6 @@
           .EXPORT     _menuTask_8c01ccec
           .EXPORT     _var_profileUnlocked_8c2263b4
           .AENDI
-          .EXPORT     _const_8c0386a0 ; 01c980.src
-          .EXPORT     _const_8c0386b4 ; 01c980.src
-          .EXPORT     _const_8c0386c0 ; 01c980.src
-          .EXPORT     _const_8c0386cc ; 01c980.src
-          .EXPORT     _const_8c0386e0 ; 01c980.src
-          .EXPORT     _const_8c0386ec ; 01c980.src
-          .EXPORT     _const_8c0386f8 ; 01c980.src
-          .EXPORT     _const_8c03870c ; 01c980.src
-          .EXPORT     _const_8c038718 ; 01c980.src
-          .EXPORT     _const_8c038724 ; 01c980.src
-          .EXPORT     _const_8c038738 ; 01c980.src
-          .EXPORT     _const_8c038744 ; 01c980.src
-          .EXPORT     _const_8c038750 ; 01c980.src
-          .EXPORT     _const_8c038764 ; 01c980.src
-          .EXPORT     _const_8c038770 ; 01c980.src
-          .EXPORT     _const_8c03877c ; 01c980.src
-          .EXPORT     _const_8c038790 ; 01c980.src
-          .EXPORT     _const_8c03879c ; 01c980.src
-          .EXPORT     _const_8c0387a8 ; 01c980.src
-          .EXPORT     _const_8c0387bc ; 01c980.src
-          .EXPORT     _const_8c0387c8 ; 01c980.src
           .EXPORT     _init_profileUnlockFlags_8c044ffc ; 01c980.src
           .EXPORT     _init_profileResgrps_8c0450d8 ; 01c980.src
           .EXPORT     _init_rowResgrps_8c045148 ; 01c980.src

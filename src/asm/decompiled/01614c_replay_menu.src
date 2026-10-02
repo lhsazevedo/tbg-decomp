@@ -83,36 +83,6 @@
           .AENDI
           .EXPORT     _init_replaySaveNames_8c044294
           .EXPORT     _init_replayMenuEntries_8c04429c
-          .EXPORT     _const_8c0360a4
-          .EXPORT     _const_8c0360b0
-          .EXPORT     _const_8c0360b4
-          .EXPORT     _const_8c0360c0
-          .EXPORT     _const_8c0360d4
-          .EXPORT     _const_8c0360e4
-          .EXPORT     _const_8c0360fc
-          .EXPORT     _const_8c036120
-          .EXPORT     _const_8c036130
-          .EXPORT     _const_8c036148
-          .EXPORT     _const_replayFileName_8c036160
-          .EXPORT     _const_8c03616c
-          .EXPORT     _const_8c036170
-          .EXPORT     _const_8c036180
-          .EXPORT     _const_8c036190
-          .EXPORT     _const_8c03619c
-          .EXPORT     _const_8c0361a8
-          .EXPORT     _const_8c0361b8
-          .EXPORT     _const_8c0361c8
-          .EXPORT     _const_8c0361dc
-          .EXPORT     _const_8c0361ec
-          .EXPORT     _const_8c036200
-          .EXPORT     _const_8c036218
-          .EXPORT     _const_8c036224
-          .EXPORT     _const_8c036234
-          .EXPORT     _const_8c036244
-          .EXPORT     _const_8c036250
-          .EXPORT     _const_8c036264
-          .EXPORT     _const_8c036274
-          .EXPORT     _const_8c03627c
           .EXPORT     _var_replayMenuCourseSel_8c1bc824 ; 0129cc_game
           .EXPORT     _var_demoBuffer_8c1bc828 ; 014f54_text
           .SECTION    P, CODE, ALIGN=4

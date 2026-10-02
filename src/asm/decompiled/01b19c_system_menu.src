@@ -73,33 +73,6 @@
           .AENDI
           .EXPORT     _SystemMenuWriteToVmu_8c01b26c
           .EXPORT     _SystemMenuEnter_8c01ba64
-          .EXPORT     _const_8c0380a4 ; 01b19c.src
-          .EXPORT     _const_8c0380b0 ; 01b19c.src
-          .EXPORT     _const_8c0380c8 ; 01b19c.src
-          .EXPORT     _const_8c0380cc ; 01b19c.src
-          .EXPORT     _const_8c0380f8 ; 01b19c.src
-          .EXPORT     _const_8c038128 ; 01b19c.src
-          .EXPORT     _const_8c038158 ; 01b19c.src
-          .EXPORT     _const_8c03817c ; 01b19c.src
-          .EXPORT     _const_8c0381b0 ; 01b19c.src
-          .EXPORT     _const_8c0381dc ; 01b19c.src
-          .EXPORT     _const_8c03820c ; 01b19c.src
-          .EXPORT     _const_8c038248 ; 01b19c.src
-          .EXPORT     _const_8c03826c ; 01b19c.src
-          .EXPORT     _const_8c0382a4 ; 01b19c.src
-          .EXPORT     _const_8c0382d8 ; 01b19c.src
-          .EXPORT     _const_8c03830c ; 01b19c.src
-          .EXPORT     _const_8c038340 ; 01b19c.src
-          .EXPORT     _const_8c03836c ; 01b19c.src
-          .EXPORT     _const_8c03838c ; 01b19c.src
-          .EXPORT     _const_8c0383a4 ; 01b19c.src
-          .EXPORT     _const_8c0383d0 ; 01b19c.src
-          .EXPORT     _const_8c0383e8 ; 01b19c.src
-          .EXPORT     _const_8c038414 ; 01b19c.src
-          .EXPORT     _const_8c038428 ; 01b19c.src
-          .EXPORT     _const_8c038434 ; 01b19c.src
-          .EXPORT     _const_8c03844c ; 01b19c.src
-          .EXPORT     _const_8c038454 ; 01b19c.src
           .SECTION     P, CODE, ALIGN=4
 _SystemMenuApplyLoadedProgress_8c01b19c:
           MOV.W       LP_GEN_63917,R0
