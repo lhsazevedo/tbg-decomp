@@ -3,19 +3,19 @@
 
 /* Ambient drive-cue state (see driveCueTask_8c020214). Three fields are
  * written from outside this unit: BusTask_8c022bdc (022bdc) sets
- * nearStopLatch_0x0c on the first A press of a drive and
+ * announceRequested_0x0c on the first A press of a drive and
  * StopUpdateArrival_8c02ce48 (02c884) clears it on a stop-heading
  * transition; gradeFrame_8c02bcd8 (02b464) also sets it when it docks points
  * for a missing announcement; TrafficDriveVehicle_8c025b98 (025b98) sets
- * firstChimeArmed_0x18 when a CPU vehicle sits stopped at a junction. */
+ * trafficChimeArmed_0x18 when a CPU vehicle sits stopped at a junction. */
 typedef struct {
-    int idleChimeState_0x00;
-    int idleChimeTimer_0x04;
+    int ambientChimeState_0x00;
+    int ambientChimeTimer_0x04;
     int stopAnnounceState_0x08;
-    int nearStopLatch_0x0c;
+    int announceRequested_0x0c;
     int stopAnnounceTimer_0x10;
-    int nearStopChimeLatch_0x14;
-    int firstChimeArmed_0x18;
+    int segmentChimeLatch_0x14;
+    int trafficChimeArmed_0x18;
 } DriveCueState;
 
 extern DriveCueState var_driveCueState_8c2264b8;

@@ -903,7 +903,7 @@ LP_GEN_52477:
           .DATA.L _var_nextStopSegment_8c228710 ; H'8C02CF1C
           .DATA.L H'461C3C00 ; H'8C02CF20
           .DATA.L _var_prevStopSegment_8c22870c ; H'8C02CF24
-          .DATA.L _var_driveCueState_8c2264b8+H'C ; H'8C02CF28 (nearStopLatch_0x0c)
+          .DATA.L _var_driveCueState_8c2264b8+H'C ; H'8C02CF28 (announceRequested_0x0c)
 LAB_8c02cf2c:
           MOV.W       LP_GEN_27124,R0
           MOV.L       LP_GEN_27124+12,R3

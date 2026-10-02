@@ -34,13 +34,13 @@ DriveCueState var_driveCueState_8c2264b8;
  *
  * - an ambient chime plus pad rumble, replayed on a randomized timer while
  *   the bus is above a low speed threshold
- *   (idleChimeState_0x00/idleChimeTimer_0x04), plus a one-shot variant armed
+ *   (ambientChimeState_0x00/ambientChimeTimer_0x04), plus a one-shot variant armed
  *   by TrafficDriveVehicle_8c025b98;
  * - the driver's own stop announcement (stopAnnounceState_0x08): a
  *   route-specific chime, then the spoken stop name 60 frames later via
- *   SndPlayAdx_8c010cd6, requested by nearStopLatch_0x0c;
+ *   SndPlayAdx_8c010cd6, requested by announceRequested_0x0c;
  * - a chime at a fixed list of per-route segments, third-person camera only
- *   (nearStopChimeLatch_0x14).
+ *   (segmentChimeLatch_0x14).
  *
  * It is also what advances rumble playback, while the VIBRATION setting is
  * on. */
@@ -55,16 +55,16 @@ STATIC void driveCueTask_8c020214(Task *task, void *state)
         return;
     }
 
-    switch (var_driveCueState_8c2264b8.idleChimeState_0x00) {
+    switch (var_driveCueState_8c2264b8.ambientChimeState_0x00) {
     case 0:
         /* Cleared below on every call, so this fires only when
          * TrafficDriveVehicle_8c025b98 armed it since the last frame. */
-        if (var_driveCueState_8c2264b8.firstChimeArmed_0x18 != 0) {
+        if (var_driveCueState_8c2264b8.trafficChimeArmed_0x18 != 0) {
             sdMidiPlay(var_midiHandles_8c0fcd28[3], 1, AsqGetRandomInRangeB_8c0121be(6) + 9, 0);
-            var_driveCueState_8c2264b8.idleChimeTimer_0x04 = (AsqGetRandomInRangeB_8c0121be(3) + 2) * 30;
-            var_driveCueState_8c2264b8.idleChimeState_0x00 = 1;
+            var_driveCueState_8c2264b8.ambientChimeTimer_0x04 = (AsqGetRandomInRangeB_8c0121be(3) + 2) * 30;
+            var_driveCueState_8c2264b8.ambientChimeState_0x00 = 1;
         } else if (var_busState_8c1bb9d0.speed_0x27c > 0.09259258955717087f) {
-            if (--var_driveCueState_8c2264b8.idleChimeTimer_0x04 < 0) {
+            if (--var_driveCueState_8c2264b8.ambientChimeTimer_0x04 < 0) {
                 int r = AsqGetRandomB_8c0121a8();
                 if ((r & 1) == 0) {
                     sdMidiPlay(var_midiHandles_8c0fcd28[3], 1, 0x3c, 0);
@@ -73,17 +73,17 @@ STATIC void driveCueTask_8c020214(Task *task, void *state)
                     sdMidiPlay(var_midiHandles_8c0fcd28[3], 1, 0x3b, 0);
                     VibStart_8c010f7a(1);
                 }
-                var_driveCueState_8c2264b8.idleChimeTimer_0x04 = 60;
-                var_driveCueState_8c2264b8.idleChimeState_0x00 = 1;
+                var_driveCueState_8c2264b8.ambientChimeTimer_0x04 = 60;
+                var_driveCueState_8c2264b8.ambientChimeState_0x00 = 1;
             }
         }
         break;
 
     case 1:
-        if (--var_driveCueState_8c2264b8.idleChimeTimer_0x04 < 0) {
-            var_driveCueState_8c2264b8.nearStopChimeLatch_0x14 = 0;
-            var_driveCueState_8c2264b8.idleChimeTimer_0x04 = AsqGetRandomInRangeB_8c0121be(300) + 150;
-            var_driveCueState_8c2264b8.idleChimeState_0x00 = 0;
+        if (--var_driveCueState_8c2264b8.ambientChimeTimer_0x04 < 0) {
+            var_driveCueState_8c2264b8.segmentChimeLatch_0x14 = 0;
+            var_driveCueState_8c2264b8.ambientChimeTimer_0x04 = AsqGetRandomInRangeB_8c0121be(300) + 150;
+            var_driveCueState_8c2264b8.ambientChimeState_0x00 = 0;
         }
         break;
 
@@ -91,11 +91,11 @@ STATIC void driveCueTask_8c020214(Task *task, void *state)
         break;
     }
 
-    var_driveCueState_8c2264b8.firstChimeArmed_0x18 = 0;
+    var_driveCueState_8c2264b8.trafficChimeArmed_0x18 = 0;
 
     switch (var_driveCueState_8c2264b8.stopAnnounceState_0x08) {
     case 0:
-        if (var_driveCueState_8c2264b8.nearStopLatch_0x0c == 0) {
+        if (var_driveCueState_8c2264b8.announceRequested_0x0c == 0) {
             break;
         }
 
@@ -176,7 +176,7 @@ STATIC void driveCueTask_8c020214(Task *task, void *state)
     case 3:
         /* Re-arms the sequence for the next stop: 02c884 clears the latch on
          * a stop-heading transition. */
-        if (var_driveCueState_8c2264b8.nearStopLatch_0x0c == 0) {
+        if (var_driveCueState_8c2264b8.announceRequested_0x0c == 0) {
             var_driveCueState_8c2264b8.stopAnnounceState_0x08 = 0;
         }
         break;
@@ -211,15 +211,15 @@ STATIC void driveCueTask_8c020214(Task *task, void *state)
     }
 
     if (atCueSegment != 0) {
-        if (var_driveCueState_8c2264b8.nearStopChimeLatch_0x14 == 0) {
+        if (var_driveCueState_8c2264b8.segmentChimeLatch_0x14 == 0) {
             int r = AsqGetRandomB_8c0121a8();
             int soundId = (r & 1) == 0 ? 0x12 : 0x11;
 
             sdMidiPlay(var_midiHandles_8c0fcd28[3], 1, soundId, 0);
-            var_driveCueState_8c2264b8.nearStopChimeLatch_0x14 = 1;
+            var_driveCueState_8c2264b8.segmentChimeLatch_0x14 = 1;
         }
     } else {
-        var_driveCueState_8c2264b8.nearStopChimeLatch_0x14 = 0;
+        var_driveCueState_8c2264b8.segmentChimeLatch_0x14 = 0;
     }
 
     if (var_vibport_8c1ba354 != (Uint32)-1 && var_progress_8c1ba1cc.vibration_0xc7 == 0) {
@@ -235,11 +235,11 @@ void DriveCueInit_8c020528()
 
     if (var_playMode_8c1bb8d0 != PLAY_MODE_DEMO) {
         TaskSpawn_8c014ae8(var_tasks_8c1ba5e8, &driveCueTask_8c020214, &created_task, &created_state, 0);
-        var_driveCueState_8c2264b8.idleChimeState_0x00 = 0;
-        var_driveCueState_8c2264b8.idleChimeTimer_0x04 = AsqGetRandomInRangeB_8c0121be(300) + 150;
+        var_driveCueState_8c2264b8.ambientChimeState_0x00 = 0;
+        var_driveCueState_8c2264b8.ambientChimeTimer_0x04 = AsqGetRandomInRangeB_8c0121be(300) + 150;
         var_driveCueState_8c2264b8.stopAnnounceState_0x08 = 3;
-        var_driveCueState_8c2264b8.nearStopLatch_0x0c = 1;
-        var_driveCueState_8c2264b8.nearStopChimeLatch_0x14 = 0;
-        var_driveCueState_8c2264b8.firstChimeArmed_0x18 = 0;
+        var_driveCueState_8c2264b8.announceRequested_0x0c = 1;
+        var_driveCueState_8c2264b8.segmentChimeLatch_0x14 = 0;
+        var_driveCueState_8c2264b8.trafficChimeArmed_0x18 = 0;
     }
 }

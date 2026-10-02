@@ -1564,7 +1564,7 @@ LP_GEN_59291:
           .DATA.L _var_playMode_8c1bb8d0 ; H'8C02BFBC
           .DATA.L _var_practiceRules_8c226410 ; H'8C02BFC0
           .DATA.L _var_runState_8c2285c4 + H'20 ; H'8C02BFC4
-          .DATA.L _var_driveCueState_8c2264b8+H'C ; H'8C02BFC8 (nearStopLatch_0x0c)
+          .DATA.L _var_driveCueState_8c2264b8+H'C ; H'8C02BFC8 (announceRequested_0x0c)
 LAB_8c02bfcc:
           MOV         #H'7c,R0
           MOV.L       @(R0,R14),R1

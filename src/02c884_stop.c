@@ -393,7 +393,7 @@ void StopUpdateArrival_8c02ce48(void)
             if (var_hudState_8c22643c.driveMarkIcon_0x14 != -1) {
                 var_runState_8c2285c4.instructionBonusPending_0x7c = 1;
             }
-            var_driveCueState_8c2264b8.nearStopLatch_0x0c = 0;
+            var_driveCueState_8c2264b8.announceRequested_0x0c = 0;
             advanceStopSegment_8c02ccae();
         }
     } else if (var_runState_8c2285c4.stopPhase_0x20 == 2) {

@@ -270,7 +270,7 @@ data, so it does not fit the request role. Its purpose is still unconfirmed.
 - **The chime.** Two independent chime systems live in `driveCueTask_8c020214`
   (`020214_drive_cue.c`), operating on `DriveCueState var_driveCueState_8c2264b8` (`020214_drive_cue.h`):
   - `stopAnnounceState_0x08`/`stopAnnounceTimer_0x10` is the **driver's own
-    stop announcement**, armed by `nearStopLatch_0x0c`, which
+    stop announcement**, armed by `announceRequested_0x0c`, which
     `BusTask_8c022bdc` sets on the first A press of a drive. Its state
     machine plays a route-specific door-chime cue, then (after 60 frames) an
     actual spoken stop-name announcement via `SndPlayAdx_8c010cd6`. This is the
@@ -278,11 +278,11 @@ data, so it does not fit the request role. Its purpose is still unconfirmed.
     next stop"). Not purely player-initiated, though: `gradeFrame_8c02bcd8`
     (`02b464`) sets the same latch right after docking that penalty, so the
     announcement plays anyway once the game has charged you for missing it.
-  - `idleChimeState_0x00`/`idleChimeTimer_0x04` is an unrelated ambient
+  - `ambientChimeState_0x00`/`ambientChimeTimer_0x04` is an unrelated ambient
     chime played periodically while driving (gated on a low
     `var_busState_8c1bb9d0.speed_0x27c` threshold, on a randomized repeat),
     not tied to stops at all.
-  - `nearStopChimeLatch_0x14` plays a short chime (case default in the
+  - `segmentChimeLatch_0x14` plays a short chime (case default in the
     function's tail block) but, despite its name, is gated on a *fixed*,
     hand-authored list of specific segment indices per route (e.g. Shinjuku:
     4, 5, 10, 21, 22, 23) -- not on `var_segmentHasStop_8c2286a4`, the actual per-run active-

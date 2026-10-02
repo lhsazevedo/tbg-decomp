@@ -810,14 +810,14 @@ STATIC void gradeFrame_8c02bcd8(void) {
 
     if ((var_playMode_8c1bb8d0 == PLAY_MODE_PRACTICE && (var_practiceRules_8c226410 & 1) != 1)
         || var_runState_8c2285c4.stopPhase_0x20 == 0
-        || var_driveCueState_8c2264b8.nearStopLatch_0x0c != 0) {
+        || var_driveCueState_8c2264b8.announceRequested_0x0c != 0) {
         if (var_runState_8c2285c4.instructionBonusPending_0x7c != 0) {
             adjust_8c02b464(0x1e, 20); /* -> INSTR_BLANK */
             var_runState_8c2285c4.instructionBonusPending_0x7c = 0;
         }
     } else {
         adjust_8c02b464(0x20, -5); /* -> INSTR_ANNOUNCEMENT */
-        var_driveCueState_8c2264b8.nearStopLatch_0x0c = 1;
+        var_driveCueState_8c2264b8.announceRequested_0x0c = 1;
     }
 
     if (var_busState_8c1bb9d0.doorState_0x3c0 == 2 && var_busState_8c1bb9d0.speed_0x27c != 0.0f) {

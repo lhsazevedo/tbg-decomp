@@ -234,7 +234,7 @@ void TrafficDriveVehicle_8c025b98(Task *task, TrafficEntry *e)
                             (*(Uint32 *)((Uint8 *)junction + 0xc) & 0xf000000) == 0) {
                             e->atGroundJunction_0x50c = 1;
                             if (speed == 0.0f && e->mergeWaitState_0x468 != 2) {
-                                var_driveCueState_8c2264b8.firstChimeArmed_0x18 = 1;
+                                var_driveCueState_8c2264b8.trafficChimeArmed_0x18 = 1;
                             }
                         }
                     }
