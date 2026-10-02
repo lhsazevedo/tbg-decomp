@@ -258,7 +258,7 @@ return [
         ],
         [
             "tests" => [
-                "tests/01d290_album/8c01d290_albumDrawGrid.php",
+                "tests/01d290_album/8c01d290_drawGrid.php",
                 "tests/01d290_album/8c01d300_albumMenuTask.php",
                 "tests/01d290_album/8c01d6e2_AlbumEnter.php",
             ],

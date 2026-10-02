@@ -29,13 +29,13 @@
           .IMPORT     _AsqProcessQueues_8c011fe0
           .EXPORT     _AlbumEnter_8c01d6e2
           .AIFDEF UNIT_TESTING
-          .EXPORT     _albumDrawGrid_8c01d290
+          .EXPORT     _drawGrid_8c01d290
           .EXPORT     _albumMenuTask_8c01d300
           .EXPORT     _init_albumResourceGroup_8c045160
           .EXPORT     _init_slotCursorPos_8c045170
           .AENDI
           .SECTION     P, CODE, ALIGN=4
-_albumDrawGrid_8c01d290:
+_drawGrid_8c01d290:
           MOV.L       R14,@-R15
           MOV.L       R13,@-R15
           MOV.L       R12,@-R15
@@ -609,7 +609,7 @@ LAB_8c01d68e:
           JMP         @R2
           MOV.L       @R15+,R14
 LAB_8c01d6c6:
-          BSR         _albumDrawGrid_8c01d290
+          BSR         _drawGrid_8c01d290
           NOP
           MOV.L       R14,@(H'38,R13)
 LAB_8c01d6cc:

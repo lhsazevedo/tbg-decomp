@@ -48,7 +48,7 @@ return new class extends TestCase {
         $this->initUint32($this->addressOf('_var_isFading_8c226568'), 1);
         $this->noLetters();
 
-        $this->shouldCall('_albumDrawGrid_8c01d290');
+        $this->shouldCall('_drawGrid_8c01d290');
         $this->shouldWriteLong($this->m(0x38), 0);
 
         $this->singleCall('_albumMenuTask_8c01d300')->with(0xbebacafe, 0)->run();
@@ -66,7 +66,7 @@ return new class extends TestCase {
         $this->initUint32($task + 0x08, 1);
 
         $this->shouldWriteLong($this->m(0x18), 3);
-        $this->shouldCall('_albumDrawGrid_8c01d290');
+        $this->shouldCall('_drawGrid_8c01d290');
         $this->shouldWriteLong($this->m(0x38), 0);
 
         $this->singleCall('_albumMenuTask_8c01d300')->with($task, 0)->run();
@@ -84,7 +84,7 @@ return new class extends TestCase {
         $this->initUint32($task + 0x08, 0);
 
         $this->shouldWriteLong($this->m(0x18), 2);
-        $this->shouldCall('_albumDrawGrid_8c01d290');
+        $this->shouldCall('_drawGrid_8c01d290');
         $this->shouldWriteLong($this->m(0x38), 0);
 
         $this->singleCall('_albumMenuTask_8c01d300')->with($task, 0)->run();
@@ -101,7 +101,7 @@ return new class extends TestCase {
         $this->noLetters();
 
         $this->shouldCall('_sdMidiPlay')->with(0xbeef0000, 1, 2, 0);
-        $this->shouldCall('_albumDrawGrid_8c01d290');
+        $this->shouldCall('_drawGrid_8c01d290');
         $this->shouldWriteLong($this->m(0x38), 0);
 
         $this->singleCall('_albumMenuTask_8c01d300')->with(0xbebacafe, 0)->run();
@@ -120,7 +120,7 @@ return new class extends TestCase {
         $this->shouldCall('_SndStartAdxFadeOut_8c010bae')->with(0);
         $this->shouldCall('_SndStartAdxFadeOut_8c010bae')->with(1);
         $this->shouldCall('_RenderStartFadeOut_8c022b60')->with(10);
-        $this->shouldCall('_albumDrawGrid_8c01d290');
+        $this->shouldCall('_drawGrid_8c01d290');
         $this->shouldWriteLong($this->m(0x38), 0);
 
         $this->singleCall('_albumMenuTask_8c01d300')->with(0xbebacafe, 0)->run();
@@ -138,7 +138,7 @@ return new class extends TestCase {
         $this->seedCursor(0.0, 0.0);
 
         $this->shouldCall('_SpriteDraw_8c014f54')->with($this->m(0x0c), 0xd, 0.0, 0.0, -2.0);
-        $this->shouldCall('_albumDrawGrid_8c01d290');
+        $this->shouldCall('_drawGrid_8c01d290');
         $this->shouldWriteLong($this->m(0x38), 0);
 
         $this->singleCall('_albumMenuTask_8c01d300')->with(0xbebacafe, 0)->run();
@@ -162,7 +162,7 @@ return new class extends TestCase {
         $this->shouldWriteFloat($this->m(0x34), 11.0); // (66 - 0) / 6
         $this->shouldCall('_sdMidiPlay')->with(0xbeef0000, 1, 3, 0);
         $this->shouldCall('_SpriteDraw_8c014f54')->with($this->m(0x0c), 0xd, 0.0, 0.0, -2.0);
-        $this->shouldCall('_albumDrawGrid_8c01d290');
+        $this->shouldCall('_drawGrid_8c01d290');
         $this->shouldWriteLong($this->m(0x38), 1);
 
         $this->singleCall('_albumMenuTask_8c01d300')->with(0xbebacafe, 0)->run();
@@ -187,7 +187,7 @@ return new class extends TestCase {
         $this->shouldWriteFloat($this->m(0x34), 30.0); // 180 / 6
         $this->shouldCall('_sdMidiPlay')->with(0xbeef0000, 1, 3, 0);
         $this->shouldCall('_SpriteDraw_8c014f54')->with($this->m(0x0c), 0xd, 0.0, 0.0, -2.0);
-        $this->shouldCall('_albumDrawGrid_8c01d290');
+        $this->shouldCall('_drawGrid_8c01d290');
         $this->shouldWriteLong($this->m(0x38), 3);
 
         $this->singleCall('_albumMenuTask_8c01d300')->with(0xbebacafe, 0)->run();
@@ -212,7 +212,7 @@ return new class extends TestCase {
         $this->shouldWriteFloat($this->m(0x34), 2.0); // 12 / 6
         $this->shouldCall('_sdMidiPlay')->with(0xbeef0000, 1, 3, 0);
         $this->shouldCall('_SpriteDraw_8c014f54')->with($this->m(0x0c), 0xd, 0.0, 0.0, -2.0);
-        $this->shouldCall('_albumDrawGrid_8c01d290');
+        $this->shouldCall('_drawGrid_8c01d290');
         $this->shouldWriteLong($this->m(0x38), 0);
 
         $this->singleCall('_albumMenuTask_8c01d300')->with(0xbebacafe, 0)->run();
@@ -226,11 +226,11 @@ return new class extends TestCase {
         $this->seedPress(0x04); // TA
         $this->seedCursor(0.0, 0.0);
 
-        // state -> VIEWING (5): albumDrawGrid_8c01d290 is still called but draws nothing.
+        // state -> VIEWING (5): drawGrid_8c01d290 is still called but draws nothing.
         $this->shouldWriteLong($this->m(0x18), 5);
         $this->shouldCall('_sdMidiPlay')->with(0xbeef0000, 1, 0, 0);
         $this->shouldCall('_SpriteDraw_8c014f54')->with($this->m(0x0c), 0xd, 0.0, 0.0, -2.0);
-        $this->shouldCall('_albumDrawGrid_8c01d290');
+        $this->shouldCall('_drawGrid_8c01d290');
         $this->shouldWriteLong($this->m(0x38), 2);
 
         $this->singleCall('_albumMenuTask_8c01d300')->with(0xbebacafe, 0)->run();
@@ -251,7 +251,7 @@ return new class extends TestCase {
         $this->shouldCall('_SndStartAdxFadeOut_8c010bae')->with(1);
         $this->shouldCall('_RenderStartFadeOut_8c022b60')->with(10);
         $this->shouldCall('_SpriteDraw_8c014f54')->with($this->m(0x0c), 0xd, 0.0, 0.0, -2.0);
-        $this->shouldCall('_albumDrawGrid_8c01d290');
+        $this->shouldCall('_drawGrid_8c01d290');
         $this->shouldWriteLong($this->m(0x38), 0);
 
         $this->singleCall('_albumMenuTask_8c01d300')->with(0xbebacafe, 0)->run();
@@ -269,7 +269,7 @@ return new class extends TestCase {
 
         $this->shouldCall('_CourseMenuInterpolateCursor_8c016d2c')->andReturn(0);
         $this->shouldCall('_SpriteDraw_8c014f54')->with($this->m(0x0c), 0xd, 0.0, 0.0, -2.0);
-        $this->shouldCall('_albumDrawGrid_8c01d290');
+        $this->shouldCall('_drawGrid_8c01d290');
         $this->shouldWriteLong($this->m(0x38), 1);
 
         $this->singleCall('_albumMenuTask_8c01d300')->with(0xbebacafe, 0)->run();
@@ -286,7 +286,7 @@ return new class extends TestCase {
         $this->shouldCall('_CourseMenuInterpolateCursor_8c016d2c')->andReturn(1);
         $this->shouldWriteLong($this->m(0x18), 3);
         $this->shouldCall('_SpriteDraw_8c014f54')->with($this->m(0x0c), 0xd, 0.0, 0.0, -2.0);
-        $this->shouldCall('_albumDrawGrid_8c01d290');
+        $this->shouldCall('_drawGrid_8c01d290');
         $this->shouldWriteLong($this->m(0x38), 1);
 
         $this->singleCall('_albumMenuTask_8c01d300')->with(0xbebacafe, 0)->run();
@@ -301,9 +301,9 @@ return new class extends TestCase {
         $this->seedSlot(2);
         $this->seedPress(0);
 
-        // albumDrawGrid_8c01d290 is still called but skips the grid in state 5.
+        // drawGrid_8c01d290 is still called but skips the grid in state 5.
         $this->shouldCall('_SpriteDraw_8c014f54')->with($this->m(0x0c), 2 + 7, 0.0, 0.0, -3.0);
-        $this->shouldCall('_albumDrawGrid_8c01d290');
+        $this->shouldCall('_drawGrid_8c01d290');
         $this->shouldWriteLong($this->m(0x38), 2);
 
         $this->singleCall('_albumMenuTask_8c01d300')->with(0xbebacafe, 0)->run();
@@ -321,7 +321,7 @@ return new class extends TestCase {
         $this->shouldWriteLong($this->m(0x18), 3);
         $this->shouldCall('_sdMidiPlay')->with(0xbeef0000, 1, 0, 0);
         $this->shouldCall('_SpriteDraw_8c014f54')->with($this->m(0x0c), 2 + 7, 0.0, 0.0, -3.0);
-        $this->shouldCall('_albumDrawGrid_8c01d290');
+        $this->shouldCall('_drawGrid_8c01d290');
         $this->shouldWriteLong($this->m(0x38), 2);
 
         $this->singleCall('_albumMenuTask_8c01d300')->with(0xbebacafe, 0)->run();
@@ -337,7 +337,7 @@ return new class extends TestCase {
         $this->noLetters();
         $this->initUint32($this->addressOf('_var_isFading_8c226568'), 1);
 
-        $this->shouldCall('_albumDrawGrid_8c01d290');
+        $this->shouldCall('_drawGrid_8c01d290');
         $this->shouldWriteLong($this->m(0x38), 0);
 
         $this->singleCall('_albumMenuTask_8c01d300')->with(0xbebacafe, 0)->run();
@@ -381,7 +381,7 @@ return new class extends TestCase {
         $this->seedSlot(0);
         $this->noLetters();
 
-        $this->shouldCall('_albumDrawGrid_8c01d290');
+        $this->shouldCall('_drawGrid_8c01d290');
         $this->shouldWriteLong($this->m(0x38), 0);
 
         $this->singleCall('_albumMenuTask_8c01d300')->with(0xbebacafe, 0)->run();

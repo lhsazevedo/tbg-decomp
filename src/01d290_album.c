@@ -81,7 +81,7 @@ STATIC NJS_POINT2 init_slotCursorPos_8c045170[6] = {
 
 /* One icon per received letter, then the page they sit on -- drawn last, but
  * furthest back. */
-STATIC void albumDrawGrid_8c01d290(void)
+STATIC void drawGrid_8c01d290(void)
 {
     int i;
     int spriteNo = 1;
@@ -296,7 +296,7 @@ STATIC void albumMenuTask_8c01d300(Task *task, void *state)
         }
     }
 
-    albumDrawGrid_8c01d290();
+    drawGrid_8c01d290();
     var_menuState_8c1bc7a8.selected_0x38 = slot;
 }
 
