@@ -32,8 +32,6 @@
  * ====================
  */
 
-/* RESULTS screen score category totals, drawn digit-by-digit by
- * drawScoreDigits_8c01d7fc. */
 STATIC int var_scoreCourseClearBonus_8c2263ec;
 STATIC int var_scoreFirstClearBonus_8c2263f0;
 STATIC int var_scoreDriverPointsBonus_8c2263f4;
@@ -41,7 +39,6 @@ STATIC int var_scoreBadgeBonus_8c2263f8;
 STATIC int var_scorePassengerBonus_8c2263fc;
 STATIC int var_scoreEventBonus_8c226400;
 STATIC int var_scoreTotal_8c226404;
-/* set by ResultsShowFailedRun_8c01e24e, cleared by ResultsShowPassedRun_8c01e0b4 */
 STATIC int var_runFailed_8c226408;
 
 /* ====================
@@ -58,8 +55,6 @@ STATIC Uint16 init_courseClearScoreTable_8c0451a0[10] = {
  * ====================
  */
 
-/* Least significant digit first, walking left from x=464; digit n is
- * sprite 0x1f + n. */
 STATIC void drawScoreDigits_8c01d7fc(int value, float y)
 {
     float x = 464.0f;
@@ -105,7 +100,7 @@ STATIC void resultsTask_8c01d8e0(void)
         }
         var_isFading_8c226568 = 0;
         var_menuState_8c1bc7a8.selected_0x38 = 0;
-        /* A failed run has no score to roll up: straight into the save flow. */
+        /* A failed run has no score: straight into the save flow. */
         /* fallthrough */
     case 4: {
         int vmuStatus;
@@ -116,7 +111,7 @@ STATIC void resultsTask_8c01d8e0(void)
         if (var_isFading_8c226568 != 0) {
             goto tail;
         }
-        /* 0x6c caches the status; state 5 falls back here when it changes. */
+        /* Cached status; state 5 falls back here when it changes. */
         var_menuState_8c1bc7a8.selectedVmuSlot_0x6c = vmuStatus;
         if (vmuStatus == VMU_STATUS_SAVING_POSSIBLE || vmuStatus == VMU_STATUS_SAVE_EXISTS_NO_SPACE ||
             vmuStatus == VMU_STATUS_SAVE_EXISTS) {
@@ -169,8 +164,6 @@ STATIC void resultsTask_8c01d8e0(void)
             }
             var_menuState_8c1bc7a8.state_0x18 = 3;
         }
-        /* One more score row per tick of counter_0x64, top (course clear)
-         * down to bottom (total); 0 draws nothing. */
         switch (var_menuState_8c1bc7a8.counter_0x64) {
         case 7:
             drawScoreDigits_8c01d7fc(var_scoreTotal_8c226404, 312.0f);
@@ -406,10 +399,9 @@ void ResultsShowPassedRun_8c01e0b4(void)
     } else if (var_route_8c18ad1c == ROUTE_WANGAN) {
         courseGroup = 0;
     } else {
-        /* courses_0x44 and the course menu order the routes Wangan, Shinjuku,
-         * Ome, after init_courseTable_8c043ca4; ROUTE_* and the score table
-         * above are in Shinjuku, Wangan, Ome order. The original leaves the
-         * register unset for a route value outside the three. */
+        /* courses_0x44 orders routes Wangan, Shinjuku, Ome; ROUTE_* and the
+         * score table are Shinjuku, Wangan, Ome. The original leaves the
+         * register unset for any other route. */
         courseGroup = 2;
     }
     courseIndex = courseGroup * 3 + var_timeOfDay_8c18ad20;
