@@ -292,7 +292,7 @@ STATIC void menuTask_8c01b3ac(Task *task, void *state)
                 var_vmBusy_8c157a7c = 1;
                 var_menuState_8c1bc7a8.subState_0x1c = SAVE_PHASE_IN_PROGRESS;
                 MessageBoxSwapFor_8c02aefc(MSG_LOADING_NO_POWER_OFF);
-                VmGameSetLcdSlot_8c01c8fc(1);
+                VmGameSetLcdAnim_8c01c8fc(1);
             } else if (result == 2) {
                 /* no */
                 var_menuState_8c1bc7a8.state_0x18 = SAVE_STATE_TOP_MENU;
@@ -325,7 +325,7 @@ STATIC void menuTask_8c01b3ac(Task *task, void *state)
             }
             var_menuState_8c1bc7a8.state_0x18 = SAVE_STATE_TOP_MENU;
             var_vmBusy_8c157a7c = 0;
-            VmGameSetLcdSlot_8c01c8fc(0);
+            VmGameSetLcdAnim_8c01c8fc(0);
             break;
         default:
             break;
@@ -356,7 +356,7 @@ STATIC void menuTask_8c01b3ac(Task *task, void *state)
                 SystemMenuWriteToVmu_8c01b26c();
                 var_menuState_8c1bc7a8.subState_0x1c = SAVE_PHASE_IN_PROGRESS;
                 MessageBoxSwapFor_8c02aefc(MSG_SAVING_NO_POWER_OFF);
-                VmGameSetLcdSlot_8c01c8fc(1);
+                VmGameSetLcdAnim_8c01c8fc(1);
                 SpriteDraw_8c014f54(&var_menuState_8c1bc7a8.resourceGroupA_0x00,
                                        var_menuState_8c1bc7a8.cursorCol_0x3c + 2,
                                        228.0f, 266.0f, -4.0f);
@@ -388,7 +388,7 @@ STATIC void menuTask_8c01b3ac(Task *task, void *state)
             syFree(var_backupFileImageBuf_8c1ba348);
             var_backupFileImageBuf_8c1ba348 = (void *)-1;
             var_menuState_8c1bc7a8.state_0x18 = SAVE_STATE_TOP_MENU;
-            VmGameSetLcdSlot_8c01c8fc(0);
+            VmGameSetLcdAnim_8c01c8fc(0);
             break;
         default:
             break;

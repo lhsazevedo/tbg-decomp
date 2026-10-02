@@ -41,7 +41,7 @@
           .IMPORT     _PromptHandleBinary_8c016caa
           .IMPORT     _var_saveBuf_8c1ba2e0
           .IMPORT     _BupLoad_8c014bc6
-          .IMPORT     _VmGameSetLcdSlot_8c01c8fc
+          .IMPORT     _VmGameSetLcdAnim_8c01c8fc
           .IMPORT     _buStat
           .IMPORT     _buGetLastError
           .IMPORT     _buAnalyzeBackupFileImage
@@ -782,7 +782,7 @@ LP_GEN_26888:
           .DATA.L _BupLoad_8c014bc6 ; H'8C01B704
           .DATA.L _var_vmBusy_8c157a7c ; H'8C01B708
           .DATA.L _const_8c038340 ; H'8C01B70C
-          .DATA.L _VmGameSetLcdSlot_8c01c8fc ; H'8C01B710
+          .DATA.L _VmGameSetLcdAnim_8c01c8fc ; H'8C01B710
           .DATA.L _const_8c0380c8 ; H'8C01B714
           .DATA.L _const_8c03836c ; H'8C01B718
 LAB_8c01b71c:
@@ -929,7 +929,7 @@ LP_GEN_43539:
           .DATA.L _sdMidiPlay ; H'8C01B83C
           .DATA.L _const_8c0383d0 ; H'8C01B840
           .DATA.L _var_vmBusy_8c157a7c ; H'8C01B844
-          .DATA.L _VmGameSetLcdSlot_8c01c8fc ; H'8C01B848
+          .DATA.L _VmGameSetLcdAnim_8c01c8fc ; H'8C01B848
           .DATA.L H'10+_var_peripherals_8c1ba35c ; H'8C01B84C
           .DATA.L _ReplayMenuFreeSessionAssets_8c016182 ; H'8C01B850
           .DATA.L _TitleStart_8c015fd6 ; H'8C01B854
@@ -1121,7 +1121,7 @@ LP_GEN_14610:
           .RES.W 1 ; H'8C01B9AE
           .DATA.L _PromptHandleBinary_8c016caa ; H'8C01B9B0
           .DATA.L _const_8c0383e8 ; H'8C01B9B4
-          .DATA.L _VmGameSetLcdSlot_8c01c8fc ; H'8C01B9B8
+          .DATA.L _VmGameSetLcdAnim_8c01c8fc ; H'8C01B9B8
           .DATA.L _const_8c0380c8 ; H'8C01B9BC
           .DATA.L H'43850000 ; H'8C01B9C0
           .DATA.L _const_8c038414 ; H'8C01B9C4

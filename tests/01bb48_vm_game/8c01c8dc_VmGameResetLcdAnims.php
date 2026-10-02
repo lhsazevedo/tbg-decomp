@@ -15,7 +15,7 @@ return new class extends TestCase {
         $this->shouldWriteLong($this->addressOf('_var_lcdAnimDanger_8c2260b8') + 8, 0);
         $this->shouldWriteLong($this->addressOf('_var_lcdAnimLoading_8c2260c4') + 4, 10);
         $this->shouldWriteLong($this->addressOf('_var_lcdAnimLoading_8c2260c4') + 8, 0);
-        $this->shouldWriteLong($this->addressOf('_var_lcdSlot_8c2263a0'), 0);
+        $this->shouldWriteLong($this->addressOf('_var_lcdAnimIdx_8c2263a0'), 0);
         $this->shouldWriteLong($this->addressOf('_var_lcdAnimActive_8c2260a8'), 0);
     }
 };

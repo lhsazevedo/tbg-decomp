@@ -493,7 +493,7 @@ STATIC void fileSelectTask_8c018e7e(Task *task)
             MessageBoxMenuTextboxText_8c02af1c(0xff);
         } else if (var_saveLoadResult_8c226010 == SAVE_LOAD_DONE) {
             var_vmBusy_8c157a7c = 0;
-            VmGameSetLcdSlot_8c01c8fc(0);
+            VmGameSetLcdAnim_8c01c8fc(0);
             var_saveBufCursor_8c225fe0 = var_saveBuf_8c1ba2e0;
             for (i = 0; i < var_loadedSaveCount_8c22600c; i++) {
                 if (!FileSelectIsSaveValid_8c018804((int *)var_saveBufCursor_8c225fe0)) {
@@ -515,7 +515,7 @@ STATIC void fileSelectTask_8c018e7e(Task *task)
             FileSelectFreeBuffers_8c0187d0();
             MessageBoxSwapFor_8c02aefc(MSG_LOAD_FAIL);
             CHANGE_STATE(FILE_SELECT_STATE_LOAD_ERROR);
-            VmGameSetLcdSlot_8c01c8fc(0);
+            VmGameSetLcdAnim_8c01c8fc(0);
         }
         SpriteDraw_8c014f54(&var_menuState_8c1bc7a8.resourceGroupA_0x00, 1, 0.0, 0.0, -4.3);
         SpriteDraw_8c014f54(&var_menuState_8c1bc7a8.resourceGroupA_0x00, 0, 0.0, 0.0, -5.0);
@@ -670,7 +670,7 @@ void FileSelectEnter_8c019334(Task *task)
         var_vmuStatus_8c226048[var_selectedVm_8c1ba34c] == VMU_STATUS_SAVE_EXISTS) {
         CHANGE_STATE(FILE_SELECT_STATE_LOADING);
         MessageBoxSwapFor_8c02aefc(MSG_LOADING_NO_POWER_OFF);
-        VmGameSetLcdSlot_8c01c8fc(1);
+        VmGameSetLcdAnim_8c01c8fc(1);
         startVmLoad_8c018784();
         var_vmBusy_8c157a7c = 1;
     } else {

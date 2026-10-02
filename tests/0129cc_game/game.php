@@ -452,7 +452,7 @@ return new class extends TestCase {
         $this->shouldCall('_VmGameResetLcdAnims_8c01c8dc');
         $this->shouldCall('_FileSelectResetOptionDefaults_8c0189d2');
         $this->shouldCall('_njSetBorderColor')->with(0);
-        $this->shouldCall('_VmGameSetLcdSlot_8c01c8fc')->with(3);
+        $this->shouldCall('_VmGameSetLcdAnim_8c01c8fc')->with(3);
         $this->shouldCall('_VmGameUpdateLcd_8c01c910');
 
         $createdTaskPtr = $this->alloc(0x0c);
@@ -606,7 +606,7 @@ return new class extends TestCase {
         $this->shouldCall('_VmGameResetLcdAnims_8c01c8dc');
         $this->shouldCall('_FileSelectResetOptionDefaults_8c0189d2');
         $this->shouldCall('_njSetBorderColor')->with(0);
-        $this->shouldCall('_VmGameSetLcdSlot_8c01c8fc')->with(3);
+        $this->shouldCall('_VmGameSetLcdAnim_8c01c8fc')->with(3);
         $this->shouldCall('_VmGameUpdateLcd_8c01c910');
 
         $createdTaskPtr = $this->alloc(0x0c);
@@ -760,7 +760,7 @@ return new class extends TestCase {
         $this->shouldCall('_VmGameResetLcdAnims_8c01c8dc');
         $this->shouldCall('_FileSelectResetOptionDefaults_8c0189d2');
         $this->shouldCall('_njSetBorderColor')->with(0);
-        $this->shouldCall('_VmGameSetLcdSlot_8c01c8fc')->with(3);
+        $this->shouldCall('_VmGameSetLcdAnim_8c01c8fc')->with(3);
         $this->shouldCall('_VmGameUpdateLcd_8c01c910');
 
         $createdTaskPtr = $this->alloc(0x0c);
@@ -913,7 +913,7 @@ return new class extends TestCase {
         $this->shouldCall('_VmGameResetLcdAnims_8c01c8dc');
         $this->shouldCall('_FileSelectResetOptionDefaults_8c0189d2');
         $this->shouldCall('_njSetBorderColor')->with(0);
-        $this->shouldCall('_VmGameSetLcdSlot_8c01c8fc')->with(3);
+        $this->shouldCall('_VmGameSetLcdAnim_8c01c8fc')->with(3);
         $this->shouldCall('_VmGameUpdateLcd_8c01c910');
 
         $createdTaskPtr = $this->alloc(0x0c);

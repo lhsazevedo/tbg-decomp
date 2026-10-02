@@ -22,7 +22,7 @@
           .IMPORT     _njLoadTexturePvmMemory
           .IMPORT     _var_texbuf_8c277ca0
           .IMPORT     _njReleaseTexture
-          .IMPORT     _VmGameSetLcdSlot_8c01c8fc
+          .IMPORT     _VmGameSetLcdAnim_8c01c8fc
           .IMPORT     _VmGameUpdateLcd_8c01c910
           .IMPORT     __modlu
           .IMPORT     _var_progress_8c1ba1cc
@@ -2064,7 +2064,7 @@ L139:
           .DATA.L     _var_pvmQueue_8c157abc
           .DATA.L     _njReleaseTexture
           .DATA.L     _TaskKill_8c014b66 ; L139+48
-          .DATA.L     _VmGameSetLcdSlot_8c01c8fc
+          .DATA.L     _VmGameSetLcdAnim_8c01c8fc
           .DATA.L     _VmGameUpdateLcd_8c01c910
           .DATA.L     _var_queuesAreInitialized_8c157a60
 _AsqProcessQueues_8c011fe0:

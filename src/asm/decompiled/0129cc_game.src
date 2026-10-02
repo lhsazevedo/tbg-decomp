@@ -137,7 +137,7 @@
           .IMPORT     _VmGameResetLcdAnims_8c01c8dc
           .IMPORT     _FileSelectResetOptionDefaults_8c0189d2
           .IMPORT     _njSetBorderColor
-          .IMPORT     _VmGameSetLcdSlot_8c01c8fc
+          .IMPORT     _VmGameSetLcdAnim_8c01c8fc
           .IMPORT     _VmGameUpdateLcd_8c01c910
           .IMPORT     _AsqInitQueues_8c011f36
           .IMPORT     _var_markPartsDat_8c1bc41c
@@ -2180,7 +2180,7 @@ _GameExit_8c0139d4:
           LDS.L       @R15+,PR
 
 LP_GEN_19861:
-          .DATA.L     _VmGameSetLcdSlot_8c01c8fc ; LP_GEN_19861+0
+          .DATA.L     _VmGameSetLcdAnim_8c01c8fc ; LP_GEN_19861+0
           .DATA.L     _VmGameUpdateLcd_8c01c910
           .DATA.L     _bootTask_8c013388
           .DATA.L     _var_tasks_8c1ba3c8

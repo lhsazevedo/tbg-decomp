@@ -439,7 +439,7 @@ return [
                 "tests/01bb48_vm_game/8c01be60_rewriteExecFile.php",
                 "tests/01bb48_vm_game/8c01c880_VmGameEnter.php",
                 "tests/01bb48_vm_game/8c01c8dc_VmGameResetLcdAnims.php",
-                "tests/01bb48_vm_game/8c01c8fc_VmGameSetLcdSlot.php",
+                "tests/01bb48_vm_game/8c01c8fc_VmGameSetLcdAnim.php",
                 "tests/01bb48_vm_game/8c01c910_VmGameUpdateLcd.php",
             ],
             "objects" => [

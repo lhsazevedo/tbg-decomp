@@ -727,7 +727,7 @@ void GameInit_8c0134ec() {
     VmGameResetLcdAnims_8c01c8dc();
     FileSelectResetOptionDefaults_8c0189d2();
     njSetBorderColor(0);
-    VmGameSetLcdSlot_8c01c8fc(3);
+    VmGameSetLcdAnim_8c01c8fc(3);
     VmGameUpdateLcd_8c01c910();
 
     TaskSpawn_8c014ae8(var_tasks_8c1ba3c8, &bootTask_8c013388, &created_task, &created_state, 0);

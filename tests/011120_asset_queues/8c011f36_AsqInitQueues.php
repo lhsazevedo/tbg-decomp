@@ -11,7 +11,7 @@ return new class extends TestCase {
         $this->shouldCall('_initNjQueue_8c011430')->with(69);
         $this->shouldCall('_initTexlistQueue_8c0117b8')->with(37);
         $this->shouldCall('_initPvmQueue_8c011a5c')->with(73);
-        $this->shouldCall('_VmGameSetLcdSlot_8c01c8fc')->with(2);
+        $this->shouldCall('_VmGameSetLcdAnim_8c01c8fc')->with(2);
         $this->shouldCall('_VmGameUpdateLcd_8c01c910');
 
         $this->shouldWriteTo('_var_queuesAreInitialized_8c157a60', 1);

@@ -31,7 +31,7 @@ return new class extends TestCase {
         $this->call('_fileSelectTask_8c018e7e');
 
         $this->shouldWriteLong($this->addressOf('_var_vmBusy_8c157a7c'), 0);
-        $this->shouldCall('_VmGameSetLcdSlot_8c01c8fc')->with(0);
+        $this->shouldCall('_VmGameSetLcdAnim_8c01c8fc')->with(0);
         $this->shouldWriteLong($this->addressOf('_var_saveBufCursor_8c225fe0'), self::BASE);
         $this->shouldCall('_FileSelectIsSaveValid_8c018804')->with(self::BASE)->andReturn(1);
         $this->shouldWriteLong($this->addressOf('_var_saveBufCursor_8c225fe0'), self::BASE + 0x600);
@@ -51,7 +51,7 @@ return new class extends TestCase {
         $this->call('_fileSelectTask_8c018e7e');
 
         $this->shouldWriteLong($this->addressOf('_var_vmBusy_8c157a7c'), 0);
-        $this->shouldCall('_VmGameSetLcdSlot_8c01c8fc')->with(0);
+        $this->shouldCall('_VmGameSetLcdAnim_8c01c8fc')->with(0);
         $this->shouldWriteLong($this->addressOf('_var_saveBufCursor_8c225fe0'), self::BASE);
         $this->shouldCall('_FileSelectIsSaveValid_8c018804')->with(self::BASE)->andReturn(0);
         $this->shouldCall('_FileSelectFreeBuffers_8c0187d0');
@@ -71,7 +71,7 @@ return new class extends TestCase {
         $this->shouldCall('_FileSelectFreeBuffers_8c0187d0');
         $this->shouldCall('_MessageBoxSwapFor_8c02aefc')->with('ƒ[ƒh‚ÉŽ¸”s‚µ‚Ü‚µ‚½');
         $this->shouldWriteLong($this->ms + 0x18, 1);
-        $this->shouldCall('_VmGameSetLcdSlot_8c01c8fc')->with(0);
+        $this->shouldCall('_VmGameSetLcdAnim_8c01c8fc')->with(0);
         $this->expectFrame();
     }
 
@@ -506,7 +506,7 @@ return new class extends TestCase {
         /* external functions -- resolved unconditionally (the C literal pool may
          * load an address on a path that doesn't call it) */
         foreach ([
-            '_SpriteDraw_8c014f54', '_MessageBoxMenuTextboxText_8c02af1c', '_VmGameSetLcdSlot_8c01c8fc',
+            '_SpriteDraw_8c014f54', '_MessageBoxMenuTextboxText_8c02af1c', '_VmGameSetLcdAnim_8c01c8fc',
             '_MessageBoxSwapFor_8c02aefc', '_sdMidiPlay', '_RenderStartFadeOut_8c022b60',
             '_njMemCopy', '_SndStartAdxFadeOut_8c010bae', '_SystemMenuApplyLoadedProgress_8c01b19c',
             '_VmSelectUnmountAll_8c0194de', '_VmSelectEnter_8c019e44',

@@ -23,7 +23,7 @@ return new class extends TestCase {
             '_SndMidiResetFxAndPlay_8c010846', '_sdMidiPlay',
             '_RenderStartFadeOut_8c022b60', '_PromptHandleBinary_8c016caa',
             '_RenderStartFadeIn_8c022a9c', '_FileSelectResetProgress_8c01890a',
-            '_SystemMenuWriteToVmu_8c01b26c', '_VmGameSetLcdSlot_8c01c8fc',
+            '_SystemMenuWriteToVmu_8c01b26c', '_VmGameSetLcdAnim_8c01c8fc',
             '_BupGetInfo_8c014bba', '_buStat', '_buGetLastError', '_syFree',
             '_ReplayMenuFreeSessionAssets_8c016182', '_CourseMenuReturn_8c017ef2',
             '_CourseMenuBuildCourseUnlockList_8c0172dc',
@@ -214,7 +214,7 @@ return new class extends TestCase {
 
         $this->shouldCall('_MessageBoxSwapFor_8c02aefc')->with("セーブ実行中です<E>電源を切らないで下さい");
 
-        $this->shouldCall('_VmGameSetLcdSlot_8c01c8fc')->with(1);
+        $this->shouldCall('_VmGameSetLcdAnim_8c01c8fc')->with(1);
 
         $this->shouldCall('_drawTextboxSprite_8c01d864');
 
@@ -322,7 +322,7 @@ return new class extends TestCase {
 
         $this->shouldWriteLong($this->addressOf('_var_backupFileImageBuf_8c1ba348'), 0xffffffff);
 
-        $this->shouldCall('_VmGameSetLcdSlot_8c01c8fc')->with(0);
+        $this->shouldCall('_VmGameSetLcdAnim_8c01c8fc')->with(0);
 
         $this->shouldCall('_drawTextboxSprite_8c01d864');
 
@@ -353,7 +353,7 @@ return new class extends TestCase {
 
         $this->shouldWriteLong($this->addressOf('_var_backupFileImageBuf_8c1ba348'), 0xffffffff);
 
-        $this->shouldCall('_VmGameSetLcdSlot_8c01c8fc')->with(0);
+        $this->shouldCall('_VmGameSetLcdAnim_8c01c8fc')->with(0);
 
         $this->shouldCall('_drawTextboxSprite_8c01d864');
 

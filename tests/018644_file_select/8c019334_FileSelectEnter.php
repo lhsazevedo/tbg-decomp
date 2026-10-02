@@ -23,7 +23,7 @@ return new class extends TestCase {
         $this->shouldWriteLong($this->addressOf('_var_loadedSaveCount_8c22600c'), 0);
         $this->shouldWriteLong($this->ms + 0x18, 0);
         $this->shouldCall('_MessageBoxSwapFor_8c02aefc')->with('ロード実行中です<E>電源を切らないで下さい');
-        $this->shouldCall('_VmGameSetLcdSlot_8c01c8fc')->with(1);
+        $this->shouldCall('_VmGameSetLcdAnim_8c01c8fc')->with(1);
         $this->shouldCall('_startVmLoad_8c018784');
         $this->shouldWriteLong($this->addressOf('_var_vmBusy_8c157a7c'), 1);
         $this->tail();
@@ -42,7 +42,7 @@ return new class extends TestCase {
         $this->shouldWriteLong($this->addressOf('_var_loadedSaveCount_8c22600c'), 0);
         $this->shouldWriteLong($this->ms + 0x18, 0);
         $this->shouldCall('_MessageBoxSwapFor_8c02aefc')->with('ロード実行中です<E>電源を切らないで下さい');
-        $this->shouldCall('_VmGameSetLcdSlot_8c01c8fc')->with(1);
+        $this->shouldCall('_VmGameSetLcdAnim_8c01c8fc')->with(1);
         $this->shouldCall('_startVmLoad_8c018784');
         $this->shouldWriteLong($this->addressOf('_var_vmBusy_8c157a7c'), 1);
         $this->tail();
@@ -76,7 +76,7 @@ return new class extends TestCase {
     {
         foreach ([
             '_TaskSwitch_8c014b3e', '_MessageBoxSwapFor_8c02aefc',
-            '_VmGameSetLcdSlot_8c01c8fc', '_RenderStartFadeIn_8c022a9c',
+            '_VmGameSetLcdAnim_8c01c8fc', '_RenderStartFadeIn_8c022a9c',
         ] as $fn) {
             $this->setSize($fn, 4);
         }

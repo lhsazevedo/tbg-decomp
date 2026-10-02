@@ -284,7 +284,7 @@ STATIC void resultsTask_8c01d8e0(void)
                 SystemMenuWriteToVmu_8c01b26c();
                 var_menuState_8c1bc7a8.subState_0x1c = 1;
                 MessageBoxSwapFor_8c02aefc(MSG_SAVING_NO_POWER_OFF);
-                VmGameSetLcdSlot_8c01c8fc(1);
+                VmGameSetLcdAnim_8c01c8fc(1);
             } else if (promptResult == 2) {
                 var_menuState_8c1bc7a8.state_0x18 = 0xd;
                 RenderStartFadeOut_8c022b60(10);
@@ -307,7 +307,7 @@ STATIC void resultsTask_8c01d8e0(void)
                 var_vmBusy_8c157a7c = 0;
                 syFree(var_backupFileImageBuf_8c1ba348);
                 var_backupFileImageBuf_8c1ba348 = (void *) -1;
-                VmGameSetLcdSlot_8c01c8fc(0);
+                VmGameSetLcdAnim_8c01c8fc(0);
             }
         }
         break;

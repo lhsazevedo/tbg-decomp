@@ -429,7 +429,7 @@ return new class extends TestCase {
         $this->shouldWriteLong($this->addressOf('_var_vmBusy_8c157a7c'), 1);
         $this->shouldWriteLong($menuState + 0x1c, 1);
         $this->shouldCall('_MessageBoxSwapFor_8c02aefc');
-        $this->shouldCall('_VmGameSetLcdSlot_8c01c8fc')->with(1);
+        $this->shouldCall('_VmGameSetLcdAnim_8c01c8fc')->with(1);
         $this->expectPromptTail($menuState, 0, 0, 0);
     }
 
@@ -503,7 +503,7 @@ return new class extends TestCase {
         $this->shouldCall('_MessageBoxSwapFor_8c02aefc');
         $this->shouldWriteLong($menuState + 0x18, 2);
         $this->shouldWriteLong($this->addressOf('_var_vmBusy_8c157a7c'), 0);
-        $this->shouldCall('_VmGameSetLcdSlot_8c01c8fc')->with(0);
+        $this->shouldCall('_VmGameSetLcdAnim_8c01c8fc')->with(0);
         $this->expectPromptTail($menuState, 0, 0, 0);
     }
 
@@ -529,7 +529,7 @@ return new class extends TestCase {
         $this->shouldCall('_MessageBoxSwapFor_8c02aefc');
         $this->shouldWriteLong($menuState + 0x18, 2);
         $this->shouldWriteLong($this->addressOf('_var_vmBusy_8c157a7c'), 0);
-        $this->shouldCall('_VmGameSetLcdSlot_8c01c8fc')->with(0);
+        $this->shouldCall('_VmGameSetLcdAnim_8c01c8fc')->with(0);
         $this->expectPromptTail($menuState, 0, 0, 0);
     }
 
@@ -617,7 +617,7 @@ return new class extends TestCase {
         // subState_0x1c=1 is written in the swap JSR delay slot, before swap runs.
         $this->shouldWriteLong($menuState + 0x1c, 1);
         $this->shouldCall('_MessageBoxSwapFor_8c02aefc');
-        $this->shouldCall('_VmGameSetLcdSlot_8c01c8fc')->with(1);
+        $this->shouldCall('_VmGameSetLcdAnim_8c01c8fc')->with(1);
         // LAB_8c01b88c draws the highlight, then LAB_8c01b92c draws it again.
         $this->shouldCall('_SpriteDraw_8c014f54')->with($menuState, 2, 228.0, 266.0, -4.0);
         $this->expectPromptTail($menuState, 0, 1, 0);
@@ -655,7 +655,7 @@ return new class extends TestCase {
         $this->shouldCall('_syFree')->with(0x8c520000);
         $this->shouldWriteLong($this->addressOf('_var_backupFileImageBuf_8c1ba348'), -1);
         $this->shouldWriteLong($menuState + 0x18, 2);
-        $this->shouldCall('_VmGameSetLcdSlot_8c01c8fc')->with(0);
+        $this->shouldCall('_VmGameSetLcdAnim_8c01c8fc')->with(0);
         $this->expectPromptTail($menuState, 0, 1, 0);
     }
 };

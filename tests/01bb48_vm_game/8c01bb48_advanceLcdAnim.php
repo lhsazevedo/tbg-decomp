@@ -62,14 +62,14 @@ return new class extends TestCase {
         $this->initUint8($frames, 4); // frame count
         $anim = $this->anim($frames, 5, 2);
         $this->initUint32($this->addressOf('_var_lcdAnimActive_8c2260a8'), 1);
-        $this->initUint32($this->addressOf('_var_lcdFrameDelay_8c226198'), 1);
+        $this->initUint32($this->addressOf('_var_lcdFrameCounter_8c226198'), 1);
 
         $framePtr = $frames + 2 * 0x600 + 4;
         $this->call('_advanceLcdAnim_8c01bb48')->with($anim, 3); // slot 3 -> device 8
         $this->shouldCall('_pdVmsLcdIsReady')->with(8)->andReturn(1);
         $this->shouldWriteLong($this->addressOf('_var_lcdFramePtr_8c22619c'), $framePtr);
         $this->shouldCall('_pdVmsLcdWrite')->with(8, $framePtr, 3)->andReturn(0);
-        $this->shouldWriteLong($this->addressOf('_var_lcdFrameDelay_8c226198'), 2);
+        $this->shouldWriteLong($this->addressOf('_var_lcdFrameCounter_8c226198'), 2);
     }
 
     public function test_advances_frame_no_wrap()
@@ -80,14 +80,14 @@ return new class extends TestCase {
         $this->initUint8($frames, 4);
         $anim = $this->anim($frames, 5, 1);
         $this->initUint32($this->addressOf('_var_lcdAnimActive_8c2260a8'), 1);
-        $this->initUint32($this->addressOf('_var_lcdFrameDelay_8c226198'), 5); // >= delay
+        $this->initUint32($this->addressOf('_var_lcdFrameCounter_8c226198'), 5); // >= delay
 
         $framePtr = $frames + 1 * 0x600 + 4;
         $this->call('_advanceLcdAnim_8c01bb48')->with($anim, 0); // slot 0 -> device 1
         $this->shouldCall('_pdVmsLcdIsReady')->with(1)->andReturn(1);
         $this->shouldWriteLong($this->addressOf('_var_lcdFramePtr_8c22619c'), $framePtr);
         $this->shouldCall('_pdVmsLcdWrite')->with(1, $framePtr, 3)->andReturn(0);
-        $this->shouldWriteLong($this->addressOf('_var_lcdFrameDelay_8c226198'), 0);
+        $this->shouldWriteLong($this->addressOf('_var_lcdFrameCounter_8c226198'), 0);
         $this->shouldWriteLong($anim + 0x8, 2); // frameIdx 1 -> 2
     }
 
@@ -99,14 +99,14 @@ return new class extends TestCase {
         $this->initUint8($frames, 4);
         $anim = $this->anim($frames, 5, 3); // last frame
         $this->initUint32($this->addressOf('_var_lcdAnimActive_8c2260a8'), 1);
-        $this->initUint32($this->addressOf('_var_lcdFrameDelay_8c226198'), 5);
+        $this->initUint32($this->addressOf('_var_lcdFrameCounter_8c226198'), 5);
 
         $framePtr = $frames + 3 * 0x600 + 4;
         $this->call('_advanceLcdAnim_8c01bb48')->with($anim, 0); // device 1
         $this->shouldCall('_pdVmsLcdIsReady')->with(1)->andReturn(1);
         $this->shouldWriteLong($this->addressOf('_var_lcdFramePtr_8c22619c'), $framePtr);
         $this->shouldCall('_pdVmsLcdWrite')->with(1, $framePtr, 3)->andReturn(0);
-        $this->shouldWriteLong($this->addressOf('_var_lcdFrameDelay_8c226198'), 0);
+        $this->shouldWriteLong($this->addressOf('_var_lcdFrameCounter_8c226198'), 0);
         $this->shouldWriteLong($anim + 0x8, 4); // frameIdx 3 -> 4
         $this->shouldWriteLong($anim + 0x8, 0); // then wrapped to 0
     }

@@ -34,7 +34,7 @@ enum State {
     STATE_SELECT_CURSOR_MOVE  = 6,
     STATE_DOWNLOAD            = 7,
     STATE_EXP_LOAD            = 8,
-    STATE_SELECT_INCOMPATIBLE = 9,
+    STATE_NO_VM               = 9,
     STATE_OP_COMPLETE         = 11,
     STATE_RETURN_FADE_OUT     = 12,
     STATE_EXIT                = 13
@@ -95,10 +95,10 @@ LcdAnim var_lcdAnimDanger_8c2260b8;
 LcdAnim var_lcdAnimLoading_8c2260c4;
 STATIC enum VmGameBupPhase var_bupPhase_8c2260d0; // last-seen bu* async op status/phase
 STATIC char var_lcdClearBuf_8c2260d4[0xc4]; // VMS LCD framebuffer (48x32 mono)
-STATIC Uint32 var_lcdFrameDelay_8c226198; // LCD anim step counter
+STATIC Uint32 var_lcdFrameCounter_8c226198; // LCD anim step counter
 STATIC LcdFrame *var_lcdFramePtr_8c22619c; // current LCD anim frame ptr
 STATIC char var_defragBuf_8c2261a0[512]; // buDefragDisk work buffer
-STATIC int var_lcdSlot_8c2263a0;
+STATIC int var_lcdAnimIdx_8c2263a0;
 
 /* ===================
  * Initialized Globals
@@ -176,12 +176,12 @@ STATIC void advanceLcdAnim_8c01bb48(LcdAnim *anim, int slot)
     var_lcdFramePtr_8c22619c = &anim->frames->data[anim->frameIdx];
     pdVmsLcdWrite(slot, var_lcdFramePtr_8c22619c, 3);
 
-    if (var_lcdFrameDelay_8c226198 < anim->delay) {
-        var_lcdFrameDelay_8c226198++;
+    if (var_lcdFrameCounter_8c226198 < anim->delay) {
+        var_lcdFrameCounter_8c226198++;
         return;
     }
 
-    var_lcdFrameDelay_8c226198 = 0;
+    var_lcdFrameCounter_8c226198 = 0;
 
     if (++anim->frameIdx >= frameCount) {
         anim->frameIdx = 0;
@@ -351,7 +351,7 @@ STATIC void drawSelectScreen_8c01be90(void)
     int i;
 
     if (m->state_0x18 >= STATE_SELECT
-        && m->state_0x18 != STATE_SELECT_INCOMPATIBLE
+        && m->state_0x18 != STATE_NO_VM
     ) {
         SpriteDraw_8c014f54(
             &var_resourceGroup_8c2263a8, 9,
@@ -491,7 +491,7 @@ STATIC void vmGameTask_8c01bfec(VmGameTask *task)
             if (var_vmuStatus_8c226048[slot] ==
                 VMU_STATUS_PROCEED_WITHOUT_SAVING
             ) {
-                m->state_0x18 = STATE_SELECT_INCOMPATIBLE;
+                m->state_0x18 = STATE_NO_VM;
                 MessageBoxSwapFor_8c02aefc(MSG_VM_SET_PLEASE);
             } else {
                 selectSlot_8c01bf2a(slot);
@@ -505,7 +505,7 @@ STATIC void vmGameTask_8c01bfec(VmGameTask *task)
     case STATE_SELECT: {
         int i;
 
-        VmGameSetLcdSlot_8c01c8fc(0);
+        VmGameSetLcdAnim_8c01c8fc(0);
 
         i = 0;
         while (var_vmuStatus_8c226048[i] == VMU_STATUS_NOT_CONNECTED) {
@@ -513,7 +513,7 @@ STATIC void vmGameTask_8c01bfec(VmGameTask *task)
         }
 
         if (var_vmuStatus_8c226048[i] == VMU_STATUS_PROCEED_WITHOUT_SAVING) {
-            m->state_0x18 = STATE_SELECT_INCOMPATIBLE;
+            m->state_0x18 = STATE_NO_VM;
             MessageBoxSwapFor_8c02aefc(MSG_VM_SET_PLEASE);
             drawSelectScreen_8c01be90();
             break;
@@ -651,7 +651,7 @@ STATIC void vmGameTask_8c01bfec(VmGameTask *task)
 
                         switch (save) {
                             case SAVE_STARTED: {
-                                VmGameSetLcdSlot_8c01c8fc(1);
+                                VmGameSetLcdAnim_8c01c8fc(1);
                                 task->phase_0x08 = DOWNLOAD_PHASE_SAVING;
                                 MessageBoxSwapFor_8c02aefc(
                                     MSG_DOWNLOADING_NO_REMOVE
@@ -782,7 +782,7 @@ STATIC void vmGameTask_8c01bfec(VmGameTask *task)
 
                         task->phase_0x08 = EXP_PHASE_LOADING;
                         MessageBoxSwapFor_8c02aefc(MSG_VM_NO_REMOVE);
-                        VmGameSetLcdSlot_8c01c8fc(1);
+                        VmGameSetLcdAnim_8c01c8fc(1);
                         var_vmBusy_8c157a7c = 1;
                         break;
                     }
@@ -870,7 +870,7 @@ STATIC void vmGameTask_8c01bfec(VmGameTask *task)
         break;
     }
 
-    case STATE_SELECT_INCOMPATIBLE: {
+    case STATE_NO_VM: {
         slot = 0;
         while (var_vmuStatus_8c226048[slot] == VMU_STATUS_NOT_CONNECTED) {
             slot++;
@@ -900,7 +900,7 @@ STATIC void vmGameTask_8c01bfec(VmGameTask *task)
             RenderStartFadeOut_8c022b60(10);
         }
 
-        VmGameSetLcdSlot_8c01c8fc(0);
+        VmGameSetLcdAnim_8c01c8fc(0);
         drawSelectScreen_8c01be90();
         break;
     }
@@ -968,15 +968,15 @@ void VmGameResetLcdAnims_8c01c8dc(void)
     var_lcdAnimLoading_8c2260c4.delay = 10;
     var_lcdAnimLoading_8c2260c4.frameIdx = 0;
 
-    var_lcdSlot_8c2263a0 = 0;
+    var_lcdAnimIdx_8c2263a0 = 0;
     var_lcdAnimActive_8c2260a8 = 0;
 }
 
-void VmGameSetLcdSlot_8c01c8fc(int slot)
+void VmGameSetLcdAnim_8c01c8fc(int idx)
 {
-    var_lcdSlot_8c2263a0 = slot;
+    var_lcdAnimIdx_8c2263a0 = idx;
     /* Pass -1 to clear the LCD slot. */
-    if (slot == -1) {
+    if (idx == -1) {
         advanceLcdAnim_8c01bb48(0, 0);
     }
 }
@@ -984,6 +984,6 @@ void VmGameSetLcdSlot_8c01c8fc(int slot)
 void VmGameUpdateLcd_8c01c910(void)
 {
     advanceLcdAnim_8c01bb48(
-        init_lcdAnimTable_8c044e38[var_lcdSlot_8c2263a0], 0
+        init_lcdAnimTable_8c044e38[var_lcdAnimIdx_8c2263a0], 0
     );
 }

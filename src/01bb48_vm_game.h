@@ -54,7 +54,7 @@ extern LcdAnim var_lcdAnimLoading_8c2260c4; // now_loading.lcd anim
 
 void VmGameEnter_8c01c880(Task *task);
 void VmGameResetLcdAnims_8c01c8dc(void);
-void VmGameSetLcdSlot_8c01c8fc(int slot);
+void VmGameSetLcdAnim_8c01c8fc(int idx);
 void VmGameUpdateLcd_8c01c910(void);
 
 #endif // _VM_GAME_H

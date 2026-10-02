@@ -367,7 +367,7 @@ return new class extends TestCase {
         $this->shouldWriteLong($this->ms + 0x18, 0xc);  // RETURN_FADE_OUT
         $this->midi(0);
         $this->shouldCall('_RenderStartFadeOut_8c022b60')->with(10);
-        $this->shouldCall('_VmGameSetLcdSlot_8c01c8fc')->with(0);
+        $this->shouldCall('_VmGameSetLcdAnim_8c01c8fc')->with(0);
         $this->expectEpilogue(0);
     }
 
@@ -378,7 +378,7 @@ return new class extends TestCase {
 
         $this->call('_vmGameTask_8c01bfec')->with($this->task);
         $this->expectPreamble();
-        $this->shouldCall('_VmGameSetLcdSlot_8c01c8fc')->with(0);
+        $this->shouldCall('_VmGameSetLcdAnim_8c01c8fc')->with(0);
         $this->expectEpilogue(0);
     }
 
@@ -477,7 +477,7 @@ return new class extends TestCase {
         $this->expectPreamble();
         $this->shouldCall('_PromptHandleBinary_8c016caa')->with($this->ms + 0x3c)->andReturn(1);
         $this->shouldCall('_saveExecFile_8c01bd30')->with(0x8c500000, "TOKYOBUS._VM", 0x2d, 5)->andReturn(0);
-        $this->shouldCall('_VmGameSetLcdSlot_8c01c8fc')->with(1);
+        $this->shouldCall('_VmGameSetLcdAnim_8c01c8fc')->with(1);
         $this->shouldWriteLong($this->task + 8, 1);   // sub-phase -> save-in-progress
         $this->shouldCall('_MessageBoxSwapFor_8c02aefc')->with("ダウンロード中です<E>ＶＭを絶対に抜かないで下さい");
         $this->shouldWriteLong($this->addressOf('_var_vmBusy_8c157a7c'), 1);
@@ -673,7 +673,7 @@ return new class extends TestCase {
         $this->shouldCall('_loadFileEx_8c01be30')->with(5, "TOKYOBUS._VM", $tex, 0, 6)->andReturn(0);
         $this->shouldWriteLong($this->task + 8, 1);
         $this->shouldCall('_MessageBoxSwapFor_8c02aefc')->with("ＶＭを絶対に抜かないで下さい");
-        $this->shouldCall('_VmGameSetLcdSlot_8c01c8fc')->with(1);
+        $this->shouldCall('_VmGameSetLcdAnim_8c01c8fc')->with(1);
         $this->shouldWriteLong($this->addressOf('_var_vmBusy_8c157a7c'), 1);
         $this->expectDownloadDraw();
         $this->expectEpilogue(0);
@@ -847,7 +847,7 @@ return new class extends TestCase {
 
         $this->call('_vmGameTask_8c01bfec')->with($this->task);
         $this->expectPreamble();
-        $this->shouldCall('_VmGameSetLcdSlot_8c01c8fc')->with(0);
+        $this->shouldCall('_VmGameSetLcdAnim_8c01c8fc')->with(0);
         $this->shouldWriteLong($this->ms + 0x18, 9);   // SELECT_INCOMPATIBLE
         $this->shouldCall('_MessageBoxSwapFor_8c02aefc')->with("ＶＭをセットして下さい");
         $this->expectEpilogue(0);
@@ -862,7 +862,7 @@ return new class extends TestCase {
 
         $this->call('_vmGameTask_8c01bfec')->with($this->task);
         $this->expectPreamble();
-        $this->shouldCall('_VmGameSetLcdSlot_8c01c8fc')->with(0);
+        $this->shouldCall('_VmGameSetLcdAnim_8c01c8fc')->with(0);
         $this->shouldCall('_selectSlot_8c01bf2a')->with(1);
         $this->shouldWriteLong($this->ms + 0x18, 6);   // SELECT_CURSOR_MOVE
         $this->midi(3);
@@ -878,7 +878,7 @@ return new class extends TestCase {
 
         $this->call('_vmGameTask_8c01bfec')->with($this->task);
         $this->expectPreamble();
-        $this->shouldCall('_VmGameSetLcdSlot_8c01c8fc')->with(0);
+        $this->shouldCall('_VmGameSetLcdAnim_8c01c8fc')->with(0);
         $this->shouldCall('_selectSlot_8c01bf2a')->with(1);
         $this->shouldWriteLong($this->ms + 0x18, 6);   // SELECT_CURSOR_MOVE
         $this->midi(3);
@@ -895,7 +895,7 @@ return new class extends TestCase {
 
         $this->call('_vmGameTask_8c01bfec')->with($this->task);
         $this->expectPreamble();
-        $this->shouldCall('_VmGameSetLcdSlot_8c01c8fc')->with(0);
+        $this->shouldCall('_VmGameSetLcdAnim_8c01c8fc')->with(0);
         $this->shouldWriteLong($this->ms + 0x18, 7);   // DOWNLOAD
         $this->shouldCall('_MessageBoxSwapFor_8c02aefc')->with("交通標識クイズをダウンロードします<E>よろしいですか？");
         $this->midi(0);
@@ -915,7 +915,7 @@ return new class extends TestCase {
 
         $this->call('_vmGameTask_8c01bfec')->with($this->task);
         $this->expectPreamble();
-        $this->shouldCall('_VmGameSetLcdSlot_8c01c8fc')->with(0);
+        $this->shouldCall('_VmGameSetLcdAnim_8c01c8fc')->with(0);
         $this->shouldWriteLong($this->ms + 0x18, 8);   // EXP_LOAD
         $this->shouldCall('_MessageBoxSwapFor_8c02aefc')->with("ポイントを加算します<E>よろしいですか？");
         $this->midi(0);
@@ -935,7 +935,7 @@ return new class extends TestCase {
 
         $this->call('_vmGameTask_8c01bfec')->with($this->task);
         $this->expectPreamble();
-        $this->shouldCall('_VmGameSetLcdSlot_8c01c8fc')->with(0);
+        $this->shouldCall('_VmGameSetLcdAnim_8c01c8fc')->with(0);
         $this->midi(2);                          // reject sound, no state change
         $this->shouldWriteLong($this->ms + 0x6c, 0);
         $this->shouldWriteLong($this->ms + 0x3c, 0);
@@ -952,7 +952,7 @@ return new class extends TestCase {
 
         $this->call('_vmGameTask_8c01bfec')->with($this->task);
         $this->expectPreamble();
-        $this->shouldCall('_VmGameSetLcdSlot_8c01c8fc')->with(0);
+        $this->shouldCall('_VmGameSetLcdAnim_8c01c8fc')->with(0);
         $this->shouldCall('_selectSlot_8c01bf2a')->with(1);
         $this->shouldWriteLong($this->ms + 0x18, 6);   // SELECT_CURSOR_MOVE
         $this->midi(3);
@@ -968,7 +968,7 @@ return new class extends TestCase {
 
         $this->call('_vmGameTask_8c01bfec')->with($this->task);
         $this->expectPreamble();
-        $this->shouldCall('_VmGameSetLcdSlot_8c01c8fc')->with(0);
+        $this->shouldCall('_VmGameSetLcdAnim_8c01c8fc')->with(0);
         $this->shouldCall('_selectSlot_8c01bf2a')->with(3);
         $this->shouldWriteLong($this->ms + 0x18, 6);
         $this->midi(3);
@@ -984,7 +984,7 @@ return new class extends TestCase {
 
         $this->call('_vmGameTask_8c01bfec')->with($this->task);
         $this->expectPreamble();
-        $this->shouldCall('_VmGameSetLcdSlot_8c01c8fc')->with(0);
+        $this->shouldCall('_VmGameSetLcdAnim_8c01c8fc')->with(0);
         $this->shouldCall('_selectSlot_8c01bf2a')->with(0);
         $this->shouldWriteLong($this->ms + 0x18, 6);
         $this->midi(3);
@@ -1000,7 +1000,7 @@ return new class extends TestCase {
 
         $this->call('_vmGameTask_8c01bfec')->with($this->task);
         $this->expectPreamble();
-        $this->shouldCall('_VmGameSetLcdSlot_8c01c8fc')->with(0);
+        $this->shouldCall('_VmGameSetLcdAnim_8c01c8fc')->with(0);
         $this->shouldCall('_selectSlot_8c01bf2a')->with(7);
         $this->shouldWriteLong($this->ms + 0x18, 6);
         $this->midi(3);
@@ -1016,7 +1016,7 @@ return new class extends TestCase {
 
         $this->call('_vmGameTask_8c01bfec')->with($this->task);
         $this->expectPreamble();
-        $this->shouldCall('_VmGameSetLcdSlot_8c01c8fc')->with(0);
+        $this->shouldCall('_VmGameSetLcdAnim_8c01c8fc')->with(0);
         $this->shouldCall('_selectSlot_8c01bf2a')->with(4);
         $this->shouldWriteLong($this->ms + 0x18, 6);
         $this->midi(3);
@@ -1032,7 +1032,7 @@ return new class extends TestCase {
 
         $this->call('_vmGameTask_8c01bfec')->with($this->task);
         $this->expectPreamble();
-        $this->shouldCall('_VmGameSetLcdSlot_8c01c8fc')->with(0);
+        $this->shouldCall('_VmGameSetLcdAnim_8c01c8fc')->with(0);
         $this->shouldCall('_selectSlot_8c01bf2a')->with(4);
         $this->shouldWriteLong($this->ms + 0x18, 6);
         $this->midi(3);
@@ -1048,7 +1048,7 @@ return new class extends TestCase {
 
         $this->call('_vmGameTask_8c01bfec')->with($this->task);
         $this->expectPreamble();
-        $this->shouldCall('_VmGameSetLcdSlot_8c01c8fc')->with(0);
+        $this->shouldCall('_VmGameSetLcdAnim_8c01c8fc')->with(0);
         $this->shouldCall('_selectSlot_8c01bf2a')->with(7);
         $this->shouldWriteLong($this->ms + 0x18, 6);
         $this->midi(3);
@@ -1064,7 +1064,7 @@ return new class extends TestCase {
 
         $this->call('_vmGameTask_8c01bfec')->with($this->task);
         $this->expectPreamble();
-        $this->shouldCall('_VmGameSetLcdSlot_8c01c8fc')->with(0);
+        $this->shouldCall('_VmGameSetLcdAnim_8c01c8fc')->with(0);
         // slot == selected (unchanged) -> no press-TA/TB -> just redraws.
         $this->expectEpilogue(0);
     }
@@ -1078,7 +1078,7 @@ return new class extends TestCase {
 
         $this->call('_vmGameTask_8c01bfec')->with($this->task);
         $this->expectPreamble();
-        $this->shouldCall('_VmGameSetLcdSlot_8c01c8fc')->with(0);
+        $this->shouldCall('_VmGameSetLcdAnim_8c01c8fc')->with(0);
         $this->shouldCall('_selectSlot_8c01bf2a')->with(1);
         $this->shouldWriteLong($this->ms + 0x18, 6);
         $this->midi(3);
@@ -1094,7 +1094,7 @@ return new class extends TestCase {
 
         $this->call('_vmGameTask_8c01bfec')->with($this->task);
         $this->expectPreamble();
-        $this->shouldCall('_VmGameSetLcdSlot_8c01c8fc')->with(0);
+        $this->shouldCall('_VmGameSetLcdAnim_8c01c8fc')->with(0);
         $this->shouldCall('_selectSlot_8c01bf2a')->with(0);
         $this->shouldWriteLong($this->ms + 0x18, 6);
         $this->midi(3);
@@ -1110,7 +1110,7 @@ return new class extends TestCase {
 
         $this->call('_vmGameTask_8c01bfec')->with($this->task);
         $this->expectPreamble();
-        $this->shouldCall('_VmGameSetLcdSlot_8c01c8fc')->with(0);
+        $this->shouldCall('_VmGameSetLcdAnim_8c01c8fc')->with(0);
         $this->expectEpilogue(4);
     }
 
@@ -1123,7 +1123,7 @@ return new class extends TestCase {
 
         $this->call('_vmGameTask_8c01bfec')->with($this->task);
         $this->expectPreamble();
-        $this->shouldCall('_VmGameSetLcdSlot_8c01c8fc')->with(0);
+        $this->shouldCall('_VmGameSetLcdAnim_8c01c8fc')->with(0);
         $this->shouldWriteLong($this->ms + 0x18, 0xc);  // RETURN_FADE_OUT
         $this->midi(1);
         $this->shouldCall('_RenderStartFadeOut_8c022b60')->with(10);

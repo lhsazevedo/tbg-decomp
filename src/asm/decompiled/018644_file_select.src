@@ -22,7 +22,7 @@
           .IMPORT     _VmSelectEnter_8c019e44
           .IMPORT     _MainMenuEnter_8c01a09a
           .IMPORT     _SystemMenuApplyLoadedProgress_8c01b19c
-          .IMPORT     _VmGameSetLcdSlot_8c01c8fc
+          .IMPORT     _VmGameSetLcdAnim_8c01c8fc
           .IMPORT     _RenderStartFadeIn_8c022a9c
           .IMPORT     _RenderStartFadeOut_8c022b60
           .IMPORT     _MessageBoxSwapFor_8c02aefc
@@ -1372,7 +1372,7 @@ LP_GEN_98979:
           .DATA.W H'0600 ; H'8C019050
           .RES.W 1 ; H'8C019052
           .DATA.L _MessageBoxMenuTextboxText_8c02af1c ; H'8C019054
-          .DATA.L _VmGameSetLcdSlot_8c01c8fc ; H'8C019058
+          .DATA.L _VmGameSetLcdAnim_8c01c8fc ; H'8C019058
           .DATA.L _var_saveBufCursor_8c225fe0 ; H'8C01905C
           .DATA.L _var_saveBuf_8c1ba2e0 ; H'8C019060
           .DATA.L _var_loadedSaveCount_8c22600c ; H'8C019064
@@ -1805,7 +1805,7 @@ LP_GEN_41958:
           .DATA.L _var_vmuStatus_8c226048 ; H'8C0193B0
           .DATA.L _const_8c037ecc ; H'8C0193B4
           .DATA.L _MessageBoxSwapFor_8c02aefc ; H'8C0193B8
-          .DATA.L _VmGameSetLcdSlot_8c01c8fc ; H'8C0193BC
+          .DATA.L _VmGameSetLcdAnim_8c01c8fc ; H'8C0193BC
           .DATA.L _var_vmBusy_8c157a7c ; H'8C0193C0
           .DATA.L _RenderStartFadeIn_8c022a9c ; H'8C0193C4
           .SECTION    C, DATA, ALIGN=4

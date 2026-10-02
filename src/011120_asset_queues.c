@@ -1106,7 +1106,7 @@ void AsqInitQueues_8c011f36(int datCount,int njCount,int texlistCount,int pvmCou
     initNjQueue_8c011430(njCount);
     initTexlistQueue_8c0117b8(texlistCount);
     initPvmQueue_8c011a5c(pvmCount);
-    VmGameSetLcdSlot_8c01c8fc(2);
+    VmGameSetLcdAnim_8c01c8fc(2);
     VmGameUpdateLcd_8c01c910();
     var_queuesAreInitialized_8c157a60 = 1;
 }
@@ -1129,7 +1129,7 @@ void AsqFreeQueues_8c011f7e() {
     freeNjQueue_8c0117a4();
     freeTexlistQueue_8c011a48();
     freePvmQueue_8c011e28();
-    VmGameSetLcdSlot_8c01c8fc(0);
+    VmGameSetLcdAnim_8c01c8fc(0);
     var_queuesAreInitialized_8c157a60 = 0;
 }
 
