@@ -1061,7 +1061,7 @@ void CourseMenuReturn_8c017ef2(void)
 
     TaskSpawn_8c014ae8(
         var_tasks_8c1ba3c8,
-        &GameTask_8c012f44,
+        &GameSoftResetTask_8c012f44,
         &createdTask,
         &createdState,
         0
@@ -1262,7 +1262,7 @@ STATIC void courseConfirmMenuTask_8c0181b6(Task * task, void *state)
                 var_menuState_8c1bc7a8.courseId_0x50 += 
                     init_courseVariants_8c044d10[var_progress_8c1ba1cc.days_0x00 - 1];
 
-                GameSpawnLoadingTask_8c013310(var_menuState_8c1bc7a8.courseId_0x50);
+                GameStartCourse_8c013310(var_menuState_8c1bc7a8.courseId_0x50);
                 return;
             }
             drawRouteInfo_8c018118();

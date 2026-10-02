@@ -210,7 +210,7 @@ return new class extends TestCase {
         $this->shouldCall('_TaskSpawn_8c014ae8')
             ->with(
                 $this->addressOf('_var_tasks_8c1ba3c8'),
-                $this->addressOf('_pauseDemoEndTask_8c012d5a'),
+                $this->addressOf('_attractDemoTask_8c012d5a'),
                 0xffffe4,
                 0xFFFFE8,
                 0

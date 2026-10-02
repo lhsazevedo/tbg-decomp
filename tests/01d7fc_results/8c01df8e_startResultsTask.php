@@ -16,7 +16,7 @@ return new class extends TestCase {
         // both objects place them the same.
         $this->shouldCall('_TaskSpawn_8c014ae8')->with(
             $this->addressOf('_var_tasks_8c1ba3c8'),
-            $this->addressOf('_GameTask_8c012f44'),
+            $this->addressOf('_GameSoftResetTask_8c012f44'),
             0xfffff0,
             0xfffff4,
             0,

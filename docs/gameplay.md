@@ -25,7 +25,7 @@ bus along a predefined route with predefined passenger stop requests.
 - **Practice**: 11 runs teaching individual mechanics, each preceded by a
   slideshow guide. Runs take place on sections (segments) of the main route
   maps. Lesson N loads courseId 27 + N (`lessonDescriptionTask_8c01e27c` hands
-  `var_practiceLesson_8c22640c + 0x1b` to `GameSpawnLoadingTask_8c013310`), so
+  `var_practiceLesson_8c22640c + 0x1b` to `GameStartCourse_8c013310`), so
   they are `init_courseTable_8c043ca4` entries 27-37.
 
 ## Driving loop

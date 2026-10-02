@@ -77,7 +77,7 @@ char *DEBUG_retirePhaseNames[] = {
     var_retirePhase_8c18ad08 = x;                                              \
     LOG_DEBUG(("[PAUSE] Retire phase changed: %s\n", DEBUG_retirePhaseNames[x]))
 
-/* pauseDemoEndTask_8c012d5a: demo ending marks and phases (see phase_0x08) */
+/* attractDemoTask_8c012d5a: demo ending marks and phases (see phase_0x08) */
 #define MARK_DEMO          0x7b
 #define MARK_DEMO_BLINK    0x7c
 
@@ -92,7 +92,7 @@ char *DEBUG_retirePhaseNames[] = {
  * =================
  */
 
-/* Task layout as seen by pauseDemoEndTask_8c012d5a. */
+/* Task layout as seen by attractDemoTask_8c012d5a. */
 typedef struct {
     TaskAction action;
     void *state;
@@ -102,7 +102,7 @@ typedef struct {
     int field_0x14;
     void *queuedItem_0x18;
     int field_0x1c;
-} PauseDemoEndTaskData;
+} AttractDemoTaskData;
 
 /* ==========================
  * Non-initialized Globals
@@ -366,16 +366,16 @@ STATIC void pauseToggleTask_8c012d06()
  * fades back to the title -- skipping the FortyFive logo when Start ended it,
  * replaying it on a timeout.
  */
-STATIC void pauseDemoEndTask_8c012d5a(PauseDemoEndTaskData *task)
+STATIC void attractDemoTask_8c012d5a(AttractDemoTaskData *task)
 {
-    LOG_TRACE(("[PAUSE] pauseDemoEndTask_8c012d5a\n"));
+    LOG_TRACE(("[PAUSE] attractDemoTask_8c012d5a\n"));
 
     if (var_resetRequested_8c157a78 != 0 && var_vmBusy_8c157a7c == 0
         && var_queuesAreInitialized_8c157a60 == 0) {
         ReplayMenuFreeSessionAssets_8c016182();
         init_adxPlaying_8c03bd80 = 1;
         init_soundOk_8c03bd84 = 0;
-        LOG_DEBUG(("[PAUSE] pauseDemoEndTask_8c012d5a: reset requested\n"));
+        LOG_DEBUG(("[PAUSE] attractDemoTask_8c012d5a: reset requested\n"));
         return;
     }
 
@@ -386,14 +386,14 @@ STATIC void pauseDemoEndTask_8c012d5a(PauseDemoEndTaskData *task)
         if ((var_peripherals_8c1ba35c[0].press & PDD_DGT_ST) != 0) {
             sdMidiPlay(var_midiHandles_8c0fcd28[0], 1, 0, 0);
             task->phase_0x08 = DEMO_END_SKIPPED;
-            LOG_DEBUG(("[PAUSE] pauseDemoEndTask_8c012d5a: demo skipped (Start), fading out\n"));
+            LOG_DEBUG(("[PAUSE] attractDemoTask_8c012d5a: demo skipped (Start), fading out\n"));
         } else {
             task->counter_0x0c++;
             if (task->counter_0x0c <= DEMO_END_TIMEOUT) {
                 break;
             }
             task->phase_0x08 = DEMO_END_TIMED_OUT;
-            LOG_DEBUG(("[PAUSE] pauseDemoEndTask_8c012d5a: demo timed out, fading out\n"));
+            LOG_DEBUG(("[PAUSE] attractDemoTask_8c012d5a: demo timed out, fading out\n"));
         }
         SndStartAdxFadeOut_8c010bae(0);
         SndStartAdxFadeOut_8c010bae(1);
@@ -411,7 +411,7 @@ STATIC void pauseDemoEndTask_8c012d5a(PauseDemoEndTaskData *task)
         }
         ReplayMenuFreeSessionAssets_8c016182();
         TitleStart_8c015fd6(task->phase_0x08 == DEMO_END_SKIPPED ? 1 : 0);
-        LOG_INFO(("[PAUSE] pauseDemoEndTask_8c012d5a: demo ended, returning to title\n"));
+        LOG_INFO(("[PAUSE] attractDemoTask_8c012d5a: demo ended, returning to title\n"));
         return;
     }
 
@@ -425,7 +425,7 @@ STATIC void pauseDemoEndTask_8c012d5a(PauseDemoEndTaskData *task)
 }
 
 
-void GameTask_8c012f44()
+void GameSoftResetTask_8c012f44()
 {
     if ((var_resetRequested_8c157a78 != 0) && (var_vmBusy_8c157a7c == 0)) {
         SndStopAdx_8c010ca6(0);
@@ -532,7 +532,7 @@ void GameEnterDrive_8c01306e(void)
         if (var_isAttractDemo_8c1bb8d4 == 0) {
             TaskSpawn_8c014ae8(var_tasks_8c1ba3c8, &pauseToggleTask_8c012d06, &created_task, &created_state, 0);
         } else {
-            TaskSpawn_8c014ae8(var_tasks_8c1ba3c8, &pauseDemoEndTask_8c012d5a, &created_task, &created_state, 0);
+            TaskSpawn_8c014ae8(var_tasks_8c1ba3c8, &attractDemoTask_8c012d5a, &created_task, &created_state, 0);
             created_task->field_0x08 = 0;
             created_task->field_0x0c = (void*) 0;
         }
@@ -589,12 +589,12 @@ void GameStartSelectedCourse_8c01328c() {
     RouteSpawnTask_8c0144fc();
 }
 
-void GameSpawnLoadingTask_8c013310(int p1) {
+void GameStartCourse_8c013310(int courseId) {
     Task *created_task;
     void* created_state;
   
     if (var_playMode_8c1bb8d0 != PLAY_MODE_DEMO) {
-        var_currentCourse_8c1bb868.courseId_0x00 = p1;
+        var_currentCourse_8c1bb868.courseId_0x00 = courseId;
         var_startStopIndex_8c228704 = 0;
         var_driveMode_8c1bb8c8 = var_progress_8c1ba1cc.driveMode_0xc5;
         var_seed_8c157a64 = AsqGetRandomA_8c012166();

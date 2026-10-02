@@ -275,7 +275,7 @@ STATIC void lessonDescriptionTask_8c01e27c(Task *task)
                 var_worstPenaltyMsgSet_8c1bb8ec = 0x1d;
                 var_penaltyCount_8c1bb8f4 = 0;
                 var_practiceRules_8c226410 = init_practiceRules_8c0451c0[var_practiceLesson_8c22640c];
-                GameSpawnLoadingTask_8c013310(var_practiceLesson_8c22640c + 0x1b);
+                GameStartCourse_8c013310(var_practiceLesson_8c22640c + 0x1b);
                 break;
             }
 
@@ -838,7 +838,7 @@ void PracticeMenuLessonRetry_8c01f21c(void)
 
     var_playMode_8c1bb8d0 = PLAY_MODE_PRACTICE;
     InputSpawnTask_8c0128cc(0);
-    TaskSpawn_8c014ae8(var_tasks_8c1ba3c8, GameTask_8c012f44, &created_task, &created_state, 0);
+    TaskSpawn_8c014ae8(var_tasks_8c1ba3c8, GameSoftResetTask_8c012f44, &created_task, &created_state, 0);
     TaskSpawn_8c014ae8(var_tasks_8c1ba3c8, lessonMenuTask_8c01ebf2, &created_task, &created_state, 0);
 
     var_menuState_8c1bc7a8.state_0x18 = LESSON_STATE_INIT;

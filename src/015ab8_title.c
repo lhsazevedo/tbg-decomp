@@ -416,7 +416,7 @@ void TitleStart_8c015fd6 (Bool direct) {
     Task* created_task;
     void* created_state;
     InputSpawnTask_8c0128cc(0);
-    TaskSpawn_8c014ae8(var_tasks_8c1ba3c8, &GameTask_8c012f44, &created_task, &created_state, 0);
+    TaskSpawn_8c014ae8(var_tasks_8c1ba3c8, &GameSoftResetTask_8c012f44, &created_task, &created_state, 0);
 
     njSetBackColor(0,0,0);
     TaskSpawn_8c014ae8(var_tasks_8c1ba3c8, &titleTask_8c015ab8, &created_task, &created_state, 0);
@@ -424,7 +424,7 @@ void TitleStart_8c015fd6 (Bool direct) {
     LOG_DEBUG(("[TITLE] State changed: 0X00_INIT\n"));
     var_menuState_8c1bc7a8.counter_0x64 = 0;
     created_task->field_0x08 = direct;
-    /* Marks the title as the screen on top: GameTask_8c012f44's soft reset
+    /* Marks the title as the screen on top: GameSoftResetTask_8c012f44's soft reset
      * re-spawns the title only when it is not already here. */
     var_titleActive_8c1bb8c4 = 1;
 

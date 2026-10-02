@@ -20,7 +20,7 @@ return new class extends TestCase {
         $this->shouldCall('_InputSpawnTask_8c0128cc');
         $this->shouldCall('_TaskSpawn_8c014ae8')->with(
             $this->addressOf('_var_tasks_8c1ba3c8'),
-            $this->addressOf('_GameTask_8c012f44'),
+            $this->addressOf('_GameSoftResetTask_8c012f44'),
             $createdTaskLocal,
             $createdStateLocal,
             0,
@@ -98,7 +98,7 @@ return new class extends TestCase {
         $this->shouldCall('_InputSpawnTask_8c0128cc')->with(0);
         $this->shouldCall('_TaskSpawn_8c014ae8')->with(
             $this->addressOf('_var_tasks_8c1ba3c8'),
-            $this->addressOf('_GameTask_8c012f44'),
+            $this->addressOf('_GameSoftResetTask_8c012f44'),
             $createdTaskLocal,
             $createdStateLocal,
             0,

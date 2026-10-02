@@ -21,7 +21,7 @@
           .IMPORT     _var_worstPenaltyDelta_8c1bb8f0
           .IMPORT     _var_worstPenaltyMsgSet_8c1bb8ec
           .IMPORT     _var_penaltyCount_8c1bb8f4
-          .IMPORT     _GameSpawnLoadingTask_8c013310
+          .IMPORT     _GameStartCourse_8c013310
           .IMPORT     _TaskSwitch_8c014b3e
           .IMPORT     _AsqInitQueues_8c011f36
           .IMPORT     _AsqResetQueues_8c011f6c
@@ -55,7 +55,7 @@
           .IMPORT     _njGarbageTexture
           .IMPORT     _var_runState_8c2285c4
           .IMPORT     _InputSpawnTask_8c0128cc
-          .IMPORT     _GameTask_8c012f44
+          .IMPORT     _GameSoftResetTask_8c012f44
           .IMPORT     _var_tasks_8c1ba3c8
           .IMPORT     _TaskSpawn_8c014ae8
           .IMPORT     _MessageBoxOpenTextbox_8c02ae3e
@@ -555,7 +555,7 @@ LP_GEN_38636:
           .DATA.L _var_penaltyCount_8c1bb8f4 ; H'8C01E5FC
           .DATA.L _init_practiceRules_8c0451c0 ; H'8C01E600
           .DATA.L _var_practiceRules_8c226410 ; H'8C01E604
-          .DATA.L _GameSpawnLoadingTask_8c013310 ; H'8C01E608
+          .DATA.L _GameStartCourse_8c013310 ; H'8C01E608
           .DATA.L _lessonDescriptionTask_8c01e27c ; H'8C01E60C
           .DATA.L _TaskSwitch_8c014b3e ; H'8C01E610
           .DATA.L _var_menuState_8c1bc7a8 + H'18 ; H'8C01E614
@@ -2230,7 +2230,7 @@ LP_GEN_37649:
           .RES.W 1 ; H'8C01F362
           .DATA.L _var_playMode_8c1bb8d0 ; H'8C01F364
           .DATA.L _InputSpawnTask_8c0128cc ; H'8C01F368
-          .DATA.L _GameTask_8c012f44 ; H'8C01F36C
+          .DATA.L _GameSoftResetTask_8c012f44 ; H'8C01F36C
           .DATA.L _var_tasks_8c1ba3c8 ; H'8C01F370
           .DATA.L _TaskSpawn_8c014ae8 ; H'8C01F374
           .DATA.L _lessonMenuTask_8c01ebf2 ; H'8C01F378

@@ -90,7 +90,7 @@ return new class extends TestCase {
 
         $this->shouldCall('_TaskSpawn_8c014ae8')->with(
             $this->addressOf('_var_tasks_8c1ba3c8'),
-            $this->addressOf('_GameTask_8c012f44'),
+            $this->addressOf('_GameSoftResetTask_8c012f44'),
             0xffffe4, // created_task
             0xffffe8, // created_state
             0

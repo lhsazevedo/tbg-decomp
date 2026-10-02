@@ -28,7 +28,7 @@
           .IMPORT     _TitleStart_8c015fd6
           .IMPORT     _init_instructorDialogs_8c044c08
           .IMPORT     _InputSpawnTask_8c0128cc
-          .IMPORT     _GameTask_8c012f44
+          .IMPORT     _GameSoftResetTask_8c012f44
           .IMPORT     _var_tasks_8c1ba3c8
           .IMPORT     _TaskSpawn_8c014ae8
           .IMPORT     _var_tex_8c157af8
@@ -876,7 +876,7 @@ LP_GEN_38893:
           .DATA.L _var_dialogQueue_8c225fbc ; H'8C01FA1C
           .DATA.L _init_instructorDialogs_8c044c08 ; H'8C01FA20
           .DATA.L _InputSpawnTask_8c0128cc ; H'8C01FA24
-          .DATA.L _GameTask_8c012f44 ; H'8C01FA28
+          .DATA.L _GameSoftResetTask_8c012f44 ; H'8C01FA28
           .DATA.L _var_tasks_8c1ba3c8 ; H'8C01FA2C
           .DATA.L _TaskSpawn_8c014ae8 ; H'8C01FA30
           .DATA.L _creditsTask_8c01f658 ; H'8C01FA34

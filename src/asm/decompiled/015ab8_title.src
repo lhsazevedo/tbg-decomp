@@ -16,7 +16,7 @@
           .IMPORT     _var_titleActive_8c1bb8c4
           .IMPORT     _var_peripherals_8c1ba35c
           .IMPORT     _var_tasks_8c1ba3c8
-          .IMPORT     _GameTask_8c012f44
+          .IMPORT     _GameSoftResetTask_8c012f44
           .IMPORT     _var_tex_8c157af8
           .IMPORT     _MessageBoxOpenTextbox_8c02ae3e
           .IMPORT     _AsqInitQueues_8c011f36
@@ -746,7 +746,7 @@ _TitleStart_8c015fd6:                   ; function: TitleStart_8c015fd6
           MOV         #0,R2
           MOV.L       L53+32,R4; _var_tasks_8c1ba3c8
           MOV.L       R2,@-R15
-          MOV.L       L53+28,R5; _GameTask_8c012f44
+          MOV.L       L53+28,R5; _GameSoftResetTask_8c012f44
           MOV         R15,R7
           MOV.L       L53+36,R3; _TaskSpawn_8c014ae8
           ADD         #8,R7
@@ -844,7 +844,7 @@ L53:
           .DATA.L     H'43340000 ; 180.0
           .DATA.L     H'C0E00000 ; -7.0
           .DATA.L     _InputSpawnTask_8c0128cc ; H'8c0160b0
-          .DATA.L     _GameTask_8c012f44
+          .DATA.L     _GameSoftResetTask_8c012f44
           .DATA.L     _var_tasks_8c1ba3c8
           .DATA.L     _TaskSpawn_8c014ae8
           .DATA.L     _njSetBackColor ; H'8c0160c0

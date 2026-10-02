@@ -446,7 +446,7 @@ return new class extends TestCase {
         $this->shouldWriteLong($this->addressOf('_var_worstPenaltyMsgSet_8c1bb8ec'), 0x1d);
         $this->shouldWriteLong($this->addressOf('_var_penaltyCount_8c1bb8f4'), 0);
         $this->shouldWriteLong($this->addressOf('_var_practiceRules_8c226410'), 6);
-        $this->shouldCall('_GameSpawnLoadingTask_8c013310')->with(7 + 0x1b);
+        $this->shouldCall('_GameStartCourse_8c013310')->with(7 + 0x1b);
     }
 
     public function test_state_8_waits_for_asset_load(): void
@@ -542,7 +542,7 @@ return new class extends TestCase {
         $this->setSize('_RenderStartFadeOut_8c022b60', 4);
         $this->setSize('_njSetBackColor', 4);
         $this->setSize('_ReplayMenuFreeSessionAssets_8c016182', 4);
-        $this->setSize('_GameSpawnLoadingTask_8c013310', 4);
+        $this->setSize('_GameStartCourse_8c013310', 4);
         $this->setSize('_var_worstPenaltyDelta_8c1bb8f0', 4);
         $this->setSize('_var_worstPenaltyMsgSet_8c1bb8ec', 4);
         $this->setSize('_var_penaltyCount_8c1bb8f4', 4);

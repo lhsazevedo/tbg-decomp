@@ -28,7 +28,7 @@ return new class extends TestCase {
             '_ReplayMenuFreeSessionAssets_8c016182', '_CourseMenuReturn_8c017ef2',
             '_CourseMenuBuildCourseUnlockList_8c0172dc',
             '_CourseMenuApplyUnlocks_8c0173e6', '_TitleStart_8c015fd6',
-            '_njSetBackColor', '_InputSpawnTask_8c0128cc', '_GameTask_8c012f44',
+            '_njSetBackColor', '_InputSpawnTask_8c0128cc', '_GameSoftResetTask_8c012f44',
             '_TaskSpawn_8c014ae8', '_njGarbageTexture', '_MessageBoxOpenTextbox_8c02ae3e',
             '_AsqInitQueues_8c011f36', '_AsqResetQueues_8c011f6c',
             '_CourseMenuRequestSysResgrp_8c018568',

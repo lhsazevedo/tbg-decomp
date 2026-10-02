@@ -9,7 +9,7 @@ return new class extends TestCase {
     {
         $task = $this->setup(resetRequested: 1);
 
-        $this->call('_pauseDemoEndTask_8c012d5a')->with($task);
+        $this->call('_attractDemoTask_8c012d5a')->with($task);
 
         $this->shouldCall('_ReplayMenuFreeSessionAssets_8c016182');
         $this->shouldWriteLong($this->addressOf('_init_adxPlaying_8c03bd80'), 1);
@@ -21,7 +21,7 @@ return new class extends TestCase {
         $mark = $this->addressOf('_var_markTexlist_8c1bc418');
         $task = $this->setup(press: 8, phase: 0, counter: 0);
 
-        $this->call('_pauseDemoEndTask_8c012d5a')->with($task);
+        $this->call('_attractDemoTask_8c012d5a')->with($task);
 
         $this->shouldCall('_SndUpdateAdxVolFade_8c010a40');
         $this->shouldCall('_sdMidiPlay')->with(0x1234, 1, 0, 0);
@@ -40,7 +40,7 @@ return new class extends TestCase {
         $mark = $this->addressOf('_var_markTexlist_8c1bc418');
         $task = $this->setup(press: 0, phase: 0, counter: 5);
 
-        $this->call('_pauseDemoEndTask_8c012d5a')->with($task);
+        $this->call('_attractDemoTask_8c012d5a')->with($task);
 
         $this->shouldCall('_SndUpdateAdxVolFade_8c010a40');
         $this->shouldWriteLong($task + 0xc, 6);
@@ -55,7 +55,7 @@ return new class extends TestCase {
         $mark = $this->addressOf('_var_markTexlist_8c1bc418');
         $task = $this->setup(press: 0, phase: 0, counter: 0x708);
 
-        $this->call('_pauseDemoEndTask_8c012d5a')->with($task);
+        $this->call('_attractDemoTask_8c012d5a')->with($task);
 
         $this->shouldCall('_SndUpdateAdxVolFade_8c010a40');
         $this->shouldWriteLong($task + 0xc, 0x709);
@@ -75,7 +75,7 @@ return new class extends TestCase {
         $mark = $this->addressOf('_var_markTexlist_8c1bc418');
         $task = $this->setup(phase: 1, counter: 0, isFading: 1);
 
-        $this->call('_pauseDemoEndTask_8c012d5a')->with($task);
+        $this->call('_attractDemoTask_8c012d5a')->with($task);
 
         $this->shouldCall('_SndUpdateAdxVolFade_8c010a40');
         $this->shouldWriteLong($task + 0xc, 1);
@@ -89,7 +89,7 @@ return new class extends TestCase {
     {
         $task = $this->setup(phase: 1, isFading: 0, init80: 0);
 
-        $this->call('_pauseDemoEndTask_8c012d5a')->with($task);
+        $this->call('_attractDemoTask_8c012d5a')->with($task);
 
         $this->shouldCall('_SndUpdateAdxVolFade_8c010a40');
         $this->shouldCall('_ReplayMenuFreeSessionAssets_8c016182');
@@ -100,7 +100,7 @@ return new class extends TestCase {
     {
         $task = $this->setup(phase: 1, isFading: 0, init80: 1);
 
-        $this->call('_pauseDemoEndTask_8c012d5a')->with($task);
+        $this->call('_attractDemoTask_8c012d5a')->with($task);
 
         $this->shouldCall('_SndUpdateAdxVolFade_8c010a40');
     }
@@ -110,7 +110,7 @@ return new class extends TestCase {
         $mark = $this->addressOf('_var_markTexlist_8c1bc418');
         $task = $this->setup(phase: 2, counter: 0, isFading: 1);
 
-        $this->call('_pauseDemoEndTask_8c012d5a')->with($task);
+        $this->call('_attractDemoTask_8c012d5a')->with($task);
 
         $this->shouldCall('_SndUpdateAdxVolFade_8c010a40');
         $this->shouldWriteLong($task + 0xc, 1);
@@ -124,7 +124,7 @@ return new class extends TestCase {
     {
         $task = $this->setup(phase: 2, isFading: 0, init80: 0);
 
-        $this->call('_pauseDemoEndTask_8c012d5a')->with($task);
+        $this->call('_attractDemoTask_8c012d5a')->with($task);
 
         $this->shouldCall('_SndUpdateAdxVolFade_8c010a40');
         $this->shouldCall('_ReplayMenuFreeSessionAssets_8c016182');

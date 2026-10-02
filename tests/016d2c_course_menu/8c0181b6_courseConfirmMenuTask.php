@@ -492,7 +492,7 @@ return new class extends TestCase {
         $this->shouldWriteLong($menuStateBase + 0x50, 12 + 2); // write sum (14)
 
         // Step 6: Initialize game and spawn loading task
-        $this->shouldCall('_GameSpawnLoadingTask_8c013310')->with(14);
+        $this->shouldCall('_GameStartCourse_8c013310')->with(14);
     }
 
     public function test_start_loading_state_initializes_game_when_course_already_unlocked(): void
@@ -562,7 +562,7 @@ return new class extends TestCase {
         $this->shouldWriteLong($menuStateBase + 0x50, 12 + 2); // write sum (14)
 
         // Step 6: Initialize game and spawn loading task
-        $this->shouldCall('_GameSpawnLoadingTask_8c013310')->with(14);
+        $this->shouldCall('_GameStartCourse_8c013310')->with(14);
     }
 
     public function test_return_to_menu_state_waits_when_fading(): void
@@ -672,7 +672,7 @@ return new class extends TestCase {
             $this->setRegister(0, $this->getRegister(1)->div($this->getRegister(0)));
         });
         $this->setSize('_ReplayMenuFreeSessionAssets_8c016182', 4);
-        $this->setSize('_GameSpawnLoadingTask_8c013310', 4);
+        $this->setSize('_GameStartCourse_8c013310', 4);
         $this->setSize('_var_firstClearOfCourse_8c1bb8e0', 4);
         $this->setSize('_var_passengerCount_8c1bb8e4', 4);
         $this->setSize('_var_eventCount_8c1bb8e8', 4);

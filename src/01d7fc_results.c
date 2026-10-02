@@ -370,7 +370,7 @@ STATIC void startResultsTask_8c01df8e(void)
     void *created_state;
 
     InputSpawnTask_8c0128cc(0);
-    TaskSpawn_8c014ae8(var_tasks_8c1ba3c8, GameTask_8c012f44, &created_task, &created_state, 0);
+    TaskSpawn_8c014ae8(var_tasks_8c1ba3c8, GameSoftResetTask_8c012f44, &created_task, &created_state, 0);
     TaskSpawn_8c014ae8(var_tasks_8c1ba3c8, resultsTask_8c01d8e0, &created_task, &created_state, 0);
     var_menuState_8c1bc7a8.state_0x18 = 0;
     njGarbageTexture(var_tex_8c157af8, 0xc00);

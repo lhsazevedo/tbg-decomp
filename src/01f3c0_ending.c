@@ -358,7 +358,7 @@ STATIC void creditsTask_8c01f658(void)
  * var_progress_8c1ba1cc.days_0x00 passes 30 -- the career is one month long.
  * Picks the dialog tier, seeds the instructor sprite from it, then sets the
  * screen up the way every other one does (peripheral-support task plus
- * GameTask_8c012f44's soft-reset watchdog) before spawning the ending's own
+ * GameSoftResetTask_8c012f44's soft-reset watchdog) before spawning the ending's own
  * creditsTask_8c01f658. */
 void EndingStart_8c01f954(void)
 {
@@ -374,7 +374,7 @@ void EndingStart_8c01f954(void)
 
     InputSpawnTask_8c0128cc(0);
 
-    TaskSpawn_8c014ae8(var_tasks_8c1ba3c8, GameTask_8c012f44, &gameTask, &gameTaskState, 0);
+    TaskSpawn_8c014ae8(var_tasks_8c1ba3c8, GameSoftResetTask_8c012f44, &gameTask, &gameTaskState, 0);
     TaskSpawn_8c014ae8(var_tasks_8c1ba3c8, (void *) creditsTask_8c01f658, &creditsTaskHandle, &creditsTaskState, 0);
 
     var_menuState_8c1bc7a8.state_0x18 = 0;

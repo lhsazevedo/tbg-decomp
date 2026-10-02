@@ -145,7 +145,7 @@ return [
                 "tests/0129cc_game/8c0129cc_pauseUpdate.php",
                 "tests/0129cc_game/8c012cbc_pauseTask.php",
                 "tests/0129cc_game/8c012d06_pauseToggleTask.php",
-                "tests/0129cc_game/8c012d5a_pauseDemoEndTask.php",
+                "tests/0129cc_game/8c012d5a_attractDemoTask.php",
                 "tests/0129cc_game/game.php",
             ],
             'objects' => [

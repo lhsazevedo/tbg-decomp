@@ -8,7 +8,7 @@ use Lhsazevedo\Sh4ObjTest\TestCase;
  * EndingStart_8c01f954(void): entry point, reached once the career's month
  * of days runs out. Picks the ending dialog tier, seeds the instructor sprite
  * from it, spawns the usual per-screen tasks (peripheral support,
- * GameTask_8c012f44) plus creditsTask_8c01f658, then sets up the ending's
+ * GameSoftResetTask_8c012f44) plus creditsTask_8c01f658, then sets up the ending's
  * resources.
  */
 return new class extends TestCase {
@@ -26,7 +26,7 @@ return new class extends TestCase {
         $this->setSize('_var_tex_8c157af8', 4);
         $this->setSize('_var_menuTextboxCharLimit_8c225fb8', 4);
         $this->setSize('_InputSpawnTask_8c0128cc', 4);
-        $this->setSize('_GameTask_8c012f44', 4);
+        $this->setSize('_GameSoftResetTask_8c012f44', 4);
         $this->setSize('_TaskSpawn_8c014ae8', 4);
         $this->setSize('_njGarbageTexture', 4);
         $this->setSize('_MessageBoxOpenTextbox_8c02ae3e', 4);
@@ -84,7 +84,7 @@ return new class extends TestCase {
         $this->resolveSymbols();
 
         $tasksAddr = $this->addressOf('_var_tasks_8c1ba3c8');
-        $gameTaskAddr = $this->addressOf('_GameTask_8c012f44');
+        $gameTaskAddr = $this->addressOf('_GameSoftResetTask_8c012f44');
         $creditsTaskAddr = $this->addressOf('_creditsTask_8c01f658');
         $menuState = $this->addressOf('_var_menuState_8c1bc7a8');
 
