@@ -31,7 +31,7 @@ return new class extends TestCase {
         $voice = $this->addressOf('_var_voiceTestDigits_8c226088');
 
         $task = $this->alloc(0x20);
-        $this->call('_switchToAudio_8c01afd8')->with($task);
+        $this->call('_enterAudio_8c01afd8')->with($task);
 
         $this->shouldCall('_TaskSwitch_8c014b3e')
             ->with($task, $this->addressOf('_audioTask_8c01ab08'));

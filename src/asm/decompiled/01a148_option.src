@@ -35,11 +35,11 @@
           .EXPORT     _soundTestFieldDraw_8c01aaaa
           .EXPORT     _init_sensitivityBarQuad_8c044de8
           .EXPORT     _settingTask_8c01a148
-          .EXPORT     _switchToSetting_8c01a3c0
+          .EXPORT     _enterSetting_8c01a3c0
           .EXPORT     _keyConfigTask_8c01a50c
-          .EXPORT     _switchToKeyConfig_8c01a89c
+          .EXPORT     _enterKeyConfig_8c01a89c
           .EXPORT     _audioTask_8c01ab08
-          .EXPORT     _switchToAudio_8c01afd8
+          .EXPORT     _enterAudio_8c01afd8
           .EXPORT     _topMenuTask_8c01b00a
           .EXPORT     _var_settingValues_8c226074
           .EXPORT     _var_musicTestDigits_8c226078
@@ -379,7 +379,7 @@ LAB_8c01a38c:
           MOV.L       @R15+,R13
           RTS
           MOV.L       @R15+,R14
-_switchToSetting_8c01a3c0:
+_enterSetting_8c01a3c0:
           STS.L       PR,@-R15
           MOV.L       LP_GEN_85851+10,R3
           MOV.L       LP_GEN_85851+6,R5
@@ -1030,7 +1030,7 @@ LAB_8c01a874:
           MOV.L       @R15+,R13
           RTS
           MOV.L       @R15+,R14
-_switchToKeyConfig_8c01a89c:
+_enterKeyConfig_8c01a89c:
           STS.L       PR,@-R15
           MOV.L       LP_GEN_75770+8,R3
           MOV.L       LP_GEN_75770+4,R5
@@ -1988,7 +1988,7 @@ LAB_8c01afa0:
           MOV.L       @R15+,R13
           RTS
           MOV.L       @R15+,R14
-_switchToAudio_8c01afd8:
+_enterAudio_8c01afd8:
           STS.L       PR,@-R15
           MOV.L       LP_GEN_51773+8,R3
           MOV.L       LP_GEN_51773+4,R5
@@ -2222,9 +2222,9 @@ _init_8c044e0c:        ; from ghidra
 _init_8c044e1c:        ; from ghidra
           .DATA.B      H'00, H'00, H'00, H'00, H'FB, H'91, H'53, H'3F, H'00, H'00, H'F4, H'C4
 _init_topMenuActions_8c044e28:        ; from defines
-          .DATA.L      _switchToSetting_8c01a3c0 ; ukn
-          .DATA.L      _switchToKeyConfig_8c01a89c ; ukn
-          .DATA.L      _switchToAudio_8c01afd8 ; ukn
+          .DATA.L      _enterSetting_8c01a3c0 ; ukn
+          .DATA.L      _enterKeyConfig_8c01a89c ; ukn
+          .DATA.L      _enterAudio_8c01afd8 ; ukn
           .DATA.L      _MainMenuEnter_8c01a09a ; ukn
           .SECTION    B,DATA,ALIGN=4
 _var_soundMode_8c226070:

@@ -23,7 +23,7 @@ return new class extends TestCase {
         $this->setSize('_RenderStartFadeIn_8c022a9c', 4);
 
         $task = $this->alloc(0x20);
-        $this->call('_switchToKeyConfig_8c01a89c')->with($task);
+        $this->call('_enterKeyConfig_8c01a89c')->with($task);
 
         $this->shouldCall('_TaskSwitch_8c014b3e')
             ->with($task, $this->addressOf('_keyConfigTask_8c01a50c'));

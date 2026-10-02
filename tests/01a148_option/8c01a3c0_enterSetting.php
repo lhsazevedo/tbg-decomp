@@ -23,7 +23,7 @@ return new class extends TestCase {
         $this->setSize('_RenderStartFadeIn_8c022a9c', 4);
 
         $task = $this->alloc(0x20);
-        $this->call('_switchToSetting_8c01a3c0')->with($task);
+        $this->call('_enterSetting_8c01a3c0')->with($task);
 
         $this->shouldCall('_TaskSwitch_8c014b3e')
             ->with($task, $this->addressOf('_settingTask_8c01a148'));

@@ -55,7 +55,7 @@ Sint8 var_soundMode_8c226070;
  * only by OptionEnter_8c01b122. */
 STATIC char *var_settingValues_8c226074;
 /* AUDIO sound-test entry fields: one int per decimal digit, ones at index 0.
- * Laid out contiguously, and switchToAudio_8c01afd8 clears them relying on it. */
+ * Laid out contiguously, and enterAudio_8c01afd8 clears them relying on it. */
 STATIC int var_musicTestDigits_8c226078[2];
 STATIC int var_sfxTestDigits_8c226080[2];
 STATIC int var_voiceTestDigits_8c226088[4];
@@ -87,9 +87,9 @@ STATIC NJS_POLYGON_VTX init_sensitivityBarQuad_8c044de8[4] = {
  */
 
 /* Switch-in wrappers, referenced by init_topMenuActions_8c044e28 below. */
-STATIC void switchToSetting_8c01a3c0(Task *task);
-STATIC void switchToKeyConfig_8c01a89c(Task *task);
-STATIC void switchToAudio_8c01afd8(Task *task);
+STATIC void enterSetting_8c01a3c0(Task *task);
+STATIC void enterKeyConfig_8c01a89c(Task *task);
+STATIC void enterAudio_8c01afd8(Task *task);
 
 /* ====================
  * Initialized Globals (continued: needs the forward decls above)
@@ -99,9 +99,9 @@ STATIC void switchToAudio_8c01afd8(Task *task);
 /* OPTION top-menu dispatch, indexed by the selected row (SETTING, KEY CONFIGURE,
  * AUDIO, RETURN); the chosen entry is installed after the fade-out. */
 STATIC TaskAction init_topMenuActions_8c044e28[4] = {
-    switchToSetting_8c01a3c0,
-    switchToKeyConfig_8c01a89c,
-    switchToAudio_8c01afd8,
+    enterSetting_8c01a3c0,
+    enterKeyConfig_8c01a89c,
+    enterAudio_8c01afd8,
     MainMenuEnter_8c01a09a,
 };
 
@@ -213,7 +213,7 @@ STATIC void settingTask_8c01a148(Task *task)
 }
 
 /* Switch to the SETTING screen: install its task, reset to the fade-in phase. */
-STATIC void switchToSetting_8c01a3c0(Task *task)
+STATIC void enterSetting_8c01a3c0(Task *task)
 {
     TaskSwitch_8c014b3e(task, settingTask_8c01a148);
     var_menuState_8c1bc7a8.state_0x18 = OPTION_STATE_FADE_IN;
@@ -436,7 +436,7 @@ STATIC void keyConfigTask_8c01a50c(Task *task)
     SpriteDraw_8c014f54(&m->resourceGroupA_0x00, 0, 0.0f, 0.0f, -7.0f);
 }
 /* Switch to the KEY CONFIGURE screen: install its task, reset to the fade-in phase. */
-STATIC void switchToKeyConfig_8c01a89c(Task *task)
+STATIC void enterKeyConfig_8c01a89c(Task *task)
 {
     TaskSwitch_8c014b3e(task, keyConfigTask_8c01a50c);
     var_menuState_8c1bc7a8.state_0x18 = OPTION_STATE_FADE_IN;
@@ -727,7 +727,7 @@ STATIC void audioTask_8c01ab08(Task *task)
  * base (var_sfxTestDigits_8c226080); the third lands on var_voiceTestDigits_8c226088[0], which the VOICE clear
  * below zeroes again -- a redundant store kept for equivalence.
  */
-STATIC void switchToAudio_8c01afd8(Task *task)
+STATIC void enterAudio_8c01afd8(Task *task)
 {
     TaskSwitch_8c014b3e(task, audioTask_8c01ab08);
     var_menuState_8c1bc7a8.state_0x18 = OPTION_STATE_FADE_IN;

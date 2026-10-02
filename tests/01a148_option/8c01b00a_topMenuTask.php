@@ -108,7 +108,7 @@ return new class extends TestCase {
     {
         $this->arrange(press: self::TA, state: 1, selected: 0);
         $this->shouldWriteLong($this->menu(self::STATE), 2);
-        $this->shouldWriteLong($this->menu(self::FIELD70), $this->addressOf('_switchToSetting_8c01a3c0'));
+        $this->shouldWriteLong($this->menu(self::FIELD70), $this->addressOf('_enterSetting_8c01a3c0'));
         $this->shouldWriteLong($this->menu(self::FIELD74), 2);
         $this->shouldCall('_RenderStartFadeOut_8c022b60')->with(10);
         $this->shouldCall('_sdMidiPlay')->with(self::MIDI, 1, 0, 0);
@@ -119,7 +119,7 @@ return new class extends TestCase {
     {
         $this->arrange(press: self::TA, state: 1, selected: 2);
         $this->shouldWriteLong($this->menu(self::STATE), 2);
-        $this->shouldWriteLong($this->menu(self::FIELD70), $this->addressOf('_switchToAudio_8c01afd8'));
+        $this->shouldWriteLong($this->menu(self::FIELD70), $this->addressOf('_enterAudio_8c01afd8'));
         $this->shouldWriteLong($this->menu(self::FIELD74), 2);
         $this->shouldCall('_RenderStartFadeOut_8c022b60')->with(10);
         $this->shouldCall('_sdMidiPlay')->with(self::MIDI, 1, 0, 0);
