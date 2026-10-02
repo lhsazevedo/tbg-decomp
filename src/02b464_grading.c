@@ -201,13 +201,9 @@ STATIC int init_8c04c330[] = {
     26, 17, 21,
 };
 
-/* Indexed by the msgSet id adjustPoints_8c02b464 takes (0-0x21). Each entry is a
- * variable-length {count, id...} list of HUD banner glyph ids for
- * drawMsgGlyphRow_8c02b2f0 (02b2f0.c) -- a different id space from
- * InstructorLine/INSTR_*. The practice results screen maps the same msgSet
- * through init_penaltyMsgSetInstr_8c045208 (01e27c_practice_menu.c) to get
- * the INSTR_* dialog line. The leaf tables stay address-named since they are
- * only ever reached through this one; the row comments give the msgSet. */
+/* Indexed by msgSet (0-0x21): {count, glyph id...} banner rows. Glyph ids
+ * are not INSTR_* ids; init_penaltyMsgSetInstr_8c045208 maps a msgSet to
+ * its INSTR_* line. */
 STATIC int *init_penaltyMsgGlyphs_8c04c35c[] = {
     /* 0x00 */ init_8c04bef0, init_8c04bf0c, init_8c04bf34, init_8c04bf5c,
     /* 0x04 */ init_8c04bf7c, init_8c04bf9c, init_8c04bfb0, init_8c04bfd4,
@@ -229,32 +225,21 @@ RunState var_runState_8c2285c4;
 
 int var_wallHitBits_8c228660;
 
-/* Both written by handleBump_8c02b6d4 (02b464) with
- * BusCollisionFindHit_8c02e2dc's result, and read nowhere -- dead stores
- * kept for parity with the original. */
+/* Written and never read. */
 BusState *var_hitCandidate_8c228664;
 BusState *var_hitVehicle_8c228668;
 
-/* The bus's speed this frame, snapshotted by runPhaseTask_8c02c072 (02b464)
- * before the graders run so they all see one value. */
+/* Snapshotted before the graders run, so they all see one value. */
 float var_frameSpeed_8c22866c;
 
-/* The bumped vehicle's speed_0x27c, saved before handleBump_8c02b6d4
- * overwrites it, then given to the player as rebound speed. */
+/* The bumped vehicle's speed before the bump, given to the player as
+ * rebound speed. */
 float var_bumpSpeed_8c228670;
 
-/* One frame's driving state, all snapshotted together by
- * runPhaseTask_8c02c072 (02b464) before the graders run.
- *
- * laneA/B/C are junctionARoadFlags2_0x358 / junctionBRoadFlags2_0x374 /
- * junctionCRoadFlags2_0x390 masked with 0xf0000001 -- the bus's three
- * road-probe lanes. prevLane/prevLaneFlags are last frame's, kept in
- * var_runState_8c2285c4.lane_0x6c/var_runState_8c2285c4.field_0x70[0] between frames. offCourseBits is the
- * larger of junction A's and B's 0x30000 bits: 0x30000 is the severe case
- * gradeOffCourseSevere_8c02b864 grades, 0x20000 and below go to
- * gradeOffCourse_8c02b886. headingVsRoad is 0 when there is no road data,
- * 1 when the bus points along the road and 2 when it points against it --
- * 2 is what gradeSignals_8c02b8b8 reads as wrong-way. */
+/* One frame's driving state, snapshotted before the graders run.
+ * laneA/B/C are the three road probes' lanes. offCourseBits is the larger
+ * of probes A and B's 0x30000 bits, 0x30000 being severe. headingVsRoad:
+ * 0 = no road data, 1 = along the road, 2 = against it. */
 int var_laneA_8c228674;
 int var_laneB_8c228678;
 int var_laneC_8c22867c;
@@ -263,12 +248,7 @@ int var_prevLane_8c228684;
 int var_prevLaneFlags_8c228688;
 int var_headingVsRoad_8c22868c;
 
-/* One cooldown per offense category, armed by armCooldowns_8c02b578 (02b464)
- * to 0x96 frames for collision and signal, 0xd2 for the rest, and counted
- * down by runPhaseTask_8c02c072. They are not independent: the graders run
- * in a chain where each is gated on the cooldown the category above it
- * arms, so a collision silences every lesser offense for 150 frames. A
- * negative value means expired. */
+/* One per offense category, in frames; negative = expired. */
 int var_cooldownCollision_8c228690;
 int var_cooldownOffCourse_8c228694;
 int var_cooldownSignal_8c228698;
@@ -286,8 +266,6 @@ STATIC void adjustPoints_8c02b464(int msgSet, int delta) {
         return;
     }
 
-    /* The run's single worst penalty and how many it took, read back by the
-     * results screen (01e27c_practice_menu.c). */
     if (delta < 0) {
         var_penaltyCount_8c1bb8f4 = var_penaltyCount_8c1bb8f4 + 1;
     } else if (var_progress_8c1ba1cc.difficulty_0xc4 == 2 && var_playMode_8c1bb8d0 != PLAY_MODE_PRACTICE) {
@@ -374,8 +352,6 @@ STATIC void handleBump_8c02b6d4(void) {
     }
 
     other = BusCollisionFindHit_8c02e2dc();
-    /* var_hitCandidate_8c228664 and var_hitVehicle_8c228668 are written here and read nowhere, in
-     * this unit or any other. Kept as-is. */
     var_hitCandidate_8c228664 = (BusState *)other;
     if (other == NULL) {
         return;
@@ -389,7 +365,6 @@ STATIC void handleBump_8c02b6d4(void) {
     dz = other->posZ_0xfc - var_playerBus_8c1bbd9c->posZ_0x0fc;
     dist = njSqrt(dx * dx + dz * dz);
 
-    /* Speed floor of var_frameSpeed_8c22866c + 0.3 -- see BusDriveEnterKnockback_8c023bce. */
     if (other->isParked_0x2e4 == 0) {
         other->driveState_0x2b4 = 1;
         other->speed_0x27c = var_frameSpeed_8c22866c + 0.3f;
@@ -421,8 +396,6 @@ STATIC void handleBump_8c02b6d4(void) {
         VibStart_8c010f7a(6);
     }
 
-    /* var_cooldownCollision_8c228690 counts past 0 to negative once the type-1 cooldown has
-     * expired; see armCooldowns_8c02b578. */
     if (var_cooldownCollision_8c228690 >= 0) {
         return;
     }
@@ -439,7 +412,6 @@ STATIC void handleBump_8c02b6d4(void) {
 }
 
 STATIC void gradeWallHit_8c02b7ea(void) {
-    /* Bits 0x2/0x4 are set by hitWall_8c023bea (023938_bus_drive). */
     unsigned int flags = var_wallHitBits_8c228660 & 6;
 
     if (flags == 0) {
@@ -476,12 +448,8 @@ STATIC void gradeOffCourse_8c02b886(void) {
     }
 }
 
-/* Grades an off-course/wrong-way penalty, then tracks the current
- * traffic-signal state (var_busState_8c1bb9d0's 0x34c low
- * bits, an id in var_runState_8c2285c4.field_0x38[0]/[1]) across frames: a first-seen signal
- * with the player still moving grades a further penalty via
- * SignalGetFrame_8c028900; a signal that goes away with the
- * player stopped and the bus not driving through it grades another. */
+/* Wrong way, running a red, and stopping past the line. The signal id is
+ * junctionARoadFlags_0x34c's low 12 bits. */
 STATIC void gradeSignals_8c02b8b8(void) {
     int signalId;
 
@@ -511,17 +479,10 @@ STATIC void gradeSignals_8c02b8b8(void) {
     }
 }
 
-/* Grades a wrong-lane penalty, escalating on repeats via
- * var_runState_8c2285c4.wrongLaneCount_0x2c; grades a further one when var_runState_8c2285c4.lane_0x6c/
- * var_runState_8c2285c4.field_0x70[1]/[2] and the junctionARoadFlags_0x34c/junctionBRoadFlags_0x368
- * turn-signal bits (0x40000) don't all agree; and grades a third,
- * timeout-based one (var_runState_8c2285c4.field_0x38[3]/[4]) when the player's signal duration
- * exceeds a threshold picked from junctionARoadFlags_0x34c's turn-direction
- * bits. */
+/* Wrong lane, an illegal lane change, and straddling lanes. 0x40000 in the
+ * road flags marks a lane change as illegal; the straddle threshold depends
+ * on the road's turn-direction bits. */
 STATIC void gradeLaneUse_8c02b986(void) {
-    /* 1 if the checked side is >= var_laneC_8c22867c, 2 if it's less -- mirrors
-     * which of the two comparisons below ran (the other is short-circuited
-     * whenever the first is an exact match). */
     int cmpDir;
     int threshold;
 
@@ -584,16 +545,9 @@ STATIC void gradeLaneUse_8c02b986(void) {
     }
 }
 
-/* Grades three unrelated driver-points penalties: a stale traffic signal
- * (busState junctionARoadFlags2_0x358/0x3b4, var_runState_8c2285c4.field_0x38[1] and
- * SignalGetFrame_8c028900); speeding above a per-signal limit
- * derived from busState junctionARoadFlags_0x34c, paced by
- * var_runState_8c2285c4.speedingCountdown_0x30; and a lane-change without the turn signal
- * armed (var_runState_8c2285c4.lane_0x6c vs var_prevLane_8c228684,
- * var_playerBus_8c1bbd9c->signalSide_0x25c, var_prevLaneFlags_8c228688/
- * var_runState_8c2285c4.field_0x70[0]). The tail latches that the bus is inside a junction
- * (var_runState_8c2285c4.field_0x38[6]) and, once it leaves with the wrong turn signal for the turn
- * taken, grades a fourth. */
+/* Blocking an intersection, speeding, and changing lanes or turning at a
+ * junction without the matching signal. The speed limit is
+ * junctionARoadFlags_0x34c's 0xf00000 nibble, in tens of km/h. */
 STATIC void gradeIntersection_8c02bb1c(void) {
     int laneDelta;
     float speedLimit;
@@ -632,7 +586,7 @@ STATIC void gradeIntersection_8c02bb1c(void) {
         }
     }
 
-    if (var_runState_8c2285c4.field_0x38[6] == 0) { /* 0x228614, i.e. var_runState_8c2285c4.field_0x38[6] */
+    if (var_runState_8c2285c4.field_0x38[6] == 0) {
         if ((var_busState_8c1bb9d0.junctionARoadFlags2_0x358 & 0xf000000) != 0) {
             var_runState_8c2285c4.field_0x38[6] = 1;
         }
@@ -665,18 +619,8 @@ STATIC void gradeIntersection_8c02bb1c(void) {
     var_runState_8c2285c4.field_0x38[6] = 0;
 }
 
-/* Per-frame grading tick, called once per drive frame (from runPhaseTask_8c02c072):
- * clears the player's lane-change turn signal once the lane change is done;
- * grades the level crossing (full stop in the approach, no stopping on the
- * tracks);
- * grades penalties for holding the accelerator maxed out too long, for a
- * stale "signal duration" float timer, and for a violent turn (speed *
- * steering angle out of range); tracks idle time at a stop; polls
- * StopUpdateArrival_8c02ce48; grades/awards points around the driver
- * message box and mirror view; grades a wrong-substate-while-moving
- * penalty; and advances the run's pass/fail progress counter
- * (var_runState_8c2285c4.runClock_0x18), applying a further silent penalty periodically once it
- * runs long past var_runState_8c2285c4.scheduleTime_0x14. */
+/* The checks outside the cooldown chain. Also cancels the turn signal once
+ * a lane change or turn lane is done, and advances the run clock. */
 STATIC void gradeFrame_8c02bcd8(void) {
     int laneDelta;
     unsigned int crossingZone;
@@ -739,8 +683,6 @@ STATIC void gradeFrame_8c02bcd8(void) {
         }
     }
 
-    /* applyThrottle_8c024320 (024280) sets var_runState_8c2285c4.firstUpshift_0x88 on the
-     * upshift out of gear 0; it is consumed and cleared here. */
     if (var_runState_8c2285c4.fullThrottleLatch_0x84 == 0) {
         if (var_runState_8c2285c4.firstUpshift_0x88 != 0) {
             if (var_peripherals_8c1ba35c[0].r > 0xfe) {
@@ -761,9 +703,6 @@ STATIC void gradeFrame_8c02bcd8(void) {
         }
     }
 
-    /* var_runState_8c2285c4.brakeAverage_0x90 is applyBraking_8c024530's running brake
-     * average (024280); the cooldown keeps one long stab from being docked
-     * more than once every 60 frames. */
     if (var_runState_8c2285c4.hardBrakeCooldown_0x94 != 0) {
         var_runState_8c2285c4.hardBrakeCooldown_0x94 = var_runState_8c2285c4.hardBrakeCooldown_0x94 - 1;
     }
@@ -844,11 +783,6 @@ STATIC void gradeFrame_8c02bcd8(void) {
 }
 
 int GradeRunComplete_8c02c586(void) {
-    /* Ghidra decompiles an incoming parameter as the threshold default, but
-     * no real caller passes one -- every call site here and in 02c884
-     * calls with zero args, and every reachable combination of
-     * playMode/route/lesson id below overwrites it before use. The
-     * "incoming" value is dead code. */
     int threshold = 0;
 
     if (var_playMode_8c1bb8d0 == PLAY_MODE_PRACTICE) {
@@ -871,13 +805,6 @@ int GradeRunComplete_8c02c586(void) {
     return threshold <= var_nextStopSegment_8c228710;
 }
 
-/* TaskAction installed by enterDriveEnd_8c02c738: waits a beat, fades the screen out,
- * then (once the fade finishes) frees session assets and routes to the
- * post-drive screen appropriate for the current mode. Uses task->field_0x08
- * as a state machine (0 = waiting, 1 = counting to the fade, 2 = fading
- * out) and field_0x0c as the counter for state 1. Always ends by drawing a
- * mark sprite.
- * Untested against src.obj beyond the state transitions themselves. */
 STATIC void driveEndFadeTask_8c02c69a(Task *task, void *state) {
     int *phase = (int *)&task->field_0x08;
     int *counter = (int *)&task->field_0x0c;
@@ -913,8 +840,6 @@ STATIC void driveEndFadeTask_8c02c69a(Task *task, void *state) {
     SpriteDraw_8c014f54((ResourceGroup *)&var_markTexlist_8c1bc418, 0x79, 0.0f, 0.0f, priority);
 }
 
-/* Starts the drive-end fade-out flow: begins fading music/session, then
- * spawns driveEndFadeTask_8c02c69a to poll the fade and route onward once it's done. */
 STATIC void enterDriveEnd_8c02c738(void) {
     Task *created_task;
     void *created_state;
@@ -925,10 +850,7 @@ STATIC void enterDriveEnd_8c02c738(void) {
     RenderStartFadeIn_8c022a9c(10);
 }
 
-/* Installed as var_fadeCompleteCallback_8c22656c for a free-run drive that
- * ended without enough points to pass: advances the day, clears the
- * pending-result flags, and re-enters the practice/free-run flow via
- * enterDriveEnd_8c02c738. */
+/* Fade-complete callback for a non-practice run that ran out of points. */
 STATIC void onFadeRunFailed_8c02c76a(void) {
     var_progress_8c1ba1cc.days_0x00 = var_progress_8c1ba1cc.days_0x00 + 1;
     var_runSucceeded_8c1bb8dc = 0;
@@ -937,12 +859,8 @@ STATIC void onFadeRunFailed_8c02c76a(void) {
     enterDriveEnd_8c02c738();
 }
 
-/* Installed as var_fadeCompleteCallback_8c22656c for a drive that ended
- * with the run's points still not enough to pass a required next stop
- * (GradeRunComplete_8c02c586 == 0): either re-plays the stop-arrival sequence, or (once
- * that check passes) tears down the drive's tasks and reloads the route
- * segment; when it does pass, routes to the results/course-return flow
- * like driveEndFadeTask_8c02c69a's state 2. */
+/* Fade-complete callback for a non-practice stop reached with points left:
+ * loads the next segment while a stop is owed, otherwise the run passed. */
 STATIC void onFadeStopEnded_8c02c624(void) {
     if (GradeRunComplete_8c02c586() == 0) {
         ObjectsKillPedestrianGroups_8c0297da();
@@ -998,30 +916,9 @@ void GradeOnFadePracticeEnd_8c02c784(void) {
     PracticeMenuReturn_8c01f21c();
 }
 
-/* Master per-frame drive task, installed by GradeSpawnTask_8c02c46a (via
- * TaskSpawn). var_runState_8c2285c4.runPhase_0x00 is the phase: 0 idle, 2 actively driving,
- * 3 a "drive ending, still grading a couple of last checks" phase, 4 a fixed
- * hold while fading out, 5 done.
- *
- * Phase 2: snapshots turn-signal/lane state for this frame, runs the bump
- * handler, then all the misc offense graders in 02b464 each on their own
- * per-offense cooldown (var_cooldownCollision_8c228690/694/698/69c/6a0), then gradeFrame_8c02bcd8's
- * own frame tick. Once the run's points (var_runState_8c2285c4.driverPoints_0x0c) hit
- * zero, moves to phase 4 and picks the fade-complete callback for what
- * happens next (a course drive vs. a free-run/practice one).
- *
- * Phase 3: grades how the stop ended (var_runState_8c2285c4.stopArrivalGrade_0x24, set by
- * StopUpdateArrival_8c02ce48), then moves to phase 4, picking one of three
- * fade-complete callbacks depending on mode and whether the run still needs
- * another stop (GradeRunComplete_8c02c586).
- *
- * Phase 4: counts var_runState_8c2285c4.driveEndHold_0x08 down; once elapsed and the music
- * has finished fading, stops all sound/vibration, moves to phase 5, and
- * requests the fade-in transition.
- *
- * Phases 2 and 3 end by requesting an ADX volume fade-out; every phase
- * except 0 ticks the driver-comment message queue's reveal/hold timers and
- * pushes this frame's queued fade command. */
+/* Grades each frame of run phase 2 and the stop arrival in phase 3; both
+ * end in phase 4 with a fade-complete callback picked. Ticks the banners in
+ * every phase. */
 STATIC void runPhaseTask_8c02c072() {
     int i;
 
@@ -1080,12 +977,8 @@ STATIC void runPhaseTask_8c02c072() {
                 }
             }
 
-            /* The graders below run as a priority chain: each is gated on
-              * the cooldown the category above it arms (armCooldowns_8c02b578
-              * 1 collision, 2 off-course, 3 signal, 4 lane, 5 intersection),
-              * so one offense keeps every lesser one from being reported
-              * while its cooldown runs. gradeOffCourseSevere_8c02b864 sits
-              * outside the chain and is never suppressed. */
+            /* A priority chain: an offense's cooldown silences every lesser
+             * category too. */
             gradeOffCourseSevere_8c02b864();
             if (--var_cooldownCollision_8c228690 < 0) {
                 gradeWallHit_8c02b7ea();
@@ -1188,9 +1081,6 @@ STATIC void runPhaseTask_8c02c072() {
     RenderQueueDraw_8c0223ea(RENDER_LAYER_MAIN, DriveMsgDraw_8c02b388, 0);
 }
 
-/* Starts a drive: installs runPhaseTask_8c02c072 (phase 0, idle -- it goes
- * active once something else sets var_runState_8c2285c4.runPhase_0x00 to 2) and resets this
- * unit's whole scratch scoring/state region for a fresh run. */
 void GradeSpawnTask_8c02c46a(void) {
     Task *created_task;
     void *created_state;
