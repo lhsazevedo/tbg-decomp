@@ -29,16 +29,14 @@
  * ====================
  */
 
-/* one row of init_replayMenuEntries_8c04429c */
 typedef struct {
     const char *name_0x00;
     void (*func_0x04)(void);
     ReplayMenuCourseSel courseSel_0x08;
 } ReplayMenuEntry;
 
-/* Task, with replaySaveTask_8c0167ca's private fields named. Clearing
- * active_0x08 makes the next tick free the task and leave; phase_0x0c is the
- * BupSave stage (0-3). */
+/* Task layout for replaySaveTask_8c0167ca. Clearing active_0x08 ends it on
+ * the next tick. */
 typedef struct {
     TaskAction action;
     void *state;
@@ -50,8 +48,7 @@ typedef struct {
     int field_0x1c;
 } ReplaySaveTask;
 
-/* Task, with replayLoadTask_8c0169bc's private fields named. phase_0x08 is
- * the BupLoad stage (0-3) -- 0x08, not 0x0c as in ReplaySaveTask. */
+/* Task layout for replayLoadTask_8c0169bc. */
 typedef struct {
     TaskAction action;
     void *state;
@@ -78,7 +75,7 @@ STATIC Uint32 var_demoPrevOn_8c225fac;
  * ====================
  */
 
-/* saveNames for VmSelectUpdateAllStatus_8c019550; scanned until a pointer to "". */
+/* Scanned until "". */
 char *init_replaySaveNames_8c044294[2] = { "BUS_REPLAY", "" };
 
 /* ====================
@@ -86,17 +83,16 @@ char *init_replaySaveNames_8c044294[2] = { "BUS_REPLAY", "" };
  * ====================
  */
 
-/* referenced by init_replayMenuEntries_8c04429c below; defined further down this file */
 STATIC void startCourse_8c0167c0(void);
 STATIC void openSaveMenu_8c016636(void);
 STATIC void startReplayLoad_8c016b4c(void);
 
 /* ====================
- * Initialized Globals (continued: needs the forward decls above)
+ * Initialized Globals (continued)
  * ====================
  */
 
-/* listMenuTask_8c01666a's rows; scanned until a "" name */
+/* Scanned until a "" name. */
 ReplayMenuEntry init_replayMenuEntries_8c04429c[] = {
     { "SHINJYUKU_EVENT",      MessageBoxRequestAssets_8c02aa36, { 0,  0, 0} },
     { "WANGAN_EVENT",         MessageBoxRequestAssets_8c02aa36, { 1,  0, 0} },
@@ -272,10 +268,10 @@ STATIC void saveMenuTask_8c01628c(Task *task, SaveMenuState *state)
         break;
     case REPLAY_SAVE_MENU_CONFIRM:
         if (var_peripherals_8c1ba35c[0].press & PDD_DGT_TA) {
-            state->state_0x00 = REPLAY_SAVE_MENU_EXIT;  /* A: keep this drive */
+            state->state_0x00 = REPLAY_SAVE_MENU_EXIT;
             var_selectedVm_8c1ba34c = state->port_0x08;
         } else if (var_peripherals_8c1ba35c[0].press & PDD_DGT_TB) {
-            state->state_0x00 = REPLAY_SAVE_MENU_SELECT; /* B: back to VMU selection */
+            state->state_0x00 = REPLAY_SAVE_MENU_SELECT;
             state->selectedVmu_0x04 = 0;
             if (state->bupInfo_0x10->Work != NULL) {
                 BupUnmount_8c014c46(state->port_0x08);
@@ -288,24 +284,24 @@ STATIC void saveMenuTask_8c01628c(Task *task, SaveMenuState *state)
         break;
     case REPLAY_SAVE_MENU_NO_SAVING:
         if (var_peripherals_8c1ba35c[0].press & PDD_DGT_TA) {
-            state->state_0x00 = REPLAY_SAVE_MENU_EXIT;  /* A */
+            state->state_0x00 = REPLAY_SAVE_MENU_EXIT;
             var_selectedVm_8c1ba34c = -1;        /* -1: no drive */
         } else if (var_peripherals_8c1ba35c[0].press & PDD_DGT_TB) {
-            state->state_0x00 = REPLAY_SAVE_MENU_SELECT; /* B: back to VMU selection */
+            state->state_0x00 = REPLAY_SAVE_MENU_SELECT;
             state->selectedVmu_0x04 = 0;
         }
         njPrintC(NJM_LOCATION(10, 10), "NO SAVING OK?");
         break;
     case REPLAY_SAVE_MENU_UNFORMATTED:
         if (var_peripherals_8c1ba35c[0].press & (PDD_DGT_TA | PDD_DGT_TB)) {
-            state->state_0x00 = REPLAY_SAVE_MENU_SELECT; /* A or B: back to VMU selection */
+            state->state_0x00 = REPLAY_SAVE_MENU_SELECT;
             state->selectedVmu_0x04 = 0;
         }
         njPrintC(NJM_LOCATION(10, 10), "MEMORY_CARD IS UNFORMAT");
         break;
     case REPLAY_SAVE_MENU_NO_SPACE:
         if (var_peripherals_8c1ba35c[0].press & (PDD_DGT_TA | PDD_DGT_TB)) {
-            state->state_0x00 = REPLAY_SAVE_MENU_SELECT; /* A or B: back to VMU selection */
+            state->state_0x00 = REPLAY_SAVE_MENU_SELECT;
             state->selectedVmu_0x04 = 0;
         }
         njPrintC(NJM_LOCATION(2, 10), "MEMORY_CARD IS NOT ENOUGH FREE AREA");
@@ -372,8 +368,7 @@ STATIC void listMenuTask_8c01666a(Task *task)
     AsqGetRandomA_8c012166();
 }
 
-/* Only saveMenuTask_8c01628c calls it today, but it is an entry point, not a
- * private helper -- do NOT make STATIC (KEEP_PUBLIC in check_private_decls.py). */
+/* Public on purpose: KEEP_PUBLIC in check_private_decls.py. */
 void ReplayMenuOpen_8c01673a(void)
 {
     Task *task;
@@ -391,7 +386,8 @@ void ReplayMenuResetDemoCursor_8c016770(void)
     var_demoPrevOn_8c225fac = 0;
 }
 
-/* record counterpart of ReplayMenuDemoPlayTask_8c016bf4's playback */
+/* Original bug: records only whether any button is held, which playback
+ * restores as the button mask. */
 void ReplayMenuDemoRecordTask_8c01677e(Task *task, void *state)
 {
     if (var_busState_8c1bb9d0.driveState_0x2b4 > 0 && var_demoCursor_8c225fa8 < &var_demoBuffer_8c1bc828[REPLAY_BUFFER_CAPACITY]) {
@@ -409,8 +405,6 @@ STATIC void startCourse_8c0167c0(void)
     GameStartSelectedCourse_8c01328c();
 }
 
-/* replay-save task installed by startReplaySave_8c016924; state machine driving the BupSave of the
- * recorded demo buffer for the selected VMU. */
 STATIC void replaySaveTask_8c0167ca(ReplaySaveTask *task, void *state)
 {
     const BACKUPINFO *info;
@@ -471,10 +465,8 @@ STATIC void replaySaveTask_8c0167ca(ReplaySaveTask *task, void *state)
     }
 }
 
-/* Installs replaySaveTask_8c0167ca and packs the recording for it: a 0x10-byte
- * header (packed size, courseId, inputMapSel, seed) followed by the LZW-packed
- * inputs. Nothing in the shipped build reaches this -- the debug menu's
- * VISUAL_MEMORY entry only picks the drive, it never saves. */
+/* Saved layout: a 0x10-byte header (packed size, courseId, driveMode, seed),
+ * then the LZW-packed inputs. Unreachable in the shipped build. */
 STATIC void startReplaySave_8c016924(void)
 {
     ReplaySaveTask *task;
@@ -514,8 +506,6 @@ STATIC void startReplaySave_8c016924(void)
     task->phase_0x0c = 0;
 }
 
-/* replay-load task installed by startReplayLoad_8c016b4c; state machine driving the BupLoad of a
- * recorded demo buffer from the selected VMU, then unpacking it for playback. */
 STATIC void replayLoadTask_8c0169bc(ReplayLoadTask *task, void *state)
 {
     const BACKUPINFO *info;
@@ -585,7 +575,6 @@ STATIC void replayLoadTask_8c0169bc(ReplayLoadTask *task, void *state)
     }
 }
 
-/* installs replayLoadTask_8c0169bc to load and start replaying a demo recorded on the selected VMU. */
 STATIC void startReplayLoad_8c016b4c(void)
 {
     ReplayLoadTask *task;
@@ -603,7 +592,6 @@ STATIC void startReplayLoad_8c016b4c(void)
     task->phase_0x08 = 0;
 }
 
-/* playback counterpart of ReplayMenuDemoRecordTask_8c01677e */
 void ReplayMenuDemoPlayTask_8c016bf4()
 {
     Uint32 on;

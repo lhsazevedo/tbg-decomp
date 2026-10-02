@@ -8,8 +8,6 @@
 void ReplayMenuOpen_8c01673a(void);
 void ReplayMenuDemoRecordTask_8c01677e(Task *task, void *state);
 
-/* course-start params: tail of a ReplayMenuEntry, handed to 0129cc_game.c's
- * course start through var_replayMenuCourseSel_8c1bc824. */
 typedef struct {
     int courseId_0x00;
     int startStopIndex_0x04;
@@ -29,26 +27,26 @@ typedef struct {
 extern ReplayMenuCourseSel *var_replayMenuCourseSel_8c1bc824;
 extern ReplayInput var_demoBuffer_8c1bc828[REPLAY_BUFFER_CAPACITY];
 
-/* States of saveMenuTask_8c01628c, the VISUAL_MEMORY entry's VMU picker: it
- * only records which drive a later replay save should use. */
+/* The VISUAL_MEMORY entry's VMU picker: it only records which drive a later
+ * replay save should use. */
 typedef enum {
     REPLAY_SAVE_MENU_INIT = 0,        /* 11-frame settle, then scan for usable drives */
-    REPLAY_SAVE_MENU_SELECT = 1,      /* choose a VMU slot */
+    REPLAY_SAVE_MENU_SELECT = 1,
     REPLAY_SAVE_MENU_CHECK = 2,       /* wait for card ready, validate format/space */
     REPLAY_SAVE_MENU_CONFIRM = 3,     /* free/total blocks; A commits the drive */
     REPLAY_SAVE_MENU_NO_SAVING = 4,   /* "NO SAVING OK?" confirm */
-    REPLAY_SAVE_MENU_UNFORMATTED = 5, /* card is not formatted */
-    REPLAY_SAVE_MENU_NO_SPACE = 6,    /* not enough free area */
+    REPLAY_SAVE_MENU_UNFORMATTED = 5,
+    REPLAY_SAVE_MENU_NO_SPACE = 6,
     REPLAY_SAVE_MENU_NO_VMU = 7,      /* no drive can take the save */
-    REPLAY_SAVE_MENU_EXIT = 8         /* leave the save flow */
+    REPLAY_SAVE_MENU_EXIT = 8
 } ReplaySaveMenuStateId;
 
 typedef struct {
     ReplaySaveMenuStateId state_0x00;
     int selectedVmu_0x04;           /* cursor over slots 0-7 plus the NO SAVING row (8) */
     int port_0x08;                  /* drive chosen with A */
-    int frameCounter_0x0c;          /* counts up to 11 in REPLAY_SAVE_MENU_INIT */
-    const BACKUPINFO *bupInfo_0x10; /* BupGetInfo result for the selected port */
+    int frameCounter_0x0c;
+    const BACKUPINFO *bupInfo_0x10;
 } SaveMenuState;
 
 void ReplayMenuKillDriveTasks_8c01614c(void);
