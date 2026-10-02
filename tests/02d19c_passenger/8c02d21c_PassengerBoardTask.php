@@ -12,7 +12,7 @@ return new class extends TestCase {
         $this->setSize('_AsqGetRandomInRangeA_8c012178', 4);
         $this->setSize('_var_route_8c18ad1c', 4);
         $this->setSize('_var_midiHandles_8c0fcd28', 8 * 4);
-        $this->setSize('_var_stopSchedule_8c228718', 31 * 4);
+        $this->setSize('_var_seats_8c228718', 31 * 4);
     }
 
     private function f(float $v): int
@@ -117,7 +117,7 @@ return new class extends TestCase {
 
         $this->initUint32($this->addressOf('_var_passengersFadedOut_8c22895c'), 1);
 
-        $slots = $this->addressOf('_var_stopSchedule_8c228718');
+        $slots = $this->addressOf('_var_seats_8c228718');
         for ($i = 0; $i < 31; $i++) {
             $this->initUint32($slots + $i * 4, $i === 3 ? -1 : 0xbeef);
         }

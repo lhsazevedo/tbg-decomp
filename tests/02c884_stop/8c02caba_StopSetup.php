@@ -43,7 +43,7 @@ return new class extends TestCase {
         $this->setSize('_AsqGetRandomInRangeA_8c012178', 4);
         $this->setSize('_ReplayMenuResetDemoCursor_8c016770', 4);
         // _resetStopState_8c02c884, _pickWaitingPassengers_8c02c8ae,
-        // _StopUpdateHeadings_8c02ccc6, _advanceStopSegment_8c02ccae are same-object --
+        // _StopAdvance_8c02ccc6, _advanceStopSegment_8c02ccae are same-object --
         // mock with shouldCall() directly, no setSize().
     }
 
@@ -104,7 +104,7 @@ return new class extends TestCase {
 
         $this->shouldCall('_resetStopState_8c02c884');
         $this->shouldCall('_pickWaitingPassengers_8c02c8ae');
-        $this->shouldCall('_StopUpdateHeadings_8c02ccc6');
+        $this->shouldCall('_StopAdvance_8c02ccc6');
         $this->shouldCall('_advanceStopSegment_8c02ccae');
 
         // difficulty_0xc4 < 1 && playMode != DEMO -> 200
@@ -173,7 +173,7 @@ return new class extends TestCase {
 
         $this->shouldCall('_resetStopState_8c02c884');
         $this->shouldCall('_pickWaitingPassengers_8c02c8ae');
-        $this->shouldCall('_StopUpdateHeadings_8c02ccc6');
+        $this->shouldCall('_StopAdvance_8c02ccc6');
         $this->shouldCall('_advanceStopSegment_8c02ccae');
 
         // difficulty_0xc4 < 1, but playMode == PRACTICE -> 100
@@ -238,7 +238,7 @@ return new class extends TestCase {
 
         $this->shouldCall('_resetStopState_8c02c884');
         $this->shouldCall('_pickWaitingPassengers_8c02c8ae');
-        $this->shouldCall('_StopUpdateHeadings_8c02ccc6');
+        $this->shouldCall('_StopAdvance_8c02ccc6');
         $this->shouldCall('_advanceStopSegment_8c02ccae');
 
         // difficulty_0xc4 < 1 && playMode != PRACTICE (DEMO qualifies) -> 200
@@ -293,7 +293,7 @@ return new class extends TestCase {
 
         $this->shouldCall('_resetStopState_8c02c884');
         $this->shouldCall('_pickWaitingPassengers_8c02c8ae');
-        $this->shouldCall('_StopUpdateHeadings_8c02ccc6');
+        $this->shouldCall('_StopAdvance_8c02ccc6');
         $this->shouldCall('_advanceStopSegment_8c02ccae');
 
         // playMode == PRACTICE -> 100

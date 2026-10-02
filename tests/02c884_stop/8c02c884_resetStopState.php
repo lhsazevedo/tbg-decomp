@@ -6,7 +6,7 @@ use Lhsazevedo\Sh4ObjTest\TestCase;
 
 /*
  * _resetStopState_8c02c884(void): clears the 31-slot scripted
- * waiting-passenger schedule (var_stopSchedule_8c228718, -1 = unused) and resets the
+ * waiting-passenger schedule (var_seats_8c228718, -1 = unused) and resets the
  * shared waiting-passenger sprite's scale/angle/animation ahead of a new
  * stop.
  */
@@ -26,7 +26,7 @@ return new class extends TestCase {
     {
         $this->resolveSymbols();
 
-        $slots = $this->addressOf('_var_stopSchedule_8c228718');
+        $slots = $this->addressOf('_var_seats_8c228718');
         $sprite = $this->addressOf('_var_passengerSprite_8c2288d8');
         $tanim = $this->addressOf('_init_pedestrianTexAnims_8c04623c');
 

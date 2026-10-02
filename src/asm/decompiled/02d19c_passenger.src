@@ -15,7 +15,7 @@
           .IMPORT     _var_route_8c18ad1c
           .IMPORT     _AsqGetRandomInRangeB_8c0121be
           .IMPORT     _AsqGetRandomInRangeA_8c012178
-          .IMPORT     _var_stopSchedule_8c228718
+          .IMPORT     _var_seats_8c228718
           .IMPORT     _TaskKill_8c014b66
           .IMPORT     _var_runState_8c2285c4
           .IMPORT     __divls
@@ -391,7 +391,7 @@ LP_GEN_53841:
           .DATA.L _drawPassengerSprite_8c02d19c ; H'8C02D414
           .DATA.L _var_boardSpot3_8c22891c ; H'8C02D418
           .DATA.L _AsqGetRandomInRangeA_8c012178 ; H'8C02D41C
-          .DATA.L _var_stopSchedule_8c228718 ; H'8C02D420
+          .DATA.L _var_seats_8c228718 ; H'8C02D420
           .DATA.L _init_seatPositions_8c04c3e4 ; H'8C02D424
           .DATA.L H'3E3851EC ; H'8C02D428
 LAB_8c02d42c:
@@ -660,7 +660,7 @@ LP_GEN_80933:
           .DATA.L _var_midiHandles_8c0fcd28 ; H'8C02D610
           .DATA.L _sdMidiPlay ; H'8C02D614
           .DATA.L _var_route_8c18ad1c ; H'8C02D618
-          .DATA.L _var_stopSchedule_8c228718 ; H'8C02D61C
+          .DATA.L _var_seats_8c228718 ; H'8C02D61C
           .DATA.L _var_exitSpot1_8c228934 ; H'8C02D620
           .DATA.L _var_exitSpot2_8c228940 ; H'8C02D624
           .DATA.L __quick_odd_mvn ; H'8C02D628

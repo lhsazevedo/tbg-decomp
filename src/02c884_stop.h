@@ -24,7 +24,7 @@ void StopSetup_8c02caba(void);
 
 /* Locks in the current stop's heading, then finds the next segment with a
  * stop and primes its position and heading. */
-void StopUpdateHeadings_8c02ccc6(void);
+void StopAdvance_8c02ccc6(void);
 
 CourseSegment *StopGetSegment_8c02cd6a(int segmentIndex);
 
@@ -49,13 +49,13 @@ extern int var_nextStopSegment_8c228710; // segment index of the upcoming stop
 
 /* upcoming stop's heading angle (njArcTan2 of its stop-area record's
  * direction vector, see NinjaApi.h), sign-extended from the low 16 bits by
- * StopUpdateHeadings_8c02ccc6 */
+ * StopAdvance_8c02ccc6 */
 extern int var_nextStopHeading_8c228714;
 
 /* fixed 31-slot table of scripted/special waiting-passenger schedule entries,
  * one per fixed stop position along the route; -1 = unused. Read by
  * StopSpawnInit_8c02d968 to spawn each slot's passenger task. */
-extern int var_stopSchedule_8c228718[31];
+extern int var_seats_8c228718[31];
 
 /* number of slots filled in var_waitingPassengers_8c228798 by pickWaitingPassengers_8c02c8ae
  * (0-16); read by 02d06c/02d968 to spawn that many passenger tasks. */

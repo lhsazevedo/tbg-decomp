@@ -46,7 +46,7 @@
           .IMPORT     _var_tasks_8c1bb448
           .IMPORT     _var_tasks_8c1bac28
           .IMPORT     _var_tasks_8c1ba3c8
-          .IMPORT     _StopUpdateHeadings_8c02ccc6
+          .IMPORT     _StopAdvance_8c02ccc6
           .IMPORT     _RouteSpawnSegmentReloadTask_8c01468e
           .IMPORT     _var_runReportPending_8c1bb8b8
           .IMPORT     _var_runWasPractice_8c1bb8bc
@@ -2638,7 +2638,7 @@ LP_GEN_25024:
           .DATA.L _var_tasks_8c1bac28 ; H'8C02C814
           .DATA.L _var_tasks_8c1ba5e8 ; H'8C02C818
           .DATA.L _var_tasks_8c1ba3c8 ; H'8C02C81C
-          .DATA.L _StopUpdateHeadings_8c02ccc6 ; H'8C02C820
+          .DATA.L _StopAdvance_8c02ccc6 ; H'8C02C820
           .DATA.L _RouteSpawnSegmentReloadTask_8c01468e ; H'8C02C824
           .DATA.L _var_runReportPending_8c1bb8b8 ; H'8C02C828
           .DATA.L _var_runWasPractice_8c1bb8bc ; H'8C02C82C

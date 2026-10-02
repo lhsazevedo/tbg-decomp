@@ -19,7 +19,7 @@
  * ====================
  */
 
-/* Scripted stop-schedule slots in var_stopSchedule_8c228718. */
+/* Scripted stop-schedule slots in var_seats_8c228718. */
 #define SCHEDULE_SLOTS 31
 
 /* ====================
@@ -27,7 +27,7 @@
  * ====================
  */
 
-/* One var_stopSchedule_8c228718 slot sharing the bus's current segment. These
+/* One var_seats_8c228718 slot sharing the bus's current segment. These
  * are collected, Fisher-Yates shuffled, then spawned via
  * PassengerExitTask_8c02d46c. */
 typedef struct {
@@ -156,7 +156,7 @@ void StopSpawnInit_8c02d968(void)
      * var_waitingPassengers_8c228798 loop below. */
     n = 0;
     for (i = 0; i < SCHEDULE_SLOTS; i++) {
-        if (var_stopSchedule_8c228718[i] != -1) {
+        if (var_seats_8c228718[i] != -1) {
             n++;
         }
     }
@@ -190,10 +190,10 @@ void StopSpawnInit_8c02d968(void)
     matched = (SegMatchEntry *)matchedBuf;
     count = 0;
     for (i = 0; i < SCHEDULE_SLOTS; i++) {
-        if (var_stopSchedule_8c228718[i] == -1) {
+        if (var_seats_8c228718[i] == -1) {
             continue;
         }
-        scriptEntry = (void *)var_stopSchedule_8c228718[i];
+        scriptEntry = (void *)var_seats_8c228718[i];
         if (*((char *)scriptEntry + 1) == (char)var_currentSegment_8c228708) {
             matched[count].entry_0x00 = scriptEntry;
             matched[count].index_0x04 = i;

@@ -49,7 +49,7 @@ int var_nextStopSegment_8c228710; // segment index of the upcoming stop
 
 int var_nextStopHeading_8c228714;
 
-int var_stopSchedule_8c228718[31];
+int var_seats_8c228718[31];
 
 int var_waitingPassengerCount_8c228794;
 
@@ -65,7 +65,7 @@ STATIC int var_currentStopHeading_8c2288fc;
 
 /* scratch ground-query point for the upcoming stop, snapped to ground by
  * pickWaitingPassengers_8c02c8ae; x/z (only) also set by
- * StopUpdateHeadings_8c02ccc6 ahead of that ground snap */
+ * StopAdvance_8c02ccc6 ahead of that ground snap */
 STATIC NJS_POINT3 var_nextStopPoint_8c228900;
 
 /* Spawn-area record for the upcoming stop's segment (the course's lineHum_0x2c
@@ -82,9 +82,9 @@ STATIC void resetStopState_8c02c884(void)
 {
     int i;
 
-    for (i = 0; i < (int)(sizeof(var_stopSchedule_8c228718) /
-                          sizeof(var_stopSchedule_8c228718[0])); i++) {
-        var_stopSchedule_8c228718[i] = -1;
+    for (i = 0; i < (int)(sizeof(var_seats_8c228718) /
+                          sizeof(var_seats_8c228718[0])); i++) {
+        var_seats_8c228718[i] = -1;
     }
 
     var_passengerSprite_8c2288d8.sx = 0.014f;
@@ -116,7 +116,7 @@ StopAreaRecord *StopGetArea_8c02cd7a(int segmentIndex)
 /* The same njArcTan2 angle is stored twice in different forms: var_currentStopHeading_8c2288fc
  * masked to unsigned 16 bits for the stop being left, var_nextStopHeading_8c228714
  * sign-extended to a full Angle for the one coming up. */
-void StopUpdateHeadings_8c02ccc6(void)
+void StopAdvance_8c02ccc6(void)
 {
     StopAreaRecord *rec;
     int seg;
@@ -316,7 +316,7 @@ void StopSetup_8c02caba(void)
 
     resetStopState_8c02c884();
     pickWaitingPassengers_8c02c8ae();
-    StopUpdateHeadings_8c02ccc6();
+    StopAdvance_8c02ccc6();
     advanceStopSegment_8c02ccae();
 
     if (var_progress_8c1ba1cc.difficulty_0xc4 < 1 && var_playMode_8c1bb8d0 != PLAY_MODE_PRACTICE) {

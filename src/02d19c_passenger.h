@@ -24,7 +24,7 @@ typedef struct {
 } StopScheduleState;
 
 /* Per-scripted-stop schedule table, 31 (x, z) seat positions indexed by the
- * var_stopSchedule_8c228718 slot index. */
+ * var_seats_8c228718 slot index. */
 typedef struct {
     float x;
     float z;

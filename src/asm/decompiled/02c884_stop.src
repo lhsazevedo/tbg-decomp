@@ -46,7 +46,7 @@
           .IMPORT     _GradeOnFadePracticeEnd_8c02c784
           .EXPORT     _StopKillTaskGroup_8c02ca96
           .EXPORT     _StopSetup_8c02caba
-          .EXPORT     _StopUpdateHeadings_8c02ccc6
+          .EXPORT     _StopAdvance_8c02ccc6
           .EXPORT     _StopGetSegment_8c02cd6a
           .EXPORT     _StopGetArea_8c02cd7a
           .EXPORT     _StopUpdateArrival_8c02ce48
@@ -55,7 +55,7 @@
           .EXPORT     _var_prevStopSegment_8c22870c ; 020214
           .EXPORT     _var_nextStopSegment_8c228710 ; 020214, 02b464
           .EXPORT     _var_nextStopHeading_8c228714 ; 02b464
-          .EXPORT     _var_stopSchedule_8c228718 ; 02d19c, 02d968
+          .EXPORT     _var_seats_8c228718 ; 02d19c, 02d968
           .EXPORT     _var_waitingPassengerCount_8c228794 ; 02d06c, 02d968
           .EXPORT     _var_waitingPassengers_8c228798 ; 02d06c, 02d968
           .EXPORT     _var_passengerSprite_8c2288d8 ; 02d06c, 02d19c
@@ -423,7 +423,7 @@ LAB_8c02cb06:
           MOV         R12,R10
 LP_GEN_58192:
           .RES.W 1 ; H'8C02CB16
-          .DATA.L _var_stopSchedule_8c228718 ; H'8C02CB18
+          .DATA.L _var_seats_8c228718 ; H'8C02CB18
           .DATA.L H'3C656042 ; H'8C02CB1C
           .DATA.L _var_passengerSprite_8c2288d8 ; H'8C02CB20
           .DATA.L _init_pedestrianTexAnims_8c04623c ; H'8C02CB24
@@ -535,7 +535,7 @@ LAB_8c02cc0c:
           MOV.L       R1,@R3
           BSR         _pickWaitingPassengers_8c02c8ae
           NOP
-          BSR         _StopUpdateHeadings_8c02ccc6
+          BSR         _StopAdvance_8c02ccc6
           NOP
           BSR         _advanceStopSegment_8c02ccae
           NOP
@@ -613,7 +613,7 @@ _advanceStopSegment_8c02ccae:
           MOV.L       LP_GEN_16762+10,R2
           RTS
           MOV.L       R1,@R2
-_StopUpdateHeadings_8c02ccc6:
+_StopAdvance_8c02ccc6:
           MOV.L       R14,@-R15
           MOV.L       R13,@-R15
           MOV.L       R12,@-R15
@@ -1073,7 +1073,7 @@ _var_nextStopSegment_8c228710:
           .RES.B      4
 _var_nextStopHeading_8c228714:
           .RES.B      4
-_var_stopSchedule_8c228718:
+_var_seats_8c228718:
           .RES.B      124
 _var_waitingPassengerCount_8c228794:
           .RES.B      4

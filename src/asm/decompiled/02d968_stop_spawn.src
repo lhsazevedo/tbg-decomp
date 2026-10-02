@@ -21,7 +21,7 @@
           .IMPORT     _var_busState_8c1bb9d0
           .IMPORT     _var_passengersFadedOut_8c22895c
           .IMPORT     _var_passengerFadeColor_8c228960
-          .IMPORT     _var_stopSchedule_8c228718
+          .IMPORT     _var_seats_8c228718
           .IMPORT     _var_waitingPassengerCount_8c228794
           .IMPORT     _syMalloc
           .IMPORT     _var_stopTaskGroup_8c2288f8
@@ -336,7 +336,7 @@ LP_GEN_52173:
           .DATA.L H'402851EC ; H'8C02DBD4
           .DATA.L _var_passengersFadedOut_8c22895c ; H'8C02DBD8
           .DATA.L _var_passengerFadeColor_8c228960 ; H'8C02DBDC
-          .DATA.L _var_stopSchedule_8c228718 ; H'8C02DBE0
+          .DATA.L _var_seats_8c228718 ; H'8C02DBE0
           .DATA.L _var_waitingPassengerCount_8c228794 ; H'8C02DBE4
           .DATA.L _syMalloc ; H'8C02DBE8
           .DATA.L _var_stopTaskGroup_8c2288f8 ; H'8C02DBEC

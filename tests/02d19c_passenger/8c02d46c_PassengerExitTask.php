@@ -13,7 +13,7 @@ return new class extends TestCase {
         $this->setSize('_TaskKill_8c014b66', 4);
         $this->setSize('_var_route_8c18ad1c', 4);
         $this->setSize('_var_midiHandles_8c0fcd28', 8 * 4);
-        $this->setSize('_var_stopSchedule_8c228718', 31 * 4);
+        $this->setSize('_var_seats_8c228718', 31 * 4);
     }
 
     private function f(float $v): int
@@ -88,7 +88,7 @@ return new class extends TestCase {
         $mat = $this->addressOf('_var_passengerFadeColor_8c228960');
         $this->initUint32($mat, $this->f(1.0)); // >= 1.0 -> field_0x28 = 0
 
-        $slots = $this->addressOf('_var_stopSchedule_8c228718');
+        $slots = $this->addressOf('_var_seats_8c228718');
         $this->initUint32($slots + 4 * 4, 0xbeef);
 
         $anchor = $this->addressOf('_var_exitSpot1_8c228934');

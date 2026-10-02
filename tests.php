@@ -306,7 +306,7 @@ return [
                 "tests/02c884_stop/8c02ccae_advanceStopSegment.php",
                 "tests/02c884_stop/8c02cd6a_StopGetSegment.php",
                 "tests/02c884_stop/8c02cd7a_StopGetArea.php",
-                "tests/02c884_stop/8c02ccc6_StopUpdateHeadings.php",
+                "tests/02c884_stop/8c02ccc6_StopAdvance.php",
                 "tests/02c884_stop/8c02cd92_drawStopMarker.php",
                 "tests/02c884_stop/8c02ce48_StopUpdateArrival.php",
             ],

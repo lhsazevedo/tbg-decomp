@@ -209,13 +209,13 @@ void PassengerBoardTask_8c02d21c(Task *task, StopScheduleState *state)
         if (var_passengersFadedOut_8c22895c != 0) {
             int slot = AsqGetRandomInRangeA_8c012178(31);
 
-            while (var_stopSchedule_8c228718[slot] != -1) {
+            while (var_seats_8c228718[slot] != -1) {
                 slot++;
                 if (slot >= 31) {
                     slot = 0;
                 }
             }
-            var_stopSchedule_8c228718[slot] = (int)state->entry_0x00;
+            var_seats_8c228718[slot] = (int)state->entry_0x00;
             state->pos_0x08.x = init_seatPositions_8c04c3e4[slot].x;
             state->pos_0x08.z = init_seatPositions_8c04c3e4[slot].z;
             if (slot < 0x14) {
@@ -281,7 +281,7 @@ void PassengerExitTask_8c02d46c(Task *task, StopScheduleState *state)
             state->isSeated_0x28 = 0;
         }
         if (var_passengersFadedOut_8c22895c != 0) {
-            var_stopSchedule_8c228718[state->slotIndex_0x24] = -1;
+            var_seats_8c228718[state->slotIndex_0x24] = -1;
             state->pos_0x08.x = var_exitSpot1_8c228934.x + state->jitterX_0x18;
             state->pos_0x08.z = var_exitSpot1_8c228934.z + state->jitterZ_0x1c;
             state->spriteNo_0x14 = (var_route_8c18ad1c == ROUTE_OME) ? 0x20 : 0x10;

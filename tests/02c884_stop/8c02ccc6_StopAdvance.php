@@ -5,7 +5,7 @@ declare(strict_types=1);
 use Lhsazevedo\Sh4ObjTest\TestCase;
 
 /*
- * _StopUpdateHeadings_8c02ccc6(void): locks in the current stop's
+ * _StopAdvance_8c02ccc6(void): locks in the current stop's
  * heading angle (var_currentStopHeading_8c2288fc, njArcTan2 of the stop-area record var_nextStopSegment_8c228710
  * was still pointing at, masked to an unsigned 16-bit angle), then advances
  * var_nextStopSegment_8c228710 to the next segment with an active-stop flag
@@ -58,7 +58,7 @@ return new class extends TestCase {
         // -> +0x8000 -> 0xc000 (49152)
         $rec2 = $this->allocStopAreaRecord(10.0, 20.0, 1.0, 0.0);
 
-        $this->call('_StopUpdateHeadings_8c02ccc6')->with();
+        $this->call('_StopAdvance_8c02ccc6')->with();
 
         $this->shouldWriteLongTo('_var_currentSegment_8c228708', 5);
         $this->shouldCall('_StopGetArea_8c02cd7a')->with(5)->andReturn($rec1);
@@ -94,7 +94,7 @@ return new class extends TestCase {
         // -> +0x8000 -> 0x4000 (16384); bit 0x8000 clear -> no second store.
         $rec2 = $this->allocStopAreaRecord(1.0, 2.0, -1.0, 0.0);
 
-        $this->call('_StopUpdateHeadings_8c02ccc6')->with();
+        $this->call('_StopAdvance_8c02ccc6')->with();
 
         $this->shouldWriteLongTo('_var_currentSegment_8c228708', 2);
         $this->shouldCall('_StopGetArea_8c02cd7a')->with(2)->andReturn($rec1);

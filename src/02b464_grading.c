@@ -869,7 +869,7 @@ STATIC void onFadeStopEnded_8c02c624(void) {
         TaskKillGroup_8c014ab4(var_tasks_8c1bac28);
         TaskKillGroup_8c014ab4(var_tasks_8c1ba5e8);
         TaskKillGroup_8c014ab4(var_tasks_8c1ba3c8);
-        StopUpdateHeadings_8c02ccc6();
+        StopAdvance_8c02ccc6();
         RouteSpawnSegmentReloadTask_8c01468e();
         return;
     }
@@ -896,7 +896,7 @@ void GradeOnFadePracticeEnd_8c02c784(void) {
         TaskKillGroup_8c014ab4(var_tasks_8c1bac28);
         TaskKillGroup_8c014ab4(var_tasks_8c1ba5e8);
         TaskKillGroup_8c014ab4(var_tasks_8c1ba3c8);
-        StopUpdateHeadings_8c02ccc6();
+        StopAdvance_8c02ccc6();
         RouteSpawnSegmentReloadTask_8c01468e();
         return;
     }

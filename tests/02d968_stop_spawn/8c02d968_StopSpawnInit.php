@@ -92,7 +92,7 @@ return new class extends TestCase {
         $this->setSize('_var_exitSpot3_8c22894c', 12);
         $this->setSize('_var_passengerFadeColor_8c228960', 20);
         $this->setSize('_var_passengersFadedOut_8c22895c', 4);
-        $this->setSize('_var_stopSchedule_8c228718', 31 * 4);
+        $this->setSize('_var_seats_8c228718', 31 * 4);
         $this->setSize('_var_waitingPassengerCount_8c228794', 4);
         $this->setSize('_syMalloc', 4);
         $this->setSize('_TaskInitGroup_8c014a9c', 4);
@@ -116,7 +116,7 @@ return new class extends TestCase {
         $interiorTexlist = $this->alloc(4);
         $this->initUint32($this->addressOf('_var_interiorTexlist_8c1bc438'), $interiorTexlist);
 
-        $scheduleBase = $this->addressOf('_var_stopSchedule_8c228718');
+        $scheduleBase = $this->addressOf('_var_seats_8c228718');
         for ($i = 0; $i < 31; $i++) {
             $this->initUint32($scheduleBase + $i * 4, 0xffffffff); // unused
         }
@@ -250,7 +250,7 @@ return new class extends TestCase {
         $this->setSize('_var_exitSpot3_8c22894c', 12);
         $this->setSize('_var_passengerFadeColor_8c228960', 20);
         $this->setSize('_var_passengersFadedOut_8c22895c', 4);
-        $this->setSize('_var_stopSchedule_8c228718', 31 * 4);
+        $this->setSize('_var_seats_8c228718', 31 * 4);
         $this->setSize('_var_waitingPassengerCount_8c228794', 4);
         $this->setSize('_var_waitingPassengers_8c228798', 20);
         $this->setSize('_var_passengerCount_8c1bb8e4', 4);
@@ -267,7 +267,7 @@ return new class extends TestCase {
         $this->initUint32($this->addressOf('_var_waitingPassengerCount_8c228794'), 1);
         $this->initUint32($this->addressOf('_var_passengerCount_8c1bb8e4'), 5);
 
-        $scheduleBase = $this->addressOf('_var_stopSchedule_8c228718');
+        $scheduleBase = $this->addressOf('_var_seats_8c228718');
         for ($i = 0; $i < 31; $i++) {
             $this->initUint32($scheduleBase + $i * 4, 0xffffffff);
         }
@@ -383,7 +383,7 @@ return new class extends TestCase {
         $this->setSize('_var_exitSpot3_8c22894c', 12);
         $this->setSize('_var_passengerFadeColor_8c228960', 20);
         $this->setSize('_var_passengersFadedOut_8c22895c', 4);
-        $this->setSize('_var_stopSchedule_8c228718', 31 * 4);
+        $this->setSize('_var_seats_8c228718', 31 * 4);
         $this->setSize('_var_waitingPassengerCount_8c228794', 4);
         $this->setSize('_var_waitingPassengers_8c228798', 4);
         $this->setSize('_var_passengerCount_8c1bb8e4', 4);
@@ -416,7 +416,7 @@ return new class extends TestCase {
         $this->initUint32($this->addressOf('_var_waitingPassengerCount_8c228794'), 0); // no waiting passengers
         $this->initUint32($this->addressOf('_var_currentSegment_8c228708'), 5);
 
-        $scheduleBase = $this->addressOf('_var_stopSchedule_8c228718');
+        $scheduleBase = $this->addressOf('_var_seats_8c228718');
         for ($i = 0; $i < 31; $i++) {
             $this->initUint32($scheduleBase + $i * 4, 0xffffffff);
         }
@@ -534,7 +534,7 @@ return new class extends TestCase {
         $this->initUint32($this->addressOf('_var_waitingPassengerCount_8c228794'), 0); // no waiting passengers
         $this->initUint32($this->addressOf('_var_currentSegment_8c228708'), 5);
 
-        $scheduleBase = $this->addressOf('_var_stopSchedule_8c228718');
+        $scheduleBase = $this->addressOf('_var_seats_8c228718');
         for ($i = 0; $i < 31; $i++) {
             $this->initUint32($scheduleBase + $i * 4, 0xffffffff);
         }
