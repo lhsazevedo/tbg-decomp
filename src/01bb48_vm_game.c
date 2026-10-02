@@ -73,9 +73,7 @@ enum VmGameSaveResult {
 typedef struct {
     TaskAction action;
     void *state;
-    /* Prompt phase, switched against DOWNLOAD_PHASE_* while State.state_0x18
-     * == STATE_DOWNLOAD, or EXP_PHASE_* while STATE_EXP_LOAD. The two enums
-     * share this field since only one applies at a time. */
+    /* DOWNLOAD_PHASE_* or EXP_PHASE_*, by state */
     int phase_0x08;
     void *field_0x0c;
     int field_0x10;
@@ -93,11 +91,11 @@ int var_lcdAnimActive_8c2260a8;
 LcdAnim var_lcdAnimBus_8c2260ac;
 LcdAnim var_lcdAnimDanger_8c2260b8;
 LcdAnim var_lcdAnimLoading_8c2260c4;
-STATIC enum VmGameBupPhase var_bupPhase_8c2260d0; // last-seen bu* async op status/phase
-STATIC char var_lcdClearBuf_8c2260d4[0xc4]; // VMS LCD framebuffer (48x32 mono)
-STATIC Uint32 var_lcdFrameCounter_8c226198; // LCD anim step counter
-STATIC LcdFrame *var_lcdFramePtr_8c22619c; // current LCD anim frame ptr
-STATIC char var_defragBuf_8c2261a0[512]; // buDefragDisk work buffer
+STATIC enum VmGameBupPhase var_bupPhase_8c2260d0;
+STATIC char var_lcdClearBuf_8c2260d4[0xc4]; // 48x32 1bpp
+STATIC Uint32 var_lcdFrameCounter_8c226198;
+STATIC LcdFrame *var_lcdFramePtr_8c22619c;
+STATIC char var_defragBuf_8c2261a0[512];
 STATIC int var_lcdAnimIdx_8c2263a0;
 
 /* ===================
@@ -119,7 +117,6 @@ char *init_vmuProbeNames_8c044e48[] = {
 
 /* 2 x 4 vm slot cursor targets */
 NJS_POINT2 init_slotCursorTargets_8c044e50[8] = {
-    // x, y
     {186.f,  98.f},
     {256.f,  98.f},
     {326.f,  98.f},
@@ -372,9 +369,7 @@ STATIC void drawSelectScreen_8c01be90(void)
     SpriteDraw_8c014f54(&m->resourceGroupA_0x00, 0, 0.0f, 0.0f, -7.0f);
 }
 
-/**
- * Starts a lerp toward the given slot; warns if a save is pending.
- */
+/* In EXP load mode, also says whether the slot holds the quiz. */
 STATIC void selectSlot_8c01bf2a(int slot)
 {
     MenuState *m = &var_menuState_8c1bc7a8;
@@ -481,13 +476,12 @@ STATIC void vmGameTask_8c01bfec(VmGameTask *task)
 
     case STATE_SELECT_ENTER:
         if (!var_isFading_8c226568) {
-            // Try to select the first connected VM slot.
             slot = 0;
             while (var_vmuStatus_8c226048[slot] == VMU_STATUS_NOT_CONNECTED) {
                 slot++;
             }
 
-            // If we reached the no-save slot, no VM is connected.
+            // Reached the no-save slot: no VM is connected.
             if (var_vmuStatus_8c226048[slot] ==
                 VMU_STATUS_PROCEED_WITHOUT_SAVING
             ) {
@@ -520,9 +514,7 @@ STATIC void vmGameTask_8c01bfec(VmGameTask *task)
         }
 
         if (var_vmuStatus_8c226048[slot] == VMU_STATUS_NOT_CONNECTED) {
-            // Previously-selected slot got unplugged. Re-anchor on the first
-            // connected slot and treat it like a cursor move, skipping the
-            // directional-input handling below.
+            // Selected VM was unplugged.
             slot = 0;
             while (var_vmuStatus_8c226048[slot] == VMU_STATUS_NOT_CONNECTED) {
                 slot++;
@@ -612,7 +604,7 @@ STATIC void vmGameTask_8c01bfec(VmGameTask *task)
                     }
                     m->selectedVmuSlot_0x6c = m->selected_0x38;
                     m->cursorCol_0x3c = 0;
-                    task->phase_0x08 = 0; /* prompt phase, shared by DOWNLOAD and EXP_LOAD */
+                    task->phase_0x08 = 0;
                 } else if (var_peripherals_8c1ba35c[0].press & PDD_DGT_TB) {
                     m->state_0x18 = STATE_RETURN_FADE_OUT;
                     sdMidiPlay(var_midiHandles_8c0fcd28[0], 1, 1, 0);
@@ -975,7 +967,7 @@ void VmGameResetLcdAnims_8c01c8dc(void)
 void VmGameSetLcdAnim_8c01c8fc(int idx)
 {
     var_lcdAnimIdx_8c2263a0 = idx;
-    /* Pass -1 to clear the LCD slot. */
+    /* -1 clears the LCD. */
     if (idx == -1) {
         advanceLcdAnim_8c01bb48(0, 0);
     }

@@ -15,7 +15,7 @@ typedef struct {
 
 typedef struct {
     Uint32 count;
-    LcdFrame data[1]; // Placeholder for variable-length data
+    LcdFrame data[1]; // count frames
 } LcdFrames;
 
 typedef struct {
