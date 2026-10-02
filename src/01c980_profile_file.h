@@ -9,7 +9,7 @@
  * =======================
  */
 
-extern int var_profileUnlockedCount_8c2263a4; // saved into var_progress_8c1ba1cc.profileUnlockedCount_0x8c by 01b19c_system_menu
+extern int var_profileUnlockedCount_8c2263a4;
 extern ResourceGroup var_resourceGroup_8c2263a8;
 
 /* =========

@@ -55,9 +55,7 @@ enum STATE {
     STATE_EXIT_TO_COURSE_MENU
 };
 
-/* selected_0x38 on a bio page. JUMP_PREV/JUMP_NEXT seek the previous/next
- * unlocked slot; PREV/NEXT step one slot. Options 0-3 draw sprite 5+option
- * alongside sprite 10; EXIT draws sprite 11 instead. */
+/* selected_0x38 on a bio page. JUMP_* skip to the previous/next unlocked slot. */
 enum PAGE_OPTION {
     PAGE_OPTION_JUMP_PREV,
     PAGE_OPTION_PREV,
@@ -73,18 +71,15 @@ enum PAGE_OPTION {
 
 int var_profileUnlockedCount_8c2263a4;
 ResourceGroup var_resourceGroup_8c2263a8;
-STATIC char var_profileUnlocked_8c2263b4[56]; // one byte per grid slot (55 used, 1 pad byte)
+STATIC char var_profileUnlocked_8c2263b4[56]; // 55 used + 1 pad byte
 
 /* ====================
  * Initialized Globals
  * ====================
  */
 
-/* One entry per PROFILE FILE grid slot; each list is a 0xff-terminated
- * set of progress-flag ids (see 02af78_event.c's ACTION_SET_PROGRESS) --
- * any set flag unlocks that slot. Declared in original physical/address
- * order, which is not grid-slot order -- the NN in each name is the grid
- * slot init_profileUnlockFlags_8c044ffc binds it to. */
+/* 0xff-terminated progress-flag ids (02af78_event); any set flag unlocks the
+ * slot. Declared in address order; NN is the grid slot. */
 STATIC Uint8 init_slotFlags00_8c044ea0[] = {
     0x32, 0x33, 0x7c, 0x34, 0x7d, 0x35, 0x7e, 0x3b,
     0xff,
@@ -332,7 +327,6 @@ ResourceGroupInfo init_profileResgrps_8c0450d8[7] = {
     {"prof07_parts.dat", "prof07.dat", "prof07.pvm", 4},
 };
 
-/* Bio page for a grid row: &init_profileResgrps_8c0450d8[row + 1]. */
 ResourceGroupInfo *init_rowResgrps_8c045148[6] = {
     &init_profileResgrps_8c0450d8[1],
     &init_profileResgrps_8c0450d8[2],
@@ -347,10 +341,6 @@ ResourceGroupInfo *init_rowResgrps_8c045148[6] = {
  * ====================
  */
 
-/* Refreshes the 55-slot unlock grid: a slot unlocks once any progress flag
- * in its list is set. Tallies the unlocked count into
- * var_profileUnlockedCount_8c2263a4, which 01b19c_system_menu copies into
- * the save record. */
 void ProfileFileUpdateUnlocks_8c01c980(void)
 {
     int i;
@@ -375,10 +365,7 @@ void ProfileFileUpdateUnlocks_8c01c980(void)
     }
 }
 
-/* Draws the 55-slot unlock grid: a lock icon (sprite 2) over every slot
- * still marked locked in var_profileUnlocked_8c2263b4 (row = slot/10,
- * col = slot%10), the cell cursor (sprite 3) at its interpolated screen
- * position, and a background overlay (sprite 1). */
+/* Sprites: 1 background, 2 lock, 3 cursor. */
 STATIC void drawUnlockGrid_8c01c9f2(void)
 {
     int i;
@@ -415,10 +402,9 @@ STATIC void drawUnlockGrid_8c01c9f2(void)
     );
 }
 
-/* Draws the selected slot's episode checklist: walks that slot's flag list,
- * putting a checkmark (sprite 9) per flag currently set and wrapping every
- * 12 columns. The slot's bio art -- sprite = grid column, out of the row's
- * page resgrp -- is drawn only if at least one episode has been seen. */
+/* Sprites: 9 checkmark per seen episode, 4 background, 5 + option with 10
+ * for a nav option, 11 for EXIT. The bio art (sprite = column, in the row's
+ * page resgrp) shows once any episode is seen. */
 STATIC void drawPage_8c01cac8(void)
 {
     Uint8 *flags;
@@ -483,10 +469,7 @@ STATIC void drawPage_8c01cac8(void)
     );
 }
 
-/* Drives the bio page's resource-group swap. If the selected row's resgrp is
- * already the active sys resgrp there is nothing to load: jingle (only for a
- * nav option, not EXIT) and fade the page in. Otherwise kick off a fresh
- * async load and park in STATE_PAGE_LOAD, polled again next frame. */
+/* Skips the load when the row's page resgrp is already resident. */
 STATIC void enterPage_8c01cbec(void)
 {
     ResourceGroupInfo *pageResgrpInfo = init_rowResgrps_8c045148[var_menuState_8c1bc7a8.cursorRow_0x40];
@@ -519,9 +502,6 @@ STATIC void enterPage_8c01cbec(void)
     var_menuState_8c1bc7a8.state_0x18 = STATE_PAGE_LOAD;
 }
 
-/* Per-frame PROFILE FILE task: drives the 55-slot grid cursor, the drill-in
- * to a selected slot's episode-checklist page, and the fade transitions
- * between the two. */
 STATIC void menuTask_8c01ccec(Task *task, void *state)
 {
     int press = var_peripherals_8c1ba35c[0].press;
@@ -683,7 +663,6 @@ STATIC void menuTask_8c01ccec(Task *task, void *state)
 
             switch (var_menuState_8c1bc7a8.selected_0x38) {
                 case PAGE_OPTION_JUMP_PREV:
-                    /* Search backward for the previous unlocked slot. */
                     if (var_profileUnlockedCount_8c2263a4 != 0) {
                         int slot = var_menuState_8c1bc7a8.cursorRow_0x40 * ROW_LENGTH
                             + var_menuState_8c1bc7a8.cursorCol_0x3c;
@@ -725,7 +704,6 @@ STATIC void menuTask_8c01ccec(Task *task, void *state)
                     if (var_profileUnlockedCount_8c2263a4 == 0)
                         break;
 
-                    /* Search forward for the next unlocked slot. */
                     slot = var_menuState_8c1bc7a8.cursorRow_0x40 * ROW_LENGTH
                         + var_menuState_8c1bc7a8.cursorCol_0x3c;
                     do {
@@ -756,8 +734,7 @@ STATIC void menuTask_8c01ccec(Task *task, void *state)
         case STATE_EXIT_TO_COURSE_MENU:
             if (var_isFading_8c226568)
                 break;
-            /* col/row are shared with the course menu, whose cursor reads
-             * cursorCol_0x3c + cursorRow_0x40 * 5: (0, 1) is its PROFILE FILE button. */
+            /* (0, 1) is the course menu's PROFILE FILE button. */
             var_menuState_8c1bc7a8.cursorCol_0x3c = 0;
             var_menuState_8c1bc7a8.cursorRow_0x40 = 1;
             var_menuState_8c1bc7a8.pos.cursor.cursor_0x20.x = 0.0f;
@@ -776,9 +753,6 @@ STATIC void menuTask_8c01ccec(Task *task, void *state)
     njSetBackColor(0xff000000, 0xff000000, 0xff000000);
 }
 
-/* Installs menuTask_8c01ccec on the task, resets the grid cursor
- * to slot (0,0), refreshes the unlock flags, and kicks off the async load
- * of the overview page's resource group. */
 void ProfileFileEnter_8c01d1c4(Task *task)
 {
     TaskSwitch_8c014b3e(task, menuTask_8c01ccec);
