@@ -52,9 +52,9 @@ void SpriteDraw_8c014f54(
     }
 }
 
-/* Unreferenced anywhere in the image. The interpolation cancels --
- * start + steps * ((end - start) / steps) is end -- so it would only ever
- * draw at (end_x, end_y). */
+/* Unreferenced. The asm draws at start + steps_y * (end - start) / steps_x
+ * on both axes; this C pairs each axis with its own steps instead, which
+ * cancels to end. */
 STATIC void drawSpriteLerp_8c014ff6(
     float start_x,
     float start_y,
