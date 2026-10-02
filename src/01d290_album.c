@@ -79,8 +79,6 @@ STATIC NJS_POINT2 init_slotCursorPos_8c045170[6] = {
  * =========
  */
 
-/* One icon per received letter, then the page they sit on -- drawn last, but
- * furthest back. */
 STATIC void drawGrid_8c01d290(void)
 {
     int i;
@@ -152,8 +150,6 @@ STATIC void albumMenuTask_8c01d300(Task *task, void *state)
             if (slot < 3) {
                 /* Top row (slots 0..2) */
                 if (press & PDD_DGT_KD) {
-                    /* Nearest received letter in the bottom row by column,
-                     * ties to the leftmost; none there, stay put. */
                     int target = slot + 3;
                     int i;
                     for (i = 3; i < 6; i++) {
@@ -184,8 +180,6 @@ STATIC void albumMenuTask_8c01d300(Task *task, void *state)
             } else {
                 /* Bottom row (slots 3..5) */
                 if (press & PDD_DGT_KU) {
-                    /* Nearest received letter in the top row by column, ties
-                     * to the leftmost; none there, stay put. */
                     int target = slot - 3;
                     int i;
                     for (i = 0; i < 3; i++) {
@@ -216,7 +210,6 @@ STATIC void albumMenuTask_8c01d300(Task *task, void *state)
             }
 
             if (slot != var_menuState_8c1bc7a8.selected_0x38) {
-                /* Glide the cursor onto the new slot over 6 frames. */
                 CHANGE_STATE(ALBUM_STATE_ANIMATING);
                 var_menuState_8c1bc7a8.pos.cursor.cursorTarget_0x28.x = init_slotCursorPos_8c045170[slot].x;
                 var_menuState_8c1bc7a8.pos.cursor.cursorTarget_0x28.y = init_slotCursorPos_8c045170[slot].y;
@@ -226,11 +219,9 @@ STATIC void albumMenuTask_8c01d300(Task *task, void *state)
                     (init_slotCursorPos_8c045170[slot].y - var_menuState_8c1bc7a8.pos.cursor.cursor_0x20.y) / 6.0;
                 sdMidiPlay(var_midiHandles_8c0fcd28[0], 1, 3, 0);
             } else if (press & PDD_DGT_TA) {
-                /* Open the selected letter. */
                 CHANGE_STATE(ALBUM_STATE_VIEWING);
                 sdMidiPlay(var_midiHandles_8c0fcd28[0], 1, 0, 0);
             } else if (press & PDD_DGT_TB) {
-                /* Leave the album. */
                 CHANGE_STATE(ALBUM_STATE_FADE_OUT);
                 sdMidiPlay(var_midiHandles_8c0fcd28[0], 1, 1, 0);
                 SndStartAdxFadeOut_8c010bae(0);
@@ -283,8 +274,7 @@ STATIC void albumMenuTask_8c01d300(Task *task, void *state)
                     return;
                 }
                 LOG_DEBUG(("[ALBUM] albumMenuTask_8c01d300: fade-out complete, switching screen\n"));
-                /* Course-menu cursor column/row: button 1*5 + 1 is the
-                 * album's own button, so it is selected on return. */
+                /* (1, 1) is the course menu's ALBUM button. */
                 var_menuState_8c1bc7a8.cursorCol_0x3c = 1;
                 var_menuState_8c1bc7a8.cursorRow_0x40 = 1;
                 var_menuState_8c1bc7a8.pos.cursor.cursor_0x20.x = 0.0;
@@ -300,8 +290,6 @@ STATIC void albumMenuTask_8c01d300(Task *task, void *state)
     var_menuState_8c1bc7a8.selected_0x38 = slot;
 }
 
-/* Reset to INIT, park the cursor on the first received letter, then request
- * the album's resource group. */
 void AlbumEnter_8c01d6e2(Task *task)
 {
     int i;
@@ -320,8 +308,7 @@ void AlbumEnter_8c01d6e2(Task *task)
         }
     }
 
-    /* FADE_IN reads field_0x08: with no letters at all it goes to DIALOG
-     * instead of the grid. */
+    /* No letters: FADE_IN goes to DIALOG instead of the grid. */
     task->field_0x08 = i < 6;
 
     CourseMenuFreeResourceGroup_8c0185c4(&var_menuState_8c1bc7a8.resourceGroupA_0x00);
