@@ -84,11 +84,11 @@ typedef struct {
  * ====================
  */
 
-STATIC void *var_saveBufCursor_8c225fe0; /* BupLoad dest buffer, advances 0x600 per file */
+STATIC void *var_saveBufCursor_8c225fe0; /* steps 0x600 per save image */
 STATIC int var_loadedSaveSlots_8c225fe4[10]; /* VMU file index of each loaded save, in load order */
 STATIC int var_loadedSaveCount_8c22600c;
 STATIC int var_saveLoadResult_8c226010; /* enum SAVE_LOAD_RESULT */
-STATIC int var_fileCardCount_8c226014; /* FILE SELECT cards in use */
+STATIC int var_fileCardCount_8c226014;
 STATIC int var_fileCards_8c226018[12]; /* VMU file index, or FILE_CARD_NEW / FILE_CARD_EMPTY */
 
 /* ====================
@@ -96,9 +96,6 @@ STATIC int var_fileCards_8c226018[12]; /* VMU file index, or FILE_CARD_NEW / FIL
  * ====================
  */
 
-/**
- * Loads the save files from the selected VMU, one file at a time across frames.
- */
 STATIC void loadFileTask_8c018644(LoadFileTask *task)
 {
     switch (task->phase_0x08) {
@@ -198,11 +195,8 @@ void FileSelectFreeBuffers_8c0187d0(void)
     }
 }
 
-/*
- * Returns 1 if a freshly loaded save looks sane: PlayerProgress read through
- * an int*, so save[0] is days_0x00, save+0x11 the nine courses_0x44 records
- * and save[0x24] exp_0x90.
- */
+/* save is a PlayerProgress read as int[]: save[0] is days_0x00, save + 0x11
+ * the courses_0x44 records, save[0x24] exp_0x90. */
 int FileSelectIsSaveValid_8c018804(int *save)
 {
     unsigned char *base;
