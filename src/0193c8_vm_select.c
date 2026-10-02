@@ -108,8 +108,8 @@ char* init_saveNames_8c044d50[11] = {
     ""
 };
 
-/* Cursor rest positions: drives 0-3 on the top row, 4-7 on the bottom
- * alongside slot 8, the PROCEED WITHOUT SAVING option. */
+/* Drives 0-3 on the top row, 4-7 on the bottom alongside slot 8, the
+ * PROCEED WITHOUT SAVING option. */
 NJS_POINT2 init_cursorPositions_8c044d7c[9] = {
     {185.0f, 98.0f},
     {255.0f, 98.0f},
@@ -138,7 +138,6 @@ char* init_vmuStatusMessages_8c044dc4[7] = {
  * =========
  */
 
-/* Tested */
 STATIC void mountWaitTask_8c0193c8(Task *task)
 {
     int drive;
@@ -154,7 +153,6 @@ STATIC void mountWaitTask_8c0193c8(Task *task)
     return;
 }
 
-/* Tested */
 void VmSelectMountAll_8c01940e()
 {
     int drive;
@@ -170,7 +168,6 @@ void VmSelectMountAll_8c01940e()
     var_vmMountBusy_8c22606c = 1;
 }
 
-/* Tested */
 STATIC void unmountTask_8c01946a(Task *task, void *state)
 {
     int drive;
@@ -195,7 +192,6 @@ STATIC void unmountTask_8c01946a(Task *task, void *state)
     }
 }
 
-/* Tested */
 void VmSelectUnmountAll_8c0194de()
 {
     Task *createdTask;
@@ -205,7 +201,6 @@ void VmSelectUnmountAll_8c0194de()
     var_vmMountBusy_8c22606c = 1;
 }
 
-/* Tested */
 void VmSelectFreeAndClear_8c019504(void)
 {
     int drive;
@@ -218,9 +213,7 @@ void VmSelectFreeAndClear_8c019504(void)
     }
 }
 
-/* Tested */
-/* Refresh every drive's VMU_STATUS against saveNames and a `blocks` budget,
- * returning how many drives could be saved to or loaded from. */
+/* Returns how many drives can be saved to or loaded from. */
 int VmSelectUpdateAllStatus_8c019550(char **saveNames, Uint16 blocks)
 {
     int drive;
@@ -264,11 +257,9 @@ int VmSelectUpdateAllStatus_8c019550(char **saveNames, Uint16 blocks)
                     break;
 
                 default:
-                    // File not found, continue to next file
                     continue;
             }
 
-            // If this is reached, the vmu status was set
             break;
         }
 
@@ -297,7 +288,6 @@ int VmSelectUpdateAllStatus_8c019550(char **saveNames, Uint16 blocks)
     return count;
 }
 
-/* Tested */
 void VmSelectUpdateStatus_8c01967c(Sint32 drive, char* saveName, Uint16 blocks)
 {
     const BACKUPINFO *bupInfo = BupGetInfo_8c014bba(drive);
@@ -341,7 +331,7 @@ void VmSelectUpdateStatus_8c01967c(Sint32 drive, char* saveName, Uint16 blocks)
     }
 }
 
-/* Tested, unused */
+/* Unused */
 STATIC int saveFileExists_8c019730(Sint32 drive, char* saveName)
 {
     const BACKUPINFO *bupInfo = BupGetInfo_8c014bba(drive);
@@ -356,7 +346,6 @@ STATIC int saveFileExists_8c019730(Sint32 drive, char* saveName)
     return 1;
 }
 
-/* Tested */
 STATIC void initCursorLerp_8c019788(int drive)
 {
     var_menuState_8c1bc7a8.pos.vmSelect.cursorTarget_0x28.x = init_cursorPositions_8c044d7c[drive].x;
@@ -367,7 +356,6 @@ STATIC void initCursorLerp_8c019788(int drive)
         (init_cursorPositions_8c044d7c[drive].y - var_menuState_8c1bc7a8.pos.vmSelect.cursor_0x20.y) / 6;
 }
 
-/* Tested */
 STATIC void drawVmMenu_8c0197c0()
 {
     int drive;
@@ -412,7 +400,6 @@ STATIC void drawVmMenu_8c0197c0()
     );
 }
 
-/* Tested */
 STATIC void drawVmWarning_8c019852()
 {
     SpriteDraw_8c014f54(&var_menuState_8c1bc7a8.resourceGroupB_0x0c, 0x11, 0.0, 0.0, -5.0);
@@ -427,13 +414,11 @@ STATIC void drawVmWarning_8c019852()
     );
 }
 
-/* Tested */
 STATIC void vmMenuTask_8c0198a0(Task* task, void *actionState)
 {
     int slot = var_menuState_8c1bc7a8.selected_0x38;
     switch (var_menuState_8c1bc7a8.state_0x18)
     {
-        /* Init */
         case VM_SELECT_STATE_INIT: {
             var_menuState_8c1bc7a8.timer_0x68++;
             if (var_menuState_8c1bc7a8.timer_0x68 < 5) {
@@ -445,7 +430,6 @@ STATIC void vmMenuTask_8c0198a0(Task* task, void *actionState)
             if (VmSelectUpdateAllStatus_8c019550(init_saveNames_8c044d50, 3)) {
                 CHANGE_STATE(VM_SELECT_STATE_FADE_IN);
 
-                // Start on the first connected drive
                 for (slot = 0; var_vmuStatus_8c226048[slot] == VMU_STATUS_NOT_CONNECTED; slot++);
                 initCursorLerp_8c019788(slot);
 
@@ -463,7 +447,6 @@ STATIC void vmMenuTask_8c0198a0(Task* task, void *actionState)
             return;
         }
 
-        // Fade In
         case VM_SELECT_STATE_FADE_IN: {
             if (!var_isFading_8c226568) {
                 CHANGE_STATE(VM_SELECT_STATE_IDLE);
@@ -473,47 +456,38 @@ STATIC void vmMenuTask_8c0198a0(Task* task, void *actionState)
             break;
         }
 
-        // Idle
         case VM_SELECT_STATE_IDLE: {
             VmSelectUpdateAllStatus_8c019550(init_saveNames_8c044d50, 3);
 
             if (!var_vmuStatus_8c226048[slot]) {
                 for (slot = 0; !var_vmuStatus_8c226048[slot]; slot++);
             } else {
-                // If on upper row
                 if (slot < 4) {
-                    // Move left
                     if (var_peripherals_8c1ba35c[0].press & PDD_DGT_KL) {
                         do {
                             if (--slot < 0) slot = 3;
                         } while (!var_vmuStatus_8c226048[slot]);
                     }
-                    // Move right
                     else if (var_peripherals_8c1ba35c[0].press & PDD_DGT_KR) {
                         do {
                             if (++slot > 3) slot = 0;
                         } while (!var_vmuStatus_8c226048[slot]);
                     }
-                    // Move down
                     else if (var_peripherals_8c1ba35c[0].press & PDD_DGT_KD) {
                         for (slot += 4; !var_vmuStatus_8c226048[slot]; slot++);
                     }
                 }
-                // Else, on lower row
                 else {
-                    // Move left
                     if (var_peripherals_8c1ba35c[0].press & PDD_DGT_KL) {
                         do {
                             if (--slot < 4) slot = 8; 
                         } while (!var_vmuStatus_8c226048[slot]);
                     }
-                    // Move right
                     else if (var_peripherals_8c1ba35c[0].press & PDD_DGT_KR) {
                         do {
                             if (++slot > 8) slot = 8;
                         } while (!var_vmuStatus_8c226048[slot]);
                     }
-                    // Move up
                     else if (var_peripherals_8c1ba35c[0].press & PDD_DGT_KU) {
                         int i;
                         for (i = 0; !var_vmuStatus_8c226048[i]; i++);
@@ -535,7 +509,6 @@ STATIC void vmMenuTask_8c0198a0(Task* task, void *actionState)
                     }
                 }
 
-                // If slot didn't change and A was pressed
                 if (slot == var_menuState_8c1bc7a8.selected_0x38
                     && (var_peripherals_8c1ba35c[0].press & PDD_DGT_TA))
                 {
@@ -567,7 +540,6 @@ STATIC void vmMenuTask_8c0198a0(Task* task, void *actionState)
                 }
             }
 
-            // If selection changed
             if (slot != var_menuState_8c1bc7a8.selected_0x38) {
                 sdMidiPlay(var_midiHandles_8c0fcd28[0], 1, 3, 0);
                 initCursorLerp_8c019788(slot);
@@ -580,7 +552,6 @@ STATIC void vmMenuTask_8c0198a0(Task* task, void *actionState)
             break;
         }
 
-        /* Cursor animating */
         case VM_SELECT_STATE_CURSOR_ANIMATING: {
             if (CourseMenuInterpolateCursor_8c016d2c()) {
                 CHANGE_STATE(VM_SELECT_STATE_IDLE);
@@ -592,7 +563,6 @@ STATIC void vmMenuTask_8c0198a0(Task* task, void *actionState)
             break;
         }
 
-        /* Confirm */
         case VM_SELECT_STATE_CONFIRM: {
             int promptResult = PromptHandleBinary_8c016caa(&var_menuState_8c1bc7a8.cursorCol_0x3c);
             if (promptResult == 1) {
@@ -616,7 +586,6 @@ STATIC void vmMenuTask_8c0198a0(Task* task, void *actionState)
             break;
         }
 
-        // Proceed without saving?
         case VM_SELECT_STATE_PROCEED_WITHOUT_SAVING: {
             int promptResult = PromptHandleBinary_8c016caa(&var_menuState_8c1bc7a8.cursorCol_0x3c);
             if (promptResult == 1) {
@@ -644,7 +613,6 @@ STATIC void vmMenuTask_8c0198a0(Task* task, void *actionState)
             break;
         }
 
-        // VM Warning Fade In
         case VM_SELECT_STATE_VM_WARNING_FADE_IN: {
             if (!var_isFading_8c226568) {
                 CHANGE_STATE(VM_SELECT_STATE_VM_WARNING);
@@ -653,11 +621,10 @@ STATIC void vmMenuTask_8c0198a0(Task* task, void *actionState)
             break;
         }
 
-        // VM Warning
         case VM_SELECT_STATE_VM_WARNING: {
-            // task->field_0x08 is this screen's own sub-phase.
+            // task->field_0x08 is this screen's sub-phase.
             switch (task->field_0x08) {
-                // Idle
+                // Prompt
                 case 0: {
                     if (!VmSelectUpdateAllStatus_8c019550(init_saveNames_8c044d50, 3)) {
                         int promptResult = PromptHandleBinary_8c016caa(&var_menuState_8c1bc7a8.cursorCol_0x3c);
@@ -675,7 +642,6 @@ STATIC void vmMenuTask_8c0198a0(Task* task, void *actionState)
                             RenderStartFadeOut_8c022b60(10);
                         }
                     }
-                    // VM inserted
                     else {
                         task->field_0x08 = 1;
                         RenderStartFadeOut_8c022b60(10);
@@ -684,7 +650,7 @@ STATIC void vmMenuTask_8c0198a0(Task* task, void *actionState)
                     break;
                 }
 
-                // VM Inserted Fade out
+                // VM inserted: fade out, then restart
                 case 1: {
                     if (!var_isFading_8c226568) {
                         var_menuState_8c1bc7a8.timer_0x68 = 10;
@@ -694,7 +660,7 @@ STATIC void vmMenuTask_8c0198a0(Task* task, void *actionState)
                     break;
                 }
 
-                // VM Warning Fade out to Main Menu
+                // Fade out to the main menu
                 case 2: {
                     if (!var_isFading_8c226568) {
                         MainMenuEnter_8c01a09a(task, 0);
@@ -703,7 +669,7 @@ STATIC void vmMenuTask_8c0198a0(Task* task, void *actionState)
                     break;
                 }
 
-                // VM Warning Fade out to VM Select
+                // Fade out to the slot grid
                 case 3: {
                     if (!var_isFading_8c226568) {
                         CHANGE_STATE(VM_SELECT_STATE_FADE_IN_FROM_VM_WARNING);
@@ -717,7 +683,6 @@ STATIC void vmMenuTask_8c0198a0(Task* task, void *actionState)
             return;
         }
 
-        // Confirm Fade Out to Main Menu
         case VM_SELECT_STATE_FADE_OUT_TO_FILE_SELECT: {
             if (!var_isFading_8c226568) {
                 FileSelectEnter_8c019334(task);
@@ -736,19 +701,16 @@ STATIC void vmMenuTask_8c0198a0(Task* task, void *actionState)
             break;
         }
 
-        // Fade out
         case VM_SELECT_STATE_FADE_OUT_TO_MAIN_MENU: {
             if (var_isFading_8c226568) {
                 break;
             }
-            // Bits 0 and 4 stay set while the two ADX streams are still
-            // playing; hold the screen until both fade-outs have finished.
+            // Wait for both ADX fade-outs to finish.
             if (init_adxPlaying_8c03bd80) return;
             MainMenuEnter_8c01a09a(task, 0);
             return;
         }
 
-        // VM Warning Fade In to VM Select
         case VM_SELECT_STATE_FADE_IN_FROM_VM_WARNING: {
             if (!var_isFading_8c226568) {
                 CHANGE_STATE(VM_SELECT_STATE_IDLE);
@@ -760,7 +722,6 @@ STATIC void vmMenuTask_8c0198a0(Task* task, void *actionState)
     var_menuState_8c1bc7a8.selected_0x38 = slot;
 }
 
-/* Tested */
 void VmSelectEnter_8c019e44(Task *task)
 {
     TaskSwitch_8c014b3e(task, vmMenuTask_8c0198a0);
