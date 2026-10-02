@@ -70,10 +70,10 @@
           .EXPORT     _createAdxAndMidiHandles_8c01048e
           .EXPORT     _unusedSectorAlign_8c0104bc
           .EXPORT     _unusedReadFile_8c0104d6
-          .EXPORT     _adxLoad_8c01057a
-          .EXPORT     _finishSoundInit_8c010614
+          .EXPORT     _loadAdxPartitions_8c01057a
+          .EXPORT     _downloadSoundBank_8c010614
           .EXPORT     _adxInit_8c01064c
-          .EXPORT     _soundInit_8c01065e
+          .EXPORT     _initSoundDriver_8c01065e
           .EXPORT     _unusedStartAdxCh1FadeIn_8c010c2c
           .EXPORT     _unusedStopMidiAdx_8c010de6
           .EXPORT     _adxErrFunc_8c010532
@@ -712,7 +712,7 @@ L18:
           LDS.L       @R15+,PR
           RTS
           MOV.L       @R15+,R14
-_adxLoad_8c01057a:               ; function: adxLoad_8c01057a
+_loadAdxPartitions_8c01057a:               ; function: loadAdxPartitions_8c01057a
                                  ; frame size=32
           MOV.L       R14,@-R15
           MOV         #0,R4
@@ -779,7 +779,7 @@ L21:
           .DATA.L     _ADXF_GetPtinfoSize
           .DATA.L     _init_adxfPartitionInfo_8c03bd94
           .DATA.L     _var_adxfWork_8c156efc
-_finishSoundInit_8c010614:       ; function: finishSoundInit_8c010614
+_downloadSoundBank_8c010614:       ; function: downloadSoundBank_8c010614
                                  ; frame size=12
           STS.L       PR,@-R15
           ADD         #-4,R15
@@ -820,7 +820,7 @@ _adxInit_8c01064c:               ; function: adxInit_8c01064c
           MOV.L       L29+32,R4; _adxErrFunc_8c010532
           JMP         @R2
           LDS.L       @R15+,PR
-_soundInit_8c01065e:             ; function: soundInit_8c01065e
+_initSoundDriver_8c01065e:             ; function: initSoundDriver_8c01065e
                                  ; frame size=12
           STS.L       PR,@-R15
           ADD         #-4,R15
@@ -1874,15 +1874,15 @@ _SndInit_8c010e18:                   ; function: SndInit_8c010e18
           NOP
           MOV.L       @R14,R0
           OR          #17,R0
-          BSR         _soundInit_8c01065e
+          BSR         _initSoundDriver_8c01065e
           MOV.L       R0,@R14
           BSR         _adxInit_8c01064c
           NOP
           BSR         _createAdxAndMidiHandles_8c01048e
           NOP
-          BSR         _adxLoad_8c01057a
+          BSR         _loadAdxPartitions_8c01057a
           NOP
-          BSR         _finishSoundInit_8c010614
+          BSR         _downloadSoundBank_8c010614
           NOP
           MOV         #0,R3
           MOV.L       R3,@R14

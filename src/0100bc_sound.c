@@ -119,8 +119,8 @@ AdxfPartitionInfo init_adxfPartitionInfo_8c03bd94[] = {
  */
 
 void SndMidiResetFxAndPlay_8c010846(int hld_idx, int data_num);
-void SndStopAdx_8c010ca6(Bool p1);
-int SndPlayAdx_8c010cd6(int p1, int p2);
+void SndStopAdx_8c010ca6(Bool handle);
+int SndPlayAdx_8c010cd6(int source, int fileNo);
 
 /* =========
  * Functions
@@ -310,7 +310,7 @@ STATIC void adxErrFunc_8c010532(void *obj, char *msg)
     }
 }
 
-STATIC void adxLoad_8c01057a()
+STATIC void loadAdxPartitions_8c01057a()
 {
     int j = 0;
     Sint8 i = 0;
@@ -329,7 +329,7 @@ STATIC void adxLoad_8c01057a()
 }
 
 /* Downloads bus.mlt, the tone bank the MIDI ports play from. */
-STATIC void finishSoundInit_8c010614()
+STATIC void downloadSoundBank_8c010614()
 {
     SDMEMBLK memblk;
 
@@ -346,7 +346,7 @@ STATIC void adxInit_8c01064c()
     ADXT_EntryErrFunc(adxErrFunc_8c010532, NULL);
 }
 
-STATIC void soundInit_8c01065e()
+STATIC void initSoundDriver_8c01065e()
 {
     SDMEMBLK memblk = NULL;
 
@@ -371,18 +371,18 @@ void SndPollVoiceEnd_8c0106ac()
 /* The option screen's SFX test, over MIDI port 0. Ids 0-6 and 9-70 (the +2
  * makes 7 and 8 unreachable) map to bank 0 sequences 0-9 and bank 1 sequences
  * 0-60. */
-Bool SndPlaySfx_8c0106d2(Sint32 param)
+Bool SndPlaySfx_8c0106d2(Sint32 id)
 {
-    if (param >= 7) {
-        param += 2;
+    if (id >= 7) {
+        id += 2;
     }
 
-    if (param >= 0 && param < 10) {
-        SndMidiResetFxAndPlay_8c010846(0, param);
+    if (id >= 0 && id < 10) {
+        SndMidiResetFxAndPlay_8c010846(0, id);
         return TRUE;
     } else {
-        if (param >= 10 && param <= 70) {
-            sdMidiPlay(var_midiHandles_8c0fcd28[0], 1, param - 10, 0);
+        if (id >= 10 && id <= 70) {
+            sdMidiPlay(var_midiHandles_8c0fcd28[0], 1, id - 10, 0);
             return TRUE;
         }
 
@@ -392,14 +392,14 @@ Bool SndPlaySfx_8c0106d2(Sint32 param)
 
 /* The option screen's VOICE test: ids 0-62 are bgm.afs 17-79, 63-1388 are
  * voice.afs 0-1325. */
-Bool SndPlayVoice_8c010720(Sint32 param)
+Bool SndPlayVoice_8c010720(Sint32 id)
 {
-    if (param >= 0 && param < 63) {
-        SndPlayAdx_8c010cd6(1, param + 17);
+    if (id >= 0 && id < 63) {
+        SndPlayAdx_8c010cd6(1, id + 17);
         return TRUE;
     } else {
-        if (param >= 63 && param <= 1388) {
-            SndPlayAdx_8c010cd6(2, param - 63);
+        if (id >= 63 && id <= 1388) {
+            SndPlayAdx_8c010cd6(2, id - 63);
             return TRUE;
         }
 
@@ -408,10 +408,10 @@ Bool SndPlayVoice_8c010720(Sint32 param)
 }
 
 /* The option screen's MUSIC test: bgm.afs 0-16. */
-int SndPlayBgm_8c0107ac(Sint32 param)
+int SndPlayBgm_8c0107ac(Sint32 id)
 {
-    if (param >= 0 && param < 17) {
-        SndPlayAdx_8c010cd6(0, param);
+    if (id >= 0 && id < 17) {
+        SndPlayAdx_8c010cd6(0, id);
         return 1;
     }
     return 0;
@@ -540,7 +540,7 @@ void SndSetAdxVol_8c010972(int volNo, int handle) {
 }
 
 /* The 0-9 SFX setting, spread over the Sint8 range sdMidiSetVol takes. */
-void SndSetMidiVol_8c0109f4(int param1) {
+void SndSetMidiVol_8c0109f4(int volNo) {
     int i;
     int midiVols[10] = {
         0,
@@ -555,7 +555,7 @@ void SndSetMidiVol_8c0109f4(int param1) {
         229
     };
 
-    init_midiVol_8c03bd90 = midiVols[param1];
+    init_midiVol_8c03bd90 = midiVols[volNo];
 
     for (i = 0; i < 8; i++)
         sdMidiSetVol(var_midiHandles_8c0fcd28[i], init_midiVol_8c03bd90 - 127, 0);
@@ -635,18 +635,18 @@ void SndUpdateAdxVolFade_8c010a40() {
     }
 }
 
-/* Arms a 90-frame fade-out of stream param1, ignored while a fade-in is up.
+/* Arms a 90-frame fade-out of stream handle, ignored while a fade-in is up.
  * The guards compare the whole low nibble rather than testing the one bit, so
  * a stream already fading gets restarted from the top if the other one is
  * fading too. */
-void SndStartAdxFadeOut_8c010bae(int param1) {
+void SndStartAdxFadeOut_8c010bae(int handle) {
     if ((var_adxFade_8c157a34.fadeFlags_0x00 & 0xf0) == 0) {
-        if (param1 == 0 && (var_adxFade_8c157a34.fadeFlags_0x00 & 0xf) != 1) {
+        if (handle == 0 && (var_adxFade_8c157a34.fadeFlags_0x00 & 0xf) != 1) {
             var_adxFade_8c157a34.fadeFlags_0x00 |= 1;
             var_adxFade_8c157a34.step0_0x04 = (init_adxVolumes_8c03bd88.vol0_0x00 - 300) / 90;
             var_adxFade_8c157a34.curVol0_0x0c = init_adxVolumes_8c03bd88.vol0_0x00 - 990;
         }
-        if (param1 == 1 && (var_adxFade_8c157a34.fadeFlags_0x00 & 0xf) != 2) {
+        if (handle == 1 && (var_adxFade_8c157a34.fadeFlags_0x00 & 0xf) != 2) {
             var_adxFade_8c157a34.fadeFlags_0x00 |= 2;
             var_adxFade_8c157a34.step1_0x08 = (init_adxVolumes_8c03bd88.vol1_0x04 - 300) / 90;
             var_adxFade_8c157a34.curVol1_0x10 = init_adxVolumes_8c03bd88.vol1_0x04 - 990;
@@ -655,9 +655,9 @@ void SndStartAdxFadeOut_8c010bae(int param1) {
 }
 
 /* Unused -- the only writer of a fade-in bit. */
-STATIC void unusedStartAdxCh1FadeIn_8c010c2c(Bool param1) {
+STATIC void unusedStartAdxCh1FadeIn_8c010c2c(Bool handle) {
     if ((var_adxFade_8c157a34.fadeFlags_0x00 & 0xf) == 0
-        && param1 == 1
+        && handle == 1
         && (var_adxFade_8c157a34.fadeFlags_0x00 & 0xf0) != 0x20)
     {
         var_adxFade_8c157a34.fadeFlags_0x00 |= 0x20;
@@ -684,39 +684,39 @@ void SndStopAllAdx_8c010c7c() {
     return;
 }
 
-void SndStopAdx_8c010ca6(Bool p1) {
-    if (p1 == 0) {
+void SndStopAdx_8c010ca6(Bool handle) {
+    if (handle == 0) {
         init_adxPlaying_8c03bd80 &= ~SND_ADX_BGM;
-    } else if (p1 == 1) {
+    } else if (handle == 1) {
         init_adxPlaying_8c03bd80 &= ~SND_ADX_VOICE;
     }
 
-    ADXT_Stop(var_adxtHandles_8c0fcd20[p1]);
+    ADXT_Stop(var_adxtHandles_8c0fcd20[handle]);
     return;
 }
 
-/* Starts an AFS stream. p1 picks the handle/partition pair: 0 is music on
+/* Starts an AFS stream. source picks the handle/partition pair: 0 is music on
  * handle 0, 1 the bgm.afs announcements and 2 the voice.afs dialogue, both on
  * handle 1. */
-int SndPlayAdx_8c010cd6(int p1, int p2) {
-    switch (p1) {
+int SndPlayAdx_8c010cd6(int source, int fileNo) {
+    switch (source) {
         case 0: {
-            ADXT_Stop(var_adxtHandles_8c0fcd20[p1]);
-            ADXT_StartAfs(var_adxtHandles_8c0fcd20[p1], 0, p2);
+            ADXT_Stop(var_adxtHandles_8c0fcd20[source]);
+            ADXT_StartAfs(var_adxtHandles_8c0fcd20[source], 0, fileNo);
             init_adxPlaying_8c03bd80 |= SND_ADX_BGM;
             return 1;
         }
 
         case 1: {
-            ADXT_Stop(var_adxtHandles_8c0fcd20[p1]);
-            ADXT_StartAfs(var_adxtHandles_8c0fcd20[p1], 0, p2);
+            ADXT_Stop(var_adxtHandles_8c0fcd20[source]);
+            ADXT_StartAfs(var_adxtHandles_8c0fcd20[source], 0, fileNo);
             init_adxPlaying_8c03bd80 |= SND_ADX_VOICE;
             return 1;
         }
 
         case 2: {
             ADXT_Stop(var_adxtHandles_8c0fcd20[1]);
-            ADXT_StartAfs(var_adxtHandles_8c0fcd20[1], 1, p2);
+            ADXT_StartAfs(var_adxtHandles_8c0fcd20[1], 1, fileNo);
             init_adxPlaying_8c03bd80 |= SND_ADX_VOICE;
             return 1;
         }
@@ -759,10 +759,10 @@ void SndInit_8c010e18(char *dirname) {
     memset(&var_adxFade_8c157a34, 0, sizeof(AdxFadeState));
     initEngineVol_8c0100bc();
     init_adxPlaying_8c03bd80 |= SND_ADX_BGM | SND_ADX_VOICE;
-    soundInit_8c01065e();
+    initSoundDriver_8c01065e();
     adxInit_8c01064c();
     createAdxAndMidiHandles_8c01048e();
-    adxLoad_8c01057a();
-    finishSoundInit_8c010614();
+    loadAdxPartitions_8c01057a();
+    downloadSoundBank_8c010614();
     init_adxPlaying_8c03bd80 = 0;
 }

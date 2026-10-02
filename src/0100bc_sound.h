@@ -29,15 +29,15 @@ extern SDMIDI var_midiHandles_8c0fcd28[8];
  */
 
 void SndMidiResetFxAndPlay_8c010846(int hld_idx, int data_num);
-void SndStopAdx_8c010ca6(Bool p1);
-/* p1: 0 music (bgm.afs, handle 0), 1 announcements (bgm.afs, handle 1),
+void SndStopAdx_8c010ca6(Bool handle);
+/* source: 0 music (bgm.afs, handle 0), 1 announcements (bgm.afs, handle 1),
  * 2 dialogue (voice.afs, handle 1). */
-int SndPlayAdx_8c010cd6(int p1, int p2);
+int SndPlayAdx_8c010cd6(int source, int fileNo);
 /* Clears the voice bit once handle 1's stream has run out. */
 void SndPollVoiceEnd_8c0106ac();
-Bool SndPlaySfx_8c0106d2(Sint32 param);
-Bool SndPlayVoice_8c010720(Sint32 param);
-int SndPlayBgm_8c0107ac(Sint32 param);
+Bool SndPlaySfx_8c0106d2(Sint32 id);
+Bool SndPlayVoice_8c010720(Sint32 id);
+int SndPlayBgm_8c0107ac(Sint32 id);
 /* Mutes the streams and pauses the MIDI ports, for the pause menu. */
 void SndSetPaused_8c0107d2(Bool paused);
 Bool SndSetSoundMode_8c0108c0(Sint32 mode);
@@ -45,9 +45,9 @@ int SndGetSoundMode_8c010924();
 /* volNo is the 0-9 setting; handle 0 is MUSIC, 1 is VOICE. */
 void SndSetAdxVol_8c010972(int volNo, int handle);
 /* param1 is the 0-9 SFX setting. */
-void SndSetMidiVol_8c0109f4(int param1);
+void SndSetMidiVol_8c0109f4(int volNo);
 void SndUpdateAdxVolFade_8c010a40();
-void SndStartAdxFadeOut_8c010bae(int param1);
+void SndStartAdxFadeOut_8c010bae(int handle);
 void SndUpdateEngine_8c010c6e();
 void SndStopAllAdx_8c010c7c();
 void SndStopBgm_8c010d8a();
