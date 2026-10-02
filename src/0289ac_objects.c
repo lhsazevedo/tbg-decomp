@@ -4,22 +4,22 @@
 #include <stdlib.h> /* rand */
 
 #include "0289ac_objects.h"
-#include "011120_asset_queues.h" /* AsqRequestNj_8c011492, AsqRequestPvm_8c011ac0, AsqRequestDat_8c011182 */
-#include "013ae8_route.h" /* var_commonDirCopy_8c18ad8c, enum ROUTE */
-#include "014a9c_tasks.h" /* Task */
-#include "015034_text.h" /* enum PLAY_MODE */
-#include "0206f0_intersect.h" /* IntersectSegments_8c0206f0 */
-#include "020914_ground_query.h" /* GroundQueryFindPolygon_8c020914, GroundQueryResult */
+#include "011120_asset_queues.h"
+#include "013ae8_route.h"
+#include "014a9c_tasks.h"
+#include "015034_text.h"
+#include "0206f0_intersect.h"
+#include "020914_ground_query.h"
 #include "020b6c_ground_probe.h"
 #include "021b9c_tile_draw.h"
-#include "022464_render.h" /* RenderQueueDraw_8c0223ea, RenderQueueDraw2_8c022420 */
-#include "028258_signal.h" /* SignalGetFrame_8c028900, SignalClearPedCrossing_8c02890c */
-#include "02d06c_stop_draw.h" /* StopDrawWaitingPassengers_8c02d06c */
-#include "02e400_collision.h" /* CollisionQueueReset_8c02e486, CollisionQueueAdd_8c02e48e */
+#include "022464_render.h"
+#include "028258_signal.h"
+#include "02d06c_stop_draw.h"
+#include "02e400_collision.h"
 #include "02b464_grading.h"
 #include "024b4c_bus_camera.h"
 #include "1ba1c8_globals.h"
-#include "includes.h" /* STATIC */
+#include "includes.h"
 #include "serial_debug.h"
 
 /* ====================
@@ -27,29 +27,26 @@
  * ====================
  */
 
-/* One blinker spawn point, terminated by an all-zero entry. */
+/* Tables end with an all-zero entry. */
 typedef struct {
     float x_0x00;
     float z_0x04;
     int angleDeg_0x08;
 } BlinkerPoint;
 
-
-/* One node of a pedestrian path, terminated by a node whose flLength_0x00 is 0.
- * A pedestrian flPathPos_0x54 units along the segment sits at
- * flBase + flPathPos * flStep. */
+/* A path ends with a node whose flLength_0x00 is 0. A pedestrian flPathPos_0x54
+ * along a node sits at flBase + flPathPos * flStep. */
 typedef struct {
     float flLength_0x00;
     float flBaseX_0x04;
     float flBaseZ_0x08;
     float flStepX_0x0c;
     float flStepZ_0x10;
-    /* Bits 0-11/16-27: crosswalk signal ids, split into nSignalIdB_0x6c/A_0x68.
-     * Bits 28-29: mirror-view facing bucket (drawPedestriansMirror_8c028a38). */
+    /* Bits 0-11: crossing id, bits 16-27: signal id, bits 28-29: mirror-view
+     * facing bucket. */
     int nFlags_0x14;
 } PedPathNode;
 
-/* Task state for a walking pedestrian, driven by pedestrianTask_8c028e00. */
 typedef struct {
     NJS_SPRITE sprite_0x00;
     float flBaseX_0x20;
@@ -57,7 +54,7 @@ typedef struct {
     GroundQueryResult aGround_0x28;
     int nKindId_0x38;
     int nKind_0x3c;
-    int nReverse_0x40; /* also this pedestrian's sprite-facing quadrant */
+    int nReverse_0x40; /* kind 2: sprite facing, 0-3 */
     PedPathNode *pPathFirst_0x44;
     PedPathNode *pPathLast_0x48;
     PedPathNode *pPathNode_0x4c;
@@ -65,17 +62,14 @@ typedef struct {
     float flPathPos_0x54;
     float flSpeed_0x58;
     int nAnimPhase_0x5c;
-    int nNodeFlags_0x60;   /* copy of pPathNode_0x4c's nFlags_0x14 */
-    int nState_0x64;       /* 0 walking, 1 checking the signal, 2 waiting, 4 crossing */
-    int nSignalIdA_0x68;   /* nNodeFlags_0x60's high 12 bits */
-    int nSignalIdB_0x6c;   /* nNodeFlags_0x60's low 12 bits */
+    int nNodeFlags_0x60;
+    int nState_0x64;       /* 0 walking, 1 waiting out a green, 2 waiting for green, 4 crossing */
+    int nSignalIdA_0x68;
+    int nSignalIdB_0x6c;
 } PedestrianState;
 
-/* Capacity of drawPedestrians_8c028b74's per-frame facing cache; matches the
- * original's 0x400-byte allocation. */
 #define DIR_CACHE_CAPACITY 0x80
 
-/* Live-pedestrian cap for one group. */
 #define PED_GROUP_SLOTS 0x10
 
 typedef struct {
@@ -83,129 +77,99 @@ typedef struct {
     int bucket; /* 0, 0x10000000, 0x20000000 or 0x30000000 */
 } DirCacheEntry;
 
-/* One per pedestrian-group slot; var_pedGroups_8c228230's entry type. */
 typedef struct {
-    int active_0x00;   /* whether list_0x08 has been allocated */
-    /* refreshed each frame by pedestriansTask_8c0293f6; drives pedGroupTask_8c029078's
-     * teardown decision */
-    int wanted_0x04;
-    Task *list_0x08;    /* the group's own Task subgroup; NULL-terminated, freed slots -1 */
+    int active_0x00;
+    int wanted_0x04;   /* in the active preset; a group no longer wanted tears itself down */
+    Task *list_0x08;
 } PedGroupEntry;
 
-/* One spawn entry from a group's spec list (PedGroupDef.specs_0x08), walked by
- * pedGroupTask_8c029078. */
 typedef struct {
     Uint16 nKindId_0x00; /* list terminator: 0xffff */
     Uint8 nKind_0x02;
     Uint8 nReverse_0x03;
-    float flX_0x04; /* nKind_0x02 0/1: along-path spawn distance; nKind_0x02 2: world X */
-    float flZ_0x08; /* nKind_0x02 0/1: unused; nKind_0x02 2: world Z */
+    float flX_0x04; /* kinds 0/1: distance along the path, 0 for random; kind 2: world X */
+    float flZ_0x08; /* kind 2 only */
 } PedGroupSpawnSpec;
 
-/* var_pedGroupDefs_8c22823c entry, looked up by id when pedestriansTask_8c0293f6
- * spins a group's Task up for the first time. */
+/* Terminated by id_0x00 == -1. */
 typedef struct {
     int id_0x00;
-    float radius_0x04;             /* seeds the group's PedGroupTask.radius_0x10 */
+    float radius_0x04;
     PedGroupSpawnSpec *specs_0x08;
 } PedGroupDef;
 
-/* var_pedPaths_8c228238 entry, indexed in lockstep with var_pedGroups_8c228230
- * by pedGroupTask_8c029078. */
 typedef struct {
     PedPathNode *pFirst_0x00;
     PedPathNode *pLast_0x04;
     float flLength_0x08;
 } PedPathInfo;
 
-/* Task private state for pedGroupTask_8c029078, set up by pedestriansTask_8c0293f6. */
 typedef struct {
     TaskAction action;
     void *state;
     int pageListIndex_0x08;
     void *field_0x0c;
-    float radius_0x10; /* overlays Task's int field_0x10; no reinterpret cast needed at the read site */
+    float radius_0x10; /* spawn scatter around the path */
     int field_0x14;
     Task *subTasks_0x18;
     PedGroupSpawnSpec *spec_0x1c;
 } PedGroupTask;
 
-/* Task private state for pedestriansTask_8c0293f6. */
 typedef struct {
     TaskAction action;
     void *state;
-    int lastPreset_0x08;   /* currently-synced var_activePedPreset_8c22822c snapshot */
-    int armed_0x0c;      /* pending-preset-change flag, held across the frame it reads 0 */
+    int lastPreset_0x08;
+    int armed_0x0c;      /* a preset applies only after the field has read 0 */
     int field_0x10;
     int field_0x14;
     void *queuedItem_0x18;
     int field_0x1c;
 } PedestriansTask;
 
-/* Trailing 8 bytes of a type-5 row's source struct (see
- * ObjectsStartAssetRequests_8c029ad4), copied verbatim into the dest slot;
- * compiles to a call to the SHC struct-copy helper __quick_evn_mvn. Read by
- * rowMaterialModelTask_8c02a27c as the row's world X/Z position for its distance-fade calc. */
+/* A struct, not two floats: the copy compiles to SHC's __quick_evn_mvn. */
 typedef struct {
     float posX_0x00;
     float posZ_0x04;
 } ObjectAssetType5Extra;
 
-
-/* One row's slot in var_assetRequestSlots_8c228288: the handles
- * ObjectsStartAssetRequests_8c029ad4 asks the asset queues to fill in, read back
- * by ObjectsSpawnTasks_8c02a6ac once loaded. Which members a row uses depends on
- * its type. */
+/* Which members a row uses depends on its type. */
 typedef struct {
     NJS_TEXLIST *pvm_0x00;
     NJS_CNK_OBJECT *nj_0x04;
-    void *dat_0x08;                 /* NJS_OBJECT for type 0, NJS_MOTION for types 0/3, DatBlob for type 1 */
-    ObjectAssetType5Extra pos_0x0c; /* type 5 only */
-    /* types 2/3/4; matched against var_busState_8c1bb9d0.scenePresetIds_0x3bc's top byte, see
-     * rowModelTask_8c02a08a */
-    Sint8 sceneGate_0x14;
-    /* types 2/3/4; routed into the spawned Task's field_0x0c (2/3) or field_0x08 (4) */
-    Sint8 taskFlag_0x15;
-    Uint8 fogEnable_0x16;            /* types 2/3/4 */
-    Uint8 control3DEnable_0x17;      /* types 2/3/4 */
+    void *dat_0x08;                 /* NJS_MOTION for types 0/3, DatBlob for type 1 */
+    ObjectAssetType5Extra pos_0x0c; /* type 5 */
+    Sint8 sceneGate_0x14;           /* types 2/3: scenePresetIds_0x3bc top byte to wait for */
+    Sint8 taskFlag_0x15;            /* type 3: loop the motion; type 4: fog enable */
+    Uint8 fogEnable_0x16;            /* types 2/3 */
+    Uint8 control3DEnable_0x17;      /* types 2/3 */
 } AssetRequestSlot;
 
-/* A type-1 row's loaded DAT blob: a header followed in the same allocation by
- * one visibility bitmask per animation step. evalflags bit convention: clear
- * hides a child (0x3e), set shows it (0x36). */
+/* A type-1 row's DAT file: a header, then one child-visibility bitmask per
+ * animation step. */
 typedef struct {
-    int nNodes_0x00;                   /* bounds the child walk; counts from bit 1, bit 0 unused */
+    int nNodes_0x00;                   /* mask bit n is child n; bit 0 unused */
     int framesPerStep_0x04;
     int stepCount_0x08;
     int step_0x0c;
     int tick_0x10;
-    Uint32 *masks_0x14;                /* == masks_0x20 */
+    Uint32 *masks_0x14;
     NJS_TEXLIST *texlist_0x18;
     NJS_CNK_OBJECT *model_0x1c;
     Uint32 masks_0x20[1];              /* stepCount_0x08 entries */
 } DatBlob;
 
-/* Shared TaskSpawn_8c014ae8 state for every row-type task ObjectsSpawnTasks_8c02a6ac
- * spawns -- it spawns all of them with sizeof(RowTaskState) (0x7c): -- rowFlyByTask_8c029e94/flyByModelTask_8c029e68,
- * rowDatTask_8c029fcc, rowModelTask_8c02a08a, rowMotionModelTask_8c02a120,
- * rowSimpleModelTask_8c02a1f0, rowMaterialModelTask_8c02a27c and
- * fumiCrossingTask_8c02a4f8. Each row type only touches the subset of fields
- * it needs; bytes below 0x40 are never read or written anywhere in this unit.
- *
- * `dat_0x48` mirrors ObjectsSpawnTasks_8c02a6ac's own row-local `dat` variable: an
- * NJS_MOTION* for types 0/3, a DatBlob* for type 1, or a randomly-chosen train
- * NJS_MOTION* for type 6, hence declared as a bare void*. */
+/* State of every row task, whatever its type; each type uses a subset. */
 typedef struct RowTaskState {
     char field_0x00[0x40];
     NJS_TEXLIST *texlist_0x40;
     NJS_CNK_OBJECT *model_0x44;
-    void *dat_0x48;
+    void *dat_0x48;                    /* as AssetRequestSlot.dat_0x08; type 6: the train motion */
     ObjectAssetType5Extra pos_0x4c;    /* type-5 only */
     int phase_0x54;                    /* types 2/3/6 */
     float frame_0x58;
     float frameLimit_0x5c;
     float trainFrame_0x60;             /* type-6 only */
-    float trainFrameLimit_0x64;            /* type-6 only: frame threshold, zeroed once the train has passed */
+    float trainFrameLimit_0x64;        /* type-6 only; zeroed once the train has passed */
     NJS_ARGB material_0x68;            /* type-5 only */
     Uint8 fogEnable_0x78;              /* types 2/3 */
     Uint8 control3DEnable_0x79;        /* types 2/3 */
@@ -220,34 +184,21 @@ typedef struct RowTaskState {
 int var_activePedPreset_8c22822c;
 void* var_pedGroups_8c228230;
 int var_pedGroupCount_8c228234;
-/* 12-byte entries {float *first, float *last, float length}, indexed in
- * lockstep with var_pedGroups_8c228230 by pedGroupTask_8c029078. */
-STATIC void* var_pedPaths_8c228238;
-/* Per-group spawn definition, 12-byte entries {int id, float radius, spec
- * list*}, looked up by id in pedestriansTask_8c0293f6. */
-STATIC void* var_pedGroupDefs_8c22823c;
-/* int*[] indexed by var_activePedPreset_8c22822c; each list is a -1 terminated array of
- * group ids, consumed by pedestriansTask_8c0293f6. */
+STATIC void* var_pedPaths_8c228238;     /* PedPathInfo[], one per group */
+STATIC void* var_pedGroupDefs_8c22823c; /* PedGroupDef[] */
+/* Indexed by var_activePedPreset_8c22822c: -1 terminated lists of group ids. */
 STATIC void* var_pedGroupLists_8c228240;
-/* Crosswalk table walked by pedestrianTask_8c028e00: entries are pairs of
- * path-node pointers, terminated by the end pointer var_blockedCrosswalksEnd_8c228244. */
+/* Node pairs bounding the crosswalk segments the bus straddles this frame. */
 STATIC int* var_blockedCrosswalksEnd_8c228244;
 STATIC int var_blockedCrosswalks_8c228248[8];
-STATIC float var_busAxisA_8c228268[2]; /* segment-intersection scratch, param1 for IntersectSegments_8c0206f0 */
-STATIC float var_busAxisB_8c228270[2]; /* segment-intersection scratch, param2 for IntersectSegments_8c0206f0 */
-/* nodes[0] = the route's blinker model (var_routeModels_8c1bc3ec[9]); [1..3]
- * are its child/sibling tree, filled by resolveObjectChildren_8c029868. */
+STATIC float var_busAxisA_8c228268[2]; /* world X/Z */
+STATIC float var_busAxisB_8c228270[2]; /* world X/Z */
+/* The blinker model and its three lamp children. */
 STATIC NJS_OBJECT *var_routeBlinkerNodes_8c228278[4];
-/* Per-slot destination pointers for a pending object-asset request, one 0x18-byte
- * entry per table row processed by ObjectsStartAssetRequests_8c029ad4 (up to 16
- * rows), also read/freed by ObjectsFreeAssetRequests_8c029cfe and ObjectsSpawnTasks_8c02a6ac. Raw bytes:
- * which fields are used depends on the row's type. */
-STATIC Uint8 var_assetRequestSlots_8c228288[16 * 0x18];
-/* Table currently in flight for ObjectsStartAssetRequests_8c029ad4: an array of
- * {type, dataPtr} pairs terminated by type == -1. -1 when nothing is queued. */
+STATIC Uint8 var_assetRequestSlots_8c228288[16 * 0x18]; /* AssetRequestSlot[16] */
+/* {type, data} pairs terminated by type -1; -1 when no table is loaded. */
 STATIC int *var_assetRequestTable_8c228408;
-/* Fixed asset handles for the type-6 ("FUMI" railway crossing) row, shared by
- * every table that includes one -- there is only ever one railway crossing. */
+/* Type-6 (railway crossing) assets: fixed files, so at most one crossing. */
 STATIC void *var_fumiGateModel_8c22840c;
 STATIC void *var_fumiTexlist_8c228410;
 STATIC void *var_fumiCloseMotion_8c228414;
@@ -258,8 +209,7 @@ STATIC void *var_fumiTrainModel_8c228424;
 STATIC void *var_fumiTrainTexlist_8c228428;
 STATIC void *var_fumiTrainMotionA_8c22842c;
 STATIC void *var_fumiTrainMotionB_8c228430;
-/* nodes[0] = the FUMI lamp model (var_fumiLampModel_8c22841c); [1..16] are its
- * grandchild tree, filled by resolveObjectGrandchildren_8c02a322. */
+/* The lamp model and its 16 grandchildren. */
 STATIC NJS_OBJECT *var_fumiLampNodes_8c228434[17];
 
 /* ====================
@@ -267,12 +217,8 @@ STATIC NJS_OBJECT *var_fumiLampNodes_8c228434[17];
  * ====================
  */
 
-/* Mechanically dumped from src/asm/decompiled/0289ac_objects.src sections C/D
- * via scripts/dump_src_data.py, in original file (== address) order; a few
- * symbols below are hand-typed where a semantic type earns its keep, verified
- * byte-identical against the archived asm via scripts/dcdiff.py. */
-
-/* Sprite frames for the pedestrian billboards; indexed off the ped kind. */
+/* Pedestrian billboard frames: 8 walk frames per facing bucket, then 4 for
+ * kind-2 statics. */
 NJS_TEXANIM init_pedestrianTexAnims_8c04623c[] = {
     {   /* [0] */
         /* sx, sy   */ 64, 128,
@@ -564,13 +510,11 @@ NJS_TEXANIM init_pedestrianTexAnims_8c04623c[] = {
     },
 };
 
-/* Endpoints of the bus's stop line in bus-local space; njCalcPoint'd into
- * var_busAxisA/B_8c228268 each time the route state is rebuilt. */
+/* Bus-local ends of the bus's long axis. */
 STATIC NJS_POINT3 init_busAxisLocalA_8c04650c = { 0.0f, 0.0f, -4.1f };
 
 STATIC NJS_POINT3 init_busAxisLocalB_8c046518 = { 0.0f, 0.0f, 9.5f };
 
-/* Route-specific blinker spawn point tables, keyed by var_route_8c18ad1c. */
 STATIC BlinkerPoint init_shinjukuBlinkerPoints_8c046524[] = {
     {   /* [0] */
         /* x_0x00, z_0x04 */ 4301.0f, 4493.0f,
@@ -774,7 +718,6 @@ STATIC BlinkerPoint init_omeBlinkerPoints_8c0466a4[] = {
  * ====================
  */
 
-/* Called by ObjectsStartAssetRequests_8c029ad4 before its own definition. */
 void ObjectsFreeAssetRequests_8c029cfe(void);
 
 /* ====================
@@ -782,9 +725,7 @@ void ObjectsFreeAssetRequests_8c029cfe(void);
  * ====================
  */
 
-/* Advances a pedestrian along its path (pPathNode_0x4c, flPathPos_0x54),
- * forward or backward per nReverse_0x40, moving into the next/previous segment
- * and wrapping at the path's ends. Returns whether the segment changed. */
+/* Wraps at the path's ends. Returns whether the node changed. */
 STATIC Bool advancePedPathPos_8c0289ac(PedestrianState *ped)
 {
     PedPathNode *node;
@@ -823,10 +764,8 @@ STATIC Bool advancePedPathPos_8c0289ac(PedestrianState *ped)
     return startNode != node;
 }
 
-/* Mirror-view counterpart of drawPedestrians_8c028b74, registered as its
- * layer-1 draw callback by pedestriansTask_8c0293f6. Takes the facing bucket
- * from the path node's flag bits instead of the camera angle, and flips the
- * facing test. */
+/* Takes the facing bucket from the path node's flags instead of the bus's
+ * direction of travel. */
 STATIC void drawPedestriansMirror_8c028a38(int arg0)
 {
     PedGroupEntry *groups = (PedGroupEntry *)var_pedGroups_8c228230;
@@ -882,13 +821,8 @@ STATIC void drawPedestriansMirror_8c028a38(int arg0)
     }
 }
 
-/* Draws every active pedestrian's sprite for the frame. A type 2 object
- * (checked at 0x3c) just maps its own facing state (0x40, 0-3) to one of
- * four sprite frames. Any other type is bucketed by the angle between the
- * camera and the direction its path segment runs (flStepX_0x0c/flStepZ_0x10
- * of pPathNode_0x4c); every pedestrian on a segment shares that angle, so
- * the bucket is cached per frame keyed by the node pointer.
- * Installed as a DrawFn; the callback arg is unused. */
+/* A walker's facing bucket is the angle between the bus's direction of travel
+ * and its path node's, cached per node for the frame. */
 STATIC void drawPedestrians_8c028b74(int arg0)
 {
     PedGroupEntry *groups = (PedGroupEntry *)var_pedGroups_8c228230;
@@ -936,7 +870,7 @@ STATIC void drawPedestrians_8c028b74(int arg0)
 
                 if (cacheEnd <= found) {
                     if (cache + DIR_CACHE_CAPACITY <= cacheEnd) {
-                        continue; /* cache full; skip drawing this object */
+                        continue; /* cache full: not drawn */
                     }
                     found->key = key;
                     targetAngle = njArcTan2(-key->flStepX_0x0c, -key->flStepZ_0x10);
@@ -986,9 +920,7 @@ STATIC void drawPedestrians_8c028b74(int arg0)
     syFree(cache);
 }
 
-/* Relocation fixup for a freshly-loaded macHumM0 blob (which becomes
- * var_pedGroupLists_8c228240): a 0-terminated array of self-relative offsets,
- * each turned into an absolute pointer in place. */
+/* macHumM0: 0-terminated offsets, made absolute in place. */
 void ObjectsRelocatePedGroupLists_8c028dd0(void *handle)
 {
     int *entry = handle;
@@ -997,11 +929,7 @@ void ObjectsRelocatePedGroupLists_8c028dd0(void *handle)
         entry++;
     }
 }
-/* Relocation fixup for a freshly-loaded PedGroupDef array (013ae8 hands it
- * the course's macHumG0 blob, which becomes var_pedGroupDefs_8c22823c): adds
- * the array's own base address to each entry's specs_0x08, converting it from
- * a self-relative offset to an absolute pointer. Terminated by an entry whose
- * id_0x00 is -1. */
+/* macHumG0: makes each PedGroupDef's specs_0x08 offset absolute. */
 void ObjectsRelocatePedGroupDefs_8c028de8(void *handle)
 {
     int *entry = handle;
@@ -1031,7 +959,7 @@ STATIC void pedestrianTask_8c028e00(Task *task, PedestrianState *ped)
             ped->nSignalIdB_0x6c = ped->nNodeFlags_0x60 & 0xfff;
             ped->nAnimPhase_0x5c = 0;
         }
-        /* Held at the kerb; frame 1 on the signal object means "don't walk". */
+        /* Frame 1 is green: a pedestrian arriving mid-green waits for the next one. */
         if (SignalGetFrame_8c028900(ped->nSignalIdA_0x68) != 1) {
             ped->nState_0x64 = 2;
         }
@@ -1105,18 +1033,9 @@ STATIC void pedestrianTask_8c028e00(Task *task, PedestrianState *ped)
         }
     }
 }
-/* Do-nothing TaskAction for a kind-2 (static sprite) ped-group entry:
- * unlike a walking pedestrian it needs no per-frame update once placed. */
 STATIC void pedStaticObjectTask_8c02903e() {}
 
-/* Per-frame driver for one pedestrian-group slot's spawn list, installed via
- * TaskSpawn_8c014ae8 by pedestriansTask_8c0293f6. Each call consumes one
- * PedGroupSpawnSpec entry from the group's spec list (task->spec_0x1c),
- * spawning either a walking pedestrian (pedestrianTask_8c028e00) or a static
- * sprite object (pedStaticObjectTask_8c02903e) into the group's own subtask
- * array (task->subTasks_0x18), then runs that subtask array for the frame.
- * If var_pedGroups_8c228230[task->pageListIndex_0x08] is no longer wanted this
- * frame, tears the whole group down instead. */
+/* Spawns one pedestrian per frame from the group's spec list. */
 STATIC void pedGroupTask_8c029078(PedGroupTask *task)
 {
     PedGroupEntry *group;
@@ -1156,7 +1075,7 @@ STATIC void pedGroupTask_8c029078(PedGroupTask *task)
                     radius = task->radius_0x10;
                     state->flBaseX_0x20 = ((float)rand() / 32768.0f) * radius * 2.0f - radius;
                     state->flBaseZ_0x24 = ((float)rand() / 32768.0f) * radius * 2.0f - radius;
-                    /* Only the seed's low 16 bits: 0.04 to 0.06 units per frame. */
+                    /* 0.04 to 0.06 units per frame */
                     state->flSpeed_0x58 =
                             ((float)(Uint16)AsqGetRandomA_8c012166() / 65536.0f) / 50.0f + 0.04f;
                     state->nAnimPhase_0x5c = AsqGetRandomA_8c012166();
@@ -1254,12 +1173,6 @@ STATIC void pedGroupTask_8c029078(PedGroupTask *task)
     TaskRunGroup_8c014b42(task->subTasks_0x18);
 }
 
-/* Per-frame driver for every pedestrian group: syncs var_pedGroups_8c228230's
- * wanted/active state with the current preset (task->armed_0x0c debounces a
- * single pending-change flag across frames where var_busState_8c1bb9d0.scenePresetIds_0x3bc
- * reads 0), rebuilds this frame's crosswalk intersection scratch, runs every
- * group's Task, then registers the draw callback(s) -- drawPedestriansMirror_8c028a38
- * only outside demo mode. */
 STATIC void pedestriansTask_8c0293f6(PedestriansTask *task)
 {
     PedGroupEntry *groups;
@@ -1310,8 +1223,7 @@ STATIC void pedestriansTask_8c0293f6(PedestriansTask *task)
             group = &groups[pageListIndex];
 
             if (group->active_0x00 == 0) {
-                /* One slot over PED_GROUP_SLOTS: TaskInitGroup_8c014a9c terminates
-                 * the array with a NULL action past the slots it frees. */
+                /* +1 for TaskInitGroup_8c014a9c's terminator */
                 subtasks = syMalloc((PED_GROUP_SLOTS + 1) * sizeof(Task));
                 if (subtasks == NULL) {
                     break;
@@ -1391,12 +1303,6 @@ STATIC void pedestriansTask_8c0293f6(PedestriansTask *task)
     }
 }
 
-/* One-shot pedestrian-group setup for the current run, called from
- * GameEnterDrive_8c01306e. Copies the route's pedestrian tables (loaded by
- * requestCourseAssets_8c014088 into var_currentCourse_8c1bb868's Hum fields) into
- * var_pedPaths_8c228238/var_pedGroupDefs_8c22823c/var_pedGroupLists_8c228240
- * and installs pedestriansTask_8c0293f6 to drive them every frame. No-op if
- * the route defines no pedestrian groups. */
 void ObjectsSpawnPedestrianGroups_8c0296d6(void)
 {
     PedGroupEntry *groups;
@@ -1436,11 +1342,6 @@ void ObjectsSpawnPedestrianGroups_8c0296d6(void)
     task->armed_0x0c = 1;
 }
 
-/* Teardown counterpart to ObjectsSpawnPedestrianGroups_8c0296d6: frees every
- * still-active group's subtask block (see pedestriansTask_8c0293f6, which
- * stashes it in PedGroupEntry.list_0x08) and the group array itself, then
- * resets to the not-yet-loaded
- * sentinel state. No-op if groups were never loaded this run. */
 void ObjectsKillPedestrianGroups_8c0297da(void)
 {
     PedGroupEntry *groups;
@@ -1463,13 +1364,11 @@ void ObjectsKillPedestrianGroups_8c0297da(void)
     var_pedGroupCount_8c228234 = -1;
 }
 
-/* Task private state for routeBlinkerTask_8c029904, set up by
- * ObjectsSpawnBlinkers_8c029920. */
 typedef struct {
     TaskAction action;
-    void *state;            /* NJS_MATRIX* on the callback */
-    int count_0x08;          /* number of NJS_MATRIX entries in state */
-    int blinkCounter_0x0c;   /* per-frame counter, round-tripped through Task's void* field_0x0c */
+    void *state;            /* NJS_MATRIX[count_0x08] */
+    int count_0x08;
+    int blinkCounter_0x0c;
     int field_0x10;
     int field_0x14;
     void *queuedItem_0x18;
@@ -1485,8 +1384,7 @@ STATIC void resolveObjectChildren_8c029868(NJS_OBJECT **nodes)
     nodes[3] = child->sibling;
 }
 
-/* Draws all `count` blinker matrices built by ObjectsSpawnBlinkers_8c029920,
- * cycling var_routeBlinkerNodes_8c228278's child nodes' eval flags through a 3-phase blink. */
+/* The three lamps light in turn, 4 frames each. */
 STATIC void drawBlinkers_8c029878(int taskArg, int matricesArg)
 {
     RouteBlinkerTask *task = (RouteBlinkerTask *)taskArg;
@@ -1523,22 +1421,15 @@ STATIC void drawBlinkers_8c029878(int taskArg, int matricesArg)
     }
 }
 
-/* Per-frame TaskAction for the blinker group: advances the blink counter and
- * queues this frame's draw through the fade command pipeline. */
 STATIC void routeBlinkerTask_8c029904(RouteBlinkerTask *task, NJS_MATRIX *state)
 {
     task->blinkCounter_0x0c++;
     RenderQueueDraw2_8c022420(RENDER_LAYER_MAIN, drawBlinkers_8c029878, (int)task, (int)state);
 }
 
-/* One-shot setup for the current run's route blinkers, called from
- * GameEnterDrive_8c01306e. Resolves var_routeBlinkerNodes_8c228278 from the route model
- * table (mirroring ObjectsSpawnPedestrianGroups_8c0296d6's sibling setup calls)
- * and installs routeBlinkerTask_8c029904 to draw them every frame. No-op if
- * the route's table is empty.
- *
- * Each point's height uses its own ground-query fallback, which differs
- * from snapPointToGround_8c02840c's at the tail. */
+/* Original quirk: a hit on the pedestrian ground grid leaves the point's height
+ * unset (stale from the previous point); only the bus-grid fallback
+ * interpolates one. */
 void ObjectsSpawnBlinkers_8c029920(void)
 {
     const BlinkerPoint *p, *points;
@@ -1689,9 +1580,6 @@ void ObjectsStartAssetRequests_8c029ad4(int *table)
         rowIndex = rowIndex + 1;
     }
 }
-/* Frees every asset handle written into var_assetRequestSlots_8c228288 by a prior
- * ObjectsStartAssetRequests_8c029ad4(table), mirroring its per-row type
- * switch. No-op if no table is currently in flight. */
 void ObjectsFreeAssetRequests_8c029cfe(void)
 {
     AssetRequestSlot *slots;
@@ -1737,9 +1625,6 @@ void ObjectsFreeAssetRequests_8c029cfe(void)
 
     var_assetRequestTable_8c228408 = (int *)-1;
 }
-/* DrawFn draw callback for the fly-by model spawned by flyByModelTask_8c029e68;
- * state is the spawned task's state array (texlist at 0x40, model at 0x44,
- * motion at 0x48, current frame at 0x58, per rowFlyByTask_8c029e94/flyByModelTask_8c029e68). */
 STATIC void drawFlyByModel_8c029e46(int state)
 {
     RowTaskState *st = (RowTaskState *)state;
@@ -1747,8 +1632,6 @@ STATIC void drawFlyByModel_8c029e46(int state)
     njSetTexture(st->texlist_0x40);
     njCnkSimpleDrawMotion(st->model_0x44, (NJS_MOTION *)st->dat_0x48, st->frame_0x58);
 }
-/* TaskAction spawned by rowFlyByTask_8c029e94 once its countdown lapses; animates a
- * randomly-chosen route model's fly-by until its frame count runs out. */
 STATIC void flyByModelTask_8c029e68(Task *task, RowTaskState *state)
 {
     state->frame_0x58 = state->frame_0x58 + 1.0f;
@@ -1758,9 +1641,7 @@ STATIC void flyByModelTask_8c029e68(Task *task, RowTaskState *state)
     }
     RenderQueueDraw_8c0223ea(RENDER_LAYER_MAIN, drawFlyByModel_8c029e46, (int)state);
 }
-/* TaskAction for a type-0 row, installed by ObjectsSpawnTasks_8c02a6ac. Counts
- * down task->field_0x08; once it lapses, spawns a fly-by task (flyByModelTask_8c029e68)
- * seeded from a random route model slot and re-arms the countdown. */
+/* Every 16-63 frames, runs the row's motion once on a random route model. */
 STATIC void rowFlyByTask_8c029e94(Task *task, RowTaskState *state)
 {
     Task *newTask;
@@ -1782,8 +1663,6 @@ STATIC void rowFlyByTask_8c029e94(Task *task, RowTaskState *state)
         task->field_0x08 = AsqGetRandomInRangeA_8c012178(0x30) + 0x10;
     }
 }
-/* DrawFn draw callback for a type-1 row task; state is the spawned
- * task's state (see RowTaskState), with the DatBlob at RowTaskState::dat_0x48. */
 STATIC void drawDatModel_8c029f2a(int state)
 {
     DatBlob *dat = (DatBlob *)((RowTaskState *)state)->dat_0x48;
@@ -1798,8 +1677,8 @@ STATIC void initDatBlob_8c029f42(DatBlob *dat, NJS_TEXLIST *texlist, NJS_CNK_OBJ
     dat->model_0x1c = model;
     dat->masks_0x14 = dat->masks_0x20;
 }
-/* Returns 0 if the model's child chain ran out before nNodes_0x00 children,
- * leaving the step unadvanced. */
+/* Returns 0, step unadvanced, if the model has fewer than nNodes_0x00
+ * children. */
 STATIC int advanceDatBlob_8c029f54(DatBlob *dat)
 {
     int stepIndex;
@@ -1839,17 +1718,12 @@ STATIC int advanceDatBlob_8c029f54(DatBlob *dat)
     }
     return 1;
 }
-/* TaskAction for a type-1 row, installed by ObjectsSpawnTasks_8c02a6ac. */
 STATIC void rowDatTask_8c029fcc(Task *task, RowTaskState *state)
 {
     advanceDatBlob_8c029f54((DatBlob *)state->dat_0x48);
     RenderQueueDraw_8c0223ea(RENDER_LAYER_MAIN, drawDatModel_8c029f2a, (int)state);
     RenderQueueDraw_8c0223ea(RENDER_LAYER_MIRROR, drawDatModel_8c029f2a, (int)state);
 }
-/* DrawFn draw callback for a type-2 row task; state is the spawned
- * task's state array. Draws the {texlist, model} pair at offset 0x40/0x44,
- * with fog and njControl3D left toggled off for the draw when the row's
- * flags at 0x78/0x79 are clear. */
 STATIC void drawRowModel_8c02a048(int state)
 {
     RowTaskState *st = (RowTaskState *)state;
@@ -1865,9 +1739,7 @@ STATIC void drawRowModel_8c02a048(int state)
     njFogEnable();
     njControl3D(0x100);
 }
-/* TaskAction for a type-2 row, installed by ObjectsSpawnTasks_8c02a6ac;
- * task->field_0x08 is the target var_busState_8c1bb9d0.scenePresetIds_0x3bc marker, set from
- * row[0x14] there. */
+/* Appears once scenePresetIds_0x3bc's top byte matches task->field_0x08. */
 STATIC void rowModelTask_8c02a08a(Task *task, RowTaskState *state)
 {
     if (state->phase_0x54 == 0) {
@@ -1879,10 +1751,6 @@ STATIC void rowModelTask_8c02a08a(Task *task, RowTaskState *state)
         RenderQueueDraw_8c0223ea(RENDER_LAYER_MIRROR, drawRowModel_8c02a048, (int)state);
     }
 }
-/* DrawFn draw callback for a type-3 row task; state is the spawned
- * task's state array, laid out like drawFlyByModel_8c029e46's (texlist 0x40,
- * model 0x44, motion 0x48, current frame 0x58) with drawRowModel_8c02a048's
- * fog/njControl3D toggles (flags at 0x78/0x79). */
 STATIC void drawRowMotionModel_8c02a0d6(int state)
 {
     RowTaskState *st = (RowTaskState *)state;
@@ -1898,9 +1766,7 @@ STATIC void drawRowMotionModel_8c02a0d6(int state)
     njFogEnable();
     njControl3D(0x100);
 }
-/* TaskAction for a type-3 row, installed by ObjectsSpawnTasks_8c02a6ac.
- * task->field_0x08 is the target marker, per type-2's rowModelTask_8c02a08a;
- * state->frameLimit_0x5c is set like type-0's flyByModelTask_8c029e68's. */
+/* Triggered like rowModelTask_8c02a08a; task->field_0x0c loops the motion. */
 STATIC void rowMotionModelTask_8c02a120(Task *task, RowTaskState *state)
 {
     if (state->phase_0x54 == 0) {
@@ -1920,8 +1786,6 @@ STATIC void rowMotionModelTask_8c02a120(Task *task, RowTaskState *state)
         state->frame_0x58 = 0.0f;
     }
 }
-/* Draws a {texlist, model} pair embedded at offset 0x40 in state, fog
- * left enabled only when fogEnable is non-zero. */
 STATIC void drawRowSimpleModel_8c02a1b2(int state, int fogEnable)
 {
     RowTaskState *st = (RowTaskState *)state;
@@ -1935,15 +1799,10 @@ STATIC void drawRowSimpleModel_8c02a1b2(int state, int fogEnable)
     njFogEnable();
     njControl3D(0x100);
 }
-/* TaskAction for a type-4 row, installed by ObjectsSpawnTasks_8c02a6ac. */
 STATIC void rowSimpleModelTask_8c02a1f0(Task *task, RowTaskState *state)
 {
     RenderQueueDraw2_8c022420(RENDER_LAYER_MAIN, drawRowSimpleModel_8c02a1b2, (int)state, task->field_0x08);
 }
-/* DrawFn draw callback for a type-5 row task; state is the spawned
- * task's state array. Unlike drawRowModel_8c02a048, fades the whole draw via
- * a constant material color (alpha at 0x68, set by rowMaterialModelTask_8c02a27c) instead of
- * toggling fog/lighting per row flags. */
 STATIC void drawRowMaterialModel_8c02a206(int state)
 {
     RowTaskState *st = (RowTaskState *)state;
@@ -1955,14 +1814,7 @@ STATIC void drawRowMaterialModel_8c02a206(int state)
     njCnkSimpleDrawObject(st->model_0x44);
     njControl3D(0x100);
 }
-/* TaskAction for a type-5 row, installed by ObjectsSpawnTasks_8c02a6ac. Fades
- * the row's material to invisible beyond a distance of 20 from the bus
- * (averaging var_busState_8c1bb9d0's two position pairs against the row's
- * own position, per ObjectAssetType5Extra), ramping from opaque at 10 down
- * to hidden at 20 within that band, gated by var_cameraMode_8c227d9c (some quality/LOD
- * level) being at least 2; then pushes two draw calls (opaque and
- * translucent draw layers) of the row's model via
- * drawRowMaterialModel_8c02a206. task is unused. */
+/* Material alpha runs from -0.5 within 10 of the bus to 0 at 20 and beyond. */
 STATIC void rowMaterialModelTask_8c02a27c(void *task, RowTaskState *state)
 {
     ObjectAssetType5Extra *pos = &state->pos_0x4c;
@@ -1989,10 +1841,7 @@ STATIC void rowMaterialModelTask_8c02a27c(void *task, RowTaskState *state)
     RenderQueueDraw_8c0223ea(RENDER_LAYER_MAIN, drawRowMaterialModel_8c02a206, (int)state);
     RenderQueueDraw_8c0223ea(RENDER_LAYER_MIRROR, drawRowMaterialModel_8c02a206, (int)state);
 }
-/* Resolves 16 grandchildren of nodes[0] into nodes[1..16]: nodes[0]'s two
- * children (child, child->sibling) each contribute 8 nodes -- their own
- * child followed by 7 further siblings. Mirrors resolveObjectChildren_8c029868
- * one level deeper. */
+/* nodes[1..8] and [9..16]: the children of nodes[0]'s first two children. */
 STATIC void resolveObjectGrandchildren_8c02a322(NJS_OBJECT **nodes)
 {
     NJS_OBJECT *node;
@@ -2012,10 +1861,7 @@ STATIC void resolveObjectGrandchildren_8c02a322(NJS_OBJECT **nodes)
         nodes[i] = node;
     }
 }
-/* Sets nodes[1..16]'s eval flags in a 3-phase pattern selected by
- * `selector`, one level deeper than drawBlinkers_8c029878's 3-phase cycle
- * over resolveObjectGrandchildren_8c02a322's output. Any other selector
- * value is a no-op. */
+/* Never called in the original. */
 STATIC void setGrandchildEvalFlags_8c02a370(NJS_OBJECT **nodes, char selector)
 {
     switch (selector) {
@@ -2076,11 +1922,6 @@ STATIC void setGrandchildEvalFlags_8c02a370(NJS_OBJECT **nodes, char selector)
     }
     nodes[16]->evalflags = 0x3f;
 }
-/* DrawFn draw callback for a type-6 (FUMI railway crossing) row task,
- * called by fumiCrossingTask_8c02a4f8. Draws the gate, the lamp housing, and --
- * while a passing train is still due (state->trainFrameLimit_0x64 > 0) -- the train
- * model stashed at state->model_0x44/state->dat_0x48 (same slots as
- * drawRowMotionModel_8c02a0d6's). */
 STATIC void drawFumiCrossing_8c02a47c(int state)
 {
     RowTaskState *st = (RowTaskState *)state;
@@ -2103,12 +1944,8 @@ STATIC void drawFumiCrossing_8c02a47c(int state)
         njCnkSimpleDrawMotion(st->model_0x44, (NJS_MOTION *)st->dat_0x48, st->trainFrame_0x60);
     }
 }
-/* TaskAction for a type-6 (FUMI railway crossing) row, installed by
- * ObjectsSpawnTasks_8c02a6ac. Cycles the crossing through closing, waiting out
- * a passing train, then opening; idles at phase 0 until
- * var_busState_8c1bb9d0.scenePresetIds_0x3bc's top byte (the set-piece trigger) goes nonzero.
- * From phase 1 onward, pushes a draw call of drawFumiCrossing_8c02a47c every
- * frame. task is unused. */
+/* Phases: 0 idle until scenePresetIds_0x3bc's top byte is set, 1 gate closing,
+ * 2 train passing, 3 gate opening, 4 done. */
 STATIC void fumiCrossingTask_8c02a4f8(void *task, RowTaskState *state)
 {
     int phase = state->phase_0x54;
@@ -2143,11 +1980,7 @@ STATIC void fumiCrossingTask_8c02a4f8(void *task, RowTaskState *state)
         var_trafficSignalFrames_8c227e24[0] = 0;
     }
 }
-/* Installed as a DrawFn on both draw layers (arg0 = layer). Sets up
- * njCnk's simple light for the row draw calls that follow: direction from
- * var_simpleLightDir_8c2264d8 (layer 0) or var_mirrorSimpleLightDir_8c2264e4
- * (layer 1, the mirror side), and a constant intensity/ambient/color already
- * copied from the scene params by 0222dc_fadecmd. */
+/* arg0 is the draw layer. */
 STATIC void setSimpleLightCallback_8c02a5d0(int arg0)
 {
     float *dir = (arg0 == 0) ? var_simpleLightDir_8c2264d8 : var_mirrorSimpleLightDir_8c2264e4;
@@ -2156,11 +1989,6 @@ STATIC void setSimpleLightCallback_8c02a5d0(int arg0)
     njCnkSetSimpleLightIntensity(var_simpleLightIntensity_8c2264f0[0], var_simpleLightIntensity_8c2264f0[1]);
     njCnkSetSimpleLightColor(var_simpleLightColor_8c2264f8[0], var_simpleLightColor_8c2264f8[1], var_simpleLightColor_8c2264f8[2]);
 }
-/* TaskAction spawned once after the table is fully processed, installed by
- * ObjectsSpawnTasks_8c02a6ac. Once the run is under way, pushes
- * setSimpleLightCallback_8c02a5d0 as a draw callback on both
- * draw layers, then runs the row tasks just spawned into var_tasks_8c1bb448 to
- * completion. */
 STATIC void execRowTaskGroupTask_8c02a60e(void)
 {
     if (var_runState_8c2285c4.runPhase_0x00 != 0) {
@@ -2169,10 +1997,6 @@ STATIC void execRowTaskGroupTask_8c02a60e(void)
         TaskRunGroup_8c014b42(var_tasks_8c1bb448);
     }
 }
-/* For each {type, dataPtr} row in the in-flight table (var_assetRequestTable_8c228408, filled by
- * ObjectsStartAssetRequests_8c029ad4), spawns a per-type task seeded from the
- * row's loaded asset handles in var_assetRequestSlots_8c228288, then spawns one closing task once
- * the whole table has been processed. */
 void ObjectsSpawnTasks_8c02a6ac(void)
 {
     AssetRequestSlot *slots;
@@ -2241,9 +2065,8 @@ void ObjectsSpawnTasks_8c02a6ac(void)
         } else if (type == 6) {
             void *chosen;
 
-            /* Bug-for-bug: passes state itself (its stale value from the
-             * previous row), not &state, as the create_state out-param --
-             * matches the archived asm exactly. */
+            /* Original bug: passes state (stale from the previous row), not
+             * &state, as the out-param. */
             TaskSpawn_8c014ae8(var_tasks_8c1bb448, &fumiCrossingTask_8c02a4f8, &task, (void **)state, sizeof(RowTaskState));
             state->phase_0x54 = 0;
             state->frame_0x58 = 0.0f;

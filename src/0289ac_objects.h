@@ -5,10 +5,8 @@
 #include <shinobi.h>
 
 extern int var_activePedPreset_8c22822c;
-/* 12-byte entries {active, unused, list*}; list is NULL-terminated, holes
- * marked -1. Read by drawPedestrians_8c028b74; var_pedGroupCount_8c228234 is the count. */
 extern void* var_pedGroups_8c228230;
-extern int var_pedGroupCount_8c228234; /* -1 sentinel means not yet loaded */
+extern int var_pedGroupCount_8c228234; /* -1 when not loaded */
 
 void ObjectsSpawnPedestrianGroups_8c0296d6(void);
 void ObjectsKillPedestrianGroups_8c0297da(void);
