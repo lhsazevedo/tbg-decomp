@@ -17,8 +17,8 @@ return new class extends TestCase {
         $this->setSize('_init_titleResourceGroup_8c044254', 0x10);
 
         foreach ([
-            '_SpriteDraw_8c014f54', '_MessageBoxMenuTextboxText_8c02af1c',
-            '_MessageBoxSwapFor_8c02aefc', '_VmSelectUpdateStatus_8c01967c',
+            '_SpriteDraw_8c014f54', '_MessageBoxDrawText_8c02af1c',
+            '_MessageBoxSetText_8c02aefc', '_VmSelectUpdateStatus_8c01967c',
             '_RouteGetLatch_8c01432a', '_AsqFreeQueues_8c011f7e',
             '_SndMidiResetFxAndPlay_8c010846', '_sdMidiPlay',
             '_RenderStartFadeOut_8c022b60', '_PromptHandleBinary_8c016caa',
@@ -167,7 +167,7 @@ return new class extends TestCase {
 
         $this->call('_resultsTask_8c01d8e0');
 
-        $this->shouldCall('_MessageBoxSwapFor_8c02aefc')->with("セーブを中止しますか？");
+        $this->shouldCall('_MessageBoxSetText_8c02aefc')->with("セーブを中止しますか？");
 
         $this->shouldWriteLong($this->ms + 0x18, 6);  // state_0x18 = 6
         $this->shouldWriteLong($this->ms + 0x38, 1);  // selected_0x38 = 1
@@ -212,7 +212,7 @@ return new class extends TestCase {
 
         $this->shouldWriteLong($this->ms + 0x1c, 1); // subState_0x1c = 1
 
-        $this->shouldCall('_MessageBoxSwapFor_8c02aefc')->with("セーブ実行中です<E>電源を切らないで下さい");
+        $this->shouldCall('_MessageBoxSetText_8c02aefc')->with("セーブ実行中です<E>電源を切らないで下さい");
 
         $this->shouldCall('_VmGameSetLcdAnim_8c01c8fc')->with(1);
 
@@ -312,7 +312,7 @@ return new class extends TestCase {
         $this->shouldCall('_buStat')->with(0)->andReturn(0);
         $this->shouldCall('_buGetLastError')->with(0)->andReturn(0);
 
-        $this->shouldCall('_MessageBoxSwapFor_8c02aefc')->with("セーブ終了");
+        $this->shouldCall('_MessageBoxSetText_8c02aefc')->with("セーブ終了");
 
         $this->shouldWriteLong($this->ms + 0x18, 0xd); // state_0x18 = 0xd
 
@@ -343,7 +343,7 @@ return new class extends TestCase {
         $this->shouldCall('_buStat')->with(0)->andReturn(0);
         $this->shouldCall('_buGetLastError')->with(0)->andReturn(1);
 
-        $this->shouldCall('_MessageBoxSwapFor_8c02aefc')->with("セーブが失敗しました");
+        $this->shouldCall('_MessageBoxSetText_8c02aefc')->with("セーブが失敗しました");
 
         $this->shouldWriteLong($this->ms + 0x18, 10); // state_0x18 = 10
 
@@ -468,7 +468,7 @@ return new class extends TestCase {
 
         $this->shouldWriteLong($this->ms + 0x6c, 0); // selectedVmuSlot_0x6c caches the status
 
-        $this->shouldCall('_MessageBoxSwapFor_8c02aefc')->with("ＶＭが接続されていません<E>セーブには３ブロック必要です");
+        $this->shouldCall('_MessageBoxSetText_8c02aefc')->with("ＶＭが接続されていません<E>セーブには３ブロック必要です");
 
         $this->shouldWriteLong($this->ms + 0x18, 5); // state_0x18 = 5
 
@@ -502,7 +502,7 @@ return new class extends TestCase {
 
         $this->shouldWriteLong($this->ms + 0x6c, 1); // selectedVmuSlot_0x6c caches the status
 
-        $this->shouldCall('_MessageBoxSwapFor_8c02aefc')->with("このＶＭはセーブできない状態です");
+        $this->shouldCall('_MessageBoxSetText_8c02aefc')->with("このＶＭはセーブできない状態です");
 
         $this->shouldWriteLong($this->ms + 0x18, 5); // state_0x18 = 5
 
@@ -536,7 +536,7 @@ return new class extends TestCase {
 
         $this->shouldWriteLong($this->ms + 0x6c, 2); // selectedVmuSlot_0x6c caches the status
 
-        $this->shouldCall('_MessageBoxSwapFor_8c02aefc')->with("空きブロックが不足しています<E>セーブには３ブロック必要です");
+        $this->shouldCall('_MessageBoxSetText_8c02aefc')->with("空きブロックが不足しています<E>セーブには３ブロック必要です");
 
         $this->shouldWriteLong($this->ms + 0x18, 5); // state_0x18 = 5
 
@@ -570,7 +570,7 @@ return new class extends TestCase {
 
         $this->shouldWriteLong($this->ms + 0x6c, 4); // selectedVmuSlot_0x6c caches the status
 
-        $this->shouldCall('_MessageBoxSwapFor_8c02aefc')->with("ファイルを作成します。<E>よろしいですか？");
+        $this->shouldCall('_MessageBoxSetText_8c02aefc')->with("ファイルを作成します。<E>よろしいですか？");
 
         $this->shouldWriteLong($this->ms + 0x18, 8); // state_0x18 = 8
 
@@ -604,7 +604,7 @@ return new class extends TestCase {
 
         $this->shouldWriteLong($this->ms + 0x6c, 5); // selectedVmuSlot_0x6c caches the status
 
-        $this->shouldCall('_MessageBoxSwapFor_8c02aefc')->with("ファイルが上書きされます。<E>よろしいですか？");
+        $this->shouldCall('_MessageBoxSetText_8c02aefc')->with("ファイルが上書きされます。<E>よろしいですか？");
 
         $this->shouldWriteLong($this->ms + 0x18, 8); // state_0x18 = 8
 
@@ -638,7 +638,7 @@ return new class extends TestCase {
 
         $this->shouldWriteLong($this->ms + 0x6c, 6); // selectedVmuSlot_0x6c caches the status
 
-        $this->shouldCall('_MessageBoxSwapFor_8c02aefc')->with("ファイルが上書きされます。<E>よろしいですか？");
+        $this->shouldCall('_MessageBoxSetText_8c02aefc')->with("ファイルが上書きされます。<E>よろしいですか？");
 
         $this->shouldWriteLong($this->ms + 0x18, 8); // state_0x18 = 8
 
@@ -1049,7 +1049,7 @@ return new class extends TestCase {
 
         $this->shouldCall('_VmSelectUpdateStatus_8c01967c')->with(0, 0x11223344, 3);
 
-        $this->shouldCall('_MessageBoxMenuTextboxText_8c02af1c')->with(0xff)->andReturn(0);
+        $this->shouldCall('_MessageBoxDrawText_8c02af1c')->with(0xff)->andReturn(0);
 
         $this->shouldCall('_njSetBackColor')->with(0xff418dff, 0xff418dff, 0xff418dff);
     }
@@ -1067,7 +1067,7 @@ return new class extends TestCase {
 
         $this->shouldCall('_VmSelectUpdateStatus_8c01967c')->with(0, 0, 3);
 
-        $this->shouldCall('_MessageBoxMenuTextboxText_8c02af1c')->with(0xff)->andReturn(0);
+        $this->shouldCall('_MessageBoxDrawText_8c02af1c')->with(0xff)->andReturn(0);
 
         $this->shouldCall('_njSetBackColor')->with(0xff418dff, 0xff418dff, 0xff418dff);
     }
@@ -1086,12 +1086,12 @@ return new class extends TestCase {
 
         $this->shouldCall('_VmSelectUpdateStatus_8c01967c')->with(0, 0, 3);
 
-        $this->shouldCall('_MessageBoxSwapFor_8c02aefc')->with("セーブを中止しますか？");
+        $this->shouldCall('_MessageBoxSetText_8c02aefc')->with("セーブを中止しますか？");
 
         $this->shouldWriteLong($this->ms + 0x18, 6); // state_0x18 = 6
         $this->shouldWriteLong($this->ms + 0x38, 1); // selected_0x38 = 1
 
-        $this->shouldCall('_MessageBoxMenuTextboxText_8c02af1c')->with(0xff)->andReturn(0);
+        $this->shouldCall('_MessageBoxDrawText_8c02af1c')->with(0xff)->andReturn(0);
 
         $this->shouldCall('_njSetBackColor')->with(0xff418dff, 0xff418dff, 0xff418dff);
     }
@@ -1111,7 +1111,7 @@ return new class extends TestCase {
 
         $this->shouldWriteLong($this->ms + 0x18, 4); // state_0x18 = 4
 
-        $this->shouldCall('_MessageBoxMenuTextboxText_8c02af1c')->with(0xff)->andReturn(0);
+        $this->shouldCall('_MessageBoxDrawText_8c02af1c')->with(0xff)->andReturn(0);
 
         $this->shouldCall('_njSetBackColor')->with(0xff418dff, 0xff418dff, 0xff418dff);
     }
@@ -1128,7 +1128,7 @@ return new class extends TestCase {
 
         $this->shouldCall('_VmSelectUpdateStatus_8c01967c')->with(0, 0, 3);
 
-        $this->shouldCall('_MessageBoxMenuTextboxText_8c02af1c')->with(0xff)->andReturn(1);
+        $this->shouldCall('_MessageBoxDrawText_8c02af1c')->with(0xff)->andReturn(1);
 
         $this->shouldCall('_SpriteDraw_8c014f54')
             ->with($this->ms, 1, 0.0, 0.0, -4.3);
@@ -1209,7 +1209,7 @@ return new class extends TestCase {
 
         $this->call('_resultsTask_8c01d8e0');
 
-        $this->shouldCall('_MessageBoxMenuTextboxText_8c02af1c')->with(0xff)->andReturn(1);
+        $this->shouldCall('_MessageBoxDrawText_8c02af1c')->with(0xff)->andReturn(1);
 
         $this->shouldCall('_SpriteDraw_8c014f54')
             ->with($this->ms, 1, 0.0, 0.0, -4.3);
@@ -1224,7 +1224,7 @@ return new class extends TestCase {
 
         $this->call('_resultsTask_8c01d8e0');
 
-        $this->shouldCall('_MessageBoxMenuTextboxText_8c02af1c')->with(0xff)->andReturn(0);
+        $this->shouldCall('_MessageBoxDrawText_8c02af1c')->with(0xff)->andReturn(0);
 
         $this->shouldCall('_njSetBackColor')->with(0xff418dff, 0xff418dff, 0xff418dff);
     }

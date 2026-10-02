@@ -55,7 +55,7 @@ return new class extends TestCase {
 
         $this->shouldCall('_SndPlayAdx_8c010cd6')->with(2, 3);
         $this->shouldWriteLong($task + 0x18, $sound + 4);
-        $this->shouldCall("_MessageBoxSwapFor_8c02aefc")
+        $this->shouldCall("_MessageBoxSetText_8c02aefc")
             ->with("Hello, World!")
             ->andReturn(42);
         $this->shouldWriteLong($state + 0x08, 42);
@@ -83,7 +83,7 @@ return new class extends TestCase {
 
         $this->call('_instructorDialogTask_8c016f98')->with($task, $state);
 
-        $this->shouldCall("_MessageBoxSwapFor_8c02aefc")
+        $this->shouldCall("_MessageBoxSetText_8c02aefc")
             ->with("Hello, World!")
             ->andReturn(42);
         $this->shouldWriteLong($state + 0x08, 42);
@@ -113,7 +113,7 @@ return new class extends TestCase {
 
         $this->call('_instructorDialogTask_8c016f98')->with($task, $state);
 
-        $this->shouldCall("_MessageBoxSwapFor_8c02aefc")
+        $this->shouldCall("_MessageBoxSetText_8c02aefc")
             ->with("Hello, World!")
             ->andReturn(42);
         $this->shouldWriteLong($state + 0x08, 42);

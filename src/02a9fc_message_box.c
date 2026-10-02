@@ -43,28 +43,28 @@ typedef struct {
     int voiceId_0x04;
 } EventLine;
 
-/* Where messageBoxTask_8c02ab7a picks up on the current frame. The stages run in
+/* Where slideshowTask_8c02ab7a picks up on the current frame. The stages run in
  * this order and fall through to the next one; the phase in state->phase_0x00 only decides
  * where to enter. */
 typedef enum {
-    MSGBOX_STAGE_SWAP,
-    MSGBOX_STAGE_WAIT,
-    MSGBOX_STAGE_DRAW
-} MsgBoxStage;
+    SLIDESHOW_STAGE_SWAP,
+    SLIDESHOW_STAGE_WAIT,
+    SLIDESHOW_STAGE_DRAW
+} SlideshowStage;
 
-/* messageBoxTask_8c02ab7a's TaskSpawn_8c014ae8 state, exactly the 0x1c it asks
- * for (see tests/02a9fc_message_box/8c02ab7a_messageBoxTask.php's ST_* offsets). */
+/* slideshowTask_8c02ab7a's TaskSpawn_8c014ae8 state, exactly the 0x1c it asks
+ * for (see tests/02a9fc_message_box/8c02ab7a_slideshowTask.php's ST_* offsets). */
 typedef struct {
     int phase_0x00;
-    int pageCount_0x04;
-    int pageIndex_0x08;
+    int charCount_0x04;
+    int revealedChars_0x08;
     int frameCounter_0x0c;
     EventSlide *slide_0x10;
-    unsigned short *ids_0x14;
+    unsigned short *layers_0x14;
     EventLine *line_0x18;
-} MessageBoxState;
+} SlideshowState;
 
-/* One entry of init_objectAssetFiles_8c046758, the .map/.pvm filename pair
+/* One entry of init_slideAssetFiles_8c046758, the .map/.pvm filename pair
  * for a message-box asset id. */
 typedef struct {
     char *map_0x00;
@@ -99,7 +99,7 @@ STATIC EventLine **var_messageTextDat_8c228518;
  * symbols below are hand-typed where a semantic type earns its keep, verified
  * byte-identical against the archived asm via scripts/dcdiff.py. */
 
-STATIC MessageAssetFiles init_objectAssetFiles_8c046758[] = {
+STATIC MessageAssetFiles init_slideAssetFiles_8c046758[] = {
     {"", ""},
     {"B001.map", "B001.pvm"},
     {"B002.map", "B002.pvm"},
@@ -3792,7 +3792,7 @@ STATIC EventSlide *init_omeEvents_8c04a9c8[] = {
 /* Full-screen (640x480) tilemap of 32x32 cells (20x15 grid); reused for
  * every message-box layer, with texlist/map patched in per layer before
  * each njDrawScroll. */
-STATIC NJS_SCROLL init_msgScroll_8c04ab3c = {
+STATIC NJS_SCROLL init_slideScroll_8c04ab3c = {
     /* celps      */ 32,
     /* mapw, maph */ 20, 15,
     /* sw, sh     */ 0, 0,
@@ -3821,10 +3821,10 @@ STATIC NJS_SCROLL init_msgScroll_8c04ab3c = {
 /* Called by MessageBoxStart_8c02ad8c before its own definition. */
 void MessageBoxOpenTextbox_8c02ae3e(int x, int y, float priority, int width, int height, int x2, int y2, int enable_offset);
 
-/* Called by messageBoxTask_8c02ab7a before their own definitions. */
+/* Called by slideshowTask_8c02ab7a before their own definitions. */
 void MessageBoxFreeAssets_8c02adee(void);
-int MessageBoxSwapFor_8c02aefc(char *string);
-int MessageBoxMenuTextboxText_8c02af1c(int limit);
+int MessageBoxSetText_8c02aefc(char *string);
+int MessageBoxDrawText_8c02af1c(int limit);
 
 /* Called by MessageBoxFreeAssets_8c02adee before its own definition. */
 void MessageBoxFreeTextboxes_8c02af32(void);
@@ -3908,9 +3908,9 @@ void MessageBoxRequestAssets_8c02aa36(void)
             }
 
             var_messageAssets_8c228484[i].id_0x00 = id;
-            AsqRequestPvm_8c011ac0(var_commonDir_8c18ad6c, init_objectAssetFiles_8c046758[id].pvm_0x04,
+            AsqRequestPvm_8c011ac0(var_commonDir_8c18ad6c, init_slideAssetFiles_8c046758[id].pvm_0x04,
                                    &var_messageAssets_8c228484[i].pvm_0x04, 0xde, 0);
-            AsqRequestDat_8c011182(var_commonDir_8c18ad6c, init_objectAssetFiles_8c046758[id].map_0x00,
+            AsqRequestDat_8c011182(var_commonDir_8c18ad6c, init_slideAssetFiles_8c046758[id].map_0x00,
                                    &var_messageAssets_8c228484[i].dat_0x08);
             var_messageAssetCount_8c228514++;
         }
@@ -3920,29 +3920,29 @@ void MessageBoxRequestAssets_8c02aa36(void)
  * message box: swaps in each line, waits (or fast-forwards on held A),
  * advances through the current slide's lines then to the next slide, and
  * finally requests the fade-out/cleanup once the last slide ends. */
-STATIC void messageBoxTask_8c02ab7a(Task *task, MessageBoxState *state)
+STATIC void slideshowTask_8c02ab7a(Task *task, SlideshowState *state)
 {
-    MsgBoxStage stage;
+    SlideshowStage stage;
     int i;
     unsigned short *ids;
     unsigned short id;
     char *nextString;
 
-    stage = MSGBOX_STAGE_DRAW;
+    stage = SLIDESHOW_STAGE_DRAW;
 
     switch (state->phase_0x00) {
     case 0:
-        state->ids_0x14 = state->slide_0x10->layers_0x00;
+        state->layers_0x14 = state->slide_0x10->layers_0x00;
         state->line_0x18 = var_messageTextDat_8c228518[state->slide_0x10->lineListIndex_0x04];
-        stage = MSGBOX_STAGE_SWAP;
+        stage = SLIDESHOW_STAGE_SWAP;
         break;
 
     case 1:
-        stage = MSGBOX_STAGE_SWAP;
+        stage = SLIDESHOW_STAGE_SWAP;
         break;
 
     case 2:
-        stage = MSGBOX_STAGE_WAIT;
+        stage = SLIDESHOW_STAGE_WAIT;
         break;
 
     case 3:
@@ -3950,8 +3950,8 @@ STATIC void messageBoxTask_8c02ab7a(Task *task, MessageBoxState *state)
         if ((var_peripheral_8c1ba358->on & PDD_DGT_TA) == 0) {
             state->phase_0x00 = 2;
         } else {
-            state->pageIndex_0x08 += 2;
-            if (state->pageIndex_0x08 >= state->pageCount_0x04) {
+            state->revealedChars_0x08 += 2;
+            if (state->revealedChars_0x08 >= state->charCount_0x04) {
                 state->phase_0x00 = 4;
             }
         }
@@ -3990,16 +3990,16 @@ STATIC void messageBoxTask_8c02ab7a(Task *task, MessageBoxState *state)
         break;
     }
 
-    if (stage == MSGBOX_STAGE_SWAP) {
-        state->pageCount_0x04 = MessageBoxSwapFor_8c02aefc(state->line_0x18->text_0x00);
+    if (stage == SLIDESHOW_STAGE_SWAP) {
+        state->charCount_0x04 = MessageBoxSetText_8c02aefc(state->line_0x18->text_0x00);
         SndPlayAdx_8c010cd6(2, state->line_0x18->voiceId_0x04);
-        state->pageIndex_0x08 = 1;
+        state->revealedChars_0x08 = 1;
         state->frameCounter_0x0c = 0;
         state->phase_0x00 = 2;
-        stage = MSGBOX_STAGE_WAIT;
+        stage = SLIDESHOW_STAGE_WAIT;
     }
 
-    if (stage == MSGBOX_STAGE_WAIT) {
+    if (stage == SLIDESHOW_STAGE_WAIT) {
         if ((var_peripheral_8c1ba358->press & PDD_DGT_TA) != 0) {
             state->frameCounter_0x0c = 99;
             state->phase_0x00 = 3;
@@ -4007,8 +4007,8 @@ STATIC void messageBoxTask_8c02ab7a(Task *task, MessageBoxState *state)
         }
         state->frameCounter_0x0c++;
         if (state->frameCounter_0x0c >= 3) {
-            state->pageIndex_0x08++;
-            if (state->pageIndex_0x08 < state->pageCount_0x04) {
+            state->revealedChars_0x08++;
+            if (state->revealedChars_0x08 < state->charCount_0x04) {
                 state->frameCounter_0x0c = 0;
             } else {
                 state->phase_0x00 = 4;
@@ -4016,21 +4016,21 @@ STATIC void messageBoxTask_8c02ab7a(Task *task, MessageBoxState *state)
         }
     }
 
-    init_msgScroll_8c04ab3c.pr = -3.0f;
-    ids = state->ids_0x14;
+    init_slideScroll_8c04ab3c.pr = -3.0f;
+    ids = state->layers_0x14;
     for (; *ids != 0xffff; ids++) {
         id = *ids;
         for (i = 0; i < var_messageAssetCount_8c228514; i++) {
             if (var_messageAssets_8c228484[i].id_0x00 == id) {
-                init_msgScroll_8c04ab3c.list = (NJS_TEXLIST *)var_messageAssets_8c228484[i].pvm_0x04;
-                init_msgScroll_8c04ab3c.map = (Uint32 *)var_messageAssets_8c228484[i].dat_0x08;
+                init_slideScroll_8c04ab3c.list = (NJS_TEXLIST *)var_messageAssets_8c228484[i].pvm_0x04;
+                init_slideScroll_8c04ab3c.map = (Uint32 *)var_messageAssets_8c228484[i].dat_0x08;
                 break;
             }
         }
-        njDrawScroll(&init_msgScroll_8c04ab3c);
-        init_msgScroll_8c04ab3c.pr += 0.1f;
+        njDrawScroll(&init_slideScroll_8c04ab3c);
+        init_slideScroll_8c04ab3c.pr += 0.1f;
     }
-    MessageBoxMenuTextboxText_8c02af1c(state->pageIndex_0x08);
+    MessageBoxDrawText_8c02af1c(state->revealedChars_0x08);
     SndPollVoiceEnd_8c0106ac();
 }
 /* Starts the event message-box display: applies the message-text relocation
@@ -4041,10 +4041,10 @@ STATIC void messageBoxTask_8c02ab7a(Task *task, MessageBoxState *state)
 void MessageBoxStart_8c02ad8c(void)
 {
     Task *task;
-    MessageBoxState *state;
+    SlideshowState *state;
 
     relocateMessageText_8c02a9fc(var_messageTextDat_8c228518);
-    TaskSpawn_8c014ae8(var_tasks_8c1ba3c8, &messageBoxTask_8c02ab7a, &task, (void **)&state, 0x1c);
+    TaskSpawn_8c014ae8(var_tasks_8c1ba3c8, &slideshowTask_8c02ab7a, &task, (void **)&state, 0x1c);
     state->slide_0x10 = var_eventSlides_8c228480[var_selectedEventEntry_8c228478];
     MessageBoxOpenTextbox_8c02ae3e(0x20, 0x180, -2.0, 0x240, 0x40, 0, 0, -1);
     state->phase_0x00 = 0;
@@ -4055,7 +4055,7 @@ void MessageBoxStart_8c02ad8c(void)
  * per-id pvm/dat pairs deduped into var_messageAssets_8c228484 (count var_messageAssetCount_8c228514), the
  * shared message-text dat in var_messageTextDat_8c228518, and the message-box textbox
  * resources (MessageBoxFreeTextboxes_8c02af32). Called at the end of the message-box
- * slideshow (messageBoxTask_8c02ab7a) and again during full session teardown
+ * slideshow (slideshowTask_8c02ab7a) and again during full session teardown
  * (ReplayMenuFreeSessionAssets_8c016182). */
 void MessageBoxFreeAssets_8c02adee(void)
 {
@@ -4077,7 +4077,7 @@ void MessageBoxFreeAssets_8c02adee(void)
 /* (Re)opens the message textbox: tears down any existing pair via
  * MessageBoxFreeTextboxes_8c02af32, re-inits the text module, and creates a fresh
  * double-buffered pair -- (&var_messageTextBoxA_8c1bc404)[0] and [1] -- with identical
- * geometry, toggled between by MessageBoxSwapFor_8c02aefc. Geometry
+ * geometry, toggled between by MessageBoxSetText_8c02aefc. Geometry
  * args mirror TxtCreateTextBox_8c0152fc. The original returns
  * &var_menuTextboxCharLimit_8c225fb8 (just reset to 0 here), but no caller
  * uses the return value. */
@@ -4096,16 +4096,16 @@ void MessageBoxOpenTextbox_8c02ae3e(int x, int y, float priority, int width, int
 /* Flips the active buffer index and lays the given text out into the
  * newly-active box, returning TxtPrepareTextBoxLayout_8c01543a's result
  * (the caller uses it as a wait-frame count). */
-int MessageBoxSwapFor_8c02aefc(char *string)
+int MessageBoxSetText_8c02aefc(char *string)
 {
     var_messageTextBoxIndex_8c1bc40c ^= 1;
     return TxtPrepareTextBoxLayout_8c01543a((TextBox *)(&var_messageTextBoxA_8c1bc404)[var_messageTextBoxIndex_8c1bc40c], string);
 }
 /* Draws the currently-revealed portion of the active message box's text,
- * called every frame from messageBoxTask_8c02ab7a's draw tail with the
+ * called every frame from slideshowTask_8c02ab7a's draw tail with the
  * running char-reveal counter as limit. Returns TxtDrawTextBox_8c0155e0's
  * result (some callers check it in an if()). */
-int MessageBoxMenuTextboxText_8c02af1c(int limit)
+int MessageBoxDrawText_8c02af1c(int limit)
 {
     return TxtDrawTextBox_8c0155e0((TextBox *)(&var_messageTextBoxA_8c1bc404)[var_messageTextBoxIndex_8c1bc40c], limit);
 }

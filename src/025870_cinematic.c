@@ -298,7 +298,7 @@ STATIC void demoShotTask_8c0259e8(Task *task, DemoShotState *state)
                 var_demoShotPos_8c227e00 = shot->pos_0x04;
 
                 if (shot->name_0x10[0] != 0) {
-                    state->textboxHandle_0x08 = MessageBoxSwapFor_8c02aefc(shot->name_0x10);
+                    state->textboxHandle_0x08 = MessageBoxSetText_8c02aefc(shot->name_0x10);
                     state->revealCount_0x04 = 0;
                 } else {
                     state->textboxHandle_0x08 = 0;
@@ -319,7 +319,7 @@ STATIC void demoShotTask_8c0259e8(Task *task, DemoShotState *state)
 
     if (state->textboxHandle_0x08 != 0) {
         state->revealCount_0x04++;
-        MessageBoxMenuTextboxText_8c02af1c(state->revealCount_0x04 >> CAPTION_FRAMES_PER_GLYPH_SHIFT);
+        MessageBoxDrawText_8c02af1c(state->revealCount_0x04 >> CAPTION_FRAMES_PER_GLYPH_SHIFT);
     }
 
     RenderQueueDraw_8c0223ea(RENDER_LAYER_MAIN, (DrawFn)BusCameraDrawBusModel_8c024bb8, 0);

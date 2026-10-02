@@ -30,7 +30,7 @@ return new class extends TestCase {
         $this->setSize('_TaskSpawn_8c014ae8', 4);
         $this->setSize('_njGarbageTexture', 4);
         $this->setSize('_MessageBoxOpenTextbox_8c02ae3e', 4);
-        $this->setSize('_MessageBoxSwapFor_8c02aefc', 4);
+        $this->setSize('_MessageBoxSetText_8c02aefc', 4);
         $this->setSize('_AsqInitQueues_8c011f36', 4);
         $this->setSize('_AsqResetQueues_8c011f6c', 4);
         $this->setSize('_CourseMenuRequestSysResgrp_8c018568', 4);
@@ -114,7 +114,7 @@ return new class extends TestCase {
         $this->shouldCall('_MessageBoxOpenTextbox_8c02ae3e')
             ->with(32, 384, -2.0, 576, 64)
             ->do($this->stackArgsCheck(0, 0, -1));
-        $this->shouldCall('_MessageBoxSwapFor_8c02aefc')->with("");
+        $this->shouldCall('_MessageBoxSetText_8c02aefc')->with("");
 
         $this->shouldWriteLongTo('_var_menuTextboxCharLimit_8c225fb8', 0);
         $this->shouldCall('_AsqInitQueues_8c011f36')->with(8, 0, 0, 8);

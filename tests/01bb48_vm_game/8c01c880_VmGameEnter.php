@@ -31,7 +31,7 @@ return new class extends TestCase {
         $this->shouldCall('_AsqProcessQueues_8c011fe0')
             ->with($this->addressOf('_AsqNop_8c011120'), 0, 0, 0,
                    $this->addressOf('_RouteClearLatch_8c014322'));
-        $this->shouldCall('_MessageBoxSwapFor_8c02aefc')
+        $this->shouldCall('_MessageBoxSetText_8c02aefc')
             ->with("")
             ->andReturn(0);
     }
@@ -48,6 +48,6 @@ return new class extends TestCase {
         $this->setSize('_AsqProcessQueues_8c011fe0', 4);
         $this->setSize('_AsqNop_8c011120', 4);
         $this->setSize('_RouteClearLatch_8c014322', 4);
-        $this->setSize('_MessageBoxSwapFor_8c02aefc', 4);
+        $this->setSize('_MessageBoxSetText_8c02aefc', 4);
     }
 };

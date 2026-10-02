@@ -3,10 +3,10 @@
           .IMPORT     _SpriteDraw_8c014f54
           .IMPORT     __modls
           .IMPORT     __divls
-          .IMPORT     _MessageBoxMenuTextboxText_8c02af1c
+          .IMPORT     _MessageBoxDrawText_8c02af1c
           .IMPORT     _var_selectedVm_8c1ba34c
           .IMPORT     _var_isFading_8c226568
-          .IMPORT     _MessageBoxSwapFor_8c02aefc
+          .IMPORT     _MessageBoxSetText_8c02aefc
           .IMPORT     _var_saveSlot_8c1ba350
           .IMPORT     _init_saveNames_8c044d50
           .IMPORT     _var_peripherals_8c1ba35c
@@ -204,7 +204,7 @@ LP_GEN_57051:
           .DATA.L H'C0A00000 ; H'8C01D8CC
           .DATA.L H'43960000 ; H'8C01D8D0
           .DATA.L H'43600000 ; H'8C01D8D4
-          .DATA.L _MessageBoxMenuTextboxText_8c02af1c ; H'8C01D8D8
+          .DATA.L _MessageBoxDrawText_8c02af1c ; H'8C01D8D8
           .DATA.L H'C089999A ; H'8C01D8DC
 _resultsTask_8c01d8e0:
           MOV.L       R14,@-R15
@@ -261,7 +261,7 @@ LP_GEN_44131:
           .DATA.L H'C0800000 ; H'8C01D944
           .DATA.L _var_selectedVm_8c1ba34c ; H'8C01D948
           .DATA.L _var_isFading_8c226568 ; H'8C01D94C
-          .DATA.L _MessageBoxSwapFor_8c02aefc ; H'8C01D950
+          .DATA.L _MessageBoxSetText_8c02aefc ; H'8C01D950
           .DATA.L _var_menuState_8c1bc7a8 ; H'8C01D954
           .DATA.L _var_saveSlot_8c1ba350 ; H'8C01D958
           .DATA.L _init_saveNames_8c044d50 ; H'8C01D95C
@@ -701,7 +701,7 @@ LP_GEN_38701:
           .DATA.L _sdMidiPlay ; H'8C01DCB0
           .DATA.L H'10+_var_peripherals_8c1ba35c ; H'8C01DCB4
           .DATA.L _const_8c0388f0 ; H'8C01DCB8
-          .DATA.L _MessageBoxMenuTextboxText_8c02af1c ; H'8C01DCBC
+          .DATA.L _MessageBoxDrawText_8c02af1c ; H'8C01DCBC
 caseD_6_2:
           MOV.L       LP_GEN_50614,R1
           MOV         #H'3,R6
@@ -1153,7 +1153,7 @@ LP_GEN_43538:
           .DATA.W H'0240 ; H'8C01E03A
           .DATA.W H'0180 ; H'8C01E03C
           .RES.W 1 ; H'8C01E03E
-          .DATA.L _MessageBoxMenuTextboxText_8c02af1c ; H'8C01E040
+          .DATA.L _MessageBoxDrawText_8c02af1c ; H'8C01E040
           .DATA.L H'C089999A ; H'8C01E044
           .DATA.L _SpriteDraw_8c014f54 ; H'8C01E048
           .DATA.L H'FF418DFF ; H'8C01E04C

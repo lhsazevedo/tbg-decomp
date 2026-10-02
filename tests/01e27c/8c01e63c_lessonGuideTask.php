@@ -75,7 +75,7 @@ return new class extends TestCase {
 
         // not GUIDE_STATE_VIEW_END -> no 0x1b sprite
 
-        $this->shouldCall('_MessageBoxMenuTextboxText_8c02af1c')->with(0xff)->andReturn(0);
+        $this->shouldCall('_MessageBoxDrawText_8c02af1c')->with(0xff)->andReturn(0);
         // menuTextboxText returned 0 -> no id=1 sprite
 
         $this->shouldCall('_SpriteDraw_8c014f54')->with(
@@ -364,7 +364,7 @@ return new class extends TestCase {
             );
         }
 
-        $this->shouldCall('_MessageBoxMenuTextboxText_8c02af1c')->with(0xff)->andReturn($textboxHasText ? 1 : 0);
+        $this->shouldCall('_MessageBoxDrawText_8c02af1c')->with(0xff)->andReturn($textboxHasText ? 1 : 0);
 
         if ($textboxHasText) {
             $this->shouldCall('_SpriteDraw_8c014f54')->with(
@@ -404,6 +404,6 @@ return new class extends TestCase {
         $this->setSize('_SpriteDraw_8c014f54', 4);
         $this->setSize('_var_gameMode_8c1bb8fc', 4);
         $this->setSize('_CourseMenuDrawDateAndExp_8c016ee6', 4);
-        $this->setSize('_MessageBoxMenuTextboxText_8c02af1c', 4);
+        $this->setSize('_MessageBoxDrawText_8c02af1c', 4);
     }
 };

@@ -155,7 +155,7 @@ STATIC void lessonDescriptionTask_8c01e27c(Task *task)
                 } else {
                     var_menuState_8c1bc7a8.state_0x18 = STATE_PROMPT;
                     var_menuState_8c1bc7a8.selected_0x38 = 0;
-                    MessageBoxSwapFor_8c02aefc(const_confirmStartMsg_8c03896c);
+                    MessageBoxSetText_8c02aefc(const_confirmStartMsg_8c03896c);
                 }
 
                 sdMidiPlay(var_midiHandles_8c0fcd28[0], 1, 0, 0);
@@ -189,7 +189,7 @@ STATIC void lessonDescriptionTask_8c01e27c(Task *task)
                 224.0f, 300.0f, -4.0f
             );
 
-            if (MessageBoxMenuTextboxText_8c02af1c(0xff))
+            if (MessageBoxDrawText_8c02af1c(0xff))
                 SpriteDraw_8c014f54(
                     &var_menuState_8c1bc7a8.resourceGroupA_0x00,
                     1,
@@ -219,7 +219,7 @@ STATIC void lessonDescriptionTask_8c01e27c(Task *task)
                 224.0f, 300.0f, -4.0f
             );
 
-            if (MessageBoxMenuTextboxText_8c02af1c(0xff))
+            if (MessageBoxDrawText_8c02af1c(0xff))
                 SpriteDraw_8c014f54(
                     &var_menuState_8c1bc7a8.resourceGroupA_0x00,
                     1,
@@ -291,7 +291,7 @@ STATIC void lessonDescriptionTask_8c01e27c(Task *task)
                 224.0f, 300.0f, -4.0f
             );
 
-            if (MessageBoxMenuTextboxText_8c02af1c(0xff))
+            if (MessageBoxDrawText_8c02af1c(0xff))
                 SpriteDraw_8c014f54(
                     &var_menuState_8c1bc7a8.resourceGroupA_0x00,
                     1,
@@ -425,7 +425,7 @@ STATIC void lessonGuideTask_8c01e63c(Task *task)
             0.0f, 0.0f, -4.5f
         );
 
-    if (MessageBoxMenuTextboxText_8c02af1c(0xff))
+    if (MessageBoxDrawText_8c02af1c(0xff))
         SpriteDraw_8c014f54(
             &var_menuState_8c1bc7a8.resourceGroupA_0x00,
             1,
@@ -457,7 +457,7 @@ STATIC void enterGuide_8c01e920(Task *task)
 {
     TaskSwitch_8c014b3e(task, lessonGuideTask_8c01e63c);
     var_menuState_8c1bc7a8.cursorRow_0x40 = 0;
-    MessageBoxSwapFor_8c02aefc(const_emptyMsg_8c038984);
+    MessageBoxSetText_8c02aefc(const_emptyMsg_8c038984);
 
     AsqInitQueues_8c011f36(8, 0, 0, 8);
     AsqResetQueues_8c011f6c();
@@ -576,7 +576,7 @@ STATIC void lessonMenuTask_8c01ebf2(Task *task, void *state)
                 task->field_0x08++;
                 if (var_lessonDialogQueue_8c226414[task->field_0x08] == -1) {
                     var_menuState_8c1bc7a8.state_0x18 = LESSON_STATE_MENU;
-                    MessageBoxSwapFor_8c02aefc(const_emptyMsg_8c038984);
+                    MessageBoxSetText_8c02aefc(const_emptyMsg_8c038984);
                 } else {
                     CourseMenuSpawnDialogTask_8c0170c6(var_lessonDialogQueue_8c226414[task->field_0x08], 0);
                 }
@@ -594,18 +594,18 @@ STATIC void lessonMenuTask_8c01ebf2(Task *task, void *state)
                 var_menuState_8c1bc7a8.state_0x18 = LESSON_STATE_QUIT_PROMPT;
                 var_menuState_8c1bc7a8.cursorCol_0x3c = 0;
                 sdMidiPlay(var_midiHandles_8c0fcd28[0], 1, 1, 0);
-                var_menuTextboxCharLimit_8c225fb8 = MessageBoxSwapFor_8c02aefc(const_confirmQuitMsg_8c038988);
+                var_menuTextboxCharLimit_8c225fb8 = MessageBoxSetText_8c02aefc(const_confirmQuitMsg_8c038988);
             }
             else if ((var_peripherals_8c1ba35c[0].press & 0x10) != 0) {
                 if (var_menuState_8c1bc7a8.selected_0x38 != 0) {
                     var_menuState_8c1bc7a8.selected_0x38--;
                     sdMidiPlay(var_midiHandles_8c0fcd28[0], 1, 3, 0);
-                    MessageBoxSwapFor_8c02aefc(const_emptyMsg_8c038984);
+                    MessageBoxSetText_8c02aefc(const_emptyMsg_8c038984);
                 }
             }
             else if ((var_peripherals_8c1ba35c[0].press & 0x20) != 0) {
                 var_menuState_8c1bc7a8.selected_0x38++;
-                MessageBoxSwapFor_8c02aefc(const_emptyMsg_8c038984);
+                MessageBoxSetText_8c02aefc(const_emptyMsg_8c038984);
                 if (var_menuState_8c1bc7a8.selected_0x38 > 10) {
                     var_menuState_8c1bc7a8.state_0x18 = LESSON_STATE_QUIT_ROW;
                 }
@@ -620,7 +620,7 @@ STATIC void lessonMenuTask_8c01ebf2(Task *task, void *state)
                 var_menuState_8c1bc7a8.state_0x18 = LESSON_STATE_QUIT_PROMPT;
                 var_menuState_8c1bc7a8.cursorCol_0x3c = 0;
                 sdMidiPlay(var_midiHandles_8c0fcd28[0], 1, 0, 0);
-                var_menuTextboxCharLimit_8c225fb8 = MessageBoxSwapFor_8c02aefc(const_confirmQuitMsg_8c038988);
+                var_menuTextboxCharLimit_8c225fb8 = MessageBoxSetText_8c02aefc(const_confirmQuitMsg_8c038988);
             }
             else if ((var_peripherals_8c1ba35c[0].press & 0x10) != 0) {
                 var_menuState_8c1bc7a8.selected_0x38--;
@@ -640,7 +640,7 @@ STATIC void lessonMenuTask_8c01ebf2(Task *task, void *state)
             }
             else if (result == 2) {
                 var_menuState_8c1bc7a8.state_0x18 = var_menuState_8c1bc7a8.subState_0x1c;
-                MessageBoxSwapFor_8c02aefc(const_emptyMsg_8c038984);
+                MessageBoxSetText_8c02aefc(const_emptyMsg_8c038984);
                 var_menuTextboxCharLimit_8c225fb8 = 0;
             }
 
@@ -733,7 +733,7 @@ STATIC void lessonMenuTask_8c01ebf2(Task *task, void *state)
         SpriteDraw_8c014f54(&var_menuState_8c1bc7a8.resourceGroupB_0x0c, 0x19, 0.0f, 0.0f, -2.0f);
     }
 
-    if (MessageBoxMenuTextboxText_8c02af1c(var_menuTextboxCharLimit_8c225fb8)) {
+    if (MessageBoxDrawText_8c02af1c(var_menuTextboxCharLimit_8c225fb8)) {
         SpriteDraw_8c014f54(&var_menuState_8c1bc7a8, 1, 0.0f, 0.0f, -5.0f);
     }
 
@@ -817,7 +817,7 @@ void PracticeMenuReturn_8c01f21c(void)
 
     njGarbageTexture(var_tex_8c157af8, 0xc00);
     MessageBoxOpenTextbox_8c02ae3e(0x20, 0x180, -2.0f, 0x240, 0x40, 0, 0, -1);
-    MessageBoxSwapFor_8c02aefc(const_emptyMsg_8c038984);
+    MessageBoxSetText_8c02aefc(const_emptyMsg_8c038984);
 
     AsqInitQueues_8c011f36(8, 0, 0, 8);
     AsqResetQueues_8c011f6c();

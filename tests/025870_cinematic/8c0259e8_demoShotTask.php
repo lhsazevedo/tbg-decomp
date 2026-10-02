@@ -65,8 +65,8 @@ return new class extends TestCase {
         $this->setSize('_njTranslateCameraPosition', 4);
         $this->setSize('_njPointCameraInterest', 4);
         $this->setSize('__quick_odd_mvn', 4);
-        $this->setSize('_MessageBoxSwapFor_8c02aefc', 4);
-        $this->setSize('_MessageBoxMenuTextboxText_8c02af1c', 4);
+        $this->setSize('_MessageBoxSetText_8c02aefc', 4);
+        $this->setSize('_MessageBoxDrawText_8c02af1c', 4);
         $this->setSize('_MessageBoxOpenTextbox_8c02ae3e', 4);
         $this->setSize('_BusCameraDrawBusModel_8c024bb8', 4);
         $this->setSize('_RenderQueueDraw_8c0223ea', 4);
@@ -143,7 +143,7 @@ return new class extends TestCase {
         $this->shouldWriteLongTo('_var_demoShotId_8c227dd4', 1);
         $this->shouldWriteLongTo('_var_cameraMode_8c227d9c', 5); // kind(0) + 5
         $this->shouldCall('__quick_odd_mvn')->do($this->oddMvn());
-        $this->shouldCall('_MessageBoxSwapFor_8c02aefc')
+        $this->shouldCall('_MessageBoxSetText_8c02aefc')
             ->with('Ichinoseki')
             ->andReturn(42);
         $this->shouldWriteLong($state + self::ST_HANDLE, 42);
@@ -154,7 +154,7 @@ return new class extends TestCase {
         $this->shouldCall('_applyShotPosition_8c0258ba');
         $this->shouldWriteLong($state + self::ST_PHASE, 1);
         $this->shouldWriteLong($state + self::ST_REVEAL, 1);
-        $this->shouldCall('_MessageBoxMenuTextboxText_8c02af1c')->with(0);
+        $this->shouldCall('_MessageBoxDrawText_8c02af1c')->with(0);
         $this->shouldCall('_RenderQueueDraw_8c0223ea')->with(0, $this->addressOf('_BusCameraDrawBusModel_8c024bb8'), 0);
     }
 
@@ -230,7 +230,7 @@ return new class extends TestCase {
         $this->shouldWriteLongTo('_var_demoShotId_8c227dd4', 5);
         $this->shouldWriteLongTo('_var_cameraMode_8c227d9c', 6); // kind(1) + 5
         $this->shouldCall('__quick_odd_mvn')->do($this->oddMvn());
-        $this->shouldCall('_MessageBoxSwapFor_8c02aefc')
+        $this->shouldCall('_MessageBoxSetText_8c02aefc')
             ->with('Nishi-Nippori')
             ->andReturn(7);
         $this->shouldWriteLong($state + self::ST_HANDLE, 7);
@@ -241,7 +241,7 @@ return new class extends TestCase {
         $this->shouldCall('_applyShotPosition_8c0258ba');
         $this->shouldWriteLong($state + self::ST_PHASE, 1);
         $this->shouldWriteLong($state + self::ST_REVEAL, 1);
-        $this->shouldCall('_MessageBoxMenuTextboxText_8c02af1c')->with(0);
+        $this->shouldCall('_MessageBoxDrawText_8c02af1c')->with(0);
         $this->shouldCall('_RenderQueueDraw_8c0223ea')->with(0, $this->addressOf('_BusCameraDrawBusModel_8c024bb8'), 0);
     }
 
@@ -274,7 +274,7 @@ return new class extends TestCase {
         // No phase write: the strict expectation order below would fail if
         // one were emitted here.
         $this->shouldWriteLong($state + self::ST_REVEAL, 4);
-        $this->shouldCall('_MessageBoxMenuTextboxText_8c02af1c')->with(2); // 4 >> 1
+        $this->shouldCall('_MessageBoxDrawText_8c02af1c')->with(2); // 4 >> 1
         $this->shouldCall('_RenderQueueDraw_8c0223ea')->with(0, $this->addressOf('_BusCameraDrawBusModel_8c024bb8'), 0);
     }
 };

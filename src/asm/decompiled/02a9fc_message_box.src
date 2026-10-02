@@ -35,19 +35,19 @@
           .EXPORT     _MessageBoxClearAssets_8c02aa28
           .EXPORT     _MessageBoxRequestAssets_8c02aa36
           .AIFDEF UNIT_TESTING
-          .EXPORT     _messageBoxTask_8c02ab7a
+          .EXPORT     _slideshowTask_8c02ab7a
           .AENDI
           .AIFDEF UNIT_TESTING
-          .EXPORT     _init_msgScroll_8c04ab3c
+          .EXPORT     _init_slideScroll_8c04ab3c
           .AENDI
           .EXPORT     _MessageBoxStart_8c02ad8c
           .EXPORT     _MessageBoxFreeAssets_8c02adee
           .EXPORT     _MessageBoxOpenTextbox_8c02ae3e
-          .EXPORT     _MessageBoxSwapFor_8c02aefc
-          .EXPORT     _MessageBoxMenuTextboxText_8c02af1c
+          .EXPORT     _MessageBoxSetText_8c02aefc
+          .EXPORT     _MessageBoxDrawText_8c02af1c
           .EXPORT     _MessageBoxFreeTextboxes_8c02af32
           .AIFDEF UNIT_TESTING
-          .EXPORT     _init_objectAssetFiles_8c046758
+          .EXPORT     _init_slideAssetFiles_8c046758
           .EXPORT     _init_objectAssetPvm_8c04675c
           .EXPORT     _init_shinjukuEvents_8c049a6c
           .EXPORT     _init_wanganEvents_8c04843c
@@ -259,7 +259,7 @@ LAB_8c02ab5a:
           MOV.L       @R15+,R13
           RTS
           MOV.L       @R15+,R14
-_messageBoxTask_8c02ab7a:
+_slideshowTask_8c02ab7a:
           MOV.L       R14,@-R15
           MOV.L       R13,@-R15
           MOV.L       R12,@-R15
@@ -296,7 +296,7 @@ _messageBoxTask_8c02ab7a:
 LP_GEN_97247:
           .DATA.W H'00DE ; H'8C02ABBC
           .RES.W 1 ; H'8C02ABBE
-          .DATA.L _init_objectAssetFiles_8c046758 ; H'8C02ABC0
+          .DATA.L _init_slideAssetFiles_8c046758 ; H'8C02ABC0
           .DATA.L _AsqRequestPvm_8c011ac0 ; H'8C02ABC4
           .DATA.L H'0000FFFF ; H'8C02ABC8
           .DATA.L _var_peripheral_8c1ba358 ; H'8C02ABCC
@@ -313,7 +313,7 @@ LAB_8c02abd0:
           MOV.L       R3,@(H'18,R14)
 LAB_8c02abe4:
           MOV.L       @(H'18,R14),R4
-          BSR         _MessageBoxSwapFor_8c02aefc
+          BSR         _MessageBoxSetText_8c02aefc
           MOV.L       @R4,R4
           MOV.L       LP_GEN_90033+6,R3
           MOV.L       R0,@(H'4,R14)
@@ -476,7 +476,7 @@ LAB_8c02ad04:
           EXTU.W      R7,R3
           CMP/EQ      R9,R3
           BF          LAB_8c02acca
-          BSR         _MessageBoxMenuTextboxText_8c02af1c
+          BSR         _MessageBoxDrawText_8c02af1c
           MOV.L       @(H'8,R14),R4
           ADD         #H'4,R15
           LDS.L       @R15+,PR
@@ -515,7 +515,7 @@ LP_GEN_90033:
           .DATA.L _RouteStartModelLoadPass_8c013d78 ; H'8C02AD60
           .DATA.L _var_sceneVisible_8c226560 ; H'8C02AD64
           .DATA.L _var_messageBoxActive_8c22847c ; H'8C02AD68
-          .DATA.L _init_msgScroll_8c04ab3c ; H'8C02AD6C
+          .DATA.L _init_slideScroll_8c04ab3c ; H'8C02AD6C
           .DATA.L H'C0400000 ; H'8C02AD70
           .DATA.L _var_messageAssetCount_8c228514 ; H'8C02AD74
           .DATA.L H'0000FFFF ; H'8C02AD78
@@ -680,7 +680,7 @@ LP_GEN_16602:
           .DATA.W H'0240 ; H'8C02AEB0
           .DATA.W H'0180 ; H'8C02AEB2
           .DATA.L _var_messageTextDat_8c228518 ; H'8C02AEB4
-          .DATA.L _messageBoxTask_8c02ab7a ; H'8C02AEB8
+          .DATA.L _slideshowTask_8c02ab7a ; H'8C02AEB8
           .DATA.L _var_tasks_8c1ba3c8 ; H'8C02AEBC
           .DATA.L _TaskSpawn_8c014ae8 ; H'8C02AEC0
           .DATA.L _var_selectedEventEntry_8c228478 ; H'8C02AEC4
@@ -697,7 +697,7 @@ LP_GEN_16602:
           .DATA.L _TxtCreateTextBox_8c0152fc ; H'8C02AEF0
           .DATA.L _var_messageTextBoxIndex_8c1bc40c ; H'8C02AEF4
           .DATA.L _var_menuTextboxCharLimit_8c225fb8 ; H'8C02AEF8
-_MessageBoxSwapFor_8c02aefc:
+_MessageBoxSetText_8c02aefc:
           MOV.L       R14,@-R15
           ADD         #-H'4,R15
           MOV.L       LP_GEN_47883,R14
@@ -714,7 +714,7 @@ _MessageBoxSwapFor_8c02aefc:
           MOV.L       LP_GEN_47883+8,R3
           JMP         @R3
           MOV.L       @R15+,R14
-_MessageBoxMenuTextboxText_8c02af1c:
+_MessageBoxDrawText_8c02af1c:
           ADD         #-H'4,R15
           MOV.L       LP_GEN_47883,R3
           MOV         R4,R5
@@ -3317,7 +3317,7 @@ _const_8c03b968:        ; aggressive search
 ; section alignment, not data -- the compiler leaves that to the linker.
           .DATA.B      H'50, H'30, H'35, H'34, H'2E, H'70, H'76, H'6D, H'00
           .SECTION    D, DATA, ALIGN=4
-_init_objectAssetFiles_8c046758:        ; from defines
+_init_slideAssetFiles_8c046758:        ; from defines
           .DATA.L      _const_8c03a1a0 ; ukn
 _init_objectAssetPvm_8c04675c:        ; from ghidra
           .DATA.L      _const_8c03a1a0 ; ukn
@@ -7473,7 +7473,7 @@ _init_omeEvents_8c04a9c8:        ; from defines
           .DATA.L      _init_eventSlides_8c04a930
           .DATA.L      _init_eventSlides_8c04a968
           .DATA.B      H'00, H'00, H'00, H'00
-_init_msgScroll_8c04ab3c:        ; from defines
+_init_slideScroll_8c04ab3c:        ; from defines
           ;.SDATA      " "
           ;.DATA.B     H'00
           .DATA.B      H'20, H'00, H'14, H'00, H'0F, H'00, H'00, H'00, H'00, H'00, H'00, H'00

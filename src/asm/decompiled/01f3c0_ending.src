@@ -4,7 +4,7 @@
           .IMPORT     _var_menuState_8c1bc7a8
           .IMPORT     _SpriteDraw_8c014f54
           .IMPORT     _var_menuTextboxCharLimit_8c225fb8
-          .IMPORT     _MessageBoxMenuTextboxText_8c02af1c
+          .IMPORT     _MessageBoxDrawText_8c02af1c
           .IMPORT     _njSetBackColor
           .IMPORT     _var_messageTextBoxA_8c1bc404
           .IMPORT     _TxtPrepareTextBoxLayout_8c01543a
@@ -34,7 +34,7 @@
           .IMPORT     _var_tex_8c157af8
           .IMPORT     _njGarbageTexture
           .IMPORT     _MessageBoxOpenTextbox_8c02ae3e
-          .IMPORT     _MessageBoxSwapFor_8c02aefc
+          .IMPORT     _MessageBoxSetText_8c02aefc
           .IMPORT     _AsqInitQueues_8c011f36
           .IMPORT     _AsqResetQueues_8c011f6c
           .IMPORT     _CourseMenuRequestSysResgrp_8c018568
@@ -352,7 +352,7 @@ LP_GEN_39506:
           .DATA.L _SpriteDraw_8c014f54 ; H'8C01F5E8
           .DATA.L H'C1080000 ; H'8C01F5EC
           .DATA.L _var_menuTextboxCharLimit_8c225fb8 ; H'8C01F5F0
-          .DATA.L _MessageBoxMenuTextboxText_8c02af1c ; H'8C01F5F4
+          .DATA.L _MessageBoxDrawText_8c02af1c ; H'8C01F5F4
           .DATA.L H'C0E00000 ; H'8C01F5F8
           .DATA.L H'C1000000 ; H'8C01F5FC
           .DATA.L H'005CA3D9 ; H'8C01F600
@@ -885,7 +885,7 @@ LP_GEN_38893:
           .DATA.L H'C0000000 ; H'8C01FA40
           .DATA.L _MessageBoxOpenTextbox_8c02ae3e ; H'8C01FA44
           .DATA.L _const_8c039f48 ; H'8C01FA48
-          .DATA.L _MessageBoxSwapFor_8c02aefc ; H'8C01FA4C
+          .DATA.L _MessageBoxSetText_8c02aefc ; H'8C01FA4C
           .DATA.L _var_menuTextboxCharLimit_8c225fb8 ; H'8C01FA50
           .DATA.L _AsqInitQueues_8c011f36 ; H'8C01FA54
           .DATA.L _AsqResetQueues_8c011f6c ; H'8C01FA58

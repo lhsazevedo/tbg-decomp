@@ -11,8 +11,8 @@
           .IMPORT     _var_camera_8c1bb904
           .IMPORT     _var_demoShotId_8c227dd4
           .IMPORT     __quick_odd_mvn
-          .IMPORT     _MessageBoxSwapFor_8c02aefc
-          .IMPORT     _MessageBoxMenuTextboxText_8c02af1c
+          .IMPORT     _MessageBoxSetText_8c02aefc
+          .IMPORT     _MessageBoxDrawText_8c02af1c
           .IMPORT     _RenderQueueDraw_8c0223ea
           .IMPORT     _var_route_8c18ad1c
           .IMPORT     _var_tasks_8c1ba5e8
@@ -321,7 +321,7 @@ LP_GEN_71160:
           .DATA.L _var_demoShots_8c227e0c ; H'8C025AB8
           .DATA.L _var_cameraMode_8c227d9c ; H'8C025ABC
           .DATA.L __quick_odd_mvn ; H'8C025AC0
-          .DATA.L _MessageBoxSwapFor_8c02aefc ; H'8C025AC4
+          .DATA.L _MessageBoxSetText_8c02aefc ; H'8C025AC4
 LAB_8c025ac8:
           TST         R4,R4
           BF          LAB_8c025ace
@@ -409,7 +409,7 @@ LAB_8c025b20:
 LP_GEN_72418:
           .DATA.W H'023E ; H'8C025B60
           .DATA.W H'0180 ; H'8C025B62
-          .DATA.L _MessageBoxMenuTextboxText_8c02af1c ; H'8C025B64
+          .DATA.L _MessageBoxDrawText_8c02af1c ; H'8C025B64
           .DATA.L _BusCameraDrawBusModel_8c024bb8 ; H'8C025B68
           .DATA.L _RenderQueueDraw_8c0223ea ; H'8C025B6C
           .DATA.L _var_demoShots_8c227e0c ; H'8C025B70

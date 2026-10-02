@@ -38,7 +38,7 @@ return new class extends TestCase {
         // Event 0's groups reference ids 1, 1, 201, 2, 1, 1, 201 in order --
         // covers a repeat within one group, a repeat across groups, and a
         // large id whose filenames land past the table's first (padding) entry
-        // in init_objectAssetFiles_8c046758.
+        // in init_slideAssetFiles_8c046758.
         $this->shouldWriteLong($entries + 0 * self::ENTRY_SIZE, 1);
         $this->shouldCall('_AsqRequestPvm_8c011ac0')->with(
             $commonDir, 'B001.pvm', $entries + 0 * self::ENTRY_SIZE + 0x04, 0xde, 0,

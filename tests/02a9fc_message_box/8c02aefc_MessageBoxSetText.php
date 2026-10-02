@@ -30,7 +30,7 @@ return new class extends TestCase {
 
         $string = $this->allocString('hello');
 
-        $this->call('_MessageBoxSwapFor_8c02aefc')
+        $this->call('_MessageBoxSetText_8c02aefc')
             ->with($string);
 
         $this->shouldWriteLongTo('_var_messageTextBoxIndex_8c1bc40c', 1);
@@ -54,7 +54,7 @@ return new class extends TestCase {
 
         $string = $this->allocString('world');
 
-        $this->call('_MessageBoxSwapFor_8c02aefc')
+        $this->call('_MessageBoxSetText_8c02aefc')
             ->with($string);
 
         $this->shouldWriteLongTo('_var_messageTextBoxIndex_8c1bc40c', 0);

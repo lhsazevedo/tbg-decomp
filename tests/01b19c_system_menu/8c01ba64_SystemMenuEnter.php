@@ -26,7 +26,7 @@ return new class extends TestCase {
         $this->shouldCall('_syMalloc')->with(0x600)->andReturn(0x8c500000);
         $this->shouldWriteLong($this->addressOf('_var_saveBuf_8c1ba2e0'), 0x8c500000);
         $this->shouldCall('_VmSelectUpdateStatus_8c01967c')->with(1, 0x8c440000, 3);
-        $this->shouldCall('_MessageBoxSwapFor_8c02aefc')->with("");
+        $this->shouldCall('_MessageBoxSetText_8c02aefc')->with("");
         $this->shouldCall('_RenderStartFadeIn_8c022a9c')->with(10);
         $this->shouldCall('_AsqInitQueues_8c011f36')->with(8, 0, 0, 8);
         $this->shouldCall('_AsqResetQueues_8c011f6c');

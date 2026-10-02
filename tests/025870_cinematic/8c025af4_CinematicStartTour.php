@@ -29,8 +29,8 @@ return new class extends TestCase {
         $this->setSize('_njTranslateCameraPosition', 4);
         $this->setSize('_njPointCameraInterest', 4);
         $this->setSize('__quick_odd_mvn', 4);
-        $this->setSize('_MessageBoxSwapFor_8c02aefc', 4);
-        $this->setSize('_MessageBoxMenuTextboxText_8c02af1c', 4);
+        $this->setSize('_MessageBoxSetText_8c02aefc', 4);
+        $this->setSize('_MessageBoxDrawText_8c02af1c', 4);
         $this->setSize('_MessageBoxOpenTextbox_8c02ae3e', 4);
         $this->setSize('_BusCameraDrawBusModel_8c024bb8', 4);
         $this->setSize('_RenderQueueDraw_8c0223ea', 4);

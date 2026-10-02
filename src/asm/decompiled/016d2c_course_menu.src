@@ -7,7 +7,7 @@
           .IMPORT     _AlbumEnter_8c01d6e2
           .IMPORT     _var_midiHandles_8c0fcd28
           .IMPORT     _sdMidiPlay
-          .IMPORT     _MessageBoxSwapFor_8c02aefc
+          .IMPORT     _MessageBoxSetText_8c02aefc
           .IMPORT     _SpriteDraw_8c014f54
           .IMPORT     __modls
           .IMPORT     __divls
@@ -36,7 +36,7 @@
           .IMPORT     _SndMidiResetFxAndPlay_8c010846
           .IMPORT     _RenderStartFadeOut_8c022b60
           .IMPORT     _MainMenuEnter_8c01a09a
-          .IMPORT     _MessageBoxMenuTextboxText_8c02af1c
+          .IMPORT     _MessageBoxDrawText_8c02af1c
           .IMPORT     _AsqGetRandomA_8c012166
           .IMPORT     _var_shouldShowFreeRunIntro_8c1bb8c0
           .IMPORT     _TaskSwitch_8c014b3e
@@ -339,7 +339,7 @@ LP_GEN_57345:
           .DATA.L _var_midiHandles_8c0fcd28 ; H'8C016E5C
           .DATA.L _sdMidiPlay ; H'8C016E60
           .DATA.L _const_8c03628c ; H'8C016E64
-          .DATA.L _MessageBoxSwapFor_8c02aefc ; H'8C016E68
+          .DATA.L _MessageBoxSetText_8c02aefc ; H'8C016E68
 _drawInteger_8c016e6c:
           MOV.L       R14,@-R15
           MOVA        LP_GEN_56413+10,R0
@@ -602,7 +602,7 @@ LP_GEN_49323:
           .DATA.L _var_instructorDialogActive_8c225fb4 ; H'8C017064
           .DATA.L _TaskKill_8c014b66 ; H'8C017068
           .DATA.L _SndPlayAdx_8c010cd6 ; H'8C01706C
-          .DATA.L _MessageBoxSwapFor_8c02aefc ; H'8C017070
+          .DATA.L _MessageBoxSetText_8c02aefc ; H'8C017070
           .DATA.L _var_menuState_8c1bc7a8 + H'60 ; H'8C017074
           .DATA.L _SndStopAdx_8c010ca6 ; H'8C017078
 LAB_8c01707c:
@@ -759,7 +759,7 @@ LP_GEN_21301:
           .DATA.L _TaskSpawn_8c014ae8 ; H'8C0171B0
           .DATA.L _init_instructorDialogs_8c044c08 ; H'8C0171B4
           .DATA.L _var_instructorDialogActive_8c225fb4 ; H'8C0171B8
-          .DATA.L _MessageBoxSwapFor_8c02aefc ; H'8C0171BC
+          .DATA.L _MessageBoxSetText_8c02aefc ; H'8C0171BC
           .DATA.L _init_courseMenuButtons_8c04442c ; H'8C0171C0
           .DATA.L H'10+_var_peripherals_8c1ba35c ; H'8C0171C4
           .DATA.L _SndStartAdxFadeOut_8c010bae ; H'8C0171C8
@@ -1921,7 +1921,7 @@ LP_GEN_86103:
           .DATA.L _sdMidiPlay ; H'8C017A58
           .DATA.L _SndMidiResetFxAndPlay_8c010846 ; H'8C017A5C
           .DATA.L _const_8c03628c ; H'8C017A60
-          .DATA.L _MessageBoxSwapFor_8c02aefc ; H'8C017A64
+          .DATA.L _MessageBoxSetText_8c02aefc ; H'8C017A64
           .DATA.L _RenderStartFadeOut_8c022b60 ; H'8C017A68
           .DATA.L _var_currentSysResGroupInfo_8c225fb0 ; H'8C017A6C
           .DATA.L _var_runSucceeded_8c1bb8dc ; H'8C017A70
@@ -1932,7 +1932,7 @@ LP_GEN_86103:
           .DATA.L _SpriteDraw_8c014f54 ; H'8C017A84
           .DATA.L H'C0800000 ; H'8C017A88
           .DATA.L _var_menuTextboxCharLimit_8c225fb8 ; H'8C017A8C
-          .DATA.L _MessageBoxMenuTextboxText_8c02af1c ; H'8C017A90
+          .DATA.L _MessageBoxDrawText_8c02af1c ; H'8C017A90
           .DATA.L H'C0C00000 ; H'8C017A94
           .DATA.L H'C0E00000 ; H'8C017A98
           .DATA.L _AsqGetRandomA_8c012166 ; H'8C017A9C
@@ -2119,7 +2119,7 @@ LP_GEN_86246:
           .DATA.L _RenderStartFadeIn_8c022a9c ; H'8C017BF8
           .DATA.L _var_instructorDialogActive_8c225fb4 ; H'8C017BFC
           .DATA.L _const_8c03628c ; H'8C017C00
-          .DATA.L _MessageBoxSwapFor_8c02aefc ; H'8C017C04
+          .DATA.L _MessageBoxSetText_8c02aefc ; H'8C017C04
           .DATA.L _RenderStartFadeOut_8c022b60 ; H'8C017C08
 LAB_8c017c0c:
           MOV.L       @R4,R1
@@ -2282,7 +2282,7 @@ LP_GEN_85439:
           .DATA.L H'C0A00000 ; H'8C017D38
           .DATA.L _SpriteDraw_8c014f54 ; H'8C017D3C
           .DATA.L _var_menuTextboxCharLimit_8c225fb8 ; H'8C017D40
-          .DATA.L _MessageBoxMenuTextboxText_8c02af1c ; H'8C017D44
+          .DATA.L _MessageBoxDrawText_8c02af1c ; H'8C017D44
           .DATA.L H'C0C00000 ; H'8C017D48
           .DATA.L H'C0E00000 ; H'8C017D4C
           .DATA.L _AsqGetRandomA_8c012166 ; H'8C017D50
@@ -2718,7 +2718,7 @@ LP_GEN_56170:
           .DATA.L H'C0000000 ; H'8C0180D4
           .DATA.L _MessageBoxOpenTextbox_8c02ae3e ; H'8C0180D8
           .DATA.L _const_8c03628c ; H'8C0180DC
-          .DATA.L _MessageBoxSwapFor_8c02aefc ; H'8C0180E0
+          .DATA.L _MessageBoxSetText_8c02aefc ; H'8C0180E0
           .DATA.L _var_playMode_8c1bb8d0 ; H'8C0180E4
           .DATA.L _AsqInitQueues_8c011f36 ; H'8C0180E8
           .DATA.L _AsqResetQueues_8c011f6c ; H'8C0180EC

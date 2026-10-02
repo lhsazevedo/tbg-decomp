@@ -54,7 +54,7 @@ return new class extends TestCase {
         $this->shouldCall('_MessageBoxOpenTextbox_8c02ae3e')->with(
             0x20, 0x180, -2.0, 0x240, 0x40, 0, 0, -1
         );
-        $this->shouldCall('_MessageBoxSwapFor_8c02aefc')->with("");
+        $this->shouldCall('_MessageBoxSetText_8c02aefc')->with("");
 
         $this->shouldWriteLongTo('_var_playMode_8c1bb8d0', 0);
 
@@ -132,7 +132,7 @@ return new class extends TestCase {
         $this->shouldCall('_MessageBoxOpenTextbox_8c02ae3e')->with(
             0x20, 0x180, -2.0, 0x240, 0x40, 0, 0, -1
         );
-        $this->shouldCall('_MessageBoxSwapFor_8c02aefc')->with("");
+        $this->shouldCall('_MessageBoxSetText_8c02aefc')->with("");
 
         $this->shouldWriteLongTo('_var_playMode_8c1bb8d0', 0);
 

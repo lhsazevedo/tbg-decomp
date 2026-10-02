@@ -122,7 +122,7 @@ return new class extends TestCase {
 
         $menuStateBase = $this->addressOf('_var_menuState_8c1bc7a8');
         $this->shouldWriteLong($menuStateBase + 0x18, 3);
-        $this->shouldCall('_MessageBoxSwapFor_8c02aefc')->with("");
+        $this->shouldCall('_MessageBoxSetText_8c02aefc')->with("");
 
         $this->expectDrawingTail(3);
     }
@@ -180,7 +180,7 @@ return new class extends TestCase {
         $this->shouldWriteLong($menuStateBase + 0x18, 5);
         $this->shouldWriteLong($menuStateBase + 0x3c, 0);
         $this->shouldCall('_sdMidiPlay')->with(0x1234, 1, 1, 0);
-        $this->shouldCall('_MessageBoxSwapFor_8c02aefc')->with("\x97\xfb\x8f\x4b\x83\x82\x81\x5b\x83\x68\x82\xf0\x8f\x49\x97\xb9\x82\xb5\x82\xdc\x82\xb7\x3c\x45\x3e\x82\xe6\x82\xeb\x82\xb5\x82\xa2\x82\xc5\x82\xb7\x82\xa9\x81\x48")->andReturn(0x2a);
+        $this->shouldCall('_MessageBoxSetText_8c02aefc')->with("\x97\xfb\x8f\x4b\x83\x82\x81\x5b\x83\x68\x82\xf0\x8f\x49\x97\xb9\x82\xb5\x82\xdc\x82\xb7\x3c\x45\x3e\x82\xe6\x82\xeb\x82\xb5\x82\xa2\x82\xc5\x82\xb7\x82\xa9\x81\x48")->andReturn(0x2a);
         $this->shouldWriteLong($this->addressOf('_var_menuTextboxCharLimit_8c225fb8'), 0x2a);
 
         $this->shouldCall('_scrollTowardSelection_8c01ebc8');
@@ -202,7 +202,7 @@ return new class extends TestCase {
         $menuStateBase = $this->addressOf('_var_menuState_8c1bc7a8');
         $this->shouldWriteLong($menuStateBase + 0x38, 0);
         $this->shouldCall('_sdMidiPlay')->with(0x1234, 1, 3, 0);
-        $this->shouldCall('_MessageBoxSwapFor_8c02aefc')->with("");
+        $this->shouldCall('_MessageBoxSetText_8c02aefc')->with("");
 
         $this->shouldCall('_scrollTowardSelection_8c01ebc8');
 
@@ -238,7 +238,7 @@ return new class extends TestCase {
 
         $menuStateBase = $this->addressOf('_var_menuState_8c1bc7a8');
         $this->shouldWriteLong($menuStateBase + 0x38, 6);
-        $this->shouldCall('_MessageBoxSwapFor_8c02aefc')->with("");
+        $this->shouldCall('_MessageBoxSetText_8c02aefc')->with("");
         $this->shouldCall('_sdMidiPlay')->with(0x1234, 1, 3, 0);
 
         $this->shouldCall('_scrollTowardSelection_8c01ebc8');
@@ -259,7 +259,7 @@ return new class extends TestCase {
 
         $menuStateBase = $this->addressOf('_var_menuState_8c1bc7a8');
         $this->shouldWriteLong($menuStateBase + 0x38, 11);
-        $this->shouldCall('_MessageBoxSwapFor_8c02aefc')->with("");
+        $this->shouldCall('_MessageBoxSetText_8c02aefc')->with("");
         $this->shouldWriteLong($menuStateBase + 0x18, 4);
         $this->shouldCall('_sdMidiPlay')->with(0x1234, 1, 3, 0);
 
@@ -300,7 +300,7 @@ return new class extends TestCase {
         $this->shouldWriteLong($menuStateBase + 0x18, 5);
         $this->shouldWriteLong($menuStateBase + 0x3c, 0);
         $this->shouldCall('_sdMidiPlay')->with(0x1234, 1, 0, 0);
-        $this->shouldCall('_MessageBoxSwapFor_8c02aefc')->with("\x97\xfb\x8f\x4b\x83\x82\x81\x5b\x83\x68\x82\xf0\x8f\x49\x97\xb9\x82\xb5\x82\xdc\x82\xb7\x3c\x45\x3e\x82\xe6\x82\xeb\x82\xb5\x82\xa2\x82\xc5\x82\xb7\x82\xa9\x81\x48")->andReturn(0x2a);
+        $this->shouldCall('_MessageBoxSetText_8c02aefc')->with("\x97\xfb\x8f\x4b\x83\x82\x81\x5b\x83\x68\x82\xf0\x8f\x49\x97\xb9\x82\xb5\x82\xdc\x82\xb7\x3c\x45\x3e\x82\xe6\x82\xeb\x82\xb5\x82\xa2\x82\xc5\x82\xb7\x82\xa9\x81\x48")->andReturn(0x2a);
         $this->shouldWriteLong($this->addressOf('_var_menuTextboxCharLimit_8c225fb8'), 0x2a);
 
         // Unlike state 5, state 4's own branch has no shared prompt-indicator
@@ -366,7 +366,7 @@ return new class extends TestCase {
         $menuStateBase = $this->addressOf('_var_menuState_8c1bc7a8');
         $this->shouldCall('_PromptHandleBinary_8c016caa')->with($menuStateBase + 0x3c)->andReturn(2);
         $this->shouldWriteLong($menuStateBase + 0x18, 3);
-        $this->shouldCall('_MessageBoxSwapFor_8c02aefc')->with("");
+        $this->shouldCall('_MessageBoxSetText_8c02aefc')->with("");
         $this->shouldWriteLong($this->addressOf('_var_menuTextboxCharLimit_8c225fb8'), 0);
 
         $this->shouldCall('_SpriteDraw_8c014f54')->with($menuStateBase, 2, 228.0, 320.0, -5.0);
@@ -632,7 +632,7 @@ return new class extends TestCase {
             $this->shouldCall('_SpriteDraw_8c014f54')->with($groupB, 0x19, 0.0, 0.0, -2.0);
         }
 
-        $this->shouldCall('_MessageBoxMenuTextboxText_8c02af1c')->with($charLimit)->andReturn($textboxHasText ? 1 : 0);
+        $this->shouldCall('_MessageBoxDrawText_8c02af1c')->with($charLimit)->andReturn($textboxHasText ? 1 : 0);
         if ($textboxHasText) {
             $this->shouldCall('_SpriteDraw_8c014f54')->with($menuStateBase, 1, 0.0, 0.0, -5.0);
         }
@@ -646,7 +646,7 @@ return new class extends TestCase {
     private function resolveSymbols(): void
     {
         $this->setSize('_var_menuState_8c1bc7a8', 0x84);
-        $this->setSize('_MessageBoxSwapFor_8c02aefc', 4);
+        $this->setSize('_MessageBoxSetText_8c02aefc', 4);
         $this->setSize('_var_isFading_8c226568', 4);
         $this->setSize('_CourseMenuSpawnDialogTask_8c0170c6', 4);
         $this->setSize('_var_instructorDialogActive_8c225fb4', 4);
@@ -669,7 +669,7 @@ return new class extends TestCase {
         $this->setSize('_EndingStart_8c01f954', 4);
         $this->setSize('_CourseMenuReturn_8c017ef2', 4);
         $this->setSize('_CourseMenuDrawDateAndExp_8c016ee6', 4);
-        $this->setSize('_MessageBoxMenuTextboxText_8c02af1c', 4);
+        $this->setSize('_MessageBoxDrawText_8c02af1c', 4);
         $this->setSize('_SpriteDraw_8c014f54', 4);
     }
 };

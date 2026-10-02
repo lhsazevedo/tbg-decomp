@@ -173,7 +173,7 @@ STATIC void updateDialogScene_8c01f42c(void)
     SpriteDraw_8c014f54(&var_menuState_8c1bc7a8.resourceGroupB_0x0c, 4,
         var_menuState_8c1bc7a8.pos.title.busX_0x20, var_menuState_8c1bc7a8.pos.title.flagY_0x24, -8.5f);
 
-    if (MessageBoxMenuTextboxText_8c02af1c(var_menuTextboxCharLimit_8c225fb8) != 0) {
+    if (MessageBoxDrawText_8c02af1c(var_menuTextboxCharLimit_8c225fb8) != 0) {
         SpriteDraw_8c014f54(&var_menuState_8c1bc7a8.resourceGroupA_0x00, 1, 0.0f, 0.0f, -7.0f);
     }
 
@@ -362,7 +362,7 @@ void EndingStart_8c01f954(void)
     njGarbageTexture(var_tex_8c157af8, 3072);
 
     MessageBoxOpenTextbox_8c02ae3e(32, 384, -2.0f, 576, 64, 0, 0, -1);
-    MessageBoxSwapFor_8c02aefc("");
+    MessageBoxSetText_8c02aefc("");
 
     var_menuTextboxCharLimit_8c225fb8 = 0;
     AsqInitQueues_8c011f36(8, 0, 0, 8);

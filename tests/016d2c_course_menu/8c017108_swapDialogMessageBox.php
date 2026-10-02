@@ -16,7 +16,7 @@ return new class extends TestCase {
     {
         $this->call('_swapDialogMessageBox_8c017108')->with(65);
 
-        $this->shouldCall('_MessageBoxSwapFor_8c02aefc')
+        $this->shouldCall('_MessageBoxSetText_8c02aefc')
             ->with("さぁ、コースを選んでくれ")
             ->andReturn(42);
 

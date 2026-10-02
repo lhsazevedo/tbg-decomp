@@ -72,7 +72,7 @@ STATIC void drawPrompt_8c01d864(void)
 {
     SpriteDraw_8c014f54(&var_menuState_8c1bc7a8, var_menuState_8c1bc7a8.selected_0x38 + 2, 224.0f, 300.0f, -5.0f);
 
-    if (MessageBoxMenuTextboxText_8c02af1c(0xff) == 0) {
+    if (MessageBoxDrawText_8c02af1c(0xff) == 0) {
         return;
     }
 
@@ -115,20 +115,20 @@ STATIC void resultsTask_8c01d8e0(void)
         var_menuState_8c1bc7a8.selectedVmuSlot_0x6c = vmuStatus;
         if (vmuStatus == VMU_STATUS_SAVING_POSSIBLE || vmuStatus == VMU_STATUS_SAVE_EXISTS_NO_SPACE ||
             vmuStatus == VMU_STATUS_SAVE_EXISTS) {
-            MessageBoxSwapFor_8c02aefc(
+            MessageBoxSetText_8c02aefc(
                 vmuStatus == VMU_STATUS_SAVING_POSSIBLE ? MSG_CONFIRM_CREATE_FILE : MSG_CONFIRM_OVERWRITE);
             var_menuState_8c1bc7a8.state_0x18 = 8;
             soundId = 0;
         } else {
             if (vmuStatus == VMU_STATUS_NOT_ENOUGH_SPACE) {
-                MessageBoxSwapFor_8c02aefc(MSG_SAVE_NEED_3_BLOCKS);
+                MessageBoxSetText_8c02aefc(MSG_SAVE_NEED_3_BLOCKS);
             } else if (vmuStatus == VMU_STATUS_NOT_AVAILABLE) {
-                MessageBoxSwapFor_8c02aefc(MSG_VM_CANT_SAVE);
+                MessageBoxSetText_8c02aefc(MSG_VM_CANT_SAVE);
             } else if (vmuStatus != VMU_STATUS_NOT_CONNECTED) {
                 RenderStartFadeIn_8c022a9c(10);
                 return;
             } else {
-                MessageBoxSwapFor_8c02aefc(MSG_VM_NOT_CONN_SAVE);
+                MessageBoxSetText_8c02aefc(MSG_VM_NOT_CONN_SAVE);
             }
             soundId = 2;
             var_menuState_8c1bc7a8.state_0x18 = 5;
@@ -221,7 +221,7 @@ STATIC void resultsTask_8c01d8e0(void)
         if (!var_isFading_8c226568) {
             if (var_vmuStatus_8c226048[var_selectedVm_8c1ba34c] == var_menuState_8c1bc7a8.selectedVmuSlot_0x6c) {
                 if (pressedA) {
-                    MessageBoxSwapFor_8c02aefc(MSG_RESULT_CANCEL_SAVE);
+                    MessageBoxSetText_8c02aefc(MSG_RESULT_CANCEL_SAVE);
                     var_menuState_8c1bc7a8.state_0x18 = 6;
                     var_menuState_8c1bc7a8.selected_0x38 = 1;
                 }
@@ -229,7 +229,7 @@ STATIC void resultsTask_8c01d8e0(void)
                 var_menuState_8c1bc7a8.state_0x18 = 4;
             }
         }
-        textboxActive = MessageBoxMenuTextboxText_8c02af1c(0xff);
+        textboxActive = MessageBoxDrawText_8c02af1c(0xff);
         if (textboxActive != 0) {
             SpriteDraw_8c014f54(&var_menuState_8c1bc7a8, 1, 0.0f, 0.0f, -4.3f);
         }
@@ -276,7 +276,7 @@ STATIC void resultsTask_8c01d8e0(void)
                 }
                 SystemMenuWriteToVmu_8c01b26c();
                 var_menuState_8c1bc7a8.subState_0x1c = 1;
-                MessageBoxSwapFor_8c02aefc(MSG_SAVING_NO_POWER_OFF);
+                MessageBoxSetText_8c02aefc(MSG_SAVING_NO_POWER_OFF);
                 VmGameSetLcdAnim_8c01c8fc(1);
             } else if (promptResult == 2) {
                 var_menuState_8c1bc7a8.state_0x18 = 0xd;
@@ -291,10 +291,10 @@ STATIC void resultsTask_8c01d8e0(void)
             BupGetInfo_8c014bba(var_selectedVm_8c1ba34c);
             if (buStat(var_selectedVm_8c1ba34c) == 0) {
                 if (buGetLastError(var_selectedVm_8c1ba34c) == 0) {
-                    MessageBoxSwapFor_8c02aefc(MSG_SAVE_DONE);
+                    MessageBoxSetText_8c02aefc(MSG_SAVE_DONE);
                     var_menuState_8c1bc7a8.state_0x18 = 0xd;
                 } else {
-                    MessageBoxSwapFor_8c02aefc(MSG_SAVE_FAILED);
+                    MessageBoxSetText_8c02aefc(MSG_SAVE_FAILED);
                     var_menuState_8c1bc7a8.state_0x18 = 10;
                 }
                 var_vmBusy_8c157a7c = 0;
@@ -307,7 +307,7 @@ STATIC void resultsTask_8c01d8e0(void)
     }
     case 10:
         if (pressedA) {
-            MessageBoxSwapFor_8c02aefc(MSG_RESULT_CANCEL_SAVE);
+            MessageBoxSetText_8c02aefc(MSG_RESULT_CANCEL_SAVE);
             var_menuState_8c1bc7a8.state_0x18 = 6;
             var_menuState_8c1bc7a8.selected_0x38 = 1;
         }
@@ -342,7 +342,7 @@ STATIC void resultsTask_8c01d8e0(void)
             CourseMenuReturn_8c017ef2();
             return;
         }
-        textboxActive = MessageBoxMenuTextboxText_8c02af1c(0xff);
+        textboxActive = MessageBoxDrawText_8c02af1c(0xff);
         if (textboxActive != 0) {
             SpriteDraw_8c014f54(&var_menuState_8c1bc7a8, 1, 0.0f, 0.0f, -4.3f);
         }

@@ -490,7 +490,7 @@ STATIC void fileSelectTask_8c018e7e(Task *task)
     switch (var_menuState_8c1bc7a8.state_0x18) {
     case FILE_SELECT_STATE_LOADING:
         if (var_saveLoadResult_8c226010 == SAVE_LOAD_RUNNING) {
-            MessageBoxMenuTextboxText_8c02af1c(0xff);
+            MessageBoxDrawText_8c02af1c(0xff);
         } else if (var_saveLoadResult_8c226010 == SAVE_LOAD_DONE) {
             var_vmBusy_8c157a7c = 0;
             VmGameSetLcdAnim_8c01c8fc(0);
@@ -499,7 +499,7 @@ STATIC void fileSelectTask_8c018e7e(Task *task)
                 if (!FileSelectIsSaveValid_8c018804((int *)var_saveBufCursor_8c225fe0)) {
                     LOG_WARN(("[FILE_SELECT] fileSelectTask_8c018e7e: save %d failed validation\n", i));
                     FileSelectFreeBuffers_8c0187d0();
-                    MessageBoxSwapFor_8c02aefc(MSG_LOAD_FAIL);
+                    MessageBoxSetText_8c02aefc(MSG_LOAD_FAIL);
                     CHANGE_STATE(FILE_SELECT_STATE_LOAD_ERROR);
                     break;
                 }
@@ -513,7 +513,7 @@ STATIC void fileSelectTask_8c018e7e(Task *task)
             LOG_WARN(("[FILE_SELECT] fileSelectTask_8c018e7e: file load failed\n"));
             var_vmBusy_8c157a7c = 0;
             FileSelectFreeBuffers_8c0187d0();
-            MessageBoxSwapFor_8c02aefc(MSG_LOAD_FAIL);
+            MessageBoxSetText_8c02aefc(MSG_LOAD_FAIL);
             CHANGE_STATE(FILE_SELECT_STATE_LOAD_ERROR);
             VmGameSetLcdAnim_8c01c8fc(0);
         }
@@ -528,7 +528,7 @@ STATIC void fileSelectTask_8c018e7e(Task *task)
             RenderStartFadeOut_8c022b60(10);
             return;
         }
-        MessageBoxMenuTextboxText_8c02af1c(0xff);
+        MessageBoxDrawText_8c02af1c(0xff);
         SpriteDraw_8c014f54(&var_menuState_8c1bc7a8.resourceGroupA_0x00, 1, 0.0, 0.0, -4.3);
         SpriteDraw_8c014f54(&var_menuState_8c1bc7a8.resourceGroupA_0x00, 0, 0.0, 0.0, -5.0);
         break;
@@ -538,7 +538,7 @@ STATIC void fileSelectTask_8c018e7e(Task *task)
             VmSelectEnter_8c019e44(task);
             return;
         }
-        MessageBoxMenuTextboxText_8c02af1c(0xff);
+        MessageBoxDrawText_8c02af1c(0xff);
         SpriteDraw_8c014f54(&var_menuState_8c1bc7a8.resourceGroupA_0x00, 1, 0.0, 0.0, -4.3);
         SpriteDraw_8c014f54(&var_menuState_8c1bc7a8.resourceGroupA_0x00, 0, 0.0, 0.0, -5.0);
         break;
@@ -571,9 +571,9 @@ STATIC void fileSelectTask_8c018e7e(Task *task)
             sdMidiPlay(var_midiHandles_8c0fcd28[0], 1, 0, 0);
             if (var_fileCards_8c226018[var_menuState_8c1bc7a8.cursorCol_0x3c +
                              var_menuState_8c1bc7a8.selected_0x38] == FILE_CARD_NEW) {
-                MessageBoxSwapFor_8c02aefc(MSG_CONFIRM_NEW_FILE);
+                MessageBoxSetText_8c02aefc(MSG_CONFIRM_NEW_FILE);
             } else {
-                MessageBoxSwapFor_8c02aefc(MSG_CONFIRM_FILE);
+                MessageBoxSetText_8c02aefc(MSG_CONFIRM_FILE);
             }
             var_menuState_8c1bc7a8.cursorRow_0x40 = 0;
             CHANGE_STATE(FILE_SELECT_STATE_CONFIRM);
@@ -619,11 +619,11 @@ STATIC void fileSelectTask_8c018e7e(Task *task)
             RenderStartFadeOut_8c022b60(10);
         } else if (press & PDD_DGT_TB) {
             CHANGE_STATE(FILE_SELECT_STATE_READY);
-            MessageBoxSwapFor_8c02aefc("");
+            MessageBoxSetText_8c02aefc("");
             sdMidiPlay(var_midiHandles_8c0fcd28[0], 1, 1, 0);
         }
         drawFileSelect_8c018d46();
-        MessageBoxMenuTextboxText_8c02af1c(0xff);
+        MessageBoxDrawText_8c02af1c(0xff);
         break;
 
     case FILE_SELECT_STATE_CONFIRM_FADE_OUT:
@@ -669,7 +669,7 @@ void FileSelectEnter_8c019334(Task *task)
     if (var_vmuStatus_8c226048[var_selectedVm_8c1ba34c] == VMU_STATUS_SAVE_EXISTS_NO_SPACE ||
         var_vmuStatus_8c226048[var_selectedVm_8c1ba34c] == VMU_STATUS_SAVE_EXISTS) {
         CHANGE_STATE(FILE_SELECT_STATE_LOADING);
-        MessageBoxSwapFor_8c02aefc(MSG_LOADING_NO_POWER_OFF);
+        MessageBoxSetText_8c02aefc(MSG_LOADING_NO_POWER_OFF);
         VmGameSetLcdAnim_8c01c8fc(1);
         startVmLoad_8c018784();
         var_vmBusy_8c157a7c = 1;

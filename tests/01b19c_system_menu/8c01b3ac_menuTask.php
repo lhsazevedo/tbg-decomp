@@ -14,7 +14,7 @@ return new class extends TestCase {
             $this->setSize('_SpriteDraw_8c014f54', 4);
         }
         if ($swapBox) {
-            $this->setSize('_MessageBoxSwapFor_8c02aefc', 4);
+            $this->setSize('_MessageBoxSetText_8c02aefc', 4);
         }
         if ($midi) {
             $this->setSize('_sdMidiPlay', 4);
@@ -39,7 +39,7 @@ return new class extends TestCase {
 
         $this->shouldCall('_SpriteDraw_8c014f54')->with($rgB, $selected + 5, 0.0, 0.0, -4.0);
         $this->shouldCall('_SpriteDraw_8c014f54')->with($rgB, 4, 0.0, 0.0, -5.0);
-        $this->shouldCall('_MessageBoxMenuTextboxText_8c02af1c')->with(0xff)->andReturn($textboxResult);
+        $this->shouldCall('_MessageBoxDrawText_8c02af1c')->with(0xff)->andReturn($textboxResult);
         if ($textboxResult) {
             $this->shouldCall('_SpriteDraw_8c014f54')->with($rgA, 1, 0.0, 0.0, -5.0);
         }
@@ -165,7 +165,7 @@ return new class extends TestCase {
         $this->shouldCall('_PromptHandleMultiple_8c016c58')->with($menuState + 0x38, 4);
         $this->shouldWriteLong($menuState + 0x3c, 0);
         $this->shouldWriteLong($menuState + 0x1c, 0);
-        $this->shouldCall('_MessageBoxSwapFor_8c02aefc')->with("設定されたポートにＶＭが<E>接続されていません");
+        $this->shouldCall('_MessageBoxSetText_8c02aefc')->with("設定されたポートにＶＭが<E>接続されていません");
         $this->shouldCall('_sdMidiPlay')->with(0, 1, 2, 0);
         $this->expectDrawTail($menuState, 0, 0);
     }
@@ -181,7 +181,7 @@ return new class extends TestCase {
         $this->shouldWriteLong($menuState + 0x3c, 0);
         $this->shouldWriteLong($menuState + 0x1c, 0);
         $this->shouldWriteLong($menuState + 0x18, 3);
-        $this->shouldCall('_MessageBoxSwapFor_8c02aefc')->with("ファイルをロードします。<E>よろしいですか？");
+        $this->shouldCall('_MessageBoxSetText_8c02aefc')->with("ファイルをロードします。<E>よろしいですか？");
         $this->shouldCall('_sdMidiPlay')->with(0, 1, 0, 0);
         $this->expectDrawTail($menuState, 0, 0);
     }
@@ -196,7 +196,7 @@ return new class extends TestCase {
         $this->shouldCall('_PromptHandleMultiple_8c016c58')->with($menuState + 0x38, 4);
         $this->shouldWriteLong($menuState + 0x3c, 0);
         $this->shouldWriteLong($menuState + 0x1c, 0);
-        $this->shouldCall('_MessageBoxSwapFor_8c02aefc')->with("ファイルを作成します。<E>よろしいですか？");
+        $this->shouldCall('_MessageBoxSetText_8c02aefc')->with("ファイルを作成します。<E>よろしいですか？");
         $this->shouldWriteLong($menuState + 0x18, 5);
         $this->shouldCall('_sdMidiPlay')->with(0, 1, 0, 0);
         $this->expectDrawTail($menuState, 1, 0);
@@ -212,7 +212,7 @@ return new class extends TestCase {
         $this->shouldCall('_PromptHandleMultiple_8c016c58')->with($menuState + 0x38, 4);
         $this->shouldWriteLong($menuState + 0x3c, 0);
         $this->shouldWriteLong($menuState + 0x1c, 0);
-        $this->shouldCall('_MessageBoxSwapFor_8c02aefc')->with("ＶＭが接続されていません<E>セーブには３ブロック必要です");
+        $this->shouldCall('_MessageBoxSetText_8c02aefc')->with("ＶＭが接続されていません<E>セーブには３ブロック必要です");
         $this->shouldCall('_sdMidiPlay')->with(0, 1, 2, 0);
         $this->expectDrawTail($menuState, 1, 0);
     }
@@ -247,7 +247,7 @@ return new class extends TestCase {
         $this->shouldWriteLong($menuState + 0x3c, 0);
         $this->shouldWriteLong($menuState + 0x1c, 0);
         $this->shouldWriteLong($menuState + 0x18, 6);
-        $this->shouldCall('_MessageBoxSwapFor_8c02aefc')->with("ストーリーモードを終了します。<E>よろしいですか？");
+        $this->shouldCall('_MessageBoxSetText_8c02aefc')->with("ストーリーモードを終了します。<E>よろしいですか？");
         $this->shouldCall('_sdMidiPlay')->with(0, 1, 0, 0);
         $this->expectDrawTail($menuState, 3, 0);
     }
@@ -264,7 +264,7 @@ return new class extends TestCase {
         $this->shouldWriteLong($menuState + 0x3c, 0);
         $this->shouldWriteLong($menuState + 0x1c, 0);
         $this->shouldWriteLong($menuState + 0x18, 6);
-        $this->shouldCall('_MessageBoxSwapFor_8c02aefc')->with("フリーランモードを終了します。<E>よろしいですか？");
+        $this->shouldCall('_MessageBoxSetText_8c02aefc')->with("フリーランモードを終了します。<E>よろしいですか？");
         $this->shouldCall('_sdMidiPlay')->with(0, 1, 0, 0);
         $this->expectDrawTail($menuState, 3, 0);
     }
@@ -294,7 +294,7 @@ return new class extends TestCase {
         $this->call('_menuTask_8c01b3ac')->with(0x8ce00000, 0);
         $this->expectVmStatusTop(0);
         $this->shouldCall('_PromptHandleMultiple_8c016c58')->with($menuState + 0x38, 4);
-        $this->shouldCall('_MessageBoxSwapFor_8c02aefc')->with("");
+        $this->shouldCall('_MessageBoxSetText_8c02aefc')->with("");
         $this->expectDrawTail($menuState, 0, 0);
     }
 
@@ -339,7 +339,7 @@ return new class extends TestCase {
         $this->shouldCall('_PromptHandleBinary_8c016caa')->with($menuState + 0x3c)->andReturn(2);
         // state=2 is written in the JSR delay slot, before swapMessageBoxFor runs.
         $this->shouldWriteLong($menuState + 0x18, 2);
-        $this->shouldCall('_MessageBoxSwapFor_8c02aefc')->with("");
+        $this->shouldCall('_MessageBoxSetText_8c02aefc')->with("");
         $this->expectPromptTail($menuState, 1, 3, 0);
     }
 
@@ -428,7 +428,7 @@ return new class extends TestCase {
         $this->shouldCall('_BupLoad_8c014bc6')->with(0, 0x8c440000, 0x8c500000);
         $this->shouldWriteLong($this->addressOf('_var_vmBusy_8c157a7c'), 1);
         $this->shouldWriteLong($menuState + 0x1c, 1);
-        $this->shouldCall('_MessageBoxSwapFor_8c02aefc');
+        $this->shouldCall('_MessageBoxSetText_8c02aefc');
         $this->shouldCall('_VmGameSetLcdAnim_8c01c8fc')->with(1);
         $this->expectPromptTail($menuState, 0, 0, 0);
     }
@@ -444,7 +444,7 @@ return new class extends TestCase {
         $this->shouldCall('_PromptHandleBinary_8c016caa')->with($menuState + 0x3c)->andReturn(2);
         // state=2 is written in the JSR delay slot, before swapMessageBoxFor runs.
         $this->shouldWriteLong($menuState + 0x18, 2);
-        $this->shouldCall('_MessageBoxSwapFor_8c02aefc')->with("");
+        $this->shouldCall('_MessageBoxSetText_8c02aefc')->with("");
         $this->expectPromptTail($menuState, 1, 0, 0);
     }
 
@@ -458,7 +458,7 @@ return new class extends TestCase {
         $this->call('_menuTask_8c01b3ac')->with(0x8ce00000, 0);
         $this->expectVmStatusTop(3);   // PROCEED_WITHOUT_SAVING: nothing to read
         $this->shouldCall('_PromptHandleBinary_8c016caa')->with($menuState + 0x3c)->andReturn(0);
-        $this->shouldCall('_MessageBoxSwapFor_8c02aefc');
+        $this->shouldCall('_MessageBoxSetText_8c02aefc');
         $this->shouldWriteLong($menuState + 0x18, 2);
         $this->expectPromptTail($menuState, 2, 0, 0);
     }
@@ -500,7 +500,7 @@ return new class extends TestCase {
         $this->expectVmStatusTop(0);
         $this->shouldCall('_buStat')->with(0)->andReturn(0);
         $this->shouldCall('_buGetLastError')->with(0)->andReturn(1);   // error
-        $this->shouldCall('_MessageBoxSwapFor_8c02aefc');
+        $this->shouldCall('_MessageBoxSetText_8c02aefc');
         $this->shouldWriteLong($menuState + 0x18, 2);
         $this->shouldWriteLong($this->addressOf('_var_vmBusy_8c157a7c'), 0);
         $this->shouldCall('_VmGameSetLcdAnim_8c01c8fc')->with(0);
@@ -526,7 +526,7 @@ return new class extends TestCase {
         $this->shouldCall('_FileSelectIsSaveValid_8c018804')->andReturn(1);
         $this->shouldCall('_SystemMenuApplyLoadedProgress_8c01b19c');
         $this->shouldCall('_FileSelectApplySoundSettings_8c0189fc');
-        $this->shouldCall('_MessageBoxSwapFor_8c02aefc');
+        $this->shouldCall('_MessageBoxSetText_8c02aefc');
         $this->shouldWriteLong($menuState + 0x18, 2);
         $this->shouldWriteLong($this->addressOf('_var_vmBusy_8c157a7c'), 0);
         $this->shouldCall('_VmGameSetLcdAnim_8c01c8fc')->with(0);
@@ -550,7 +550,7 @@ return new class extends TestCase {
         $this->shouldCall('_buAnalyzeBackupFileImage');
         $this->shouldCall('_njMemCopy');
         $this->shouldCall('_FileSelectIsSaveValid_8c018804')->andReturn(0);   // corrupt
-        $this->shouldCall('_MessageBoxSwapFor_8c02aefc');
+        $this->shouldCall('_MessageBoxSetText_8c02aefc');
         $this->shouldWriteLong($menuState + 0x18, 4);
         $this->shouldCall('_sdMidiPlay')->with(0, 1, 2, 0);
         $this->expectPromptTail($menuState, 0, 0, 0);
@@ -569,7 +569,7 @@ return new class extends TestCase {
         $this->shouldCall('_PromptHandleBinary_8c016caa')->with($menuState + 0x3c)->andReturn(2);
         // state=2 is written in the JSR delay slot, before swapMessageBoxFor runs.
         $this->shouldWriteLong($menuState + 0x18, 2);
-        $this->shouldCall('_MessageBoxSwapFor_8c02aefc')->with("");
+        $this->shouldCall('_MessageBoxSetText_8c02aefc')->with("");
         // LAB_8c01b88c draws the highlight, then LAB_8c01b92c draws it again.
         $this->shouldCall('_SpriteDraw_8c014f54')->with($menuState, 3, 228.0, 266.0, -4.0);
         $this->expectPromptTail($menuState, 1, 1, 0);
@@ -585,7 +585,7 @@ return new class extends TestCase {
         $this->call('_menuTask_8c01b3ac')->with(0x8ce00000, 0);
         $this->expectVmStatusTop(3);
         $this->shouldCall('_PromptHandleBinary_8c016caa')->with($menuState + 0x3c)->andReturn(0);
-        $this->shouldCall('_MessageBoxSwapFor_8c02aefc');
+        $this->shouldCall('_MessageBoxSetText_8c02aefc');
         $this->shouldWriteLong($menuState + 0x18, 2);
         $this->expectPromptTail($menuState, 2, 1, 0);
     }
@@ -616,7 +616,7 @@ return new class extends TestCase {
         $this->shouldCall('_SystemMenuWriteToVmu_8c01b26c');
         // subState_0x1c=1 is written in the swap JSR delay slot, before swap runs.
         $this->shouldWriteLong($menuState + 0x1c, 1);
-        $this->shouldCall('_MessageBoxSwapFor_8c02aefc');
+        $this->shouldCall('_MessageBoxSetText_8c02aefc');
         $this->shouldCall('_VmGameSetLcdAnim_8c01c8fc')->with(1);
         // LAB_8c01b88c draws the highlight, then LAB_8c01b92c draws it again.
         $this->shouldCall('_SpriteDraw_8c014f54')->with($menuState, 2, 228.0, 266.0, -4.0);
@@ -650,7 +650,7 @@ return new class extends TestCase {
         $this->shouldCall('_BupGetInfo_8c014bba')->with(0);
         $this->shouldCall('_buStat')->with(0)->andReturn(0);
         $this->shouldCall('_buGetLastError')->with(0)->andReturn(0);
-        $this->shouldCall('_MessageBoxSwapFor_8c02aefc');
+        $this->shouldCall('_MessageBoxSetText_8c02aefc');
         $this->shouldWriteLong($this->addressOf('_var_vmBusy_8c157a7c'), 0);
         $this->shouldCall('_syFree')->with(0x8c520000);
         $this->shouldWriteLong($this->addressOf('_var_backupFileImageBuf_8c1ba348'), -1);

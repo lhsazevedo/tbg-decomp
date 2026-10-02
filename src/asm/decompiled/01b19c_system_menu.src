@@ -28,7 +28,7 @@
           .IMPORT     _VmSelectUpdateStatus_8c01967c
           .IMPORT     _var_vmuStatus_8c226048
           .IMPORT     _var_isFading_8c226568
-          .IMPORT     _MessageBoxSwapFor_8c02aefc
+          .IMPORT     _MessageBoxSetText_8c02aefc
           .IMPORT     _RouteGetLatch_8c01432a
           .IMPORT     _AsqFreeQueues_8c011f7e
           .IMPORT     _PromptHandleMultiple_8c016c58
@@ -49,7 +49,7 @@
           .IMPORT     _FileSelectApplySoundSettings_8c0189fc
           .IMPORT     _ReplayMenuFreeSessionAssets_8c016182
           .IMPORT     _TitleStart_8c015fd6
-          .IMPORT     _MessageBoxMenuTextboxText_8c02af1c
+          .IMPORT     _MessageBoxDrawText_8c02af1c
           .IMPORT     _BupGetInfo_8c014bba
           .IMPORT     _syFree
           .IMPORT     _var_vmMountBusy_8c22606c
@@ -599,7 +599,7 @@ LP_GEN_91278:
           .DATA.L _VmSelectUpdateStatus_8c01967c ; H'8C01B57C
           .DATA.L _var_vmuStatus_8c226048 ; H'8C01B580
           .DATA.L _var_isFading_8c226568 ; H'8C01B584
-          .DATA.L _MessageBoxSwapFor_8c02aefc ; H'8C01B588
+          .DATA.L _MessageBoxSetText_8c02aefc ; H'8C01B588
           .DATA.L _RouteGetLatch_8c01432a ; H'8C01B58C
           .DATA.L _AsqFreeQueues_8c011f7e ; H'8C01B590
           .DATA.L _PromptHandleMultiple_8c016c58 ; H'8C01B594
@@ -933,7 +933,7 @@ LP_GEN_43539:
           .DATA.L H'10+_var_peripherals_8c1ba35c ; H'8C01B84C
           .DATA.L _ReplayMenuFreeSessionAssets_8c016182 ; H'8C01B850
           .DATA.L _TitleStart_8c015fd6 ; H'8C01B854
-          .DATA.L _MessageBoxMenuTextboxText_8c02af1c ; H'8C01B858
+          .DATA.L _MessageBoxDrawText_8c02af1c ; H'8C01B858
 LAB_8c01b85c:
           MOV.L       LP_GEN_14610+2,R2
           MOV         R14,R4
@@ -1259,7 +1259,7 @@ LP_GEN_62205:
           .DATA.W H'00FF ; H'8C01BAE2
           .DATA.W H'0600 ; H'8C01BAE4
           .RES.W 1 ; H'8C01BAE6
-          .DATA.L _MessageBoxMenuTextboxText_8c02af1c ; H'8C01BAE8
+          .DATA.L _MessageBoxDrawText_8c02af1c ; H'8C01BAE8
           .DATA.L H'C0E00000 ; H'8C01BAEC
           .DATA.L _menuTask_8c01b3ac ; H'8C01BAF0
           .DATA.L _TaskSwitch_8c014b3e ; H'8C01BAF4
@@ -1271,7 +1271,7 @@ LP_GEN_62205:
           .DATA.L _var_selectedVm_8c1ba34c ; H'8C01BB0C
           .DATA.L _VmSelectUpdateStatus_8c01967c ; H'8C01BB10
           .DATA.L _const_8c0380c8 ; H'8C01BB14
-          .DATA.L _MessageBoxSwapFor_8c02aefc ; H'8C01BB18
+          .DATA.L _MessageBoxSetText_8c02aefc ; H'8C01BB18
           .DATA.L _RenderStartFadeIn_8c022a9c ; H'8C01BB1C
           .DATA.L _AsqInitQueues_8c011f36 ; H'8C01BB20
           .DATA.L _AsqResetQueues_8c011f6c ; H'8C01BB24

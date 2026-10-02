@@ -25,8 +25,8 @@
           .IMPORT     _VmGameSetLcdAnim_8c01c8fc
           .IMPORT     _RenderStartFadeIn_8c022a9c
           .IMPORT     _RenderStartFadeOut_8c022b60
-          .IMPORT     _MessageBoxSwapFor_8c02aefc
-          .IMPORT     _MessageBoxMenuTextboxText_8c02af1c
+          .IMPORT     _MessageBoxSetText_8c02aefc
+          .IMPORT     _MessageBoxDrawText_8c02af1c
           .IMPORT     _init_adxPlaying_8c03bd80
           .IMPORT     _init_saveNames_8c044d50
           .IMPORT     _var_midiHandles_8c0fcd28
@@ -1227,7 +1227,7 @@ LP_GEN_84467:
           .DATA.L H'C0A00000 ; H'8C018F34
           .DATA.L _var_menuState_8c1bc7a8 ; H'8C018F38
           .DATA.L _var_isFading_8c226568 ; H'8C018F3C
-          .DATA.L _MessageBoxSwapFor_8c02aefc ; H'8C018F40
+          .DATA.L _MessageBoxSetText_8c02aefc ; H'8C018F40
           .DATA.L _sdMidiPlay ; H'8C018F44
           .DATA.L H'10+_var_peripherals_8c1ba35c ; H'8C018F48
           .DATA.L _var_midiHandles_8c0fcd28 ; H'8C018F4C
@@ -1371,7 +1371,7 @@ LP_GEN_98979:
           .DATA.W H'00FF ; H'8C01904E
           .DATA.W H'0600 ; H'8C019050
           .RES.W 1 ; H'8C019052
-          .DATA.L _MessageBoxMenuTextboxText_8c02af1c ; H'8C019054
+          .DATA.L _MessageBoxDrawText_8c02af1c ; H'8C019054
           .DATA.L _VmGameSetLcdAnim_8c01c8fc ; H'8C019058
           .DATA.L _var_saveBufCursor_8c225fe0 ; H'8C01905C
           .DATA.L _var_saveBuf_8c1ba2e0 ; H'8C019060
@@ -1679,7 +1679,7 @@ LP_GEN_73468:
           .DATA.L _SndStartAdxFadeOut_8c010bae ; H'8C0192A8
           .DATA.L _RenderStartFadeOut_8c022b60 ; H'8C0192AC
           .DATA.L _const_8c037ec8 ; H'8C0192B0
-          .DATA.L _MessageBoxMenuTextboxText_8c02af1c ; H'8C0192B4
+          .DATA.L _MessageBoxDrawText_8c02af1c ; H'8C0192B4
           .DATA.L _VmSelectUnmountAll_8c0194de ; H'8C0192B8
           .DATA.L _var_vmMountBusy_8c22606c ; H'8C0192BC
           .DATA.L _init_adxPlaying_8c03bd80 ; H'8C0192C0
@@ -1804,7 +1804,7 @@ LP_GEN_41958:
           .DATA.L _var_selectedVm_8c1ba34c ; H'8C0193AC
           .DATA.L _var_vmuStatus_8c226048 ; H'8C0193B0
           .DATA.L _const_8c037ecc ; H'8C0193B4
-          .DATA.L _MessageBoxSwapFor_8c02aefc ; H'8C0193B8
+          .DATA.L _MessageBoxSetText_8c02aefc ; H'8C0193B8
           .DATA.L _VmGameSetLcdAnim_8c01c8fc ; H'8C0193BC
           .DATA.L _var_vmBusy_8c157a7c ; H'8C0193C0
           .DATA.L _RenderStartFadeIn_8c022a9c ; H'8C0193C4

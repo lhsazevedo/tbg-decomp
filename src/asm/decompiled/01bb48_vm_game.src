@@ -17,7 +17,7 @@
           .IMPORT     _SpriteDraw_8c014f54
           .IMPORT     _var_resourceGroup_8c2263a8
           .IMPORT     _var_vmuStatus_8c226048
-          .IMPORT     _MessageBoxSwapFor_8c02aefc
+          .IMPORT     _MessageBoxSetText_8c02aefc
           .IMPORT     _VmSelectUpdateAllStatus_8c019550
           .IMPORT     _var_isFading_8c226568
           .IMPORT     _RouteGetLatch_8c01432a
@@ -40,7 +40,7 @@
           .IMPORT     _CourseMenuFreeResourceGroup_8c0185c4
           .IMPORT     _syFree
           .IMPORT     _MainMenuEnter_8c01a09a
-          .IMPORT     _MessageBoxMenuTextboxText_8c02af1c
+          .IMPORT     _MessageBoxDrawText_8c02af1c
           .IMPORT     _TaskSwitch_8c014b3e
           .IMPORT     _AsqInitQueues_8c011f36
           .IMPORT     _AsqResetQueues_8c011f6c
@@ -718,7 +718,7 @@ LP_GEN_34738:
           .DATA.L H'C0E00000 ; H'8C01BFD0
           .DATA.L _init_slotCursorTargets_8c044e50 ; H'8C01BFD4
           .DATA.L H'40C00000 ; H'8C01BFD8
-          .DATA.L _MessageBoxSwapFor_8c02aefc ; H'8C01BFDC
+          .DATA.L _MessageBoxSetText_8c02aefc ; H'8C01BFDC
           .DATA.L _const_8c038460 ; H'8C01BFE0
           .DATA.L _const_8c03847c ; H'8C01BFE4
           .DATA.L _const_8c03867c ; H'8C01BFE8
@@ -783,7 +783,7 @@ LP_GEN_95139:
           .DATA.L _init_vmuProbeNames_8c044e48 ; H'8C01C060
           .DATA.L _VmSelectUpdateAllStatus_8c019550 ; H'8C01C064
           .DATA.L _var_isFading_8c226568 ; H'8C01C068
-          .DATA.L _MessageBoxSwapFor_8c02aefc ; H'8C01C06C
+          .DATA.L _MessageBoxSetText_8c02aefc ; H'8C01C06C
           .DATA.L _var_vmuStatus_8c226048 ; H'8C01C070
           .DATA.W H'0042 ; H'8C01C074
           .DATA.W H'005C ; H'8C01C076
@@ -1866,7 +1866,7 @@ LP_GEN_33412:
           .DATA.L _var_vmGameBuf_8c1bc454 ; H'8C01C868
           .DATA.L _syFree ; H'8C01C86C
           .DATA.L _MainMenuEnter_8c01a09a ; H'8C01C870
-          .DATA.L _MessageBoxMenuTextboxText_8c02af1c ; H'8C01C874
+          .DATA.L _MessageBoxDrawText_8c02af1c ; H'8C01C874
           .DATA.L H'C0800000 ; H'8C01C878
           .DATA.L _SpriteDraw_8c014f54 ; H'8C01C87C
 _VmGameEnter_8c01c880:
@@ -1972,7 +1972,7 @@ LP_GEN_73212:
           .DATA.L _AsqNop_8c011120 ; H'8C01C958
           .DATA.L _AsqProcessQueues_8c011fe0 ; H'8C01C95C
           .DATA.L _const_8c03867c ; H'8C01C960
-          .DATA.L _MessageBoxSwapFor_8c02aefc ; H'8C01C964
+          .DATA.L _MessageBoxSetText_8c02aefc ; H'8C01C964
           .DATA.L _var_lcdAnimBus_8c2260ac ; H'8C01C968
           .DATA.L _var_lcdAnimDanger_8c2260b8 ; H'8C01C96C
           .DATA.L _var_lcdAnimLoading_8c2260c4 ; H'8C01C970

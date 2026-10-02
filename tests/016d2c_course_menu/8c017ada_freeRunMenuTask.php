@@ -153,7 +153,7 @@ return new Class extends TestCase {
         // Effects
         $this->shouldWriteLong($task + 0x08, 1); // ++field_0x08
         $this->shouldWriteLong($this->addressOf('_var_menuState_8c1bc7a8') + 0x18, 3);
-        $this->shouldCall('_MessageBoxSwapFor_8c02aefc')
+        $this->shouldCall('_MessageBoxSetText_8c02aefc')
             ->with("");
 
         $this->shouldRenderFrame(
@@ -499,7 +499,7 @@ return new Class extends TestCase {
         $this->shouldCall('_drawCourseButtons_8c017590');
         $this->shouldDrawSprite(0x0c, 0x09, 0.0, 0.0, -5.0);
         // $this->shouldDrawSprite(0x00, 0x2b, 0.0, 0.0, -4.0);
-        $this->shouldCall('_MessageBoxMenuTextboxText_8c02af1c')->with($textboxIndex)->andReturn($menuTextboxReturns);
+        $this->shouldCall('_MessageBoxDrawText_8c02af1c')->with($textboxIndex)->andReturn($menuTextboxReturns);
         if ($menuTextboxReturns) {
             $this->shouldDrawSprite(0x00, 1, 0.0, 0.0, -5.0);
         }

@@ -14,7 +14,7 @@
           .IMPORT     _SpriteDraw_8c014f54
           .IMPORT     _var_isFading_8c226568
           .IMPORT     __quick_evn_mvn
-          .IMPORT     _MessageBoxSwapFor_8c02aefc
+          .IMPORT     _MessageBoxSetText_8c02aefc
           .IMPORT     _SndStopBgm_8c010d8a
           .IMPORT     _SndPlayAdx_8c010cd6
           .IMPORT     _RenderStartFadeIn_8c022a9c
@@ -27,7 +27,7 @@
           .IMPORT     _RenderStartFadeOut_8c022b60
           .IMPORT     _FileSelectResetNewGame_8c01895e
           .IMPORT     _SndStartAdxFadeOut_8c010bae
-          .IMPORT     _MessageBoxMenuTextboxText_8c02af1c
+          .IMPORT     _MessageBoxDrawText_8c02af1c
           .IMPORT     _FileSelectEnter_8c019334
           .IMPORT     _init_adxPlaying_8c03bd80
           .IMPORT     _MainMenuEnter_8c01a09a
@@ -930,7 +930,7 @@ LP_GEN_31723:
           .DATA.L _init_saveNames_8c044d50 ; H'8C019A14
           .DATA.L __quick_evn_mvn ; H'8C019A18
           .DATA.L _init_vmuStatusMessages_8c044dc4 ; H'8C019A1C
-          .DATA.L _MessageBoxSwapFor_8c02aefc ; H'8C019A20
+          .DATA.L _MessageBoxSetText_8c02aefc ; H'8C019A20
           .DATA.L _SndStopBgm_8c010d8a ; H'8C019A24
           .DATA.L _SndPlayAdx_8c010cd6 ; H'8C019A28
           .DATA.L _RenderStartFadeIn_8c022a9c ; H'8C019A2C
@@ -1184,7 +1184,7 @@ LP_GEN_27695:
           .DATA.L H'10+_var_peripherals_8c1ba35c ; H'8C019BE0
           .DATA.L _sdMidiPlay ; H'8C019BE4
           .DATA.L _const_8c037ef8 ; H'8C019BE8
-          .DATA.L _MessageBoxSwapFor_8c02aefc ; H'8C019BEC
+          .DATA.L _MessageBoxSetText_8c02aefc ; H'8C019BEC
           .DATA.L _BupGetInfo_8c014bba ; H'8C019BF0
           .DATA.L _const_8c037f0c ; H'8C019BF4
           .DATA.L _var_midiHandles_8c0fcd28 ; H'8C019BF8
@@ -1314,11 +1314,11 @@ LP_GEN_17403:
           .DATA.L _var_selectedVm_8c1ba34c ; H'8C019CE0
           .DATA.L _RenderStartFadeOut_8c022b60 ; H'8C019CE4
           .DATA.L _init_vmuStatusMessages_8c044dc4 ; H'8C019CE8
-          .DATA.L _MessageBoxSwapFor_8c02aefc ; H'8C019CEC
+          .DATA.L _MessageBoxSetText_8c02aefc ; H'8C019CEC
           .DATA.L _FileSelectResetNewGame_8c01895e ; H'8C019CF0
           .DATA.L _SndStartAdxFadeOut_8c010bae ; H'8C019CF4
           .DATA.L _SpriteDraw_8c014f54 ; H'8C019CF8
-          .DATA.L _MessageBoxMenuTextboxText_8c02af1c ; H'8C019CFC
+          .DATA.L _MessageBoxDrawText_8c02af1c ; H'8C019CFC
 LAB_8c019d00:
           BSR         _VmSelectUpdateAllStatus_8c019550
           MOV         #H'3,R5
@@ -1521,7 +1521,7 @@ LP_GEN_77899:
           .DATA.L _FileSelectResetNewGame_8c01895e ; H'8C019E68
           .DATA.L __quick_evn_mvn ; H'8C019E6C
           .DATA.L _init_vmuStatusMessages_8c044dc4 ; H'8C019E70
-          .DATA.L _MessageBoxSwapFor_8c02aefc ; H'8C019E74
+          .DATA.L _MessageBoxSetText_8c02aefc ; H'8C019E74
           .DATA.L _RenderStartFadeOut_8c022b60 ; H'8C019E78
           .DATA.L _FileSelectEnter_8c019334 ; H'8C019E7C
           .DATA.L _SpriteDraw_8c014f54 ; H'8C019E80

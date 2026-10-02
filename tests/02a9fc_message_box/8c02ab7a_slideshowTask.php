@@ -5,10 +5,10 @@ declare(strict_types=1);
 use Lhsazevedo\Sh4ObjTest\TestCase;
 
 return new class extends TestCase {
-    // messageBoxTask state offsets (word index * 4).
+    // slideshowTask state offsets (word index * 4).
     const ST_PHASE = 0x00;
-    const ST_PAGE_COUNT = 0x04;
-    const ST_PAGE_INDEX = 0x08;
+    const ST_CHAR_COUNT = 0x04;
+    const ST_REVEALED_CHARS = 0x08;
     const ST_FRAME_COUNTER = 0x0c;
     const ST_ROW = 0x10;
     const ST_IDS = 0x14;
@@ -34,14 +34,14 @@ return new class extends TestCase {
 
     private function allocState(
         int $phase,
-        int $pageCount = 0,
-        int $pageIndex = 0,
+        int $charCount = 0,
+        int $revealedChars = 0,
         int $frameCounter = 0,
     ): int {
         $state = $this->alloc(0x1c);
         $this->initUint32($state + self::ST_PHASE, $phase);
-        $this->initUint32($state + self::ST_PAGE_COUNT, $pageCount);
-        $this->initUint32($state + self::ST_PAGE_INDEX, $pageIndex);
+        $this->initUint32($state + self::ST_CHAR_COUNT, $charCount);
+        $this->initUint32($state + self::ST_REVEALED_CHARS, $revealedChars);
         $this->initUint32($state + self::ST_FRAME_COUNTER, $frameCounter);
         $this->initUint32($state + self::ST_ROW, 0);
         $this->initUint32($state + self::ST_IDS, $this->allocEmptyIds());
@@ -53,10 +53,10 @@ return new class extends TestCase {
         return $state;
     }
 
-    private function expectDrawEmpty(int $state, int $pageIndex): void
+    private function expectDrawEmpty(int $state, int $revealedChars): void
     {
-        $this->shouldWriteFloat($this->addressOf('_init_msgScroll_8c04ab3c') + 0x24, -3.0);
-        $this->shouldCall('_MessageBoxMenuTextboxText_8c02af1c')->with($pageIndex);
+        $this->shouldWriteFloat($this->addressOf('_init_slideScroll_8c04ab3c') + 0x24, -3.0);
+        $this->shouldCall('_MessageBoxDrawText_8c02af1c')->with($revealedChars);
         $this->shouldCall('_SndPollVoiceEnd_8c0106ac');
     }
 
@@ -86,16 +86,16 @@ return new class extends TestCase {
         $this->allocPeripheral(on: 0, press: 0);
         $this->initUint32($this->addressOf('_var_messageAssetCount_8c228514'), 0);
 
-        $this->call('_messageBoxTask_8c02ab7a')->with($task, $state);
+        $this->call('_slideshowTask_8c02ab7a')->with($task, $state);
 
         $this->shouldWriteLong($state + self::ST_IDS, $idsArray);
         $this->shouldWriteLong($state + self::ST_MSG, $msgData);
 
-        $this->shouldCall('_MessageBoxSwapFor_8c02aefc')->with($string)->andReturn(5);
-        $this->shouldWriteLong($state + self::ST_PAGE_COUNT, 5);
+        $this->shouldCall('_MessageBoxSetText_8c02aefc')->with($string)->andReturn(5);
+        $this->shouldWriteLong($state + self::ST_CHAR_COUNT, 5);
         $this->shouldCall('_SndPlayAdx_8c010cd6')->with(2, 0x1234);
 
-        $this->shouldWriteLong($state + self::ST_PAGE_INDEX, 1);
+        $this->shouldWriteLong($state + self::ST_REVEALED_CHARS, 1);
         $this->shouldWriteLong($state + self::ST_FRAME_COUNTER, 0);
         $this->shouldWriteLong($state + self::ST_PHASE, 2);
 
@@ -104,8 +104,8 @@ return new class extends TestCase {
 
         // Draw: pr is reset unconditionally, then ids array is immediately
         // 0xffff-terminated.
-        $this->shouldWriteFloat($this->addressOf('_init_msgScroll_8c04ab3c') + 0x24, -3.0);
-        $this->shouldCall('_MessageBoxMenuTextboxText_8c02af1c')->with(1);
+        $this->shouldWriteFloat($this->addressOf('_init_slideScroll_8c04ab3c') + 0x24, -3.0);
+        $this->shouldCall('_MessageBoxDrawText_8c02af1c')->with(1);
         $this->shouldCall('_SndPollVoiceEnd_8c0106ac');
     }
 
@@ -123,13 +123,13 @@ return new class extends TestCase {
         $this->initUint32($msgData + 0x04, 0x5678);
         $this->initUint32($state + self::ST_MSG, $msgData);
 
-        $this->call('_messageBoxTask_8c02ab7a')->with($task, $state);
+        $this->call('_slideshowTask_8c02ab7a')->with($task, $state);
 
-        $this->shouldCall('_MessageBoxSwapFor_8c02aefc')->with($string)->andReturn(3);
-        $this->shouldWriteLong($state + self::ST_PAGE_COUNT, 3);
+        $this->shouldCall('_MessageBoxSetText_8c02aefc')->with($string)->andReturn(3);
+        $this->shouldWriteLong($state + self::ST_CHAR_COUNT, 3);
         $this->shouldCall('_SndPlayAdx_8c010cd6')->with(2, 0x5678);
 
-        $this->shouldWriteLong($state + self::ST_PAGE_INDEX, 1);
+        $this->shouldWriteLong($state + self::ST_REVEALED_CHARS, 1);
         $this->shouldWriteLong($state + self::ST_FRAME_COUNTER, 0);
         $this->shouldWriteLong($state + self::ST_PHASE, 2);
 
@@ -140,16 +140,16 @@ return new class extends TestCase {
     public function test_phase2_button_press_starts_fast_forward(): void
     {
         $task = $this->alloc(0x20);
-        $state = $this->allocState(phase: 2, pageCount: 5, pageIndex: 1, frameCounter: 0);
+        $state = $this->allocState(phase: 2, charCount: 5, revealedChars: 1, frameCounter: 0);
         $this->allocPeripheral(on: 0, press: 4 /* PDD_DGT_TA */);
 
-        $this->call('_messageBoxTask_8c02ab7a')->with($task, $state);
+        $this->call('_slideshowTask_8c02ab7a')->with($task, $state);
 
         $this->shouldWriteLong($state + self::ST_FRAME_COUNTER, 99);
         $this->shouldWriteLong($state + self::ST_PHASE, 3);
         $this->shouldCall('_SndStopAdx_8c010ca6')->with(1);
         $this->shouldWriteLong($state + self::ST_FRAME_COUNTER, 100);
-        $this->shouldWriteLong($state + self::ST_PAGE_INDEX, 2);
+        $this->shouldWriteLong($state + self::ST_REVEALED_CHARS, 2);
         $this->shouldWriteLong($state + self::ST_FRAME_COUNTER, 0);
         $this->expectDrawEmpty($state, 2);
     }
@@ -157,43 +157,43 @@ return new class extends TestCase {
     public function test_phase2_no_press_keeps_waiting(): void
     {
         $task = $this->alloc(0x20);
-        $state = $this->allocState(phase: 2, pageCount: 5, pageIndex: 1, frameCounter: 1);
+        $state = $this->allocState(phase: 2, charCount: 5, revealedChars: 1, frameCounter: 1);
         $this->allocPeripheral(on: 0, press: 0);
 
-        $this->call('_messageBoxTask_8c02ab7a')->with($task, $state);
+        $this->call('_slideshowTask_8c02ab7a')->with($task, $state);
 
         $this->shouldWriteLong($state + self::ST_FRAME_COUNTER, 2);
         $this->expectDrawEmpty($state, 1);
     }
 
-    public function test_phase2_page_advance_ends_message(): void
+    public function test_phase2_reveal_ends_message(): void
     {
         $task = $this->alloc(0x20);
-        // frameCounter=2 -> increments to 3 (not < 3); pageIndex=4,
-        // pageCount=5 -> increments to 5 (not < 5) -> ends the message.
-        $state = $this->allocState(phase: 2, pageCount: 5, pageIndex: 4, frameCounter: 2);
+        // frameCounter=2 -> increments to 3 (not < 3); revealedChars=4,
+        // charCount=5 -> increments to 5 (not < 5) -> ends the message.
+        $state = $this->allocState(phase: 2, charCount: 5, revealedChars: 4, frameCounter: 2);
         $this->allocPeripheral(on: 0, press: 0);
 
-        $this->call('_messageBoxTask_8c02ab7a')->with($task, $state);
+        $this->call('_slideshowTask_8c02ab7a')->with($task, $state);
 
         $this->shouldWriteLong($state + self::ST_FRAME_COUNTER, 3);
-        $this->shouldWriteLong($state + self::ST_PAGE_INDEX, 5);
+        $this->shouldWriteLong($state + self::ST_REVEALED_CHARS, 5);
         $this->shouldWriteLong($state + self::ST_PHASE, 4);
         $this->expectDrawEmpty($state, 5);
     }
 
-    public function test_phase2_page_advance_continues(): void
+    public function test_phase2_reveal_continues(): void
     {
-        // frameCounter reaches 3; pageIndex=1, pageCount=5 -> still < 5,
+        // frameCounter reaches 3; revealedChars=1, charCount=5 -> still < 5,
         // frameCounter resets to 0 and waiting continues.
         $task = $this->alloc(0x20);
-        $state = $this->allocState(phase: 2, pageCount: 5, pageIndex: 1, frameCounter: 2);
+        $state = $this->allocState(phase: 2, charCount: 5, revealedChars: 1, frameCounter: 2);
         $this->allocPeripheral(on: 0, press: 0);
 
-        $this->call('_messageBoxTask_8c02ab7a')->with($task, $state);
+        $this->call('_slideshowTask_8c02ab7a')->with($task, $state);
 
         $this->shouldWriteLong($state + self::ST_FRAME_COUNTER, 3);
-        $this->shouldWriteLong($state + self::ST_PAGE_INDEX, 2);
+        $this->shouldWriteLong($state + self::ST_REVEALED_CHARS, 2);
         $this->shouldWriteLong($state + self::ST_FRAME_COUNTER, 0);
         $this->expectDrawEmpty($state, 2);
     }
@@ -201,10 +201,10 @@ return new class extends TestCase {
     public function test_phase3_button_released_returns_to_wait(): void
     {
         $task = $this->alloc(0x20);
-        $state = $this->allocState(phase: 3, pageCount: 5, pageIndex: 1, frameCounter: 99);
+        $state = $this->allocState(phase: 3, charCount: 5, revealedChars: 1, frameCounter: 99);
         $this->allocPeripheral(on: 0, press: 0);
 
-        $this->call('_messageBoxTask_8c02ab7a')->with($task, $state);
+        $this->call('_slideshowTask_8c02ab7a')->with($task, $state);
 
         $this->shouldWriteLong($state + self::ST_PHASE, 2);
         $this->expectDrawEmpty($state, 1);
@@ -213,25 +213,25 @@ return new class extends TestCase {
     public function test_phase3_button_held_fast_forwards(): void
     {
         $task = $this->alloc(0x20);
-        $state = $this->allocState(phase: 3, pageCount: 5, pageIndex: 1, frameCounter: 99);
+        $state = $this->allocState(phase: 3, charCount: 5, revealedChars: 1, frameCounter: 99);
         $this->allocPeripheral(on: 4 /* PDD_DGT_TA */, press: 0);
 
-        $this->call('_messageBoxTask_8c02ab7a')->with($task, $state);
+        $this->call('_slideshowTask_8c02ab7a')->with($task, $state);
 
-        $this->shouldWriteLong($state + self::ST_PAGE_INDEX, 3);
+        $this->shouldWriteLong($state + self::ST_REVEALED_CHARS, 3);
         $this->expectDrawEmpty($state, 3);
     }
 
     public function test_phase3_button_held_ends_message(): void
     {
-        // pageIndex=4, pageCount=5 -> +2 = 6, not < 5 -> ends the message.
+        // revealedChars=4, charCount=5 -> +2 = 6, not < 5 -> ends the message.
         $task = $this->alloc(0x20);
-        $state = $this->allocState(phase: 3, pageCount: 5, pageIndex: 4, frameCounter: 99);
+        $state = $this->allocState(phase: 3, charCount: 5, revealedChars: 4, frameCounter: 99);
         $this->allocPeripheral(on: 4 /* PDD_DGT_TA */, press: 0);
 
-        $this->call('_messageBoxTask_8c02ab7a')->with($task, $state);
+        $this->call('_slideshowTask_8c02ab7a')->with($task, $state);
 
-        $this->shouldWriteLong($state + self::ST_PAGE_INDEX, 6);
+        $this->shouldWriteLong($state + self::ST_REVEALED_CHARS, 6);
         $this->shouldWriteLong($state + self::ST_PHASE, 4);
         $this->expectDrawEmpty($state, 6);
     }
@@ -239,10 +239,10 @@ return new class extends TestCase {
     public function test_phase4_no_press_just_draws(): void
     {
         $task = $this->alloc(0x20);
-        $state = $this->allocState(phase: 4, pageCount: 5, pageIndex: 1, frameCounter: 0);
+        $state = $this->allocState(phase: 4, charCount: 5, revealedChars: 1, frameCounter: 0);
         $this->allocPeripheral(on: 0, press: 0);
 
-        $this->call('_messageBoxTask_8c02ab7a')->with($task, $state);
+        $this->call('_slideshowTask_8c02ab7a')->with($task, $state);
 
         $this->expectDrawEmpty($state, 1);
     }
@@ -250,7 +250,7 @@ return new class extends TestCase {
     public function test_phase4_press_advances_to_next_message_in_group(): void
     {
         $task = $this->alloc(0x20);
-        $state = $this->allocState(phase: 4, pageCount: 5, pageIndex: 1, frameCounter: 0);
+        $state = $this->allocState(phase: 4, charCount: 5, revealedChars: 1, frameCounter: 0);
         $this->allocPeripheral(on: 0, press: 4 /* PDD_DGT_TA */);
 
         // Current group entry {string, value}, followed by another
@@ -263,7 +263,7 @@ return new class extends TestCase {
         $this->initUint32($msgData + 0x0c, 0);
         $this->initUint32($state + self::ST_MSG, $msgData);
 
-        $this->call('_messageBoxTask_8c02ab7a')->with($task, $state);
+        $this->call('_slideshowTask_8c02ab7a')->with($task, $state);
 
         $this->shouldCall('_SndStopAdx_8c010ca6')->with(1);
         $this->shouldWriteLong($state + self::ST_MSG, $msgData + 0x08);
@@ -274,7 +274,7 @@ return new class extends TestCase {
     public function test_phase4_press_advances_to_next_group_in_row(): void
     {
         $task = $this->alloc(0x20);
-        $state = $this->allocState(phase: 4, pageCount: 5, pageIndex: 1, frameCounter: 0);
+        $state = $this->allocState(phase: 4, charCount: 5, revealedChars: 1, frameCounter: 0);
         $this->allocPeripheral(on: 0, press: 4 /* PDD_DGT_TA */);
 
         // Current group's next entry is the empty-string terminator.
@@ -293,7 +293,7 @@ return new class extends TestCase {
         $this->initUint32($row + 0x0c, 0);
         $this->initUint32($state + self::ST_ROW, $row);
 
-        $this->call('_messageBoxTask_8c02ab7a')->with($task, $state);
+        $this->call('_slideshowTask_8c02ab7a')->with($task, $state);
 
         $this->shouldCall('_SndStopAdx_8c010ca6')->with(1);
         $this->shouldWriteLong($state + self::ST_MSG, $msgData + 0x08);
@@ -305,7 +305,7 @@ return new class extends TestCase {
     public function test_phase4_press_ends_row(): void
     {
         $task = $this->alloc(0x20);
-        $state = $this->allocState(phase: 4, pageCount: 5, pageIndex: 1, frameCounter: 0);
+        $state = $this->allocState(phase: 4, charCount: 5, revealedChars: 1, frameCounter: 0);
         $this->allocPeripheral(on: 0, press: 4 /* PDD_DGT_TA */);
 
         $msgData = $this->alloc(0x10);
@@ -323,7 +323,7 @@ return new class extends TestCase {
         $this->initUint32($row + 0x0c, 0);
         $this->initUint32($state + self::ST_ROW, $row);
 
-        $this->call('_messageBoxTask_8c02ab7a')->with($task, $state);
+        $this->call('_slideshowTask_8c02ab7a')->with($task, $state);
 
         $this->shouldCall('_SndStopAdx_8c010ca6')->with(1);
         $this->shouldWriteLong($state + self::ST_MSG, $msgData + 0x08);
@@ -336,10 +336,10 @@ return new class extends TestCase {
     public function test_phase5_still_fading_falls_through_to_draw(): void
     {
         $task = $this->alloc(0x20);
-        $state = $this->allocState(phase: 5, pageIndex: 3);
+        $state = $this->allocState(phase: 5, revealedChars: 3);
         $this->initUint32($this->addressOf('_var_isFading_8c226568'), 1);
 
-        $this->call('_messageBoxTask_8c02ab7a')->with($task, $state);
+        $this->call('_slideshowTask_8c02ab7a')->with($task, $state);
 
         $this->expectDrawEmpty($state, 3);
     }
@@ -350,7 +350,7 @@ return new class extends TestCase {
         $state = $this->allocState(phase: 5);
         $this->initUint32($this->addressOf('_var_isFading_8c226568'), 0);
 
-        $this->call('_messageBoxTask_8c02ab7a')->with($task, $state);
+        $this->call('_slideshowTask_8c02ab7a')->with($task, $state);
 
         $this->shouldCall('_MessageBoxFreeAssets_8c02adee');
         $this->shouldCall('_TaskKill_8c014b66')->with($task);
@@ -366,9 +366,9 @@ return new class extends TestCase {
         // Any phase outside 0-5 goes straight to the shared draw tail
         // untouched (dead state in practice, but matches the original).
         $task = $this->alloc(0x20);
-        $state = $this->allocState(phase: 6, pageIndex: 2);
+        $state = $this->allocState(phase: 6, revealedChars: 2);
 
-        $this->call('_messageBoxTask_8c02ab7a')->with($task, $state);
+        $this->call('_slideshowTask_8c02ab7a')->with($task, $state);
 
         $this->expectDrawEmpty($state, 2);
     }
@@ -376,7 +376,7 @@ return new class extends TestCase {
     public function test_draw_matches_asset_and_draws_scroll(): void
     {
         $task = $this->alloc(0x20);
-        $state = $this->allocState(phase: 4, pageCount: 5, pageIndex: 1, frameCounter: 0);
+        $state = $this->allocState(phase: 4, charCount: 5, revealedChars: 1, frameCounter: 0);
         $this->allocPeripheral(on: 0, press: 0);
 
         // ids array: one id, then terminator.
@@ -394,21 +394,21 @@ return new class extends TestCase {
         $this->initUint32($entries + 0x08, $dat);
         $this->initUint32($this->addressOf('_var_messageAssetCount_8c228514'), 1);
 
-        $this->call('_messageBoxTask_8c02ab7a')->with($task, $state);
+        $this->call('_slideshowTask_8c02ab7a')->with($task, $state);
 
-        $this->shouldWriteFloat($this->addressOf('_init_msgScroll_8c04ab3c') + 0x24, -3.0);
-        $this->shouldWriteLong($this->addressOf('_init_msgScroll_8c04ab3c') + 0x0c, $pvm);
-        $this->shouldWriteLong($this->addressOf('_init_msgScroll_8c04ab3c') + 0x10, $dat);
-        $this->shouldCall('_njDrawScroll')->with($this->addressOf('_init_msgScroll_8c04ab3c'));
-        $this->shouldWriteFloat($this->addressOf('_init_msgScroll_8c04ab3c') + 0x24, -2.9);
-        $this->shouldCall('_MessageBoxMenuTextboxText_8c02af1c')->with(1);
+        $this->shouldWriteFloat($this->addressOf('_init_slideScroll_8c04ab3c') + 0x24, -3.0);
+        $this->shouldWriteLong($this->addressOf('_init_slideScroll_8c04ab3c') + 0x0c, $pvm);
+        $this->shouldWriteLong($this->addressOf('_init_slideScroll_8c04ab3c') + 0x10, $dat);
+        $this->shouldCall('_njDrawScroll')->with($this->addressOf('_init_slideScroll_8c04ab3c'));
+        $this->shouldWriteFloat($this->addressOf('_init_slideScroll_8c04ab3c') + 0x24, -2.9);
+        $this->shouldCall('_MessageBoxDrawText_8c02af1c')->with(1);
         $this->shouldCall('_SndPollVoiceEnd_8c0106ac');
     }
 
     public function test_draw_with_no_matching_asset_leaves_pvm_dat_stale(): void
     {
         $task = $this->alloc(0x20);
-        $state = $this->allocState(phase: 4, pageCount: 5, pageIndex: 1, frameCounter: 0);
+        $state = $this->allocState(phase: 4, charCount: 5, revealedChars: 1, frameCounter: 0);
         $this->allocPeripheral(on: 0, press: 0);
 
         // ids array: one id that matches nothing in the dedup table.
@@ -421,16 +421,16 @@ return new class extends TestCase {
         $this->initUint32($this->addressOf('_var_messageAssetCount_8c228514'), 0);
 
         // Sentinel pvm/dat: proves the "no match" path leaves them untouched.
-        $pvmField = $this->addressOf('_init_msgScroll_8c04ab3c') + 0x0c;
-        $datField = $this->addressOf('_init_msgScroll_8c04ab3c') + 0x10;
+        $pvmField = $this->addressOf('_init_slideScroll_8c04ab3c') + 0x0c;
+        $datField = $this->addressOf('_init_slideScroll_8c04ab3c') + 0x10;
         $this->initUint32($pvmField, 0xdeadbeef);
         $this->initUint32($datField, 0xcafef00d);
 
-        $this->call('_messageBoxTask_8c02ab7a')->with($task, $state);
+        $this->call('_slideshowTask_8c02ab7a')->with($task, $state);
 
-        $this->shouldWriteFloat($this->addressOf('_init_msgScroll_8c04ab3c') + 0x24, -3.0);
+        $this->shouldWriteFloat($this->addressOf('_init_slideScroll_8c04ab3c') + 0x24, -3.0);
         $this->shouldCall('_njDrawScroll')
-            ->with($this->addressOf('_init_msgScroll_8c04ab3c'))
+            ->with($this->addressOf('_init_slideScroll_8c04ab3c'))
             ->do(function () use ($pvmField, $datField) {
                 $pvm = $this->memory->readUInt32($pvmField)->value;
                 $dat = $this->memory->readUInt32($datField)->value;
@@ -441,8 +441,8 @@ return new class extends TestCase {
                     ));
                 }
             });
-        $this->shouldWriteFloat($this->addressOf('_init_msgScroll_8c04ab3c') + 0x24, -2.9);
-        $this->shouldCall('_MessageBoxMenuTextboxText_8c02af1c')->with(1);
+        $this->shouldWriteFloat($this->addressOf('_init_slideScroll_8c04ab3c') + 0x24, -2.9);
+        $this->shouldCall('_MessageBoxDrawText_8c02af1c')->with(1);
         $this->shouldCall('_SndPollVoiceEnd_8c0106ac');
     }
 };

@@ -222,7 +222,7 @@ STATIC int startCursorMove_8c016dc6()
     var_menuState_8c1bc7a8.cursorVelocity_0x30.x = (x - var_menuState_8c1bc7a8.pos.cursor.cursor_0x20.x) / 6.0;
     var_menuState_8c1bc7a8.cursorVelocity_0x30.y = (y - var_menuState_8c1bc7a8.pos.cursor.cursor_0x20.y) / 6.0;
     sdMidiPlay(var_midiHandles_8c0fcd28[0], 1, 3, 0);
-    MessageBoxSwapFor_8c02aefc("");
+    MessageBoxSetText_8c02aefc("");
     return 1;
 }
 
@@ -297,7 +297,7 @@ STATIC void instructorDialogTask_8c016f98(InstructorDialogTask *task, Instructor
                 task->voiceCuePtr_0x18++;
             }
 
-            state->charCount_0x08 = MessageBoxSwapFor_8c02aefc(state->dialog_0x04->text_0x00);
+            state->charCount_0x08 = MessageBoxSetText_8c02aefc(state->dialog_0x04->text_0x00);
             var_menuState_8c1bc7a8.instructorSprite_0x60 = state->dialog_0x04->spriteNo_0x04;
             state->revealedCharCount_0x0c = 1;
             state->charRevealTimer_0x10 = 0;
@@ -382,7 +382,7 @@ void CourseMenuSpawnDialogTask_8c0170c6(int dialog_index, int *voice_cues)
 
 STATIC void swapDialogMessageBox_8c017108(int sequence)
 {
-    var_menuTextboxCharLimit_8c225fb8 = MessageBoxSwapFor_8c02aefc(
+    var_menuTextboxCharLimit_8c225fb8 = MessageBoxSetText_8c02aefc(
         init_instructorDialogs_8c044c08[sequence]->text_0x00
     );
 }
@@ -701,7 +701,7 @@ STATIC void storyMenuTask_8c017718(Task * task, void *state)
 
             if (var_dialogQueue_8c225fbc[task->field_0x08] == -1) {
                 CHANGE_STATE(COURSE_MENU_STATE_IDLE);
-                MessageBoxSwapFor_8c02aefc("");
+                MessageBoxSetText_8c02aefc("");
             }
             else {
                 CourseMenuSpawnDialogTask_8c0170c6(var_dialogQueue_8c225fbc[task->field_0x08], 0);
@@ -784,7 +784,7 @@ STATIC void storyMenuTask_8c017718(Task * task, void *state)
     SpriteDraw_8c014f54(
         &var_menuState_8c1bc7a8.resourceGroupA_0x00, 0x2b, 0.0, 0.0, -4.0
     );
-    if (MessageBoxMenuTextboxText_8c02af1c(var_menuTextboxCharLimit_8c225fb8) ) {
+    if (MessageBoxDrawText_8c02af1c(var_menuTextboxCharLimit_8c225fb8) ) {
         SpriteDraw_8c014f54(
             &var_menuState_8c1bc7a8.resourceGroupA_0x00, 1, 0.0, 0.0, -5.0
         );
@@ -854,7 +854,7 @@ STATIC void freeRunMenuTask_8c017ada(Task * task, void *state)
 
             if (var_dialogQueue_8c225fbc[task->field_0x08] == -1) {
                 CHANGE_STATE(COURSE_MENU_STATE_IDLE);
-                MessageBoxSwapFor_8c02aefc("");
+                MessageBoxSetText_8c02aefc("");
             }
             else {
                 CourseMenuSpawnDialogTask_8c0170c6(var_dialogQueue_8c225fbc[task->field_0x08], 0);
@@ -928,7 +928,7 @@ STATIC void freeRunMenuTask_8c017ada(Task * task, void *state)
     SpriteDraw_8c014f54(
         &var_menuState_8c1bc7a8.resourceGroupB_0x0c, 9, 0.0, 0.0, -5.0
     );
-    if (MessageBoxMenuTextboxText_8c02af1c(var_menuTextboxCharLimit_8c225fb8) ) {
+    if (MessageBoxDrawText_8c02af1c(var_menuTextboxCharLimit_8c225fb8) ) {
         SpriteDraw_8c014f54(
             &var_menuState_8c1bc7a8.resourceGroupA_0x00, 1, 0.0, 0.0, -5.0
         );
@@ -1084,7 +1084,7 @@ void CourseMenuReturn_8c017ef2(void)
 
     njGarbageTexture(var_tex_8c157af8, 0xc00);
     MessageBoxOpenTextbox_8c02ae3e(0x20, 0x180, -2.0, 0x240, 0x40, 0, 0, -1);
-    MessageBoxSwapFor_8c02aefc("");
+    MessageBoxSetText_8c02aefc("");
     var_playMode_8c1bb8d0 = 0;
 
     refreshCourseGrid_8c017d54();

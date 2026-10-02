@@ -184,7 +184,7 @@ STATIC void menuTask_8c01b3ac(Task *task, void *state)
     case SAVE_STATE_TOP_MENU:
         PromptHandleMultiple_8c016c58(&var_menuState_8c1bc7a8.selected_0x38, 4);
         if ((var_peripherals_8c1ba35c[0].press & (PDD_DGT_KR | PDD_DGT_KL)) != 0) {
-            MessageBoxSwapFor_8c02aefc("");
+            MessageBoxSetText_8c02aefc("");
         }
         if ((var_peripherals_8c1ba35c[0].press & PDD_DGT_TA) == 0) {
             if ((var_peripherals_8c1ba35c[0].press & PDD_DGT_TB) == 0) {
@@ -204,24 +204,24 @@ STATIC void menuTask_8c01b3ac(Task *task, void *state)
             case VMU_STATUS_SAVE_EXISTS_NO_SPACE:
             case VMU_STATUS_SAVE_EXISTS:
                 var_menuState_8c1bc7a8.state_0x18 = SAVE_STATE_LOAD;
-                MessageBoxSwapFor_8c02aefc(MSG_CONFIRM_LOAD);
+                MessageBoxSetText_8c02aefc(MSG_CONFIRM_LOAD);
                 sdMidiPlay(var_midiHandles_8c0fcd28[0], 1, 0, 0);
                 break;
             case VMU_STATUS_NOT_ENOUGH_SPACE:
             case VMU_STATUS_SAVING_POSSIBLE:
-                MessageBoxSwapFor_8c02aefc(MSG_LOAD_NO_FILE);
+                MessageBoxSetText_8c02aefc(MSG_LOAD_NO_FILE);
                 sdMidiPlay(var_midiHandles_8c0fcd28[0], 1, 2, 0);
                 break;
             case VMU_STATUS_NOT_CONNECTED:
-                MessageBoxSwapFor_8c02aefc(MSG_VM_NOT_CONNECTED);
+                MessageBoxSetText_8c02aefc(MSG_VM_NOT_CONNECTED);
                 sdMidiPlay(var_midiHandles_8c0fcd28[0], 1, 2, 0);
                 break;
             case VMU_STATUS_NOT_AVAILABLE:
-                MessageBoxSwapFor_8c02aefc(MSG_VM_CANT_LOAD);
+                MessageBoxSetText_8c02aefc(MSG_VM_CANT_LOAD);
                 sdMidiPlay(var_midiHandles_8c0fcd28[0], 1, 2, 0);
                 break;
             case VMU_STATUS_PROCEED_WITHOUT_SAVING:
-                MessageBoxSwapFor_8c02aefc(MSG_LOAD_NO_FILE_SET);
+                MessageBoxSetText_8c02aefc(MSG_LOAD_NO_FILE_SET);
                 sdMidiPlay(var_midiHandles_8c0fcd28[0], 1, 2, 0);
                 break;
             default:
@@ -231,30 +231,30 @@ STATIC void menuTask_8c01b3ac(Task *task, void *state)
         case SAVE_MENU_SAVE:
             switch (vmStatus) {
             case VMU_STATUS_SAVING_POSSIBLE:
-                MessageBoxSwapFor_8c02aefc(MSG_CONFIRM_CREATE_FILE);
+                MessageBoxSetText_8c02aefc(MSG_CONFIRM_CREATE_FILE);
                 var_menuState_8c1bc7a8.state_0x18 = SAVE_STATE_SAVE;
                 sdMidiPlay(var_midiHandles_8c0fcd28[0], 1, 0, 0);
                 break;
             case VMU_STATUS_SAVE_EXISTS_NO_SPACE:
             case VMU_STATUS_SAVE_EXISTS:
-                MessageBoxSwapFor_8c02aefc(MSG_CONFIRM_OVERWRITE);
+                MessageBoxSetText_8c02aefc(MSG_CONFIRM_OVERWRITE);
                 var_menuState_8c1bc7a8.state_0x18 = SAVE_STATE_SAVE;
                 sdMidiPlay(var_midiHandles_8c0fcd28[0], 1, 0, 0);
                 break;
             case VMU_STATUS_NOT_ENOUGH_SPACE:
-                MessageBoxSwapFor_8c02aefc(MSG_SAVE_NEED_3_BLOCKS);
+                MessageBoxSetText_8c02aefc(MSG_SAVE_NEED_3_BLOCKS);
                 sdMidiPlay(var_midiHandles_8c0fcd28[0], 1, 2, 0);
                 break;
             case VMU_STATUS_NOT_AVAILABLE:
-                MessageBoxSwapFor_8c02aefc(MSG_VM_CANT_SAVE);
+                MessageBoxSetText_8c02aefc(MSG_VM_CANT_SAVE);
                 sdMidiPlay(var_midiHandles_8c0fcd28[0], 1, 2, 0);
                 break;
             case VMU_STATUS_NOT_CONNECTED:
-                MessageBoxSwapFor_8c02aefc(MSG_VM_NOT_CONN_SAVE);
+                MessageBoxSetText_8c02aefc(MSG_VM_NOT_CONN_SAVE);
                 sdMidiPlay(var_midiHandles_8c0fcd28[0], 1, 2, 0);
                 break;
             case VMU_STATUS_PROCEED_WITHOUT_SAVING:
-                MessageBoxSwapFor_8c02aefc(MSG_SAVE_NO_FILE_SET);
+                MessageBoxSetText_8c02aefc(MSG_SAVE_NO_FILE_SET);
                 sdMidiPlay(var_midiHandles_8c0fcd28[0], 1, 2, 0);
                 break;
             default:
@@ -270,9 +270,9 @@ STATIC void menuTask_8c01b3ac(Task *task, void *state)
         case SAVE_MENU_QUIT:
             var_menuState_8c1bc7a8.state_0x18 = SAVE_STATE_QUIT_CONFIRM;
             if (var_gameMode_8c1bb8fc == 0) {
-                MessageBoxSwapFor_8c02aefc(MSG_CONFIRM_QUIT_STORY);
+                MessageBoxSetText_8c02aefc(MSG_CONFIRM_QUIT_STORY);
             } else {
-                MessageBoxSwapFor_8c02aefc(MSG_CONFIRM_QUIT_FREERUN);
+                MessageBoxSetText_8c02aefc(MSG_CONFIRM_QUIT_FREERUN);
             }
             sdMidiPlay(var_midiHandles_8c0fcd28[0], 1, 0, 0);
             break;
@@ -291,15 +291,15 @@ STATIC void menuTask_8c01b3ac(Task *task, void *state)
                                  init_saveNames_8c044d50[var_saveSlot_8c1ba350], var_saveBuf_8c1ba2e0);
                 var_vmBusy_8c157a7c = 1;
                 var_menuState_8c1bc7a8.subState_0x1c = SAVE_PHASE_IN_PROGRESS;
-                MessageBoxSwapFor_8c02aefc(MSG_LOADING_NO_POWER_OFF);
+                MessageBoxSetText_8c02aefc(MSG_LOADING_NO_POWER_OFF);
                 VmGameSetLcdAnim_8c01c8fc(1);
             } else if (result == 2) {
                 /* no */
                 var_menuState_8c1bc7a8.state_0x18 = SAVE_STATE_TOP_MENU;
-                MessageBoxSwapFor_8c02aefc("");
+                MessageBoxSetText_8c02aefc("");
             } else if (vmStatus != VMU_STATUS_SAVE_EXISTS_NO_SPACE &&
                        vmStatus != VMU_STATUS_SAVE_EXISTS) {
-                MessageBoxSwapFor_8c02aefc(MSG_LOAD_NO_TARGET);
+                MessageBoxSetText_8c02aefc(MSG_LOAD_NO_TARGET);
                 var_menuState_8c1bc7a8.state_0x18 = SAVE_STATE_TOP_MENU;
             }
             break;
@@ -313,15 +313,15 @@ STATIC void menuTask_8c01b3ac(Task *task, void *state)
                 if (FileSelectIsSaveValid_8c018804((int *)&var_progress_8c1ba1cc) != 0) {
                     SystemMenuApplyLoadedProgress_8c01b19c();
                     FileSelectApplySoundSettings_8c0189fc();
-                    MessageBoxSwapFor_8c02aefc(MSG_LOAD_DONE);
+                    MessageBoxSetText_8c02aefc(MSG_LOAD_DONE);
                 } else {
-                        MessageBoxSwapFor_8c02aefc(MSG_LOAD_FAIL_ABORT);
+                        MessageBoxSetText_8c02aefc(MSG_LOAD_FAIL_ABORT);
                     var_menuState_8c1bc7a8.state_0x18 = SAVE_STATE_LOAD_FAILED;
                     sdMidiPlay(var_midiHandles_8c0fcd28[0], 1, 2, 0);
                     break;
                 }
             } else {
-                MessageBoxSwapFor_8c02aefc(MSG_LOAD_FAILED);
+                MessageBoxSetText_8c02aefc(MSG_LOAD_FAILED);
             }
             var_menuState_8c1bc7a8.state_0x18 = SAVE_STATE_TOP_MENU;
             var_vmBusy_8c157a7c = 0;
@@ -341,7 +341,7 @@ STATIC void menuTask_8c01b3ac(Task *task, void *state)
         }
         SpriteDraw_8c014f54(&var_menuState_8c1bc7a8.resourceGroupB_0x0c,
                                4, 0.0f, 0.0f, -5.0f);
-        if (MessageBoxMenuTextboxText_8c02af1c(0xff) != 0) {
+        if (MessageBoxDrawText_8c02af1c(0xff) != 0) {
             SpriteDraw_8c014f54(&var_menuState_8c1bc7a8.resourceGroupA_0x00,
                                    1, 0.0f, 0.0f, -5.0f);
         }
@@ -355,7 +355,7 @@ STATIC void menuTask_8c01b3ac(Task *task, void *state)
                 /* yes */
                 SystemMenuWriteToVmu_8c01b26c();
                 var_menuState_8c1bc7a8.subState_0x1c = SAVE_PHASE_IN_PROGRESS;
-                MessageBoxSwapFor_8c02aefc(MSG_SAVING_NO_POWER_OFF);
+                MessageBoxSetText_8c02aefc(MSG_SAVING_NO_POWER_OFF);
                 VmGameSetLcdAnim_8c01c8fc(1);
                 SpriteDraw_8c014f54(&var_menuState_8c1bc7a8.resourceGroupA_0x00,
                                        var_menuState_8c1bc7a8.cursorCol_0x3c + 2,
@@ -363,14 +363,14 @@ STATIC void menuTask_8c01b3ac(Task *task, void *state)
             } else if (result == 2) {
                 /* no */
                 var_menuState_8c1bc7a8.state_0x18 = SAVE_STATE_TOP_MENU;
-                MessageBoxSwapFor_8c02aefc("");
+                MessageBoxSetText_8c02aefc("");
                 SpriteDraw_8c014f54(&var_menuState_8c1bc7a8.resourceGroupA_0x00,
                                        var_menuState_8c1bc7a8.cursorCol_0x3c + 2,
                                        228.0f, 266.0f, -4.0f);
             } else if (vmStatus != VMU_STATUS_SAVING_POSSIBLE &&
                        vmStatus != VMU_STATUS_SAVE_EXISTS_NO_SPACE &&
                        vmStatus != VMU_STATUS_SAVE_EXISTS) {
-                MessageBoxSwapFor_8c02aefc(MSG_SAVE_CANT);
+                MessageBoxSetText_8c02aefc(MSG_SAVE_CANT);
                 var_menuState_8c1bc7a8.state_0x18 = SAVE_STATE_TOP_MENU;
             }
             break;
@@ -380,9 +380,9 @@ STATIC void menuTask_8c01b3ac(Task *task, void *state)
                 break;
             }
             if (buGetLastError(var_selectedVm_8c1ba34c) == 0) {
-                MessageBoxSwapFor_8c02aefc(MSG_SAVE_DONE);
+                MessageBoxSetText_8c02aefc(MSG_SAVE_DONE);
             } else {
-                MessageBoxSwapFor_8c02aefc(MSG_SAVE_FAILED);
+                MessageBoxSetText_8c02aefc(MSG_SAVE_FAILED);
             }
             var_vmBusy_8c157a7c = 0;
             syFree(var_backupFileImageBuf_8c1ba348);
@@ -404,7 +404,7 @@ STATIC void menuTask_8c01b3ac(Task *task, void *state)
             RenderStartFadeOut_8c022b60(10);
         } else if (result == 2) {
             var_menuState_8c1bc7a8.state_0x18 = SAVE_STATE_TOP_MENU;
-            MessageBoxSwapFor_8c02aefc("");
+            MessageBoxSetText_8c02aefc("");
         }
         drawPrompt = 1;
         break;
@@ -441,7 +441,7 @@ STATIC void menuTask_8c01b3ac(Task *task, void *state)
                            var_menuState_8c1bc7a8.selected_0x38 + 5, 0.0f, 0.0f, -4.0f);
     SpriteDraw_8c014f54(&var_menuState_8c1bc7a8.resourceGroupB_0x0c,
                            4, 0.0f, 0.0f, -5.0f);
-    if (MessageBoxMenuTextboxText_8c02af1c(0xff)) {
+    if (MessageBoxDrawText_8c02af1c(0xff)) {
         SpriteDraw_8c014f54(&var_menuState_8c1bc7a8.resourceGroupA_0x00,
                                1, 0.0f, 0.0f, -5.0f);
     }
@@ -457,7 +457,7 @@ void SystemMenuEnter_8c01ba64(Task *task)
     var_saveBuf_8c1ba2e0 = syMalloc(0x600);
     VmSelectUpdateStatus_8c01967c(var_selectedVm_8c1ba34c,
                                    init_saveNames_8c044d50[var_saveSlot_8c1ba350], 3);
-    MessageBoxSwapFor_8c02aefc("");
+    MessageBoxSetText_8c02aefc("");
     RenderStartFadeIn_8c022a9c(10);
     AsqInitQueues_8c011f36(8, 0, 0, 8);
     AsqResetQueues_8c011f6c();

@@ -1,6 +1,6 @@
 ; 8c01e27c
 ; @unit PracticeMenu
-          .IMPORT     _MessageBoxMenuTextboxText_8c02af1c
+          .IMPORT     _MessageBoxDrawText_8c02af1c
           .IMPORT     _SpriteDraw_8c014f54
           .IMPORT     _var_menuState_8c1bc7a8
           .IMPORT     _init_adxPlaying_8c03bd80
@@ -10,7 +10,7 @@
           .IMPORT     _SndPlayAdx_8c010cd6
           .IMPORT     _RenderStartFadeIn_8c022a9c
           .IMPORT     _var_peripherals_8c1ba35c
-          .IMPORT     _MessageBoxSwapFor_8c02aefc
+          .IMPORT     _MessageBoxSetText_8c02aefc
           .IMPORT     _var_midiHandles_8c0fcd28
           .IMPORT     _sdMidiPlay
           .IMPORT     _SndStartAdxFadeOut_8c010bae
@@ -238,7 +238,7 @@ LAB_8c01e356:
 LP_GEN_72974:
           .DATA.W H'00FF ; H'8C01E372
           .DATA.L H'C0800000 ; H'8C01E374
-          .DATA.L _MessageBoxMenuTextboxText_8c02af1c ; H'8C01E378
+          .DATA.L _MessageBoxDrawText_8c02af1c ; H'8C01E378
           .DATA.L H'43600000 ; H'8C01E37C
           .DATA.L _SpriteDraw_8c014f54 ; H'8C01E380
           .DATA.L _var_menuState_8c1bc7a8 ; H'8C01E384
@@ -538,7 +538,7 @@ _enterDescription_8c01e576:
           NOP
 LP_GEN_38636:
           .DATA.L _const_confirmStartMsg_8c03896c ; H'8C01E5C0
-          .DATA.L _MessageBoxSwapFor_8c02aefc ; H'8C01E5C4
+          .DATA.L _MessageBoxSetText_8c02aefc ; H'8C01E5C4
           .DATA.L _var_midiHandles_8c0fcd28 ; H'8C01E5C8
           .DATA.L _sdMidiPlay ; H'8C01E5CC
           .DATA.L _SndStartAdxFadeOut_8c010bae ; H'8C01E5D0
@@ -933,7 +933,7 @@ LP_GEN_46961:
           .DATA.L H'42820000 ; H'8C01E900
           .DATA.L H'C0900000 ; H'8C01E904
           .DATA.L _init_lessonGuideRows_8c0451ec ; H'8C01E908
-          .DATA.L _MessageBoxMenuTextboxText_8c02af1c ; H'8C01E90C
+          .DATA.L _MessageBoxDrawText_8c02af1c ; H'8C01E90C
           .DATA.L H'C0A00000 ; H'8C01E910
           .DATA.L H'C0C00000 ; H'8C01E914
           .DATA.L H'C0E00000 ; H'8C01E918
@@ -1244,7 +1244,7 @@ LP_GEN_88702:
           .DATA.L _TaskSwitch_8c014b3e ; H'8C01EB4C
           .DATA.L _var_menuState_8c1bc7a8 ; H'8C01EB50
           .DATA.L _const_emptyMsg_8c038984 ; H'8C01EB54
-          .DATA.L _MessageBoxSwapFor_8c02aefc ; H'8C01EB58
+          .DATA.L _MessageBoxSetText_8c02aefc ; H'8C01EB58
           .DATA.L _AsqInitQueues_8c011f36 ; H'8C01EB5C
           .DATA.L _AsqResetQueues_8c011f6c ; H'8C01EB60
           .DATA.L _init_practice01ResourceGroup_8c044274 ; H'8C01EB64
@@ -1568,7 +1568,7 @@ LP_GEN_52292:
           .DATA.L _SpriteDraw_8c014f54 ; H'8C01EDE4
           .DATA.L _var_runWasPractice_8c1bb8bc ; H'8C01EDE8
           .DATA.L _var_isFading_8c226568 ; H'8C01EDEC
-          .DATA.L _MessageBoxSwapFor_8c02aefc ; H'8C01EDF0
+          .DATA.L _MessageBoxSetText_8c02aefc ; H'8C01EDF0
           .DATA.L _sdMidiPlay ; H'8C01EDF4
           .DATA.L _var_midiHandles_8c0fcd28 ; H'8C01EDF8
           .DATA.L H'10+_var_peripherals_8c1ba35c ; H'8C01EDFC
@@ -1946,7 +1946,7 @@ LP_GEN_11294:
           .DATA.L H'42040000 ; H'8C01F0F0
           .DATA.L H'C0000000 ; H'8C01F0F4
           .DATA.L _var_menuTextboxCharLimit_8c225fb8 ; H'8C01F0F8
-          .DATA.L _MessageBoxMenuTextboxText_8c02af1c ; H'8C01F0FC
+          .DATA.L _MessageBoxDrawText_8c02af1c ; H'8C01F0FC
           .DATA.L H'C0A00000 ; H'8C01F100
           .DATA.L H'C0C00000 ; H'8C01F104
           .DATA.L H'C0400000 ; H'8C01F108
@@ -2240,7 +2240,7 @@ LP_GEN_37649:
           .DATA.L H'C0000000 ; H'8C01F388
           .DATA.L _MessageBoxOpenTextbox_8c02ae3e ; H'8C01F38C
           .DATA.L _const_emptyMsg_8c038984 ; H'8C01F390
-          .DATA.L _MessageBoxSwapFor_8c02aefc ; H'8C01F394
+          .DATA.L _MessageBoxSetText_8c02aefc ; H'8C01F394
           .DATA.L _AsqInitQueues_8c011f36 ; H'8C01F398
           .DATA.L _AsqResetQueues_8c011f6c ; H'8C01F39C
           .DATA.L _var_currentSysResGroupInfo_8c225fb0 ; H'8C01F3A0

@@ -28,7 +28,7 @@ return new class extends TestCase {
         $this->initUint32($this->addressOf('_var_messageTextBoxB_8c1bc408'), $box1);
         $this->initUint32($this->addressOf('_var_messageTextBoxIndex_8c1bc40c'), 0);
 
-        $this->call('_MessageBoxMenuTextboxText_8c02af1c')
+        $this->call('_MessageBoxDrawText_8c02af1c')
             ->with(7);
 
         $this->shouldCall('_TxtDrawTextBox_8c0155e0')
@@ -48,7 +48,7 @@ return new class extends TestCase {
         $this->initUint32($this->addressOf('_var_messageTextBoxB_8c1bc408'), $box1);
         $this->initUint32($this->addressOf('_var_messageTextBoxIndex_8c1bc40c'), 1);
 
-        $this->call('_MessageBoxMenuTextboxText_8c02af1c')
+        $this->call('_MessageBoxDrawText_8c02af1c')
             ->with(12);
 
         $this->shouldCall('_TxtDrawTextBox_8c0155e0')

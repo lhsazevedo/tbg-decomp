@@ -85,7 +85,7 @@ return new class extends TestCase {
 
         $this->call('_selectSlot_8c01bf2a')->with(self::SLOT);
         $this->expectLerp();
-        $this->shouldCall('_MessageBoxSwapFor_8c02aefc')
+        $this->shouldCall('_MessageBoxSetText_8c02aefc')
             ->with($text)
             ->andReturn(0);
     }
@@ -93,6 +93,6 @@ return new class extends TestCase {
     private function resolveSymbols(): void
     {
         $this->setSize('_var_menuState_8c1bc7a8', 0x7c);
-        $this->setSize('_MessageBoxSwapFor_8c02aefc', 4);
+        $this->setSize('_MessageBoxSetText_8c02aefc', 4);
     }
 };
