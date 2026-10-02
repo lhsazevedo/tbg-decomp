@@ -6,7 +6,7 @@
 #include "013ae8_route.h"
 #include "014a9c_tasks.h"
 #include "022464_render.h"
-#include "020914_ground_query.h" /* GroundQueryFindPolygon_8c020914, GroundQueryResult */
+#include "020914_ground_query.h"
 #include "020b6c_ground_probe.h"
 #include "025b98_traffic_drive.h"
 #include "026710_traffic.h"
@@ -19,7 +19,7 @@
 #include "02b464_grading.h"
 #include "024b4c_bus_camera.h"
 #include "1ba1c8_globals.h"
-#include "includes.h" /* STATIC */
+#include "includes.h"
 #include "serial_debug.h"
 
 /* ====================
@@ -27,18 +27,16 @@
  * ====================
  */
 
-/* Task private state for updateTask_8c0275d4, set up by TrafficInit_8c02769e. */
 typedef struct {
     TaskAction action;
     void *state;
-    int counter_0x08; /* the current script record's threshold-comparison counter */
-    /* a tri-state flag (0 = no preset armed, 1 = initial-arm suppresses
-     * spawnEntry_8c0272b8, 2 = latched) round-tripped through Task's void*
-     * field_0x0c */
+    int counter_0x08; /* frames since the last placement */
+    /* 1 until the first preset switch: placements with a nonzero progress
+     * are skipped unless it is 1. */
     int presetState_0x0c;
     int field_0x10;
     int field_0x14;
-    TrafficPlacement *queuedItem_0x18; /* the cursor into the active preset's script record array */
+    TrafficPlacement *queuedItem_0x18; /* next placement of the active preset */
     int field_0x1c;
 } TrafficUpdateTask;
 
@@ -48,12 +46,9 @@ typedef struct {
  */
 
 int var_activeTrafficPreset_8c227e14;
-/* Traffic preset table: indexed by var_busState_8c1bb9d0.scenePresetIds_0x3bc's byte at
- * bits 8-15, yielding that preset's record run in the course's *_MAC_CPU1.DAT;
- * read by updateTask_8c0275d4. */
+/* Placement runs per preset, indexed by bits 8-15 of
+ * var_busState_8c1bb9d0.scenePresetIds_0x3bc. */
 STATIC Sint32 *var_trafficPresetTable_8c227e18;
-/* Course CPU path-block table (== CurrentCourse.lineCpu_0x1c), indexed by a
- * script argument to resolve a traffic entry's path. */
 STATIC PathRecord **var_cpuPathBlocks_8c227e1c;
 
 /* ====================
@@ -61,17 +56,12 @@ STATIC PathRecord **var_cpuPathBlocks_8c227e1c;
  * ====================
  */
 
-/* Opcode word lengths for TrafficRunEntryScript_8c027012, indexed by opcode. */
+/* Script instruction lengths in words, indexed by opcode. */
 STATIC Uint8 init_scriptOpWords_8c0460bc[] = {
     0x01, 0x03, 0x03, 0x03, 0x03, 0x02, 0x03, 0x02, 0x04, 0x01, 0x04, 0x00,
 };
 
-/* Per-variant body dimensions, indexed by the 0..15 variant index: one record
- * of {width, height, groundOffset, length}. Paired variants share dimensions.
- * Ghidra split the first record's leading three floats into separate symbols
- * (the .src still carries those labels, marked "from ghidra"); the table is one
- * contiguous 0x100 block ending exactly where init_variantAccel_8c0461c8
- * begins. Grouped by record here, unlike the .src's layout. */
+/* {width, height, groundOffset, length} per variant. */
 STATIC float init_variantDims_8c0460c8[16][4] = {
     { 2.42f, 1.67f, 0.65f, 3.0500002f }, /* 2do0 */
     { 2.42f, 1.67f, 0.65f, 3.0500002f }, /* 2do1 */
@@ -91,8 +81,7 @@ STATIC float init_variantDims_8c0460c8[16][4] = {
     { 2.6f,  1.68f, 1.0f,  3.8999999f }, /* kyu  */
 };
 
-/* Per-variant speed-up rate, the per-frame increment
- * TrafficDriveVehicleTask_8c025b98 adds while a vehicle closes on its lane limit. */
+/* Per-variant acceleration, per frame. */
 STATIC float init_variantAccel_8c0461c8[] = {
     0.01f, 0.01f, 0.004f, 0.007f,
     0.007f, 0.007f, 0.007f, 0.002f,
@@ -106,8 +95,7 @@ STATIC Uint32 init_dayMasks_8c046208[3][3] = {
     { 0x00000000, 0x00000000, 0x00000200 },
 };
 
-/* Variant index -> body type, which picks the vehicle's shadow model out of
- * var_trafficModels_8c1bc3f4. */
+/* Variant -> index of its shadow model in var_trafficModels_8c1bc3f4. */
 STATIC Uint8 init_variantBodyType_8c04622c[] = {
     0x00, 0x00, 0x01, 0x02, 0x02, 0x02, 0x03, 0x04, 0x04, 0x05, 0x06, 0x06, 0x07, 0x08, 0x09, 0x0A,
 };
@@ -132,20 +120,7 @@ void TrafficResolvePathBlocks_8c026710(TrafficEntry *entry, Uint16 *script)
     *out = (PathRecord *)-1;
 }
 
-/* Runs one "spawn" or "place decoration" instruction of the entry's script
- * (opcodes 0 and 10 in the caller, TrafficRunEntryScript_8c027012): walks
- * the path to the entry's starting distance, resolves its position and
- * heading, fills in the vehicle's dimension/animation state from its
- * variant table, and spawns its driving task. entry+0x2f8 holds the
- * script's own base pointer, so
- * *entry->0x2f8 is the script's header word: 10 marks a fixed-angle static
- * decoration (traffic light, sign, ...) rather than a path-following
- * vehicle. entry+0x304 onward is itself an inline array of per-block path
- * pointers (the same region TrafficResolvePathBlocks_8c026710 resolves into
- * from the entry's script), indexed by the segment index at entry+0x300;
- * each block is a run of {len,x,y,dx,dy} records terminated by a len==0
- * sentinel record.
- */
+/* For opcode 0 (spawn on the path) or 10 (park at a fixed position). */
 STATIC void initEntryState_8c026748(TrafficEntry *entry, int *scriptIp)
 {
     TrafficEntry *e = entry;
@@ -298,18 +273,7 @@ STATIC void initEntryState_8c026748(TrafficEntry *entry, int *scriptIp)
     }
 }
 
-/* Re-derives heading and the vehicle's 4 body-corner points after the entry
- * reaches a new waypoint (e+0x100/0x108): direction is (target - current)
- * normalized by its own length (njHypot, not the incoming float argument --
- * test confirms the first parameter is unused), matching the sin/dx=e+0x274,
- * cos/dy=e+0x278 convention from initEntryState_8c026748. e+0x23c/0x240 place
- * the front/rear reference points along the new heading; e+0x248 (half-width)
- * offsets those into the 4 corners at e+0x118/0x120/0x124/0x12c. The heading
- * angle (e+0x250) is njArcCos(dy) with its sign flipped when dx < 0 --
- * confirmed via test that acosf's argument is the original normalized dy, not
- * the half-width-scaled value that overwrites the same Ghidra SSA variable
- * just before the call.
- */
+/* Re-aims the body at its front point. The float parameter is unused. */
 void TrafficUpdateHeading_8c026bc4(float unused, TrafficEntry *entry)
 {
     TrafficEntry *e = entry;
@@ -346,19 +310,8 @@ void TrafficUpdateHeading_8c026bc4(float unused, TrafficEntry *entry)
 }
 
 
-/* Advances the entry's path-segment cursor (entry+0x2b8 record pointer,
- * entry+0x2bc distance already accumulated into the current record) to the
- * {len,x,y,dx,dy} record containing that distance, then re-derives the
- * vehicle's world position by projecting a fixed distance (entry+0x2c4) from
- * the record's point (entry+0xec/0xf0) towards the current position, along
- * the direction from that record point back to the current position
- * (njHypot, not the incoming float argument -- confirmed unused via probing,
- * same as TrafficUpdateHeading_8c026bc4). Also refreshes the secondary
- * heading angle at entry+0x254 (acosf(dy), sign-flipped when the normalized
- * dx <= 0). Returns 1 when a containing record was found; 0 when the
- * segment run is exhausted (len==0 sentinel), in which case only the
- * segment pointer/distance fields are updated.
- */
+/* The float parameter is unused. Returns 0 once the path block runs out,
+ * leaving the position alone. */
 Sint32 TrafficAdvanceOnPath_8c026ca2(float unused, TrafficEntry *entry)
 {
     TrafficEntry *e = entry;
@@ -407,15 +360,7 @@ Sint32 TrafficAdvanceOnPath_8c026ca2(float unused, TrafficEntry *entry)
     return 1;
 }
 
-/* Relocation fixup for a freshly-loaded blob (called generically from
- * routeLoadTask_8c014338/RouteUnusedTask_8c014784 after loading course
- * data): an array of self-relative offsets from the blob's own base
- * (handle), terminated by 0, each pointing to a record run. Each record is
- * 0xc bytes; the offset array's own slot is overwritten with the record's
- * absolute address, and the record's dword at +4 is likewise turned from a
- * self-relative offset into an absolute pointer, walking 0xc-byte strides
- * until a record's +4 field is 0. Same shape as the two
- * ObjectsRelocatePedGroup* fixups in 0289ac_objects.c. */
+/* Turns a loaded *_MAC_CPU1.DAT's self-relative offsets into pointers. */
 void TrafficRelocatePlacementTable_8c026da4(void *handle)
 {
     Sint32 *outer;
@@ -430,19 +375,10 @@ void TrafficRelocatePlacementTable_8c026da4(void *handle)
     }
 }
 
-/* Scans the global list of traffic entries starting at "other" (advanced via
- * TrafficPathScanNext_8c02f212, an accessor with no arguments -- the list
- * cursor is maintained elsewhere), looking for one whose path projection is
- * ahead of "entry", to derive the speed limit "entry" must obey to avoid it.
- * var_playerBus_8c1bbd9c is a sentinel pointer standing in for the player's bus in this
- * list; when "other" equals it, the check reads the bus's own waypoint fields
- * directly instead (bus has no ordinary entry struct), and the scan always
- * stops there. Returns 9999.0f (no constraint) unless a blocking entry lowers
- * it. As a side effect, an entry already ahead of "entry" (0x2c0 <= entry's
- * own 0x2c0) gets its 0x418 field refreshed with "entry"'s current speed
- * margin -- use unclear; initEntryState_8c026748 initializes the same field
- * to 9999.0f.
- */
+/* Walks the TrafficPathScanNext_8c02f212 hits from `other` and returns the
+ * speed `entry` may drive at without hitting one ahead of it (9999.0f = no
+ * limit). Hits behind `entry` get their followSpeedCap_0x418 set instead.
+ * The scan stops at the player bus. */
 float TrafficComputeBlockedSpeed_8c026eaa(TrafficEntry *entry, TrafficEntry *other)
 {
     TrafficEntry *e = entry;
@@ -485,18 +421,9 @@ float TrafficComputeBlockedSpeed_8c026eaa(TrafficEntry *entry, TrafficEntry *oth
     return result;
 }
 
-/* Rebuilds the "traffic signal frame in use" table (var_trafficSignalFrames_8c227e24,
- * 0..maxId) ahead of loading a new segment's decoration scripts, so a
- * newly-spawned signal's initEntryState_8c026748 init path can pick an id
- * nothing else already owns. When the segment has no scene-object-type list at all
- * (sceneObjectTypeIds_0x14 == NULL), every id up to maxId is conservatively
- * marked in-use. Otherwise every id starts free, then every already-placed
- * decoration script (opcode 5 = fixed id, same opcode table as
- * TrafficResolvePathBlocks_8c026710) across every scene-object type listed for
- * this segment marks its id in-use -- one type's placed-object list is a run
- * of TrafficRelocatePlacementTable_8c026da4-fixed-up 0xc-byte records, each holding its own script
- * pointer at +4, terminated by a 0 there. The per-type table base is
- * var_currentCourse_8c1bb868.macCpu1_0x24. */
+/* Sets var_trafficSignalFrames_8c227e24[id] to 1 for every signal id an
+ * opcode-5 wait in the current segment's placement scripts names, 0 for the
+ * rest; all ids up to maxId when the segment lists no scene object types. */
 void TrafficMarkSignalIdsInUse_8c026dcc(int maxId)
 {
     CourseSegment *seg;
@@ -547,12 +474,7 @@ void TrafficBlinkTurnSignal_8c026f7e(TrafficEntry *entry)
     }
 }
 
-/* Sums the {len,...} record lengths from the entry's current path record
- * (entry+0x2b8) to the end of the current path block (len==0 terminator),
- * minus the distance already consumed into the current record
- * (entry+0x2bc). Read-only: unlike TrafficAdvanceOnPath_8c026ca2, it does
- * not update the entry's segment pointer or distance fields.
- */
+/* Distance to the end of the current path block. */
 float TrafficRemainingPathDistance_8c026fb0(TrafficEntry *entry)
 {
     TrafficEntry *e = entry;
@@ -589,17 +511,8 @@ void TrafficSeekPathRecord_8c026fcc(TrafficEntry *entry, PathRecord *seg)
 }
 
 
-/* Per-frame(ish) script interpreter for one traffic entry: walks opcodes
- * starting at the entry's saved cursor (entry+0x2fc) until it hits a
- * stopping condition, then writes the cursor back. Opcode 0 (spawn) is
- * consumed transparently in a loop of its own -- initEntryState_8c026748
- * is called for every run of opcode-0 words, and the cursor it leaves behind
- * (via its scriptIp out-param) is re-read for the next opcode immediately,
- * without yielding.
- *
- * Returns 1 for every halt except an opcode-9 with no prior spawn, which
- * returns 0.
- */
+/* Runs the script up to the next halt. Returns 0 when it reaches opcode 9
+ * before any opcode 0 or 1 on this call. */
 Sint32 TrafficRunEntryScript_8c027012(TrafficEntry *entry)
 {
     TrafficEntry *e = entry;
@@ -622,10 +535,7 @@ Sint32 TrafficRunEntryScript_8c027012(TrafficEntry *entry)
 
         if (op == 1) {
             if (spawned) {
-                /* Once already spawned (whether by an earlier opcode 0 or by
-                 * this same opcode on a previous call), this halts the
-                 * interpreter *without* consuming itself, so the same
-                 * instruction is reprocessed on the next call. */
+                /* Halts without consuming itself: it runs on the next call. */
                 break;
             }
             spawned = 1;
@@ -670,8 +580,6 @@ Sint32 TrafficRunEntryScript_8c027012(TrafficEntry *entry)
             e->laneChangeState_0x474 = 1;
             e->laneChangeSignalId_0x478 = cur[1];
             e->laneChangeDir_0x47c = cur[2];
-            /* resolves its id argument through var_cpuPathBlocks_8c227e1c the
-             * same way TrafficResolvePathBlocks_8c026710 does */
             e->laneChangePath_0x484 = var_cpuPathBlocks_8c227e1c[cur[3]];
             e->laneChangeArmedBlock_0x480 = e->blockIndex_0x300;
             ip = cur + 4;
@@ -690,10 +598,7 @@ Sint32 TrafficRunEntryScript_8c027012(TrafficEntry *entry)
             initEntryState_8c026748(entry, (int *)&ip);
             break;
         } else {
-            /* Unreachable with well-formed scripts: init_scriptOpWords_8c0460bc only
-             * defines lengths for opcodes 0-10. Preserved as real asm
-             * behavior -- an unrecognized opcode leaves the cursor
-             * untouched and loops forever. */
+            /* An unknown opcode hangs, as in the original. */
             continue;
         }
     }
@@ -702,43 +607,8 @@ Sint32 TrafficRunEntryScript_8c027012(TrafficEntry *entry)
     return 1;
 }
 
-/* Spawns one traffic entry for the script's opcode-0 header word (typeCode),
- * script pointer, and route progress (only ever forwarded to
- * TrafficAdvanceOnPath_8c026ca2/TrafficUpdateHeading_8c026bc4, both of which
- * ignore it -- see their own comments).
- *
- * typeCode's low byte is first checked against a per-(route,timeOfDay) day
- * bitmask (init_dayMasks_8c046208): for typeCode 0x1c/0x1e, a clear bit means "not
- * today" and the entry is skipped entirely (still returns 1, as if spawned).
- *
- * The script's header word (*script) selects the driving task: 10 marks a
- * fixed decoration (TrafficDriveParkedTask_8c02656a, entry+0x2e4=1), anything else a
- * path-following vehicle (TrafficDriveVehicleTask_8c025b98, entry+0x2e4=0). typeCode's 0x8000/
- * 0x4000 bits pick the animation kind (entry+0x48c) and the ground/junction
- * query callback pair stored at entry+0x2c8/0x2cc (elevated-road vs. normal).
- *
- * typeCode's low 12 bits then index a pair of consecutive
- * var_routeModelSlots_8c1bbddc entries (front/rear texlist+model, entry+4/
- * 0x8/0xc/0x10); halved, they give the variant index at entry+0x2e0, used to
- * resolve the variant's body-type animation data (init_variantBodyType_8c04622c ->
- * var_trafficModels_8c1bc3f4, entry+0x14). An unloaded model slot
- * (texlist_0x08 == -1) frees the task and skips the rest of the setup below
- * -- real asm behavior: it still returns 1, same as a completed spawn.
- *
- * For a moving vehicle (*script != 10), the script's block-relative args are
- * resolved (TrafficResolvePathBlocks_8c026710), then TrafficPathScanBuild_8c02f0c8 gets a chance
- * to reject the entry outright (TaskKill, return 0 -- this is the only path
- * that actually reports failure after allocation); on acceptance, the
- * entry's start progress and a small random per-entry path-origin jitter
- * (entry+0x2ec/0x2f0) are recorded.
- *
- * Finally the entry's script cursor is armed (entry+0x2f8/0x2fc), VehiclePartsBind_8c02786c
- * runs any remaining per-type setup, and the entry's script is run once
- * (TrafficRunEntryScript_8c027012) before its path/heading are derived for
- * the first frame. Returns 1 on every completed spawn (day-mask skip and
- * unloaded model slot included), 0 only when TaskSpawn itself fails or
- * TrafficPathScanBuild_8c02f0c8 rejects the entry.
- */
+/* Returns 0 only when the task can't be allocated or the spawn box is
+ * occupied. Typecodes 0x1c/0x1e only run on the days in init_dayMasks_8c046208. */
 STATIC Sint32 spawnEntry_8c0272b8(Uint32 typeCode, float progress, Uint16 *script)
 {
     Task *task;
@@ -790,9 +660,7 @@ STATIC Sint32 spawnEntry_8c0272b8(Uint32 typeCode, float progress, Uint16 *scrip
     e->variantIndex_0x2e0 = variantIdx;
 
     if (var_routeModelSlots_8c1bbddc[typeCode].texlist_0x08 == (NJS_TEXLIST *)-1) {
-        /* Real asm quirk: an unloaded model slot still frees the just-
-         * allocated task, but falls through to the same "success" return
-         * as a completed spawn -- it does not report failure here. */
+        /* Reported as spawned, as in the original. */
         TaskKill_8c014b66(task);
     } else {
         e->extraLightFlags_0x510 = 0;
@@ -839,9 +707,7 @@ STATIC Sint32 spawnEntry_8c0272b8(Uint32 typeCode, float progress, Uint16 *scrip
     return 1;
 }
 
-/* Sets Chunk simple/easy light direction from one of two fixed light-dir
- * vectors, selected by flag. Installed as a DrawFn (arg passed
- * through as flag) by spawnEntry_8c0272b8's caller. */
+/* DrawFn; flag selects the mirror view's light direction. */
 STATIC void applyLighting_8c02756a(int flag)
 {
     float *dir;
@@ -856,44 +722,7 @@ STATIC void applyLighting_8c02756a(int flag)
     njCnkSetEasyLight(dir[0], dir[1], dir[2]);
 }
 
-/* Per-frame TaskAction driving the traffic subsystem: spawned once (with no
- * extra state -- its own TrafficUpdateTask struct doubles as the state, see
- * counter_0x08/presetState_0x0c/queuedItem_0x18 below) into var_tasks_8c1ba5e8.
- * No-ops until the run is under way.
- *
- * Selects the CPU-vehicle collision/attribute meshes as the active
- * ground-query grid for the GroundQueryFindPolygon_8c020914/GroundProbeInterpolateHeight_8c020f7e queries run while
- * spawning/updating entries below (var_activeGroundGrid_8c2264d4 <-
- * .atariCpu_0x18, var_activeAttrGrid_8c228b3c <- .attrCpu_0x20), and resets var_occupiedGroup_8c228b44
- * (its other consumer, TrafficPathScanJunctionOccupied_8c02f28a in 02f0c8_traffic_path_scan, treats
- * -1 as "not cached yet").
- *
- * Tracks a traffic-preset switch via var_busState_8c1bb9d0.scenePresetIds_0x3bc's
- * bits 8-15 (a different byte lane than pedestriansTask_8c0293f6's own use
- * of the same packed word): the first time through with presetState_0x0c == 0
- * and no preset selected, arms presetState_0x0c = 2; once a *different*
- * preset id appears, it's latched into var_activeTrafficPreset_8c227e14 and
- * the task's script cursor (queuedItem_0x18) is refreshed from
- * var_trafficPresetTable_8c227e18[presetId], with presetState_0x0c reset to 0.
- *
- * Then processes the current script record pointed to by queuedItem_0x18
- * (an inline array of 0xc-byte {typeCode, threshold, script, progress}
- * records): while the record has a script (its dword at +4 != 0), a
- * counter (counter_0x08) advances every call (compared against the
- * record's threshold, its Uint16 at +2, *before* the increment); once the
- * threshold is exceeded, the record is "consumed" -- unless
- * presetState_0x0c is not 1 and the record's own progress float is
- * nonzero, this spawns the entry via
- * spawnEntry_8c0272b8(typeCode, progress, script). Real asm quirk:
- * when the (presetState_0x0c != 1 && progress != 0.0f) branch is taken
- * instead, spawnEntry_8c0272b8 is never called, but the record is
- * still advanced as if it had succeeded. Either way "succeeding" advances
- * the cursor to the next record (+0xc) and resets the counter.
- *
- * Finally re-applies the two fixed light directions (applyLighting_8c02756a,
- * one RenderQueueDraw per draw layer) and runs every vehicle task spawned
- * above to completion (TaskRunGroup_8c014b42 on var_tasks_8c1bac28).
- */
+/* Spawns the active preset's placements in turn and runs the traffic tasks. */
 STATIC void updateTask_8c0275d4(TrafficUpdateTask *task, void *state)
 {
     TrafficPlacement *rec;
@@ -945,18 +774,8 @@ STATIC void updateTask_8c0275d4(TrafficUpdateTask *task, void *state)
     TaskRunGroup_8c014b42(var_tasks_8c1bac28);
 }
 
-/* Reading this needs var_trafficPresetTable_8c227e18 typed as the
- * already-known CurrentCourse.macCpu1_0x24 field value instead of the
- * invented PTR_PTR_8c1bb88c global -- its address is
- * var_currentCourse_8c1bb868 + 0x24 -- and var_signalGroups_8c228b40 as Sint32*.
- *
- * Spawns updateTask_8c0275d4 into var_tasks_8c1ba5e8,
- * caching two per-course table pointers (route path array, per-preset script
- * table) and, when time of day is night, a copy of two adjacent
- * CourseSceneParams.rec0_0x0c rows plus their per-20-frame deltas -- consumed
- * by initEntryState_8c026748's junction-light path and (rows only) by
- * BusDrawFadeLights_8c028022 in 027958_bus_draw.
- */
+/* At night, also caches the scene's light on/off levels and their 20-frame
+ * fade steps. */
 void TrafficInit_8c02769e(void)
 {
     TrafficUpdateTask *task;
