@@ -6345,14 +6345,6 @@ CourseConfig init_course30_8c0423b8 = {
     /* tileLayerFiles_0x54 */ { "sd_road_x.dat", "sd_machi_x.dat", "sd_uv_x.dat", "sn_shadow_x.dat", "sn_shadow_x.dat" },
 };
 
-/* ---- closure-delta leaves (reachable via pointer tables) ---- */
-/* string leaves (closure) */
-
-/* view params (closure) */
-
-/* numeric / byte-table leaves (closure) */
-
-/* ---- nested tables & records (Level 1-3), topologically ordered ---- */
 STATIC char *init_course31Seg0PacFiles[4] = {
     "l_road4.pac",
     "l_machi4.pac",
@@ -8279,7 +8271,7 @@ char *init_pedestrianPvmNames_8c043fd8[] = {
     "FAC19.pvm",
 };
 
-/* nj/pvm pairs requested at the tail of requestCourseAssets_8c014088 (traffic signals). */
+/* Traffic signal models. */
 ModelFiles init_signalModelFiles_8c0440dc[6] = {
     { "signal00.njd", "signal00.pvm" },
     { "signal03.njd", "signal03.pvm" },
@@ -8289,6 +8281,5 @@ ModelFiles init_signalModelFiles_8c0440dc[6] = {
     { "", "" },
 };
 
-/* Lives in this TU's section D by address; its one consumer is 01b19c's
- * SystemMenuWriteToVmu_8c01b26c. */
+/* Lives in this TU's section D by address. */
 Sint8 init_bupGameName_8c04410c[] = { 0x29, 0x05, 0x0e, 0x49, 0x05, 0x31, 0x1a, 0x0d, 0x03, 0x2a, 0x00, 0x28, 0x09, 0x20, 0x00, 0x00 };

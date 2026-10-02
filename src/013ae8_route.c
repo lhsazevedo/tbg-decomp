@@ -67,8 +67,7 @@ typedef enum {
     SEGMENT_RELOAD_STATE_DONE      = 3,
 } SegmentReloadState;
 
-/* Task private state for segmentReloadTask_8c014550, same shape as
- * RouteLoadTask (013ae8_route.h) but with its own state enum. */
+/* RouteLoadTask with its own state enum. */
 typedef struct {
     TaskAction action;
     void *state;
@@ -184,8 +183,7 @@ void RouteClearModelSlots_8c013bbc(ModelSlot *slots, int count)
     }
 }
 
-/* Reconcile loaded route-model assets with a -1-terminated list of model
- * indices: request files for newly-wanted models, free the ones dropped. */
+/* models: -1-terminated slot indices. */
 STATIC void syncRouteModelAssets_8c013c34(Sint8 *models)
 {
     ModelSlot *slot;
@@ -233,8 +231,6 @@ STATIC void finishAssetLoad_8c013d42(void)
     AsqFreeQueues_8c011f7e();
 }
 
-/* Initialize the asset queues and kick off one
- * load pass for the currently-wanted route models. */
 void RouteStartModelLoadPass_8c013d78(void)
 {
     LOG_DEBUG(("[ROUTE] starting route-model load pass\n"));
@@ -261,7 +257,7 @@ void RouteFreeAllModels_8c013dae(void)
     }
 }
 
-/* Unlike syncRouteModelAssets there is no njd, so no syFree. */
+/* Textures only, no njd. */
 STATIC void syncPedestrianAssets_8c013df6(Sint8 *models)
 {
     ModelSlot *slot;
@@ -292,7 +288,6 @@ STATIC void syncPedestrianAssets_8c013df6(Sint8 *models)
     }
 }
 
-/* texlist only */
 void RouteFreePedestrianAssets_8c013ee4(void)
 {
     ModelSlot *slot;
@@ -322,8 +317,6 @@ STATIC void freeSegmentAssets_8c013f22(void)
     }
 }
 
-/* Bring the current segment's assets in line: publish its view params,
- * request its models, sync both model tables, and request its dat files. */
 STATIC void syncSegmentAssets_8c013f78(void)
 {
     CourseSegment *entry;
@@ -344,9 +337,8 @@ STATIC void syncSegmentAssets_8c013f78(void)
         var_segmentModels_8c1bc3f0 = AsqRequestModels_8c012030(var_commonDir_8c18ad6c, entry->modelFiles_0x28, 0x10);
     }
 
-    /* When EventPickForSegment_8c02b170 armed a cutscene for this segment, the
-     * cutscene's own model set replaces the segment's traffic models. Cutscenes
-     * only run in PLAY_MODE_NORMAL. */
+    /* A cutscene's own model set replaces the segment's traffic models.
+     * Cutscenes only run in PLAY_MODE_NORMAL. */
     if (var_cutsceneActive_8c1bb900 == 0 || var_playMode_8c1bb8d0 != PLAY_MODE_NORMAL) {
         if (entry->routeModelIndexes_0x10 != 0) {
             var_routeModelIndexes_8c18adb0 = entry->routeModelIndexes_0x10;
@@ -374,14 +366,12 @@ STATIC void syncSegmentAssets_8c013f78(void)
         }
     }
 
-    /* Cutscene armed for this segment: run its setup. */
     if (var_cutsceneActive_8c1bb900 != 0 && var_playMode_8c1bb8d0 == PLAY_MODE_NORMAL) {
         MessageBoxRequestAssets_8c02aa36();
     }
 }
 
-/* Select the route config record for the current
- * route id, and request all of its files. */
+/* Also selects the course's config. */
 STATIC void requestCourseAssets_8c014088(void)
 {
     CourseConfig *config;
@@ -477,9 +467,8 @@ STATIC void requestCourseAssets_8c014088(void)
 }
 
 /* One bit with no fixed sense: a caller primes it one way, hands
- * AsqProcessQueues_8c011fe0 the accessor that writes the other value as its
- * completion callback, and polls Get until it flips. Both polarities are in
- * use -- the load tasks here wait for 1, most menu units wait for 0. */
+ * AsqProcessQueues_8c011fe0 the other accessor as its completion callback, and
+ * polls until it flips. The load tasks here wait for 1, most menus for 0. */
 void RouteClearLatch_8c014322(void)
 {
     LOG_DEBUG(("[ROUTE] load latch cleared\n"));
@@ -499,8 +488,6 @@ void RouteSetLatch_8c014330(void)
     var_loadLatch_8c18adac = 1;
 }
 
-/* Full course load, run once at course entry: route models, then the first
- * segment's. */
 STATIC void routeLoadTask_8c014338(RouteLoadTask *task, void *state)
 {
     int frame;
@@ -560,7 +547,6 @@ STATIC void routeLoadTask_8c014338(RouteLoadTask *task, void *state)
     }
 
     SpriteDraw_8c014f54(&var_loadingResourceGroup_8c1bc3f8, 0, 0.0f, 0.0f, -5.0f);
-    // Loading animation
     frame = task->frame_0x0c;
     task->frame_0x0c = frame + 1;
     SpriteDraw_8c014f54(&var_loadingResourceGroup_8c1bc3f8, (frame >> 2) % 6 + 1, 0.0f, 0.0f, -4.0f);
@@ -585,8 +571,6 @@ void RouteSpawnLoadTask_8c0144fc(void)
     AsqInitQueues_8c011f36(0x20, 0x800, 0x800, 0x40);
 }
 
-/* Segment-boundary reload: load the new segment's assets,
- * rebind the interior texture, then hand off to the input task. */
 STATIC void segmentReloadTask_8c014550(SegmentReloadTask *task, void *state)
 {
     int frame;
@@ -630,7 +614,6 @@ STATIC void segmentReloadTask_8c014550(SegmentReloadTask *task, void *state)
     }
 
     SpriteDraw_8c014f54(&var_loadingResourceGroup_8c1bc3f8, 0, 0.0f, 0.0f, -5.0f);
-    // Loading animation
     frame = task->frame_0x0c;
     task->frame_0x0c = frame + 1;
     SpriteDraw_8c014f54(&var_loadingResourceGroup_8c1bc3f8, (frame >> 2) % 6 + 1, 0.0f, 0.0f, -4.0f);
@@ -665,9 +648,9 @@ void RouteSpawnSegmentReloadTask_8c01468e(void)
     njSetBackColor(0xff418dff, 0xff418dff, 0xff418dff);
 }
 
-/* Like routeLoadTask_8c014338, but on completion binds the interior texture and
- * hands off to the input task (as segmentReloadTask_8c014550 does).
- * Spawned only by UnusedLoadSpawnTask_8c014934, which nothing calls. */
+/* routeLoadTask_8c014338 without TileStreamLoad_8c021810, rebinding the
+ * interior texture at the end. Only UnusedLoadSpawnTask_8c014934 spawns it, and
+ * nothing calls that. */
 void RouteUnusedTask_8c014784(RouteLoadTask *task, void *state)
 {
     int frame;
@@ -729,7 +712,6 @@ void RouteUnusedTask_8c014784(RouteLoadTask *task, void *state)
     }
 
     SpriteDraw_8c014f54(&var_loadingResourceGroup_8c1bc3f8, 0, 0.0f, 0.0f, -5.0f);
-    // Loading animation
     frame = task->frame_0x0c;
     task->frame_0x0c = frame + 1;
     SpriteDraw_8c014f54(&var_loadingResourceGroup_8c1bc3f8, (frame >> 2) % 6 + 1, 0.0f, 0.0f, -4.0f);

@@ -26,8 +26,7 @@ typedef enum {
     ROUTE_LOAD_STATE_DONE      = 4,
 } RouteLoadState;
 
-/* Task private state for routeLoadTask_8c014338 and
- * RouteUnusedTask_8c014784; frame_0x0c drives the loading animation. */
+/* Task layout as seen by the course load tasks. */
 typedef struct {
     TaskAction action;
     void *state;
@@ -56,7 +55,6 @@ typedef struct {
     float fogF_0x10;
 } ViewParams;
 
-/* One entry of var_routeModelSlots_8c1bbddc. */
 typedef struct {
     int requested_0x00;
     int needsLoad_0x04;
@@ -64,8 +62,7 @@ typedef struct {
     void *nj_0x0c;
 } ModelSlot;
 
-/* Appears to be directional lighting followed by color/coefficient records.
- * Roles inferred from value ranges + consumers 023310 */
+/* Probably directional lights, each followed by color/coefficient records. */
 typedef struct {
     float dir0_0x00[3];
     float rec0_0x0c[3][5];
@@ -75,43 +72,36 @@ typedef struct {
     float rec2_0x74[5];
 } CourseSceneParams;
 
-/* Asset handles for the loaded course, filled by requestCourseAssets_8c014088 from
- * the CourseConfig filename field of the same name, and freed by
- * ReplayMenuFreeSessionAssets_8c016182. The names are the course's own file
- * names (Shinjuku day: "s_atari_bus.dat", "sd_road_x.dat", ...): atari =
- * collision, line = route path, attr = attributes, mac = machine/actor,
- * hum = pedestrian. */
+/* Asset handles for the loaded course, one per CourseConfig filename field of
+ * the same name. The names follow the course's files (Shinjuku day:
+ * "s_atari_bus.dat", "sd_road_x.dat", ...): atari = collision, line = route
+ * path, attr = attributes, mac = machine/actor, hum = pedestrian. */
 typedef struct {
     int courseId_0x00;
     void *atariBus_0x04;
-    /* also the base of an 8-byte-stride stop-area table, indexed by a segment
-     * record's stopAreaId_0x02 (StopGetArea_8c02cd7a, 02c884); each slot
-     * holds a StopAreaRecord* at +0, the trailing 4 bytes unknown. */
+    /* also an 8-byte-stride stop-area table, indexed by a segment record's
+     * stopAreaId_0x02; each slot holds a StopAreaRecord* at +0, the trailing
+     * 4 bytes unknown. */
     void *lineBus_0x08;
-    /* not a filename: the route's LineBusNode table, borrowed from the config
-     * (not owned); becomes var_lineNodes_8c227d88 */
+    /* the route's LineBusNode table, borrowed from the config */
     void *lineNodes_0x0c;
     void *attrBus_0x10;
     void *attrMark_0x14;
     void *atariCpu_0x18;
     void *lineCpu_0x1c;
     void *attrCpu_0x20;
-    /* once loaded (and TrafficRelocatePlacementTable_8c026da4-relocated), doubles as a table of
-     * per-scene-object-type placed-instance list pointers, indexed by a
-     * CourseSegment.sceneObjectTypeIds_0x14 entry (see TrafficMarkSignalIdsInUse_8c026dcc, 026710) */
+    /* once relocated, a table of placed-instance lists per scene-object type,
+     * indexed by a CourseSegment.sceneObjectTypeIds_0x14 entry */
     void *macCpu1_0x24;
     void *atariHum_0x28;
-    /* the one asset kept as a model rather than a texlist; also the base of a
-     * 12-byte-stride stop spawn-area table, indexed by a segment record's
-     * ukn_0x06 (pickWaitingPassengers_8c02c8ae, 02c884), whose records start
-     * with a spawn-area pointer. */
+    /* also a 12-byte-stride stop spawn-area table, indexed by a segment
+     * record's ukn_0x06, whose records start with a spawn-area pointer */
     void *lineHum_0x2c;
     void *macHumG0_0x30;
     void *macHumM0_0x34;
-    void *macSignal_0x38; /* 028258 reads it as a TrafficSignalDef table, terminated by type_0x00 == 0 */
+    void *macSignal_0x38; /* TrafficSignalDef table, terminated by type_0x00 == 0 */
     /* road_x, machi_x (town), uv_x, shadow_x -- Ome splits uv into uv1/uv2,
-     * Shinjuku and Wangan repeat shadow_x for the model-only 5th layer.
-     * Consumed by TileStreamInit_8c02175a. */
+     * Shinjuku and Wangan repeat shadow_x for the model-only 5th layer. */
     TileIndex *tileLayers_0x3c[5];
 } CurrentCourse;
 
@@ -124,14 +114,12 @@ extern enum ROUTE var_route_8c18ad1c;
 extern enum TIME_OF_DAY var_timeOfDay_8c18ad20;
 extern ViewParams *var_viewParams_8c18ad28;
 
-// Read by driving/render units 023310, 026710, 021b9c_tile_draw, 024b4c
 extern CourseSceneParams *var_sceneParams_8c18ad24;
 
-/* One 0x2c-byte record of var_currentCourseConfig_8c18ad18->segments_0x08,
- * one per route segment. */
+/* One per route segment. */
 typedef struct {
-    // 0 = terminator (marks the end of the segments array); 2 = stop forced
-    // here; 3 = excluded from the random-stop pick (see StopSetup_8c02caba)
+    // 0 = terminator; 2 = stop forced here; 3 = excluded from the random-stop
+    // pick
     Uint16 type_0x00;
     // id, 0..0x16c
     Uint16 stopAreaId_0x02;
@@ -139,17 +127,15 @@ typedef struct {
     Uint16 ukn_0x04;
     // id, 0..0xa9
     Uint16 ukn_0x06;
-    // candidate stop-spot list for this segment, {count,rec*}-style entries
-    // (see pickWaitingPassengers_8c02c8ae, 02c884)
+    // candidate stop spots, {count,rec*}-style entries
     void *stopCandidates_0x08;
     // tile-region list (gates dat-file requests); element layout unconfirmed
     void *tileRegionList_0x0c;
     Sint8 *routeModelIndexes_0x10;
-    // list of scene-object-type ids present in this segment, terminated by
-    // 0xff (see TrafficMarkSignalIdsInUse_8c026dcc, 026710)
+    // terminated by 0xff
     Uint8 *sceneObjectTypeIds_0x14;
     Sint8 *pedestrianModelList_0x18;
-    // scene object list (ObjectsStartAssetRequests_8c029ad4 streams nj/pvm/dat; e.g. O_FUMI railroad crossing)
+    // scene objects and their nj/pvm/dat (e.g. O_FUMI railroad crossing)
     void *sceneObjectList_0x1c;
     char **datFilenames_0x20;
     ViewParams *viewParams_0x24;
@@ -164,16 +150,13 @@ typedef struct {
     CourseSegment *segments_0x08;
     void *ukn_0x0c;
     CourseSceneParams *sceneParams_0x10;
-    // [randomStopCountMin_0x14, randomStopCountMax_0x18) is the range
-    // StopSetup_8c02caba draws the run's total stop count from
+    // [min, max) of the run's total stop count
     int randomStopCountMin_0x14;
     int randomStopCountMax_0x18;
-    /* nj/dat asset names, loaded by requestCourseAssets_8c014088 into the
-     * CurrentCourse field of the same name. */
+    /* asset filenames for the CurrentCourse field of the same name */
     char *atariBusFile_0x1c;
     char *lineBusFile_0x20;
-    /* not a filename: the route's LineBusNode table, copied straight into
-     * CurrentCourse.lineNodes_0x0c */
+    /* not a filename: the route's LineBusNode table */
     void *lineNodes_0x24;
     char *attrBusFile_0x28;
     char *attrMarkFile_0x2c;
