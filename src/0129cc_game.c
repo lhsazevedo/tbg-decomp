@@ -557,7 +557,7 @@ void GameStartSelectedCourse_8c01328c() {
     var_savedCameraMode_8c227da0 = var_progress_8c1ba1cc.defaultView_0xc6;
     var_savedCameraCueState_8c227da8 = 0;
 
-    RouteSpawnTask_8c0144fc();
+    RouteSpawnLoadTask_8c0144fc();
 }
 
 void GameStartCourse_8c013310(int courseId) {
@@ -582,7 +582,7 @@ void GameStartCourse_8c013310(int courseId) {
     var_savedCameraMode_8c227da0 = var_progress_8c1ba1cc.defaultView_0xc6;
     var_savedCameraCueState_8c227da8 = 0;
 
-    RouteSpawnTask_8c0144fc();
+    RouteSpawnLoadTask_8c0144fc();
 }
 
 /* Waits for GameInit_8c0134ec's asset load, loads the sound driver, then

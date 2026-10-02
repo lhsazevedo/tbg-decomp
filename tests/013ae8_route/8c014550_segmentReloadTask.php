@@ -18,7 +18,7 @@ return new class extends TestCase {
 
         $this->shouldCall('_EventPickForSegment_8c02b170');
         $this->shouldCall('_AsqResetQueues_8c011f6c');
-        $this->shouldCall('_syncSegmentModels_8c013f78');
+        $this->shouldCall('_syncSegmentAssets_8c013f78');
         $this->shouldCall('_RouteClearLatch_8c014322');
         $this->shouldCall('_AsqProcessQueues_8c011fe0')->with(
             $this->addressOf('_AsqNop_8c011120'),

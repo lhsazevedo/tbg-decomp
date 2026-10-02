@@ -73,7 +73,7 @@
           .EXPORT     _RouteSetLatch_8c014330
           .EXPORT     _RouteSpawnSegmentReloadTask_8c01468e
           .EXPORT     _RouteUnusedTask_8c014784
-          .EXPORT     _RouteSpawnTask_8c0144fc
+          .EXPORT     _RouteSpawnLoadTask_8c0144fc
           .EXPORT     _init_bupGameName_8c04410c ; 01b19c.src
           .EXPORT     _var_currentCourseConfig_8c18ad18 ; 02c884.src
           .EXPORT     _var_route_8c18ad1c ; 0129cc_game.c, 0129cc_game.src, 01d7fc.src, 020214.src, 023310.src, 025870_demo.src, 026710.src, 028258.src, 02af78_event.src, 02b464.src, 02c884.src, 02d19c.src, 02d968.src
@@ -92,9 +92,9 @@
           .EXPORT     _syncRouteModelAssets_8c013c34
           .EXPORT     _finishAssetLoad_8c013d42
           .EXPORT     _syncPedestrianAssets_8c013df6
-          .EXPORT     _freeSegmentModels_8c013f22
-          .EXPORT     _syncSegmentModels_8c013f78
-          .EXPORT     _loadRouteModels_8c014088
+          .EXPORT     _freeSegmentAssets_8c013f22
+          .EXPORT     _syncSegmentAssets_8c013f78
+          .EXPORT     _requestCourseAssets_8c014088
           .EXPORT     _routeLoadTask_8c014338
           .EXPORT     _segmentReloadTask_8c014550
           .EXPORT     _init_trafficModelFiles_8c043d64
@@ -652,7 +652,7 @@ LAB_8c013f0c:
           MOV.L       @R15+,R13
           RTS
           MOV.L       @R15+,R14
-_freeSegmentModels_8c013f22:
+_freeSegmentAssets_8c013f22:
           MOV.L       LP_GEN_91607+14,R0
           MOV         #H'2c,R2
           MOV.L       LP_GEN_91607+10,R3
@@ -694,7 +694,7 @@ LP_GEN_91607:
           .DATA.L _AsqFreeModels_8c0120fe
           .DATA.L _TileStreamReleaseAll_8c021a24
 
-_syncSegmentModels_8c013f78:
+_syncSegmentAssets_8c013f78:
           MOV.L       LP_GEN_25668+4,R0
           MOV         #H'2c,R2
           MOV.L       LP_GEN_25668+0,R3
@@ -842,7 +842,7 @@ LAB_8c014076:
           MOV.L       @R15+,R13
           RTS
           MOV.L       @R15+,R14
-_loadRouteModels_8c014088:
+_requestCourseAssets_8c014088:
           MOV.L       R14,@-R15
           MOV.L       R13,@-R15
           MOV.L       R12,@-R15
@@ -1202,7 +1202,7 @@ LAB_8c01435e:
           MOV.L       LP_GEN_90737+62,R3
           JSR         @R3
           MOV.L       @R13,R4
-          BSR         _loadRouteModels_8c014088
+          BSR         _requestCourseAssets_8c014088
           NOP
           BSR         _RouteClearLatch_8c014322
           NOP
@@ -1246,7 +1246,7 @@ LAB_8c014398:
           MOV.L       LP_GEN_90737+54,R3
           JSR         @R3
           NOP
-          BSR         _syncSegmentModels_8c013f78
+          BSR         _syncSegmentAssets_8c013f78
           NOP
           BSR         _RouteClearLatch_8c014322
           NOP
@@ -1377,7 +1377,7 @@ LAB_8c0144f2:
           MOV.L       @R15+,R13
           RTS
           MOV.L       @R15+,R14
-_RouteSpawnTask_8c0144fc:
+_RouteSpawnLoadTask_8c0144fc:
           MOV.L       R14,@-R15
           STS.L       PR,@-R15
           ADD         #-H'8,R15
@@ -1443,7 +1443,7 @@ LAB_8c01456e:
           MOV.L       LP_GEN_28406+66,R2
           JSR         @R2
           NOP
-          BSR         _syncSegmentModels_8c013f78
+          BSR         _syncSegmentAssets_8c013f78
           NOP
           BSR         _RouteClearLatch_8c014322
           NOP
@@ -1611,7 +1611,7 @@ LAB_8c0146ba:
           MOV.L       R4,@(H'8,R2)
           MOV.L       @(H'4,R15),R3
           MOV.L       R4,@(H'c,R3)
-          BSR         _freeSegmentModels_8c013f22
+          BSR         _freeSegmentAssets_8c013f22
           NOP
           MOV.L       LP_GEN_17698+88,R2
           MOV.L       LP_GEN_17698+84,R4
@@ -1702,7 +1702,7 @@ LAB_8c0147aa:
           MOV.L       LP_GEN_48435+14,R3
           JSR         @R3
           MOV.L       @R13,R4
-          BSR         _loadRouteModels_8c014088
+          BSR         _requestCourseAssets_8c014088
           NOP
           BSR         _RouteClearLatch_8c014322
           NOP
@@ -1743,7 +1743,7 @@ LAB_8c0147d8:
           MOV.L       LP_GEN_48435+6,R2
           JSR         @R2
           NOP
-          BSR         _syncSegmentModels_8c013f78
+          BSR         _syncSegmentAssets_8c013f78
           NOP
           BSR         _RouteClearLatch_8c014322
           NOP

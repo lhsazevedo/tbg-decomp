@@ -10,7 +10,7 @@ return new class extends TestCase {
     public function test_frees_models_and_releases_tiles_when_both_set()
     {
         $entry = $this->setup(2, 1, 1);
-        $this->call('_freeSegmentModels_8c013f22');
+        $this->call('_freeSegmentAssets_8c013f22');
         $this->shouldCall('_AsqFreeModels_8c0120fe')->with($this->addressOf('_var_segmentModels_8c1bc3f0'));
         $this->shouldCall('_TileStreamReleaseAll_8c021a24');
     }
@@ -18,21 +18,21 @@ return new class extends TestCase {
     public function test_only_frees_models_when_segment_has_no_tile_regions()
     {
         $this->setup(0, 1, 0);
-        $this->call('_freeSegmentModels_8c013f22');
+        $this->call('_freeSegmentAssets_8c013f22');
         $this->shouldCall('_AsqFreeModels_8c0120fe')->with($this->addressOf('_var_segmentModels_8c1bc3f0'));
     }
 
     public function test_only_releases_tiles_when_segment_has_no_model_files()
     {
         $this->setup(0, 0, 1);
-        $this->call('_freeSegmentModels_8c013f22');
+        $this->call('_freeSegmentAssets_8c013f22');
         $this->shouldCall('_TileStreamReleaseAll_8c021a24');
     }
 
     public function test_does_nothing_when_segment_has_neither()
     {
         $this->setup(0, 0, 0);
-        $this->call('_freeSegmentModels_8c013f22');
+        $this->call('_freeSegmentAssets_8c013f22');
     }
 
     /**

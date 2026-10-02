@@ -8279,7 +8279,7 @@ char *init_pedestrianPvmNames_8c043fd8[] = {
     "FAC19.pvm",
 };
 
-/* nj/pvm pairs requested at the tail of loadRouteModels (traffic signals). */
+/* nj/pvm pairs requested at the tail of requestCourseAssets_8c014088 (traffic signals). */
 ModelFiles init_signalModelFiles_8c0440dc[6] = {
     { "signal00.njd", "signal00.pvm" },
     { "signal03.njd", "signal03.pvm" },

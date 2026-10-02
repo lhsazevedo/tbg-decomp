@@ -307,7 +307,7 @@ void RouteFreePedestrianAssets_8c013ee4(void)
     }
 }
 
-STATIC void freeSegmentModels_8c013f22(void)
+STATIC void freeSegmentAssets_8c013f22(void)
 {
     CourseSegment *entry;
 
@@ -324,7 +324,7 @@ STATIC void freeSegmentModels_8c013f22(void)
 
 /* Bring the current segment's assets in line: publish its view params,
  * request its models, sync both model tables, and request its dat files. */
-STATIC void syncSegmentModels_8c013f78(void)
+STATIC void syncSegmentAssets_8c013f78(void)
 {
     CourseSegment *entry;
     int i;
@@ -382,7 +382,7 @@ STATIC void syncSegmentModels_8c013f78(void)
 
 /* Select the route config record for the current
  * route id, and request all of its files. */
-STATIC void loadRouteModels_8c014088(void)
+STATIC void requestCourseAssets_8c014088(void)
 {
     CourseConfig *config;
     CurrentCourse *course;
@@ -510,7 +510,7 @@ STATIC void routeLoadTask_8c014338(RouteLoadTask *task, void *state)
             AsqResetQueues_8c011f6c();
             njSetTexture(var_loadingResourceGroup_8c1bc3f8.tlist_0x00);
             njLoadCacheTexture(var_loadingResourceGroup_8c1bc3f8.tlist_0x00);
-            loadRouteModels_8c014088();
+            requestCourseAssets_8c014088();
             RouteClearLatch_8c014322();
             AsqProcessQueues_8c011fe0(AsqNop_8c011120, 0, 0, 0, RouteSetLatch_8c014330);
             CHANGE_LOAD_STATE(task, ROUTE_LOAD_STATE_POST_LOAD);
@@ -524,10 +524,10 @@ STATIC void routeLoadTask_8c014338(RouteLoadTask *task, void *state)
                 ObjectsRelocatePedGroupDefs_8c028de8(var_currentCourse_8c1bb868.macHumG0_0x30);
                 ObjectsRelocatePedGroupLists_8c028dd0(var_currentCourse_8c1bb868.macHumM0_0x34);
                 StopSetup_8c02caba();
-                // Arm this segment's cutscene first: syncSegmentModels reads cutsceneActive.
+                // Arm this segment's cutscene first: syncSegmentAssets reads cutsceneActive.
                 EventPickForSegment_8c02b170();
                 AsqResetQueues_8c011f6c();
-                syncSegmentModels_8c013f78();
+                syncSegmentAssets_8c013f78();
                 RouteClearLatch_8c014322();
                 AsqProcessQueues_8c011fe0(AsqNop_8c011120, TileStreamLoad_8c021810, TileStreamRequestUpload_8c02190a, 0, RouteSetLatch_8c014330);
                 CHANGE_LOAD_STATE(task, ROUTE_LOAD_STATE_WAIT);
@@ -566,7 +566,7 @@ STATIC void routeLoadTask_8c014338(RouteLoadTask *task, void *state)
     SpriteDraw_8c014f54(&var_loadingResourceGroup_8c1bc3f8, (frame >> 2) % 6 + 1, 0.0f, 0.0f, -4.0f);
 }
 
-void RouteSpawnTask_8c0144fc(void)
+void RouteSpawnLoadTask_8c0144fc(void)
 {
     RouteLoadTask *task;
     void *state;
@@ -593,10 +593,10 @@ STATIC void segmentReloadTask_8c014550(SegmentReloadTask *task, void *state)
 
     switch (task->stage_0x08) {
         case SEGMENT_RELOAD_STATE_POST_LOAD: {
-            // Arm this segment's cutscene first: syncSegmentModels reads cutsceneActive.
+            // Arm this segment's cutscene first: syncSegmentAssets reads cutsceneActive.
             EventPickForSegment_8c02b170();
             AsqResetQueues_8c011f6c();
-            syncSegmentModels_8c013f78();
+            syncSegmentAssets_8c013f78();
             RouteClearLatch_8c014322();
             AsqProcessQueues_8c011fe0(AsqNop_8c011120, TileStreamLoad_8c021810, TileStreamRequestUpload_8c02190a, 0, RouteSetLatch_8c014330);
             CHANGE_SEGMENT_RELOAD_STATE(task, SEGMENT_RELOAD_STATE_WAIT);
@@ -656,7 +656,7 @@ void RouteSpawnSegmentReloadTask_8c01468e(void)
     TaskSpawn_8c014ae8(var_tasks_8c1ba3c8, (void *) segmentReloadTask_8c014550, (Task **) &task, &state, 0);
     CHANGE_SEGMENT_RELOAD_STATE(task, SEGMENT_RELOAD_STATE_POST_LOAD);
     task->frame_0x0c = 0;
-    freeSegmentModels_8c013f22();
+    freeSegmentAssets_8c013f22();
 
     njGarbageTexture(var_tex_8c157af8, 0xc00);
     AsqInitQueues_8c011f36(0x20, 0x800, 0x800, 0x40);
@@ -677,7 +677,7 @@ void RouteUnusedTask_8c014784(RouteLoadTask *task, void *state)
             AsqResetQueues_8c011f6c();
             njSetTexture(var_loadingResourceGroup_8c1bc3f8.tlist_0x00);
             njLoadCacheTexture(var_loadingResourceGroup_8c1bc3f8.tlist_0x00);
-            loadRouteModels_8c014088();
+            requestCourseAssets_8c014088();
             RouteClearLatch_8c014322();
             AsqProcessQueues_8c011fe0(AsqNop_8c011120, 0, 0, 0, RouteSetLatch_8c014330);
             CHANGE_LOAD_STATE(task, ROUTE_LOAD_STATE_POST_LOAD);
@@ -691,10 +691,10 @@ void RouteUnusedTask_8c014784(RouteLoadTask *task, void *state)
                 ObjectsRelocatePedGroupDefs_8c028de8(var_currentCourse_8c1bb868.macHumG0_0x30);
                 ObjectsRelocatePedGroupLists_8c028dd0(var_currentCourse_8c1bb868.macHumM0_0x34);
                 StopSetup_8c02caba();
-                // Arm this segment's cutscene first: syncSegmentModels reads cutsceneActive.
+                // Arm this segment's cutscene first: syncSegmentAssets reads cutsceneActive.
                 EventPickForSegment_8c02b170();
                 AsqResetQueues_8c011f6c();
-                syncSegmentModels_8c013f78();
+                syncSegmentAssets_8c013f78();
                 RouteClearLatch_8c014322();
                 AsqProcessQueues_8c011fe0(AsqNop_8c011120, 0, TileStreamRequestUpload_8c02190a, 0, RouteSetLatch_8c014330);
                 CHANGE_LOAD_STATE(task, ROUTE_LOAD_STATE_WAIT);

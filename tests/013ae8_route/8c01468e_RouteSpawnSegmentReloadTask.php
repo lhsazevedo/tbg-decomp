@@ -75,7 +75,7 @@ return new class extends TestCase {
             });
         $this->shouldWriteLong($createdTask + 0x08, 0);
         $this->shouldWriteLong($createdTask + 0x0c, 0);
-        $this->shouldCall('_freeSegmentModels_8c013f22');
+        $this->shouldCall('_freeSegmentAssets_8c013f22');
         $this->shouldCall('_njGarbageTexture')->with($this->addressOf('_var_tex_8c157af8'), 0xc00);
         $this->shouldCall('_AsqInitQueues_8c011f36')->with(0x20, 0x800, 0x800, 0x40);
         $this->shouldCall('_njSetTexture')->with(self::TLIST);

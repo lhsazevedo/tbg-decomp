@@ -800,7 +800,7 @@ The same collision misleads *reasoning*, not just sed. `CourseConfig.ukn_0x24`
 and `CurrentCourse.macCpu1_0x24` share the offset spelling, so a naming pass
 tried to name the first from what the second is used for -- the three per-route
 tables it holds would have been called traffic preset tables. They are
-`LineBusNode` tables: `loadRouteModels_8c014088` assigns
+`LineBusNode` tables: `requestCourseAssets_8c014088` assigns
 `course->lineNodes_0x0c = config->lineNodes_0x24`, moving the value to a
 *different* offset, and `macCpu1_0x24` is filled a line later from an entirely
 separate file field. Follow the assignment, never the matching suffix; the sizes

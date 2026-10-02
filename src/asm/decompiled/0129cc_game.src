@@ -165,7 +165,7 @@
           .IMPORT     _njExitTexture
           .IMPORT     _SbExitSystem_8c014a24
           .IMPORT     _syBtExit
-          .IMPORT     _RouteSpawnTask_8c0144fc
+          .IMPORT     _RouteSpawnLoadTask_8c0144fc
           .IMPORT     _var_midiHandles_8c0fcd28
           .IMPORT     _sdMidiPlay
           .IMPORT     _var_peripheral_8c1ba358
@@ -1514,7 +1514,7 @@ LP_GEN_38000:
           .DATA.L _var_progress_8c1ba1cc + H'C6
           .DATA.L _var_savedCameraMode_8c227da0
           .DATA.L _var_savedCameraCueState_8c227da8
-          .DATA.L _RouteSpawnTask_8c0144fc
+          .DATA.L _RouteSpawnLoadTask_8c0144fc
           .DATA.L _var_progress_8c1ba1cc + H'C5
           .DATA.L _const_8c033364
 

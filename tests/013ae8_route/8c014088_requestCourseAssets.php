@@ -84,7 +84,7 @@ return new class extends TestCase {
         if ($forceAd1c !== null) { $this->initUint32($record + 0x00, $forceAd1c); $ad1c = $forceAd1c; }
         if ($forceAd20 !== null) { $this->initUint32($record + 0x04, $forceAd20); $ad20 = $forceAd20; }
 
-        $this->call('_loadRouteModels_8c014088');
+        $this->call('_requestCourseAssets_8c014088');
 
         $this->shouldWriteLong($this->addressOf('_var_currentCourseConfig_8c18ad18'), $record);
         $this->shouldWriteLong($this->addressOf('_var_route_8c18ad1c'), $ad1c);

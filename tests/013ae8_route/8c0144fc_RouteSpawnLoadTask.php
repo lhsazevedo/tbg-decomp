@@ -18,7 +18,7 @@ return new class extends TestCase {
         $createdTask = $this->alloc(0x20);
         $createdState = $this->alloc(0x1c);
 
-        $this->call('_RouteSpawnTask_8c0144fc');
+        $this->call('_RouteSpawnLoadTask_8c0144fc');
 
         $this->shouldCall('_njSetBackColor')->with(0xff418dff, 0xff418dff, 0xff418dff);
         $this->shouldWriteLong($this->addressOf('_var_loadScreenActive_8c157a6c'), 1);

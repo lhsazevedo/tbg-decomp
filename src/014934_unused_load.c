@@ -34,6 +34,6 @@ void UnusedLoadSpawnTask_8c014934()
 
     njGarbageTexture(var_tex_8c157af8, 0xc00);
 
-    /* Half the dat/nj queue budget RouteSpawnTask_8c0144fc asks for. */
+    /* Half the dat/nj queue budget RouteSpawnLoadTask_8c0144fc asks for. */
     AsqInitQueues_8c011f36(0x20, 0x400, 0x400, 0x40);
 }

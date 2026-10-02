@@ -75,7 +75,7 @@ typedef struct {
     float rec2_0x74[5];
 } CourseSceneParams;
 
-/* Asset handles for the loaded course, filled by loadRouteModels_8c014088 from
+/* Asset handles for the loaded course, filled by requestCourseAssets_8c014088 from
  * the CourseConfig filename field of the same name, and freed by
  * ReplayMenuFreeSessionAssets_8c016182. The names are the course's own file
  * names (Shinjuku day: "s_atari_bus.dat", "sd_road_x.dat", ...): atari =
@@ -168,7 +168,7 @@ typedef struct {
     // StopSetup_8c02caba draws the run's total stop count from
     int randomStopCountMin_0x14;
     int randomStopCountMax_0x18;
-    /* nj/dat asset names, loaded by loadRouteModels_8c014088 into the
+    /* nj/dat asset names, loaded by requestCourseAssets_8c014088 into the
      * CurrentCourse field of the same name. */
     char *atariBusFile_0x1c;
     char *lineBusFile_0x20;
@@ -204,7 +204,7 @@ extern void *var_datFiles_8c18adb4[4]; /* one per texel layer, freed after TileS
  * =========
  */
 
-void RouteSpawnTask_8c0144fc(void);
+void RouteSpawnLoadTask_8c0144fc(void);
 void RouteSpawnSegmentReloadTask_8c01468e(void);
 void RouteSetLatch_8c014330(void);
 void RouteClearLatch_8c014322(void);

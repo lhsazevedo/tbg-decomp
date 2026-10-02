@@ -11,7 +11,7 @@ return new class extends TestCase {
     {
         [$entry] = $this->setup(1, 0);
 
-        $this->call('_syncSegmentModels_8c013f78');
+        $this->call('_syncSegmentAssets_8c013f78');
 
         // sceneObjectList_0x1c is 0, and with no tileRegionList_0x0c the
         // current list is marked -1.
@@ -29,7 +29,7 @@ return new class extends TestCase {
         $this->initUint32($fog + 0x04, 0x12345678);
         $this->initUint32($entry + 0x24, $fog);
 
-        $this->call('_syncSegmentModels_8c013f78');
+        $this->call('_syncSegmentAssets_8c013f78');
 
         $this->shouldWriteLong($this->addressOf('_var_viewParams_8c18ad28'), $fog);
         $this->shouldWriteLong($this->addressOf('_var_tileDrawSpan_8c226504'), 0xffffffff);
@@ -47,7 +47,7 @@ return new class extends TestCase {
         $modelFiles = $this->alloc(0x10);
         $this->initUint32($entry + 0x28, $modelFiles);
 
-        $this->call('_syncSegmentModels_8c013f78');
+        $this->call('_syncSegmentAssets_8c013f78');
 
         $this->shouldCall('_AsqRequestModels_8c012030')
             ->with($this->addressOf('_var_commonDir_8c18ad6c'), $modelFiles, 0x10)
@@ -65,7 +65,7 @@ return new class extends TestCase {
         $models = 0x8cab0000;
         $this->initUint32($entry + 0x10, $models);
 
-        $this->call('_syncSegmentModels_8c013f78');
+        $this->call('_syncSegmentAssets_8c013f78');
 
         $this->shouldWriteLong($this->addressOf('_var_routeModelIndexes_8c18adb0'), $models);
         $this->shouldCall('_syncRouteModelAssets_8c013c34')->with($models);
@@ -81,7 +81,7 @@ return new class extends TestCase {
         $models = 0x8cab0000;
         $this->initUint32($entry + 0x10, $models);
 
-        $this->call('_syncSegmentModels_8c013f78');
+        $this->call('_syncSegmentAssets_8c013f78');
 
         // routeModelIndexes is still latched to the segment's list, but the
         // cutscene's set is what actually gets synced.
@@ -101,7 +101,7 @@ return new class extends TestCase {
         $list = 0x8cac0000;
         $this->initUint32($entry + 0x18, $list);
 
-        $this->call('_syncSegmentModels_8c013f78');
+        $this->call('_syncSegmentAssets_8c013f78');
 
         $this->shouldCall('_syncPedestrianAssets_8c013df6')->with($list);
 
@@ -120,7 +120,7 @@ return new class extends TestCase {
         $this->initUint32($entry + 0x0c, 0x21);   // tileRegionList_0x0c, non-null
         $this->initUint32($entry + 0x20, $names);
 
-        $this->call('_syncSegmentModels_8c013f78');
+        $this->call('_syncSegmentAssets_8c013f78');
 
         $this->shouldCall('_ObjectsStartAssetRequests_8c029ad4')->with(0);
         $this->shouldWriteLong($this->addressOf('_var_currentTileRegionList_8c226534'), 0x21);
