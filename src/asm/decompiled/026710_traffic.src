@@ -28,7 +28,7 @@
           .IMPORT     _GroundProbeTrackPolygon_8c020b6c
           .IMPORT     _var_routeModelSlots_8c1bbddc
           .IMPORT     _TaskKill_8c014b66
-          .IMPORT     _TrafficPathScanBuild_8c02f0c8
+          .IMPORT     _TrafficPathScanFirst_8c02f0c8
           .IMPORT     _var_trafficModels_8c1bc3f4
           .IMPORT     _VehiclePartsBind_8c02786c
           .IMPORT     _var_busSimpleLightDir_8c227db8
@@ -1842,7 +1842,7 @@ LP_GEN_50256:
           .DATA.L _TaskKill_8c014b66 ; H'8C02746C
           .DATA.L _AsqGetRandomA_8c012166 ; H'8C027470
           .DATA.L H'41000000 ; H'8C027474
-          .DATA.L _TrafficPathScanBuild_8c02f0c8 ; H'8C027478
+          .DATA.L _TrafficPathScanFirst_8c02f0c8 ; H'8C027478
 LAB_8c02747c:
           MOV.W       LP_GEN_41074,R0
           MOV.L       @R15,R2

@@ -718,7 +718,7 @@ return [
         ],
         [
             "tests" => [
-                "tests/02f0c8_traffic_path_scan/8c02f0c8_TrafficPathScanBuild.php",
+                "tests/02f0c8_traffic_path_scan/8c02f0c8_TrafficPathScanFirst.php",
                 "tests/02f0c8_traffic_path_scan/8c02f212_TrafficPathScanNext.php",
                 "tests/02f0c8_traffic_path_scan/8c02f28a_TrafficPathScanJunctionOccupied.php",
             ],

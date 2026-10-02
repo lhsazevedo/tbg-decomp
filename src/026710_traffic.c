@@ -671,7 +671,7 @@ STATIC Sint32 spawnEntry_8c0272b8(Uint32 typeCode, float progress, Uint16 *scrip
         if (*script != 10) {
             TrafficResolvePathBlocks_8c026710(e, script);
 
-            if (TrafficPathScanBuild_8c02f0c8(task, e, e->pathBlocks_0x304[0], 0, progress, 8.0f) != 0) {
+            if (TrafficPathScanFirst_8c02f0c8(task, e, e->pathBlocks_0x304[0], 0, progress, 8.0f) != 0) {
                 TaskKill_8c014b66(task);
                 return 0;
             }

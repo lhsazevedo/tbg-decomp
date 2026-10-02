@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 use Lhsazevedo\Sh4ObjTest\TestCase;
 
-// TrafficPathScanBuild_8c02f0c8(self, entry, firstScriptArg, flag, startProgress, window):
+// TrafficPathScanFirst_8c02f0c8(self, entry, firstScriptArg, flag, startProgress, window):
 // walks startProgress units along the path records starting at
 // firstScriptArg (no bounds check on this first walk -- a real asm quirk),
 // then samples (x, z) positions every 5.0 units across the next `window`
@@ -78,7 +78,7 @@ return new class extends TestCase {
 
         $base = $this->addressOf('_var_samples_8c228b48');
 
-        $this->call('_TrafficPathScanBuild_8c02f0c8')->with($self, $entry, $seg, 0, 8.0, 8.0);
+        $this->call('_TrafficPathScanFirst_8c02f0c8')->with($self, $entry, $seg, 0, 8.0, 8.0);
 
         $this->shouldWriteFloat($base + 0x00, 8.0);
         $this->shouldWriteFloat($base + 0x04, 0.0);
@@ -109,7 +109,7 @@ return new class extends TestCase {
 
         $base = $this->addressOf('_var_samples_8c228b48');
 
-        $this->call('_TrafficPathScanBuild_8c02f0c8')->with($self, $entry, $seg, 0, 8.0, 8.0);
+        $this->call('_TrafficPathScanFirst_8c02f0c8')->with($self, $entry, $seg, 0, 8.0, 8.0);
 
         $this->shouldWriteFloat($base + 0x00, 8.0);
         $this->shouldWriteFloat($base + 0x04, 0.0);
@@ -141,7 +141,7 @@ return new class extends TestCase {
 
         $base = $this->addressOf('_var_samples_8c228b48');
 
-        $this->call('_TrafficPathScanBuild_8c02f0c8')->with($self, $entry, $seg, 0, 8.0, 8.0);
+        $this->call('_TrafficPathScanFirst_8c02f0c8')->with($self, $entry, $seg, 0, 8.0, 8.0);
 
         $this->shouldWriteFloat($base + 0x00, 8.0);
         $this->shouldWriteFloat($base + 0x04, 0.0);
@@ -173,7 +173,7 @@ return new class extends TestCase {
 
         $base = $this->addressOf('_var_samples_8c228b48');
 
-        $this->call('_TrafficPathScanBuild_8c02f0c8')->with($selfSlot, $entry, $seg, 0, 8.0, 8.0);
+        $this->call('_TrafficPathScanFirst_8c02f0c8')->with($selfSlot, $entry, $seg, 0, 8.0, 8.0);
 
         $this->shouldWriteFloat($base + 0x00, 8.0);
         $this->shouldWriteFloat($base + 0x04, 0.0);
@@ -195,7 +195,7 @@ return new class extends TestCase {
         $entry = $this->makeEntry($seg);
         $self = $this->alloc(4);
 
-        $this->call('_TrafficPathScanBuild_8c02f0c8')->with($self, $entry, $seg, 0, 8.0, 0.0);
+        $this->call('_TrafficPathScanFirst_8c02f0c8')->with($self, $entry, $seg, 0, 8.0, 0.0);
 
         $this->shouldReturn(0);
     }
@@ -224,7 +224,7 @@ return new class extends TestCase {
 
         $base = $this->addressOf('_var_samples_8c228b48');
 
-        $this->call('_TrafficPathScanBuild_8c02f0c8')->with($self, $entry, $seg0, 0, 8.0, 8.0);
+        $this->call('_TrafficPathScanFirst_8c02f0c8')->with($self, $entry, $seg0, 0, 8.0, 8.0);
 
         $this->shouldWriteFloat($base + 0x00, 8.0);
         $this->shouldWriteFloat($base + 0x04, 0.0);

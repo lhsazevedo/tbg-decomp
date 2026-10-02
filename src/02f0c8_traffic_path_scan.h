@@ -39,7 +39,7 @@ void *TrafficPathScanNext_8c02f212(void);
 /**
  * Reports what occupies the stretch of path an entry is about to drive.
  */
-void *TrafficPathScanBuild_8c02f0c8(
+void *TrafficPathScanFirst_8c02f0c8(
     /* The spawning task, excluded from the scan */
     Task *self,
     /* Supplies the successor records once firstRecord's run ends */
@@ -47,7 +47,7 @@ void *TrafficPathScanBuild_8c02f0c8(
     /* Path record the walk starts from */
     PathRecord *firstRecord,
     /* FirstRecord's index in entry->pathBlocks_0x304 */
-    Sint32 argIndex,
+    Sint32 blockIndex,
     /* Distance along the path to skip before sampling */
     float startProgress,
     /* Distance sampled past startProgress */

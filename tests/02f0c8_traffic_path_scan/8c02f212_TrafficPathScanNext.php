@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 use Lhsazevedo\Sh4ObjTest\TestCase;
 
-// TrafficPathScanNext_8c02f212(): continues the sample scan TrafficPathScanBuild_8c02f0c8 started. Walks the
+// TrafficPathScanNext_8c02f212(): continues the sample scan TrafficPathScanFirst_8c02f0c8 started. Walks the
 // (x, z) pairs in var_samples_8c228b48 from cursor var_sampleCursor_8c228b9c up to bound
 // var_sampleEnd_8c228ba0, looking for the state of a live, non-excluded
 // (var_excludedTask_8c228b98) task whose entry sits within 2.5 of a sample -- returning

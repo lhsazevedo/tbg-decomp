@@ -130,11 +130,11 @@ Sint32 init_signalGroupsOme_8c04cd38[54] = {
  * ====================
  */
 
-void *TrafficPathScanBuild_8c02f0c8(
+void *TrafficPathScanFirst_8c02f0c8(
     Task *self,
     TrafficEntry *entry,
     PathRecord *firstRecord,
-    Sint32 argIndex,
+    Sint32 blockIndex,
     float startProgress,
     float window
 )
@@ -152,8 +152,8 @@ void *TrafficPathScanBuild_8c02f0c8(
         remaining -= seg->length_0x00;
         seg++;
         if (seg->length_0x00 == 0.0f) {
-            argIndex++;
-            seg = entry->pathBlocks_0x304[argIndex];
+            blockIndex++;
+            seg = entry->pathBlocks_0x304[blockIndex];
         }
     }
 
@@ -163,8 +163,8 @@ void *TrafficPathScanBuild_8c02f0c8(
             remaining -= seg->length_0x00;
             seg++;
             if (seg->length_0x00 == 0.0f) {
-                argIndex++;
-                seg = entry->pathBlocks_0x304[argIndex];
+                blockIndex++;
+                seg = entry->pathBlocks_0x304[blockIndex];
             }
         }
         if (seg == (PathRecord *)-1) {

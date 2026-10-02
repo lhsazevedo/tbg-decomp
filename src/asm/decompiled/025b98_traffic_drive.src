@@ -12,7 +12,7 @@
           .IMPORT     _SignalMarkCrossingOccupied_8c028984
           .IMPORT     _AttrQueryRegionOccupied_8c02f08a
           .IMPORT     _var_groundQueryPoint_8c1bc460
-          .IMPORT     _TrafficPathScanBuild_8c02f0c8
+          .IMPORT     _TrafficPathScanFirst_8c02f0c8
           .IMPORT     _TrafficComputeBlockedSpeed_8c026eaa
           .IMPORT     _TrafficSeekPathRecord_8c026fcc
           .IMPORT     _TrafficBlinkTurnSignal_8c026f7e
@@ -573,7 +573,7 @@ LP_GEN_70698:
           .DATA.L H'41F00000 ; H'8C025FA0
           .DATA.L _var_groundQueryPoint_8c1bc460 ; H'8C025FA4
           .DATA.L H'41000000 ; H'8C025FA8
-          .DATA.L _TrafficPathScanBuild_8c02f0c8 ; H'8C025FAC
+          .DATA.L _TrafficPathScanFirst_8c02f0c8 ; H'8C025FAC
           .DATA.L _TrafficComputeBlockedSpeed_8c026eaa ; H'8C025FB0
 LAB_8c025fb4:
           MOV.W       LP_GEN_89798,R0
@@ -738,7 +738,7 @@ LP_GEN_89798:
           .DATA.L _TrafficSeekPathRecord_8c026fcc ; H'8C0260E4
           .DATA.L _var_groundQueryPoint_8c1bc460 ; H'8C0260E8
           .DATA.L H'41000000 ; H'8C0260EC
-          .DATA.L _TrafficPathScanBuild_8c02f0c8 ; H'8C0260F0
+          .DATA.L _TrafficPathScanFirst_8c02f0c8 ; H'8C0260F0
           .DATA.L _TrafficComputeBlockedSpeed_8c026eaa ; H'8C0260F4
           .DATA.L _TrafficBlinkTurnSignal_8c026f7e ; H'8C0260F8
           .DATA.L _TrafficRemainingPathDistance_8c026fb0 ; H'8C0260FC
@@ -1245,7 +1245,7 @@ LP_GEN_81398:
           .DATA.W H'0080 ; H'8C0264AC
           .DATA.W H'0510 ; H'8C0264AE
           .DATA.L H'41000000 ; H'8C0264B0
-          .DATA.L _TrafficPathScanBuild_8c02f0c8 ; H'8C0264B4
+          .DATA.L _TrafficPathScanFirst_8c02f0c8 ; H'8C0264B4
           .DATA.L _TrafficRunEntryScript_8c027012 ; H'8C0264B8
           .DATA.L _TrafficUpdateHeading_8c026bc4 ; H'8C0264BC
           .DATA.L _var_timeOfDay_8c18ad20 ; H'8C0264C0

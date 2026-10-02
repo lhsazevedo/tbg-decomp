@@ -28,7 +28,7 @@ return new class extends TestCase {
         $this->setSize('_BusDrawPlaceEntity_8c027c3c', 4);
         $this->setSize('_GeomDistanceXZ_8c02081c', 4);
         $this->setSize('_TrafficLookaheadScan_8c02dfca', 4);
-        $this->setSize('_TrafficPathScanBuild_8c02f0c8', 4);
+        $this->setSize('_TrafficPathScanFirst_8c02f0c8', 4);
         $this->setSize('_BusDrawFadeLights_8c028022', 4);
         $this->setSize('_TrafficAdvanceOnPath_8c026ca2', 4);
         $this->setSize('_TrafficRunEntryScript_8c027012', 4);
@@ -161,7 +161,7 @@ return new class extends TestCase {
 
         $this->shouldWriteLong($entry + 0x080, 0); // cleared unconditionally at top
 
-        $this->shouldCall('_TrafficPathScanBuild_8c02f0c8')
+        $this->shouldCall('_TrafficPathScanFirst_8c02f0c8')
             ->with($task, $entry, 0x1234, 0, 0.0, 8.0)
             ->andReturn(0xabc);
         // blocked: returns immediately, no tail bookkeeping at all.
@@ -178,7 +178,7 @@ return new class extends TestCase {
 
         $this->shouldWriteLong($entry + 0x080, 0); // cleared unconditionally at top
 
-        $this->shouldCall('_TrafficPathScanBuild_8c02f0c8')
+        $this->shouldCall('_TrafficPathScanFirst_8c02f0c8')
             ->with($task, $entry, 0x1234, 0, 0.0, 8.0)
             ->andReturn(0);
         $this->shouldCall('_TrafficRunEntryScript_8c027012')->with($entry)->andReturn(1);

@@ -2,7 +2,7 @@
           .IMPORT     _var_busState_8c1bb9d0
           .IMPORT     _var_playerBus_8c1bbd9c
           .IMPORT     _var_tasks_8c1bac28
-          .EXPORT     _TrafficPathScanBuild_8c02f0c8
+          .EXPORT     _TrafficPathScanFirst_8c02f0c8
           .EXPORT     _TrafficPathScanNext_8c02f212
           .EXPORT     _TrafficPathScanJunctionOccupied_8c02f28a
           .EXPORT     _init_signalGroupsWangan_8c04c980 ; 026710_traffic
@@ -11,7 +11,7 @@
           .EXPORT     _var_signalGroups_8c228b40 ; 026710
           .EXPORT     _var_occupiedGroup_8c228b44 ; 026710
           .SECTION     P, CODE, ALIGN=4
-_TrafficPathScanBuild_8c02f0c8:
+_TrafficPathScanFirst_8c02f0c8:
           FMOV        FR4,FR6
           MOV.L       R14,@-R15
 LAB_8c02f0cc:

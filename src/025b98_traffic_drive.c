@@ -243,7 +243,7 @@ void TrafficDriveVehicleTask_8c025b98(Task *task, TrafficEntry *e)
                 } else if (waitState == 3) {
                     if (e->laneChangeArmedBlock_0x480 == e->blockIndex_0x300) {
                         float halfWindow = e->width_0x23c + 8.0f;
-                        void *hitBox = TrafficPathScanBuild_8c02f0c8(task, e, e->laneChangePath_0x484,
+                        void *hitBox = TrafficPathScanFirst_8c02f0c8(task, e, e->laneChangePath_0x484,
                                                      e->blockIndex_0x300,
                                                      e->pathDistanceCopy_0x2c0 - halfWindow,
                                                      halfWindow + waitAdvance);
@@ -277,7 +277,7 @@ void TrafficDriveVehicleTask_8c025b98(Task *task, TrafficEntry *e)
                 } else if (waitState == 4) {
                     if (e->projectDistance_0x2c4 != 2.0f) {
                         float halfWindow = e->width_0x23c + 8.0f;
-                        void *hitBox = TrafficPathScanBuild_8c02f0c8(task, e, e->laneChangePath_0x484,
+                        void *hitBox = TrafficPathScanFirst_8c02f0c8(task, e, e->laneChangePath_0x484,
                                                      e->blockIndex_0x300,
                                                      e->pathDistanceCopy_0x2c0 - halfWindow,
                                                      halfWindow + waitAdvance);
@@ -444,7 +444,7 @@ void TrafficDriveVehicleTask_8c025b98(Task *task, TrafficEntry *e)
         }
     } else if (e->driveState_0x2b4 == 3) {
         /* ---- wait for the spawn box to clear after a script reload ---- */
-        if (TrafficPathScanBuild_8c02f0c8(task, e, e->pathBlocks_0x304[0], 0, 0.0f, 8.0f) != 0) {
+        if (TrafficPathScanFirst_8c02f0c8(task, e, e->pathBlocks_0x304[0], 0, 0.0f, 8.0f) != 0) {
             return;
         }
         TrafficRunEntryScript_8c027012(e);
