@@ -27,23 +27,9 @@ DriveCueState var_driveCueState_8c2264b8;
  * ====================
  */
 
-/* Per-frame audio cue task for a drive, installed by DriveCueInit_8c020528
- * on var_driveCueState_8c2264b8 (reached directly, not through the state
- * param) and freed once the drive reaches its ending phase. Runs three
- * independent cues:
- *
- * - an ambient chime plus pad rumble, replayed on a randomized timer while
- *   the bus is above a low speed threshold
- *   (ambientChimeState_0x00/ambientChimeTimer_0x04), plus a one-shot variant armed
- *   by TrafficDriveVehicle_8c025b98;
- * - the driver's own stop announcement (stopAnnounceState_0x08): a
- *   route-specific chime, then the spoken stop name 60 frames later via
- *   SndPlayAdx_8c010cd6, requested by announceRequested_0x0c;
- * - a chime at a fixed list of per-route segments, third-person camera only
- *   (segmentChimeLatch_0x14).
- *
- * It is also what advances rumble playback, while the VIBRATION setting is
- * on. */
+/* Three independent cues: an ambient chime plus rumble while moving, the
+ * stop announcement (chime, then the spoken stop name), and a chime at fixed
+ * route segments. Also drives rumble playback. */
 STATIC void driveCueTask_8c020214(Task *task, void *state)
 {
     int atCueSegment;
@@ -57,8 +43,7 @@ STATIC void driveCueTask_8c020214(Task *task, void *state)
 
     switch (var_driveCueState_8c2264b8.ambientChimeState_0x00) {
     case 0:
-        /* Cleared below on every call, so this fires only when
-         * TrafficDriveVehicle_8c025b98 armed it since the last frame. */
+        /* Cleared below every frame. */
         if (var_driveCueState_8c2264b8.trafficChimeArmed_0x18 != 0) {
             sdMidiPlay(var_midiHandles_8c0fcd28[3], 1, AsqGetRandomInRangeB_8c0121be(6) + 9, 0);
             var_driveCueState_8c2264b8.ambientChimeTimer_0x04 = (AsqGetRandomInRangeB_8c0121be(3) + 2) * 30;
@@ -174,8 +159,7 @@ STATIC void driveCueTask_8c020214(Task *task, void *state)
         break;
 
     case 3:
-        /* Re-arms the sequence for the next stop: 02c884 clears the latch on
-         * a stop-heading transition. */
+        /* Re-arms once the next stop is targeted. */
         if (var_driveCueState_8c2264b8.announceRequested_0x0c == 0) {
             var_driveCueState_8c2264b8.stopAnnounceState_0x08 = 0;
         }
@@ -185,9 +169,8 @@ STATIC void driveCueTask_8c020214(Task *task, void *state)
         break;
     }
 
-    /* Fixed, hand-authored segment lists, unrelated to the run's actual
-     * active stops -- this cue fires at the same handful of route locations
-     * every run, and only from a third-person camera. */
+    /* Hand-authored segments, unrelated to the run's active stops.
+     * Third-person camera only. */
     atCueSegment = 0;
     if (var_cameraMode_8c227d9c >= 2) {
         int prevSeg = var_prevStopSegment_8c22870c;
@@ -227,7 +210,6 @@ STATIC void driveCueTask_8c020214(Task *task, void *state)
     }
 }
 
-/* See 020214_drive_cue.h. */
 void DriveCueInit_8c020528()
 {
     Task* created_task;
