@@ -39,6 +39,20 @@ bus along a predefined route with predefined passenger stop requests.
   select.
 - The VMU LCD shows art during gameplay (see `01bb48` `vmsLcd_*`).
 
+## Results bonuses
+
+The BONUS screen (`ResultsShowPassedRun_8c01e0b4`, `01d7fc_results.c`) has six
+rows; their sum is added to `exp_0x90`.
+
+| Row | Variable | Value |
+|---|---|---|
+| 完走 (finish) | `var_scoreFinishBonus_8c2263ec` | `init_finishBonusTable_8c0451a0[route*3+tod]` on a passed run, else 0 |
+| 初走 (first run) | `var_scoreFirstRunBonus_8c2263f0` | 100 if the course was never played before, pass or fail |
+| driver's points x10 | `var_scoreDriverPointsBonus_8c2263f4` | driver points x 10 |
+| バッジ獲得 (badge earned) | `var_scoreBadgeBonus_8c2263f8` | 50/100/200 for a new bronze/silver/gold badge |
+| 乗客 (passengers) | `var_scorePassengerBonus_8c2263fc` | passengers x 5 |
+| EVENT | `var_scoreEventBonus_8c226400` | events x 50 |
+
 ## Camera
 
 - Cycled in-drive with the **Y button** (`BusCameraUpdate_8c025078`,

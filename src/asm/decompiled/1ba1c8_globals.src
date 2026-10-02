@@ -189,7 +189,7 @@
                                     ; 01d7fc
                                     ; 01e27c
                                     ; 02b464
-          .EXPORT     _var_firstClearOfCourse_8c1bb8e0 ; 016d2c_course_menu
+          .EXPORT     _var_firstRunOfCourse_8c1bb8e0 ; 016d2c_course_menu
                                     ; 01d7fc
           .EXPORT     _var_passengerCount_8c1bb8e4 ; 016d2c_course_menu
                                     ; 01d7fc
@@ -421,7 +421,7 @@ _var_demoIndex_8c1bb8d8:
           .RES.B      4
 _var_runSucceeded_8c1bb8dc:
           .RES.B      4
-_var_firstClearOfCourse_8c1bb8e0:
+_var_firstRunOfCourse_8c1bb8e0:
           .RES.B      4
 _var_passengerCount_8c1bb8e4:
           .RES.B      4

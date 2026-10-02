@@ -458,8 +458,8 @@ return new class extends TestCase {
         }
 
         // Step 2: Check if course is unlocked (read course[4].everPlayed_0x02)
-        // Course is not unlocked (we init'd it to 0), so write 1 to var_firstClearOfCourse_8c1bb8e0
-        $this->shouldWriteLong($this->addressOf('_var_firstClearOfCourse_8c1bb8e0'), 1);
+        // Course is not unlocked (we init'd it to 0), so write 1 to var_firstRunOfCourse_8c1bb8e0
+        $this->shouldWriteLong($this->addressOf('_var_firstRunOfCourse_8c1bb8e0'), 1);
         if ($this->isAsmObject()) {
             $this->shouldCall('__divls');
         }
@@ -534,9 +534,9 @@ return new class extends TestCase {
             $this->shouldCall('_ReplayMenuFreeSessionAssets_8c016182');
         }
 
-        // Step 2: Course is already unlocked (everPlayed_0x02 == 1), so write 0 to var_firstClearOfCourse_8c1bb8e0
+        // Step 2: Course is already unlocked (everPlayed_0x02 == 1), so write 0 to var_firstRunOfCourse_8c1bb8e0
         // No write to course[4].everPlayed_0x02
-        $this->shouldWriteLong($this->addressOf('_var_firstClearOfCourse_8c1bb8e0'), 0);
+        $this->shouldWriteLong($this->addressOf('_var_firstRunOfCourse_8c1bb8e0'), 0);
 
         // Step 3: Initialize various game state variables (this always happens)
         $this->shouldWriteLongTo('_var_eventCount_8c1bb8e8', 0);
@@ -673,7 +673,7 @@ return new class extends TestCase {
         });
         $this->setSize('_ReplayMenuFreeSessionAssets_8c016182', 4);
         $this->setSize('_GameStartCourse_8c013310', 4);
-        $this->setSize('_var_firstClearOfCourse_8c1bb8e0', 4);
+        $this->setSize('_var_firstRunOfCourse_8c1bb8e0', 4);
         $this->setSize('_var_passengerCount_8c1bb8e4', 4);
         $this->setSize('_var_eventCount_8c1bb8e8', 4);
         $this->setSize('_var_worstPenaltyMsgSet_8c1bb8ec', 4);

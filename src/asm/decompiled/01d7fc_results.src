@@ -59,7 +59,7 @@
           .IMPORT     _AsqProcessQueues_8c011fe0
           .IMPORT     _var_timeOfDay_8c18ad20
           .IMPORT     _var_route_8c18ad1c
-          .IMPORT     _var_firstClearOfCourse_8c1bb8e0
+          .IMPORT     _var_firstRunOfCourse_8c1bb8e0
           .IMPORT     _var_runState_8c2285c4
           .IMPORT     _var_passengerCount_8c1bb8e4
           .IMPORT     _var_eventCount_8c1bb8e8
@@ -89,8 +89,8 @@
           .EXPORT     _const_8c038908
           .EXPORT     _const_8c038934
           .EXPORT     _const_8c038940
-          .EXPORT     _var_scoreCourseClearBonus_8c2263ec
-          .EXPORT     _var_scoreFirstClearBonus_8c2263f0
+          .EXPORT     _var_scoreFinishBonus_8c2263ec
+          .EXPORT     _var_scoreFirstRunBonus_8c2263f0
           .EXPORT     _var_scoreDriverPointsBonus_8c2263f4
           .EXPORT     _var_scoreBadgeBonus_8c2263f8
           .EXPORT     _var_scorePassengerBonus_8c2263fc
@@ -556,8 +556,8 @@ LP_GEN_73625:
           .DATA.L H'43460000 ; H'8C01DB88
           .DATA.L _var_scoreDriverPointsBonus_8c2263f4 ; H'8C01DB8C
           .DATA.L H'43240000 ; H'8C01DB90
-          .DATA.L _var_scoreFirstClearBonus_8c2263f0 ; H'8C01DB94
-          .DATA.L _var_scoreCourseClearBonus_8c2263ec ; H'8C01DB98
+          .DATA.L _var_scoreFirstRunBonus_8c2263f0 ; H'8C01DB94
+          .DATA.L _var_scoreFinishBonus_8c2263ec ; H'8C01DB98
           .DATA.L _var_gameMode_8c1bb8fc ; H'8C01DB9C
           .DATA.L _var_progress_8c1ba1cc ; H'8C01DBA0
           .DATA.L _RenderStartFadeOut_8c022b60 ; H'8C01DBA4
@@ -1305,11 +1305,11 @@ LP_GEN_76652:
           .RES.W 1 ; H'8C01E186
           .DATA.L _var_timeOfDay_8c18ad20 ; H'8C01E188
           .DATA.L _var_route_8c18ad1c ; H'8C01E18C
-          .DATA.L _var_scoreCourseClearBonus_8c2263ec ; H'8C01E190
+          .DATA.L _var_scoreFinishBonus_8c2263ec ; H'8C01E190
           .DATA.L _var_runSucceeded_8c1bb8dc ; H'8C01E194
-          .DATA.L _init_courseClearScoreTable_8c0451a0 ; H'8C01E198
-          .DATA.L _var_scoreFirstClearBonus_8c2263f0 ; H'8C01E19C
-          .DATA.L _var_firstClearOfCourse_8c1bb8e0 ; H'8C01E1A0
+          .DATA.L _init_finishBonusTable_8c0451a0 ; H'8C01E198
+          .DATA.L _var_scoreFirstRunBonus_8c2263f0 ; H'8C01E19C
+          .DATA.L _var_firstRunOfCourse_8c1bb8e0 ; H'8C01E1A0
           .DATA.L _var_runState_8c2285c4 + H'C ; H'8C01E1A4
           .DATA.L _var_scoreDriverPointsBonus_8c2263f4 ; H'8C01E1A8
           .DATA.L _var_award_8c1bb8f8 ; H'8C01E1AC
@@ -1484,16 +1484,16 @@ _const_8c038960:        ; from defines
           ;.DATA.B     H'00
           .DATA.B      H'62, H'75, H'73, H'5F, H'6D, H'65, H'6D, H'2E, H'56, H'4D, H'49, H'00
           .SECTION    D, DATA, ALIGN=4
-_init_courseClearScoreTable_8c0451a0:        ; from defines
+_init_finishBonusTable_8c0451a0:        ; from defines
           .DATA.B      H'F0, H'00, H'40, H'01
           .DATA.B      H'54, H'01, H'C8, H'00
           .DATA.B      H'18, H'01, H'2C, H'01
           .DATA.B      H'C8, H'00, H'DC, H'00
           .DATA.B      H'04, H'01, H'00, H'00
           .SECTION    B,DATA,ALIGN=4
-_var_scoreCourseClearBonus_8c2263ec:
+_var_scoreFinishBonus_8c2263ec:
           .RES.B      4
-_var_scoreFirstClearBonus_8c2263f0:
+_var_scoreFirstRunBonus_8c2263f0:
           .RES.B      4
 _var_scoreDriverPointsBonus_8c2263f4:
           .RES.B      4

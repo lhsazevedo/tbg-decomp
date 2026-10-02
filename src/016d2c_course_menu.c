@@ -1222,10 +1222,10 @@ STATIC void courseConfirmMenuTask_8c0181b6(Task * task, void *state)
                 ReplayMenuFreeSessionAssets_8c016182();
 
                 if (var_progress_8c1ba1cc.courses_0x44[courseIndex].everPlayed_0x02 == 0) {
-                    var_firstClearOfCourse_8c1bb8e0 = 1;
+                    var_firstRunOfCourse_8c1bb8e0 = 1;
                     var_progress_8c1ba1cc.courses_0x44[courseIndex].everPlayed_0x02 = 1;
                 } else {
-                    var_firstClearOfCourse_8c1bb8e0 = 0;
+                    var_firstRunOfCourse_8c1bb8e0 = 0;
                 }
 
                 var_eventCount_8c1bb8e8 = 0;

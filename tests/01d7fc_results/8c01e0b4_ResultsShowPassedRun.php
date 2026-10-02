@@ -17,7 +17,7 @@ return new class extends TestCase {
         $this->resolveSymbols();
 
         $this->initUint32($this->addressOf('_var_runSucceeded_8c1bb8dc'), 0);
-        $this->initUint32($this->addressOf('_var_firstClearOfCourse_8c1bb8e0'), 0);
+        $this->initUint32($this->addressOf('_var_firstRunOfCourse_8c1bb8e0'), 0);
         $this->initUint32($this->addressOf('_var_runState_8c2285c4') + 0x0c, 0);
         // ROUTE_SHINJUKU
         $this->initUint32($this->addressOf('_var_route_8c18ad1c'), 0);
@@ -35,8 +35,8 @@ return new class extends TestCase {
 
         $this->call('_ResultsShowPassedRun_8c01e0b4');
 
-        $this->shouldWriteLong($this->addressOf('_var_scoreCourseClearBonus_8c2263ec'), 0);
-        $this->shouldWriteLong($this->addressOf('_var_scoreFirstClearBonus_8c2263f0'), 0);
+        $this->shouldWriteLong($this->addressOf('_var_scoreFinishBonus_8c2263ec'), 0);
+        $this->shouldWriteLong($this->addressOf('_var_scoreFirstRunBonus_8c2263f0'), 0);
         $this->shouldWriteLong($this->addressOf('_var_scoreDriverPointsBonus_8c2263f4'), 0);
         $this->shouldWriteByte($this->addressOf('_var_award_8c1bb8f8'), 0);
         $this->shouldWriteByte($this->addressOf('_var_award_8c1bb8f8'), 0);
@@ -57,7 +57,7 @@ return new class extends TestCase {
         $course1 = 0x44 + 1 * 8;
 
         $this->initUint32($this->addressOf('_var_runSucceeded_8c1bb8dc'), 1);
-        $this->initUint32($this->addressOf('_var_firstClearOfCourse_8c1bb8e0'), 1);
+        $this->initUint32($this->addressOf('_var_firstRunOfCourse_8c1bb8e0'), 1);
         $this->initUint32($this->addressOf('_var_runState_8c2285c4') + 0x0c, 0x5a); // 90 -> top award tier
         // ROUTE_WANGAN
         $this->initUint32($this->addressOf('_var_route_8c18ad1c'), 1);
@@ -74,9 +74,9 @@ return new class extends TestCase {
 
         $this->call('_ResultsShowPassedRun_8c01e0b4');
 
-        // ushort[route*3+tod] = ushort[4] of init_courseClearScoreTable_8c0451a0 (0x118 = 280)
-        $this->shouldWriteLong($this->addressOf('_var_scoreCourseClearBonus_8c2263ec'), 280);
-        $this->shouldWriteLong($this->addressOf('_var_scoreFirstClearBonus_8c2263f0'), 100);
+        // ushort[route*3+tod] = ushort[4] of init_finishBonusTable_8c0451a0 (0x118 = 280)
+        $this->shouldWriteLong($this->addressOf('_var_scoreFinishBonus_8c2263ec'), 280);
+        $this->shouldWriteLong($this->addressOf('_var_scoreFirstRunBonus_8c2263f0'), 100);
         $this->shouldWriteLong($this->addressOf('_var_scoreDriverPointsBonus_8c2263f4'), 900);
         $this->shouldWriteByte($this->addressOf('_var_award_8c1bb8f8'), 3);
         $this->shouldWriteLong($this->addressOf('_var_scoreBadgeBonus_8c2263f8'), 200);
@@ -98,7 +98,7 @@ return new class extends TestCase {
         $course8 = 0x44 + 8 * 8;
 
         $this->initUint32($this->addressOf('_var_runSucceeded_8c1bb8dc'), 0);
-        $this->initUint32($this->addressOf('_var_firstClearOfCourse_8c1bb8e0'), 0);
+        $this->initUint32($this->addressOf('_var_firstRunOfCourse_8c1bb8e0'), 0);
         $this->initUint32($this->addressOf('_var_runState_8c2285c4') + 0x0c, 0x46); // 70 -> low award tier
         // ROUTE_OME
         $this->initUint32($this->addressOf('_var_route_8c18ad1c'), 2);
@@ -115,8 +115,8 @@ return new class extends TestCase {
 
         $this->call('_ResultsShowPassedRun_8c01e0b4');
 
-        $this->shouldWriteLong($this->addressOf('_var_scoreCourseClearBonus_8c2263ec'), 0);
-        $this->shouldWriteLong($this->addressOf('_var_scoreFirstClearBonus_8c2263f0'), 0);
+        $this->shouldWriteLong($this->addressOf('_var_scoreFinishBonus_8c2263ec'), 0);
+        $this->shouldWriteLong($this->addressOf('_var_scoreFirstRunBonus_8c2263f0'), 0);
         $this->shouldWriteLong($this->addressOf('_var_scoreDriverPointsBonus_8c2263f4'), 700);
         $this->shouldWriteByte($this->addressOf('_var_award_8c1bb8f8'), 1);
         $this->shouldWriteLong($this->addressOf('_var_scoreBadgeBonus_8c2263f8'), 0x32);
@@ -135,7 +135,7 @@ return new class extends TestCase {
         $this->resolveSymbols();
 
         $this->initUint32($this->addressOf('_var_runSucceeded_8c1bb8dc'), 0);
-        $this->initUint32($this->addressOf('_var_firstClearOfCourse_8c1bb8e0'), 0);
+        $this->initUint32($this->addressOf('_var_firstRunOfCourse_8c1bb8e0'), 0);
         $this->initUint32($this->addressOf('_var_runState_8c2285c4') + 0x0c, 0x50); // 80 -> mid award tier
         // ROUTE_SHINJUKU
         $this->initUint32($this->addressOf('_var_route_8c18ad1c'), 0);
@@ -152,8 +152,8 @@ return new class extends TestCase {
 
         $this->call('_ResultsShowPassedRun_8c01e0b4');
 
-        $this->shouldWriteLong($this->addressOf('_var_scoreCourseClearBonus_8c2263ec'), 0);
-        $this->shouldWriteLong($this->addressOf('_var_scoreFirstClearBonus_8c2263f0'), 0);
+        $this->shouldWriteLong($this->addressOf('_var_scoreFinishBonus_8c2263ec'), 0);
+        $this->shouldWriteLong($this->addressOf('_var_scoreFirstRunBonus_8c2263f0'), 0);
         $this->shouldWriteLong($this->addressOf('_var_scoreDriverPointsBonus_8c2263f4'), 800);
         $this->shouldWriteByte($this->addressOf('_var_award_8c1bb8f8'), 2);
         $this->shouldWriteLong($this->addressOf('_var_scoreBadgeBonus_8c2263f8'), 100);

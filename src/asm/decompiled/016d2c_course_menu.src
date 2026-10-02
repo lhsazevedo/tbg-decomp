@@ -55,7 +55,7 @@
           .IMPORT     _MessageBoxOpenTextbox_8c02ae3e
           .IMPORT     _PromptHandleBinary_8c016caa
           .IMPORT     _ReplayMenuFreeSessionAssets_8c016182
-          .IMPORT     _var_firstClearOfCourse_8c1bb8e0
+          .IMPORT     _var_firstRunOfCourse_8c1bb8e0
           .IMPORT     _var_eventCount_8c1bb8e8
           .IMPORT     _var_passengerCount_8c1bb8e4
           .IMPORT     _var_worstPenaltyDelta_8c1bb8f0
@@ -3057,7 +3057,7 @@ LP_GEN_82242:
           .DATA.L _PromptHandleBinary_8c016caa ; H'8C018398
           .DATA.L _RenderStartFadeOut_8c022b60 ; H'8C01839C
           .DATA.L _ReplayMenuFreeSessionAssets_8c016182 ; H'8C0183A0
-          .DATA.L _var_firstClearOfCourse_8c1bb8e0 ; H'8C0183A4
+          .DATA.L _var_firstRunOfCourse_8c1bb8e0 ; H'8C0183A4
           .DATA.L __divls ; H'8C0183A8
           .DATA.L _var_eventCount_8c1bb8e8 ; H'8C0183AC
           .DATA.L _var_passengerCount_8c1bb8e4 ; H'8C0183B0

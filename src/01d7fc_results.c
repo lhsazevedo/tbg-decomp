@@ -32,8 +32,8 @@
  * ====================
  */
 
-STATIC int var_scoreCourseClearBonus_8c2263ec;
-STATIC int var_scoreFirstClearBonus_8c2263f0;
+STATIC int var_scoreFinishBonus_8c2263ec; /* BONUS "finish" row; passed runs only */
+STATIC int var_scoreFirstRunBonus_8c2263f0; /* BONUS "first run" row */
 STATIC int var_scoreDriverPointsBonus_8c2263f4;
 STATIC int var_scoreBadgeBonus_8c2263f8;
 STATIC int var_scorePassengerBonus_8c2263fc;
@@ -46,7 +46,8 @@ STATIC int var_runFailed_8c226408;
  * ====================
  */
 
-STATIC Uint16 init_courseClearScoreTable_8c0451a0[10] = {
+/* Indexed by route * 3 + time of day. */
+STATIC Uint16 init_finishBonusTable_8c0451a0[10] = {
     240, 320, 340, 200, 280, 300, 200, 220, 260, 0,
 };
 
@@ -181,10 +182,10 @@ STATIC void resultsTask_8c01d8e0(void)
             drawScoreDigits_8c01d7fc(var_scoreDriverPointsBonus_8c2263f4, 164.0f);
             /* fallthrough */
         case 2:
-            drawScoreDigits_8c01d7fc(var_scoreFirstClearBonus_8c2263f0, 130.0f);
+            drawScoreDigits_8c01d7fc(var_scoreFirstRunBonus_8c2263f0, 130.0f);
             /* fallthrough */
         case 1:
-            drawScoreDigits_8c01d7fc(var_scoreCourseClearBonus_8c2263ec, 96.0f);
+            drawScoreDigits_8c01d7fc(var_scoreFinishBonus_8c2263ec, 96.0f);
             break;
         }
         SpriteDraw_8c014f54(&var_menuState_8c1bc7a8, 0x1b, 0.0f, 0.0f, -4.0f);
@@ -206,8 +207,8 @@ STATIC void resultsTask_8c01d8e0(void)
         drawScoreDigits_8c01d7fc(var_scorePassengerBonus_8c2263fc, 232.0f);
         drawScoreDigits_8c01d7fc(var_scoreBadgeBonus_8c2263f8, 198.0f);
         drawScoreDigits_8c01d7fc(var_scoreDriverPointsBonus_8c2263f4, 164.0f);
-        drawScoreDigits_8c01d7fc(var_scoreFirstClearBonus_8c2263f0, 130.0f);
-        drawScoreDigits_8c01d7fc(var_scoreCourseClearBonus_8c2263ec, 96.0f);
+        drawScoreDigits_8c01d7fc(var_scoreFirstRunBonus_8c2263f0, 130.0f);
+        drawScoreDigits_8c01d7fc(var_scoreFinishBonus_8c2263ec, 96.0f);
         if (var_award_8c1bb8f8 != 0) {
             SpriteDraw_8c014f54(&var_menuState_8c1bc7a8, 0x1f - var_award_8c1bb8f8, 0.0f, 0.0f, -4.0f);
         }
@@ -383,15 +384,15 @@ void ResultsShowPassedRun_8c01e0b4(void)
     int courseIndex;
 
     if (var_runSucceeded_8c1bb8dc == 0) {
-        var_scoreCourseClearBonus_8c2263ec = 0;
+        var_scoreFinishBonus_8c2263ec = 0;
     } else {
-        var_scoreCourseClearBonus_8c2263ec =
-            init_courseClearScoreTable_8c0451a0[var_route_8c18ad1c * 3 + var_timeOfDay_8c18ad20];
+        var_scoreFinishBonus_8c2263ec =
+            init_finishBonusTable_8c0451a0[var_route_8c18ad1c * 3 + var_timeOfDay_8c18ad20];
     }
-    if (var_firstClearOfCourse_8c1bb8e0 == 0) {
-        var_scoreFirstClearBonus_8c2263f0 = 0;
+    if (var_firstRunOfCourse_8c1bb8e0 == 0) {
+        var_scoreFirstRunBonus_8c2263f0 = 0;
     } else {
-        var_scoreFirstClearBonus_8c2263f0 = 100;
+        var_scoreFirstRunBonus_8c2263f0 = 100;
     }
     var_scoreDriverPointsBonus_8c2263f4 = var_runState_8c2285c4.driverPoints_0x0c * 10;
     if (var_route_8c18ad1c == ROUTE_SHINJUKU) {
@@ -436,7 +437,7 @@ void ResultsShowPassedRun_8c01e0b4(void)
     }
     var_scorePassengerBonus_8c2263fc = var_passengerCount_8c1bb8e4 * 5;
     var_scoreEventBonus_8c226400 = var_eventCount_8c1bb8e8 * 0x32;
-    var_scoreTotal_8c226404 = var_scoreCourseClearBonus_8c2263ec + var_scoreFirstClearBonus_8c2263f0 + var_scoreDriverPointsBonus_8c2263f4 + var_scoreBadgeBonus_8c2263f8 + var_scorePassengerBonus_8c2263fc +
+    var_scoreTotal_8c226404 = var_scoreFinishBonus_8c2263ec + var_scoreFirstRunBonus_8c2263f0 + var_scoreDriverPointsBonus_8c2263f4 + var_scoreBadgeBonus_8c2263f8 + var_scorePassengerBonus_8c2263fc +
                    var_scoreEventBonus_8c226400;
     var_progress_8c1ba1cc.exp_0x90 = var_progress_8c1ba1cc.exp_0x90 + var_scoreTotal_8c226404;
     if (99999 < var_progress_8c1ba1cc.exp_0x90) {

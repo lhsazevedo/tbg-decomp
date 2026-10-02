@@ -37,7 +37,7 @@ enum PLAY_MODE var_playMode_8c1bb8d0;
 int var_isAttractDemo_8c1bb8d4;
 int var_demoIndex_8c1bb8d8;
 int var_runSucceeded_8c1bb8dc;
-int var_firstClearOfCourse_8c1bb8e0;
+int var_firstRunOfCourse_8c1bb8e0;
 int var_passengerCount_8c1bb8e4;
 int var_eventCount_8c1bb8e8;
 int var_worstPenaltyMsgSet_8c1bb8ec;

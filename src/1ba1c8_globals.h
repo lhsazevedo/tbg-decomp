@@ -343,7 +343,7 @@ extern enum PLAY_MODE var_playMode_8c1bb8d0;
 extern int var_isAttractDemo_8c1bb8d4;
 extern int var_demoIndex_8c1bb8d8;
 extern int var_runSucceeded_8c1bb8dc;
-extern int var_firstClearOfCourse_8c1bb8e0; // the course had never been played
+extern int var_firstRunOfCourse_8c1bb8e0; // never played before: feeds the first-run bonus
 extern int var_passengerCount_8c1bb8e4;
 extern int var_eventCount_8c1bb8e8;
 extern int var_worstPenaltyMsgSet_8c1bb8ec;
