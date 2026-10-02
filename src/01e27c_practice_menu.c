@@ -39,28 +39,26 @@ enum STATE {
     STATE_CANCEL_FADE_OUT      /* 8 */
 };
 
-/* Separate state space for lessonGuideTask_8c01e63c, sharing state_0x18
- * with the enum above (each task action owns it while installed). */
+/* lessonGuideTask_8c01e63c's states, in the same state_0x18. */
 enum GUIDE_STATE {
     GUIDE_STATE_INIT,                    /* 0 */
     GUIDE_STATE_FADE_IN,                 /* 1 */
     GUIDE_STATE_VIEW,                    /* 2 */
     GUIDE_STATE_VIEW_END,                /* 3: scrolled past the last row of guide text */
-    GUIDE_STATE_FADE_OUT_TO_DESCRIPTION, /* 4: A, on towards the drill */
-    GUIDE_STATE_FADE_OUT_TO_MENU         /* 5: B, or A on the last row: back to the lesson list */
+    GUIDE_STATE_FADE_OUT_TO_DESCRIPTION, /* 4 */
+    GUIDE_STATE_FADE_OUT_TO_MENU         /* 5 */
 };
 
-/* Separate state space for lessonMenuTask_8c01ebf2, sharing state_0x18 with the
- * enums above (each task action owns it while installed). */
+/* lessonMenuTask_8c01ebf2's states, in the same state_0x18. */
 enum LESSON_STATE {
     LESSON_STATE_INIT,             /* 0 */
     LESSON_STATE_DIALOG_FADE_IN,   /* 1 */
     LESSON_STATE_DIALOG_QUEUE,     /* 2 */
     LESSON_STATE_MENU,             /* 3 */
-    LESSON_STATE_QUIT_ROW,      /* 4: selected_0x38 scrolled past 10, only scroll-up allowed */
+    LESSON_STATE_QUIT_ROW,         /* 4: the row past the 11 lessons that leaves practice */
     LESSON_STATE_QUIT_PROMPT,      /* 5 */
-    LESSON_STATE_SELECT_FADE_OUT,  /* 6: fades out, then -> enterGuide_8c01e920 */
-    LESSON_STATE_QUIT_FADE_OUT  /* 7: fades out, then commits the run's result and returns */
+    LESSON_STATE_SELECT_FADE_OUT,  /* 6 */
+    LESSON_STATE_QUIT_FADE_OUT     /* 7 */
 };
 
 /* ====================
@@ -70,7 +68,7 @@ enum LESSON_STATE {
 
 int var_practiceLesson_8c22640c;
 int var_practiceRules_8c226410;
-STATIC int var_lessonDialogQueue_8c226414[6]; /* built by buildDialogQueue_8c01e992, -1 terminated */
+STATIC int var_lessonDialogQueue_8c226414[6]; /* INSTR_* ids, -1 terminated */
 /* Practice drives finished since the lesson list was opened; still 0 means the
  * player never drove, and the day does not advance. */
 STATIC int var_lessonAttempts_8c22642c;
@@ -80,8 +78,7 @@ STATIC int var_lessonAttempts_8c22642c;
  * ====================
  */
 
-/* Message-box text (Shift-JIS, private to this unit). Sized to include the
- * archived asm's trailing zero padding. */
+/* Sized to include the original's trailing zero padding. */
 STATIC const char const_confirmStartMsg_8c03896c[TEXT_SJIS_SIZE(24)] = MSG_CONFIRM_START_PRACTICE;
 STATIC const char const_emptyMsg_8c038984[4] = "";
 STATIC const char const_confirmQuitMsg_8c038988[TEXT_SJIS_SIZE(44)] = MSG_CONFIRM_QUIT_PRACTICE;
@@ -91,22 +88,16 @@ STATIC const char const_confirmQuitMsg_8c038988[TEXT_SJIS_SIZE(44)] = MSG_CONFIR
 STATIC char init_lessonPageStarts_8c0451b4[] = {
     0, 2, 3, 4, 6, 9, 12, 15, 17, 19, 24, 25
 };
-/* Per-drill rule mask (-> var_practiceRules_8c226410, see 01e27c_practice_menu.h),
- * indexed by var_practiceLesson_8c22640c. Drills 0-6 turn everything but the
- * driving off, 7 keeps the schedule and the stop sequence, 8-10 are full
- * runs. */
+/* Per-lesson var_practiceRules_8c226410: lessons 0-6 are driving only, 7 keeps
+ * the schedule and the stop sequence, 8-10 are full runs. */
 STATIC Uint32 init_practiceRules_8c0451c0[] = { 0, 0, 0, 0, 0, 0, 0, 6, 0xf, 0xf, 0xf };
-/* Rows of guide text per lesson, for lessonGuideTask_8c01e63c's 4-row window. */
+/* Rows of guide text per lesson. */
 STATIC char init_lessonGuideRows_8c0451ec[] = { 0x10, 0x0a, 0x14, 0x11, 0x12, 0x14, 0x15, 0x13, 0x13, 0x1b, 0x09, 0x00 };
-/* njUserClipping rectangle the guide text scrolls behind: (2, 6)-(11, 7) as
- * floats, in the PVR's 32-pixel tiles, so x 64-352 y 192-224. */
+/* Guide text clip rect, floats (2, 6)-(11, 7) in 32-pixel tiles: x 64-352,
+ * y 192-224. */
 STATIC char init_guideClipRect_8c0451f8[] = { 0x00, 0x00, 0x00, 0x40, 0x00, 0x00, 0xc0, 0x40, 0x00, 0x00, 0x30, 0x41, 0x00, 0x00, 0xe0, 0x40 };
-/* Indexed by the drive-side penalty id in var_worstPenaltyMsgSet_8c1bb8ec (a PENALTY_MSG_* from
- * 02b464_grading.c -- the worst penalty of the run just finished);
- * gives the INSTR_* dialog id (016d2c_course_menu.h) shown for it below.
- * Several PENALTY_MSG_* ids collapse onto the same INSTR_* (e.g. both
- * PENALTY_MSG_OFF_COURSE_MEDIUM and _MAJOR show INSTR_OFF_COURSE_MEDIUM) --
- * see the INSTR_* enum comment for which ids that leaves never shown. */
+/* PENALTY_MSG_* -> INSTR_* dialog. Some penalties share a dialog; the INSTR_*
+ * enum lists the ones this leaves never shown. */
 STATIC char init_penaltyMsgSetInstr_8c045208[] = {
     INSTR_COLLISION_CAR_MINOR, INSTR_COLLISION_CAR_MEDIUM, INSTR_COLLISION_CAR_FATAL, INSTR_COLLISION_WALL_MINOR,
     INSTR_COLLISION_WALL_MEDIUM, INSTR_COLLISION_WALL_SEVERE, INSTR_OFF_COURSE_MINOR, INSTR_OFF_COURSE_MEDIUM,
@@ -322,10 +313,8 @@ STATIC void enterDescription_8c01e576(Task *task)
     AsqProcessQueues_8c011fe0(AsqNop_8c011120, 0, 0, 0, RouteClearLatch_8c014322);
 }
 
-/* The selected lesson's guide text, scrolled a row at a time through a 4-row
- * window (cursorRow_0x40 over init_lessonGuideRows_8c0451ec[lesson]). A carries on
- * into the lesson's description pages (enterDescription_8c01e576), B --
- * or A once scrolled past the last row -- goes back to the lesson list. */
+/* Guide text in a 4-row window. A goes on to the description pages; B, or A
+ * past the last row, goes back to the lesson list. */
 STATIC void lessonGuideTask_8c01e63c(Task *task)
 {
     switch (var_menuState_8c1bc7a8.state_0x18) {
@@ -462,10 +451,8 @@ STATIC void lessonGuideTask_8c01e63c(Task *task)
     );
 }
 
-/* Hands the screen back to lessonGuideTask_8c01e63c. A nonzero
- * CourseMenuRequestSysResgrp_8c018568 means practice01 had to be queued, so
- * wait for the load; otherwise it is still resident and the fade-in starts
- * now. */
+/* CourseMenuRequestSysResgrp_8c018568 returns 0 when practice01 is still
+ * resident. */
 STATIC void enterGuide_8c01e920(Task *task)
 {
     TaskSwitch_8c014b3e(task, lessonGuideTask_8c01e63c);
@@ -489,16 +476,13 @@ STATIC void enterGuide_8c01e920(Task *task)
     // coverage:ignore-next-line
 }
 
-/* Fills var_lessonDialogQueue_8c226414 with init_instructorDialogs_8c044c08
- * indices, -1 terminated. */
 STATIC void buildDialogQueue_8c01e992(void)
 {
     int i = 0;
 
-    /* Only a practice drive leaves both flags set, and only then is a result
-     * reported -- free run (var_gameMode_8c1bb8fc == 1) never reports one.
-     * Arriving straight from the course menu (nothing pending, practice set)
-     * gets the tips/warning, or the final-day preamble from day 30. */
+    /* Only a finished practice drive outside free run reports a result.
+     * Arriving from the course menu gets the tips, or from day 30 the
+     * final-day preamble. */
     if (var_gameMode_8c1bb8fc == 1 || var_runReportPending_8c1bb8b8 == 0 || var_runWasPractice_8c1bb8bc == 0) {
         if (var_gameMode_8c1bb8fc != 1 && var_runReportPending_8c1bb8b8 == 0 && var_runWasPractice_8c1bb8bc != 0) {
             if (var_progress_8c1ba1cc.days_0x00 < 0x1e) {
@@ -551,8 +535,7 @@ STATIC void drawDigits_8c01ead8(int value, float y)
     } while (value != 0);
 }
 
-/* Keeps the 5-row window over the 11 lessons: the top row follows the
- * selection and stops at 6, the last full page. */
+/* 5-row window over the 11 lessons; 6 is the last full page. */
 STATIC void scrollTowardSelection_8c01ebc8(void)
 {
     if (var_menuState_8c1bc7a8.scrollTopRow_0x44 < var_menuState_8c1bc7a8.selected_0x38 - 4) {
@@ -564,9 +547,7 @@ STATIC void scrollTowardSelection_8c01ebc8(void)
     }
 }
 
-/* The practice lesson list: plays out var_lessonDialogQueue_8c226414 first,
- * then the 11 lessons and their best scores, with a 12th selection past the
- * end that leaves practice mode. */
+/* Plays out var_lessonDialogQueue_8c226414, then the lesson list. */
 STATIC void lessonMenuTask_8c01ebf2(Task *task, void *state)
 {
     int row, i, spriteId, modeIcon;
@@ -663,8 +644,6 @@ STATIC void lessonMenuTask_8c01ebf2(Task *task, void *state)
                 var_menuTextboxCharLimit_8c225fb8 = 0;
             }
 
-            /* Yes/No prompt indicator sprite, shared with state 7's
-             * still-fading path below. */
             SpriteDraw_8c014f54(
                 &var_menuState_8c1bc7a8,
                 var_menuState_8c1bc7a8.cursorCol_0x3c + 2,
@@ -702,9 +681,7 @@ STATIC void lessonMenuTask_8c01ebf2(Task *task, void *state)
 
                 var_menuState_8c1bc7a8.cursorCol_0x3c = 0;
                 var_menuState_8c1bc7a8.cursorRow_0x40 = 0;
-                /* Offset 0x24, not scrollTopRow_0x44 -- Ghidra conflated the two
-                 * like the earlier x/y mixups; this union slot is otherwise
-                 * unused by this screen. */
+                /* Offset 0x24, not scrollTopRow_0x44: as in the original. */
                 var_menuState_8c1bc7a8.pos.title.flagY_0x24 = 0.0f;
                 ReplayMenuFreeSessionAssets_8c016182();
 
@@ -719,8 +696,6 @@ STATIC void lessonMenuTask_8c01ebf2(Task *task, void *state)
                 return;
             }
 
-            /* Still fading out: shares LESSON_STATE_QUIT_PROMPT's Yes/No
-             * prompt indicator draw. */
             SpriteDraw_8c014f54(
                 &var_menuState_8c1bc7a8,
                 var_menuState_8c1bc7a8.cursorCol_0x3c + 2,
@@ -729,8 +704,6 @@ STATIC void lessonMenuTask_8c01ebf2(Task *task, void *state)
             break;
     }
 
-    /* Shared drawing tail, reached by every state that doesn't return/goto
-     * out early above. */
     if (var_gameMode_8c1bb8fc == 0) {
         CourseMenuDrawDateAndExp_8c016ee6();
     }
@@ -778,8 +751,6 @@ STATIC void lessonMenuTask_8c01ebf2(Task *task, void *state)
     SpriteDraw_8c014f54(&var_menuState_8c1bc7a8, 0, 0.0f, 0.0f, -8.0f);
 }
 
-/* Course-button onSelect (init_courseMenuButtons_8c04442c), and the way back
- * from a lesson's guide text: opens the lesson list on the task it is given. */
 void PracticeMenuEnter_8c01f114(Task *task)
 {
     var_playMode_8c1bb8d0 = PLAY_MODE_PRACTICE;
@@ -810,10 +781,8 @@ void PracticeMenuEnter_8c01f114(Task *task)
     RenderStartFadeIn_8c022a9c(10);
 }
 
-/* Re-entry after a practice drive ends, whether retired from the pause menu
- * or run to the end (02b464). Records the score if it beat the lesson's best,
- * then opens the lesson list again -- spawning its own tasks, since the drive's
- * task groups are gone by now. */
+/* Re-entry after a practice drive: records a new best score and spawns the
+ * lesson list's tasks from scratch. */
 void PracticeMenuReturn_8c01f21c(void)
 {
     Task *created_task;
