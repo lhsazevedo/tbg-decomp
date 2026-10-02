@@ -32,8 +32,7 @@
     ((a & 0x1) << 15) | ((r & 0x1F) << 10) | ((g & 0x1F) << 5) | (b & 0x1F) \
 )
 
-/* String encoding and layout differ per language; the Japanese values are
- * unchanged from before this file split.
+/* String encoding and layout differ per language.
  *
  * Japanese uses a fixed GLYPH_WIDTH grid. English advances per glyph using
  * the ink metrics measured off BUS_FONT.FFF (init_glyphMetricsEn below): the
@@ -51,11 +50,10 @@
 #define TEXT_GLYPH_GAP     2
 #define TEXT_GLYPH_INK_MIN  3 /* narrowest ink in the table below */
 #define GLYPH_ADVANCE_MIN  (TEXT_GLYPH_INK_MIN + TEXT_GLYPH_GAP)
-/* The panel art is inset from the text area callers pass in; wrapping at the
- * full width would run text over the artwork's edge. Japanese never hits
- * this: its 24 fixed columns land inside the inset, and its strings are
- * authored to fit. English wraps short by this much per side; centring
- * still uses the full width, so the slack becomes an even margin. */
+/* The panel art is inset from the text area callers pass in. Japanese
+ * strings are authored to fit inside it; English wraps short by this much
+ * per side, and centring on the full width turns the slack into an even
+ * margin. */
 #define TEXT_BOX_MARGIN    24
 #define TEXT_WRAP_WIDTH(box) ((box)->width_0x0c - 2 * TEXT_BOX_MARGIN)
 #define TEXT_GLYPH(c)         (init_glyphMetricsEn[(Uint8)(c) - TEXT_ASCII_FIRST])
@@ -94,8 +92,7 @@ typedef struct {
 STATIC NJS_TEXNAME *var_glyphTexnames_8c1bc78c;
 STATIC NJS_TEXLIST *var_glyphTexlists_8c1bc790;
 STATIC ResourceGroup var_fontResourceGroup_8c1bc794;
-/* One entry per glyph texture slot: 0xffff free, otherwise the slot's own
- * index. Parallel to var_glyphTexnames/var_glyphTexlists above. */
+/* Per glyph texture slot: 0xffff free, otherwise the slot's own index. */
 STATIC Sint16 *var_glyphSlotUsed_8c1bc7a0;
 STATIC void *var_glyphBuffer_8c1bc7a4;
 
@@ -106,10 +103,8 @@ STATIC void *var_glyphBuffer_8c1bc7a4;
 
 #ifdef GAME_LANG_EN
 /* Indexed by ASCII - TEXT_ASCII_FIRST. Measured off
- * tests/015034_text/data/BUS_FONT.FFF using the same glyph lookup and 2bpp
- * unpack the engine uses, so the numbers match what the font actually draws.
- * The ink width is left summed with TEXT_GLYPH_GAP so each row stays
- * hand-tunable. */
+ * tests/015034_text/data/BUS_FONT.FFF with the engine's own glyph lookup and
+ * unpack. */
 STATIC const GlyphMetric init_glyphMetricsEn[TEXT_ASCII_COUNT] = {
     { 0x8140,  6 + TEXT_GLYPH_GAP,  0 }, /* sp */
     { 0x8149,  6 + TEXT_GLYPH_GAP, 10 }, /* '!' */
@@ -328,7 +323,7 @@ STATIC Uint16 getGlyphIndex_8c015034(Uint16 character_code)
                         }
                         offset_index -= 0x8;
                     } else {
-                        character_code = 0x81A6;  // Default character code
+                        character_code = 0x81A6;
                         continue;
                     }
                 }
@@ -347,9 +342,7 @@ STATIC unpackGlyph_8c015110(
     Uint8 *font,
     Sint16 *dest
 ) {
-    /* No `= {0}`: SHC implements that as a zeroed section C template the
-     * original object doesn't carry. unpacked needs no clearing anyway --
-     * the unpack loop writes every byte. */
+    /* No `= {0}`: SHC emits it as a section C template the original lacks. */
     Uint8 unpacked[UNPACKED_GLYPH_SIZE];
     Sint16 mapped[GLYPH_TEXTURE_SIZE];
 
@@ -357,8 +350,7 @@ STATIC unpackGlyph_8c015110(
     size_t i;
     size_t j;
 
-    /* Clearing dest is dead work -- njTwiddledTexture rewrites all of it --
-     * but the original does it. */
+    /* Clearing dest is dead work, but the original does it. */
     for (i = 0; i < GLYPH_TEXTURE_SIZE; i++) {
         dest[i] = 0;
         mapped[i] = 0;
@@ -373,8 +365,6 @@ STATIC unpackGlyph_8c015110(
         unpacked[(i * 4) + 3] = byte & 0x3;
     };
 
-    // This loop differs from the original asm's structure but keeps its
-    // behavior.
     for (i = j = 0; i < GLYPH_TEXTURE_SIZE; i++) {
         Uint8 color_index;
 
@@ -416,11 +406,9 @@ void TxtDestroy_8c01529c()
     LOG_INFO(("[TXT] Destroying text module\n"));
 
     for (i = 0; i < GLYPH_COUNT; i++) {
-        /* Unsigned comparison, matching the asm's EXTU.W before the compare:
-         * releases the slots holding a glyph index while skipping the 0xffff
-         * free marker. Signed, every slot looks free, the textures leak, and
-         * a later njLoadTexture at the same global index silently keeps the
-         * old glyph. */
+        /* Unsigned, as in the asm (EXTU.W). Signed, every slot looks free,
+         * the textures leak, and a later njLoadTexture at the same global
+         * index keeps the old glyph. */
         if ((Uint16) var_glyphSlotUsed_8c1bc7a0[i] < 0xffed) {
             njReleaseTexture(&var_glyphTexlists_8c1bc790[i]);
         }
@@ -710,8 +698,7 @@ int TxtDrawTextBox_8c0155e0(TextBox *box, int limit)
                     glyphIndex++;
                 }
 
-                /* Every slot is resident: nothing left to load this glyph
-                 * into, so give up on the box. */
+                /* No free slot. */
                 if (glyphIndex >= GLYPH_COUNT) {
                     return -1;
                 }
@@ -794,8 +781,6 @@ int TxtDrawTextBox_8c0155e0(TextBox *box, int limit)
     return 1;
 }
 
-/* Waits for the demo .bin AsqRequestDat to land, then unpacks its replay
- * stream into var_demoBuffer_8c1bc828 and starts the course it names. */
 STATIC void demoLoadTask_8c01594c(Task *task)
 {
     void *local;
@@ -815,8 +800,6 @@ STATIC void demoLoadTask_8c01594c(Task *task)
     GameStartSelectedCourse_8c01328c();
 }
 
-/* Takes the next of the 20 init_demos_8c044154 entries and requests it;
- * demoLoadTask_8c01594c picks up from there. */
 void TxtStartAttractDemo_8c0159ac()
 {
     Task *created_task;
