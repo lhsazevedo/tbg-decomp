@@ -30,9 +30,8 @@
 /* One world unit of travel is one full wheel revolution. */
 #define WHEEL_TURNS_PER_UNIT 65536.0f
 
-/* Suspension lean, in BAMS (0x10000 = 360 degrees). Roll tracks its target at
- * up to 1 degree per frame and saturates at 4; pitch at 0.75 up to 3. The
- * player's own lean is computed in 022bdc_bus.c and shares the roll limit. */
+/* Suspension lean, in BAMS (0x10000 = 360 degrees): roll 1 degree per frame
+ * up to 4, pitch 0.75 up to 3. */
 #define ROLL_STEP_MAX   0x0b6
 #define ROLL_MAX        0x2d8
 #define PITCH_STEP_MAX  0x089
@@ -52,7 +51,6 @@ STATIC void drawMirror_8c027bac(int entityArg, int lod);
  * ====================
  */
 
-/* See 027958_bus_draw.h. */
 void BusDrawUpdateModels_8c027958(BusState *bus)
 {
     int i;
@@ -108,8 +106,6 @@ void BusDrawUpdateModels_8c027958(BusState *bus)
     }
 }
 
-/* Forward-cone draw. lod == 0 also refreshes the entity's model nodes and
- * draws shadowModel_0x14 as a modifier volume on top of the detailed model. */
 STATIC void drawAhead_8c027a88(int entityArg, int lod)
 {
     TrafficEntry *entity = (TrafficEntry *)entityArg;
@@ -148,8 +144,6 @@ STATIC void drawAhead_8c027a88(int entityArg, int lod)
     }
 }
 
-/* Rear-view-mirror draw: no shadow volume, and no night/day split on the far
- * LOD -- a mirror is small enough that easy light always does. */
 STATIC void drawMirror_8c027bac(int entityArg, int lod)
 {
     TrafficEntry *entity = (TrafficEntry *)entityArg;
@@ -176,14 +170,12 @@ STATIC void drawMirror_8c027bac(int entityArg, int lod)
     }
 }
 
-/* See 027958_bus_draw.h. */
 void BusDrawPlaceEntity_8c027c3c(TrafficEntry *entity, float accel)
 {
     int registered = 0;
     float dx, dz, dist;
 
-    /* Both cones are a dot product against a normalized delta, compared with
-     * the cosine of the half-angle. */
+    /* 0.174 and 0.966 are cos 80 and cos 15 degrees. */
     dx = var_busState_8c1bb9d0.posX_0x2fc - entity->posX_0xf4;
     dz = var_busState_8c1bb9d0.posZ_0x304 - entity->posZ_0xfc;
     dist = njSqrt(dx * dx + dz * dz);
@@ -216,15 +208,13 @@ void BusDrawPlaceEntity_8c027c3c(TrafficEntry *entity, float accel)
         registered = 1;
     }
 
-    /* An entity on the plain polygon tracker (as opposed to some cheaper
-     * probe) always re-aligns below and starts each frame un-aligned. */
+    /* An entity on the polygon tracker re-aligns every frame. */
     if (entity->probeFn_0x2c8 == GroundProbeTrackPolygonAtHeight_8c021290) {
         registered = 1;
         entity->groundAligned_0x494 = 0;
     }
 
-    /* An entity nobody is drawing still keeps its physics while it is close
-     * enough to the bus to be about to matter. */
+    /* An undrawn entity near the bus keeps its physics. */
     if (registered || entity->busDistance_0x490 < 85.333336f) {
         int prev, delta;
         int steerAngle;
@@ -316,7 +306,6 @@ void BusDrawPlaceEntity_8c027c3c(TrafficEntry *entity, float accel)
     entity->groundAligned_0x494 = 0;
 }
 
-/* See 027958_bus_draw.h. */
 void BusDrawSignal_8c0281ac(int objArg, int matrixArg)
 {
     TrafficSignal *obj = (TrafficSignal *)objArg;
@@ -347,7 +336,6 @@ void BusDrawSignal_8c0281ac(int objArg, int matrixArg)
     njCnkSimpleDrawObject((NJS_CNK_OBJECT *)obj->model_0xb8);
 }
 
-/* See 027958_bus_draw.h. */
 void BusDrawFadeLights_8c028022(BusState *bus)
 {
     bus->blinker_0x080 |= 0x18;
@@ -401,7 +389,6 @@ void BusDrawFadeLights_8c028022(BusState *bus)
     }
 }
 
-/* See 027958_bus_draw.h. */
 void BusDrawSignalAttachment_8c028206(int objArg, int matrixArg)
 {
     TrafficSignal *obj = (TrafficSignal *)objArg;
