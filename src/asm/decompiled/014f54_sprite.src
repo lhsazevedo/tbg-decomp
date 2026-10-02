@@ -2,6 +2,9 @@
           .IMPORT     _njDrawSprite2D
 
           .EXPORT     _SpriteDraw_8c014f54
+          .AIFDEF UNIT_TESTING
+          .EXPORT     _drawSpriteLerp_8c014ff6
+          .AENDI
 
           .SECTION    P,CODE,ALIGN=4
 _SpriteDraw_8c014f54:

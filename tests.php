@@ -34,6 +34,7 @@ return [
         [
             'tests' => [
                 "tests/014f54_sprite/8c014f54_SpriteDraw.php",
+                "tests/014f54_sprite/8c014ff6_drawSpriteLerp.php",
             ],
             'objects' => [
                 "build/output_test/src/asm/decompiled/014f54_sprite.obj",

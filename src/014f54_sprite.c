@@ -52,28 +52,23 @@ void SpriteDraw_8c014f54(
     }
 }
 
-/* Unreferenced. The asm draws at start + steps_y * (end - start) / steps_x
- * on both axes; this C pairs each axis with its own steps instead, which
- * cancels to end. */
+/* Unreferenced. Draws at step/total of the way from start to end. */
 STATIC void drawSpriteLerp_8c014ff6(
     float start_x,
     float start_y,
     float priority,
     float end_x,
     float end_y,
-    int steps_x,
-    int steps_y,
+    int total,
+    int step,
     ResourceGroup *res_group,
     int texture_id
 ){
-    float steps_x_float = steps_x;
-    float steps_y_float = steps_y;
+    float total_f = total;
+    float step_f = step;
 
-    float x_step = (end_x - start_x) / steps_x_float;
-    float y_step = (end_y - start_y) / steps_y_float;
+    float x = start_x + step_f * ((end_x - start_x) / total_f);
+    float y = start_y + step_f * ((end_y - start_y) / total_f);
 
-    float lerp_x = start_x + steps_x_float * x_step;
-    float lerp_y = start_y + steps_y_float * y_step;
-
-    SpriteDraw_8c014f54(res_group, texture_id, lerp_x, lerp_y, priority);
+    SpriteDraw_8c014f54(res_group, texture_id, x, y, priority);
 }
