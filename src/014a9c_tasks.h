@@ -11,8 +11,9 @@
 
 typedef void (*TaskAction)(struct Task *task, void *state);
 
-/* Only action, state and queuedItem_0x18 matter to the dispatcher;
- * field_0x08/0x0c are overlaid by each task type. */
+/* A group is an array of these ended by a NULL action; a -1 action marks a
+ * free slot. Only action and state belong to the dispatcher, the rest is
+ * overlaid by each task type. */
 struct Task {
     TaskAction action;
     void *state;
