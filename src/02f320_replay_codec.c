@@ -53,9 +53,7 @@ void ReplayCodecInit_8c02f320(void)
     memset(&var_runBuf_8c235bb4, 0, 100);
 }
 
-/* Bit-stream reader: returns the next bit (MSB-first) from *src, advancing
- * *src and bumping **countPtr once per byte consumed, refilling the bit
- * buffer on underflow. */
+/* MSB-first; bumps **countPtr per byte consumed. */
 STATIC Uint32 getBit_8c02f3a0(Uint8 **src, Uint32 **countPtr)
 {
     Sint16 n;
@@ -75,8 +73,7 @@ STATIC Uint32 getBit_8c02f3a0(Uint8 **src, Uint32 **countPtr)
     return (Uint32)(var_bitBuf_8c228bac >> n) & 1;
 }
 
-/* Reads a `count`-bit value (MSB-first) from *src, refilling the bit buffer
- * one byte at a time as needed. */
+/* MSB-first */
 STATIC Uint32 getBits_8c02f3e0(Sint16 count, Uint8 **src, Uint32 **countPtr)
 {
     Uint32 result;
@@ -104,8 +101,7 @@ STATIC Uint32 getBits_8c02f3e0(Sint16 count, Uint8 **src, Uint32 **countPtr)
          (Uint32)((1 << count) - 1));
 }
 
-/* Bit-stream writer: packs one bit (MSB-first) into the bit buffer, flushing
- * the byte to *dest and counting it once full. */
+/* MSB-first */
 STATIC void putBit_8c02f49c(Sint16 bit, Uint8 **dest)
 {
     Uint8 *destPtr;
@@ -126,8 +122,7 @@ STATIC void putBit_8c02f49c(Sint16 bit, Uint8 **dest)
     *dest = destPtr;
 }
 
-/* Packs a `count`-bit value (MSB-first) into the output stream, flushing a
- * byte at a time as the bit buffer fills. */
+/* MSB-first */
 STATIC void putBits_8c02f4da(Sint16 count, Uint32 value, Uint8 **dest)
 {
     Uint8 *destPtr;
@@ -151,8 +146,7 @@ STATIC void putBits_8c02f4da(Sint16 count, Uint32 value, Uint8 **dest)
     *dest = destPtr;
 }
 
-/* Unlinks `code` from the recency list, dragging the tail back with it when
- * `code` is the tail. Unlinking the head works through the NIL sentinel:
+/* Unlinking the head works through the NIL sentinel:
  * var_lruNext_8c233bb0[0x1000] is var_lruHead_8c235bb0's storage. */
 STATIC void lruUnlink_8c02f556(Sint16 code)
 {
@@ -170,36 +164,33 @@ STATIC void lruUnlink_8c02f556(Sint16 code)
     }
 }
 
-/* Inserts `code` into the recency list: as the sole entry if the list is
- * empty, at the tail if `after` is NIL (0x1000), at the head if `after` is
- * the current head, or after node `after` otherwise. */
-STATIC void lruInsert_8c02f58a(Sint16 code, Sint16 after)
+/* Inserts `code` before `before`; NIL (0x1000) appends at the tail. */
+STATIC void lruInsert_8c02f58a(Sint16 code, Sint16 before)
 {
     if (var_lruHead_8c235bb0 == 0x1000) {
         var_lruPrev_8c231bb0[code] = 0x1000;
         var_lruNext_8c233bb0[code] = 0x1000;
         var_lruTail_8c235bb2 = code;
         var_lruHead_8c235bb0 = code;
-    } else if (after == 0x1000) {
+    } else if (before == 0x1000) {
         var_lruNext_8c233bb0[code] = 0x1000;
         var_lruPrev_8c231bb0[code] = var_lruTail_8c235bb2;
         var_lruNext_8c233bb0[var_lruTail_8c235bb2] = code;
         var_lruTail_8c235bb2 = code;
-    } else if (after == (Sint16)var_lruHead_8c235bb0) {
+    } else if (before == (Sint16)var_lruHead_8c235bb0) {
         var_lruNext_8c233bb0[code] = var_lruHead_8c235bb0;
         var_lruPrev_8c231bb0[code] = 0x1000;
         var_lruPrev_8c231bb0[var_lruHead_8c235bb0] = code;
         var_lruHead_8c235bb0 = code;
     } else {
-        var_lruNext_8c233bb0[code] = after;
-        var_lruPrev_8c231bb0[code] = var_lruPrev_8c231bb0[after];
+        var_lruNext_8c233bb0[code] = before;
+        var_lruPrev_8c231bb0[code] = var_lruPrev_8c231bb0[before];
         var_lruNext_8c233bb0[var_lruPrev_8c231bb0[code]] = code;
-        var_lruPrev_8c231bb0[after] = code;
+        var_lruPrev_8c231bb0[before] = code;
     }
 }
 
-/* Walks `parent`'s child chain for the node whose byte equals `value`;
- * returns its code, or 0x1000 (NIL) if absent. */
+/* Returns 0x1000 (NIL) if absent. */
 STATIC Sint32 lzwFindChild_8c02f636(Sint16 parent, Uint16 value)
 {
     Sint16 node;
@@ -212,8 +203,7 @@ STATIC Sint32 lzwFindChild_8c02f636(Sint16 parent, Uint16 value)
     return (Sint32)node;
 }
 
-/* Adds dictionary node `code` = (parent `parentCode`, appended byte
- * `value`) as the new head of parentCode's child chain. */
+/* Inserts at the head of parentCode's child chain. */
 STATIC void lzwInsertChild_8c02f668(Sint16 parentCode, Sint16 code, Uint8 value)
 {
     Sint16 oldHead;
@@ -231,7 +221,6 @@ STATIC void lzwInsertChild_8c02f668(Sint16 parentCode, Sint16 code, Uint8 value)
     var_dictChild_8c22bbae[parentCode] = code;
 }
 
-/* Unlinks dictionary node `code` from its parent's child chain. */
 STATIC void lzwRemoveChild_8c02f6ac(Sint16 code)
 {
     Sint16 prevNode;
@@ -251,8 +240,7 @@ STATIC void lzwRemoveChild_8c02f6ac(Sint16 code)
     }
 }
 
-/* Seeds the first 0x100 codes as the literal bytes: identity byte map, and
- * the 0x1000 NIL sentinel in every link table. */
+/* Seeds codes 0..0xFF as the literal bytes. */
 STATIC void initTables_8c02f704(void)
 {
     Sint16 i;
@@ -266,19 +254,15 @@ STATIC void initTables_8c02f704(void)
     }
 }
 
-/* Extends the LZW dictionary while walking `count` more input bytes
- * (`symbols`) from parent code `parentCode`, starting at accumulated
- * position `pos` (capped at 100 total updates per call, matching the run
- * buffer's element count). For each byte not already a child of the current
- * code, allocates a new code -- from the free pool while it lasts, otherwise
- * evicting the recency-list tail -- links it into its parent's child chain,
- * and appends it to the recency list. */
+/* Walks `symbols` down from parentCode, adding a code for each missing
+ * child. `pos` is capped at 100, the run buffer's length. Once the free pool
+ * runs out, the recency tail is evicted. */
 STATIC void extendDict_8c02f740(Sint16 *symbols, Sint16 count, Sint16 parentCode, Sint16 pos)
 {
     Sint16 i;
     Sint16 newCode;
     Sint16 value;
-    Sint16 afterCode;
+    Sint16 beforeCode;
 
     if (parentCode == (Sint16)0x1000 || count <= 0) {
         return;
@@ -308,21 +292,19 @@ STATIC void extendDict_8c02f740(Sint16 *symbols, Sint16 count, Sint16 parentCode
 
             lzwInsertChild_8c02f668(parentCode, newCode, (Uint8)value);
 
-            afterCode = (Sint16)var_lruHead_8c235bb0;
+            beforeCode = (Sint16)var_lruHead_8c235bb0;
             if (parentCode > 0xff) {
-                afterCode = var_lruNext_8c233bb0[parentCode];
+                beforeCode = var_lruNext_8c233bb0[parentCode];
             }
-            lruInsert_8c02f58a(newCode, afterCode);
+            lruInsert_8c02f58a(newCode, beforeCode);
         }
 
         parentCode = newCode;
     }
 }
 
-/* Writes one code to the bitstream: a literal byte (control bit 0 + 8 bits)
- * if code < 0x100, otherwise (control bit 1 + an escalating-width value,
- * code - 0x100) after growing the code width to match the current dictionary
- * size -- the write-side mirror of readCode_8c02f892. */
+/* Literal: bit 0 + 8 bits. Otherwise bit 1 + (code - 0x100) in
+ * var_codeBits_8c235c7c bits. */
 STATIC void writeCode_8c02f824(Sint32 code, Uint8 **dest)
 {
     Uint8 *destPtr;
@@ -344,10 +326,7 @@ STATIC void writeCode_8c02f824(Sint32 code, Uint8 **dest)
     *dest = destPtr;
 }
 
-/* Reads one code from the bitstream: a literal byte (0..0xFF) if the next
- * bit is 0, or 0x100 + an escalating-width value if it's 1 (the width grows
- * once the dictionary outgrows var_codeLimit_8c235c7e). Returns -1 once
- * *countPtr exceeds limit. */
+/* Returns -1 once *countPtr exceeds limit. */
 STATIC Sint32 readCode_8c02f892(Uint8 **src, Uint32 limit, Uint32 *countPtr)
 {
     Uint8 *srcPtr;
@@ -382,11 +361,7 @@ STATIC Sint32 readCode_8c02f892(Uint8 **src, Uint32 limit, Uint32 *countPtr)
     return -1;
 }
 
-/* LZW-encodes `size` bytes from `src` into **dest (advancing it): a 4-byte
- * size header, then one code per longest-matching dictionary run, extending
- * the dictionary (extendDict_8c02f740) after each run and promoting
- * reused multi-byte codes to the front of the recency list as they're
- * matched. Finishes with a 7-bit pad flush. */
+/* LZW: a 4-byte size header, the codes, then a 7-bit pad flush. */
 void ReplayCodecPack_8c02f934(void *src, void **dest, Uint32 size)
 {
     Uint8 *srcPtr;
@@ -449,12 +424,6 @@ void ReplayCodecPack_8c02f934(void *src, void **dest, Uint32 size)
     *dest = destPtr;
 }
 
-/* LZW-decodes from *src (a 4-byte decompressed-size header, then `size`
- * bytes' worth of codes) into **dest (advancing it): each code is expanded
- * by walking its dictionary parent chain back to a literal byte, writing the
- * run into the tail of the run buffer, then copied forward to the output;
- * the dictionary is extended
- * (extendDict_8c02f740) after each run, mirroring ReplayCodecPack. */
 void ReplayCodecUnpack_8c02fa14(void *src, void **dest, Uint32 size)
 {
     Uint8 *destPtr;
@@ -519,16 +488,13 @@ void ReplayCodecUnpack_8c02fa14(void *src, void **dest, Uint32 size)
             readResult = walkCode;
         }
 
-        /* The walk above filled the run backwards, so it ends at the top of
-         * var_runBuf_8c235bb4; `run` is its first symbol. extendDict reads the
-         * run from here too -- passing the buffer base instead feeds it
-         * whatever the previous run left at the bottom. */
+        /* The walk filled the run backwards, ending at the top of
+         * var_runBuf_8c235bb4. extendDict must read it from here too. */
         run = &var_runBuf_8c235bb4[100 - expandCount];
 
         {
-            /* Byte-typed view, not a plain Sint16 index: SHC compiles a
-             * direct word-array copy loop into MOV.W @Rm+,Rn, which
-             * sh4objtest's interpreter doesn't implement. */
+            /* Byte-typed view: a Sint16 copy loop compiles to
+             * MOV.W @Rm+,Rn, which sh4objtest doesn't implement. */
             Uint8 *runBytes = (Uint8 *)run;
 
             for (i = 0; i < expandCount; i++) {

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 use Lhsazevedo\Sh4ObjTest\TestCase;
 
-// Adds a dictionary node as the new head of its parent's hash-chain bucket.
+// Adds a dictionary node as the new head of its parent's child chain.
 return new class extends TestCase {
     public function test_insert_into_empty_bucket(): void
     {

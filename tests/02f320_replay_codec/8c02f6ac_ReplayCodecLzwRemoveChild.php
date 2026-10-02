@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 use Lhsazevedo\Sh4ObjTest\TestCase;
 
-// Unlinks a dictionary node from its hash-chain bucket.
+// Unlinks a dictionary node from its parent's child chain.
 return new class extends TestCase {
     public function test_remove_head_of_bucket(): void
     {

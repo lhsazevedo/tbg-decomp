@@ -20,7 +20,7 @@ return new class extends TestCase {
         $this->shouldWriteWord($this->addressOf('_var_lruHead_8c235bb0'), 5);
     }
 
-    public function test_insert_at_tail_when_after_is_nil(): void
+    public function test_insert_at_tail_when_before_is_nil(): void
     {
         $this->resolveSymbols();
 
@@ -35,7 +35,7 @@ return new class extends TestCase {
         $this->shouldWriteWord($this->addressOf('_var_lruTail_8c235bb2'), 5);
     }
 
-    public function test_insert_at_head_when_after_equals_head(): void
+    public function test_insert_at_head_when_before_equals_head(): void
     {
         $this->resolveSymbols();
 
@@ -49,12 +49,12 @@ return new class extends TestCase {
         $this->shouldWriteWord($this->addressOf('_var_lruHead_8c235bb0'), 5);
     }
 
-    public function test_insert_after_generic_node(): void
+    public function test_insert_before_generic_node(): void
     {
         $this->resolveSymbols();
 
         $this->initUint16($this->addressOf('_var_lruHead_8c235bb0'), 1);
-        $this->initUint16($this->addressOf('_var_lruPrev_8c231bb0') + 7 * 2, 9); // next[after]=9
+        $this->initUint16($this->addressOf('_var_lruPrev_8c231bb0') + 7 * 2, 9); // prev[before]=9
 
         $this->call('_lruInsert_8c02f58a')->with(5, 7);
 

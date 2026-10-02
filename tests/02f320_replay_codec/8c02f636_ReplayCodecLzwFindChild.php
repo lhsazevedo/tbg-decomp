@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 use Lhsazevedo\Sh4ObjTest\TestCase;
 
-// Searches a dictionary bucket's hash chain for a node with the given byte.
+// Searches a parent's child chain for a node with the given byte.
 return new class extends TestCase {
     public function test_finds_matching_node(): void
     {

@@ -6,7 +6,7 @@ use Lhsazevedo\Sh4ObjTest\TestCase;
 
 // Extends the LZW dictionary for each new input byte: reuses an existing
 // child code if present, otherwise allocates one (from the free pool or by
-// evicting the LRU tail) and links it into the hash chain and recency list.
+// evicting the LRU tail) and links it into its parent's child chain and recency list.
 return new class extends TestCase {
     public function test_nil_parent_code_returns_immediately(): void
     {
@@ -61,7 +61,7 @@ return new class extends TestCase {
         $symbols = $this->alloc(2);
         $this->initUint16($symbols, 0x41);
 
-        // parentCode=5 (<=0xff) -> afterCode = recency head (7).
+        // parentCode=5 (<=0xff) -> before = recency head (7).
         $this->call('_extendDict_8c02f740')->with($symbols, 1, 5, 0);
 
         $this->shouldCall('_lzwFindChild_8c02f636')->with(5, 0x41)->andReturn(0x1000);
@@ -76,12 +76,12 @@ return new class extends TestCase {
 
         $this->initUint16($this->addressOf('_var_nextCode_8c231bae'), 0x1000); // pool exhausted
         $this->initUint16($this->addressOf('_var_lruTail_8c235bb2'), 55); // recency tail
-        $this->initUint16($this->addressOf('_var_lruNext_8c233bb0') + 300 * 2, 40); // prev[parentCode]
+        $this->initUint16($this->addressOf('_var_lruNext_8c233bb0') + 300 * 2, 40); // next[parentCode]
 
         $symbols = $this->alloc(2);
         $this->initUint16($symbols, 0x41);
 
-        // parentCode=300 (>0xff) -> afterCode = prev[parentCode] (40).
+        // parentCode=300 (>0xff) -> before = next[parentCode] (40).
         $this->call('_extendDict_8c02f740')->with($symbols, 1, 300, 0);
 
         $this->shouldCall('_lzwFindChild_8c02f636')->with(300, 0x41)->andReturn(0x1000);

@@ -4,10 +4,9 @@ declare(strict_types=1);
 
 use Lhsazevedo\Sh4ObjTest\TestCase;
 
-// Swaps a node's position with its sibling in the parent/child index
-// tables, or promotes it when it is already the "escape" node.
+// Unlinks a code from the recency list.
 return new class extends TestCase {
-    public function test_promotes_escape_node(): void
+    public function test_unlinks_tail(): void
     {
         $this->resolveSymbols();
 
@@ -20,7 +19,7 @@ return new class extends TestCase {
         $this->shouldWriteWord($this->addressOf('_var_lruNext_8c233bb0') + 42 * 2, 0x1000);
     }
 
-    public function test_swaps_sibling_nodes(): void
+    public function test_unlinks_middle(): void
     {
         $this->resolveSymbols();
 
