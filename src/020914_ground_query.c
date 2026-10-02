@@ -23,9 +23,6 @@ GroundGrid* var_activeGroundGrid_8c2264d4;
  * ====================
  */
 
-/* Each candidate is tested one of two ways, chosen by the sign of its attr:
- * a cross-product walk for convex polygons, or a winding-angle sum in BAMS
- * (inside when it exceeds half a turn) for concave ones. */
 void GroundQueryFindPolygon_8c020914(float x, float y, float z, GroundQueryResult *out)
 {
     GroundGrid *grid = var_activeGroundGrid_8c2264d4;
@@ -43,8 +40,7 @@ void GroundQueryFindPolygon_8c020914(float x, float y, float z, GroundQueryResul
         cz = grid->cellsZ_0x04 - 1;
     }
 
-    /* Only the upper bound is clamped; a negative coordinate indexes before
-     * the cell array. Original behaviour. */
+    /* Original: only the upper bound is clamped. */
     cell = &grid->cells_0x10[cz * grid->cellsX_0x00 + cx];
 
     for (i = 0; i < cell->count_0x00; i++) {
@@ -57,8 +53,6 @@ void GroundQueryFindPolygon_8c020914(float x, float y, float z, GroundQueryResul
         int hit;
         int j;
 
-        /* Edges are walked as vectors from the query point, starting at the
-         * last vertex so the first edge closes the loop. */
         v = &grid->verts_0x18[ids[n - 1]];
         pdx = v->x - x;
         pdz = v->z - z;
