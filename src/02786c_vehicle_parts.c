@@ -10,14 +10,6 @@
  * ====================
  */
 
-/* Caches the vehicle model's articulated sub-objects into fixed slots of the
- * traffic entry. The first-level children also get NJD_EVAL_UNIT_ANG cleared,
- * so their rotation is honored. Which deeper slots get filled depends on the
- * entry's type code.
- *
- * `entry` is TrafficEntry* for a CPU vehicle, but 023310_bus_init.c also
- * calls this with the player's BusState*, which shares the same 0x00-0x60
- * prefix. */
 void VehiclePartsBind_8c02786c(TrafficEntry *entry, Uint32 typeCode)
 {
     NJS_OBJECT *nj;
@@ -49,8 +41,6 @@ void VehiclePartsBind_8c02786c(TrafficEntry *entry, Uint32 typeCode)
         node->evalflags &= ~NJD_EVAL_UNIT_ANG;
     }
 
-    /* Second walk re-reads entry->modelLarge_0x0c rather than reusing the
-     * entry->bodyNode_0x018 cache above -- matches the original asm. */
     nj = entry->modelLarge_0x0c;
     node = nj->child->child;
     entry->blinkerLights_0x02c[0] = node;
