@@ -33,11 +33,8 @@
  * ====================
  */
 
-/*
- * OPTION-screen phase, held in MenuState.state_0x18. Only 0 and 1 mean the same
- * on all four screens; from 2 up each numbers its own edit and fade-out phases,
- * so EDIT/FADE_OUT below are the SETTING screen's.
- */
+/* state_0x18. Only 0 and 1 mean the same on all four screens; from 2 up each
+ * numbers its own phases, so EDIT/FADE_OUT are the SETTING screen's. */
 enum OPTION_STATE {
     OPTION_STATE_FADE_IN  = 0,
     OPTION_STATE_NAVIGATE = 1,
@@ -51,11 +48,10 @@ enum OPTION_STATE {
  */
 
 Sint8 var_soundMode_8c226070;
-/* The SETTING rows at var_progress_8c1ba1cc.difficulty_0xc4; pointed there
- * only by OptionEnter_8c01b122. */
+/* The SETTING rows, starting at var_progress_8c1ba1cc.difficulty_0xc4. */
 STATIC char *var_settingValues_8c226074;
-/* AUDIO sound-test entry fields: one int per decimal digit, ones at index 0.
- * Laid out contiguously, and enterAudio_8c01afd8 clears them relying on it. */
+/* Sound-test fields, one int per decimal digit, ones at index 0. Must stay
+ * contiguous: enterAudio_8c01afd8 clears across them. */
 STATIC int var_musicTestDigits_8c226078[2];
 STATIC int var_sfxTestDigits_8c226080[2];
 STATIC int var_voiceTestDigits_8c226088[4];
@@ -69,11 +65,7 @@ STATIC int var_voiceTestDigits_8c226088[4];
  * SCREEN ROLL. Each toggle wraps within its count. */
 STATIC char init_settingOptionCounts_8c044de0[5] = { 3, 2, 4, 2, 2 };
 
-/*
- * KEY CONFIGURE sensitivity fill-bar (ACCEL/BRAKE) -- a yellow->red gradient quad.
- * drawSensitivityBar_8c01a42a moves the left edge x and sets the top/bottom y each
- * frame; the right edge (576.0), depth, and vertex colors are fixed here.
- */
+/* KEY CONFIGURE sensitivity bar; the left x and the y are set per draw. */
 STATIC NJS_POLYGON_VTX init_sensitivityBarQuad_8c044de8[4] = {
     {   0.0f, 0.0f, 0.8264462351799011f, ARGB(0xc4, 0xf4, 0xf4, 0x00) },
     {   0.0f, 0.0f, 0.8264462351799011f, ARGB(0xc4, 0xf4, 0xf4, 0x00) },
@@ -86,7 +78,6 @@ STATIC NJS_POLYGON_VTX init_sensitivityBarQuad_8c044de8[4] = {
  * ====================
  */
 
-/* Switch-in wrappers, referenced by init_topMenuActions_8c044e28 below. */
 STATIC void enterSetting_8c01a3c0(Task *task);
 STATIC void enterKeyConfig_8c01a89c(Task *task);
 STATIC void enterAudio_8c01afd8(Task *task);
@@ -96,8 +87,7 @@ STATIC void enterAudio_8c01afd8(Task *task);
  * ====================
  */
 
-/* OPTION top-menu dispatch, indexed by the selected row (SETTING, KEY CONFIGURE,
- * AUDIO, RETURN); the chosen entry is installed after the fade-out. */
+/* Indexed by top-menu row: SETTING, KEY CONFIGURE, AUDIO, RETURN. */
 STATIC TaskAction init_topMenuActions_8c044e28[4] = {
     enterSetting_8c01a3c0,
     enterKeyConfig_8c01a89c,
@@ -110,11 +100,7 @@ STATIC TaskAction init_topMenuActions_8c044e28[4] = {
  * ====================
  */
 
-/*
- * SETTING screen task. Rows 0-4 are the toggles (backed by
- * var_settingValues_8c226074, wrapping per init_settingOptionCounts_8c044de0),
- * row 5 = DEFAULT (reset), row 6 = RETURN.
- */
+/* Rows 0-4 are the toggles, row 5 DEFAULT, row 6 RETURN. */
 STATIC void settingTask_8c01a148(Task *task)
 {
     MenuState *m = &var_menuState_8c1bc7a8;
@@ -132,11 +118,11 @@ STATIC void settingTask_8c01a148(Task *task)
         case OPTION_STATE_NAVIGATE: {
             if (press & PDD_DGT_TA) {
                 if (m->selected_0x38 < 5) {
-                    CHANGE_STATE(OPTION_STATE_EDIT);           /* toggle row -> edit */
+                    CHANGE_STATE(OPTION_STATE_EDIT);
                 } else if (m->selected_0x38 == 5) {
-                    FileSelectResetSettingDefaults_8c018862();   /* DEFAULT: no phase change */
+                    FileSelectResetSettingDefaults_8c018862();
                 } else {
-                    CHANGE_STATE(OPTION_STATE_FADE_OUT);       /* RETURN -> fade out */
+                    CHANGE_STATE(OPTION_STATE_FADE_OUT);
                     RenderStartFadeOut_8c022b60(10);
                 }
                 sdMidiPlay(var_midiHandles_8c0fcd28[0], 1, 0, 0);
@@ -192,7 +178,7 @@ STATIC void settingTask_8c01a148(Task *task)
     for (i = 0; i < 5; i++) {
         int idx = (i == m->selected_0x38) ? i + 0x23 : i + 0x1e;
         SpriteDraw_8c014f54(&m->resourceGroupB_0x0c, idx, 0.0f, 0.0f, -5.0f);
-        /* Value marker; blinks (every other frame) while its row is being edited. */
+        /* Value marker; blinks while its row is being edited. */
         if (m->state_0x18 != OPTION_STATE_EDIT || i != m->selected_0x38 ||
             (m->timer_0x68++ & 1)) {
             SpriteDraw_8c014f54(&m->resourceGroupB_0x0c, 0x29,
@@ -212,7 +198,6 @@ STATIC void settingTask_8c01a148(Task *task)
     SpriteDraw_8c014f54(&m->resourceGroupA_0x00, 0, 0.0f, 0.0f, -7.0f);
 }
 
-/* Switch to the SETTING screen: install its task, reset to the fade-in phase. */
 STATIC void enterSetting_8c01a3c0(Task *task)
 {
     TaskSwitch_8c014b3e(task, settingTask_8c01a148);
@@ -221,7 +206,6 @@ STATIC void enterSetting_8c01a3c0(Task *task)
     RenderStartFadeIn_8c022a9c(10);
 }
 
-/* Cycle a signed-byte option value with the L/R buttons, wrapping in [0, count). */
 STATIC void cycleValue_8c01a3da(char *value, char count)
 {
     char v = *value;
@@ -243,11 +227,7 @@ STATIC void cycleValue_8c01a3da(char *value, char count)
     *value = v;
 }
 
-/*
- * Draw the KEY CONFIGURE sensitivity fill-bar for `value` (0-0x80) at height `y`:
- * a gradient quad spanning [x, 576] x [y, y+20], where x grows with the value.
- * Returns x, the bar's left edge, used to place the numeric readout.
- */
+/* value is 0-0x80. Returns the bar's left edge. */
 STATIC float drawSensitivityBar_8c01a42a(float y, unsigned char value)
 {
     float x = (float)value * 320.0f / 256.0f + 256.0f;
@@ -265,11 +245,7 @@ STATIC float drawSensitivityBar_8c01a42a(float y, unsigned char value)
     return x;
 }
 
-/*
- * KEY CONFIGURE edit-mode input poll. Returns 1 when the user leaves the current
- * edit item this frame (A confirms, B cancels; an unrecognized controller bails
- * out too), 0 to keep editing. On exit it drops back to the navigate phase.
- */
+/* Returns 1 once the edit is left: A, B, or an unsupported controller. */
 STATIC int keyConfigEditExit_8c01a4b4(void)
 {
     if (var_activeCtrlType_8c157a70 == BT_CONTROLLER || var_activeCtrlType_8c157a70 == BT_RACING) {
@@ -287,15 +263,10 @@ STATIC int keyConfigEditExit_8c01a4b4(void)
     return 1;
 }
 
-/*
- * KEY CONFIGURE screen task. Row 3 = DEFAULT (reset), row 4 = RETURN; confirming
- * a row 0-2 switches state_0x18 to (row + 2):
- *   2 = button assignment -- one of btnConfigManual_0xcc..btnConfigWheelAuto_0xcf,
- *       picked by controller type (BT_CONTROLLER/BT_RACING) and driveMode_0xc5;
- *       each one's sprite base is 3, 3, 2 and 3 apart, matching the option counts
- *   3 = ACCEL sensitivity, accelSensitivity_0xd0 from the right trigger
- *   4 = BRAKE sensitivity, brakeSensitivity_0xd1 from the left trigger
- */
+/* Rows 0-2 are edited in state row + 2, row 3 is DEFAULT, row 4 RETURN:
+ *   2 = button assignment, per controller type and drive mode
+ *   3 = ACCEL sensitivity
+ *   4 = BRAKE sensitivity */
 STATIC void keyConfigTask_8c01a50c(Task *task)
 {
     MenuState *m = &var_menuState_8c1bc7a8;
@@ -435,7 +406,7 @@ STATIC void keyConfigTask_8c01a50c(Task *task)
     }
     SpriteDraw_8c014f54(&m->resourceGroupA_0x00, 0, 0.0f, 0.0f, -7.0f);
 }
-/* Switch to the KEY CONFIGURE screen: install its task, reset to the fade-in phase. */
+
 STATIC void enterKeyConfig_8c01a89c(Task *task)
 {
     TaskSwitch_8c014b3e(task, keyConfigTask_8c01a50c);
@@ -443,11 +414,7 @@ STATIC void enterKeyConfig_8c01a89c(Task *task)
     var_menuState_8c1bc7a8.selected_0x38 = 0;
     RenderStartFadeIn_8c022a9c(10);
 }
-/*
- * AUDIO value-edit poll: cycles a byte option with L/R (via cycleValue), and on
- * A (confirm) or B (cancel) drops back to the navigate phase. Confirm plays sound
- * 0, cancel plays sound 1.
- */
+
 STATIC void audioEditValue_8c01a8b6(char *value, char count)
 {
     if (var_peripherals_8c1ba35c[0].press & PDD_DGT_TA) {
@@ -459,10 +426,7 @@ STATIC void audioEditValue_8c01a8b6(char *value, char count)
     }
     cycleValue_8c01a3da(value, count);
 }
-/*
- * Combine a sound-test field's per-digit values (one int per digit, least
- * significant at index 0) into a single decimal integer.
- */
+
 STATIC int soundTestFieldRead_8c01a904(int *digits, int count)
 {
     int value = 0;
@@ -473,12 +437,9 @@ STATIC int soundTestFieldRead_8c01a904(int *digits, int count)
     }
     return value;
 }
-/*
- * Sound-test field edit. L moves cursorCol_0x3c up a digit (leftwards on screen,
- * digits[0] being the ones), R back down; U/D step that digit with carry across
- * the field, wrapping the whole value within [0, max]. B leaves the field,
- * stopping the MUSIC/SFX/VOICE playback the phase (6/7/8) started.
- */
+
+/* L/R pick the digit, U/D step it with carry, wrapping within [0, max]. B
+ * leaves the field and stops its playback. */
 STATIC void soundTestFieldAdjust_8c01a926(int *digits, int count, int max)
 {
     unsigned int press = var_peripherals_8c1ba35c[0].press;
@@ -540,11 +501,8 @@ STATIC void soundTestFieldAdjust_8c01a926(int *digits, int count, int max)
     var_menuState_8c1bc7a8.state_0x18 = OPTION_STATE_NAVIGATE;
     sdMidiPlay(var_midiHandles_8c0fcd28[0], 1, 1, 0);
 }
-/*
- * Draw a sound-test field right to left from (x, y) in 26px steps, so digits[0]
- * (the ones) sits at x. Sprite index is the digit offset into the number font,
- * 0x54 = '0'.
- */
+
+/* Right to left from x; sprite 0x54 is '0'. */
 STATIC void soundTestFieldDraw_8c01aaaa(float x, float y, int *digits, int count)
 {
     int i;
@@ -555,17 +513,9 @@ STATIC void soundTestFieldDraw_8c01aaaa(float x, float y, int *digits, int count
         x -= 26.0f;
     }
 }
-/*
- * AUDIO screen task. Rows 0-6 are settings, row 7 = DEFAULT (reset), row 8 = RETURN.
- * Confirming row N (N<7) enters edit state N+2:
- *   state 2       = SOUND mode (STEREO/MONO, var_soundMode_8c226070)
- *   state 3/4/5   = MUSIC/SFX/VOICE volume (musicVolume_0xd4/sfxVolume_0xd5/voiceVolume_0xd6, 0-9)
- *   state 6/7/8   = MUSIC/SFX/VOICE sound-test digit fields
- * AUDIO_FADE_OUT hands back to the OPTION top menu with the cursor on AUDIO.
- * The volume/sound-mode markers blink (drawn every other frame) while their row is
- * being edited; the three sound-test fields and their cursor use cursorCol_0x3c as the
- * edit digit index.
- */
+
+/* Rows 0-6 are edited in state row + 2, row 7 is DEFAULT, row 8 RETURN.
+ * cursorCol_0x3c is the sound-test digit being edited. */
 STATIC void audioTask_8c01ab08(Task *task)
 {
     MenuState *m = &var_menuState_8c1bc7a8;
@@ -690,7 +640,7 @@ STATIC void audioTask_8c01ab08(Task *task)
         SpriteDraw_8c014f54(&m->resourceGroupB_0x0c, idx, 0.0f, 0.0f, -5.0f);
     }
 
-    /* SOUND mode marker (blinks while editing row 0), then the 3 volume markers. */
+    /* SOUND mode and volume markers; each blinks while being edited. */
     if (m->state_0x18 != 2 || m->selected_0x38 != 0 || (m->timer_0x68++ & 1)) {
         SpriteDraw_8c014f54(&m->resourceGroupB_0x0c, 0x29,
                                (float)var_soundMode_8c226070 * 64.0f + 401.0f, 69.0f, -4.0f);
@@ -721,12 +671,7 @@ STATIC void audioTask_8c01ab08(Task *task)
     SpriteDraw_8c014f54(&m->resourceGroupB_0x0c, 0x53, 0.0f, 0.0f, -5.0f);
     SpriteDraw_8c014f54(&m->resourceGroupA_0x00, 0, 0.0f, 0.0f, -7.0f);
 }
-/*
- * Switch to the AUDIO screen: install its task, reset to the fade-in phase, and
- * clear the three sound-test digit fields. The asm zeroes three longs off the SFX
- * base (var_sfxTestDigits_8c226080); the third lands on var_voiceTestDigits_8c226088[0], which the VOICE clear
- * below zeroes again -- a redundant store kept for equivalence.
- */
+
 STATIC void enterAudio_8c01afd8(Task *task)
 {
     TaskSwitch_8c014b3e(task, audioTask_8c01ab08);
@@ -734,7 +679,7 @@ STATIC void enterAudio_8c01afd8(Task *task)
     var_menuState_8c1bc7a8.selected_0x38 = 0;
     var_musicTestDigits_8c226078[1] = 0;
     var_musicTestDigits_8c226078[0] = 0;
-    var_sfxTestDigits_8c226080[2] = 0;   /* overlaps var_voiceTestDigits_8c226088[0] */
+    var_sfxTestDigits_8c226080[2] = 0;   /* original's redundant store to var_voiceTestDigits_8c226088[0] */
     var_sfxTestDigits_8c226080[1] = 0;
     var_sfxTestDigits_8c226080[0] = 0;
     var_voiceTestDigits_8c226088[3] = 0;
@@ -744,13 +689,6 @@ STATIC void enterAudio_8c01afd8(Task *task)
     RenderStartFadeIn_8c022a9c(10);
 }
 
-/*
- * OPTION top-menu task. Four rows (SETTING / KEY CONFIGURE / AUDIO / RETURN,
- * wrapping 0-3). Confirm picks init_topMenuActions_8c044e28[row] -- RETURN's
- * entry being the main menu -- and cancel the main menu; either way the chosen
- * action and its arg (always 2) wait in returnAction_0x70/returnActionArg_0x74
- * until the fade-out ends.
- */
 STATIC void topMenuTask_8c01b00a(Task *task)
 {
     MenuState *m = &var_menuState_8c1bc7a8;
@@ -807,12 +745,6 @@ STATIC void topMenuTask_8c01b00a(Task *task)
     SpriteDraw_8c014f54(&m->resourceGroupA_0x00, 0, 0.0f, 0.0f, -7.0f);
 }
 
-/*
- * Reinstall the current task as the OPTION top-menu task, cursor on `row`
- * (SETTING=0, KEY CONFIGURE=1, AUDIO=2). This is the only place
- * var_settingValues_8c226074 is ever pointed at its backing array;
- * settingTask_8c01a148 only reads through it.
- */
 void OptionEnter_8c01b122(Task *task, int row)
 {
     TaskSwitch_8c014b3e(task, topMenuTask_8c01b00a);
