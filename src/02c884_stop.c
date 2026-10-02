@@ -36,16 +36,14 @@
  * ====================
  */
 
-/* per-segment "has an active stop" flag, one word each, indexed by a segment
- * record's candidate-list entry byte (see StopGetSegment_8c02cd6a, 02c884) */
 STATIC int var_segmentHasStop_8c2286a4[24];
 
 int var_startStopIndex_8c228704;
 
 int var_currentSegment_8c228708;
 
-int var_prevStopSegment_8c22870c; // segment index of the previous stop
-int var_nextStopSegment_8c228710; // segment index of the upcoming stop
+int var_prevStopSegment_8c22870c;
+int var_nextStopSegment_8c228710;
 
 int var_nextStopHeading_8c228714;
 
@@ -59,25 +57,17 @@ NJS_SPRITE var_passengerSprite_8c2288d8;
 
 void* var_stopTaskGroup_8c2288f8;
 
-/* Same computation as var_nextStopHeading_8c228714, but masked to unsigned 16
- * bits instead of sign-extended. */
+/* Masked to 16 bits, not sign-extended. Never read. */
 STATIC int var_currentStopHeading_8c2288fc;
 
-/* scratch ground-query point for the upcoming stop, snapped to ground by
- * pickWaitingPassengers_8c02c8ae; x/z (only) also set by
- * StopAdvance_8c02ccc6 ahead of that ground snap */
 STATIC NJS_POINT3 var_nextStopPoint_8c228900;
 
-/* Spawn-area record for the upcoming stop's segment (the course's lineHum_0x2c
- * table, selected by its segment record's ukn_0x06). */
 STATIC StopAreaRecord *var_nextStopArea_8c22890c;
 /* ====================
  * Functions
  * ====================
  */
 
-/* Empties the scripted schedule (-1 = unused slot) and resets the shared
- * passenger sprite ahead of a new stop. */
 STATIC void resetStopState_8c02c884(void)
 {
     int i;
@@ -98,9 +88,6 @@ CourseSegment *StopGetSegment_8c02cd6a(int segmentIndex)
     return &var_currentCourseConfig_8c18ad18->segments_0x08[segmentIndex];
 }
 
-/* Advances prevStopSegment to the just-armed stop and reloads the
- * event-gate threshold (var_runState_8c2285c4.scheduleTime_0x14) from the course's per-segment gate
- * table (courseConfig's ukn_0x0c). */
 STATIC void advanceStopSegment_8c02ccae(void)
 {
     var_prevStopSegment_8c22870c++;
@@ -113,9 +100,6 @@ StopAreaRecord *StopGetArea_8c02cd7a(int segmentIndex)
     return *(StopAreaRecord **)((char *)var_currentCourse_8c1bb868.lineBus_0x08 + seg->stopAreaId_0x02 * 8);
 }
 
-/* The same njArcTan2 angle is stored twice in different forms: var_currentStopHeading_8c2288fc
- * masked to unsigned 16 bits for the stop being left, var_nextStopHeading_8c228714
- * sign-extended to a full Angle for the one coming up. */
 void StopAdvance_8c02ccc6(void)
 {
     StopAreaRecord *rec;
@@ -151,12 +135,8 @@ void StopKillTaskGroup_8c02ca96(void)
     }
 }
 
-/* Picks the waiting passengers for the upcoming stop (var_nextStopSegment_8c228710):
- * snaps its ground position, collects the segment's candidate stop spots that
- * have an active-stop flag (var_segmentHasStop_8c2286a4) into a scratch list, then randomly
- * picks 1-16 of them without replacement into var_waitingPassengers_8c228798, positioned along
- * the stop's spawn-area strip (the course's lineHum_0x2c table) with per-passenger jitter --
- * except on ROUTE_OME, which skips the jitter. */
+/* A candidate is only offered if its destination segment has a stop. Ome
+ * lines them up without jitter. */
 STATIC void pickWaitingPassengers_8c02c8ae(void)
 {
     GroundQueryResult ground;
@@ -178,9 +158,7 @@ STATIC void pickWaitingPassengers_8c02c8ae(void)
     GroundProbeInterpolateHeight_8c020f7e(&ground, (float *)&var_nextStopPoint_8c228900);
 
     seg = StopGetSegment_8c02cd6a(var_nextStopSegment_8c228710);
-    /* Sized for 16 candidates, but the scan below is bounded only by the
-     * segment's list -- a segment offering more than 16 active spots would
-     * run past this. */
+    /* Original bug: the scan below isn't bounded by these 16 slots. */
     candidates = (void **)syMalloc(16 * sizeof(void *));
 
     list = (char *)seg->stopCandidates_0x08;
@@ -241,16 +219,8 @@ STATIC void pickWaitingPassengers_8c02c8ae(void)
     syFree(candidates);
 }
 
-/* Per-run bus-stop setup, called right after the course loads. Clears the
- * active-stop flags, flags one segment per candidate story event, then
- * forces a stop at every type-2 segment and randomly flags additional
- * segments (never type-3) until the course's randomized total stop count
- * (courseConfig's [randomStopCountMin_0x14, randomStopCountMax_0x18) range)
- * is reached. Finishes by priming the next/prev stop segment and the
- * upcoming stop's passengers, and resetting a couple of run-scoped
- * timers/thresholds (var_runState_8c2285c4.driverPoints_0x0c/var_runState_8c2285c4.driverPointsMax_0x10,
- * var_runState_8c2285c4.scheduleTime_0x14/var_runState_8c2285c4.runClock_0x18) based on the difficulty setting
- * and play mode. */
+/* Story-event segments and type-2 segments always get a stop; random
+ * non-type-3 segments are added up to the course's stop count. */
 void StopSetup_8c02caba(void)
 {
     int i;
@@ -291,11 +261,8 @@ void StopSetup_8c02caba(void)
                      var_currentCourseConfig_8c18ad18->randomStopCountMin_0x14 -
                      activeStopCount;
 
-    /* segments now points at the scan's terminator record (courseConfig's
-     * segments array + totalSegments), not its start -- and the reroll loop
-     * below indexes segments[pick] off that same (unreset) pointer, so its
-     * type_0x00 check actually lands totalSegments+pick records past the
-     * course's segment table start. Preserved as-is: real asm behavior. */
+    /* Original bug: segments is left at the terminator, so the type-3 check
+     * below reads past the end of the table. */
     while (extraStopCount > 0) {
         pick = AsqGetRandomInRangeA_8c012178(totalSegments);
         if (segments[pick].type_0x00 != 3 && var_segmentHasStop_8c2286a4[pick] == 0) {
@@ -334,10 +301,6 @@ void StopSetup_8c02caba(void)
     }
 }
 
-/* Draws the stop marker (the "Foo" model, var_fuuNjm_8c1bc448) at the
- * upcoming stop, facing its heading and animated by var_fuuFrame_8c1bc44c. Installed
- * as a DrawFn by StopUpdateArrival_8c02ce48 during the approach;
- * the callback arg is unused. */
 STATIC void drawStopMarker_8c02cd92(int arg0)
 {
     float frame;
@@ -351,22 +314,8 @@ STATIC void drawStopMarker_8c02cd92(int arg0)
     njCnkSimpleDrawMotion(var_fuuNj_8c1bc444, var_fuuNjm_8c1bc448, frame);
 }
 
-/* Per-frame bus-stop arrival state machine, called once per frame by
- * 02b464_grading. States:
- * 0 = cruising -- watches var_busState_8c1bb9d0.markCueByte_0x3b4 for a
- *     just-crossed segment (its high byte) matching the next or previous
- *     stop segment, arming state 2 (approach) or 1 (post-departure wait);
- * 1 = waits for markCueByte_0x3b4's low byte to clear, then re-arms cruising and
- *     advances to the next stop segment;
- * 2 = approach -- tracks the running minimum straight-line distance from
- *     the bus (busState's posX_0x0f4/posZ_0x0fc) to the upcoming stop
- *     (var_nextStopPoint_8c228900.x/.z) and drives the marker's animation
- *     frame/draw callback, transitioning to "stopped" (3, via bus_state 3)
- *     once close enough and halted (var_busState_8c1bb9d0.speed_0x27c == 0), or once the stop
- *     segment is reached outright (bus_state 4);
- * 3 = idle, waiting for something external to request the finish;
- * 4 = finishes the stop once markDriveFlags_0x3b0's top byte is set, installing the
- *     fade-complete callback and starting both ADX fade-outs. */
+/* 0 cruising, 1 just departed, 2 approaching (marker drawn), 3 at the stop
+ * (left to 02b464), 4 practice without stops: the run ends on markDriveFlags_0x3b0's top byte. */
 void StopUpdateArrival_8c02ce48(void)
 {
     int crossedSegment;

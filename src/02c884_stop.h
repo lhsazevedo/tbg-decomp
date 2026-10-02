@@ -5,8 +5,8 @@
 
 #include "013ae8_route.h" /* CourseSegment */
 
-/* A stop's spawn strip: origin (x_0x04, z_0x08) and direction (dx_0x0c,
- * dz_0x10) that waiting passengers are laid out along. */
+/* A point and direction on the course: where the bus pulls up (lineBus_0x08)
+ * or the strip waiting passengers line up along (lineHum_0x2c). */
 typedef struct {
     void *ukn_0x00;
     float x_0x04;
@@ -15,68 +15,52 @@ typedef struct {
     float dz_0x10;
 } StopAreaRecord;
 
-/* Frees the bus-stop task group and marks it unallocated. */
 void StopKillTaskGroup_8c02ca96(void);
 
-/* Per-run setup, called once the course has loaded: decides which segments
- * get a stop, then primes the first one and its waiting passengers. */
+/* Per-run: decides which segments get a stop, primes the first one and
+ * resets driver points and the run clock. */
 void StopSetup_8c02caba(void);
 
-/* Locks in the current stop's heading, then finds the next segment with a
- * stop and primes its position and heading. */
+/* Makes the next stop's segment current and finds the stop after it. */
 void StopAdvance_8c02ccc6(void);
 
 CourseSegment *StopGetSegment_8c02cd6a(int segmentIndex);
 
-/* Returns the stop-area record for segmentIndex's segment
- * (the course's lineBus_0x08 table, selected by the segment's stopAreaId_0x02). */
 StopAreaRecord *StopGetArea_8c02cd7a(int segmentIndex);
 
-/* Per-frame arrival state machine, driven by 02b464_grading. Phases run
- * 0 cruising -> 2 approach -> 3 stopped -> 4 finishing -> 1 post-departure ->
- * 0; this function never enters 3 or 4 on its own, 02b464 does. See the
- * function for what each phase watches. */
+/* Steps RunState.stopPhase_0x20 once per frame. */
 void StopUpdateArrival_8c02ce48(void);
 
-/* index of the stop the run starts from: 0 for a normal course start, or the
- * debug menu's per-entry startStopIndex_0x04 to begin partway along the route */
+/* Segment the run starts from: 0, or a debug menu entry's to start partway. */
 extern int var_startStopIndex_8c228704;
 
 extern int var_currentSegment_8c228708;
 
-extern int var_prevStopSegment_8c22870c; // segment index of the previous stop
-extern int var_nextStopSegment_8c228710; // segment index of the upcoming stop
+extern int var_prevStopSegment_8c22870c;
+extern int var_nextStopSegment_8c228710;
 
-/* upcoming stop's heading angle (njArcTan2 of its stop-area record's
- * direction vector, see NinjaApi.h), sign-extended from the low 16 bits by
- * StopAdvance_8c02ccc6 */
+/* Sign-extended from 16 bits. */
 extern int var_nextStopHeading_8c228714;
 
-/* fixed 31-slot table of scripted/special waiting-passenger schedule entries,
- * one per fixed stop position along the route; -1 = unused. Read by
- * StopSpawnInit_8c02d968 to spawn each slot's passenger task. */
+/* The passenger in each bus seat, as their stop-candidate entry; -1 = empty.
+ * Indexes init_seatPositions_8c04c3e4. */
 extern int var_seats_8c228718[31];
 
-/* number of slots filled in var_waitingPassengers_8c228798 by pickWaitingPassengers_8c02c8ae
- * (0-16); read by 02d06c/02d968 to spawn that many passenger tasks. */
 extern int var_waitingPassengerCount_8c228794;
 
-/* one waiting passenger picked for the upcoming stop by
- * pickWaitingPassengers_8c02c8ae */
 typedef struct {
-    void *spot_0x00;  // chosen candidate-stop entry (segment record's list at +8)
-    NJS_POINT3 pos_0x04; // world position; y filled in by the ground snap
-    float index_0x10; // 0, 1, 2, ... in pick order
+    /* An entry of CourseSegment.stopCandidates_0x08: {pedestrian type,
+     * destination segment} bytes. */
+    void *spot_0x00;
+    NJS_POINT3 pos_0x04;
+    float index_0x10;
 } WaitingPassengerSlot;
 extern WaitingPassengerSlot var_waitingPassengers_8c228798[16];
 
-/* The one NJS_SPRITE every passenger is drawn through, waiting at the stop
- * (02d06c) or inside the bus (02d19c). Only sx/sy/ang/tanim are reset up
- * front; p and tlist are set per draw. */
+/* Shared by every passenger draw; p and tlist are set per draw. */
 extern NJS_SPRITE var_passengerSprite_8c2288d8;
 
-/* Task group for the bus-stop subsystem's waiting-passenger/departure tasks
- * (see StopSpawnInit_8c02d968); -1 means not currently allocated. */
+/* -1 when not allocated. */
 extern void* var_stopTaskGroup_8c2288f8;
 
 #endif // _02C884_STOP_H
