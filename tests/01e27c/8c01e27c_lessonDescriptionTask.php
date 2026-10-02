@@ -472,7 +472,7 @@ return new class extends TestCase {
         $task = $this->alloc(0x20);
         $this->call('_lessonDescriptionTask_8c01e27c')->with($task);
 
-        $this->shouldCall('_practiceCancelReturn_8c01e920')->with($task);
+        $this->shouldCall('_enterGuide_8c01e920')->with($task);
     }
 
     public function test_state_8_draws_while_fading(): void

@@ -437,7 +437,7 @@ return new class extends TestCase {
 
         $this->shouldWriteLong($this->addressOf('_var_practiceLesson_8c22640c'), 7);
         $this->shouldWriteLong($this->addressOf('_var_runWasPractice_8c1bb8bc'), 0);
-        $this->shouldCall('_practiceCancelReturn_8c01e920')->with($task);
+        $this->shouldCall('_enterGuide_8c01e920')->with($task);
     }
 
     public function test_state_7_idle_while_fading(): void

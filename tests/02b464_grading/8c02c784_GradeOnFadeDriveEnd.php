@@ -72,6 +72,6 @@ return new class extends TestCase {
         $this->shouldWriteLong($this->addressOf('_var_runWasPractice_8c1bb8bc'), 1);
         $this->shouldWriteLong($this->addressOf('_var_runSucceeded_8c1bb8dc'), 1);
         $this->shouldCall('_ReplayMenuFreeSessionAssets_8c016182');
-        $this->shouldCall('_PracticeMenuLessonRetry_8c01f21c');
+        $this->shouldCall('_PracticeMenuReturn_8c01f21c');
     }
 };

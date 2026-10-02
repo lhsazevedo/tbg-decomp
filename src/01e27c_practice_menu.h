@@ -17,6 +17,6 @@ extern int var_practiceLesson_8c22640c;
 extern int var_practiceRules_8c226410;
 
 void PracticeMenuEnter_8c01f114(Task *task);
-void PracticeMenuLessonRetry_8c01f21c(void);
+void PracticeMenuReturn_8c01f21c(void);
 
 #endif // _01E27C_H

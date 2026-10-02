@@ -376,7 +376,7 @@ return new class extends TestCase {
         $this->shouldWriteLong($this->addressOf('_var_runWasPractice_8c1bb8bc'), 0);
         $this->shouldCall('_ReplayMenuFreeSessionAssets_8c016182');
         $this->shouldWriteLong($this->addressOf('_var_menuState_8c1bc7a8') + 0x38, 0x2b);
-        $this->shouldCall('_PracticeMenuLessonRetry_8c01f21c');
+        $this->shouldCall('_PracticeMenuReturn_8c01f21c');
         $this->shouldReturn(0);
     }
 
@@ -417,7 +417,7 @@ return new class extends TestCase {
         $this->setSize('_RenderStartFadeOut_8c022b60', 4);
         $this->setSize('_ReplayMenuFreeSessionAssets_8c016182', 4);
         $this->setSize('_CourseMenuReturn_8c017ef2', 4);
-        $this->setSize('_PracticeMenuLessonRetry_8c01f21c', 4);
+        $this->setSize('_PracticeMenuReturn_8c01f21c', 4);
 
         $this->setSize('_var_runSucceeded_8c1bb8dc', 4);
         $this->setSize('_var_runWasPractice_8c1bb8bc', 4);

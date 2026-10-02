@@ -58,7 +58,7 @@
           .IMPORT     _var_isFading_8c226568
           .IMPORT     _RenderStartFadeOut_8c022b60
           .IMPORT     _var_shouldShowFreeRunIntro_8c1bb8c0
-          .IMPORT     _PracticeMenuLessonRetry_8c01f21c
+          .IMPORT     _PracticeMenuReturn_8c01f21c
           .IMPORT     _var_markTexlist_8c1bc418
           .IMPORT     _SpriteDraw_8c014f54
           .IMPORT     _ReplayMenuKillDriveTasks_8c01614c
@@ -2652,7 +2652,7 @@ LP_GEN_25024:
           .DATA.L _RenderStartFadeOut_8c022b60 ; H'8C02C84C
           .DATA.L _var_playMode_8c1bb8d0 ; H'8C02C850
           .DATA.L _var_shouldShowFreeRunIntro_8c1bb8c0 ; H'8C02C854
-          .DATA.L _PracticeMenuLessonRetry_8c01f21c ; H'8C02C858
+          .DATA.L _PracticeMenuReturn_8c01f21c ; H'8C02C858
           .DATA.L _var_markTexlist_8c1bc418 ; H'8C02C85C
           .DATA.L H'C0400000 ; H'8C02C860
           .DATA.L _SpriteDraw_8c014f54 ; H'8C02C864

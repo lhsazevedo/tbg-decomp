@@ -11,7 +11,7 @@ return new class extends TestCase {
         $this->resolveSymbols();
         $this->initUint32($this->addressOf('_var_runWasPractice_8c1bb8bc'), 0);
 
-        $this->call('_PracticeMenuLessonRetry_8c01f21c');
+        $this->call('_PracticeMenuReturn_8c01f21c');
 
         $menuStateBase = $this->addressOf('_var_menuState_8c1bc7a8');
         $this->shouldWriteLong($menuStateBase + 0x44, 0);
@@ -31,7 +31,7 @@ return new class extends TestCase {
         $this->initUint32($this->addressOf('_var_runWasPractice_8c1bb8bc'), 1);
         $this->initUint32($this->addressOf('_var_runSucceeded_8c1bb8dc'), 0);
 
-        $this->call('_PracticeMenuLessonRetry_8c01f21c');
+        $this->call('_PracticeMenuReturn_8c01f21c');
 
         $menuStateBase = $this->addressOf('_var_menuState_8c1bc7a8');
         $this->shouldWriteLong($menuStateBase + 0x44, 0);
@@ -58,7 +58,7 @@ return new class extends TestCase {
         $candidateScoreAddr = $this->addressOf('_var_runState_8c2285c4') + 0x0c;
         $this->initUint32($candidateScoreAddr, 20);
 
-        $this->call('_PracticeMenuLessonRetry_8c01f21c');
+        $this->call('_PracticeMenuReturn_8c01f21c');
 
         $menuStateBase = $this->addressOf('_var_menuState_8c1bc7a8');
         $this->shouldWriteLong($menuStateBase + 0x44, 0);

@@ -10,11 +10,11 @@ return new class extends TestCase {
         $this->resolveSymbols();
 
         $task = $this->alloc(0x20);
-        $this->call('_practiceCancelReturn_8c01e920')->with($task);
+        $this->call('_enterGuide_8c01e920')->with($task);
 
         $this->shouldCall('_TaskSwitch_8c014b3e')->with(
             $task,
-            $this->addressOf('_showLesson_8c01e63c')
+            $this->addressOf('_lessonGuideTask_8c01e63c')
         );
 
         $menuStateBase = $this->addressOf('_var_menuState_8c1bc7a8');
@@ -45,11 +45,11 @@ return new class extends TestCase {
         $this->resolveSymbols();
 
         $task = $this->alloc(0x20);
-        $this->call('_practiceCancelReturn_8c01e920')->with($task);
+        $this->call('_enterGuide_8c01e920')->with($task);
 
         $this->shouldCall('_TaskSwitch_8c014b3e')->with(
             $task,
-            $this->addressOf('_showLesson_8c01e63c')
+            $this->addressOf('_lessonGuideTask_8c01e63c')
         );
 
         $menuStateBase = $this->addressOf('_var_menuState_8c1bc7a8');

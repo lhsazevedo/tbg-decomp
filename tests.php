@@ -464,15 +464,15 @@ return [
         [
             "tests" => [
                 "tests/01e27c/8c01e27c_lessonDescriptionTask.php",
-                "tests/01e27c/8c01e576_initDescriptionReveal.php",
+                "tests/01e27c/8c01e576_enterDescription.php",
                 "tests/01e27c/8c01e992_buildDialogQueue.php",
-                "tests/01e27c/8c01e920_practiceCancelReturn.php",
+                "tests/01e27c/8c01e920_enterGuide.php",
                 "tests/01e27c/8c01ead8_drawDigits.php",
-                "tests/01e27c/8c01e63c_showLesson.php",
+                "tests/01e27c/8c01e63c_lessonGuideTask.php",
                 "tests/01e27c/8c01ebc8_scrollTowardSelection.php",
                 "tests/01e27c/8c01ebf2_lessonMenuTask.php",
                 "tests/01e27c/8c01f114_PracticeMenuEnter.php",
-                "tests/01e27c/8c01f21c_PracticeMenuLessonRetry.php",
+                "tests/01e27c/8c01f21c_PracticeMenuReturn.php",
             ],
             "objects" => [
                 "build/output_test/src/asm/decompiled/01e27c_practice_menu.obj",

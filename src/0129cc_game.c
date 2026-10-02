@@ -272,7 +272,7 @@ STATIC int pauseUpdate_8c0129cc(void)
             ReplayMenuFreeSessionAssets_8c016182();
             if (var_playMode_8c1bb8d0 == PLAY_MODE_PRACTICE) {
                 var_menuState_8c1bc7a8.selected_0x38 = var_practiceLesson_8c22640c;
-                PracticeMenuLessonRetry_8c01f21c();
+                PracticeMenuReturn_8c01f21c();
                 LOG_INFO(("[PAUSE] pauseUpdate_8c0129cc: retire complete, leaving drive (practice)\n"));
                 return 0;
             }

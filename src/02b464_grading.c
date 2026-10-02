@@ -897,7 +897,7 @@ STATIC void driveEndFadeTask_8c02c69a(Task *task, void *state) {
     } else if (*phase == 2 && var_isFading_8c226568 == 0) {
         ReplayMenuFreeSessionAssets_8c016182();
         if (var_playMode_8c1bb8d0 == PLAY_MODE_PRACTICE) {
-            PracticeMenuLessonRetry_8c01f21c();
+            PracticeMenuReturn_8c01f21c();
             return;
         }
         if (var_gameMode_8c1bb8fc == 0) {
@@ -995,7 +995,7 @@ void GradeOnFadeDriveEnd_8c02c784(void) {
 
     var_runSucceeded_8c1bb8dc = 1;
     ReplayMenuFreeSessionAssets_8c016182();
-    PracticeMenuLessonRetry_8c01f21c();
+    PracticeMenuReturn_8c01f21c();
 }
 
 /* Master per-frame drive task, installed by GradeReset_8c02c46a (via

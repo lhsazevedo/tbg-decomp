@@ -12,7 +12,7 @@ return new class extends TestCase {
         // Allocate task parameter
         $task = $this->alloc(0x20);
 
-        $this->call('_initDescriptionReveal_8c01e576')->with($task);
+        $this->call('_enterDescription_8c01e576')->with($task);
 
         // Step 1: Install the description-reveal task action
         $this->shouldCall('_TaskSwitch_8c014b3e')->with(
