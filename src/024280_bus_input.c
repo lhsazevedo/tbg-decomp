@@ -231,7 +231,7 @@ STATIC void applyThrottle_8c024320(void)
         }
 
         /* Shift-cue note: the mirror camera modes (>= 2) use a different note than the rest. */
-        sdMidiPlay(var_midiHandles_8c0fcd28[0], 1, (var_cameraMode_8c227d9c >= 2) ? 0x25 : 0x26, 0);
+        sdMidiPlay(var_midiHandles_8c0fcd28[0], 1, (var_cameraMode_8c227d9c >= BUS_CAMERA_THIRD_PERSON_NEAR) ? 0x25 : 0x26, 0);
 
         if (gear == 0) {
             /* Arms gradeFrame_8c02bcd8's rapid-acceleration check (02b464). */
@@ -247,7 +247,7 @@ STATIC void applyThrottle_8c024320(void)
         gear = var_busState_8c1bb9d0.gear_0x2f4;
         if (gear != 0 && init_gears_8c045638[gear - 1].upshiftSpeed_0x08 > var_busState_8c1bb9d0.speed_0x27c) {
             /* Same shift cue as the upshift above. */
-            sdMidiPlay(var_midiHandles_8c0fcd28[0], 1, (var_cameraMode_8c227d9c >= 2) ? 0x25 : 0x26, 0);
+            sdMidiPlay(var_midiHandles_8c0fcd28[0], 1, (var_cameraMode_8c227d9c >= BUS_CAMERA_THIRD_PERSON_NEAR) ? 0x25 : 0x26, 0);
             gear -= 1;
             var_busState_8c1bb9d0.gear_0x2f4 = gear;
         }
@@ -441,12 +441,12 @@ void BusInputUpdate_8c0246b2(void)
             return;
         }
 
-        if ((press & 0x400) != 0) {
+        if ((press & PDD_DGT_TX) != 0) {
             switch (var_busState_8c1bb9d0.signalSide_0x25c) {
             case 0:
                 var_busState_8c1bb9d0.signalSide_0x25c = 1;
                 if (var_runState_8c2285c4.lane_0x6c != 0x10000000) {
-                    var_busState_8c1bb9d0.mirror_0x268 = 1;
+                    var_busState_8c1bb9d0.mirror_0x268 = MIRROR_LEFT;
                 }
                 break;
             case 1:
@@ -454,22 +454,22 @@ void BusInputUpdate_8c0246b2(void)
                 break;
             case 2:
                 var_busState_8c1bb9d0.signalSide_0x25c = 0;
-                var_busState_8c1bb9d0.mirror_0x268 = 0;
+                var_busState_8c1bb9d0.mirror_0x268 = MIRROR_NONE;
                 break;
             default:
                 break;
             }
-        } else if ((press & 2) != 0) {
+        } else if ((press & PDD_DGT_TB) != 0) {
             switch (var_busState_8c1bb9d0.signalSide_0x25c) {
             case 0:
                 var_busState_8c1bb9d0.signalSide_0x25c = 2;
                 if ((var_runState_8c2285c4.lane_0x6c & ~1) != (var_runState_8c2285c4.field_0x70[0] << 4)) {
-                    var_busState_8c1bb9d0.mirror_0x268 = 2;
+                    var_busState_8c1bb9d0.mirror_0x268 = MIRROR_RIGHT;
                 }
                 break;
             case 1:
                 var_busState_8c1bb9d0.signalSide_0x25c = 0;
-                var_busState_8c1bb9d0.mirror_0x268 = 0;
+                var_busState_8c1bb9d0.mirror_0x268 = MIRROR_NONE;
                 break;
             case 2:
                 var_busState_8c1bb9d0.laneTargetSearchSide_0x338 = 1;
@@ -484,34 +484,34 @@ void BusInputUpdate_8c0246b2(void)
     /* Direct steering mode: same two mirror buttons, but case 1 (held) just
      * clears back to 0 on either button, and laneTargetSearchSide_0x338 is never touched
      * here -- then the steering force-feedback ramp always runs below. */
-    if ((press & 0x400) != 0) {
+    if ((press & PDD_DGT_TX) != 0) {
         switch (var_busState_8c1bb9d0.signalSide_0x25c) {
         case 0:
             var_busState_8c1bb9d0.signalSide_0x25c = 1;
             if (var_runState_8c2285c4.lane_0x6c != 0x10000000) {
-                var_busState_8c1bb9d0.mirror_0x268 = 1;
+                var_busState_8c1bb9d0.mirror_0x268 = MIRROR_LEFT;
             }
             break;
         case 1:
         case 2:
             var_busState_8c1bb9d0.signalSide_0x25c = 0;
-            var_busState_8c1bb9d0.mirror_0x268 = 0;
+            var_busState_8c1bb9d0.mirror_0x268 = MIRROR_NONE;
             break;
         default:
             break;
         }
-    } else if ((press & 2) != 0) {
+    } else if ((press & PDD_DGT_TB) != 0) {
         switch (var_busState_8c1bb9d0.signalSide_0x25c) {
         case 0:
             var_busState_8c1bb9d0.signalSide_0x25c = 2;
             if ((var_runState_8c2285c4.lane_0x6c & ~1) != (var_runState_8c2285c4.field_0x70[0] << 4)) {
-                var_busState_8c1bb9d0.mirror_0x268 = 2;
+                var_busState_8c1bb9d0.mirror_0x268 = MIRROR_RIGHT;
             }
             break;
         case 1:
         case 2:
             var_busState_8c1bb9d0.signalSide_0x25c = 0;
-            var_busState_8c1bb9d0.mirror_0x268 = 0;
+            var_busState_8c1bb9d0.mirror_0x268 = MIRROR_NONE;
             break;
         default:
             break;
