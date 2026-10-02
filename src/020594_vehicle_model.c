@@ -19,7 +19,6 @@ STATIC Float unusedStepToward_8c020676(Float step, NJS_POINT3 *from, NJS_POINT3 
  * ====================
  */
 
-/* See 020594_vehicle_model.h. */
 void VehicleModelPlace_8c020594(NJS_MATRIX *matrix, BusState *bus)
 {
     Float *m = *matrix;
@@ -57,9 +56,7 @@ void VehicleModelPlace_8c020594(NJS_MATRIX *matrix, BusState *bus)
     m[15] = 1.0f;
 }
 
-/* Never called -- dead code kept for object parity with the original
- * binary. Scales (to - from) so its length equals `step`, via
- * njDistanceP2P for the true distance between the two points. */
+/* Returns the from-to distance. */
 STATIC Float unusedStepToward_8c020676(Float step, NJS_POINT3 *from, NJS_POINT3 *to,
                               NJS_POINT3 *out)
 {
