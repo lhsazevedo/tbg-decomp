@@ -13,7 +13,6 @@
  * ====================
  */
 
-/* See 02412c_bus_line.h. */
 int BusLineAdvance_8c02412c(void)
 {
     LinePoint *point = (LinePoint *)var_busState_8c1bb9d0.currentLinePointPtr_0x2b8;
@@ -31,16 +30,12 @@ int BusLineAdvance_8c02412c(void)
         point++;
 
         if (point->len_0x00 == 0.0f) {
-            /* Segment exhausted -- move to the next one via the node table. */
             LineBusNode *nodes = var_lineNodes_8c227d88;
             LineBusSegment *segs = var_lineSegments_8c227d84;
             LineBusNode *node = &nodes[var_busState_8c1bb9d0.currentLineNodeIdx_0x33c];
             int nextIdx;
 
-            /* Turn signal picks the branch: left takes altNext[1], right
-             * altNext[2]. var_busState_8c1bb9d0.signalSide_0x25c is signalSide_0x25c again
-             * under its own section B symbol, which is how the asm reads it
-             * the second time. */
+            /* At a junction, the turn signal picks the branch. */
             if (node->altNext_0x04[1] != LINE_NODE_NONE && var_busState_8c1bb9d0.signalSide_0x25c == 1) {
                 nextIdx = node->altNext_0x04[1];
             } else if (node->altNext_0x04[2] != LINE_NODE_NONE && var_busState_8c1bb9d0.signalSide_0x25c == 2) {
@@ -70,8 +65,6 @@ int BusLineAdvance_8c02412c(void)
     var_busState_8c1bb9d0.posX_0x0f4 = var_busState_8c1bb9d0.laneTargetX_0x0ec + dxN * var_busState_8c1bb9d0.laneOffset_0x2c4;
     var_busState_8c1bb9d0.posZ_0x0fc = var_busState_8c1bb9d0.laneTargetZ_0x0f0 + dzN * var_busState_8c1bb9d0.laneOffset_0x2c4;
 
-    /* acosf(dzN) scaled to a 0..65536 angle unit, negated when dxN <= 0 --
-     * an atan2-style angle built from acos, matching the asm's FTRC + NEG. */
     angle = acosf(dzN);
     angleUnits = angle * 65536.0f / TWO_PI;
     angleUnitsInt = (int)angleUnits;
