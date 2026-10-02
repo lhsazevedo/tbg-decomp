@@ -5,21 +5,14 @@
 #include <shinobi.h>
 #include "014a9c_tasks.h" /* Task */
 
-/* Task state for both object kinds; exactly the 0xd4 TaskSpawn_8c014ae8 asks for.
- *
- * A type 1 object is a signal head: `frame_0x0c` cycles 0->1->2->0, holding each
- * for `durations_0x08[frame]` frames, and is published to
- * var_trafficSignalFrames_8c227e24 under id_0x00, where pedestrians and CPU
- * vehicles read it to decide whether they may go. A type 2/3/4 object hangs off
- * one of those through `attachedTo_0xd0`, mirrors its open/closed state, and
- * only ever uses lamps_0x10[0].
- *
- * The 027958_bus_draw draw callbacks light exactly one entry of `lamps_0x10` per frame --
- * NJD_EVAL_HIDE cleared on it, set on the other two -- then draw `model_0xb8`
- * with `tlist_0xb4`. For a type 2/3/4 object BusDrawSignalAttachment_8c028206 reads drawA_0xc8 as
- * plain visibility rather than as a per-placement draw flag. */
+/* Task state of a signal head (type 1) or an attachment (types 2/3/4).
+ * A head's frame_0x0c cycles 0->1->2->0, holding each for
+ * durations_0x08[frame] frames, and is published per id to
+ * var_trafficSignalFrames_8c227e24 for pedestrians and CPU vehicles. An
+ * attachment hangs off a head through attachedTo_0xd0, has only lamps_0x10[0],
+ * and uses drawA_0xc8 as that lamp's visibility. */
 typedef struct TrafficSignal {
-    int id_0x00; /* indexes var_trafficSignalFrames_8c227e24 / var_trafficSignalStates_8c227e28 */
+    int id_0x00;
     int counter_0x04;
     int *durations_0x08;
     int frame_0x0c;
@@ -37,22 +30,21 @@ typedef struct TrafficSignal {
 } TrafficSignal;
 
 /* One entry of the course's macSignal_0x38 table, terminated by a zero
- * type_0x00. A type-1 entry is a signal head in its own right, running its own
- * lamp cycle; types 2/3/4 are attachments naming the type-1 entry they hang off.
- * Each rot/pos pair is only applied when its position is non-zero. */
+ * type_0x00. Types as in TrafficSignal. A rot/pos pair applies only when its
+ * position is non-zero. */
 typedef struct {
     int type_0x00;
-    int id_0x04;                 /* indexes var_trafficSignalFrames_8c227e24 / ...States_8c227e28 */
+    int id_0x04;
     int linkedId_0x08;           /* type 1: initial counter instead */
     int rotADeg_0x0c;
     NJS_POINT3 posA_0x10;
     int rotBDeg_0x1c;
     NJS_POINT3 posB_0x20;
-    int durations_0x2c[3];       /* per-frame hold times, walked by headTask_8c028258 */
+    int durations_0x2c[3];
 } TrafficSignalDef;
 
-extern Task *var_trafficSignalTasks_8c227e20; /* Task array for headTask_8c028258/attachmentTask_8c02833c, sized (count+1) by SignalInit_8c02845a */
-extern int *var_trafficSignalFrames_8c227e24; /* per-id current frame index, read by SignalGetFrame_8c028900 */
+extern Task *var_trafficSignalTasks_8c227e20;
+extern int *var_trafficSignalFrames_8c227e24; /* per-id frame_0x0c */
 
 void SignalInit_8c02845a(void);
 TrafficSignal *SignalGet_8c0288b2(int index);

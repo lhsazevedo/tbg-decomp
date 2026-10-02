@@ -22,8 +22,10 @@
 Task *var_trafficSignalTasks_8c227e20;
 int *var_trafficSignalFrames_8c227e24;
 STATIC TrafficSignal **var_trafficSignalStates_8c227e28; /* per-id TrafficSignal* */
-STATIC int var_pedCrossingFlags_8c227e2c[128]; /* 64 8-byte entries, zeroed by SignalClearPedCrossing_8c02890c */
-STATIC int var_crossingOccupiedFlags_8c22802c[128]; /* 64 8-byte entries, zeroed by SignalClearCrossingOccupied_8c028958 */
+/* Per crossing, re-marked every frame: a pedestrian is on it, which traffic
+ * reads; a vehicle is on it, which holds pedestrians back. */
+STATIC int var_pedCrossingFlags_8c227e2c[128];
+STATIC int var_crossingOccupiedFlags_8c22802c[128];
 
 /* ====================
  * Functions
@@ -67,9 +69,6 @@ STATIC void headTask_8c028258(Task *task, TrafficSignal *obj)
     }
 }
 
-/* Frame picker for a type 2/3/4 object: mirrors the linked traffic signal's
- * open/closed state into its own slot, then re-draws whichever of the linked
- * task's two matrices headTask_8c028258 marked this frame. */
 STATIC void attachmentTask_8c02833c(Task *task, TrafficSignal *obj)
 {
     TrafficSignal *linked = obj->attachedTo_0xd0;
@@ -95,13 +94,11 @@ STATIC void attachmentTask_8c02833c(Task *task, TrafficSignal *obj)
     }
 }
 
-/* Installed as a DrawFn; the callback arg is unused. */
 STATIC void setLightCallback_8c0283d4(int arg0)
 {
     njCnkSetSimpleLight(var_busSimpleLightDir_8c227db8[0], var_busSimpleLightDir_8c227db8[1], var_busSimpleLightDir_8c227db8[2]);
 }
 
-/* Installed as a TaskAction; the task/state args are unused. */
 STATIC void execGroupTask_8c0283e8(Task *task, void *state)
 {
     if (var_runState_8c2285c4.runPhase_0x00 != 0) {
@@ -110,7 +107,6 @@ STATIC void execGroupTask_8c0283e8(Task *task, void *state)
     }
 }
 
-/* Recomputes var_groundQueryPoint_8c1bc460.y from the ground polygon under its (x, z). */
 STATIC void snapPointToGround_8c02840c(void)
 {
     GroundQueryResult result;
@@ -124,11 +120,8 @@ STATIC void snapPointToGround_8c02840c(void)
     GroundProbeInterpolateHeight_8c020f7e(&result, (float *)&var_groundQueryPoint_8c1bc460);
 }
 
-/* Spawns a task per entry of the course's macSignal_0x38 table (see
- * TrafficSignalDef): first every type-1 entry, then the 2/3/4 attachments, which
- * search the tasks already spawned for the id they name. The task state's
- * tlist_0xb4/model_0xb8 are a var_routeModels_8c1bc3ec pair; the draw callbacks
- * in 027958_bus_draw feed them to njSetTexture and njCnkSimpleDrawObject. */
+/* Heads are spawned first so each attachment can find its head among the
+ * spawned tasks. */
 void SignalInit_8c02845a(void)
 {
     TrafficSignalDef *def;
@@ -191,8 +184,6 @@ void SignalInit_8c02845a(void)
         state->posB_0x28 = def->posB_0x20;
         state->tlist_0xb4 = (NJS_TEXLIST *)((int *)var_routeModels_8c1bc3ec)[0];
         state->model_0xb8 = (NJS_OBJECT *)((int *)var_routeModels_8c1bc3ec)[1];
-        /* The model's first three children are the frames BusDrawSignal_8c0281ac
-         * shows and hides. */
         frame = state->model_0xb8->child;
         state->lamps_0x10[0] = frame;
         state->lamps_0x10[1] = frame->sibling;
@@ -245,8 +236,7 @@ void SignalInit_8c02845a(void)
             }
         }
         state->id_0x00 = def->id_0x04;
-        /* An attachment has no animation of its own; it reuses the first
-         * duration slot as the counter it compares against its parent's. */
+        /* An attachment's first duration is the head counter it waits for. */
         state->counter_0x04 = def->durations_0x2c[0];
         if (def->type_0x00 == 2) {
             state->tlist_0xb4 = (NJS_TEXLIST *)((int *)var_routeModels_8c1bc3ec)[2];
@@ -294,10 +284,6 @@ int SignalGetFrame_8c028900(int index)
 {
     return var_trafficSignalFrames_8c227e24[index];
 }
-/* Clears the per-signal-id "a pedestrian is crossing here" flags for the frame.
- * Called by pedestriansTask_8c0293f6 before any pedestrianTask_8c028e00 re-marks
- * one; the 026710 traffic vehicle spawner reads them back through
- * SignalIsPedCrossing_8c028998. */
 void SignalClearPedCrossing_8c02890c(void)
 {
     int i;
@@ -317,7 +303,6 @@ void SignalClearCrossingOccupied_8c028958(void)
         var_crossingOccupiedFlags_8c22802c[i * 2 + 1] = 0;
     }
 }
-/* Called by pedestrianTask_8c028e00 when it starts to cross at a signal. */
 void SignalMarkPedCrossing_8c02897a(int index)
 {
     var_pedCrossingFlags_8c227e2c[index] = 1;
@@ -328,8 +313,6 @@ void SignalMarkCrossingOccupied_8c028984(int index)
     var_crossingOccupiedFlags_8c22802c[index] = 1;
 }
 
-/* The mirror of the flags above: 026710 marks a crossing occupied while one of
- * its vehicles is on it, which gates pedestrianTask_8c028e00 from stepping out. */
 int SignalIsCrossingOccupied_8c02898e(int index)
 {
     return var_crossingOccupiedFlags_8c22802c[index];
