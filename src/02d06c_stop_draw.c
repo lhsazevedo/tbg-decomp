@@ -11,11 +11,6 @@
  * ====================
  */
 
-/* The slots come from pickWaitingPassengers_8c02c8ae (02c884). 0x22 and 0x23
- * are the same standing-passenger pair drawPassengerSprite_8c02d19c uses for
- * the two aisle columns. A passenger whose stop index (the byte at
- * *spot_0x00) is past the asset table or whose slot has no texlist loaded
- * yet is skipped. */
 void StopDrawWaitingPassengers_8c02d06c(int layer)
 {
     int i;
@@ -37,10 +32,6 @@ void StopDrawWaitingPassengers_8c02d06c(int layer)
     }
 }
 
-/* Sibling of setSimpleLightCallback_8c02a5d0 (0289ac_objects), but always
- * takes the layer-0 light direction and adds the constant-attr/material
- * setup. var_passengerFadeColor_8c228960's alpha is what makes passengers
- * fade out and back in between waypoints. */
 void StopDrawLightBegin_8c02d0fc(int arg0)
 {
     njCnkSetSimpleLight(var_simpleLightDir_8c2264d8[0], var_simpleLightDir_8c2264d8[1],
