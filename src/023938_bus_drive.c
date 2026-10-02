@@ -148,7 +148,7 @@ void BusDriveApplyGround_8c023cba(void)
  * 8c020914 or a GroundProbe* variant, all sharing the same (x,y,z,out)
  * signature), filling groundSamples_0x190. Also seeds posHistory_0x100[0]/[1]
  * (no probe for those two) and the heading unit vector headingDirX_0x274/0x278.
- * Called by busInitPlaceBus_8c023310/BusInitStart_8c023610 (023310_bus_init) and
+ * Called by placeBus_8c023310/BusInitStart_8c023610 (023310_bus_init) and
  * BusTask_8c022bdc (022bdc). */
 void BusDriveSampleGround_8c023938(void)
 {

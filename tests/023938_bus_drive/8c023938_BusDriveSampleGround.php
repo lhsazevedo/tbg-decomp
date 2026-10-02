@@ -12,7 +12,7 @@ use Lhsazevedo\Sh4ObjTest\TestCase;
  * filling groundSamples_0x190. Also reseeds posHistory_0x100[0]/[1] (the
  * only two entries not probed) and the heading unit vector
  * headingDirX_0x274/headingDirZ_0x278. Called once per frame while driving, by both
- * busInitPlaceBus_8c023310/BusInitStart_8c023610 (023310_bus_init) and
+ * placeBus_8c023310/BusInitStart_8c023610 (023310_bus_init) and
  * BusTask_8c022bdc (022bdc).
  */
 return new class extends TestCase {

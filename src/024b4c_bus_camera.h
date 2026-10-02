@@ -34,7 +34,7 @@ extern int var_cameraMode_8c227d9c;
 extern Uint32 var_savedCameraMode_8c227da0;
 extern int var_cameraCueState_8c227da4; /* shifted into var_savedCameraCueState_8c227da8 each frame alongside var_cameraMode_8c227d9c->var_savedCameraMode_8c227da0 */
 extern int var_savedCameraCueState_8c227da8;
-extern int var_cameraCueBusy_8c227dac; /* zeroed alongside var_cameraMode_8c227d9c by busInitPlaceBus_8c023310 for a normal run */
+extern int var_cameraCueBusy_8c227dac; /* zeroed alongside var_cameraMode_8c227d9c by placeBus_8c023310 for a normal run */
 /* Door-timer counter driven by BusTask_8c022bdc (022bdc): counts up by 0.5/frame
  * while boarding (doorState_0x3c0==1), capped at var_busDoorLastFrame_8c227db4, then counts
  * back down by 0.5/frame once departing (doorState_0x3c0==3) until it hits 0. */

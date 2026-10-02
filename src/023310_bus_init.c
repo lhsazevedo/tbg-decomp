@@ -35,7 +35,7 @@ LineBusNode *var_lineNodes_8c227d88;
 
 /* Positions the player's bus at the current segment's stop and resets its
  * driving-physics state. Called once by BusInitStart_8c023610 at the start of a run. */
-STATIC void busInitPlaceBus_8c023310(void)
+STATIC void placeBus_8c023310(void)
 {
     StopAreaRecord *stopArea = StopGetArea_8c02cd7a(var_currentSegment_8c228708);
     GroundQueryResult groundResult;
@@ -194,7 +194,7 @@ void BusInitStart_8c023610(void)
         var_busState_8c1bb9d0.junctionQueryFnRoute_0x2d0 = (int)AttrQueryFindPolygon_8c02e69c;
     }
 
-    busInitPlaceBus_8c023310();
+    placeBus_8c023310();
 
     var_busState_8c1bb9d0.engineState_0x2e0 = 0;
     var_busState_8c1bb9d0.idleFrameCounter_0x2ec = 0;

@@ -44,7 +44,7 @@ typedef struct {
     NJS_OBJECT *turnLampB_0x044;
     NJS_OBJECT *turnLampC_0x048;
     NJS_OBJECT *bodyModels_0x04c[6];
-    /* Zeroed by busInitPlaceBus_8c023310 and never read; TrafficEntry's
+    /* Zeroed by placeBus_8c023310 and never read; TrafficEntry's
      * three at the same offsets are the same way. */
     int field_0x064;
     int field_0x068;
@@ -65,7 +65,7 @@ typedef struct {
     NJS_MATRIX worldMatrix_0x084;
 
     /* Copy of var_sceneParams_8c18ad24->rec0_0x0c[0] (the primary directional
-     * light's coefficient row), set by busInitPlaceBus_8c023310. */
+     * light's coefficient row), set by placeBus_8c023310. */
     float lightCoeffRow_0x0c4[5];
     int easyLightIntensityA_0x0d8;
     int easyLightIntensityB_0x0dc;
@@ -80,13 +80,13 @@ typedef struct {
 
     /* Averaged with posX_0x2fc/posZ_0x304 by rowMaterialModelTask_8c02a27c to get a
      * distance-fade reference point. posY_0x0f8 (and posHistory_0x100 below)
-     * is filled in by busInitPlaceBus_8c023310 via GroundProbeInterpolateHeight_8c020f7e --
+     * is filled in by placeBus_8c023310 via GroundProbeInterpolateHeight_8c020f7e --
      * it treats {posX_0x0f4, posY_0x0f8, posZ_0x0fc} as one contiguous float[3]. */
     float posX_0x0f4;
     float posY_0x0f8;
     float posZ_0x0fc;
 
-    /* Waypoint-position history, 12 entries. busInitPlaceBus_8c023310 seeds
+    /* Waypoint-position history, 12 entries. placeBus_8c023310 seeds
      * rec[0]/rec[1]'s x/z 4.9m/8.0m behind the spawn stop and every rec's y
      * from the just-computed ground height (posY_0x0f8), leaving rec[2..11]'s
      * x/z untouched (stale). */
@@ -102,7 +102,7 @@ typedef struct {
     float headingX_0x230;
     int field_0x234;  /* no use site; the pair has no y, so likely padding */
     float headingZ_0x238;
-    /* Written as float literals (4.9/2.5/1.25/2.6) by busInitPlaceBus_8c023310;
+    /* Written as float literals (4.9/2.5/1.25/2.6) by placeBus_8c023310;
      * field_0x240 is skipped by that write and its role is unclear. */
     float width_0x23c;
     int field_0x240;

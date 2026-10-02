@@ -12,7 +12,7 @@ if (!function_exists('fdec')) {
 }
 
 /*
- * _busInitPlaceBus_8c023310(void): resets var_busState_8c1bb9d0's driving-physics
+ * _placeBus_8c023310(void): resets var_busState_8c1bb9d0's driving-physics
  * fields for a fresh run and snaps its position/height to the current segment's
  * bus-stop spawn strip (StopGetArea_8c02cd7a), via a GroundQueryFindPolygon_8c020914
  * + GroundProbeInterpolateHeight_8c020f7e lookup at that (x, z). Also copies the
@@ -90,7 +90,7 @@ return new class extends TestCase {
         $this->initUint32($this->addressOf('_var_playMode_8c1bb8d0'), $playMode);
         $this->initUint32($this->addressOf('_var_practiceRules_8c226410'), $var8c226410);
 
-        $this->call('_busInitPlaceBus_8c023310')->with();
+        $this->call('_placeBus_8c023310')->with();
 
         $this->shouldCall('_StopGetArea_8c02cd7a')->with($segmentId)->andReturn($rec);
 

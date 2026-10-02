@@ -809,7 +809,7 @@ return [
         ],
         [
             "tests" => [
-                "tests/023310_bus_init/8c023310_busInitPlaceBus.php",
+                "tests/023310_bus_init/8c023310_placeBus.php",
                 "tests/023310_bus_init/8c023610_BusInitStart.php",
             ],
             "objects" => [

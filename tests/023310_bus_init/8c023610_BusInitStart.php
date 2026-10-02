@@ -17,11 +17,11 @@ if (!function_exists('f32')) {
  * BusTask_8c022bdc via TaskSpawn_8c014ae8, binds the bus body model
  * (VehiclePartsBind_8c02786c), picks a (route, timeOfDay) content-swap pointer
  * and a ground-query dispatch table (normal vs. the Wangan-route/segment-10
- * *AtHeight variants), calls busInitPlaceBus_8c023310 to place the bus, then
+ * *AtHeight variants), calls placeBus_8c023310 to place the bus, then
  * runs three AttrQueryFindPolygon_8c02e69c region lookups (seeded from the just-computed
  * posHistory_0x100[2]/[3] breadcrumbs) into junctionASlot_0x340/0x35c/0x378,
  * copying each 4-word hit into junctionARoadFlags_0x34c/0x368/0x384 or zeroing on a miss.
- * busInitPlaceBus_8c023310 is mocked here; its own test covers its body.
+ * placeBus_8c023310 is mocked here; its own test covers its body.
  */
 return new class extends TestCase {
     private function resolveSymbols(): void
@@ -160,7 +160,7 @@ return new class extends TestCase {
             $this->shouldWriteLong($base + 0x2d0, $this->addressOf('_AttrQueryFindPolygon_8c02e69c'));
         }
 
-        $this->shouldCall('_busInitPlaceBus_8c023310');
+        $this->shouldCall('_placeBus_8c023310');
 
         $this->shouldWriteLong($base + 0x2e0, 0);
         $this->shouldWriteLong($base + 0x2ec, 0);

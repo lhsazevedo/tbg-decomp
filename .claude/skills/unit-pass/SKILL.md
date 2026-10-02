@@ -90,7 +90,7 @@ Before/after, from `023938_bus_drive.h`:
     /* Computes 10 corner/lookahead ground-sample points around the bus and
      * queries each through the ground-query callback in groundProbeFn_0x2c8, filling
      * groundSamples_0x190; also reseeds posHistory_0x100[0]/[1] and the heading
-     * unit vector headingDirX_0x274/0x278. Called by busInitPlaceBus_8c023310/
+     * unit vector headingDirX_0x274/0x278. Called by placeBus_8c023310/
      * BusInitStart_8c023610 (023310_bus_init) and BusTask_8c022bdc (022bdc). */
     void BusDriveSampleGround_8c023938(void);
     ->

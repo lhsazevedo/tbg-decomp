@@ -40,10 +40,10 @@
           .EXPORT     _var_lineNodes_8c227d88 ; 023938_bus_drive
                                               ; 02412c_bus_line
           .AIFDEF UNIT_TESTING
-          .EXPORT     _busInitPlaceBus_8c023310
+          .EXPORT     _placeBus_8c023310
           .AENDI
           .SECTION     P, CODE, ALIGN=4
-_busInitPlaceBus_8c023310:
+_placeBus_8c023310:
           MOV.L       R14,@-R15
           MOV.L       R13,@-R15
           MOV.L       R12,@-R15
@@ -570,7 +570,7 @@ LAB_8c02373e:
           ADD         #H'4,R0
           MOV.L       R12,@(R0,R14)
 LAB_8c02374e:
-          BSR         _busInitPlaceBus_8c023310
+          BSR         _placeBus_8c023310
           NOP
           MOV.W       LP_GEN_45139+2,R0
           MOV         #H'0,R13
