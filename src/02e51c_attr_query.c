@@ -12,30 +12,24 @@
  * ====================
  */
 
-/* Not GroundVertex/GroundPoly (020914_ground_query.c) -- a distinct
- * attribute grid, indexed the same way but with different poly fields. */
-
 typedef struct {
     float x, y, z;
 } AttrVertex;
 
-/* One cell of the attribute grid: the polygons whose footprint touches it.
- * Same shape as GroundCell (020914_ground_query.c). */
+/* The polygons whose footprint touches this cell. */
 typedef struct {
     int count_0x00;
     int *polyIds_0x04;
 } AttrCell;
 
-/* 24-byte stride, same as GroundPoly, but attr/flag fields sit at different
- * offsets and there is no plane normal -- this grid is only ever used for
- * flat (x, z) containment tests, never height interpolation. */
+/* No plane normal: only used for flat (x, z) containment tests. */
 typedef struct {
     int vertexCount_0x00;
     int *vertexIds_0x04;
-    int attr_0x08;          /* returned to the caller as &attr_0x08 on a hit */
-    int field_0x0c;         /* never read; copied out to the caller verbatim */
+    int attr_0x08;
+    int field_0x0c;
     int shapeFlag_0x10;     /* 0 = convex (cross-product test), else concave (angle-sum test) */
-    int field_0x14;         /* never read; copied out to the caller verbatim */
+    int field_0x14;
 } AttrPoly;
 
 typedef struct {
@@ -48,12 +42,7 @@ typedef struct {
     AttrVertex *verts_0x18;
 } AttrGrid;
 
-/* The result struct written by all four query functions below. Unlike
- * GroundQueryResult (020914_ground_query.h), there is no leading attr field
- * here -- the matched polygon's attr lives at &polys[*slot].attr_0x08
- * instead, and that's what these functions return. count is the hit/miss
- * flag (0 = miss) and, on a hit, gates the track-vs-full-search branch on
- * the next call. */
+/* count == 0 is a miss. */
 typedef struct {
     int *slot;
     int *vertexIds;
@@ -62,9 +51,7 @@ typedef struct {
 
 #define CELL_SIZE 150.0f
 
-/* How far apart a candidate polygon's first-vertex height may be from the
- * query point's y and still count as a match -- the *AtHeight variants'
- * filter, same tolerance as GroundProbeFindPolygonAtHeight_8c020fe4's. */
+/* Max gap between a candidate's first-vertex y and the query y. */
 #define HEIGHT_TOLERANCE 20.0f
 
 /* =======================
@@ -80,15 +67,6 @@ void *var_activeAttrGrid_8c228b3c;
  * ====================
  */
 
-/* Finds the attribute polygon containing world point (x, z) -- y is unused
- * -- in var_activeAttrGrid_8c228b3c, writing the match into *out and
- * returning &polys[slot].attr_0x08 on a hit, NULL on a miss.
- *
- * If *out already holds a previous match (out->count != 0), that polygon is
- * re-tested first, falling back to a full cell search only on a miss --
- * same track-then-search shape as GroundProbeTrackPolygon_8c020b6c
- * (020b6c_ground_probe.c), except this polygon set is only ever tested the
- * convex way (cross-product walk); there is no concave/angle-sum path here. */
 void *AttrQueryFindConvexPolygon_8c02e51c(float x, float y, float z, void *outParam)
 {
     AttrQueryResult *out = (AttrQueryResult *)outParam;
@@ -196,13 +174,7 @@ void *AttrQueryFindConvexPolygon_8c02e51c(float x, float y, float z, void *outPa
     return NULL;
 }
 
-/* Height-filtered counterpart of AttrQueryFindConvexPolygon_8c02e51c: same
- * (x, z) convex-only containment test and track-then-search shape, but the full cell
- * search additionally rejects a candidate whose first vertex's y is more
- * than HEIGHT_TOLERANCE from the query point's y, so an elevated road can be
- * told apart from the surface street beneath it -- same idea as
- * GroundProbeFindPolygonAtHeight_8c020fe4. The track (re-test) path skips
- * the height check -- same asymmetry as GroundProbeTrackPolygonAtHeight_8c021290. */
+/* The re-test of the previous hit skips the height check. */
 void *AttrQueryFindConvexPolygonAtHeight_8c02eab4(float x, float y, float z, void *outParam)
 {
     AttrQueryResult *out = (AttrQueryResult *)outParam;
@@ -311,9 +283,6 @@ void *AttrQueryFindConvexPolygonAtHeight_8c02eab4(float x, float y, float z, voi
     return NULL;
 }
 
-/* Same track-then-search shape as AttrQueryFindConvexPolygon_8c02e51c, but
- * each candidate is tested one of two ways, chosen by shapeFlag_0x10 (0 = convex, else
- * concave), just like GroundQueryFindPolygon_8c020914's attr-sign split. */
 void *AttrQueryFindPolygon_8c02e69c(float x, float y, float z, void *outParam)
 {
     AttrQueryResult *out = (AttrQueryResult *)outParam;
@@ -388,10 +357,7 @@ void *AttrQueryFindPolygon_8c02e69c(float x, float y, float z, void *outParam)
             hit = acc > 0x8000;
         }
 
-        /* Unlike AttrQueryFindConvexPolygon_8c02e51c's track path, a track
-         * hit here does not
-         * rewrite *out -- it already holds this same match, so the asm
-         * jumps straight to computing the return address. */
+        /* Unlike the convex-only variants, *out is left as is. */
         if (hit) {
             return &poly->attr_0x08;
         }
@@ -494,11 +460,7 @@ void *AttrQueryFindPolygon_8c02e69c(float x, float y, float z, void *outParam)
     return NULL;
 }
 
-/* AtHeight counterpart of AttrQueryFindPolygon_8c02e69c: same convex/concave split by
- * shapeFlag_0x10, but the full cell search additionally rejects a candidate
- * whose first vertex's y is more than HEIGHT_TOLERANCE from the query
- * point's y -- AttrQueryFindConvexPolygonAtHeight_8c02eab4's relation to
- * AttrQueryFindConvexPolygon_8c02e51c, applied to this pair. */
+/* The re-test of the previous hit skips the height check. */
 void *AttrQueryFindPolygonAtHeight_8c02ec50(float x, float y, float z, void *outParam)
 {
     AttrQueryResult *out = (AttrQueryResult *)outParam;
@@ -573,10 +535,7 @@ void *AttrQueryFindPolygonAtHeight_8c02ec50(float x, float y, float z, void *out
             hit = acc > 0x8000;
         }
 
-        /* Unlike AttrQueryFindConvexPolygon_8c02e51c's track path, a track
-         * hit here does not
-         * rewrite *out -- it already holds this same match, so the asm
-         * jumps straight to computing the return address. */
+        /* Unlike the convex-only variants, *out is left as is. */
         if (hit) {
             return &poly->attr_0x08;
         }
@@ -680,9 +639,6 @@ void *AttrQueryFindPolygonAtHeight_8c02ec50(float x, float y, float z, void *out
     return NULL;
 }
 
-/* Scans var_tasks_8c1bac28 for a traffic entry (task state, other than
- * self's) whose signalId_0x410 equals id, falling back to the player bus's
- * own BusState.fallbackTaskMatchId_0x3a0 when no other task matches. */
 int AttrQueryRegionOccupied_8c02f08a(Task *self, int id)
 {
     Task *t;

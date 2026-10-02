@@ -8,28 +8,21 @@
  * =======================
  */
 
-/* The attribute grid the queries below search. Callers select it right
- * before a call, always alongside var_activeGroundGrid_8c2264d4 from the
- * matching var_currentCourse_8c1bb868 pair: atari* -> ground, attr* -> here. */
+/* Set alongside var_activeGroundGrid_8c2264d4 from the course's pair:
+ * atari* -> ground, attr* -> here. */
 extern void *var_activeAttrGrid_8c228b3c;
 
-/* The four lookups below share one call shape: they find the attribute
- * polygon containing world point (x, z) in var_activeAttrGrid_8c228b3c and
- * return &polys[*slot].attr_0x08, or NULL on a miss. Callers pick a variant
- * per route and per vehicle and install it as a callback, which is why
- * there are four.
+/* The four lookups share one callback shape: find the polygon containing
+ * (x, z) and return &polys[*slot].attr_0x08, or NULL on a miss.
  *
- * out is an AttrQueryResult {int *slot; int *vertexIds; int count;} -- no
- * leading attr field, unlike GroundQueryResult. It carries the previous hit
- * across calls: a nonzero count re-tests that polygon first and falls back
- * to a full cell search only on a miss, as GroundProbeTrackPolygon_8c020b6c
- * does. Zero it to reset. */
+ * out is an AttrQueryResult {int *slot; int *vertexIds; int count;}. It
+ * carries the previous hit, which is re-tested first; zero it to reset. */
 
 /* Convex polygons only; y unused. */
 void *AttrQueryFindConvexPolygon_8c02e51c(float x, float y, float z, void *out);
 
-/* Convex polygons only, and the polygon's height must be near y -- which is
- * what tells an elevated road apart from the street beneath it. */
+/* Convex polygons only, and the polygon's height must be near y, to tell an
+ * elevated road from the street beneath it. */
 void *AttrQueryFindConvexPolygonAtHeight_8c02eab4(float x, float y, float z, void *out);
 
 /* Convex and concave polygons; y unused. */
