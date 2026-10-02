@@ -153,8 +153,8 @@ void CourseMenuFreeResourceGroup_8c0185c4(ResourceGroup *res_group);
 STATIC void freeRunMenuTask_8c017ada(Task * task, void *state);
 void CourseMenuRequestCommonResources_8c01852c(void);
 InstructorLine *init_instructorDialogs_8c044c08[66];
-Uint8 init_courseVariants_8c044d10[30];
-Uint8 init_routeInfoTime_8c044d2e[3 * 3 * 2];
+STATIC Uint8 init_courseVariants_8c044d10[30];
+STATIC Uint8 init_routeInfoTime_8c044d2e[3 * 3 * 2];
 
 /* ====================
  * Functions
@@ -1974,7 +1974,7 @@ InstructorLine *init_instructorDialogs_8c044c08[] = {
 };
 
 // 30 days -> course variant index (0-2)
-Uint8 init_courseVariants_8c044d10[30] = {
+STATIC Uint8 init_courseVariants_8c044d10[30] = {
     0, 0, 1, 2, 2, 0, 0,
     1, 1, 0, 2, 2, 0, 1,
     2, 1, 0, 2, 2, 0, 1,
@@ -1983,7 +1983,7 @@ Uint8 init_courseVariants_8c044d10[30] = {
 };
 
 // 3 routes -> 3 departure slots -> hh, mm
-Uint8 init_routeInfoTime_8c044d2e[3 * 3 * 2] = {
+STATIC Uint8 init_routeInfoTime_8c044d2e[3 * 3 * 2] = {
     12, 28,
     16, 52,
     20, 36,

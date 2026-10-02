@@ -34,7 +34,7 @@ MenuState var_menuState_8c1bc7a8;
 
 /* Unreferenced: CourseMenuRequestCommonResources_8c01852c inlines these
  * three names instead. */
-ResourceGroupInfo init_commonResourceGroup_8c044244 = {
+STATIC ResourceGroupInfo init_commonResourceGroup_8c044244 = {
     "common_parts.dat",
     "common.dat",
     "common.pvm",

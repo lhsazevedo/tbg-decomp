@@ -5,6 +5,7 @@
 #include "026710_traffic.h"
 #include "02f0c8_traffic_path_scan.h"
 #include "1ba1c8_globals.h"
+#include "includes.h" /* STATIC */
 
 /* =======================
  * Non-initialized Globals
@@ -18,13 +19,13 @@ Sint32 *var_signalGroups_8c228b40;
 Sint32 *var_occupiedGroup_8c228b44;
 
 /* Up to 10 (x, z) pairs. */
-float var_samples_8c228b48[20];
+STATIC float var_samples_8c228b48[20];
 
 /* Never written. */
-void *var_excludedTask_8c228b98;
+STATIC void *var_excludedTask_8c228b98;
 
-float *var_sampleCursor_8c228b9c;
-float *var_sampleEnd_8c228ba0;
+STATIC float *var_sampleCursor_8c228b9c;
+STATIC float *var_sampleEnd_8c228ba0;
 
 /* ===================
  * Initialized Globals

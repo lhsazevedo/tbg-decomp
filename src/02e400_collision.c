@@ -6,6 +6,7 @@
 #include "02e2dc_bus_collision.h"
 #include "02e400_collision.h"
 #include "1ba1c8_globals.h"
+#include "includes.h" /* STATIC */
 
 /* =======================
  * Non-initialized Globals
@@ -19,9 +20,9 @@ NJS_BOX var_collisionSelfBox_8c228978;
 NJS_BOX var_collisionCandidateBox_8c2289d8;
 
 /* Pedestrians on crossings. */
-void *var_collisionQueue_8c228a38[64];
+STATIC void *var_collisionQueue_8c228a38[64];
 
-Sint32 var_collisionQueueCount_8c228b38;
+STATIC Sint32 var_collisionQueueCount_8c228b38;
 
 /* ====================
  * Functions

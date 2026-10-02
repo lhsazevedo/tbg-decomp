@@ -1,6 +1,7 @@
 /* @unit Heap */
 #include <shinobi.h>
 #include "010fe8_heap.h"
+#include "includes.h" /* STATIC */
 
 #define HEAP_FLAG_USED  1
 
@@ -16,8 +17,8 @@ typedef struct HeapChunk {
     int reserved_0x1c;
 } HeapChunk;
 
-HeapChunk *var_heapHead_8c157a58;
-HeapChunk *var_heapTail_8c157a5c;
+STATIC HeapChunk *var_heapHead_8c157a58;
+STATIC HeapChunk *var_heapTail_8c157a5c;
 
 #ifdef UNIT_TESTING
 void heapAllocOutOfMemoryHook_8c01102a(void) {}

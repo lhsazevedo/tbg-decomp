@@ -226,34 +226,34 @@ RunState var_runState_8c2285c4;
 int var_wallHitBits_8c228660;
 
 /* Written and never read. */
-BusState *var_hitCandidate_8c228664;
-BusState *var_hitVehicle_8c228668;
+STATIC BusState *var_hitCandidate_8c228664;
+STATIC BusState *var_hitVehicle_8c228668;
 
 /* Snapshotted before the graders run, so they all see one value. */
-float var_frameSpeed_8c22866c;
+STATIC float var_frameSpeed_8c22866c;
 
 /* The bumped vehicle's speed before the bump, given to the player as
  * rebound speed. */
-float var_bumpSpeed_8c228670;
+STATIC float var_bumpSpeed_8c228670;
 
 /* One frame's driving state, snapshotted before the graders run.
  * laneA/B/C are the three road probes' lanes. offCourseBits is the larger
  * of probes A and B's 0x30000 bits, 0x30000 being severe. headingVsRoad:
  * 0 = no road data, 1 = along the road, 2 = against it. */
-int var_laneA_8c228674;
-int var_laneB_8c228678;
-int var_laneC_8c22867c;
-int var_offCourseBits_8c228680;
-int var_prevLane_8c228684;
-int var_prevLaneFlags_8c228688;
-int var_headingVsRoad_8c22868c;
+STATIC int var_laneA_8c228674;
+STATIC int var_laneB_8c228678;
+STATIC int var_laneC_8c22867c;
+STATIC int var_offCourseBits_8c228680;
+STATIC int var_prevLane_8c228684;
+STATIC int var_prevLaneFlags_8c228688;
+STATIC int var_headingVsRoad_8c22868c;
 
 /* One per offense category, in frames; negative = expired. */
-int var_cooldownCollision_8c228690;
-int var_cooldownOffCourse_8c228694;
-int var_cooldownSignal_8c228698;
-int var_cooldownLane_8c22869c;
-int var_cooldownIntersection_8c2286a0;
+STATIC int var_cooldownCollision_8c228690;
+STATIC int var_cooldownOffCourse_8c228694;
+STATIC int var_cooldownSignal_8c228698;
+STATIC int var_cooldownLane_8c22869c;
+STATIC int var_cooldownIntersection_8c2286a0;
 
 
 /* ====================

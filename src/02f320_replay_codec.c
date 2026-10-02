@@ -10,22 +10,22 @@
 
 Uint32 var_replayPackedSize_8c228ba4;
 /* signed: goes negative to trigger a refill */
-Sint16 var_readBitsLeft_8c228ba8;
-Uint16 var_writeBitsLeft_8c228baa;
-Uint16 var_bitBuf_8c228bac;
-Uint8 var_dictByte_8c228bae[0x1000];
-Sint16 var_dictParent_8c229bae[0x1000];
-Sint16 var_dictChild_8c22bbae[0x1000];
-Sint16 var_dictNext_8c22dbae[0x1000];
-Sint16 var_dictPrev_8c22fbae[0x1000];
-Uint16 var_nextCode_8c231bae;
-Sint16 var_lruPrev_8c231bb0[0x1000];
-Sint16 var_lruNext_8c233bb0[0x1000];
-Uint16 var_lruHead_8c235bb0;
-Uint16 var_lruTail_8c235bb2;
-Sint16 var_runBuf_8c235bb4[100];
-Uint16 var_codeBits_8c235c7c;
-Uint16 var_codeLimit_8c235c7e;
+STATIC Sint16 var_readBitsLeft_8c228ba8;
+STATIC Uint16 var_writeBitsLeft_8c228baa;
+STATIC Uint16 var_bitBuf_8c228bac;
+STATIC Uint8 var_dictByte_8c228bae[0x1000];
+STATIC Sint16 var_dictParent_8c229bae[0x1000];
+STATIC Sint16 var_dictChild_8c22bbae[0x1000];
+STATIC Sint16 var_dictNext_8c22dbae[0x1000];
+STATIC Sint16 var_dictPrev_8c22fbae[0x1000];
+STATIC Uint16 var_nextCode_8c231bae;
+STATIC Sint16 var_lruPrev_8c231bb0[0x1000];
+STATIC Sint16 var_lruNext_8c233bb0[0x1000];
+STATIC Uint16 var_lruHead_8c235bb0;
+STATIC Uint16 var_lruTail_8c235bb2;
+STATIC Sint16 var_runBuf_8c235bb4[100];
+STATIC Uint16 var_codeBits_8c235c7c;
+STATIC Uint16 var_codeLimit_8c235c7e;
 
 /* ====================
  * Functions
