@@ -19,7 +19,6 @@
  * ====================
  */
 
-/* Scripted stop-schedule slots in var_seats_8c228718. */
 #define SEAT_COUNT 31
 
 /* ====================
@@ -27,9 +26,6 @@
  * ====================
  */
 
-/* One var_seats_8c228718 slot sharing the bus's current segment. These
- * are collected, Fisher-Yates shuffled, then spawned via
- * PassengerExitTask_8c02d46c. */
 typedef struct {
     void *spot_0x00;
     int seat_0x04;
@@ -40,9 +36,7 @@ typedef struct {
  * ====================
  */
 
-/* One of four voice variants per stop type, indexed by a scripted schedule
- * entry's type byte. Added to 0x32 for a boarding passenger or 0x36 for an
- * exiting one to make soundIdA_0x30. */
+/* Per pedestrian type; added to 0x32 (boarding) or 0x36 (exiting). */
 STATIC Uint8 init_passengerVoiceVariant_8c04c4dc[] = {
     0x03, 0x03, 0x02, 0x01, 0x00, 0x00, 0x02, 0x01,
     0x02, 0x01, 0x00, 0x03, 0x02, 0x00, 0x00, 0x00,
@@ -85,12 +79,6 @@ void StopSpawnInit_8c02d968(void)
     njLoadCacheTexture(var_interiorTexlist_8c1bc438);
     CinematicBoardingCamera_8c025870();
 
-    /* The passenger walk waypoints, in bus-local space; the two outside the bus
-     * are transformed to world space in place. Ome gets the same six
-     * coordinates in reverse, which is what swaps the boarding and exiting
-     * doors -- see 02d19c_passenger.h. Each point is written x, then y, then z --
-     * verified against the real instruction order, which does NOT match
-     * Ghidra's statement order for this block. */
     if (var_route_8c18ad1c == ROUTE_SHINJUKU || var_route_8c18ad1c == ROUTE_WANGAN) {
         var_boardSpot1_8c228928.x = -1.6f;
         var_boardSpot1_8c228928.y = 0.0f;
@@ -151,9 +139,6 @@ void StopSpawnInit_8c02d968(void)
     var_passengerFadeColor_8c228960[2] = 1.0f;
     var_passengerFadeColor_8c228960[3] = 1.0f;
 
-    /* Count how many scripted schedule slots are in use, to size the task
-     * group allocation for both this loop and the
-     * var_waitingPassengers_8c228798 loop below. */
     n = 0;
     for (i = 0; i < SEAT_COUNT; i++) {
         if (var_seats_8c228718[i] != -1) {
@@ -164,7 +149,6 @@ void StopSpawnInit_8c02d968(void)
     var_stopTaskGroup_8c2288f8 = (void *)syMalloc((var_waitingPassengerCount_8c228794 + n + 1) * sizeof(Task));
     TaskInitGroup_8c014a9c(var_stopTaskGroup_8c2288f8, var_waitingPassengerCount_8c228794 + n);
 
-    /* Spawn a task for every already-picked waiting passenger. */
     for (i = 0; i < var_waitingPassengerCount_8c228794; i++) {
         TaskSpawn_8c014ae8((Task *)var_stopTaskGroup_8c2288f8, &PassengerBoardTask_8c02d21c, &task,
                            (void **)&state, sizeof(PassengerState));
@@ -182,10 +166,7 @@ void StopSpawnInit_8c02d968(void)
         var_passengerCount_8c1bb8e4++;
     }
 
-    /* Walk the scripted schedule table. A slot whose stop segment differs
-     * from the bus's current segment is spawned immediately (PassengerSeatedTask_8c02d5ca);
-     * a slot that matches is collected into matchedBuf to be shuffled and
-     * spawned below (PassengerExitTask_8c02d46c) instead. */
+    /* Passengers whose destination is this segment get off, in random order. */
     matchedBuf = (void *)syMalloc(SEAT_COUNT * sizeof(ExitingSeat));
     matched = (ExitingSeat *)matchedBuf;
     count = 0;
@@ -217,7 +198,6 @@ void StopSpawnInit_8c02d968(void)
         }
     }
 
-    /* Fisher-Yates shuffle the matched entries. */
     for (i = 0; i < count; i++) {
         randIdx = AsqGetRandomInRangeA_8c012178(count);
         tmp = matched[i];
@@ -225,9 +205,7 @@ void StopSpawnInit_8c02d968(void)
         matched[randIdx] = tmp;
     }
 
-    /* Spawn the shuffled matched-segment slots. Seat position follows the
-     * shuffled order (init_seatPositions_8c04c3e4[i]) while seat_0x24
-     * keeps the original schedule slot. */
+    /* Drawn at the i-th seat, not their own; seat_0x24 is the one to free. */
     for (i = 0; i < count; i++) {
         TaskSpawn_8c014ae8((Task *)var_stopTaskGroup_8c2288f8, &PassengerExitTask_8c02d46c, &task,
                            (void **)&state, sizeof(PassengerState));
