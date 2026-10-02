@@ -20,7 +20,7 @@
  */
 
 /* Scripted stop-schedule slots in var_seats_8c228718. */
-#define SCHEDULE_SLOTS 31
+#define SEAT_COUNT 31
 
 /* ====================
  * Type Declarations
@@ -31,9 +31,9 @@
  * are collected, Fisher-Yates shuffled, then spawned via
  * PassengerExitTask_8c02d46c. */
 typedef struct {
-    void *entry_0x00;
-    int index_0x04;
-} SegMatchEntry;
+    void *spot_0x00;
+    int seat_0x04;
+} ExitingSeat;
 
 /* ====================
  * Initialized Globals
@@ -66,10 +66,10 @@ void StopSpawnInit_8c02d968(void)
     PassengerState *state;
     PassengerStopSceneState *rawState;
     int i, n, count, midiSlot, randIdx;
-    void *scriptEntry;
+    void *spot;
     void *matchedBuf;
-    SegMatchEntry *matched;
-    SegMatchEntry tmp;
+    ExitingSeat *matched;
+    ExitingSeat tmp;
 
     if (var_playMode_8c1bb8d0 == PLAY_MODE_PRACTICE && (var_practiceRules_8c226410 & 8) != 8) {
         TaskSpawn_8c014ae8(var_tasks_8c1ba5e8, &PassengerSkipStopTask_8c02d8f0, &task, (void **)&state, 0);
@@ -155,7 +155,7 @@ void StopSpawnInit_8c02d968(void)
      * group allocation for both this loop and the
      * var_waitingPassengers_8c228798 loop below. */
     n = 0;
-    for (i = 0; i < SCHEDULE_SLOTS; i++) {
+    for (i = 0; i < SEAT_COUNT; i++) {
         if (var_seats_8c228718[i] != -1) {
             n++;
         }
@@ -186,22 +186,22 @@ void StopSpawnInit_8c02d968(void)
      * from the bus's current segment is spawned immediately (PassengerSeatedTask_8c02d5ca);
      * a slot that matches is collected into matchedBuf to be shuffled and
      * spawned below (PassengerExitTask_8c02d46c) instead. */
-    matchedBuf = (void *)syMalloc(SCHEDULE_SLOTS * sizeof(SegMatchEntry));
-    matched = (SegMatchEntry *)matchedBuf;
+    matchedBuf = (void *)syMalloc(SEAT_COUNT * sizeof(ExitingSeat));
+    matched = (ExitingSeat *)matchedBuf;
     count = 0;
-    for (i = 0; i < SCHEDULE_SLOTS; i++) {
+    for (i = 0; i < SEAT_COUNT; i++) {
         if (var_seats_8c228718[i] == -1) {
             continue;
         }
-        scriptEntry = (void *)var_seats_8c228718[i];
-        if (*((char *)scriptEntry + 1) == (char)var_currentSegment_8c228708) {
-            matched[count].entry_0x00 = scriptEntry;
-            matched[count].index_0x04 = i;
+        spot = (void *)var_seats_8c228718[i];
+        if (*((char *)spot + 1) == (char)var_currentSegment_8c228708) {
+            matched[count].spot_0x00 = spot;
+            matched[count].seat_0x04 = i;
             count++;
         } else {
             TaskSpawn_8c014ae8((Task *)var_stopTaskGroup_8c2288f8, &PassengerSeatedTask_8c02d5ca, &task,
                                (void **)&state, sizeof(PassengerState));
-            state->spot_0x00 = scriptEntry;
+            state->spot_0x00 = spot;
             state->pos_0x08.x = init_seatPositions_8c04c3e4[i].x;
             state->pos_0x08.y = var_exitSpot1_8c228934.y;
             state->pos_0x08.z = init_seatPositions_8c04c3e4[i].z;
@@ -231,7 +231,7 @@ void StopSpawnInit_8c02d968(void)
     for (i = 0; i < count; i++) {
         TaskSpawn_8c014ae8((Task *)var_stopTaskGroup_8c2288f8, &PassengerExitTask_8c02d46c, &task,
                            (void **)&state, sizeof(PassengerState));
-        state->spot_0x00 = matched[i].entry_0x00;
+        state->spot_0x00 = matched[i].spot_0x00;
         state->state_0x04 = 0;
         state->pos_0x08.x = init_seatPositions_8c04c3e4[i].x;
         state->pos_0x08.y = var_exitSpot1_8c228934.y;
@@ -247,7 +247,7 @@ void StopSpawnInit_8c02d968(void)
         state->jitterX_0x18 = ((float)rand() / 32768.0f) * 0.2f;
         state->jitterZ_0x1c = ((float)rand() / 32768.0f) * 0.2f;
         state->delay_0x20 = i;
-        state->seat_0x24 = matched[i].index_0x04;
+        state->seat_0x24 = matched[i].seat_0x04;
         state->isSeated_0x28 = 1;
         midiSlot = i % 4;
         state->voice_0x2c = midiSlot;
