@@ -67,7 +67,7 @@ return new class extends TestCase {
         $this->shouldCall('_lzwFindChild_8c02f636')->with(5, 0x41)->andReturn(0x1000);
         $this->shouldWriteWord($this->addressOf('_var_nextCode_8c231bae'), 101);
         $this->shouldCall('_lzwInsertChild_8c02f668')->with(5, 100, 0x41);
-        $this->shouldCall('_listInsert_8c02f58a')->with(100, 7);
+        $this->shouldCall('_lruInsert_8c02f58a')->with(100, 7);
     }
 
     public function test_allocates_by_evicting_lru_tail(): void
@@ -85,10 +85,10 @@ return new class extends TestCase {
         $this->call('_extendDict_8c02f740')->with($symbols, 1, 300, 0);
 
         $this->shouldCall('_lzwFindChild_8c02f636')->with(300, 0x41)->andReturn(0x1000);
-        $this->shouldCall('_swapNodes_8c02f556')->with(55);
+        $this->shouldCall('_lruUnlink_8c02f556')->with(55);
         $this->shouldCall('_lzwRemoveChild_8c02f6ac')->with(55);
         $this->shouldCall('_lzwInsertChild_8c02f668')->with(300, 55, 0x41);
-        $this->shouldCall('_listInsert_8c02f58a')->with(55, 40);
+        $this->shouldCall('_lruInsert_8c02f58a')->with(55, 40);
     }
 
     public function test_returns_when_evicting_current_parent(): void

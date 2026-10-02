@@ -154,7 +154,7 @@ STATIC void putBits_8c02f4da(Sint16 count, Uint32 value, Uint8 **dest)
 /* Unlinks `code` from the recency list, dragging the tail back with it when
  * `code` is the tail. Unlinking the head works through the NIL sentinel:
  * var_lruNext_8c233bb0[0x1000] is var_lruHead_8c235bb0's storage. */
-STATIC void swapNodes_8c02f556(Sint16 code)
+STATIC void lruUnlink_8c02f556(Sint16 code)
 {
     Sint16 p;
     Sint16 c;
@@ -173,7 +173,7 @@ STATIC void swapNodes_8c02f556(Sint16 code)
 /* Inserts `code` into the recency list: as the sole entry if the list is
  * empty, at the tail if `after` is NIL (0x1000), at the head if `after` is
  * the current head, or after node `after` otherwise. */
-STATIC void listInsert_8c02f58a(Sint16 code, Sint16 after)
+STATIC void lruInsert_8c02f58a(Sint16 code, Sint16 after)
 {
     if (var_lruHead_8c235bb0 == 0x1000) {
         var_lruPrev_8c231bb0[code] = 0x1000;
@@ -302,7 +302,7 @@ STATIC void extendDict_8c02f740(Sint16 *symbols, Sint16 count, Sint16 parentCode
                 if (parentCode == (Sint16)var_lruTail_8c235bb2) {
                     return;
                 }
-                swapNodes_8c02f556(newCode);
+                lruUnlink_8c02f556(newCode);
                 lzwRemoveChild_8c02f6ac(newCode);
             }
 
@@ -312,7 +312,7 @@ STATIC void extendDict_8c02f740(Sint16 *symbols, Sint16 count, Sint16 parentCode
             if (parentCode > 0xff) {
                 afterCode = var_lruNext_8c233bb0[parentCode];
             }
-            listInsert_8c02f58a(newCode, afterCode);
+            lruInsert_8c02f58a(newCode, afterCode);
         }
 
         parentCode = newCode;
@@ -429,8 +429,8 @@ void ReplayCodecPack_8c02f934(void *src, void **dest, Uint32 size)
                 if (matchCode == recency) {
                     recency = var_lruNext_8c233bb0[matchCode];
                 } else {
-                    swapNodes_8c02f556(matchCode);
-                    listInsert_8c02f58a(matchCode, recency);
+                    lruUnlink_8c02f556(matchCode);
+                    lruInsert_8c02f58a(matchCode, recency);
                 }
             }
 
@@ -510,8 +510,8 @@ void ReplayCodecUnpack_8c02fa14(void *src, void **dest, Uint32 size)
         while (walkCode != 0x1000) {
             code = (Sint16)readResult;
             if (code > 0xff && code != (Sint16)var_lruHead_8c235bb0) {
-                swapNodes_8c02f556((Sint16)readResult);
-                listInsert_8c02f58a((Sint16)readResult, (Sint16)var_lruHead_8c235bb0);
+                lruUnlink_8c02f556((Sint16)readResult);
+                lruInsert_8c02f58a((Sint16)readResult, (Sint16)var_lruHead_8c235bb0);
             }
             expandCount++;
             var_runBuf_8c235bb4[100 - expandCount] = var_dictByte_8c228bae[code];

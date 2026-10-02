@@ -10,8 +10,8 @@
           .EXPORT     _getBits_8c02f3e0
           .EXPORT     _putBit_8c02f49c
           .EXPORT     _putBits_8c02f4da
-          .EXPORT     _swapNodes_8c02f556
-          .EXPORT     _listInsert_8c02f58a
+          .EXPORT     _lruUnlink_8c02f556
+          .EXPORT     _lruInsert_8c02f58a
           .EXPORT     _lzwFindChild_8c02f636
           .EXPORT     _lzwInsertChild_8c02f668
           .EXPORT     _lzwRemoveChild_8c02f6ac
@@ -300,7 +300,7 @@ LAB_8c02f524:
           MOV.L       @R15+,R13
           RTS
           MOV.L       @R15+,R14
-_swapNodes_8c02f556:
+_lruUnlink_8c02f556:
           MOV.L       LP_GEN_45840+20,R7
           EXTS.W      R4,R3
           MOV.L       LP_GEN_45840+28,R5
@@ -329,7 +329,7 @@ LAB_8c02f576:
 LAB_8c02f586:
           RTS
           NOP
-_listInsert_8c02f58a:
+_lruInsert_8c02f58a:
           MOV.L       R13,@-R15
           MOV.L       R12,@-R15
           MOV.L       R11,@-R15
@@ -615,7 +615,7 @@ LAB_8c02f7a8:
           EXTS.W      R4,R3
           CMP/EQ      R3,R8
           BT          LAB_8c02f7e8
-          BSR         _swapNodes_8c02f556
+          BSR         _lruUnlink_8c02f556
           MOV         R4,R14
           BSR         _lzwRemoveChild_8c02f6ac
           MOV         R14,R4
@@ -637,7 +637,7 @@ LAB_8c02f7d0:
           SHLL        R5
           MOV.W       @(R0,R5),R5
 LAB_8c02f7d8:
-          BSR         _listInsert_8c02f58a
+          BSR         _lruInsert_8c02f58a
           NOP
 LAB_8c02f7dc:
           MOV.L       @R15,R3
@@ -875,10 +875,10 @@ LAB_8c02f98e:
           BRA         LAB_8c02f9b2
           MOV.W       @(R0,R12),R12
 LAB_8c02f9a8:
-          BSR         _swapNodes_8c02f556
+          BSR         _lruUnlink_8c02f556
           MOV         R14,R4
           MOV         R12,R5
-          BSR         _listInsert_8c02f58a
+          BSR         _lruInsert_8c02f58a
           MOV         R14,R4
 LAB_8c02f9b2:
           EXTS.W      R10,R0
@@ -1012,11 +1012,11 @@ LAB_8c02faa6:
           MOV.W       @R3,R1
           CMP/EQ      R1,R4
           BT          LAB_8c02fac2
-          BSR         _swapNodes_8c02f556
+          BSR         _lruUnlink_8c02f556
           MOV         R14,R4
           MOV.L       LP_GEN_11328+8,R2
           MOV.W       @R2,R5
-          BSR         _listInsert_8c02f58a
+          BSR         _lruInsert_8c02f58a
           MOV         R14,R4
 LAB_8c02fac2:
           ADD         #H'1,R13

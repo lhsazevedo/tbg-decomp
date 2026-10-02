@@ -716,7 +716,7 @@ dictionary via hash-chained buckets (`lzwFindChild_8c02f636` /
 `lzwInsertChild_8c02f668` / `lzwRemoveChild_8c02f6ac`), decode a code by
 walking `var_dictParent_8c229bae` (parent-of) back to a literal byte, and once the
 fixed 4096-entry table fills, evict the least-recently-used code (tracked by
-a `listInsert_8c02f58a`/`swapNodes_8c02f556` recency list, move-to-front on
+a `lruInsert_8c02f58a`/`lruUnlink_8c02f556` recency list, move-to-front on
 reuse) -- classic LZW with LRU replacement, not an adaptive-Huffman tree.
 `readCode_8c02f892`/`writeCode_8c02f824` are the classic escalating-code-width
 primitives (9-bit codes growing as the table fills, an extra control bit
