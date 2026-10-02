@@ -1,6 +1,5 @@
 /* @unit MainMenu */
 #include <shinobi.h>
-// #include <njdef.h>
 #include <sg_sd.h>
 #include "019e98_main_menu.h"
 #include "013ae8_route.h"
