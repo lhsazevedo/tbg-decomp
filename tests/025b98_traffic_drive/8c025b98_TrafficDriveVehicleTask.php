@@ -247,6 +247,58 @@ return new class extends TestCase {
         // returns immediately: no ring-buffer/blinker/render tail at all.
     }
 
+    // Same frame as above, but this is the demo-reload case (preset matches
+    // the active one and animKind == 3): the script cursor rewinds to the
+    // script base, the path blocks are re-resolved from there, and the
+    // entry parks in driveState 3 instead of being freed.
+    public function test_drivingScriptExhaustedDemoReloadRewindsScript(): void {
+        $this->resolveSymbols();
+        $this->setSize('_AttrQueryFindConvexPolygon_8c02e51c', 4);
+        $task = $this->alloc(4);
+        $entry = $this->allocEntry();
+        $this->initUint32($entry + 0x2b4, 0); // driveState
+        $this->initUint32($entry + 0x27c, fdec(1.0)); // speed
+        $this->initUint32($entry + 0x2cc, $this->addressOf('_AttrQueryFindConvexPolygon_8c02e51c'));
+        $this->initUint32($entry + 0xf4, fdec(1.0));  // posX
+        $this->initUint32($entry + 0xf8, fdec(2.0));  // posY
+        $this->initUint32($entry + 0xfc, fdec(3.0));  // posZ
+        $this->initUint32($entry + 0x41c, fdec(1.0)); // lookahead base
+        $this->initUint32($entry + 0x414, fdec(1.0)); // laneLimit input
+        $this->initUint32($entry + 0x418, fdec(1.0)); // laneLimit input
+        $this->initUint32($entry + 0x290, fdec(1.0)); // accel rate (unused: already at laneLimit)
+        $this->initUint32($entry + 0x2f4, 5); // preset == active
+        $this->initUint32($entry + 0x48c, 3); // animKind == 3
+        $this->initUint32($entry + 0x2f8, 0x1000); // scriptBase
+        $this->initUint32($entry + 0x2fc, 0x1234); // scriptCursor, somewhere past the base
+
+        $this->call('_TrafficDriveVehicleTask_8c025b98')->with($task, $entry);
+
+        $this->shouldWriteLong($entry + 0x080, 0); // cleared unconditionally at top
+
+        $this->shouldCall('_AttrQueryFindConvexPolygon_8c02e51c')->with(1.0, 2.0, 3.0, $entry + 0x404)->andReturn(0);
+        $this->shouldWriteLong($entry + 0x2dc, 0);
+        $this->shouldWriteLong($entry + 0x410, -1); // unaff_r8 = -1 on a miss
+        $this->shouldWriteLong($entry + 0x50c, 0);
+
+        $this->shouldCall('_TrafficLookaheadScan_8c02dfca')->with($task, $entry, f32(1.0 * 36.0 + 1.0))->andReturn(0);
+        $this->shouldWriteLong($entry + 0x424, 0);
+        $this->shouldWriteLong($entry + 0x2d4, 0);
+
+        $this->shouldWriteLong($entry + 0x428, 0);
+        $this->shouldWriteFloat($entry + 0x418, 9999.0);
+
+        $this->shouldWriteFloat($entry + 0x2bc, 1.0); // pathDistance += speed
+        $this->shouldWriteFloat($entry + 0x2c0, 1.0); // pathDistanceCopy += speed
+        $this->shouldWriteFloat($entry + 0x4ec, -1.0); // lookaheadCacheLen_0x4ec -= speed
+
+        $this->shouldCall('_TrafficAdvanceOnPath_8c026ca2')->andReturn(0);
+        $this->shouldCall('_TrafficRunEntryScript_8c027012')->with($entry)->andReturn(0);
+        $this->shouldWriteLong($entry + 0x2fc, 0x1000); // cursor rewound to base
+        $this->shouldCall('_TrafficResolvePathBlocks_8c026710')->with($entry, 0x1000);
+        $this->shouldWriteLong($entry + 0x2b4, 3); // driveState
+        // returns immediately: no ring-buffer/blinker/render tail.
+    }
+
     // ---- driveState not in {0,1,2,3} (else/default) ----
 
     // Falls straight to the shared tail without running any driveState

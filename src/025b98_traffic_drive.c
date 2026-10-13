@@ -404,8 +404,8 @@ void TrafficDriveVehicleTask_8c025b98(Task *task, TrafficEntry *e)
                 if (TrafficRunEntryScript_8c027012(e) == 0) {
                     if (e->spawnPresetId_0x2f4 == var_activeTrafficPreset_8c227e14 &&
                         e->animKind_0x48c == 3) {
-                        e->scriptBase_0x2f8 = e->scriptCursor_0x2fc;
-                        TrafficResolvePathBlocks_8c026710(e, e->scriptBase_0x2f8);
+                        e->scriptCursor_0x2fc = e->scriptBase_0x2f8;
+                        TrafficResolvePathBlocks_8c026710(e, e->scriptCursor_0x2fc);
                         e->driveState_0x2b4 = 3;
                         return;
                     }
