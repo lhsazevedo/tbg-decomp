@@ -26,13 +26,13 @@ From `serial_debug.h`:
 
 ## Build gating (why this is safe for tests)
 
-| Build | `.sub` file | Defines | `LOG_*` |
-|---|---|---|---|
-| Unit tests | `build/shc_testing.sub` | `UNIT_TESTING` (no `SERIAL_DEBUG`) | compile to **nothing** |
-| Full game | `build/shc.sub` | `SERIAL_DEBUG` (no `UNIT_TESTING`) | **active** |
+| Build | Defines | `LOG_*` |
+|---|---|---|
+| Unit tests (`Makefile.test`) | `UNIT_TESTING` (no `SERIAL_DEBUG`) | compile to **nothing** |
+| Full game (`make SERIAL_DEBUG=1`) | `SERIAL_DEBUG` (no `UNIT_TESTING`) | **active** |
 
-So logs never affect unit-test expectations, and are live only in the real
-build. `DEBUG_LEVEL` defaults to `LOG_LEVEL_TRACE` (everything prints) unless
+So logs never affect unit-test expectations, and are live only in a
+`SERIAL_DEBUG=1` build. `DEBUG_LEVEL` defaults to `LOG_LEVEL_TRACE` (everything prints) unless
 overridden, so `TRACE` lines show by default but can be filtered by lowering it.
 
 ## Procedure
@@ -41,8 +41,8 @@ overridden, so `TRACE` lines show by default but can be filtered by lowering it.
 2. Place a `LOG_*` call at each meaningful point (see level guide below).
 3. Build tests for the unit (`run_tests.sh -c ...`) -> must still pass unchanged
    (logs compiled out).
-4. Run full `make` -> the unit must compile with **0 warnings**; `serialprintf`
-   resolves because `shc.sub` defines `SERIAL_DEBUG`.
+4. Run `make SERIAL_DEBUG=1` -> the unit must compile with **0 warnings**;
+   `serialprintf` resolves because that build defines `SERIAL_DEBUG`.
 5. Commit title-only (e.g. `Add serial debug logging to <unit> ...`).
 
 ## Choosing a level (by call frequency)
@@ -79,7 +79,7 @@ assign, or call a mutating function there.
 
 - [ ] `#include "serial_debug.h"` present.
 - [ ] All existing unit tests for the unit still pass (logs compiled out).
-- [ ] Full `make` compiles the unit with 0 errors / 0 warnings.
+- [ ] `make SERIAL_DEBUG=1` compiles the unit with 0 errors / 0 warnings.
 - [ ] No side effects inside any `LOG_*` argument.
 - [ ] Per-frame paths use `TRACE`; transitions use `DEBUG`/`INFO`.
 - [ ] Messages are ASCII, `\n`-terminated, tagged, and name the function.

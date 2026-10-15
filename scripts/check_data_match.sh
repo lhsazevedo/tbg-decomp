@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
-# Builds the reference (matching) objects and the plain-build objects with
-# serial logging disabled (its debug-name string tables would otherwise cause
-# false-positive diffs), then diffs each decompiled unit's data sections
+# Builds the reference (matching) objects and the plain-build objects (serial
+# logging off, as its debug-name string tables would cause false-positive
+# diffs), then diffs each decompiled unit's data sections
 # (C/D/B; P is code and expected to differ) via dcdiff.py.
 #
 # The set of checked units is derived: every unit built from C
@@ -17,7 +17,7 @@ NOT_MATCHING="
 "
 
 make -f Makefile.matching rebuild
-make rebuild SERIAL_DEBUG=0
+make rebuild
 
 fail=0
 

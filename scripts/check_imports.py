@@ -18,7 +18,7 @@ Three classes of difference are noise and are normalised away:
   * runtime helpers carry a varying number of leading underscores (`__divls` vs
     `divls`), so all leading underscores are stripped on both sides;
   * the serial-logging symbols only exist in a SERIAL_DEBUG build, so the caller
-    must build with SERIAL_DEBUG=0 (check_data_match.sh does);
+    must build without it (the default);
   * the project links its own string implementations under different names.
 
 A divergence means one side references something the other does not -- usually a

@@ -1,9 +1,9 @@
 # Serial Debug Logging
 
 `LOG_*` macros from `serial_debug.h` prove the decompiled C (not the asm) runs,
-and make flow visible on the serial console. Active only in the full build
-(`SERIAL_DEBUG`); compiled out under `UNIT_TESTING`, so they never touch test
-expectations. Include `serial_debug.h`.
+and make flow visible on the serial console. Active only in a plain build made
+with `make SERIAL_DEBUG=1`; compiled out under `UNIT_TESTING`, so they never
+touch test expectations. Include `serial_debug.h`.
 
 Double-paren syntax, ASCII only (`src/` is Shift-JIS), `\n`-terminated,
 side-effect-free arguments (they don't run under tests).

@@ -8,7 +8,7 @@ OUTPUT_DIR=$(BUILD_DIR)/output
 SHELL := /bin/bash
 
 # Enable serial logging
-SERIAL_DEBUG ?= 1
+SERIAL_DEBUG ?= 0
 
 # Overrides the default log level (INFO) for serial logging. See LOG_LEVEL constants
 LOG_LEVEL ?=
