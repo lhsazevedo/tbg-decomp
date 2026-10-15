@@ -110,12 +110,6 @@ typedef struct {
  * =====================
  */
 
-extern enum ROUTE var_route_8c18ad1c;
-extern enum TIME_OF_DAY var_timeOfDay_8c18ad20;
-extern ViewParams *var_viewParams_8c18ad28;
-
-extern CourseSceneParams *var_sceneParams_8c18ad24;
-
 /* One per route segment. */
 typedef struct {
     // 0 = terminator; 2 = stop forced here; 3 = excluded from the random-stop
@@ -173,14 +167,21 @@ typedef struct {
 } CourseConfig;
 
 extern CourseConfig *var_currentCourseConfig_8c18ad18;
+extern enum ROUTE var_route_8c18ad1c;
+extern enum TIME_OF_DAY var_timeOfDay_8c18ad20;
+extern CourseSceneParams *var_sceneParams_8c18ad24;
+extern ViewParams *var_viewParams_8c18ad28;
+extern char var_datDir_8c18ad2c[0x20];
+extern char var_pvrDir_8c18ad4c[0x20];
+extern char var_commonDir_8c18ad6c[0x20];
+extern char var_commonDirCopy_8c18ad8c[0x20];
+extern int var_loadLatch_8c18adac;
+extern Sint8 *var_routeModelIndexes_8c18adb0;
+extern void *var_datFiles_8c18adb4[4]; /* one per texel layer, freed after TileStreamLoad_8c021810 */
 
 /* BUP_HEADER.game_name -- the VMS sort key, not text. */
 extern Sint8 init_bupGameName_8c04410c[16];
 
-extern char var_pvrDir_8c18ad4c[0x20];
-extern char var_commonDir_8c18ad6c[0x20];
-extern char var_commonDirCopy_8c18ad8c[0x20];
-extern void *var_datFiles_8c18adb4[4]; /* one per texel layer, freed after TileStreamLoad_8c021810 */
 
 /* =========
  * Functions

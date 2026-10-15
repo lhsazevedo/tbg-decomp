@@ -37,6 +37,7 @@ typedef struct {
 
 extern int var_queuesAreInitialized_8c157a60;
 extern int var_seed_8c157a64;
+extern int var_texlistQueueDoneCount_8c157a68;
 extern int var_loadScreenActive_8c157a6c;
 
 /* Port 0's PDS_PERIPHERAL.support & BT_CONTROLLER (BT_CONTROLLER or

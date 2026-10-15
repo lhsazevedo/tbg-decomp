@@ -4,6 +4,7 @@
 
 #include <shinobi.h>
 #include <sg_sd.h>
+#include <cri_adxt.h>
 
 /* =========================
  * External Declarations
@@ -15,11 +16,12 @@
 extern int init_adxPlaying_8c03bd80;
 /* Cleared when the ADX layer gives up on the disc. */
 extern int init_soundOk_8c03bd84;
+extern ADXT var_adxtHandles_8c0fcd20[2];
+extern SDMIDI var_midiHandles_8c0fcd28[8];
 /* manatee.drv and bus.mlt, to be loaded before SndInit_8c010e18, which frees
  * them. */
 extern void* var_sndDrvData_8c0fcd48;
 extern void* var_sndBankData_8c0fcd4c;
-extern SDMIDI var_midiHandles_8c0fcd28[8];
 
 /* =========
  * Functions

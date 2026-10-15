@@ -50,6 +50,7 @@
           .EXPORT     _StopGetSegment_8c02cd6a
           .EXPORT     _StopGetArea_8c02cd7a
           .EXPORT     _StopUpdateArrival_8c02ce48
+          .EXPORT     _var_segmentHasStop_8c2286a4
           .EXPORT     _var_startStopIndex_8c228704 ; 0129cc_game
           .EXPORT     _var_currentSegment_8c228708 ; 0129cc_game, 013ae8, 023310, 026710, 02af78, 02d19c, 02d968
           .EXPORT     _var_prevStopSegment_8c22870c ; 020214
@@ -65,7 +66,6 @@
           .EXPORT     _pickWaitingPassengers_8c02c8ae
           .EXPORT     _advanceStopSegment_8c02ccae
           .EXPORT     _drawStopMarker_8c02cd92
-          .EXPORT     _var_segmentHasStop_8c2286a4
           .EXPORT     _var_currentStopHeading_8c2288fc
           .EXPORT     _var_nextStopPoint_8c228900
           .EXPORT     _var_nextStopArea_8c22890c

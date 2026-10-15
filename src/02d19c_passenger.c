@@ -43,7 +43,7 @@ int var_passengersFadedOut_8c22895c;
 
 float var_passengerFadeColor_8c228960[5];
 
-STATIC int var_passengerActed_8c228958;
+int var_passengerActed_8c228958;
 
 /* ====================
  * Initialized Globals

@@ -80,6 +80,20 @@ KEEP_PUBLIC = {
     # same: only a header declaration puts it between 0289ac_objects' public
     # var_activePedPreset_8c22822c and var_pedGroupCount_8c228234
     "var_pedGroups_8c228230",
+    # SHC changes the data layout otherwise
+    "var_adxtHandles_8c0fcd20",
+    # SHC changes the data layout otherwise
+    "var_texlistQueueDoneCount_8c157a68",
+    # SHC changes the data layout otherwise
+    "var_datDir_8c18ad2c",
+    # SHC changes the data layout otherwise
+    "var_loadLatch_8c18adac",
+    # SHC changes the data layout otherwise
+    "var_routeModelIndexes_8c18adb0",
+    # SHC changes the data layout otherwise
+    "var_segmentHasStop_8c2286a4",
+    # SHC changes the data layout otherwise
+    "var_passengerActed_8c228958",
 }
 
 # SDK-mirrored / infra names (scif_*, BupExit, main, serialprintf, ...) whose

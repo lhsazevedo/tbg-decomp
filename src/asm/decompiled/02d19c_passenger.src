@@ -54,13 +54,13 @@
           .EXPORT     _var_exitSpot1_8c228934 ; 02d968.src
           .EXPORT     _var_exitSpot2_8c228940 ; 02d968.src
           .EXPORT     _var_exitSpot3_8c22894c ; 02d968.src
+          .EXPORT     _var_passengerActed_8c228958
           .EXPORT     _var_passengersFadedOut_8c22895c ; 02d968.src
           .EXPORT     _var_passengerFadeColor_8c228960 ; 02d06c.src, 02d968.src
           .AIFDEF UNIT_TESTING
           .EXPORT     _drawPassengerSprite_8c02d19c
           .EXPORT     _drawInterior_8c02d1f4
           .EXPORT     _setCountUpStep_8c02d5d8
-          .EXPORT     _var_passengerActed_8c228958
           .AENDI
           .SECTION     P, CODE, ALIGN=4
 _drawPassengerSprite_8c02d19c:

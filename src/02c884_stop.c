@@ -36,7 +36,7 @@
  * ====================
  */
 
-STATIC int var_segmentHasStop_8c2286a4[24];
+int var_segmentHasStop_8c2286a4[24];
 
 int var_startStopIndex_8c228704;
 

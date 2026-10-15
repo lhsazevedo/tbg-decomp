@@ -58,6 +58,7 @@ extern NJS_POINT3 var_boardSpot1_8c228928;
 extern NJS_POINT3 var_exitSpot1_8c228934;
 extern NJS_POINT3 var_exitSpot2_8c228940;
 extern NJS_POINT3 var_exitSpot3_8c22894c;
+extern int var_passengerActed_8c228958;
 
 /* Set for the one frame the passenger fade is fully out. */
 extern int var_passengersFadedOut_8c22895c;

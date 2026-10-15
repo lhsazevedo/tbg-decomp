@@ -31,6 +31,8 @@ StopAreaRecord *StopGetArea_8c02cd7a(int segmentIndex);
 /* Steps RunState.stopPhase_0x20 once per frame. */
 void StopUpdateArrival_8c02ce48(void);
 
+extern int var_segmentHasStop_8c2286a4[24];
+
 /* Segment the run starts from: 0, or a debug menu entry's to start partway. */
 extern int var_startStopIndex_8c228704;
 

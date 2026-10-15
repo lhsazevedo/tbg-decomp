@@ -113,7 +113,7 @@ typedef struct {
 
 int var_queuesAreInitialized_8c157a60;
 int var_seed_8c157a64;
-STATIC int var_texlistQueueDoneCount_8c157a68;
+int var_texlistQueueDoneCount_8c157a68;
 int var_loadScreenActive_8c157a6c;
 
 int var_activeCtrlType_8c157a70;
