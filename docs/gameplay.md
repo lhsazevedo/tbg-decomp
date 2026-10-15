@@ -98,8 +98,8 @@ rows; their sum is added to `exp_0x90`.
   "mirror button" -- see the Penalties section's naming note) is 0 = off,
   1 = left, 2 = right, set by the same two buttons that also switch the
   mirror view (`mirror_0x268`, `024280_bus_input.c:441-511`); it clears itself once a
-  lane change completes (`02b464_grading.c`) or on a gear change
-  (`023938_bus_drive.c`).
+  lane change completes (`02b464_grading.c`) or when auto drive mode
+  finishes a lane change (`023938_bus_drive.c:213-219`).
 - One control genuinely does three jobs: it is the driver's turn signal, the
   mirror-view selector, and the input the lane-change penalty check reads
   (`02b464_grading.c:577`). Naming it after any single one of those
