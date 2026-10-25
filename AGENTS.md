@@ -4,7 +4,7 @@ Dreamcast (SH4) game decompilation. Goal: functional equivalence, not byte-for-b
 
 ## Environment
 
-All build/test commands run inside Docker:
+Commands run natively (see `docs/setup.md`) or inside Docker:
 - `./docker-shell.sh` — interactive shell (working dir `/app`)
 - `./docker-run.sh <cmd>` — run a single command non-interactively
 
@@ -17,8 +17,8 @@ All build/test commands run inside Docker:
 # Test (full suite; --parallel speeds this up, sh4objtest v0.1.28+)
 ./scripts/run_tests.sh --parallel
 
-# Test (one file, or a whole unit's directory -- the path must be absolute
-# inside the container; a relative one silently matches nothing and exits 0)
+# Test (one file, or a whole unit's directory -- the path must be absolute,
+# /app/... inside Docker; a relative one silently matches nothing and exits 0)
 ./scripts/run_tests.sh -p /app/tests/path/to/test.php
 
 # Test (single file + debug trace)
