@@ -19,7 +19,7 @@ The pass never changes what code does. Code shape belongs to `code-shape-pass`.
 
 ## Before you start
 
-1. **Get a green baseline.** The matching build, `make`, `./scripts/lint.sh`, and the
+1. **Get a green baseline.** The matching build, `./build.py`, `./scripts/lint.sh`, and the
    unit's tests (`./scripts/run_tests.sh -p /app/tests/<unit>`). A pass that starts red
    can't tell its own breakage from the pre-existing kind.
 2. **Have the asm open.** `src/asm/decompiled/<unit>.src` is the authority on what a
@@ -53,7 +53,7 @@ whether the name says that.
 - **When unsure, don't rename.** A vague name is better than a wrong one. `FUN_` /
   `var_8c...` are fine to leave when the code doesn't say enough; mark the row `unsure`.
 - **Unit name:** rename the unit only if its name is misleading for the whole of it,
-  following `git show 34ea3e8` (files, guard, `@unit`, prefix, Makefiles, tests.php).
+  following `git show 34ea3e8` (files, guard, `@unit`, prefix, `build.py` UNITS, tests.php).
 
 Rename by script, never by hand: a map of old -> new over src/, tests/, tests.php,
 docs/ and .claude/skills/. Asm names carry a leading underscore, so match
@@ -103,8 +103,8 @@ The name covers the sampling; the reseeding is the one thing it doesn't say.
 
 After the renames, and again after the comments:
 
-- `make -f Makefile.matching` -> `Yay! Build matches :)`
-- `make` -> `Project built :)`
+- `./build.py matching` -> `Yay! Build matches :)`
+- `./build.py` -> `Project built :)`
 - `./scripts/lint.sh` -> all blocking checks passed, and no new `check_test_naming`
   mismatches
 - `./scripts/run_tests.sh --parallel` -> everything passes

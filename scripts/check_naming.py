@@ -67,6 +67,9 @@ import subprocess
 import sys
 from pathlib import Path
 
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+from build import UNITS
+
 SH4OBJTEST = os.environ.get("SH4OBJTEST", "sh4objtest")
 
 EXTERN_DECL = re.compile(r"^extern\s+.*?\b([A-Za-z_][A-Za-z0-9_]*)\s*(?:\([^;]*\))?\s*(?:\[[^\]]*\])?\s*;\s*$")
@@ -359,16 +362,6 @@ def check_symbol(name, kind, is_public, shortunit):
             f"(lowercase first letter, no internal '_')")
 
 
-def c_units(makefile):
-    srcs = re.search(r"^SRCS\s*=(.*?)^\S", makefile, re.S | re.M)
-    units = []
-    for line in srcs.group(1).splitlines():
-        line = line.strip().rstrip("\\").strip()
-        if line.startswith("src/") and line.endswith(".c") and "/asm/" not in line:
-            units.append(Path(line).stem)
-    return units
-
-
 def header_declares(header_text, name):
     return re.search(r"\b" + re.escape(name) + r"\s*\(", header_text) is not None
 
@@ -383,9 +376,9 @@ def main():
     src_root = repo_root / "build" / "output_matching" / "src" / "asm" / "decompiled"
     objs = sorted(obj_root.rglob("*.obj")) if obj_root.is_dir() else []
     if not objs:
-        sys.exit(f"No objects found under {obj_root} -- run `make` first")
+        sys.exit(f"No objects found under {obj_root} -- run `./build.py` first")
 
-    units = c_units((repo_root / "Makefile").read_text())
+    units = UNITS
     header_cache = {}
     violations = []
     naming_v = set()  # symbol/drift/tag violations, deduped across the .c and .src objects

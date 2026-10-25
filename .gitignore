@@ -2,6 +2,7 @@
 /build/output_matching
 /build/output_test
 /build/tmp
+/build/tools
 /build/inspect
 /build/inspect_graph
 /diskroot
@@ -10,10 +11,7 @@
 1ST_READ.BIN
 
 scripts/set_kt.sh
-build/.defines
 build/.test.lock
-build/lnk.sub
-build/lnk_matching.sub
 
 /ghidra
 /.env

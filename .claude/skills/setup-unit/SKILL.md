@@ -1,6 +1,6 @@
 ---
 name: setup-unit
-description: Scaffold a new translation unit before decompiling any of its functions -- move the raw asm under decompiled/, create the empty C file and test dir, and wire it into both Makefiles and tests.php. Use when starting on a fresh src/asm/<addr>.src, before the decompile-function skill.
+description: Scaffold a new translation unit before decompiling any of its functions -- move the raw asm under decompiled/, create the empty C file and test dir, and wire it into build.py and tests.php. Use when starting on a fresh src/asm/<addr>.src, before the decompile-function skill.
 ---
 
 # Set Up a New Unit
@@ -33,17 +33,10 @@ Given `<addr>` (e.g. `018644`):
    mkdir tests/<addr>
    ```
 
-4. **Makefile** (non-matching) -- swap the `SRCS` entry from asm to C:
-   ```
-   src/asm/<addr>.src \   ->   src/<addr>.c \
-   ```
+4. **build.py** -- add `<addr>` to `UNITS`, in link order. The regular build compiles
+   `src/<addr>.c`; the matching build picks up the archived asm from step 1.
 
-5. **Makefile.matching** -- swap the `SRCS` entry to the archived asm path:
-   ```
-   src/asm/<addr>.src \   ->   src/asm/decompiled/<addr>.src \
-   ```
-
-6. **tests.php** -- add a group at the end of `groups`. Test objects mirror the
+5. **tests.php** -- add a group at the end of `groups`. Test objects mirror the
    source tree under `build/output_test/`. The `tests` array starts empty; the
    first `.php` file lands here once you decompile a function:
    ```php
@@ -57,7 +50,7 @@ Given `<addr>` (e.g. `018644`):
    ],
    ```
 
-7. **Port the unit's data** (sections C and D) from the asm into the C file, before
+6. **Port the unit's data** (sections C and D) from the asm into the C file, before
    decompiling any function. Tests need the real initializers and constant tables to
    assert against, and doing it up front avoids porting them piecemeal later.
    `scripts/dump_src_data.py` does this mechanically -- never hand-retype the tables:
@@ -93,6 +86,6 @@ don't match yet.
 The new object should assemble and compile with 0 errors/warnings and the suite still
 pass -- an empty test group builds its objects but asserts nothing.
 
-Do **not** run a full `make` (non-matching): steps 5-6 intentionally break it until
+Do **not** run a full `./build.py` (non-matching): step 4 intentionally breaks it until
 every function in the unit is decompiled, because other units still import symbols the
 empty C file doesn't yet define. Use the test suite to verify in the meantime.

@@ -18,24 +18,16 @@ jobs:
           repository: lhsazevedo/dc-sdk-155j
           path: sdk
 
-      - name: Install wibo
+      - name: Install tools
         run: |
-          wget -nv https://github.com/decompals/wibo/releases/download/1.1.0/wibo-x86_64 -O wibo
-          sudo mv wibo /usr/local/bin/wibo
-          sudo chmod +x /usr/local/bin/wibo
+          python3 scripts/install_tools.py wibo
+          echo "$PWD/build/tools" >> "$GITHUB_PATH"
 
       - name: Configure environment
         run: |
-          # shc doesn't like dashes in paths.
+          # lnk rejects '-' in paths
           sudo ln -sfn "$PWD/sdk" /sdk
-          DC_SDK=/sdk
-          mkdir -p $PWD/build/tmp
-          echo "SHINOBI_DIR=$(wibo path -w $DC_SDK/shinobi)" >> "$GITHUB_ENV"
-          echo "KATANA_SDK_DIR=$(wibo path -w $DC_SDK)" >> "$GITHUB_ENV"
-          echo "SHC_BIN=$(wibo path -w $DC_SDK/shc/bin)" >> "$GITHUB_ENV"
-          echo "SHC_TMP=$(wibo path -w $PWD/build/tmp)" >> "$GITHUB_ENV"
-          echo "SHC_LIB=$(wibo path -w $DC_SDK/shc/bin)" >> "$GITHUB_ENV"
-          echo "SHC_INC=$(wibo path -w $DC_SDK/shc/include),$(wibo path -w $DC_SDK/shinobi/include)" >> "$GITHUB_ENV"
+          echo "DC_SDK=/sdk" >> "$GITHUB_ENV"
 
       - name: Build
-        run: make -f Makefile.matching
+        run: python3 build.py matching

@@ -41,12 +41,18 @@ Ensure your SDK files are organized as follows:
    ./docker-shell.sh
    ```
 
+5. Download the build tools (wibo, sh4objtest, gdworkbench) into `build/tools/`:
+   ```bash
+   python3 scripts/install_tools.py
+   ```
+   Re-run it after pulling a change that bumps a tool version.
+
 ## Build and Test
 
 ### Building the Binary
 Run the following command in the Docker shell:
 ```bash
-make
+./build.py
 ```
 Upon success, the output will include:
 ```

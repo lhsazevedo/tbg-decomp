@@ -16,8 +16,8 @@ set -e
 NOT_MATCHING="
 "
 
-make -f Makefile.matching rebuild
-make rebuild
+python3 build.py matching
+python3 build.py
 
 fail=0
 

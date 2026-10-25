@@ -8,8 +8,8 @@
 set -e
 
 # The naming rules trace every symbol back to an address in the original binary,
-# so these checks want the default (Japanese) build, not GAME_LANG=en.
-make rebuild
+# so these checks want the default (Japanese) build, not --lang en.
+python3 build.py
 
 set +e
 fail=0

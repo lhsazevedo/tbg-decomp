@@ -7,4 +7,4 @@ set -euo pipefail
 REPO_ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 cd "$REPO_ROOT"
 
-./docker-run.sh make graph
+./docker-run.sh bash -c 'python3 build.py && python3 scripts/generate_graph.py'

@@ -8,7 +8,7 @@ must not declare a symbol that is *private* -- defined by a unit's own `.c` and
 referenced by nothing outside that unit. Such a symbol belongs in the `.c`
 (marked STATIC), not in any header.
 
-Ground truth comes from the plain `make` build objects
+Ground truth comes from the regular `./build.py` build objects
 (build/output/src/**/*.obj -- the C units' <unit>.obj and the undecompiled
 asm units' asm/<name>.obj, i.e. exactly the link inputs minus the SDK libs).
 For each linker symbol `sh4objtest inspect --format=json` gives the defining
@@ -145,7 +145,7 @@ def main():
     obj_root = repo_root / "build" / "output" / "src"
     objs = sorted(obj_root.rglob("*.obj")) if obj_root.is_dir() else []
     if not objs:
-        sys.exit(f"No objects found under {obj_root} -- run `make` first")
+        sys.exit(f"No objects found under {obj_root} -- run `./build.py` first")
 
     # owner[symbol] = (obj_id, owning_kind, symbol_kind); importers[symbol] = {obj_id}
     owner = {}

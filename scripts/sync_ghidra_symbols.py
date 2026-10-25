@@ -2,7 +2,7 @@
 """Sync symbol names from the matching build into the Ghidra project
 (flycast_ram.bin). Re-runnable; build always wins.
 
-Prereqs: the matching build must be up to date (`make -f Makefile.matching`) and
+Prereqs: the matching build must be up to date (`./build.py matching`) and
 assembled with `-debug` (embeds debug symbols in the .obj -- required for statics,
 see docs/lessons_learned.md), and Ghidra must be open with the GhidraMCP plugin
 listening on GHIDRA_URL.
