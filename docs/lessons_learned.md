@@ -157,11 +157,9 @@ codegen that no real caller ever triggers, and one-off alignment `.RES.W`
 padding words in a literal pool, which aren't code at all). Tag these with a
 short comment explaining *why* they're unreachable instead of leaving
 `--coverage` to report them as gaps indistinguishable from a genuine missing
-test -- also requires bumping `docker/Dockerfile`'s sh4objtest version and
-rebuilding the local image (`docker build -t lhsazevedo/tbg-decomp docker/`)
-to pick up a version that supports the tags -- `docker-run.sh`/`docker-shell.sh`
-use a prebuilt image tag, so editing the Dockerfile alone does nothing until
-it's rebuilt.
+test -- also requires bumping sh4objtest's version in
+`scripts/install_tools.py` and re-running it to pick up a version that supports
+the tags.
 
 ## Renaming an exported symbol: unit tests won't catch a missed caller
 
@@ -178,7 +176,7 @@ spots in the harness hide a missed caller:
 - A single-file compile of the renamed unit succeeds too -- nothing it
   builds references the old name.
 
-The miss only surfaces at the **full `make` link** as
+The miss only surfaces at the **full `./build.py` link** as
 `105 UNDEFINED EXTERNAL SYMBOL(<unit>._<oldname>)`, because still-undecompiled
 asm units keep `.IMPORT`ing the old name.
 
@@ -188,7 +186,7 @@ grepping first and sed'ing a filtered list. There's no need to know *where*
 the callers are up front; a single recursive pass covers `.c`/`.h`, *all*
 `.src` (callers hold it as `.IMPORT` + `.DATA.L _oldname` literal-pool
 entries), `tests/` mocks, and comments together. Omit the leading `_` so
-`foo`->`bar` also catches the asm `_foo`. Then run the full `make` link (not
+`foo`->`bar` also catches the asm `_foo`. Then run the full `./build.py` link (not
 just `run_tests.sh`): that link, via UNDEFINED EXTERNAL SYMBOL, is the only
 check that proves the sed reached every caller -- it's the verification step,
 not a pre-sed grep.
@@ -238,7 +236,7 @@ Both are behavior-identical; prove it with the dual-object test plus
 separate `.DWF` and leaves the .obj without it. So `sh4objtest inspect
 --format=json` only reports `debugSymbols` (asm emits type `Label`, `shc` emits
 `Func`/`Var`) under plain `-debug`. Those debug symbols are the only place
-**statics** appear -- `exports` lists just the public symbols. `Makefile.matching`
+**statics** appear -- `exports` lists just the public symbols. The matching build
 uses `-debug` for this reason; `scripts/sync_ghidra_symbols.py` depends on it.
 
 Real symbols carry a leading `_`; internal auto-labels (`LAB_`, `LP_GEN_`, the
@@ -252,7 +250,7 @@ from the archived `src/asm/decompiled/<unit>.src`. A `./scripts/run_tests.sh -c`
 run only refreshes `build/output_test/` objects, so after `sed`-renaming a symbol
 in the `.src` the matching object stays stale and the check reports
 `symbol at <addr> differs: .c has '<New>', .src has 'FUN_<addr>' -- rename both`
-even though both source files already agree. Run `make -f Makefile.matching` to
+even though both source files already agree. Run `./build.py matching` to
 refresh it, then re-check. Only **public** (exported) renames trip this; a
 `STATIC` rename is invisible in the C object so the cross-check skips it.
 
@@ -433,7 +431,7 @@ the failure's object file before concluding the two agree.
 
 ## `lint.sh` is not a per-function gate mid-unit
 
-`scripts/lint.sh` starts with `make rebuild`, and per AGENTS.md the
+`scripts/lint.sh` starts with `./build.py`, and per AGENTS.md the
 non-matching full build is *expected* to fail from the moment a unit is
 scaffolded until its last function is ported: other units import symbols the
 half-written `.c` does not define yet, so the link dies on `UNDEFINED EXTERNAL
@@ -621,7 +619,7 @@ the guessed base was wrong, not that the new global still needs seeding.
 Moving `_var_8c227e1c`'s 4-byte reservation out of the middle of `sectionB.src`
 into a unit's own B section shifted every later section-B symbol down 4 bytes.
 The build still linked and every per-function test still passed -- only
-`make -f Makefile.matching` caught it, with `Oops, build differs :/`.
+`./build.py matching` caught it, with `Oops, build differs :/`.
 
 Section B is one contiguous allocation whose order is fixed by the original
 layout, so a symbol may only change owner if it sits at the start or end of the
@@ -641,8 +639,7 @@ build's link fails on them.
 
 Two things make this hard to read. A stale object from before a file rename
 (e.g. `build/output_matching/src/asm/<old>.obj`) keeps getting linked and
-reports misleading undefined-symbol names -- `make -f Makefile.matching clean`
-first. And the failure surfaces only at final link, long after the rename.
+reports misleading undefined-symbol names. And the failure surfaces only at final link, long after the rename.
 
 Sweep with `command grep -ran '<old_name>' src/ tests/` across the entire tree
 when a unit's naming settles.
@@ -653,9 +650,9 @@ when a unit's naming settles.
 
 This file is a Ghidra extraction of the section D data spanning roughly
 `8c044de0`..`8c04ab6c`, immediately preceding `02af78_event`'s own
-`EventEntry` tables. Adding it to either Makefile's `SRCS` fails at link with
-~590 `UNDEFINED EXTERNAL SYMBOL` errors, in **both** `Makefile` and
-`Makefile.matching`. Most of what it `.IMPORT`s (section C consts, one
+`EventEntry` tables. Adding it to either build's unit list fails at link with
+~590 `UNDEFINED EXTERNAL SYMBOL` errors, in **both** the regular and
+matching builds. Most of what it `.IMPORT`s (section C consts, one
 section B var) already has a real owner elsewhere in the tree, but that owner
 doesn't yet make the symbol visible to this file:
 
@@ -663,7 +660,7 @@ doesn't yet make the symbol visible to this file:
   `01fa78.src`, `024280_bus_input.src`, `025870_cinematic.src`,
   `0289ac_objects.src`), the label exists but is never `.EXPORT`ed -- nothing
   outside that file has needed it yet.
-- For the C-based `Makefile`, an owner that *is* decompiled (e.g.
+- For the C-based regular build, an owner that *is* decompiled (e.g.
   `01bb48_vm_game`) only ports data its decompiled C functions actually
   reference; a lot of this span's consts aren't referenced by any decompiled
   function yet, so they don't exist in the `.c` at all even though the
@@ -727,8 +724,8 @@ srcWordArray[i];`, reading a `Sint16` scratch buffer and truncating to a
 byte) made SHC emit `MOV.W @Rm+,Rn` (word load, post-increment) --
 `sh4objtest` doesn't implement that addressing form and throws `Unknown
 instruction NNNN` (varies with the register-number bits in the opcode).
-Confirmed by dumping the compiled listing with `shc -code=asm` (`Makefile.test`
-already does this into `build/output_test/src/<unit>.obj.src`) and reading the disassembly around the
+Confirmed by dumping the compiled listing with `shc -code=asm` (`./build.py test --listing`
+writes it to `build/output_test/src/<unit>.obj.src`) and reading the disassembly around the
 crash address printed by `-v --disasm`. The *original* archived asm never
 uses this addressing mode anywhere in the unit -- circumstantial evidence
 it's cold/rare in real SHC-era output, not just untested in `sh4objtest`.

@@ -7,6 +7,6 @@ mkdir -p build/tmp
 exec 9>build/.test.lock
 flock 9
 
-make -f Makefile.test rebuild
+python3 build.py test
 
 sh4objtest suite -s tests.php "$@"

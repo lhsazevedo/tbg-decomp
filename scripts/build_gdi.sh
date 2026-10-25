@@ -11,7 +11,7 @@ echo "Building the GDI data track..."
 
 if [ ! -f build/output/tbg.bin ]; then
     echo "The game binary was not found at build/output/tbg.bin"
-    echo "Please build the game binary first using make"
+    echo "Please build the game binary first with ./build.py"
     exit 1
 fi
 

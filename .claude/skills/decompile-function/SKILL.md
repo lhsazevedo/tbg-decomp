@@ -199,7 +199,7 @@ Keep each path small enough to test quickly. If one path is taking too long, spl
 
   `Decompile FUN_8c012718`
 
-* Do not run the full `make` until the whole TU has been decompiled.
+* Do not run the full `./build.py` until the whole TU has been decompiled.
 
 ## Lessons learned
 

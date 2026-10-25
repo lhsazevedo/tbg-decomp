@@ -11,8 +11,8 @@ All build/test commands run inside Docker:
 ## Key Commands
 
 ```bash
-# Build (clean rebuild; `make all` builds incrementally)
-make
+# Build (regular; `./build.py --help` for the matching/test targets and options)
+./build.py
 
 # Test (full suite; --parallel speeds this up, sh4objtest v0.1.28+)
 ./scripts/run_tests.sh --parallel
@@ -25,7 +25,7 @@ make
 ./scripts/run_tests.sh /app/tests/path/to/test.php -d
 ```
 
-A matching build prints `Matching project built! \o/`; a non-matching build prints `Project built :)`.
+A matching build (`./build.py matching`) prints `Yay! Build matches :)`; a non-matching build prints `Project built :)`.
 
 ## Directory Map
 
@@ -43,8 +43,7 @@ tests/
   AGENTS.md                  # ← DSL reference and test-writing guide
 tests.php                    # Test suite registry — add new groups here
 scripts/run_tests.sh         # Build test objects + run all tests
-Makefile                     # Full build; SRCS list drives compilation order
-Makefile.test                # Test-object build; units auto-discovered
+build.py                     # Build; UNITS list drives link order
 .claude/skills/setup-unit/   # Skill: scaffold a new translation unit
 .claude/skills/decompile-function/  # Skill: port one function to C with tests
 .claude/skills/move-data/    # Skill: migrate data ownership between files
@@ -154,17 +153,14 @@ the tests dir can be plain `mkdir` since it starts empty):
 3. `mkdir tests/<addr>` (empty for now; first test file gets added, along
    with the test group in `tests.php`, once you decompile the first
    function).
-4. In `Makefile` (non-matching), swap the `SRCS` entry from
-   `src/asm/<addr>.src` to `src/<addr>.c`.
-5. In `Makefile.matching`, swap the `SRCS` entry from `src/asm/<addr>.src` to
-   `src/asm/decompiled/<addr>.src` (same content, just the new path —
-   matching build keeps using the archived original asm until the unit's C
-   is proven byte-matching).
+4. Add `<addr>` to `UNITS` in `build.py`, in link order. The regular build
+   compiles `src/<addr>.c`; the matching build keeps using the archived
+   `src/asm/decompiled/<addr>.src` while it exists.
 
-Steps 4-5 intentionally break `make` (full non-matching build) until every
+Step 4 intentionally breaks `./build.py` (full non-matching build) until every
 function in the unit is decompiled — other units still import the
 not-yet-defined symbols. That's expected; use `./scripts/run_tests.sh` to
-verify in the meantime instead of a full `make`.
+verify in the meantime instead of a full `./build.py`.
 
 Then, per function: decompile in `src/<addr>_name.c`, add its test file
 under `tests/<addr>/`, and register it in the matching group in `tests.php`
