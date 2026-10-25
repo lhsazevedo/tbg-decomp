@@ -121,7 +121,7 @@ def find_tool(name):
     return found
 
 
-class Linux:
+class Wibo:
     """Runs the Windows SDK tools through wibo."""
 
     def __init__(self):
@@ -137,17 +137,17 @@ class Linux:
         return [self.wibo, str(exe)]
 
 
-class MacOS(Linux):
-    def __init__(self):
-        raise NotImplementedError("macOS builds are not implemented yet")
-
-
 class Windows:
-    def __init__(self):
-        raise NotImplementedError("Windows builds are not implemented yet")
+    """Runs the SDK tools directly."""
+
+    def paths(self, *paths):
+        return [str(p) for p in paths]
+
+    def command(self, exe):
+        return [str(exe)]
 
 
-PLATFORMS = {"Linux": Linux, "Darwin": MacOS, "Windows": Windows}
+PLATFORMS = {"Linux": Wibo, "Darwin": Wibo, "Windows": Windows}
 
 
 class Toolchain:
@@ -155,18 +155,21 @@ class Toolchain:
         dc_sdk = os.environ.get("DC_SDK")
         if not dc_sdk:
             sys.exit("DC_SDK is not set; point it at the SDK")
-        # Not resolved, so a hyphen-free symlink to the SDK works
-        self.root = Path(os.path.abspath(dc_sdk))
+        # lnk rejects '-' in paths; relative to the repo, none above it count
+        try:
+            self.root = Path(os.path.relpath(dc_sdk))
+        except ValueError:  # Windows, SDK on another drive
+            self.root = Path(os.path.abspath(dc_sdk))
         if "-" in str(self.root):
-            sys.exit(f"DC_SDK path {self.root} contains '-', which lnk rejects; "
-                     "symlink the SDK to a path without one")
+            sys.exit(f"SDK path {self.root} contains '-', which lnk rejects; "
+                     "rename it or symlink the SDK to a path without one")
         self.host = host
         self.verbose = verbose
         self.listing = listing
         self.warnings = 0
         tmp = BUILD / "tmp"
         tmp.mkdir(parents=True, exist_ok=True)
-        self.win_root, win_tmp = host.paths(self.root, tmp.resolve())
+        self.win_root, win_tmp = host.paths(self.root, tmp)
         p = lambda sub: self.win_root + "\\" + sub
         self.env = dict(
             os.environ,

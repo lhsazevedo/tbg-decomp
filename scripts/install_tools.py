@@ -63,9 +63,8 @@ def install(tool, plat):
     if exe.exists() and stamp.exists() and stamp.read_text().strip() == version:
         return True
     if plat not in urls:
-        print(f"{tool}: no {plat} release; install it yourself and put it on PATH",
-              file=sys.stderr)
-        return False
+        print(f"{tool}: no {plat} release, skipped", file=sys.stderr)
+        return True
 
     url = urls[plat].format(v=version)
     print(f"{tool} {version}: {url}")
