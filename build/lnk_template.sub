@@ -2,7 +2,7 @@ align_section
 udfcheck 
 ; debug 
 elf 
-output build\output\tbg.elf
+output @OUTPUT@\tbg.elf
 
 ; STARTUPS
 input @DC_SDK@\shinobi\lib\strt1.obj
@@ -37,7 +37,7 @@ library @DC_SDK@\shinobi\lib\shinobi.lib
 library @DC_SDK@\shinobi\lib\ninja.lib
 library @DC_SDK@\shc\lib\sh4nlfzn.lib
 
-print build\output\tbg.map
+print @OUTPUT@\tbg.map
 form a
 entry SG_SEC
 start IP(8C008000),DSGLH(8C010000)

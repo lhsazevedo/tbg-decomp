@@ -11,7 +11,7 @@ fact: section layout, and cross-unit reference structure.
 
 ## What the layout can testify to
 
-`build/lnk_matching_template.sub` ends with `start IP(8C008000),DSGLH(8C010000)`
+`build/lnk_template.sub` ends with `start IP(8C008000),DSGLH(8C010000)`
 -- every other section is given no start, so every section is laid out by
 concatenating each input object's contribution **in link order**, which is the
 `SRCS` order, which is address order. Two consequences:

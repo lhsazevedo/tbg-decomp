@@ -231,10 +231,12 @@ class Toolchain:
             self.run(None, "shc/bin/shc.exe", backslashes(src), "-code=asm",
                      f"-object={backslashes(obj)}.src", *flags)
 
-    def link(self, objs, template, sub):
+    def link(self, objs, out):
+        sub = out / "lnk.sub"
         inputs = "".join(f"input {backslashes(o)}\n" for o in objs)
-        text = template.read_text()
+        text = (BUILD / "lnk_template.sub").read_text()
         text = text.replace("@DC_SDK@", self.win_root)
+        text = text.replace("@OUTPUT@", backslashes(out))
         sub.write_text(text.replace("@INPUTS@\n", inputs))
         self.run(f"lnk {sub}", "shc/bin/lnk.exe", f"-sub={backslashes(sub)}")
 
@@ -275,7 +277,7 @@ def build_regular(sdk, args):
         obj = obj_path(out, src)
         sdk.shc(src, obj, BUILD / "shc.sub", defines)
         objs.append(obj)
-    sdk.link(objs, BUILD / "lnk_template.sub", out / "lnk.sub")
+    sdk.link(objs, out)
     sdk.elf2bin(out / "tbg.elf")
     sdk.summary()
     banner("Project built :)")
@@ -297,7 +299,7 @@ def build_matching(sdk, args):
             obj = obj_path(out, src)
             sdk.shc(src, obj, BUILD / "shc_matching.sub")
         objs.append(obj)
-    sdk.link(objs, BUILD / "lnk_matching_template.sub", out / "lnk.sub")
+    sdk.link(objs, out)
     sdk.elf2bin(out / "tbg.elf")
     sdk.summary()
 
