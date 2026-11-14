@@ -4,7 +4,39 @@ on: ['push', 'pull_request']
 
 jobs:
   test:
-    name: Test
+    name: Test (${{ matrix.os }})
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    env:
+      DC_SDK: sdk
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Checkout SDK
+        uses: actions/checkout@v4
+        with:
+          ssh-key: ${{ secrets.SDK_REPO_KEY }}
+          repository: lhsazevedo/dc-sdk-155j
+          path: sdk
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: Install tools
+        run: python scripts/install_tools.py wibo sh4objtest
+
+      - name: Test
+        run: python scripts/run_tests.py --parallel
+
+  check:
+    name: Check
     runs-on: ubuntu-latest
     env:
       DC_SDK: sdk
@@ -24,9 +56,6 @@ jobs:
         run: |
           python3 scripts/install_tools.py wibo sh4objtest
           echo "$PWD/build/tools" >> "$GITHUB_PATH"
-
-      - name: Test
-        run: python3 scripts/run_tests.py --parallel
 
       - name: Check data section match
         run: bash scripts/check_data_match.sh
