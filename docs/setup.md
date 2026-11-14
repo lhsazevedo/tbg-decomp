@@ -1,7 +1,6 @@
 # Project Setup
 
-The game builds natively on Linux, macOS and Windows. The unit tests run
-natively only on Linux; on macOS and Windows, run them in the Docker setup.
+The game builds and its unit tests run natively on Linux, macOS and Windows.
 
 ## Requirements
 - Python 3.
@@ -35,8 +34,7 @@ anywhere, but don't call its folder something like `dc-sdk-155j`.
    python3 scripts/install_tools.py
    ```
    Re-run it after pulling a change that bumps a tool version. It skips a tool
-   with no release for your platform: Windows doesn't need wibo, and sh4objtest
-   only exists for Linux.
+   with no release for your platform: Windows doesn't need wibo.
 
 2. Point `DC_SDK` at the SDK:
    ```bash
@@ -44,12 +42,8 @@ anywhere, but don't call its folder something like `dc-sdk-155j`.
    $env:DC_SDK = "C:\path\to\sdk"      # Windows (PowerShell)
    ```
 
-3. *(Linux, for the tests)* Put the tools on `PATH`:
-   ```bash
-   export PATH="$PWD/build/tools:$PATH"
-   ```
-
-On Windows, run the build as `python build.py` instead of `./build.py`.
+On Windows, run the scripts through `python` (`python build.py` instead of
+`./build.py`).
 
 ## Docker Setup
 1. Duplicate the `.env.example` file to create `.env`:
@@ -96,6 +90,6 @@ and options.
 ### Running Unit Tests
 After building, run the test suite to validate the code:
 ```bash
-bash scripts/run_tests.sh
+python3 scripts/run_tests.py
 ```
 This uses the custom Hitachi SH4 emulator and PHP-based testing framework to ensure decompiled code behaves as expected.

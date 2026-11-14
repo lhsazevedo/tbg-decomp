@@ -187,7 +187,7 @@ the callers are up front; a single recursive pass covers `.c`/`.h`, *all*
 `.src` (callers hold it as `.IMPORT` + `.DATA.L _oldname` literal-pool
 entries), `tests/` mocks, and comments together. Omit the leading `_` so
 `foo`->`bar` also catches the asm `_foo`. Then run the full `./build.py` link (not
-just `run_tests.sh`): that link, via UNDEFINED EXTERNAL SYMBOL, is the only
+just `run_tests.py`): that link, via UNDEFINED EXTERNAL SYMBOL, is the only
 check that proves the sed reached every caller -- it's the verification step,
 not a pre-sed grep.
 
@@ -246,7 +246,7 @@ section symbol `P`) do not -- a clean filter.
 
 `check_naming.py` cross-checks a decompiled unit's `.c` object against its
 **matching** object (`build/output_matching/.../<unit>.obj`), which is assembled
-from the archived `src/asm/decompiled/<unit>.src`. A `./scripts/run_tests.sh -c`
+from the archived `src/asm/decompiled/<unit>.src`. A `./scripts/run_tests.py -c`
 run only refreshes `build/output_test/` objects, so after `sed`-renaming a symbol
 in the `.src` the matching object stays stale and the check reports
 `symbol at <addr> differs: .c has '<New>', .src has 'FUN_<addr>' -- rename both`

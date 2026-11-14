@@ -120,7 +120,7 @@ Register new test files in the TU's group in `tests.php`. When adding the first 
 Run the individual test file:
 
 ```bash
-./docker-run.sh ./scripts/run_tests.sh -c /app/tests/<unit>/<file>.php | tail -40
+./docker-run.sh ./scripts/run_tests.py -c /app/tests/<unit>/<file>.php | tail -40
 ```
 
 At this point, use the original asm object to establish the expected behavior because the C path is still commented out.
@@ -131,7 +131,7 @@ When a test fails:
 * If the cause is unclear, rerun with `-v --disasm` and inspect the fulfilled expectations:
 
 ```bash
-./docker-run.sh ./scripts/run_tests.sh -c /app/tests/<unit>/<file>.php -v --disasm \
+./docker-run.sh ./scripts/run_tests.py -c /app/tests/<unit>/<file>.php -v --disasm \
   | grep 'Fulfilled:'
 ```
 

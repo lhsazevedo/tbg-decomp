@@ -4,8 +4,8 @@ Tests are executable, frame-sized specs for an SH4 CPU simulator. Each test prep
 
 **Run a test:**
 ```bash
-./docker-run.sh ./scripts/run_tests.sh -c /app/tests/path/to/test.php
-./docker-run.sh ./scripts/run_tests.sh -c /app/tests/path/to/test.php -d   # + debug trace
+./docker-run.sh ./scripts/run_tests.py -c /app/tests/path/to/test.php
+./docker-run.sh ./scripts/run_tests.py -c /app/tests/path/to/test.php -d   # + debug trace
 ```
 
 For the full DSL reference and advanced patterns see [`dsl-reference.md`](dsl-reference.md).

@@ -24,7 +24,7 @@ Comments are out of scope -- `unit-pass` owns those.
    `010080_main`, `010e90`, `014934`, `0149b0_sbinit`, `014a9c_tasks`, `014b8c_backup`,
    `016108`, `235ca0_nj_buffers` -- every other unit builds from the
    archived asm and only owes functional equivalence.
-2. **Get a green baseline.** `./scripts/run_tests.sh -c /app/tests/<unit>/<file>.php` for
+2. **Get a green baseline.** `./scripts/run_tests.py -c /app/tests/<unit>/<file>.php` for
    the unit, plus `./scripts/check_data_match.sh` if the unit has a data section. A pass
    that starts red cannot tell its own breakage from the pre-existing kind.
 3. **Have the asm open.** `src/asm/decompiled/<addr>.src` is the authority on what the

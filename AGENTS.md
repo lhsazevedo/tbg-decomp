@@ -15,14 +15,14 @@ Commands run natively (see `docs/setup.md`) or inside Docker:
 ./build.py
 
 # Test (full suite; --parallel speeds this up, sh4objtest v0.1.28+)
-./scripts/run_tests.sh --parallel
+./scripts/run_tests.py --parallel
 
 # Test (one file, or a whole unit's directory -- the path must be absolute,
 # /app/... inside Docker; a relative one silently matches nothing and exits 0)
-./scripts/run_tests.sh -p /app/tests/path/to/test.php
+./scripts/run_tests.py -p /app/tests/path/to/test.php
 
 # Test (single file + debug trace)
-./scripts/run_tests.sh /app/tests/path/to/test.php -d
+./scripts/run_tests.py /app/tests/path/to/test.php -d
 ```
 
 A matching build (`./build.py matching`) prints `Yay! Build matches :)`; a non-matching build prints `Project built :)`.
@@ -42,7 +42,7 @@ tests/
   <unit>/<addr>_name.php     # One PHP test file per function
   AGENTS.md                  # ← DSL reference and test-writing guide
 tests.php                    # Test suite registry — add new groups here
-scripts/run_tests.sh         # Build test objects + run all tests
+scripts/run_tests.py         # Build test objects + run all tests
 build.py                     # Build; UNITS list drives link order
 .claude/skills/setup-unit/   # Skill: scaffold a new translation unit
 .claude/skills/decompile-function/  # Skill: port one function to C with tests
@@ -159,7 +159,7 @@ the tests dir can be plain `mkdir` since it starts empty):
 
 Step 4 intentionally breaks `./build.py` (full non-matching build) until every
 function in the unit is decompiled — other units still import the
-not-yet-defined symbols. That's expected; use `./scripts/run_tests.sh` to
+not-yet-defined symbols. That's expected; use `./scripts/run_tests.py` to
 verify in the meantime instead of a full `./build.py`.
 
 Then, per function: decompile in `src/<addr>_name.c`, add its test file

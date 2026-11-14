@@ -70,7 +70,7 @@ Given `<addr>` (e.g. `018644`):
 ## Verify
 
 ```bash
-./docker-run.sh ./scripts/run_tests.sh
+./docker-run.sh ./scripts/run_tests.py
 ```
 
 Confirm the ported data is byte-identical to the asm's:

@@ -20,7 +20,7 @@ The pass never changes what code does. Code shape belongs to `code-shape-pass`.
 ## Before you start
 
 1. **Get a green baseline.** The matching build, `./build.py`, `./scripts/lint.sh`, and the
-   unit's tests (`./scripts/run_tests.sh -p /app/tests/<unit>`). A pass that starts red
+   unit's tests (`./scripts/run_tests.py -p /app/tests/<unit>`). A pass that starts red
    can't tell its own breakage from the pre-existing kind.
 2. **Have the asm open.** `src/asm/decompiled/<unit>.src` is the authority on what a
    function reads and writes. A name or comment that disagrees with the asm is wrong,
@@ -107,7 +107,7 @@ After the renames, and again after the comments:
 - `./build.py` -> `Project built :)`
 - `./scripts/lint.sh` -> all blocking checks passed, and no new `check_test_naming`
   mismatches
-- `./scripts/run_tests.sh --parallel` -> everything passes
+- `./scripts/run_tests.py --parallel` -> everything passes
 
 Comments can't break the build, but a stray `*/` or non-ASCII character can: files are
 Shift-JIS, so keep edits ASCII and check with `command grep -a`.

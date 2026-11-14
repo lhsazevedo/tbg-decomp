@@ -4,7 +4,7 @@
 targets:
   regular   the game from C, into build/output/tbg.bin (default)
   matching  the game from the archived asm, checked against the original binary
-  test      every unit's C and archived asm, for scripts/run_tests.sh
+  test      every unit's C and archived asm, for scripts/run_tests.py
   clean     remove every target's output
 """
 import argparse

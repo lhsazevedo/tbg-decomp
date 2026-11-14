@@ -39,7 +39,7 @@ overridden, so `TRACE` lines show by default but can be filtered by lowering it.
 
 1. Add `#include "serial_debug.h"` if not already present.
 2. Place a `LOG_*` call at each meaningful point (see level guide below).
-3. Build tests for the unit (`run_tests.sh -c ...`) -> must still pass unchanged
+3. Build tests for the unit (`run_tests.py -c ...`) -> must still pass unchanged
    (logs compiled out).
 4. Run `./build.py --serial-debug` -> the unit must compile with **0 warnings**;
    `serialprintf` resolves because that build defines `SERIAL_DEBUG`.
