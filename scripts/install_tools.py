@@ -25,7 +25,7 @@ TOOLS = {
         "darwin-x86_64": "https://github.com/decompals/wibo/releases/download/{v}/wibo-macos",
         "darwin-arm64": "https://github.com/decompals/wibo/releases/download/{v}/wibo-macos",
     }),
-    "sh4objtest": ("0.1.48", {
+    "sh4objtest": ("0.1.51", {
         "linux-x86_64": "https://github.com/lhsazevedo/sh4objtest/releases/download/v{v}/sh4objtest-linux-x86_64.tar.gz",
     }),
     "gdworkbench": ("1.0.0-beta.5", {

@@ -19,33 +19,6 @@ return new class extends TestCase {
         $this->rellocate('_var_messageTextBoxIndex_8c1bc40c', $base + 8);
     }
 
-    // x2, y2, enable_offset overflow to the stack (register-passed args are
-    // x, y, priority (float, own register bank), width, height). Check them
-    // by reading the stack directly, since ->with() can't be trusted to
-    // place stack-passed args at the offset their declaration order implies
-    // once a call reads them back from its own incoming stack slots.
-    private function checkTextBoxStackArgs(int $x2, int $y2, int $enableOffset): callable
-    {
-        $mask = 0xffffffff;
-        $x2 &= $mask;
-        $y2 &= $mask;
-        $enableOffset &= $mask;
-
-        return function () use ($x2, $y2, $enableOffset) {
-            $sp = $this->registers[15]->value;
-            $a = $this->memory->readUInt32($sp + 0)->value;
-            $b = $this->memory->readUInt32($sp + 4)->value;
-            $c = $this->memory->readUInt32($sp + 8)->value;
-
-            if ($a !== $enableOffset || $b !== $y2 || $c !== $x2) {
-                throw new \Exception(sprintf(
-                    "Unexpected TxtCreateTextBox stack args: got [%d, %d, %d], expecting enable_offset=%d, y2=%d, x2=%d",
-                    $a, $b, $c, $enableOffset, $y2, $x2
-                ));
-            }
-        };
-    }
-
     public function test_no_existing_textbox_skips_teardown(): void
     {
         $this->resolveSymbols();
@@ -61,14 +34,12 @@ return new class extends TestCase {
         $this->shouldCall('_TxtInit_8c01524c');
 
         $this->shouldCall('_TxtCreateTextBox_8c0152fc')
-            ->with(0x20, 0x180, -2.0, 0x240, 0x40)
-            ->do($this->checkTextBoxStackArgs(0, 0, -1))
+            ->with(0x20, 0x180, -2.0, 0x240, 0x40, 0, 0, -1)
             ->andReturn($box0);
         $this->shouldWriteLongTo('_var_messageTextBoxA_8c1bc404', $box0);
 
         $this->shouldCall('_TxtCreateTextBox_8c0152fc')
-            ->with(0x20, 0x180, -2.0, 0x240, 0x40)
-            ->do($this->checkTextBoxStackArgs(0, 0, -1))
+            ->with(0x20, 0x180, -2.0, 0x240, 0x40, 0, 0, -1)
             ->andReturn($box1);
         $this->shouldWriteLongTo('_var_messageTextBoxB_8c1bc408', $box1);
 
@@ -93,14 +64,12 @@ return new class extends TestCase {
         $this->shouldCall('_TxtInit_8c01524c');
 
         $this->shouldCall('_TxtCreateTextBox_8c0152fc')
-            ->with(0x20, 0x178, -2.0, 0x240, 0x40)
-            ->do($this->checkTextBoxStackArgs(0, 0, -1))
+            ->with(0x20, 0x178, -2.0, 0x240, 0x40, 0, 0, -1)
             ->andReturn($box0);
         $this->shouldWriteLongTo('_var_messageTextBoxA_8c1bc404', $box0);
 
         $this->shouldCall('_TxtCreateTextBox_8c0152fc')
-            ->with(0x20, 0x178, -2.0, 0x240, 0x40)
-            ->do($this->checkTextBoxStackArgs(0, 0, -1))
+            ->with(0x20, 0x178, -2.0, 0x240, 0x40, 0, 0, -1)
             ->andReturn($box1);
         $this->shouldWriteLongTo('_var_messageTextBoxB_8c1bc408', $box1);
 
@@ -123,14 +92,12 @@ return new class extends TestCase {
         $this->shouldCall('_TxtInit_8c01524c');
 
         $this->shouldCall('_TxtCreateTextBox_8c0152fc')
-            ->with(0x20, 0x180, -2.0, 0x240, 0x40)
-            ->do($this->checkTextBoxStackArgs(0, 0, 0))
+            ->with(0x20, 0x180, -2.0, 0x240, 0x40, 0, 0, 0)
             ->andReturn($box0);
         $this->shouldWriteLongTo('_var_messageTextBoxA_8c1bc404', $box0);
 
         $this->shouldCall('_TxtCreateTextBox_8c0152fc')
-            ->with(0x20, 0x180, -2.0, 0x240, 0x40)
-            ->do($this->checkTextBoxStackArgs(0, 0, 0))
+            ->with(0x20, 0x180, -2.0, 0x240, 0x40, 0, 0, 0)
             ->andReturn($box1);
         $this->shouldWriteLongTo('_var_messageTextBoxB_8c1bc408', $box1);
 

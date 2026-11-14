@@ -24,7 +24,7 @@ return new class extends TestCase {
         $this->shouldWriteFloat($box + 0x08, -2.0);
         $this->shouldWriteLong($box + 0x0c, $WIDTH);
         $this->shouldWriteLong($box + 0x10, $HEIGHT);
-        $this->shouldWriteLong($box + 0x14, -1);
+        $this->shouldWriteLong($box + 0x14, 42);
         $this->shouldWriteLong($box + 0x18, 69);
         $this->shouldWriteWord($box + 0x24, 0x0000);
         $this->shouldWriteWord($box + 0x26, 0xa94a);
@@ -43,7 +43,7 @@ return new class extends TestCase {
         $this->shouldWriteLong($box + 0x2c, $glyphIndexes);
         $this->shouldCall('_syMalloc')->with($HEIGHT * 4 / 32)->andReturn(0xbebacafe);
         $this->shouldWriteLong($box + 0x34, 0xbebacafe);
-        $this->shouldWriteLong($box + 0x30, 42);
+        $this->shouldWriteLong($box + 0x30, -1);
 
         // In the asm object, the loop bound isn't hoisted: it recomputes
         // max_chars from scratch on every iteration (width / GLYPH_WIDTH, times
@@ -65,8 +65,7 @@ return new class extends TestCase {
 
         // Note: The game passes 0 instead of 42 and 69.
         $this->singleCall('_TxtCreateTextBox_8c0152fc')
-            // TODO: -1 instead of 0xffffffff in the last argument
-            ->with(0x20, 0x178, -2.0, $WIDTH, $HEIGHT, 42, 69, 0xffffffff)
+            ->with(0x20, 0x178, -2.0, $WIDTH, $HEIGHT, 42, 69, -1)
             ->singleShouldReturn($box)
             ->run();
     }

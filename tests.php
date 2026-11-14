@@ -1,7 +1,7 @@
 <?php
 
 return [
-    'callBlocklist' => ['/^LAB_/', '/^L\d+$/'],
+    'callBlocklist' => ['/LAB_/', '/^L\d+$/', '/^caseD_/'],
     'sourcePaths' => [
         'Z:\\app\\src' => 'src',
     ],
