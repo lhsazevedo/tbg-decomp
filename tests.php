@@ -3,7 +3,8 @@
 return [
     'callBlocklist' => ['/LAB_/', '/^L\d+$/', '/^caseD_/'],
     'sourcePaths' => [
-        'Z:\\app\\src' => 'src',
+        // Where the compiler saw src/: wibo puts the host root at Z:
+        (DIRECTORY_SEPARATOR === '/' ? 'Z:' : '') . strtr(__DIR__, '/', '\\') . '\\src' => 'src',
     ],
     'groups' => [
         [
