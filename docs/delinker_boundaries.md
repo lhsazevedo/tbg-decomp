@@ -55,7 +55,7 @@ JSR (or tail-call JMP) to a callee within BSR range proves the two were in
 different TUs. Taking a function's address (tasks, callbacks) is always an
 absolute pool entry and proves nothing.
 
-Checked by `tbg-experiments/tu-calls/tu_calls.py`. Found this way: objects split
+Found this way: objects split
 at `0289ac` (`pedestrianTask` JSRs to the crossing helpers at `0289xx` but BSRs
 to `advancePedPathPos_8c0289ac`), and `016108_resgrp_free` separate from
 `01614c_replay_menu`.
