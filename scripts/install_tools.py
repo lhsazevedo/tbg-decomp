@@ -27,6 +27,9 @@ TOOLS = {
     }),
     "sh4objtest": ("0.1.51", {
         "linux-x86_64": "https://github.com/lhsazevedo/sh4objtest/releases/download/v{v}/sh4objtest-linux-x86_64.tar.gz",
+        "darwin-x86_64": "https://github.com/lhsazevedo/sh4objtest/releases/download/v{v}/sh4objtest-macos-x86_64.tar.gz",
+        "darwin-arm64": "https://github.com/lhsazevedo/sh4objtest/releases/download/v{v}/sh4objtest-macos-aarch64.tar.gz",
+        "windows-x86_64": "https://github.com/lhsazevedo/sh4objtest/releases/download/v{v}/sh4objtest-windows-x86_64.zip",
     }),
     "gdworkbench": ("1.0.0-beta.5", {
         "linux-x86_64": "https://github.com/lhsazevedo/gdworkbench/releases/download/v{v}/gdworkbench_{v}_linux_amd64.tar.gz",
